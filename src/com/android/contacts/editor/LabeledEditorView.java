@@ -24,8 +24,8 @@ import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.util.DialogManager;
-import com.android.contacts.util.ThemeUtils;
 import com.android.contacts.util.DialogManager.DialogShowingView;
+import com.android.contacts.util.ThemeUtils;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -36,16 +36,17 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.PopupMenu;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -61,7 +62,8 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
     private static final int INPUT_TYPE_CUSTOM = EditorInfo.TYPE_CLASS_TEXT
             | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS;
 
-    private Button mLabel;
+    private Spinner mLabel;
+    private EditTypeAdapter mEditTypeAdapter;
     private ImageButton mDelete;
 
     private DataKind mKind;
@@ -70,12 +72,28 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
     private boolean mReadOnly;
 
     private EditType mType;
-    // Used only when a user tries to use custom label.
-    private EditType mPendingType;
 
     private ViewIdGenerator mViewIdGenerator;
     private DialogManager mDialogManager = null;
     private EditorListener mListener;
+
+    /**
+     * A marker in the spinner adapter of the currently selected custom type.
+     */
+    public static final EditType CUSTOM_SELECTION = new EditType(0, 0);
+
+    private OnItemSelectedListener mSpinnerListener = new OnItemSelectedListener() {
+
+        @Override
+        public void onItemSelected(
+                AdapterView<?> parent, View view, int position, long id) {
+            onTypeSelectionChange(position);
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+        }
+    };
 
     public LabeledEditorView(Context context) {
         super(context);
@@ -140,19 +158,11 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
      */
     private void setupLabelButton(boolean shouldExist) {
         if (shouldExist && mLabel == null) {
-            mLabel = new Button(mContext, null, android.R.attr.dropDownSpinnerStyle);
+            mLabel = new Spinner(mContext);
             final int width =
                     mContext.getResources().getDimensionPixelSize(R.dimen.editor_type_label_width);
             mLabel.setLayoutParams(new LayoutParams(width, LayoutParams.WRAP_CONTENT));
-            mLabel.setGravity(Gravity.RIGHT);
-            mLabel.setTextColor(getResources().getColor(R.color.editor_label_text_color));
-            mLabel.setFocusable(true);
-            mLabel.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showLabelPopupMenu();
-                }
-            });
+            mLabel.setOnItemSelectedListener(mSpinnerListener);
             mLabel.setEnabled(!mReadOnly && isEnabled());
             addView(mLabel);
         } else if (!shouldExist && mLabel != null) {
@@ -231,7 +241,7 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
         if (mDelete != null) mDelete.setEnabled(!mReadOnly && enabled);
     }
 
-    public Button getLabel() {
+    public Spinner getLabel() {
         return mLabel;
     }
 
@@ -257,23 +267,13 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
      */
     private void rebuildLabel() {
         if (mLabel == null) return;
-        // Handle undetected types
-        if (mType == null) {
-            mLabel.setText(R.string.unknown);
-            return;
+        mEditTypeAdapter = new EditTypeAdapter(mContext);
+        mLabel.setAdapter(mEditTypeAdapter);
+        if (mEditTypeAdapter.hasCustomSelection()) {
+            mLabel.setSelection(mEditTypeAdapter.getPosition(CUSTOM_SELECTION));
+        } else {
+            mLabel.setSelection(mEditTypeAdapter.getPosition(mType));
         }
-
-        if (mType.customColumn != null) {
-            // Use custom label string when present
-            final String customText = mEntry.getAsString(mType.customColumn);
-            if (customText != null) {
-                mLabel.setText(customText);
-                return;
-            }
-        }
-
-        // Otherwise fall back to using default label
-        mLabel.setText(mType.labelRes);
     }
 
     /** {@inheritDoc} */
@@ -335,6 +335,7 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
     private Dialog createCustomDialog() {
         final EditText customType = new EditText(mContext);
         customType.setInputType(INPUT_TYPE_CUSTOM);
+        customType.setSaveEnabled(true);
         customType.requestFocus();
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
@@ -346,9 +347,17 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
             public void onClick(DialogInterface dialog, int which) {
                 final String customText = customType.getText().toString().trim();
                 if (ContactsUtils.isGraphic(customText)) {
-                    // Now we're sure it's ok to actually change the type value.
-                    mType = mPendingType;
-                    mPendingType = null;
+                    final List<EditType> allTypes =
+                            EntityModifier.getValidTypes(mState, mKind, null);
+                    mType = null;
+                    for (EditType editType : allTypes) {
+                        if (editType.customColumn != null) {
+                            mType = editType;
+                            break;
+                        }
+                    }
+                    if (mType == null) return;
+
                     mEntry.put(mKind.typeColumn, mType.rawValue);
                     mEntry.put(mType.customColumn, customText);
                     rebuildLabel();
@@ -369,47 +378,27 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
     protected void onLabelRebuilt() {
     }
 
-    /**
-     * Show PopupMenu for picking a new {@link EditType} or entering a
-     * custom label. This dialog is limited to the valid types as determined
-     * by {@link EntityModifier}.
-     */
-    public void showLabelPopupMenu() {
-        // Build list of valid types, including the current value
-        final List<EditType> validTypes = EntityModifier.getValidTypes(mState, mKind, mType);
-
-        final PopupMenu popupMenu = new PopupMenu(getContext(), mLabel);
-        final Menu menu = popupMenu.getMenu();
-
-        for (int i = 0; i < validTypes.size(); i++) {
-            final EditType type = validTypes.get(i);
-            menu.add(Menu.NONE, i, Menu.NONE, type.labelRes);
+    protected void onTypeSelectionChange(int position) {
+        EditType selected = mEditTypeAdapter.getItem(position);
+        // See if the selection has in fact changed
+        if (mEditTypeAdapter.hasCustomSelection() && selected == CUSTOM_SELECTION) {
+            return;
         }
 
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                final EditType selected = validTypes.get(item.getItemId());
-                if (selected.customColumn != null) {
-                    // Show custom label dialog if requested by type.
-                    //
-                    // Only when the custum value input in the next step is correct one.
-                    // this method also set the type value to what the user requested here.
-                    mPendingType = selected;
-                    showDialog(DIALOG_ID_CUSTOM);
-                } else {
-                    // User picked type, and we're sure it's ok to actually write the entry.
-                    mType = selected;
-                    mEntry.put(mKind.typeColumn, mType.rawValue);
-                    rebuildLabel();
-                    requestFocusForFirstEditField();
-                    onLabelRebuilt();
-                }
-                return true;
-            }
-        });
+        if (mType == selected && mType.customColumn == null) {
+            return;
+        }
 
-        popupMenu.show();
+        if (selected.customColumn != null) {
+            showDialog(DIALOG_ID_CUSTOM);
+        } else {
+            // User picked type, and we're sure it's ok to actually write the entry.
+            mType = selected;
+            mEntry.put(mKind.typeColumn, mType.rawValue);
+            rebuildLabel();
+            requestFocusForFirstEditField();
+            onLabelRebuilt();
+        }
     }
 
     /* package */
@@ -445,4 +434,66 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
     }
 
     protected abstract void requestFocusForFirstEditField();
+
+    private class EditTypeAdapter extends ArrayAdapter<EditType> {
+        private final LayoutInflater mInflater;
+        private boolean mHasCustomSelection;
+
+        public EditTypeAdapter(Context context) {
+            super(context, 0);
+            mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            if (mType.customColumn != null) {
+
+                // Use custom label string when present
+                final String customText = mEntry.getAsString(mType.customColumn);
+                if (customText != null) {
+                    add(CUSTOM_SELECTION);
+                    mHasCustomSelection = true;
+                }
+            }
+
+            addAll(EntityModifier.getValidTypes(mState, mKind, mType));
+        }
+
+        public boolean hasCustomSelection() {
+            return mHasCustomSelection;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            return createViewFromResource(
+                    position, convertView, parent, android.R.layout.simple_spinner_item);
+        }
+
+        @Override
+        public View getDropDownView(int position, View convertView, ViewGroup parent) {
+            return createViewFromResource(
+                    position, convertView, parent, android.R.layout.simple_spinner_dropdown_item);
+        }
+
+        private View createViewFromResource(int position, View convertView, ViewGroup parent,
+                int resource) {
+            View view;
+            TextView textView;
+
+            if (convertView == null) {
+                view = mInflater.inflate(resource, parent, false);
+            } else {
+                view = convertView;
+            }
+
+            textView = (TextView) view;
+
+            EditType type = getItem(position);
+            String text;
+            if (type == CUSTOM_SELECTION) {
+                text = mEntry.getAsString(mType.customColumn);
+            } else {
+                text = getContext().getString(type.labelRes);
+            }
+            textView.setText(text);
+            return view;
+        }
+    }
 }
