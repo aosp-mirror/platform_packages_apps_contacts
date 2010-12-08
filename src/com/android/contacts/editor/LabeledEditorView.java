@@ -48,6 +48,8 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.List;
+
 /**
  * Base class for editors that handles labels and values.
  * Uses {@link ValuesDelta} to read any existing
@@ -70,8 +72,6 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
     private boolean mReadOnly;
 
     private EditType mType;
-    // Used only when a user tries to use custom label.
-    private EditType mPendingType;
 
     private ViewIdGenerator mViewIdGenerator;
     private DialogManager mDialogManager = null;
@@ -335,6 +335,7 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
     private Dialog createCustomDialog() {
         final EditText customType = new EditText(mContext);
         customType.setInputType(INPUT_TYPE_CUSTOM);
+        customType.setSaveEnabled(true);
         customType.requestFocus();
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
@@ -346,9 +347,17 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
             public void onClick(DialogInterface dialog, int which) {
                 final String customText = customType.getText().toString().trim();
                 if (ContactsUtils.isGraphic(customText)) {
-                    // Now we're sure it's ok to actually change the type value.
-                    mType = mPendingType;
-                    mPendingType = null;
+                    final List<EditType> allTypes =
+                            EntityModifier.getValidTypes(mState, mKind, null);
+                    mType = null;
+                    for (EditType editType : allTypes) {
+                        if (editType.customColumn != null) {
+                            mType = editType;
+                            break;
+                        }
+                    }
+                    if (mType == null) return;
+
                     mEntry.put(mKind.typeColumn, mType.rawValue);
                     mEntry.put(mType.customColumn, customText);
                     rebuildLabel();
@@ -381,11 +390,6 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
         }
 
         if (selected.customColumn != null) {
-            // Show custom label dialog if requested by type.
-            //
-            // Only when the custom value input in the next step is correct one.
-            // this method also set the type value to what the user requested here.
-            mPendingType = selected;
             showDialog(DIALOG_ID_CUSTOM);
         } else {
             // User picked type, and we're sure it's ok to actually write the entry.
