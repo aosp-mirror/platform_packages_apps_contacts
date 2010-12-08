@@ -35,7 +35,6 @@ import android.content.Entity;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;

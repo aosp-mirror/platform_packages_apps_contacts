@@ -26,14 +26,26 @@
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_marginLeft="40dip"
         android:layout_marginBottom="10dip"
         android:layout_marginRight="5dip"
         android:iconifiedByDefault="false" />
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
         android:id="@+id/list_container">
     </FrameLayout>
+    <LinearLayout
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip">
+        <Button
+            style="?android:attr/buttonBarButtonStyle"
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@android:string/cancel"/>
+    </LinearLayout>
 </view>
