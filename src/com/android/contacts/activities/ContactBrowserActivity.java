@@ -48,6 +48,7 @@ import com.android.contacts.util.DialogManager;
 import com.android.contacts.widget.ContextMenuAdapter;
 
 import android.accounts.Account;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
@@ -120,7 +121,7 @@ public class ContactBrowserActivity extends Activity
 
     private ContactListFilterController mContactListFilterController;
 
-    private ImageButton mAddContactImageView;
+    private View mAddContactImageView;
 
     private ContactsUnavailableFragment mContactsUnavailableFragment;
     private ProviderStatusLoader mProviderStatusLoader;
@@ -193,15 +194,17 @@ public class ContactBrowserActivity extends Activity
         setTitle(mRequest.getActivityTitle());
         mHasActionBar = getWindow().hasFeature(Window.FEATURE_ACTION_BAR);
         if (mHasActionBar) {
+            ActionBar actionBar = getActionBar();
+
             mActionBarAdapter = new ActionBarAdapter(this);
-            mActionBarAdapter.onCreate(savedState, mRequest, getActionBar());
+            mActionBarAdapter.onCreate(savedState, mRequest, actionBar);
             mActionBarAdapter.setContactListFilterController(mContactListFilterController);
             // TODO: request may ask for FREQUENT - set the filter accordingly
-            mAddContactImageView = new ImageButton(this, null,
-                    com.android.internal.R.attr.actionButtonStyle);
-            mAddContactImageView.setImageResource(R.drawable.ic_menu_add_contact_holo_light);
-            mAddContactImageView.setContentDescription(getString(R.string.menu_newContact));
-            mAddContactImageView.setOnClickListener(new OnClickListener() {
+
+            mAddContactImageView = getLayoutInflater().inflate(
+                    R.layout.add_contact_menu_item, null, false);
+            View item = mAddContactImageView.findViewById(R.id.menu_item);
+            item.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     createNewContact();
