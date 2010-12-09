@@ -296,15 +296,12 @@ public class ContactSelectionActivity extends Activity
 
         @Override
         public void onPickContactAction(Uri contactUri) {
-            Intent intent = new Intent();
-            setResult(RESULT_OK, intent.setData(contactUri));
-            finish();
+            returnPickerResult(contactUri);
         }
 
         @Override
         public void onShortcutIntentCreated(Intent intent) {
-            setResult(RESULT_OK, intent);
-            finish();
+            returnPickerResult(intent);
         }
     }
 
@@ -312,15 +309,12 @@ public class ContactSelectionActivity extends Activity
             OnPhoneNumberPickerActionListener {
         @Override
         public void onPickPhoneNumberAction(Uri dataUri) {
-            Intent intent = new Intent();
-            setResult(RESULT_OK, intent.setData(dataUri));
-            finish();
+            returnPickerResult(dataUri);
         }
 
         @Override
         public void onShortcutIntentCreated(Intent intent) {
-            setResult(RESULT_OK, intent);
-            finish();
+            returnPickerResult(intent);
         }
     }
 
@@ -328,9 +322,7 @@ public class ContactSelectionActivity extends Activity
             OnPostalAddressPickerActionListener {
         @Override
         public void onPickPostalAddressAction(Uri dataUri) {
-            Intent intent = new Intent();
-            setResult(RESULT_OK, intent.setData(dataUri));
-            finish();
+            returnPickerResult(dataUri);
         }
     }
 
@@ -366,6 +358,18 @@ public class ContactSelectionActivity extends Activity
     @Override
     public boolean onSubmitQuery(String query) {
         return false;
+    }
+
+    public void returnPickerResult(Uri data) {
+        Intent intent = new Intent();
+        intent.setData(data);
+        returnPickerResult(intent);
+    }
+
+    public void returnPickerResult(Intent intent) {
+        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     @Override
