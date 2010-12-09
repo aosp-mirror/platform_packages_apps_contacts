@@ -20,7 +20,6 @@
     android:layout_height="47dip"
     android:paddingLeft="5dp"
     android:paddingRight="7dp"
-    android:background="@drawable/list_normal_holo"
     >
 
     <TextView

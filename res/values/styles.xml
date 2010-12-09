@@ -92,7 +92,6 @@
 
     <declare-styleable name="ContactListItemView">
         <attr name="list_item_height" format="dimension"/>
-        <attr name="background" format="reference"/>
         <attr name="activated_background" format="reference"/>
         <attr name="section_header_background" format="reference"/>
         <attr name="list_item_divider" format="reference"/>
@@ -114,7 +113,6 @@
 
     <style name="ContactBrowserTheme" parent="@android:Theme">
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
-        <item name="background">@drawable/list_selector</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="section_header_background">@drawable/section_header</item>
         <item name="list_item_divider">@drawable/list_item_divider</item>
