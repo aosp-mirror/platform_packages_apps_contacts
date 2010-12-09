@@ -24,6 +24,7 @@ import com.android.contacts.list.ContactsRequest;
 
 import android.app.ActionBar;
 import android.app.ActionBar.LayoutParams;
+import android.app.ActionBar.OnNavigationListener;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -59,9 +60,7 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
 
     private Listener mListener;
     private ContactListFilterView mFilterView;
-    private View mFilterIndicator;
     private ContactListFilterController mFilterController;
-    private View mFilterContainer;
 
     private boolean mEnabled;
 
@@ -79,6 +78,14 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
             mQueryString = request.getQueryString();
         }
 
+        OnNavigationListener callback = new OnNavigationListener() {
+
+            @Override
+            public boolean onNavigationItemSelected(int itemPosition, long itemId) {
+                return false;
+            }
+        };
+
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);
 
         mNavigationBar = LayoutInflater.from(mContext).inflate(R.layout.navigation_bar, null);
@@ -86,10 +93,8 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
                 LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         actionBar.setCustomView(mNavigationBar, layoutParams);
 
-        mFilterContainer = mNavigationBar.findViewById(R.id.filter_container);
         mFilterView = (ContactListFilterView) mNavigationBar.findViewById(R.id.filter_view);
         mSearchLabel = (TextView) mNavigationBar.findViewById(R.id.search_label);
-        mFilterIndicator = mNavigationBar.findViewById(R.id.filter_indicator);
         mSearchView = (SearchView) mNavigationBar.findViewById(R.id.search_view);
 
         mSearchView.setOnQueryChangeListener(this);
@@ -111,7 +116,7 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
 
     public void setContactListFilterController(ContactListFilterController controller) {
         mFilterController = controller;
-        mFilterController.setAnchor(mFilterContainer);
+        mFilterController.setAnchor(mFilterView);
         mFilterController.addListener(this);
     }
 
@@ -169,7 +174,6 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
             mNavigationBar.setVisibility(View.VISIBLE);
             mSearchLabel.setVisibility(View.VISIBLE);
             mFilterView.setVisibility(View.GONE);
-            mFilterIndicator.setVisibility(View.INVISIBLE);
             if (mFilterController != null) {
                 mFilterController.setEnabled(false);
             }
@@ -177,17 +181,14 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
             mNavigationBar.setVisibility(View.VISIBLE);
             mSearchLabel.setVisibility(View.GONE);
             mFilterView.setVisibility(View.VISIBLE);
-            boolean showIndicator = false;
             if (mFilterController != null){
                 mFilterController.setEnabled(true);
                 if (mFilterController.isLoaded()) {
                     mFilterView.setContactListFilter(mFilterController.getFilter());
                     mFilterView.setSingleAccount(mFilterController.getAccountCount() == 1);
                     mFilterView.bindView(false);
-                    showIndicator = mFilterController.getFilterCount() > 1;
                 }
             }
-            mFilterIndicator.setVisibility(showIndicator ? View.VISIBLE : View.INVISIBLE);
         }
     }
 

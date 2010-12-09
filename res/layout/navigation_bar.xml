@@ -16,95 +16,71 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?android:attr/actionBarTabBarStyle"
+    android:showDividers="beginning|middle|end"
     android:id="@+id/navigation_bar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal" >
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/filter_container"
+    <TextView
+        android:id="@+id/search_label"
+        style="?android:attr/actionButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_marginLeft="8dip">
+        android:gravity="center_vertical"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/search_label"
+        android:minWidth="220dip" />
+
+    <view
+        class="com.android.contacts.list.ContactListFilterView"
+        style="?android:attr/actionDropDownStyle"
+        android:id="@+id/filter_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|center_vertical"
+        android:minWidth="220dip" >
+        <ImageView
+            android:id="@+id/icon"
+            android:scaleType="fitCenter"
+            android:layout_width="24dip"
+            android:layout_height="24dip"
+            android:layout_marginRight="7dip"
+            android:layout_gravity="center_vertical" />
+
         <FrameLayout
-            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:minWidth="220dip"
-            android:background="@drawable/filter_selector_background">
+            android:layout_width="wrap_content">
             <TextView
-                android:id="@+id/search_label"
-                android:layout_width="wrap_content"
+                android:id="@+id/label"
                 android:layout_height="match_parent"
+                android:layout_width="wrap_content"
                 android:gravity="center_vertical"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/search_label" />
-
-            <view
-                class="com.android.contacts.list.ContactListFilterView"
-                android:id="@+id/filter_view"
-                android:layout_height="match_parent"
+                android:ellipsize="end" />
+            <LinearLayout
+                android:id="@+id/group"
+                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:layout_marginLeft="20dip">
-                <ImageView
-                    android:id="@+id/icon"
-                    android:scaleType="fitCenter"
-                    android:layout_width="24dip"
-                    android:layout_height="24dip"
-                    android:layout_marginLeft="8dip"
-                    android:layout_marginRight="7dip"
-                    android:layout_gravity="center_vertical" />
-
-                <FrameLayout
-                    android:layout_height="match_parent"
-                    android:layout_width="wrap_content">
-                    <TextView
-                        android:id="@+id/label"
-                        android:layout_height="match_parent"
-                        android:layout_width="wrap_content"
-                        android:gravity="center_vertical"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:ellipsize="end" />
-                    <LinearLayout
-                        android:id="@+id/group"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center_vertical">
-                        <TextView
-                            android:id="@+id/group_label"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:ellipsize="end" />
-                        <TextView
-                            android:id="@+id/account_label"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:ellipsize="end" />
-                    </LinearLayout>
-                </FrameLayout>
-            </view>
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical">
+                <TextView
+                    android:id="@+id/group_label"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:ellipsize="end" />
+                <TextView
+                    android:id="@+id/account_label"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:ellipsize="end" />
+            </LinearLayout>
         </FrameLayout>
+    </view>
 
-        <ImageView
-            android:id="@+id/filter_indicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dip"
-            android:layout_marginBottom="13dip"
-            android:layout_gravity="bottom"
-            android:src="@drawable/filter_selector_corner" />
-    </LinearLayout>
-
-    <View
-        android:layout_width="3dip"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="7dip"
-        android:layout_marginRight="7dip"
-        android:background="@*android:drawable/cab_divider_holo_light" />
     <view
         class="android.widget.SearchView"
         android:id="@+id/search_view"
