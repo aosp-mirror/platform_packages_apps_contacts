@@ -92,6 +92,7 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
         setPhotoLoaderEnabled(true);
         setSectionHeaderDisplayEnabled(true);
         setAizyEnabled(false);
+        setQuickContactEnabled(false);
     }
 
     public void setOnContactPickerActionListener(OnContactPickerActionListener listener) {
