@@ -64,6 +64,18 @@ public class EventFieldEditorView extends LabeledEditorView {
     }
 
     @Override
+    public int getBaseline(int row) {
+        int baseline = super.getBaseline(row);
+        if (mDateView != null) {
+            // The date view will be centered vertically in the corresponding line item
+            int lineItemHeight = getLineItemHeight(row);
+            int offset = (lineItemHeight - mDateView.getMeasuredHeight()) / 2;
+            baseline = Math.max(baseline, offset + mDateView.getBaseline());
+        }
+        return baseline;
+    }
+
+    @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
 
@@ -76,12 +88,20 @@ public class EventFieldEditorView extends LabeledEditorView {
         final int labelWidth = (getLabel() != null) ? getLabel().getMeasuredWidth() : 0;
         final int deleteWidth = (getDelete() != null) ? getDelete().getMeasuredWidth() : 0;
         final int r2 = r1 - deleteWidth - labelWidth;
-        if (mDateView != null) mDateView.layout(l1, t1, r2, t1 + mDateView.getMeasuredHeight());
+        if (mDateView != null) {
+            int height = mDateView.getMeasuredHeight();
+            int baseline = getBaseline(0);
+            int top = t1 + baseline - mDateView.getBaseline();
+            mDateView.layout(
+                    l1, top,
+                    r2, top + height);
+        }
     }
 
     @Override
-    protected int getEditorHeight() {
-        return mDateView != null ? mDateView.getMeasuredHeight() : 0;
+    protected int getLineItemHeight(int row) {
+        int height = mDateView == null ? 0 : mDateView.getMeasuredHeight();
+        return Math.max(height, super.getLineItemHeight(row));
     }
 
     @Override
@@ -103,7 +123,9 @@ public class EventFieldEditorView extends LabeledEditorView {
         super.setValues(kind, entry, state, readOnly, vig);
 
         if (mDateView == null) {
-            mDateView = new TextView(getContext(), null, android.R.attr.dropDownSpinnerStyle);
+
+            // TODO: Change to android.R.attr.spinnerTextStyle when available
+            mDateView = new TextView(getContext(), null, android.R.attr.editTextStyle);
             mDateView.setFocusable(true);
             mDateView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));

@@ -62,7 +62,9 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
 
     @Override
     public void configureLoader(CursorLoader loader, long directoryId) {
-        loader.setUri(buildSectionIndexerUri(StructuredPostal.CONTENT_URI));
+        Uri uri = buildSectionIndexerUri(StructuredPostal.CONTENT_URI);
+        uri = applyDataRestriction(uri);
+        loader.setUri(uri);
         loader.setProjection(POSTALS_PROJECTION);
 
         if (getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {

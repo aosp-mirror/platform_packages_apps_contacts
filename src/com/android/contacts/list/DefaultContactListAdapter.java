@@ -64,6 +64,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 builder.appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY,
                         String.valueOf(getDirectoryResultLimit()));
             }
+            applyDataRestriction(builder);
             loader.setUri(builder.build());
             loader.setProjection(FILTER_PROJECTION);
         } else {
@@ -110,6 +111,8 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                     ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT))
                     .build();
         }
+        uri = applyDataRestriction(uri);
+
         loader.setUri(uri);
     }
 

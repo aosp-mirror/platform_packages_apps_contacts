@@ -38,6 +38,8 @@ import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.SearchView.OnQueryChangeListener;
 
@@ -46,7 +48,7 @@ import android.widget.SearchView.OnQueryChangeListener;
  * purposes of selecting one.
  */
 public class ContactSelectionActivity extends Activity
-        implements View.OnCreateContextMenuListener, OnQueryChangeListener {
+        implements View.OnCreateContextMenuListener, OnQueryChangeListener, OnClickListener {
     private static final String TAG = "ContactSelectionActivity";
 
     private static final String KEY_ACTION_CODE = "actionCode";
@@ -105,6 +107,21 @@ public class ContactSelectionActivity extends Activity
         mSearchView = (SearchView)findViewById(R.id.search_view);
         mSearchView.setQueryHint(getString(R.string.hint_findContacts));
         mSearchView.setOnQueryChangeListener(this);
+
+        // This is a hack to prevent the search view from grabbing focus
+        // at this point.  If search view were visible, it would always grabs focus
+        // because it is the first focusable widget in the window.
+        mSearchView.setVisibility(View.INVISIBLE);
+        mSearchView.post(new Runnable() {
+
+            @Override
+            public void run() {
+                mSearchView.setVisibility(View.VISIBLE);
+            }
+        });
+
+        Button cancel = (Button) findViewById(R.id.cancel);
+        cancel.setOnClickListener(this);
     }
 
     @Override
@@ -349,5 +366,13 @@ public class ContactSelectionActivity extends Activity
     @Override
     public boolean onSubmitQuery(String query) {
         return false;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.cancel) {
+            setResult(RESULT_CANCELED);
+            finish();
+        }
     }
 }

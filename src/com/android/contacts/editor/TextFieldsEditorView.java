@@ -65,6 +65,30 @@ public class TextFieldsEditorView extends LabeledEditorView {
     }
 
     @Override
+    protected int getLineItemCount() {
+        int count = mFieldEditTexts == null ? 0 : mFieldEditTexts.length;
+        return Math.max(count, super.getLineItemCount());
+    }
+
+    @Override
+    protected boolean isLineItemVisible(int row) {
+        return mFieldEditTexts != null && mFieldEditTexts[row].getVisibility() != View.GONE;
+    }
+
+    @Override
+    public int getBaseline(int row) {
+        int baseline = super.getBaseline(row);
+        if (mFieldEditTexts != null) {
+            EditText editText = mFieldEditTexts[row];
+            // The text field will be centered vertically in the corresponding line item
+            int lineItemHeight = getLineItemHeight(row);
+            int offset = (lineItemHeight - editText.getMeasuredHeight()) / 2;
+            baseline = Math.max(baseline, offset + editText.getBaseline());
+        }
+        return baseline;
+    }
+
+    @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
 
@@ -87,34 +111,46 @@ public class TextFieldsEditorView extends LabeledEditorView {
         // Layout text fields
         int y = t1;
         if (mFieldEditTexts != null) {
-            for (EditText editText : mFieldEditTexts) {
+            for (int i = 0; i < mFieldEditTexts.length; i++) {
+                int baseline = getBaseline(i);
+                EditText editText = mFieldEditTexts[i];
                 if (editText.getVisibility() != View.GONE) {
                     int height = editText.getMeasuredHeight();
+                    int top = t1 + y + baseline - editText.getBaseline();
                     editText.layout(
-                            l1, t1 + y,
-                            r2, t1 + y + height);
-                    y += height;
+                            l1, top,
+                            r2, top + height);
+                    y += getLineItemHeight(i);
                 }
             }
         }
     }
 
     @Override
-    protected int getEditorHeight() {
-        int result = 0;
-        // summarize the EditText heights
+    protected int getLineItemHeight(int row) {
+        int fieldHeight = 0;
+        int buttonHeight = 0;
+
+        boolean lastLineItem = true;
         if (mFieldEditTexts != null) {
-            for (EditText editText : mFieldEditTexts) {
-                if (editText.getVisibility() != View.GONE) {
-                    result += editText.getMeasuredHeight();
-                }
-            }
+            fieldHeight = mFieldEditTexts[row].getMeasuredHeight();
+            lastLineItem = (row == mFieldEditTexts.length - 1);
         }
-        // Ensure there is enough space for the minus and more/less button
-        final int deleteHeight = (getDelete() != null) ? getDelete().getMeasuredHeight() : 0;
-        final int moreOrLessHeight = mMoreOrLess != null ? mMoreOrLess.getMeasuredHeight() : 0;
-        result = Math.max(deleteHeight + moreOrLessHeight, result);
-        return result;
+
+        // Ensure there is enough space for the more/less button
+        if (row == 0) {
+            final int moreOrLessHeight = mMoreOrLess != null ? mMoreOrLess.getMeasuredHeight() : 0;
+            buttonHeight += moreOrLessHeight;
+        }
+
+        // Ensure there is enough space for the minus button
+        if (lastLineItem) {
+            View deleteButton = getDelete();
+            final int deleteHeight = (deleteButton != null) ? deleteButton.getMeasuredHeight() : 0;
+            buttonHeight += deleteHeight;
+        }
+
+        return Math.max(Math.max(buttonHeight, fieldHeight), super.getLineItemHeight(row));
     }
 
     @Override

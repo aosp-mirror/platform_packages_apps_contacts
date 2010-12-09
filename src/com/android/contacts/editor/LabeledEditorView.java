@@ -76,6 +76,7 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
     private ViewIdGenerator mViewIdGenerator;
     private DialogManager mDialogManager = null;
     private EditorListener mListener;
+    protected int mMinLineItemHeight;
 
     /**
      * A marker in the spinner adapter of the currently selected custom type.
@@ -97,18 +98,80 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
 
     public LabeledEditorView(Context context) {
         super(context);
+        init(context);
     }
 
     public LabeledEditorView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init(context);
     }
 
     public LabeledEditorView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        init(context);
+    }
+
+    private void init(Context context) {
+        mMinLineItemHeight = context.getResources().getDimensionPixelSize(
+                R.dimen.editor_min_line_item_height);
     }
 
     public boolean isReadOnly() {
         return mReadOnly;
+    }
+
+    public int getBaseline(int row) {
+        if (row == 0 && mLabel != null) {
+            return mLabel.getBaseline();
+        }
+        return -1;
+    }
+
+    /**
+     * Returns the number of rows in this editor, including the invisible ones.
+     */
+    protected int getLineItemCount() {
+        return 1;
+    }
+
+    protected boolean isLineItemVisible(int row) {
+        return true;
+    }
+
+    protected int getLineItemHeight(int row) {
+        int fieldHeight = 0;
+        int buttonHeight = 0;
+        if (row == 0) {
+            // summarize the EditText heights
+            if (mLabel != null) {
+                fieldHeight = mLabel.getMeasuredHeight();
+            }
+
+            // Ensure there is enough space for the minus button
+            View deleteButton = getDelete();
+            final int deleteHeight = (deleteButton != null) ? deleteButton.getMeasuredHeight() : 0;
+            buttonHeight += deleteHeight;
+        }
+
+        return Math.max(Math.max(buttonHeight, fieldHeight), mMinLineItemHeight);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        measureChildren(widthMeasureSpec, heightMeasureSpec);
+
+        int height = 0;
+        height += getPaddingTop() + getPaddingBottom();
+
+        int count = getLineItemCount();
+        for (int i = 0; i < count; i++) {
+            if (isLineItemVisible(i)) {
+                height += getLineItemHeight(i);
+            }
+        }
+
+        setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),
+                resolveSize(height, heightMeasureSpec));
     }
 
     @Override
@@ -121,37 +184,24 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
         final int r2;
         if (mDelete != null) {
             r2 = r1 - mDelete.getMeasuredWidth();
+            // Vertically center the delete button in the first line item
+            int height = mDelete.getMeasuredHeight();
+            int top = t1 + (mMinLineItemHeight - height) / 2;
             mDelete.layout(
-                    r2, b1 - mDelete.getMeasuredHeight(),
-                    r1, b1);
+                    r2, top,
+                    r1, top + height);
         } else {
             r2 = r1;
         }
 
         if (mLabel != null) {
+            int baseline = getBaseline(0);
+            int y = t1 + baseline - mLabel.getBaseline();
             mLabel.layout(
-                    r2 - mLabel.getMeasuredWidth(), t1,
-                    r2, t1 + mLabel.getMeasuredHeight());
+                    r2 - mLabel.getMeasuredWidth(), y,
+                    r2, y + mLabel.getMeasuredHeight());
         }
-
     }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        measureChildren(widthMeasureSpec, heightMeasureSpec);
-
-        final int padding = getPaddingTop() + getPaddingBottom();
-        final int deleteHeight = mDelete != null ? mDelete.getMeasuredHeight() : 0;
-        final int labelHeight = mLabel != null ? mLabel.getMeasuredHeight() : 0;
-
-        final int height = padding +
-                Math.max(Math.max(deleteHeight, labelHeight), getEditorHeight());
-
-        setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),
-                resolveSize(height, heightMeasureSpec));
-    }
-
-    protected abstract int getEditorHeight();
 
     /**
      * Creates or removes the type/label button. Doesn't do anything if already correctly configured
@@ -279,6 +329,11 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
     /** {@inheritDoc} */
     @Override
     public void onFieldChanged(String column, String value) {
+        String oldValue = mEntry.getAsString(column);
+        if (oldValue == null && value.equals("") || oldValue != null && oldValue.equals(value)) {
+            return;
+        }
+
         // Field changes are saved directly
         mEntry.put(column, value);
         if (mListener != null) {

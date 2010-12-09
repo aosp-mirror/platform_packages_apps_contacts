@@ -18,7 +18,6 @@
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
         <item name="background">@drawable/list_normal_holo</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
-        <item name="android:windowBackground">@drawable/contact_list_bg</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:actionBarStyle">@style/TransparentActionBarStyle</item>
         <item name="section_header_background">@drawable/section_header_holo</item>
@@ -88,7 +87,6 @@
 
     <style name="ContactEditorActivityTheme" parent="@android:Theme.Light.Holo">
         <item name="android:actionBarStyle">@style/TransparentActionBarStyle</item>
-        <item name="android:windowBackground">@drawable/contact_list_bg</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
 

@@ -43,6 +43,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     private static final String TAG = "KindSectionView";
 
     private ViewGroup mEditors;
+    private View mAddPlusButtonContainer;
     private ImageButton mAddPlusButton;
     private TextView mTitle;
     private String mTitleString;
@@ -53,12 +54,16 @@ public class KindSectionView extends LinearLayout implements EditorListener {
 
     private ViewIdGenerator mViewIdGenerator;
 
+    private int mMinLineItemHeight;
+
     public KindSectionView(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public KindSectionView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        mMinLineItemHeight = context.getResources().getDimensionPixelSize(
+                R.dimen.editor_min_line_item_height);
     }
 
     @Override
@@ -76,6 +81,24 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         }
     }
 
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+        if (!changed) {
+            return;
+        }
+
+        if (mAddPlusButton == null || mEditors == null || mEditors.getChildCount() < 2) {
+            return;
+        }
+
+        // Align the "+" button with the "-" button in the last editor
+        View lastEditor = mEditors.getChildAt(mEditors.getChildCount() - 1);
+        int top = lastEditor.getTop();
+        mAddPlusButtonContainer.layout(mAddPlusButtonContainer.getLeft(), top,
+                mAddPlusButtonContainer.getRight(), top + mAddPlusButtonContainer.getHeight());
+    }
+
     public boolean isReadOnly() {
         return mReadOnly;
     }
@@ -88,6 +111,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
 
         mEditors = (ViewGroup)findViewById(R.id.kind_editors);
 
+        mAddPlusButtonContainer = findViewById(R.id.kind_plus_container);
         mAddPlusButton = (ImageButton) findViewById(R.id.kind_plus);
         mAddPlusButton.setOnClickListener(new OnClickListener() {
             @Override

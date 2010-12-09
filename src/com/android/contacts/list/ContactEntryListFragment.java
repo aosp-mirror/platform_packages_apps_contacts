@@ -923,14 +923,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         throw new UnsupportedOperationException("Picker result handler is not implemented.");
     }
 
-    // TODO integrate into picker fragments
-//    protected Uri buildCallingPackageUri(Uri uri) {
-//        String callingPackage = getContext().getCallingPackage();
-//        if (!TextUtils.isEmpty(callingPackage)) {
-//            uri = uri.buildUpon().appendQueryParameter(
-//                    ContactsContract.REQUESTING_PACKAGE_PARAM_KEY, callingPackage).build();
-//        }
-//    }
     private ContactsPreferences.ChangeListener mPreferencesChangeListener =
             new ContactsPreferences.ChangeListener() {
         @Override
