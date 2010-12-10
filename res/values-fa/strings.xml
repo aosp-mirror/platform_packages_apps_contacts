@@ -52,6 +52,8 @@
     <skip />
     <!-- no translation found for menu_deleteGroup (644571524292675446) -->
     <skip />
+    <!-- no translation found for menu_new_contact_action_bar (8887818026717394343) -->
+    <skip />
     <string name="splitConfirmation_title" msgid="6716467920283502570">"تفکیک مخاطب"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"آیا مطمئن هستید که می خواهید این یک مخاطب را به چند مخاطب تفکیک کنید: یک مخاطب برای هر مجموعه اطلاعات مخاطبی که به آن ملحق شده است؟"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"پیوستن"</string>
@@ -69,7 +71,7 @@
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"حذف این مخاطب اطلاعات را از حساب های متعدد حذف می کند."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"این مخاطب حذف می شود."</string>
     <string name="menu_done" msgid="796017761764190697">"انجام شد"</string>
-    <string name="menu_doNotSave" msgid="2174577548513895144">"برگشت"</string>
+    <!-- outdated translation 2174577548513895144 -->     <string name="menu_doNotSave" msgid="58593876893538465">"برگشت"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"ویرایش مخاطب"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"مخاطب جدید"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"تلفظ آوایی"</string>
@@ -90,7 +92,7 @@
     <item msgid="8287841928119937597">"سازمان"</item>
     <item msgid="7196592230748086755">"توجه"</item>
   </string-array>
-    <!-- outdated translation 431331662154342581 -->     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"عکسی در گوشی موجود نیست."</string>
+    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"تصویری در رایانه لوحی موجود نیست."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"عکسی در گوشی موجود نیست."</string>
     <!-- no translation found for attach_photo_dialog_title (5599827035558557169) -->
     <skip />
@@ -153,14 +155,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"مخاطبین سیم کارت"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"شما مخاطبی برای نمایش ندارید. (در صورتی که اکنون یک حساب را اضافه کردید، همگام سازی مخاطبین چند دقیقه طول می کشد.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"شما مخاطبی برای نمایش ندارید."</string>
-    <!-- outdated translation 6788487368878712350 -->     <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"شما مخاطبی برای نمایش ندارید."\n\n"برای افزودن مخاطبین، "<font fgcolor="#ffffffff"><b>"منو"</b></font>" را فشار دهید و موارد زیر را لمس کنید:"\n" "\n<li><font fgcolor="#ffffffff"><b>"حساب ها"</b></font>" برای افزودن یا پیکربندی یک حساب با مخاطبینی که می توانید در گوشی همگام سازی کنید"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"مخاطب جدید"</b></font>" جهت ایجاد یک مخاطب جدید از ابتدا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ورود/صدور"</b></font>\n</li></string>
-    <!-- outdated translation 6788487368878712350 -->     <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"شما مخاطبی برای نمایش ندارید."\n\n"برای افزودن مخاطبین، "<font fgcolor="#ffffffff"><b>"منو"</b></font>" را فشار دهید و موارد زیر را لمس کنید:"\n" "\n<li><font fgcolor="#ffffffff"><b>"حساب ها"</b></font>" برای افزودن یا پیکربندی یک حساب با مخاطبینی که می توانید در گوشی همگام سازی کنید"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"مخاطب جدید"</b></font>" جهت ایجاد یک مخاطب جدید از ابتدا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ورود/صدور"</b></font>\n</li></string>
-    <!-- outdated translation 3734101165712848179 -->     <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"شما مخاطبی برای نمایش ندارید. (در صورتی که اکنون یک حساب اضافه کردید، همگام سازی مخاطبین چند دقیقه طول می کشد.)"\n\n"برای افزودن مخاطب، "<font fgcolor="#ffffffff"><b>"منو"</b></font>" را فشار داده و این موارد را لمس کنید:"\n" "\n<li><font fgcolor="#ffffffff"><b>"حساب ها"</b></font>" برای افزودن یا پیکربندی یک حساب با مخاطبینی که می توانید در تلفن همگام سازی کنید"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"گزینه های نمایش"</b></font>" برای تغییر مخاطبینی که قابل رؤیت هستند"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"مخاطب جدید"</b></font>" جهت ایجاد یک مخاطب جدید از ابتدا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ورود/صدور"</b></font>\n</li></string>
-    <!-- outdated translation 3734101165712848179 -->     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"شما مخاطبی برای نمایش ندارید. (در صورتی که اکنون یک حساب اضافه کردید، همگام سازی مخاطبین چند دقیقه طول می کشد.)"\n\n"برای افزودن مخاطب، "<font fgcolor="#ffffffff"><b>"منو"</b></font>" را فشار داده و این موارد را لمس کنید:"\n" "\n<li><font fgcolor="#ffffffff"><b>"حساب ها"</b></font>" برای افزودن یا پیکربندی یک حساب با مخاطبینی که می توانید در تلفن همگام سازی کنید"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"گزینه های نمایش"</b></font>" برای تغییر مخاطبینی که قابل رؤیت هستند"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"مخاطب جدید"</b></font>" جهت ایجاد یک مخاطب جدید از ابتدا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ورود/صدور"</b></font>\n</li></string>
-    <!-- outdated translation 6553845386917463292 -->     <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"شما مخاطبی برای نمایش ندارید."\n\n"برای افزودن مخاطبین، "<font fgcolor="#ffffffff"><b>"منو"</b></font>" را فشار داده و این موارد را لمس کنید:"\n" "\n<li><font fgcolor="#ffffffff"><b>"حساب ها"</b></font>" جهت افزودن یا پیکربندی یک حساب با مخاطبینی که می توانید در تلفن همگام سازی کنید"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"مخاطب جدید"</b></font>" جهت ایجاد یک مخاطب جدید از ابتدا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ورود/صدور"</b></font>\n</li></string>
-    <!-- outdated translation 6553845386917463292 -->     <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"شما مخاطبی برای نمایش ندارید."\n\n"برای افزودن مخاطبین، "<font fgcolor="#ffffffff"><b>"منو"</b></font>" را فشار داده و این موارد را لمس کنید:"\n" "\n<li><font fgcolor="#ffffffff"><b>"حساب ها"</b></font>" جهت افزودن یا پیکربندی یک حساب با مخاطبینی که می توانید در تلفن همگام سازی کنید"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"مخاطب جدید"</b></font>" جهت ایجاد یک مخاطب جدید از ابتدا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ورود/صدور"</b></font>\n</li></string>
-    <!-- outdated translation 1122296298361373488 -->     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"شما مخاطبی برای نمایش ندارید. (در صورتی که اکنون یک حساب اضافه کردید، همگام سازی مخاطبین چند دقیقه طول می کشد.)"\n\n"برای افزودن مخاطب، "<font fgcolor="#ffffffff"><b>"منو"</b></font>" را فشار داده و این موارد را لمس کنید:"\n" "\n<li><font fgcolor="#ffffffff"><b>"حساب ها"</b></font>" برای افزودن یا پیکربندی یک حساب با مخاطبینی که می توانید در تلفن همگام سازی کنید"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"گزینه های نمایش"</b></font>" برای تغییر مخاطبینی که قابل رؤیت هستند"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"مخاطب جدید"</b></font>" جهت ایجاد یک مخاطب جدید از ابتدا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ورود/صدور"</b></font>\n</li></string>
-    <!-- outdated translation 1122296298361373488 -->     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"شما مخاطبی برای نمایش ندارید. (در صورتی که اکنون یک حساب اضافه کردید، همگام سازی مخاطبین چند دقیقه طول می کشد.)"\n\n"برای افزودن مخاطب، "<font fgcolor="#ffffffff"><b>"منو"</b></font>" را فشار داده و این موارد را لمس کنید:"\n" "\n<li><font fgcolor="#ffffffff"><b>"حساب ها"</b></font>" برای افزودن یا پیکربندی یک حساب با مخاطبینی که می توانید در تلفن همگام سازی کنید"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"گزینه های نمایش"</b></font>" برای تغییر مخاطبینی که قابل رؤیت هستند"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"مخاطب جدید"</b></font>" جهت ایجاد یک مخاطب جدید از ابتدا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ورود/صدور"</b></font>\n</li></string>
+    <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"شما مخاطبی برای نمایش ندارید."\n\n"برای افزودن مخاطبین، "<font fgcolor="#ffffffff"><b>"منو"</b></font>" را فشار دهید و موارد زیر را لمس کنید:"\n" "\n<li><font fgcolor="#ffffffff"><b>"حساب ها"</b></font>" برای افزودن یا پیکربندی یک حساب با مخاطبینی که می توانید در رایانه لوحی همگام سازی کنید"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"مخاطب جدید"</b></font>" جهت ایجاد یک مخاطب جدید از ابتدا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"وارد کردن/صادر کردن"</b></font>" برای وارد کردن مخاطبین از کارت SD یا سیم کارت خود"\n</li></string>
+    <!-- outdated translation 6450346791169710787 -->     <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"شما مخاطبی برای نمایش ندارید."\n\n"برای افزودن مخاطبین، "<font fgcolor="#ffffffff"><b>"منو"</b></font>" را فشار دهید و موارد زیر را لمس کنید:"\n" "\n<li><font fgcolor="#ffffffff"><b>"حساب ها"</b></font>" برای افزودن یا پیکربندی یک حساب با مخاطبینی که می توانید در رایانه لوحی همگام سازی کنید"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"مخاطب جدید"</b></font>" جهت ایجاد یک مخاطب جدید از ابتدا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"وارد کردن/صادر کردن"</b></font>" برای وارد کردن مخاطبین از کارت SD یا سیم کارت خود"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"شما مخاطبی برای نمایش ندارید. (در صورتی که اکنون یک حساب اضافه کردید، همگام سازی مخاطبین چند دقیقه طول می کشد.)"\n\n"برای افزودن مخاطب، "<font fgcolor="#ffffffff"><b>"منو"</b></font>" را فشار داده و این موارد را لمس کنید:"\n" "\n<li><font fgcolor="#ffffffff"><b>"حساب ها"</b></font>" برای افزودن یا پیکربندی یک حساب با مخاطبینی که می توانید در رایانه لوحی همگام سازی کنید"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"گزینه های نمایش"</b></font>" برای تغییر مخاطبینی که قابل رؤیت هستند"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"مخاطب جدید"</b></font>" جهت ایجاد یک مخاطب جدید از ابتدا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"وارد کردن/صادر کردن"</b></font>" برای وارد کردن مخاطبین از کارت SD یا سیم کارت خود"\n</li></string>
+    <!-- outdated translation 2364665535969139880 -->     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"شما مخاطبی برای نمایش ندارید. (در صورتی که اکنون یک حساب اضافه کردید، همگام سازی مخاطبین چند دقیقه طول می کشد.)"\n\n"برای افزودن مخاطب، "<font fgcolor="#ffffffff"><b>"منو"</b></font>" را فشار داده و این موارد را لمس کنید:"\n" "\n<li><font fgcolor="#ffffffff"><b>"حساب ها"</b></font>" برای افزودن یا پیکربندی یک حساب با مخاطبینی که می توانید در رایانه لوحی همگام سازی کنید"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"گزینه های نمایش"</b></font>" برای تغییر مخاطبینی که قابل رؤیت هستند"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"مخاطب جدید"</b></font>" جهت ایجاد یک مخاطب جدید از ابتدا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"وارد کردن/صادر کردن"</b></font>" برای وارد کردن مخاطبین از کارت SD یا سیم کارت خود"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"شما مخاطبی برای نمایش ندارید."\n\n"برای افزودن مخاطبین، "<font fgcolor="#ffffffff"><b>"منو"</b></font>" را فشار دهید و موارد زیر را لمس کنید:"\n" "\n<li><font fgcolor="#ffffffff"><b>"حساب ها"</b></font>" برای افزودن یا پیکربندی یک حساب با مخاطبینی که می توانید در رایانه لوحی همگام سازی کنید"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"مخاطب جدید"</b></font>" جهت ایجاد یک مخاطب جدید از ابتدا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"وارد کردن/صادر کردن"</b></font>" برای وارد کردن مخاطبین از کارت SD خود"\n</li></string>
+    <!-- outdated translation 6031363021287849874 -->     <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"شما مخاطبی برای نمایش ندارید."\n\n"برای افزودن مخاطبین، "<font fgcolor="#ffffffff"><b>"منو"</b></font>" را فشار دهید و موارد زیر را لمس کنید:"\n" "\n<li><font fgcolor="#ffffffff"><b>"حساب ها"</b></font>" برای افزودن یا پیکربندی یک حساب با مخاطبینی که می توانید در رایانه لوحی همگام سازی کنید"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"مخاطب جدید"</b></font>" جهت ایجاد یک مخاطب جدید از ابتدا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"وارد کردن/صادر کردن"</b></font>" برای وارد کردن مخاطبین از کارت SD خود"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"شما مخاطبی برای نمایش ندارید. (در صورتی که اکنون یک حساب اضافه کردید، همگام سازی مخاطبین چند دقیقه طول می کشد.)"\n\n"برای افزودن مخاطب، "<font fgcolor="#ffffffff"><b>"منو"</b></font>" را فشار داده و این موارد را لمس کنید:"\n" "\n<li><font fgcolor="#ffffffff"><b>"حساب ها"</b></font>" برای افزودن یا پیکربندی یک حساب با مخاطبینی که می توانید در رایانه لوحی همگام سازی کنید"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"گزینه های نمایش"</b></font>" برای تغییر مخاطبینی که قابل رؤیت هستند"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"مخاطب جدید"</b></font>" جهت ایجاد یک مخاطب جدید از ابتدا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"وارد کردن/صادر کردن"</b></font>" برای وارد کردن مخاطبین از کارت SD خود"\n</li></string>
+    <!-- outdated translation 6222739731808897565 -->     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"شما مخاطبی برای نمایش ندارید. (در صورتی که اکنون یک حساب اضافه کردید، همگام سازی مخاطبین چند دقیقه طول می کشد.)"\n\n"برای افزودن مخاطب، "<font fgcolor="#ffffffff"><b>"منو"</b></font>" را فشار داده و این موارد را لمس کنید:"\n" "\n<li><font fgcolor="#ffffffff"><b>"حساب ها"</b></font>" برای افزودن یا پیکربندی یک حساب با مخاطبینی که می توانید در رایانه لوحی همگام سازی کنید"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"گزینه های نمایش"</b></font>" برای تغییر مخاطبینی که قابل رؤیت هستند"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"مخاطب جدید"</b></font>" جهت ایجاد یک مخاطب جدید از ابتدا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"وارد کردن/صادر کردن"</b></font>" برای وارد کردن مخاطبین از کارت SD خود"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"شما هیچ مورد دلخواهی ندارید."\n\n"برای افزودن یک مخاطب به لیست موارد دلخواه خود: "\n\n"        "<li>"برگه "<b>"مخاطبین"</b>\n</li>" را لمس کنید"\n<li>"مخاطبی را که می خواهید به لیست موارد دلخواه خود اضافه کنید لمس کنید"\n</li>" "\n<li>"ستاره واقع در کنار نام مخاطب را لمس کنید"\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"همه مخاطبین"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"ستاره دار"</string>
@@ -226,10 +228,8 @@
     <skip />
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"تجزیه کارت ویزیت به دلیل پیش بینی نشده انجام نشد"</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"با وجودیکه به نظر می رسد کارت ویزیت دارای قالب معتبری است، اما تجزیه آن انجام نشد، زیرا اجرای فعلی از آن پشتیبانی نمی کند"</string>
-    <!-- no translation found for import_failure_no_vcard_file (8809370398968655782) -->
-    <skip />
-    <!-- no translation found for import_failure_no_vcard_file (1730986357514922756) -->
-    <skip />
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"فایل کارت ویزیتی در دستگاه ذخیره USB یافت نشد"</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"فایل کارت ویزیتی در کارت SD یافت نشد"</string>
     <!-- no translation found for fail_reason_failed_to_collect_vcard_meta_info (4154492282316067754) -->
     <skip />
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"یک یا چند فایل وارد نشدند (%s)."</string>
@@ -246,16 +246,12 @@
     <!-- outdated translation 4923008144735294994 -->     <string name="reading_vcard_failed_title" msgid="2162610359561887043">"خواندن داده های کارت ویزیت انجام نشد"</string>
     <!-- no translation found for reading_vcard_canceled_title (1770608329958463131) -->
     <skip />
-    <!-- no translation found for importing_vcard_finished_title (3341541727268747967) -->
-    <skip />
-    <!-- no translation found for importing_vcard_canceled_title (6367906965439777280) -->
-    <skip />
-    <!-- no translation found for vcard_import_will_start_message (2804911199145873396) -->
-    <skip />
+    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"وارد کردن کارت ویزیت <xliff:g id="FILENAME">%s</xliff:g> پایان یافت"</string>
+    <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"وارد کردن <xliff:g id="FILENAME">%s</xliff:g> لغو شد"</string>
+    <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> به زودی وارد می شود."</string>
     <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
     <skip />
-    <!-- no translation found for vcard_export_will_start_message (2210241345252081463) -->
-    <skip />
+    <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> به زودی صادر می شود."</string>
     <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
     <skip />
     <!-- no translation found for percentage (34897865327092209) -->
@@ -268,30 +264,23 @@
     <!-- outdated translation 7084146295639672658 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"فایل های کارت ویزیت بسیار زیادی در کارت SD وجود دارد"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"فایل های کارت ویزیت بسیار زیادی در کارت SD وجود دارد"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"نام فایل ضروری خیلی طولانی است (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
-    <!-- no translation found for exporting_vcard_finished_title (4259736138838583213) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_canceled_title (1827672399438062140) -->
-    <skip />
+    <string name="exporting_vcard_finished_title" msgid="4259736138838583213">"صادر کردن <xliff:g id="FILENAME">%s</xliff:g> پایان یافت"</string>
+    <string name="exporting_vcard_canceled_title" msgid="1827672399438062140">"صادر کردن <xliff:g id="FILENAME">%s</xliff:g> لغو شد"</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"صدور اطلاعات مخاطب"</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"صدور اطلاعات مخاطب به \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"صادر کننده راه اندازی نشد: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"خطایی در هنگام صادر کردن روی داد: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"دریافت اطلاعات پایگاه داده انجام نشد"</string>
-    <!-- outdated translation 754734132189369094 -->     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"هیچ مخاطب قابل صدوری موجود نیست. در واقع اگر مخاطبین شما در گوشی قرار دارند، ممکن است از صدور همه مخاطبین به خارج از گوشی توسط برخی از ارائه دهندگان داده ممانعت شود."</string>
-    <!-- outdated translation 754734132189369094 -->     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"هیچ مخاطب قابل صدوری موجود نیست. در واقع اگر مخاطبین شما در گوشی قرار دارند، ممکن است از صدور همه مخاطبین به خارج از گوشی توسط برخی از ارائه دهندگان داده ممانعت شود."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"هیچ مخاطب قابل صدوری موجود نیست. اگر واقعاً مخاطبینی در رایانه لوحی شما قرار دارند، ممکن است برخی از ارائه دهندگان داده صادر کردن کلیه مخاطبین به خارج از رایانه لوحی را ممنوع کرده باشند."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"هیچ مخاطب قابل صدوری موجود نیست. اگر واقعاً مخاطبینی در گوشی شما قرار دارند، ممکن است برخی از ارائه دهندگان داده صادر کردن کلیه مخاطبین به خارج از گوشی را ممنوع کرده باشند."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"مؤلف کارت ویزیت به درستی راه اندازی نشده است"</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" باز نشد: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> از <xliff:g id="TOTAL_NUMBER">%s</xliff:g> مخاطب"</string>
-    <!-- no translation found for cancel_import_confirmation_title (5578683596010294836) -->
-    <skip />
-    <!-- no translation found for cancel_import_confirmation_message (8560937090143057107) -->
-    <skip />
-    <!-- no translation found for cancel_export_confirmation_title (6516467140276768528) -->
-    <skip />
-    <!-- no translation found for cancel_export_confirmation_message (1392976902396351957) -->
-    <skip />
-    <!-- no translation found for cancel_vcard_import_or_export_failed (7096533244663846810) -->
-    <skip />
+    <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"لغو وارد کردن کارت ویزیت"</string>
+    <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"مطمئنید می خواهید وارد کردن <xliff:g id="FILENAME">%s</xliff:g> را لغو کنید؟"</string>
+    <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"لغو صادر کردن کارت ویزیت"</string>
+    <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"مطمئنید می خواهید صادر کردن <xliff:g id="FILENAME">%s</xliff:g> لغو شود؟"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7096533244663846810">"لغو صادر کردن/وارد کردن کارت ویزیت انجام نشد"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"نام های مخاطبین شما"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"افزودن یک مکث 2 ثانیه ای"</string>
     <string name="add_wait" msgid="3360818652790319634">"افزودن انتظار"</string>
@@ -303,12 +292,9 @@
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"ناشناس"</string>
     <!-- no translation found for quickcontact_no_data (2098000859125253675) -->
     <skip />
-    <!-- no translation found for quickcontact_clear_defaults_description (3792792870662989100) -->
-    <skip />
-    <!-- no translation found for quickcontact_clear_defaults_caption (4287306111861545753) -->
-    <skip />
-    <!-- no translation found for quickcontact_clear_defaults_button (8728754360205289059) -->
-    <skip />
+    <string name="quickcontact_clear_defaults_description" msgid="3792792870662989100">"پاک کردن پیش فرض ها"</string>
+    <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"پیش فرض های تنظیم شده برای این مخاطب:"</string>
+    <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"پاک کردن"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"حساب ها"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"وارد کردن/صادر کردن"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"وارد کردن/صادر کردن مخاطبین"</string>
@@ -336,8 +322,8 @@
     <string name="display_ungrouped" msgid="4602580795576261158">"کلیه مخاطبین دیگر"</string>
     <string name="display_all_contacts" msgid="6846131371214707956">"همه مخاطبین"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"حذف \"<xliff:g id="GROUP">%s</xliff:g>\" از همگام سازی نیز هر گونه مخاطب گروه بندی نشده ای را از همگام سازی حذف می کند."</string>
-    <!-- outdated translation 4025734638492419713 -->     <string name="account_phone" product="tablet" msgid="7946049152658522054">"فقط تلفن (همگام سازی نشده)"</string>
-    <!-- outdated translation 4025734638492419713 -->     <string name="account_phone" product="default" msgid="3682950835276226870">"فقط تلفن (همگام سازی نشده)"</string>
+    <string name="account_phone" product="tablet" msgid="7946049152658522054">"فقط رایانه لوحی، همگام نشده"</string>
+    <!-- outdated translation 7946049152658522054 -->     <string name="account_phone" product="default" msgid="3682950835276226870">"فقط رایانه لوحی، همگام نشده"</string>
     <string name="call_custom" msgid="7756571794763171802">"تماس با <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"تماس با خانه"</string>
     <string name="call_mobile" msgid="7502236805487609178">"تماس با تلفن همراه"</string>
@@ -486,8 +472,7 @@
     <skip />
     <!-- no translation found for menu_copyContact (4401683725471696686) -->
     <skip />
-    <!-- no translation found for contact_directory_description (683398073603909119) -->
-    <skip />
+    <string name="contact_directory_description" msgid="683398073603909119">"دایرکتوری <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <!-- no translation found for search_label (6789295859496641042) -->
     <skip />
     <!-- no translation found for directory_search_label (1887759056597975053) -->
@@ -536,24 +521,16 @@
     <skip />
     <!-- no translation found for social_widget_loading (3697996166985327861) -->
     <skip />
-    <!-- no translation found for contacts_unavailable_create_contact (7014525713871959208) -->
-    <skip />
-    <!-- no translation found for contacts_unavailable_add_account (7911101713860139754) -->
-    <skip />
-    <!-- no translation found for contacts_unavailable_import_contacts (4456440183590517471) -->
-    <skip />
-    <!-- no translation found for create_group_dialog_title (6874527142828424475) -->
-    <skip />
-    <!-- no translation found for create_group_item_label (5218022006186243310) -->
-    <skip />
-    <!-- no translation found for rename_group_dialog_title (3765299704290513289) -->
-    <skip />
-    <!-- no translation found for delete_group_dialog_title (7368429698398624427) -->
-    <skip />
-    <!-- no translation found for delete_group_dialog_message (295063284548750881) -->
-    <skip />
-    <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
-    <skip />
-    <!-- no translation found for indicator_joined_contact (3321049349627022128) -->
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"ایجاد مخاطب جدید"</string>
+    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"وارد شدن به یک حساب"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"وارد کردن مخاطبین از یک فایل"</string>
+    <string name="create_group_dialog_title" msgid="6874527142828424475">"ایجاد گروه جدید"</string>
+    <string name="create_group_item_label" msgid="5218022006186243310">"[ایجاد گروه جدید]"</string>
+    <string name="rename_group_dialog_title" msgid="3765299704290513289">"تغییر نام گروه"</string>
+    <string name="delete_group_dialog_title" msgid="7368429698398624427">"حذف گروه"</string>
+    <string name="delete_group_dialog_message" msgid="295063284548750881">"مطمئنید می خواهید گروه \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" حذف شود؟ (مخاطبین خودشان حذف نخواهند شد.)"</string>
+    <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"لطفاً قبل از پیوستن به مخاطب دیگری نام مخاطب را وارد کنید."</string>
+    <string name="indicator_joined_contact" msgid="3321049349627022128">"مخاطب ملحق شده"</string>
+    <!-- no translation found for toast_text_copied (5143776250008541719) -->
     <skip />
 </resources>

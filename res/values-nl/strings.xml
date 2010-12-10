@@ -50,6 +50,8 @@
     <skip />
     <!-- no translation found for menu_deleteGroup (644571524292675446) -->
     <skip />
+    <!-- no translation found for menu_new_contact_action_bar (8887818026717394343) -->
+    <skip />
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Contacten scheiden"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"Weet u zeker dat u dit enkele contact wilt scheiden in meerdere contacten: één contact voor elke verzameling contactgegevens die aan het contact is gekoppeld?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Samenvoegen"</string>
@@ -67,7 +69,7 @@
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Als u dit contact verwijdert, worden gegevens van meerdere accounts verwijderd."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Dit contact wordt verwijderd."</string>
     <string name="menu_done" msgid="796017761764190697">"Gereed"</string>
-    <string name="menu_doNotSave" msgid="2174577548513895144">"Terugzetten"</string>
+    <!-- outdated translation 2174577548513895144 -->     <string name="menu_doNotSave" msgid="58593876893538465">"Terugzetten"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"Contact bewerken"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"Nieuw contact"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetisch"</string>
@@ -87,7 +89,7 @@
     <item msgid="8287841928119937597">"Organisatie"</item>
     <item msgid="7196592230748086755">"Opmerking"</item>
   </string-array>
-    <!-- outdated translation 431331662154342581 -->     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Er zijn geen foto\'s beschikbaar op de telefoon."</string>
+    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Er zijn geen foto\'s beschikbaar op de tablet."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Er zijn geen foto\'s beschikbaar op de telefoon."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Contactfoto"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Aangepaste labelnaam"</string>
@@ -159,13 +161,13 @@
     <string name="simContacts_title" msgid="27341688347689769">"Contacten op SIM-kaart"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"U heeft geen contacten om weer te geven. Als u zojuist een account heeft toegevoegd, kan het enkele minuten duren voordat de contacten zijn gesynchroniseerd."</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"U heeft geen contacten om weer te geven."</string>
-    <!-- outdated translation 7633826236417884130 -->     <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"U heeft geen contacten om weer te geven."\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"\'Menu\'"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"\'Accounts\'"</b></font>" om een account toe te voegen of te configureren met contacten die u kunt synchroniseren met de telefoon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Nieuw contact\'"</b></font>" om een geheel nieuw contact te maken"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Importeren/exporteren\'"</b></font>" om contacten te importeren van uw SIM- of SD-kaart"\n</li></string>
+    <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"U heeft geen contacten om weer te geven."\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Accounts"</b></font>" om een account toe te voegen of te configureren met contacten die u kunt synchroniseren met de tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nieuw contact"</b></font>" om een geheel nieuw contact te maken"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importeren/exporteren"</b></font>" om contacten te importeren van uw SIM- of SD-kaart"\n</li></string>
     <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"U heeft geen contacten om weer te geven."\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"\'Menu\'"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"\'Accounts\'"</b></font>" om een account toe te voegen of te configureren met contacten die u kunt synchroniseren met de telefoon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Nieuw contact\'"</b></font>" om een geheel nieuw contact te maken"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Importeren/exporteren\'"</b></font>" om contacten te importeren van uw SIM- of SD-kaart"\n</li></string>
-    <!-- outdated translation 3017521127042216243 -->     <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"U heeft geen contacten om weer te geven. (Als u net een account heeft toegevoegd, kan het enkele minuten duren voordat de contacten zijn gesynchroniseerd.)"\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"\'Menu\'"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"\'Accounts\'"</b></font>" om een account toe te voegen of te configureren met contacten die u kunt synchroniseren met de telefoon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Weergaveopties\'"</b></font>" om de zichtbaarheid van contacten te wijzigen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Nieuw contact\'"</b></font>" om een geheel nieuw contact toe te voegen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Importeren/exporteren\'"</b></font>" om contacten van uw SIM- of SD-kaart te importeren"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"U heeft geen contacten om weer te geven. (Als u net een account heeft toegevoegd, kan het enkele minuten duren voordat de contacten zijn gesynchroniseerd.)"\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Accounts"</b></font>" om een account toe te voegen of te configureren met contacten die u kunt synchroniseren met de tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Weergaveopties"</b></font>" om de zichtbaarheid van contacten te wijzigen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nieuw contact"</b></font>" om een geheel nieuw contact toe te voegen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importeren/exporteren"</b></font>" om contacten van uw SIM- of SD-kaart te importeren"\n</li></string>
     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"U heeft geen contacten om weer te geven. (Als u net een account heeft toegevoegd, kan het enkele minuten duren voordat de contacten zijn gesynchroniseerd.)"\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"\'Menu\'"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"\'Accounts\'"</b></font>" om een account toe te voegen of te configureren met contacten die u kunt synchroniseren met de telefoon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Weergaveopties\'"</b></font>" om de zichtbaarheid van contacten te wijzigen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Nieuw contact\'"</b></font>" om een geheel nieuw contact toe te voegen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Importeren/exporteren\'"</b></font>" om contacten van uw SIM- of SD-kaart te importeren"\n</li></string>
-    <!-- outdated translation 467658807711582876 -->     <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"U heeft geen contacten om weer te geven."\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"\'Menu\'"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"\'Accounts\'"</b></font>" om een account toe te voegen of te configureren met contacten die u kunt synchroniseren met de telefoon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Nieuw contact\'"</b></font>" om een geheel nieuw contact te maken"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Importeren/exporteren\'"</b></font>" om contacten van uw SD-kaart te importeren"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"U heeft geen contacten om weer te geven."\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Accounts"</b></font>" om een account toe te voegen of te configureren met contacten die u kunt synchroniseren met de tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nieuw contact"</b></font>" om een geheel nieuw contact te maken"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importeren/exporteren"</b></font>" om contacten van uw SD-kaart te importeren"\n</li></string>
     <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"U heeft geen contacten om weer te geven."\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"\'Menu\'"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"\'Accounts\'"</b></font>" om een account toe te voegen of te configureren met contacten die u kunt synchroniseren met de telefoon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Nieuw contact\'"</b></font>" om een geheel nieuw contact te maken"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Importeren/exporteren\'"</b></font>" om contacten van uw SD-kaart te importeren"\n</li></string>
-    <!-- outdated translation 9040060730467973050 -->     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"U heeft geen contacten om weer te geven. (Als u net een account heeft toegevoegd, kan het enkele minuten duren voordat de contacten zijn gesynchroniseerd.)"\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"\'Menu\'"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"\'Accounts\'"</b></font>" om een account toe te voegen of te configureren met contacten die u kunt synchroniseren met de telefoon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Weergaveopties\'"</b></font>" om de zichtbaarheid van contacten te wijzigen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Nieuw contact\'"</b></font>" om een geheel nieuw contact te maken"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Importeren/exporteren\'"</b></font>" om contacten van uw SD-kaart te importeren"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"U heeft geen contacten om weer te geven. (Als u net een account heeft toegevoegd, kan het enkele minuten duren voordat de contacten zijn gesynchroniseerd.)"\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Accounts"</b></font>" om een account toe te voegen of te configureren met contacten die u kunt synchroniseren met de tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Weergaveopties"</b></font>" om de zichtbaarheid van contacten te wijzigen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nieuw contact"</b></font>" om een geheel nieuw contact te maken"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importeren/exporteren"</b></font>" om contacten van uw SD-kaart te importeren"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"U heeft geen contacten om weer te geven. (Als u net een account heeft toegevoegd, kan het enkele minuten duren voordat de contacten zijn gesynchroniseerd.)"\n\n"Als u contacten wilt toevoegen, drukt u op "<font fgcolor="#ffffffff"><b>"\'Menu\'"</b></font>" en raakt u de volgende opties aan:"\n" "\n<li><font fgcolor="#ffffffff"><b>"\'Accounts\'"</b></font>" om een account toe te voegen of te configureren met contacten die u kunt synchroniseren met de telefoon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Weergaveopties\'"</b></font>" om de zichtbaarheid van contacten te wijzigen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Nieuw contact\'"</b></font>" om een geheel nieuw contact te maken"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"\'Importeren/exporteren\'"</b></font>" om contacten van uw SD-kaart te importeren"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"U heeft geen favorieten."\n\n"U kunt als volgt een contact toevoegen aan uw lijst met favorieten:"\n\n"        "<li>"Raak het tabblad \'"<b>"Contacten"</b>"\' aan."\n</li>" "\n<li>"Raak het contact aan dat u wilt toevoegen aan uw favorieten."\n</li>" "\n<li>"Raak de ster aan die wordt weergegeven naast de naam van het contact."\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Alle contacten"</string>
@@ -230,10 +232,8 @@
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Onvoldoende geheugen (het bestand is mogelijk te groot)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Parseren van vCard is mislukt om onbekende reden"</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"Kan vCard niet parseren, ook al lijkt de indeling geldig. vCard wordt niet ondersteund door de huidige implementatie"</string>
-    <!-- no translation found for import_failure_no_vcard_file (8809370398968655782) -->
-    <skip />
-    <!-- no translation found for import_failure_no_vcard_file (1730986357514922756) -->
-    <skip />
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"Geen vCard-bestand gevonden in USB-opslag"</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Geen vCard-bestand gevonden op SD-kaart"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Verzamelen van metagegevens van betreffende vCard-bestanden is mislukt."</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Een of meer bestanden kunnen niet worden geïmporteerd (%s)"</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Onbekende fout"</string>
@@ -244,15 +244,11 @@
     <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g> importeren"</string>
     <string name="reading_vcard_failed_title" msgid="2162610359561887043">"Lezen van vCard-gegevens is mislukt"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Lezen van vCard-gegevens is geannuleerd"</string>
-    <!-- no translation found for importing_vcard_finished_title (3341541727268747967) -->
-    <skip />
-    <!-- no translation found for importing_vcard_canceled_title (6367906965439777280) -->
-    <skip />
-    <!-- no translation found for vcard_import_will_start_message (2804911199145873396) -->
-    <skip />
+    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Importeren van vCard <xliff:g id="FILENAME">%s</xliff:g> voltooid"</string>
+    <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Importeren van <xliff:g id="FILENAME">%s</xliff:g> is geannuleerd"</string>
+    <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> wordt binnenkort geïmporteerd."</string>
     <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"Verzoek voor importeren van vCard is geweigerd. Probeer het later opnieuw."</string>
-    <!-- no translation found for vcard_export_will_start_message (2210241345252081463) -->
-    <skip />
+    <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> wordt binnenkort geëxporteerd."</string>
     <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"Verzoek voor exporteren van vCard is geweigerd. Probeer het later opnieuw."</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Exporteren bevestigen"</string>
@@ -263,29 +259,23 @@
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"Te veel vCard-bestanden in de USB-opslag"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Te veel vCard-gegevens op de SD-kaart"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Vereiste bestandsnaam is te lang (\'<xliff:g id="FILENAME">%s</xliff:g>\')"</string>
-    <!-- no translation found for exporting_vcard_finished_title (4259736138838583213) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_canceled_title (1827672399438062140) -->
-    <skip />
+    <string name="exporting_vcard_finished_title" msgid="4259736138838583213">"Exporteren van <xliff:g id="FILENAME">%s</xliff:g> voltooid"</string>
+    <string name="exporting_vcard_canceled_title" msgid="1827672399438062140">"Exporteren van <xliff:g id="FILENAME">%s</xliff:g> is geannuleerd"</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Contactgegevens exporteren"</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Contactgegevens exporteren naar \'<xliff:g id="FILE_NAME">%s</xliff:g>\'"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Kan het exportprogramma niet initialiseren: \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Fout opgetreden tijdens export: \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Databasegegevens ophalen mislukt"</string>
-    <!-- outdated translation 754734132189369094 -->     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Er is geen contact dat kan worden geëxporteerd. Als er contacten op uw telefoon staan, kan het exporteren van alle contacten vanaf uw telefoon mogelijk worden geblokkeerd door een gegevensprovider."</string>
-    <!-- outdated translation 754734132189369094 -->     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Er is geen contact dat kan worden geëxporteerd. Als er contacten op uw telefoon staan, kan het exporteren van alle contacten vanaf uw telefoon mogelijk worden geblokkeerd door een gegevensprovider."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Er zijn geen contacten die kunnen worden geëxporteerd. Als er contacten op uw tablet staan, kan het exporteren van alle contacten vanaf uw tablet mogelijk worden geblokkeerd door bepaalde gegevensproviders."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Er zijn geen contacten die kunnen worden geëxporteerd. Als er contacten op uw telefoon staan, kan het exporteren van alle contacten vanaf uw telefoon mogelijk worden geblokkeerd door bepaalde gegevensproviders."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"De vCard-editor is niet juist geïnitialiseerd"</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Kan \'<xliff:g id="FILE_NAME">%s</xliff:g>\' niet openen: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> van <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contacten"</string>
-    <!-- outdated translation 1311741984719347665 -->     <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"Importeren van vCard annuleren"</string>
-    <!-- no translation found for cancel_import_confirmation_message (8560937090143057107) -->
-    <skip />
-    <!-- no translation found for cancel_export_confirmation_title (6516467140276768528) -->
-    <skip />
-    <!-- no translation found for cancel_export_confirmation_message (1392976902396351957) -->
-    <skip />
-    <!-- no translation found for cancel_vcard_import_or_export_failed (7096533244663846810) -->
-    <skip />
+    <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"Importeren van vCard annuleren"</string>
+    <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"Weet u zeker dat u het importeren van <xliff:g id="FILENAME">%s</xliff:g> annuleren?"</string>
+    <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Exporteren van vCard annuleren"</string>
+    <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"Weet u zeker dat u het exporteren van <xliff:g id="FILENAME">%s</xliff:g> wilt annuleren?"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7096533244663846810">"Annuleren van import/export vCard mislukt"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Namen van uw contacten"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Pauze van 2 seconden toevoegen"</string>
     <string name="add_wait" msgid="3360818652790319634">"Wachten toevoegen"</string>
@@ -296,12 +286,9 @@
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Deze keuze onthouden"</string>
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"Onbekend"</string>
     <string name="quickcontact_no_data" msgid="2098000859125253675">"Geen gegevens"</string>
-    <!-- no translation found for quickcontact_clear_defaults_description (3792792870662989100) -->
-    <skip />
-    <!-- no translation found for quickcontact_clear_defaults_caption (4287306111861545753) -->
-    <skip />
-    <!-- no translation found for quickcontact_clear_defaults_button (8728754360205289059) -->
-    <skip />
+    <string name="quickcontact_clear_defaults_description" msgid="3792792870662989100">"Standaardwaarden wissen"</string>
+    <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"Standaardwaarden ingesteld voor contact:"</string>
+    <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"Wissen"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Accounts"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Importeren/exporteren"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Contacten importeren/exporteren"</string>
@@ -327,7 +314,7 @@
     <string name="display_ungrouped" msgid="4602580795576261158">"Alle andere contacten"</string>
     <string name="display_all_contacts" msgid="6846131371214707956">"Alle contacten"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Als u \'<xliff:g id="GROUP">%s</xliff:g>\' verwijdert uit de synchronisatie, worden ook contacten die niet bij een groep horen uit de synchronisatie verwijderd."</string>
-    <!-- outdated translation 3682950835276226870 -->     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Alleen voor telefoon, niet gesynchroniseerd"</string>
+    <string name="account_phone" product="tablet" msgid="7946049152658522054">"Alleen tablet, niet gesynchroniseerd"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"Alleen voor telefoon, niet gesynchroniseerd"</string>
     <string name="call_custom" msgid="7756571794763171802">"<xliff:g id="CUSTOM">%s</xliff:g> bellen"</string>
     <string name="call_home" msgid="1990519474420545392">"Bellen naar huis"</string>
@@ -461,8 +448,7 @@
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Geselecteerde contacten bewerken"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Wilt u overschakelen naar het bewerken van het geselecteerde contact? Gegevens die u tot nu toe heeft ingevoerd, worden gekopieerd."</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"Kopiëren naar mijn contacten"</string>
-    <!-- no translation found for contact_directory_description (683398073603909119) -->
-    <skip />
+    <string name="contact_directory_description" msgid="683398073603909119">"Directory <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="search_label" msgid="6789295859496641042">"Alle contacten doorzoeken"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Directory"</string>
     <string name="local_search_label" msgid="1686089693064201315">"Contacten"</string>
@@ -487,24 +473,16 @@
     <string name="date_year_toggle" msgid="7356532842767854606">"Een jaar opgeven"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Contacten"</string>
     <string name="social_widget_loading" msgid="3697996166985327861">"Laden…"</string>
-    <!-- no translation found for contacts_unavailable_create_contact (7014525713871959208) -->
-    <skip />
-    <!-- no translation found for contacts_unavailable_add_account (7911101713860139754) -->
-    <skip />
-    <!-- no translation found for contacts_unavailable_import_contacts (4456440183590517471) -->
-    <skip />
-    <!-- no translation found for create_group_dialog_title (6874527142828424475) -->
-    <skip />
-    <!-- no translation found for create_group_item_label (5218022006186243310) -->
-    <skip />
-    <!-- no translation found for rename_group_dialog_title (3765299704290513289) -->
-    <skip />
-    <!-- no translation found for delete_group_dialog_title (7368429698398624427) -->
-    <skip />
-    <!-- no translation found for delete_group_dialog_message (295063284548750881) -->
-    <skip />
-    <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
-    <skip />
-    <!-- no translation found for indicator_joined_contact (3321049349627022128) -->
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Een nieuw contact maken"</string>
+    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Aanmelden bij een account"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Contacten importeren uit een bestand"</string>
+    <string name="create_group_dialog_title" msgid="6874527142828424475">"Nieuwe groep maken"</string>
+    <string name="create_group_item_label" msgid="5218022006186243310">"[Nieuwe groep maken]"</string>
+    <string name="rename_group_dialog_title" msgid="3765299704290513289">"Naam van groep wijzigen"</string>
+    <string name="delete_group_dialog_title" msgid="7368429698398624427">"Groep verwijderen"</string>
+    <string name="delete_group_dialog_message" msgid="295063284548750881">"Weet u zeker dat u de groep \'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\' wilt verwijderen\'? (De contacten worden niet verwijderd.)"</string>
+    <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Geef contactnaam op voordat u dit contact samenvoegt met een ander contact."</string>
+    <string name="indicator_joined_contact" msgid="3321049349627022128">"Samengevoegd contact"</string>
+    <!-- no translation found for toast_text_copied (5143776250008541719) -->
     <skip />
 </resources>
