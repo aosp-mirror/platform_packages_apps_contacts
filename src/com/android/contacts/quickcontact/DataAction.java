@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.net.WebAddress;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
@@ -111,7 +112,8 @@ public class DataAction implements Action {
         } else if (Website.CONTENT_ITEM_TYPE.equals(mimeType)) {
             final String url = getAsString(cursor, Website.URL);
             if (!TextUtils.isEmpty(url)) {
-                mIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                WebAddress webAddress = new WebAddress(url);
+                mIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(webAddress.toString()));
             }
 
         } else if (Im.CONTENT_ITEM_TYPE.equals(mimeType)) {
