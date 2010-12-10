@@ -50,6 +50,8 @@
     <skip />
     <!-- no translation found for menu_deleteGroup (644571524292675446) -->
     <skip />
+    <!-- no translation found for menu_new_contact_action_bar (8887818026717394343) -->
+    <skip />
     <string name="splitConfirmation_title" msgid="6716467920283502570">"연락처 분리"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"연락처 하나를 여러 주소록으로 분리하시겠습니까? 가입된 연락처 정보 세트마다 하나씩 만드시겠습니까?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"통합"</string>
@@ -67,7 +69,7 @@
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"이 연락처를 삭제하면 여러 계정의 정보가 삭제됩니다."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"연락처가 삭제됩니다."</string>
     <string name="menu_done" msgid="796017761764190697">"완료"</string>
-    <string name="menu_doNotSave" msgid="2174577548513895144">"되돌리기"</string>
+    <!-- outdated translation 2174577548513895144 -->     <string name="menu_doNotSave" msgid="58593876893538465">"되돌리기"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"연락처 수정"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"새 연락처"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"소리나는 대로"</string>
@@ -87,7 +89,7 @@
     <item msgid="8287841928119937597">"조직"</item>
     <item msgid="7196592230748086755">"메모"</item>
   </string-array>
-    <!-- outdated translation 431331662154342581 -->     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"휴대전화에 사진이 없습니다."</string>
+    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"태블릿에 사진이 없습니다."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"휴대전화에 사진이 없습니다."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"연락처 사진"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"라벨 이름 맞춤 설정"</string>
@@ -159,13 +161,13 @@
     <string name="simContacts_title" msgid="27341688347689769">"SIM 카드 주소록"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 연락처를 동기화하는 데 몇 분 정도 걸릴 수 있습니다."</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"표시할 연락처가 없습니다."</string>
-    <!-- outdated translation 7633826236417884130 -->     <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"표시할 연락처가 없습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려는 경우 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SIM 또는 SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
+    <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"표시할 연락처가 없습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 태블릿에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려는 경우 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SIM 또는 SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
     <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"표시할 연락처가 없습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려는 경우 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SIM 또는 SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
-    <!-- outdated translation 3017521127042216243 -->     <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 연락처를 동기화하는 데 몇 분 정도 걸릴 수 있습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"표시 옵션"</b></font>": 표시할 연락처를 변경하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SIM 또는 SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 연락처를 동기화하는 데 몇 분 정도 걸릴 수 있습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 태블릿에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"표시 옵션"</b></font>": 표시할 연락처를 변경하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SIM 또는 SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 연락처를 동기화하는 데 몇 분 정도 걸릴 수 있습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"표시 옵션"</b></font>": 표시할 연락처를 변경하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SIM 또는 SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
-    <!-- outdated translation 467658807711582876 -->     <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"표시할 연락처가 없습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
+    <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"표시할 연락처가 없습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 태블릿에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
     <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"표시할 연락처가 없습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
-    <!-- outdated translation 9040060730467973050 -->     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 연락처를 동기화하는 데 몇 분 정도 걸릴 수 있습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"표시 옵션"</b></font>": 표시되는 연락처를 변경하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 연락처를 동기화하는 데 몇 분 정도 걸릴 수 있습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 태블릿에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"표시 옵션"</b></font>": 표시되는 연락처를 변경하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 연락처를 동기화하는 데 몇 분 정도 걸릴 수 있습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"표시 옵션"</b></font>": 표시되는 연락처를 변경하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"즐겨찾기가 없습니다. "\n\n"즐겨찾기 목록에 연락처를 추가하려면 "\n\n<li><b>"주소록"</b>" 탭을 터치하고"\n</li>" "\n<li>"즐겨찾기에 추가할 연락처를 터치하고"\n</li>" "\n<li>"연락처 이름 옆의 별표를 터치합니다."\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"모든 연락처"</string>
@@ -230,10 +232,8 @@
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"메모리가 부족합니다. 파일이 너무 크기 때문일 수 있습니다."</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"예기치 못한 이유로 인해 vCard를 구문분석하지 못했습니다."</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"올바른 형식처럼 보이지만 현재 구현 환경에서는 VCard를 지원하지 않기 때문에 VCard 구문 분석에 실패했습니다."</string>
-    <!-- no translation found for import_failure_no_vcard_file (8809370398968655782) -->
-    <skip />
-    <!-- no translation found for import_failure_no_vcard_file (1730986357514922756) -->
-    <skip />
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"vCard 파일이 USB 저장소에 없습니다."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"SD 카드에 VCard 파일이 없습니다."</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"지정한 vCard 파일에 대한 메타 정보를 수집하지 못했습니다."</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"하나 이상의 파일을 가져오지 못했습니다(%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"알 수 없는 오류"</string>
@@ -244,15 +244,11 @@
     <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g> 가져오는 중"</string>
     <string name="reading_vcard_failed_title" msgid="2162610359561887043">"vCard 데이터를 읽지 못했습니다."</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"vCard 데이터 읽기가 취소되었습니다."</string>
-    <!-- no translation found for importing_vcard_finished_title (3341541727268747967) -->
-    <skip />
-    <!-- no translation found for importing_vcard_canceled_title (6367906965439777280) -->
-    <skip />
-    <!-- no translation found for vcard_import_will_start_message (2804911199145873396) -->
-    <skip />
+    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"<xliff:g id="FILENAME">%s</xliff:g> vCard 가져오기 완료됨"</string>
+    <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"<xliff:g id="FILENAME">%s</xliff:g> 가져오기가 취소됨"</string>
+    <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g>을(를) 곧 가져옵니다."</string>
     <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"vCard 가져오기 요청이 거부되었습니다. 나중에 시도해 주세요."</string>
-    <!-- no translation found for vcard_export_will_start_message (2210241345252081463) -->
-    <skip />
+    <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g>을(를) 곧 내보냅니다."</string>
     <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"vCard 내보내기 요청이 거부되었습니다. 나중에 시도해 주세요."</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"내보내기 확인"</string>
@@ -263,29 +259,23 @@
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"USB 저장소에 vCard 파일이 너무 많습니다."</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"SD 카드에 vCard 파일이 너무 많습니다."</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"필수 파일 이름이 너무 깁니다(\'<xliff:g id="FILENAME">%s</xliff:g>\')."</string>
-    <!-- no translation found for exporting_vcard_finished_title (4259736138838583213) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_canceled_title (1827672399438062140) -->
-    <skip />
+    <string name="exporting_vcard_finished_title" msgid="4259736138838583213">"<xliff:g id="FILENAME">%s</xliff:g> 내보내기 완료됨"</string>
+    <string name="exporting_vcard_canceled_title" msgid="1827672399438062140">"<xliff:g id="FILENAME">%s</xliff:g> 가져오기가 취소됨"</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"연락처 데이터 내보내기"</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"연락처 데이터를 \'<xliff:g id="FILE_NAME">%s</xliff:g>\'(으)로 내보내는 중"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"내보내기를 초기화하지 못했습니다. \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"내보내는 중에 오류가 발생했습니다. \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"데이터베이스 정보를 가져오지 못했습니다."</string>
-    <!-- outdated translation 754734132189369094 -->     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"내보낼 수 있는 연락처가 없습니다. 휴대전화에 실제로 연락처가 있다면 일부 데이터 제공업체에서 모든 연락처를 휴대전화 외부로 내보내지 못하도록 금지했을 수 있습니다."</string>
-    <!-- outdated translation 754734132189369094 -->     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"내보낼 수 있는 연락처가 없습니다. 휴대전화에 실제로 연락처가 있다면 일부 데이터 제공업체에서 모든 연락처를 휴대전화 외부로 내보내지 못하도록 금지했을 수 있습니다."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"내보낼 수 있는 연락처가 없습니다. 태블릿에 실제로 연락처가 있다면 일부 데이터 제공업체에서 모든 연락처를 휴대전화 외부로 내보내지 못하도록 금지했을 수 있습니다."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"내보낼 수 있는 연락처가 없습니다. 휴대전화에 실제로 연락처가 있다면 일부 데이터 제공업체에서 모든 연락처를 휴대전화 외부로 내보내지 못하도록 금지했을 수 있습니다."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"vCard 작성기가 바르게 초기화되지 않았습니다."</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"\'<xliff:g id="FILE_NAME">%s</xliff:g>\'을(를) 열 수 없습니다. <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"연락처 <xliff:g id="CURRENT_NUMBER">%s</xliff:g>개(총 <xliff:g id="TOTAL_NUMBER">%s</xliff:g>개) 내보내는 중"</string>
-    <!-- outdated translation 1311741984719347665 -->     <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"vCard 가져오기 취소 중"</string>
-    <!-- no translation found for cancel_import_confirmation_message (8560937090143057107) -->
-    <skip />
-    <!-- no translation found for cancel_export_confirmation_title (6516467140276768528) -->
-    <skip />
-    <!-- no translation found for cancel_export_confirmation_message (1392976902396351957) -->
-    <skip />
-    <!-- no translation found for cancel_vcard_import_or_export_failed (7096533244663846810) -->
-    <skip />
+    <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"vCard 가져오기 취소"</string>
+    <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"<xliff:g id="FILENAME">%s</xliff:g> 가져오기를 취소하시겠습니까?"</string>
+    <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"vCard 내보내기 취소"</string>
+    <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"<xliff:g id="FILENAME">%s</xliff:g> 내보내기를 취소하시겠습니까?"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7096533244663846810">"vCard 가져오기/내보내기 취소 실패"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"연락처 명단"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"2초 간 일시 정지 추가"</string>
     <string name="add_wait" msgid="3360818652790319634">"대기 시간 추가"</string>
@@ -296,12 +286,9 @@
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"이 선택사항 저장"</string>
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"알 수 없음"</string>
     <string name="quickcontact_no_data" msgid="2098000859125253675">"데이터가 없습니다."</string>
-    <!-- no translation found for quickcontact_clear_defaults_description (3792792870662989100) -->
-    <skip />
-    <!-- no translation found for quickcontact_clear_defaults_caption (4287306111861545753) -->
-    <skip />
-    <!-- no translation found for quickcontact_clear_defaults_button (8728754360205289059) -->
-    <skip />
+    <string name="quickcontact_clear_defaults_description" msgid="3792792870662989100">"기본 정보 지우기"</string>
+    <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"연락처의 기본 설정:"</string>
+    <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"지우기"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"계정"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"가져오기/내보내기"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"연락처 가져오기/내보내기"</string>
@@ -327,7 +314,7 @@
     <string name="display_ungrouped" msgid="4602580795576261158">"다른 모든 연락처"</string>
     <string name="display_all_contacts" msgid="6846131371214707956">"모든 연락처"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"\'<xliff:g id="GROUP">%s</xliff:g>\'을(를) 동기화에서 제거하면 그룹화되지 않은 연락처도 동기화에서 제거됩니다."</string>
-    <!-- outdated translation 3682950835276226870 -->     <string name="account_phone" product="tablet" msgid="7946049152658522054">"휴대전화 전용(동기화되지 않음)"</string>
+    <string name="account_phone" product="tablet" msgid="7946049152658522054">"태블릿 전용, 동기화되지 않음"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"휴대전화 전용(동기화되지 않음)"</string>
     <string name="call_custom" msgid="7756571794763171802">"<xliff:g id="CUSTOM">%s</xliff:g>(으)로 전화걸기"</string>
     <string name="call_home" msgid="1990519474420545392">"집으로 전화걸기"</string>
@@ -461,8 +448,7 @@
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"선택한 주소록 수정"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"선택한 연락처를 수정하시겠습니까? 지금까지 입력하신 정보는 복사됩니다."</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"내 주소록에 복사"</string>
-    <!-- no translation found for contact_directory_description (683398073603909119) -->
-    <skip />
+    <string name="contact_directory_description" msgid="683398073603909119">"디렉토리 <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="search_label" msgid="6789295859496641042">"모든 주소록 검색"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"디렉토리"</string>
     <string name="local_search_label" msgid="1686089693064201315">"주소록"</string>
@@ -487,24 +473,16 @@
     <string name="date_year_toggle" msgid="7356532842767854606">"출생연도 입력 선택"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"연락처"</string>
     <string name="social_widget_loading" msgid="3697996166985327861">"로드 중..."</string>
-    <!-- no translation found for contacts_unavailable_create_contact (7014525713871959208) -->
-    <skip />
-    <!-- no translation found for contacts_unavailable_add_account (7911101713860139754) -->
-    <skip />
-    <!-- no translation found for contacts_unavailable_import_contacts (4456440183590517471) -->
-    <skip />
-    <!-- no translation found for create_group_dialog_title (6874527142828424475) -->
-    <skip />
-    <!-- no translation found for create_group_item_label (5218022006186243310) -->
-    <skip />
-    <!-- no translation found for rename_group_dialog_title (3765299704290513289) -->
-    <skip />
-    <!-- no translation found for delete_group_dialog_title (7368429698398624427) -->
-    <skip />
-    <!-- no translation found for delete_group_dialog_message (295063284548750881) -->
-    <skip />
-    <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
-    <skip />
-    <!-- no translation found for indicator_joined_contact (3321049349627022128) -->
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"새 주소록 만들기"</string>
+    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"계정에 로그인"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"파일에서 주소록 가져오기"</string>
+    <string name="create_group_dialog_title" msgid="6874527142828424475">"새 그룹 만들기"</string>
+    <string name="create_group_item_label" msgid="5218022006186243310">"[새 그룹 만들기]"</string>
+    <string name="rename_group_dialog_title" msgid="3765299704290513289">"그룹 이름 바꾸기"</string>
+    <string name="delete_group_dialog_title" msgid="7368429698398624427">"그룹 삭제"</string>
+    <string name="delete_group_dialog_message" msgid="295063284548750881">"\'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\' 그룹을 삭제하시겠습니까(주소록은 삭제되지 않음)?"</string>
+    <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"다른 연락처와 통합하기 전에 연락처 이름을 입력하세요."</string>
+    <string name="indicator_joined_contact" msgid="3321049349627022128">"통합된 연락처"</string>
+    <!-- no translation found for toast_text_copied (5143776250008541719) -->
     <skip />
 </resources>

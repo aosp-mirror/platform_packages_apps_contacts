@@ -51,6 +51,8 @@
     <skip />
     <!-- no translation found for menu_deleteGroup (644571524292675446) -->
     <skip />
+    <!-- no translation found for menu_new_contact_action_bar (8887818026717394343) -->
+    <skip />
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Divider il contact"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"Vulais Vus propi divider quest contact en plirs contacts (in per mintga detagl da contact)?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Unir"</string>
@@ -68,7 +70,7 @@
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"\"Sche Vus stizzais quest contact, vegnan infurmaziuns en plirs contos stizzads.\""</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Quest contact vegn stizzà."</string>
     <string name="menu_done" msgid="796017761764190697">"Finì"</string>
-    <string name="menu_doNotSave" msgid="2174577548513895144">"Annullar"</string>
+    <!-- outdated translation 2174577548513895144 -->     <string name="menu_doNotSave" msgid="58593876893538465">"Annullar"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"Modifitgar il contact"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"Nov contact"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetic"</string>
@@ -540,5 +542,7 @@
     <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
     <skip />
     <!-- no translation found for indicator_joined_contact (3321049349627022128) -->
+    <skip />
+    <!-- no translation found for toast_text_copied (5143776250008541719) -->
     <skip />
 </resources>

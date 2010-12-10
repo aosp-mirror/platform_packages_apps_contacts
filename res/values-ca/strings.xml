@@ -52,6 +52,8 @@
     <skip />
     <!-- no translation found for menu_deleteGroup (644571524292675446) -->
     <skip />
+    <!-- no translation found for menu_new_contact_action_bar (8887818026717394343) -->
+    <skip />
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Separació del contacte"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"Esteu segur que voleu dividir aquest contacte únic en diversos contactes, un per a cada conjunt d\'informació de contacte que s\'hi ha unit?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Uneix"</string>
@@ -69,7 +71,7 @@
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Si suprimiu aquest contacte se suprimirà informació de diversos comptes."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Aquest contacte se suprimirà."</string>
     <string name="menu_done" msgid="796017761764190697">"Fet"</string>
-    <string name="menu_doNotSave" msgid="2174577548513895144">"Retrocedeix"</string>
+    <!-- outdated translation 2174577548513895144 -->     <string name="menu_doNotSave" msgid="58593876893538465">"Retrocedeix"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"Edita el contacte"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"Contacte nou"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonètic"</string>
@@ -90,7 +92,7 @@
     <item msgid="8287841928119937597">"Organització"</item>
     <item msgid="7196592230748086755">"Nota"</item>
   </string-array>
-    <!-- outdated translation 431331662154342581 -->     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"No hi ha cap imatge disponible al telèfon."</string>
+    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"No hi ha cap imatge disponible a la tauleta."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"No hi ha cap imatge disponible al telèfon."</string>
     <!-- no translation found for attach_photo_dialog_title (5599827035558557169) -->
     <skip />
@@ -153,14 +155,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"Contactes de la targeta SIM"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"No teniu cap contacte per mostrar. (Si acabeu d\'afegir un compte, la sincronització dels contactes pot trigar una estona.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"No teniu cap contacte per mostrar."</string>
-    <!-- outdated translation 6788487368878712350 -->     <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"No teniu cap contacte per mostrar."\n\n"Per afegir contactes, premeu "<font fgcolor="#ffffffff"><b>"Menú"</b></font>" i toqueu:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" per afegir o configurar un compte amb contactes que podeu sincronitzar amb el telèfon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacte nou"</b></font>" per crear un contacte nou des de zero"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa/Exporta"</b></font>\n</li></string>
-    <!-- outdated translation 6788487368878712350 -->     <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"No teniu cap contacte per mostrar."\n\n"Per afegir contactes, premeu "<font fgcolor="#ffffffff"><b>"Menú"</b></font>" i toqueu:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" per afegir o configurar un compte amb contactes que podeu sincronitzar amb el telèfon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacte nou"</b></font>" per crear un contacte nou des de zero"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa/Exporta"</b></font>\n</li></string>
-    <!-- outdated translation 3734101165712848179 -->     <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"No teniu cap contacte per mostrar. (Si acabeu d\'afegir un compte, la sincronització dels contactes pot trigar una estona.)"\n\n"Per afegir contactes, premeu "<font fgcolor="#ffffffff"><b>"Menú"</b></font>" i toqueu:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" per afegir o configurar un compte amb contactes que podeu sincronitzar amb el telèfon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opcions de visualització"</b></font>" per canviar els contactes visibles"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacte nou"</b></font>" per crear un contacte nou des de zero"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa/Exporta"</b></font>\n</li></string>
-    <!-- outdated translation 3734101165712848179 -->     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"No teniu cap contacte per mostrar. (Si acabeu d\'afegir un compte, la sincronització dels contactes pot trigar una estona.)"\n\n"Per afegir contactes, premeu "<font fgcolor="#ffffffff"><b>"Menú"</b></font>" i toqueu:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" per afegir o configurar un compte amb contactes que podeu sincronitzar amb el telèfon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opcions de visualització"</b></font>" per canviar els contactes visibles"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacte nou"</b></font>" per crear un contacte nou des de zero"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa/Exporta"</b></font>\n</li></string>
-    <!-- outdated translation 6553845386917463292 -->     <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"No teniu cap contacte per mostrar."\n\n"Per afegir contactes, premeu "<font fgcolor="#ffffffff"><b>"Menú"</b></font>" i toqueu:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" per afegir o configurar un compte amb contactes que podeu sincronitzar amb el telèfon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacte nou"</b></font>" per crear un contacte nou des de zero"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa/Exporta"</b></font>\n</li></string>
-    <!-- outdated translation 6553845386917463292 -->     <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"No teniu cap contacte per mostrar."\n\n"Per afegir contactes, premeu "<font fgcolor="#ffffffff"><b>"Menú"</b></font>" i toqueu:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" per afegir o configurar un compte amb contactes que podeu sincronitzar amb el telèfon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacte nou"</b></font>" per crear un contacte nou des de zero"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa/Exporta"</b></font>\n</li></string>
-    <!-- outdated translation 1122296298361373488 -->     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"No teniu cap contacte per mostrar. (Si acabeu d\'afegir un compte, la sincronització dels contactes pot trigar una estona.)"\n\n"Per afegir contactes, premeu "<font fgcolor="#ffffffff"><b>"Menú"</b></font>" i toqueu:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" per afegir o configurar un compte amb contactes que podeu sincronitzar amb el telèfon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opcions de visualització"</b></font>" per canviar els contactes visibles"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacte nou"</b></font>" per crear un contacte nou des de zero"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa/Exporta"</b></font>\n</li></string>
-    <!-- outdated translation 1122296298361373488 -->     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"No teniu cap contacte per mostrar. (Si acabeu d\'afegir un compte, la sincronització dels contactes pot trigar una estona.)"\n\n"Per afegir contactes, premeu "<font fgcolor="#ffffffff"><b>"Menú"</b></font>" i toqueu:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" per afegir o configurar un compte amb contactes que podeu sincronitzar amb el telèfon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opcions de visualització"</b></font>" per canviar els contactes visibles"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacte nou"</b></font>" per crear un contacte nou des de zero"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa/Exporta"</b></font>\n</li></string>
+    <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"No tens cap contacte per visualitzar."\n\n"Per afegir contactes, prem "<font fgcolor="#ffffffff"><b>"Menú"</b></font>" i toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes de Google"</b></font>" per afegir o per configurar un compte amb contactes que puguis sincronitzar amb la tauleta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacte nou"</b></font>" per crear un contacte nou des de zero"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa/Exporta"</b></font>" per importar contactes des de la targeta SIM o SD"\n</li></string>
+    <!-- outdated translation 6450346791169710787 -->     <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"No tens cap contacte per visualitzar."\n\n"Per afegir contactes, prem "<font fgcolor="#ffffffff"><b>"Menú"</b></font>" i toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes de Google"</b></font>" per afegir o per configurar un compte amb contactes que puguis sincronitzar amb la tauleta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacte nou"</b></font>" per crear un contacte nou des de zero"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa/Exporta"</b></font>" per importar contactes des de la targeta SIM o SD"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"No tens cap contacte per visualitzar. (Si acabes d\'afegir un compte, els contactes poden trigar una estona a sincronitzar-se.)"\n\n"Per afegir contactes, prem "<font fgcolor="#ffffffff"><b>"Menú"</b></font>" i toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes de Google"</b></font>" per afegir o per configurar un compte amb contactes que puguis sincronitzar amb la tauleta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opcions de visualització"</b></font>" per canviar quins contactes són visibles"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacte nou"</b></font>" per crear un contacte nou des de zero"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa/Exporta"</b></font>" per importar contactes des de la targeta SIM o SD"\n</li></string>
+    <!-- outdated translation 2364665535969139880 -->     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"No tens cap contacte per visualitzar. (Si acabes d\'afegir un compte, els contactes poden trigar una estona a sincronitzar-se.)"\n\n"Per afegir contactes, prem "<font fgcolor="#ffffffff"><b>"Menú"</b></font>" i toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes de Google"</b></font>" per afegir o per configurar un compte amb contactes que puguis sincronitzar amb la tauleta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opcions de visualització"</b></font>" per canviar quins contactes són visibles"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacte nou"</b></font>" per crear un contacte nou des de zero"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa/Exporta"</b></font>" per importar contactes des de la targeta SIM o SD"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"No tens cap contacte per visualitzar."\n\n"Per afegir contactes, prem "<font fgcolor="#ffffffff"><b>"Menú"</b></font>" i toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes de Google"</b></font>" per afegir o per configurar un compte amb contactes que puguis sincronitzar amb la tauleta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacte nou"</b></font>" per crear un contacte nou des de zero"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa/Exporta"</b></font>" per importar contactes des de la targeta SD"\n</li></string>
+    <!-- outdated translation 6031363021287849874 -->     <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"No tens cap contacte per visualitzar."\n\n"Per afegir contactes, prem "<font fgcolor="#ffffffff"><b>"Menú"</b></font>" i toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes de Google"</b></font>" per afegir o per configurar un compte amb contactes que puguis sincronitzar amb la tauleta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacte nou"</b></font>" per crear un contacte nou des de zero"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa/Exporta"</b></font>" per importar contactes des de la targeta SD"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"No tens cap contacte per visualitzar. (Si acabes d\'afegir un compte, els contactes poden trigar una estona a sincronitzar-se.)"\n\n"Per afegir contactes, prem "<font fgcolor="#ffffffff"><b>"Menú"</b></font>" i toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes de Google"</b></font>" per afegir o per configurar un compte amb contactes que puguis sincronitzar amb la tauleta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opcions de visualització"</b></font>" per canviar quins contactes són visibles"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacte nou"</b></font>" per crear un contacte nou des de zero"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa/Exporta"</b></font>" per importar contactes des de la targeta SD"\n</li></string>
+    <!-- outdated translation 6222739731808897565 -->     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"No tens cap contacte per visualitzar. (Si acabes d\'afegir un compte, els contactes poden trigar una estona a sincronitzar-se.)"\n\n"Per afegir contactes, prem "<font fgcolor="#ffffffff"><b>"Menú"</b></font>" i toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes de Google"</b></font>" per afegir o per configurar un compte amb contactes que puguis sincronitzar amb la tauleta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opcions de visualització"</b></font>" per canviar quins contactes són visibles"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacte nou"</b></font>" per crear un contacte nou des de zero"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa/Exporta"</b></font>" per importar contactes des de la targeta SD"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"No teniu preferits."\n\n"Per afegir un contacte a la llista de preferits:"\n\n"        "<li>"Toqueu la pestanya"<b>"Contactes"</b>" "\n</li>" "\n<li>"Toqueu el contacte que voleu afegir als preferits"\n</li>" "\n<li>"Toqueu l\'estrella que hi ha al costat del nom del contacte"\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Tots els contactes"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Destacats"</string>
@@ -226,10 +228,8 @@
     <skip />
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"No s\'ha pogut analitzar la vCard per un motiu inesperat"</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"No s\'ha pogut analitzar la vCard, tot i que sembla tenir un format vàlid, perquè no és compatible amb la implementació actual."</string>
-    <!-- no translation found for import_failure_no_vcard_file (8809370398968655782) -->
-    <skip />
-    <!-- no translation found for import_failure_no_vcard_file (1730986357514922756) -->
-    <skip />
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"No s\'ha trobat cap fitxer vCard a l\'emmagatzematge USB"</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"No s\'ha trobat cap fitxer vCard a la targeta SD"</string>
     <!-- no translation found for fail_reason_failed_to_collect_vcard_meta_info (4154492282316067754) -->
     <skip />
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"No s\'ha pogut importar un o més fitxers (%s)."</string>
@@ -246,16 +246,12 @@
     <!-- outdated translation 4923008144735294994 -->     <string name="reading_vcard_failed_title" msgid="2162610359561887043">"S\'ha produït un error en llegir les dades de la vCard"</string>
     <!-- no translation found for reading_vcard_canceled_title (1770608329958463131) -->
     <skip />
-    <!-- no translation found for importing_vcard_finished_title (3341541727268747967) -->
-    <skip />
-    <!-- no translation found for importing_vcard_canceled_title (6367906965439777280) -->
-    <skip />
-    <!-- no translation found for vcard_import_will_start_message (2804911199145873396) -->
-    <skip />
+    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Importació de vCard <xliff:g id="FILENAME">%s</xliff:g> finalitzada"</string>
+    <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"La importació de <xliff:g id="FILENAME">%s</xliff:g> s\'ha cancel·lat"</string>
+    <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> s\'importarà d\'aquí a una estona."</string>
     <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
     <skip />
-    <!-- no translation found for vcard_export_will_start_message (2210241345252081463) -->
-    <skip />
+    <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> s\'exportarà en breu."</string>
     <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
     <skip />
     <!-- no translation found for percentage (34897865327092209) -->
@@ -268,30 +264,23 @@
     <!-- outdated translation 7084146295639672658 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"Hi ha massa fitxers vCard a la targeta SD"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Hi ha massa fitxers vCard a la targeta SD"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"El nom de fitxer obligatori és massa llarg (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
-    <!-- no translation found for exporting_vcard_finished_title (4259736138838583213) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_canceled_title (1827672399438062140) -->
-    <skip />
+    <string name="exporting_vcard_finished_title" msgid="4259736138838583213">"Exportació de <xliff:g id="FILENAME">%s</xliff:g> finalitzada"</string>
+    <string name="exporting_vcard_canceled_title" msgid="1827672399438062140">"L\'exportació de <xliff:g id="FILENAME">%s</xliff:g> s\'ha cancel·lat"</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"S\'estan exportant les dades de contacte"</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"S\'estan exportant les dades de contacte a \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"No s\'ha pogut inicialitzar l\'exportador: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"S\'ha produït un error durant l\'exportació: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"No s\'ha pogut obtenir la informació de la base de dades"</string>
-    <!-- outdated translation 754734132189369094 -->     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"No hi ha cap contacte que es pugui exportar. Si teniu contactes al telèfon, pot ser que l\'exportació a fora del telèfon estigui prohibida per un proveïdor de dades."</string>
-    <!-- outdated translation 754734132189369094 -->     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"No hi ha cap contacte que es pugui exportar. Si teniu contactes al telèfon, pot ser que l\'exportació a fora del telèfon estigui prohibida per un proveïdor de dades."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"No hi ha cap contacte que es pugui exportar. Si teniu contactes a la tauleta, pot ser que alguns proveïdors de dades en prohibeixin l\'exportació a fora de la tauleta."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"No hi ha cap contacte que es pugui exportar. Si teniu contactes al telèfon, pot ser que l\'exportació a fora del telèfon estigui prohibida per alguns proveïdors de dades."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"El creador de vCard no s\'ha inicialitzat correctament"</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"No s\'ha pogut obrir \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> de <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contactes"</string>
-    <!-- no translation found for cancel_import_confirmation_title (5578683596010294836) -->
-    <skip />
-    <!-- no translation found for cancel_import_confirmation_message (8560937090143057107) -->
-    <skip />
-    <!-- no translation found for cancel_export_confirmation_title (6516467140276768528) -->
-    <skip />
-    <!-- no translation found for cancel_export_confirmation_message (1392976902396351957) -->
-    <skip />
-    <!-- no translation found for cancel_vcard_import_or_export_failed (7096533244663846810) -->
-    <skip />
+    <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"Cancel·lació de la importació de la vCard"</string>
+    <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"Estàs segur que vols cancel·lar la importació de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Cancel·lació de l\'exportació de la vCard"</string>
+    <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"Estàs segur que vols cancel·lar l\'exportació de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7096533244663846810">"Error en cancel·lar impor./expor. vCard"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Noms dels contactes"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Afegeix una pausa de 2 segons"</string>
     <string name="add_wait" msgid="3360818652790319634">"Afegeix espera"</string>
@@ -303,12 +292,9 @@
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"Desconegut"</string>
     <!-- no translation found for quickcontact_no_data (2098000859125253675) -->
     <skip />
-    <!-- no translation found for quickcontact_clear_defaults_description (3792792870662989100) -->
-    <skip />
-    <!-- no translation found for quickcontact_clear_defaults_caption (4287306111861545753) -->
-    <skip />
-    <!-- no translation found for quickcontact_clear_defaults_button (8728754360205289059) -->
-    <skip />
+    <string name="quickcontact_clear_defaults_description" msgid="3792792870662989100">"Esborra els valors predeterminats"</string>
+    <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"Valors predeterminats per a aquest contacte:"</string>
+    <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"Esborra"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Comptes"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Importa/Exporta"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importació/Exportació de contactes"</string>
@@ -336,8 +322,8 @@
     <string name="display_ungrouped" msgid="4602580795576261158">"Tots els altres contactes"</string>
     <string name="display_all_contacts" msgid="6846131371214707956">"Tots els contactes"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Si s\'elimina \"<xliff:g id="GROUP">%s</xliff:g>\" de la sincronització, també s\'eliminaran els contactes no agrupats de la sincronització."</string>
-    <!-- outdated translation 4025734638492419713 -->     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Només telèfon (no sincronitzat)"</string>
-    <!-- outdated translation 4025734638492419713 -->     <string name="account_phone" product="default" msgid="3682950835276226870">"Només telèfon (no sincronitzat)"</string>
+    <string name="account_phone" product="tablet" msgid="7946049152658522054">"Només a la tauleta, sense sincronitzar"</string>
+    <!-- outdated translation 7946049152658522054 -->     <string name="account_phone" product="default" msgid="3682950835276226870">"Només a la tauleta, sense sincronitzar"</string>
     <string name="call_custom" msgid="7756571794763171802">"Truca a <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"Truca a casa"</string>
     <string name="call_mobile" msgid="7502236805487609178">"Truca al mòbil"</string>
@@ -486,8 +472,7 @@
     <skip />
     <!-- no translation found for menu_copyContact (4401683725471696686) -->
     <skip />
-    <!-- no translation found for contact_directory_description (683398073603909119) -->
-    <skip />
+    <string name="contact_directory_description" msgid="683398073603909119">"Directori <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <!-- no translation found for search_label (6789295859496641042) -->
     <skip />
     <!-- no translation found for directory_search_label (1887759056597975053) -->
@@ -536,24 +521,16 @@
     <skip />
     <!-- no translation found for social_widget_loading (3697996166985327861) -->
     <skip />
-    <!-- no translation found for contacts_unavailable_create_contact (7014525713871959208) -->
-    <skip />
-    <!-- no translation found for contacts_unavailable_add_account (7911101713860139754) -->
-    <skip />
-    <!-- no translation found for contacts_unavailable_import_contacts (4456440183590517471) -->
-    <skip />
-    <!-- no translation found for create_group_dialog_title (6874527142828424475) -->
-    <skip />
-    <!-- no translation found for create_group_item_label (5218022006186243310) -->
-    <skip />
-    <!-- no translation found for rename_group_dialog_title (3765299704290513289) -->
-    <skip />
-    <!-- no translation found for delete_group_dialog_title (7368429698398624427) -->
-    <skip />
-    <!-- no translation found for delete_group_dialog_message (295063284548750881) -->
-    <skip />
-    <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
-    <skip />
-    <!-- no translation found for indicator_joined_contact (3321049349627022128) -->
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Crea un contacte nou"</string>
+    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Inicia la sessió a un compte"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Importa contactes d\'un fitxer"</string>
+    <string name="create_group_dialog_title" msgid="6874527142828424475">"Creació d\'un grup nou"</string>
+    <string name="create_group_item_label" msgid="5218022006186243310">"[Crea un grup nou]"</string>
+    <string name="rename_group_dialog_title" msgid="3765299704290513289">"Canvi del nom del grup"</string>
+    <string name="delete_group_dialog_title" msgid="7368429698398624427">"Supressió d\'un grup"</string>
+    <string name="delete_group_dialog_message" msgid="295063284548750881">"Estàs segur que vols suprimir el grup \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Els contactes en si no se suprimiran.)"</string>
+    <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Introdueix el nom del contacte abans d\'unir-lo a un altre contacte."</string>
+    <string name="indicator_joined_contact" msgid="3321049349627022128">"S\'ha unit el contacte"</string>
+    <!-- no translation found for toast_text_copied (5143776250008541719) -->
     <skip />
 </resources>
