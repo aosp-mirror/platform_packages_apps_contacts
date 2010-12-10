@@ -76,7 +76,7 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
                     break;
                 }
                 case JoinContactListAdapter.PARTITION_ALL_CONTACTS: {
-                    setAizyEnabled(mAllContactsListShown);
+                    setVisibleScrollbarEnabled(mAllContactsListShown);
 
                     JoinContactListAdapter adapter = getAdapter();
                     Cursor suggestionsCursor = ((JoinContactLoader)loader).getSuggestionsCursor();
@@ -91,7 +91,7 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
     public JoinContactListFragment() {
         setPhotoLoaderEnabled(true);
         setSectionHeaderDisplayEnabled(true);
-        setAizyEnabled(false);
+        setVisibleScrollbarEnabled(false);
         setQuickContactEnabled(false);
     }
 

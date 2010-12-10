@@ -29,9 +29,6 @@
 
     <dimen name="photo_action_popup_width">400dip</dimen>
 
-    <dimen name="aizy_preview_width">80dip</dimen>
-    <dimen name="aizy_preview_height">80dip</dimen>
-
     <!-- Width of the quick contact popup. This size is chosen so that the last icon is clipped
     to indicate horizontal scrollability. Also, this size is the same as the widget to make them
     aligned -->

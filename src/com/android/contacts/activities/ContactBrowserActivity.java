@@ -72,7 +72,6 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ImageButton;
 import android.widget.ListPopupWindow;
 import android.widget.Toast;
 
@@ -400,7 +399,11 @@ public class ContactBrowserActivity extends Activity
                 } else {
                     fragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_NONE);
                 }
-                fragment.setAizyEnabled(!mRequest.isSearchMode());
+                fragment.setVisibleScrollbarEnabled(!mRequest.isSearchMode());
+                fragment.setVerticalScrollbarPosition(
+                        mContactContentDisplayed
+                                ? View.SCROLLBAR_POSITION_LEFT
+                                : View.SCROLLBAR_POSITION_RIGHT);
                 fragment.setSelectionVisible(mContactContentDisplayed);
                 fragment.setQuickContactEnabled(!mContactContentDisplayed);
                 fragment.setFilterEnabled(!mRequest.isSearchMode());
@@ -459,7 +462,11 @@ public class ContactBrowserActivity extends Activity
         fragment.setSearchMode(true);
         fragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DEFAULT);
         fragment.setDirectoryResultLimit(DEFAULT_DIRECTORY_RESULT_LIMIT);
-        fragment.setAizyEnabled(false);
+        fragment.setVisibleScrollbarEnabled(false);
+        fragment.setVerticalScrollbarPosition(
+                mContactContentDisplayed
+                        ? View.SCROLLBAR_POSITION_LEFT
+                        : View.SCROLLBAR_POSITION_RIGHT);
         fragment.setSelectionVisible(true);
         fragment.setQuickContactEnabled(!mContactContentDisplayed);
         invalidateOptionsMenu();

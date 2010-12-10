@@ -77,7 +77,7 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     @Override
     protected void configureAdapter() {
         setSectionHeaderDisplayEnabled(!isSearchMode());
-        setAizyEnabled(!isSearchMode());
+        setVisibleScrollbarEnabled(!isSearchMode());
         super.configureAdapter();
     }
 

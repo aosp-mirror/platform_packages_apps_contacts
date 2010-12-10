@@ -14,49 +14,31 @@
      limitations under the License.
 -->
 
-<LinearLayout 
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    >
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dip"
+        android:layout_marginTop="1dip"
+        android:layout_marginBottom="1dip"
+        android:background="#7e7e87" />
 
     <view
-        class="com.android.contacts.list.ContactListAizyView"
-        android:id="@+id/contacts_list_aizy"
-        android:layout_width="40dip"
-        android:layout_height="match_parent"
-    />
-
-    <LinearLayout
-        android:layout_width="0px"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        class="com.android.contacts.list.ContactEntryListView"
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:fastScrollEnabled="true"
         android:layout_weight="1"
-        >
+        android:scrollingCache="false" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dip"
-            android:layout_marginTop="1dip"
-            android:layout_marginBottom="1dip"
-            android:background="#7e7e87"
-        />
-
-        <view
-            class="com.android.contacts.list.ContactEntryListView"
-            android:id="@android:id/list"
-            android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:fastScrollEnabled="true"
-            android:layout_weight="1"
-            android:scrollingCache="false"
-        />
-
-        <ViewStub android:id="@+id/footer_stub"
-            android:layout="@layout/footer_panel"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-        />
-    </LinearLayout>
+    <ViewStub
+        android:id="@+id/footer_stub"
+        android:layout="@layout/footer_panel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

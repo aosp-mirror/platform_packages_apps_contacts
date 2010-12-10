@@ -78,7 +78,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private static final String KEY_PHOTO_LOADER_ENABLED = "photoLoaderEnabled";
     private static final String KEY_QUICK_CONTACT_ENABLED = "quickContactEnabled";
     private static final String KEY_SEARCH_MODE = "searchMode";
-    private static final String KEY_AIZY_ENABLED = "aizyEnabled";
+    private static final String KEY_VISIBLE_SCROLLBAR_ENABLED = "visibleScrollbarEnabled";
     private static final String KEY_QUERY_STRING = "queryString";
     private static final String KEY_DIRECTORY_SEARCH_MODE = "directorySearchMode";
     private static final String KEY_SELECTION_VISIBLE = "selectionVisible";
@@ -99,7 +99,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private boolean mPhotoLoaderEnabled;
     private boolean mQuickContactEnabled = true;
     private boolean mSearchMode;
-    private boolean mAizyEnabled;
+    private boolean mVisibleScrollbarEnabled;
+    private int mVerticalScrollbarPosition = View.SCROLLBAR_POSITION_RIGHT;
     private String mQueryString;
     private int mDirectorySearchMode = DirectoryListLoader.SEARCH_MODE_NONE;
     private boolean mSelectionVisible;
@@ -111,7 +112,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private T mAdapter;
     private View mView;
     private ListView mListView;
-    private ContactListAizyView mAizy;
 
     /**
      * Used for keeping track of the scroll state of the list.
@@ -154,6 +154,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             }
         }
     };
+
 
     protected abstract View inflateView(LayoutInflater inflater, ViewGroup container);
     protected abstract T createListAdapter();
@@ -233,7 +234,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         outState.putBoolean(KEY_PHOTO_LOADER_ENABLED, mPhotoLoaderEnabled);
         outState.putBoolean(KEY_QUICK_CONTACT_ENABLED, mQuickContactEnabled);
         outState.putBoolean(KEY_SEARCH_MODE, mSearchMode);
-        outState.putBoolean(KEY_AIZY_ENABLED, mAizyEnabled);
+        outState.putBoolean(KEY_VISIBLE_SCROLLBAR_ENABLED, mVisibleScrollbarEnabled);
         outState.putInt(KEY_DIRECTORY_SEARCH_MODE, mDirectorySearchMode);
         outState.putBoolean(KEY_SELECTION_VISIBLE, mSelectionVisible);
         outState.putBoolean(KEY_LEGACY_COMPATIBILITY, mLegacyCompatibility);
@@ -263,7 +264,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mPhotoLoaderEnabled = savedState.getBoolean(KEY_PHOTO_LOADER_ENABLED);
         mQuickContactEnabled = savedState.getBoolean(KEY_QUICK_CONTACT_ENABLED);
         mSearchMode = savedState.getBoolean(KEY_SEARCH_MODE);
-        mAizyEnabled = savedState.getBoolean(KEY_AIZY_ENABLED);
+        mVisibleScrollbarEnabled = savedState.getBoolean(KEY_VISIBLE_SCROLLBAR_ENABLED);
         mDirectorySearchMode = savedState.getInt(KEY_DIRECTORY_SEARCH_MODE);
         mSelectionVisible = savedState.getBoolean(KEY_SELECTION_VISIBLE);
         mLegacyCompatibility = savedState.getBoolean(KEY_LEGACY_COMPATIBILITY);
@@ -431,9 +432,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     protected void onPartitionLoaded(int partitionIndex, Cursor data) {
         mAdapter.changeCursor(partitionIndex, data);
         showCount(partitionIndex, data);
-        if (partitionIndex == mAdapter.getIndexedPartition()) {
-            mAizy.setIndexer(mAdapter.getIndexer(), data.getCount());
-        }
 
         if (!isLoading()) {
             completeRestoreInstanceState();
@@ -495,37 +493,35 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         if (mAdapter != null) {
             mAdapter.setSectionHeaderDisplayEnabled(flag);
         }
-        configureAizy();
+        configureVerticalScrollbar();
     }
 
     public boolean isSectionHeaderDisplayEnabled() {
         return mSectionHeaderDisplayEnabled;
     }
 
-    public void setAizyEnabled(boolean flag) {
-        mAizyEnabled = flag;
-        configureAizy();
+    public void setVisibleScrollbarEnabled(boolean flag) {
+        mVisibleScrollbarEnabled = flag;
+        configureVerticalScrollbar();
     }
 
-    public boolean isAizyEnabled() {
-        return mAizyEnabled;
+    public boolean isVisibleScrollbarEnabled() {
+        return mVisibleScrollbarEnabled;
     }
 
-    private void configureAizy() {
-        boolean hasAisy = isAizyEnabled() && isSectionHeaderDisplayEnabled();
+    public void setVerticalScrollbarPosition(int position) {
+        this.mVerticalScrollbarPosition = position;
+    }
+
+    private void configureVerticalScrollbar() {
+        boolean hasScrollbar = isVisibleScrollbarEnabled() && isSectionHeaderDisplayEnabled();
 
         if (mListView != null) {
-            mListView.setFastScrollEnabled(!hasAisy);
-            mListView.setVerticalScrollBarEnabled(!hasAisy);
-        }
-        if (mAizy != null) {
-            if (hasAisy) {
-                mAizy.setVisibility(View.VISIBLE);
-            } else if (isAizyEnabled()) {
-                mAizy.setVisibility(View.INVISIBLE);
-            } else {
-                mAizy.setVisibility(View.GONE);
-            }
+            mListView.setFastScrollEnabled(hasScrollbar);
+            mListView.setFastScrollAlwaysVisible(hasScrollbar);
+            mListView.setScrollBarStyle(
+                    hasScrollbar ? View.SCROLLBARS_INSIDE_INSET : View.SCROLLBARS_INSIDE_OVERLAY);
+            mListView.setVerticalScrollbarPosition(mVerticalScrollbarPosition);
         }
     }
 
@@ -718,15 +714,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mListView.setOnCreateContextMenuListener(mContextMenuAdapter);
         }
 
-        mAizy = (ContactListAizyView) mView.findViewById(R.id.contacts_list_aizy);
-        mAizy.setListener(new ContactListAizyView.Listener() {
-            @Override
-            public void onScroll(int position) {
-                mListView.setSelectionFromTop(position + mListView.getHeaderViewsCount(), 0);
-            }
-        });
-
-        configureAizy();
+        configureVerticalScrollbar();
         configurePhotoLoader();
     }
 
@@ -778,11 +766,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
             int totalItemCount) {
-        if (isAizyEnabled()) {
-            mAizy.listOnScroll(firstVisibleItem);
-        }
     }
 
+    @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
         if (scrollState == OnScrollListener.SCROLL_STATE_FLING) {
             mPhotoLoader.pause();

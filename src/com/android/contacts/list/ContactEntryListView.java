@@ -21,10 +21,6 @@ import com.android.contacts.widget.PinnedHeaderListView;
 import com.android.contacts.widget.TextHighlightingAnimation;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.PixelFormat;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.AbsListView;
 import android.widget.ListAdapter;

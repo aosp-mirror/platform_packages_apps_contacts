@@ -333,7 +333,7 @@ public class ContactListItemView extends ViewGroup
         // to the text fields in the middle.
 
         int leftBound = layoutLeftSide(height, topBound, bottomBound, mPaddingLeft);
-        int rightBound = layoutRightSide(height, topBound, right);
+        int rightBound = layoutRightSide(height, topBound, width);
 
         // Text lines, centered vertically
         rightBound -= mPaddingRight;
