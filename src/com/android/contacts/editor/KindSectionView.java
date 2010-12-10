@@ -84,9 +84,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        if (!changed) {
-            return;
-        }
 
         if (mAddPlusButton == null || mEditors == null || mEditors.getChildCount() < 2) {
             return;

@@ -54,6 +54,15 @@ public class ContactEditorActivity extends Activity implements
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
+        String action = getIntent().getAction();
+
+        // The only situation where action could be ACTION_JOIN_COMPLETED is if the
+        // user joined the contact with another and closed the activity before
+        // the save operation was completed.  The activity should remain closed then.
+        if (ACTION_JOIN_COMPLETED.equals(action)) {
+            finish();
+            return;
+        }
 
         setContentView(R.layout.contact_editor_activity);
 
@@ -67,7 +76,6 @@ public class ContactEditorActivity extends Activity implements
         mFragment = (ContactEditorFragment) getFragmentManager().findFragmentById(
                 R.id.contact_editor_fragment);
         mFragment.setListener(mFragmentListener);
-        String action = getIntent().getAction();
         Uri uri = Intent.ACTION_EDIT.equals(action) ? getIntent().getData() : null;
         mFragment.load(action, uri, getIntent().getExtras());
 

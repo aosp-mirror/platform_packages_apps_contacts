@@ -663,7 +663,21 @@ public class EntityDelta implements Parcelable {
          * When "after" has some changes, action is "update"
          */
         public boolean isUpdate() {
-            return beforeExists() && (mAfter != null && mAfter.size() > 0);
+            if (!beforeExists() || mAfter == null || mAfter.size() == 0) {
+                return false;
+            }
+            for (String key : mAfter.keySet()) {
+                Object newValue = mAfter.get(key);
+                Object oldValue = mBefore.get(key);
+                if (oldValue == null) {
+                    if (newValue != null) {
+                        return true;
+                    }
+                } else if (!oldValue.equals(newValue)) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         /**
