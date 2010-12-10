@@ -213,7 +213,7 @@
     <string name="import_from_sdcard" product="nosdcard" msgid="8294728696808674154">"Aus USB-Speicher import."</string>
     <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Von SD-Karte importieren"</string>
     <string name="export_to_sdcard" product="nosdcard" msgid="7201274701382901259">"In USB-Speicher exportieren"</string>
-    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"An SD-Karte exportieren"</string>
+    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Auf SD-Karte exportieren"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Sichtbare Kontakte weiterleiten"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Eine VCard-Datei importieren"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Mehrere VCard-Dateien importieren"</string>
@@ -298,7 +298,7 @@
     <string name="call_fax_work" msgid="7467763592359059243">"Anruf (Fax, geschäftl.)"</string>
     <string name="call_fax_home" msgid="8342175628887571876">"Anruf Fax (privat)"</string>
     <string name="call_pager" msgid="9003902812293983281">"Anruf (Pager)"</string>
-    <string name="call_other" msgid="8563753966926932052">"Anruf bei"</string>
+    <string name="call_other" msgid="8563753966926932052">"Anruf"</string>
     <string name="call_callback" msgid="1910165691349426858">"Rückrufnummer anrufen"</string>
     <string name="call_car" msgid="3280537320306436445">"Anruf (Auto)"</string>
     <string name="call_company_main" msgid="6105120947138711257">"Anruf (Firmenhauptnummer)"</string>
