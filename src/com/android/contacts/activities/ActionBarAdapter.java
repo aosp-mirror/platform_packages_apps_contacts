@@ -78,14 +78,6 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
             mQueryString = request.getQueryString();
         }
 
-        OnNavigationListener callback = new OnNavigationListener() {
-
-            @Override
-            public boolean onNavigationItemSelected(int itemPosition, long itemId) {
-                return false;
-            }
-        };
-
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);
 
         mNavigationBar = LayoutInflater.from(mContext).inflate(R.layout.navigation_bar, null);
@@ -101,6 +93,7 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
         mSearchView.setOnCloseListener(this);
         mSearchView.setOnQueryTextFocusChangeListener(this);
         mSearchView.setQuery(mQueryString, false);
+        mSearchView.setQueryHint(mContext.getString(R.string.hint_findContacts));
 
         update();
     }
