@@ -226,6 +226,7 @@ public class ContactListItemView extends ViewGroup
         // height is no less than listPreferredItemHeight.
         int width = resolveSize(0, widthMeasureSpec);
         int height = 0;
+        int preferredHeight = mPreferredHeight;
 
         mLine1Height = 0;
         mLine2Height = 0;
@@ -274,9 +275,10 @@ public class ContactListItemView extends ViewGroup
 
         if (mHorizontalDividerVisible) {
             height += mHorizontalDividerHeight;
+            preferredHeight += mHorizontalDividerHeight;
         }
 
-        height = Math.max(height, mPreferredHeight);
+        height = Math.max(height, preferredHeight);
 
         if (mHeaderVisible) {
             mHeaderTextView.measure(

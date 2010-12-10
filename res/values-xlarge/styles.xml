@@ -15,12 +15,12 @@
 -->
 <resources>
     <style name="ContactBrowserTheme" parent="@android:Theme.Light.Holo">
-        <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
+        <item name="list_item_height">66dip</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:actionBarStyle">@style/TransparentActionBarStyle</item>
         <item name="section_header_background">@drawable/section_header_holo</item>
-        <item name="list_item_divider">@drawable/list_item_divider_holo</item>
+        <item name="list_item_divider">?android:attr/listDivider</item>
         <item name="list_item_padding_top">0dip</item>
         <item name="list_item_padding_right">24dip</item>
         <item name="list_item_padding_bottom">0dip</item>
@@ -39,9 +39,9 @@
     </style>
 
     <style name="ContactPickerTheme" parent="@android:Theme.Holo.Light.Dialog">
-        <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
+        <item name="list_item_height">66dip</item>
         <item name="section_header_background">@drawable/section_header_holo</item>
-        <item name="list_item_divider">@drawable/list_item_divider_holo</item>
+        <item name="list_item_divider">?android:attr/listDivider</item>
         <item name="list_item_padding_top">0dip</item>
         <item name="list_item_padding_right">24dip</item>
         <item name="list_item_padding_bottom">0dip</item>
