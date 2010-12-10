@@ -147,7 +147,8 @@ public class DataAction implements Action {
 
         if (mIntent == null) {
             // Otherwise fall back to default VIEW action
-            mIntent = new Intent(Intent.ACTION_VIEW, mDataUri);
+            mIntent = new Intent(Intent.ACTION_VIEW);
+            mIntent.setDataAndType(mDataUri, mimeType);
         }
 
         // Always launch as new task, since we're like a launcher
