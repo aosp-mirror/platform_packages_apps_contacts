@@ -498,7 +498,7 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
             super(context, 0);
             mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            if (mType.customColumn != null) {
+            if (mType != null && mType.customColumn != null) {
 
                 // Use custom label string when present
                 final String customText = mEntry.getAsString(mType.customColumn);
