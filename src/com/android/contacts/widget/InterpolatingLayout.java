@@ -244,7 +244,8 @@ public class InterpolatingLayout extends ViewGroup {
                         break;
                     case LayoutParams.MATCH_PARENT:
                         childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(
-                                parentHeight, MeasureSpec.EXACTLY);
+                                parentHeight - params.topMargin - params.bottomMargin,
+                                MeasureSpec.EXACTLY);
                         break;
                     default:
                         childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(
@@ -304,7 +305,8 @@ public class InterpolatingLayout extends ViewGroup {
                     right - left - offset - rightMargin,
                     bottom - top - params.bottomMargin);
 
-            Gravity.apply(gravity, child.getMeasuredWidth(), child.getMeasuredHeight(),
+            int height = Math.max(child.getMeasuredHeight(), mInRect.height());
+            Gravity.apply(gravity, child.getMeasuredWidth(), height,
                     mInRect, mOutRect);
             child.layout(mOutRect.left, mOutRect.top, mOutRect.right, mOutRect.bottom);
 
