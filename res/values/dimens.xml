@@ -47,5 +47,5 @@
     <dimen name="editor_min_line_item_height">48dip</dimen>
 
     <!-- Padding to be used between a visible scrollbar and the contact list -->
-    <dimen name="list_visible_scrollbar_padding">34dip</dimen>
+    <dimen name="list_visible_scrollbar_padding">56dip</dimen>
 </resources>

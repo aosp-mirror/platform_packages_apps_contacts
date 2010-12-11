@@ -24,6 +24,7 @@
         android:id="@+id/main_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="8dip"
         android:splitMotionEvents="true">
 
         <LinearLayout
@@ -40,7 +41,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dip"
-                android:layout_marginLeft="64dip"
+                android:layout_marginLeft="56dip"
                 android:background="#7e7e87" />
 
             <FrameLayout

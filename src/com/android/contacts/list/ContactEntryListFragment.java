@@ -522,16 +522,18 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         if (mListView != null) {
             mListView.setFastScrollEnabled(hasScrollbar);
             mListView.setFastScrollAlwaysVisible(hasScrollbar);
-            mListView.setScrollBarStyle(
-                    hasScrollbar ? View.SCROLLBARS_INSIDE_INSET : View.SCROLLBARS_INSIDE_OVERLAY);
             mListView.setVerticalScrollbarPosition(mVerticalScrollbarPosition);
             int leftPadding = 0;
+            int rightPadding = 0;
             if (mVerticalScrollbarPosition == View.SCROLLBAR_POSITION_LEFT) {
                 leftPadding = mContext.getResources().getDimensionPixelOffset(
                         R.dimen.list_visible_scrollbar_padding);
+            } else if (hasScrollbar){
+                rightPadding = mContext.getResources().getDimensionPixelOffset(
+                        R.dimen.list_visible_scrollbar_padding);
             }
             mListView.setPadding(leftPadding, mListView.getPaddingTop(),
-                    mListView.getPaddingRight(), mListView.getPaddingBottom());
+                    rightPadding, mListView.getPaddingBottom());
         }
     }
 
