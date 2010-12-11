@@ -22,14 +22,6 @@
     android:orientation="vertical"
     >
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dip"
-        android:layout_marginTop="1dip"
-        android:layout_marginBottom="1dip"
-        android:background="#7e7e87"
-    />
-
     <view
         class="com.android.contacts.list.ContactEntryListView"
         android:id="@android:id/list"

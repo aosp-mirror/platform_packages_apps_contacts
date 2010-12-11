@@ -79,6 +79,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private static final String KEY_QUICK_CONTACT_ENABLED = "quickContactEnabled";
     private static final String KEY_SEARCH_MODE = "searchMode";
     private static final String KEY_VISIBLE_SCROLLBAR_ENABLED = "visibleScrollbarEnabled";
+    private static final String KEY_SCROLLBAR_POSITION = "scrollbarPosition";
     private static final String KEY_QUERY_STRING = "queryString";
     private static final String KEY_DIRECTORY_SEARCH_MODE = "directorySearchMode";
     private static final String KEY_SELECTION_VISIBLE = "selectionVisible";
@@ -235,6 +236,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         outState.putBoolean(KEY_QUICK_CONTACT_ENABLED, mQuickContactEnabled);
         outState.putBoolean(KEY_SEARCH_MODE, mSearchMode);
         outState.putBoolean(KEY_VISIBLE_SCROLLBAR_ENABLED, mVisibleScrollbarEnabled);
+        outState.putInt(KEY_SCROLLBAR_POSITION, mVerticalScrollbarPosition);
         outState.putInt(KEY_DIRECTORY_SEARCH_MODE, mDirectorySearchMode);
         outState.putBoolean(KEY_SELECTION_VISIBLE, mSelectionVisible);
         outState.putBoolean(KEY_LEGACY_COMPATIBILITY, mLegacyCompatibility);
@@ -265,6 +267,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mQuickContactEnabled = savedState.getBoolean(KEY_QUICK_CONTACT_ENABLED);
         mSearchMode = savedState.getBoolean(KEY_SEARCH_MODE);
         mVisibleScrollbarEnabled = savedState.getBoolean(KEY_VISIBLE_SCROLLBAR_ENABLED);
+        mVerticalScrollbarPosition = savedState.getInt(KEY_SCROLLBAR_POSITION);
         mDirectorySearchMode = savedState.getInt(KEY_DIRECTORY_SEARCH_MODE);
         mSelectionVisible = savedState.getBoolean(KEY_SELECTION_VISIBLE);
         mLegacyCompatibility = savedState.getBoolean(KEY_LEGACY_COMPATIBILITY);
@@ -522,6 +525,13 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mListView.setScrollBarStyle(
                     hasScrollbar ? View.SCROLLBARS_INSIDE_INSET : View.SCROLLBARS_INSIDE_OVERLAY);
             mListView.setVerticalScrollbarPosition(mVerticalScrollbarPosition);
+            int leftPadding = 0;
+            if (mVerticalScrollbarPosition == View.SCROLLBAR_POSITION_LEFT) {
+                leftPadding = mContext.getResources().getDimensionPixelOffset(
+                        R.dimen.list_visible_scrollbar_padding);
+            }
+            mListView.setPadding(leftPadding, mListView.getPaddingTop(),
+                    mListView.getPaddingRight(), mListView.getPaddingBottom());
         }
     }
 
