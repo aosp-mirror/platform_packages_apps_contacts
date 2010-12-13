@@ -21,6 +21,7 @@ import com.google.android.collect.Lists;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Handler;
@@ -48,24 +49,6 @@ import java.util.List;
  */
 public class AggregationSuggestionEngine extends HandlerThread {
     public static final String TAG = "AggregationSuggestionEngine";
-
-    private static final int MESSAGE_RESET = 0;
-    private static final int MESSAGE_NAME_CHANGE = 1;
-    private static final int MESSAGE_DATA_CURSOR = 2;
-
-    private static final long SUGGESTION_LOOKUP_DELAY_MILLIS = 300;
-
-    private static final int MAX_SUGGESTION_COUNT = 3;
-
-    private final Context mContext;
-
-    private long[] mSuggestedContactIds = new long[0];
-
-    private Handler mMainHandler;
-    private Handler mHandler;
-    private long mContactId;
-    private Listener mListener;
-    private Cursor mDataCursor;
 
     public interface Listener {
         void onAggregationSuggestionChange();
@@ -96,10 +79,41 @@ public class AggregationSuggestionEngine extends HandlerThread {
         @Override
         public String toString() {
             return "ID: " + contactId + " rawContacts: " + rawContacts + " name: " + name
-                    + " phone: " + phoneNumber + " email: " + emailAddress + " nickname: "
-                    + nickname + (photo != null ? " [has photo]" : "");
+            + " phone: " + phoneNumber + " email: " + emailAddress + " nickname: "
+            + nickname + (photo != null ? " [has photo]" : "");
         }
     }
+
+    private final class SuggestionContentObserver extends ContentObserver {
+        private SuggestionContentObserver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            scheduleSuggestionLookup();
+        }
+    }
+
+    private static final int MESSAGE_RESET = 0;
+    private static final int MESSAGE_NAME_CHANGE = 1;
+    private static final int MESSAGE_DATA_CURSOR = 2;
+
+    private static final long SUGGESTION_LOOKUP_DELAY_MILLIS = 300;
+
+    private static final int MAX_SUGGESTION_COUNT = 3;
+
+    private final Context mContext;
+
+    private long[] mSuggestedContactIds = new long[0];
+
+    private Handler mMainHandler;
+    private Handler mHandler;
+    private long mContactId;
+    private Listener mListener;
+    private Cursor mDataCursor;
+    private ContentObserver mContentObserver;
+    private Uri mSuggestionsUri;
 
     public AggregationSuggestionEngine(Context context) {
         super("AggregationSuggestions", Process.THREAD_PRIORITY_BACKGROUND);
@@ -141,6 +155,10 @@ public class AggregationSuggestionEngine extends HandlerThread {
             mDataCursor.close();
         }
         mDataCursor = null;
+        if (mContentObserver != null) {
+            mContext.getContentResolver().unregisterContentObserver(mContentObserver);
+            mContentObserver = null;
+        }
         return super.quit();
     }
 
@@ -151,15 +169,29 @@ public class AggregationSuggestionEngine extends HandlerThread {
     }
 
     public void onNameChange(ValuesDelta values) {
+        mSuggestionsUri = buildAggregationSuggestionUri(values);
+        if (mSuggestionsUri != null) {
+            if (mContentObserver == null) {
+                mContentObserver = new SuggestionContentObserver(getHandler());
+                mContext.getContentResolver().registerContentObserver(
+                        Contacts.CONTENT_URI, true, mContentObserver);
+            }
+        } else if (mContentObserver != null) {
+            mContext.getContentResolver().unregisterContentObserver(mContentObserver);
+            mContentObserver = null;
+        }
+        scheduleSuggestionLookup();
+    }
+
+    protected void scheduleSuggestionLookup() {
         Handler handler = getHandler();
         handler.removeMessages(MESSAGE_NAME_CHANGE);
 
-        Uri uri = buildAggregationSuggestionUri(values);
-        if (uri == null) {
+        if (mSuggestionsUri == null) {
             return;
         }
 
-        Message msg = handler.obtainMessage(MESSAGE_NAME_CHANGE, uri);
+        Message msg = handler.obtainMessage(MESSAGE_NAME_CHANGE, mSuggestionsUri);
         handler.sendMessageDelayed(msg, SUGGESTION_LOOKUP_DELAY_MILLIS);
     }
 

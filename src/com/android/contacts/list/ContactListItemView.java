@@ -226,6 +226,7 @@ public class ContactListItemView extends ViewGroup
         // height is no less than listPreferredItemHeight.
         int width = resolveSize(0, widthMeasureSpec);
         int height = 0;
+        int preferredHeight = mPreferredHeight;
 
         mLine1Height = 0;
         mLine2Height = 0;
@@ -274,9 +275,10 @@ public class ContactListItemView extends ViewGroup
 
         if (mHorizontalDividerVisible) {
             height += mHorizontalDividerHeight;
+            preferredHeight += mHorizontalDividerHeight;
         }
 
-        height = Math.max(height, mPreferredHeight);
+        height = Math.max(height, preferredHeight);
 
         if (mHeaderVisible) {
             mHeaderTextView.measure(
@@ -331,7 +333,7 @@ public class ContactListItemView extends ViewGroup
         // to the text fields in the middle.
 
         int leftBound = layoutLeftSide(height, topBound, bottomBound, mPaddingLeft);
-        int rightBound = layoutRightSide(height, topBound, right);
+        int rightBound = layoutRightSide(height, topBound, width);
 
         // Text lines, centered vertically
         rightBound -= mPaddingRight;

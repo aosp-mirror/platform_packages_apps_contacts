@@ -18,14 +18,12 @@ package com.android.contacts.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
@@ -106,6 +104,8 @@ public class PinnedHeaderListView extends ListView
     private int mAnimationDuration = DEFAULT_ANIMATION_DURATION;
     private boolean mAnimating;
     private long mAnimationTargetTime;
+    private int mHeaderPaddingLeft;
+    private int mHeaderWidth;
 
     public PinnedHeaderListView(Context context) {
         this(context, null, com.android.internal.R.attr.listViewStyle);
@@ -119,6 +119,13 @@ public class PinnedHeaderListView extends ListView
         super(context, attrs, defStyle);
         super.setOnScrollListener(this);
         super.setOnItemSelectedListener(this);
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+        mHeaderPaddingLeft = getPaddingLeft();
+        mHeaderWidth = r - l - mHeaderPaddingLeft - getPaddingRight();
     }
 
     public void setPinnedHeaderAnimationDuration(int duration) {
@@ -376,7 +383,7 @@ public class PinnedHeaderListView extends ListView
      */
     public int getPositionAt(int y) {
         do {
-            int position = pointToPosition(0, y);
+            int position = pointToPosition(getPaddingLeft() + 1, y);
             if (position != -1) {
                 return position;
             }
@@ -502,9 +509,9 @@ public class PinnedHeaderListView extends ListView
         if (header.visible) {
             View view = header.view;
             int saveCount = canvas.save();
-            canvas.translate(0, header.y);
+            canvas.translate(mHeaderPaddingLeft, header.y);
             if (header.state == FADING) {
-                mBounds.set(0, 0, view.getWidth(), view.getHeight());
+                mBounds.set(0, 0, mHeaderWidth, view.getHeight());
                 canvas.saveLayerAlpha(mBounds, header.alpha, Canvas.ALL_SAVE_FLAG);
             }
             view.draw(canvas);

@@ -46,7 +46,7 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
     public ContactPickerFragment() {
         setPhotoLoaderEnabled(true);
         setSectionHeaderDisplayEnabled(true);
-        setAizyEnabled(true);
+        setVisibleScrollbarEnabled(true);
         setQuickContactEnabled(false);
         setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_CONTACT_SHORTCUT);
     }

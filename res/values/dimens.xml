@@ -29,9 +29,6 @@
 
     <dimen name="photo_action_popup_width">400dip</dimen>
 
-    <dimen name="aizy_preview_width">80dip</dimen>
-    <dimen name="aizy_preview_height">80dip</dimen>
-
     <!-- Width of the quick contact popup. This size is chosen so that the last icon is clipped
     to indicate horizontal scrollability. Also, this size is the same as the widget to make them
     aligned -->
@@ -48,4 +45,7 @@
     
     <!-- Minimum height of a row in the Editor -->
     <dimen name="editor_min_line_item_height">48dip</dimen>
+
+    <!-- Padding to be used between a visible scrollbar and the contact list -->
+    <dimen name="list_visible_scrollbar_padding">56dip</dimen>
 </resources>

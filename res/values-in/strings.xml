@@ -52,6 +52,8 @@
     <skip />
     <!-- no translation found for menu_deleteGroup (644571524292675446) -->
     <skip />
+    <!-- no translation found for menu_new_contact_action_bar (8887818026717394343) -->
+    <skip />
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Pisahkan Kenalan"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"Apakah Anda yakin ingin memisahkan satu kenalan ini menjadi beberapa kenalan: satu untuk setiap kumpulan informasi kenalan yang telah digabungkan ke dalamnya?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Gabung"</string>
@@ -69,7 +71,7 @@
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Menghapus kenalan ini akan menghapus informasi dari beberapa akun."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Kenalan ini akan dihapus."</string>
     <string name="menu_done" msgid="796017761764190697">"Selesai"</string>
-    <string name="menu_doNotSave" msgid="2174577548513895144">"Kembalikan"</string>
+    <!-- outdated translation 2174577548513895144 -->     <string name="menu_doNotSave" msgid="58593876893538465">"Kembalikan"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"Edit data kenalan"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"Kenalan baru"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetik"</string>
@@ -90,7 +92,7 @@
     <item msgid="8287841928119937597">"Organisasi"</item>
     <item msgid="7196592230748086755">"Catatan"</item>
   </string-array>
-    <!-- outdated translation 431331662154342581 -->     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Tidak ada gambar pada ponsel."</string>
+    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Tidak ada gambar pada tablet."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Tidak ada gambar pada ponsel."</string>
     <!-- no translation found for attach_photo_dialog_title (5599827035558557169) -->
     <skip />
@@ -153,14 +155,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"Kenalan pada kartu SIM"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Anda tidak memiliki kenalan untuk ditampilkan. (Jika Anda baru saja menambahkan akun, diperlukan waktu beberapa menit untuk menyinkronkan kenalan.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Anda tak memiliki kenalan untuk ditampilkan."</string>
-    <!-- outdated translation 6788487368878712350 -->     <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"Anda tidak memiliki kenalan untuk ditampilkan."\n\n"Untuk menambahkan kenalan, tekan "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" dan sentuh:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akun"</b></font>" untuk menambahkan atau mengonfigurasi akun tertentu dengan kenalan yang dapat Anda sinkronkan ke ponsel"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Kenalan baru"</b></font>" untuk membuat kenalan baru dari awal"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Impor/Ekspor"</b></font>\n</li></string>
-    <!-- outdated translation 6788487368878712350 -->     <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"Anda tidak memiliki kenalan untuk ditampilkan."\n\n"Untuk menambahkan kenalan, tekan "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" dan sentuh:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akun"</b></font>" untuk menambahkan atau mengonfigurasi akun tertentu dengan kenalan yang dapat Anda sinkronkan ke ponsel"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Kenalan baru"</b></font>" untuk membuat kenalan baru dari awal"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Impor/Ekspor"</b></font>\n</li></string>
-    <!-- outdated translation 3734101165712848179 -->     <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Anda tidak memiliki kenalan untuk ditampilkan. (Jika Anda baru saja menambahkan akun, diperlukan waktu beberapa menit untuk menyinkronkan kenalan.)"\n\n"Untuk menambahkan kenalan, tekan "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" dan sentuh:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akun"</b></font>" untuk menambahkan atau mengonfigurasi akun tertentu dengan kenalan yang dapat Anda sinkronkan ke ponsel"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opsi tampilan"</b></font>" untuk mengubah kenalan mana yang terlihat"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Kenalan baru"</b></font>" untuk membuat kenalan baru dari awal"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Impor/Ekspor"</b></font>\n</li></string>
-    <!-- outdated translation 3734101165712848179 -->     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Anda tidak memiliki kenalan untuk ditampilkan. (Jika Anda baru saja menambahkan akun, diperlukan waktu beberapa menit untuk menyinkronkan kenalan.)"\n\n"Untuk menambahkan kenalan, tekan "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" dan sentuh:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akun"</b></font>" untuk menambahkan atau mengonfigurasi akun tertentu dengan kenalan yang dapat Anda sinkronkan ke ponsel"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opsi tampilan"</b></font>" untuk mengubah kenalan mana yang terlihat"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Kenalan baru"</b></font>" untuk membuat kenalan baru dari awal"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Impor/Ekspor"</b></font>\n</li></string>
-    <!-- outdated translation 6553845386917463292 -->     <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"Anda tidak memiliki kenalan untuk ditampilkan."\n\n"Untuk menambahkan kenalan, tekan "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" dan sentuh:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akun"</b></font>" untuk menambahkan atau mengonfigurasi akun tertentu dengan kenalan yang dapat Anda sinkronkan ke ponsel"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Kenalan baru"</b></font>" untuk membuat kenalan baru dari awal"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Impor/Ekspor"</b></font>\n</li></string>
-    <!-- outdated translation 6553845386917463292 -->     <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"Anda tidak memiliki kenalan untuk ditampilkan."\n\n"Untuk menambahkan kenalan, tekan "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" dan sentuh:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akun"</b></font>" untuk menambahkan atau mengonfigurasi akun tertentu dengan kenalan yang dapat Anda sinkronkan ke ponsel"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Kenalan baru"</b></font>" untuk membuat kenalan baru dari awal"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Impor/Ekspor"</b></font>\n</li></string>
-    <!-- outdated translation 1122296298361373488 -->     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Anda tidak memiliki kenalan untuk ditampilkan. (Jika Anda baru saja menambahkan akun, diperlukan waktu beberapa menit untuk menyinkronkan kenalan.)"\n\n"Untuk menambahkan kenalan, tekan "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" dan sentuh:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akun"</b></font>" untuk menambahkan atau mengonfigurasi akun tertentu dengan kenalan yang dapat Anda sinkronkan ke ponsel"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opsi tampilan"</b></font>" untuk mengubah kenalan mana yang terlihat"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Kenalan baru"</b></font>" untuk membuat kenalan baru dari awal"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Impor/Ekspor"</b></font>\n</li></string>
-    <!-- outdated translation 1122296298361373488 -->     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Anda tidak memiliki kenalan untuk ditampilkan. (Jika Anda baru saja menambahkan akun, diperlukan waktu beberapa menit untuk menyinkronkan kenalan.)"\n\n"Untuk menambahkan kenalan, tekan "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" dan sentuh:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akun"</b></font>" untuk menambahkan atau mengonfigurasi akun tertentu dengan kenalan yang dapat Anda sinkronkan ke ponsel"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opsi tampilan"</b></font>" untuk mengubah kenalan mana yang terlihat"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Kenalan baru"</b></font>" untuk membuat kenalan baru dari awal"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Impor/Ekspor"</b></font>\n</li></string>
+    <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"Anda tidak memiliki kenalan untuk ditampilkan. "\n\n"Untuk menambahkan kenalan, tekan "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" dan sentuh:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akun"</b></font>" untuk menambahkan atau mengonfigurasi akun tertentu dengan kenalan yang dapat Anda sinkronkan ke tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Kenalan baru"</b></font>" untuk membuat kenalan baru dari awal"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Impor/Ekspor"</b></font>" untuk mengimpor data kenalan dari kartu SIM atau SD Anda"\n</li></string>
+    <!-- outdated translation 6450346791169710787 -->     <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"Anda tidak memiliki kenalan untuk ditampilkan. "\n\n"Untuk menambahkan kenalan, tekan "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" dan sentuh:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akun"</b></font>" untuk menambahkan atau mengonfigurasi akun tertentu dengan kenalan yang dapat Anda sinkronkan ke tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Kenalan baru"</b></font>" untuk membuat kenalan baru dari awal"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Impor/Ekspor"</b></font>" untuk mengimpor data kenalan dari kartu SIM atau SD Anda"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Anda tidak memiliki kenalan untuk ditampilkan. (Jika Anda baru saja menambahkan akun, diperlukan waktu beberapa menit untuk menyinkronkan kenalan.)"\n\n"Untuk menambahkan kenalan, tekan "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" dan sentuh:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akun"</b></font>" untuk menambahkan atau mengonfigurasi akun tertentu dengan kenalan yang dapat Anda sinkronkan ke tablet "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opsi tampilan"</b></font>" untuk mengubah kenalan mana yang terlihat"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Kenalan baru"</b></font>" untuk membuat kenalan baru dari awal"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Impor/Ekspor"</b></font>" untuk mengimpor data kenalan dari kartu SIM atau SD Anda"\n</li></string>
+    <!-- outdated translation 2364665535969139880 -->     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Anda tidak memiliki kenalan untuk ditampilkan. (Jika Anda baru saja menambahkan akun, diperlukan waktu beberapa menit untuk menyinkronkan kenalan.)"\n\n"Untuk menambahkan kenalan, tekan "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" dan sentuh:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akun"</b></font>" untuk menambahkan atau mengonfigurasi akun tertentu dengan kenalan yang dapat Anda sinkronkan ke tablet "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opsi tampilan"</b></font>" untuk mengubah kenalan mana yang terlihat"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Kenalan baru"</b></font>" untuk membuat kenalan baru dari awal"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Impor/Ekspor"</b></font>" untuk mengimpor data kenalan dari kartu SIM atau SD Anda"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"Anda tidak memiliki kenalan untuk ditampilkan. "\n\n"Untuk menambahkan kenalan, tekan "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" dan sentuh:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akun"</b></font>" untuk menambahkan atau mengonfigurasi akun tertentu dengan kenalan yang dapat Anda sinkronkan ke tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Kenalan baru"</b></font>" untuk membuat kenalan baru dari awal"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Impor/Ekspor"</b></font>" untuk mengimpor data kenalan dari kartu SD Anda"\n</li></string>
+    <!-- outdated translation 6031363021287849874 -->     <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"Anda tidak memiliki kenalan untuk ditampilkan. "\n\n"Untuk menambahkan kenalan, tekan "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" dan sentuh:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akun"</b></font>" untuk menambahkan atau mengonfigurasi akun tertentu dengan kenalan yang dapat Anda sinkronkan ke tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Kenalan baru"</b></font>" untuk membuat kenalan baru dari awal"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Impor/Ekspor"</b></font>" untuk mengimpor data kenalan dari kartu SD Anda"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Anda tidak memiliki kenalan untuk ditampilkan. (Jika Anda baru saja menambahkan akun, diperlukan waktu beberapa menit untuk menyinkronkan kenalan.)"\n\n"Untuk menambahkan kenalan, tekan "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" dan sentuh:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akun"</b></font>" untuk menambahkan atau mengonfigurasi akun tertentu dengan kenalan yang dapat Anda sinkronkan ke tablet "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opsi tampilan"</b></font>" untuk mengubah kenalan mana yang terlihat"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Kenalan baru"</b></font>" untuk membuat kenalan baru dari awal"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Impor/Ekspor"</b></font>" untuk mengimpor data kenalan dari kartu SD Anda"\n</li></string>
+    <!-- outdated translation 6222739731808897565 -->     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Anda tidak memiliki kenalan untuk ditampilkan. (Jika Anda baru saja menambahkan akun, diperlukan waktu beberapa menit untuk menyinkronkan kenalan.)"\n\n"Untuk menambahkan kenalan, tekan "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" dan sentuh:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akun"</b></font>" untuk menambahkan atau mengonfigurasi akun tertentu dengan kenalan yang dapat Anda sinkronkan ke tablet "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opsi tampilan"</b></font>" untuk mengubah kenalan mana yang terlihat"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Kenalan baru"</b></font>" untuk membuat kenalan baru dari awal"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Impor/Ekspor"</b></font>" untuk mengimpor data kenalan dari kartu SD Anda"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Anda tidak memiliki favorit."\n\n"Untuk menambahkan kenalan ke daftar favorit:"\n\n"        "<li>"Sentuh tab "<b>"Kenalan"</b>\n</li>" "\n<li>"Sentuh kenalan yang ingin Anda tambahkan ke favorit"\n</li>" "\n<li>"Sentuh bintang di samping nama kenalan"\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Semua kenalan"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Yang berkilau bintangnya"</string>
@@ -226,10 +228,8 @@
     <skip />
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Gagal melakukan parse pada vCard karena alasan yang tidak diharapkan"</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"Gagal melakukan parse pada vCard meskipun dalam format yang valid, karena implementasi saat ini tidak mendukungnya"</string>
-    <!-- no translation found for import_failure_no_vcard_file (8809370398968655782) -->
-    <skip />
-    <!-- no translation found for import_failure_no_vcard_file (1730986357514922756) -->
-    <skip />
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"Tidak ada berkas vCard yang ditemukan pada penyimpanan USB"</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Tidak ada berkas vCard yang ditemukan pada kartu SD"</string>
     <!-- no translation found for fail_reason_failed_to_collect_vcard_meta_info (4154492282316067754) -->
     <skip />
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Satu berkas atau lebih gagal diimpor (%s)"</string>
@@ -246,16 +246,12 @@
     <!-- outdated translation 4923008144735294994 -->     <string name="reading_vcard_failed_title" msgid="2162610359561887043">"Gagal membaca data vCard"</string>
     <!-- no translation found for reading_vcard_canceled_title (1770608329958463131) -->
     <skip />
-    <!-- no translation found for importing_vcard_finished_title (3341541727268747967) -->
-    <skip />
-    <!-- no translation found for importing_vcard_canceled_title (6367906965439777280) -->
-    <skip />
-    <!-- no translation found for vcard_import_will_start_message (2804911199145873396) -->
-    <skip />
+    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Selesai mengimpor vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Impor <xliff:g id="FILENAME">%s</xliff:g> dibatalkan"</string>
+    <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> akan segera diimpor."</string>
     <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
     <skip />
-    <!-- no translation found for vcard_export_will_start_message (2210241345252081463) -->
-    <skip />
+    <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> akan segera diekspor."</string>
     <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
     <skip />
     <!-- no translation found for percentage (34897865327092209) -->
@@ -268,30 +264,23 @@
     <!-- outdated translation 7084146295639672658 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"Terlalu banyak berkas vCard pada kartu SD"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Terlalu banyak berkas vCard pada kartu SD"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Nama berkas yang diperlukan terlalu panjang (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
-    <!-- no translation found for exporting_vcard_finished_title (4259736138838583213) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_canceled_title (1827672399438062140) -->
-    <skip />
+    <string name="exporting_vcard_finished_title" msgid="4259736138838583213">"Selesai mengekspor <xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="exporting_vcard_canceled_title" msgid="1827672399438062140">"Ekspor <xliff:g id="FILENAME">%s</xliff:g> dibatalkan"</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Mengekspor data kenalan"</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Mengekspor data kenalan ke \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Tidak dapat menginisiasi pengeskpor: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Terjadi galat selama ekspor: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Gagal mendapatkan informasi database"</string>
-    <!-- outdated translation 754734132189369094 -->     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Tidak ada kenalan yang dapat diekspor. Jika Anda sudah memiliki kenalan pada ponsel, semua kenalan mungkin dilarang untuk diekspor keluar ponsel oleh sebagian penyedia data."</string>
-    <!-- outdated translation 754734132189369094 -->     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Tidak ada kenalan yang dapat diekspor. Jika Anda sudah memiliki kenalan pada ponsel, semua kenalan mungkin dilarang untuk diekspor keluar ponsel oleh sebagian penyedia data."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Tidak data ada kenalan yang dapat diekspor. Jika Anda sudah memiliki kenalan pada tablet, semua kenalan mungkin dilarang untuk diekspor keluar tablet oleh beberapa penyedia data."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Tidak ada data kenalan yang dapat diekspor. Jika Anda sudah memiliki kenalan pada ponsel, semua kenalan mungkin dilarang untuk diekspor keluar ponsel oleh beberapa penyedia data."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"Penyusun vCard tidak dimulai dengan benar"</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Tidak dapat membuka \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> dari <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kenalan"</string>
-    <!-- no translation found for cancel_import_confirmation_title (5578683596010294836) -->
-    <skip />
-    <!-- no translation found for cancel_import_confirmation_message (8560937090143057107) -->
-    <skip />
-    <!-- no translation found for cancel_export_confirmation_title (6516467140276768528) -->
-    <skip />
-    <!-- no translation found for cancel_export_confirmation_message (1392976902396351957) -->
-    <skip />
-    <!-- no translation found for cancel_vcard_import_or_export_failed (7096533244663846810) -->
-    <skip />
+    <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"Membatalkan impor vCard"</string>
+    <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"Yakin ingin membatalkan mengimpor <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Membatalkan ekspor vCard"</string>
+    <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"Yakin ingin membatalkan mengekspor <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7096533244663846810">"Gagal membatalkan impor/ekspor vCard"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Nama kenalan Anda"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Tambahkan jeda 2-det"</string>
     <string name="add_wait" msgid="3360818652790319634">"Tambahkan tunggu"</string>
@@ -303,12 +292,9 @@
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"Tidak diketahui"</string>
     <!-- no translation found for quickcontact_no_data (2098000859125253675) -->
     <skip />
-    <!-- no translation found for quickcontact_clear_defaults_description (3792792870662989100) -->
-    <skip />
-    <!-- no translation found for quickcontact_clear_defaults_caption (4287306111861545753) -->
-    <skip />
-    <!-- no translation found for quickcontact_clear_defaults_button (8728754360205289059) -->
-    <skip />
+    <string name="quickcontact_clear_defaults_description" msgid="3792792870662989100">"Hapus bawaan"</string>
+    <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"Bawaan disetel untuk kenalan ini:"</string>
+    <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"Hapus"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Akun"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Impor/Ekspor"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Impor/Ekspor kenalan"</string>
@@ -336,8 +322,8 @@
     <string name="display_ungrouped" msgid="4602580795576261158">"Semua Kenalan Lainnya"</string>
     <string name="display_all_contacts" msgid="6846131371214707956">"Semua Kenalan"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Menghapus \'<xliff:g id="GROUP">%s</xliff:g>\' dari sinkronisasi juga akan menghapus kenalan yang tidak dikelompokkan dari sinkronisasi."</string>
-    <!-- outdated translation 4025734638492419713 -->     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Telepon-saja (tidak disinkronkan)"</string>
-    <!-- outdated translation 4025734638492419713 -->     <string name="account_phone" product="default" msgid="3682950835276226870">"Telepon-saja (tidak disinkronkan)"</string>
+    <string name="account_phone" product="tablet" msgid="7946049152658522054">"Hanya tablet, tidak disinkronkan"</string>
+    <!-- outdated translation 7946049152658522054 -->     <string name="account_phone" product="default" msgid="3682950835276226870">"Hanya tablet, tidak disinkronkan"</string>
     <string name="call_custom" msgid="7756571794763171802">"Panggil <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"Panggil nomor telepon rumah"</string>
     <string name="call_mobile" msgid="7502236805487609178">"Panggil nomor seluler"</string>
@@ -486,8 +472,7 @@
     <skip />
     <!-- no translation found for menu_copyContact (4401683725471696686) -->
     <skip />
-    <!-- no translation found for contact_directory_description (683398073603909119) -->
-    <skip />
+    <string name="contact_directory_description" msgid="683398073603909119">"Direktori <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <!-- no translation found for search_label (6789295859496641042) -->
     <skip />
     <!-- no translation found for directory_search_label (1887759056597975053) -->
@@ -536,24 +521,16 @@
     <skip />
     <!-- no translation found for social_widget_loading (3697996166985327861) -->
     <skip />
-    <!-- no translation found for contacts_unavailable_create_contact (7014525713871959208) -->
-    <skip />
-    <!-- no translation found for contacts_unavailable_add_account (7911101713860139754) -->
-    <skip />
-    <!-- no translation found for contacts_unavailable_import_contacts (4456440183590517471) -->
-    <skip />
-    <!-- no translation found for create_group_dialog_title (6874527142828424475) -->
-    <skip />
-    <!-- no translation found for create_group_item_label (5218022006186243310) -->
-    <skip />
-    <!-- no translation found for rename_group_dialog_title (3765299704290513289) -->
-    <skip />
-    <!-- no translation found for delete_group_dialog_title (7368429698398624427) -->
-    <skip />
-    <!-- no translation found for delete_group_dialog_message (295063284548750881) -->
-    <skip />
-    <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
-    <skip />
-    <!-- no translation found for indicator_joined_contact (3321049349627022128) -->
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Buat kenalan baru"</string>
+    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Masuk ke akun."</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Mengimpor data kenalan dari berkas"</string>
+    <string name="create_group_dialog_title" msgid="6874527142828424475">"Buat grup baru"</string>
+    <string name="create_group_item_label" msgid="5218022006186243310">"[Buat grup baru]"</string>
+    <string name="rename_group_dialog_title" msgid="3765299704290513289">"Ganti nama grup"</string>
+    <string name="delete_group_dialog_title" msgid="7368429698398624427">"Hapus grup"</string>
+    <string name="delete_group_dialog_message" msgid="295063284548750881">"Anda yakin ingin menghapus grup \'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\'? (Data kenalan tidak akan dihapus.)"</string>
+    <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Masukkan nama kenalan sebelum bergabung dengan kenalan lain."</string>
+    <string name="indicator_joined_contact" msgid="3321049349627022128">"Kenalan yang bergabung"</string>
+    <!-- no translation found for toast_text_copied (5143776250008541719) -->
     <skip />
 </resources>

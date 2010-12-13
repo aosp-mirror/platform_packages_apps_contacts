@@ -39,7 +39,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     public DefaultContactBrowseListFragment() {
         setPhotoLoaderEnabled(true);
         setSectionHeaderDisplayEnabled(true);
-        setAizyEnabled(true);
+        setVisibleScrollbarEnabled(true);
     }
 
 

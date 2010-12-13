@@ -77,11 +77,6 @@
         <item name="android:windowExitAnimation">@anim/search_bar_exit</item>
     </style>
 
-    <style name="AizyPreviewPopupAnimation"> 
-        <item name="android:windowEnterAnimation">@anim/aizy_preview_popup_enter</item> 
-        <item name="android:windowExitAnimation">@anim/aizy_preview_popup_exit</item> 
-    </style> 
-
     <style name="DummyAnimation">
         <item name="android:windowExitAnimation">@anim/dummy_animation</item>
     </style>
@@ -92,6 +87,7 @@
 
     <declare-styleable name="ContactListItemView">
         <attr name="list_item_height" format="dimension"/>
+        <attr name="list_section_header_height" format="dimension"/>
         <attr name="activated_background" format="reference"/>
         <attr name="section_header_background" format="reference"/>
         <attr name="list_item_divider" format="reference"/>
@@ -115,6 +111,7 @@
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="section_header_background">@drawable/section_header</item>
+        <item name="list_section_header_height">32dip</item>
         <item name="list_item_divider">@drawable/list_item_divider</item>
         <item name="list_item_padding_top">4dip</item>
         <item name="list_item_padding_right">11dip</item>
