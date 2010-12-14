@@ -101,11 +101,15 @@ public class ContactListFilterController
         return mFiltersLoaded;
     }
 
-    public void startLoading() {
+    public void onStart() {
         if (mFilter == null) {
             mFilter = ContactListFilter.restoreFromPreferences(getSharedPreferences());
         }
         mLoaderManager.initLoader(R.id.contact_list_filter_loader, null, this);
+    }
+
+    public void onStop() {
+        mLoaderManager.stopLoader(R.id.contact_list_filter_loader);
     }
 
     private SharedPreferences getSharedPreferences() {
