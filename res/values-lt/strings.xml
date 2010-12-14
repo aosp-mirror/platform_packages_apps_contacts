@@ -48,12 +48,9 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Siųsti pranešimą adresatui"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Padaryti numatytuoju el. paštu"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Atskiras"</string>
-    <!-- no translation found for menu_renameGroup (2798886925154156075) -->
-    <skip />
-    <!-- no translation found for menu_deleteGroup (644571524292675446) -->
-    <skip />
-    <!-- no translation found for menu_new_contact_action_bar (8887818026717394343) -->
-    <skip />
+    <string name="menu_renameGroup" msgid="2798886925154156075">"Pervardyti grupę"</string>
+    <string name="menu_deleteGroup" msgid="644571524292675446">"Ištrinti grupę"</string>
+    <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Naujas"</string>
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Atskiras adresatas"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"Ar tikrai norite skirstyti šį adresatą į kelis adresatus: po vieną kiekvienam adresato informacijos rinkiniui, kuris buvo pridėtas?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Sujungti"</string>
@@ -71,7 +68,7 @@
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Ištrynus šią informaciją, bus ištrinta kelių paskyrų informacija."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Šis adresatas bus ištrintas."</string>
     <string name="menu_done" msgid="796017761764190697">"Atlikta"</string>
-    <!-- outdated translation 2174577548513895144 -->     <string name="menu_doNotSave" msgid="58593876893538465">"Grąžinti"</string>
+    <string name="menu_doNotSave" msgid="58593876893538465">"Atšaukti"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"Redaguoti adresatą"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"Naujas adresatas"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetinis"</string>
@@ -298,7 +295,7 @@
     <string name="menu_accounts" msgid="8499114602017077970">"Paskyros"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Importuoti / eksportuoti"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importuoti / eksportuoti adresatus"</string>
-    <!-- outdated translation 943789700636542260 -->     <string name="menu_share" msgid="8746849630474240344">"Bendrinti"</string>
+    <string name="menu_share" msgid="8746849630474240344">"Bendrinti kontaktą"</string>
     <string name="share_via" msgid="563121028023030093">"Bendrinti adresatą naudojant"</string>
     <string name="share_error" msgid="4374508848981697170">"Šio adresato negalima bendrinti."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Pavadinimas"</string>
@@ -423,16 +420,9 @@
     <string name="pick_photo" msgid="448886509158039462">"Pasirinkti nuotrauką iš galerijos"</string>
     <!-- no translation found for pick_new_photo (7962368009197147617) -->
     <skip />
-    <!-- unknown placeholder BREAK_0 in locale_change_in_progress -->
-    <skip />
-    <!-- no translation found for locale_change_in_progress (7583992153091537467) -->
-    <skip />
-    <!-- unknown placeholder BREAK_0 in upgrade_in_progress -->
-    <skip />
-    <!-- no translation found for upgrade_in_progress (474511436863451061) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory (6153384328042175667) -->
-    <skip />
+    <string name="locale_change_in_progress" msgid="7583992153091537467">"Kontaktų sąrašas yra atnaujinamas, kad atspindėtų kalbos pakeitimą."</string>
+    <string name="upgrade_in_progress" msgid="474511436863451061">"Atnaujinamas kontaktų sąrašas."</string>
+    <string name="upgrade_out_of_memory" msgid="6153384328042175667">"Vyksta kontaktų naujovinimo procesas. "\n\n"Naujovinimo procesui reikia apytiksliai <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> Mb vidinės atminties."\n\n"Pasirinkite vieną iš šių parinkčių:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Pašalinti kai kurias programas"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Bandyti naujovinti iš naujo"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"Ieškoma..."</string>
@@ -531,6 +521,5 @@
     <string name="delete_group_dialog_message" msgid="295063284548750881">"Ar tikrai norite ištrinti „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>“ grupę? (Kontaktai nebus ištrinti.)"</string>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Prieš prisijungdami prie kito kontakto, įveskite kontakto vardą."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Prijungtas kontaktas"</string>
-    <!-- no translation found for toast_text_copied (5143776250008541719) -->
-    <skip />
+    <string name="toast_text_copied" msgid="5143776250008541719">"Tekstas nukopijuotas"</string>
 </resources>
