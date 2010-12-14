@@ -30,7 +30,7 @@
             android:layout_height="match_parent" />
         <ImageButton
             android:id="@+id/border"
-            android:background="@drawable/photo_frame_widget_holo_light"
+            android:background="@drawable/frame_thumbnail_contact_widget_holo"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </FrameLayout>
@@ -38,10 +38,10 @@
         android:layout_width="0dip"
         android:layout_height="90dip"
         android:layout_weight="1"
-        android:background="@drawable/statusbox_widget_holo_light"
+        android:background="@drawable/bg_status_contact_widget"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="-8dip"
-        android:paddingLeft="24dip">
+        android:paddingLeft="44dip">
 
         <LinearLayout
             android:layout_width="wrap_content"
