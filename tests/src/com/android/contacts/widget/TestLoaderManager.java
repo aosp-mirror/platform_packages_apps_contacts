@@ -22,6 +22,8 @@ import android.content.Loader;
 import android.content.Loader.OnLoadCompleteListener;
 import android.os.Bundle;
 
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
 import java.util.LinkedHashMap;
 
 import junit.framework.Assert;
@@ -64,6 +66,10 @@ public class TestLoaderManager extends LoaderManager {
     @Override
     public void stopLoader(int id) {
         mStartedLoaders.get(id).stopLoading();
+    }
+
+    @Override
+    public void dump(String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {
     }
 
     /**

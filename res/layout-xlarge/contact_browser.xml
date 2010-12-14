@@ -30,26 +30,26 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginTop="40dip"
             android:orientation="vertical"
             android:minWidth="100dip"
             ex:layout_narrowParentWidth="800dip"
             ex:layout_narrowWidth="310dip"
             ex:layout_wideParentWidth="1280dip"
-            ex:layout_wideWidth="430dip">
+            ex:layout_wideWidth="430dip"
+            android:background="@drawable/list_background_holo">
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dip"
                 android:layout_marginLeft="56dip"
+                android:layout_marginTop="40dip"
                 android:background="#7e7e87" />
 
             <FrameLayout
                 android:id="@+id/list_container"
                 android:layout_height="0dip"
                 android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/list_background_holo" />
+                android:layout_weight="1" />
         </LinearLayout>
 
         <view
@@ -70,8 +70,7 @@
             <FrameLayout
                 android:id="@+id/detail_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="6dip" />
+                android:layout_height="match_parent" />
         </view>
 
     </com.android.contacts.widget.InterpolatingLayout>

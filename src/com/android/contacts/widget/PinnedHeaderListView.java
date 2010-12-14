@@ -350,7 +350,7 @@ public class PinnedHeaderListView extends ListView
     private void ensurePinnedHeaderLayout(int viewIndex) {
         View view = mHeaders[viewIndex].view;
         if (view.isLayoutRequested()) {
-            int widthSpec = MeasureSpec.makeMeasureSpec(getWidth(), MeasureSpec.EXACTLY);
+            int widthSpec = MeasureSpec.makeMeasureSpec(mHeaderWidth, MeasureSpec.EXACTLY);
             int heightSpec;
             ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
             if (layoutParams != null && layoutParams.height > 0) {
@@ -361,7 +361,7 @@ public class PinnedHeaderListView extends ListView
             view.measure(widthSpec, heightSpec);
             int height = view.getMeasuredHeight();
             mHeaders[viewIndex].height = height;
-            view.layout(0, 0, view.getMeasuredWidth(), height);
+            view.layout(0, 0, mHeaderWidth, height);
         }
     }
 
