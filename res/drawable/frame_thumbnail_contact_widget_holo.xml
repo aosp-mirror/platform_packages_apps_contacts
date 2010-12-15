@@ -16,9 +16,9 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true"
-        android:drawable="@drawable/photo_frame_widget_pressed_holo_light" />
+        android:drawable="@drawable/frame_thumbnail_contact_widget_pressed_holo" />
     <item android:state_focused="true"
-        android:drawable="@drawable/photo_frame_widget_focused_holo_light" />
+        android:drawable="@drawable/frame_thumbnail_contact_widget_focused_holo" />
     <item
-        android:drawable="@drawable/photo_frame_widget_normal_holo_light" />
+        android:drawable="@drawable/frame_thumbnail_contact_widget_normal_holo" />
 </selector>
