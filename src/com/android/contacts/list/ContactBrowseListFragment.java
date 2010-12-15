@@ -16,7 +16,7 @@
 package com.android.contacts.list;
 
 import com.android.contacts.R;
-import com.android.contacts.widget.ListViewUtils;
+import com.android.contacts.widget.AutoScrollListView;
 
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -34,7 +34,6 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Directory;
 import android.text.TextUtils;
-import android.widget.ListView;
 
 /**
  * Fragment containing a contact list used for browsing (as compared to
@@ -66,8 +65,6 @@ public abstract class ContactBrowseListFragment extends
      * before we automatically select the first found contact.
      */
     private static final int AUTOSELECT_FIRST_FOUND_CONTACT_MIN_QUERY_LENGTH = 2;
-
-    private static final int MESSAGE_REQUEST_SELECTION_TO_SCREEN = 2;
 
     private static final int SELECTED_ID_LOADER = -3;
     private static final String ARG_CONTACT_URI = "uri";
@@ -121,9 +118,6 @@ public abstract class ContactBrowseListFragment extends
                     switch (msg.what) {
                         case MESSAGE_AUTOSELECT_FIRST_FOUND_CONTACT:
                             selectDefaultContact();
-                            break;
-                        case MESSAGE_REQUEST_SELECTION_TO_SCREEN:
-                            requestSelectionToScreen();
                             break;
                     }
                 }
@@ -370,8 +364,7 @@ public abstract class ContactBrowseListFragment extends
         }
 
         if (mSelectionToScreenRequested) {
-            getHandler().removeMessages(MESSAGE_REQUEST_SELECTION_TO_SCREEN);
-            getHandler().sendEmptyMessage(MESSAGE_REQUEST_SELECTION_TO_SCREEN);
+            requestSelectionToScreen();
         }
 
         if (mListener != null) {
@@ -406,8 +399,8 @@ public abstract class ContactBrowseListFragment extends
     protected void requestSelectionToScreen() {
         int selectedPosition = getAdapter().getSelectedContactPosition();
         if (selectedPosition != -1) {
-            ListView listView = getListView();
-            ListViewUtils.requestPositionToScreen(listView,
+            AutoScrollListView listView = (AutoScrollListView)getListView();
+            listView.requestPositionToScreen(
                     selectedPosition + listView.getHeaderViewsCount(), mSmoothScrollRequested);
             mSelectionToScreenRequested = false;
         }
