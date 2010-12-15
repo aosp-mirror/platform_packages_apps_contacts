@@ -48,12 +48,9 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"ارسال متن به مخاطب"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"تنظیم به عنوان ایمیل پیش فرض"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"تفکیک"</string>
-    <!-- no translation found for menu_renameGroup (2798886925154156075) -->
-    <skip />
-    <!-- no translation found for menu_deleteGroup (644571524292675446) -->
-    <skip />
-    <!-- no translation found for menu_new_contact_action_bar (8887818026717394343) -->
-    <skip />
+    <string name="menu_renameGroup" msgid="2798886925154156075">"تغییر نام گروه"</string>
+    <string name="menu_deleteGroup" msgid="644571524292675446">"حذف گروه"</string>
+    <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"جدید"</string>
     <string name="splitConfirmation_title" msgid="6716467920283502570">"تفکیک مخاطب"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"آیا مطمئن هستید که می خواهید این یک مخاطب را به چند مخاطب تفکیک کنید: یک مخاطب برای هر مجموعه اطلاعات مخاطبی که به آن ملحق شده است؟"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"پیوستن"</string>
@@ -71,7 +68,7 @@
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"حذف این مخاطب اطلاعات را از حساب های متعدد حذف می کند."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"این مخاطب حذف می شود."</string>
     <string name="menu_done" msgid="796017761764190697">"انجام شد"</string>
-    <!-- outdated translation 2174577548513895144 -->     <string name="menu_doNotSave" msgid="58593876893538465">"برگشت"</string>
+    <string name="menu_doNotSave" msgid="58593876893538465">"لغو"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"ویرایش مخاطب"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"مخاطب جدید"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"تلفظ آوایی"</string>
@@ -298,7 +295,7 @@
     <string name="menu_accounts" msgid="8499114602017077970">"حساب ها"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"وارد کردن/صادر کردن"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"وارد کردن/صادر کردن مخاطبین"</string>
-    <!-- outdated translation 943789700636542260 -->     <string name="menu_share" msgid="8746849630474240344">"اشتراک گذاری"</string>
+    <string name="menu_share" msgid="8746849630474240344">"اشتراک گذاری مخاطب"</string>
     <string name="share_via" msgid="563121028023030093">"اشتراک گذاری مخاطب از طریق"</string>
     <string name="share_error" msgid="4374508848981697170">"این مخاطب قابل اشتراک گذاری نیست."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"نام"</string>
@@ -423,16 +420,9 @@
     <string name="pick_photo" msgid="448886509158039462">"انتخاب عکس از گالری"</string>
     <!-- no translation found for pick_new_photo (7962368009197147617) -->
     <skip />
-    <!-- unknown placeholder BREAK_0 in locale_change_in_progress -->
-    <skip />
-    <!-- no translation found for locale_change_in_progress (7583992153091537467) -->
-    <skip />
-    <!-- unknown placeholder BREAK_0 in upgrade_in_progress -->
-    <skip />
-    <!-- no translation found for upgrade_in_progress (474511436863451061) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory (6153384328042175667) -->
-    <skip />
+    <string name="locale_change_in_progress" msgid="7583992153091537467">"لیست مخاطبین در حال به روزرسانی برای منعکس کردن تغییرات زبان است."</string>
+    <string name="upgrade_in_progress" msgid="474511436863451061">"لیست مخاطبین در حال به روزرسانی است."</string>
+    <string name="upgrade_out_of_memory" msgid="6153384328042175667">"مخاطبین در حال انجام فرایند ارتقا است. "\n\n"فرایند ارتقا نیاز به تقریباً <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> مگابایت حافظه داخلی دارد. "\n\n"یکی از گزینه های زیر را انتخاب کنید:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"حذف نصب برخی از برنامه های کاربردی"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"امتحان مجدد برای ارتقا"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"در حال جستجو..."</string>
@@ -531,6 +521,5 @@
     <string name="delete_group_dialog_message" msgid="295063284548750881">"مطمئنید می خواهید گروه \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" حذف شود؟ (مخاطبین خودشان حذف نخواهند شد.)"</string>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"لطفاً قبل از پیوستن به مخاطب دیگری نام مخاطب را وارد کنید."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"مخاطب ملحق شده"</string>
-    <!-- no translation found for toast_text_copied (5143776250008541719) -->
-    <skip />
+    <string name="toast_text_copied" msgid="5143776250008541719">"متن کپی شده"</string>
 </resources>

@@ -48,12 +48,9 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"שלח הודעת טקסט לאיש קשר"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"הגדר דוא\"ל כברירת מחדל"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"הפרד"</string>
-    <!-- no translation found for menu_renameGroup (2798886925154156075) -->
-    <skip />
-    <!-- no translation found for menu_deleteGroup (644571524292675446) -->
-    <skip />
-    <!-- no translation found for menu_new_contact_action_bar (8887818026717394343) -->
-    <skip />
+    <string name="menu_renameGroup" msgid="2798886925154156075">"שנה את שם הקבוצה"</string>
+    <string name="menu_deleteGroup" msgid="644571524292675446">"מחק את הקבוצה"</string>
+    <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"חדש"</string>
     <string name="splitConfirmation_title" msgid="6716467920283502570">"הפרדת איש קשר"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"האם אתה בטוח שברצונך להפריד איש קשר יחיד זה לאנשי קשר מרובים: אחד לכל קבוצת פרטי קשר שצורפה אליו?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"הצטרף"</string>
@@ -71,7 +68,7 @@
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"מחיקת איש קשר זה תמחק מידע מחשבונות מרובים."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"איש קשר זה יימחק."</string>
     <string name="menu_done" msgid="796017761764190697">"בוצע"</string>
-    <!-- outdated translation 2174577548513895144 -->     <string name="menu_doNotSave" msgid="58593876893538465">"חזור למצב קודם"</string>
+    <string name="menu_doNotSave" msgid="58593876893538465">"ביטול"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"ערוך איש קשר"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"איש קשר חדש"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"פונטי"</string>
@@ -298,7 +295,7 @@
     <string name="menu_accounts" msgid="8499114602017077970">"חשבונות"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"ייבוא/ייצוא"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"ייבא/יצא אנשי קשר"</string>
-    <!-- outdated translation 943789700636542260 -->     <string name="menu_share" msgid="8746849630474240344">"שתף"</string>
+    <string name="menu_share" msgid="8746849630474240344">"שתף איש קשר"</string>
     <string name="share_via" msgid="563121028023030093">"שתף איש קשר באמצעות"</string>
     <string name="share_error" msgid="4374508848981697170">"אין אפשרות לשתף איש קשר זה."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"שם"</string>
@@ -423,16 +420,9 @@
     <string name="pick_photo" msgid="448886509158039462">"בחר תמונה מהגלריה"</string>
     <!-- no translation found for pick_new_photo (7962368009197147617) -->
     <skip />
-    <!-- unknown placeholder BREAK_0 in locale_change_in_progress -->
-    <skip />
-    <!-- no translation found for locale_change_in_progress (7583992153091537467) -->
-    <skip />
-    <!-- unknown placeholder BREAK_0 in upgrade_in_progress -->
-    <skip />
-    <!-- no translation found for upgrade_in_progress (474511436863451061) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory (6153384328042175667) -->
-    <skip />
+    <string name="locale_change_in_progress" msgid="7583992153091537467">"רשימת הקשר מתעדכנת כדי לשקף את שינוי השפה."</string>
+    <string name="upgrade_in_progress" msgid="474511436863451061">"רשימת הקשר מתעדכנת."</string>
+    <string name="upgrade_out_of_memory" msgid="6153384328042175667">"אנשי הקשר נמצאים בתהליך של שדרוג. "\n\n"תהליך השדרוג דורש כ-Mb <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g>של אחסון פנימי."\n\n"בחר באחת מהאפשרויות הבאות:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"הסר התקנה של יישומים מסוימים"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"נסה שוב לשדרג"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"מחפש..."</string>
@@ -531,6 +521,5 @@
     <string name="delete_group_dialog_message" msgid="295063284548750881">"האם אתה בטוח שברצונך למחוק את הקבוצה \'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\'? (אנשי הקשר עצמם לא יימחקו)."</string>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"הזן שם של איש קשר לפני צירוף לאיש קשר אחר."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"איש קשר מצורף"</string>
-    <!-- no translation found for toast_text_copied (5143776250008541719) -->
-    <skip />
+    <string name="toast_text_copied" msgid="5143776250008541719">"טקסט שהועתק"</string>
 </resources>

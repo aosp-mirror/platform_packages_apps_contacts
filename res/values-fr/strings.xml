@@ -46,12 +46,9 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Envoyer un SMS au contact"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"E-mail par défaut"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Séparer"</string>
-    <!-- no translation found for menu_renameGroup (2798886925154156075) -->
-    <skip />
-    <!-- no translation found for menu_deleteGroup (644571524292675446) -->
-    <skip />
-    <!-- no translation found for menu_new_contact_action_bar (8887818026717394343) -->
-    <skip />
+    <string name="menu_renameGroup" msgid="2798886925154156075">"Renommer le groupe"</string>
+    <string name="menu_deleteGroup" msgid="644571524292675446">"Supprimer le groupe"</string>
+    <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Nouveau"</string>
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Séparer le contact"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"Souhaitez-vous vraiment séparer ce contact en plusieurs instances : une pour chaque ensemble d\'informations associé à ce contact ?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Joindre"</string>
@@ -69,7 +66,7 @@
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"La suppression de ce contact entraînera celle d\'informations provenant de plusieurs comptes."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Ce contact sera supprimé."</string>
     <string name="menu_done" msgid="796017761764190697">"OK"</string>
-    <!-- outdated translation 2174577548513895144 -->     <string name="menu_doNotSave" msgid="58593876893538465">"Annuler"</string>
+    <string name="menu_doNotSave" msgid="58593876893538465">"Annuler"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"Modifier le contact"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"Nouveau contact"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Prononciation phonétique"</string>
@@ -161,13 +158,13 @@
     <string name="simContacts_title" msgid="27341688347689769">"Contacts de carte SIM"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Vous n\'avez aucun contact à afficher. Si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes."</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Vous n\'avez aucun contact à afficher."</string>
-    <!-- syntax error in translation for noContactsHelpText (6450346791169710787) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:559 in java.io.StringReader@33f42b49)  -->
-    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:567 in java.io.StringReader@6345e044)  -->
-    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", puis sur :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts sur la tablette ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier les paramètres de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SIM ou SD."\n</li></string>
+    <!-- syntax error in translation for noContactsHelpText (6450346791169710787) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:560 in java.io.StringReader@2747ee05)  -->
+    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:567 in java.io.StringReader@635b9e68)  -->
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", puis sur :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts vers la tablette ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier les paramètres de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SIM ou SD."\n</li></string>
     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier le paramètre de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SIM ou SD."\n</li></string>
-    <!-- syntax error in translation for noContactsNoSimHelpText (6031363021287849874) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:564 in java.io.StringReader@86c347)  -->
-    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:571 in java.io.StringReader@f7e6a96)  -->
-    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", puis sur :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts sur la tablette ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier les paramètres de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SD."\n</li></string>
+    <!-- syntax error in translation for noContactsNoSimHelpText (6031363021287849874) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:565 in java.io.StringReader@13fcf0ce)  -->
+    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:571 in java.io.StringReader@43256ea2)  -->
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", puis sur :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts vers la tablette ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier les paramètres de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SD."\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier le paramètre de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SD."\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Vous ne disposez d\'aucun favoris."\n\n"Pour ajouter un contact à la liste de favoris :"\n\n"        "<li>"Appuyez sur l\'onglet "<b>"Contacts"</b>"."\n</li>" "\n<li>"Appuyez sur le contact à ajouter à vos favoris."\n</li>" "\n<li>"Appuyez sur l\'étoile en regard du nom du contact."\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Tous les contacts"</string>
@@ -266,8 +263,8 @@
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Échec de l\'initialisation du module d\'exportation : \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Une erreur s\'est produite lors de l\'exportation : \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Impossible d\'obtenir les informations concernant la base de données"</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Aucun contact ne peut être exporté. Si des contacts sont enregistrés sur votre tablette, il se peut qu\'un fournisseur de données empêche leur exportation vers un autre appareil."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Aucun contact ne peut être exporté. Si des contacts sont enregistrés sur votre téléphone, il se peut qu\'un fournisseur de données empêche leur exportation vers un autre appareil."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Aucun contact ne peut être exporté. Si des contacts sont enregistrés sur votre tablette, il est possible qu\'un fournisseur de données interdise leur exportation vers un autre appareil."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Aucun contact ne peut être exporté. Si des contacts sont enregistrés sur votre téléphone, il est possible qu\'un fournisseur de données interdise leur exportation vers un autre appareil."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"Le système de composition vCard n\'est pas correctement initialisé."</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Impossible d\'ouvrir \"<xliff:g id="FILE_NAME">%s</xliff:g>\" : <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> sur <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contacts"</string>
@@ -292,7 +289,7 @@
     <string name="menu_accounts" msgid="8499114602017077970">"Comptes"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Importer/Exporter"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importer/Exporter les contacts"</string>
-    <!-- outdated translation 943789700636542260 -->     <string name="menu_share" msgid="8746849630474240344">"Partager"</string>
+    <string name="menu_share" msgid="8746849630474240344">"Partager le contact"</string>
     <string name="share_via" msgid="563121028023030093">"Partager contact via"</string>
     <string name="share_error" msgid="4374508848981697170">"Ce contact ne peut pas être partagé."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Nom"</string>
@@ -411,16 +408,9 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Prendre une autre photo"</string>
     <string name="pick_photo" msgid="448886509158039462">"Sélectionner une photo dans la galerie"</string>
     <string name="pick_new_photo" msgid="7962368009197147617">"Sélectionner une autre photo dans la galerie"</string>
-    <!-- unknown placeholder BREAK_0 in locale_change_in_progress -->
-    <skip />
-    <!-- no translation found for locale_change_in_progress (7583992153091537467) -->
-    <skip />
-    <!-- unknown placeholder BREAK_0 in upgrade_in_progress -->
-    <skip />
-    <!-- no translation found for upgrade_in_progress (474511436863451061) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory (6153384328042175667) -->
-    <skip />
+    <string name="locale_change_in_progress" msgid="7583992153091537467">"La liste de contacts est en cours de mise à niveau suite au changement de langue."</string>
+    <string name="upgrade_in_progress" msgid="474511436863451061">"La liste de contacts est en cours de mise à jour."</string>
+    <string name="upgrade_out_of_memory" msgid="6153384328042175667">"Les contacts sont en cours de mise à niveau. "\n\n"La mise à niveau requiert environ <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> Mo de mémoire de stockage interne."\n\n"Choisissez l\'une des options suivantes :"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Désinstaller certaines applications"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Réessayer la mise à niveau"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"Recherche en cours..."</string>
@@ -481,8 +471,7 @@
     <string name="rename_group_dialog_title" msgid="3765299704290513289">"Renommer le groupe"</string>
     <string name="delete_group_dialog_title" msgid="7368429698398624427">"Supprimer le groupe"</string>
     <string name="delete_group_dialog_message" msgid="295063284548750881">"Voulez-vous vraiment supprimer le groupe \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" ? Vos contacts ne seront pas supprimés."</string>
-    <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Veuillez saisir le nom du contact avant de l\'associer à un autre."</string>
+    <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Veuillez saisir le nom de ce contact avant de l\'associer à un autre."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Contact associé"</string>
-    <!-- no translation found for toast_text_copied (5143776250008541719) -->
-    <skip />
+    <string name="toast_text_copied" msgid="5143776250008541719">"Texte copié"</string>
 </resources>

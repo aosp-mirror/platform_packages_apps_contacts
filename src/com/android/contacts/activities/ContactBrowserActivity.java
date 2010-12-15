@@ -256,8 +256,14 @@ public class ContactBrowserActivity extends Activity
 
     @Override
     protected void onStart() {
-        mContactListFilterController.startLoading();
+        mContactListFilterController.onStart();
         super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        mContactListFilterController.onStop();
+        super.onStop();
     }
 
     private void configureFragments(boolean fromRequest) {

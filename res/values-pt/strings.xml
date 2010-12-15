@@ -46,12 +46,9 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Enviar SMS/MMS para o contato"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Tornar o e-mail padrão"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Separar"</string>
-    <!-- no translation found for menu_renameGroup (2798886925154156075) -->
-    <skip />
-    <!-- no translation found for menu_deleteGroup (644571524292675446) -->
-    <skip />
-    <!-- no translation found for menu_new_contact_action_bar (8887818026717394343) -->
-    <skip />
+    <string name="menu_renameGroup" msgid="2798886925154156075">"Renomear grupo"</string>
+    <string name="menu_deleteGroup" msgid="644571524292675446">"Excluir grupo"</string>
+    <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Novo"</string>
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Separar contato"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"Tem certeza de que deseja separar este único contato em diversos contatos, um para cada conjunto de informações de contato unificado?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Unir"</string>
@@ -69,7 +66,7 @@
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Excluir este contato irá excluir informações de várias contas."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Este contato será excluído."</string>
     <string name="menu_done" msgid="796017761764190697">"Concluído"</string>
-    <!-- outdated translation 2174577548513895144 -->     <string name="menu_doNotSave" msgid="58593876893538465">"Reverter"</string>
+    <string name="menu_doNotSave" msgid="58593876893538465">"Cancelar"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"Editar contato"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"Novo contato"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonética"</string>
@@ -163,11 +160,11 @@
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Você não tem contatos para exibir."</string>
     <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"Você não tem contatos para exibir."\n\n"Para adicionar contatos, pressione "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do chip ou cartão SD"\n</li></string>
     <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"Você não tem contatos para exibir."\n\n"Para adicionar contatos, pressione "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o telefone"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do chip ou cartão SD"\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Você não tem contatos para exibir (caso tenha acabado de adicionar uma conta, pode levar alguns minutos para sincronizar os contatos)."\n\n"Para adicionar contatos, pressione "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opções de exibição"</b></font>" para alterar quais contatos ficam visíveis"\n</li>" "\n<li><font fgcolor="#ffffffff">"Novo "<b>"contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do chip ou cartão SD"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Você não tem contatos para exibir. Caso tenha acabado de adicionar uma conta, pode levar alguns minutos para sincronizar os contatos."\n\n"Para adicionar contatos, pressione "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opções de exibição"</b></font>" para alterar quais contatos ficam visíveis"\n</li>" "\n<li><font fgcolor="#ffffffff">"Novo "<b>"contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do chip ou cartão SD"\n</li></string>
     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Você não tem contatos para exibir (caso tenha acabado de adicionar uma conta, pode levar alguns minutos para sincronizar os contatos)."\n\n"Para adicionar contatos, pressione "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o telefone"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opções de exibição"</b></font>" para alterar quais contatos ficam visíveis"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do chip ou cartão SD"\n</li></string>
     <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"Você não tem contatos para exibir."\n\n"Para adicionar contatos, pressione "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do cartão SD"\n</li></string>
     <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"Você não tem contatos para exibir."\n\n"Para adicionar contatos, pressione "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o telefone"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do chip ou cartão SD"\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Você não tem contatos para exibir (se acabou de adicionar uma conta, pode levar alguns minutos para sincronizar os contatos)."\n\n"Para adicionar contatos, pressione "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opções de exibição"</b></font>" para alterar quais contatos ficam visíveis"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do cartão SD"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Você não tem contatos para exibir. Sse acabou de adicionar uma conta, pode levar alguns minutos para sincronizar os contatos."\n\n"Para adicionar contatos, pressione "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opções de exibição"</b></font>" para alterar quais contatos ficam visíveis"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do cartão SD"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Você não tem contatos para exibir (se acabou de adicionar uma conta, pode levar alguns minutos para sincronizar os contatos)."\n\n"Para adicionar contatos, pressione "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o telefone"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opções de exibição"</b></font>" para alterar quais contatos ficam visíveis"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do chip ou cartão SD"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Você não tem nenhum favorito."\n\n"Para adicionar um contato à sua lista de favoritos:"\n\n"        "<li>"Toque na guia "<b>"Contatos"</b>\n</li>" "\n<li>"Toque no contato que deseja adicionar aos seus favoritos"\n</li>" "\n<li>"Toque na estrela ao lado do nome do contato"\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Todos os contatos"</string>
@@ -292,7 +289,7 @@
     <string name="menu_accounts" msgid="8499114602017077970">"Contas"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Importar/Exportar"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importar/Exportar contatos"</string>
-    <!-- outdated translation 943789700636542260 -->     <string name="menu_share" msgid="8746849630474240344">"Compartilhar"</string>
+    <string name="menu_share" msgid="8746849630474240344">"Compartilhar contato"</string>
     <string name="share_via" msgid="563121028023030093">"Compartilhar contato via"</string>
     <string name="share_error" msgid="4374508848981697170">"Este contato não pode ser compartilhado."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Nome"</string>
@@ -411,16 +408,9 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Tirar outra foto"</string>
     <string name="pick_photo" msgid="448886509158039462">"Selecionar foto da Galeria"</string>
     <string name="pick_new_photo" msgid="7962368009197147617">"Selecionar nova foto da Galeria"</string>
-    <!-- unknown placeholder BREAK_0 in locale_change_in_progress -->
-    <skip />
-    <!-- no translation found for locale_change_in_progress (7583992153091537467) -->
-    <skip />
-    <!-- unknown placeholder BREAK_0 in upgrade_in_progress -->
-    <skip />
-    <!-- no translation found for upgrade_in_progress (474511436863451061) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory (6153384328042175667) -->
-    <skip />
+    <string name="locale_change_in_progress" msgid="7583992153091537467">"A lista de contatos está sendo atualizada para incorporar a alteração do idioma."</string>
+    <string name="upgrade_in_progress" msgid="474511436863451061">"A lista de contatos está sendo atualizada."</string>
+    <string name="upgrade_out_of_memory" msgid="6153384328042175667">"Os contatos estão sendo atualizados. "\n\n"O processo de atualização requer aproximadamente <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> Mb de memória interna. "\n\n"Escolha uma das seguintes opções:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Desinstalar alguns aplicativos"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Tentar atualizar novamente"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"Pesquisando..."</string>
@@ -483,6 +473,5 @@
     <string name="delete_group_dialog_message" msgid="295063284548750881">"Tem certeza de que deseja excluir o grupo \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? Os contatos não serão excluídos."</string>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Insira o nome do contato antes de unificá-lo com outro contato."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Contato unificado"</string>
-    <!-- no translation found for toast_text_copied (5143776250008541719) -->
-    <skip />
+    <string name="toast_text_copied" msgid="5143776250008541719">"Texto copiado"</string>
 </resources>

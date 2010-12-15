@@ -48,12 +48,9 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Trimiteţi mesaj text către o persoană din agendă"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Setaţi ca adresă de e-mail prestabilită"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Separaţi"</string>
-    <!-- no translation found for menu_renameGroup (2798886925154156075) -->
-    <skip />
-    <!-- no translation found for menu_deleteGroup (644571524292675446) -->
-    <skip />
-    <!-- no translation found for menu_new_contact_action_bar (8887818026717394343) -->
-    <skip />
+    <string name="menu_renameGroup" msgid="2798886925154156075">"Redenumiţi grupul"</string>
+    <string name="menu_deleteGroup" msgid="644571524292675446">"Ştergeţi grupul"</string>
+    <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Nouă"</string>
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Separaţi persoana din agendă"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"Sigur doriţi să separaţi această persoană din agendă în mai multe: câte una pentru fiecare set de informaţii care au fost reunite în aceasta?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Alăturaţi-vă"</string>
@@ -71,7 +68,7 @@
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Ştergerea acestei persoane din agendă va elimina informaţii din mai multe conturi."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Această persoană va fi ştearsă din agendă."</string>
     <string name="menu_done" msgid="796017761764190697">"Terminat"</string>
-    <!-- outdated translation 2174577548513895144 -->     <string name="menu_doNotSave" msgid="58593876893538465">"Reveniţi"</string>
+    <string name="menu_doNotSave" msgid="58593876893538465">"Anulaţi"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"Modificaţi informaţiile despre persoana din agendă"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"Persoană nouă în agendă"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetic"</string>
@@ -92,7 +89,7 @@
     <item msgid="8287841928119937597">"Organizaţie"</item>
     <item msgid="7196592230748086755">"Notă"</item>
   </string-array>
-    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Nicio fotografie disponibilă pe tabletă."</string>
+    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Nicio fotografie nu este disponibilă pe tabletă."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Nicio fotografie disponibilă în telefon."</string>
     <!-- no translation found for attach_photo_dialog_title (5599827035558557169) -->
     <skip />
@@ -155,14 +152,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"Persoanele din agendă de pe cardul SIM"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Nicio persoană în agendă pentru afişare. (Dacă tocmai aţi adăugat un cont, poate dura câteva minute sincronizarea persoanelor din agendă.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Nicio persoană din agendă pentru afişare."</string>
-    <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"Nu aveţi nicio persoană din agendă de afişat."\n\n"Pentru a adăuga persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau configura un cont cu persoane din agendă pe care le puteţi sincroniza cu tableta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contact nou"</b></font>" pentru a crea un contact nou de la început"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" pentru a importa agenda de pe cardul SIM sau de pe cardul SD"\n</li></string>
-    <!-- outdated translation 6450346791169710787 -->     <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"Nu aveţi nicio persoană din agendă de afişat."\n\n"Pentru a adăuga persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau configura un cont cu persoane din agendă pe care le puteţi sincroniza cu tableta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contact nou"</b></font>" pentru a crea un contact nou de la început"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" pentru a importa agenda de pe cardul SIM sau de pe cardul SD"\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Nu aveţi nicio persoană din agendă de afişat. (Dacă tocmai aţi adăugat un cont, poate dura câteva minute să se sincronizeze agenda.)"\n\n"Pentru a adăuga persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau configura un cont cu persoane din agendă pe care le puteţi sincroniza cu tableta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opţiuni de afişare"</b></font>" pentru a modifica care persoane din agendă să fie vizibile"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contact nou"</b></font>" pentru a crea un contact nou de la început"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" pentru a importa agenda de pe cardul SIM sau de pe cardul SD"\n</li></string>
-    <!-- outdated translation 2364665535969139880 -->     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Nu aveţi nicio persoană din agendă de afişat. (Dacă tocmai aţi adăugat un cont, poate dura câteva minute să se sincronizeze agenda.)"\n\n"Pentru a adăuga persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau configura un cont cu persoane din agendă pe care le puteţi sincroniza cu tableta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opţiuni de afişare"</b></font>" pentru a modifica care persoane din agendă să fie vizibile"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contact nou"</b></font>" pentru a crea un contact nou de la început"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" pentru a importa agenda de pe cardul SIM sau de pe cardul SD"\n</li></string>
-    <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"Nu aveţi nicio persoană din agendă de afişat."\n\n"Pentru a adăuga persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau configura un cont cu persoane din agendă pe care le puteţi sincroniza cu tableta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contact nou"</b></font>" pentru a crea un contact nou de la început"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" pentru a importa agenda de pe cardul SD"\n</li></string>
-    <!-- outdated translation 6031363021287849874 -->     <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"Nu aveţi nicio persoană din agendă de afişat."\n\n"Pentru a adăuga persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau configura un cont cu persoane din agendă pe care le puteţi sincroniza cu tableta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contact nou"</b></font>" pentru a crea un contact nou de la început"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" pentru a importa agenda de pe cardul SD"\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Nu aveţi nicio persoană din agendă de afişat. (Dacă tocmai aţi adăugat un cont, poate dura câteva minute să se sincronizeze agenda.)"\n\n"Pentru a adăuga persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau configura un cont cu persoane din agendă pe care le puteţi sincroniza cu tableta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opţiuni de afişare"</b></font>" pentru a modifica care persoane din agendă să fie vizibile"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contact nou"</b></font>" pentru a crea un contact nou de la început"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" pentru a importa agenda de pe cardul SD"\n</li></string>
-    <!-- outdated translation 6222739731808897565 -->     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Nu aveţi nicio persoană din agendă de afişat. (Dacă tocmai aţi adăugat un cont, poate dura câteva minute să se sincronizeze agenda.)"\n\n"Pentru a adăuga persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau configura un cont cu persoane din agendă pe care le puteţi sincroniza cu tableta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opţiuni de afişare"</b></font>" pentru a modifica care persoane din agendă să fie vizibile"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contact nou"</b></font>" pentru a crea un contact nou de la început"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" pentru a importa agenda de pe cardul SD"\n</li></string>
+    <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"Nu aveţi nicio persoană din agendă de afişat."\n\n"Pentru a adăuga persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă pe care le puteţi sincroniza cu tableta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contact nou"</b></font>" pentru a crea o intrare nouă în agendă de la început"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" pentru a importa agenda de pe cardul SIM sau de pe cardul SD"\n</li></string>
+    <!-- outdated translation 6450346791169710787 -->     <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"Nu aveţi nicio persoană din agendă de afişat."\n\n"Pentru a adăuga persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă pe care le puteţi sincroniza cu tableta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contact nou"</b></font>" pentru a crea o intrare nouă în agendă de la început"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" pentru a importa agenda de pe cardul SIM sau de pe cardul SD"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Nu aveţi nicio persoană din agendă de afişat. (Dacă tocmai aţi adăugat un cont, poate dura câteva minute să se sincronizeze agenda.)"\n\n"Pentru a adăuga persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă pe care le puteţi sincroniza cu tableta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opţiuni de afişare"</b></font>" pentru a modifica persoanele din agendă care sunt vizibile"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contact nou"</b></font>" pentru a crea o intrare nouă în agendă de la început"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" pentru a importa agenda de pe cardul SIM sau de pe cardul SD"\n</li></string>
+    <!-- outdated translation 2364665535969139880 -->     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Nu aveţi nicio persoană din agendă de afişat. (Dacă tocmai aţi adăugat un cont, poate dura câteva minute să se sincronizeze agenda.)"\n\n"Pentru a adăuga persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă pe care le puteţi sincroniza cu tableta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opţiuni de afişare"</b></font>" pentru a modifica persoanele din agendă care sunt vizibile"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contact nou"</b></font>" pentru a crea o intrare nouă în agendă de la început"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" pentru a importa agenda de pe cardul SIM sau de pe cardul SD"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"Nu aveţi nicio persoană din agendă de afişat."\n\n"Pentru a adăuga persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă pe care le puteţi sincroniza cu tableta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contact nou"</b></font>" pentru a crea o intrare nouă în agendă de la început"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" pentru a importa agenda de pe cardul SD"\n</li></string>
+    <!-- outdated translation 6031363021287849874 -->     <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"Nu aveţi nicio persoană din agendă de afişat."\n\n"Pentru a adăuga persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă pe care le puteţi sincroniza cu tableta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contact nou"</b></font>" pentru a crea o intrare nouă în agendă de la început"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" pentru a importa agenda de pe cardul SD"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Nu aveţi nicio persoană din agendă de afişat. (Dacă tocmai aţi adăugat un cont, poate dura câteva minute să se sincronizeze agenda.)"\n\n"Pentru a adăuga persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă pe care le puteţi sincroniza cu tableta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opţiuni de afişare"</b></font>" pentru a modifica persoanele din agendă care sunt vizibile"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contact nou"</b></font>" pentru a crea o intrare nouă în agendă de la început"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" pentru a importa agenda de pe cardul SD"\n</li></string>
+    <!-- outdated translation 6222739731808897565 -->     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Nu aveţi nicio persoană din agendă de afişat. (Dacă tocmai aţi adăugat un cont, poate dura câteva minute să se sincronizeze agenda.)"\n\n"Pentru a adăuga persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă pe care le puteţi sincroniza cu tableta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opţiuni de afişare"</b></font>" pentru a modifica persoanele din agendă care sunt vizibile"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contact nou"</b></font>" pentru a crea o intrare nouă în agendă de la început"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" pentru a importa agenda de pe cardul SD"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Nu aveţi favorite."\n\n" Pentru a adăuga o persoană în lista de favorite:"\n\n"        "<li>"Apăsaţi pe fila "<b>"Agendă"</b>" "\n</li>" "\n<li>"Apăsaţi persoana pe care doriţi să o adăugaţi în lista de favorite"\n</li>" "\n<li>"Apăsaţi pe steaua de lângă numele persoanei"\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Toate persoanele din agendă"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Cu stea"</string>
@@ -293,12 +290,12 @@
     <!-- no translation found for quickcontact_no_data (2098000859125253675) -->
     <skip />
     <string name="quickcontact_clear_defaults_description" msgid="3792792870662989100">"Ştergeţi datele prestabilite"</string>
-    <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"Datele prestabilite setate pentru această persoană din agendă:"</string>
+    <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"Datele prestabilite pt. această intrare:"</string>
     <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"Ştergeţi"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Conturi"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Importaţi/Exportaţi"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importaţi/exportaţi persoanele din agendă"</string>
-    <!-- outdated translation 943789700636542260 -->     <string name="menu_share" msgid="8746849630474240344">"Distribuiţi"</string>
+    <string name="menu_share" msgid="8746849630474240344">"Distrib. persoana din agendă"</string>
     <string name="share_via" msgid="563121028023030093">"Distribuiţi persoana din agendă prin"</string>
     <string name="share_error" msgid="4374508848981697170">"Aceasta persoană din agendă nu poate fi distribuită."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Nume"</string>
@@ -322,8 +319,8 @@
     <string name="display_ungrouped" msgid="4602580795576261158">"Toate celelalte persoane din Agendă"</string>
     <string name="display_all_contacts" msgid="6846131371214707956">"Toate persoanele din Agendă"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Eliminarea „<xliff:g id="GROUP">%s</xliff:g>” din sincronizare va elimina, de asemenea, orice persoană din agendă care nu face parte dintr-un grup."</string>
-    <string name="account_phone" product="tablet" msgid="7946049152658522054">"Numai tabletă, nesincronizat"</string>
-    <!-- outdated translation 7946049152658522054 -->     <string name="account_phone" product="default" msgid="3682950835276226870">"Numai tabletă, nesincronizat"</string>
+    <string name="account_phone" product="tablet" msgid="7946049152658522054">"Numai pe tabletă, nesincronizat"</string>
+    <!-- outdated translation 7946049152658522054 -->     <string name="account_phone" product="default" msgid="3682950835276226870">"Numai pe tabletă, nesincronizat"</string>
     <string name="call_custom" msgid="7756571794763171802">"Apelaţi <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"Apelaţi numărul de domiciliu"</string>
     <string name="call_mobile" msgid="7502236805487609178">"Apelaţi numărul de mobil"</string>
@@ -423,16 +420,9 @@
     <string name="pick_photo" msgid="448886509158039462">"Selectaţi o fotografie din galerie"</string>
     <!-- no translation found for pick_new_photo (7962368009197147617) -->
     <skip />
-    <!-- unknown placeholder BREAK_0 in locale_change_in_progress -->
-    <skip />
-    <!-- no translation found for locale_change_in_progress (7583992153091537467) -->
-    <skip />
-    <!-- unknown placeholder BREAK_0 in upgrade_in_progress -->
-    <skip />
-    <!-- no translation found for upgrade_in_progress (474511436863451061) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory (6153384328042175667) -->
-    <skip />
+    <string name="locale_change_in_progress" msgid="7583992153091537467">"Se actualizează lista de persoane din agendă pentru a reflecta modificarea limbii."</string>
+    <string name="upgrade_in_progress" msgid="474511436863451061">"Se actualizează lista de persoane din agendă."</string>
+    <string name="upgrade_out_of_memory" msgid="6153384328042175667">"Agenda este în proces de trecere la o versiune superioară. "\n\n"Procesul necesită aproximativ <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MO din spaţiul intern de stocare al telefonului."\n\n"Alegeţi una dintre următoarele opţiuni:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Dezinstalaţi unele aplicaţii"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Încercaţi din nou trecerea la o versiune superioară"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"Se caută..."</string>
@@ -529,8 +519,7 @@
     <string name="rename_group_dialog_title" msgid="3765299704290513289">"Redenumiţi grupul"</string>
     <string name="delete_group_dialog_title" msgid="7368429698398624427">"Ştergeţi grupul"</string>
     <string name="delete_group_dialog_message" msgid="295063284548750881">"Sunteţi sigur(ă) că doriţi să ştergeţi grupul „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>”? (Agenda nu va fi ştearsă.)"</string>
-    <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Introduceţi un nume de contact înainte de a înregistra altă persoană din agendă."</string>
-    <string name="indicator_joined_contact" msgid="3321049349627022128">"Data înregistrării"</string>
-    <!-- no translation found for toast_text_copied (5143776250008541719) -->
-    <skip />
+    <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Introduceţi un nume pentru intrarea din agendă înainte de îmbinarea cu altă intrare."</string>
+    <string name="indicator_joined_contact" msgid="3321049349627022128">"Intrare în agendă îmbinată"</string>
+    <string name="toast_text_copied" msgid="5143776250008541719">"Text copiat"</string>
 </resources>

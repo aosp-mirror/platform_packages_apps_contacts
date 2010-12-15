@@ -48,12 +48,9 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"إرسال رسالة لجهة الاتصال"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"تحديد كبريد إلكتروني افتراضي"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"فصل"</string>
-    <!-- no translation found for menu_renameGroup (2798886925154156075) -->
-    <skip />
-    <!-- no translation found for menu_deleteGroup (644571524292675446) -->
-    <skip />
-    <!-- no translation found for menu_new_contact_action_bar (8887818026717394343) -->
-    <skip />
+    <string name="menu_renameGroup" msgid="2798886925154156075">"إعادة تسمية المجموعة"</string>
+    <string name="menu_deleteGroup" msgid="644571524292675446">"حذف المجموعة"</string>
+    <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"جديد"</string>
     <string name="splitConfirmation_title" msgid="6716467920283502570">"فصل جهة الاتصال"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"هل أنت متأكد من أنك تريد فصل جهة الاتصال الفردية هذه إلى عدة جهات اتصال: جهة اتصال لكل مجموعة من معلومات الاتصال التي تم تجميعها بها؟"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"ضم"</string>
@@ -71,7 +68,7 @@
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"سيؤدي حذف جهة الاتصال هذه إلى حذف المعلومات من عدة حسابات."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"سيتم حذف جهة الاتصال هذه."</string>
     <string name="menu_done" msgid="796017761764190697">"تم"</string>
-    <!-- outdated translation 2174577548513895144 -->     <string name="menu_doNotSave" msgid="58593876893538465">"تراجع"</string>
+    <string name="menu_doNotSave" msgid="58593876893538465">"إلغاء"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"تعديل جهة الاتصال"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"جهة اتصال جديدة"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"صوتيًا"</string>
@@ -92,7 +89,7 @@
     <item msgid="8287841928119937597">"المؤسسة"</item>
     <item msgid="7196592230748086755">"ملاحظة"</item>
   </string-array>
-    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"لا تتوفر أية صور على الكمبيوتر اللوحي."</string>
+    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"لا تتوفر أية صور على الجهاز اللوحي."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"لا تتوفر أية صور على الهاتف."</string>
     <!-- no translation found for attach_photo_dialog_title (5599827035558557169) -->
     <skip />
@@ -155,14 +152,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"بطاقة SIM وجهات الاتصال"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"ليس لديك أي جهات اتصال لعرضها. (إذا كنت قد أضفت حسابًا توًا، فيمكن أن تستغرق مزامنة جهات الاتصال دقائق معدودة.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"ليس لديك أية جهات اتصال لعرضها."</string>
-    <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"ليست لديك أية جهات اتصال لعرضها."\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو تهيئته مع جهات الاتصال التي يمكنك مزامنتها مع الكمبيوتر اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات اتصال من بطاقة SIM أو بطاقة SD‏"\n</li></string>
-    <!-- outdated translation 6450346791169710787 -->     <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"ليست لديك أية جهات اتصال لعرضها."\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو تهيئته مع جهات الاتصال التي يمكنك مزامنتها مع الكمبيوتر اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات اتصال من بطاقة SIM أو بطاقة SD‏"\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"ليست لديك أية جهات اتصال لعرضها. (إذا أضفت حسابًا، من الممكن أن تستغرق مزامنة جهات الاتصال بضع دقائق فقط.)"\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو تهيئته مع جهات الاتصال التي يمكنك مزامنتها مع الكمبيوتر اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"خيارات العرض"</b></font>" لتغيير جهات الاتصال التي يتم عرضها"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات الاتصال من بطاقة SIM أو SD‏"\n</li></string>
-    <!-- outdated translation 2364665535969139880 -->     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"ليست لديك أية جهات اتصال لعرضها. (إذا أضفت حسابًا، من الممكن أن تستغرق مزامنة جهات الاتصال بضع دقائق فقط.)"\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو تهيئته مع جهات الاتصال التي يمكنك مزامنتها مع الكمبيوتر اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"خيارات العرض"</b></font>" لتغيير جهات الاتصال التي يتم عرضها"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات الاتصال من بطاقة SIM أو SD‏"\n</li></string>
-    <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"ليست لديك أية جهات اتصال لعرضها."\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو تهيئته مع جهات الاتصال التي يمكنك مزامنتها مع الكمبيوتر اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات اتصال من بطاقة SD‏"\n</li></string>
-    <!-- outdated translation 6031363021287849874 -->     <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"ليست لديك أية جهات اتصال لعرضها."\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو تهيئته مع جهات الاتصال التي يمكنك مزامنتها مع الكمبيوتر اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات اتصال من بطاقة SD‏"\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"ليست لديك أية جهات اتصال لعرضها. (إذا أضفت حسابًا، من الممكن أن تستغرق مزامنة جهات الاتصال بضع دقائق فقط.)"\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو تهيئته مع جهات الاتصال التي يمكنك مزامنتها مع الكمبيوتر اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"خيارات العرض"</b></font>" لتغيير جهات الاتصال التي يتم عرضها"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات الاتصال من بطاقة SD‏"\n</li></string>
-    <!-- outdated translation 6222739731808897565 -->     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"ليست لديك أية جهات اتصال لعرضها. (إذا أضفت حسابًا، من الممكن أن تستغرق مزامنة جهات الاتصال بضع دقائق فقط.)"\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو تهيئته مع جهات الاتصال التي يمكنك مزامنتها مع الكمبيوتر اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"خيارات العرض"</b></font>" لتغيير جهات الاتصال التي يتم عرضها"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات الاتصال من بطاقة SD‏"\n</li></string>
+    <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"ليست لديك أية جهات اتصال لعرضها."\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو تهيئته مع جهات الاتصال التي يمكنك مزامنتها مع الجهاز اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات اتصال من بطاقة SIM أو بطاقة SD‏"\n</li></string>
+    <!-- outdated translation 6450346791169710787 -->     <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"ليست لديك أية جهات اتصال لعرضها."\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو تهيئته مع جهات الاتصال التي يمكنك مزامنتها مع الجهاز اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات اتصال من بطاقة SIM أو بطاقة SD‏"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"ليست لديك أية جهات اتصال لعرضها. (إذا أضفت حسابًا، من الممكن أن تستغرق مزامنة جهات الاتصال بضع دقائق فقط.)"\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو تهيئته مع جهات الاتصال التي يمكنك مزامنتها مع الجهاز اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"خيارات العرض"</b></font>" لتغيير جهات الاتصال التي يتم عرضها"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات الاتصال من بطاقة SIM أو SD‏"\n</li></string>
+    <!-- outdated translation 2364665535969139880 -->     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"ليست لديك أية جهات اتصال لعرضها. (إذا أضفت حسابًا، من الممكن أن تستغرق مزامنة جهات الاتصال بضع دقائق فقط.)"\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو تهيئته مع جهات الاتصال التي يمكنك مزامنتها مع الجهاز اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"خيارات العرض"</b></font>" لتغيير جهات الاتصال التي يتم عرضها"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات الاتصال من بطاقة SIM أو SD‏"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"ليست لديك أية جهات اتصال لعرضها."\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو تهيئته مع جهات الاتصال التي يمكنك مزامنتها مع الجهاز اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات اتصال من بطاقة SD‏"\n</li></string>
+    <!-- outdated translation 6031363021287849874 -->     <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"ليست لديك أية جهات اتصال لعرضها."\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو تهيئته مع جهات الاتصال التي يمكنك مزامنتها مع الجهاز اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات اتصال من بطاقة SD‏"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"ليست لديك أية جهات اتصال لعرضها. (إذا أضفت حسابًا، من الممكن أن تستغرق مزامنة جهات الاتصال بضع دقائق فقط.)"\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو تهيئته مع جهات الاتصال التي يمكنك مزامنتها مع الجهاز اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"خيارات العرض"</b></font>" لتغيير جهات الاتصال التي يتم عرضها"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات الاتصال من بطاقة SD‏"\n</li></string>
+    <!-- outdated translation 6222739731808897565 -->     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"ليست لديك أية جهات اتصال لعرضها. (إذا أضفت حسابًا، من الممكن أن تستغرق مزامنة جهات الاتصال بضع دقائق فقط.)"\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو تهيئته مع جهات الاتصال التي يمكنك مزامنتها مع الجهاز اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"خيارات العرض"</b></font>" لتغيير جهات الاتصال التي يتم عرضها"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات الاتصال من بطاقة SD‏"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"ليس لديك أي عناصر في المفضلة."\n\n"لإضافة جهة اتصال إلى قائمة المفضلة:"\n\n"        "<li>"المس علامة التبويب "<b>"جهات الاتصال"</b>\n</li>" "\n<li>"المس جهة الاتصال التي تريد إضافتها إلى المفضلة"\n</li>" "\n<li>"المس علامة النجمة إلى جانب اسم جهة الاتصال"\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"جميع جهات الاتصال"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"مميّزة بنجمة"</string>
@@ -228,7 +225,7 @@
     <skip />
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"أخفق تحليل vCard بسبب غير متوقع"</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"أخفق تحليل vCard على الرغم من أنها تبدو بتنسيق صالح، نظرًا لأنها غير معتمدة من قِبل التنفيذ الحالي"</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"لم يتم العثور على ملف vCard على سعة تخزين USB"</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"لم يتم العثور على ملف vCard على وحدة تخزين USB"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"لم يتم العثور على ملف vCard على بطاقة SD"</string>
     <!-- no translation found for fail_reason_failed_to_collect_vcard_meta_info (4154492282316067754) -->
     <skip />
@@ -271,7 +268,7 @@
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"تعذرت تهيئة المُصدر: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"حدث خطأ أثناء التصدير: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"أخفق الحصول على معلومات قاعدة البيانات"</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"ليست هناك جهات اتصال قابلة للتصدير. إذا كانت لديك جهات اتصال على الكمبيوتر اللوحي فعلاً، فربما يتم منع تصدير جميع جهات الاتصال إلى خارج الكمبيوتر اللوحي بواسطة أحد موفري البيانات."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"ليست هناك جهات اتصال قابلة للتصدير. إذا كانت لديك جهات اتصال على الجهاز اللوحي فعلاً، فربما يتم منع تصدير جميع جهات الاتصال إلى خارج الجهاز اللوحي بواسطة بعض موفري البيانات."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"ليست هناك جهات اتصال قابلة للتصدير. إذا كانت لديك جهات اتصال على الهاتف فعلاً، فربما يتم منع تصدير جميع جهات الاتصال إلى خارج الهاتف بواسطة أحد موفري البيانات."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"لم تتم تهيئة مؤلف vCard بشكل صحيح"</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"تعذر فتح \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
@@ -298,7 +295,7 @@
     <string name="menu_accounts" msgid="8499114602017077970">"الحسابات"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"استيراد/تصدير"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"استيراد/تصدير جهات الاتصال"</string>
-    <!-- outdated translation 943789700636542260 -->     <string name="menu_share" msgid="8746849630474240344">"مشاركة"</string>
+    <string name="menu_share" msgid="8746849630474240344">"مشاركة جهة الاتصال"</string>
     <string name="share_via" msgid="563121028023030093">"مشاركة جهة الاتصال عبر"</string>
     <string name="share_error" msgid="4374508848981697170">"لا يمكن مشاركة جهة الاتصال هذه."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"الاسم"</string>
@@ -322,8 +319,8 @@
     <string name="display_ungrouped" msgid="4602580795576261158">"جميع جهات الاتصال الأخرى"</string>
     <string name="display_all_contacts" msgid="6846131371214707956">"جميع جهات الاتصال"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"ستؤدي إزالة \'<xliff:g id="GROUP">%s</xliff:g>\' من المزامنة أيضًا إلى إزالة أية جهات اتصال غير مجمعة من المزامنة."</string>
-    <string name="account_phone" product="tablet" msgid="7946049152658522054">"الكمبيوتر اللوحي فقط، غير متزامن"</string>
-    <!-- outdated translation 7946049152658522054 -->     <string name="account_phone" product="default" msgid="3682950835276226870">"الكمبيوتر اللوحي فقط، غير متزامن"</string>
+    <string name="account_phone" product="tablet" msgid="7946049152658522054">"الجهاز اللوحي فقط، غير متزامن"</string>
+    <!-- outdated translation 7946049152658522054 -->     <string name="account_phone" product="default" msgid="3682950835276226870">"الجهاز اللوحي فقط، غير متزامن"</string>
     <string name="call_custom" msgid="7756571794763171802">"الاتصال بـ <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"الاتصال بهاتف منزلي"</string>
     <string name="call_mobile" msgid="7502236805487609178">"الاتصال بالجوال"</string>
@@ -423,16 +420,9 @@
     <string name="pick_photo" msgid="448886509158039462">"تحديد صورة من المعرض"</string>
     <!-- no translation found for pick_new_photo (7962368009197147617) -->
     <skip />
-    <!-- unknown placeholder BREAK_0 in locale_change_in_progress -->
-    <skip />
-    <!-- no translation found for locale_change_in_progress (7583992153091537467) -->
-    <skip />
-    <!-- unknown placeholder BREAK_0 in upgrade_in_progress -->
-    <skip />
-    <!-- no translation found for upgrade_in_progress (474511436863451061) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory (6153384328042175667) -->
-    <skip />
+    <string name="locale_change_in_progress" msgid="7583992153091537467">"يجري تحديث قائمة جهات الاتصال لتعكس التغير في اللغة."</string>
+    <string name="upgrade_in_progress" msgid="474511436863451061">"يجري تحديث قائمة جهات الاتصال."</string>
+    <string name="upgrade_out_of_memory" msgid="6153384328042175667">"جهات الاتصال قيد الترقية. "\n\n"تتطلب عملية الترقية ما يقرب من <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> ميغابايت من مساحة التخزين الداخلية."\n\n"حدد أحد الخيارات التالية:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"إزالة بعض التطبيقات"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"إعادة محاولة الترقية"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"جارِ البحث..."</string>
@@ -531,6 +521,5 @@
     <string name="delete_group_dialog_message" msgid="295063284548750881">"هل تريد بالتأكيد حذف المجموعة \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"؟ (لن يتم حذف جهات الاتصال نفسها)."</string>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"الرجاء إدخال اسم جهة الاتصال قبل الانضمام إلى جهة اتصال أخرى."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"جهة الاتصال منضمة"</string>
-    <!-- no translation found for toast_text_copied (5143776250008541719) -->
-    <skip />
+    <string name="toast_text_copied" msgid="5143776250008541719">"تم نسخ النص"</string>
 </resources>
