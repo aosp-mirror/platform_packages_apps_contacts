@@ -399,7 +399,7 @@ public abstract class ContactBrowseListFragment extends
             requestSelectionToScreen();
         }
 
-        adapter.notifyDataSetChanged();
+        getListView().invalidate();
 
         if (mListener != null) {
             mListener.onSelectionChange();
