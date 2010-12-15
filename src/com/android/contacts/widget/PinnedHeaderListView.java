@@ -29,13 +29,12 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ListAdapter;
-import android.widget.ListView;
 
 /**
  * A ListView that maintains a header pinned at the top of the list. The
  * pinned header can be pushed up and dissolved as needed.
  */
-public class PinnedHeaderListView extends ListView
+public class PinnedHeaderListView extends AutoScrollListView
         implements OnScrollListener, OnItemSelectedListener {
 
     /**
