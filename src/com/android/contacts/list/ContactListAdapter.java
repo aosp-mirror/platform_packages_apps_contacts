@@ -139,7 +139,6 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
                 !TextUtils.equals(mSelectedContactLookupKey, lookupKey)) {
             this.mSelectedContactDirectoryId = selectedDirectoryId;
             this.mSelectedContactLookupKey = lookupKey;
-            notifyDataSetChanged();
         }
     }
 

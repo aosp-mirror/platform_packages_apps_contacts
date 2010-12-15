@@ -18,12 +18,14 @@ package com.android.contacts.list;
 
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.text.TextUtils;
 
 /**
  * Contact list filter parameters.
  */
-public final class ContactListFilter implements Comparable<ContactListFilter> {
+public final class ContactListFilter implements Comparable<ContactListFilter>, Parcelable {
 
     public static final int FILTER_TYPE_DEFAULT = -1;
     public static final int FILTER_TYPE_ALL_ACCOUNTS = -2;
@@ -86,9 +88,21 @@ public final class ContactListFilter implements Comparable<ContactListFilter> {
     @Override
     public String toString() {
         switch (filterType) {
-            case ContactListFilter.FILTER_TYPE_ACCOUNT:
+            case FILTER_TYPE_DEFAULT:
+                return "default";
+            case FILTER_TYPE_ALL_ACCOUNTS:
+                return "all_accounts";
+            case FILTER_TYPE_CUSTOM:
+                return "custom";
+            case FILTER_TYPE_STARRED:
+                return "starred";
+            case FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY:
+                return "with_phones";
+            case FILTER_TYPE_SINGLE_CONTACT:
+                return "single";
+            case FILTER_TYPE_ACCOUNT:
                 return "account: " + accountType + " " + accountName;
-            case ContactListFilter.FILTER_TYPE_GROUP:
+            case FILTER_TYPE_GROUP:
                 return "group: " + accountType + " " + accountName + " " + title + "(" + groupId
                         + ")";
         }
@@ -179,6 +193,43 @@ public final class ContactListFilter implements Comparable<ContactListFilter> {
         filter.groupSourceId = prefs.getString(KEY_GROUP_SOURCE_ID, null);
         filter.groupReadOnly = prefs.getBoolean(KEY_GROUP_READ_ONLY, false);
         return filter;
+    }
+
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(filterType);
+        dest.writeString(accountName);
+        dest.writeString(accountType);
+        dest.writeLong(groupId);
+        dest.writeString(groupSourceId);
+        dest.writeInt(groupReadOnly ? 1 : 0);
+    }
+
+    public static final Parcelable.Creator<ContactListFilter> CREATOR =
+            new Parcelable.Creator<ContactListFilter>()
+    {
+        @Override
+        public ContactListFilter createFromParcel(Parcel source) {
+            int filterType = source.readInt();
+            ContactListFilter filter = new ContactListFilter(filterType);
+            filter.accountName = source.readString();
+            filter.accountType = source.readString();
+            filter.groupId = source.readLong();
+            filter.groupSourceId = source.readString();
+            filter.groupReadOnly = source.readInt() != 0;
+            return filter;
+        }
+
+        @Override
+        public ContactListFilter[] newArray(int size) {
+            return new ContactListFilter[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     /**
