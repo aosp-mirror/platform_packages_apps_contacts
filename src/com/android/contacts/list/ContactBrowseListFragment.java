@@ -19,8 +19,8 @@ import com.android.contacts.R;
 import com.android.contacts.widget.AutoScrollListView;
 
 import android.app.Activity;
-import android.app.LoaderManager.LoaderCallbacks;
-import android.content.CursorLoader;
+import android.content.AsyncQueryHandler;
+import android.content.ContentResolver;
 import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -36,6 +36,8 @@ import android.provider.ContactsContract.Directory;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.util.List;
+
 /**
  * Fragment containing a contact list used for browsing (as compared to
  * picking a contact with one of the PICK intents).
@@ -50,7 +52,7 @@ public abstract class ContactBrowseListFragment extends
     private static final String KEY_FILTER_ENABLED = "filterEnabled";
     private static final String KEY_FILTER = "filter";
 
-    private static final String KEY_PERSISTENT_SELECTION_ENABLED = "persistenSelectionEnabled";
+    private static final String KEY_PERSISTENT_SELECTION_ENABLED = "persistentSelectionEnabled";
     private static final String PERSISTENT_SELECTION_PREFIX = "defaultContactBrowserSelection";
 
     /**
@@ -70,9 +72,6 @@ public abstract class ContactBrowseListFragment extends
      */
     private static final int AUTOSELECT_FIRST_FOUND_CONTACT_MIN_QUERY_LENGTH = 2;
 
-    private static final int SELECTED_ID_LOADER = -3;
-    private static final String ARG_CONTACT_URI = "uri";
-
     private SharedPreferences mPrefs;
     private Handler mHandler;
 
@@ -85,7 +84,7 @@ public abstract class ContactBrowseListFragment extends
     private long mSelectedContactDirectoryId;
     private String mSelectedContactLookupKey;
     private boolean mSelectionVerified;
-    private boolean mLoadingLookupKey;
+    private boolean mRefreshingContactUri;
     private boolean mFilterEnabled;
     private ContactListFilter mFilter;
     private boolean mPersistentSelectionEnabled;
@@ -93,26 +92,42 @@ public abstract class ContactBrowseListFragment extends
 
     protected OnContactBrowserActionListener mListener;
 
-    private LoaderCallbacks<Cursor> mIdLoaderCallbacks = new LoaderCallbacks<Cursor>() {
+    /**
+     * Refreshes a contact URI: it may have changed as a result of aggregation
+     * activity.
+     */
+    private class ContactUriQueryHandler extends AsyncQueryHandler {
 
-        @Override
-        public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-            Uri contactUri = args.getParcelable(ARG_CONTACT_URI);
-            return new CursorLoader(getContext(), contactUri, new String[] { Contacts.LOOKUP_KEY },
-                    null, null, null);
+        public ContactUriQueryHandler(ContentResolver cr) {
+            super(cr);
+        }
+
+        public void runQuery() {
+            startQuery(0, mSelectedContactUri, mSelectedContactUri,
+                    new String[] { Contacts._ID, Contacts.LOOKUP_KEY }, null, null, null);
         }
 
         @Override
-        public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        protected void onQueryComplete(int token, Object cookie, Cursor data) {
+            long contactId = 0;
             String lookupKey = null;
             if (data != null) {
                 if (data.moveToFirst()) {
-                    lookupKey = data.getString(0);
+                    contactId = data.getLong(0);
+                    lookupKey = data.getString(1);
                 }
+                data.close();
             }
-            onLookupKeyLoadFinished(lookupKey);
+
+            if (!cookie.equals(mSelectedContactUri)) {
+                return;
+            }
+
+            onContactUriQueryFinished(Contacts.getLookupUri(contactId, lookupKey));
         }
-    };
+    }
+
+    private ContactUriQueryHandler mQueryHandler;
 
     private Handler getHandler() {
         if (mHandler == null) {
@@ -133,6 +148,7 @@ public abstract class ContactBrowseListFragment extends
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+        mQueryHandler = new ContactUriQueryHandler(activity.getContentResolver());
         mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
         restoreFilter();
         restoreSelectedUri(false);
@@ -196,43 +212,37 @@ public abstract class ContactBrowseListFragment extends
         outState.putBoolean(KEY_SELECTION_VERIFIED, mSelectionVerified);
     }
 
-    @Override
-    public void onStart() {
-        // Refresh the currently selected lookup in case it changed while we were sleeping
-        startLoadingContactLookupKey();
-        super.onStart();
-   }
+    protected void refreshSelectedContactUri() {
+        if (mQueryHandler == null) {
+            return;
+        }
 
-    protected void startLoadingContactLookupKey() {
-        getLoaderManager().stopLoader(SELECTED_ID_LOADER);
+        mQueryHandler.cancelOperation(0);
 
         if (!isSelectionVisible()) {
             return;
         }
 
-        mLoadingLookupKey = true;
+        mRefreshingContactUri = true;
 
         if (mSelectedContactUri == null) {
-            onLookupKeyLoadFinished(null);
+            onContactUriQueryFinished(null);
             return;
         }
 
         if (mSelectedContactDirectoryId != Directory.DEFAULT
                 && mSelectedContactDirectoryId != Directory.LOCAL_INVISIBLE) {
-            onLookupKeyLoadFinished(mSelectedContactLookupKey);
+            onContactUriQueryFinished(mSelectedContactUri);
         } else {
-            Bundle bundle = new Bundle();
-            bundle.putParcelable(ARG_CONTACT_URI, mSelectedContactUri);
-            getLoaderManager().restartLoader(SELECTED_ID_LOADER, bundle, mIdLoaderCallbacks);
-      }
+            mQueryHandler.runQuery();
+        }
     }
 
-    protected void onLookupKeyLoadFinished(String lookupKey) {
-        mLoadingLookupKey = false;
-        if (!TextUtils.equals(mSelectedContactLookupKey, lookupKey)) {
-            mSelectedContactLookupKey = lookupKey;
-            checkSelection();
-        }
+    protected void onContactUriQueryFinished(Uri uri) {
+        mRefreshingContactUri = false;
+        mSelectedContactUri = uri;
+        parseSelectedContactUri();
+        checkSelection();
     }
 
     @Override
@@ -304,23 +314,20 @@ public abstract class ContactBrowseListFragment extends
                 }
             }
 
-            if (mStartedLoading) {
-
-                // Also, launch a loader to pick up a new lookup key in case it has changed
-                startLoadingContactLookupKey();
-            }
+            // Also, launch a loader to pick up a new lookup URI in case it has changed
+            refreshSelectedContactUri();
         }
     }
 
     private void parseSelectedContactUri() {
         if (mSelectedContactUri != null) {
             String directoryParam =
-                mSelectedContactUri.getQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY);
+                    mSelectedContactUri.getQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY);
             mSelectedContactDirectoryId = TextUtils.isEmpty(directoryParam) ? Directory.DEFAULT
                     : Long.parseLong(directoryParam);
             if (mSelectedContactUri.toString().startsWith(Contacts.CONTENT_LOOKUP_URI.toString())) {
-                mSelectedContactLookupKey = Uri.encode(
-                        mSelectedContactUri.getPathSegments().get(2));
+                List<String> pathSegments = mSelectedContactUri.getPathSegments();
+                mSelectedContactLookupKey = Uri.encode(pathSegments.get(2));
             } else {
                 mSelectedContactLookupKey = null;
             }
@@ -349,7 +356,9 @@ public abstract class ContactBrowseListFragment extends
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         super.onLoadFinished(loader, data);
         mSelectionVerified = false;
-        checkSelection();
+
+        // Refresh the currently selected lookup in case it changed while we were sleeping
+        refreshSelectedContactUri();
     }
 
     private void checkSelection() {
@@ -399,7 +408,7 @@ public abstract class ContactBrowseListFragment extends
             requestSelectionToScreen();
         }
 
-        getListView().invalidate();
+        adapter.notifyDataSetChanged();
 
         if (mListener != null) {
             mListener.onSelectionChange();
@@ -442,7 +451,7 @@ public abstract class ContactBrowseListFragment extends
 
     @Override
     public boolean isLoading() {
-        return mLoadingLookupKey || super.isLoading();
+        return mRefreshingContactUri || super.isLoading();
     }
 
     @Override
