@@ -32,7 +32,7 @@ public class AutoScrollListView extends ListView {
      */
     private static final float PREFERRED_SELECTION_OFFSET_FROM_TOP = 0.33f;
 
-    private int mRequestedScrollPosition;
+    private int mRequestedScrollPosition = -1;
     private boolean mSmoothScrollRequested;
 
     public AutoScrollListView(Context context) {
