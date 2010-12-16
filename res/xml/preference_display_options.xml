@@ -23,7 +23,7 @@
             android:dialogTitle="@string/display_options_sort_list_by" />
 
         <com.android.contacts.preference.DisplayOrderPreference
-            android:key="sortOrder"
+            android:key="displayOrder"
             android:title="@string/display_options_view_names_as"
             android:dialogTitle="@string/display_options_view_names_as" />
     </PreferenceCategory>
