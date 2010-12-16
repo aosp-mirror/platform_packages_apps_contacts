@@ -17,6 +17,7 @@
 package com.android.contacts.list;
 
 import com.android.contacts.R;
+import com.android.contacts.util.ThemeUtils;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -33,11 +34,9 @@ public class ContactListFilterView extends LinearLayout {
     private ImageView mIcon;
     private TextView mLabel;
     private View mIndent;
-    private View mGroupView;
     private ContactListFilter mFilter;
     private boolean mSingleAccount;
-    private TextView mGroupLabel;
-    private TextView mAccountLabel;
+    private int mActivatedBackground;
 
     public ContactListFilterView(Context context) {
         super(context);
@@ -60,30 +59,22 @@ public class ContactListFilterView extends LinearLayout {
     }
 
     public void bindView(boolean dropdown) {
+        if (dropdown) {
+            if (mActivatedBackground == 0) {
+                mActivatedBackground = ThemeUtils.getActivatedBackground(getContext().getTheme());
+            }
+            setBackgroundResource(mActivatedBackground);
+        }
+
         if (mLabel == null) {
             mIcon = (ImageView) findViewById(R.id.icon);
             mLabel = (TextView) findViewById(R.id.label);
             mIndent = findViewById(R.id.indent);
-            mGroupView = findViewById(R.id.group);
-            mGroupLabel = (TextView) findViewById(R.id.group_label);
-            mAccountLabel = (TextView) findViewById(R.id.account_label);
         }
 
         if (mFilter == null) {
             mLabel.setText(R.string.contactsList);
             return;
-        }
-
-        if (!dropdown) {
-            if (mFilter.filterType == ContactListFilter.FILTER_TYPE_GROUP && !mSingleAccount) {
-                mLabel.setVisibility(View.GONE);
-                mGroupView.setVisibility(View.VISIBLE);
-            } else {
-                mLabel.setVisibility(View.VISIBLE);
-                mGroupView.setVisibility(View.GONE);
-            }
-        } else {
-            mLabel.setVisibility(View.VISIBLE);
         }
 
         switch (mFilter.filterType) {
@@ -127,16 +118,9 @@ public class ContactListFilterView extends LinearLayout {
             case ContactListFilter.FILTER_TYPE_GROUP: {
                 mIcon.setVisibility(View.VISIBLE);
                 mIcon.setImageResource(R.drawable.ic_menu_display_all_holo_light);
+                mLabel.setText(mFilter.title);
                 if (dropdown) {
-                    mLabel.setText(mFilter.title);
                     mIndent.setVisibility(mSingleAccount ? View.GONE : View.VISIBLE);
-                } else {
-                    if (mSingleAccount) {
-                        mLabel.setText(mFilter.title);
-                    } else {
-                        mGroupLabel.setText(mFilter.title);
-                        mAccountLabel.setText(mFilter.accountName);
-                    }
                 }
                 break;
             }

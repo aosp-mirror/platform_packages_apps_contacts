@@ -352,7 +352,9 @@ public class ContactListFilterController
                         R.layout.filter_spinner_item, parent, false);
             }
             view.setSingleAccount(mAccountCount == 1);
-            view.setContactListFilter(mFilters.valueAt(position));
+            ContactListFilter filter = mFilters.valueAt(position);
+            view.setContactListFilter(filter);
+            view.setActivated(filter.equals(mFilter));
             view.bindView(true);
             return view;
         }

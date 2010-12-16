@@ -22,4 +22,11 @@ public class ThemeUtils {
     public static int getSelectableItemBackground(Theme theme) {
         return getAttribute(theme, android.R.attr.selectableItemBackground);
     }
+
+    /**
+     * Returns the resource id of the background used for list items that show activated background
+     */
+    public static int getActivatedBackground(Theme theme) {
+        return getAttribute(theme, android.R.attr.activatedBackgroundIndicator);
+    }
 }

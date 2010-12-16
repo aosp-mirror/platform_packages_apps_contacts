@@ -41,7 +41,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left|center_vertical"
         android:focusable="true"
-        android:focusableInTouchMode="true"
         android:minWidth="220dip" >
         <ImageView
             android:id="@+id/icon"
@@ -51,36 +50,13 @@
             android:layout_marginRight="7dip"
             android:layout_gravity="center_vertical" />
 
-        <FrameLayout
+        <TextView
+            android:id="@+id/label"
             android:layout_height="match_parent"
-            android:layout_width="wrap_content">
-            <TextView
-                android:id="@+id/label"
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content"
-                android:gravity="center_vertical"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:ellipsize="end" />
-            <LinearLayout
-                android:id="@+id/group"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center_vertical">
-                <TextView
-                    android:id="@+id/group_label"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:ellipsize="end" />
-                <TextView
-                    android:id="@+id/account_label"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:ellipsize="end" />
-            </LinearLayout>
-        </FrameLayout>
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:ellipsize="end" />
     </view>
 
     <SearchView
