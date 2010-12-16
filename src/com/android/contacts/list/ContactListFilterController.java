@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -222,6 +223,9 @@ public class ContactListFilterController
         if (filterChanged) {
             notifyContactListFilterChanged();
         }
+    }
+
+    public void onLoaderReset(Loader<List<ContactListFilter>> loader) {
     }
 
     private void setContactListFilter(int filterId) {

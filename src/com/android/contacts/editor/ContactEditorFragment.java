@@ -1641,6 +1641,9 @@ public class ContactEditorFragment extends Fragment implements
             }
             Log.v(TAG, "Time needed for setting UI: " + (setDataEndTime-setDataStartTime));
         }
+
+        public void onLoaderReset(Loader<ContactLoader.Result> loader) {
+        }
     };
 
     /**
@@ -1658,6 +1661,9 @@ public class ContactEditorFragment extends Fragment implements
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
             mGroupMetaData = data;
             bindGroupMetaData();
+        }
+
+        public void onLoaderReset(Loader<Cursor> loader) {
         }
     };
 

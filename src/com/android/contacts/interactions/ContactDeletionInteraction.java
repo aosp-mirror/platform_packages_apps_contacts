@@ -180,6 +180,9 @@ public class ContactDeletionInteraction extends Fragment
         showDialog(messageId, contactUri);
     }
 
+    public void onLoaderReset(Loader<Cursor> loader) {
+    }
+    
     /* Visible for testing */
     void showDialog(int messageId, final Uri contactUri) {
         mDialog = new AlertDialog.Builder(getActivity())
