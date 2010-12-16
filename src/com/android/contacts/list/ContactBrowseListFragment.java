@@ -171,6 +171,7 @@ public abstract class ContactBrowseListFragment extends
 
         mFilter = filter;
         saveFilter();
+        mSelectedContactUri = null;
         restoreSelectedUri(true);
         reloadData();
     }
@@ -206,6 +207,7 @@ public abstract class ContactBrowseListFragment extends
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putBoolean(KEY_PERSISTENT_SELECTION_ENABLED, mPersistentSelectionEnabled);
         outState.putBoolean(KEY_FILTER_ENABLED, mFilterEnabled);
         outState.putParcelable(KEY_FILTER, mFilter);
         outState.putParcelable(KEY_SELECTED_URI, mSelectedContactUri);
@@ -310,7 +312,7 @@ public abstract class ContactBrowseListFragment extends
                 if (adapter != null) {
                     adapter.setSelectedContact(
                             mSelectedContactDirectoryId, mSelectedContactLookupKey);
-                    adapter.notifyDataSetChanged();
+                    getListView().invalidateViews();
                 }
             }
 
@@ -408,7 +410,7 @@ public abstract class ContactBrowseListFragment extends
             requestSelectionToScreen();
         }
 
-        adapter.notifyDataSetChanged();
+        getListView().invalidateViews();
 
         if (mListener != null) {
             mListener.onSelectionChange();
