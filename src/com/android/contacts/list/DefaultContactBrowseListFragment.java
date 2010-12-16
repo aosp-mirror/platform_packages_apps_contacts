@@ -18,14 +18,12 @@ package com.android.contacts.list;
 import com.android.contacts.R;
 
 import android.database.Cursor;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 
 /**
  * Fragment containing a contact list used for browsing (as compared to
@@ -40,22 +38,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         setPhotoLoaderEnabled(true);
         setSectionHeaderDisplayEnabled(true);
         setVisibleScrollbarEnabled(true);
-    }
-
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    public void restoreSavedState(Bundle savedState) {
-        super.restoreSavedState(savedState);
-
-        if (savedState == null) {
-            return;
-        }
-
     }
 
     @Override

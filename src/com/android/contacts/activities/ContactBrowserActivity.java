@@ -340,6 +340,10 @@ public class ContactBrowserActivity extends Activity
                     .replace(R.id.detail_container, mDetailFragment)
                     .commit();
         }
+
+        if (replaceList) {
+            invalidateOptionsMenu();
+        }
     }
 
     @Override
@@ -349,9 +353,6 @@ public class ContactBrowserActivity extends Activity
         }
 
         mListFragment.setFilter(mContactListFilterController.getFilter());
-
-        // Filters have been loaded - now we can start loading the list itself
-        mListFragment.startLoading();
 
         invalidateOptionsMenu();
     }
@@ -414,9 +415,6 @@ public class ContactBrowserActivity extends Activity
                 fragment.setQuickContactEnabled(!mContactContentDisplayed);
                 fragment.setFilterEnabled(!mRequest.isSearchMode());
                 fragment.setPersistentSelectionEnabled(!mRequest.isSearchMode());
-                if (mContactListFilterController.isLoaded()) {
-                    fragment.setFilter(mContactListFilterController.getFilter());
-                }
                 return fragment;
             }
 
@@ -475,7 +473,6 @@ public class ContactBrowserActivity extends Activity
                         : View.SCROLLBAR_POSITION_RIGHT);
         fragment.setSelectionVisible(true);
         fragment.setQuickContactEnabled(!mContactContentDisplayed);
-        invalidateOptionsMenu();
         return fragment;
     }
 

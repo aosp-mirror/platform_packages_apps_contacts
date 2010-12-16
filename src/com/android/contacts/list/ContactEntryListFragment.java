@@ -295,6 +295,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     @Override
     public void onStart() {
+        super.onStart();
+        
         mContactsPrefs.registerChangeListener(mPreferencesChangeListener);
 
         if (mProviderStatusLoader == null) {
@@ -307,7 +309,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mLoadPriorityDirectoriesOnly = true;
 
         startLoading();
-        super.onStart();
     }
 
     protected void startLoading() {
