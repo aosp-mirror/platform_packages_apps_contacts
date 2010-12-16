@@ -1461,4 +1461,13 @@
 
     <!-- Toast shown when text is copied to the clipboard [CHAR LIMIT=64] -->
     <string name="toast_text_copied">Text copied</string>
+    
+    <!-- Title of the alert dialog when the user hits the Cancel button in the editor [CHAR LIMIT=64] -->
+    <string name="cancel_confirmation_dialog_title">Discard changes</string>
+
+    <!-- Contents of the alert dialog when the user hits the Cancel button in the editor [CHAR LIMIT=128] -->
+    <string name="cancel_confirmation_dialog_message">Do you want to discard your changes?</string>
+
+    <!-- Button in the alert dialog when the user hits the Cancel button in the editor [CHAR LIMIT=20] -->
+    <string name="discard">Discard</string>
 </resources>

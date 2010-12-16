@@ -40,6 +40,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ActivityNotFoundException;
@@ -584,7 +585,7 @@ public class ContactEditorFragment extends Fragment implements
             case R.id.menu_done:
                 return save(SaveMode.CLOSE);
             case R.id.menu_discard:
-                return doRevertAction();
+                return revert();
             case R.id.menu_delete:
                 return doDeleteAction();
             case R.id.menu_split:
@@ -750,12 +751,48 @@ public class ContactEditorFragment extends Fragment implements
         return true;
     }
 
-    private boolean doRevertAction() {
+    public static class CancelEditDialogFragment extends DialogFragment {
+
+        public static void show(ContactEditorFragment fragment) {
+            CancelEditDialogFragment dialog = new CancelEditDialogFragment();
+            dialog.setTargetFragment(fragment, 0);
+            dialog.show(fragment.getFragmentManager(), "cancelEditor");
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            AlertDialog dialog = new AlertDialog.Builder(getActivity())
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle(R.string.cancel_confirmation_dialog_title)
+                    .setMessage(R.string.cancel_confirmation_dialog_message)
+                    .setPositiveButton(R.string.discard,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                ((ContactEditorFragment)getTargetFragment()).doRevertAction();
+                            }
+                        }
+                    )
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .create();
+            return dialog;
+        }
+    }
+
+    private boolean revert() {
+        final AccountTypes sources = AccountTypes.getInstance(mContext);
+        if (mState.buildDiff().isEmpty()) {
+            doRevertAction();
+        } else {
+            CancelEditDialogFragment.show(this);
+        }
+        return true;
+    }
+
+    private void doRevertAction() {
         // When this Fragment is closed we don't want it to auto-save
         mStatus = Status.CLOSING;
         if (mListener != null) mListener.onReverted();
-
-        return true;
     }
 
     public void onJoinCompleted(Uri uri) {
