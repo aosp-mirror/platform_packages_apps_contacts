@@ -206,13 +206,13 @@ public class ContactPhotoLoader implements Callback {
                 holder.state = BitmapHolder.NEEDED;
             }
 
-            if (loaded || loadedNeedsReload) {
-                // Null bitmap reference means that database contains no bytes for the photo
-                if (holder.bitmapRef == null) {
-                    view.setImageResource(mDefaultResourceId);
-                    return loaded;
-                }
+            // Null bitmap reference means that database contains no bytes for the photo
+            if ((loaded || loadedNeedsReload) && holder.bitmapRef == null) {
+                view.setImageResource(mDefaultResourceId);
+                return loaded;
+            }
 
+            if (holder.bitmapRef != null) {
                 Bitmap bitmap = holder.bitmapRef.get();
                 if (bitmap != null) {
                     view.setImageBitmap(bitmap);
