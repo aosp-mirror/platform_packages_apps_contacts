@@ -433,6 +433,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 //            }
     }
 
+    public void onLoaderReset(Loader<Cursor> loader) {
+    }
+
     protected void onPartitionLoaded(int partitionIndex, Cursor data) {
         mAdapter.changeCursor(partitionIndex, data);
         showCount(partitionIndex, data);

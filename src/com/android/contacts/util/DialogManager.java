@@ -99,6 +99,9 @@ public class DialogManager {
             return null;
         }
         final Dialog dialog = ((DialogShowingView)view).createDialog(bundle);
+        if (dialog == null) {
+            return dialog;
+        }
 
         // As we will never re-use this dialog, we can completely kill it here
         dialog.setOnDismissListener(new OnDismissListener() {

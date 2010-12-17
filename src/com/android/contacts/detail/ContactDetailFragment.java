@@ -53,6 +53,7 @@ import android.content.Entity.NamedContentValues;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.ParseException;
 import android.net.Uri;
@@ -1172,6 +1173,10 @@ public class ContactDetailFragment extends Fragment implements
             if (mContactData == null && mListener != null) {
                 mListener.onContactNotFound();
             }
+        }
+
+        public void onLoaderReset(Loader<ContactLoader.Result> loader) {
+            mContactData = null;
         }
     };
 

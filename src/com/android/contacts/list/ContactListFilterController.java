@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -224,6 +225,9 @@ public class ContactListFilterController
         }
     }
 
+    public void onLoaderReset(Loader<List<ContactListFilter>> loader) {
+    }
+
     private void setContactListFilter(int filterId) {
         ContactListFilter filter;
         if (filterId == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
@@ -352,7 +356,9 @@ public class ContactListFilterController
                         R.layout.filter_spinner_item, parent, false);
             }
             view.setSingleAccount(mAccountCount == 1);
-            view.setContactListFilter(mFilters.valueAt(position));
+            ContactListFilter filter = mFilters.valueAt(position);
+            view.setContactListFilter(filter);
+            view.setActivated(filter.equals(mFilter));
             view.bindView(true);
             return view;
         }

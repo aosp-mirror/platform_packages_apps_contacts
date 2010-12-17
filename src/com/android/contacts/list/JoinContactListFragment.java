@@ -86,6 +86,9 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
                 }
             }
         }
+        
+        public void onLoaderReset(Loader<Cursor> loader) {
+        }
     };
 
     public JoinContactListFragment() {

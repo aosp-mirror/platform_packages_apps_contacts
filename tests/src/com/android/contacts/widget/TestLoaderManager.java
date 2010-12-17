@@ -58,12 +58,18 @@ public class TestLoaderManager extends LoaderManager {
         return loader;
     }
 
-    @Override
+    public <D> Loader<D> recreateLoader(int id, Bundle args, LoaderCallbacks<D> callbacks) {
+        return initLoader(id, args, callbacks);
+    }
+
     public <D> Loader<D> restartLoader(int id, Bundle args, LoaderCallbacks<D> callbacks) {
         return initLoader(id, args, callbacks);
     }
 
-    @Override
+    public void destroyLoader(int id) {
+        mStartedLoaders.get(id).stopLoading();
+    }
+
     public void stopLoader(int id) {
         mStartedLoaders.get(id).stopLoading();
     }

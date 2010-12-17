@@ -363,6 +363,9 @@ public abstract class ContactBrowseListFragment extends
         refreshSelectedContactUri();
     }
 
+    public void onLoaderReset(Loader<Cursor> loader) {
+    }
+
     private void checkSelection() {
         if (mSelectionVerified) {
             return;
