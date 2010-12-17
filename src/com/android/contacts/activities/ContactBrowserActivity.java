@@ -846,10 +846,10 @@ public class ContactBrowserActivity extends Activity
     @Override
     public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
             boolean globalSearch) {
-        if (globalSearch) {
-            super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
-        } else {
+        if (mListFragment != null && mListFragment.isAdded() && !globalSearch) {
             mListFragment.startSearch(initialQuery);
+        } else {
+            super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
         }
     }
 
