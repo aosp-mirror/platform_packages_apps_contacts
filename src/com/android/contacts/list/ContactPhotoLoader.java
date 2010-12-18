@@ -82,6 +82,7 @@ public class ContactPhotoLoader implements Callback {
         private static final int LOADED_NEEDS_RELOAD = 3;
 
         int state;
+        Bitmap bitmap;
         SoftReference<Bitmap> bitmapRef;
     }
 
@@ -324,8 +325,20 @@ public class ContactPhotoLoader implements Callback {
             }
         }
 
+        softenCache();
+
         if (!mPendingRequests.isEmpty()) {
             requestLoading();
+        }
+    }
+
+    /**
+     * Removes strong references to loaded bitmaps to allow them to be garbage collected
+     * if needed.
+     */
+    private void softenCache() {
+        for (BitmapHolder holder : mBitmapCache.values()) {
+            holder.bitmap = null;
         }
     }
 
@@ -342,6 +355,7 @@ public class ContactPhotoLoader implements Callback {
         if (bytes != null) {
             try {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, null);
+                holder.bitmap = bitmap;
                 holder.bitmapRef = new SoftReference<Bitmap>(bitmap);
             } catch (OutOfMemoryError e) {
                 // Do nothing - the photo will appear to be missing
