@@ -363,6 +363,7 @@ public abstract class ContactBrowseListFragment extends
         refreshSelectedContactUri();
     }
 
+    @Override
     public void onLoaderReset(Loader<Cursor> loader) {
     }
 
@@ -574,5 +575,10 @@ public abstract class ContactBrowseListFragment extends
         } else {
             return mPersistentSelectionPrefix + "-" + mFilter.getId();
         }
+    }
+
+    public boolean isOptionsMenuChanged() {
+        // This fragment does not have an option menu of its own
+        return false;
     }
 }

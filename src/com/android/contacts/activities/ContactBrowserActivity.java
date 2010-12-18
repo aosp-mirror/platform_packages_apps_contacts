@@ -126,6 +126,10 @@ public class ContactBrowserActivity extends Activity
     private ProviderStatusLoader mProviderStatusLoader;
     private int mProviderStatus = -1;
 
+    private boolean mOptionsMenuContactsAvailable;
+    private boolean mOptionsMenuGroupActionsEnabled;
+    private boolean mOptionsMenuCustomFilterChangeable;
+
     public ContactBrowserActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
         mContactListFilterController = new ContactListFilterController(this);
@@ -732,20 +736,69 @@ public class ContactBrowserActivity extends Activity
     }
 
     @Override
+    public void invalidateOptionsMenu() {
+        if (isOptionsMenuChanged()) {
+            super.invalidateOptionsMenu();
+        }
+    }
+
+    public boolean isOptionsMenuChanged() {
+        if (mOptionsMenuContactsAvailable != areContactsAvailable()) {
+            return true;
+        }
+
+        if (mOptionsMenuGroupActionsEnabled != areGroupActionsEnabled()) {
+            return true;
+        }
+
+        if (mOptionsMenuCustomFilterChangeable != isCustomFilterChangeable()) {
+            return true;
+        }
+
+        if (mListFragment != null && mListFragment.isOptionsMenuChanged()) {
+            return true;
+        }
+
+        if (mDetailFragment != null && mDetailFragment.isOptionsMenuChanged()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        if (!areContactsAvailable()) {
+        mOptionsMenuContactsAvailable = areContactsAvailable();
+        if (!mOptionsMenuContactsAvailable) {
             return false;
         }
 
         MenuItem settings = menu.findItem(R.id.menu_settings);
         settings.setVisible(!ContactsPreferenceActivity.isEmpty(this));
 
+        mOptionsMenuCustomFilterChangeable = isCustomFilterChangeable();
+
         MenuItem displayGroups = menu.findItem(R.id.menu_display_groups);
         if (displayGroups != null) {
-            displayGroups.setVisible(
-                    mRequest.getActionCode() == ContactsRequest.ACTION_DEFAULT);
+            displayGroups.setVisible(mOptionsMenuCustomFilterChangeable);
         }
 
+        mOptionsMenuGroupActionsEnabled = areGroupActionsEnabled();
+
+        MenuItem renameGroup = menu.findItem(R.id.menu_rename_group);
+        if (renameGroup != null) {
+            renameGroup.setVisible(mOptionsMenuGroupActionsEnabled);
+        }
+
+        MenuItem deleteGroup = menu.findItem(R.id.menu_delete_group);
+        if (deleteGroup != null) {
+            deleteGroup.setVisible(mOptionsMenuGroupActionsEnabled);
+        }
+
+        return true;
+    }
+
+    private boolean areGroupActionsEnabled() {
         boolean groupActionsEnabled = false;
         if (mListFragment != null) {
             ContactListFilter filter = mListFragment.getFilter();
@@ -755,18 +808,11 @@ public class ContactBrowserActivity extends Activity
                 groupActionsEnabled = true;
             }
         }
+        return groupActionsEnabled;
+    }
 
-        MenuItem renameGroup = menu.findItem(R.id.menu_rename_group);
-        if (renameGroup != null) {
-            renameGroup.setVisible(groupActionsEnabled);
-        }
-
-        MenuItem deleteGroup = menu.findItem(R.id.menu_delete_group);
-        if (deleteGroup != null) {
-            deleteGroup.setVisible(groupActionsEnabled);
-        }
-
-        return true;
+    public boolean isCustomFilterChangeable() {
+        return mRequest.getActionCode() == ContactsRequest.ACTION_DEFAULT;
     }
 
     @Override
