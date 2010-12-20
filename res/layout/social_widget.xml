@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </FrameLayout>
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="0dip"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -51,44 +51,38 @@
         android:layout_marginBottom="6dip"
         android:layout_marginLeft="0dip"
         android:paddingLeft="47dip"
-        android:paddingRight="8dip">
+        android:paddingRight="8dip"
+        android:paddingTop="3dip"
+        android:paddingBottom="6dip">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/name_and_snippet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:maxLines="3"
+            android:lineSpacingExtra="2sp"
+            android:textColor="#FFFFFFFF"
+            android:textSize="@dimen/widget_text_size_snippet" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="#FFFFFFFF"
+            android:textSize="@dimen/widget_text_size_name" />
+
+        <TextView
+            android:id="@+id/status_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left|center_vertical"
-            android:orientation="vertical"
-            android:paddingTop="2dip"
-            android:paddingBottom="2dip"
-            android:paddingRight="4dip">
-
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:ellipsize="end"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFFFF" />
-
-            <TextView
-                android:id="@+id/status"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="13sp"
-                android:textColor="#FFFFFFFF"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/status_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="13sp"
-                android:textColor="#FF444444"
-                android:visibility="gone" />
-        </LinearLayout>
-    </FrameLayout>
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/statusbox_attribute_holo"
+            android:textSize="13sp"
+            android:textColor="#FF444444"
+            android:visibility="gone" />
+    </RelativeLayout>
 </LinearLayout>
