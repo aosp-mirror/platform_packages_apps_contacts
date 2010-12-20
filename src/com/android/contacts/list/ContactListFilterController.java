@@ -110,7 +110,7 @@ public class ContactListFilterController
     }
 
     public void onStop() {
-        mLoaderManager.stopLoader(R.id.contact_list_filter_loader);
+        mLoaderManager.destroyLoader(R.id.contact_list_filter_loader);
     }
 
     private SharedPreferences getSharedPreferences() {

@@ -986,10 +986,4 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         mContact = null;
         mDestroyed = true;
     }
-
-    public void destroy() {
-        unregisterObserver();
-        mContact = null;
-        mDestroyed = true;
-    }
 }

@@ -190,7 +190,7 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
     }
 
     @Override
-    public void destroy() {
+    public void reset() {
         stopLoading();
     }
 }

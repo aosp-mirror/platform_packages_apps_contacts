@@ -274,7 +274,7 @@ public class ContactDetailFragment extends Fragment implements
         mTransitionAnimationRequested = mContactDataDisplayed;
         mContactDataDisplayed = true;
         if (mLookupUri == null) {
-            getLoaderManager().stopLoader(LOADER_DETAILS);
+            getLoaderManager().destroyLoader(LOADER_DETAILS);
             mContactData = null;
             bindData();
         } else if (getActivity() != null) {

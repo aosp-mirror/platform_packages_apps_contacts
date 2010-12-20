@@ -730,7 +730,7 @@ public class ContactEditorFragment extends Fragment implements
 
         // If we are about to close the editor - there is no need to refresh the data
         if (saveMode == SaveMode.CLOSE) {
-            getLoaderManager().stopLoader(LOADER_DATA);
+            getLoaderManager().destroyLoader(LOADER_DATA);
         }
 
         mStatus = Status.SAVING;

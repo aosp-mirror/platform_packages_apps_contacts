@@ -208,7 +208,7 @@ public class ContactDeletionInteraction extends Fragment
     public void onDismiss(DialogInterface dialog) {
         mActive = false;
         mDialog = null;
-        getLoaderManager().stopLoader(LOADER_ID);
+        getLoaderManager().destroyLoader(LOADER_ID);
     }
 
     @Override

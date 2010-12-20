@@ -168,7 +168,7 @@ public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFil
     }
 
     @Override
-    public void destroy() {
+    public void reset() {
         stopLoading();
     }
 }

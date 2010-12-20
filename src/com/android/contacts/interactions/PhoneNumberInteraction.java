@@ -204,7 +204,7 @@ public class PhoneNumberInteraction
      */
     public void startInteraction(Uri contactUri) {
         if (mLoader != null) {
-            mLoader.destroy();
+            mLoader.reset();
         }
 
         mLoader = new CursorLoader(mContext,
