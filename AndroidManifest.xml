@@ -175,7 +175,7 @@
         <activity android:name=".activities.ContactsFrontDoor"
             android:label="@string/contactsList"
             android:icon="@mipmap/ic_launcher_contacts"
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:theme="@style/ContactBrowserTheme"
         >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

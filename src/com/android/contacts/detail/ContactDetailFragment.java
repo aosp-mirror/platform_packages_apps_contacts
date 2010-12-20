@@ -53,7 +53,6 @@ import android.content.Entity.NamedContentValues;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.res.Resources;
-import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.ParseException;
 import android.net.Uri;
@@ -91,7 +90,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnCreateContextMenuListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -134,6 +132,10 @@ public class ContactDetailFragment extends Fragment implements
     private int mNumPhoneNumbers = 0;
     private String mDefaultCountryIso;
     private boolean mContactDataDisplayed;
+
+    private boolean mOptionsMenuOptions;
+    private boolean mOptionsMenuEditable;
+    private boolean mOptionsMenuShareable;
 
     /**
      * Device capability: Set during buildEntries and used in the long-press context menu
@@ -968,25 +970,44 @@ public class ContactDetailFragment extends Fragment implements
         inflater.inflate(R.menu.view, menu);
     }
 
+    public boolean isOptionsMenuChanged() {
+        return mOptionsMenuOptions != isContactOptionsChangeEnabled()
+                || mOptionsMenuEditable != isContactEditable()
+                || mOptionsMenuShareable != isContactShareable();
+    }
+
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        boolean isEmpty = mContactData == null;
-        boolean isDirectoryEntry = !isEmpty && mContactData.isDirectoryEntry();
+        mOptionsMenuOptions = isContactOptionsChangeEnabled();
+        mOptionsMenuEditable = isContactEditable();
+        mOptionsMenuShareable = isContactShareable();
 
         // Options only shows telephony-related settings (ringtone, send to voicemail).
         // ==> Hide if we don't have a telephone
         final MenuItem optionsMenu = menu.findItem(R.id.menu_options);
-        final boolean deviceHasPhone = PhoneCapabilityTester.isPhone(mContext);
-        optionsMenu.setVisible(!isEmpty && !isDirectoryEntry && deviceHasPhone);
+        optionsMenu.setVisible(mOptionsMenuOptions);
 
         final MenuItem editMenu = menu.findItem(R.id.menu_edit);
-        editMenu.setVisible(!isEmpty && !isDirectoryEntry);
+        editMenu.setVisible(mOptionsMenuEditable);
 
         final MenuItem deleteMenu = menu.findItem(R.id.menu_delete);
-        deleteMenu.setVisible(!isEmpty && !isDirectoryEntry);
+        deleteMenu.setVisible(mOptionsMenuEditable);
 
         final MenuItem shareMenu = menu.findItem(R.id.menu_share);
-        shareMenu.setVisible(!isEmpty && !isDirectoryEntry && !mAllRestricted);
+        shareMenu.setVisible(mOptionsMenuShareable);
+    }
+
+    public boolean isContactOptionsChangeEnabled() {
+        return mContactData != null && !mContactData.isDirectoryEntry()
+                && PhoneCapabilityTester.isPhone(mContext);
+    }
+
+    public boolean isContactEditable() {
+        return mContactData != null && !mContactData.isDirectoryEntry();
+    }
+
+    public boolean isContactShareable() {
+        return mContactData != null && !mContactData.isDirectoryEntry() && !mAllRestricted;
     }
 
     @Override
