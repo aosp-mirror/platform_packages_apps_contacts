@@ -135,7 +135,7 @@ public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFil
     }
 
     @Override
-    public void startLoading() {
+    protected void onStartLoading() {
         if (mObserver == null) {
             mObserver = new ForceLoadContentObserver();
             getContext().getContentResolver().registerContentObserver(
@@ -152,7 +152,7 @@ public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFil
     }
 
     @Override
-    public void stopLoading() {
+    protected void onStopLoading() {
         if (mObserver != null) {
             getContext().getContentResolver().unregisterContentObserver(mObserver);
             mObserver = null;
@@ -168,7 +168,7 @@ public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFil
     }
 
     @Override
-    public void reset() {
+    protected void onReset() {
         stopLoading();
     }
 }
