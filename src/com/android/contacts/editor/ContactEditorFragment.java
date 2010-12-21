@@ -871,7 +871,7 @@ public class ContactEditorFragment extends Fragment implements
      * @param contactLookupUri the fresh URI for the currently edited contact (after saving it)
      */
     private void showJoinAggregateActivity(Uri contactLookupUri) {
-        if (contactLookupUri == null) {
+        if (contactLookupUri == null || !isAdded()) {
             return;
         }
 
