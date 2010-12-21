@@ -98,14 +98,14 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
     }
 
     @Override
-    public void startLoading() {
+    protected void onStartLoading() {
         getContext().getContentResolver().
                 registerContentObserver(Directory.CONTENT_URI, false, mObserver);
         forceLoad();
     }
 
     @Override
-    public void stopLoading() {
+    protected void onStopLoading() {
         getContext().getContentResolver().unregisterContentObserver(mObserver);
     }
 
@@ -190,7 +190,7 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
     }
 
     @Override
-    public void reset() {
+    protected void onReset() {
         stopLoading();
     }
 }

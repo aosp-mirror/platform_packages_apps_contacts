@@ -961,7 +961,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
     }
 
     @Override
-    public void startLoading() {
+    protected void onStartLoading() {
         if (mContact != null) {
             deliverResult(mContact);
         } else {
@@ -970,18 +970,18 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
     }
 
     @Override
-    public void forceLoad() {
+    protected void onForceLoad() {
         final LoadContactTask task = new LoadContactTask();
         task.execute((Void[])null);
     }
 
     @Override
-    public void stopLoading() {
+    protected void onStopLoading() {
         unregisterObserver();
         mContact = null;
     }
 
-    public void reset() {
+    protected void onReset() {
         unregisterObserver();
         mContact = null;
         mDestroyed = true;
