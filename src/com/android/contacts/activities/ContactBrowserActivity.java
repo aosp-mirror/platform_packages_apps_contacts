@@ -146,6 +146,9 @@ public class ContactBrowserActivity extends Activity
         if (fragment instanceof ContactBrowseListFragment) {
             mListFragment = (ContactBrowseListFragment)fragment;
             mListFragment.setOnContactListActionListener(new ContactBrowserActionListener());
+            if (mContactListFilterController.isLoaded()) {
+                mListFragment.setFilter(mContactListFilterController.getFilter());
+            }
         } else if (fragment instanceof ContactDetailFragment) {
             mDetailFragment = (ContactDetailFragment)fragment;
             mDetailFragment.setListener(mDetailFragmentListener);
@@ -352,7 +355,7 @@ public class ContactBrowserActivity extends Activity
 
     @Override
     public void onContactListFiltersLoaded() {
-        if (mListFragment == null) {
+        if (mListFragment == null || !mListFragment.isAdded()) {
             return;
         }
 
@@ -363,7 +366,7 @@ public class ContactBrowserActivity extends Activity
 
     @Override
     public void onContactListFilterChanged() {
-        if (mListFragment == null) {
+        if (mListFragment == null || !mListFragment.isAdded()) {
             return;
         }
 
