@@ -26,6 +26,7 @@ import android.net.Uri.Builder;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Contacts.AggregationSuggestions;
+import android.provider.ContactsContract.Directory;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -98,8 +99,12 @@ public class JoinContactListAdapter extends ContactListAdapter {
 
         // TODO simplify projection
         loader.setProjection(PROJECTION_CONTACT);
-        loader.setUri(buildSectionIndexerUri(Contacts.CONTENT_URI));
-        loader.setSelection(Contacts.IN_VISIBLE_GROUP + "=1 AND " + Contacts._ID + "!=?");
+        Uri allContactsUri = buildSectionIndexerUri(Contacts.CONTENT_URI).buildUpon()
+                .appendQueryParameter(
+                        ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT))
+                .build();
+        loader.setUri(allContactsUri);
+        loader.setSelection(Contacts._ID + "!=?");
         loader.setSelectionArgs(new String[]{String.valueOf(mTargetContactId)});
         if (getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
             loader.setSortOrder(Contacts.SORT_KEY_PRIMARY);
