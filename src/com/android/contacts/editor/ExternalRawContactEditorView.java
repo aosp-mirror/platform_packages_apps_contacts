@@ -18,13 +18,17 @@ package com.android.contacts.editor;
 
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
+import com.android.contacts.editor.ExternalRawContactEditorView.Listener;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityModifier;
 
+import android.accounts.Account;
+import android.content.ContentUris;
 import android.content.Context;
+import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
@@ -35,35 +39,51 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 /**
- * Custom view that displays read-only contacts in the edit screen.
+ * Custom view that displays external contacts in the edit screen.
  */
-public class ReadOnlyRawContactEditorView extends BaseRawContactEditorView {
+public class ExternalRawContactEditorView extends BaseRawContactEditorView
+        implements OnClickListener {
     private LayoutInflater mInflater;
 
     private View mPhotoStub;
     private TextView mName;
     private TextView mReadOnlyWarning;
+    private Button mEditExternallyButton;
     private ViewGroup mGeneral;
 
     private ImageView mHeaderIcon;
     private TextView mHeaderAccountType;
     private TextView mHeaderAccountName;
 
+    private String mAccountName;
+    private String mAccountType;
     private long mRawContactId = -1;
 
-    public ReadOnlyRawContactEditorView(Context context) {
+    private Listener mListener;
+
+    public interface Listener {
+        void onExternalEditorRequest(Account account, Uri uri);
+    }
+
+    public ExternalRawContactEditorView(Context context) {
         super(context);
     }
 
-    public ReadOnlyRawContactEditorView(Context context, AttributeSet attrs) {
+    public ExternalRawContactEditorView(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    public void setListener(Listener listener) {
+        mListener = listener;
     }
 
     /** {@inheritDoc} */
@@ -78,6 +98,8 @@ public class ReadOnlyRawContactEditorView extends BaseRawContactEditorView {
 
         mName = (TextView) findViewById(R.id.read_only_name);
         mReadOnlyWarning = (TextView) findViewById(R.id.read_only_warning);
+        mEditExternallyButton = (Button) findViewById(R.id.button_edit_externally);
+        mEditExternallyButton.setOnClickListener(this);
         mGeneral = (ViewGroup)findViewById(R.id.sect_general);
 
         mHeaderIcon = (ImageView) findViewById(R.id.header_icon);
@@ -105,14 +127,15 @@ public class ReadOnlyRawContactEditorView extends BaseRawContactEditorView {
 
         // Fill in the header info
         ValuesDelta values = state.getValues();
-        String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
+        mAccountName = values.getAsString(RawContacts.ACCOUNT_NAME);
+        mAccountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
         CharSequence accountType = source.getDisplayLabel(mContext);
         if (TextUtils.isEmpty(accountType)) {
             accountType = mContext.getString(R.string.account_phone);
         }
-        if (!TextUtils.isEmpty(accountName)) {
+        if (!TextUtils.isEmpty(mAccountName)) {
             mHeaderAccountName.setText(
-                    mContext.getString(R.string.from_account_format, accountName));
+                    mContext.getString(R.string.from_account_format, mAccountName));
         }
         mHeaderAccountType.setText(mContext.getString(R.string.account_type_format, accountType));
         mHeaderIcon.setImageDrawable(source.getDisplayIcon(mContext));
@@ -142,8 +165,14 @@ public class ReadOnlyRawContactEditorView extends BaseRawContactEditorView {
         primary = state.getPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
         mName.setText(primary.getAsString(StructuredName.DISPLAY_NAME));
 
-        // Read only warning
-        mReadOnlyWarning.setText(mContext.getString(R.string.contact_read_only, accountType));
+        if (source.readOnly) {
+            mReadOnlyWarning.setText(mContext.getString(R.string.contact_read_only, accountType));
+            mReadOnlyWarning.setVisibility(View.VISIBLE);
+            mEditExternallyButton.setVisibility(View.GONE);
+        } else {
+            mReadOnlyWarning.setVisibility(View.GONE);
+            mEditExternallyButton.setVisibility(View.VISIBLE);
+        }
 
         // Phones
         ArrayList<ValuesDelta> phones = state.getMimeEntries(Phone.CONTENT_ITEM_TYPE);
@@ -188,5 +217,15 @@ public class ReadOnlyRawContactEditorView extends BaseRawContactEditorView {
     @Override
     public long getRawContactId() {
         return mRawContactId;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.button_edit_externally) {
+            if (mListener != null) {
+                mListener.onExternalEditorRequest(new Account(mAccountName, mAccountType),
+                        ContentUris.withAppendedId(RawContacts.CONTENT_URI, mRawContactId));
+            }
+        }
     }
 }

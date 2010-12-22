@@ -24,6 +24,7 @@ import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.activities.JoinContactActivity;
 import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
 import com.android.contacts.editor.Editor.EditorListener;
+import com.android.contacts.editor.ExternalRawContactEditorView.Listener;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypes;
 import com.android.contacts.model.EntityDelta;
@@ -101,7 +102,8 @@ import java.util.List;
 
 public class ContactEditorFragment extends Fragment implements
         SplitContactConfirmationDialogFragment.Listener, SelectAccountDialogFragment.Listener,
-        AggregationSuggestionEngine.Listener, AggregationSuggestionView.Listener {
+        AggregationSuggestionEngine.Listener, AggregationSuggestionView.Listener,
+        ExternalRawContactEditorView.Listener {
 
     private static final String TAG = "ContactEditorFragment";
 
@@ -375,6 +377,35 @@ public class ContactEditorFragment extends Fragment implements
             return;
         }
 
+        // See if this edit operation needs to be redirected to a custom editor
+        ArrayList<Entity> entities = data.getEntities();
+        if (entities.size() == 1) {
+            Entity entity = entities.get(0);
+            ContentValues entityValues = entity.getEntityValues();
+            String type = entityValues.getAsString(RawContacts.ACCOUNT_TYPE);
+            AccountType accountType = AccountTypes.getInstance(mContext).getInflatedSource(
+                    type, AccountType.LEVEL_SUMMARY);
+            if (accountType.getEditContactActivityClassName() != null) {
+                if (mListener != null) {
+                    String name = entityValues.getAsString(RawContacts.ACCOUNT_NAME);
+                    long rawContactId = entityValues.getAsLong(RawContacts.Entity._ID);
+                    mListener.onCustomEditContactActivityRequested(new Account(name, type),
+                            ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId),
+                            mIntentExtras, true);
+                }
+                return;
+            }
+        }
+
+        bindEditorsForExistingContact(data);
+    }
+
+    @Override
+    public void onExternalEditorRequest(Account account, Uri uri) {
+        mListener.onCustomEditContactActivityRequested(account, uri, null, false);
+    }
+
+    private void bindEditorsForExistingContact(ContactLoader.Result data) {
         setEnabled(true);
 
         // Build Filter mQuerySelection
@@ -443,6 +474,19 @@ public class ContactEditorFragment extends Fragment implements
      */
     private void createContact(Account account) {
         final AccountTypes sources = AccountTypes.getInstance(mContext);
+        final AccountType source = sources.getInflatedSource(
+                account != null ? account.type : null, AccountType.LEVEL_CONSTRAINTS);
+
+        if (source.getCreateContactActivityClassName() != null) {
+            if (mListener != null) {
+                mListener.onCustomCreateContactActivityRequested(account, mIntentExtras);
+            }
+        } else {
+            bindEditorsForNewContact(account, source);
+        }
+    }
+
+    private void bindEditorsForNewContact(Account account, final AccountType source) {
         final ContentValues values = new ContentValues();
         if (account != null) {
             values.put(RawContacts.ACCOUNT_NAME, account.name);
@@ -454,9 +498,6 @@ public class ContactEditorFragment extends Fragment implements
 
         // Parse any values from incoming intent
         EntityDelta insert = new EntityDelta(ValuesDelta.fromAfter(values));
-        final AccountType source = sources.getInflatedSource(
-                account != null ? account.type : null,
-                AccountType.LEVEL_CONSTRAINTS);
         EntityModifier.parseExtras(mContext, source, insert, mIntentExtras);
 
         // Ensure we have some default fields (if the source does not supper a field,
@@ -503,12 +544,13 @@ public class ContactEditorFragment extends Fragment implements
             final long rawContactId = values.getAsLong(RawContacts._ID);
 
             final BaseRawContactEditorView editor;
-            if (!source.readOnly) {
+            if (source.isExternal()) {
+                editor = (BaseRawContactEditorView) inflater.inflate(
+                        R.layout.external_raw_contact_editor_view, mContent, false);
+                ((ExternalRawContactEditorView) editor).setListener(this);
+            } else {
                 editor = (BaseRawContactEditorView)
                         inflater.inflate(R.layout.raw_contact_editor_view, mContent, false);
-            } else {
-                editor = (BaseRawContactEditorView) inflater.inflate(
-                        R.layout.read_only_raw_contact_editor_view, mContent, false);
             }
             editor.setEnabled(mEnabled);
 
@@ -954,6 +996,22 @@ public class ContactEditorFragment extends Fragment implements
          */
         void onEditOtherContactRequested(
                 Uri contactLookupUri, ArrayList<ContentValues> contentValues);
+
+        /**
+         * Contact is being created for an external account that provides its own
+         * new contact activity.
+         */
+        void onCustomCreateContactActivityRequested(Account account, Bundle intentExtras);
+
+        /**
+         * The edited raw contact belongs to an external account that provides
+         * its own edit activity.
+         *
+         * @param redirect indicates that the current editor should be closed
+         *            before the custom editor is shown.
+         */
+        void onCustomEditContactActivityRequested(Account account, Uri rawContactUri,
+                Bundle intentExtras, boolean redirect);
     }
 
     private class EntityDeltaComparator implements Comparator<EntityDelta> {

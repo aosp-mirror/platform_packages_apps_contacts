@@ -21,8 +21,11 @@ import com.android.contacts.R;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.editor.ContactEditorFragment.SaveMode;
 import com.android.contacts.interactions.ContactDeletionInteraction;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypes;
 import com.android.contacts.util.DialogManager;
 
+import android.accounts.Account;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
@@ -31,6 +34,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -207,6 +212,54 @@ public class ContactEditorActivity extends Activity implements
 
             startActivity(intent);
             finish();
+        }
+
+        @Override
+        public void onCustomCreateContactActivityRequested(Account account, Bundle intentExtras) {
+            final AccountTypes sources = AccountTypes.getInstance(
+                    ContactEditorActivity.this);
+            final AccountType source = sources.getInflatedSource(
+                    account.type, AccountType.LEVEL_CONSTRAINTS);
+
+            Intent intent = new Intent();
+            intent.setClassName(source.resPackageName, source.getCreateContactActivityClassName());
+            intent.setAction(Intent.ACTION_INSERT);
+            intent.setType(Contacts.CONTENT_ITEM_TYPE);
+            if (intentExtras != null) {
+                intent.putExtras(intentExtras);
+            }
+            intent.putExtra(RawContacts.ACCOUNT_NAME, account.name);
+            intent.putExtra(RawContacts.ACCOUNT_TYPE, account.type);
+            intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
+                    | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+            startActivity(intent);
+            finish();
+        }
+
+        @Override
+        public void onCustomEditContactActivityRequested(Account account, Uri rawContactUri,
+                Bundle intentExtras, boolean redirect) {
+            final AccountTypes sources = AccountTypes.getInstance(
+                    ContactEditorActivity.this);
+            final AccountType source = sources.getInflatedSource(
+                    account.type, AccountType.LEVEL_CONSTRAINTS);
+
+            Intent intent = new Intent();
+            intent.setClassName(source.resPackageName, source.getEditContactActivityClassName());
+            intent.setAction(Intent.ACTION_EDIT);
+            intent.setData(rawContactUri);
+            if (intentExtras != null) {
+                intent.putExtras(intentExtras);
+            }
+
+            if (redirect) {
+                intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
+                        | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+                startActivity(intent);
+                finish();
+            } else {
+                startActivity(intent);
+            }
         }
     };
 

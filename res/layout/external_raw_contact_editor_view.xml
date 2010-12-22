@@ -15,7 +15,7 @@
 -->
 
 <!-- placed inside act_edit as tabcontent -->
-<com.android.contacts.editor.ReadOnlyRawContactEditorView
+<com.android.contacts.editor.ExternalRawContactEditorView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -137,6 +137,16 @@
             android:drawablePadding="10dip"
         />
 
+        <Button
+            android:id="@+id/button_edit_externally"
+            android:text="@string/edit_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dip"
+            android:layout_marginBottom="13dip"
+            android:layout_marginLeft="13dip"
+        />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
@@ -150,4 +160,4 @@
         />
     </LinearLayout>
 
-</com.android.contacts.editor.ReadOnlyRawContactEditorView>
+</com.android.contacts.editor.ExternalRawContactEditorView>

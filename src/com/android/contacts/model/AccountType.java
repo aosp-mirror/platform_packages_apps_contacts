@@ -118,6 +118,26 @@ public abstract class AccountType {
         setInflatedLevel(LEVEL_NONE);
     }
 
+    public boolean isExternal() {
+        return false;
+    }
+
+    /**
+     * Returns an optional custom edit activity.  The activity class should reside
+     * in the sync adapter package as determined by {@link #resPackageName}.
+     */
+    public String getEditContactActivityClassName() {
+        return null;
+    }
+
+    /**
+     * Returns an optional custom new contact activity. The activity class should reside
+     * in the sync adapter package as determined by {@link #resPackageName}.
+     */
+    public String getCreateContactActivityClassName() {
+        return null;
+    }
+
     public CharSequence getDisplayLabel(Context context) {
         if (this.titleRes != -1 && this.summaryResPackageName != null) {
             final PackageManager pm = context.getPackageManager();
@@ -389,5 +409,4 @@ public abstract class AccountType {
         public CharSequence inflateUsing(Context context, Cursor cursor);
         public CharSequence inflateUsing(Context context, ContentValues values);
     }
-
 }

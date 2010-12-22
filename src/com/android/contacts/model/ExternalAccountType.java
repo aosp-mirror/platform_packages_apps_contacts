@@ -23,67 +23,53 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.pm.ServiceInfo;
 import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.Xml;
 
 import java.io.IOException;
 import java.util.List;
 
-/*
-
-<!-- example of what SourceConstraints would look like in XML -->
-<!-- NOTE: may not directly match the current structure version -->
-
-<DataKind
-    mimeType="vnd.android.cursor.item/email"
-    title="@string/title_postal"
-    icon="@drawable/icon_postal"
-    weight="12"
-    editable="true">
-
-    <!-- these are defined using string-builder-ish -->
-    <ActionHeader></ActionHeader>
-    <ActionBody socialSummary="true" />  <!-- can pull together various columns -->
-
-    <!-- ordering handles precedence the "insert/add" case -->
-    <!-- assume uniform type when missing "column", use title in place -->
-    <EditTypes column="data5" overallMax="-1">
-        <EditType rawValue="0" label="@string/type_home" specificMax="-1" />
-        <EditType rawValue="1" label="@string/type_work" specificMax="-1" secondary="true" />
-        <EditType rawValue="4" label="@string/type_custom" customColumn="data6" specificMax="-1" secondary="true" />
-    </EditTypes>
-
-    <!-- when single edit field, simplifies edit case -->
-    <EditField column="data1" title="@string/field_family_name" android:inputType="textCapWords|textPhonetic" />
-    <EditField column="data2" title="@string/field_given_name" android:minLines="2" />
-    <EditField column="data3" title="@string/field_suffix" />
-
-</DataKind>
-
-*/
-
 /**
- * Internal structure that represents constraints and styles for a specific data
- * source, such as the various data types they support, including details on how
- * those types should be rendered and edited.
- * <p>
- * In the future this may be inflated from XML defined by a data source.
+ * A general contacts account type descriptor.
  */
 public class ExternalAccountType extends FallbackAccountType {
+    private static final String TAG = "ExternalAccountType";
+
     private static final String ACTION_SYNC_ADAPTER = "android.content.SyncAdapter";
     private static final String METADATA_CONTACTS = "android.provider.CONTACTS_STRUCTURE";
 
-    private interface InflateTags {
-        final String CONTACTS_SOURCE_LEGACY = "ContactsSource";
-        final String CONTACTS_ACCOUNT_TYPE = "ContactsAccountType";
-        final String CONTACTS_DATA_KIND = "ContactsDataKind";
-    }
+    private static final String TAG_CONTACTS_SOURCE_LEGACY = "ContactsSource";
+    private static final String TAG_CONTACTS_ACCOUNT_TYPE = "ContactsAccountType";
+    private static final String TAG_CONTACTS_DATA_KIND = "ContactsDataKind";
+
+    private static final String ATTR_EDIT_CONTACT_ACTIVITY = "editContactActivity";
+    private static final String ATTR_CREATE_CONTACT_ACTIVITY = "createContactActivity";
+
+    private String mEditContactActivityClassName;
+    private String mCreateContactActivityClassName;
 
     public ExternalAccountType(String resPackageName) {
         this.resPackageName = resPackageName;
         this.summaryResPackageName = resPackageName;
+    }
+
+    @Override
+    public boolean isExternal() {
+        return true;
+    }
+
+    @Override
+    public String getEditContactActivityClassName() {
+        return mEditContactActivityClassName;
+    }
+
+    @Override
+    public String getCreateContactActivityClassName() {
+        return mCreateContactActivityClassName;
     }
 
     /**
@@ -99,10 +85,13 @@ public class ExternalAccountType extends FallbackAccountType {
         final List<ResolveInfo> matches = pm.queryIntentServices(syncAdapter,
                 PackageManager.GET_META_DATA);
         for (ResolveInfo info : matches) {
-            final XmlResourceParser parser = info.serviceInfo.loadXmlMetaData(pm,
-                    METADATA_CONTACTS);
-            if (parser == null) continue;
-            inflate(context, parser);
+            ServiceInfo serviceInfo = info.serviceInfo;
+            if (serviceInfo.packageName.equals(resPackageName)) {
+                final XmlResourceParser parser = serviceInfo.loadXmlMetaData(pm,
+                        METADATA_CONTACTS);
+                if (parser == null) continue;
+                inflate(context, parser);
+            }
         }
 
         // Bring in name and photo from fallback source, which are non-optional
@@ -131,10 +120,22 @@ public class ExternalAccountType extends FallbackAccountType {
             }
 
             String rootTag = parser.getName();
-            if (!InflateTags.CONTACTS_ACCOUNT_TYPE.equals(rootTag) &&
-                    !InflateTags.CONTACTS_SOURCE_LEGACY.equals(rootTag)) {
+            if (!TAG_CONTACTS_ACCOUNT_TYPE.equals(rootTag) &&
+                    !TAG_CONTACTS_SOURCE_LEGACY.equals(rootTag)) {
                 throw new IllegalStateException("Top level element must be "
-                        + InflateTags.CONTACTS_ACCOUNT_TYPE + ", not " + rootTag);
+                        + TAG_CONTACTS_ACCOUNT_TYPE + ", not " + rootTag);
+            }
+
+            int attributeCount = parser.getAttributeCount();
+            for (int i = 0; i < attributeCount; i++) {
+                String attr = parser.getAttributeName(i);
+                if (ATTR_EDIT_CONTACT_ACTIVITY.equals(attr)) {
+                    mEditContactActivityClassName = parser.getAttributeValue(i);
+                } else if (ATTR_CREATE_CONTACT_ACTIVITY.equals(attr)) {
+                    mCreateContactActivityClassName = parser.getAttributeValue(i);
+                } else {
+                    Log.e(TAG, "Unsupported attribute " + attr);
+                }
             }
 
             // Parse all children kinds
@@ -142,8 +143,7 @@ public class ExternalAccountType extends FallbackAccountType {
             while (((type = parser.next()) != XmlPullParser.END_TAG || parser.getDepth() > depth)
                     && type != XmlPullParser.END_DOCUMENT) {
                 String tag = parser.getName();
-                if (type == XmlPullParser.END_TAG
-                        || !InflateTags.CONTACTS_DATA_KIND.equals(tag)) {
+                if (type == XmlPullParser.END_TAG || !TAG_CONTACTS_DATA_KIND.equals(tag)) {
                     continue;
                 }
 
