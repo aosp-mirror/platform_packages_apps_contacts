@@ -135,11 +135,8 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     }
 
     public void setSelectedContact(long selectedDirectoryId, String lookupKey) {
-        if (mSelectedContactDirectoryId != selectedDirectoryId ||
-                !TextUtils.equals(mSelectedContactLookupKey, lookupKey)) {
-            this.mSelectedContactDirectoryId = selectedDirectoryId;
-            this.mSelectedContactLookupKey = lookupKey;
-        }
+        mSelectedContactDirectoryId = selectedDirectoryId;
+        mSelectedContactLookupKey = lookupKey;
     }
 
     protected static Uri buildSectionIndexerUri(Uri uri) {

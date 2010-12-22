@@ -296,7 +296,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     @Override
     public void onStart() {
         super.onStart();
-        
+
         mContactsPrefs.registerChangeListener(mPreferencesChangeListener);
 
         if (mProviderStatusLoader == null) {
@@ -450,13 +450,17 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             return true;
         }
 
-        if (isSearchMode() && getDirectorySearchMode() != DirectoryListLoader.SEARCH_MODE_NONE
-                && (mDirectoryListStatus == STATUS_NOT_LOADED
-                        || mDirectoryListStatus == STATUS_LOADING)) {
+        if (isLoadingDirectoryList()) {
             return true;
         }
 
         return false;
+    }
+
+    public boolean isLoadingDirectoryList() {
+        return isSearchMode() && getDirectorySearchMode() != DirectoryListLoader.SEARCH_MODE_NONE
+                && (mDirectoryListStatus == STATUS_NOT_LOADED
+                        || mDirectoryListStatus == STATUS_LOADING);
     }
 
     @Override

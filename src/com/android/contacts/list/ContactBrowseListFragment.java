@@ -15,6 +15,7 @@
  */
 package com.android.contacts.list;
 
+import com.android.common.widget.CompositeCursorAdapter.Partition;
 import com.android.contacts.R;
 import com.android.contacts.widget.AutoScrollListView;
 
@@ -351,6 +352,9 @@ public abstract class ContactBrowseListFragment extends
 
         if (mFilterEnabled && mFilter != null) {
             adapter.setFilter(mFilter);
+            if (mSelectionRequired) {
+                adapter.setSelectedContact(mSelectedContactDirectoryId, mSelectedContactLookupKey);
+            }
         }
     }
 
@@ -372,7 +376,11 @@ public abstract class ContactBrowseListFragment extends
             return;
         }
 
-        if (isLoading()) {
+        if (mRefreshingContactUri) {
+            return;
+        }
+
+        if (isLoadingDirectoryList()) {
             return;
         }
 
@@ -381,11 +389,29 @@ public abstract class ContactBrowseListFragment extends
             return;
         }
 
+        boolean directoryLoading = true;
+        int count = adapter.getPartitionCount();
+        for (int i = 0; i < count; i++) {
+            Partition partition = adapter.getPartition(i);
+            if (partition instanceof DirectoryPartition) {
+                DirectoryPartition directory = (DirectoryPartition) partition;
+                if (directory.getDirectoryId() == mSelectedContactDirectoryId) {
+                    directoryLoading = directory.isLoading();
+                    break;
+                }
+            }
+        }
+
+        if (directoryLoading) {
+            return;
+        }
+
         adapter.setSelectedContact(mSelectedContactDirectoryId, mSelectedContactLookupKey);
 
         int selectedPosition = adapter.getSelectedContactPosition();
         if (selectedPosition == -1) {
             if (mSelectionRequired) {
+                mSelectionRequired = false;
                 notifyInvalidSelection();
                 return;
             }
