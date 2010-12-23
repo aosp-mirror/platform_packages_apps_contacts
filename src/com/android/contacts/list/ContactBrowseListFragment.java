@@ -352,7 +352,8 @@ public abstract class ContactBrowseListFragment extends
 
         if (mFilterEnabled && mFilter != null) {
             adapter.setFilter(mFilter);
-            if (mSelectionRequired) {
+            if (mSelectionRequired
+                    || mFilter.filterType == ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
                 adapter.setSelectedContact(mSelectedContactDirectoryId, mSelectedContactLookupKey);
             }
         }
