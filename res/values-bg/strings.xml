@@ -16,8 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for sharedUserLabel (7965035505237135241) -->
-    <skip />
+    <string name="sharedUserLabel" msgid="7965035505237135241">"Основни приложения на Android"</string>
     <string name="contactsList" msgid="8661624236494819731">"Контакти"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"Телефон"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Контакт"</string>
@@ -26,8 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Избор на пряк път до контакт"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Избор на номер за обаждане"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Избор на номер за изпращане на съобщение"</string>
-    <!-- no translation found for contactPickerActivityTitle (6886592363525235031) -->
-    <skip />
+    <string name="contactPickerActivityTitle" msgid="6886592363525235031">"Избор на контакт"</string>
     <string name="starredList" msgid="4817256136413959463">"Със звезда"</string>
     <string name="frequentList" msgid="7154768136473953056">"Често"</string>
     <string name="strequentList" msgid="5640192862059373511">"Любими"</string>
@@ -73,8 +71,7 @@
     <string name="editContact_title_insert" msgid="9125600232291405757">"Нов контакт"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Както се произнася"</string>
     <string name="label_notes" msgid="8337354953278341042">"Бележки"</string>
-    <!-- no translation found for label_sip_address (124073911714324974) -->
-    <skip />
+    <string name="label_sip_address" msgid="124073911714324974">"Интернет обаждане"</string>
     <string name="label_ringtone" msgid="8833166825330686244">"Мелодия"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Име, както се произнася"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Фирма"</string>
@@ -84,21 +81,19 @@
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Телефон"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"Имейл"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"Незабавни съобщения"</string>
-    <!-- outdated translation 1618078212734693682 -->     <string name="postalLabelsGroup" msgid="3487738141112589324">"Пощенски адрес"</string>
+    <string name="postalLabelsGroup" msgid="3487738141112589324">"Адрес"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Организация"</item>
     <item msgid="7196592230748086755">"Бележка"</item>
   </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"В таблета няма снимки."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"В телефона няма снимки."</string>
-    <!-- no translation found for attach_photo_dialog_title (5599827035558557169) -->
-    <skip />
+    <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Снимка на контакта"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Персонализирано име на етикет"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"Опции за показване"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Обажданията да се изпращат директно в гл. поща"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"По подразбиране"</string>
-    <!-- no translation found for removePhoto (4898105274130284565) -->
-    <skip />
+    <string name="removePhoto" msgid="4898105274130284565">"Премахване на снимката"</string>
     <string name="noContacts" msgid="8579310973261953559">"Няма контакти."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Не са намерени съответстващи контакти."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Няма контакти с тел. номера."</string>
@@ -115,15 +110,26 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Опциите за показване се запазват..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Контактът е запазен."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Грешка, промените в контакта не могат да бъдат запазени."</string>
-    <!-- no translation found for listTotalPhoneContacts:other (3299954047880968205) -->
+  <plurals name="listTotalPhoneContacts">
+    <item quantity="one" msgid="3015357862286673986">"1 контакт с телефонен номер"</item>
+    <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> контакта с телефонни номера"</item>
+  </plurals>
     <string name="listTotalPhoneContactsZero" msgid="2756295259674938869">"Няма видими контакти с тел. номера"</string>
-    <!-- no translation found for listTotalAllContacts:other (3578469907265375314) -->
+  <plurals name="listTotalAllContacts">
+    <item quantity="one" msgid="3405747744700823280">"1 контакт"</item>
+    <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> контакта"</item>
+  </plurals>
     <string name="listTotalAllContactsZero" msgid="6811347506748072822">"Няма видими контакти"</string>
-    <!-- no translation found for listFoundAllContacts:other (3852668542926965042) -->
-    <!-- no translation found for foundTooManyContacts (2548148047461758967) -->
-    <skip />
-    <!-- outdated translation 5554368784319460828 -->     <string name="listFoundAllContactsZero" msgid="777952841930508289">"Контактът не е намерен"</string>
-    <!-- no translation found for searchFoundContacts:other (7988132539476575389) -->
+  <plurals name="listFoundAllContacts">
+    <item quantity="one" msgid="5517063038754171134">"1 намерен"</item>
+    <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> намерени"</item>
+  </plurals>
+    <string name="foundTooManyContacts" msgid="2548148047461758967">"намерени са повече от <xliff:g id="COUNT">%d</xliff:g>"</string>
+    <string name="listFoundAllContactsZero" msgid="777952841930508289">"Няма намерени"</string>
+  <plurals name="searchFoundContacts">
+    <item quantity="one" msgid="4826918429708286628">"1 намерен"</item>
+    <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> намерени"</item>
+  </plurals>
     <string name="contactsIconLabel" msgid="7666609097606552806">"Контакти"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Любими"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Телефон"</string>
@@ -152,14 +158,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"Контакти от SIM карта"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Нямате контакти за показване. (Ако току-що сте добавили профил, синхронизирането може да отнеме няколко минути.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Нямате контакти за показване."</string>
-    <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"Нямате контакти за показване."\n\n"За добавяне на контакти натиснете "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и докоснете:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Профили"</b></font>" – за да добавите или конфигурирате профил с контакти, които можете да синхронизирате с таблета"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Нов контакт"</b></font>" – за да създадете съвсем нов контакт"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импортиране/Експортиране"</b></font>" – за да импортирате контакти от своята SIM или SD карта"\n</li></string>
-    <!-- outdated translation 6450346791169710787 -->     <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"Нямате контакти за показване."\n\n"За добавяне на контакти натиснете "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и докоснете:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Профили"</b></font>" – за да добавите или конфигурирате профил с контакти, които можете да синхронизирате с таблета"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Нов контакт"</b></font>" – за да създадете съвсем нов контакт"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импортиране/Експортиране"</b></font>" – за да импортирате контакти от своята SIM или SD карта"\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Нямате контакти за показване. (Ако току-що сте добавили профил, синхронизирането може да отнеме няколко минути.)"\n\n"За добавяне на контакти натиснете "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и докоснете:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Профили"</b></font>" – за да добавите или конфигурирате профил с контакти, които можете да синхронизирате с таблета"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Опции за показване"</b></font>" – за да промените кои контакти са видими"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Нов контакт"</b></font>" – за да създадете съвсем нов контакт"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импортиране/Експортиране"</b></font>" – за да импортирате контакти от своята SIM или SD карта"\n</li></string>
-    <!-- outdated translation 2364665535969139880 -->     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Нямате контакти за показване. (Ако току-що сте добавили профил, синхронизирането може да отнеме няколко минути.)"\n\n"За добавяне на контакти натиснете "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и докоснете:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Профили"</b></font>" – за да добавите или конфигурирате профил с контакти, които можете да синхронизирате с таблета"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Опции за показване"</b></font>" – за да промените кои контакти са видими"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Нов контакт"</b></font>" – за да създадете съвсем нов контакт"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импортиране/Експортиране"</b></font>" – за да импортирате контакти от своята SIM или SD карта"\n</li></string>
-    <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"Нямате контакти за показване."\n\n"За добавяне на контакти натиснете "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и докоснете:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Профили"</b></font>" – за да добавите или конфигурирате профил с контакти, които можете да синхронизирате с таблета"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Нов контакт"</b></font>" – за да създадете съвсем нов контакт"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импортиране/Експортиране"</b></font>" – за да импортирате контакти от своята SD карта"\n</li></string>
-    <!-- outdated translation 6031363021287849874 -->     <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"Нямате контакти за показване."\n\n"За добавяне на контакти натиснете "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и докоснете:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Профили"</b></font>" – за да добавите или конфигурирате профил с контакти, които можете да синхронизирате с таблета"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Нов контакт"</b></font>" – за да създадете съвсем нов контакт"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импортиране/Експортиране"</b></font>" – за да импортирате контакти от своята SD карта"\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Нямате контакти за показване. (Ако току-що сте добавили профил, синхронизирането може да отнеме няколко минути.)"\n\n"За добавяне на контакти натиснете "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и докоснете:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Профили"</b></font>" – за да добавите или конфигурирате профил с контакти, които можете да синхронизирате с таблета"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Опции за показване"</b></font>" – за да промените кои контакти са видими"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Нов контакт"</b></font>" – за да създадете съвсем нов контакт"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импортиране/Експортиране"</b></font>" – за да импортирате контакти от своята SD карта"\n</li></string>
-    <!-- outdated translation 6222739731808897565 -->     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Нямате контакти за показване. (Ако току-що сте добавили профил, синхронизирането може да отнеме няколко минути.)"\n\n"За добавяне на контакти натиснете "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и докоснете:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Профили"</b></font>" – за да добавите или конфигурирате профил с контакти, които можете да синхронизирате с таблета"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Опции за показване"</b></font>" – за да промените кои контакти са видими"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Нов контакт"</b></font>" – за да създадете съвсем нов контакт"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импортиране/Експортиране"</b></font>" – за да импортирате контакти от своята SD карта"\n</li></string>
+    <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"Нямате контакти за показване."\n\n"За добавяне на контакти натиснете "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и докоснете:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Профили"</b></font>", за да добавите или конфигурирате профил с контакти, които можете да синхронизирате с таблета;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Нов контакт"</b></font>", за да създадете съвсем нов контакт;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импортиране/Експортиране"</b></font>", за да импортирате контакти от своята SIM или SD карта."\n</li></string>
+    <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"Нямате контакти за показване."\n\n"За добавяне на контакти натиснете "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и докоснете:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Профили"</b></font>", за да добавите или конфигурирате профил с контакти, които можете да синхронизирате с телефона;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Нов контакт"</b></font>", за да създадете съвсем нов контакт;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импортиране/Експортиране"</b></font>", за да импортирате контакти от своята SIM или SD карта."\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Нямате контакти за показване. (Ако току-що сте добавили профил, синхронизирането им може да отнеме няколко минути.)"\n\n"За добавяне на контакти натиснете "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и докоснете:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Профили"</b></font>", за да добавите или конфигурирате профил с контакти, които можете да синхронизирате с таблета;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Опции за показване"</b></font>", за да промените кои контакти са видими;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Нов контакт"</b></font>", за да създадете съвсем нов контакт;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импортиране/Експортиране"</b></font>", за да импортирате контакти от своята SIM или SD карта."\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Нямате контакти за показване. (Ако току-що сте добавили профил, синхронизирането им може да отнеме няколко минути.)"\n\n"За добавяне на контакти натиснете "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и докоснете:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Профили"</b></font>", за да добавите или конфигурирате профил с контакти, които можете да синхронизирате с телефона;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Опции за показване"</b></font>", за да промените кои контакти са видими;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Нов контакт"</b></font>", за да създадете съвсем нов контакт;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импортиране/Експортиране"</b></font>", за да импортирате контакти от своята SIM или SD карта."\n</li></string>
+    <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"Нямате контакти за показване."\n\n"За добавяне на контакти натиснете "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и докоснете:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Профили"</b></font>", за да добавите или конфигурирате профил с контакти, които можете да синхронизирате с таблета;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Нов контакт"</b></font>", за да създадете съвсем нов контакт;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импортиране/Експортиране"</b></font>", за да импортирате контакти от своята SD карта."\n</li></string>
+    <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"Нямате контакти за показване."\n\n"За добавяне на контакти натиснете "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и докоснете:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Профили"</b></font>", за да добавите или конфигурирате профил с контакти, които можете да синхронизирате с телефона;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Нов контакт"</b></font>", за да създадете съвсем нов контакт;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импортиране/Експортиране"</b></font>", за да импортирате контакти от своята SD карта."\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Нямате контакти за показване. (Ако току-що сте добавили профил, синхронизирането им може да отнеме няколко минути.)"\n\n"За добавяне на контакти натиснете "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и докоснете:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Профили"</b></font>", за да добавите или конфигурирате профил с контакти, които можете да синхронизирате с таблета;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Опции за показване"</b></font>", за да промените кои контакти са видими;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Нов контакт"</b></font>", за да създадете съвсем нов контакт;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импортиране/Експортиране"</b></font>", за да импортирате контакти от своята SD карта."\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Нямате контакти за показване. (Ако току-що сте добавили профил, синхронизирането им може да отнеме няколко минути.)"\n\n"За добавяне на контакти натиснете "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и докоснете:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Профили"</b></font>", за да добавите или конфигурирате профил с контакти, които можете да синхронизирате с телефона;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Опции за показване"</b></font>", за да промените кои контакти са видими;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Нов контакт"</b></font>", за да създадете съвсем нов контакт;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импортиране/Експортиране"</b></font>", за да импортирате контакти от своята SD карта."\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Нямате любими контакти."\n\n"За добавяне на контакт към любими:"\n\n"        "<li>"Докоснете раздела "<b>"Контакти"</b>\n</li>" "\n<li>"Докоснете желания контакт"\n</li>" "\n<li>"Докоснете звездата до името му"\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Всички контакти"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Със звезда"</string>
@@ -199,66 +205,55 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"снимка на контакта"</string>
     <string name="description_minus_button" msgid="387136707700230172">"минус"</string>
     <string name="description_plus_button" msgid="515164827856229880">"плюс"</string>
-    <!-- outdated translation 5911758680339949273 -->     <string name="no_sdcard_title" product="nosdcard" msgid="5362631473262100989">"Няма SD карта"</string>
+    <string name="no_sdcard_title" product="nosdcard" msgid="5362631473262100989">"Не е налице USB хранилище"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Няма SD карта"</string>
-    <!-- outdated translation 6019391476490445358 -->     <string name="no_sdcard_message" product="nosdcard" msgid="8045830739790534254">"Не е открита SD карта"</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="8045830739790534254">"Няма USB хранилище"</string>
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Не е открита SD карта"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Търсене на vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Импортиране от SIM карта"</string>
-    <!-- outdated translation 8550360976693202816 -->     <string name="import_from_sdcard" product="nosdcard" msgid="8294728696808674154">"Импортиране от SD карта"</string>
+    <string name="import_from_sdcard" product="nosdcard" msgid="8294728696808674154">"Импорт. от USB хранилище"</string>
     <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Импортиране от SD карта"</string>
-    <!-- outdated translation 2597105442616166277 -->     <string name="export_to_sdcard" product="nosdcard" msgid="7201274701382901259">"Експортиране в SD карта"</string>
+    <string name="export_to_sdcard" product="nosdcard" msgid="7201274701382901259">"Експорт. в USB хранилище"</string>
     <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Експортиране в SD карта"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Споделяне на видимите контакти"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Импортиране на един vCard файл"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Импортиране на няколко vCard файла"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Импортиране на всички vCard файлове"</string>
-    <!-- outdated translation 6917522333561434546 -->     <string name="searching_vcard_message" product="nosdcard" msgid="8214795338181412751">"Търсене на vCard данни в SD картата"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="8214795338181412751">"Търсят се данни за vCard в USB хранилището"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Търсене на vCard данни в SD картата"</string>
-    <!-- outdated translation 3506782007953167180 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="7447077516493667568">"Неуспешно сканиране на SD карта"</string>
+    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="7447077516493667568">"Сканирането на USB хранилището не бе успешно"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Неуспешно сканиране на SD карта"</string>
-    <!-- no translation found for scanning_sdcard_failed_message (5645544323676912703) -->
-    <skip />
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="5645544323676912703">"Сканирането на USB хранилището не бе успешно (Причина: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Неуспешно сканиране на SD карта ( Причина: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O грешка"</string>
-    <!-- no translation found for fail_reason_low_memory_during_import (7514918659342886381) -->
-    <skip />
+    <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Няма достатъчно памет (файлът може да е твърде голям)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Неуспешен анализ на vCard по неизвестна причина"</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"Неуспешен анализ на vCard, въпреки че изглежда във валиден формат, защото текущото внедряване не го поддържа"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"В USB устройството за съхранение не бе намерен vCard файл"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"На SD картата не бе намерен vCard файл"</string>
-    <!-- no translation found for fail_reason_failed_to_collect_vcard_meta_info (4154492282316067754) -->
-    <skip />
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Събирането на метаинформация от дадените vCard файлове не бе успешно."</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Неуспешно импортиране на един или повече файлове (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Неизвестна грешка"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Избор на vCard файл"</string>
-    <!-- no translation found for caching_vcard_title (5009556022082659780) -->
-    <skip />
-    <!-- no translation found for caching_vcard_message (2380844718093378900) -->
-    <skip />
-    <!-- no translation found for progress_notifier_message (2311011466908220528) -->
-    <skip />
-    <!-- no translation found for importing_vcard_description (4245275224298571351) -->
-    <skip />
-    <!-- outdated translation 4923008144735294994 -->     <string name="reading_vcard_failed_title" msgid="2162610359561887043">"Неуспешно четене на данни от vCard"</string>
-    <!-- no translation found for reading_vcard_canceled_title (1770608329958463131) -->
-    <skip />
+    <string name="caching_vcard_title" msgid="5009556022082659780">"vCard се кешира/т във временно локално хранилище"</string>
+    <string name="caching_vcard_message" msgid="2380844718093378900">"Инструментът за импортиране кешира vCard във временно локално хранилище. Самото импортиране ще започне скоро."</string>
+    <string name="progress_notifier_message" msgid="2311011466908220528">"Импортира се <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g> се импортира"</string>
+    <string name="reading_vcard_failed_title" msgid="2162610359561887043">"Четенето на данни от vCard не бе успешно"</string>
+    <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Четенето на данни от vCard бе анулирано"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Импортирането на vCard <xliff:g id="FILENAME">%s</xliff:g> завърши"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Импортирането на <xliff:g id="FILENAME">%s</xliff:g> бе анулирано"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> ще се импортира скоро."</string>
-    <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
-    <skip />
+    <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"Заявката за импортиране на vCard е отхвърлена. Моля, опитайте по-късно."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> ще се експортира скоро."</string>
-    <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
-    <skip />
-    <!-- no translation found for percentage (34897865327092209) -->
-    <skip />
+    <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"Заявката за експортиране на vCard е отхвърлена. Моля, опитайте по-късно."</string>
+    <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Потвърждение на експортиране"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Наистина ли искате да експортирате списъка с контакти в „<xliff:g id="VCARD_FILENAME">%s</xliff:g>“?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Неуспешно експортиране на данни за контакти"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Неуспешно експортиране на данни за контакти."\n"Причина: „<xliff:g id="FAIL_REASON">%s</xliff:g>“"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Няма контакт за експортиране"</string>
-    <!-- outdated translation 7084146295639672658 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"Твърде много vCard файлове на SD картата"</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"В USB хранилището има твърде много vCard файлове"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Твърде много vCard файлове на SD картата"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Изисканото име на файла е твърде дълго („<xliff:g id="FILENAME">%s</xliff:g>“)"</string>
     <string name="exporting_vcard_finished_title" msgid="4259736138838583213">"Експортирането на <xliff:g id="FILENAME">%s</xliff:g> завърши"</string>
@@ -268,8 +263,8 @@
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Експортирането не можа да започне: „<xliff:g id="EXACT_REASON">%s</xliff:g>“"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Възникна грешка при експортирането: „<xliff:g id="EXACT_REASON">%s</xliff:g>“"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Неуспешно извличане на информация за базата от данни"</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Няма контакти за експортиране. Ако наистина имате контакти в таблета си, някои доставчици на данни може да забраняват експортирането им извън него."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Няма контакти за експортиране. Ако наистина имате контакти в телефона си, някои доставчици на данни може да забраняват експортирането им извън телефона."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Няма контакти, позволяващи експортиране. Ако в телефона си имате контакти, възможно е експортирането на всички тях извън таблета да е забранено от някои доставчици на данни."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Няма контакти, позволяващи експортиране. Ако в телефона си имате контакти, възможно е експортирането на всички тях извън телефона да е забранено от някои доставчици на данни."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"Създателят на vCard не се стартира правилно"</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"„<xliff:g id="FILE_NAME">%s</xliff:g>“ не можа да се отвори: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> от <xliff:g id="TOTAL_NUMBER">%s</xliff:g> контакта"</string>
@@ -287,8 +282,7 @@
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Няма намерено приложение за извършване на това действие"</string>
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Запомняне на този избор"</string>
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"Неизвестно"</string>
-    <!-- no translation found for quickcontact_no_data (2098000859125253675) -->
-    <skip />
+    <string name="quickcontact_no_data" msgid="2098000859125253675">"Няма данни"</string>
     <string name="quickcontact_clear_defaults_description" msgid="3792792870662989100">"Изчистване на данните по подразбиране"</string>
     <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"Данни, зададени за този контакт:"</string>
     <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"Изчистване"</string>
@@ -303,10 +297,8 @@
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Организация"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Уебсайт"</string>
     <string name="eventLabelsGroup" msgid="8069912895912714412">"Събитие"</string>
-    <!-- no translation found for relationLabelsGroup (1854373894284572781) -->
-    <skip />
-    <!-- no translation found for groupsLabel (8573535366319059326) -->
-    <skip />
+    <string name="relationLabelsGroup" msgid="1854373894284572781">"Отношение"</string>
+    <string name="groupsLabel" msgid="8573535366319059326">"Групи"</string>
     <string name="type_short_home" msgid="7770424864090605384">"Д"</string>
     <string name="type_short_mobile" msgid="1655473281466676216">"М"</string>
     <string name="type_short_work" msgid="4925330752504537861">"О"</string>
@@ -320,7 +312,7 @@
     <string name="display_all_contacts" msgid="6846131371214707956">"Всички контакти"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Ако синхронизирането на „<xliff:g id="GROUP">%s</xliff:g>“ спре, то ще спре и за негрупираните контакти."</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Само в таблета, несинхронизиран"</string>
-    <!-- outdated translation 7946049152658522054 -->     <string name="account_phone" product="default" msgid="3682950835276226870">"Само в таблета, несинхронизиран"</string>
+    <string name="account_phone" product="default" msgid="3682950835276226870">"Само в телефона, несинхронизиран"</string>
     <string name="call_custom" msgid="7756571794763171802">"Обаждане на <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"Обаждане на домашен"</string>
     <string name="call_mobile" msgid="7502236805487609178">"Обаждане на мобилен"</string>
@@ -382,8 +374,7 @@
     <string name="chat_icq" msgid="8438405386153745775">"Чат по ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Чат по Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Чат"</string>
-    <!-- no translation found for postal_address (8765560217149624536) -->
-    <skip />
+    <string name="postal_address" msgid="8765560217149624536">"Адрес"</string>
     <string name="postal_street" msgid="8133143961580058972">"Улица"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"П.К."</string>
     <string name="postal_neighborhood" msgid="1450783874558956739">"Квартал"</string>
@@ -391,8 +382,7 @@
     <string name="postal_region" msgid="6045263193478437672">"Щат"</string>
     <string name="postal_postcode" msgid="572136414136673751">"Пощенски код"</string>
     <string name="postal_country" msgid="7638264508416368690">"Държава"</string>
-    <!-- no translation found for full_name (6602579550613988977) -->
-    <skip />
+    <string name="full_name" msgid="6602579550613988977">"Име"</string>
     <string name="name_given" msgid="1687286314106019813">"Собствено име"</string>
     <string name="name_family" msgid="3416695586119999058">"Фамилия"</string>
     <string name="name_prefix" msgid="59756378548779822">"Обръщение"</string>
@@ -415,11 +405,9 @@
     <string name="search_bar_hint" msgid="1012756309632856553">"Търсене в контактите"</string>
     <string name="search_for_all_contacts" msgid="6644963335787294131">"Търсене на всички контакти"</string>
     <string name="take_photo" msgid="7496128293167402354">"Снимане"</string>
-    <!-- no translation found for take_new_photo (7341354729436576304) -->
-    <skip />
+    <string name="take_new_photo" msgid="7341354729436576304">"Заснемане на нова снимка"</string>
     <string name="pick_photo" msgid="448886509158039462">"Избор на снимка от галерията"</string>
-    <!-- no translation found for pick_new_photo (7962368009197147617) -->
-    <skip />
+    <string name="pick_new_photo" msgid="7962368009197147617">"Избор на нова снимка от галерията"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Списъкът с контакти се актуализира, за да отрази промяната на езика."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Списъкът с контакти се актуализира."</string>
     <string name="upgrade_out_of_memory" msgid="6153384328042175667">"Контактите се надстройват. "\n\n"Процесът се нуждае от приблизително <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> Мб вътрешна памет."\n\n"Изберете една от следните опции:"</string>
@@ -438,79 +426,46 @@
     <!-- no translation found for multiple_picker_title:other (4608837420986126229) -->
     <!-- no translation found for no_contacts_selected (5877803471037324613) -->
     <skip />
-    <!-- no translation found for add_field (2384260056674995230) -->
-    <skip />
-    <!-- no translation found for contact_status_update_attribution (752179367353018597) -->
-    <skip />
-    <!-- no translation found for contact_status_update_attribution_with_date (7358045508107825068) -->
-    <skip />
-    <!-- no translation found for description_star (2605854427360036550) -->
-    <skip />
-    <!-- no translation found for edit_contact (7529281274005689512) -->
-    <skip />
-    <!-- no translation found for merge_info:one (148365587896371969) -->
-    <!-- no translation found for merge_info:other (425683718017380845) -->
-    <!-- no translation found for local_invisible_directory (6046691709127661065) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_join_dialog_title (5276699501316246253) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_join_dialog_message (3842757977671434836) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_edit_dialog_title (1064042382692091314) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_edit_dialog_message (6549585283910518095) -->
-    <skip />
-    <!-- no translation found for menu_copyContact (4401683725471696686) -->
-    <skip />
+    <string name="add_field" msgid="2384260056674995230">"Добавяне на друго поле"</string>
+    <string name="contact_status_update_attribution" msgid="752179367353018597">"чрез <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> чрез <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
+    <string name="description_star" msgid="2605854427360036550">"любимо"</string>
+    <string name="edit_contact" msgid="7529281274005689512">"Редактиране на контакта"</string>
+  <plurals name="merge_info">
+    <item quantity="one" msgid="148365587896371969">"без обединяване"</item>
+    <item quantity="other" msgid="425683718017380845">"обединено от <xliff:g id="COUNT">%0$d</xliff:g> източник/а"</item>
+  </plurals>
+    <string name="local_invisible_directory" msgid="6046691709127661065">"Други"</string>
+    <string name="aggregation_suggestion_join_dialog_title" msgid="5276699501316246253">"Сливане на контакти"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Да се слее ли текущият контакт с избрания?"</string>
+    <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Редактиране на избраните контакти"</string>
+    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Да се превключи ли към редактиране на избрания контакт? Въведената досега информация ще бъде копирана."</string>
+    <string name="menu_copyContact" msgid="4401683725471696686">"Копиране в моите контакти"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Директория „<xliff:g id="TYPE">%1$s</xliff:g>“"</string>
-    <!-- no translation found for search_label (6789295859496641042) -->
-    <skip />
-    <!-- no translation found for directory_search_label (1887759056597975053) -->
-    <skip />
-    <!-- no translation found for local_search_label (1686089693064201315) -->
-    <skip />
-    <!-- no translation found for toast_making_personal_copy (7905283986345263275) -->
-    <skip />
-    <!-- no translation found for list_filter_prompt (7481426622828055116) -->
-    <skip />
-    <!-- no translation found for list_filter_all_accounts (8908683398914322369) -->
-    <skip />
-    <!-- no translation found for list_filter_all_starred (5031734941601931356) -->
-    <skip />
-    <!-- no translation found for list_filter_custom (8910173055702057002) -->
-    <skip />
-    <!-- no translation found for list_filter_customize (2035084418635775579) -->
-    <skip />
-    <!-- no translation found for list_filter_phones (7905045603593508221) -->
-    <skip />
-    <!-- no translation found for list_filter_single (5871400283515893087) -->
-    <skip />
-    <!-- no translation found for custom_list_filter (7836035257402013957) -->
-    <skip />
-    <!-- no translation found for activity_title_settings (5464130076132770781) -->
-    <skip />
-    <!-- no translation found for menu_settings (377929915873428211) -->
-    <skip />
-    <!-- no translation found for preference_displayOptions (1341720270148252393) -->
-    <skip />
-    <!-- no translation found for organization_company_and_title (6718207751363732025) -->
-    <skip />
-    <!-- no translation found for hint_findContacts (1808681193458772072) -->
-    <skip />
-    <!-- no translation found for non_phone_caption (1541655052330027380) -->
-    <skip />
-    <!-- no translation found for non_phone_add_to_contacts (6590985286250471169) -->
-    <skip />
-    <!-- no translation found for non_phone_close (7608506439725515667) -->
-    <skip />
-    <!-- no translation found for widget_name_and_phonetic (8739586586600099979) -->
-    <skip />
-    <!-- no translation found for date_year_toggle (7356532842767854606) -->
-    <skip />
-    <!-- no translation found for social_widget_label (6378905543028924592) -->
-    <skip />
-    <!-- no translation found for social_widget_loading (3697996166985327861) -->
-    <skip />
+    <string name="search_label" msgid="6789295859496641042">"Търси се във всички контакти"</string>
+    <string name="directory_search_label" msgid="1887759056597975053">"Директория"</string>
+    <string name="local_search_label" msgid="1686089693064201315">"Контакти"</string>
+    <string name="toast_making_personal_copy" msgid="7905283986345263275">"Създаване на лично копие"</string>
+    <string name="list_filter_prompt" msgid="7481426622828055116">"Изберете списък с контакти"</string>
+    <string name="list_filter_all_accounts" msgid="8908683398914322369">"Всички контакти"</string>
+    <string name="list_filter_all_starred" msgid="5031734941601931356">"Със звезда"</string>
+    <string name="list_filter_custom" msgid="8910173055702057002">"По избор"</string>
+    <string name="list_filter_customize" msgid="2035084418635775579">"Персонализиране..."</string>
+    <string name="list_filter_phones" msgid="7905045603593508221">"Контакти с телефонни номера"</string>
+    <string name="list_filter_single" msgid="5871400283515893087">"Контакт"</string>
+    <string name="custom_list_filter" msgid="7836035257402013957">"Определяне на персонализиран изглед"</string>
+    <string name="activity_title_settings" msgid="5464130076132770781">"Настройки"</string>
+    <string name="menu_settings" msgid="377929915873428211">"Настройки"</string>
+    <string name="preference_displayOptions" msgid="1341720270148252393">"Опции за показване"</string>
+    <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
+    <string name="hint_findContacts" msgid="1808681193458772072">"Намиране на контакти"</string>
+    <string name="non_phone_caption" msgid="1541655052330027380">"Телефонен номер"</string>
+    <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Добавяне към контактите"</string>
+    <string name="non_phone_close" msgid="7608506439725515667">"Затваряне"</string>
+    <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
+    <string name="date_year_toggle" msgid="7356532842767854606">"Въвеждане на година"</string>
+    <string name="social_widget_label" msgid="6378905543028924592">"Контакт"</string>
+    <string name="social_widget_loading" msgid="3697996166985327861">"Зарежда се…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Създаване на нов контакт"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Вход в профил"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Импортиране на контакти от файл"</string>
@@ -522,4 +477,10 @@
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Моля, въведете името на контакта преди сливането му с друг."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Слят контакт"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Текстът бе копиран"</string>
+    <!-- no translation found for cancel_confirmation_dialog_title (3950463632415908534) -->
+    <skip />
+    <!-- no translation found for cancel_confirmation_dialog_message (7021968394611740251) -->
+    <skip />
+    <!-- no translation found for discard (1234315037371251414) -->
+    <skip />
 </resources>

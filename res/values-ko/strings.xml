@@ -46,7 +46,7 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"연락처에 문자 보내기"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"기본 이메일로 설정"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"분리"</string>
-    <string name="menu_renameGroup" msgid="2798886925154156075">"그룹 이름 바꾸기"</string>
+    <string name="menu_renameGroup" msgid="2798886925154156075">"그룹 이름 변경"</string>
     <string name="menu_deleteGroup" msgid="644571524292675446">"그룹 삭제"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"새 연락처"</string>
     <string name="splitConfirmation_title" msgid="6716467920283502570">"연락처 분리"</string>
@@ -474,4 +474,10 @@
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"다른 연락처와 통합하기 전에 연락처 이름을 입력하세요."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"통합된 연락처"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"텍스트 복사됨"</string>
+    <!-- no translation found for cancel_confirmation_dialog_title (3950463632415908534) -->
+    <skip />
+    <!-- no translation found for cancel_confirmation_dialog_message (7021968394611740251) -->
+    <skip />
+    <!-- no translation found for discard (1234315037371251414) -->
+    <skip />
 </resources>

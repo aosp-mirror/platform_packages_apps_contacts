@@ -16,8 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for sharedUserLabel (7965035505237135241) -->
-    <skip />
+    <string name="sharedUserLabel" msgid="7965035505237135241">"Ứng dụng Lõi Android"</string>
     <string name="contactsList" msgid="8661624236494819731">"Danh bạ"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"Điện thoại"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Liên hệ"</string>
@@ -26,8 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Chọn lối tắt cho liên hệ"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Chọn một số để gọi"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Chọn một số để gửi tin nhắn"</string>
-    <!-- no translation found for contactPickerActivityTitle (6886592363525235031) -->
-    <skip />
+    <string name="contactPickerActivityTitle" msgid="6886592363525235031">"Chọn địa chỉ liên hệ"</string>
     <string name="starredList" msgid="4817256136413959463">"Được gắn dấu sao"</string>
     <string name="frequentList" msgid="7154768136473953056">"Thường xuyên"</string>
     <string name="strequentList" msgid="5640192862059373511">"Mục ưa thích"</string>
@@ -73,8 +71,7 @@
     <string name="editContact_title_insert" msgid="9125600232291405757">"Liên hệ mới"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Đúng phát âm"</string>
     <string name="label_notes" msgid="8337354953278341042">"Ghi chú"</string>
-    <!-- no translation found for label_sip_address (124073911714324974) -->
-    <skip />
+    <string name="label_sip_address" msgid="124073911714324974">"Cuộc gọi qua internet"</string>
     <string name="label_ringtone" msgid="8833166825330686244">"Nhạc chuông"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Tên đúng phát âm"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Công ty"</string>
@@ -84,21 +81,19 @@
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Điện thoại"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"Email"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"IM"</string>
-    <!-- outdated translation 1618078212734693682 -->     <string name="postalLabelsGroup" msgid="3487738141112589324">"Địa chỉ bưu điện"</string>
+    <string name="postalLabelsGroup" msgid="3487738141112589324">"Địa chỉ"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Tổ chức"</item>
     <item msgid="7196592230748086755">"Ghi chú"</item>
   </string-array>
-    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Không có ảnh trong máy tính bảng."</string>
+    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Không có ảnh nào trong máy tính bảng."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Không có ảnh nào trong điện thoại."</string>
-    <!-- no translation found for attach_photo_dialog_title (5599827035558557169) -->
-    <skip />
+    <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Ảnh của liên hệ"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Tên nhãn tuỳ chỉnh"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"Tuỳ chọn hiển thị"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Gửi cuộc gọi trực tiếp tới thư thoại"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Mặc định"</string>
-    <!-- no translation found for removePhoto (4898105274130284565) -->
-    <skip />
+    <string name="removePhoto" msgid="4898105274130284565">"Xóa ảnh"</string>
     <string name="noContacts" msgid="8579310973261953559">"Không có liên hệ nào."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Không tìm thấy liên hệ nào phù hợp."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Không có liên hệ nào có số điện thoại"</string>
@@ -115,15 +110,26 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Đang lưu tuỳ chọn hiển thị…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Đã lưu liên hệ."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Lỗi, không thể lưu thay đổi liên hệ."</string>
-    <!-- no translation found for listTotalPhoneContacts:other (3299954047880968205) -->
+  <plurals name="listTotalPhoneContacts">
+    <item quantity="one" msgid="3015357862286673986">"1 liên hệ có số điện thoại"</item>
+    <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> liên hệ có số điện thoại"</item>
+  </plurals>
     <string name="listTotalPhoneContactsZero" msgid="2756295259674938869">"Không có liên hệ hiển thị nào có số điện thoại"</string>
-    <!-- no translation found for listTotalAllContacts:other (3578469907265375314) -->
+  <plurals name="listTotalAllContacts">
+    <item quantity="one" msgid="3405747744700823280">"1 địa chỉ liên hệ"</item>
+    <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> địa chỉ liên hệ"</item>
+  </plurals>
     <string name="listTotalAllContactsZero" msgid="6811347506748072822">"Không có liên hệ hiển thị nào"</string>
-    <!-- no translation found for listFoundAllContacts:other (3852668542926965042) -->
-    <!-- no translation found for foundTooManyContacts (2548148047461758967) -->
-    <skip />
-    <!-- outdated translation 5554368784319460828 -->     <string name="listFoundAllContactsZero" msgid="777952841930508289">"Không tìm thấy liên hệ"</string>
-    <!-- no translation found for searchFoundContacts:other (7988132539476575389) -->
+  <plurals name="listFoundAllContacts">
+    <item quantity="one" msgid="5517063038754171134">"Đã tìm thấy 1"</item>
+    <item quantity="other" msgid="3852668542926965042">"Đã tìm thấy <xliff:g id="COUNT">%d</xliff:g>"</item>
+  </plurals>
+    <string name="foundTooManyContacts" msgid="2548148047461758967">"đã tìm thấy hơn <xliff:g id="COUNT">%d</xliff:g>"</string>
+    <string name="listFoundAllContactsZero" msgid="777952841930508289">"Không tìm thấy"</string>
+  <plurals name="searchFoundContacts">
+    <item quantity="one" msgid="4826918429708286628">"Đã tìm thấy 1"</item>
+    <item quantity="other" msgid="7988132539476575389">"Đã tìm thấy <xliff:g id="COUNT">%d</xliff:g>"</item>
+  </plurals>
     <string name="contactsIconLabel" msgid="7666609097606552806">"Danh bạ"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Mục ưa thích"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Điện thoại"</string>
@@ -152,14 +158,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"Danh bạ trên thẻ SIM"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Bạn không có liên hệ nào để hiển thị. (Nếu bạn vừa thêm tài khoản, bạn có thể mất vài phút để đồng bộ hoá danh bạ)."</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Bạn không có liên hệ nào để hiển thị."</string>
-    <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"Bạn không có liên hệ nào để hiển thị."\n\n"Để thêm liên hệ, nhấn "<font fgcolor="#ffffffff"><b>"Trình đơn"</b></font>" và chạm:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Tài khoản"</b></font>" để thêm hoặc định cấu hình tài khoản có danh bạ bạn có thể đồng bộ hóa với máy tính bảng"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Liên hệ mới"</b></font>" để tạo liên hệ mới từ đầu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nhập/Xuất"</b></font>" để nhập danh bạ từ thẻ SIM hoặc SD của bạn"\n</li></string>
-    <!-- outdated translation 6450346791169710787 -->     <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"Bạn không có liên hệ nào để hiển thị."\n\n"Để thêm liên hệ, nhấn "<font fgcolor="#ffffffff"><b>"Trình đơn"</b></font>" và chạm:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Tài khoản"</b></font>" để thêm hoặc định cấu hình tài khoản có danh bạ bạn có thể đồng bộ hóa với máy tính bảng"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Liên hệ mới"</b></font>" để tạo liên hệ mới từ đầu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nhập/Xuất"</b></font>" để nhập danh bạ từ thẻ SIM hoặc SD của bạn"\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Bạn không có địa chỉ liên hệ nào để hiển thị. (Nếu bạn vừa thêm tài khoản, bạn có thể mất vài phút để đồng bộ hóa danh bạ)."\n\n"Để thêm địa chỉ liên hệ, nhấn "<font fgcolor="#ffffffff"><b>"Trình đơn"</b></font>" và chạm:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Tài khoản"</b></font>" để thêm hoặc định cấu hình tài khoản có danh bạ mà bạn có thể đồng bộ hóa với máy tính bảng"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Tùy chọn hiển thị"</b></font>" để thay đổi địa chỉ liên hệ nào hiển thị"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Địa chỉ liên hệ mới"</b></font>" để tạo địa chỉ liên hệ mới từ đầu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nhập/Xuất"</b></font>" để nhập danh bạ từ thẻ SIM hoặc SD của bạn"\n</li></string>
-    <!-- outdated translation 2364665535969139880 -->     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Bạn không có địa chỉ liên hệ nào để hiển thị. (Nếu bạn vừa thêm tài khoản, bạn có thể mất vài phút để đồng bộ hóa danh bạ)."\n\n"Để thêm địa chỉ liên hệ, nhấn "<font fgcolor="#ffffffff"><b>"Trình đơn"</b></font>" và chạm:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Tài khoản"</b></font>" để thêm hoặc định cấu hình tài khoản có danh bạ mà bạn có thể đồng bộ hóa với máy tính bảng"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Tùy chọn hiển thị"</b></font>" để thay đổi địa chỉ liên hệ nào hiển thị"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Địa chỉ liên hệ mới"</b></font>" để tạo địa chỉ liên hệ mới từ đầu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nhập/Xuất"</b></font>" để nhập danh bạ từ thẻ SIM hoặc SD của bạn"\n</li></string>
-    <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"Bạn không có địa chỉ liên hệ nào để hiển thị."\n\n"Để thêm địa chỉ liên hệ, nhấn "<font fgcolor="#ffffffff"><b>"Trình đơn"</b></font>" và chạm:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Tài khoản"</b></font>" để thêm hoặc định cấu hình tài khoản có danh bạ mà bạn có thể đồng bộ hóa với máy tính bảng"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Địa chỉ liên hệ mới"</b></font>" để tạo địa chỉ liên hệ mới từ đầu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nhập/Xuất"</b></font>" để nhập danh bạ từ thẻ SD của bạn"\n</li></string>
-    <!-- outdated translation 6031363021287849874 -->     <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"Bạn không có địa chỉ liên hệ nào để hiển thị."\n\n"Để thêm địa chỉ liên hệ, nhấn "<font fgcolor="#ffffffff"><b>"Trình đơn"</b></font>" và chạm:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Tài khoản"</b></font>" để thêm hoặc định cấu hình tài khoản có danh bạ mà bạn có thể đồng bộ hóa với máy tính bảng"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Địa chỉ liên hệ mới"</b></font>" để tạo địa chỉ liên hệ mới từ đầu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nhập/Xuất"</b></font>" để nhập danh bạ từ thẻ SD của bạn"\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Bạn không có địa chỉ liên hệ nào để hiển thị. (Nếu bạn vừa thêm tài khoản, bạn có thể mất vài phút để đồng bộ hóa danh bạ)."\n\n"Để thêm địa chỉ liên hệ, nhấn "<font fgcolor="#ffffffff"><b>"Trình đơn"</b></font>" và chạm:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Tài khoản"</b></font>" để thêm hoặc định cấu hình tài khoản có danh bạ mà bạn có thể đồng bộ hóa với máy tính bảng"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Tùy chọn hiển thị"</b></font>" để thay đổi địa chỉ liên hệ nào hiển thị"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Địa chỉ liên hệ mới"</b></font>" để tạo địa chỉ liên hệ mới từ đầu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nhập/Xuất"</b></font>" để nhập danh bạ từ thẻ SD của bạn"\n</li></string>
-    <!-- outdated translation 6222739731808897565 -->     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Bạn không có địa chỉ liên hệ nào để hiển thị. (Nếu bạn vừa thêm tài khoản, bạn có thể mất vài phút để đồng bộ hóa danh bạ)."\n\n"Để thêm địa chỉ liên hệ, nhấn "<font fgcolor="#ffffffff"><b>"Trình đơn"</b></font>" và chạm:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Tài khoản"</b></font>" để thêm hoặc định cấu hình tài khoản có danh bạ mà bạn có thể đồng bộ hóa với máy tính bảng"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Tùy chọn hiển thị"</b></font>" để thay đổi địa chỉ liên hệ nào hiển thị"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Địa chỉ liên hệ mới"</b></font>" để tạo địa chỉ liên hệ mới từ đầu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nhập/Xuất"</b></font>" để nhập danh bạ từ thẻ SD của bạn"\n</li></string>
+    <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"Bạn chưa có địa chỉ liên hệ nào để hiển thị."\n\n"Để thêm địa chỉ liên hệ, nhấn "<font fgcolor="#ffffffff"><b>"Trình đơn"</b></font>" và chạm:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Tài khoản"</b></font>" để thêm hoặc cấu hình tài khoản có địa chỉ liên hệ bạn có thể đồng bộ hóa với máy tính bảng"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Địa chỉ liên hệ mới"</b></font>" để tạo địa chỉ liên hệ mới từ đầu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nhập/Xuất"</b></font>" để nhập địa chỉ liên hệ từ SIM hoặc thẻ SD của bạn"\n</li></string>
+    <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"Bạn không có địa chỉ liên hệ nào để hiển thị."\n\n"Để thêm địa chỉ liên hệ, nhấn "<font fgcolor="#ffffffff"><b>"Trình đơn"</b></font>" và chạm:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Tài khoản"</b></font>" để thêm hoặc cấu hình tài khoản có địa chỉ liên hệ bạn có thể đồng bộ hóa với điện thoại"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Địa chỉ liên hệ mới"</b></font>" để tạo địa chỉ liên hệ mới từ đầu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nhập/Xuất"</b></font>" để nhập danh bạ từ SIM hoặc thẻ SD của bạn"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Bạn chưa có địa chỉ liên hệ nào để hiển thị. (Nếu bạn vừa thêm tài khoản, có thể mất vài phút để đồng bộ hóa địa chỉ liên hệ.)"\n\n"Để thêm địa chỉ liên hệ, nhấn "<font fgcolor="#ffffffff"><b>"Trình đơn"</b></font>" và chạm:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Tài khoản"</b></font>" để thêm hoặc cấu hình tài khoản có địa chỉ liên hệ bạn có thể đồng bộ hóa với máy tính bảng"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Tùy chọn hiển thị"</b></font>" để thay đổi địa chỉ liên hệ nào được hiển thị"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Địa chỉ liên hệ mới"</b></font>" để tạo địa chỉ liên hệ mới từ đầu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nhập/Xuất"</b></font>" để nhập địa chỉ liên hệ từ SIM hoặc thẻ SD của bạn"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Bạn chưa có địa chỉ liên hệ nào để hiển thị. (Nếu bạn vừa thêm tài khoản, có thể mất vài phút để đồng bộ hóa địa chỉ liên hệ.)"\n\n"Để thêm địa chỉ liên hệ, nhấn "<font fgcolor="#ffffffff"><b>"Trình đơn"</b></font>" và chạm:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Tài khoản"</b></font>" để thêm hoặc cấu hình tài khoản có địa chỉ liên hệ bạn có thể đồng bộ hóa với điện thoại"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Tùy chọn hiển thị"</b></font>" để thay đổi địa chỉ liên hệ nào được hiển thị"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Địa chỉ liên hệ mới"</b></font>" để tạo địa chỉ liên hệ mới từ đầu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nhập/Xuất"</b></font>" để nhập địa chỉ liên hệ từ SIM hoặc thẻ SD của bạn"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"Bạn chưa có địa chỉ liên hệ nào để hiển thị."\n\n"Để thêm địa chỉ liên hệ, nhấn "<font fgcolor="#ffffffff"><b>"Trình đơn"</b></font>" và chạm:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Tài khoản"</b></font>" để thêm hoặc cấu hình tài khoản có địa chỉ liên hệ bạn có thể đồng bộ hóa với máy tính bảng"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Địa chỉ liên hệ mới"</b></font>" để tạo địa chỉ liên hệ mới từ đầu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nhập/Xuất"</b></font>" để nhập địa chỉ liên hệ từ thẻ SD của bạn"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"Bạn chưa có địa chỉ liên hệ nào để hiển thị."\n\n"Để thêm địa chỉ liên hệ, nhấn "<font fgcolor="#ffffffff"><b>"Trình đơn"</b></font>" và chạm:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Tài khoản"</b></font>" để thêm hoặc cấu hình tài khoản có địa chỉ liên hệ bạn có thể đồng bộ hóa với điện thoại"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Địa chỉ liên hệ mới"</b></font>" để tạo địa chỉ liên hệ mới từ đầu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nhập/Xuất"</b></font>" để nhập địa chỉ liên hệ từ thẻ SD của bạn"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Bạn chưa có địa chỉ liên hệ nào để hiển thị. (Nếu bạn đã thêm tài khoản, có thể mất vài phút để đồng bộ hóa địa chỉ liên hệ.)"\n\n"Để thêm địa chỉ liên hệ, nhấn "<font fgcolor="#ffffffff"><b>"Trình đơn"</b></font>" và chạm:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Tài khoản"</b></font>" để thêm hoặc cấu hình tài khoản có địa chỉ liên hệ bạn có thể đồng bộ hóa với máy tính bảng"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Tùy chọn hiển thị"</b></font>" để thay đổi tài khoản nào được hiển thị"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Địa chỉ liên hệ mới"</b></font>" để tạo địa chỉ liên hệ mới từ đầu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nhập/Xuất"</b></font>" để nhập địa chỉ liên hệ từ thẻ SD của bạn"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Bạn chưa có địa chỉ liên hệ nào để hiển thị. (Nếu bạn vừa thêm tài khoản, có thể mất vài phút để đồng bộ hóa địa chỉ liên hệ.)"\n\n"Để thêm địa chỉ liên hệ, nhấn "<font fgcolor="#ffffffff"><b>"Trình đơn"</b></font>" và chạm:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Tài khoản"</b></font>" để thêm hoặc cấu hình tài khoản có địa chỉ liên hệ bạn có thể đồng bộ hóa với điện thoại"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Tùy chọn hiển thị"</b></font>" để thay đổi địa chỉ liên hệ nào được hiển thị"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Địa chỉ liên hệ mới"</b></font>" để tạo địa chỉ liên hệ mới từ đầu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nhập/Xuất"</b></font>" để nhập địa chỉ liên hệ từ thẻ SD của bạn"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Bạn không có mục ưa thích nào."\n\n"Để thêm liên hệ vào danh sách mục ưa thích của bạn:"\n\n"        "<li>"Chạm vào tab "<b>"Danh bạ"</b>\n</li>" "\n<li>"Chạm vào liên hệ bạn muốn thêm vào mục ưa thích của mình"\n</li>" "\n<li>"Chạm vào dấu sao bên cạnh tên của liên hệ"\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Tất cả liên hệ"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Được gắn dấu sao"</string>
@@ -199,66 +205,55 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"ảnh của liên hệ"</string>
     <string name="description_minus_button" msgid="387136707700230172">"trừ"</string>
     <string name="description_plus_button" msgid="515164827856229880">"cộng"</string>
-    <!-- outdated translation 5911758680339949273 -->     <string name="no_sdcard_title" product="nosdcard" msgid="5362631473262100989">"Không có thẻ SD nào"</string>
+    <string name="no_sdcard_title" product="nosdcard" msgid="5362631473262100989">"Bộ nhớ USB không khả dụng"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Không có thẻ SD nào"</string>
-    <!-- outdated translation 6019391476490445358 -->     <string name="no_sdcard_message" product="nosdcard" msgid="8045830739790534254">"Không phát hiện thẻ SD nào"</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="8045830739790534254">"Không phát hiện bộ nhớ USB nào"</string>
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Không phát hiện thẻ SD nào"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Đang tìm kiếm vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Nhập từ thẻ SIM"</string>
-    <!-- outdated translation 8550360976693202816 -->     <string name="import_from_sdcard" product="nosdcard" msgid="8294728696808674154">"Nhập từ thẻ SD"</string>
+    <string name="import_from_sdcard" product="nosdcard" msgid="8294728696808674154">"Nhập từ bộ nhớ USB"</string>
     <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Nhập từ thẻ SD"</string>
-    <!-- outdated translation 2597105442616166277 -->     <string name="export_to_sdcard" product="nosdcard" msgid="7201274701382901259">"Xuất sang thẻ SD"</string>
+    <string name="export_to_sdcard" product="nosdcard" msgid="7201274701382901259">"Xuất sang bộ nhớ USB"</string>
     <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Xuất sang thẻ SD"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Chia sẻ liên hệ hiển thị"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Nhập một tệp vCard"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Nhập nhiều tệp vCard"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Nhập tất cả tệp vCard"</string>
-    <!-- outdated translation 6917522333561434546 -->     <string name="searching_vcard_message" product="nosdcard" msgid="8214795338181412751">"Đang tìm dữ liệu vCard trên thẻ SD"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="8214795338181412751">"Đang tìm kiếm dữ liệu vCard trong bộ nhớ USB"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Đang tìm dữ liệu vCard trên thẻ SD"</string>
-    <!-- outdated translation 3506782007953167180 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="7447077516493667568">"Quét thẻ SD không thành công"</string>
+    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="7447077516493667568">"Quét bộ nhớ USB không thành công"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Quét thẻ SD không thành công"</string>
-    <!-- no translation found for scanning_sdcard_failed_message (5645544323676912703) -->
-    <skip />
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="5645544323676912703">"Quét bộ nhớ USB không thành công (Lý do: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Quét thẻ SD không thành công (Lý do: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Lỗi I/O"</string>
-    <!-- no translation found for fail_reason_low_memory_during_import (7514918659342886381) -->
-    <skip />
+    <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Bộ nhớ không đủ (tệp có thể quá lớn)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Không thể phân tích cú pháp vCard vì lý do không mong muốn"</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"Không thể phân tích cú pháp vCard mặc dù thẻ có vẻ có định dạng hợp lệ vì quá trình triển khai hiện tại không hỗ trợ"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"Không tìm thấy tệp vCard trong bộ lưu trữ USB"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Không tìm thấy tệp vCard trên thẻ SD"</string>
-    <!-- no translation found for fail_reason_failed_to_collect_vcard_meta_info (4154492282316067754) -->
-    <skip />
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Không thể thu thập siêu thông tin của (các) tệp vCard cho trước."</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Không thể nhập một hoặc nhiều tệp (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Lỗi không xác định"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Chọn tệp vCard"</string>
-    <!-- no translation found for caching_vcard_title (5009556022082659780) -->
-    <skip />
-    <!-- no translation found for caching_vcard_message (2380844718093378900) -->
-    <skip />
-    <!-- no translation found for progress_notifier_message (2311011466908220528) -->
-    <skip />
-    <!-- no translation found for importing_vcard_description (4245275224298571351) -->
-    <skip />
-    <!-- outdated translation 4923008144735294994 -->     <string name="reading_vcard_failed_title" msgid="2162610359561887043">"Đọc dữ liệu vCard không thành công"</string>
-    <!-- no translation found for reading_vcard_canceled_title (1770608329958463131) -->
-    <skip />
+    <string name="caching_vcard_title" msgid="5009556022082659780">"Đang chuyển vCard trong bộ nhớ cache vào bộ nhớ cục bộ tạm thời"</string>
+    <string name="caching_vcard_message" msgid="2380844718093378900">"Trình nhập đang chuyển vCard trong bộ nhớ cache vào bộ nhớ cục bộ tạm thời. Thao tác nhập thực sự sẽ bắt đầu sớm."</string>
+    <string name="progress_notifier_message" msgid="2311011466908220528">"Đang nhập <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="importing_vcard_description" msgid="4245275224298571351">"Đang nhập <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="reading_vcard_failed_title" msgid="2162610359561887043">"Không thể Đọc dữ liệu vCard"</string>
+    <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Thao tác đọc dữ liệu vCard bị hủy"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Đã nhập xong vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Quá trình nhập <xliff:g id="FILENAME">%s</xliff:g> bị hủy"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> sẽ sớm được nhập."</string>
-    <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
-    <skip />
+    <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"Yêu cầu nhập vCard bị từ chối. Vui lòng thử lại sau."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> sẽ sớm được xuất."</string>
-    <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
-    <skip />
-    <!-- no translation found for percentage (34897865327092209) -->
-    <skip />
+    <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"Yêu cầu xuất vCard bị từ chối. Vui lòng thử lại sau."</string>
+    <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Xác nhận xuất"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Bạn có chắc chắn muốn xuất danh sách liên hệ của mình sang \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\" không?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Không thể xuất dữ liệu liên hệ"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Không thể xuất dữ liệu liên hệ."\n"Lý do không thành công: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Không có liên hệ có thể xuất nào"</string>
-    <!-- outdated translation 7084146295639672658 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"Quá nhiều tệp vCard trên thẻ SD"</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"Quá nhiều tệp vCard trong bộ nhớ USB"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Quá nhiều tệp vCard trên thẻ SD"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Tên tệp yêu cầu quá dài (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
     <string name="exporting_vcard_finished_title" msgid="4259736138838583213">"Đã xuất xong <xliff:g id="FILENAME">%s</xliff:g>"</string>
@@ -268,8 +263,8 @@
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Không thể khởi chạy trình xuất: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Đã xảy ra lỗi khi xuất: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Không thể tải xuống thông tin cơ sở dữ liệu"</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Không có địa chỉ liên hệ nào có thể xuất. Nếu thực sự bạn có các địa chỉ liên hệ trên máy tính bảng thì tất cả địa chỉ liên hệ đó có thể đã bị một số nhà cung cấp dữ liệu chặn xuất ra bên ngoài máy tính bảng."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Không có địa chỉ liên hệ nào có thể xuất. Nếu thực sự bạn có các địa chỉ liên hệ trên điện thoại thì tất cả địa chỉ liên hệ đó có thể đã bị một số nhà cung cấp dữ liệu chặn xuất ra bên ngoài điện thoại."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Không có liên hệ nào có thể xuất. Nếu thực sự bạn có liên hệ trên máy tính bảng của mình, thì tất cả liên hệ đó có thể đã bị một số nhà cung cấp dữ liệu chặn xuất ra bên ngoài máy tính bảng."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Không có địa chỉ liên hệ có thể xuất nào. Nếu bạn thực sự có địa chỉ liên hệ trong điện thoại, tất cả địa chỉ liên hệ có thể bị cấm xuất ra ngoài điện thoại do một số nhà cung cấp dữ liệu."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"Trình soạn vCard không được khởi chạy đúng cách"</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Không thể mở \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> trong tổng số <xliff:g id="TOTAL_NUMBER">%s</xliff:g> liên hệ"</string>
@@ -287,8 +282,7 @@
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Không tìm thấy ứng dụng nào để xử lý tác vụ này"</string>
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Nhớ lựa chọn này"</string>
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"Không xác định"</string>
-    <!-- no translation found for quickcontact_no_data (2098000859125253675) -->
-    <skip />
+    <string name="quickcontact_no_data" msgid="2098000859125253675">"Không có dữ liệu"</string>
     <string name="quickcontact_clear_defaults_description" msgid="3792792870662989100">"Xóa mặc định"</string>
     <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"Mặc định được đặt cho địa chỉ liên hệ này:"</string>
     <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"Xóa"</string>
@@ -303,10 +297,8 @@
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Tổ chức"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Trang web"</string>
     <string name="eventLabelsGroup" msgid="8069912895912714412">"Sự kiện"</string>
-    <!-- no translation found for relationLabelsGroup (1854373894284572781) -->
-    <skip />
-    <!-- no translation found for groupsLabel (8573535366319059326) -->
-    <skip />
+    <string name="relationLabelsGroup" msgid="1854373894284572781">"Mối quan hệ"</string>
+    <string name="groupsLabel" msgid="8573535366319059326">"Nhóm"</string>
     <string name="type_short_home" msgid="7770424864090605384">"Nhà riêng"</string>
     <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
     <string name="type_short_work" msgid="4925330752504537861">"W"</string>
@@ -319,8 +311,8 @@
     <string name="display_ungrouped" msgid="4602580795576261158">"Tất cả Liên hệ Khác"</string>
     <string name="display_all_contacts" msgid="6846131371214707956">"Tất cả Liên hệ"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Xoá \'<xliff:g id="GROUP">%s</xliff:g>\' khỏi đồng bộ hoá cũng sẽ xoá bất kỳ liên hệ nào đã được tách nhóm khỏi đồng bộ hoá."</string>
-    <string name="account_phone" product="tablet" msgid="7946049152658522054">"Chỉ máy tính bảng, không được đồng bộ hóa"</string>
-    <!-- outdated translation 7946049152658522054 -->     <string name="account_phone" product="default" msgid="3682950835276226870">"Chỉ máy tính bảng, không được đồng bộ hóa"</string>
+    <string name="account_phone" product="tablet" msgid="7946049152658522054">"Chỉ trên máy tính bảng, chưa được đồng bộ hóa"</string>
+    <string name="account_phone" product="default" msgid="3682950835276226870">"Chỉ trên điện thoại, chưa đồng bộ hóa"</string>
     <string name="call_custom" msgid="7756571794763171802">"Gọi <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"Gọi số điện thoại nhà riêng"</string>
     <string name="call_mobile" msgid="7502236805487609178">"Gọi số điện thoại di động"</string>
@@ -382,8 +374,7 @@
     <string name="chat_icq" msgid="8438405386153745775">"Trò chuyện sử dụng ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Trò chuyện sử dụng Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Trò chuyện"</string>
-    <!-- no translation found for postal_address (8765560217149624536) -->
-    <skip />
+    <string name="postal_address" msgid="8765560217149624536">"Địa chỉ"</string>
     <string name="postal_street" msgid="8133143961580058972">"Đường phố"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Hộp thư bưu điện"</string>
     <string name="postal_neighborhood" msgid="1450783874558956739">"Vùng lân cận"</string>
@@ -391,8 +382,7 @@
     <string name="postal_region" msgid="6045263193478437672">"Tiểu bang"</string>
     <string name="postal_postcode" msgid="572136414136673751">"Mã ZIP"</string>
     <string name="postal_country" msgid="7638264508416368690">"Quốc gia"</string>
-    <!-- no translation found for full_name (6602579550613988977) -->
-    <skip />
+    <string name="full_name" msgid="6602579550613988977">"Tên"</string>
     <string name="name_given" msgid="1687286314106019813">"Tên"</string>
     <string name="name_family" msgid="3416695586119999058">"Họ"</string>
     <string name="name_prefix" msgid="59756378548779822">"Tiền tố tên"</string>
@@ -415,11 +405,9 @@
     <string name="search_bar_hint" msgid="1012756309632856553">"Tìm kiếm trong danh bạ"</string>
     <string name="search_for_all_contacts" msgid="6644963335787294131">"Tìm kiếm tất cả liên hệ"</string>
     <string name="take_photo" msgid="7496128293167402354">"Chụp ảnh"</string>
-    <!-- no translation found for take_new_photo (7341354729436576304) -->
-    <skip />
+    <string name="take_new_photo" msgid="7341354729436576304">"Chụp ảnh mới"</string>
     <string name="pick_photo" msgid="448886509158039462">"Chọn ảnh từ Thư viện"</string>
-    <!-- no translation found for pick_new_photo (7962368009197147617) -->
-    <skip />
+    <string name="pick_new_photo" msgid="7962368009197147617">"Chọn ảnh mới từ Thư viện"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Danh sách liên hệ đang được cập nhật để phản ánh sự thay đổi ngôn ngữ."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Danh sách liên hệ đang được cập nhật."</string>
     <string name="upgrade_out_of_memory" msgid="6153384328042175667">"Danh sách liên hệ đang trong quá trình nâng cấp. "\n\n"Quá trình nâng cấp cần khoảng <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> Mb bộ nhớ trong."\n\n"Chọn một trong các tùy chọn sau:"</string>
@@ -438,79 +426,46 @@
     <!-- no translation found for multiple_picker_title:other (4608837420986126229) -->
     <!-- no translation found for no_contacts_selected (5877803471037324613) -->
     <skip />
-    <!-- no translation found for add_field (2384260056674995230) -->
-    <skip />
-    <!-- no translation found for contact_status_update_attribution (752179367353018597) -->
-    <skip />
-    <!-- no translation found for contact_status_update_attribution_with_date (7358045508107825068) -->
-    <skip />
-    <!-- no translation found for description_star (2605854427360036550) -->
-    <skip />
-    <!-- no translation found for edit_contact (7529281274005689512) -->
-    <skip />
-    <!-- no translation found for merge_info:one (148365587896371969) -->
-    <!-- no translation found for merge_info:other (425683718017380845) -->
-    <!-- no translation found for local_invisible_directory (6046691709127661065) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_join_dialog_title (5276699501316246253) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_join_dialog_message (3842757977671434836) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_edit_dialog_title (1064042382692091314) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_edit_dialog_message (6549585283910518095) -->
-    <skip />
-    <!-- no translation found for menu_copyContact (4401683725471696686) -->
-    <skip />
+    <string name="add_field" msgid="2384260056674995230">"Thêm trường khác"</string>
+    <string name="contact_status_update_attribution" msgid="752179367353018597">" qua <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> qua <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
+    <string name="description_star" msgid="2605854427360036550">"Yêu thích"</string>
+    <string name="edit_contact" msgid="7529281274005689512">"Chỉnh sửa liên hệ"</string>
+  <plurals name="merge_info">
+    <item quantity="one" msgid="148365587896371969">"chưa được hợp nhất"</item>
+    <item quantity="other" msgid="425683718017380845">"được hợp nhất từ <xliff:g id="COUNT">%0$d</xliff:g> nguồn"</item>
+  </plurals>
+    <string name="local_invisible_directory" msgid="6046691709127661065">"Khác"</string>
+    <string name="aggregation_suggestion_join_dialog_title" msgid="5276699501316246253">"Kết hợp danh bạ"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Kết hợp địa chỉ liên hệ hiện tại với địa chỉ liên hệ đã chọn?"</string>
+    <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Chỉnh sửa địa chỉ liên hệ đã chọn"</string>
+    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Chuyển sang chỉnh sửa liên hệ đã chọn? Thông tin bạn đã nhập đến giờ sẽ được sao chép."</string>
+    <string name="menu_copyContact" msgid="4401683725471696686">"Sao chép vào danh bạ của tôi"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Thư mục <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <!-- no translation found for search_label (6789295859496641042) -->
-    <skip />
-    <!-- no translation found for directory_search_label (1887759056597975053) -->
-    <skip />
-    <!-- no translation found for local_search_label (1686089693064201315) -->
-    <skip />
-    <!-- no translation found for toast_making_personal_copy (7905283986345263275) -->
-    <skip />
-    <!-- no translation found for list_filter_prompt (7481426622828055116) -->
-    <skip />
-    <!-- no translation found for list_filter_all_accounts (8908683398914322369) -->
-    <skip />
-    <!-- no translation found for list_filter_all_starred (5031734941601931356) -->
-    <skip />
-    <!-- no translation found for list_filter_custom (8910173055702057002) -->
-    <skip />
-    <!-- no translation found for list_filter_customize (2035084418635775579) -->
-    <skip />
-    <!-- no translation found for list_filter_phones (7905045603593508221) -->
-    <skip />
-    <!-- no translation found for list_filter_single (5871400283515893087) -->
-    <skip />
-    <!-- no translation found for custom_list_filter (7836035257402013957) -->
-    <skip />
-    <!-- no translation found for activity_title_settings (5464130076132770781) -->
-    <skip />
-    <!-- no translation found for menu_settings (377929915873428211) -->
-    <skip />
-    <!-- no translation found for preference_displayOptions (1341720270148252393) -->
-    <skip />
-    <!-- no translation found for organization_company_and_title (6718207751363732025) -->
-    <skip />
-    <!-- no translation found for hint_findContacts (1808681193458772072) -->
-    <skip />
-    <!-- no translation found for non_phone_caption (1541655052330027380) -->
-    <skip />
-    <!-- no translation found for non_phone_add_to_contacts (6590985286250471169) -->
-    <skip />
-    <!-- no translation found for non_phone_close (7608506439725515667) -->
-    <skip />
-    <!-- no translation found for widget_name_and_phonetic (8739586586600099979) -->
-    <skip />
-    <!-- no translation found for date_year_toggle (7356532842767854606) -->
-    <skip />
-    <!-- no translation found for social_widget_label (6378905543028924592) -->
-    <skip />
-    <!-- no translation found for social_widget_loading (3697996166985327861) -->
-    <skip />
+    <string name="search_label" msgid="6789295859496641042">"Đang tìm kiếm tất cả địa chỉ liên hệ"</string>
+    <string name="directory_search_label" msgid="1887759056597975053">"Thư mục"</string>
+    <string name="local_search_label" msgid="1686089693064201315">"Danh bạ"</string>
+    <string name="toast_making_personal_copy" msgid="7905283986345263275">"Đang tạo bản sao cá nhân"</string>
+    <string name="list_filter_prompt" msgid="7481426622828055116">"Chọn danh sách địa chỉ liên hệ"</string>
+    <string name="list_filter_all_accounts" msgid="8908683398914322369">"Tất cả địa chỉ liên hệ"</string>
+    <string name="list_filter_all_starred" msgid="5031734941601931356">"Được gắn dấu sao"</string>
+    <string name="list_filter_custom" msgid="8910173055702057002">"Tùy chỉnh"</string>
+    <string name="list_filter_customize" msgid="2035084418635775579">"Tùy chỉnh..."</string>
+    <string name="list_filter_phones" msgid="7905045603593508221">"Liên hệ có số điện thoại"</string>
+    <string name="list_filter_single" msgid="5871400283515893087">"Địa chỉ liên hệ"</string>
+    <string name="custom_list_filter" msgid="7836035257402013957">"Xác định chế độ xem tùy chỉnh"</string>
+    <string name="activity_title_settings" msgid="5464130076132770781">"Cài đặt"</string>
+    <string name="menu_settings" msgid="377929915873428211">"Cài đặt"</string>
+    <string name="preference_displayOptions" msgid="1341720270148252393">"Tùy chọn hiển thị"</string>
+    <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
+    <string name="hint_findContacts" msgid="1808681193458772072">"Tìm địa chỉ liên hệ"</string>
+    <string name="non_phone_caption" msgid="1541655052330027380">"Số điện thoại"</string>
+    <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Thêm vào danh bạ"</string>
+    <string name="non_phone_close" msgid="7608506439725515667">"Đóng"</string>
+    <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
+    <string name="date_year_toggle" msgid="7356532842767854606">"Cho biết năm"</string>
+    <string name="social_widget_label" msgid="6378905543028924592">"Địa chỉ liên hệ"</string>
+    <string name="social_widget_loading" msgid="3697996166985327861">"Đang tải…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Tạo địa chỉ liên hệ mới"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Đăng nhập vào tài khoản"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Nhập danh bạ từ một tệp"</string>
@@ -522,4 +477,10 @@
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Vui lòng nhập tên liên hệ trước khi kết hợp với một địa chỉ liên hệ khác."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Địa chỉ liên hệ đã kết hợp"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Đã sao chép văn bản"</string>
+    <!-- no translation found for cancel_confirmation_dialog_title (3950463632415908534) -->
+    <skip />
+    <!-- no translation found for cancel_confirmation_dialog_message (7021968394611740251) -->
+    <skip />
+    <!-- no translation found for discard (1234315037371251414) -->
+    <skip />
 </resources>

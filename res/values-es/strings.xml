@@ -474,4 +474,10 @@
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Para agrupar el contacto, debes introducir el nombre del otro contacto."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Contacto añadido"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Texto copiado"</string>
+    <!-- no translation found for cancel_confirmation_dialog_title (3950463632415908534) -->
+    <skip />
+    <!-- no translation found for cancel_confirmation_dialog_message (7021968394611740251) -->
+    <skip />
+    <!-- no translation found for discard (1234315037371251414) -->
+    <skip />
 </resources>

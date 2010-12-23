@@ -16,8 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for sharedUserLabel (7965035505237135241) -->
-    <skip />
+    <string name="sharedUserLabel" msgid="7965035505237135241">"Alap Android-alkalmazások"</string>
     <string name="contactsList" msgid="8661624236494819731">"Címtár"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"Telefon"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Névjegy"</string>
@@ -26,8 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Válasszon névjegyet a parancsikonhoz"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Válasszon telefonszámot a híváshoz"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Válasszon telefonszámot az üzenetküldéshez"</string>
-    <!-- no translation found for contactPickerActivityTitle (6886592363525235031) -->
-    <skip />
+    <string name="contactPickerActivityTitle" msgid="6886592363525235031">"Válasszon ki egy névjegyet"</string>
     <string name="starredList" msgid="4817256136413959463">"Csillaggal megjelölt"</string>
     <string name="frequentList" msgid="7154768136473953056">"Gyakori"</string>
     <string name="strequentList" msgid="5640192862059373511">"Kedvencek"</string>
@@ -73,8 +71,7 @@
     <string name="editContact_title_insert" msgid="9125600232291405757">"Új névjegy"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetikusan"</string>
     <string name="label_notes" msgid="8337354953278341042">"Jegyzetek"</string>
-    <!-- no translation found for label_sip_address (124073911714324974) -->
-    <skip />
+    <string name="label_sip_address" msgid="124073911714324974">"Internetes hívás"</string>
     <string name="label_ringtone" msgid="8833166825330686244">"Csengőhang"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Név fonetikusan"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Cég"</string>
@@ -84,21 +81,19 @@
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefon"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail küldése"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"Azonnali üzenetküldés"</string>
-    <!-- outdated translation 1618078212734693682 -->     <string name="postalLabelsGroup" msgid="3487738141112589324">"Postacím"</string>
+    <string name="postalLabelsGroup" msgid="3487738141112589324">"Cím"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Szervezet"</item>
     <item msgid="7196592230748086755">"Jegyzet"</item>
   </string-array>
-    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Nincs elérhető kép a táblagépen."</string>
+    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Nem állnak rendelkezésre képek a táblagépen."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Nincsenek elérhető képek a telefonon."</string>
-    <!-- no translation found for attach_photo_dialog_title (5599827035558557169) -->
-    <skip />
+    <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Ismerős fotója"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Egyéni címkenév"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"Megjelenítési beállítások"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Hívások közvetlen átirányítása a hangpostára"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Alapértelmezett"</string>
-    <!-- no translation found for removePhoto (4898105274130284565) -->
-    <skip />
+    <string name="removePhoto" msgid="4898105274130284565">"Fénykép törlése"</string>
     <string name="noContacts" msgid="8579310973261953559">"Nincsenek névjegyek."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Nincsenek a keresési feltételeknek megfelelő névjegyek."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Nincsenek telefonszámot is tartalmazó névjegyek."</string>
@@ -115,15 +110,26 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Megjelenítési beállítások mentése..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Névjegy mentve."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Hiba; nem sikerült menteni a névjegy módosításait."</string>
-    <!-- no translation found for listTotalPhoneContacts:other (3299954047880968205) -->
+  <plurals name="listTotalPhoneContacts">
+    <item quantity="one" msgid="3015357862286673986">"1 névjegy telefonszámmal"</item>
+    <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> névjegy telefonszámmal"</item>
+  </plurals>
     <string name="listTotalPhoneContactsZero" msgid="2756295259674938869">"Nincsenek telefonszámmal rendelkező látható névjegyek."</string>
-    <!-- no translation found for listTotalAllContacts:other (3578469907265375314) -->
+  <plurals name="listTotalAllContacts">
+    <item quantity="one" msgid="3405747744700823280">"1 névjegy"</item>
+    <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> névjegy"</item>
+  </plurals>
     <string name="listTotalAllContactsZero" msgid="6811347506748072822">"Nincsenek látható névjegyek"</string>
-    <!-- no translation found for listFoundAllContacts:other (3852668542926965042) -->
-    <!-- no translation found for foundTooManyContacts (2548148047461758967) -->
-    <skip />
-    <!-- outdated translation 5554368784319460828 -->     <string name="listFoundAllContactsZero" msgid="777952841930508289">"Nem található névjegy"</string>
-    <!-- no translation found for searchFoundContacts:other (7988132539476575389) -->
+  <plurals name="listFoundAllContacts">
+    <item quantity="one" msgid="5517063038754171134">"1 találat"</item>
+    <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> találat"</item>
+  </plurals>
+    <string name="foundTooManyContacts" msgid="2548148047461758967">"több mint <xliff:g id="COUNT">%d</xliff:g> találat"</string>
+    <string name="listFoundAllContactsZero" msgid="777952841930508289">"Nem található"</string>
+  <plurals name="searchFoundContacts">
+    <item quantity="one" msgid="4826918429708286628">"1 találat"</item>
+    <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> találat"</item>
+  </plurals>
     <string name="contactsIconLabel" msgid="7666609097606552806">"Címtár"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Kedvencek"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Telefon"</string>
@@ -152,14 +158,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"Névjegyek a SIM-kártyán"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Nincsenek megjeleníthető névjegyei. (Ha a fiókot csak most adta hozzá, a névjegyek szinkronizálása néhány percig is eltarthat.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Nincsenek megjeleníthető névjegyek."</string>
-    <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"Nincs megjeleníthető névjegy."\n\n"Névjegy hozzáadásához nyomja meg a "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" gombot, majd érintse meg a:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Fiókok"</b></font>" lehetőséget -- így beállíthat egy olyan fiókot, amelynek a névjegyeit szinkronizálhatja a táblagéppel"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Új névjegy"</b></font>" teljesen új névjegy létrehozásához"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importálás/exportálás"</b></font>" névjegyek importálásához a SIM- vagy az SD-kártyáról"\n</li></string>
-    <!-- outdated translation 6450346791169710787 -->     <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"Nincs megjeleníthető névjegy."\n\n"Névjegy hozzáadásához nyomja meg a "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" gombot, majd érintse meg a:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Fiókok"</b></font>" lehetőséget -- így beállíthat egy olyan fiókot, amelynek a névjegyeit szinkronizálhatja a táblagéppel"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Új névjegy"</b></font>" teljesen új névjegy létrehozásához"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importálás/exportálás"</b></font>" névjegyek importálásához a SIM- vagy az SD-kártyáról"\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Nincs megjeleníthető névjegy. (Ha most adott hozzá fiókot, a névjegyek szinkronizálása eltarthat pár percig.)"\n\n"Névjegy hozzáadásához nyomja meg a "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" gombot, majd érintse meg a:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Fiókok"</b></font>" lehetőséget -- így beállíthat egy olyan fiókot, amelynek a névjegyeit szinkronizálhatja a táblagéppel"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Megjelenítési beállítások"</b></font>" a névjegyek láthatóságának módosításához"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Új névjegy"</b></font>" teljesen új névjegy létrehozásához"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importálás/exportálás"</b></font>" névjegyek importálásához a SIM- vagy az SD-kártyáról"\n</li></string>
-    <!-- outdated translation 2364665535969139880 -->     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Nincs megjeleníthető névjegy. (Ha most adott hozzá fiókot, a névjegyek szinkronizálása eltarthat pár percig.)"\n\n"Névjegy hozzáadásához nyomja meg a "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" gombot, majd érintse meg a:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Fiókok"</b></font>" lehetőséget -- így beállíthat egy olyan fiókot, amelynek a névjegyeit szinkronizálhatja a táblagéppel"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Megjelenítési beállítások"</b></font>" a névjegyek láthatóságának módosításához"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Új névjegy"</b></font>" teljesen új névjegy létrehozásához"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importálás/exportálás"</b></font>" névjegyek importálásához a SIM- vagy az SD-kártyáról"\n</li></string>
-    <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"Nincs megjeleníthető névjegy."\n\n"Névjegy hozzáadásához nyomja meg a "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" gombot, majd érintse meg a:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Fiókok"</b></font>" lehetőséget -- így beállíthat egy olyan fiókot, amelynek a névjegyeit szinkronizálhatja a táblagéppel"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Új névjegy"</b></font>" teljesen új névjegy létrehozásához"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importálás/exportálás"</b></font>" névjegyek importálásához az SD-kártyáról"\n</li></string>
-    <!-- outdated translation 6031363021287849874 -->     <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"Nincs megjeleníthető névjegy."\n\n"Névjegy hozzáadásához nyomja meg a "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" gombot, majd érintse meg a:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Fiókok"</b></font>" lehetőséget -- így beállíthat egy olyan fiókot, amelynek a névjegyeit szinkronizálhatja a táblagéppel"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Új névjegy"</b></font>" teljesen új névjegy létrehozásához"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importálás/exportálás"</b></font>" névjegyek importálásához az SD-kártyáról"\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Nincs megjeleníthető névjegy. (Ha most adott hozzá fiókot, a névjegyek szinkronizálása eltarthat pár percig.)"\n\n"Névjegy hozzáadásához nyomja meg a "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" gombot, majd érintse meg a:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Fiókok"</b></font>" lehetőséget -- így beállíthat egy olyan fiókot, amelynek a névjegyeit szinkronizálhatja a táblagéppel"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Megjelenítési beállítások"</b></font>" a névjegyek láthatóságának módosításához"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Új névjegy"</b></font>" teljesen új névjegy létrehozásához"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importálás/exportálás"</b></font>" névjegyek importálásához a SIM- vagy az SD-kártyáról"\n</li></string>
-    <!-- outdated translation 6222739731808897565 -->     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Nincs megjeleníthető névjegy. (Ha most adott hozzá fiókot, a névjegyek szinkronizálása eltarthat pár percig.)"\n\n"Névjegy hozzáadásához nyomja meg a "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" gombot, majd érintse meg a:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Fiókok"</b></font>" lehetőséget -- így beállíthat egy olyan fiókot, amelynek a névjegyeit szinkronizálhatja a táblagéppel"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Megjelenítési beállítások"</b></font>" a névjegyek láthatóságának módosításához"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Új névjegy"</b></font>" teljesen új névjegy létrehozásához"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importálás/exportálás"</b></font>" névjegyek importálásához a SIM- vagy az SD-kártyáról"\n</li></string>
+    <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"Nincsenek megjeleníthető névjegyei."\n\n"Névjegyek hozzáadásához nyomja meg a "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" gombot, majd érintse meg a"\n" "\n<li><font fgcolor="#ffffffff"><b>"Fiókok"</b></font>" lehetőséget olyan, névjegyekkel rendelkező fiók hozzáadásához vagy konfigurálásához, amelyet szinkronizálhat a táblagépen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Új névjegy"</b></font>" teljesen új névjegy létrehozásához"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importálás/Exportálás"</b></font>" SIM- vagy SD-kártyáról történő importáláshoz"\n</li></string>
+    <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"Nincsenek megjeleníthető névjegyei."\n\n"Névjegyek hozzáadásához nyomja meg a "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" gombot, majd érintse meg a"\n" "\n<li><font fgcolor="#ffffffff"><b>"Fiókok"</b></font>" lehetőséget olyan, névjegyekkel rendelkező fiók hozzáadásához vagy konfigurálásához, amelyet szinkronizálhat a telefonon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Új névjegy"</b></font>" teljesen új névjegy létrehozásához"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importálás/Exportálás"</b></font>" SIM- vagy SD-kártyáról történő importáláshoz"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Nincsenek megjeleníthető névjegyei. (Ha most adott hozzá egy fiókot, a szinkronizálás eltarthat pár percig.)"\n\n"Névjegyek hozzáadásához nyomja meg a "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" gombot, majd érintse meg a"\n" "\n<li><font fgcolor="#ffffffff"><b>"Fiókok"</b></font>" lehetőséget olyan, névjegyekkel rendelkező fiók hozzáadásához vagy konfigurálásához, amelyet szinkronizálhat a táblagépen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Megjelenítési beállítások"</b></font>" annak beállításához, hogy mely névjegyek láthatók"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Új névjegy"</b></font>" teljesen új névjegy létrehozásához"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importálás/Exportálás"</b></font>" SIM- vagy SD-kártyáról történő importáláshoz"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Nincsenek megjeleníthető névjegyei. (Ha most adott hozzá egy fiókot, a szinkronizálás eltarthat pár percig.)"\n\n"Névjegyek hozzáadásához nyomja meg a "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" gombot, majd érintse meg a"\n" "\n<li><font fgcolor="#ffffffff"><b>"Fiókok"</b></font>" lehetőséget olyan, névjegyekkel rendelkező fiók hozzáadásához vagy konfigurálásához, amelyet szinkronizálhat a telefonon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Megjelenítési beállítások"</b></font>" annak beállításához, hogy mely névjegyek láthatók"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Új névjegy"</b></font>" teljesen új névjegy létrehozásához"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importálás/Exportálás"</b></font>" SIM- vagy SD-kártyáról történő importáláshoz"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"Nincsenek megjeleníthető névjegyei."\n\n"Névjegyek hozzáadásához nyomja meg a "<font fgcolor="#ffffffff">" "<b>"Menü"</b></font>" gombot, majd érintse meg a"\n" "\n<li><font fgcolor="#ffffffff"><b>"Fiókok"</b></font>" lehetőséget olyan, névjegyekkel rendelkező fiók hozzáadásához vagy konfigurálásához, amelyet szinkronizálhat a táblagépen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Új névjegy"</b></font>" teljesen új névjegy létrehozásához"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importálás/Exportálás"</b></font>" SIM- vagy SD-kártyáról történő importáláshoz"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"Nincsenek megjeleníthető névjegyei."\n\n"Névjegyek hozzáadásához nyomja meg a "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" gombot, majd érintse meg a"\n" "\n<li><font fgcolor="#ffffffff"><b>"Fiókok"</b></font>" lehetőséget olyan, névjegyekkel rendelkező fiók hozzáadásához vagy konfigurálásához, amelyet szinkronizálhat a telefonon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Új névjegy"</b></font>" teljesen új névjegy létrehozásához"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importálás/Exportálás"</b></font>" SIM- vagy SD-kártyáról történő importáláshoz"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Nincsenek megjeleníthető névjegyei. (Ha most adott hozzá egy fiókot, a szinkronizálás eltarthat pár percig.)"\n\n"Névjegyek hozzáadásához nyomja meg a "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" gombot, majd érintse meg a"\n" "\n<li><font fgcolor="#ffffffff"><b>"Fiókok"</b></font>" lehetőséget olyan, névjegyekkel rendelkező fiók hozzáadásához vagy konfigurálásához, amelyet szinkronizálhat a táblagépen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Megjelenítési beállítások"</b></font>" annak beállításához, hogy mely névjegyek láthatók"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Új névjegy"</b></font>" teljesen új névjegy létrehozásához"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importálás/Exportálás"</b></font>" SIM- vagy SD-kártyáról történő importáláshoz"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Nincsenek megjeleníthető névjegyei. (Ha most adott hozzá egy fiókot, a szinkronizálás eltarthat pár percig.)"\n\n"Névjegyek hozzáadásához nyomja meg a "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" gombot, majd érintse meg a"\n" "\n<li><font fgcolor="#ffffffff"><b>"Fiókok"</b></font>" lehetőséget olyan, névjegyekkel rendelkező fiók hozzáadásához vagy konfigurálásához, amelyet szinkronizálhat a telefonon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Megjelenítési beállítások"</b></font>" annak beállításához, hogy mely névjegyek láthatók"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Új névjegy"</b></font>" teljesen új névjegy létrehozásához"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importálás/Exportálás"</b></font>" SIM- vagy SD-kártyáról történő importáláshoz"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Nincsenek kedvencei."\n\n"Így adhat hozzá névjegyet a kedvencek listájához:"\n\n"        "<li>"Érintse meg a "<b>"Címtár"</b>" lapot"\n</li>" "\n<li>"Érintse meg a kedvencekhez hozzáadni kívánt névjegyet"\n</li>" "\n<li>"Érintse meg az ismerős neve melletti csillagot"\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Összes névjegy"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Csillaggal megjelölt"</string>
@@ -199,66 +205,55 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"fotó a névjegyhez"</string>
     <string name="description_minus_button" msgid="387136707700230172">"mínusz"</string>
     <string name="description_plus_button" msgid="515164827856229880">"plusz"</string>
-    <!-- outdated translation 5911758680339949273 -->     <string name="no_sdcard_title" product="nosdcard" msgid="5362631473262100989">"Hiányzó SD-kártya"</string>
+    <string name="no_sdcard_title" product="nosdcard" msgid="5362631473262100989">"Az USB-tár nem érhető el"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Hiányzó SD-kártya"</string>
-    <!-- outdated translation 6019391476490445358 -->     <string name="no_sdcard_message" product="nosdcard" msgid="8045830739790534254">"Az SD-kártya nem észlelhető"</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="8045830739790534254">"Nem észlelhető USB-tár"</string>
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Az SD-kártya nem észlelhető"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"vCard keresése"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importálás a SIM-kártyáról"</string>
-    <!-- outdated translation 8550360976693202816 -->     <string name="import_from_sdcard" product="nosdcard" msgid="8294728696808674154">"Importálás az SD-kártyáról"</string>
+    <string name="import_from_sdcard" product="nosdcard" msgid="8294728696808674154">"Importálás USB-tárról"</string>
     <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Importálás az SD-kártyáról"</string>
-    <!-- outdated translation 2597105442616166277 -->     <string name="export_to_sdcard" product="nosdcard" msgid="7201274701382901259">"Exportálás SD-kártyára"</string>
+    <string name="export_to_sdcard" product="nosdcard" msgid="7201274701382901259">"Exportálás USB-tárra"</string>
     <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Exportálás SD-kártyára"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Látható névjegyek megosztása"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Egyetlen vCard fájl importálása"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Több vCard fájl importálása"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Az összes vCard fájl importálása"</string>
-    <!-- outdated translation 6917522333561434546 -->     <string name="searching_vcard_message" product="nosdcard" msgid="8214795338181412751">"vCard-adatok keresése az SD-kártyán"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="8214795338181412751">"vCard-adatok keresése az USB-táron"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"vCard-adatok keresése az SD-kártyán"</string>
-    <!-- outdated translation 3506782007953167180 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="7447077516493667568">"Az SD-kártya beolvasása sikertelen"</string>
+    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="7447077516493667568">"Az USB-tár beolvasása sikertelen volt"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Az SD-kártya beolvasása sikertelen"</string>
-    <!-- no translation found for scanning_sdcard_failed_message (5645544323676912703) -->
-    <skip />
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="5645544323676912703">"Az USB-tár beolvasása sikertelen volt (A hiba oka: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Az SD-kártya beolvasása nem sikerült (oka: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O hiba"</string>
-    <!-- no translation found for fail_reason_low_memory_during_import (7514918659342886381) -->
-    <skip />
+    <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Nincs elég memória (lehet, hogy túl nagy a fájl)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Váratlan ok miatt nem sikerült a vCard szintaktikai elemzése"</string>
     <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"Bár úgy tűnik, hogy a formátuma érvényes, nem sikerült szintaktikailag elemezni a vCardot, mert a jelenlegi verzió nem támogatja"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"Nem található vCard fájl az USB-táron"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Nem található vCard fájl az SD-kártyán"</string>
-    <!-- no translation found for fail_reason_failed_to_collect_vcard_meta_info (4154492282316067754) -->
-    <skip />
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Nem sikerült begyűjteni a vCard fájl(ok) metaadatait."</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Egy vagy több fájlt nem sikerült importálni (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Ismeretlen hiba történt"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Válassza ki a vCard fájlt"</string>
-    <!-- no translation found for caching_vcard_title (5009556022082659780) -->
-    <skip />
-    <!-- no translation found for caching_vcard_message (2380844718093378900) -->
-    <skip />
-    <!-- no translation found for progress_notifier_message (2311011466908220528) -->
-    <skip />
-    <!-- no translation found for importing_vcard_description (4245275224298571351) -->
-    <skip />
-    <!-- outdated translation 4923008144735294994 -->     <string name="reading_vcard_failed_title" msgid="2162610359561887043">"A vCard adatainak beolvasása nem sikerült"</string>
-    <!-- no translation found for reading_vcard_canceled_title (1770608329958463131) -->
-    <skip />
+    <string name="caching_vcard_title" msgid="5009556022082659780">"vCard(ok) mentése ideiglenes helyi tárolóba"</string>
+    <string name="caching_vcard_message" msgid="2380844718093378900">"Az importáló elmenti a vCardo(ka)t az ideiglenes helyi tárolóba. A tényleges importálás hamarosan megkezdődik."</string>
+    <string name="progress_notifier_message" msgid="2311011466908220528">"Importálás - <xliff:g id="TOTAL_NUMBER">%s</xliff:g>/<xliff:g id="CURRENT_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="importing_vcard_description" msgid="4245275224298571351">"Importálás - <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="reading_vcard_failed_title" msgid="2162610359561887043">"A vCard-adatok beolvasása sikertelen volt"</string>
+    <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"A vCard-adatok beolvasása megszakítva"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"A(z) <xliff:g id="FILENAME">%s</xliff:g> vCard importálása befejeződött"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"A(z) <xliff:g id="FILENAME">%s</xliff:g> importálása megszakítva"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"A(z) <xliff:g id="FILENAME">%s</xliff:g> hamarosan importálásra kerül."</string>
-    <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
-    <skip />
+    <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"A vCard-importálási kérelem elutasítva. Próbálja újra később."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"A(z) <xliff:g id="FILENAME">%s</xliff:g> hamarosan exportálásra kerül."</string>
-    <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
-    <skip />
-    <!-- no translation found for percentage (34897865327092209) -->
-    <skip />
+    <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"A vCard-exportálási kérelem elutasítva. Próbálja újra később."</string>
+    <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Exportálás megerősítése"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Biztosan exportálja a Címtárat a(z) \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\" fájlba?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Nem sikerült exportálni a névjegyadatokat"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Nem sikerült exportálni a névjegyadatokat."\n"A hiba oka: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Nincs exportálható névjegy"</string>
-    <!-- outdated translation 7084146295639672658 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"Túl sok vCard fájl van az SD-kártyán"</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"Túl sok vCard-fájl van az USB-táron"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Túl sok vCard fájl van az SD-kártyán"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"A fájlnév túl hosszú (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
     <string name="exporting_vcard_finished_title" msgid="4259736138838583213">"A(z) <xliff:g id="FILENAME">%s</xliff:g> exportálása befejeződött"</string>
@@ -268,8 +263,8 @@
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Nem sikerült inicializálni az exportálót: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Hiba történt az exportálás során: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Nem sikerült lekérni az adatbázis adatait"</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Nincs exportálható névjegy. Ha vannak névjegyek a táblagépén, elképzelhető, hogy néhány adatszolgáltató letiltotta a névjegyek táblagépen kívülre történő exportálását."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Nincs exportálható névjegy. Ha vannak névjegyek a telefonján, elképzelhető, hogy néhány adatszolgáltató letiltotta a névjegyek telefonon kívülre történő exportálását."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Nincsenek exportálható névjegyek. Ha vannak névjegyek táblagépén, akkor lehet, hogy az adatszolgáltatók megtiltották azok exportálását a táblagépen kívülre."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Nincsenek exportálható névjegyek. Ha vannak névjegyek telefonján, akkor lehet, hogy az adatszolgáltatók megtiltották azok exportálását a telefonján kívülre."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"A vCard-készítő inicializálása nem sikerült"</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"A(z) \"<xliff:g id="FILE_NAME">%s</xliff:g>\" fájl nem nyitható meg: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> névjegy"</string>
@@ -287,8 +282,7 @@
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Nincs megfelelő alkalmazás a művelet elvégzésére"</string>
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Választás megjegyzése"</string>
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"Ismeretlen"</string>
-    <!-- no translation found for quickcontact_no_data (2098000859125253675) -->
-    <skip />
+    <string name="quickcontact_no_data" msgid="2098000859125253675">"Nincs adat"</string>
     <string name="quickcontact_clear_defaults_description" msgid="3792792870662989100">"Alapértelmezések törlése"</string>
     <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"A névjegy alapbeállításai:"</string>
     <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"Törlés"</string>
@@ -303,10 +297,8 @@
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Szervezet"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Webhely"</string>
     <string name="eventLabelsGroup" msgid="8069912895912714412">"Esemény"</string>
-    <!-- no translation found for relationLabelsGroup (1854373894284572781) -->
-    <skip />
-    <!-- no translation found for groupsLabel (8573535366319059326) -->
-    <skip />
+    <string name="relationLabelsGroup" msgid="1854373894284572781">"Kapcsolat"</string>
+    <string name="groupsLabel" msgid="8573535366319059326">"Csoportok"</string>
     <string name="type_short_home" msgid="7770424864090605384">"O"</string>
     <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
     <string name="type_short_work" msgid="4925330752504537861">"Mh"</string>
@@ -319,8 +311,8 @@
     <string name="display_ungrouped" msgid="4602580795576261158">"Az összes többi névjegy"</string>
     <string name="display_all_contacts" msgid="6846131371214707956">"Összes névjegy"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Ha leállítja a(z) \"<xliff:g id="GROUP">%s</xliff:g>\" csoport szinkronizálását, ugyanez történik a nem csoportosított névjegyekkel is."</string>
-    <string name="account_phone" product="tablet" msgid="7946049152658522054">"Csak táblagépen, nem szinkronizált"</string>
-    <!-- outdated translation 7946049152658522054 -->     <string name="account_phone" product="default" msgid="3682950835276226870">"Csak táblagépen, nem szinkronizált"</string>
+    <string name="account_phone" product="tablet" msgid="7946049152658522054">"Csak a táblagépen, nem szinkronizált"</string>
+    <string name="account_phone" product="default" msgid="3682950835276226870">"Csak a telefonon, nem szinkronizált"</string>
     <string name="call_custom" msgid="7756571794763171802">"<xliff:g id="CUSTOM">%s</xliff:g> hívása"</string>
     <string name="call_home" msgid="1990519474420545392">"Otthoni szám hívása"</string>
     <string name="call_mobile" msgid="7502236805487609178">"Mobil hívása"</string>
@@ -382,8 +374,7 @@
     <string name="chat_icq" msgid="8438405386153745775">"Csevegés az ICQ-n"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Csevegés Jabberen"</string>
     <string name="chat" msgid="9025361898797412245">"Csevegés"</string>
-    <!-- no translation found for postal_address (8765560217149624536) -->
-    <skip />
+    <string name="postal_address" msgid="8765560217149624536">"Cím"</string>
     <string name="postal_street" msgid="8133143961580058972">"Utca"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Postafiók"</string>
     <string name="postal_neighborhood" msgid="1450783874558956739">"Környék"</string>
@@ -391,8 +382,7 @@
     <string name="postal_region" msgid="6045263193478437672">"Állapot"</string>
     <string name="postal_postcode" msgid="572136414136673751">"Irányítószám"</string>
     <string name="postal_country" msgid="7638264508416368690">"Ország"</string>
-    <!-- no translation found for full_name (6602579550613988977) -->
-    <skip />
+    <string name="full_name" msgid="6602579550613988977">"Név"</string>
     <string name="name_given" msgid="1687286314106019813">"Utónév"</string>
     <string name="name_family" msgid="3416695586119999058">"Vezetéknév"</string>
     <string name="name_prefix" msgid="59756378548779822">"Név előtagja"</string>
@@ -415,11 +405,9 @@
     <string name="search_bar_hint" msgid="1012756309632856553">"Keresés a névjegyek között"</string>
     <string name="search_for_all_contacts" msgid="6644963335787294131">"Keresés az összes névjegyben"</string>
     <string name="take_photo" msgid="7496128293167402354">"Fotó készítése"</string>
-    <!-- no translation found for take_new_photo (7341354729436576304) -->
-    <skip />
+    <string name="take_new_photo" msgid="7341354729436576304">"Új fénykép készítése"</string>
     <string name="pick_photo" msgid="448886509158039462">"Fotó kiválasztása a Galériából"</string>
-    <!-- no translation found for pick_new_photo (7962368009197147617) -->
-    <skip />
+    <string name="pick_new_photo" msgid="7962368009197147617">"Új fotó kiválasztása a Galériából"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Az ismerőslista frissítése folyamatban van, hogy tükrözze a nyelv módosítását."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Az ismerőslista frissítése folyamatban van."</string>
     <string name="upgrade_out_of_memory" msgid="6153384328042175667">"Az ismerősök frissítése folyamatban van. "\n" "\n" A frissítési folyamathoz kb. <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB belső tárhelyre van szükség. "\n" "\n" Válasszon az alábbi lehetőségek közül:"</string>
@@ -438,79 +426,46 @@
     <!-- no translation found for multiple_picker_title:other (4608837420986126229) -->
     <!-- no translation found for no_contacts_selected (5877803471037324613) -->
     <skip />
-    <!-- no translation found for add_field (2384260056674995230) -->
-    <skip />
-    <!-- no translation found for contact_status_update_attribution (752179367353018597) -->
-    <skip />
-    <!-- no translation found for contact_status_update_attribution_with_date (7358045508107825068) -->
-    <skip />
-    <!-- no translation found for description_star (2605854427360036550) -->
-    <skip />
-    <!-- no translation found for edit_contact (7529281274005689512) -->
-    <skip />
-    <!-- no translation found for merge_info:one (148365587896371969) -->
-    <!-- no translation found for merge_info:other (425683718017380845) -->
-    <!-- no translation found for local_invisible_directory (6046691709127661065) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_join_dialog_title (5276699501316246253) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_join_dialog_message (3842757977671434836) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_edit_dialog_title (1064042382692091314) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_edit_dialog_message (6549585283910518095) -->
-    <skip />
-    <!-- no translation found for menu_copyContact (4401683725471696686) -->
-    <skip />
+    <string name="add_field" msgid="2384260056674995230">"Más mező hozzáadása"</string>
+    <string name="contact_status_update_attribution" msgid="752179367353018597">"- <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> - <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
+    <string name="description_star" msgid="2605854427360036550">"kedvenc"</string>
+    <string name="edit_contact" msgid="7529281274005689512">"Névjegy szerkesztése"</string>
+  <plurals name="merge_info">
+    <item quantity="one" msgid="148365587896371969">"nincs egyesítve"</item>
+    <item quantity="other" msgid="425683718017380845">"egyesítve <xliff:g id="COUNT">%0$d</xliff:g> forrásból"</item>
+  </plurals>
+    <string name="local_invisible_directory" msgid="6046691709127661065">"Egyéb"</string>
+    <string name="aggregation_suggestion_join_dialog_title" msgid="5276699501316246253">"Névjegyek összekapcsolása"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Összekapcsolja a jelenlegi névjegyet a kiválasztott névjeggyel?"</string>
+    <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"A kiválasztott névjegyek szerkesztése"</string>
+    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"A kiválasztott névjegy szerkesztésére vált? Az eddig beírt információk át lesznek másolva."</string>
+    <string name="menu_copyContact" msgid="4401683725471696686">"Másolás a saját névjegyeim közé"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Mappa: <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <!-- no translation found for search_label (6789295859496641042) -->
-    <skip />
-    <!-- no translation found for directory_search_label (1887759056597975053) -->
-    <skip />
-    <!-- no translation found for local_search_label (1686089693064201315) -->
-    <skip />
-    <!-- no translation found for toast_making_personal_copy (7905283986345263275) -->
-    <skip />
-    <!-- no translation found for list_filter_prompt (7481426622828055116) -->
-    <skip />
-    <!-- no translation found for list_filter_all_accounts (8908683398914322369) -->
-    <skip />
-    <!-- no translation found for list_filter_all_starred (5031734941601931356) -->
-    <skip />
-    <!-- no translation found for list_filter_custom (8910173055702057002) -->
-    <skip />
-    <!-- no translation found for list_filter_customize (2035084418635775579) -->
-    <skip />
-    <!-- no translation found for list_filter_phones (7905045603593508221) -->
-    <skip />
-    <!-- no translation found for list_filter_single (5871400283515893087) -->
-    <skip />
-    <!-- no translation found for custom_list_filter (7836035257402013957) -->
-    <skip />
-    <!-- no translation found for activity_title_settings (5464130076132770781) -->
-    <skip />
-    <!-- no translation found for menu_settings (377929915873428211) -->
-    <skip />
-    <!-- no translation found for preference_displayOptions (1341720270148252393) -->
-    <skip />
-    <!-- no translation found for organization_company_and_title (6718207751363732025) -->
-    <skip />
-    <!-- no translation found for hint_findContacts (1808681193458772072) -->
-    <skip />
-    <!-- no translation found for non_phone_caption (1541655052330027380) -->
-    <skip />
-    <!-- no translation found for non_phone_add_to_contacts (6590985286250471169) -->
-    <skip />
-    <!-- no translation found for non_phone_close (7608506439725515667) -->
-    <skip />
-    <!-- no translation found for widget_name_and_phonetic (8739586586600099979) -->
-    <skip />
-    <!-- no translation found for date_year_toggle (7356532842767854606) -->
-    <skip />
-    <!-- no translation found for social_widget_label (6378905543028924592) -->
-    <skip />
-    <!-- no translation found for social_widget_loading (3697996166985327861) -->
-    <skip />
+    <string name="search_label" msgid="6789295859496641042">"Keresés a névjegyek között"</string>
+    <string name="directory_search_label" msgid="1887759056597975053">"Mappa"</string>
+    <string name="local_search_label" msgid="1686089693064201315">"Címtár"</string>
+    <string name="toast_making_personal_copy" msgid="7905283986345263275">"Személyes másolat készítése"</string>
+    <string name="list_filter_prompt" msgid="7481426622828055116">"Címtár kiválasztása"</string>
+    <string name="list_filter_all_accounts" msgid="8908683398914322369">"Összes névjegy"</string>
+    <string name="list_filter_all_starred" msgid="5031734941601931356">"Csillaggal megjelölt"</string>
+    <string name="list_filter_custom" msgid="8910173055702057002">"Egyéni"</string>
+    <string name="list_filter_customize" msgid="2035084418635775579">"Személyre szabás..."</string>
+    <string name="list_filter_phones" msgid="7905045603593508221">"Névjegyek telefonszámmal"</string>
+    <string name="list_filter_single" msgid="5871400283515893087">"Kapcsolat"</string>
+    <string name="custom_list_filter" msgid="7836035257402013957">"Egyéni nézet megadása"</string>
+    <string name="activity_title_settings" msgid="5464130076132770781">"Beállítások"</string>
+    <string name="menu_settings" msgid="377929915873428211">"Beállítások"</string>
+    <string name="preference_displayOptions" msgid="1341720270148252393">"Megjelenítési beállítások"</string>
+    <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
+    <string name="hint_findContacts" msgid="1808681193458772072">"Névjegy keresése"</string>
+    <string name="non_phone_caption" msgid="1541655052330027380">"Telefonszám"</string>
+    <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Hozzáadása a névjegyekhez"</string>
+    <string name="non_phone_close" msgid="7608506439725515667">"Bezárás"</string>
+    <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
+    <string name="date_year_toggle" msgid="7356532842767854606">"Születési év megadása"</string>
+    <string name="social_widget_label" msgid="6378905543028924592">"Névjegy"</string>
+    <string name="social_widget_loading" msgid="3697996166985327861">"Betöltés…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Új névjegy létrehozása"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Jelentkezzen be fiókjába"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Névjegyek importálása fájlból"</string>
@@ -522,4 +477,10 @@
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Kérjük, adja meg az ismerős nevét, mielőtt összekapcsolná egy másik ismerősével."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Összekapcsolt névjegy"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Másolt szöveg"</string>
+    <!-- no translation found for cancel_confirmation_dialog_title (3950463632415908534) -->
+    <skip />
+    <!-- no translation found for cancel_confirmation_dialog_message (7021968394611740251) -->
+    <skip />
+    <!-- no translation found for discard (1234315037371251414) -->
+    <skip />
 </resources>
