@@ -61,16 +61,27 @@
                 android:gravity="center_vertical"
             />
 
-            <TextView
-                android:id="@+id/data"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:paddingLeft="12dip"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-            />
-
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                />
+                <TextView
+                    android:id="@+id/footer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:visibility="gone"
+                />
+            </LinearLayout>
             <TextView
                 android:id="@+id/type"
                 android:layout_width="wrap_content"
@@ -121,14 +132,6 @@
                 android:background="@android:drawable/list_selector_background"
             />
         </LinearLayout>
-        <TextView
-            android:id="@+id/footer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="176dip"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:visibility="gone"
-        />
     </LinearLayout>
     <!-- Longer separating line (only for the last row) -->
     <View
