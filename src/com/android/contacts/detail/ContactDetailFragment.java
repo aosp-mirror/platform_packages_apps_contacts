@@ -1182,6 +1182,10 @@ public class ContactDetailFragment extends Fragment implements
 
         @Override
         public void onLoadFinished(Loader<ContactLoader.Result> loader, ContactLoader.Result data) {
+            if (!((ContactLoader)loader).getLookupUri().equals(mLookupUri)) {
+                return;
+            }
+
             if (data != ContactLoader.Result.NOT_FOUND && data != ContactLoader.Result.ERROR) {
                 mContactData = data;
             } else {
@@ -1198,6 +1202,7 @@ public class ContactDetailFragment extends Fragment implements
 
         public void onLoaderReset(Loader<ContactLoader.Result> loader) {
             mContactData = null;
+            bindData();
         }
     };
 

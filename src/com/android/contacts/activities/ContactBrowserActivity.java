@@ -238,7 +238,7 @@ public class ContactBrowserActivity extends Activity
                 configureFragments(false /* from request */);
             }
 
-            mListFragment.setSelectedContactUri(uri);
+            mListFragment.reloadDataAndSetSelectedUri(uri);
         }
     }
 
@@ -609,8 +609,8 @@ public class ContactBrowserActivity extends Activity
         public void onInvalidSelection() {
             ContactListFilter filter =
                     new ContactListFilter(ContactListFilter.FILTER_TYPE_SINGLE_CONTACT);
+            mListFragment.setFilter(filter, false);
             mContactListFilterController.setContactListFilter(filter, true);
-            mListFragment.setFilter(filter);
         }
     }
 
@@ -945,7 +945,7 @@ public class ContactBrowserActivity extends Activity
             case SUBACTIVITY_NEW_CONTACT: {
                 if (resultCode == RESULT_OK) {
                     mRequest.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
-                    mListFragment.setSelectedContactUri(data.getData());
+                    mListFragment.reloadDataAndSetSelectedUri(data.getData());
                 }
                 break;
             }

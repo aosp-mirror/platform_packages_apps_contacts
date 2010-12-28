@@ -124,7 +124,14 @@ public abstract class ContactBrowseListFragment extends
                 return;
             }
 
-            onContactUriQueryFinished(Contacts.getLookupUri(contactId, lookupKey));
+            Uri uri;
+            if (contactId != 0 && lookupKey != null) {
+                uri = Contacts.getLookupUri(contactId, lookupKey);
+            } else {
+                uri = null;
+            }
+
+            onContactUriQueryFinished(uri);
         }
     }
 
@@ -160,6 +167,10 @@ public abstract class ContactBrowseListFragment extends
     }
 
     public void setFilter(ContactListFilter filter) {
+        setFilter(filter, true);
+    }
+
+    public void setFilter(ContactListFilter filter, boolean restoreSelectedUri) {
         if (mFilter == null && filter == null) {
             return;
         }
@@ -172,8 +183,10 @@ public abstract class ContactBrowseListFragment extends
 
         mFilter = filter;
         saveFilter();
-        mSelectedContactUri = null;
-        restoreSelectedUri(true);
+        if (restoreSelectedUri) {
+            mSelectedContactUri = null;
+            restoreSelectedUri(true);
+        }
         reloadData();
     }
 
@@ -492,6 +505,11 @@ public abstract class ContactBrowseListFragment extends
         mStartedLoading = true;
         mSelectionVerified = false;
         super.startLoading();
+    }
+
+    public void reloadDataAndSetSelectedUri(Uri uri) {
+        setSelectedContactUri(uri, true, true, true, true);
+        reloadData();
     }
 
     @Override
