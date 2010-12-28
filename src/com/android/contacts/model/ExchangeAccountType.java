@@ -68,7 +68,7 @@ public class ExchangeAccountType extends FallbackAccountType {
 
     @Override
     protected DataKind inflateStructuredName(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateStructuredName(context, AccountType.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflateStructuredName(context, inflateLevel);
 
         if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             boolean displayOrderPrimary =
@@ -112,7 +112,7 @@ public class ExchangeAccountType extends FallbackAccountType {
 
     @Override
     protected DataKind inflateNickname(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateNickname(context, AccountType.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflateNickname(context, inflateLevel);
 
         if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             kind.isList = false;
@@ -127,7 +127,7 @@ public class ExchangeAccountType extends FallbackAccountType {
 
     @Override
     protected DataKind inflatePhone(Context context, int inflateLevel) {
-        final DataKind kind = super.inflatePhone(context, AccountType.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflatePhone(context, inflateLevel);
 
         if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             kind.typeColumn = Phone.TYPE;
@@ -159,7 +159,7 @@ public class ExchangeAccountType extends FallbackAccountType {
 
     @Override
     protected DataKind inflateEmail(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateEmail(context, AccountType.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflateEmail(context, inflateLevel);
 
         if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             kind.typeOverallMax = 3;
@@ -173,7 +173,7 @@ public class ExchangeAccountType extends FallbackAccountType {
 
     @Override
     protected DataKind inflateStructuredPostal(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateStructuredPostal(context, AccountType.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflateStructuredPostal(context, inflateLevel);
 
         if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             final boolean useJapaneseOrder =
@@ -215,7 +215,7 @@ public class ExchangeAccountType extends FallbackAccountType {
 
     @Override
     protected DataKind inflateIm(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateIm(context, AccountType.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflateIm(context, inflateLevel);
 
         if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             // Types are not supported for IM. There can be 3 IMs, but OWA only shows only the first
@@ -233,7 +233,7 @@ public class ExchangeAccountType extends FallbackAccountType {
 
     @Override
     protected DataKind inflateOrganization(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateOrganization(context, AccountType.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflateOrganization(context, inflateLevel);
 
         if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             kind.isList = false;
@@ -250,7 +250,7 @@ public class ExchangeAccountType extends FallbackAccountType {
 
     @Override
     protected DataKind inflatePhoto(Context context, int inflateLevel) {
-        final DataKind kind = super.inflatePhoto(context, AccountType.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflatePhoto(context, inflateLevel);
 
         if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             kind.typeOverallMax = 1;
@@ -264,7 +264,7 @@ public class ExchangeAccountType extends FallbackAccountType {
 
     @Override
     protected DataKind inflateNote(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateNote(context, AccountType.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflateNote(context, inflateLevel);
 
         if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             kind.fieldList = Lists.newArrayList();
@@ -300,7 +300,7 @@ public class ExchangeAccountType extends FallbackAccountType {
 
     @Override
     protected DataKind inflateWebsite(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateWebsite(context, AccountType.LEVEL_MIMETYPES);
+        final DataKind kind = super.inflateWebsite(context, inflateLevel);
 
         if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
             kind.isList = false;
