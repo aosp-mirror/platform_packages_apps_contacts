@@ -37,7 +37,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
-import android.widget.NumberPicker.OnChangeListener;
+import android.widget.NumberPicker.OnValueChangedListener;
 
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
@@ -107,8 +107,8 @@ public class DatePicker extends FrameLayout {
         mDayPicker = (NumberPicker) findViewById(R.id.day);
         mDayPicker.setFormatter(NumberPicker.TWO_DIGIT_FORMATTER);
         mDayPicker.setOnLongPressUpdateInterval(100);
-        mDayPicker.setOnChangeListener(new OnChangeListener() {
-            public void onChange(NumberPicker picker, int oldVal, int newVal) {
+        mDayPicker.setOnValueChangedListener(new OnValueChangedListener() {
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 mDay = newVal;
                 notifyDateChanged();
             }
@@ -127,14 +127,17 @@ public class DatePicker extends FrameLayout {
             for (int i = 0; i < months.length; i++) {
                 months[i] = String.valueOf(i + 1);
             }
-            mMonthPicker.setRange(1, 12);
+            mMonthPicker.setMinValue(1);
+            mMonthPicker.setMaxValue(12);
         } else {
-            mMonthPicker.setRange(1, 12, months);
+            mMonthPicker.setMinValue(1);
+            mMonthPicker.setMaxValue(12);
+            mMonthPicker.setDisplayedValues(months);
         }
 
         mMonthPicker.setOnLongPressUpdateInterval(200);
-        mMonthPicker.setOnChangeListener(new OnChangeListener() {
-            public void onChange(NumberPicker picker, int oldVal, int newVal) {
+        mMonthPicker.setOnValueChangedListener(new OnValueChangedListener() {
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
 
                 /* We display the month 1-12 but store it 0-11 so always
                  * subtract by one to ensure our internal state is always 0-11
@@ -148,8 +151,8 @@ public class DatePicker extends FrameLayout {
         });
         mYearPicker = (NumberPicker) findViewById(R.id.year);
         mYearPicker.setOnLongPressUpdateInterval(100);
-        mYearPicker.setOnChangeListener(new OnChangeListener() {
-            public void onChange(NumberPicker picker, int oldVal, int newVal) {
+        mYearPicker.setOnValueChangedListener(new OnValueChangedListener() {
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 mYear = newVal;
                 // Adjust max day for leap years if needed
                 adjustMaxDay();
@@ -177,7 +180,8 @@ public class DatePicker extends FrameLayout {
                 a.getInt(com.android.internal.R.styleable.DatePicker_startYear, DEFAULT_START_YEAR);
         int mEndYear =
                 a.getInt(com.android.internal.R.styleable.DatePicker_endYear, DEFAULT_END_YEAR);
-        mYearPicker.setRange(mStartYear, mEndYear);
+        mYearPicker.setMinValue(mStartYear);
+        mYearPicker.setMaxValue(mEndYear);
 
         a.recycle();
 
@@ -345,6 +349,7 @@ public class DatePicker extends FrameLayout {
             dest.writeInt(mYearOptional ? 1 : 0);
         }
 
+        @SuppressWarnings("unused")
         public static final Parcelable.Creator<SavedState> CREATOR =
                 new Creator<SavedState>() {
 
@@ -421,13 +426,13 @@ public class DatePicker extends FrameLayout {
         updateDaySpinner();
         mYearToggle.setChecked(mHasYear);
         mYearToggle.setVisibility(mYearOptional ? View.VISIBLE : View.GONE);
-        mYearPicker.setCurrent(mYear);
+        mYearPicker.setValue(mYear);
         mYearPicker.setVisibility(mHasYear ? View.VISIBLE : View.GONE);
 
         /* The month display uses 1-12 but our internal state stores it
          * 0-11 so add one when setting the display.
          */
-        mMonthPicker.setCurrent(mMonth + 1);
+        mMonthPicker.setValue(mMonth + 1);
     }
 
     private void updateDaySpinner() {
@@ -435,8 +440,9 @@ public class DatePicker extends FrameLayout {
         // if year was not set, use 2000 as it was a leap year
         cal.set(mHasYear ? mYear : 2000, mMonth, 1);
         int max = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-        mDayPicker.setRange(1, max);
-        mDayPicker.setCurrent(mDay);
+        mDayPicker.setMinValue(1);
+        mDayPicker.setMaxValue(max);
+        mDayPicker.setValue(mDay);
     }
 
     public int getYear() {
