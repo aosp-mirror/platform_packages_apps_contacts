@@ -188,9 +188,18 @@ public class VCardService extends Service {
                             request.uri, request.originalUri));
         }
         if (tryExecute(new ImportProcessor(this, request, mCurrentJobId))) {
-            final String displayName = request.originalUri.getLastPathSegment(); 
-            final String message = getString(R.string.vcard_import_will_start_message,
-                    displayName);
+            final String displayName;
+            final String message;
+            final String lastPathSegment = request.originalUri.getLastPathSegment();
+            if ("file".equals(request.originalUri.getScheme()) &&
+                    lastPathSegment != null) {
+                displayName = lastPathSegment;
+                message = getString(R.string.vcard_import_will_start_message, displayName);
+            } else {
+                displayName = getString(R.string.vcard_unknown_filename);
+                message = getString(R.string.vcard_import_will_start_message_with_default_name);
+            }
+
             // TODO: Ideally we should detect the current status of import/export and show
             // "started" when we can import right now and show "will start" when we cannot.
             Toast.makeText(this, message, Toast.LENGTH_LONG).show();
