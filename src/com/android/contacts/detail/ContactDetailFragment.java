@@ -463,7 +463,7 @@ public class ContactDetailFragment extends Fragment implements
                     if (status != null) {
                         final String imMime = Im.CONTENT_ITEM_TYPE;
                         final DataKind imKind = sources.getKindOrFallback(accountType,
-                                imMime, mContext, AccountType.LEVEL_MIMETYPES);
+                                imMime, mContext, AccountType.LEVEL_CONSTRAINTS);
                         final ViewEntry imEntry = ViewEntry.fromValues(mContext,
                                 imMime, imKind, dataId, entryValues);
                         final ImActions imActions = ContactsUtils.buildImActions(entryValues);
