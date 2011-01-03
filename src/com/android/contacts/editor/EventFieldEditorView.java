@@ -219,7 +219,11 @@ public class EventFieldEditorView extends LabeledEditorView {
         } else {
             final ParsePosition position = new ParsePosition(0);
             // Try parsing with year
-            final Date date1 = kind.dateFormatWithYear.parse(oldValue, position);
+            Date date1 = kind.dateFormatWithYear.parse(oldValue, position);
+            if (date1 == null) {
+                // If that format does not fit, try guessing the right format
+                date1 = DateUtils.parseDate(oldValue);
+            }
             if (date1 != null) {
                 calendar.setTime(date1);
                 oldYear = calendar.get(Calendar.YEAR);

@@ -32,11 +32,18 @@ public class DateUtils {
     public static final SimpleDateFormat DATE_AND_TIME_FORMAT =
             new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
+    // Variations of ISO 8601 date format.  Do not change the order - it does affect the
+    // result in ambiguous cases.
     private static final SimpleDateFormat[] DATE_FORMATS = {
-        NO_YEAR_DATE_FORMAT,
         FULL_DATE_FORMAT,
         DATE_AND_TIME_FORMAT,
+        new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'"),
+        new SimpleDateFormat("yyyyMMdd"),
+        new SimpleDateFormat("yyyyMMdd'T'HHmmssSSS'Z'"),
+        new SimpleDateFormat("yyyyMMdd'T'HHmmss'Z'"),
+        new SimpleDateFormat("yyyyMMdd'T'HHmm'Z'"),
     };
+
     static {
         for (SimpleDateFormat format : DATE_FORMATS) {
             format.setLenient(true);
@@ -48,6 +55,25 @@ public class DateUtils {
 
     private static final java.text.DateFormat FORMAT_WITHOUT_YEAR_DATE_FIRST =
             new SimpleDateFormat("dd MMMM");
+
+    /**
+     * Parses the supplied string to see if it looks like a date. If so,
+     * returns the date.  Otherwise, returns null.
+     */
+    public static Date parseDate(String string) {
+        ParsePosition parsePosition = new ParsePosition(0);
+        for (int i = 0; i < DATE_FORMATS.length; i++) {
+            SimpleDateFormat f = DATE_FORMATS[i];
+            synchronized (f) {
+                parsePosition.setIndex(0);
+                Date date = f.parse(string, parsePosition);
+                if (parsePosition.getIndex() == string.length()) {
+                    return date;
+                }
+            }
+        }
+        return null;
+    }
 
     /**
      * Parses the supplied string to see if it looks like a date. If so,
@@ -66,20 +92,28 @@ public class DateUtils {
 
         ParsePosition parsePosition = new ParsePosition(0);
 
+        Date date;
+
+        synchronized (NO_YEAR_DATE_FORMAT) {
+            date = NO_YEAR_DATE_FORMAT.parse(string, parsePosition);
+        }
+
+        if (parsePosition.getIndex() == string.length()) {
+            java.text.DateFormat outFormat = isMonthBeforeDate(context)
+                    ? FORMAT_WITHOUT_YEAR_MONTH_FIRST
+                    : FORMAT_WITHOUT_YEAR_DATE_FIRST;
+            synchronized (outFormat) {
+                return outFormat.format(date);
+            }
+        }
+
         for (int i = 0; i < DATE_FORMATS.length; i++) {
             SimpleDateFormat f = DATE_FORMATS[i];
             synchronized (f) {
                 parsePosition.setIndex(0);
-                Date date = f.parse(string, parsePosition);
+                date = f.parse(string, parsePosition);
                 if (parsePosition.getIndex() == string.length()) {
-                    java.text.DateFormat outFormat;
-                    if (f == NO_YEAR_DATE_FORMAT) {
-                        outFormat = isMonthBeforeDate(context) ? FORMAT_WITHOUT_YEAR_MONTH_FIRST
-                                : FORMAT_WITHOUT_YEAR_DATE_FIRST;
-                    } else {
-                        outFormat = DateFormat.getDateFormat(context);
-                    }
-
+                    java.text.DateFormat outFormat = DateFormat.getDateFormat(context);
                     synchronized (outFormat) {
                         return outFormat.format(date);
                     }
