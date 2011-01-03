@@ -33,6 +33,8 @@ import android.content.Intent;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.AggregationExceptions;
@@ -505,14 +507,14 @@ public class ContactSaveService extends IntentService {
         // Apply all aggregation exceptions as one batch
         try {
             resolver.applyBatch(ContactsContract.AUTHORITY, operations);
-            Toast.makeText(this, R.string.contactsJoinedMessage, Toast.LENGTH_LONG).show();
+            showToast(R.string.contactsJoinedMessage);
             success = true;
         } catch (RemoteException e) {
             Log.e(TAG, "Failed to apply aggregation exception batch", e);
-            Toast.makeText(this, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
+            showToast(R.string.contactSavedErrorToast);
         } catch (OperationApplicationException e) {
             Log.e(TAG, "Failed to apply aggregation exception batch", e);
-            Toast.makeText(this, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
+            showToast(R.string.contactSavedErrorToast);
         }
 
         Intent callbackIntent = intent.getParcelableExtra(EXTRA_CALLBACK_INTENT);
@@ -535,5 +537,18 @@ public class ContactSaveService extends IntentService {
         builder.withValue(AggregationExceptions.RAW_CONTACT_ID1, rawContactId1);
         builder.withValue(AggregationExceptions.RAW_CONTACT_ID2, rawContactId2);
         operations.add(builder.build());
+    }
+
+    /**
+     * Shows a toast on the UI thread.
+     */
+    private void showToast(final int message) {
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+
+            @Override
+            public void run() {
+                Toast.makeText(ContactSaveService.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
