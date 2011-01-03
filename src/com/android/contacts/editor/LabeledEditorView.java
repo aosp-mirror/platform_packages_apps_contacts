@@ -389,6 +389,7 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
      */
     private Dialog createCustomDialog() {
         final EditText customType = new EditText(mContext);
+        customType.setId(R.id.custom_dialog_content);
         customType.setInputType(INPUT_TYPE_CUSTOM);
         customType.setSaveEnabled(true);
         customType.requestFocus();

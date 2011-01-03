@@ -61,4 +61,7 @@
 
     <!-- Dialog ID for the date picker in event (birthday) editors -->
     <item type="id" name="dialog_event_date_picker" />
+
+    <!-- An ID to be used for contents of a custom dialog so that its state be preserved -->
+    <item type="id" name="custom_dialog_content" />
 </resources>
