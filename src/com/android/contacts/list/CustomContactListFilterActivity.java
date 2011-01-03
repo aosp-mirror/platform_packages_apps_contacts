@@ -19,9 +19,9 @@ package com.android.contacts.list;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypes;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.GoogleAccountType;
-import com.android.contacts.model.AccountTypes;
 import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.LocalizedNameResolver;
@@ -34,7 +34,6 @@ import android.app.AlertDialog;
 import android.app.ExpandableListActivity;
 import android.app.ProgressDialog;
 import android.content.ContentProviderOperation;
-import android.content.ContentProviderOperation.Builder;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -67,7 +66,6 @@ import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
 import android.widget.TextView;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -311,33 +309,37 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
          * this {@link GroupDelta}.
          */
         public ContentProviderOperation buildDiff() {
-            if (isNoop()) {
-                return null;
-            } else if (isUpdate()) {
-                // When has changes and "before" exists, then "update"
-                final Builder builder = ContentProviderOperation.newUpdate(
-                        mUngrouped
-                                ? Settings.CONTENT_URI
-                                : addCallerIsSyncAdapterParameter(Groups.CONTENT_URI));
-                if (mUngrouped) {
-                    builder.withSelection(Settings.ACCOUNT_NAME + "=? AND " + Settings.ACCOUNT_TYPE
-                            + "=?", new String[] {
-                            this.getAsString(Settings.ACCOUNT_NAME),
-                            this.getAsString(Settings.ACCOUNT_TYPE)
-                    });
-                } else {
-                    builder.withSelection(Groups._ID + "=" + this.getId(), null);
-                }
-                builder.withValues(mAfter);
-                return builder.build();
-            } else if (isInsert() && mUngrouped) {
+            if (isInsert()) {
                 // Only allow inserts for Settings
-                mAfter.remove(mIdColumn);
-                final Builder builder = ContentProviderOperation.newInsert(Settings.CONTENT_URI);
-                builder.withValues(mAfter);
-                return builder.build();
+                if (mUngrouped) {
+                    mAfter.remove(mIdColumn);
+                    return ContentProviderOperation.newInsert(Settings.CONTENT_URI)
+                            .withValues(mAfter)
+                            .build();
+                }
+                else {
+                    throw new IllegalStateException("Unexpected diff");
+                }
+            } else if (isUpdate()) {
+                if (mUngrouped) {
+                    return ContentProviderOperation.newUpdate(Settings.CONTENT_URI)
+                            .withSelection(Settings.ACCOUNT_NAME + "=? AND "
+                                    + Settings.ACCOUNT_TYPE + "=?",
+                                    new String[] {
+                                        this.getAsString(Settings.ACCOUNT_NAME),
+                                        this.getAsString(Settings.ACCOUNT_TYPE)
+                                    })
+                            .withValues(mAfter)
+                            .build();
+                } else {
+                    return ContentProviderOperation.newUpdate(
+                                    addCallerIsSyncAdapterParameter(Groups.CONTENT_URI))
+                            .withSelection(Groups._ID + "=" + this.getId(), null)
+                            .withValues(mAfter)
+                            .build();
+                }
             } else {
-                throw new IllegalStateException("Unexpected delete or insert");
+                return null;
             }
         }
     }
