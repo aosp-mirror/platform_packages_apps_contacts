@@ -964,7 +964,9 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
     protected void onStartLoading() {
         if (mContact != null) {
             deliverResult(mContact);
-        } else {
+        }
+
+        if (takeContentChanged() || mContact == null) {
             forceLoad();
         }
     }
@@ -976,11 +978,6 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
     }
 
     @Override
-    protected void onStopLoading() {
-        unregisterObserver();
-        mContact = null;
-    }
-
     protected void onReset() {
         unregisterObserver();
         mContact = null;
