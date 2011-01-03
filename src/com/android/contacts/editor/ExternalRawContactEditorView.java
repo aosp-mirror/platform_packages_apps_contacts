@@ -111,25 +111,23 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
      * Set the internal state for this view, given a current
      * {@link EntityDelta} state and the {@link AccountType} that
      * apply to that state.
-     *
-     * TODO: make this more generic using data from the source
      */
     @Override
-    public void setState(EntityDelta state, AccountType source, ViewIdGenerator vig) {
+    public void setState(EntityDelta state, AccountType type, ViewIdGenerator vig) {
         // Remove any existing sections
         mGeneral.removeAllViews();
 
         // Bail if invalid state or source
-        if (state == null || source == null) return;
+        if (state == null || type == null) return;
 
         // Make sure we have StructuredName
-        EntityModifier.ensureKindExists(state, source, StructuredName.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(state, type, StructuredName.CONTENT_ITEM_TYPE);
 
         // Fill in the header info
         ValuesDelta values = state.getValues();
         mAccountName = values.getAsString(RawContacts.ACCOUNT_NAME);
         mAccountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
-        CharSequence accountType = source.getDisplayLabel(mContext);
+        CharSequence accountType = type.getDisplayLabel(mContext);
         if (TextUtils.isEmpty(accountType)) {
             accountType = mContext.getString(R.string.account_phone);
         }
@@ -138,20 +136,20 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
                     mContext.getString(R.string.from_account_format, mAccountName));
         }
         mHeaderAccountType.setText(mContext.getString(R.string.account_type_format, accountType));
-        mHeaderIcon.setImageDrawable(source.getDisplayIcon(mContext));
+        mHeaderIcon.setImageDrawable(type.getDisplayIcon(mContext));
 
         mRawContactId = values.getAsLong(RawContacts._ID);
 
         ValuesDelta primary;
 
         // Photo
-        DataKind kind = source.getKindForMimetype(Photo.CONTENT_ITEM_TYPE);
+        DataKind kind = type.getKindForMimetype(Photo.CONTENT_ITEM_TYPE);
         if (kind != null) {
-            EntityModifier.ensureKindExists(state, source, Photo.CONTENT_ITEM_TYPE);
-            boolean hasPhotoEditor = source.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null;
+            EntityModifier.ensureKindExists(state, type, Photo.CONTENT_ITEM_TYPE);
+            boolean hasPhotoEditor = type.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null;
             setHasPhotoEditor(hasPhotoEditor);
             primary = state.getPrimaryEntry(Photo.CONTENT_ITEM_TYPE);
-            getPhotoEditor().setValues(kind, primary, state, source.readOnly, vig);
+            getPhotoEditor().setValues(kind, primary, state, type.readOnly, vig);
             if (!hasPhotoEditor || !getPhotoEditor().hasSetPhoto()) {
                 mPhotoStub.setVisibility(View.GONE);
             } else {
@@ -165,7 +163,7 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
         primary = state.getPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
         mName.setText(primary.getAsString(StructuredName.DISPLAY_NAME));
 
-        if (source.readOnly) {
+        if (type.readOnly) {
             mReadOnlyWarning.setText(mContext.getString(R.string.contact_read_only, accountType));
             mReadOnlyWarning.setVisibility(View.VISIBLE);
             mEditExternallyButton.setVisibility(View.GONE);

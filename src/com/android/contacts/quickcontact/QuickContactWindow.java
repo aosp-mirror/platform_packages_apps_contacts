@@ -653,7 +653,7 @@ public class QuickContactWindow implements Window.Callback,
         mDefaultsMap.clear();
 
         final DataStatus status = new DataStatus();
-        final AccountTypes sources = AccountTypes.getInstance(mContext);
+        final AccountTypes accountTypes = AccountTypes.getInstance(mContext);
         final ImageView photoView = (ImageView)mHeader.findViewById(R.id.photo);
 
         Bitmap photoBitmap = null;
@@ -680,7 +680,7 @@ public class QuickContactWindow implements Window.Callback,
                 continue;
             }
 
-            final DataKind kind = sources.getKindOrFallback(accountType, mimeType, mContext,
+            final DataKind kind = accountTypes.getKindOrFallback(accountType, mimeType, mContext,
                     AccountType.LEVEL_MIMETYPES);
 
             if (kind != null) {
@@ -707,7 +707,7 @@ public class QuickContactWindow implements Window.Callback,
             // Handle Email rows with presence data as Im entry
             final boolean hasPresence = !cursor.isNull(DataQuery.PRESENCE);
             if (hasPresence && Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                final DataKind imKind = sources.getKindOrFallback(accountType,
+                final DataKind imKind = accountTypes.getKindOrFallback(accountType,
                         Im.CONTENT_ITEM_TYPE, mContext, AccountType.LEVEL_MIMETYPES);
                 if (imKind != null) {
                     final DataAction action = new DataAction(mContext, Im.CONTENT_ITEM_TYPE, imKind,

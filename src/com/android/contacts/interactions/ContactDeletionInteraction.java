@@ -146,16 +146,16 @@ public class ContactDeletionInteraction extends Fragment
         HashSet<Long>  readOnlyRawContacts = Sets.newHashSet();
         HashSet<Long>  writableRawContacts = Sets.newHashSet();
 
-        AccountTypes sources = getSources();
+        AccountTypes accountTypes = getAccountTypes();
         cursor.moveToPosition(-1);
         while (cursor.moveToNext()) {
             final long rawContactId = cursor.getLong(COLUMN_INDEX_RAW_CONTACT_ID);
             final String accountType = cursor.getString(COLUMN_INDEX_ACCOUNT_TYPE);
             contactId = cursor.getLong(COLUMN_INDEX_CONTACT_ID);
             lookupKey = cursor.getString(COLUMN_INDEX_LOOKUP_KEY);
-            AccountType contactsSource = sources.getInflatedSource(accountType,
+            AccountType type = accountTypes.getInflatedSource(accountType,
                     AccountType.LEVEL_SUMMARY);
-            boolean readonly = contactsSource != null && contactsSource.readOnly;
+            boolean readonly = type != null && type.readOnly;
             if (readonly) {
                 readOnlyRawContacts.add(rawContactId);
             } else {
@@ -182,7 +182,7 @@ public class ContactDeletionInteraction extends Fragment
 
     public void onLoaderReset(Loader<Cursor> loader) {
     }
-    
+
     /* Visible for testing */
     void showDialog(int messageId, final Uri contactUri) {
         mDialog = new AlertDialog.Builder(getActivity())
@@ -230,7 +230,7 @@ public class ContactDeletionInteraction extends Fragment
     }
 
     /* Visible for testing */
-    AccountTypes getSources() {
+    AccountTypes getAccountTypes() {
         return AccountTypes.getInstance(getActivity());
     }
 }

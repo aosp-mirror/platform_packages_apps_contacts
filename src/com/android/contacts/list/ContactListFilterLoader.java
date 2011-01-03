@@ -76,12 +76,12 @@ public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFil
 
         ArrayList<ContactListFilter> results = new ArrayList<ContactListFilter>();
         Context context = getContext();
-        final AccountTypes sources = AccountTypes.getInstance(context);
-        ArrayList<Account> accounts = sources.getAccounts(false);
+        final AccountTypes accountTypes = AccountTypes.getInstance(context);
+        ArrayList<Account> accounts = accountTypes.getAccounts(false);
         for (Account account : accounts) {
-            AccountType source = sources.getInflatedSource(
+            AccountType accountType = accountTypes.getInflatedSource(
                     account.type, AccountType.LEVEL_SUMMARY);
-            Drawable icon = source != null ? source.getDisplayIcon(getContext()) : null;
+            Drawable icon = accountType != null ? accountType.getDisplayIcon(getContext()) : null;
             results.add(new ContactListFilter(account.type, account.name, icon, account.name));
         }
 

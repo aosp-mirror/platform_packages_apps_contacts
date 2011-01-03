@@ -56,8 +56,8 @@ public class SelectAccountActivity extends Activity {
         // - just one account -> use the account without asking the user
         // - no account -> use phone-local storage without asking the user
         final int resId = R.string.import_from_sdcard;
-        final AccountTypes sources = AccountTypes.getInstance(this);
-        final List<Account> accountList = sources.getAccounts(true);
+        final AccountTypes accountTypes = AccountTypes.getInstance(this);
+        final List<Account> accountList = accountTypes.getAccounts(true);
         if (accountList.size() == 0) {
             Log.w(LOG_TAG, "Account does not exist");
             finish();

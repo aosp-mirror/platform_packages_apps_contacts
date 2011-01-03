@@ -166,12 +166,12 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
         protected AccountSet doInBackground(CustomContactListFilterActivity target,
                 Void... params) {
             final Context context = target;
-            final AccountTypes sources = AccountTypes.getInstance(context);
+            final AccountTypes accountTypes = AccountTypes.getInstance(context);
             final ContentResolver resolver = context.getContentResolver();
 
             // Inflate groups entry for each account
             final AccountSet accounts = new AccountSet();
-            for (Account account : sources.getAccounts(false)) {
+            for (Account account : accountTypes.getAccounts(false)) {
                 accounts.add(new AccountDisplay(resolver, account.name, account.type));
             }
 
@@ -497,13 +497,13 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
 
     /**
      * {@link ExpandableListAdapter} that shows {@link GroupDelta} settings,
-     * grouped by {@link Account} source. Shows footer row when any groups are
+     * grouped by {@link Account} type. Shows footer row when any groups are
      * unsynced, as determined through {@link AccountDisplay#mUnsyncedGroups}.
      */
     protected static class DisplayAdapter extends BaseExpandableListAdapter {
         private Context mContext;
         private LayoutInflater mInflater;
-        private AccountTypes mSources;
+        private AccountTypes mAccountTypes;
         private AccountSet mAccounts;
 
         private boolean mChildWithPhones = false;
@@ -511,7 +511,7 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
         public DisplayAdapter(Context context) {
             mContext = context;
             mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            mSources = AccountTypes.getInstance(context);
+            mAccountTypes = AccountTypes.getInstance(context);
         }
 
         public void setAccounts(AccountSet accounts) {
@@ -528,6 +528,7 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
         }
 
         /** {@inheritDoc} */
+        @Override
         public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
                 View convertView, ViewGroup parent) {
             if (convertView == null) {
@@ -559,7 +560,7 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
             return convertView;
         }
 
-        /** {@inheritDoc} */
+        @Override
         public View getGroupView(int groupPosition, boolean isExpanded, View convertView,
                 ViewGroup parent) {
             if (convertView == null) {
@@ -571,17 +572,17 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
 
             final AccountDisplay account = (AccountDisplay)this.getGroup(groupPosition);
 
-            final AccountType source = mSources.getInflatedSource(account.mType,
+            final AccountType accountType = mAccountTypes.getInflatedSource(account.mType,
                     AccountType.LEVEL_SUMMARY);
 
             text1.setText(account.mName);
-            text2.setText(source.getDisplayLabel(mContext));
+            text2.setText(accountType.getDisplayLabel(mContext));
             text2.setVisibility(account.mName == null ? View.GONE : View.VISIBLE);
 
             return convertView;
         }
 
-        /** {@inheritDoc} */
+        @Override
         public Object getChild(int groupPosition, int childPosition) {
             final AccountDisplay account = mAccounts.get(groupPosition);
             final boolean validChild = childPosition >= 0
@@ -593,7 +594,7 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
             }
         }
 
-        /** {@inheritDoc} */
+        @Override
         public long getChildId(int groupPosition, int childPosition) {
             final GroupDelta child = (GroupDelta)getChild(groupPosition, childPosition);
             if (child != null) {
@@ -604,7 +605,7 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
             }
         }
 
-        /** {@inheritDoc} */
+        @Override
         public int getChildrenCount(int groupPosition) {
             // Count is any synced groups, plus possible footer
             final AccountDisplay account = mAccounts.get(groupPosition);
@@ -612,12 +613,12 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
             return account.mSyncedGroups.size() + (anyHidden ? 1 : 0);
         }
 
-        /** {@inheritDoc} */
+        @Override
         public Object getGroup(int groupPosition) {
             return mAccounts.get(groupPosition);
         }
 
-        /** {@inheritDoc} */
+        @Override
         public int getGroupCount() {
             if (mAccounts == null) {
                 return 0;
@@ -625,17 +626,17 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
             return mAccounts.size();
         }
 
-        /** {@inheritDoc} */
+        @Override
         public long getGroupId(int groupPosition) {
             return groupPosition;
         }
 
-        /** {@inheritDoc} */
+        @Override
         public boolean hasStableIds() {
             return true;
         }
 
-        /** {@inheritDoc} */
+        @Override
         public boolean isChildSelectable(int groupPosition, int childPosition) {
             return true;
         }

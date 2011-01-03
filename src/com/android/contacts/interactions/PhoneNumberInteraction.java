@@ -128,11 +128,11 @@ public class PhoneNumberInteraction
      * A list adapter that populates the list of contact's phone numbers.
      */
     private class PhoneItemAdapter extends ArrayAdapter<PhoneItem> {
-        private final AccountTypes mSources;
+        private final AccountTypes mAccountTypes;
 
         public PhoneItemAdapter(Context context) {
             super(context, R.layout.phone_disambig_item, android.R.id.text2);
-            mSources = AccountTypes.getInstance(context);
+            mAccountTypes = AccountTypes.getInstance(context);
         }
 
         @Override
@@ -140,13 +140,13 @@ public class PhoneNumberInteraction
             View view = super.getView(position, convertView, parent);
 
             PhoneItem item = getItem(position);
-            AccountType source = mSources.getInflatedSource(item.accountType,
+            AccountType accountType = mAccountTypes.getInflatedSource(item.accountType,
                     AccountType.LEVEL_SUMMARY);
 
             // Obtain a string representation of the phone type specific to the
-            // ContactSource associated with that phone number
+            // account type associated with that phone number
             TextView typeView = (TextView)view.findViewById(android.R.id.text1);
-            DataKind kind = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
+            DataKind kind = accountType.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
             if (kind != null) {
                 ContentValues values = new ContentValues();
                 values.put(Phone.TYPE, item.type);

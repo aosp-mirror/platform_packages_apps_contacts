@@ -115,15 +115,15 @@ public class AggregationSuggestionView extends RelativeLayout {
             return false;
         }
 
-        AccountTypes sources = AccountTypes.getInstance(getContext());
+        AccountTypes accountTypes = AccountTypes.getInstance(getContext());
         for (RawContact rawContact : mRawContacts) {
             String accountType = rawContact.accountType;
             if (accountType == null) {
                 return true;
             }
-            AccountType source = sources.getInflatedSource(
+            AccountType type = accountTypes.getInflatedSource(
                     accountType, AccountType.LEVEL_SUMMARY);
-            if (!source.readOnly) {
+            if (!type.readOnly) {
                 return true;
             }
         }

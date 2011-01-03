@@ -69,7 +69,7 @@ public class ContactDeletionInteractionTest extends InstrumentationTestCase {
         }
 
         @Override
-        AccountTypes getSources() {
+        AccountTypes getAccountTypes() {
             return new MockAccountTypes();
         }
     }

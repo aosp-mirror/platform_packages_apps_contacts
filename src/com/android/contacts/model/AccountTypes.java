@@ -63,11 +63,11 @@ public class AccountTypes extends BroadcastReceiver
     private Context mApplicationContext;
     private AccountManager mAccountManager;
 
-    private AccountType mFallbackSource = null;
+    private AccountType mFallbackAccountType = null;
 
     private ArrayList<Account> mAccounts = Lists.newArrayList();
     private ArrayList<Account> mWritableAccounts = Lists.newArrayList();
-    private HashMap<String, AccountType> mSources = Maps.newHashMap();
+    private HashMap<String, AccountType> mAccountTypes = Maps.newHashMap();
     private HashSet<String> mKnownPackages = Sets.newHashSet();
 
     private static final int MESSAGE_LOAD_DATA = 0;
@@ -115,8 +115,8 @@ public class AccountTypes extends BroadcastReceiver
         mApplicationContext = context.getApplicationContext();
         mAccountManager = AccountManager.get(mApplicationContext);
 
-        // Create fallback contacts source for on-phone contacts
-        mFallbackSource = new FallbackAccountType();
+        // Create fallback contacts account type for on-phone contacts
+        mFallbackAccountType = new FallbackAccountType();
 
         mListenerThread = new HandlerThread("AccountChangeListener");
         mListenerThread.start();
@@ -161,15 +161,15 @@ public class AccountTypes extends BroadcastReceiver
     }
 
     /** @hide exposed for unit tests */
-    public AccountTypes(AccountType... sources) {
-        for (AccountType source : sources) {
-            addSource(source);
+    public AccountTypes(AccountType... accountTypes) {
+        for (AccountType accountType : accountTypes) {
+            addAccountType(accountType);
         }
     }
 
-    protected void addSource(AccountType source) {
-        mSources.put(source.accountType, source);
-        mKnownPackages.add(source.resPackageName);
+    protected void addAccountType(AccountType accountType) {
+        mAccountTypes.put(accountType.accountType, accountType);
+        mKnownPackages.add(accountType.resPackageName);
     }
 
     @Override
@@ -204,10 +204,10 @@ public class AccountTypes extends BroadcastReceiver
                 for (String packageName : pkgList) {
                     final boolean knownPackage = mKnownPackages.contains(packageName);
                     if (knownPackage) {
-                        // Invalidate cache of existing source
+                        // Invalidate cache of existing account type
                         invalidateCache(packageName);
                     } else {
-                        // Unknown source, so reload from scratch
+                        // Unknown account type, so reload from scratch
                         loadAccountsInBackground();
                     }
                 }
@@ -218,18 +218,18 @@ public class AccountTypes extends BroadcastReceiver
     }
 
     protected void invalidateCache(String packageName) {
-        for (AccountType source : mSources.values()) {
-            if (TextUtils.equals(packageName, source.resPackageName)) {
+        for (AccountType accountType : mAccountTypes.values()) {
+            if (TextUtils.equals(packageName, accountType.resPackageName)) {
                 // Invalidate any cache for the changed package
-                source.invalidateCache();
+                accountType.invalidateCache();
             }
         }
     }
 
     protected void invalidateAllCache() {
-        mFallbackSource.invalidateCache();
-        for (AccountType source : mSources.values()) {
-            source.invalidateCache();
+        mFallbackAccountType.invalidateCache();
+        for (AccountType accountType : mAccountTypes.values()) {
+            accountType.invalidateCache();
         }
     }
 
@@ -263,7 +263,7 @@ public class AccountTypes extends BroadcastReceiver
      * background thread.
      */
     protected void loadAccountsInBackground() {
-        mSources.clear();
+        mAccountTypes.clear();
         mKnownPackages.clear();
         mAccounts.clear();
         mWritableAccounts.clear();
@@ -283,31 +283,31 @@ public class AccountTypes extends BroadcastReceiver
 
                 // Look for the formatting details provided by each sync
                 // adapter, using the authenticator to find general resources.
-                final String accountType = sync.accountType;
-                final AuthenticatorDescription auth = findAuthenticator(auths, accountType);
+                final String type = sync.accountType;
+                final AuthenticatorDescription auth = findAuthenticator(auths, type);
                 if (auth == null) {
-                    Log.w(TAG, "No authenticator found for type=" + accountType + ", ignoring it.");
+                    Log.w(TAG, "No authenticator found for type=" + type + ", ignoring it.");
                     continue;
                 }
 
-                AccountType source;
-                if (GoogleAccountType.ACCOUNT_TYPE.equals(accountType)) {
-                    source = new GoogleAccountType(auth.packageName);
-                } else if (ExchangeAccountType.ACCOUNT_TYPE.equals(accountType)) {
-                    source = new ExchangeAccountType(auth.packageName);
+                AccountType accountType;
+                if (GoogleAccountType.ACCOUNT_TYPE.equals(type)) {
+                    accountType = new GoogleAccountType(auth.packageName);
+                } else if (ExchangeAccountType.ACCOUNT_TYPE.equals(type)) {
+                    accountType = new ExchangeAccountType(auth.packageName);
                 } else {
                     // TODO: use syncadapter package instead, since it provides resources
-                    Log.d(TAG, "Creating external source for type=" + accountType
+                    Log.d(TAG, "Creating external source for type=" + type
                             + ", packageName=" + auth.packageName);
-                    source = new ExternalAccountType(auth.packageName);
-                    source.readOnly = !sync.supportsUploading();
+                    accountType = new ExternalAccountType(auth.packageName);
+                    accountType.readOnly = !sync.supportsUploading();
                 }
 
-                source.accountType = auth.type;
-                source.titleRes = auth.labelId;
-                source.iconRes = auth.iconId;
+                accountType.accountType = auth.type;
+                accountType.titleRes = auth.labelId;
+                accountType.iconRes = auth.iconId;
 
-                addSource(source);
+                addAccountType(accountType);
             }
         } catch (RemoteException e) {
             Log.w(TAG, "Problem loading accounts: " + e.toString());
@@ -376,7 +376,7 @@ public class AccountTypes extends BroadcastReceiver
     /**
      * Find the best {@link DataKind} matching the requested
      * {@link AccountType#accountType} and {@link DataKind#mimeType}. If no
-     * direct match found, we try searching {@link #mFallbackSource}.
+     * direct match found, we try searching {@link #mFallbackAccountType}.
      * When fourceRefresh is set to true, cache is refreshed and inflation of each
      * EditField will occur.
      */
@@ -385,17 +385,17 @@ public class AccountTypes extends BroadcastReceiver
         ensureAccountsLoaded();
         DataKind kind = null;
 
-        // Try finding source and kind matching request
-        final AccountType source = mSources.get(accountType);
-        if (source != null) {
-            source.ensureInflated(context, inflateLevel);
-            kind = source.getKindForMimetype(mimeType);
+        // Try finding account type and kind matching request
+        final AccountType type = mAccountTypes.get(accountType);
+        if (type != null) {
+            type.ensureInflated(context, inflateLevel);
+            kind = type.getKindForMimetype(mimeType);
         }
 
         if (kind == null) {
             // Nothing found, so try fallback as last resort
-            mFallbackSource.ensureInflated(context, inflateLevel);
-            kind = mFallbackSource.getKindForMimetype(mimeType);
+            mFallbackAccountType.ensureInflated(context, inflateLevel);
+            kind = mFallbackAccountType.getKindForMimetype(mimeType);
         }
 
         if (kind == null) {
@@ -415,16 +415,16 @@ public class AccountTypes extends BroadcastReceiver
 
     AccountType getAccountType(String accountType, int inflateLevel) {
         // Try finding specific source, otherwise use fallback
-        AccountType source = mSources.get(accountType);
-        if (source == null) source = mFallbackSource;
+        AccountType type = mAccountTypes.get(accountType);
+        if (type == null) type = mFallbackAccountType;
 
-        if (source.isInflated(inflateLevel)) {
+        if (type.isInflated(inflateLevel)) {
             // Already inflated, so return directly
-            return source;
+            return type;
         } else {
             // Not inflated, but requested that we force-inflate
-            source.ensureInflated(mContext, inflateLevel);
-            return source;
+            type.ensureInflated(mContext, inflateLevel);
+            return type;
         }
     }
 }

@@ -435,14 +435,14 @@ public class ContactEditorFragment extends Fragment implements
             return;
         }
 
-        final AccountTypes sources = AccountTypes.getInstance(mContext);
+        final AccountTypes accountTypes = AccountTypes.getInstance(mContext);
         for (EntityDelta state : mState) {
             final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final AccountType source = sources.getInflatedSource(accountType,
+            final AccountType type = accountTypes.getInflatedSource(accountType,
                     AccountType.LEVEL_CONSTRAINTS);
-            if (!source.readOnly) {
+            if (!type.readOnly) {
                 // Apply extras to the first writable raw contact only
-                EntityModifier.parseExtras(mContext, source, state, extras);
+                EntityModifier.parseExtras(mContext, type, state, extras);
                 break;
             }
         }
@@ -473,20 +473,20 @@ public class ContactEditorFragment extends Fragment implements
      *     be created.
      */
     private void createContact(Account account) {
-        final AccountTypes sources = AccountTypes.getInstance(mContext);
-        final AccountType source = sources.getInflatedSource(
+        final AccountTypes accountTypes = AccountTypes.getInstance(mContext);
+        final AccountType type = accountTypes.getInflatedSource(
                 account != null ? account.type : null, AccountType.LEVEL_CONSTRAINTS);
 
-        if (source.getCreateContactActivityClassName() != null) {
+        if (type.getCreateContactActivityClassName() != null) {
             if (mListener != null) {
                 mListener.onCustomCreateContactActivityRequested(account, mIntentExtras);
             }
         } else {
-            bindEditorsForNewContact(account, source);
+            bindEditorsForNewContact(account, type);
         }
     }
 
-    private void bindEditorsForNewContact(Account account, final AccountType source) {
+    private void bindEditorsForNewContact(Account account, final AccountType accountType) {
         final ContentValues values = new ContentValues();
         if (account != null) {
             values.put(RawContacts.ACCOUNT_NAME, account.name);
@@ -498,17 +498,17 @@ public class ContactEditorFragment extends Fragment implements
 
         // Parse any values from incoming intent
         EntityDelta insert = new EntityDelta(ValuesDelta.fromAfter(values));
-        EntityModifier.parseExtras(mContext, source, insert, mIntentExtras);
+        EntityModifier.parseExtras(mContext, accountType, insert, mIntentExtras);
 
-        // Ensure we have some default fields (if the source does not supper a field,
+        // Ensure we have some default fields (if the account type does not support a field,
         // ensureKind will not add it, so it is safe to add e.g. Event)
-        EntityModifier.ensureKindExists(insert, source, Phone.CONTENT_ITEM_TYPE);
-        EntityModifier.ensureKindExists(insert, source, Email.CONTENT_ITEM_TYPE);
-        EntityModifier.ensureKindExists(insert, source, Note.CONTENT_ITEM_TYPE);
-        EntityModifier.ensureKindExists(insert, source, Organization.CONTENT_ITEM_TYPE);
-        EntityModifier.ensureKindExists(insert, source, Event.CONTENT_ITEM_TYPE);
-        EntityModifier.ensureKindExists(insert, source, Website.CONTENT_ITEM_TYPE);
-        EntityModifier.ensureKindExists(insert, source, StructuredPostal.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(insert, accountType, Phone.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(insert, accountType, Email.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(insert, accountType, Note.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(insert, accountType, Organization.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(insert, accountType, Event.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(insert, accountType, Website.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(insert, accountType, StructuredPostal.CONTENT_ITEM_TYPE);
 
         if (mState == null) {
             // Create state if none exists yet
@@ -530,7 +530,7 @@ public class ContactEditorFragment extends Fragment implements
 
         final LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
-        final AccountTypes sources = AccountTypes.getInstance(mContext);
+        final AccountTypes accountTypes = AccountTypes.getInstance(mContext);
         int size = mState.size();
         for (int i = 0; i < size; i++) {
             // TODO ensure proper ordering of entities in the list
@@ -539,12 +539,12 @@ public class ContactEditorFragment extends Fragment implements
             if (!values.isVisible()) continue;
 
             final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
-            final AccountType source = sources.getInflatedSource(accountType,
+            final AccountType type = accountTypes.getInflatedSource(accountType,
                     AccountType.LEVEL_CONSTRAINTS);
             final long rawContactId = values.getAsLong(RawContacts._ID);
 
             final BaseRawContactEditorView editor;
-            if (source.isExternal()) {
+            if (type.isExternal()) {
                 editor = (BaseRawContactEditorView) inflater.inflate(
                         R.layout.external_raw_contact_editor_view, mContent, false);
                 ((ExternalRawContactEditorView) editor).setListener(this);
@@ -556,10 +556,10 @@ public class ContactEditorFragment extends Fragment implements
 
             mContent.addView(editor);
 
-            editor.setState(entity, source, mViewIdGenerator);
+            editor.setState(entity, type, mViewIdGenerator);
 
             editor.getPhotoEditor().setEditorListener(
-                    new PhotoEditorListener(editor, source.readOnly));
+                    new PhotoEditorListener(editor, type.readOnly));
             if (editor instanceof RawContactEditorView) {
                 final RawContactEditorView rawContactEditor = (RawContactEditorView) editor;
                 final TextFieldsEditorView nameEditor = rawContactEditor.getNameEditor();
@@ -672,8 +672,8 @@ public class ContactEditorFragment extends Fragment implements
         // If we just started creating a new contact and haven't added any data, it's too
         // early to do a join
         if (mState.size() == 1 && mState.get(0).isContactInsert()) {
-            final AccountTypes sources = AccountTypes.getInstance(mContext);
-            EntityModifier.trimEmpty(mState, sources);
+            final AccountTypes accountTypes = AccountTypes.getInstance(mContext);
+            EntityModifier.trimEmpty(mState, accountTypes);
             if (mState.buildDiff().isEmpty()) {
                 Toast.makeText(getActivity(), R.string.toast_join_with_empty_contact,
                                 Toast.LENGTH_LONG).show();
@@ -778,8 +778,8 @@ public class ContactEditorFragment extends Fragment implements
         mStatus = Status.SAVING;
 
         // Trim any empty fields, and RawContacts, before persisting
-        final AccountTypes sources = AccountTypes.getInstance(mContext);
-        EntityModifier.trimEmpty(mState, sources);
+        final AccountTypes accountTypes = AccountTypes.getInstance(mContext);
+        EntityModifier.trimEmpty(mState, accountTypes);
 
         if (mState.buildDiff().isEmpty()) {
             onSaveCompleted(true, saveMode, mLookupUri);
@@ -821,7 +821,7 @@ public class ContactEditorFragment extends Fragment implements
     }
 
     private boolean revert() {
-        final AccountTypes sources = AccountTypes.getInstance(mContext);
+        final AccountTypes accountType = AccountTypes.getInstance(mContext);
         if (mState.buildDiff().isEmpty()) {
             doRevertAction();
         } else {
@@ -937,14 +937,14 @@ public class ContactEditorFragment extends Fragment implements
      * Returns true if there is at least one writable raw contact in the current contact.
      */
     private boolean isContactWritable() {
-        final AccountTypes sources = AccountTypes.getInstance(mContext);
+        final AccountTypes accountTypes = AccountTypes.getInstance(mContext);
         int size = mState.size();
         for (int i = 0; i < size; i++) {
             ValuesDelta values = mState.get(i).getValues();
             final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
-            final AccountType source = sources.getInflatedSource(accountType,
+            final AccountType type = accountTypes.getInflatedSource(accountType,
                     AccountType.LEVEL_CONSTRAINTS);
-            if (!source.readOnly) {
+            if (!type.readOnly) {
                 return true;
             }
         }
@@ -1025,39 +1025,39 @@ public class ContactEditorFragment extends Fragment implements
                 return 0;
             }
 
-            final AccountTypes sources = AccountTypes.getInstance(mContext);
+            final AccountTypes accountTypes = AccountTypes.getInstance(mContext);
             String accountType = one.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final AccountType oneSource = sources.getInflatedSource(accountType,
+            final AccountType accountType1 = accountTypes.getInflatedSource(accountType,
                     AccountType.LEVEL_SUMMARY);
             accountType = two.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final AccountType twoSource = sources.getInflatedSource(accountType,
+            final AccountType accountType2 = accountTypes.getInflatedSource(accountType,
                     AccountType.LEVEL_SUMMARY);
 
             // Check read-only
-            if (oneSource.readOnly && !twoSource.readOnly) {
+            if (accountType1.readOnly && !accountType2.readOnly) {
                 return 1;
-            } else if (twoSource.readOnly && !oneSource.readOnly) {
+            } else if (!accountType1.readOnly && accountType2.readOnly) {
                 return -1;
             }
 
             // Check account type
             boolean skipAccountTypeCheck = false;
-            boolean oneIsGoogle = oneSource instanceof GoogleAccountType;
-            boolean twoIsGoogle = twoSource instanceof GoogleAccountType;
-            if (oneIsGoogle && !twoIsGoogle) {
+            boolean isGoogleAccount1 = accountType1 instanceof GoogleAccountType;
+            boolean isGoogleAccount2 = accountType2 instanceof GoogleAccountType;
+            if (isGoogleAccount1 && !isGoogleAccount2) {
                 return -1;
-            } else if (twoIsGoogle && !oneIsGoogle) {
+            } else if (!isGoogleAccount1 && isGoogleAccount2) {
                 return 1;
-            } else if (oneIsGoogle && twoIsGoogle){
+            } else if (isGoogleAccount1 && isGoogleAccount2){
                 skipAccountTypeCheck = true;
             }
 
             int value;
             if (!skipAccountTypeCheck) {
-                if (oneSource.accountType == null) {
+                if (accountType1.accountType == null) {
                     return 1;
                 }
-                value = oneSource.accountType.compareTo(twoSource.accountType);
+                value = accountType1.accountType.compareTo(accountType2.accountType);
                 if (value != 0) {
                     return value;
                 }
@@ -1752,11 +1752,11 @@ public class ContactEditorFragment extends Fragment implements
     private final class PhotoEditorListener
             implements EditorListener, PhotoActionPopup.Listener {
         private final BaseRawContactEditorView mEditor;
-        private final boolean mSourceReadOnly;
+        private final boolean mAccountReadOnly;
 
-        private PhotoEditorListener(BaseRawContactEditorView editor, boolean sourceReadOnly) {
+        private PhotoEditorListener(BaseRawContactEditorView editor, boolean accountReadOnly) {
             mEditor = editor;
-            mSourceReadOnly = sourceReadOnly;
+            mAccountReadOnly = accountReadOnly;
         }
 
         @Override
@@ -1766,7 +1766,7 @@ public class ContactEditorFragment extends Fragment implements
             if (request == EditorListener.REQUEST_PICK_PHOTO) {
                 // Determine mode
                 final int mode;
-                if (mSourceReadOnly) {
+                if (mAccountReadOnly) {
                     if (mEditor.hasSetPhoto() && hasMoreThanOnePhoto()) {
                         mode = PhotoActionPopup.MODE_READ_ONLY_ALLOW_PRIMARY;
                     } else {

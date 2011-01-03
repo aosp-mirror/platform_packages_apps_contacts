@@ -87,8 +87,8 @@ public class AccountSelectionUtil {
     public static Dialog getSelectAccountDialog(Context context, int resId,
             DialogInterface.OnClickListener onClickListener,
             DialogInterface.OnCancelListener onCancelListener) {
-        final AccountTypes sources = AccountTypes.getInstance(context);
-        final List<Account> writableAccountList = sources.getAccounts(true);
+        final AccountTypes accountTypes = AccountTypes.getInstance(context);
+        final List<Account> writableAccountList = accountTypes.getAccounts(true);
 
         Log.i(LOG_TAG, "The number of available accounts: " + writableAccountList.size());
 
@@ -118,13 +118,13 @@ public class AccountSelectionUtil {
                         (TextView)convertView.findViewById(android.R.id.text2);
 
                 final Account account = this.getItem(position);
-                final AccountType source =
-                    sources.getInflatedSource(account.type,
+                final AccountType accountType =
+                    accountTypes.getInflatedSource(account.type,
                             AccountType.LEVEL_SUMMARY);
                 final Context context = getContext();
 
                 text1.setText(account.name);
-                text2.setText(source.getDisplayLabel(context));
+                text2.setText(accountType.getDisplayLabel(context));
 
                 return convertView;
             }

@@ -147,24 +147,24 @@ public class RawContactEditorView extends BaseRawContactEditorView {
      * apply to that state.
      */
     @Override
-    public void setState(EntityDelta state, AccountType source, ViewIdGenerator vig) {
+    public void setState(EntityDelta state, AccountType type, ViewIdGenerator vig) {
         mState = state;
 
         // Remove any existing sections
         mFields.removeAllViews();
 
-        // Bail if invalid state or source
-        if (state == null || source == null) return;
+        // Bail if invalid state or account type
+        if (state == null || type == null) return;
 
         setId(vig.getId(state, null, null, ViewIdGenerator.NO_VIEW_INDEX));
 
         // Make sure we have StructuredName
-        EntityModifier.ensureKindExists(state, source, StructuredName.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(state, type, StructuredName.CONTENT_ITEM_TYPE);
 
         // Fill in the header info
         ValuesDelta values = state.getValues();
         String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
-        CharSequence accountType = source.getDisplayLabel(mContext);
+        CharSequence accountType = type.getDisplayLabel(mContext);
         if (TextUtils.isEmpty(accountType)) {
             accountType = mContext.getString(R.string.account_phone);
         }
@@ -173,13 +173,13 @@ public class RawContactEditorView extends BaseRawContactEditorView {
                     mContext.getString(R.string.from_account_format, accountName));
         }
         mHeaderAccountType.setText(mContext.getString(R.string.account_type_format, accountType));
-        mHeaderIcon.setImageDrawable(source.getDisplayIcon(mContext));
+        mHeaderIcon.setImageDrawable(type.getDisplayIcon(mContext));
 
         mRawContactId = values.getAsLong(RawContacts._ID);
 
         // Show photo editor when supported
-        EntityModifier.ensureKindExists(state, source, Photo.CONTENT_ITEM_TYPE);
-        setHasPhotoEditor((source.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null));
+        EntityModifier.ensureKindExists(state, type, Photo.CONTENT_ITEM_TYPE);
+        setHasPhotoEditor((type.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null));
         getPhotoEditor().setEnabled(isEnabled());
         mName.setEnabled(isEnabled());
 
@@ -187,7 +187,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         mFields.setVisibility(View.VISIBLE);
         mName.setVisibility(View.VISIBLE);
 
-        mGroupMembershipKind = source.getKindForMimetype(GroupMembership.CONTENT_ITEM_TYPE);
+        mGroupMembershipKind = type.getKindForMimetype(GroupMembership.CONTENT_ITEM_TYPE);
         if (mGroupMembershipKind != null) {
             mGroupMembershipView = (GroupMembershipView)mInflater.inflate(
                     R.layout.item_group_membership, mFields, false);
@@ -196,7 +196,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         }
 
         // Create editor sections for each possible data kind
-        for (DataKind kind : source.getSortedDataKinds()) {
+        for (DataKind kind : type.getSortedDataKinds()) {
             // Skip kind of not editable
             if (!kind.editable) continue;
 

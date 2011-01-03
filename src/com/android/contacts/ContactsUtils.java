@@ -459,13 +459,13 @@ public class ContactsUtils {
      * Utility for creating a standard tab indicator view.
      *
      * @param parent The parent ViewGroup to attach the new view to.
-     * @param source The {@link AccountType} to build the tab view from.
+     * @param accountType The {@link AccountType} to build the tab view from.
      * @return The tab indicator View.
      */
-    public static View createTabIndicatorView(ViewGroup parent, AccountType source) {
+    public static View createTabIndicatorView(ViewGroup parent, AccountType accountType) {
         Drawable icon = null;
-        if (source != null) {
-            icon = source.getDisplayIcon(parent.getContext());
+        if (accountType != null) {
+            icon = accountType.getDisplayIcon(parent.getContext());
         }
         return createTabIndicatorView(parent, null, icon);
     }

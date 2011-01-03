@@ -769,8 +769,8 @@ public class ImportVCardActivity extends Activity {
         if (!TextUtils.isEmpty(accountName) && !TextUtils.isEmpty(accountType)) {
             mAccount = new Account(accountName, accountType);
         } else {
-            final AccountTypes sources = AccountTypes.getInstance(this);
-            final List<Account> accountList = sources.getAccounts(true);
+            final AccountTypes accountTypes = AccountTypes.getInstance(this);
+            final List<Account> accountList = accountTypes.getAccounts(true);
             if (accountList.size() == 0) {
                 mAccount = null;
             } else if (accountList.size() == 1) {

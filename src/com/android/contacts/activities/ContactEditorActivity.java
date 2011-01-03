@@ -216,13 +216,13 @@ public class ContactEditorActivity extends Activity implements
 
         @Override
         public void onCustomCreateContactActivityRequested(Account account, Bundle intentExtras) {
-            final AccountTypes sources = AccountTypes.getInstance(
-                    ContactEditorActivity.this);
-            final AccountType source = sources.getInflatedSource(
+            final AccountTypes accountTypes = AccountTypes.getInstance(ContactEditorActivity.this);
+            final AccountType accountType = accountTypes.getInflatedSource(
                     account.type, AccountType.LEVEL_CONSTRAINTS);
 
             Intent intent = new Intent();
-            intent.setClassName(source.resPackageName, source.getCreateContactActivityClassName());
+            intent.setClassName(accountType.resPackageName,
+                    accountType.getCreateContactActivityClassName());
             intent.setAction(Intent.ACTION_INSERT);
             intent.setType(Contacts.CONTENT_ITEM_TYPE);
             if (intentExtras != null) {
@@ -239,13 +239,14 @@ public class ContactEditorActivity extends Activity implements
         @Override
         public void onCustomEditContactActivityRequested(Account account, Uri rawContactUri,
                 Bundle intentExtras, boolean redirect) {
-            final AccountTypes sources = AccountTypes.getInstance(
+            final AccountTypes accountTypes = AccountTypes.getInstance(
                     ContactEditorActivity.this);
-            final AccountType source = sources.getInflatedSource(
+            final AccountType accountType = accountTypes.getInflatedSource(
                     account.type, AccountType.LEVEL_CONSTRAINTS);
 
             Intent intent = new Intent();
-            intent.setClassName(source.resPackageName, source.getEditContactActivityClassName());
+            intent.setClassName(accountType.resPackageName,
+                    accountType.getEditContactActivityClassName());
             intent.setAction(Intent.ACTION_EDIT);
             intent.setData(rawContactUri);
             if (intentExtras != null) {

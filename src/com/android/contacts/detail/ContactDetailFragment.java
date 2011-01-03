@@ -362,7 +362,7 @@ public class ContactDetailFragment extends Fragment implements
 
         mWritableRawContactIds.clear();
 
-        final AccountTypes sources = AccountTypes.getInstance(mContext);
+        final AccountTypes accountTypes = AccountTypes.getInstance(mContext);
 
         // Build up method entries
         if (mContactData == null) {
@@ -383,9 +383,9 @@ public class ContactDetailFragment extends Fragment implements
             if (!mRawContactIds.contains(rawContactId)) {
                 mRawContactIds.add(rawContactId);
             }
-            AccountType contactsSource = sources.getInflatedSource(accountType,
+            AccountType type = accountTypes.getInflatedSource(accountType,
                     AccountType.LEVEL_SUMMARY);
-            if (contactsSource == null || !contactsSource.readOnly) {
+            if (type == null || !type.readOnly) {
                 mWritableRawContactIds.add(rawContactId);
             }
 
@@ -405,8 +405,8 @@ public class ContactDetailFragment extends Fragment implements
                     continue;
                 }
 
-                final DataKind kind = sources.getKindOrFallback(accountType, mimeType, mContext,
-                        AccountType.LEVEL_CONSTRAINTS);
+                final DataKind kind = accountTypes.getKindOrFallback(
+                        accountType, mimeType, mContext, AccountType.LEVEL_CONSTRAINTS);
                 if (kind == null) continue;
 
                 final ViewEntry entry = ViewEntry.fromValues(mContext, mimeType, kind, dataId,
@@ -462,7 +462,7 @@ public class ContactDetailFragment extends Fragment implements
                     final DataStatus status = mContactData.getStatuses().get(entry.id);
                     if (status != null) {
                         final String imMime = Im.CONTENT_ITEM_TYPE;
-                        final DataKind imKind = sources.getKindOrFallback(accountType,
+                        final DataKind imKind = accountTypes.getKindOrFallback(accountType,
                                 imMime, mContext, AccountType.LEVEL_CONSTRAINTS);
                         final ViewEntry imEntry = ViewEntry.fromValues(mContext,
                                 imMime, imKind, dataId, entryValues);
@@ -1067,7 +1067,8 @@ public class ContactDetailFragment extends Fragment implements
                 break;
             }
             case Directory.EXPORT_SUPPORT_ANY_ACCOUNT: {
-                final ArrayList<Account> accounts = AccountTypes.getInstance(mContext).getAccounts(true);
+                final ArrayList<Account> accounts =
+                        AccountTypes.getInstance(mContext).getAccounts(true);
                 if (accounts.isEmpty()) {
                     createCopy(null);
                     return;  // Don't show a dialog.

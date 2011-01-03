@@ -37,13 +37,13 @@ import java.util.List;
 public final class AccountsListAdapter extends BaseAdapter {
     private final LayoutInflater mInflater;
     private final List<Account> mAccounts;
-    private final AccountTypes mSources;
+    private final AccountTypes mAccountTypes;
     private final Context mContext;
 
     public AccountsListAdapter(Context context, boolean writableOnly) {
         mContext = context;
-        mSources = AccountTypes.getInstance(context);
-        mAccounts = mSources.getAccounts(writableOnly);
+        mAccountTypes = AccountTypes.getInstance(context);
+        mAccounts = mAccountTypes.getAccounts(writableOnly);
         mInflater = LayoutInflater.from(context);
     }
 
@@ -57,12 +57,12 @@ public final class AccountsListAdapter extends BaseAdapter {
         final ImageView icon = (ImageView)resultView.findViewById(android.R.id.icon);
 
         final Account account = mAccounts.get(position);
-        final AccountType source = mSources.getInflatedSource(account.type,
+        final AccountType accountType = mAccountTypes.getInflatedSource(account.type,
                 AccountType.LEVEL_SUMMARY);
 
         text1.setText(account.name);
-        text2.setText(source.getDisplayLabel(mContext));
-        icon.setImageDrawable(source.getDisplayIcon(mContext));
+        text2.setText(accountType.getDisplayLabel(mContext));
+        icon.setImageDrawable(accountType.getDisplayIcon(mContext));
 
         return resultView;
     }

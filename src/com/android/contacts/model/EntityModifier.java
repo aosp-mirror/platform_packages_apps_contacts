@@ -82,8 +82,9 @@ public class EntityModifier {
      * Ensure that at least one of the given {@link DataKind} exists in the
      * given {@link EntityDelta} state, and try creating one if none exist.
      */
-    public static void ensureKindExists(EntityDelta state, AccountType source, String mimeType) {
-        final DataKind kind = source.getKindForMimetype(mimeType);
+    public static void ensureKindExists(
+            EntityDelta state, AccountType accountType, String mimeType) {
+        final DataKind kind = accountType.getKindForMimetype(mimeType);
         final boolean hasChild = state.getMimeEntriesCount(mimeType, true) > 0;
 
         if (!hasChild && kind != null) {
@@ -353,10 +354,10 @@ public class EntityModifier {
      * dictates the structure for various fields. This method ignores rows not
      * described by the {@link AccountType}.
      */
-    public static void trimEmpty(EntityDeltaList set, AccountTypes sources) {
+    public static void trimEmpty(EntityDeltaList set, AccountTypes accountTypes) {
         for (EntityDelta state : set) {
             final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final AccountType source = sources.getInflatedSource(accountType,
+            final AccountType source = accountTypes.getInflatedSource(accountType,
                     AccountType.LEVEL_CONSTRAINTS);
             trimEmpty(state, source);
         }
@@ -368,11 +369,11 @@ public class EntityModifier {
      * the structure for various fields. This method ignores rows not described
      * by the {@link AccountType}.
      */
-    public static void trimEmpty(EntityDelta state, AccountType source) {
+    public static void trimEmpty(EntityDelta state, AccountType accountType) {
         boolean hasValues = false;
 
         // Walk through entries for each well-known kind
-        for (DataKind kind : source.getSortedDataKinds()) {
+        for (DataKind kind : accountType.getSortedDataKinds()) {
             final String mimeType = kind.mimeType;
             final ArrayList<ValuesDelta> entries = state.getMimeEntries(mimeType);
             if (entries == null) continue;
@@ -386,10 +387,10 @@ public class EntityModifier {
                 }
 
                 // Test and remove this row if empty and it isn't a photo from google
-                final boolean isGoogleSource = TextUtils.equals(GoogleAccountType.ACCOUNT_TYPE,
+                final boolean isGoogleAccount = TextUtils.equals(GoogleAccountType.ACCOUNT_TYPE,
                         state.getValues().getAsString(RawContacts.ACCOUNT_TYPE));
                 final boolean isPhoto = TextUtils.equals(Photo.CONTENT_ITEM_TYPE, kind.mimeType);
-                final boolean isGooglePhoto = isPhoto && isGoogleSource;
+                final boolean isGooglePhoto = isPhoto && isGoogleAccount;
 
                 if (EntityModifier.isEmpty(entry, kind) && !isGooglePhoto) {
                     // TODO: remove this verbose logging
@@ -448,7 +449,7 @@ public class EntityModifier {
      * Parse the given {@link Bundle} into the given {@link EntityDelta} state,
      * assuming the extras defined through {@link Intents}.
      */
-    public static void parseExtras(Context context, AccountType source, EntityDelta state,
+    public static void parseExtras(Context context, AccountType accountType, EntityDelta state,
             Bundle extras) {
         if (extras == null || extras.size() == 0) {
             // Bail early if no useful data
@@ -457,7 +458,7 @@ public class EntityModifier {
 
         {
             // StructuredName
-            EntityModifier.ensureKindExists(state, source, StructuredName.CONTENT_ITEM_TYPE);
+            EntityModifier.ensureKindExists(state, accountType, StructuredName.CONTENT_ITEM_TYPE);
             final ValuesDelta child = state.getPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
 
             final String name = extras.getString(Insert.NAME);
@@ -473,14 +474,14 @@ public class EntityModifier {
 
         {
             // StructuredPostal
-            final DataKind kind = source.getKindForMimetype(StructuredPostal.CONTENT_ITEM_TYPE);
+            final DataKind kind = accountType.getKindForMimetype(StructuredPostal.CONTENT_ITEM_TYPE);
             parseExtras(state, kind, extras, Insert.POSTAL_TYPE, Insert.POSTAL,
                     StructuredPostal.FORMATTED_ADDRESS);
         }
 
         {
             // Phone
-            final DataKind kind = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
+            final DataKind kind = accountType.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
             parseExtras(state, kind, extras, Insert.PHONE_TYPE, Insert.PHONE, Phone.NUMBER);
             parseExtras(state, kind, extras, Insert.SECONDARY_PHONE_TYPE, Insert.SECONDARY_PHONE,
                     Phone.NUMBER);
@@ -490,7 +491,7 @@ public class EntityModifier {
 
         {
             // Email
-            final DataKind kind = source.getKindForMimetype(Email.CONTENT_ITEM_TYPE);
+            final DataKind kind = accountType.getKindForMimetype(Email.CONTENT_ITEM_TYPE);
             parseExtras(state, kind, extras, Insert.EMAIL_TYPE, Insert.EMAIL, Email.DATA);
             parseExtras(state, kind, extras, Insert.SECONDARY_EMAIL_TYPE, Insert.SECONDARY_EMAIL,
                     Email.DATA);
@@ -500,7 +501,7 @@ public class EntityModifier {
 
         {
             // Im
-            final DataKind kind = source.getKindForMimetype(Im.CONTENT_ITEM_TYPE);
+            final DataKind kind = accountType.getKindForMimetype(Im.CONTENT_ITEM_TYPE);
             fixupLegacyImType(extras);
             parseExtras(state, kind, extras, Insert.IM_PROTOCOL, Insert.IM_HANDLE, Im.DATA);
         }
@@ -508,7 +509,7 @@ public class EntityModifier {
         // Organization
         final boolean hasOrg = extras.containsKey(Insert.COMPANY)
                 || extras.containsKey(Insert.JOB_TITLE);
-        final DataKind kindOrg = source.getKindForMimetype(Organization.CONTENT_ITEM_TYPE);
+        final DataKind kindOrg = accountType.getKindForMimetype(Organization.CONTENT_ITEM_TYPE);
         if (hasOrg && EntityModifier.canInsert(state, kindOrg)) {
             final ValuesDelta child = EntityModifier.insertChild(state, kindOrg);
 
@@ -525,7 +526,7 @@ public class EntityModifier {
 
         // Notes
         final boolean hasNotes = extras.containsKey(Insert.NOTES);
-        final DataKind kindNotes = source.getKindForMimetype(Note.CONTENT_ITEM_TYPE);
+        final DataKind kindNotes = accountType.getKindForMimetype(Note.CONTENT_ITEM_TYPE);
         if (hasNotes && EntityModifier.canInsert(state, kindNotes)) {
             final ValuesDelta child = EntityModifier.insertChild(state, kindNotes);
 
@@ -538,12 +539,12 @@ public class EntityModifier {
         // Arbitrary additional data
         ArrayList<ContentValues> values = extras.getParcelableArrayList(Insert.DATA);
         if (values != null) {
-            parseValues(state, source, values);
+            parseValues(state, accountType, values);
         }
     }
 
     private static void parseValues(
-            EntityDelta state, AccountType source, ArrayList<ContentValues> dataValueList) {
+            EntityDelta state, AccountType accountType, ArrayList<ContentValues> dataValueList) {
         for (ContentValues values : dataValueList) {
             String mimeType = values.getAsString(Data.MIMETYPE);
             if (TextUtils.isEmpty(mimeType)) {
@@ -556,9 +557,9 @@ public class EntityModifier {
                 continue;
             }
 
-            DataKind kind = source.getKindForMimetype(mimeType);
+            DataKind kind = accountType.getKindForMimetype(mimeType);
             if (kind == null) {
-                Log.e(TAG, "Mimetype not supported for account type " + source.accountType
+                Log.e(TAG, "Mimetype not supported for account type " + accountType.accountType
                         + ". Ignoring: " + values);
                 continue;
             }
@@ -752,7 +753,7 @@ public class EntityModifier {
             String typeExtra, String valueExtra, String valueColumn) {
         final CharSequence value = extras.getCharSequence(valueExtra);
 
-        // Bail early if source doesn't handle this type
+        // Bail early if account type doesn't handle this MIME type
         if (kind == null) return;
 
         // Bail when can't insert type, or value missing
