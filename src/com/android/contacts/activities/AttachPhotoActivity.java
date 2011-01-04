@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-package com.android.contacts;
+package com.android.contacts.activities;
 
-import com.google.android.collect.Maps;
+import com.android.contacts.R;
+import com.android.contacts.model.ExchangeAccountType;
+import com.android.contacts.model.GoogleAccountType;
 
 import android.app.Activity;
 import android.content.ContentProviderOperation;
@@ -31,17 +33,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
-import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.widget.Toast;
-
-import com.android.contacts.model.ExchangeAccountType;
-import com.android.contacts.model.GoogleAccountType;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Provides an external interface for other applications to attach images
@@ -49,15 +47,11 @@ import java.util.HashMap;
  * image that is handed to it through the cropper to make the image the proper
  * size and give the user a chance to use the face detector.
  */
-public class AttachImage extends Activity {
+public class AttachPhotoActivity extends Activity {
     private static final int REQUEST_PICK_CONTACT = 1;
     private static final int REQUEST_CROP_PHOTO = 2;
 
     private static final String RAW_CONTACT_URIS_KEY = "raw_contact_uris";
-
-    public AttachImage() {
-
-    }
 
     private Long[] mRawContactIds;
 
@@ -134,7 +128,7 @@ public class AttachImage extends Activity {
 
             // while they're cropping, convert the contact into a raw_contact
             final long contactId = ContentUris.parseId(result.getData());
-            final ArrayList<Long> rawContactIdsList = ContactsUtils.queryForAllRawContactIds(
+            final ArrayList<Long> rawContactIdsList = queryForAllRawContactIds(
                     mContentResolver, contactId);
             mRawContactIds = new Long[rawContactIdsList.size()];
             mRawContactIds = rawContactIdsList.toArray(mRawContactIds);
@@ -170,6 +164,27 @@ public class AttachImage extends Activity {
             }
             finish();
         }
+    }
+
+    // TODO: move to background
+    public static ArrayList<Long> queryForAllRawContactIds(ContentResolver cr, long contactId) {
+        Cursor rawContactIdCursor = null;
+        ArrayList<Long> rawContactIds = new ArrayList<Long>();
+        try {
+            rawContactIdCursor = cr.query(RawContacts.CONTENT_URI,
+                    new String[] {RawContacts._ID},
+                    RawContacts.CONTACT_ID + "=" + contactId, null, null);
+            if (rawContactIdCursor != null) {
+                while (rawContactIdCursor.moveToNext()) {
+                    rawContactIds.add(rawContactIdCursor.getLong(0));
+                }
+            }
+        } finally {
+            if (rawContactIdCursor != null) {
+                rawContactIdCursor.close();
+            }
+        }
+        return rawContactIds;
     }
 
     /**
@@ -233,8 +248,9 @@ public class AttachImage extends Activity {
                 }).withExpectedCount(1).build());
 
         // update that photo
-        operations.add(ContentProviderOperation.newUpdate(rawContactDataUri).withSelection(Photo.MIMETYPE + "=?", new String[] {
-                    Photo.CONTENT_ITEM_TYPE}).withValues(values).build());
+        operations.add(ContentProviderOperation.newUpdate(rawContactDataUri)
+                .withSelection(Photo.MIMETYPE + "=?", new String[] {Photo.CONTENT_ITEM_TYPE})
+                .withValues(values).build());
 
         try {
             mContentResolver.applyBatch(ContactsContract.AUTHORITY, operations);
