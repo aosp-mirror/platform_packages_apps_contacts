@@ -357,8 +357,7 @@ public class EntityModifier {
     public static void trimEmpty(EntityDeltaList set, AccountTypes accountTypes) {
         for (EntityDelta state : set) {
             final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final AccountType source = accountTypes.getInflatedSource(accountType,
-                    AccountType.LEVEL_CONSTRAINTS);
+            final AccountType source = accountTypes.getAccountType(accountType);
             trimEmpty(state, source);
         }
     }

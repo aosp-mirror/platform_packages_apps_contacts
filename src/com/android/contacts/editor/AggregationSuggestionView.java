@@ -121,8 +121,7 @@ public class AggregationSuggestionView extends RelativeLayout {
             if (accountType == null) {
                 return true;
             }
-            AccountType type = accountTypes.getInflatedSource(
-                    accountType, AccountType.LEVEL_SUMMARY);
+            AccountType type = accountTypes.getAccountType(accountType);
             if (!type.readOnly) {
                 return true;
             }

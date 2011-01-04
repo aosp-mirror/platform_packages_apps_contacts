@@ -383,8 +383,7 @@ public class ContactEditorFragment extends Fragment implements
             Entity entity = entities.get(0);
             ContentValues entityValues = entity.getEntityValues();
             String type = entityValues.getAsString(RawContacts.ACCOUNT_TYPE);
-            AccountType accountType = AccountTypes.getInstance(mContext).getInflatedSource(
-                    type, AccountType.LEVEL_SUMMARY);
+            AccountType accountType = AccountTypes.getInstance(mContext).getAccountType(type);
             if (accountType.getEditContactActivityClassName() != null) {
                 if (mListener != null) {
                     String name = entityValues.getAsString(RawContacts.ACCOUNT_NAME);
@@ -438,8 +437,7 @@ public class ContactEditorFragment extends Fragment implements
         final AccountTypes accountTypes = AccountTypes.getInstance(mContext);
         for (EntityDelta state : mState) {
             final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final AccountType type = accountTypes.getInflatedSource(accountType,
-                    AccountType.LEVEL_CONSTRAINTS);
+            final AccountType type = accountTypes.getAccountType(accountType);
             if (!type.readOnly) {
                 // Apply extras to the first writable raw contact only
                 EntityModifier.parseExtras(mContext, type, state, extras);
@@ -474,15 +472,15 @@ public class ContactEditorFragment extends Fragment implements
      */
     private void createContact(Account account) {
         final AccountTypes accountTypes = AccountTypes.getInstance(mContext);
-        final AccountType type = accountTypes.getInflatedSource(
-                account != null ? account.type : null, AccountType.LEVEL_CONSTRAINTS);
+        final AccountType accountType =
+                accountTypes.getAccountType(account != null ? account.type : null);
 
-        if (type.getCreateContactActivityClassName() != null) {
+        if (accountType.getCreateContactActivityClassName() != null) {
             if (mListener != null) {
                 mListener.onCustomCreateContactActivityRequested(account, mIntentExtras);
             }
         } else {
-            bindEditorsForNewContact(account, type);
+            bindEditorsForNewContact(account, accountType);
         }
     }
 
@@ -539,8 +537,7 @@ public class ContactEditorFragment extends Fragment implements
             if (!values.isVisible()) continue;
 
             final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
-            final AccountType type = accountTypes.getInflatedSource(accountType,
-                    AccountType.LEVEL_CONSTRAINTS);
+            final AccountType type = accountTypes.getAccountType(accountType);
             final long rawContactId = values.getAsLong(RawContacts._ID);
 
             final BaseRawContactEditorView editor;
@@ -942,8 +939,7 @@ public class ContactEditorFragment extends Fragment implements
         for (int i = 0; i < size; i++) {
             ValuesDelta values = mState.get(i).getValues();
             final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
-            final AccountType type = accountTypes.getInflatedSource(accountType,
-                    AccountType.LEVEL_CONSTRAINTS);
+            final AccountType type = accountTypes.getAccountType(accountType);
             if (!type.readOnly) {
                 return true;
             }
@@ -1026,24 +1022,22 @@ public class ContactEditorFragment extends Fragment implements
             }
 
             final AccountTypes accountTypes = AccountTypes.getInstance(mContext);
-            String accountType = one.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final AccountType accountType1 = accountTypes.getInflatedSource(accountType,
-                    AccountType.LEVEL_SUMMARY);
-            accountType = two.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final AccountType accountType2 = accountTypes.getInflatedSource(accountType,
-                    AccountType.LEVEL_SUMMARY);
+            String accountType2 = one.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
+            final AccountType type1 = accountTypes.getAccountType(accountType2);
+            accountType2 = two.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
+            final AccountType type2 = accountTypes.getAccountType(accountType2);
 
             // Check read-only
-            if (accountType1.readOnly && !accountType2.readOnly) {
+            if (type1.readOnly && !type2.readOnly) {
                 return 1;
-            } else if (!accountType1.readOnly && accountType2.readOnly) {
+            } else if (!type1.readOnly && type2.readOnly) {
                 return -1;
             }
 
             // Check account type
             boolean skipAccountTypeCheck = false;
-            boolean isGoogleAccount1 = accountType1 instanceof GoogleAccountType;
-            boolean isGoogleAccount2 = accountType2 instanceof GoogleAccountType;
+            boolean isGoogleAccount1 = type1 instanceof GoogleAccountType;
+            boolean isGoogleAccount2 = type2 instanceof GoogleAccountType;
             if (isGoogleAccount1 && !isGoogleAccount2) {
                 return -1;
             } else if (!isGoogleAccount1 && isGoogleAccount2) {
@@ -1054,10 +1048,10 @@ public class ContactEditorFragment extends Fragment implements
 
             int value;
             if (!skipAccountTypeCheck) {
-                if (accountType1.accountType == null) {
+                if (type1.accountType == null) {
                     return 1;
                 }
-                value = accountType1.accountType.compareTo(accountType2.accountType);
+                value = type1.accountType.compareTo(type2.accountType);
                 if (value != 0) {
                     return value;
                 }

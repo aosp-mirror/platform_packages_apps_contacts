@@ -140,8 +140,7 @@ public class PhoneNumberInteraction
             View view = super.getView(position, convertView, parent);
 
             PhoneItem item = getItem(position);
-            AccountType accountType = mAccountTypes.getInflatedSource(item.accountType,
-                    AccountType.LEVEL_SUMMARY);
+            AccountType accountType = mAccountTypes.getAccountType(item.accountType);
 
             // Obtain a string representation of the phone type specific to the
             // account type associated with that phone number

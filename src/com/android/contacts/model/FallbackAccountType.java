@@ -68,26 +68,6 @@ public class FallbackAccountType extends AccountType {
         this.iconRes = R.mipmap.ic_launcher_contacts;
     }
 
-    @Override
-    protected void inflate(Context context, int inflateLevel) {
-
-        inflateStructuredName(context, inflateLevel);
-        inflateNickname(context, inflateLevel);
-        inflatePhone(context, inflateLevel);
-        inflateEmail(context, inflateLevel);
-        inflateStructuredPostal(context, inflateLevel);
-        inflateIm(context, inflateLevel);
-        inflateOrganization(context, inflateLevel);
-        inflatePhoto(context, inflateLevel);
-        inflateNote(context, inflateLevel);
-        inflateWebsite(context, inflateLevel);
-        inflateSipAddress(context, inflateLevel);
-        inflateGroupMembership(context, inflateLevel);
-
-        setInflatedLevel(inflateLevel);
-
-    }
-
     protected EditType buildPhoneType(int type) {
         return new EditType(type, Phone.getTypeLabelResource(type))
                 .setUnspecifiedType(type == Phone.TYPE_OTHER);
@@ -117,338 +97,267 @@ public class FallbackAccountType extends AccountType {
         return new EditType(type, Relation.getTypeLabelResource(type));
     }
 
-    protected DataKind inflateStructuredName(Context context, int inflateLevel) {
-        DataKind kind = getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE);
-        if (kind == null) {
-            kind = addKind(new DataKind(StructuredName.CONTENT_ITEM_TYPE,
-                    R.string.nameLabelsGroup, -1, -1, true));
-            kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
-            kind.actionBody = new SimpleInflater(Nickname.NAME);
-        }
+    protected DataKind addDataKindStructuredName(Context context) {
+        DataKind kind = addKind(new DataKind(StructuredName.CONTENT_ITEM_TYPE,
+                R.string.nameLabelsGroup, -1, -1, true));
+        kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
+        kind.actionBody = new SimpleInflater(Nickname.NAME);
 
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(StructuredName.DISPLAY_NAME,
-                    R.string.full_name, FLAGS_PERSON_NAME).setShortForm(true));
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(StructuredName.DISPLAY_NAME,
+                R.string.full_name, FLAGS_PERSON_NAME).setShortForm(true));
 
-            boolean displayOrderPrimary =
-                    context.getResources().getBoolean(R.bool.config_editor_field_order_primary);
+        boolean displayOrderPrimary =
+                context.getResources().getBoolean(R.bool.config_editor_field_order_primary);
 
-            if (!displayOrderPrimary) {
-                kind.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
-                        FLAGS_PERSON_NAME).setLongForm(true));
-                kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
-                        FLAGS_PERSON_NAME).setLongForm(true));
-                kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
-                        FLAGS_PERSON_NAME).setLongForm(true));
-                kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
-                        FLAGS_PERSON_NAME).setLongForm(true));
-                kind.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
-                        FLAGS_PERSON_NAME).setLongForm(true));
-                kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
-                        R.string.name_phonetic_family, FLAGS_PHONETIC).setLongForm(true));
-                kind.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
-                        R.string.name_phonetic_middle, FLAGS_PHONETIC).setLongForm(true));
-                kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
-                        R.string.name_phonetic_given, FLAGS_PHONETIC).setLongForm(true));
-            } else {
-                kind.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
-                        FLAGS_PERSON_NAME).setLongForm(true));
-                kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
-                        FLAGS_PERSON_NAME).setLongForm(true));
-                kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
-                        FLAGS_PERSON_NAME).setLongForm(true));
-                kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
-                        FLAGS_PERSON_NAME).setLongForm(true));
-                kind.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
-                        FLAGS_PERSON_NAME).setLongForm(true));
-                kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
-                        R.string.name_phonetic_given, FLAGS_PHONETIC).setLongForm(true));
-                kind.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
-                        R.string.name_phonetic_middle, FLAGS_PHONETIC).setLongForm(true));
-                kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
-                        R.string.name_phonetic_family, FLAGS_PHONETIC).setLongForm(true));
-            }
+        if (!displayOrderPrimary) {
+            kind.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
+                    FLAGS_PERSON_NAME).setLongForm(true));
+            kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
+                    FLAGS_PERSON_NAME).setLongForm(true));
+            kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
+                    FLAGS_PERSON_NAME).setLongForm(true));
+            kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
+                    FLAGS_PERSON_NAME).setLongForm(true));
+            kind.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
+                    FLAGS_PERSON_NAME).setLongForm(true));
+            kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
+                    R.string.name_phonetic_family, FLAGS_PHONETIC).setLongForm(true));
+            kind.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
+                    R.string.name_phonetic_middle, FLAGS_PHONETIC).setLongForm(true));
+            kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
+                    R.string.name_phonetic_given, FLAGS_PHONETIC).setLongForm(true));
+        } else {
+            kind.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
+                    FLAGS_PERSON_NAME).setLongForm(true));
+            kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
+                    FLAGS_PERSON_NAME).setLongForm(true));
+            kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
+                    FLAGS_PERSON_NAME).setLongForm(true));
+            kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
+                    FLAGS_PERSON_NAME).setLongForm(true));
+            kind.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
+                    FLAGS_PERSON_NAME).setLongForm(true));
+            kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
+                    R.string.name_phonetic_given, FLAGS_PHONETIC).setLongForm(true));
+            kind.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
+                    R.string.name_phonetic_middle, FLAGS_PHONETIC).setLongForm(true));
+            kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
+                    R.string.name_phonetic_family, FLAGS_PHONETIC).setLongForm(true));
         }
 
         return kind;
     }
 
-    protected DataKind inflateNickname(Context context, int inflateLevel) {
-        DataKind kind = getKindForMimetype(Nickname.CONTENT_ITEM_TYPE);
-        if (kind == null) {
-            kind = addKind(new DataKind(Nickname.CONTENT_ITEM_TYPE,
+    protected DataKind addDataKindNickname(Context context) {
+        DataKind kind = addKind(new DataKind(Nickname.CONTENT_ITEM_TYPE,
                     R.string.nicknameLabelsGroup, -1, 115, true));
-            kind.isList = false;
-            kind.actionHeader = new SimpleInflater(R.string.nicknameLabelsGroup);
-            kind.actionBody = new SimpleInflater(Nickname.NAME);
-        }
 
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            kind.defaultValues = new ContentValues();
-            kind.defaultValues.put(Nickname.TYPE, Nickname.TYPE_DEFAULT);
+        kind.isList = false;
+        kind.actionHeader = new SimpleInflater(R.string.nicknameLabelsGroup);
+        kind.actionBody = new SimpleInflater(Nickname.NAME);
+        kind.defaultValues = new ContentValues();
+        kind.defaultValues.put(Nickname.TYPE, Nickname.TYPE_DEFAULT);
 
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Nickname.NAME, R.string.nicknameLabelsGroup,
-                    FLAGS_PERSON_NAME));
-        }
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(Nickname.NAME, R.string.nicknameLabelsGroup,
+                FLAGS_PERSON_NAME));
 
         return kind;
     }
 
-    protected DataKind inflatePhone(Context context, int inflateLevel) {
-        DataKind kind = getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
-        if (kind == null) {
-            kind = addKind(new DataKind(Phone.CONTENT_ITEM_TYPE, R.string.phoneLabelsGroup,
-                    android.R.drawable.sym_action_call, 10, true));
-            kind.iconAltRes = R.drawable.sym_action_sms;
-            kind.actionHeader = new PhoneActionInflater();
-            kind.actionAltHeader = new PhoneActionAltInflater();
-            kind.actionBody = new SimpleInflater(Phone.NUMBER);
-        }
+    protected DataKind addDataKindPhone(Context context) {
+        DataKind kind = addKind(new DataKind(Phone.CONTENT_ITEM_TYPE, R.string.phoneLabelsGroup,
+                android.R.drawable.sym_action_call, 10, true));
+        kind.iconAltRes = R.drawable.sym_action_sms;
+        kind.actionHeader = new PhoneActionInflater();
+        kind.actionAltHeader = new PhoneActionAltInflater();
+        kind.actionBody = new SimpleInflater(Phone.NUMBER);
+        kind.typeColumn = Phone.TYPE;
+        kind.typeList = Lists.newArrayList();
+        kind.typeList.add(buildPhoneType(Phone.TYPE_HOME));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_MOBILE));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_WORK));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_FAX_WORK).setSecondary(true));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_FAX_HOME).setSecondary(true));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_PAGER).setSecondary(true));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_OTHER));
+        kind.typeList.add(
+                buildPhoneType(Phone.TYPE_CUSTOM).setSecondary(true).setCustomColumn(Phone.LABEL));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_CALLBACK).setSecondary(true));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_CAR).setSecondary(true));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_COMPANY_MAIN).setSecondary(true));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_ISDN).setSecondary(true));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_MAIN).setSecondary(true));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_OTHER_FAX).setSecondary(true));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_RADIO).setSecondary(true));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_TELEX).setSecondary(true));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_TTY_TDD).setSecondary(true));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_WORK_MOBILE).setSecondary(true));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_WORK_PAGER).setSecondary(true));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_ASSISTANT).setSecondary(true).setCustomColumn(
+                Phone.LABEL));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_MMS).setSecondary(true));
 
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            kind.typeColumn = Phone.TYPE;
-            kind.typeList = Lists.newArrayList();
-            kind.typeList.add(buildPhoneType(Phone.TYPE_HOME));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_MOBILE));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_WORK));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_FAX_WORK).setSecondary(true));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_FAX_HOME).setSecondary(true));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_PAGER).setSecondary(true));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_OTHER));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_CUSTOM).setSecondary(true).setCustomColumn(
-                    Phone.LABEL));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_CALLBACK).setSecondary(true));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_CAR).setSecondary(true));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_COMPANY_MAIN).setSecondary(true));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_ISDN).setSecondary(true));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_MAIN).setSecondary(true));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_OTHER_FAX).setSecondary(true));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_RADIO).setSecondary(true));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_TELEX).setSecondary(true));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_TTY_TDD).setSecondary(true));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_WORK_MOBILE).setSecondary(true));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_WORK_PAGER).setSecondary(true));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_ASSISTANT).setSecondary(true)
-                    .setCustomColumn(Phone.LABEL));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_MMS).setSecondary(true));
-
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Phone.NUMBER, R.string.phoneLabelsGroup, FLAGS_PHONE));
-        }
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(Phone.NUMBER, R.string.phoneLabelsGroup, FLAGS_PHONE));
 
         return kind;
     }
 
-    protected DataKind inflateEmail(Context context, int inflateLevel) {
-        DataKind kind = getKindForMimetype(Email.CONTENT_ITEM_TYPE);
-        if (kind == null) {
-            kind = addKind(new DataKind(Email.CONTENT_ITEM_TYPE,
-                    R.string.emailLabelsGroup, R.drawable.sym_action_email_holo_light, 15, true));
-            kind.actionHeader = new EmailActionInflater();
-            kind.actionBody = new SimpleInflater(Email.DATA);
-        }
+    protected DataKind addDataKindEmail(Context context) {
+        DataKind kind = addKind(new DataKind(Email.CONTENT_ITEM_TYPE, R.string.emailLabelsGroup,
+                R.drawable.sym_action_email_holo_light, 15, true));
+        kind.actionHeader = new EmailActionInflater();
+        kind.actionBody = new SimpleInflater(Email.DATA);
+        kind.typeColumn = Email.TYPE;
+        kind.typeList = Lists.newArrayList();
+        kind.typeList.add(buildEmailType(Email.TYPE_HOME));
+        kind.typeList.add(buildEmailType(Email.TYPE_WORK));
+        kind.typeList.add(buildEmailType(Email.TYPE_OTHER));
+        kind.typeList.add(buildEmailType(Email.TYPE_MOBILE));
+        kind.typeList.add(
+                buildEmailType(Email.TYPE_CUSTOM).setSecondary(true).setCustomColumn(Email.LABEL));
 
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            kind.typeColumn = Email.TYPE;
-            kind.typeList = Lists.newArrayList();
-            kind.typeList.add(buildEmailType(Email.TYPE_HOME));
-            kind.typeList.add(buildEmailType(Email.TYPE_WORK));
-            kind.typeList.add(buildEmailType(Email.TYPE_OTHER));
-            kind.typeList.add(buildEmailType(Email.TYPE_MOBILE));
-            kind.typeList.add(buildEmailType(Email.TYPE_CUSTOM).setSecondary(true).setCustomColumn(
-                    Email.LABEL));
-
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Email.DATA, R.string.emailLabelsGroup, FLAGS_EMAIL));
-        }
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(Email.DATA, R.string.emailLabelsGroup, FLAGS_EMAIL));
 
         return kind;
     }
 
-    protected DataKind inflateStructuredPostal(Context context, int inflateLevel) {
-        DataKind kind = getKindForMimetype(StructuredPostal.CONTENT_ITEM_TYPE);
-        if (kind == null) {
-            kind = addKind(new DataKind(StructuredPostal.CONTENT_ITEM_TYPE,
-                    R.string.postalLabelsGroup, R.drawable.sym_action_show_map_holo_light, 25,
-                    true));
-            kind.actionHeader = new PostalActionInflater();
-            kind.actionBody = new SimpleInflater(StructuredPostal.FORMATTED_ADDRESS);
-        }
+    protected DataKind addDataKindStructuredPostal(Context context) {
+        DataKind kind = addKind(new DataKind(StructuredPostal.CONTENT_ITEM_TYPE,
+                R.string.postalLabelsGroup, R.drawable.sym_action_show_map_holo_light, 25,
+                true));
+        kind.actionHeader = new PostalActionInflater();
+        kind.actionBody = new SimpleInflater(StructuredPostal.FORMATTED_ADDRESS);
+        kind.typeColumn = StructuredPostal.TYPE;
+        kind.typeList = Lists.newArrayList();
+        kind.typeList.add(buildPostalType(StructuredPostal.TYPE_HOME));
+        kind.typeList.add(buildPostalType(StructuredPostal.TYPE_WORK));
+        kind.typeList.add(buildPostalType(StructuredPostal.TYPE_OTHER));
+        kind.typeList.add(buildPostalType(StructuredPostal.TYPE_CUSTOM).setSecondary(true)
+                .setCustomColumn(StructuredPostal.LABEL));
 
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            kind.typeColumn = StructuredPostal.TYPE;
-            kind.typeList = Lists.newArrayList();
-            kind.typeList.add(buildPostalType(StructuredPostal.TYPE_HOME));
-            kind.typeList.add(buildPostalType(StructuredPostal.TYPE_WORK));
-            kind.typeList.add(buildPostalType(StructuredPostal.TYPE_OTHER));
-            kind.typeList.add(buildPostalType(StructuredPostal.TYPE_CUSTOM).setSecondary(true)
-                    .setCustomColumn(StructuredPostal.LABEL));
-
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(
-                    new EditField(StructuredPostal.FORMATTED_ADDRESS, R.string.postal_address,
-                            FLAGS_POSTAL).setMinLines(3));
-        }
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(
+                new EditField(StructuredPostal.FORMATTED_ADDRESS, R.string.postal_address,
+                        FLAGS_POSTAL).setMinLines(3));
 
         return kind;
     }
 
-    protected DataKind inflateIm(Context context, int inflateLevel) {
-        DataKind kind = getKindForMimetype(Im.CONTENT_ITEM_TYPE);
-        if (kind == null) {
-            kind = addKind(new DataKind(Im.CONTENT_ITEM_TYPE, R.string.imLabelsGroup,
+    protected DataKind addDataKindIm(Context context) {
+        DataKind kind = addKind(new DataKind(Im.CONTENT_ITEM_TYPE, R.string.imLabelsGroup,
                     R.drawable.sym_action_talk_holo_light, 20, true));
-            kind.actionHeader = new ImActionInflater();
-            kind.actionBody = new SimpleInflater(Im.DATA);
-        }
+        kind.actionHeader = new ImActionInflater();
+        kind.actionBody = new SimpleInflater(Im.DATA);
 
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            // NOTE: even though a traditional "type" exists, for editing
-            // purposes we're using the protocol to pick labels
+        // NOTE: even though a traditional "type" exists, for editing
+        // purposes we're using the protocol to pick labels
 
-            kind.defaultValues = new ContentValues();
-            kind.defaultValues.put(Im.TYPE, Im.TYPE_OTHER);
+        kind.defaultValues = new ContentValues();
+        kind.defaultValues.put(Im.TYPE, Im.TYPE_OTHER);
 
-            kind.typeColumn = Im.PROTOCOL;
-            kind.typeList = Lists.newArrayList();
-            kind.typeList.add(buildImType(Im.PROTOCOL_AIM));
-            kind.typeList.add(buildImType(Im.PROTOCOL_MSN));
-            kind.typeList.add(buildImType(Im.PROTOCOL_YAHOO));
-            kind.typeList.add(buildImType(Im.PROTOCOL_SKYPE));
-            kind.typeList.add(buildImType(Im.PROTOCOL_QQ));
-            kind.typeList.add(buildImType(Im.PROTOCOL_GOOGLE_TALK));
-            kind.typeList.add(buildImType(Im.PROTOCOL_ICQ));
-            kind.typeList.add(buildImType(Im.PROTOCOL_JABBER));
-            kind.typeList.add(buildImType(Im.PROTOCOL_CUSTOM).setSecondary(true).setCustomColumn(
-                    Im.CUSTOM_PROTOCOL));
+        kind.typeColumn = Im.PROTOCOL;
+        kind.typeList = Lists.newArrayList();
+        kind.typeList.add(buildImType(Im.PROTOCOL_AIM));
+        kind.typeList.add(buildImType(Im.PROTOCOL_MSN));
+        kind.typeList.add(buildImType(Im.PROTOCOL_YAHOO));
+        kind.typeList.add(buildImType(Im.PROTOCOL_SKYPE));
+        kind.typeList.add(buildImType(Im.PROTOCOL_QQ));
+        kind.typeList.add(buildImType(Im.PROTOCOL_GOOGLE_TALK));
+        kind.typeList.add(buildImType(Im.PROTOCOL_ICQ));
+        kind.typeList.add(buildImType(Im.PROTOCOL_JABBER));
+        kind.typeList.add(buildImType(Im.PROTOCOL_CUSTOM).setSecondary(true).setCustomColumn(
+                Im.CUSTOM_PROTOCOL));
 
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Im.DATA, R.string.imLabelsGroup, FLAGS_EMAIL));
-        }
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(Im.DATA, R.string.imLabelsGroup, FLAGS_EMAIL));
 
         return kind;
     }
 
-    protected DataKind inflateOrganization(Context context, int inflateLevel) {
-        DataKind kind = getKindForMimetype(Organization.CONTENT_ITEM_TYPE);
-        if (kind == null) {
-            kind = addKind(new DataKind(Organization.CONTENT_ITEM_TYPE,
+    protected DataKind addDataKindOrganization(Context context) {
+        DataKind kind = addKind(new DataKind(Organization.CONTENT_ITEM_TYPE,
                     R.string.organizationLabelsGroup, -1, 5, true));
-            kind.actionHeader = new SimpleInflater(Organization.COMPANY);
-            kind.actionBody = new SimpleInflater(Organization.TITLE);
-        }
+        kind.actionHeader = new SimpleInflater(Organization.COMPANY);
+        kind.actionBody = new SimpleInflater(Organization.TITLE);
+        kind.isList = false;
 
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            kind.isList = false;
-
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Organization.COMPANY, R.string.ghostData_company,
-                    FLAGS_GENERIC_NAME));
-            kind.fieldList.add(new EditField(Organization.TITLE, R.string.ghostData_title,
-                    FLAGS_GENERIC_NAME));
-        }
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(Organization.COMPANY, R.string.ghostData_company,
+                FLAGS_GENERIC_NAME));
+        kind.fieldList.add(new EditField(Organization.TITLE, R.string.ghostData_title,
+                FLAGS_GENERIC_NAME));
 
         return kind;
     }
 
-    protected DataKind inflatePhoto(Context context, int inflateLevel) {
-        DataKind kind = getKindForMimetype(Photo.CONTENT_ITEM_TYPE);
-        if (kind == null) {
-            kind = addKind(new DataKind(Photo.CONTENT_ITEM_TYPE, -1, -1, -1, true));
-        }
-
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Photo.PHOTO, -1, -1));
-        }
-
+    protected DataKind addDataKindPhoto(Context context) {
+        DataKind kind = addKind(new DataKind(Photo.CONTENT_ITEM_TYPE, -1, -1, -1, true));
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(Photo.PHOTO, -1, -1));
         return kind;
     }
 
-    protected DataKind inflateNote(Context context, int inflateLevel) {
-        DataKind kind = getKindForMimetype(Note.CONTENT_ITEM_TYPE);
-        if (kind == null) {
-            kind = addKind(new DataKind(Note.CONTENT_ITEM_TYPE,
+    protected DataKind addDataKindNote(Context context) {
+        DataKind kind = addKind(new DataKind(Note.CONTENT_ITEM_TYPE,
                     R.string.label_notes, -1, 110, true));
-            kind.isList = false;
-            kind.actionHeader = new SimpleInflater(R.string.label_notes);
-            kind.actionBody = new SimpleInflater(Note.NOTE);
-        }
-
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Note.NOTE, R.string.label_notes, FLAGS_NOTE));
-        }
+        kind.isList = false;
+        kind.actionHeader = new SimpleInflater(R.string.label_notes);
+        kind.actionBody = new SimpleInflater(Note.NOTE);
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(Note.NOTE, R.string.label_notes, FLAGS_NOTE));
 
         return kind;
     }
 
-    protected DataKind inflateWebsite(Context context, int inflateLevel) {
-        DataKind kind = getKindForMimetype(Website.CONTENT_ITEM_TYPE);
-        if (kind == null) {
-            kind = addKind(new DataKind(Website.CONTENT_ITEM_TYPE,
-                    R.string.websiteLabelsGroup, R.drawable.sym_action_goto_website_holo_light, 120,
-                    true));
-            kind.actionHeader = new SimpleInflater(R.string.websiteLabelsGroup);
-            kind.actionBody = new SimpleInflater(Website.URL);
-        }
+    protected DataKind addDataKindWebsite(Context context) {
+        DataKind kind = addKind(new DataKind(Website.CONTENT_ITEM_TYPE,
+                R.string.websiteLabelsGroup, R.drawable.sym_action_goto_website_holo_light, 120,
+                true));
+        kind.actionHeader = new SimpleInflater(R.string.websiteLabelsGroup);
+        kind.actionBody = new SimpleInflater(Website.URL);
+        kind.defaultValues = new ContentValues();
+        kind.defaultValues.put(Website.TYPE, Website.TYPE_OTHER);
 
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            kind.defaultValues = new ContentValues();
-            kind.defaultValues.put(Website.TYPE, Website.TYPE_OTHER);
-
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Website.URL, R.string.websiteLabelsGroup,
-                    FLAGS_WEBSITE));
-        }
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(Website.URL, R.string.websiteLabelsGroup, FLAGS_WEBSITE));
 
         return kind;
     }
 
-    protected DataKind inflateSipAddress(Context context, int inflateLevel) {
-        DataKind kind = getKindForMimetype(SipAddress.CONTENT_ITEM_TYPE);
-        if (kind == null) {
-            // The icon specified here is the one that gets displayed for
-            // "Internet call" items, in the "view contact" UI within the
-            // Contacts app.
-            //
-            // This is independent of the "SIP call" icon that gets
-            // displayed in the Quick Contacts widget, which comes from
-            // the android:icon attribute of the SIP-related
-            // intent-filters in the Phone app's manifest.
-
-            kind = addKind(new DataKind(SipAddress.CONTENT_ITEM_TYPE,
+    protected DataKind addDataKindSipAddress(Context context) {
+        // The icon specified here is the one that gets displayed for
+        // "Internet call" items, in the "view contact" UI within the
+        // Contacts app.
+        //
+        // This is independent of the "SIP call" icon that gets
+        // displayed in the Quick Contacts widget, which comes from
+        // the android:icon attribute of the SIP-related
+        // intent-filters in the Phone app's manifest.
+        DataKind kind = addKind(new DataKind(SipAddress.CONTENT_ITEM_TYPE,
                     R.string.label_sip_address, android.R.drawable.sym_action_call, 130, true));
 
-            kind.isList = false;
-            kind.actionHeader = new SimpleInflater(R.string.label_sip_address);
-            kind.actionBody = new SimpleInflater(SipAddress.SIP_ADDRESS);
-        }
-
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(SipAddress.SIP_ADDRESS,
-                                             R.string.label_sip_address, FLAGS_SIP_ADDRESS));
-        }
+        kind.isList = false;
+        kind.actionHeader = new SimpleInflater(R.string.label_sip_address);
+        kind.actionBody = new SimpleInflater(SipAddress.SIP_ADDRESS);
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(SipAddress.SIP_ADDRESS,
+                                         R.string.label_sip_address, FLAGS_SIP_ADDRESS));
 
         return kind;
     }
 
-    protected DataKind inflateGroupMembership(Context context, int inflateLevel) {
+    protected DataKind addDataKindGroupMembership(Context context) {
         DataKind kind = getKindForMimetype(GroupMembership.CONTENT_ITEM_TYPE);
-        if (kind == null) {
-            kind = addKind(new DataKind(GroupMembership.CONTENT_ITEM_TYPE,
-                    R.string.groupsLabel, android.R.drawable.sym_contact_card, 999, true));
+        kind = addKind(new DataKind(GroupMembership.CONTENT_ITEM_TYPE,
+                R.string.groupsLabel, android.R.drawable.sym_contact_card, 999, true));
 
-            kind.isList = false;
-        }
-
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(GroupMembership.GROUP_ROW_ID, -1, -1));
-        }
+        kind.isList = false;
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(GroupMembership.GROUP_ROW_ID, -1, -1));
 
         return kind;
     }

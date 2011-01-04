@@ -153,8 +153,7 @@ public class ContactDeletionInteraction extends Fragment
             final String accountType = cursor.getString(COLUMN_INDEX_ACCOUNT_TYPE);
             contactId = cursor.getLong(COLUMN_INDEX_CONTACT_ID);
             lookupKey = cursor.getString(COLUMN_INDEX_LOOKUP_KEY);
-            AccountType type = accountTypes.getInflatedSource(accountType,
-                    AccountType.LEVEL_SUMMARY);
+            AccountType type = accountTypes.getAccountType(accountType);
             boolean readonly = type != null && type.readOnly;
             if (readonly) {
                 readOnlyRawContacts.add(rawContactId);

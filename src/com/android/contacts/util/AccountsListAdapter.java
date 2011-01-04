@@ -57,8 +57,7 @@ public final class AccountsListAdapter extends BaseAdapter {
         final ImageView icon = (ImageView)resultView.findViewById(android.R.id.icon);
 
         final Account account = mAccounts.get(position);
-        final AccountType accountType = mAccountTypes.getInflatedSource(account.type,
-                AccountType.LEVEL_SUMMARY);
+        final AccountType accountType = mAccountTypes.getAccountType(account.type);
 
         text1.setText(account.name);
         text2.setText(accountType.getDisplayLabel(mContext));

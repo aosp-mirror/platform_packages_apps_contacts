@@ -247,8 +247,7 @@ public class SplitAggregateView extends ListView {
             cache.additionalData.setText(info.getAdditionalData());
 
             Drawable icon = null;
-            AccountType accountType = mAccountTypes.getInflatedSource(info.accountType,
-                    AccountType.LEVEL_SUMMARY);
+            AccountType accountType = mAccountTypes.getAccountType(info.accountType);
             if (accountType != null) {
                 icon = accountType.getDisplayIcon(getContext());
             }

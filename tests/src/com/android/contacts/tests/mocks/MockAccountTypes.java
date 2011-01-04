@@ -28,7 +28,7 @@ public class MockAccountTypes extends AccountTypes {
     public static final String READONLY_ACCOUNT_TYPE = "readonly";
 
     @Override
-    public AccountType getInflatedSource(String accountType, int inflateLevel) {
+    public AccountType getAccountType(String accountType) {
         if (accountType.equals(WRITABLE_ACCOUNT_TYPE)) {
             AccountType source = new FallbackAccountType();
             source.readOnly = false;

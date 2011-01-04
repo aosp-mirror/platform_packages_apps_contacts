@@ -118,9 +118,7 @@ public class AccountSelectionUtil {
                         (TextView)convertView.findViewById(android.R.id.text2);
 
                 final Account account = this.getItem(position);
-                final AccountType accountType =
-                    accountTypes.getInflatedSource(account.type,
-                            AccountType.LEVEL_SUMMARY);
+                final AccountType accountType = accountTypes.getAccountType(account.type);
                 final Context context = getContext();
 
                 text1.setText(account.name);

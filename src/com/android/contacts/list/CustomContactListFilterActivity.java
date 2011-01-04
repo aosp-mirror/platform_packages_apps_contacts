@@ -572,8 +572,7 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
 
             final AccountDisplay account = (AccountDisplay)this.getGroup(groupPosition);
 
-            final AccountType accountType = mAccountTypes.getInflatedSource(account.mType,
-                    AccountType.LEVEL_SUMMARY);
+            final AccountType accountType = mAccountTypes.getAccountType(account.mType);
 
             text1.setText(account.mName);
             text2.setText(accountType.getDisplayLabel(mContext));

@@ -41,273 +41,244 @@ public class ExchangeAccountType extends FallbackAccountType {
 
     public static final String ACCOUNT_TYPE = "com.android.exchange";
 
-    public ExchangeAccountType(String resPackageName) {
+    public ExchangeAccountType(Context context, String resPackageName) {
         this.accountType = ACCOUNT_TYPE;
         this.resPackageName = null;
         this.summaryResPackageName = resPackageName;
+
+        addDataKindStructuredName(context);
+        addDataKindNickname(context);
+        addDataKindPhone(context);
+        addDataKindEmail(context);
+        addDataKindStructuredPostal(context);
+        addDataKindIm(context);
+        addDataKindOrganization(context);
+        addDataKindPhoto(context);
+        addDataKindNote(context);
+        addDataKindEvent(context);
+        addDataKindWebsite(context);
+        addDataKindGroupMembership(context);
     }
 
     @Override
-    protected void inflate(Context context, int inflateLevel) {
+    protected DataKind addDataKindStructuredName(Context context) {
+        final DataKind kind = super.addDataKindStructuredName(context);
 
-        inflateStructuredName(context, inflateLevel);
-        inflateNickname(context, inflateLevel);
-        inflatePhone(context, inflateLevel);
-        inflateEmail(context, inflateLevel);
-        inflateStructuredPostal(context, inflateLevel);
-        inflateIm(context, inflateLevel);
-        inflateOrganization(context, inflateLevel);
-        inflatePhoto(context, inflateLevel);
-        inflateNote(context, inflateLevel);
-        inflateEvent(context, inflateLevel);
-        inflateWebsite(context, inflateLevel);
-        inflateGroupMembership(context, inflateLevel);
+        boolean displayOrderPrimary =
+                context.getResources().getBoolean(R.bool.config_editor_field_order_primary);
+        kind.typeOverallMax = 1;
 
-        setInflatedLevel(inflateLevel);
-    }
-
-    @Override
-    protected DataKind inflateStructuredName(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateStructuredName(context, inflateLevel);
-
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            boolean displayOrderPrimary =
-                    context.getResources().getBoolean(R.bool.config_editor_field_order_primary);
-            kind.typeOverallMax = 1;
-
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
-                    FLAGS_PERSON_NAME).setOptional(true));
-            if (!displayOrderPrimary) {
-                kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME,
-                        R.string.name_family, FLAGS_PERSON_NAME));
-                kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME,
-                        R.string.name_middle, FLAGS_PERSON_NAME).setOptional(true));
-                kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME,
-                        R.string.name_given, FLAGS_PERSON_NAME));
-                kind.fieldList.add(new EditField(StructuredName.SUFFIX,
-                        R.string.name_suffix, FLAGS_PERSON_NAME).setOptional(true));
-                kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
-                        R.string.name_phonetic_family, FLAGS_PHONETIC).setOptional(true));
-                kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
-                        R.string.name_phonetic_given, FLAGS_PHONETIC).setOptional(true));
-            } else {
-                kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME,
-                        R.string.name_given, FLAGS_PERSON_NAME));
-                kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME,
-                        R.string.name_middle, FLAGS_PERSON_NAME).setOptional(true));
-                kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME,
-                        R.string.name_family, FLAGS_PERSON_NAME));
-                kind.fieldList.add(new EditField(StructuredName.SUFFIX,
-                        R.string.name_suffix, FLAGS_PERSON_NAME).setOptional(true));
-                kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
-                        R.string.name_phonetic_given, FLAGS_PHONETIC).setOptional(true));
-                kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
-                        R.string.name_phonetic_family, FLAGS_PHONETIC).setOptional(true));
-            }
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
+                FLAGS_PERSON_NAME).setOptional(true));
+        if (!displayOrderPrimary) {
+            kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME,
+                    R.string.name_family, FLAGS_PERSON_NAME));
+            kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME,
+                    R.string.name_middle, FLAGS_PERSON_NAME).setOptional(true));
+            kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME,
+                    R.string.name_given, FLAGS_PERSON_NAME));
+            kind.fieldList.add(new EditField(StructuredName.SUFFIX,
+                    R.string.name_suffix, FLAGS_PERSON_NAME).setOptional(true));
+            kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
+                    R.string.name_phonetic_family, FLAGS_PHONETIC).setOptional(true));
+            kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
+                    R.string.name_phonetic_given, FLAGS_PHONETIC).setOptional(true));
+        } else {
+            kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME,
+                    R.string.name_given, FLAGS_PERSON_NAME));
+            kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME,
+                    R.string.name_middle, FLAGS_PERSON_NAME).setOptional(true));
+            kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME,
+                    R.string.name_family, FLAGS_PERSON_NAME));
+            kind.fieldList.add(new EditField(StructuredName.SUFFIX,
+                    R.string.name_suffix, FLAGS_PERSON_NAME).setOptional(true));
+            kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
+                    R.string.name_phonetic_given, FLAGS_PHONETIC).setOptional(true));
+            kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
+                    R.string.name_phonetic_family, FLAGS_PHONETIC).setOptional(true));
         }
 
         return kind;
     }
 
     @Override
-    protected DataKind inflateNickname(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateNickname(context, inflateLevel);
+    protected DataKind addDataKindNickname(Context context) {
+        final DataKind kind = super.addDataKindNickname(context);
 
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            kind.isList = false;
+        kind.isList = false;
 
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Nickname.NAME, R.string.nicknameLabelsGroup,
-                    FLAGS_PERSON_NAME));
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(Nickname.NAME, R.string.nicknameLabelsGroup,
+                FLAGS_PERSON_NAME));
+
+        return kind;
+    }
+
+    @Override
+    protected DataKind addDataKindPhone(Context context) {
+        final DataKind kind = super.addDataKindPhone(context);
+
+        kind.typeColumn = Phone.TYPE;
+        kind.typeList = Lists.newArrayList();
+        kind.typeList.add(buildPhoneType(Phone.TYPE_HOME).setSpecificMax(2));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_MOBILE).setSpecificMax(1));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_WORK).setSpecificMax(2));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_FAX_WORK).setSecondary(true)
+                .setSpecificMax(1));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_FAX_HOME).setSecondary(true)
+                .setSpecificMax(1));
+        kind.typeList
+                .add(buildPhoneType(Phone.TYPE_PAGER).setSecondary(true).setSpecificMax(1));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_CAR).setSecondary(true).setSpecificMax(1));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_COMPANY_MAIN).setSecondary(true)
+                .setSpecificMax(1));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_MMS).setSecondary(true).setSpecificMax(1));
+        kind.typeList
+                .add(buildPhoneType(Phone.TYPE_RADIO).setSecondary(true).setSpecificMax(1));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_ASSISTANT).setSecondary(true)
+                .setSpecificMax(1));
+
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(Phone.NUMBER, R.string.phoneLabelsGroup, FLAGS_PHONE));
+
+        return kind;
+    }
+
+    @Override
+    protected DataKind addDataKindEmail(Context context) {
+        final DataKind kind = super.addDataKindEmail(context);
+
+        kind.typeOverallMax = 3;
+
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(Email.DATA, R.string.emailLabelsGroup, FLAGS_EMAIL));
+
+        return kind;
+    }
+
+    @Override
+    protected DataKind addDataKindStructuredPostal(Context context) {
+        final DataKind kind = super.addDataKindStructuredPostal(context);
+
+        final boolean useJapaneseOrder =
+            Locale.JAPANESE.getLanguage().equals(Locale.getDefault().getLanguage());
+        kind.typeColumn = StructuredPostal.TYPE;
+        kind.typeList = Lists.newArrayList();
+        kind.typeList.add(buildPostalType(StructuredPostal.TYPE_WORK).setSpecificMax(1));
+        kind.typeList.add(buildPostalType(StructuredPostal.TYPE_HOME).setSpecificMax(1));
+        kind.typeList.add(buildPostalType(StructuredPostal.TYPE_OTHER).setSpecificMax(1));
+
+        kind.fieldList = Lists.newArrayList();
+        if (useJapaneseOrder) {
+            kind.fieldList.add(new EditField(StructuredPostal.COUNTRY,
+                    R.string.postal_country, FLAGS_POSTAL).setOptional(true));
+            kind.fieldList.add(new EditField(StructuredPostal.POSTCODE,
+                    R.string.postal_postcode, FLAGS_POSTAL));
+            kind.fieldList.add(new EditField(StructuredPostal.REGION,
+                    R.string.postal_region, FLAGS_POSTAL));
+            kind.fieldList.add(new EditField(StructuredPostal.CITY,
+                    R.string.postal_city,FLAGS_POSTAL));
+            kind.fieldList.add(new EditField(StructuredPostal.STREET,
+                    R.string.postal_street, FLAGS_POSTAL));
+        } else {
+            kind.fieldList.add(new EditField(StructuredPostal.STREET,
+                    R.string.postal_street, FLAGS_POSTAL));
+            kind.fieldList.add(new EditField(StructuredPostal.CITY,
+                    R.string.postal_city,FLAGS_POSTAL));
+            kind.fieldList.add(new EditField(StructuredPostal.REGION,
+                    R.string.postal_region, FLAGS_POSTAL));
+            kind.fieldList.add(new EditField(StructuredPostal.POSTCODE,
+                    R.string.postal_postcode, FLAGS_POSTAL));
+            kind.fieldList.add(new EditField(StructuredPostal.COUNTRY,
+                    R.string.postal_country, FLAGS_POSTAL).setOptional(true));
         }
 
         return kind;
     }
 
     @Override
-    protected DataKind inflatePhone(Context context, int inflateLevel) {
-        final DataKind kind = super.inflatePhone(context, inflateLevel);
+    protected DataKind addDataKindIm(Context context) {
+        final DataKind kind = super.addDataKindIm(context);
 
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            kind.typeColumn = Phone.TYPE;
-            kind.typeList = Lists.newArrayList();
-            kind.typeList.add(buildPhoneType(Phone.TYPE_HOME).setSpecificMax(2));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_MOBILE).setSpecificMax(1));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_WORK).setSpecificMax(2));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_FAX_WORK).setSecondary(true)
-                    .setSpecificMax(1));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_FAX_HOME).setSecondary(true)
-                    .setSpecificMax(1));
-            kind.typeList
-                    .add(buildPhoneType(Phone.TYPE_PAGER).setSecondary(true).setSpecificMax(1));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_CAR).setSecondary(true).setSpecificMax(1));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_COMPANY_MAIN).setSecondary(true)
-                    .setSpecificMax(1));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_MMS).setSecondary(true).setSpecificMax(1));
-            kind.typeList
-                    .add(buildPhoneType(Phone.TYPE_RADIO).setSecondary(true).setSpecificMax(1));
-            kind.typeList.add(buildPhoneType(Phone.TYPE_ASSISTANT).setSecondary(true)
-                    .setSpecificMax(1));
+        // Types are not supported for IM. There can be 3 IMs, but OWA only shows only the first
+        kind.typeOverallMax = 3;
 
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Phone.NUMBER, R.string.phoneLabelsGroup, FLAGS_PHONE));
-        }
+        kind.defaultValues = new ContentValues();
+        kind.defaultValues.put(Im.TYPE, Im.TYPE_OTHER);
+
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(Im.DATA, R.string.imLabelsGroup, FLAGS_EMAIL));
 
         return kind;
     }
 
     @Override
-    protected DataKind inflateEmail(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateEmail(context, inflateLevel);
+    protected DataKind addDataKindOrganization(Context context) {
+        final DataKind kind = super.addDataKindOrganization(context);
 
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            kind.typeOverallMax = 3;
+        kind.isList = false;
 
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Email.DATA, R.string.emailLabelsGroup, FLAGS_EMAIL));
-        }
-
-        return kind;
-    }
-
-    @Override
-    protected DataKind inflateStructuredPostal(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateStructuredPostal(context, inflateLevel);
-
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            final boolean useJapaneseOrder =
-                Locale.JAPANESE.getLanguage().equals(Locale.getDefault().getLanguage());
-            kind.typeColumn = StructuredPostal.TYPE;
-            kind.typeList = Lists.newArrayList();
-            kind.typeList.add(buildPostalType(StructuredPostal.TYPE_WORK).setSpecificMax(1));
-            kind.typeList.add(buildPostalType(StructuredPostal.TYPE_HOME).setSpecificMax(1));
-            kind.typeList.add(buildPostalType(StructuredPostal.TYPE_OTHER).setSpecificMax(1));
-
-            kind.fieldList = Lists.newArrayList();
-            if (useJapaneseOrder) {
-                kind.fieldList.add(new EditField(StructuredPostal.COUNTRY,
-                        R.string.postal_country, FLAGS_POSTAL).setOptional(true));
-                kind.fieldList.add(new EditField(StructuredPostal.POSTCODE,
-                        R.string.postal_postcode, FLAGS_POSTAL));
-                kind.fieldList.add(new EditField(StructuredPostal.REGION,
-                        R.string.postal_region, FLAGS_POSTAL));
-                kind.fieldList.add(new EditField(StructuredPostal.CITY,
-                        R.string.postal_city,FLAGS_POSTAL));
-                kind.fieldList.add(new EditField(StructuredPostal.STREET,
-                        R.string.postal_street, FLAGS_POSTAL));
-            } else {
-                kind.fieldList.add(new EditField(StructuredPostal.STREET,
-                        R.string.postal_street, FLAGS_POSTAL));
-                kind.fieldList.add(new EditField(StructuredPostal.CITY,
-                        R.string.postal_city,FLAGS_POSTAL));
-                kind.fieldList.add(new EditField(StructuredPostal.REGION,
-                        R.string.postal_region, FLAGS_POSTAL));
-                kind.fieldList.add(new EditField(StructuredPostal.POSTCODE,
-                        R.string.postal_postcode, FLAGS_POSTAL));
-                kind.fieldList.add(new EditField(StructuredPostal.COUNTRY,
-                        R.string.postal_country, FLAGS_POSTAL).setOptional(true));
-            }
-        }
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(Organization.COMPANY, R.string.ghostData_company,
+                FLAGS_GENERIC_NAME));
+        kind.fieldList.add(new EditField(Organization.TITLE, R.string.ghostData_title,
+                FLAGS_GENERIC_NAME));
 
         return kind;
     }
 
     @Override
-    protected DataKind inflateIm(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateIm(context, inflateLevel);
+    protected DataKind addDataKindPhoto(Context context) {
+        final DataKind kind = super.addDataKindPhoto(context);
 
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            // Types are not supported for IM. There can be 3 IMs, but OWA only shows only the first
-            kind.typeOverallMax = 3;
+        kind.typeOverallMax = 1;
 
-            kind.defaultValues = new ContentValues();
-            kind.defaultValues.put(Im.TYPE, Im.TYPE_OTHER);
-
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Im.DATA, R.string.imLabelsGroup, FLAGS_EMAIL));
-        }
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(Photo.PHOTO, -1, -1));
 
         return kind;
     }
 
     @Override
-    protected DataKind inflateOrganization(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateOrganization(context, inflateLevel);
+    protected DataKind addDataKindNote(Context context) {
+        final DataKind kind = super.addDataKindNote(context);
 
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            kind.isList = false;
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(Note.NOTE, R.string.label_notes, FLAGS_NOTE));
 
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Organization.COMPANY, R.string.ghostData_company,
-                    FLAGS_GENERIC_NAME));
-            kind.fieldList.add(new EditField(Organization.TITLE, R.string.ghostData_title,
-                    FLAGS_GENERIC_NAME));
-        }
+        return kind;
+    }
+
+    protected DataKind addDataKindEvent(Context context) {
+        DataKind kind = addKind(
+                new DataKind(Event.CONTENT_ITEM_TYPE, R.string.eventLabelsGroup, -1, 150, true));
+        kind.actionHeader = new EventActionInflater();
+        kind.actionBody = new SimpleInflater(Event.START_DATE);
+
+        kind.isList = false;
+
+        kind.typeColumn = Event.TYPE;
+        kind.typeList = Lists.newArrayList();
+        kind.typeList.add(buildEventType(Event.TYPE_BIRTHDAY, false).setSpecificMax(1));
+
+        kind.dateFormatWithYear = DateUtils.DATE_AND_TIME_FORMAT;
+        kind.editorClass = EventFieldEditorView.class;
+
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(Event.DATA, R.string.eventLabelsGroup, FLAGS_EVENT));
 
         return kind;
     }
 
     @Override
-    protected DataKind inflatePhoto(Context context, int inflateLevel) {
-        final DataKind kind = super.inflatePhoto(context, inflateLevel);
+    protected DataKind addDataKindWebsite(Context context) {
+        final DataKind kind = super.addDataKindWebsite(context);
 
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            kind.typeOverallMax = 1;
+        kind.isList = false;
 
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Photo.PHOTO, -1, -1));
-        }
-
-        return kind;
-    }
-
-    @Override
-    protected DataKind inflateNote(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateNote(context, inflateLevel);
-
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Note.NOTE, R.string.label_notes, FLAGS_NOTE));
-        }
-
-        return kind;
-    }
-
-    protected DataKind inflateEvent(Context context, int inflateLevel) {
-        DataKind kind = getKindForMimetype(Event.CONTENT_ITEM_TYPE);
-        if (kind == null) {
-            kind = addKind(new DataKind(Event.CONTENT_ITEM_TYPE,
-                    R.string.eventLabelsGroup, -1, 150, true));
-            kind.actionHeader = new EventActionInflater();
-            kind.actionBody = new SimpleInflater(Event.START_DATE);
-
-            kind.isList = false;
-
-            kind.typeColumn = Event.TYPE;
-            kind.typeList = Lists.newArrayList();
-            kind.typeList.add(buildEventType(Event.TYPE_BIRTHDAY, false).setSpecificMax(1));
-
-            kind.dateFormatWithYear = DateUtils.DATE_AND_TIME_FORMAT;
-            kind.editorClass = EventFieldEditorView.class;
-
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Event.DATA, R.string.eventLabelsGroup, FLAGS_EVENT));
-        }
-
-        return kind;
-    }
-
-    @Override
-    protected DataKind inflateWebsite(Context context, int inflateLevel) {
-        final DataKind kind = super.inflateWebsite(context, inflateLevel);
-
-        if (inflateLevel >= AccountType.LEVEL_CONSTRAINTS) {
-            kind.isList = false;
-
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Website.URL, R.string.websiteLabelsGroup, FLAGS_WEBSITE));
-        }
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(Website.URL, R.string.websiteLabelsGroup, FLAGS_WEBSITE));
 
         return kind;
     }

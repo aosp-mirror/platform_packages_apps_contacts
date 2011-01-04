@@ -84,10 +84,8 @@ public class EntityDeltaListTests extends AndroidTestCase {
      * Build a {@link AccountType} that has various odd constraints for
      * testing purposes.
      */
-    protected AccountType getSource() {
-        final AccountType source = new MockContactsSource();
-        source.ensureInflated(getContext(), AccountType.LEVEL_CONSTRAINTS);
-        return source;
+    protected AccountType getAccountType() {
+        return new MockContactsSource();
     }
 
     static ContentValues getValues(ContentProviderOperation operation)
@@ -571,7 +569,7 @@ public class EntityDeltaListTests extends AndroidTestCase {
                 buildEmail(EMAIL_YELLOW)));
 
         // Ensure we have at least one phone
-        final AccountType source = getSource();
+        final AccountType source = getAccountType();
         final EntityDelta bobContact = first.getByRawContactId(CONTACT_BOB);
         EntityModifier.ensureKindExists(bobContact, source, Phone.CONTENT_ITEM_TYPE);
         final ValuesDelta bobPhone = bobContact.getSuperPrimaryEntry(Phone.CONTENT_ITEM_TYPE, true);

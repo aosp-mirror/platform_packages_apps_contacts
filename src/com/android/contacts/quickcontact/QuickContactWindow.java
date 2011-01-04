@@ -20,7 +20,6 @@ import com.android.contacts.Collapser;
 import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
-import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.DataKind;
 import com.android.contacts.model.AccountTypes;
 import com.android.contacts.util.Constants;
@@ -680,8 +679,7 @@ public class QuickContactWindow implements Window.Callback,
                 continue;
             }
 
-            final DataKind kind = accountTypes.getKindOrFallback(accountType, mimeType, mContext,
-                    AccountType.LEVEL_MIMETYPES);
+            final DataKind kind = accountTypes.getKindOrFallback(accountType, mimeType, mContext);
 
             if (kind != null) {
                 // Build an action for this data entry, find a mapping to a UI
@@ -708,7 +706,7 @@ public class QuickContactWindow implements Window.Callback,
             final boolean hasPresence = !cursor.isNull(DataQuery.PRESENCE);
             if (hasPresence && Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 final DataKind imKind = accountTypes.getKindOrFallback(accountType,
-                        Im.CONTENT_ITEM_TYPE, mContext, AccountType.LEVEL_MIMETYPES);
+                        Im.CONTENT_ITEM_TYPE, mContext);
                 if (imKind != null) {
                     final DataAction action = new DataAction(mContext, Im.CONTENT_ITEM_TYPE, imKind,
                             dataId, cursor);

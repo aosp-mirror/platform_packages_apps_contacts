@@ -80,10 +80,9 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     public static class MockContactsSource extends AccountType {
-        @Override
-        protected void inflate(Context context, int inflateLevel) {
+
+        MockContactsSource() {
             this.accountType = TEST_ACCOUNT_TYPE;
-            this.setInflatedLevel(AccountType.LEVEL_CONSTRAINTS);
 
             // Phone allows maximum 2 home, 1 work, and unlimited other, with
             // constraint of 5 numbers maximum.
@@ -141,10 +140,8 @@ public class EntityModifierTests extends AndroidTestCase {
      * Build a {@link AccountType} that has various odd constraints for
      * testing purposes.
      */
-    protected AccountType getSource() {
-        final AccountType source = new MockContactsSource();
-        source.ensureInflated(getContext(), AccountType.LEVEL_CONSTRAINTS);
-        return source;
+    protected AccountType getAccountType() {
+        return new MockContactsSource();
     }
 
     /**
@@ -192,7 +189,7 @@ public class EntityModifierTests extends AndroidTestCase {
      */
     public void testValidTypes() {
         // Build a source and pull specific types
-        final AccountType source = getSource();
+        final AccountType source = getAccountType();
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
         final EditType typeWork = EntityModifier.getType(kindPhone, Phone.TYPE_WORK);
@@ -237,7 +234,7 @@ public class EntityModifierTests extends AndroidTestCase {
      */
     public void testCanInsert() {
         // Build a source and pull specific types
-        final AccountType source = getSource();
+        final AccountType source = getAccountType();
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
         final EditType typeWork = EntityModifier.getType(kindPhone, Phone.TYPE_WORK);
@@ -266,7 +263,7 @@ public class EntityModifierTests extends AndroidTestCase {
      */
     public void testBestValidType() {
         // Build a source and pull specific types
-        final AccountType source = getSource();
+        final AccountType source = getAccountType();
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
         final EditType typeWork = EntityModifier.getType(kindPhone, Phone.TYPE_WORK);
@@ -302,7 +299,7 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     public void testIsEmptyEmpty() {
-        final AccountType source = getSource();
+        final AccountType source = getAccountType();
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
 
         // Test entirely empty row
@@ -313,7 +310,7 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     public void testIsEmptyDirectFields() {
-        final AccountType source = getSource();
+        final AccountType source = getAccountType();
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
 
@@ -330,7 +327,7 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     public void testTrimEmptySingle() {
-        final AccountType source = getSource();
+        final AccountType source = getAccountType();
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
 
@@ -371,7 +368,7 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     public void testTrimEmptySpaces() {
-        final AccountType source = getSource();
+        final AccountType source = getAccountType();
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
 
@@ -396,7 +393,7 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     public void testTrimLeaveValid() {
-        final AccountType source = getSource();
+        final AccountType source = getAccountType();
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
 
@@ -424,7 +421,7 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     public void testTrimEmptyUntouched() {
-        final AccountType source = getSource();
+        final AccountType source = getAccountType();
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
 
@@ -448,7 +445,7 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     public void testTrimEmptyAfterUpdate() {
-        final AccountType source = getSource();
+        final AccountType source = getAccountType();
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
 
@@ -500,7 +497,7 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     public void testTrimInsertEmpty() {
-        final AccountType source = getSource();
+        final AccountType source = getAccountType();
         final AccountTypes sources = getSources(source);
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
@@ -527,7 +524,7 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     public void testTrimInsertInsert() {
-        final AccountType source = getSource();
+        final AccountType source = getAccountType();
         final AccountTypes sources = getSources(source);
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
@@ -560,7 +557,7 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     public void testTrimUpdateRemain() {
-        final AccountType source = getSource();
+        final AccountType source = getAccountType();
         final AccountTypes sources = getSources(source);
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
@@ -631,7 +628,7 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     public void testTrimUpdateUpdate() {
-        final AccountType source = getSource();
+        final AccountType source = getAccountType();
         final AccountTypes sources = getSources(source);
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
@@ -686,7 +683,7 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     public void testParseExtrasExistingName() {
-        final AccountType source = getSource();
+        final AccountType source = getAccountType();
         final DataKind kindName = source.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE);
 
         // Build "before" name
@@ -706,7 +703,7 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     public void testParseExtrasIgnoreLimit() {
-        final AccountType source = getSource();
+        final AccountType source = getAccountType();
         final DataKind kindIm = source.getKindForMimetype(Im.CONTENT_ITEM_TYPE);
 
         // Build "before" IM
@@ -730,7 +727,7 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     public void testParseExtrasIgnoreUnhandled() {
-        final AccountType source = getSource();
+        final AccountType source = getAccountType();
         final EntityDelta state = getEntity(TEST_ID);
 
         // We should silently ignore types unsupported by source
@@ -742,7 +739,7 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     public void testParseExtrasJobTitle() {
-        final AccountType source = getSource();
+        final AccountType source = getAccountType();
         final EntityDelta state = getEntity(TEST_ID);
 
         // Make sure that we create partial Organizations

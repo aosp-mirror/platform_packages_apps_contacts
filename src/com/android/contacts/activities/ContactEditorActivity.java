@@ -217,8 +217,7 @@ public class ContactEditorActivity extends Activity implements
         @Override
         public void onCustomCreateContactActivityRequested(Account account, Bundle intentExtras) {
             final AccountTypes accountTypes = AccountTypes.getInstance(ContactEditorActivity.this);
-            final AccountType accountType = accountTypes.getInflatedSource(
-                    account.type, AccountType.LEVEL_CONSTRAINTS);
+            final AccountType accountType = accountTypes.getAccountType(account.type);
 
             Intent intent = new Intent();
             intent.setClassName(accountType.resPackageName,
@@ -239,10 +238,8 @@ public class ContactEditorActivity extends Activity implements
         @Override
         public void onCustomEditContactActivityRequested(Account account, Uri rawContactUri,
                 Bundle intentExtras, boolean redirect) {
-            final AccountTypes accountTypes = AccountTypes.getInstance(
-                    ContactEditorActivity.this);
-            final AccountType accountType = accountTypes.getInflatedSource(
-                    account.type, AccountType.LEVEL_CONSTRAINTS);
+            final AccountTypes accountTypes = AccountTypes.getInstance(ContactEditorActivity.this);
+            final AccountType accountType = accountTypes.getAccountType(account.type);
 
             Intent intent = new Intent();
             intent.setClassName(accountType.resPackageName,

@@ -75,49 +75,6 @@ public abstract class AccountType {
      */
     private HashMap<String, DataKind> mMimeKinds = Maps.newHashMap();
 
-    public static final int LEVEL_NONE = 0;
-    public static final int LEVEL_SUMMARY = 1;
-    public static final int LEVEL_MIMETYPES = 2;
-    public static final int LEVEL_CONSTRAINTS = 3;
-
-    private int mInflatedLevel = LEVEL_NONE;
-
-    public synchronized boolean isInflated(int inflateLevel) {
-        return mInflatedLevel >= inflateLevel;
-    }
-
-    /** @hide exposed for unit tests */
-    public void setInflatedLevel(int inflateLevel) {
-        mInflatedLevel = inflateLevel;
-    }
-
-    /**
-     * Ensure that this {@link AccountType} has been inflated to the
-     * requested level.
-     */
-    public synchronized void ensureInflated(Context context, int inflateLevel) {
-        if (!isInflated(inflateLevel)) {
-            inflate(context, inflateLevel);
-        }
-    }
-
-    /**
-     * Perform the actual inflation to the requested level. Called by
-     * {@link #ensureInflated(Context, int)} when inflation is needed.
-     */
-    protected abstract void inflate(Context context, int inflateLevel);
-
-    /**
-     * Invalidate any cache for this {@link AccountType}, removing all
-     * inflated data. Calling {@link #ensureInflated(Context, int)} will
-     * populate again from scratch.
-     */
-    public synchronized void invalidateCache() {
-        this.mKinds.clear();
-        this.mMimeKinds.clear();
-        setInflatedLevel(LEVEL_NONE);
-    }
-
     public boolean isExternal() {
         return false;
     }
@@ -186,7 +143,7 @@ public abstract class AccountType {
     /**
      * Find the {@link DataKind} for a specific MIME-type, if it's handled by
      * this data source. If you may need a fallback {@link DataKind}, use
-     * {@link AccountTypes#getKindOrFallback(String, String, Context, int)}.
+     * {@link AccountTypes#getKindOrFallback(String, String, Context)}.
      */
     public DataKind getKindForMimetype(String mimeType) {
         return this.mMimeKinds.get(mimeType);

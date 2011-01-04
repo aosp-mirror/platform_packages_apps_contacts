@@ -52,33 +52,10 @@ public class ExternalAccountType extends FallbackAccountType {
     private String mEditContactActivityClassName;
     private String mCreateContactActivityClassName;
 
-    public ExternalAccountType(String resPackageName) {
+    public ExternalAccountType(Context context, String resPackageName) {
         this.resPackageName = resPackageName;
         this.summaryResPackageName = resPackageName;
-    }
 
-    @Override
-    public boolean isExternal() {
-        return true;
-    }
-
-    @Override
-    public String getEditContactActivityClassName() {
-        return mEditContactActivityClassName;
-    }
-
-    @Override
-    public String getCreateContactActivityClassName() {
-        return mCreateContactActivityClassName;
-    }
-
-    /**
-     * Ensure that the constraint rules behind this {@link AccountType} have
-     * been inflated. Because this may involve parsing meta-data from
-     * {@link PackageManager}, it shouldn't be called from a UI thread.
-     */
-    @Override
-    public void inflate(Context context, int inflateLevel) {
         // Handle unknown sources by searching their package
         final PackageManager pm = context.getPackageManager();
         final Intent syncAdapter = new Intent(ACTION_SYNC_ADAPTER);
@@ -95,10 +72,23 @@ public class ExternalAccountType extends FallbackAccountType {
         }
 
         // Bring in name and photo from fallback source, which are non-optional
-        inflateStructuredName(context, inflateLevel);
-        inflatePhoto(context, inflateLevel);
+        addDataKindStructuredName(context);
+        addDataKindPhoto(context);
+    }
 
-        setInflatedLevel(inflateLevel);
+    @Override
+    public boolean isExternal() {
+        return true;
+    }
+
+    @Override
+    public String getEditContactActivityClassName() {
+        return mEditContactActivityClassName;
+    }
+
+    @Override
+    public String getCreateContactActivityClassName() {
+        return mCreateContactActivityClassName;
     }
 
     /**
