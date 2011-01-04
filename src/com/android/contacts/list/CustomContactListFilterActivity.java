@@ -527,12 +527,34 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
             mChildWithPhones = withPhones;
         }
 
-        /** {@inheritDoc} */
+        @Override
+        public View getGroupView(int groupPosition, boolean isExpanded, View convertView,
+                ViewGroup parent) {
+            if (convertView == null) {
+                convertView = mInflater.inflate(
+                        R.layout.custom_contact_list_filter_account, parent, false);
+            }
+
+            final TextView text1 = (TextView)convertView.findViewById(android.R.id.text1);
+            final TextView text2 = (TextView)convertView.findViewById(android.R.id.text2);
+
+            final AccountDisplay account = (AccountDisplay)this.getGroup(groupPosition);
+
+            final AccountType accountType = mAccountTypes.getAccountType(account.mType);
+
+            text1.setText(accountType.getDisplayLabel(mContext));
+            text2.setText(account.mName);
+            text2.setVisibility(account.mName == null ? View.GONE : View.VISIBLE);
+
+            return convertView;
+        }
+
         @Override
         public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
                 View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView = mInflater.inflate(R.layout.display_child, parent, false);
+                convertView = mInflater.inflate(
+                        R.layout.custom_contact_list_filter_group, parent, false);
             }
 
             final TextView text1 = (TextView)convertView.findViewById(android.R.id.text1);
@@ -556,27 +578,6 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
                 text1.setText(R.string.display_more_groups);
                 text2.setVisibility(View.GONE);
             }
-
-            return convertView;
-        }
-
-        @Override
-        public View getGroupView(int groupPosition, boolean isExpanded, View convertView,
-                ViewGroup parent) {
-            if (convertView == null) {
-                convertView = mInflater.inflate(R.layout.display_group, parent, false);
-            }
-
-            final TextView text1 = (TextView)convertView.findViewById(android.R.id.text1);
-            final TextView text2 = (TextView)convertView.findViewById(android.R.id.text2);
-
-            final AccountDisplay account = (AccountDisplay)this.getGroup(groupPosition);
-
-            final AccountType accountType = mAccountTypes.getAccountType(account.mType);
-
-            text1.setText(account.mName);
-            text2.setText(accountType.getDisplayLabel(mContext));
-            text2.setVisibility(account.mName == null ? View.GONE : View.VISIBLE);
 
             return convertView;
         }
