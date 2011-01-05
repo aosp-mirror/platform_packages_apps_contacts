@@ -22,7 +22,6 @@ import com.android.contacts.ContactLoader;
 import com.android.contacts.ContactOptionsActivity;
 import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.ContactsUtils;
-import com.android.contacts.ContactsUtils.ImActions;
 import com.android.contacts.GroupMetaData;
 import com.android.contacts.R;
 import com.android.contacts.TypePrecedence;
@@ -465,13 +464,7 @@ public class ContactDetailFragment extends Fragment implements
                                 imMime, mContext);
                         final ViewEntry imEntry = ViewEntry.fromValues(mContext,
                                 imMime, imKind, dataId, entryValues);
-                        final ImActions imActions = ContactsUtils.buildImActions(entryValues);
-                        if (imActions != null) {
-                            imEntry.actionIcon = imActions.getPrimaryActionIcon();
-                            imEntry.secondaryActionIcon = imActions.getSecondaryActionIcon();
-                            imEntry.intent = imActions.getPrimaryIntent();
-                            imEntry.secondaryIntent = imActions.getSecondaryIntent();
-                        }
+                        buildImActions(imEntry, entryValues);
                         imEntry.applyStatus(status, false);
                         mImEntries.add(imEntry);
                     }
@@ -482,13 +475,7 @@ public class ContactDetailFragment extends Fragment implements
                     mPostalEntries.add(entry);
                 } else if (Im.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     // Build IM entries
-                    final ImActions imActions = ContactsUtils.buildImActions(entryValues);
-                    if (imActions != null) {
-                        entry.actionIcon = imActions.getPrimaryActionIcon();
-                        entry.secondaryActionIcon = imActions.getSecondaryActionIcon();
-                        entry.intent = imActions.getPrimaryIntent();
-                        entry.secondaryIntent = imActions.getSecondaryIntent();
-                    }
+                    buildImActions(entry, entryValues);
 
                     // Apply presence and status details when available
                     final DataStatus status = mContactData.getStatuses().get(entry.id);
@@ -622,9 +609,82 @@ public class ContactDetailFragment extends Fragment implements
     }
 
     /**
+     * Build {@link Intent} to launch an action for the given {@link Im} or
+     * {@link Email} row. If the result is non-null, it either contains one or two Intents
+     * (e.g. [Text, Videochat] or just [Text])
+     */
+    public static void buildImActions(ViewEntry entry, ContentValues values) {
+        final boolean isEmail = Email.CONTENT_ITEM_TYPE.equals(values.getAsString(Data.MIMETYPE));
+
+        if (!isEmail && !isProtocolValid(values)) {
+            return;
+        }
+
+        final String data = values.getAsString(isEmail ? Email.DATA : Im.DATA);
+        if (TextUtils.isEmpty(data)) {
+            return;
+        }
+
+        final int protocol = isEmail ? Im.PROTOCOL_GOOGLE_TALK : values.getAsInteger(Im.PROTOCOL);
+
+        if (protocol == Im.PROTOCOL_GOOGLE_TALK) {
+            final Integer chatCapabilityObj = values.getAsInteger(Im.CHAT_CAPABILITY);
+            final int chatCapability = chatCapabilityObj == null ? 0 : chatCapabilityObj;
+            entry.chatCapability = chatCapability;
+            if ((chatCapability & Im.CAPABILITY_HAS_CAMERA) != 0) {
+                entry.actionIcon = R.drawable.sym_action_talk_holo_light;
+                entry.intent =
+                        new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?message"));
+                entry.secondaryIntent =
+                        new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?call"));
+            } else if ((chatCapability & Im.CAPABILITY_HAS_VOICE) != 0) {
+                // Allow Talking and Texting
+                entry.actionIcon = R.drawable.sym_action_talk_holo_light;
+                entry.intent =
+                    new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?message"));
+                entry.secondaryIntent =
+                    new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?call"));
+            } else {
+                entry.actionIcon = R.drawable.sym_action_talk_holo_light;
+                entry.intent =
+                    new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?message"));
+            }
+        } else {
+            // Build an IM Intent
+            String host = values.getAsString(Im.CUSTOM_PROTOCOL);
+
+            if (protocol != Im.PROTOCOL_CUSTOM) {
+                // Try bringing in a well-known host for specific protocols
+                host = ContactsUtils.lookupProviderNameFromId(protocol);
+            }
+
+            if (!TextUtils.isEmpty(host)) {
+                final String authority = host.toLowerCase();
+                final Uri imUri = new Uri.Builder().scheme(Constants.SCHEME_IMTO).authority(
+                        authority).appendPath(data).build();
+                entry.actionIcon = R.drawable.sym_action_talk_holo_light;
+                entry.intent = new Intent(Intent.ACTION_SENDTO, imUri);
+            }
+        }
+    }
+
+    private static boolean isProtocolValid(ContentValues values) {
+        String protocolString = values.getAsString(Im.PROTOCOL);
+        if (protocolString == null) {
+            return false;
+        }
+        try {
+            Integer.valueOf(protocolString);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * A basic structure with the data for a contact entry in the list.
      */
-    private static class ViewEntry implements Collapsible<ViewEntry> {
+    static class ViewEntry implements Collapsible<ViewEntry> {
         public int type = -1;
         public String kind;
         public String typeString;
@@ -645,10 +705,11 @@ public class ContactDetailFragment extends Fragment implements
         public int collapseCount = 0;
 
         public int presence = -1;
+        public int chatCapability = 0;
 
         public CharSequence footerLine = null;
 
-        private ViewEntry() {
+        ViewEntry() {
         }
 
         /**
@@ -889,7 +950,11 @@ public class ContactDetailFragment extends Fragment implements
             Drawable secondaryActionIcon = null;
             if (entry.secondaryActionIcon != -1) {
                 secondaryActionIcon = resources.getDrawable(entry.secondaryActionIcon);
+            } else if (entry.chatCapability != 0) {
+                secondaryActionIcon = ContactPresenceIconUtil.getCapabilityIcon(
+                        mContext, entry.presence, entry.chatCapability);
             }
+
             if (entry.secondaryIntent != null && secondaryActionIcon != null) {
                 secondaryActionView.setImageDrawable(secondaryActionIcon);
                 secondaryActionView.setTag(entry);

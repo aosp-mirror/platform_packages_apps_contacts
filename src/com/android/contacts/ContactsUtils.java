@@ -16,17 +16,11 @@
 
 package com.android.contacts;
 
-import com.android.contacts.util.Constants;
-
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.location.CountryDetector;
-import android.net.Uri;
-import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.ContactsContract.Data;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 
@@ -78,120 +72,6 @@ public class ContactsUtils {
                 return ProviderNames.QQ;
         }
         return null;
-    }
-
-    public static final class ImActions {
-        private final Intent mPrimaryIntent;
-        private final Intent mSecondaryIntent;
-        private final int mPrimaryActionIcon;
-        private final int mSecondaryActionIcon;
-
-        private ImActions(Intent primaryIntent, Intent secondaryIntent, int primaryActionIcon,
-                int secondaryActionIcon) {
-            mPrimaryIntent = primaryIntent;
-            mSecondaryIntent = secondaryIntent;
-            mPrimaryActionIcon = primaryActionIcon;
-            mSecondaryActionIcon = secondaryActionIcon;
-        }
-
-        public Intent getPrimaryIntent() {
-            return mPrimaryIntent;
-        }
-
-        public Intent getSecondaryIntent() {
-            return mSecondaryIntent;
-        }
-
-        public int getPrimaryActionIcon() {
-            return mPrimaryActionIcon;
-        }
-
-        public int getSecondaryActionIcon() {
-            return mSecondaryActionIcon;
-        }
-    }
-
-    /**
-     * Build {@link Intent} to launch an action for the given {@link Im} or
-     * {@link Email} row. If the result is non-null, it either contains one or two Intents
-     * (e.g. [Text, Videochat] or just [Text])
-     * Returns null when missing protocol or data.
-     */
-    public static ImActions buildImActions(ContentValues values) {
-        final boolean isEmail = Email.CONTENT_ITEM_TYPE.equals(values.getAsString(Data.MIMETYPE));
-
-        if (!isEmail && !isProtocolValid(values)) {
-            return null;
-        }
-
-        final String data = values.getAsString(isEmail ? Email.DATA : Im.DATA);
-        if (TextUtils.isEmpty(data)) return null;
-
-        final int protocol = isEmail ? Im.PROTOCOL_GOOGLE_TALK : values.getAsInteger(Im.PROTOCOL);
-
-        if (protocol == Im.PROTOCOL_GOOGLE_TALK) {
-            final Integer chatCapabilityObj = values.getAsInteger(Im.CHAT_CAPABILITY);
-            final int chatCapability = chatCapabilityObj == null ? 0 : chatCapabilityObj;
-            if ((chatCapability & Im.CAPABILITY_HAS_CAMERA) != 0) {
-                // Allow Video chat and Texting
-                return new ImActions(
-                        new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?message")),
-                        new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?call")),
-                        R.drawable.sym_action_talk_holo_light,
-                        R.drawable.sym_action_videochat
-                        );
-            } else if ((chatCapability & Im.CAPABILITY_HAS_VOICE) != 0) {
-                // Allow Talking and Texting
-                return new ImActions(
-                        new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?message")),
-                        new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?call")),
-                        R.drawable.sym_action_talk_holo_light,
-                        R.drawable.sym_action_audiochat
-                        );
-            } else {
-                return new ImActions(
-                        new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?message")),
-                        null,
-                        R.drawable.sym_action_talk_holo_light,
-                        -1
-                        );
-            }
-        } else {
-            // Build an IM Intent
-            String host = values.getAsString(Im.CUSTOM_PROTOCOL);
-
-            if (protocol != Im.PROTOCOL_CUSTOM) {
-                // Try bringing in a well-known host for specific protocols
-                host = ContactsUtils.lookupProviderNameFromId(protocol);
-            }
-
-            if (!TextUtils.isEmpty(host)) {
-                final String authority = host.toLowerCase();
-                final Uri imUri = new Uri.Builder().scheme(Constants.SCHEME_IMTO).authority(
-                        authority).appendPath(data).build();
-                return new ImActions(
-                        new Intent(Intent.ACTION_SENDTO, imUri),
-                        null,
-                        R.drawable.sym_action_talk_holo_light,
-                        -1
-                        );
-            } else {
-                return null;
-            }
-        }
-    }
-
-    private static boolean isProtocolValid(ContentValues values) {
-        String protocolString = values.getAsString(Im.PROTOCOL);
-        if (protocolString == null) {
-            return false;
-        }
-        try {
-            Integer.valueOf(protocolString);
-        } catch (NumberFormatException e) {
-            return false;
-        }
-        return true;
     }
 
     /**
