@@ -47,7 +47,7 @@ public class ContactPresenceIconUtil {
         }
     }
 
-    public static Drawable getCapabilityIcon(Context context, int status, int chatCapability) {
+    public static Drawable getChatCapabilityIcon(Context context, int status, int chatCapability) {
         int resourceId = 0;
         if ((chatCapability & Im.CAPABILITY_HAS_CAMERA) != 0) {
             switch(status) {
@@ -75,6 +75,8 @@ public class ContactPresenceIconUtil {
                     resourceId = android.R.drawable.presence_audio_busy;
                     break;
             }
+        } else {
+            resourceId = StatusUpdates.getPresenceIconResourceId(status);
         }
 
         if (resourceId != 0) {

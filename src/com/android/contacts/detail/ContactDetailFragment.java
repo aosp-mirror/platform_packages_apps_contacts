@@ -951,7 +951,7 @@ public class ContactDetailFragment extends Fragment implements
             if (entry.secondaryActionIcon != -1) {
                 secondaryActionIcon = resources.getDrawable(entry.secondaryActionIcon);
             } else if (entry.chatCapability != 0) {
-                secondaryActionIcon = ContactPresenceIconUtil.getCapabilityIcon(
+                secondaryActionIcon = ContactPresenceIconUtil.getChatCapabilityIcon(
                         mContext, entry.presence, entry.chatCapability);
             }
 

@@ -845,21 +845,18 @@ public class ContactListItemView extends ViewGroup
     /**
      * Sets the proper icon (star or presence or nothing)
      */
-    public void showPresence(Cursor cursor, int presenceColumnIndex) {
-        int serverStatus;
+    public void showPresence(Cursor cursor, int presenceColumnIndex, int capabilityColumnIndex) {
+        Drawable icon = null;
         if (!cursor.isNull(presenceColumnIndex)) {
-            serverStatus = cursor.getInt(presenceColumnIndex);
-
-            // TODO consider caching these drawables
-            Drawable icon = ContactPresenceIconUtil.getPresenceIcon(getContext(), serverStatus);
-            if (icon != null) {
-                setPresence(icon);
-            } else {
-                setPresence(null);
+            int status = cursor.getInt(presenceColumnIndex);
+            int chatCapability = 0;
+            if (capabilityColumnIndex != 0 && !cursor.isNull(presenceColumnIndex)) {
+                chatCapability = cursor.getInt(capabilityColumnIndex);
             }
-        } else {
-            setPresence(null);
+            icon = ContactPresenceIconUtil.getChatCapabilityIcon(
+                    getContext(), status, chatCapability);
         }
+        setPresence(icon);
     }
 
     /**
