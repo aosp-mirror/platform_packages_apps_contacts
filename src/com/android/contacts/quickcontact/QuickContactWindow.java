@@ -1257,6 +1257,11 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /** {@inheritDoc} */
+    public boolean dispatchKeyShortcutEvent(KeyEvent event) {
+        return mWindow.superDispatchKeyShortcutEvent(event);
+    }
+
+    /** {@inheritDoc} */
     @Override
     public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent event) {
         // TODO: make this window accessible
