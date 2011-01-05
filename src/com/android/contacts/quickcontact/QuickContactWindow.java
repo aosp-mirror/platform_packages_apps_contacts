@@ -724,7 +724,9 @@ public class QuickContactWindow implements Window.Callback,
             // Read contact information from last data row
             final String name = cursor.getString(DataQuery.DISPLAY_NAME);
             final int presence = cursor.getInt(DataQuery.CONTACT_PRESENCE);
-            final Drawable statusIcon = ContactPresenceIconUtil.getPresenceIcon(mContext, presence);
+            final int chatCapability = cursor.getInt(DataQuery.CONTACT_CHAT_CAPABILITY);
+            final Drawable statusIcon = ContactPresenceIconUtil.getChatCapabilityIcon(
+                    mContext, presence, chatCapability);
 
             setHeaderText(R.id.name, name);
             setHeaderImage(R.id.presence, statusIcon);
@@ -1369,6 +1371,7 @@ public class QuickContactWindow implements Window.Callback,
                 Contacts.STARRED,
                 Contacts.DISPLAY_NAME,
                 Contacts.CONTACT_PRESENCE,
+                Contacts.CONTACT_CHAT_CAPABILITY,
 
                 Data.STATUS,
                 Data.STATUS_RES_PACKAGE,
@@ -1394,17 +1397,18 @@ public class QuickContactWindow implements Window.Callback,
         final int STARRED = 2;
         final int DISPLAY_NAME = 3;
         final int CONTACT_PRESENCE = 4;
+        final int CONTACT_CHAT_CAPABILITY = 5;
 
-        final int STATUS = 5;
-        final int STATUS_RES_PACKAGE = 6;
-        final int STATUS_ICON = 7;
-        final int STATUS_LABEL = 8;
-        final int STATUS_TIMESTAMP = 9;
-        final int PRESENCE = 10;
+        final int STATUS = 6;
+        final int STATUS_RES_PACKAGE = 7;
+        final int STATUS_ICON = 8;
+        final int STATUS_LABEL = 9;
+        final int STATUS_TIMESTAMP = 10;
+        final int PRESENCE = 11;
 
-        final int RES_PACKAGE = 11;
-        final int MIMETYPE = 12;
-        final int IS_PRIMARY = 13;
-        final int IS_SUPER_PRIMARY = 14;
+        final int RES_PACKAGE = 12;
+        final int MIMETYPE = 13;
+        final int IS_PRIMARY = 14;
+        final int IS_SUPER_PRIMARY = 15;
     }
 }

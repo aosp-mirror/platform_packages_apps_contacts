@@ -75,7 +75,7 @@ public class ContactPresenceIconUtil {
                     resourceId = android.R.drawable.presence_audio_busy;
                     break;
             }
-        } else {
+        } else if (status != StatusUpdates.OFFLINE) {
             resourceId = StatusUpdates.getPresenceIconResourceId(status);
         }
 
