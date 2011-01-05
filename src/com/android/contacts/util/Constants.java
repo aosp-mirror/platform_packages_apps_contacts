@@ -23,7 +23,9 @@ public class Constants {
      * Specific MIME-type for {@link Phone#CONTENT_ITEM_TYPE} entries that
      * distinguishes actions that should initiate a text message.
      */
-    public static final String MIME_SMS_ADDRESS = "vnd.android.cursor.item/sms-address";
+    public static final String MIME_TYPE_SMS_ADDRESS = "vnd.android.cursor.item/sms-address";
+
+    public static final String MIME_TYPE_VIDEO_CHAT = "vnd.android.cursor.item/video-chat-address";
 
     public static final String SCHEME_TEL = "tel";
     public static final String SCHEME_SMSTO = "smsto";

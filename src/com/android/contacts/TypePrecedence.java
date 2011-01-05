@@ -99,13 +99,15 @@ public final class TypePrecedence {
     private static int[] getTypePrecedenceList(String mimetype) {
         if (mimetype.equals(Phone.CONTENT_ITEM_TYPE)) {
             return TYPE_PRECEDENCE_PHONES;
-        } else if (mimetype.equals(Constants.MIME_SMS_ADDRESS)) {
+        } else if (mimetype.equals(Constants.MIME_TYPE_SMS_ADDRESS)) {
             return TYPE_PRECEDENCE_PHONES;
         } else if (mimetype.equals(Email.CONTENT_ITEM_TYPE)) {
             return TYPE_PRECEDENCE_EMAIL;
         } else if (mimetype.equals(StructuredPostal.CONTENT_ITEM_TYPE)) {
             return TYPE_PRECEDENCE_POSTAL;
         } else if (mimetype.equals(Im.CONTENT_ITEM_TYPE)) {
+            return TYPE_PRECEDENCE_IM;
+        } else if (mimetype.equals(Constants.MIME_TYPE_VIDEO_CHAT)) {
             return TYPE_PRECEDENCE_IM;
         } else if (mimetype.equals(Organization.CONTENT_ITEM_TYPE)) {
             return TYPE_PRECEDENCE_ORG;

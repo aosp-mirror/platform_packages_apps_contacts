@@ -192,7 +192,7 @@ public class QuickContactWindow implements Window.Callback,
             Phone.CONTENT_ITEM_TYPE,
             SipAddress.CONTENT_ITEM_TYPE,
             Contacts.CONTENT_ITEM_TYPE,
-            Constants.MIME_SMS_ADDRESS,
+            Constants.MIME_TYPE_SMS_ADDRESS,
             Email.CONTENT_ITEM_TYPE,
     };
 
@@ -209,7 +209,9 @@ public class QuickContactWindow implements Window.Callback,
      * as defaults
      */
     private static final ArrayList<String> VIRTUAL_MIMETYPES = Lists.newArrayList(new String[] {
-            Im.CONTENT_ITEM_TYPE, Constants.MIME_SMS_ADDRESS
+            Im.CONTENT_ITEM_TYPE,
+            Constants.MIME_TYPE_SMS_ADDRESS,
+            Constants.MIME_TYPE_VIDEO_CHAT,
     });
     private static final int TOKEN_DATA = 1;
 
@@ -697,10 +699,12 @@ public class QuickContactWindow implements Window.Callback,
 
             // If phone number, also insert as text message action
             if (Phone.CONTENT_ITEM_TYPE.equals(mimeType) && kind != null) {
-                final DataAction action = new DataAction(mContext, Constants.MIME_SMS_ADDRESS,
+                final DataAction action = new DataAction(mContext, Constants.MIME_TYPE_SMS_ADDRESS,
                         kind, dataId, cursor);
                 considerAdd(action, cache);
             }
+
+            boolean isIm = Im.CONTENT_ITEM_TYPE.equals(mimeType);
 
             // Handle Email rows with presence data as Im entry
             final boolean hasPresence = !cursor.isNull(DataQuery.PRESENCE);
@@ -711,6 +715,20 @@ public class QuickContactWindow implements Window.Callback,
                     final DataAction action = new DataAction(mContext, Im.CONTENT_ITEM_TYPE, imKind,
                             dataId, cursor);
                     considerAdd(action, cache);
+                    isIm = true;
+                }
+            }
+
+            if (hasPresence && isIm) {
+                int chatCapability = cursor.getInt(DataQuery.CHAT_CAPABILITY);
+                if ((chatCapability & Im.CAPABILITY_HAS_CAMERA) != 0) {
+                    final DataKind imKind = accountTypes.getKindOrFallback(accountType,
+                            Im.CONTENT_ITEM_TYPE, mContext);
+                    if (imKind != null) {
+                        final DataAction chatAction = new DataAction(mContext,
+                                Constants.MIME_TYPE_VIDEO_CHAT, imKind, dataId, cursor);
+                        considerAdd(chatAction, cache);
+                    }
                 }
             }
         }
@@ -1379,6 +1397,7 @@ public class QuickContactWindow implements Window.Callback,
                 Data.STATUS_LABEL,
                 Data.STATUS_TIMESTAMP,
                 Data.PRESENCE,
+                Data.CHAT_CAPABILITY,
 
                 Data.RES_PACKAGE,
                 Data.MIMETYPE,
@@ -1405,10 +1424,11 @@ public class QuickContactWindow implements Window.Callback,
         final int STATUS_LABEL = 9;
         final int STATUS_TIMESTAMP = 10;
         final int PRESENCE = 11;
+        final int CHAT_CAPABILITY = 12;
 
-        final int RES_PACKAGE = 12;
-        final int MIMETYPE = 13;
-        final int IS_PRIMARY = 14;
-        final int IS_SUPER_PRIMARY = 15;
+        final int RES_PACKAGE = 13;
+        final int MIMETYPE = 14;
+        final int IS_PRIMARY = 15;
+        final int IS_SUPER_PRIMARY = 16;
     }
 }

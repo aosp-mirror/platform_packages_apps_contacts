@@ -53,7 +53,7 @@ public class DataAction implements Action {
         mMimeType = mimeType;
 
         // Inflate strings from cursor
-        mAlternate = Constants.MIME_SMS_ADDRESS.equals(mimeType);
+        mAlternate = Constants.MIME_TYPE_SMS_ADDRESS.equals(mimeType);
         if (mAlternate && mKind.actionAltHeader != null) {
             mHeader = mKind.actionAltHeader.inflateUsing(context, cursor);
         } else if (mKind.actionHeader != null) {
@@ -94,7 +94,7 @@ public class DataAction implements Action {
                     // for the SIP-related intent-filters in its manifest.
                 }
             }
-        } else if (Constants.MIME_SMS_ADDRESS.equals(mimeType)) {
+        } else if (Constants.MIME_TYPE_SMS_ADDRESS.equals(mimeType)) {
             if (PhoneCapabilityTester.isSmsIntentRegistered(mContext)) {
                 final String number = getAsString(cursor, Phone.NUMBER);
                 if (!TextUtils.isEmpty(number)) {
@@ -116,7 +116,8 @@ public class DataAction implements Action {
                 mIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(webAddress.toString()));
             }
 
-        } else if (Im.CONTENT_ITEM_TYPE.equals(mimeType)) {
+        } else if (Im.CONTENT_ITEM_TYPE.equals(mimeType)
+                || Constants.MIME_TYPE_VIDEO_CHAT.equals(mimeType)) {
             final boolean isEmail = Email.CONTENT_ITEM_TYPE.equals(
                     getAsString(cursor, Data.MIMETYPE));
             if (isEmail || isProtocolValid(cursor)) {
@@ -138,7 +139,12 @@ public class DataAction implements Action {
                     host = ContactsUtils.lookupProviderNameFromId(protocol);
                 }
 
-                if (!TextUtils.isEmpty(host) && !TextUtils.isEmpty(data)) {
+                if (Constants.MIME_TYPE_VIDEO_CHAT.equals(mimeType)) {
+                    if (!TextUtils.isEmpty(data)) {
+                        mIntent = new Intent(
+                                Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?call"));
+                    }
+                } else if (!TextUtils.isEmpty(host) && !TextUtils.isEmpty(data)) {
                     final String authority = host.toLowerCase();
                     final Uri imUri = new Uri.Builder().scheme(Constants.SCHEME_IMTO).authority(
                             authority).appendPath(data).build();
