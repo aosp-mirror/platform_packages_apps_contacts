@@ -171,13 +171,6 @@ public class PinnedHeaderListView extends AutoScrollListView
                 mHeaders[i].view = mAdapter.getPinnedHeaderView(i, mHeaders[i].view, this);
             }
 
-            // Disable vertical fading when the pinned header is present
-            // TODO change ListView to allow separate measures for top and bottom fading edge;
-            // in this particular case we would like to disable the top, but not the bottom edge.
-            if (mSize > 0) {
-                setFadingEdgeLength(0);
-            }
-
             mAnimationTargetTime = System.currentTimeMillis() + mAnimationDuration;
             mAdapter.configurePinnedHeaders(this);
             invalidateIfAnimating();
@@ -186,6 +179,12 @@ public class PinnedHeaderListView extends AutoScrollListView
         if (mOnScrollListener != null) {
             mOnScrollListener.onScroll(this, firstVisibleItem, visibleItemCount, totalItemCount);
         }
+    }
+
+    @Override
+    protected float getTopFadingEdgeStrength() {
+        // Disable vertical fading at the top when the pinned header is present
+        return mSize > 0 ? 0 : super.getTopFadingEdgeStrength();
     }
 
     public void onScrollStateChanged(AbsListView view, int scrollState) {
