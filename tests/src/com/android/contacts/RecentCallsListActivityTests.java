@@ -58,7 +58,8 @@ public class RecentCallsListActivityTests
             Calls.TYPE,
             Calls.CACHED_NAME,
             Calls.CACHED_NUMBER_TYPE,
-            Calls.CACHED_NUMBER_LABEL
+            Calls.CACHED_NUMBER_LABEL,
+            Calls.COUNTRY_ISO,
     };
     static private final int RAND_DURATION = -1;
     static private final long NOW = -1L;
@@ -283,6 +284,7 @@ public class RecentCallsListActivityTests
         row.add("");    // cached name
         row.add(0);     // cached number type
         row.add("");    // cached number label
+        row.add("US");  // country ISO
     }
 
     /**
