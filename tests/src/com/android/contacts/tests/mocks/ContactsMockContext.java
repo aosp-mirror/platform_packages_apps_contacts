@@ -18,6 +18,8 @@ package com.android.contacts.tests.mocks;
 
 //import com.android.providers.contacts.ContactsMockPackageManager;
 
+import android.app.Activity;
+import android.content.AsyncTaskLoader;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -78,4 +80,35 @@ public class ContactsMockContext extends ContextWrapper {
         mContactsProvider.verify();
         mSettingsProvider.verify();
     }
+
+    /**
+     * Waits for the specified loaders to complete loading.
+     */
+    public void waitForLoaders(final Activity activity, int... loaderIds) {
+        // We want to wait for each loader using a separate thread, so that we can
+        // simulate race conditions.
+        Thread[] waitThreads = new Thread[loaderIds.length];
+        for (int i = 0; i < loaderIds.length; i++) {
+            final int loaderId = loaderIds[i];
+            waitThreads[i] = new Thread("LoaderWaitingThread" + i) {
+                @Override
+                public void run() {
+                    AsyncTaskLoader<?> loader =
+                            (AsyncTaskLoader<?>) activity.getLoaderManager().getLoader(loaderId);
+                    loader.waitForLoader();
+                }
+            };
+            waitThreads[i].start();
+        }
+
+        // Now we wait for all these threads to finish
+        for (Thread thread : waitThreads) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                // Ignore
+            }
+        }
+    }
+
 }
