@@ -44,6 +44,9 @@ public class MockContentProvider extends ContentProvider {
         private String[] mSelectionArgs;
         private String mSortOrder;
         private ArrayList<Object[]> mRows = new ArrayList<Object[]>();
+        private boolean mAnyProjection;
+        private boolean mAnySelection;
+        private boolean mAnySortOrder;
 
         public Query(Uri uri) {
             mUri = uri;
@@ -64,9 +67,19 @@ public class MockContentProvider extends ContentProvider {
             return this;
         }
 
+        public Query withAnyProjection() {
+            mAnyProjection = true;
+            return this;
+        }
+
         public Query withSelection(String selection, String... selectionArgs) {
             mSelection = selection;
             mSelectionArgs = selectionArgs;
+            return this;
+        }
+
+        public Query withAnySelection() {
+            mAnySelection = true;
             return this;
         }
 
@@ -75,8 +88,18 @@ public class MockContentProvider extends ContentProvider {
             return this;
         }
 
+        public Query withAnySortOrder() {
+            mAnySortOrder = true;
+            return this;
+        }
+
         public Query returnRow(Object... row) {
             mRows.add(row);
+            return this;
+        }
+
+        public Query returnEmptyCursor() {
+            mRows.clear();
             return this;
         }
 
@@ -86,19 +109,19 @@ public class MockContentProvider extends ContentProvider {
                 return false;
             }
 
-            if (!equals(projection, mProjection)) {
+            if (!mAnyProjection && !equals(projection, mProjection)) {
                 return false;
             }
 
-            if (!TextUtils.equals(selection, mSelection)) {
+            if (!mAnySelection && !TextUtils.equals(selection, mSelection)) {
                 return false;
             }
 
-            if (!equals(selectionArgs, mSelectionArgs)) {
+            if (!mAnySelection && !equals(selectionArgs, mSelectionArgs)) {
                 return false;
             }
 
-            if (!TextUtils.equals(sortOrder, mSortOrder)) {
+            if (!mAnySortOrder && !TextUtils.equals(sortOrder, mSortOrder)) {
                 return false;
             }
 
@@ -126,7 +149,21 @@ public class MockContentProvider extends ContentProvider {
         }
 
         public Cursor getResult() {
-            String[] columnNames = mProjection != null ? mProjection : mDefaultProjection;
+            String[] columnNames;
+            if (mAnyProjection) {
+                if (mRows.size() > 0) {
+                    int columnCount = mRows.get(0).length;
+                    columnNames = new String[columnCount];
+                    for (int i = 0; i < columnNames.length; i++) {
+                        columnNames[i] = "column" + (i+1);
+                    }
+                } else {
+                    columnNames = new String[]{"unspecified"};
+                }
+            } else {
+                columnNames = mProjection != null ? mProjection : mDefaultProjection;
+            }
+
             MatrixCursor cursor = new MatrixCursor(columnNames);
             for (Object[] row : mRows) {
                 cursor.addRow(row);

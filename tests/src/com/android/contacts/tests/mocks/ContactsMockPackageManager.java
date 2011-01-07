@@ -17,7 +17,6 @@ package com.android.contacts.tests.mocks;
 
 import android.content.ComponentName;
 import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.test.mock.MockPackageManager;
