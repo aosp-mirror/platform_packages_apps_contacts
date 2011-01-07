@@ -293,6 +293,8 @@ public class ContactLoaderTest extends LoaderTestCase {
                         Data.PRESENCE, Data.CHAT_CAPABILITY,
                         Data.STATUS, Data.STATUS_RES_PACKAGE, Data.STATUS_ICON,
                         Data.STATUS_LABEL, Data.STATUS_TIMESTAMP,
+
+                        Contacts.PHOTO_URI,
                     })
                     .withSortOrder(Contacts.Entity.RAW_CONTACT_ID)
                     .returnRow(
@@ -324,7 +326,9 @@ public class ContactLoaderTest extends LoaderTestCase {
 
                         StatusUpdates.INVISIBLE, null,
                         "Having dinner", "mockPkg3", 0,
-                        20, 0
+                        20, 0,
+
+                        "content:some.photo.uri"
                     );
         }
 

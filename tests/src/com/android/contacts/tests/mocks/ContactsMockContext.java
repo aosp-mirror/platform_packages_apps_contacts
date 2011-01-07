@@ -16,30 +16,38 @@
 
 package com.android.contacts.tests.mocks;
 
+//import com.android.providers.contacts.ContactsMockPackageManager;
+
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.pm.PackageManager;
+import android.content.pm.ProviderInfo;
 import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.test.mock.MockContentResolver;
 
 /**
- * A mock context for contact activity unit tests. Forwards everything to
+ * A mock context for contacts unit tests. Forwards everything to
  * a supplied context, except content resolver operations, which are sent
  * to mock content providers.
  */
 public class ContactsMockContext extends ContextWrapper {
 
+    private ContactsMockPackageManager mPackageManager;
     private MockContentResolver mContentResolver;
     private MockContentProvider mContactsProvider;
     private MockContentProvider mSettingsProvider;
 
     public ContactsMockContext(Context base) {
         super(base);
+        mPackageManager = new ContactsMockPackageManager();
         mContentResolver = new MockContentResolver();
         mContactsProvider = new MockContentProvider();
         mContentResolver.addProvider(ContactsContract.AUTHORITY, mContactsProvider);
+        mContactsProvider.attachInfo(this, new ProviderInfo());
         mSettingsProvider = new MockContentProvider();
+        mSettingsProvider.attachInfo(this, new ProviderInfo());
         mContentResolver.addProvider(Settings.AUTHORITY, mSettingsProvider);
     }
 
@@ -57,7 +65,17 @@ public class ContactsMockContext extends ContextWrapper {
     }
 
     @Override
+    public PackageManager getPackageManager() {
+        return mPackageManager;
+    }
+
+    @Override
     public Context getApplicationContext() {
         return this;
+    }
+
+    public void verify() {
+        mContactsProvider.verify();
+        mSettingsProvider.verify();
     }
 }

@@ -147,7 +147,7 @@ public class EntityModifierTests extends AndroidTestCase {
     /**
      * Build {@link AccountTypes} instance.
      */
-    protected AccountTypes getSources(AccountType... sources) {
+    protected AccountTypes getAccountTypes(AccountType... sources) {
         return new AccountTypes(sources);
     }
 
@@ -498,7 +498,7 @@ public class EntityModifierTests extends AndroidTestCase {
 
     public void testTrimInsertEmpty() {
         final AccountType source = getAccountType();
-        final AccountTypes sources = getSources(source);
+        final AccountTypes sources = getAccountTypes(source);
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
 
@@ -525,7 +525,7 @@ public class EntityModifierTests extends AndroidTestCase {
 
     public void testTrimInsertInsert() {
         final AccountType source = getAccountType();
-        final AccountTypes sources = getSources(source);
+        final AccountTypes sources = getAccountTypes(source);
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
 
@@ -558,7 +558,7 @@ public class EntityModifierTests extends AndroidTestCase {
 
     public void testTrimUpdateRemain() {
         final AccountType source = getAccountType();
-        final AccountTypes sources = getSources(source);
+        final AccountTypes sources = getAccountTypes(source);
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
 
@@ -629,7 +629,7 @@ public class EntityModifierTests extends AndroidTestCase {
 
     public void testTrimUpdateUpdate() {
         final AccountType source = getAccountType();
-        final AccountTypes sources = getSources(source);
+        final AccountTypes sources = getAccountTypes(source);
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
 

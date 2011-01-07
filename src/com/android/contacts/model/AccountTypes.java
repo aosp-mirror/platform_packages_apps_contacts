@@ -154,6 +154,7 @@ public class AccountTypes extends BroadcastReceiver
         for (AccountType accountType : accountTypes) {
             mAccountTypes.put(accountType.accountType, accountType);
         }
+        mInitializationLatch = null;
     }
 
     @Override
