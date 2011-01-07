@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Copyright (C) 2006 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="sharedUserLabel" msgid="7965035505237135241">"Служби Android Core"</string>
+    <string name="contactsList" msgid="8661624236494819731">"Контакти"</string>
+    <string name="launcherDialer" msgid="8636288196618486553">"Телеф."</string>
+    <string name="shortcutContact" msgid="749243779392912958">"Контакт"</string>
+    <string name="shortcutDialContact" msgid="746622101599186779">"Прямий набір"</string>
+    <string name="shortcutMessageContact" msgid="2460337253595976198">"Пряме повідомл."</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Вибрати ярлик контакту"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Вибір номера для виклику"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Вибір номера для надс. повід."</string>
+    <string name="starredList" msgid="4817256136413959463">"Із зіроч."</string>
+    <string name="frequentList" msgid="7154768136473953056">"Найчастіші"</string>
+    <string name="strequentList" msgid="5640192862059373511">"Вибране"</string>
+    <string name="viewContactTitle" msgid="7989394521836644384">"Деталі контакту"</string>
+    <string name="viewContactDesription" msgid="214186610887547860">"Див. контакт"</string>
+    <string name="editContactDescription" msgid="2947202828256214947">"Редаг. контакт"</string>
+    <string name="insertContactDescription" msgid="4709878105452681987">"Створити контакт"</string>
+    <string name="searchHint" msgid="8482945356247760701">"Пошук контактів"</string>
+    <string name="menu_search" msgid="9147752853603483719">"Пошук"</string>
+    <string name="menu_newContact" msgid="1209922412763274638">"Новий контакт"</string>
+    <string name="menu_viewContact" msgid="2795575601596468581">"Див. контакт"</string>
+    <string name="menu_callNumber" msgid="5142851348489387516">"Набрати <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="menu_addStar" msgid="2908478235715404876">"Додати до вибраного"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"Видалити з вибраного"</string>
+    <string name="menu_editContact" msgid="3452858480713561396">"Редаг. контакт"</string>
+    <string name="menu_deleteContact" msgid="1916555454274101750">"Видалити контакт"</string>
+    <string name="menu_call" msgid="3992595586042260618">"Набрати конт."</string>
+    <string name="menu_sendSMS" msgid="5535886767547006515">"Повід. контакт"</string>
+    <string name="menu_sendEmail" msgid="7293508859242926187">"Надісл. ел.лист"</string>
+    <string name="menu_viewAddress" msgid="1814744325763202024">"Позн. адр. на карті"</string>
+    <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"Устан. номер за умовч."</string>
+    <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Зроб. ел.адр. за умовч."</string>
+    <string name="menu_splitAggregate" msgid="8368636463748691868">"Розділити"</string>
+    <string name="contactsSplitMessage" msgid="5253490235863170269">"Контакти розділено"</string>
+    <string name="splitConfirmation_title" msgid="6716467920283502570">"Розділити контакт"</string>
+    <string name="splitConfirmation" msgid="1150797297503944823">"Дійсно розділити цей єдиний контакт на декілька контактів: один для кожного набору доданої об\'єднаної контактної інформації?"</string>
+    <string name="menu_joinAggregate" msgid="5027981918265667970">"Приєдн."</string>
+    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Об\'єдн. контакти"</string>
+    <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Виберіть контакт, який треба об\'єднати з <xliff:g id="NAME">%s</xliff:g>."</string>
+    <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Показ. всі контакти"</string>
+    <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Пропоновані контакти"</string>
+    <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Усі контакти"</string>
+    <string name="contactsJoinedMessage" msgid="7208148163607047389">"Контакти об\'єднано"</string>
+    <string name="menu_contactOptions" msgid="1957061455705020617">"Параметри"</string>
+    <string name="contactOptionsTitle" msgid="8259347644090700915">"Параметри"</string>
+    <string name="deleteConfirmation_title" msgid="6394309508930335204">"Видалити"</string>
+    <string name="readOnlyContactWarning" msgid="1390849295342594265">"Неможл. видал. контакти з облік. записів лише для чит., але можна сховати їх у списках контактів."</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Цей контакт містить інфор-цію з декількох обл. записів. Інф-цію із записів лише для читання буде сховано у ваших списках контактів, а не видалено."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Якщо видал. цей контакт, буде видалено інф-ю з декількох обл. записів."</string>
+    <string name="deleteConfirmation" msgid="811706994761610640">"Цей контакт буде видалено."</string>
+    <string name="menu_done" msgid="796017761764190697">"Готово"</string>
+    <string name="menu_doNotSave" msgid="2174577548513895144">"Відмінити"</string>
+    <string name="editContact_title_edit" msgid="7678695190666836093">"Редаг. контакт"</string>
+    <string name="editContact_title_insert" msgid="9125600232291405757">"Новий контакт"</string>
+    <string name="label_phonetic_name" msgid="2288082649573927286">"Вимова"</string>
+    <string name="label_notes" msgid="8337354953278341042">"Примітки"</string>
+    <string name="label_sip_address" msgid="124073911714324974">"Інтернет-дзвінок"</string>
+    <string name="label_ringtone" msgid="8833166825330686244">"Мелодія"</string>
+    <string name="ghostData_name" msgid="6490954238641157585">"Ім\'я, прізвище"</string>
+    <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Вимова імені"</string>
+    <string name="ghostData_company" msgid="5414421120553765775">"Компанія"</string>
+    <string name="ghostData_title" msgid="7496735200318496110">"Назва"</string>
+    <string name="invalidContactMessage" msgid="5816991830260044593">"Контакт не існує."</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Створ. новий контакт"</string>
+    <string name="selectLabel" msgid="4255424123394910733">"Вибрати мітку"</string>
+    <string name="phoneLabelsGroup" msgid="6468091477851199285">"Телеф."</string>
+    <string name="emailLabelsGroup" msgid="8389931313045344406">"Ел.адр."</string>
+    <string name="imLabelsGroup" msgid="3898238486262614027">"Чат"</string>
+    <string name="postalLabelsGroup" msgid="1618078212734693682">"Поштова адреса"</string>
+  <string-array name="otherLabels">
+    <item msgid="8287841928119937597">"Організація"</item>
+    <item msgid="7196592230748086755">"Прим."</item>
+  </string-array>
+    <string name="photoPickerNotFoundText" msgid="431331662154342581">"У телефоні немає доступних зображень."</string>
+    <string name="attachToContact" msgid="8820530304406066714">"Піктогр. конт."</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Назва спец. мітки"</string>
+    <string name="menu_displayGroup" msgid="5655505437727616553">"Парам. відображ."</string>
+    <string name="displayGroups" msgid="2278964020773993336">"Парам. відображ."</string>
+    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Надсилати дзвінки на голос. пошту"</string>
+    <string name="default_ringtone" msgid="9099988849649827972">"За умовч."</string>
+    <string name="changePicture" msgid="2943329047610967714">"Змін. піктогр."</string>
+    <string name="removePicture" msgid="3041230993155966350">"Видал. піктогр."</string>
+    <string name="noContacts" msgid="8579310973261953559">"Немає контакт."</string>
+    <string name="noMatchingContacts" msgid="4266283206853990471">"Не знайдено відпов. контактів."</string>
+    <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Немає контактів з номерами тел."</string>
+    <string name="showFilterPhones" msgid="4184858075465653970">"Лише контакти з ном. тел."</string>
+    <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"Відображати лише контакти з номерами телефону"</string>
+    <string name="headerContactGroups" msgid="2426134991932503843">"Виберіть контакти для показу"</string>
+  <plurals name="groupDescrip">
+    <item quantity="other" msgid="3507881585720628389">"Контактів: <xliff:g id="COUNT">%0$d</xliff:g>"</item>
+  </plurals>
+  <plurals name="groupDescripPhones">
+    <item quantity="other" msgid="3816047547470490208">"Контактів: <xliff:g id="COUNT_0">%1$d</xliff:g>, з ном. тел.: <xliff:g id="COUNTWITHPHONES">%2$d</xliff:g>"</item>
+  </plurals>
+    <string name="savingContact" msgid="4075751076741924939">"Збереж-ня контакту…"</string>
+    <string name="savingDisplayGroups" msgid="2133152192716475939">"Зберіг-ня парам. відображ…"</string>
+    <string name="contactSavedToast" msgid="7152589189385441091">"Контакт збережено"</string>
+    <string name="contactSavedErrorToast" msgid="9189098776225004666">"Помилка. Неможл. збер. зміни до контакту."</string>
+  <plurals name="listTotalPhoneContacts">
+    <item quantity="one" msgid="8721111084815668845">"Відображ. 1 контакт з номером телефону"</item>
+    <item quantity="other" msgid="6133262880804110289">"Відображ. контактів із номерами телефону: <xliff:g id="COUNT">%d</xliff:g>"</item>
+  </plurals>
+    <string name="listTotalPhoneContactsZero" msgid="2756295259674938869">"Немає видимих контактів із номерами тел."</string>
+  <plurals name="listTotalAllContacts">
+    <item quantity="one" msgid="1096068709488455155">"Відображ. 1 контакт"</item>
+    <item quantity="other" msgid="2865867557378939630">"Відображ. контактів: <xliff:g id="COUNT">%d</xliff:g>"</item>
+  </plurals>
+    <string name="listTotalAllContactsZero" msgid="6811347506748072822">"Нема видимих контактів"</string>
+  <plurals name="listFoundAllContacts">
+    <item quantity="one" msgid="2830107332033967280">"Знайдено 1 контакт"</item>
+    <item quantity="other" msgid="7752927996850263152">"Знайдено <xliff:g id="COUNT">%d</xliff:g> контакт."</item>
+  </plurals>
+    <string name="listFoundAllContactsZero" msgid="5554368784319460828">"Контакт не знайдено"</string>
+  <plurals name="searchFoundContacts">
+    <item quantity="one" msgid="916648718690661777">"1 контакт"</item>
+    <item quantity="other" msgid="5660384247071761844">"Контактів: <xliff:g id="COUNT">%d</xliff:g>"</item>
+  </plurals>
+    <string name="contactsIconLabel" msgid="7666609097606552806">"Контакти"</string>
+    <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Вибране"</string>
+    <string name="dialerIconLabel" msgid="6500826552823403796">"Тел."</string>
+    <string name="recentCallsIconLabel" msgid="1419116422359067949">"Журн. викл."</string>
+    <string name="liveFolderAll" msgid="4789010460767506206">"Усі контакти"</string>
+    <string name="liveFolderFavorites" msgid="3100957542927222282">"Контакти із зіроч."</string>
+    <string name="liveFolderPhone" msgid="3739376066610926780">"Контакти з номерами телефону"</string>
+    <string name="menu_sendTextMessage" msgid="6937343460284499306">"Надісл. текст. повід."</string>
+    <string name="recentCalls_callNumber" msgid="1756372533999226126">"Набрати <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Редаг. номер перед викл."</string>
+    <string name="recentCalls_addToContact" msgid="1429899535546487008">"Дод. до контактів"</string>
+    <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Видал. з журн. викликів"</string>
+    <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Очист. журнал викл."</string>
+    <string name="recentCalls_empty" msgid="247053222448663107">"Журн. викл. порожній."</string>
+    <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Очист. журнал викл."</string>
+    <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Дійсно очистити журнал викликів?"</string>
+    <string name="imei" msgid="3045126336951684285">"IMEI"</string>
+    <string name="meid" msgid="6210568493746275750">"MEID"</string>
+    <string name="voicemail" msgid="3851469869202611441">"Голос. пошта"</string>
+    <string name="unknown" msgid="740067747858270469">"Невідомий"</string>
+    <string name="private_num" msgid="6374339738119166953">"Приватний номер"</string>
+    <string name="payphone" msgid="4864313342828942922">"Таксофон"</string>
+    <string name="dialerKeyboardHintText" msgid="5401660096579787344">"Викор. клав. для набору"</string>
+    <string name="dialerDialpadHintText" msgid="5824490365898349041">"Дзвон., щоб дод. виклик"</string>
+    <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Завантаж. із SIM-карти…"</string>
+    <string name="simContacts_title" msgid="27341688347689769">"Контакти SIM-карти"</string>
+    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Немає контактів для показу. (Якщо ви щойно додали облік. запис, синхронізація контактів може зайняти кілька хвилин)."</string>
+    <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"У вас немає контактів для показу."</string>
+    <string name="noContactsHelpText" msgid="6788487368878712350">"Немає конт. для відобр."\n\n"Щоб дод. контакти, натис. "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" і торкн. пунктів:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Обл. записи"</b></font>", щоб дод. або налашт. обл. запис із контакт., які можна синхроніз. з тел."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новий контакт"</b></font>", щоб створ. зовсім новий контакт"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Імпорт/експорт"</b></font>\n</li></string>
+    <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"Немає контактів для відобр. (Якщо ви щойно дод. обл. запис, синхроніз. контактів займе кілька хв.)."\n\n"Щоб додати контакти, натис. "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" і торкн. пунктів:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Обл. записи"</b></font>", щоб дод. або налашт. обл. запис із контакт., які можна синхроніз. з тел."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Параметри відображ."</b></font>", щоб змін. парам. видимості контактів"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новий контакт"</b></font>", щоб створ. зовсім новий контакт "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Іморт/Експорт"</b></font>\n</li></string>
+    <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"Немає конт. для відобр."\n\n"Щоб дод. контакти, натис. "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" і торкн. пунктів:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Обл. записи"</b></font>", щоб дод. або налашт. обл. запис із контакт., які можна синхроніз. з тел."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новий контакт"</b></font>", щоб створ. зовсім новий контакт"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Імпорт/експорт"</b></font>\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"Немає контактів для відобр. (Якщо ви щойно дод. обл. запис, синхроніз. контактів займе кілька хв.)."\n\n"Щоб додати контакти, натис. "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" і торкн. пунктів:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Обл. записи"</b></font>", щоб дод. або налашт. обл. запис із контакт., які можна синхроніз. з тел."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Параметри відображ."</b></font>", щоб змін. парам. видимості контактів"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новий контакт"</b></font>", щоб створ. зовсім новий контакт "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Іморт/Експорт"</b></font>\n</li></string>
+    <string name="noFavoritesHelpText" msgid="3744655776704833277">"У вас немає вибраного."\n\n"Щоб додати контакт до списку вибраних:"\n\n" "<li>"Торкніться вкладки "<b>"Контакти"</b>\n</li>" "\n<li>"Торкніться контакту, який хочете додати до вибраного"\n</li>" "\n<li>"Торкніться зірочки поруч з іменем контакту"\n</li></string>
+    <string name="liveFolder_all_label" msgid="5961411940473276616">"Усі контакти"</string>
+    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Із зіроч."</string>
+    <string name="liveFolder_phones_label" msgid="1709786878793436245">"Телефони"</string>
+    <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Викор. кнопкову клавіат."</string>
+    <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Поверн. до поточн. виклику"</string>
+    <string name="dialer_addAnotherCall" msgid="4205688819890074468">"Дод. виклик"</string>
+    <string name="callDetailTitle" msgid="5340227785196217938">"Деталі виклику"</string>
+    <string name="toast_call_detail_error" msgid="7200975244804730096">"Неможл. прочитати деталі потрібного виклику."</string>
+    <string name="type_incoming" msgid="6502076603836088532">"Вхідний виклик"</string>
+    <string name="type_outgoing" msgid="343108709599392641">"Вихідний виклик"</string>
+    <string name="type_missed" msgid="2720502601640509542">"Пропущ. виклик"</string>
+    <string name="actionIncomingCall" msgid="6028930669817038600">"Вхідні виклики"</string>
+    <string name="callBack" msgid="5498224409038809224">"Передзвонити"</string>
+    <string name="callAgain" msgid="3197312117049874778">"Набрати знову"</string>
+    <string name="returnCall" msgid="8171961914203617813">"Зворот. виклик"</string>
+    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%1$s</xliff:g> хв. <xliff:g id="SECONDS">%2$s</xliff:g> сек."</string>
+    <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"Часті контакти"</string>
+    <string name="add_contact_dlg_title" msgid="2896685845822146494">"Додати контакт"</string>
+    <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Дод.\" <xliff:g id="EMAIL">%s</xliff:g>\" до контактів?"</string>
+    <string name="all_tab_label" msgid="4003124364397916826">"Усе"</string>
+    <string name="description_image_button_one" msgid="1740638037139856139">"один"</string>
+    <string name="description_image_button_two" msgid="5882638439003731308">"два"</string>
+    <string name="description_image_button_three" msgid="8709731759376015180">"три"</string>
+    <string name="description_image_button_four" msgid="3530239685642246130">"чотири"</string>
+    <string name="description_image_button_five" msgid="1182465427501188413">"п\'ять"</string>
+    <string name="description_image_button_six" msgid="2093656269261415475">"шість"</string>
+    <string name="description_image_button_seven" msgid="2450357020447676481">"сім"</string>
+    <string name="description_image_button_eight" msgid="6969435115163287801">"вісім"</string>
+    <string name="description_image_button_nine" msgid="7857248695662558323">"дев\'ять"</string>
+    <string name="description_image_button_star" msgid="3365919907520767866">"зірочка"</string>
+    <string name="description_image_button_zero" msgid="4133108949401820710">"нуль"</string>
+    <string name="description_image_button_pound" msgid="3039765597595889230">"решітка"</string>
+    <string name="description_voicemail_button" msgid="3402506823655455591">"голос. пошта"</string>
+    <string name="description_dial_button" msgid="1274091017188142646">"дзвон."</string>
+    <string name="description_delete_button" msgid="6263102114033407382">"видалити"</string>
+    <string name="description_digits_edittext" msgid="8760207516497016437">"номер для набору"</string>
+    <string name="description_contact_photo" msgid="3387458082667894062">"фото контакту"</string>
+    <string name="description_minus_button" msgid="387136707700230172">"мінус"</string>
+    <string name="description_plus_button" msgid="515164827856229880">"плюс"</string>
+    <string name="no_sdcard_title" product="nosdcard" msgid="5362631473262100989">"Носій USB недоступний"</string>
+    <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Нема карти SD"</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="8045830739790534254">"Носій USB не виявлено"</string>
+    <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Карту SD не виявлено"</string>
+    <string name="searching_vcard_title" msgid="4970508055399376813">"Пошук даних vCard"</string>
+    <string name="import_from_sim" msgid="3859272228033941659">"Імортув. з SIM-карти"</string>
+    <string name="import_from_sdcard" product="nosdcard" msgid="8294728696808674154">"Імпортувати з носія USB"</string>
+    <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Імортув. з карти SD"</string>
+    <string name="export_to_sdcard" product="nosdcard" msgid="7201274701382901259">"Експортувати на носій USB"</string>
+    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Експорт. на карту SD"</string>
+    <string name="share_visible_contacts" msgid="890150378880783797">"Надісл. видимі контакти"</string>
+    <string name="import_one_vcard_string" msgid="9059163467020328433">"Імпортув. 1 файл vCard"</string>
+    <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Імпортув. кілька файлів vCard"</string>
+    <string name="import_all_vcard_string" msgid="5518136113853448474">"Імпортув. всі файли vCard"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="8214795338181412751">"Пошук даних vCard на носії USB"</string>
+    <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Пошук даних vCard на карті SD"</string>
+    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="7447077516493667568">"Помилка сканування носія USB"</string>
+    <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Помилка сканув-ня SD карти"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="5645544323676912703">"Помилка сканування носія USB (причина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Помилка сканув. SD карти (Причина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="fail_reason_io_error" msgid="5922864781066136340">"Помилка I/O"</string>
+    <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Не вдал. проаналіз. vCard через неочік. прич."</string>
+    <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"Не вдалося проаналізувати vCard, хоч вона має дійсний формат, оскільки поточне застосування не підтримує її"</string>
+    <string name="fail_reason_no_vcard_file" product="nosdcard" msgid="4231528180481838813">"На носії USB не знайдено файлів vCard"</string>
+    <string name="fail_reason_no_vcard_file" product="default" msgid="6376516175882881595">"На карті SD не знайдено файлів vCard"</string>
+    <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Не вдалося імпорт. один чи кілька файлів (%s)."</string>
+    <string name="fail_reason_unknown" msgid="999034019513096768">"Невідома помилка"</string>
+    <string name="select_vcard_title" msgid="3968948173786172468">"Вибрати файл vCard"</string>
+    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%1$s</xliff:g>"\n"<xliff:g id="FILENAME">%2$s</xliff:g>"</string>
+    <string name="reading_vcard_title" msgid="4723433501579653199">"Читання vCard"</string>
+    <string name="reading_vcard_message" msgid="6381368920030748743">"Читання файлів vCard"</string>
+    <string name="reading_vcard_failed_title" msgid="4923008144735294994">"Не вдалося прочитати дані vCard"</string>
+    <string name="reading_vcard_contacts" msgid="3066834102042012868">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> із <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> контактів"</string>
+    <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> з <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> файл."</string>
+    <string name="confirm_export_title" msgid="7648747763127442983">"Підтверд. експорт"</string>
+    <string name="confirm_export_message" msgid="3875683519257829750">"Дійсно експортувати список контактів до \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
+    <string name="exporting_contact_failed_title" msgid="585823094820602526">"Не вдал. експорт. контактні дані"</string>
+    <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Не вдал. експорт. контактні дані."\n"Причина помилки: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Немає доступу до експорту конт."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"Забагато файлів vCard на носії USB"</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"На карті SD забагато файлів vCard"</string>
+    <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Потрібна назва файлу задовга (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
+    <string name="exporting_contact_list_title" msgid="9072240631534457415">"Експорт. контактні дані"</string>
+    <string name="exporting_contact_list_message" msgid="5640326540405486055">"Експорт. контактні дані до \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Не вдалося ініціаліз-ти експортер: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Під час експорту стал. помилка: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Не вдалося отримати інфо з бази даних"</string>
+    <string name="composer_has_no_exportable_contact" msgid="754734132189369094">"Немає доступу для експорту контактів. Якщо у вас дійсно є контакти на телефоні, можливо, якийсь постачальник даних заборонив експортування всіх контактів на зовнішні пристрої."</string>
+    <string name="composer_not_initialized" msgid="8041534450748388843">"Майстер vCard не ініціалізовано належним чином"</string>
+    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Неможл. відкрити \"<xliff:g id="FILE_NAME">%1$s</xliff:g>\": <xliff:g id="EXACT_REASON">%2$s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> із <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> контактів"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"Імена ваших контактів"</string>
+    <string name="add_2sec_pause" msgid="9214012315201040129">"Дод. 2-сек. паузу"</string>
+    <string name="add_wait" msgid="3360818652790319634">"Дод. очікув."</string>
+    <string name="call_disambig_title" msgid="1911302597959335178">"Набрати за доп."</string>
+    <string name="sms_disambig_title" msgid="4675399294513152364">"SMS за доп."</string>
+    <string name="make_primary" msgid="5829291915305113983">"Пам\'ятати цей вибір"</string>
+    <string name="quickcontact_missing_app" msgid="4600366393134289038">"Не знайдено програму для обробки цієї дії"</string>
+    <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Пам\'ятати цей вибір"</string>
+    <string name="quickcontact_missing_name" msgid="5590266114306996632">"Невідомий"</string>
+    <string name="menu_accounts" msgid="8499114602017077970">"Обл. записи"</string>
+    <string name="menu_import_export" msgid="3765725645491577190">"Імпорт/експорт"</string>
+    <string name="dialog_import_export" msgid="4771877268244096596">"Імпорт/експорт контактів"</string>
+    <string name="menu_share" msgid="943789700636542260">"Надісл."</string>
+    <string name="share_via" msgid="563121028023030093">"Надісл. контакт через"</string>
+    <string name="share_error" msgid="4374508848981697170">"Цей контакт неможл. надіслати."</string>
+    <string name="nameLabelsGroup" msgid="2034640839640477827">"Ім\'я"</string>
+    <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Псевдонім"</string>
+    <string name="organizationLabelsGroup" msgid="2478611760751832035">"Організація"</string>
+    <string name="websiteLabelsGroup" msgid="4202998982804009261">"Веб-сайт"</string>
+    <string name="eventLabelsGroup" msgid="8069912895912714412">"Подія"</string>
+    <string name="type_short_home" msgid="7770424864090605384">"Д"</string>
+    <string name="type_short_mobile" msgid="1655473281466676216">"М"</string>
+    <string name="type_short_work" msgid="4925330752504537861">"Р"</string>
+    <string name="type_short_pager" msgid="2613818970827594238">"П"</string>
+    <string name="type_short_other" msgid="5669407180177236769">"І"</string>
+    <string name="edit_read_only" msgid="8158629550655830981">"Цей контакт лише для читання"</string>
+    <string name="edit_secondary_collapse" msgid="5371618426594477103">"Більше"</string>
+    <string name="dialog_primary_name" msgid="5521591005692614833">"Основне ім\'я"</string>
+    <string name="dialog_new_contact_account" msgid="9044704073286262197">"Створ. контакт в обл. записі"</string>
+    <string name="menu_sync_remove" msgid="3266725887008450161">"Видал. синхр. групу"</string>
+    <string name="dialog_sync_add" msgid="8267045393119375803">"Дод. синхр. групу"</string>
+    <string name="display_more_groups" msgid="2682547080423434170">"Інші групи…"</string>
+    <string name="display_ungrouped" msgid="4602580795576261158">"Усі інші контакти"</string>
+    <string name="display_all_contacts" msgid="6846131371214707956">"Усі контакти"</string>
+    <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Видал-ня &amp;quot;<xliff:g id="GROUP">%s</xliff:g>&amp;quot; із синхрон-ції видалить контакти поза групою із синхрон-ції."</string>
+    <string name="account_phone" msgid="3682950835276226870">"Лише в тел., несинхр."</string>
+    <string name="call_custom" msgid="7756571794763171802">"Набрати <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="call_home" msgid="1990519474420545392">"Набрати дом. ном."</string>
+    <string name="call_mobile" msgid="7502236805487609178">"Набрати моб."</string>
+    <string name="call_work" msgid="5328785911463744028">"Набрати роб."</string>
+    <string name="call_fax_work" msgid="7467763592359059243">"Набрати роб. факс"</string>
+    <string name="call_fax_home" msgid="8342175628887571876">"Набрати дом. факс"</string>
+    <string name="call_pager" msgid="9003902812293983281">"Набрати пейдж."</string>
+    <string name="call_other" msgid="8563753966926932052">"Набрати"</string>
+    <string name="call_callback" msgid="1910165691349426858">"Набрати зворот. виклик"</string>
+    <string name="call_car" msgid="3280537320306436445">"Набрати ном. в авто"</string>
+    <string name="call_company_main" msgid="6105120947138711257">"Набрати осн. роб. тел."</string>
+    <string name="call_isdn" msgid="1541590690193403411">"Набрати ном. ISDN"</string>
+    <string name="call_main" msgid="6082900571803441339">"Набрати осн. тел."</string>
+    <string name="call_other_fax" msgid="5745314124619636674">"Набрати факс"</string>
+    <string name="call_radio" msgid="8296755876398357063">"Набрати радіотел."</string>
+    <string name="call_telex" msgid="2223170774548648114">"Набрати телекс"</string>
+    <string name="call_tty_tdd" msgid="8951266948204379604">"Набрати ном. TTY/TDD"</string>
+    <string name="call_work_mobile" msgid="8707874281430105394">"Набрати роб. моб."</string>
+    <string name="call_work_pager" msgid="3419348514157949008">"Двон. на роб. пейдж."</string>
+    <string name="call_assistant" msgid="2141641383068514308">"Набрати <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="call_mms" msgid="6274041545876221437">"Набрати ном. MMS"</string>
+    <string name="sms_custom" msgid="5932736853732191825">"SMS на <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="sms_home" msgid="7524332261493162995">"SMS на дом. тел."</string>
+    <string name="sms_mobile" msgid="5200107250451030769">"SMS на моб."</string>
+    <string name="sms_work" msgid="2269624156655267740">"SMS на роб. ном."</string>
+    <string name="sms_fax_work" msgid="8028189067816907075">"SMS на роб. факс"</string>
+    <string name="sms_fax_home" msgid="9204042076306809634">"SMS на дом. факс"</string>
+    <string name="sms_pager" msgid="7730404569637015192">"SMS на пейдж."</string>
+    <string name="sms_other" msgid="806127844607642331">"SMS"</string>
+    <string name="sms_callback" msgid="5004824430094288752">"SMS на зворот. викл."</string>
+    <string name="sms_car" msgid="7444227058437359641">"SMS на ном. в авто"</string>
+    <string name="sms_company_main" msgid="118970873419678087">"SMS на осн. роб. тел."</string>
+    <string name="sms_isdn" msgid="8153785037515047845">"SMS на ном. ISDN"</string>
+    <string name="sms_main" msgid="8621625784504541679">"SMS на осн. ном."</string>
+    <string name="sms_other_fax" msgid="3888842199855843152">"SMS на факс"</string>
+    <string name="sms_radio" msgid="3329166673433967820">"SMS на радіотел."</string>
+    <string name="sms_telex" msgid="9034802430065267848">"SMS на телекс"</string>
+    <string name="sms_tty_tdd" msgid="6782284969132531532">"SMS на TTY/TDD"</string>
+    <string name="sms_work_mobile" msgid="2459939960512702560">"SMS на роб. моб."</string>
+    <string name="sms_work_pager" msgid="5566924423316960597">"SMS на роб. пейдж."</string>
+    <string name="sms_assistant" msgid="2773424339923116234">"SMS на <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="sms_mms" msgid="4069352461380762677">"SMS на ном. MMS"</string>
+    <string name="email_home" msgid="8573740658148184279">"Написати на дом. адр."</string>
+    <string name="email_mobile" msgid="2042889209787989814">"Напис. на моб."</string>
+    <string name="email_work" msgid="2807430017302722689">"Напис. на роб. адр."</string>
+    <string name="email_other" msgid="3454004077967657109">"Надісл. ел.лист"</string>
+    <string name="email_custom" msgid="7548003991586214105">"Написати на <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email" msgid="5668400997660065897">"Відправ."</string>
+    <string name="map_home" msgid="1243547733423343982">"Див. дом. адресу"</string>
+    <string name="map_work" msgid="1360474076921878088">"Див. роб. адресу"</string>
+    <string name="map_other" msgid="3817820803587012641">"Див. адресу"</string>
+    <string name="map_custom" msgid="6184363799976265281">"Див. <xliff:g id="CUSTOM">%s</xliff:g> адресу"</string>
+    <string name="chat_aim" msgid="2588492205291249142">"Чат через AIM"</string>
+    <string name="chat_msn" msgid="8041633440091073484">"Чат через Windows Live"</string>
+    <string name="chat_yahoo" msgid="6629211142719943666">"Чат через Yahoo"</string>
+    <string name="chat_skype" msgid="1210045020427480566">"Чат через Skype"</string>
+    <string name="chat_qq" msgid="4294637812847719693">"Чат через QQ"</string>
+    <string name="chat_gtalk" msgid="981575737258117697">"Чат через Google Talk"</string>
+    <string name="chat_icq" msgid="8438405386153745775">"Чат через ICQ"</string>
+    <string name="chat_jabber" msgid="7561444230307829609">"Чат через Jabber"</string>
+    <string name="chat" msgid="9025361898797412245">"Чат"</string>
+    <string name="postal_street" msgid="8133143961580058972">"Вулиця"</string>
+    <string name="postal_pobox" msgid="4431938829180269821">"Пошт. скр."</string>
+    <string name="postal_neighborhood" msgid="1450783874558956739">"У районі"</string>
+    <string name="postal_city" msgid="6597491300084895548">"Місто"</string>
+    <string name="postal_region" msgid="6045263193478437672">"Область"</string>
+    <string name="postal_postcode" msgid="572136414136673751">"Пошт. код"</string>
+    <string name="postal_country" msgid="7638264508416368690">"Країна"</string>
+    <string name="name_given" msgid="1687286314106019813">"Ім\'я"</string>
+    <string name="name_family" msgid="3416695586119999058">"Прізвище"</string>
+    <string name="name_prefix" msgid="59756378548779822">"Префікс імені"</string>
+    <string name="name_middle" msgid="8467433655992690326">"По-батькові"</string>
+    <string name="name_suffix" msgid="3855278445375651441">"Суфікс імені"</string>
+    <string name="name_phonetic_given" msgid="6853570431394449191">"Вимова імені"</string>
+    <string name="name_phonetic_middle" msgid="8643721493320405200">"Вимова по-батькові"</string>
+    <string name="name_phonetic_family" msgid="462095502140180305">"Вимова прізвища"</string>
+    <string name="account_type_format" msgid="718948015590343010">"Контакт <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="from_account_format" msgid="687567483928582084">"з <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="use_photo_as_primary" msgid="8807110122951157246">"Викор. це фото"</string>
+    <string name="contact_read_only" msgid="1203216914575723978">"Конт. інф-цію <xliff:g id="SOURCE">%1$s</xliff:g> неможливо редагув. на цьому пристрої."</string>
+    <string name="no_contact_details" msgid="6754415338321837001">"Немає додатк. інформації для цього контакту"</string>
+    <string name="display_options_sort_list_by" msgid="6080091755852211076">"Сорт. список за"</string>
+    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Ім\'я"</string>
+    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Прізвище"</string>
+    <string name="display_options_view_names_as" msgid="18022868169627979">"Див. імена контактів як"</string>
+    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Спочатку ім\'я"</string>
+    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Спочатку прізвище"</string>
+    <string name="search_bar_hint" msgid="1012756309632856553">"Пошук контактів"</string>
+    <string name="search_for_all_contacts" msgid="6644963335787294131">"Пошук усіх контактів"</string>
+    <string name="take_photo" msgid="7496128293167402354">"Зробити фото"</string>
+    <string name="pick_photo" msgid="448886509158039462">"Вибрати фото з Галереї"</string>
+    <string name="locale_change_in_progress" msgid="1124266507671178413">"Список контактів оновлено для відображення зміни мови."\n\n"Зачекайте..."</string>
+    <string name="upgrade_in_progress" msgid="7530893673211750223">"Список контактів оновлюється."\n\n"Зачекайте..."</string>
+    <string name="upgrade_out_of_memory" msgid="492151063059824962">"Контакти проходять процес оновлення. "\n\n"Для процесу оновлення треба приблизно <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g>Мб внутрішньої пам\'яті телефону."\n\n"Виберіть один із поданих нижче параметрів."</string>
+    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Видалити деякі програми"</string>
+    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Повтор. оновл."</string>
+    <string name="search_results_for" msgid="8705490885073188513">"Результ. пошуку для: <xliff:g id="QUERY">%s</xliff:g>"</string>
+    <string name="search_results_searching" msgid="7755623475227227314">"Пошук..."</string>
+</resources>

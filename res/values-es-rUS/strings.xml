@@ -16,7 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="sharedUserLabel" msgid="7965035505237135241">"Aplicaciones del núcleo de Androide"</string>
+    <string name="sharedUserLabel" msgid="7965035505237135241">"Aplicaciones del núcleo de Android"</string>
     <string name="contactsList" msgid="8661624236494819731">"Contactos"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"Teléfono"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Contacto"</string>
@@ -137,7 +137,7 @@
     <string name="dialerIconLabel" msgid="6500826552823403796">"Teléfono"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Llamadas"</string>
     <string name="liveFolderAll" msgid="4789010460767506206">"Todos los contactos"</string>
-    <string name="liveFolderFavorites" msgid="3100957542927222282">"Contactos marcados con asterisco"</string>
+    <string name="liveFolderFavorites" msgid="3100957542927222282">"Contactos marcados con estrella"</string>
     <string name="liveFolderPhone" msgid="3739376066610926780">"Contactos con números de teléfono"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"Enviar mensaje de texto"</string>
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"Llamar a <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -232,7 +232,7 @@
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"No se pudieron importar uno o más archivos (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Error desconocido"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Seleccionar archivo de vCard"</string>
-    <string name="progress_shower_message" msgid="5636525578293752526">"Segmento <xliff:g id="ACTION">%1$s</xliff:g>"\n"<xliff:g id="FILENAME">%2$s</xliff:g>"</string>
+    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%1$s</xliff:g>"\n"<xliff:g id="FILENAME">%2$s</xliff:g>"</string>
     <string name="reading_vcard_title" msgid="4723433501579653199">"Leyendo vCard"</string>
     <string name="reading_vcard_message" msgid="6381368920030748743">"Leyendo archivo(s) de vCard"</string>
     <string name="reading_vcard_failed_title" msgid="4923008144735294994">"No se han podido leer los datos de vCard"</string>
@@ -292,7 +292,7 @@
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Al suprimir \"<xliff:g id="GROUP">%s</xliff:g>\" de sincronización también se suprimirá cualquier contacto no agrupado de la sincronización."</string>
     <string name="account_phone" msgid="3682950835276226870">"Sólo telefónicamente, no sincronizado"</string>
     <string name="call_custom" msgid="7756571794763171802">"Llamar a <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="call_home" msgid="1990519474420545392">"Llamar al hogar"</string>
+    <string name="call_home" msgid="1990519474420545392">"Llamar a casa"</string>
     <string name="call_mobile" msgid="7502236805487609178">"Llamar al celular"</string>
     <string name="call_work" msgid="5328785911463744028">"Llamar al trabajo"</string>
     <string name="call_fax_work" msgid="7467763592359059243">"Llamar al fax del trabajo"</string>
