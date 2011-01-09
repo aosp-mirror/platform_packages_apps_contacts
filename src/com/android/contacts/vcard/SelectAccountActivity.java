@@ -24,7 +24,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.android.contacts.R;
-import com.android.contacts.model.AccountTypes;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.util.AccountSelectionUtil;
 
 import java.util.List;
@@ -56,7 +56,7 @@ public class SelectAccountActivity extends Activity {
         // - just one account -> use the account without asking the user
         // - no account -> use phone-local storage without asking the user
         final int resId = R.string.import_from_sdcard;
-        final AccountTypes accountTypes = AccountTypes.getInstance(this);
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(this);
         final List<Account> accountList = accountTypes.getAccounts(true);
         if (accountList.size() == 0) {
             Log.w(LOG_TAG, "Account does not exist");

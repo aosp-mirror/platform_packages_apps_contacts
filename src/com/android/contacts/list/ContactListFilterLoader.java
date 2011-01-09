@@ -17,7 +17,7 @@
 package com.android.contacts.list;
 
 import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypes;
+import com.android.contacts.model.AccountTypeManager;
 
 import android.accounts.Account;
 import android.content.AsyncTaskLoader;
@@ -76,7 +76,7 @@ public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFil
 
         ArrayList<ContactListFilter> results = new ArrayList<ContactListFilter>();
         Context context = getContext();
-        final AccountTypes accountTypes = AccountTypes.getInstance(context);
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(context);
         ArrayList<Account> accounts = accountTypes.getAccounts(false);
         for (Account account : accounts) {
             AccountType accountType = accountTypes.getAccountType(account.type);

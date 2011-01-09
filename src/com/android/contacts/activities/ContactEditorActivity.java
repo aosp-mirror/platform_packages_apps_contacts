@@ -22,7 +22,7 @@ import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.editor.ContactEditorFragment.SaveMode;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypes;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.util.DialogManager;
 
 import android.accounts.Account;
@@ -216,7 +216,8 @@ public class ContactEditorActivity extends Activity implements
 
         @Override
         public void onCustomCreateContactActivityRequested(Account account, Bundle intentExtras) {
-            final AccountTypes accountTypes = AccountTypes.getInstance(ContactEditorActivity.this);
+            final AccountTypeManager accountTypes =
+                    AccountTypeManager.getInstance(ContactEditorActivity.this);
             final AccountType accountType = accountTypes.getAccountType(account.type);
 
             Intent intent = new Intent();
@@ -238,7 +239,8 @@ public class ContactEditorActivity extends Activity implements
         @Override
         public void onCustomEditContactActivityRequested(Account account, Uri rawContactUri,
                 Bundle intentExtras, boolean redirect) {
-            final AccountTypes accountTypes = AccountTypes.getInstance(ContactEditorActivity.this);
+            final AccountTypeManager accountTypes =
+                    AccountTypeManager.getInstance(ContactEditorActivity.this);
             final AccountType accountType = accountTypes.getAccountType(account.type);
 
             Intent intent = new Intent();

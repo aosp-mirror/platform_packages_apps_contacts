@@ -24,9 +24,8 @@ import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.activities.JoinContactActivity;
 import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
 import com.android.contacts.editor.Editor.EditorListener;
-import com.android.contacts.editor.ExternalRawContactEditorView.Listener;
 import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypes;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityDeltaList;
@@ -383,7 +382,7 @@ public class ContactEditorFragment extends Fragment implements
             Entity entity = entities.get(0);
             ContentValues entityValues = entity.getEntityValues();
             String type = entityValues.getAsString(RawContacts.ACCOUNT_TYPE);
-            AccountType accountType = AccountTypes.getInstance(mContext).getAccountType(type);
+            AccountType accountType = AccountTypeManager.getInstance(mContext).getAccountType(type);
             if (accountType.getEditContactActivityClassName() != null) {
                 if (mListener != null) {
                     String name = entityValues.getAsString(RawContacts.ACCOUNT_NAME);
@@ -434,7 +433,7 @@ public class ContactEditorFragment extends Fragment implements
             return;
         }
 
-        final AccountTypes accountTypes = AccountTypes.getInstance(mContext);
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
         for (EntityDelta state : mState) {
             final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
             final AccountType type = accountTypes.getAccountType(accountType);
@@ -447,7 +446,8 @@ public class ContactEditorFragment extends Fragment implements
     }
 
     private void selectAccountAndCreateContact() {
-        final ArrayList<Account> accounts = AccountTypes.getInstance(mContext).getAccounts(true);
+        final ArrayList<Account> accounts =
+                AccountTypeManager.getInstance(mContext).getAccounts(true);
         // No Accounts available.  Create a phone-local contact.
         if (accounts.isEmpty()) {
             createContact(null);
@@ -471,7 +471,7 @@ public class ContactEditorFragment extends Fragment implements
      *     be created.
      */
     private void createContact(Account account) {
-        final AccountTypes accountTypes = AccountTypes.getInstance(mContext);
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
         final AccountType accountType =
                 accountTypes.getAccountType(account != null ? account.type : null);
 
@@ -528,7 +528,7 @@ public class ContactEditorFragment extends Fragment implements
 
         final LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
-        final AccountTypes accountTypes = AccountTypes.getInstance(mContext);
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
         int size = mState.size();
         for (int i = 0; i < size; i++) {
             // TODO ensure proper ordering of entities in the list
@@ -669,7 +669,7 @@ public class ContactEditorFragment extends Fragment implements
         // If we just started creating a new contact and haven't added any data, it's too
         // early to do a join
         if (mState.size() == 1 && mState.get(0).isContactInsert()) {
-            final AccountTypes accountTypes = AccountTypes.getInstance(mContext);
+            final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
             EntityModifier.trimEmpty(mState, accountTypes);
             if (mState.buildDiff().isEmpty()) {
                 Toast.makeText(getActivity(), R.string.toast_join_with_empty_contact,
@@ -775,7 +775,7 @@ public class ContactEditorFragment extends Fragment implements
         mStatus = Status.SAVING;
 
         // Trim any empty fields, and RawContacts, before persisting
-        final AccountTypes accountTypes = AccountTypes.getInstance(mContext);
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
         EntityModifier.trimEmpty(mState, accountTypes);
 
         if (mState.buildDiff().isEmpty()) {
@@ -818,7 +818,7 @@ public class ContactEditorFragment extends Fragment implements
     }
 
     private boolean revert() {
-        final AccountTypes accountType = AccountTypes.getInstance(mContext);
+        final AccountTypeManager accountType = AccountTypeManager.getInstance(mContext);
         if (mState.buildDiff().isEmpty()) {
             doRevertAction();
         } else {
@@ -934,7 +934,7 @@ public class ContactEditorFragment extends Fragment implements
      * Returns true if there is at least one writable raw contact in the current contact.
      */
     private boolean isContactWritable() {
-        final AccountTypes accountTypes = AccountTypes.getInstance(mContext);
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
         int size = mState.size();
         for (int i = 0; i < size; i++) {
             ValuesDelta values = mState.get(i).getValues();
@@ -1021,7 +1021,7 @@ public class ContactEditorFragment extends Fragment implements
                 return 0;
             }
 
-            final AccountTypes accountTypes = AccountTypes.getInstance(mContext);
+            final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
             String accountType2 = one.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
             final AccountType type1 = accountTypes.getAccountType(accountType2);
             accountType2 = two.getValues().getAsString(RawContacts.ACCOUNT_TYPE);

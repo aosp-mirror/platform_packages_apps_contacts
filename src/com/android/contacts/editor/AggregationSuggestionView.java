@@ -20,7 +20,7 @@ import com.android.contacts.R;
 import com.android.contacts.editor.AggregationSuggestionEngine.RawContact;
 import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
 import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypes;
+import com.android.contacts.model.AccountTypeManager;
 import com.google.android.collect.Lists;
 
 import android.content.Context;
@@ -115,7 +115,7 @@ public class AggregationSuggestionView extends RelativeLayout {
             return false;
         }
 
-        AccountTypes accountTypes = AccountTypes.getInstance(getContext());
+        AccountTypeManager accountTypes = AccountTypeManager.getInstance(getContext());
         for (RawContact rawContact : mRawContacts) {
             String accountType = rawContact.accountType;
             if (accountType == null) {

@@ -40,7 +40,7 @@ import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.list.ProviderStatusLoader;
 import com.android.contacts.list.ProviderStatusLoader.ProviderStatusListener;
 import com.android.contacts.list.StrequentContactListFragment;
-import com.android.contacts.model.AccountTypes;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.AccountsListAdapter;
@@ -865,7 +865,7 @@ public class ContactBrowserActivity extends Activity
 
     private void createNewContact() {
         final ArrayList<Account> accounts =
-                AccountTypes.getInstance(this).getAccounts(true);
+                AccountTypeManager.getInstance(this).getAccounts(true);
         if (accounts.size() <= 1 || mAddContactImageView == null) {
             // No account to choose or no control to anchor the popup-menu to
             // ==> just go straight to the editor which will disambig if necessary

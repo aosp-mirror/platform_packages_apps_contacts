@@ -33,7 +33,7 @@ import android.widget.TextView;
 
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypes;
+import com.android.contacts.model.AccountTypeManager;
 
 import java.util.List;
 
@@ -87,7 +87,7 @@ public class AccountSelectionUtil {
     public static Dialog getSelectAccountDialog(Context context, int resId,
             DialogInterface.OnClickListener onClickListener,
             DialogInterface.OnCancelListener onCancelListener) {
-        final AccountTypes accountTypes = AccountTypes.getInstance(context);
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(context);
         final List<Account> writableAccountList = accountTypes.getAccounts(true);
 
         Log.i(LOG_TAG, "The number of available accounts: " + writableAccountList.size());

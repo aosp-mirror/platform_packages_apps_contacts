@@ -21,7 +21,7 @@ import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType.DataKind;
-import com.android.contacts.model.AccountTypes;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
@@ -654,7 +654,7 @@ public class QuickContactWindow implements Window.Callback,
         mDefaultsMap.clear();
 
         final DataStatus status = new DataStatus();
-        final AccountTypes accountTypes = AccountTypes.getInstance(mContext);
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
         final ImageView photoView = (ImageView)mHeader.findViewById(R.id.photo);
 
         Bitmap photoBitmap = null;

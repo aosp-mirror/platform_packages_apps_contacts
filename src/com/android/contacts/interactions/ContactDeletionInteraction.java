@@ -19,7 +19,7 @@ package com.android.contacts.interactions;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypes;
+import com.android.contacts.model.AccountTypeManager;
 import com.google.android.collect.Sets;
 
 import android.app.Activity;
@@ -143,7 +143,7 @@ public class ContactDeletionInteraction extends Fragment
         HashSet<Long>  readOnlyRawContacts = Sets.newHashSet();
         HashSet<Long>  writableRawContacts = Sets.newHashSet();
 
-        AccountTypes accountTypes = AccountTypes.getInstance(getActivity());
+        AccountTypeManager accountTypes = AccountTypeManager.getInstance(getActivity());
         cursor.moveToPosition(-1);
         while (cursor.moveToNext()) {
             final long rawContactId = cursor.getLong(COLUMN_INDEX_RAW_CONTACT_ID);
