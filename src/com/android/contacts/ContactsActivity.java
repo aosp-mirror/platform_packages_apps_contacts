@@ -20,6 +20,7 @@ import com.android.contacts.test.InjectedServices;
 
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.SharedPreferences;
 
 /**
  * A common superclass for Contacts activities that handles application-wide services.
@@ -40,6 +41,19 @@ public abstract class ContactsActivity extends Activity {
             }
         }
         return mContentResolver;
+    }
+
+    @Override
+    public SharedPreferences getSharedPreferences(String name, int mode) {
+        InjectedServices services = ContactsApplication.getInjectedServices();
+        if (services != null) {
+            SharedPreferences prefs = services.getSharedPreferences();
+            if (prefs != null) {
+                return prefs;
+            }
+        }
+
+        return super.getSharedPreferences(name, mode);
     }
 
     @Override

@@ -25,10 +25,12 @@ import com.android.contacts.test.InjectedServices;
 import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockAccountTypeManager;
 import com.android.contacts.tests.mocks.MockContentProvider;
+import com.android.contacts.tests.mocks.MockSharedPreferences;
 
 import android.accounts.Account;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
@@ -51,6 +53,11 @@ import android.test.ActivityInstrumentationTestCase2;
 public class ContactBrowserActivityTest
         extends ActivityInstrumentationTestCase2<ContactBrowserActivity>
 {
+    static {
+        // AsyncTask class needs to be initialized on the main thread.
+        AsyncTask.init();
+    }
+
     private ContactsMockContext mContext;
     private MockContentProvider mContactsProvider;
     private MockContentProvider mSettingsProvider;
@@ -66,6 +73,7 @@ public class ContactBrowserActivityTest
         mSettingsProvider = mContext.getSettingsProvider();
         InjectedServices services = new InjectedServices();
         services.setContentResolver(mContext.getContentResolver());
+        services.setSharedPreferences(new MockSharedPreferences());
 
         FallbackAccountType accountType = new FallbackAccountType();
         accountType.accountType = "testAccountType";

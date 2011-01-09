@@ -19,6 +19,7 @@ package com.android.contacts.test;
 import com.google.android.collect.Maps;
 
 import android.content.ContentResolver;
+import android.content.SharedPreferences;
 
 import java.util.HashMap;
 
@@ -30,14 +31,23 @@ import java.util.HashMap;
 public class InjectedServices {
 
     private ContentResolver mContentResolver;
+    private SharedPreferences mSharedPreferences;
     private HashMap<String, Object> mSystemServices;
 
-    public void setContentResolver(ContentResolver mContentResolver) {
-        this.mContentResolver = mContentResolver;
+    public void setContentResolver(ContentResolver contentResolver) {
+        this.mContentResolver = contentResolver;
     }
 
     public ContentResolver getContentResolver() {
         return mContentResolver;
+    }
+
+    public void setSharedPreferences(SharedPreferences sharedPreferences) {
+        this.mSharedPreferences = sharedPreferences;
+    }
+
+    public SharedPreferences getSharedPreferences() {
+        return mSharedPreferences;
     }
 
     public void setSystemService(String name, Object service) {
