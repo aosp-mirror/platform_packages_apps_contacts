@@ -18,7 +18,6 @@ package com.android.contacts;
 
 import com.android.contacts.interactions.PhoneNumberInteraction;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
@@ -31,7 +30,7 @@ import android.provider.ContactsContract.Contacts;
  * An interstitial activity used when the user selects a QSB search suggestion using
  * a call button.
  */
-public class CallContactActivity extends Activity implements OnDismissListener {
+public class CallContactActivity extends ContactsActivity implements OnDismissListener {
 
     private PhoneNumberInteraction mPhoneNumberInteraction;
 

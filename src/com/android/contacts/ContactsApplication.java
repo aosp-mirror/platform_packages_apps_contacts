@@ -28,11 +28,12 @@ import android.preference.PreferenceManager;
 public final class ContactsApplication extends Application {
 
     private static InjectedServices sInjectedServices;
+    private AccountTypeManager mAccountTypeManager;
 
     /**
      * Overrides the system services with mocks for testing.
      */
-    public static void injectContentResolver(InjectedServices services) {
+    public static void injectServices(InjectedServices services) {
         sInjectedServices = services;
     }
 
@@ -45,6 +46,25 @@ public final class ContactsApplication extends Application {
             }
         }
         return super.getContentResolver();
+    }
+
+    @Override
+    public Object getSystemService(String name) {
+        if (sInjectedServices != null) {
+            Object service = sInjectedServices.getSystemService(name);
+            if (service != null) {
+                return service;
+            }
+        }
+
+        if (AccountTypeManager.ACCOUNT_TYPE_SERVICE.equals(name)) {
+            if (mAccountTypeManager == null) {
+                mAccountTypeManager = AccountTypeManager.createAccountTypeManager(this);
+            }
+            return mAccountTypeManager;
+        }
+
+        return super.getSystemService(name);
     }
 
     @Override

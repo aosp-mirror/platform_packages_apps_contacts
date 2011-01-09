@@ -16,6 +16,7 @@
 
 package com.android.contacts.activities;
 
+import com.android.contacts.ContactsActivity;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.util.Constants;
@@ -53,8 +54,8 @@ import android.util.Log;
  * {@link Intent#ACTION_SEARCH}.
  * </ul>
  */
-public final class ShowOrCreateActivity extends Activity implements
-        NotifyingAsyncQueryHandler.AsyncQueryListener {
+public final class ShowOrCreateActivity extends ContactsActivity
+        implements NotifyingAsyncQueryHandler.AsyncQueryListener {
     static final String TAG = "ShowOrCreateActivity";
     static final boolean LOGD = false;
 

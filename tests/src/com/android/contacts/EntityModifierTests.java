@@ -30,6 +30,7 @@ import com.android.contacts.model.AccountType.EditType;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.google.android.collect.Lists;
 
+import android.accounts.Account;
 import android.content.ContentProviderOperation;
 import android.content.ContentValues;
 import android.content.Context;
@@ -70,8 +71,29 @@ public class EntityModifierTests extends AndroidTestCase {
     private static final String TEST_ACCOUNT_NAME = "unittest@example.com";
     private static final String TEST_ACCOUNT_TYPE = "com.example.unittest";
 
-    public EntityModifierTests() {
-        super();
+    private static class TestAccountTypeManager extends AccountTypeManager {
+
+        private final AccountType[] mTypes;
+
+        public TestAccountTypeManager(AccountType[] types) {
+            this.mTypes = types;
+        }
+
+        @Override
+        public AccountType getAccountType(String accountType) {
+            for (AccountType type : mTypes) {
+                if (accountType.equals(type.accountType)) {
+                    return type;
+                }
+            }
+            return null;
+        }
+
+        @Override
+        public ArrayList<Account> getAccounts(boolean writableOnly) {
+            return null;
+        }
+
     }
 
     @Override
@@ -148,7 +170,7 @@ public class EntityModifierTests extends AndroidTestCase {
      * Build {@link AccountTypeManager} instance.
      */
     protected AccountTypeManager getAccountTypes(AccountType... types) {
-        return new AccountTypeManager(types);
+        return new TestAccountTypeManager(types);
     }
 
     /**

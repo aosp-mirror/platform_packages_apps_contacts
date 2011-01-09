@@ -17,14 +17,13 @@
 package com.android.contacts.activities;
 
 
+import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.list.ContactEntryListFragment;
 import com.android.contacts.list.JoinContactListFragment;
 import com.android.contacts.list.OnContactPickerActionListener;
 
-import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -37,7 +36,7 @@ import android.view.MenuItem;
 /**
  * An activity that shows a list of contacts that can be joined with the target contact.
  */
-public class JoinContactActivity extends Activity {
+public class JoinContactActivity extends ContactsActivity {
 
     private static final String TAG = "JoinContactActivity";
 

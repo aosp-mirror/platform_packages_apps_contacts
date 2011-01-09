@@ -16,6 +16,7 @@
 
 package com.android.contacts.activities;
 
+import com.android.contacts.ContactsActivity;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.editor.ContactEditorFragment;
@@ -44,8 +45,8 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
-public class ContactEditorActivity extends Activity implements
-        DialogManager.DialogShowingViewActivity {
+public class ContactEditorActivity extends ContactsActivity
+        implements DialogManager.DialogShowingViewActivity {
     private static final String TAG = "ContactEditorActivity";
 
     public static final String ACTION_JOIN_COMPLETED = "joinCompleted";

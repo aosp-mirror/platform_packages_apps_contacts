@@ -14,22 +14,22 @@
  * limitations under the License.
  */
 
-package com.android.contacts.test;
+package com.android.contacts;
 
-import com.android.contacts.ContactsActivity;
-import com.android.contacts.R;
-
-import android.os.Bundle;
+import android.app.Activity;
 
 /**
- * An activity that is used for testing fragments.  A unit test starts this
- * activity, adds a fragment and then tests the fragment.
+ * A common superclass for Contacts activities that handles application-wide services.
  */
-public class FragmentTestActivity extends ContactsActivity {
+public abstract class ContactsActivity extends Activity {
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.empty);
+    public Object getSystemService(String name) {
+        Object service = super.getSystemService(name);
+        if (service != null) {
+            return service;
+        }
+
+        return getApplicationContext().getSystemService(name);
     }
 }

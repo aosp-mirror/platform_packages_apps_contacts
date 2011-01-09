@@ -16,8 +16,12 @@
 package com.android.contacts.tests.mocks;
 
 import com.android.contacts.model.AccountType;
-import com.android.contacts.model.FallbackAccountType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.FallbackAccountType;
+
+import android.accounts.Account;
+
+import java.util.ArrayList;
 
 /**
  * A mock {@link AccountTypeManager} class.
@@ -42,5 +46,10 @@ public class MockAccountTypeManager extends AccountTypeManager {
         }
 
         return null;
+    }
+
+    @Override
+    public ArrayList<Account> getAccounts(boolean writableOnly) {
+        throw new UnsupportedOperationException();
     }
 }

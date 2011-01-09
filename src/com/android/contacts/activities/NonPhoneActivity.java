@@ -16,6 +16,7 @@
 
 package com.android.contacts.activities;
 
+import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 
 import android.app.Activity;
@@ -23,8 +24,8 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
@@ -35,7 +36,7 @@ import android.text.TextUtils;
  * Activity that intercepts DIAL and VIEW intents for phone numbers for devices that can not
  * be used as a phone. This allows the user to see the phone number
  */
-public class NonPhoneActivity extends Activity {
+public class NonPhoneActivity extends ContactsActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
