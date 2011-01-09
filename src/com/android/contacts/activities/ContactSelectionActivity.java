@@ -16,6 +16,7 @@
 
 package com.android.contacts.activities;
 
+import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.list.ContactEntryListFragment;
 import com.android.contacts.list.ContactPickerFragment;
@@ -29,7 +30,6 @@ import com.android.contacts.list.PhoneNumberPickerFragment;
 import com.android.contacts.list.PostalAddressPickerFragment;
 import com.android.contacts.widget.ContextMenuAdapter;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
@@ -47,7 +47,7 @@ import android.widget.SearchView.OnQueryChangeListener;
  * Displays a list of contacts (or phone numbers or postal addresses) for the
  * purposes of selecting one.
  */
-public class ContactSelectionActivity extends Activity
+public class ContactSelectionActivity extends ContactsActivity
         implements View.OnCreateContextMenuListener, OnQueryChangeListener, OnClickListener {
     private static final String TAG = "ContactSelectionActivity";
 

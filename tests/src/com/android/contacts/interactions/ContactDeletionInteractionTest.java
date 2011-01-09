@@ -71,15 +71,15 @@ public class ContactDeletionInteractionTest
         mContext = new ContactsMockContext(getInstrumentation().getTargetContext());
         InjectedServices services = new InjectedServices();
         services.setContentResolver(mContext.getContentResolver());
-        ContactsApplication.injectContentResolver(services);
-        AccountTypeManager.injectAccountTypes(new MockAccountTypeManager());
+        services.setSystemService(AccountTypeManager.ACCOUNT_TYPE_SERVICE,
+                new MockAccountTypeManager());
+        ContactsApplication.injectServices(services);
         mContactsProvider = mContext.getContactsProvider();
     }
 
     @Override
     protected void tearDown() throws Exception {
-        ContactsApplication.injectContentResolver(null);
-        AccountTypeManager.injectAccountTypes(null);
+        ContactsApplication.injectServices(null);
         super.tearDown();
     }
 

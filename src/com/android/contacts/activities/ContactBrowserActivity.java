@@ -17,6 +17,7 @@
 package com.android.contacts.activities;
 
 import com.android.contacts.ContactSaveService;
+import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.detail.ContactDetailFragment;
 import com.android.contacts.interactions.ContactDeletionInteraction;
@@ -81,7 +82,7 @@ import java.util.ArrayList;
  * Displays a list to browse contacts. For xlarge screens, this also displays a detail-pane on
  * the right
  */
-public class ContactBrowserActivity extends Activity
+public class ContactBrowserActivity extends ContactsActivity
         implements View.OnCreateContextMenuListener, ActionBarAdapter.Listener,
         DialogManager.DialogShowingViewActivity,
         ContactListFilterController.ContactListFilterListener, ProviderStatusListener {

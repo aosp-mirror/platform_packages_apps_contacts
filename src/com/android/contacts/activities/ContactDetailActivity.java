@@ -17,13 +17,13 @@
 package com.android.contacts.activities;
 
 import com.android.contacts.ContactSaveService;
+import com.android.contacts.ContactsActivity;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.detail.ContactDetailFragment;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 
 import android.accounts.Account;
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -35,7 +35,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ContactDetailActivity extends Activity {
+public class ContactDetailActivity extends ContactsActivity {
     private static final String TAG = "ContactDetailActivity";
 
     private ContactDetailFragment mFragment;

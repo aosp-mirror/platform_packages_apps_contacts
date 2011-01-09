@@ -16,14 +16,14 @@
 
 package com.android.contacts.activities;
 
+import com.android.contacts.ContactsActivity;
 import com.android.contacts.DialtactsActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
-public class ContactsFrontDoor extends Activity {
+public class ContactsFrontDoor extends ContactsActivity {
     public static final String EXTRA_FRONT_DOOR = "front_door";
 
     @Override

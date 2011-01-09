@@ -53,7 +53,38 @@ import java.util.concurrent.CountDownLatch;
  * Singleton holder for all parsed {@link AccountType} available on the
  * system, typically filled through {@link PackageManager} queries.
  */
-public class AccountTypeManager extends BroadcastReceiver
+public abstract class AccountTypeManager {
+
+    public static final String ACCOUNT_TYPE_SERVICE = "contactAccountTypes";
+
+    /**
+     * Requests the singleton instance of {@link AccountTypeManager} with data bound from
+     * the available authenticators. This method can safely be called from the UI thread.
+     */
+    public static AccountTypeManager getInstance(Context context) {
+        return (AccountTypeManager) context.getSystemService(ACCOUNT_TYPE_SERVICE);
+    }
+
+    public static synchronized AccountTypeManager createAccountTypeManager(Context context) {
+        return new AccountTypeManagerImpl(context);
+    }
+
+    public abstract ArrayList<Account> getAccounts(boolean writableOnly);
+
+    public abstract AccountType getAccountType(String accountType);
+
+    /**
+     * Find the best {@link DataKind} matching the requested
+     * {@link AccountType#accountType} and {@link DataKind#mimeType}. If no
+     * direct match found, we try searching {@link FallbackAccountType}.
+     */
+    public DataKind getKindOrFallback(String accountType, String mimeType, Context context) {
+        final AccountType type = getAccountType(accountType);
+        return type == null ? null : type.getKindForMimetype(mimeType);
+    }
+}
+
+class AccountTypeManagerImpl extends AccountTypeManager
         implements OnAccountsUpdateListener, SyncStatusObserver {
     private static final String TAG = "ContactAccountTypes";
 
@@ -72,10 +103,18 @@ public class AccountTypeManager extends BroadcastReceiver
     private HandlerThread mListenerThread;
     private Handler mListenerHandler;
 
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Message msg = mListenerHandler.obtainMessage(MESSAGE_PROCESS_BROADCAST_INTENT, intent);
+            mListenerHandler.sendMessage(msg);
+        }
+
+    };
+
     /* A latch that ensures that asynchronous initialization completes before data is used */
     private volatile CountDownLatch mInitializationLatch = new CountDownLatch(1);
-
-    private static AccountTypeManager sInstance = null;
 
     private static final Comparator<Account> ACCOUNT_COMPARATOR = new Comparator<Account>() {
 
@@ -90,24 +129,9 @@ public class AccountTypeManager extends BroadcastReceiver
     };
 
     /**
-     * Requests the singleton instance of {@link AccountTypeManager} with data bound from
-     * the available authenticators. This method can safely be called from the UI thread.
-     */
-    public static synchronized AccountTypeManager getInstance(Context context) {
-        if (sInstance == null) {
-            sInstance = new AccountTypeManager(context.getApplicationContext());
-        }
-        return sInstance;
-    }
-
-    public static void injectAccountTypes(AccountTypeManager injectedAccountTypes) {
-        sInstance = injectedAccountTypes;
-    }
-
-    /**
      * Internal constructor that only performs initial parsing.
      */
-    private AccountTypeManager(Context context) {
+    public AccountTypeManagerImpl(Context context) {
         mContext = context;
         mAccountManager = AccountManager.get(mContext);
 
@@ -132,36 +156,22 @@ public class AccountTypeManager extends BroadcastReceiver
         filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
         filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
         filter.addDataScheme("package");
-        mContext.registerReceiver(this, filter);
+        mContext.registerReceiver(mBroadcastReceiver, filter);
         IntentFilter sdFilter = new IntentFilter();
         sdFilter.addAction(Intent.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE);
         sdFilter.addAction(Intent.ACTION_EXTERNAL_APPLICATIONS_UNAVAILABLE);
-        mContext.registerReceiver(this, sdFilter);
+        mContext.registerReceiver(mBroadcastReceiver, sdFilter);
 
         // Request updates when locale is changed so that the order of each field will
         // be able to be changed on the locale change.
         filter = new IntentFilter(Intent.ACTION_LOCALE_CHANGED);
-        mContext.registerReceiver(this, filter);
+        mContext.registerReceiver(mBroadcastReceiver, filter);
 
         mAccountManager.addOnAccountsUpdatedListener(this, mListenerHandler, false);
 
         ContentResolver.addStatusChangeListener(ContentResolver.SYNC_OBSERVER_TYPE_SETTINGS, this);
 
         mListenerHandler.sendEmptyMessage(MESSAGE_LOAD_DATA);
-    }
-
-    /** @hide exposed for unit tests */
-    public AccountTypeManager(AccountType... accountTypes) {
-        for (AccountType accountType : accountTypes) {
-            mAccountTypes.put(accountType.accountType, accountType);
-        }
-        mInitializationLatch = null;
-    }
-
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        Message msg = mListenerHandler.obtainMessage(MESSAGE_PROCESS_BROADCAST_INTENT, intent);
-        mListenerHandler.sendMessage(msg);
     }
 
     @Override
@@ -319,6 +329,7 @@ public class AccountTypeManager extends BroadcastReceiver
     /**
      * Return list of all known, writable {@link Account}'s.
      */
+    @Override
     public ArrayList<Account> getAccounts(boolean writableOnly) {
         ensureAccountsLoaded();
         return writableOnly ? mWritableAccounts : mAccounts;
@@ -327,10 +338,9 @@ public class AccountTypeManager extends BroadcastReceiver
     /**
      * Find the best {@link DataKind} matching the requested
      * {@link AccountType#accountType} and {@link DataKind#mimeType}. If no
-     * direct match found, we try searching {@link #mFallbackAccountType}.
-     * When fourceRefresh is set to true, cache is refreshed and inflation of each
-     * EditField will occur.
+     * direct match found, we try searching {@link FallbackAccountType}.
      */
+    @Override
     public DataKind getKindOrFallback(String accountType, String mimeType, Context context) {
         ensureAccountsLoaded();
         DataKind kind = null;
@@ -356,6 +366,7 @@ public class AccountTypeManager extends BroadcastReceiver
     /**
      * Return {@link AccountType} for the given account type.
      */
+    @Override
     public AccountType getAccountType(String accountType) {
         ensureAccountsLoaded();
         synchronized (this) {

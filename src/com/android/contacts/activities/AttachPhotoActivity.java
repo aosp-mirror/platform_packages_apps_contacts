@@ -16,11 +16,11 @@
 
 package com.android.contacts.activities;
 
+import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.model.ExchangeAccountType;
 import com.android.contacts.model.GoogleAccountType;
 
-import android.app.Activity;
 import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -47,7 +47,7 @@ import java.util.ArrayList;
  * image that is handed to it through the cropper to make the image the proper
  * size and give the user a chance to use the face detector.
  */
-public class AttachPhotoActivity extends Activity {
+public class AttachPhotoActivity extends ContactsActivity {
     private static final int REQUEST_PICK_CONTACT = 1;
     private static final int REQUEST_CROP_PHOTO = 2;
 
