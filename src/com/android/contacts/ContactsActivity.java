@@ -16,12 +16,31 @@
 
 package com.android.contacts;
 
+import com.android.contacts.test.InjectedServices;
+
 import android.app.Activity;
+import android.content.ContentResolver;
 
 /**
  * A common superclass for Contacts activities that handles application-wide services.
  */
 public abstract class ContactsActivity extends Activity {
+
+    private ContentResolver mContentResolver;
+
+    @Override
+    public ContentResolver getContentResolver() {
+        if (mContentResolver == null) {
+            InjectedServices services = ContactsApplication.getInjectedServices();
+            if (services != null) {
+                mContentResolver = services.getContentResolver();
+            }
+            if (mContentResolver == null) {
+                mContentResolver = super.getContentResolver();
+            }
+        }
+        return mContentResolver;
+    }
 
     @Override
     public Object getSystemService(String name) {

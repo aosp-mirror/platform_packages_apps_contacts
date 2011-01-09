@@ -16,6 +16,9 @@
 
 package com.android.contacts.tests.mocks;
 
+import com.google.android.collect.Lists;
+import com.google.android.collect.Maps;
+
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -25,7 +28,8 @@ import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 import junit.framework.Assert;
 
@@ -47,6 +51,9 @@ public class MockContentProvider extends ContentProvider {
         private boolean mAnyProjection;
         private boolean mAnySelection;
         private boolean mAnySortOrder;
+        private boolean mAnyNumberOfTimes;
+
+        private boolean mExecuted;
 
         public Query(Uri uri) {
             mUri = uri;
@@ -100,6 +107,11 @@ public class MockContentProvider extends ContentProvider {
 
         public Query returnEmptyCursor() {
             mRows.clear();
+            return this;
+        }
+
+        public Query anyNumberOfTimes() {
+            mAnyNumberOfTimes = true;
             return this;
         }
 
@@ -199,8 +211,8 @@ public class MockContentProvider extends ContentProvider {
         }
     }
 
-    private LinkedList<Query> mExpectedQueries = new LinkedList<Query>();
-    private LinkedList<TypeQuery> mExpectedTypeQueries = new LinkedList<TypeQuery>();
+    private ArrayList<Query> mExpectedQueries = new ArrayList<Query>();
+    private HashMap<Uri, String> mExpectedTypeQueries = Maps.newHashMap();
 
     @Override
     public boolean onCreate() {
@@ -209,30 +221,42 @@ public class MockContentProvider extends ContentProvider {
 
     public Query expectQuery(Uri contentUri) {
         Query query = new Query(contentUri);
-        mExpectedQueries.offer(query);
+        mExpectedQueries.add(query);
         return query;
     }
 
     public void expectTypeQuery(Uri uri, String type) {
-        TypeQuery result = new TypeQuery(uri, type);
-        mExpectedTypeQueries.offer(result);
+        mExpectedTypeQueries.put(uri, type);
     }
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
             String sortOrder) {
+
+        for (Iterator<Query> iterator = mExpectedQueries.iterator(); iterator.hasNext();) {
+            Query query = iterator.next();
+            if (query.equals(uri, projection, selection, selectionArgs, sortOrder)) {
+                query.mExecuted = true;
+                if (!query.mAnyNumberOfTimes) {
+                    iterator.remove();
+                }
+                return query.getResult();
+            }
+        }
+
         if (mExpectedQueries.isEmpty()) {
             Assert.fail("Unexpected query: "
                     + queryToString(uri, projection, selection, selectionArgs, sortOrder));
-        }
-
-        Query query = mExpectedQueries.remove();
-        if (!query.equals(uri, projection, selection, selectionArgs, sortOrder)) {
-            Assert.fail("Incorrect query.\n    Expected: " + query + "\n      Actual: " +
+        } else {
+            StringBuilder sb = new StringBuilder();
+            sb.append(mExpectedQueries.get(0));
+            for (int i = 1; i < mExpectedQueries.size(); i++) {
+                sb.append("\n              ").append(mExpectedQueries.get(i));
+            }
+            Assert.fail("Incorrect query.\n    Expected: " + sb + "\n      Actual: " +
                     queryToString(uri, projection, selection, selectionArgs, sortOrder));
         }
-
-        return query.getResult();
+        return null;
     }
 
     @Override
@@ -246,12 +270,13 @@ public class MockContentProvider extends ContentProvider {
             Assert.fail("Unexpected getType query: " + uri);
         }
 
-        TypeQuery query = mExpectedTypeQueries.remove();
-        if (!query.equals(uri)) {
-            Assert.fail("Incorrect query.\n    Expected: " + query + "\n      Actual: " + uri);
+        String mimeType = mExpectedTypeQueries.get(uri);
+        if (mimeType != null) {
+            return mimeType;
         }
 
-        return query.getType();
+        Assert.fail("Unknown mime type for: " + uri);
+        return null;
     }
 
     @Override
@@ -288,9 +313,13 @@ public class MockContentProvider extends ContentProvider {
     }
 
     public void verify() {
+        ArrayList<Query> mMissedQueries = Lists.newArrayList();
+        for (Query query : mExpectedQueries) {
+            if (!query.mExecuted) {
+                mMissedQueries.add(query);
+            }
+        }
         Assert.assertTrue("Not all expected queries have been called: " +
-                mExpectedQueries, mExpectedQueries.isEmpty());
-        Assert.assertTrue("Not all expected getType-queries have been called: " +
-                mExpectedQueries, mExpectedTypeQueries.isEmpty());
+                mMissedQueries, mMissedQueries.isEmpty());
     }
 }
