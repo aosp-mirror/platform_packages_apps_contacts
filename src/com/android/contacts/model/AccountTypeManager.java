@@ -78,7 +78,7 @@ public abstract class AccountTypeManager {
      * {@link AccountType#accountType} and {@link DataKind#mimeType}. If no
      * direct match found, we try searching {@link FallbackAccountType}.
      */
-    public DataKind getKindOrFallback(String accountType, String mimeType, Context context) {
+    public DataKind getKindOrFallback(String accountType, String mimeType) {
         final AccountType type = getAccountType(accountType);
         return type == null ? null : type.getKindForMimetype(mimeType);
     }
@@ -341,7 +341,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
      * direct match found, we try searching {@link FallbackAccountType}.
      */
     @Override
-    public DataKind getKindOrFallback(String accountType, String mimeType, Context context) {
+    public DataKind getKindOrFallback(String accountType, String mimeType) {
         ensureAccountsLoaded();
         DataKind kind = null;
 
