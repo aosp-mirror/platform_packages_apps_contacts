@@ -404,7 +404,7 @@ public class ContactDetailFragment extends Fragment implements
                 }
 
                 final DataKind kind = accountTypes.getKindOrFallback(
-                        accountType, mimeType, mContext);
+                        accountType, mimeType);
                 if (kind == null) continue;
 
                 final ViewEntry entry = ViewEntry.fromValues(mContext, mimeType, kind, dataId,
@@ -461,7 +461,7 @@ public class ContactDetailFragment extends Fragment implements
                     if (status != null) {
                         final String imMime = Im.CONTENT_ITEM_TYPE;
                         final DataKind imKind = accountTypes.getKindOrFallback(accountType,
-                                imMime, mContext);
+                                imMime);
                         final ViewEntry imEntry = ViewEntry.fromValues(mContext,
                                 imMime, imKind, dataId, entryValues);
                         buildImActions(imEntry, entryValues);
