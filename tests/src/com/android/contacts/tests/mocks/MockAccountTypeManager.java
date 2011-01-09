@@ -17,39 +17,37 @@ package com.android.contacts.tests.mocks;
 
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.FallbackAccountType;
 
 import android.accounts.Account;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * A mock {@link AccountTypeManager} class.
  */
 public class MockAccountTypeManager extends AccountTypeManager {
 
-    public static final String WRITABLE_ACCOUNT_TYPE = "writable";
-    public static final String READONLY_ACCOUNT_TYPE = "readonly";
+    private final AccountType[] mTypes;
+    private Account[] mAccounts;
+
+    public MockAccountTypeManager(AccountType[] types, Account[] accounts) {
+        this.mTypes = types;
+        this.mAccounts = accounts;
+    }
 
     @Override
     public AccountType getAccountType(String accountType) {
-        if (accountType.equals(WRITABLE_ACCOUNT_TYPE)) {
-            AccountType source = new FallbackAccountType();
-            source.readOnly = false;
-            return source;
+        for (AccountType type : mTypes) {
+            if (accountType.equals(type.accountType)) {
+                return type;
+            }
         }
-
-        if (accountType.equals(READONLY_ACCOUNT_TYPE)) {
-            AccountType source = new FallbackAccountType();
-            source.readOnly = true;
-            return source;
-        }
-
         return null;
     }
 
     @Override
     public ArrayList<Account> getAccounts(boolean writableOnly) {
-        throw new UnsupportedOperationException();
+        return new ArrayList<Account>(Arrays.asList(mAccounts));
     }
 }

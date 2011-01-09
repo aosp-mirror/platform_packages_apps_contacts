@@ -37,6 +37,10 @@ public final class ContactsApplication extends Application {
         sInjectedServices = services;
     }
 
+    public static InjectedServices getInjectedServices() {
+        return sInjectedServices;
+    }
+
     @Override
     public ContentResolver getContentResolver() {
         if (sInjectedServices != null) {

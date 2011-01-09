@@ -21,30 +21,30 @@ import static android.content.ContentProviderOperation.TYPE_INSERT;
 import static android.content.ContentProviderOperation.TYPE_UPDATE;
 
 import com.android.contacts.model.AccountType;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityModifier;
-import com.android.contacts.model.EntityDeltaList;
-import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountType.DataKind;
 import com.android.contacts.model.AccountType.EditType;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.EntityDeltaList;
+import com.android.contacts.model.EntityModifier;
+import com.android.contacts.tests.mocks.MockAccountTypeManager;
 import com.google.android.collect.Lists;
 
-import android.accounts.Account;
 import android.content.ContentProviderOperation;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Entity;
 import android.os.Bundle;
-import android.provider.ContactsContract.Intents.Insert;
-import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
+import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.Intents.Insert;
+import android.provider.ContactsContract.RawContacts;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
 
@@ -70,31 +70,6 @@ public class EntityModifierTests extends AndroidTestCase {
 
     private static final String TEST_ACCOUNT_NAME = "unittest@example.com";
     private static final String TEST_ACCOUNT_TYPE = "com.example.unittest";
-
-    private static class TestAccountTypeManager extends AccountTypeManager {
-
-        private final AccountType[] mTypes;
-
-        public TestAccountTypeManager(AccountType[] types) {
-            this.mTypes = types;
-        }
-
-        @Override
-        public AccountType getAccountType(String accountType) {
-            for (AccountType type : mTypes) {
-                if (accountType.equals(type.accountType)) {
-                    return type;
-                }
-            }
-            return null;
-        }
-
-        @Override
-        public ArrayList<Account> getAccounts(boolean writableOnly) {
-            return null;
-        }
-
-    }
 
     @Override
     public void setUp() {
@@ -170,7 +145,7 @@ public class EntityModifierTests extends AndroidTestCase {
      * Build {@link AccountTypeManager} instance.
      */
     protected AccountTypeManager getAccountTypes(AccountType... types) {
-        return new TestAccountTypeManager(types);
+        return new MockAccountTypeManager(types, null);
     }
 
     /**
