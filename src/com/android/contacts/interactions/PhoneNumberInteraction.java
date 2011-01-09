@@ -213,7 +213,7 @@ public class PhoneNumberInteraction
                 null,
                 null);
         mLoader.registerListener(0, this);
-        startLoading(mLoader);
+        mLoader.startLoading();
     }
 
     @Override
@@ -355,7 +355,7 @@ public class PhoneNumberInteraction
     }
 
     /* Visible for testing */
-    void startLoading(Loader<Cursor> loader) {
-        loader.startLoading();
+    CursorLoader getLoader() {
+        return mLoader;
     }
 }

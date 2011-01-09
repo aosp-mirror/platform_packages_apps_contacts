@@ -22,16 +22,13 @@ import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockContentProvider;
 import com.android.contacts.tests.mocks.MockContentProvider.Query;
 
-import android.content.AsyncTaskLoader;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
-import android.content.Loader;
-import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
@@ -53,6 +50,11 @@ import java.util.ArrayList;
 @Smoke
 public class PhoneNumberInteractionTest extends InstrumentationTestCase {
 
+    static {
+        // AsyncTask class needs to be initialized on the main thread.
+        AsyncTask.init();
+    }
+
     private final static class TestPhoneNumberInteraction extends PhoneNumberInteraction {
         Intent startedIntent;
         int dialogId;
@@ -61,14 +63,6 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
         public TestPhoneNumberInteraction(
                 Context context, boolean sendTextMessage, OnDismissListener dismissListener) {
             super(context, sendTextMessage, dismissListener);
-        }
-
-        @Override
-        void startLoading(Loader<Cursor> loader) {
-            // Execute the loader synchronously
-            AsyncTaskLoader<Cursor> atLoader = (AsyncTaskLoader<Cursor>)loader;
-            Cursor data = atLoader.loadInBackground();
-            atLoader.deliverResult(data);
         }
 
         @Override
@@ -108,6 +102,7 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
                 mContext, true, null);
 
         interaction.startInteraction(contactUri);
+        interaction.getLoader().waitForLoader();
 
         assertEquals(Intent.ACTION_SENDTO, interaction.startedIntent.getAction());
         assertEquals("sms:123", interaction.startedIntent.getDataString());
@@ -123,6 +118,7 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
                 mContext, true, null);
 
         interaction.startInteraction(contactUri);
+        interaction.getLoader().waitForLoader();
 
         assertEquals(Intent.ACTION_SENDTO, interaction.startedIntent.getAction());
         assertEquals("sms:456", interaction.startedIntent.getDataString());
@@ -138,6 +134,7 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
                 mContext, false, null);
 
         interaction.startInteraction(contactUri);
+        interaction.getLoader().waitForLoader();
 
         assertEquals(Intent.ACTION_CALL_PRIVILEGED, interaction.startedIntent.getAction());
         assertEquals("tel:123", interaction.startedIntent.getDataString());
@@ -153,6 +150,7 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
                 mContext, false, null);
 
         interaction.startInteraction(contactUri);
+        interaction.getLoader().waitForLoader();
 
         assertEquals(R.id.dialog_phone_number_call_disambiguation, interaction.dialogId);
 
