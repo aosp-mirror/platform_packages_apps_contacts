@@ -66,7 +66,7 @@ public class ContactBrowserActivityTest
         getInstrumentation().callActivityOnResume(activity);
         getInstrumentation().callActivityOnStart(activity);
 
-        mContext.waitForLoaders(activity, R.id.contact_list_filter_loader);
+        mContext.waitForLoaders(activity.getLoaderManager(), R.id.contact_list_filter_loader);
 
         getInstrumentation().waitForIdleSync();
 

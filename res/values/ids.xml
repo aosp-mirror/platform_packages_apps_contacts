@@ -37,6 +37,7 @@
 
     <!-- For ContactDeletionInteraction -->
     <item type="id" name="dialog_delete_contact_confirmation"/>
+    <item type="id" name="dialog_delete_contact_loader_id" />
 
     <!-- For ImportExportInteraction -->
     <item type="id" name="dialog_import_export_options"/>

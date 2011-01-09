@@ -457,6 +457,12 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".test.FragmentTestActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.TEST" />
+            </intent-filter>
+        </activity>
+
         <!-- Stub service used to keep our process alive long enough for
              background threads to finish their operations. -->
         <service
