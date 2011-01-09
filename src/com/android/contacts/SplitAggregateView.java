@@ -17,7 +17,7 @@
 package com.android.contacts;
 
 import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypes;
+import com.android.contacts.model.AccountTypeManager;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -73,7 +73,7 @@ public class SplitAggregateView extends ListView {
 
     private final Uri mAggregateUri;
     private OnContactSelectedListener mListener;
-    private AccountTypes mAccountTypes;
+    private AccountTypeManager mAccountTypes;
 
     /**
      * Listener interface that gets the contact ID of the user-selected contact.
@@ -90,7 +90,7 @@ public class SplitAggregateView extends ListView {
 
         mAggregateUri = aggregateUri;
 
-        mAccountTypes = AccountTypes.getInstance(context);
+        mAccountTypes = AccountTypeManager.getInstance(context);
 
         final List<RawContactInfo> list = loadData();
 

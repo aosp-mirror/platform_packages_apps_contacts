@@ -24,7 +24,7 @@ import com.android.contacts.model.AccountType;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.EntityDeltaList;
-import com.android.contacts.model.AccountTypes;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountType.DataKind;
 import com.android.contacts.model.AccountType.EditType;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
@@ -145,10 +145,10 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     /**
-     * Build {@link AccountTypes} instance.
+     * Build {@link AccountTypeManager} instance.
      */
-    protected AccountTypes getAccountTypes(AccountType... sources) {
-        return new AccountTypes(sources);
+    protected AccountTypeManager getAccountTypes(AccountType... types) {
+        return new AccountTypeManager(types);
     }
 
     /**
@@ -497,9 +497,9 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     public void testTrimInsertEmpty() {
-        final AccountType source = getAccountType();
-        final AccountTypes sources = getAccountTypes(source);
-        final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
+        final AccountType accountType = getAccountType();
+        final AccountTypeManager accountTypes = getAccountTypes(accountType);
+        final DataKind kindPhone = accountType.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
 
         // Try creating a contact without any child entries
@@ -517,16 +517,16 @@ public class EntityModifierTests extends AndroidTestCase {
         }
 
         // Trim empty rows and try again, expecting no insert
-        EntityModifier.trimEmpty(set, sources);
+        EntityModifier.trimEmpty(set, accountTypes);
         diff.clear();
         state.buildDiff(diff);
         assertEquals("Unexpected operations", 0, diff.size());
     }
 
     public void testTrimInsertInsert() {
-        final AccountType source = getAccountType();
-        final AccountTypes sources = getAccountTypes(source);
-        final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
+        final AccountType accountType = getAccountType();
+        final AccountTypeManager accountTypes = getAccountTypes(accountType);
+        final DataKind kindPhone = accountType.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
 
         // Try creating a contact with single empty entry
@@ -550,16 +550,16 @@ public class EntityModifierTests extends AndroidTestCase {
         }
 
         // Trim empty rows and try again, expecting silence
-        EntityModifier.trimEmpty(set, sources);
+        EntityModifier.trimEmpty(set, accountTypes);
         diff.clear();
         state.buildDiff(diff);
         assertEquals("Unexpected operations", 0, diff.size());
     }
 
     public void testTrimUpdateRemain() {
-        final AccountType source = getAccountType();
-        final AccountTypes sources = getAccountTypes(source);
-        final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
+        final AccountType accountType = getAccountType();
+        final AccountTypeManager accountTypes = getAccountTypes(accountType);
+        final DataKind kindPhone = accountType.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
 
         // Build "before" with two phone numbers
@@ -606,7 +606,7 @@ public class EntityModifierTests extends AndroidTestCase {
         }
 
         // Now run trim, which should turn that update into delete
-        EntityModifier.trimEmpty(set, sources);
+        EntityModifier.trimEmpty(set, accountTypes);
         diff.clear();
         state.buildDiff(diff);
         assertEquals("Unexpected operations", 3, diff.size());
@@ -628,9 +628,9 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     public void testTrimUpdateUpdate() {
-        final AccountType source = getAccountType();
-        final AccountTypes sources = getAccountTypes(source);
-        final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
+        final AccountType accountType = getAccountType();
+        final AccountTypeManager accountTypes = getAccountTypes(accountType);
+        final DataKind kindPhone = accountType.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
         final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
 
         // Build "before" with two phone numbers
@@ -671,7 +671,7 @@ public class EntityModifierTests extends AndroidTestCase {
         }
 
         // Now run trim, which should turn into deleting the whole contact
-        EntityModifier.trimEmpty(set, sources);
+        EntityModifier.trimEmpty(set, accountTypes);
         diff.clear();
         state.buildDiff(diff);
         assertEquals("Unexpected operations", 1, diff.size());
@@ -683,8 +683,7 @@ public class EntityModifierTests extends AndroidTestCase {
     }
 
     public void testParseExtrasExistingName() {
-        final AccountType source = getAccountType();
-        final DataKind kindName = source.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE);
+        final AccountType accountType = getAccountType();
 
         // Build "before" name
         final ContentValues first = new ContentValues();
@@ -696,15 +695,14 @@ public class EntityModifierTests extends AndroidTestCase {
         final EntityDelta state = getEntity(TEST_ID, first);
         final Bundle extras = new Bundle();
         extras.putString(Insert.NAME, TEST_NAME2);
-        EntityModifier.parseExtras(mContext, source, state, extras);
+        EntityModifier.parseExtras(mContext, accountType, state, extras);
 
         final int nameCount = state.getMimeEntriesCount(StructuredName.CONTENT_ITEM_TYPE, true);
         assertEquals("Unexpected names", 1, nameCount);
     }
 
     public void testParseExtrasIgnoreLimit() {
-        final AccountType source = getAccountType();
-        final DataKind kindIm = source.getKindForMimetype(Im.CONTENT_ITEM_TYPE);
+        final AccountType accountType = getAccountType();
 
         // Build "before" IM
         final ContentValues first = new ContentValues();
@@ -715,37 +713,38 @@ public class EntityModifierTests extends AndroidTestCase {
         final EntityDelta state = getEntity(TEST_ID, first);
         final int beforeCount = state.getMimeEntries(Im.CONTENT_ITEM_TYPE).size();
 
-        // We should ignore data that doesn't fit source rules, since source
+        // We should ignore data that doesn't fit account type rules, since account type
         // only allows single Im
         final Bundle extras = new Bundle();
         extras.putInt(Insert.IM_PROTOCOL, Im.PROTOCOL_GOOGLE_TALK);
         extras.putString(Insert.IM_HANDLE, TEST_IM);
-        EntityModifier.parseExtras(mContext, source, state, extras);
+        EntityModifier.parseExtras(mContext, accountType, state, extras);
 
         final int afterCount = state.getMimeEntries(Im.CONTENT_ITEM_TYPE).size();
-        assertEquals("Broke source rules", beforeCount, afterCount);
+        assertEquals("Broke account type rules", beforeCount, afterCount);
     }
 
     public void testParseExtrasIgnoreUnhandled() {
-        final AccountType source = getAccountType();
+        final AccountType accountType = getAccountType();
         final EntityDelta state = getEntity(TEST_ID);
 
-        // We should silently ignore types unsupported by source
+        // We should silently ignore types unsupported by account type
         final Bundle extras = new Bundle();
         extras.putString(Insert.POSTAL, TEST_POSTAL);
-        EntityModifier.parseExtras(mContext, source, state, extras);
+        EntityModifier.parseExtras(mContext, accountType, state, extras);
 
-        assertNull("Broke source rules", state.getMimeEntries(StructuredPostal.CONTENT_ITEM_TYPE));
+        assertNull("Broke accoun type rules",
+                state.getMimeEntries(StructuredPostal.CONTENT_ITEM_TYPE));
     }
 
     public void testParseExtrasJobTitle() {
-        final AccountType source = getAccountType();
+        final AccountType accountType = getAccountType();
         final EntityDelta state = getEntity(TEST_ID);
 
         // Make sure that we create partial Organizations
         final Bundle extras = new Bundle();
         extras.putString(Insert.JOB_TITLE, TEST_NAME);
-        EntityModifier.parseExtras(mContext, source, state, extras);
+        EntityModifier.parseExtras(mContext, accountType, state, extras);
 
         final int count = state.getMimeEntries(Organization.CONTENT_ITEM_TYPE).size();
         assertEquals("Expected to create organization", 1, count);

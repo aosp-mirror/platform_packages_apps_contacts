@@ -17,12 +17,12 @@ package com.android.contacts.tests.mocks;
 
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.FallbackAccountType;
-import com.android.contacts.model.AccountTypes;
+import com.android.contacts.model.AccountTypeManager;
 
 /**
- * A mock {@link AccountTypes} class.
+ * A mock {@link AccountTypeManager} class.
  */
-public class MockAccountTypes extends AccountTypes {
+public class MockAccountTypeManager extends AccountTypeManager {
 
     public static final String WRITABLE_ACCOUNT_TYPE = "writable";
     public static final String READONLY_ACCOUNT_TYPE = "readonly";

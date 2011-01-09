@@ -18,11 +18,11 @@ package com.android.contacts.interactions;
 
 import com.android.contacts.ContactsApplication;
 import com.android.contacts.R;
-import com.android.contacts.model.AccountTypes;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.test.FragmentTestActivity;
 import com.android.contacts.test.InjectedServices;
 import com.android.contacts.tests.mocks.ContactsMockContext;
-import com.android.contacts.tests.mocks.MockAccountTypes;
+import com.android.contacts.tests.mocks.MockAccountTypeManager;
 import com.android.contacts.tests.mocks.MockContentProvider;
 import com.android.contacts.tests.mocks.MockContentProvider.Query;
 
@@ -72,38 +72,38 @@ public class ContactDeletionInteractionTest
         InjectedServices services = new InjectedServices();
         services.setContentResolver(mContext.getContentResolver());
         ContactsApplication.injectContentResolver(services);
-        AccountTypes.injectAccountTypes(new MockAccountTypes());
+        AccountTypeManager.injectAccountTypes(new MockAccountTypeManager());
         mContactsProvider = mContext.getContactsProvider();
     }
 
     @Override
     protected void tearDown() throws Exception {
         ContactsApplication.injectContentResolver(null);
-        AccountTypes.injectAccountTypes(null);
+        AccountTypeManager.injectAccountTypes(null);
         super.tearDown();
     }
 
     public void testSingleWritableRawContact() {
-        expectQuery().returnRow(1, MockAccountTypes.WRITABLE_ACCOUNT_TYPE, 13, "foo");
+        expectQuery().returnRow(1, MockAccountTypeManager.WRITABLE_ACCOUNT_TYPE, 13, "foo");
         assertWithMessageId(R.string.deleteConfirmation);
     }
 
     public void testReadOnlyRawContacts() {
-        expectQuery().returnRow(1, MockAccountTypes.READONLY_ACCOUNT_TYPE, 13, "foo");
+        expectQuery().returnRow(1, MockAccountTypeManager.READONLY_ACCOUNT_TYPE, 13, "foo");
         assertWithMessageId(R.string.readOnlyContactWarning);
     }
 
     public void testMixOfWritableAndReadOnlyRawContacts() {
         expectQuery()
-                .returnRow(1, MockAccountTypes.WRITABLE_ACCOUNT_TYPE, 13, "foo")
-                .returnRow(2, MockAccountTypes.READONLY_ACCOUNT_TYPE, 13, "foo");
+                .returnRow(1, MockAccountTypeManager.WRITABLE_ACCOUNT_TYPE, 13, "foo")
+                .returnRow(2, MockAccountTypeManager.READONLY_ACCOUNT_TYPE, 13, "foo");
         assertWithMessageId(R.string.readOnlyContactDeleteConfirmation);
     }
 
     public void testMultipleWritableRawContacts() {
         expectQuery()
-                .returnRow(1, MockAccountTypes.WRITABLE_ACCOUNT_TYPE, 13, "foo")
-                .returnRow(2, MockAccountTypes.WRITABLE_ACCOUNT_TYPE, 13, "foo");
+                .returnRow(1, MockAccountTypeManager.WRITABLE_ACCOUNT_TYPE, 13, "foo")
+                .returnRow(2, MockAccountTypeManager.WRITABLE_ACCOUNT_TYPE, 13, "foo");
         assertWithMessageId(R.string.multipleContactDeleteConfirmation);
     }
 

@@ -29,7 +29,7 @@ import com.android.contacts.editor.SelectAccountDialogFragment;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.DataKind;
 import com.android.contacts.model.AccountType.EditType;
-import com.android.contacts.model.AccountTypes;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.DateUtils;
@@ -361,7 +361,7 @@ public class ContactDetailFragment extends Fragment implements
 
         mWritableRawContactIds.clear();
 
-        final AccountTypes accountTypes = AccountTypes.getInstance(mContext);
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
 
         // Build up method entries
         if (mContactData == null) {
@@ -1132,7 +1132,7 @@ public class ContactDetailFragment extends Fragment implements
             }
             case Directory.EXPORT_SUPPORT_ANY_ACCOUNT: {
                 final ArrayList<Account> accounts =
-                        AccountTypes.getInstance(mContext).getAccounts(true);
+                        AccountTypeManager.getInstance(mContext).getAccounts(true);
                 if (accounts.isEmpty()) {
                     createCopy(null);
                     return;  // Don't show a dialog.

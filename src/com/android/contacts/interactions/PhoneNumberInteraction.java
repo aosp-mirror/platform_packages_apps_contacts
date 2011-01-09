@@ -23,7 +23,7 @@ import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.DataKind;
 import com.android.contacts.model.AccountType.StringInflater;
-import com.android.contacts.model.AccountTypes;
+import com.android.contacts.model.AccountTypeManager;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -128,11 +128,11 @@ public class PhoneNumberInteraction
      * A list adapter that populates the list of contact's phone numbers.
      */
     private class PhoneItemAdapter extends ArrayAdapter<PhoneItem> {
-        private final AccountTypes mAccountTypes;
+        private final AccountTypeManager mAccountTypes;
 
         public PhoneItemAdapter(Context context) {
             super(context, R.layout.phone_disambig_item, android.R.id.text2);
-            mAccountTypes = AccountTypes.getInstance(context);
+            mAccountTypes = AccountTypeManager.getInstance(context);
         }
 
         @Override

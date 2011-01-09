@@ -17,7 +17,7 @@
 package com.android.contacts.util;
 
 import com.android.contacts.R;
-import com.android.contacts.model.AccountTypes;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountType;
 
 import android.accounts.Account;
@@ -37,12 +37,12 @@ import java.util.List;
 public final class AccountsListAdapter extends BaseAdapter {
     private final LayoutInflater mInflater;
     private final List<Account> mAccounts;
-    private final AccountTypes mAccountTypes;
+    private final AccountTypeManager mAccountTypes;
     private final Context mContext;
 
     public AccountsListAdapter(Context context, boolean writableOnly) {
         mContext = context;
-        mAccountTypes = AccountTypes.getInstance(context);
+        mAccountTypes = AccountTypeManager.getInstance(context);
         mAccounts = mAccountTypes.getAccounts(writableOnly);
         mInflater = LayoutInflater.from(context);
     }

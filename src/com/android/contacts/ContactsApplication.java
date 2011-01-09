@@ -16,7 +16,7 @@
 
 package com.android.contacts;
 
-import com.android.contacts.model.AccountTypes;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.test.InjectedServices;
 
 import android.app.Application;
@@ -54,7 +54,7 @@ public final class ContactsApplication extends Application {
         // Priming caches to placate the StrictMode police
         Context context = getApplicationContext();
         PreferenceManager.getDefaultSharedPreferences(context);
-        AccountTypes.getInstance(context);
+        AccountTypeManager.getInstance(context);
 
         StrictMode.setThreadPolicy(
                 new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());

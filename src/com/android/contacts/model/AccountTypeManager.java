@@ -19,7 +19,6 @@ package com.android.contacts.model;
 import com.android.contacts.model.AccountType.DataKind;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
-import com.google.android.collect.Sets;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import android.accounts.Account;
@@ -41,14 +40,12 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.provider.ContactsContract;
-import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
 
@@ -56,7 +53,7 @@ import java.util.concurrent.CountDownLatch;
  * Singleton holder for all parsed {@link AccountType} available on the
  * system, typically filled through {@link PackageManager} queries.
  */
-public class AccountTypes extends BroadcastReceiver
+public class AccountTypeManager extends BroadcastReceiver
         implements OnAccountsUpdateListener, SyncStatusObserver {
     private static final String TAG = "ContactAccountTypes";
 
@@ -78,7 +75,7 @@ public class AccountTypes extends BroadcastReceiver
     /* A latch that ensures that asynchronous initialization completes before data is used */
     private volatile CountDownLatch mInitializationLatch = new CountDownLatch(1);
 
-    private static AccountTypes sInstance = null;
+    private static AccountTypeManager sInstance = null;
 
     private static final Comparator<Account> ACCOUNT_COMPARATOR = new Comparator<Account>() {
 
@@ -93,24 +90,24 @@ public class AccountTypes extends BroadcastReceiver
     };
 
     /**
-     * Requests the singleton instance of {@link AccountTypes} with data bound from
+     * Requests the singleton instance of {@link AccountTypeManager} with data bound from
      * the available authenticators. This method can safely be called from the UI thread.
      */
-    public static synchronized AccountTypes getInstance(Context context) {
+    public static synchronized AccountTypeManager getInstance(Context context) {
         if (sInstance == null) {
-            sInstance = new AccountTypes(context.getApplicationContext());
+            sInstance = new AccountTypeManager(context.getApplicationContext());
         }
         return sInstance;
     }
 
-    public static void injectAccountTypes(AccountTypes injectedAccountTypes) {
+    public static void injectAccountTypes(AccountTypeManager injectedAccountTypes) {
         sInstance = injectedAccountTypes;
     }
 
     /**
      * Internal constructor that only performs initial parsing.
      */
-    private AccountTypes(Context context) {
+    private AccountTypeManager(Context context) {
         mContext = context;
         mAccountManager = AccountManager.get(mContext);
 
@@ -154,7 +151,7 @@ public class AccountTypes extends BroadcastReceiver
     }
 
     /** @hide exposed for unit tests */
-    public AccountTypes(AccountType... accountTypes) {
+    public AccountTypeManager(AccountType... accountTypes) {
         for (AccountType accountType : accountTypes) {
             mAccountTypes.put(accountType.accountType, accountType);
         }

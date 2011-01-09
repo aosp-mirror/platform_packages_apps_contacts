@@ -19,7 +19,7 @@ package com.android.contacts.list;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountTypes;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.GoogleAccountType;
 import com.android.contacts.preference.ContactsPreferences;
@@ -154,7 +154,7 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
 
     /**
      * Background operation to build set of {@link AccountDisplay} for each
-     * {@link AccountTypes#getAccounts(boolean)} that provides groups.
+     * {@link AccountTypeManager#getAccounts(boolean)} that provides groups.
      */
     private static class QueryGroupsTask extends
             WeakAsyncTask<Void, Void, AccountSet, CustomContactListFilterActivity> {
@@ -166,7 +166,7 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
         protected AccountSet doInBackground(CustomContactListFilterActivity target,
                 Void... params) {
             final Context context = target;
-            final AccountTypes accountTypes = AccountTypes.getInstance(context);
+            final AccountTypeManager accountTypes = AccountTypeManager.getInstance(context);
             final ContentResolver resolver = context.getContentResolver();
 
             // Inflate groups entry for each account
@@ -503,7 +503,7 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
     protected static class DisplayAdapter extends BaseExpandableListAdapter {
         private Context mContext;
         private LayoutInflater mInflater;
-        private AccountTypes mAccountTypes;
+        private AccountTypeManager mAccountTypes;
         private AccountSet mAccounts;
 
         private boolean mChildWithPhones = false;
@@ -511,7 +511,7 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
         public DisplayAdapter(Context context) {
             mContext = context;
             mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            mAccountTypes = AccountTypes.getInstance(context);
+            mAccountTypes = AccountTypeManager.getInstance(context);
         }
 
         public void setAccounts(AccountSet accounts) {
