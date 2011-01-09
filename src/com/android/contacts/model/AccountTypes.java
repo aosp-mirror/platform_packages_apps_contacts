@@ -103,6 +103,10 @@ public class AccountTypes extends BroadcastReceiver
         return sInstance;
     }
 
+    public static void injectAccountTypes(AccountTypes injectedAccountTypes) {
+        sInstance = injectedAccountTypes;
+    }
+
     /**
      * Internal constructor that only performs initial parsing.
      */

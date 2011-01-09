@@ -16,22 +16,22 @@
 
 package com.android.contacts.interactions;
 
+import com.android.contacts.ContactsApplication;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountTypes;
+import com.android.contacts.test.FragmentTestActivity;
+import com.android.contacts.test.InjectedServices;
 import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockAccountTypes;
 import com.android.contacts.tests.mocks.MockContentProvider;
 import com.android.contacts.tests.mocks.MockContentProvider.Query;
-import com.android.contacts.widget.TestLoaderManager;
 
-import android.app.LoaderManager;
 import android.content.ContentUris;
-import android.content.pm.ProviderInfo;
 import android.net.Uri;
-import android.provider.ContactsContract;
+import android.os.AsyncTask;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Contacts.Entity;
-import android.test.InstrumentationTestCase;
+import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.Smoke;
 
 /**
@@ -45,48 +45,42 @@ import android.test.suitebuilder.annotation.Smoke;
  *     -w com.android.contacts.tests/android.test.InstrumentationTestRunner
  */
 @Smoke
-public class ContactDeletionInteractionTest extends InstrumentationTestCase {
+public class ContactDeletionInteractionTest
+        extends ActivityInstrumentationTestCase2<FragmentTestActivity> {
 
-    private final class TestContactDeletionDialogFragment
-            extends ContactDeletionInteraction {
-        public Uri contactUri;
-        public int messageId;
-
-        @Override
-        public LoaderManager getLoaderManager() {
-            return mLoaderManager;
-        }
-
-        @Override
-        boolean isStarted() {
-            return true;
-        }
-
-        @Override
-        void showDialog(int messageId, Uri contactUri) {
-            this.messageId = messageId;
-            this.contactUri = contactUri;
-        }
-
-        @Override
-        AccountTypes getAccountTypes() {
-            return new MockAccountTypes();
-        }
+    static {
+        // AsyncTask class needs to be initialized on the main thread.
+        AsyncTask.init();
     }
+
+    private static final Uri CONTACT_URI = ContentUris.withAppendedId(Contacts.CONTENT_URI, 13);
+    private static final Uri ENTITY_URI = Uri.withAppendedPath(
+            CONTACT_URI, Entity.CONTENT_DIRECTORY);
 
     private ContactsMockContext mContext;
     private MockContentProvider mContactsProvider;
-    private TestLoaderManager mLoaderManager;
+    private ContactDeletionInteraction mFragment;
+
+    public ContactDeletionInteractionTest() {
+        super(FragmentTestActivity.class);
+    }
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
         mContext = new ContactsMockContext(getInstrumentation().getTargetContext());
+        InjectedServices services = new InjectedServices();
+        services.setContentResolver(mContext.getContentResolver());
+        ContactsApplication.injectContentResolver(services);
+        AccountTypes.injectAccountTypes(new MockAccountTypes());
         mContactsProvider = mContext.getContactsProvider();
-        ProviderInfo info = new ProviderInfo();
-        info.authority = ContactsContract.AUTHORITY;
-        mContactsProvider.attachInfo(mContext, info);
-        mLoaderManager = new TestLoaderManager();
+    }
+
+    @Override
+    protected void tearDown() throws Exception {
+        ContactsApplication.injectContentResolver(null);
+        AccountTypes.injectAccountTypes(null);
+        super.tearDown();
     }
 
     public void testSingleWritableRawContact() {
@@ -114,20 +108,28 @@ public class ContactDeletionInteractionTest extends InstrumentationTestCase {
     }
 
     private Query expectQuery() {
-        Uri uri = Uri.withAppendedPath(
-                ContentUris.withAppendedId(Contacts.CONTENT_URI, 13), Entity.CONTENT_DIRECTORY);
-        return mContactsProvider.expectQuery(uri).withProjection(
+        return mContactsProvider.expectQuery(ENTITY_URI).withProjection(
                 Entity.RAW_CONTACT_ID, Entity.ACCOUNT_TYPE, Entity.CONTACT_ID, Entity.LOOKUP_KEY);
     }
 
     private void assertWithMessageId(int messageId) {
-        TestContactDeletionDialogFragment interaction = new TestContactDeletionDialogFragment();
-        interaction.setContext(mContext);
-        interaction.setContactUri(ContentUris.withAppendedId(Contacts.CONTENT_URI, 13));
-        mLoaderManager.executeLoaders();
-        assertEquals("content://com.android.contacts/contacts/lookup/foo/13",
-                interaction.contactUri.toString());
-        assertEquals(messageId, interaction.messageId);
-        mContactsProvider.verify();
+        final FragmentTestActivity activity = getActivity();
+
+        getInstrumentation().runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                mFragment = ContactDeletionInteraction.start(activity, CONTACT_URI);
+            }
+        });
+
+        getInstrumentation().waitForIdleSync();
+
+        mContext.waitForLoaders(mFragment.getLoaderManager(), R.id.dialog_delete_contact_loader_id);
+
+        getInstrumentation().waitForIdleSync();
+
+        mContext.verify();
+
+        assertEquals(messageId, mFragment.mMessageId);
     }
 }

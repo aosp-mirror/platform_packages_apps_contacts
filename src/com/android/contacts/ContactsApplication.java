@@ -17,13 +17,35 @@
 package com.android.contacts;
 
 import com.android.contacts.model.AccountTypes;
+import com.android.contacts.test.InjectedServices;
 
 import android.app.Application;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 
 public final class ContactsApplication extends Application {
+
+    private static InjectedServices sInjectedServices;
+
+    /**
+     * Overrides the system services with mocks for testing.
+     */
+    public static void injectContentResolver(InjectedServices services) {
+        sInjectedServices = services;
+    }
+
+    @Override
+    public ContentResolver getContentResolver() {
+        if (sInjectedServices != null) {
+            ContentResolver resolver = sInjectedServices.getContentResolver();
+            if (resolver != null) {
+                return resolver;
+            }
+        }
+        return super.getContentResolver();
+    }
 
     @Override
     public void onCreate() {
