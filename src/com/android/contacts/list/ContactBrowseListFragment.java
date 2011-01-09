@@ -611,6 +611,9 @@ public abstract class ContactBrowseListFragment extends
     private void restoreFilter() {
         if (mFilterEnabled) {
             mFilter = ContactListFilter.restoreFromPreferences(mPrefs);
+            if (mFilter == null) {
+                mFilter = new ContactListFilter(ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
+            }
         }
     }
 

@@ -22,6 +22,7 @@ import com.android.contacts.test.InjectedServices;
 import android.app.Application;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 
@@ -50,6 +51,18 @@ public final class ContactsApplication extends Application {
             }
         }
         return super.getContentResolver();
+    }
+
+    @Override
+    public SharedPreferences getSharedPreferences(String name, int mode) {
+        if (sInjectedServices != null) {
+            SharedPreferences prefs = sInjectedServices.getSharedPreferences();
+            if (prefs != null) {
+                return prefs;
+            }
+        }
+
+        return super.getSharedPreferences(name, mode);
     }
 
     @Override
