@@ -15,21 +15,21 @@
  */
 package com.android.contacts.vcard;
 
+import com.android.contacts.ContactsActivity;
+import com.android.contacts.R;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.util.AccountSelectionUtil;
+
 import android.accounts.Account;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.android.contacts.R;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.util.AccountSelectionUtil;
-
 import java.util.List;
 
-public class SelectAccountActivity extends Activity {
+public class SelectAccountActivity extends ContactsActivity {
     private static final String LOG_TAG = "SelectAccountActivity";
 
     public static final String ACCOUNT_NAME = "account_name";

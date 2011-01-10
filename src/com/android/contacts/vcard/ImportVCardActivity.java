@@ -16,6 +16,7 @@
 
 package com.android.contacts.vcard;
 
+import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.util.AccountSelectionUtil;
@@ -83,7 +84,7 @@ import java.util.Vector;
  * any Dialog in the instance. So this code is careless about the management around managed
  * dialogs stuffs (like how onCreateDialog() is used).
  */
-public class ImportVCardActivity extends Activity {
+public class ImportVCardActivity extends ContactsActivity {
     private static final String LOG_TAG = "VCardImport";
 
     private static final int SELECT_ACCOUNT = 0;
@@ -668,7 +669,7 @@ public class ImportVCardActivity extends Activity {
         }
         importVCard(uriStrings);
     }
-    
+
     private void importVCardFromSDCard(final VCardFile vcardFile) {
         importVCard(new Uri[] {Uri.parse("file://" + vcardFile.getCanonicalPath())});
     }

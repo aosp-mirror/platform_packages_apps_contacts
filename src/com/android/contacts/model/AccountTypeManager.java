@@ -54,6 +54,7 @@ import java.util.concurrent.CountDownLatch;
  * system, typically filled through {@link PackageManager} queries.
  */
 public abstract class AccountTypeManager {
+    static final String TAG = "AccountTypeManager";
 
     public static final String ACCOUNT_TYPE_SERVICE = "contactAccountTypes";
 
@@ -62,7 +63,13 @@ public abstract class AccountTypeManager {
      * the available authenticators. This method can safely be called from the UI thread.
      */
     public static AccountTypeManager getInstance(Context context) {
-        return (AccountTypeManager) context.getSystemService(ACCOUNT_TYPE_SERVICE);
+        AccountTypeManager service =
+                (AccountTypeManager) context.getSystemService(ACCOUNT_TYPE_SERVICE);
+        if (service == null) {
+            service = createAccountTypeManager(context);
+            Log.e(TAG, "No account type service in context: " + context);
+        }
+        return service;
     }
 
     public static synchronized AccountTypeManager createAccountTypeManager(Context context) {
@@ -86,7 +93,6 @@ public abstract class AccountTypeManager {
 
 class AccountTypeManagerImpl extends AccountTypeManager
         implements OnAccountsUpdateListener, SyncStatusObserver {
-    private static final String TAG = "ContactAccountTypes";
 
     private Context mContext;
     private AccountManager mAccountManager;
