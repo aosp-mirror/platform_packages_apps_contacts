@@ -93,8 +93,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 if (lookupKey != null) {
                     uri = Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey);
                 } else {
-                    // Non-existent contact
-                    uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, 0);
+                    uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, getSelectedContactId());
                 }
             }
         }

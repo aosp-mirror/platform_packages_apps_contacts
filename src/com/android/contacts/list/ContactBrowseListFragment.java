@@ -22,6 +22,7 @@ import com.android.contacts.widget.AutoScrollListView;
 import android.app.Activity;
 import android.content.AsyncQueryHandler;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -84,6 +85,7 @@ public abstract class ContactBrowseListFragment extends
     private Uri mSelectedContactUri;
     private long mSelectedContactDirectoryId;
     private String mSelectedContactLookupKey;
+    private long mSelectedContactId;
     private boolean mSelectionVerified;
     private boolean mRefreshingContactUri;
     private boolean mFilterEnabled;
@@ -324,8 +326,8 @@ public abstract class ContactBrowseListFragment extends
                 // lookup key extracted from the URI
                 ContactListAdapter adapter = getAdapter();
                 if (adapter != null) {
-                    adapter.setSelectedContact(
-                            mSelectedContactDirectoryId, mSelectedContactLookupKey);
+                    adapter.setSelectedContact(mSelectedContactDirectoryId,
+                            mSelectedContactLookupKey, mSelectedContactId);
                     getListView().invalidateViews();
                 }
             }
@@ -344,13 +346,19 @@ public abstract class ContactBrowseListFragment extends
             if (mSelectedContactUri.toString().startsWith(Contacts.CONTENT_LOOKUP_URI.toString())) {
                 List<String> pathSegments = mSelectedContactUri.getPathSegments();
                 mSelectedContactLookupKey = Uri.encode(pathSegments.get(2));
-            } else {
+            } else if (mSelectedContactUri.toString().startsWith(Contacts.CONTENT_URI.toString())) {
                 mSelectedContactLookupKey = null;
+                mSelectedContactId = ContentUris.parseId(mSelectedContactUri);
+            } else {
+                Log.e(TAG, "Unsupported contact URI: " + mSelectedContactUri);
+                mSelectedContactLookupKey = null;
+                mSelectedContactId = 0;
             }
 
         } else {
             mSelectedContactDirectoryId = Directory.DEFAULT;
             mSelectedContactLookupKey = null;
+            mSelectedContactId = 0;
         }
     }
 
@@ -367,7 +375,8 @@ public abstract class ContactBrowseListFragment extends
             adapter.setFilter(mFilter);
             if (mSelectionRequired
                     || mFilter.filterType == ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
-                adapter.setSelectedContact(mSelectedContactDirectoryId, mSelectedContactLookupKey);
+                adapter.setSelectedContact(
+                        mSelectedContactDirectoryId, mSelectedContactLookupKey, mSelectedContactId);
             }
         }
     }
@@ -420,7 +429,8 @@ public abstract class ContactBrowseListFragment extends
             return;
         }
 
-        adapter.setSelectedContact(mSelectedContactDirectoryId, mSelectedContactLookupKey);
+        adapter.setSelectedContact(
+                mSelectedContactDirectoryId, mSelectedContactLookupKey, mSelectedContactId);
 
         int selectedPosition = adapter.getSelectedContactPosition();
         if (selectedPosition == -1) {

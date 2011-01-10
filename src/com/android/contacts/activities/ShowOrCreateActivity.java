@@ -26,7 +26,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ComponentName;
-import android.content.ContentUris;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -61,13 +60,16 @@ public final class ShowOrCreateActivity extends ContactsActivity
 
     static final String[] PHONES_PROJECTION = new String[] {
         PhoneLookup._ID,
+        PhoneLookup.LOOKUP_KEY,
     };
 
     static final String[] CONTACTS_PROJECTION = new String[] {
-        RawContacts.CONTACT_ID,
+        Email.CONTACT_ID,
+        Email.LOOKUP_KEY,
     };
 
     static final int CONTACT_ID_INDEX = 0;
+    static final int LOOKUP_KEY_INDEX = 1;
 
     static final int CREATE_CONTACT_DIALOG = 1;
 
@@ -155,11 +157,13 @@ public final class ShowOrCreateActivity extends ContactsActivity
         // Count contacts found by query
         int count = 0;
         long contactId = -1;
+        String lookupKey = null;
         try {
             count = cursor.getCount();
             if (count == 1 && cursor.moveToFirst()) {
                 // Try reading ID if only one contact returned
                 contactId = cursor.getLong(CONTACT_ID_INDEX);
+                lookupKey = cursor.getString(LOOKUP_KEY_INDEX);
             }
         } finally {
             cursor.close();
@@ -167,7 +171,7 @@ public final class ShowOrCreateActivity extends ContactsActivity
 
         if (count == 1 && contactId != -1) {
             // If we only found one item, jump right to viewing it
-            final Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+            final Uri contactUri = Contacts.getLookupUri(contactId, lookupKey);
             final Intent viewIntent = new Intent(Intent.ACTION_VIEW, contactUri);
             startActivity(viewIntent);
             finish();
@@ -192,8 +196,8 @@ public final class ShowOrCreateActivity extends ContactsActivity
                 finish();
 
             } else {
-	        showDialog(CREATE_CONTACT_DIALOG);
-           }
+                showDialog(CREATE_CONTACT_DIALOG);
+            }
         }
     }
 
