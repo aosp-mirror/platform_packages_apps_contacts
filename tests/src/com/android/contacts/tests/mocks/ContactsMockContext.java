@@ -23,6 +23,7 @@ import android.content.AsyncTaskLoader;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.pm.ProviderInfo;
 import android.provider.ContactsContract;
@@ -90,9 +91,7 @@ public class ContactsMockContext extends ContextWrapper {
      * Waits for the specified loaders to complete loading.
      */
     public void waitForLoaders(LoaderManager loaderManager, int... loaderIds) {
-        // We want to wait for each loader using a separate thread, so that we can
-        // simulate race conditions.
-        Thread[] waitThreads = new Thread[loaderIds.length];
+        Loader<?>[] loaders = new Loader<?>[loaderIds.length];
         for (int i = 0; i < loaderIds.length; i++) {
             final int loaderId = loaderIds[i];
             final AsyncTaskLoader<?> loader =
@@ -102,14 +101,29 @@ public class ContactsMockContext extends ContextWrapper {
                 return;
             }
 
+            loaders[i] = loader;
+        }
+
+        waitForLoaders(loaders);
+    }
+
+    /**
+     * Waits for the specified loaders to complete loading.
+     */
+    public void waitForLoaders(Loader<?>... loaders) {
+        // We want to wait for each loader using a separate thread, so that we can
+        // simulate race conditions.
+        Thread[] waitThreads = new Thread[loaders.length];
+        for (int i = 0; i < loaders.length; i++) {
+            final AsyncTaskLoader<?> loader = (AsyncTaskLoader<?>) loaders[i];
             waitThreads[i] = new Thread("LoaderWaitingThread" + i) {
                 @Override
                 public void run() {
                     try {
                         loader.waitForLoader();
                     } catch (Throwable e) {
-                        Log.e(TAG, "Exception while waiting for loader: " + loaderId, e);
-                        Assert.fail("Exception while waiting for loader: " + loaderId);
+                        Log.e(TAG, "Exception while waiting for loader: " + loader.getId(), e);
+                        Assert.fail("Exception while waiting for loader: " + loader.getId());
                     }
                 }
             };

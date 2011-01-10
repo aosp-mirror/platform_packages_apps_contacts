@@ -1082,4 +1082,14 @@ public class ContactBrowserActivity extends ContactsActivity
     public DialogManager getDialogManager() {
         return mDialogManager;
     }
+
+    // Visible for testing
+    public ContactBrowseListFragment getListFragment() {
+        return mListFragment;
+    }
+
+    // Visible for testing
+    public ContactDetailFragment getDetailFragment() {
+        return mDetailFragment;
+    }
 }

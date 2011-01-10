@@ -18,6 +18,8 @@ package com.android.contacts.activities;
 
 import com.android.contacts.ContactsApplication;
 import com.android.contacts.R;
+import com.android.contacts.detail.ContactDetailFragment;
+import com.android.contacts.list.ContactBrowseListFragment;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.FallbackAccountType;
@@ -25,10 +27,13 @@ import com.android.contacts.test.InjectedServices;
 import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockAccountTypeManager;
 import com.android.contacts.tests.mocks.MockContentProvider;
+import com.android.contacts.tests.mocks.MockContentProvider.Query;
 import com.android.contacts.tests.mocks.MockSharedPreferences;
 
 import android.accounts.Account;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.content.Loader;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
@@ -39,6 +44,8 @@ import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.ProviderStatus;
 import android.provider.Settings;
 import android.test.ActivityInstrumentationTestCase2;
+import android.test.suitebuilder.annotation.Smoke;
+import android.widget.TextView;
 
 /**
  * Tests for {@link ContactBrowserActivity}.
@@ -50,6 +57,7 @@ import android.test.ActivityInstrumentationTestCase2;
  *   adb shell am instrument \
  *     -w com.android.contacts.tests/android.test.InstrumentationTestRunner
  */
+@Smoke
 public class ContactBrowserActivityTest
         extends ActivityInstrumentationTestCase2<ContactBrowserActivity>
 {
@@ -57,6 +65,9 @@ public class ContactBrowserActivityTest
         // AsyncTask class needs to be initialized on the main thread.
         AsyncTask.init();
     }
+
+    private static final String TEST_ACCOUNT = "testAccount";
+    private static final String TEST_ACCOUNT_TYPE = "testAccountType";
 
     private ContactsMockContext mContext;
     private MockContentProvider mContactsProvider;
@@ -76,9 +87,9 @@ public class ContactBrowserActivityTest
         services.setSharedPreferences(new MockSharedPreferences());
 
         FallbackAccountType accountType = new FallbackAccountType();
-        accountType.accountType = "testAccountType";
+        accountType.accountType = TEST_ACCOUNT_TYPE;
 
-        Account account = new Account("testAccount", "testAccountType");
+        Account account = new Account(TEST_ACCOUNT, TEST_ACCOUNT_TYPE);
 
         services.setSystemService(AccountTypeManager.ACCOUNT_TYPE_SERVICE,
                 new MockAccountTypeManager(
@@ -90,7 +101,9 @@ public class ContactBrowserActivityTest
         expectSettingsQueriesAndReturnDefault();
         expectProviderStatusQueryAndReturnNormal();
         expectGroupsQueryAndReturnEmpty();
-        expectContactListAndReturnEmpty();
+        expectContactListQuery(100);
+        expectContactLookupQuery("lu1", 1, "lu1", 1);
+        expectContactEntityQuery("lu1", 1);
 
         setActivityIntent(new Intent(Intent.ACTION_DEFAULT));
 
@@ -98,11 +111,24 @@ public class ContactBrowserActivityTest
 
         getInstrumentation().waitForIdleSync();
 
-        mContext.waitForLoaders(activity.getLoaderManager(), R.id.contact_list_filter_loader);
+        ContactBrowseListFragment listFragment = activity.getListFragment();
+        ContactDetailFragment detailFragment = activity.getDetailFragment();
+
+        Loader<?> filterLoader =
+                activity.getLoaderManager().getLoader(R.id.contact_list_filter_loader);
+        Loader<?> listLoader =
+                listFragment.getLoaderManager().getLoader(0);
+
+        // TODO: wait for detail loader
+        // TODO: wait for lookup key loading
+        mContext.waitForLoaders(filterLoader, listLoader);
 
         getInstrumentation().waitForIdleSync();
 
         mContext.verify();
+
+        TextView nameText = (TextView) detailFragment.getView().findViewById(R.id.name);
+        assertEquals("Contact 1", nameText.getText());
     }
 
     private void expectSettingsQueriesAndReturnDefault() {
@@ -139,18 +165,52 @@ public class ContactBrowserActivityTest
                 .anyNumberOfTimes();
     }
 
-    private void expectContactListAndReturnEmpty() {
+    private void expectContactListQuery(int count) {
         Uri uri = Contacts.CONTENT_URI.buildUpon()
                 .appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true")
                 .appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
                         String.valueOf(Directory.DEFAULT))
                 .build();
 
+        Query query = mContactsProvider
+                .expectQuery(uri)
+                .withAnyProjection()
+                .withSortOrder(Contacts.SORT_KEY_PRIMARY);
+        for (int i = 1; i <= count; i++) {
+            ContentValues values = new ContentValues();
+            values.put(Contacts._ID, i);
+            values.put(Contacts.DISPLAY_NAME, "Contact " + i);
+            values.put(Contacts.SORT_KEY_PRIMARY, "contact " + i);
+            values.put(Contacts.LOOKUP_KEY, "lu" + i);
+            query.returnRow(values);
+        }
+    }
+
+    private void expectContactLookupQuery(
+            String lookupKey, long id, String returnLookupKey, long returnId) {
+        Uri uri = Contacts.getLookupUri(id, lookupKey);
+        mContactsProvider.expectTypeQuery(uri, Contacts.CONTENT_ITEM_TYPE);
+        mContactsProvider
+                .expectQuery(uri)
+                .withProjection(Contacts._ID, Contacts.LOOKUP_KEY)
+                .returnRow(returnId, returnLookupKey);
+    }
+
+    private void expectContactEntityQuery(String lookupKey, int contactId) {
+        Uri uri = Uri.withAppendedPath(
+                Contacts.getLookupUri(contactId, lookupKey), Contacts.Entity.CONTENT_DIRECTORY);
+        ContentValues row1 = new ContentValues();
+        row1.put(Contacts.Entity.DATA_ID, 1);
+        row1.put(Contacts.Entity.LOOKUP_KEY, lookupKey);
+        row1.put(Contacts.Entity.CONTACT_ID, contactId);
+        row1.put(Contacts.Entity.DISPLAY_NAME, "Contact " + contactId);
+        row1.put(Contacts.Entity.ACCOUNT_NAME, TEST_ACCOUNT);
+        row1.put(Contacts.Entity.ACCOUNT_TYPE, TEST_ACCOUNT_TYPE);
         mContactsProvider
                 .expectQuery(uri)
                 .withAnyProjection()
-                .withAnySelection()
                 .withAnySortOrder()
-                .returnEmptyCursor();
+                .returnRow(row1)
+                .anyNumberOfTimes();
     }
 }
