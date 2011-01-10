@@ -47,7 +47,7 @@ public class MockContentProvider extends ContentProvider {
         private String mSelection;
         private String[] mSelectionArgs;
         private String mSortOrder;
-        private ArrayList<Object[]> mRows = new ArrayList<Object[]>();
+        private ArrayList<Object> mRows = new ArrayList<Object>();
         private boolean mAnyProjection;
         private boolean mAnySelection;
         private boolean mAnySortOrder;
@@ -100,6 +100,11 @@ public class MockContentProvider extends ContentProvider {
             return this;
         }
 
+        public Query returnRow(ContentValues values) {
+            mRows.add(values);
+            return this;
+        }
+
         public Query returnRow(Object... row) {
             mRows.add(row);
             return this;
@@ -125,7 +130,7 @@ public class MockContentProvider extends ContentProvider {
                 return false;
             }
 
-            if (!mAnySelection && !TextUtils.equals(selection, mSelection)) {
+            if (!mAnySelection && !equals(selection, mSelection)) {
                 return false;
             }
 
@@ -133,11 +138,21 @@ public class MockContentProvider extends ContentProvider {
                 return false;
             }
 
-            if (!mAnySortOrder && !TextUtils.equals(sortOrder, mSortOrder)) {
+            if (!mAnySortOrder && !equals(sortOrder, mSortOrder)) {
                 return false;
             }
 
             return true;
+        }
+
+        private boolean equals(String string1, String string2) {
+            if (TextUtils.isEmpty(string1)) {
+                string1 = null;
+            }
+            if (TextUtils.isEmpty(string2)) {
+                string2 = null;
+            }
+            return TextUtils.equals(string1, string2);
         }
 
         private static boolean equals(String[] array1, String[] array2) {
@@ -160,25 +175,26 @@ public class MockContentProvider extends ContentProvider {
             return true;
         }
 
-        public Cursor getResult() {
+        public Cursor getResult(String[] projection) {
             String[] columnNames;
             if (mAnyProjection) {
-                if (mRows.size() > 0) {
-                    int columnCount = mRows.get(0).length;
-                    columnNames = new String[columnCount];
-                    for (int i = 0; i < columnNames.length; i++) {
-                        columnNames[i] = "column" + (i+1);
-                    }
-                } else {
-                    columnNames = new String[]{"unspecified"};
-                }
+                columnNames = projection;
             } else {
                 columnNames = mProjection != null ? mProjection : mDefaultProjection;
             }
 
             MatrixCursor cursor = new MatrixCursor(columnNames);
-            for (Object[] row : mRows) {
-                cursor.addRow(row);
+            for (Object row : mRows) {
+                if (row instanceof Object[]) {
+                    cursor.addRow((Object[]) row);
+                } else {
+                    ContentValues values = (ContentValues) row;
+                    Object[] columns = new Object[projection.length];
+                    for (int i = 0; i < projection.length; i++) {
+                        columns[i] = values.get(projection[i]);
+                    }
+                    cursor.addRow(columns);
+                }
             }
             return cursor;
         }
@@ -240,7 +256,7 @@ public class MockContentProvider extends ContentProvider {
                 if (!query.mAnyNumberOfTimes) {
                     iterator.remove();
                 }
-                return query.getResult();
+                return query.getResult(projection);
             }
         }
 
