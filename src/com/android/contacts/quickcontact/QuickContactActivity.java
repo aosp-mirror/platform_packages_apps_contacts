@@ -16,7 +16,8 @@
 
 package com.android.contacts.quickcontact;
 
-import android.app.Activity;
+import com.android.contacts.ContactsActivity;
+
 import android.content.ContentUris;
 import android.content.Intent;
 import android.graphics.Rect;
@@ -31,8 +32,8 @@ import android.util.Log;
  * above the caller. This temporary hack should eventually be replaced with
  * direct framework support.
  */
-public final class QuickContactActivity extends Activity implements
-        QuickContactWindow.OnDismissListener {
+public final class QuickContactActivity extends ContactsActivity
+        implements QuickContactWindow.OnDismissListener {
     private static final String TAG = "QuickContactActivity";
 
     static final boolean LOGV = false;
