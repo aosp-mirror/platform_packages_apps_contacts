@@ -20,16 +20,14 @@
     android:layout_height="match_parent"
     android:divider="?android:attr/dividerVertical"
     android:showDividers="beginning|end"
-    android:dividerPadding="0dip"
+    android:dividerPadding="8dip"
     android:orientation="horizontal">
 
     <LinearLayout
+        style="?android:attr/actionButtonStyle"
         android:id="@+id/menu_item"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginLeft="16dip"
-        android:layout_marginRight="16dip"
-        android:background="?android:attr/selectableItemBackground"
         android:orientation="horizontal">
 
         <ImageView
@@ -37,14 +35,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_marginRight="8dip"
             android:src="@drawable/ic_menu_add_contact_holo_light"
             android:description="@string/menu_newContact" />
 
         <TextView
-            style="?android:attr/actionButtonStyle"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/menu_new_contact_action_bar" />
     </LinearLayout>
