@@ -106,6 +106,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
 
     private long mSelectedContactDirectoryId;
     private String mSelectedContactLookupKey;
+    private long mSelectedContactId;
 
     private ContactListFilter mFilter;
 
@@ -138,9 +139,14 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         return mSelectedContactLookupKey;
     }
 
-    public void setSelectedContact(long selectedDirectoryId, String lookupKey) {
+    public long getSelectedContactId() {
+        return mSelectedContactId;
+    }
+
+    public void setSelectedContact(long selectedDirectoryId, String lookupKey, long contactId) {
         mSelectedContactDirectoryId = selectedDirectoryId;
         mSelectedContactLookupKey = lookupKey;
+        mSelectedContactId = contactId;
     }
 
     protected static Uri buildSectionIndexerUri(Uri uri) {
@@ -203,9 +209,16 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
      */
     public boolean isSelectedContact(int partitionIndex, Cursor cursor) {
         long directoryId = ((DirectoryPartition)getPartition(partitionIndex)).getDirectoryId();
-        return getSelectedContactDirectoryId() == directoryId
-                && TextUtils.equals(getSelectedContactLookupKey(),
-                        cursor.getString(CONTACT_LOOKUP_KEY_COLUMN_INDEX));
+        if (getSelectedContactDirectoryId() != directoryId) {
+            return false;
+        }
+        String lookupKey = getSelectedContactLookupKey();
+        if (lookupKey != null && TextUtils.equals(lookupKey,
+                cursor.getString(CONTACT_LOOKUP_KEY_COLUMN_INDEX))) {
+            return true;
+        }
+
+        return getSelectedContactId() == cursor.getLong(CONTACT_ID_COLUMN_INDEX);
     }
 
     @Override
@@ -275,7 +288,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     }
 
     public int getSelectedContactPosition() {
-        if (mSelectedContactLookupKey == null) {
+        if (mSelectedContactLookupKey == null && mSelectedContactId == 0) {
             return -1;
         }
 
@@ -301,10 +314,18 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         cursor.moveToPosition(-1);      // Reset cursor
         int offset = -1;
         while (cursor.moveToNext()) {
-            String lookupKey = cursor.getString(CONTACT_LOOKUP_KEY_COLUMN_INDEX);
-            if (mSelectedContactLookupKey.equals(lookupKey)) {
-                offset = cursor.getPosition();
-                break;
+            if (mSelectedContactLookupKey != null) {
+                String lookupKey = cursor.getString(CONTACT_LOOKUP_KEY_COLUMN_INDEX);
+                if (mSelectedContactLookupKey.equals(lookupKey)) {
+                    offset = cursor.getPosition();
+                    break;
+                }
+            } else {
+                long contactId = cursor.getLong(CONTACT_ID_COLUMN_INDEX);
+                if (contactId == mSelectedContactId) {
+                    offset = cursor.getPosition();
+                    break;
+                }
             }
         }
         if (offset == -1) {
