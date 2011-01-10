@@ -745,11 +745,12 @@
          we believe it is rather rare in the actual world. -->
     <string name="fail_reason_vcard_parse_error">Failed to parse vCard for unexpected reason</string>
 
-    <!-- The failed reason shown when the current vCard importer cannot parse the file since the
-         parser is incomplete (actually, there's missing part in the current vCard parser, though
-         our understanding is that the functionality missed by the current vCard parser
-         is rarely needed in the actual vCard...). -->
-    <string name="fail_reason_vcard_not_supported_error">Failed to parse vCard though it seems in valid format, since the current implementation does not support it</string>
+    <!-- The failed reason shown when vCard importer doesn't support the format.
+         This may be shown when the vCard is corrupted [CHAR LIMIT=40] -->
+    <string name="fail_reason_not_supported">The format is not supported.</string>
+
+    <!-- Message used when vCard import has failed. [CHAR LIMIT=40] -->
+    <string name="vcard_import_failed">Failed to import vCard</string>
 
     <!-- The failure message shown when the system could not find any vCard file.
          (with extension ".vcf" in USB storage.)

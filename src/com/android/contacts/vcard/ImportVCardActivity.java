@@ -34,6 +34,8 @@ import android.accounts.Account;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.ContentResolver;
@@ -47,6 +49,7 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
@@ -57,6 +60,7 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.RelativeSizeSpan;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -101,6 +105,11 @@ public class ImportVCardActivity extends ContactsActivity {
 
     private static final String SECURE_DIRECTORY_NAME = ".android_secure";
 
+    /**
+     * Notification id used when error happened before sending an import request to VCardServer.
+     */
+    private static final int DEFAULT_NOTIFICATION_ID = 1000;
+
     final static String CACHED_URIS = "cached_uris";
 
     private AccountSelectionUtil.AccountSelectedListener mAccountSelectionListener;
@@ -120,6 +129,8 @@ public class ImportVCardActivity extends ContactsActivity {
     private ImportRequestConnection mConnection;
 
     private String mErrorMessage;
+
+    private Handler mHandler = new Handler();
 
     private static class VCardFile {
         private final String mName;
@@ -155,6 +166,7 @@ public class ImportVCardActivity extends ContactsActivity {
             mResId = R.id.dialog_error_with_message;
             mErrorMessage = errorMessage;
         }
+        @Override
         public void run() {
             showDialog(mResId);
         }
@@ -162,10 +174,11 @@ public class ImportVCardActivity extends ContactsActivity {
 
     private class CancelListener
         implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
+        @Override
         public void onClick(DialogInterface dialog, int which) {
             finish();
         }
-
+        @Override
         public void onCancel(DialogInterface dialog) {
             finish();
         }
@@ -285,8 +298,18 @@ public class ImportVCardActivity extends ContactsActivity {
                         Log.w(LOG_TAG, "destUri is null");
                         break;
                     }
-                    final ImportRequest parameter = constructImportRequest(
-                            localDataUri, sourceUri);
+                    final ImportRequest parameter;
+                    try {
+                        parameter = constructImportRequest(localDataUri, sourceUri);
+                    } catch (VCardException e) {
+                        Log.e(LOG_TAG, "Maybe the file is in wrong format", e);
+                        showFailureNotification(R.string.fail_reason_not_supported);
+                        return;
+                    } catch (IOException e) {
+                        Log.e(LOG_TAG, "Unexpected IOException", e);
+                        showFailureNotification(R.string.fail_reason_io_error);
+                        return;
+                    }
                     if (mCanceled) {
                         Log.i(LOG_TAG, "vCard cache operation is canceled.");
                         return;
@@ -371,7 +394,8 @@ public class ImportVCardActivity extends ContactsActivity {
          * information. This variable populates {@link ImportRequest#originalUri}.
          */
         private ImportRequest constructImportRequest(
-                final Uri localDataUri, final Uri originalUri) {
+                final Uri localDataUri, final Uri originalUri)
+                throws IOException, VCardException {
             final ContentResolver resolver = ImportVCardActivity.this.getContentResolver();
             VCardEntryCounter counter = null;
             VCardSourceDetector detector = null;
@@ -417,13 +441,8 @@ public class ImportVCardActivity extends ContactsActivity {
                 vcardVersion = shouldUseV30 ? VCARD_VERSION_V30 : VCARD_VERSION_V21;
             } catch (VCardNestedException e) {
                 Log.w(LOG_TAG, "Nested Exception is found (it may be false-positive).");
-                // Go through without returning null.
-            } catch (VCardException e) {
-                Log.e(LOG_TAG, "VCardException during constructing ImportRequest", e);
-                return null;
-            } catch (IOException e) {
-                Log.e(LOG_TAG, "IOException during constructing ImportRequest", e);
-                return null;
+                // Go through without throwing the Exception, as we may be able to detect the
+                // version before it
             }
             return new ImportRequest(mAccount,
                     localDataUri, originalUri,
@@ -942,5 +961,22 @@ public class ImportVCardActivity extends ContactsActivity {
             mVCardScanThread = new VCardScanThread(file);
             showDialog(R.id.dialog_searching_vcard);
         }
+    }
+
+    private void showFailureNotification(int reasonId) {
+        final NotificationManager notificationManager =
+                (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        final Notification notification =
+                VCardService.constructImportFailureNotification(
+                        ImportVCardActivity.this,
+                        getString(reasonId));
+        notificationManager.notify(DEFAULT_NOTIFICATION_ID, notification);
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(ImportVCardActivity.this,
+                        getString(R.string.vcard_import_failed), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
