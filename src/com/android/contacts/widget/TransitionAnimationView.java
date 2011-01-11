@@ -68,9 +68,9 @@ public class TransitionAnimationView extends FrameLayout implements AnimatorList
                 attrs, R.styleable.TransitionAnimationView);
 
         mEnterAnimationId = a.getResourceId(R.styleable.TransitionAnimationView_enterAnimation,
-                android.R.anim.animator_fade_in);
+                android.R.animator.fade_in);
         mExitAnimationId = a.getResourceId(R.styleable.TransitionAnimationView_exitAnimation,
-                android.R.anim.animator_fade_out);
+                android.R.animator.fade_out);
         mClipMargins.left = a.getDimensionPixelOffset(
                 R.styleable.TransitionAnimationView_clipMarginLeft, 0);
         mClipMargins.top = a.getDimensionPixelOffset(
