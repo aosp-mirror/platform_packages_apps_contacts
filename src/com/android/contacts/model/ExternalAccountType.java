@@ -36,7 +36,7 @@ import java.util.List;
 /**
  * A general contacts account type descriptor.
  */
-public class ExternalAccountType extends FallbackAccountType {
+public class ExternalAccountType extends BaseAccountType {
     private static final String TAG = "ExternalAccountType";
 
     private static final String ACTION_SYNC_ADAPTER = "android.content.SyncAdapter";
