@@ -29,7 +29,7 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Relation;
 import android.view.inputmethod.EditorInfo;
 
-public class GoogleAccountType extends FallbackAccountType {
+public class GoogleAccountType extends BaseAccountType {
     public static final String ACCOUNT_TYPE = "com.google";
     protected static final int FLAGS_RELATION = EditorInfo.TYPE_CLASS_TEXT
     | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS | EditorInfo.TYPE_TEXT_VARIATION_PERSON_NAME;

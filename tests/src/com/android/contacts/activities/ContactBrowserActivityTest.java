@@ -22,7 +22,7 @@ import com.android.contacts.detail.ContactDetailFragment;
 import com.android.contacts.list.ContactBrowseListFragment;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.FallbackAccountType;
+import com.android.contacts.model.BaseAccountType;
 import com.android.contacts.test.InjectedServices;
 import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockAccountTypeManager;
@@ -86,7 +86,7 @@ public class ContactBrowserActivityTest
         services.setContentResolver(mContext.getContentResolver());
         services.setSharedPreferences(new MockSharedPreferences());
 
-        FallbackAccountType accountType = new FallbackAccountType();
+        AccountType accountType = new BaseAccountType();
         accountType.accountType = TEST_ACCOUNT_TYPE;
 
         Account account = new Account(TEST_ACCOUNT, TEST_ACCOUNT_TYPE);

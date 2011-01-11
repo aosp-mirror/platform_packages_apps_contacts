@@ -20,7 +20,7 @@ import com.android.contacts.ContactsApplication;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.FallbackAccountType;
+import com.android.contacts.model.BaseAccountType;
 import com.android.contacts.test.FragmentTestActivity;
 import com.android.contacts.test.InjectedServices;
 import com.android.contacts.tests.mocks.ContactsMockContext;
@@ -77,11 +77,11 @@ public class ContactDeletionInteractionTest
         InjectedServices services = new InjectedServices();
         services.setContentResolver(mContext.getContentResolver());
 
-        FallbackAccountType readOnlyAccountType = new FallbackAccountType();
+        AccountType readOnlyAccountType = new BaseAccountType();
         readOnlyAccountType.accountType = READONLY_ACCOUNT_TYPE;
         readOnlyAccountType.readOnly = true;
 
-        FallbackAccountType writableAccountType = new FallbackAccountType();
+        AccountType writableAccountType = new BaseAccountType();
         writableAccountType.accountType = WRITABLE_ACCOUNT_TYPE;
 
         services.setSystemService(AccountTypeManager.ACCOUNT_TYPE_SERVICE,
