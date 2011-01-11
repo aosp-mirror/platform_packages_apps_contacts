@@ -97,7 +97,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
     private Context mContext;
     private AccountManager mAccountManager;
 
-    private AccountType mFallbackAccountType = new FallbackAccountType();
+    private AccountType mFallbackAccountType;
 
     private ArrayList<Account> mAccounts = Lists.newArrayList();
     private ArrayList<Account> mWritableAccounts = Lists.newArrayList();
@@ -139,6 +139,8 @@ class AccountTypeManagerImpl extends AccountTypeManager
      */
     public AccountTypeManagerImpl(Context context) {
         mContext = context;
+        mFallbackAccountType = new FallbackAccountType(context);
+
         mAccountManager = AccountManager.get(mContext);
 
         mListenerThread = new HandlerThread("AccountChangeListener");

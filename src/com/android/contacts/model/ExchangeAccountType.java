@@ -37,7 +37,7 @@ import android.provider.ContactsContract.CommonDataKinds.Website;
 
 import java.util.Locale;
 
-public class ExchangeAccountType extends FallbackAccountType {
+public class ExchangeAccountType extends BaseAccountType {
 
     public static final String ACCOUNT_TYPE = "com.android.exchange";
 
