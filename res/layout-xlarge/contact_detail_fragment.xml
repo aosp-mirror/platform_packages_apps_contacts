@@ -34,11 +34,11 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="28dip"
             ex:layout_wideParentWidth="800dip"
-            ex:layout_wideLeftMargin="80dip"
-            ex:layout_wideRightMargin="48dip"
+            ex:layout_wideMarginLeft="80dip"
+            ex:layout_wideMarginRight="48dip"
             ex:layout_narrowParentWidth="500dip"
-            ex:layout_narrowLeftMargin="15dip"
-            ex:layout_narrowRightMargin="5dip"
+            ex:layout_narrowMarginLeft="15dip"
+            ex:layout_narrowMarginRight="5dip"
         />
     </com.android.contacts.widget.InterpolatingLayout>
 
@@ -55,9 +55,9 @@
             android:textSize="20sp"
             android:textColor="?android:attr/textColorSecondary"
             ex:layout_wideParentWidth="800dip"
-            ex:layout_wideLeftMargin="64dip"
+            ex:layout_wideMarginLeft="64dip"
             ex:layout_narrowParentWidth="500dip"
-            ex:layout_narrowLeftMargin="42dip"
+            ex:layout_narrowMarginLeft="42dip"
             android:paddingTop="10dip"
             android:lineSpacingMultiplier="0.92"
         />
@@ -72,11 +72,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             ex:layout_wideParentWidth="800dip"
-            ex:layout_wideLeftMargin="64dip"
-            ex:layout_wideRightPadding="48dip"
+            ex:layout_wideMarginLeft="64dip"
+            ex:layout_widePaddingRight="48dip"
             ex:layout_narrowParentWidth="500dip"
-            ex:layout_narrowLeftMargin="32dip"
-            ex:layout_narrowRightPadding="0dip"
+            ex:layout_narrowMarginLeft="32dip"
+            ex:layout_narrowPaddingRight="0dip"
             android:cacheColorHint="#00000000"
             android:divider="@android:color/transparent"
         />

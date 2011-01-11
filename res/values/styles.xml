@@ -173,16 +173,16 @@
     <declare-styleable name="InterpolatingLayout_Layout">
         <attr name="layout_narrowParentWidth" format="dimension"/>
         <attr name="layout_narrowWidth" format="dimension"/>
-        <attr name="layout_narrowLeftMargin" format="dimension"/>
-        <attr name="layout_narrowLeftPadding" format="dimension"/>
-        <attr name="layout_narrowRightMargin" format="dimension"/>
-        <attr name="layout_narrowRightPadding" format="dimension"/>
+        <attr name="layout_narrowMarginLeft" format="dimension"/>
+        <attr name="layout_narrowMarginRight" format="dimension"/>
+        <attr name="layout_narrowPaddingLeft" format="dimension"/>
+        <attr name="layout_narrowPaddingRight" format="dimension"/>
         <attr name="layout_wideParentWidth" format="dimension"/>
         <attr name="layout_wideWidth" format="dimension"/>
-        <attr name="layout_wideLeftMargin" format="dimension"/>
-        <attr name="layout_wideLeftPadding" format="dimension"/>
-        <attr name="layout_wideRightMargin" format="dimension"/>
-        <attr name="layout_wideRightPadding" format="dimension"/>
+        <attr name="layout_wideMarginLeft" format="dimension"/>
+        <attr name="layout_wideMarginRight" format="dimension"/>
+        <attr name="layout_widePaddingLeft" format="dimension"/>
+        <attr name="layout_widePaddingRight" format="dimension"/>
     </declare-styleable>
     
     <declare-styleable name="TransitionAnimationView">

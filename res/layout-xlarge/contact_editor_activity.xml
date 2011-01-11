@@ -28,11 +28,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             ex:layout_wideParentWidth="1280dip"
-            ex:layout_wideLeftMargin="160dip"
-            ex:layout_wideRightMargin="160dip"
+            ex:layout_wideMarginLeft="160dip"
+            ex:layout_wideMarginRight="160dip"
             ex:layout_narrowParentWidth="800dip"
-            ex:layout_narrowLeftMargin="0dip"
-            ex:layout_narrowRightMargin="0dip"
+            ex:layout_narrowMarginLeft="0dip"
+            ex:layout_narrowMarginRight="0dip"
          />
     </com.android.contacts.widget.InterpolatingLayout>
 </ScrollView>

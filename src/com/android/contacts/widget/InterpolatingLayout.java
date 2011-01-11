@@ -57,16 +57,16 @@ public class InterpolatingLayout extends ViewGroup {
 
         public int narrowParentWidth;
         public int narrowWidth;
-        public int narrowLeftMargin;
-        public int narrowLeftPadding;
-        public int narrowRightMargin;
-        public int narrowRightPadding;
+        public int narrowMarginLeft;
+        public int narrowPaddingLeft;
+        public int narrowMarginRight;
+        public int narrowPaddingRight;
         public int wideParentWidth;
         public int wideWidth;
-        public int wideLeftMargin;
-        public int wideLeftPadding;
-        public int wideRightMargin;
-        public int wideRightPadding;
+        public int wideMarginLeft;
+        public int widePaddingLeft;
+        public int wideMarginRight;
+        public int widePaddingRight;
         private float widthMultiplier;
         private int widthConstant;
         private float leftMarginMultiplier;
@@ -86,26 +86,26 @@ public class InterpolatingLayout extends ViewGroup {
                     R.styleable.InterpolatingLayout_Layout_layout_narrowParentWidth, -1);
             narrowWidth = a.getDimensionPixelSize(
                     R.styleable.InterpolatingLayout_Layout_layout_narrowWidth, -1);
-            narrowLeftMargin = a.getDimensionPixelSize(
-                    R.styleable.InterpolatingLayout_Layout_layout_narrowLeftMargin, -1);
-            narrowLeftPadding = a.getDimensionPixelSize(
-                    R.styleable.InterpolatingLayout_Layout_layout_narrowLeftPadding, -1);
-            narrowRightMargin = a.getDimensionPixelSize(
-                    R.styleable.InterpolatingLayout_Layout_layout_narrowRightMargin, -1);
-            narrowRightPadding = a.getDimensionPixelSize(
-                    R.styleable.InterpolatingLayout_Layout_layout_narrowRightPadding, -1);
+            narrowMarginLeft = a.getDimensionPixelSize(
+                    R.styleable.InterpolatingLayout_Layout_layout_narrowMarginLeft, -1);
+            narrowPaddingLeft = a.getDimensionPixelSize(
+                    R.styleable.InterpolatingLayout_Layout_layout_narrowPaddingLeft, -1);
+            narrowMarginRight = a.getDimensionPixelSize(
+                    R.styleable.InterpolatingLayout_Layout_layout_narrowMarginRight, -1);
+            narrowPaddingRight = a.getDimensionPixelSize(
+                    R.styleable.InterpolatingLayout_Layout_layout_narrowPaddingRight, -1);
             wideParentWidth = a.getDimensionPixelSize(
                     R.styleable.InterpolatingLayout_Layout_layout_wideParentWidth, -1);
             wideWidth = a.getDimensionPixelSize(
                     R.styleable.InterpolatingLayout_Layout_layout_wideWidth, -1);
-            wideLeftMargin = a.getDimensionPixelSize(
-                    R.styleable.InterpolatingLayout_Layout_layout_wideLeftMargin, -1);
-            wideLeftPadding = a.getDimensionPixelSize(
-                    R.styleable.InterpolatingLayout_Layout_layout_wideLeftPadding, -1);
-            wideRightMargin = a.getDimensionPixelSize(
-                    R.styleable.InterpolatingLayout_Layout_layout_wideRightMargin, -1);
-            wideRightPadding = a.getDimensionPixelSize(
-                    R.styleable.InterpolatingLayout_Layout_layout_wideRightPadding, -1);
+            wideMarginLeft = a.getDimensionPixelSize(
+                    R.styleable.InterpolatingLayout_Layout_layout_wideMarginLeft, -1);
+            widePaddingLeft = a.getDimensionPixelSize(
+                    R.styleable.InterpolatingLayout_Layout_layout_widePaddingLeft, -1);
+            wideMarginRight = a.getDimensionPixelSize(
+                    R.styleable.InterpolatingLayout_Layout_layout_wideMarginRight, -1);
+            widePaddingRight = a.getDimensionPixelSize(
+                    R.styleable.InterpolatingLayout_Layout_layout_widePaddingRight, -1);
 
             a.recycle();
 
@@ -115,31 +115,31 @@ public class InterpolatingLayout extends ViewGroup {
                 widthConstant = (int) (narrowWidth - narrowParentWidth * widthMultiplier);
             }
 
-            if (narrowLeftMargin != -1) {
-                leftMarginMultiplier = (float) (wideLeftMargin - narrowLeftMargin)
+            if (narrowMarginLeft != -1) {
+                leftMarginMultiplier = (float) (wideMarginLeft - narrowMarginLeft)
                         / (wideParentWidth - narrowParentWidth);
-                leftMarginConstant = (int) (narrowLeftMargin - narrowParentWidth
+                leftMarginConstant = (int) (narrowMarginLeft - narrowParentWidth
                         * leftMarginMultiplier);
             }
 
-            if (narrowLeftPadding != -1) {
-                leftPaddingMultiplier = (float) (wideLeftPadding - narrowLeftPadding)
+            if (narrowPaddingLeft != -1) {
+                leftPaddingMultiplier = (float) (widePaddingLeft - narrowPaddingLeft)
                         / (wideParentWidth - narrowParentWidth);
-                leftPaddingConstant = (int) (narrowLeftPadding - narrowParentWidth
+                leftPaddingConstant = (int) (narrowPaddingLeft - narrowParentWidth
                         * leftPaddingMultiplier);
             }
 
-            if (narrowRightMargin != -1) {
-                rightMarginMultiplier = (float) (wideRightMargin - narrowRightMargin)
+            if (narrowMarginRight != -1) {
+                rightMarginMultiplier = (float) (wideMarginRight - narrowMarginRight)
                         / (wideParentWidth - narrowParentWidth);
-                rightMarginConstant = (int) (narrowRightMargin - narrowParentWidth
+                rightMarginConstant = (int) (narrowMarginRight - narrowParentWidth
                         * rightMarginMultiplier);
             }
 
-            if (narrowRightPadding != -1) {
-                rightPaddingMultiplier = (float) (wideRightPadding - narrowRightPadding)
+            if (narrowPaddingRight != -1) {
+                rightPaddingMultiplier = (float) (widePaddingRight - narrowPaddingRight)
                         / (wideParentWidth - narrowParentWidth);
-                rightPaddingConstant = (int) (narrowRightPadding - narrowParentWidth
+                rightPaddingConstant = (int) (narrowPaddingRight - narrowParentWidth
                         * rightPaddingMultiplier);
             }
         }
@@ -162,7 +162,7 @@ public class InterpolatingLayout extends ViewGroup {
         }
 
         public int resolveLeftMargin(int parentSize) {
-            if (narrowLeftMargin == -1) {
+            if (narrowMarginLeft == -1) {
                 return leftMargin;
             } else {
                 int w = (int) (parentSize * leftMarginMultiplier) + leftMarginConstant;
@@ -176,7 +176,7 @@ public class InterpolatingLayout extends ViewGroup {
         }
 
         public int resolveRightMargin(int parentSize) {
-            if (narrowRightMargin == -1) {
+            if (narrowMarginRight == -1) {
                 return rightMargin;
             } else {
                 int w = (int) (parentSize * rightMarginMultiplier) + rightMarginConstant;
@@ -289,10 +289,10 @@ public class InterpolatingLayout extends ViewGroup {
                 gravity = Gravity.LEFT | Gravity.TOP;
             }
 
-            if (params.narrowLeftPadding != -1 || params.narrowRightPadding != -1) {
-                int leftPadding = params.narrowLeftPadding == -1 ? child.getPaddingLeft()
+            if (params.narrowPaddingLeft != -1 || params.narrowPaddingRight != -1) {
+                int leftPadding = params.narrowPaddingLeft == -1 ? child.getPaddingLeft()
                         : params.resolveLeftPadding(width);
-                int rightPadding = params.narrowRightPadding == -1 ? child.getPaddingRight()
+                int rightPadding = params.narrowPaddingRight == -1 ? child.getPaddingRight()
                         : params.resolveRightPadding(width);
                 child.setPadding(
                         leftPadding, child.getPaddingTop(), rightPadding, child.getPaddingBottom());
@@ -305,8 +305,7 @@ public class InterpolatingLayout extends ViewGroup {
                     right - left - offset - rightMargin,
                     bottom - top - params.bottomMargin);
 
-            int height = Math.max(child.getMeasuredHeight(), mInRect.height());
-            Gravity.apply(gravity, child.getMeasuredWidth(), height,
+            Gravity.apply(gravity, child.getMeasuredWidth(), child.getMeasuredHeight(),
                     mInRect, mOutRect);
             child.layout(mOutRect.left, mOutRect.top, mOutRect.right, mOutRect.bottom);
 

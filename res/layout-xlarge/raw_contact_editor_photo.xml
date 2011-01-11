@@ -24,9 +24,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         ex:layout_wideParentWidth="960dip"
-        ex:layout_wideLeftMargin="96dip"
+        ex:layout_wideMarginLeft="96dip"
         ex:layout_narrowParentWidth="800dip"
-        ex:layout_narrowLeftMargin="15dip">
+        ex:layout_narrowMarginLeft="15dip">
 
         <include
             android:id="@+id/edit_photo"

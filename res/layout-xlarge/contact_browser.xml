@@ -57,9 +57,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             ex:layout_narrowParentWidth="800dip"
-            ex:layout_narrowRightMargin="0dip"
+            ex:layout_narrowMarginRight="0dip"
             ex:layout_wideParentWidth="1280dip"
-            ex:layout_wideRightMargin="48dip"
+            ex:layout_wideMarginRight="48dip"
             ex:clipMarginLeft="0dip"
             ex:clipMarginTop="3dip"
             ex:clipMarginRight="3dip"
@@ -86,11 +86,11 @@
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             ex:layout_narrowParentWidth="800dip"
-            ex:layout_narrowLeftMargin="80dip"
-            ex:layout_narrowRightMargin="80dip"
+            ex:layout_narrowMarginLeft="80dip"
+            ex:layout_narrowMarginRight="80dip"
             ex:layout_wideParentWidth="1280dip"
-            ex:layout_wideLeftMargin="200dip"
-            ex:layout_wideRightMargin="200dip"
+            ex:layout_wideMarginLeft="200dip"
+            ex:layout_wideMarginRight="200dip"
             android:paddingBottom="20dip" />
 
     </com.android.contacts.widget.InterpolatingLayout>
