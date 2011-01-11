@@ -950,9 +950,12 @@ public class ContactDetailFragment extends Fragment implements
             Drawable secondaryActionIcon = null;
             if (entry.secondaryActionIcon != -1) {
                 secondaryActionIcon = resources.getDrawable(entry.secondaryActionIcon);
-            } else if (entry.chatCapability != 0) {
-                secondaryActionIcon = ContactPresenceIconUtil.getChatCapabilityIcon(
-                        mContext, entry.presence, entry.chatCapability);
+            } else if ((entry.chatCapability & Im.CAPABILITY_HAS_CAMERA) != 0) {
+                secondaryActionIcon =
+                        resources.getDrawable(R.drawable.sym_action_videochat_holo_light);
+            } else if ((entry.chatCapability & Im.CAPABILITY_HAS_VOICE) != 0) {
+                secondaryActionIcon =
+                        resources.getDrawable(R.drawable.sym_action_audiochat_holo_light);
             }
 
             if (entry.secondaryIntent != null && secondaryActionIcon != null) {
