@@ -491,6 +491,23 @@ public class VCardService extends Service {
     }
 
     /**
+     * Constructs a Notification telling the vCard import has failed.
+     *
+     * @param context
+     * @param reason The reason why the import has failed. Shown in description field.
+     */
+    /* package */ static Notification constructImportFailureNotification(
+            Context context, String reason) {
+        return new Notification.Builder(context)
+                .setAutoCancel(true)
+                .setSmallIcon(android.R.drawable.stat_notify_error)
+                .setContentTitle(context.getString(R.string.vcard_import_failed))
+                .setContentText(reason)
+                .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(), 0))
+                .getNotification();
+    }
+
+    /**
      * Returns an appropriate file name for vCard export. Returns null when impossible.
      *
      * @return destination path for a vCard file to be exported. null on error and mErrorReason
