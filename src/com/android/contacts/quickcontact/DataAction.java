@@ -141,8 +141,9 @@ public class DataAction implements Action {
 
                 if (Constants.MIME_TYPE_VIDEO_CHAT.equals(mimeType)) {
                     if (!TextUtils.isEmpty(data)) {
-                        mIntent = new Intent(
-                                Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?call"));
+                        mIntent = new Intent(Intent.ACTION_SENDTO);
+                        mIntent.setDataAndType(Uri.parse("xmpp:" + data + "?call"),
+                                Constants.MIME_TYPE_VIDEO_CHAT);
                     }
                 } else if (!TextUtils.isEmpty(host) && !TextUtils.isEmpty(data)) {
                     final String authority = host.toLowerCase();
