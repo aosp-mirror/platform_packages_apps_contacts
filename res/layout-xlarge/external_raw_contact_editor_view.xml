@@ -45,11 +45,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 ex:layout_wideParentWidth="960dip"
-                ex:layout_wideLeftMargin="96dip"
-                ex:layout_wideRightMargin="96dip"
+                ex:layout_wideMarginLeft="96dip"
+                ex:layout_wideMarginRight="96dip"
                 ex:layout_narrowParentWidth="800dip"
-                ex:layout_narrowLeftMargin="15dip"
-                ex:layout_narrowRightMargin="15dip">
+                ex:layout_narrowMarginLeft="15dip"
+                ex:layout_narrowMarginRight="15dip">
 
                 <TextView
                     android:id="@+id/read_only_name"
@@ -100,11 +100,11 @@
                 android:id="@+id/button_edit_externally"
                 android:text="@string/edit_contact"
                 ex:layout_wideParentWidth="960dip"
-                ex:layout_wideLeftMargin="240dip"
-                ex:layout_wideRightMargin="190dip"
+                ex:layout_wideMarginLeft="240dip"
+                ex:layout_wideMarginRight="190dip"
                 ex:layout_narrowParentWidth="800dip"
-                ex:layout_narrowLeftMargin="160dip"
-                ex:layout_narrowRightMargin="102dip"
+                ex:layout_narrowMarginLeft="160dip"
+                ex:layout_narrowMarginRight="102dip"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
             />
