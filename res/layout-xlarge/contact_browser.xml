@@ -64,8 +64,8 @@
             ex:clipMarginTop="3dip"
             ex:clipMarginRight="3dip"
             ex:clipMarginBottom="9dip"
-            ex:enterAnimation="@android:anim/animator_fade_in"
-            ex:exitAnimation="@android:anim/animator_fade_out"
+            ex:enterAnimation="@android:animator/fade_in"
+            ex:exitAnimation="@android:animator/fade_out"
             ex:animationDuration="200">
             <FrameLayout
                 android:id="@+id/detail_container"
