@@ -16,6 +16,7 @@
 
 package com.android.contacts.list;
 
+import com.android.contacts.ContactsActivity;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
@@ -31,7 +32,6 @@ import com.google.android.collect.Lists;
 import android.accounts.Account;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ExpandableListActivity;
 import android.app.ProgressDialog;
 import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
@@ -75,8 +75,10 @@ import java.util.Iterator;
  * Shows a list of all available {@link Groups} available, letting the user
  * select which ones they want to be visible.
  */
-public final class CustomContactListFilterActivity extends ExpandableListActivity implements
-        AdapterView.OnItemClickListener, View.OnClickListener {
+public class CustomContactListFilterActivity extends ContactsActivity
+        implements AdapterView.OnItemClickListener, View.OnClickListener,
+        ExpandableListView.OnChildClickListener
+{
 
     private static final String TAG = "CustomContactListFilterActivity";
 
@@ -95,7 +97,8 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
         super.onCreate(icicle);
         setContentView(R.layout.contact_list_filter_custom);
 
-        mList = getExpandableListView();
+        mList = (ExpandableListView) findViewById(com.android.internal.R.id.list);
+        mList.setOnChildClickListener(this);
         mList.setHeaderDividersEnabled(true);
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         mAdapter = new DisplayAdapter(this);
@@ -141,12 +144,12 @@ public final class CustomContactListFilterActivity extends ExpandableListActivit
 
         // List adapter needs to be reset, because header views cannot be added
         // to a list with an existing adapter.
-        setListAdapter(null);
+        mList.setAdapter((ExpandableListAdapter)null);
 
         mList.addHeaderView(mHeaderPhones, null, true);
         mList.addHeaderView(mHeaderSeparator, null, false);
 
-        setListAdapter(mAdapter);
+        mList.setAdapter(mAdapter);
 
         // Start background query to find account details
         new QueryGroupsTask(this).execute();
