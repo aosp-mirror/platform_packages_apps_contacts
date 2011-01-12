@@ -28,16 +28,19 @@
             android:id="@+id/small_badge1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="?android:attr/quickContactBadgeStyleWindowSmall"
             android:layout_marginLeft="32dip" />
         <QuickContactBadge
             android:id="@+id/medium_badge1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="?android:attr/quickContactBadgeStyleWindowMedium"
             android:layout_marginLeft="64dip" />
         <QuickContactBadge
             android:id="@+id/large_badge1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="?android:attr/quickContactBadgeStyleWindowLarge"
             android:layout_marginLeft="64dip" />
     </LinearLayout>
     <View
@@ -73,16 +76,19 @@
             android:id="@+id/small_badge2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="?android:attr/quickContactBadgeStyleSmallWindowSmall"
             android:layout_marginLeft="32dip" />
         <QuickContactBadge
             android:id="@+id/medium_badge2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="?android:attr/quickContactBadgeStyleSmallWindowMedium"
             android:layout_marginLeft="64dip" />
         <QuickContactBadge
             android:id="@+id/large_badge2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="?android:attr/quickContactBadgeStyleSmallWindowLarge"
             android:layout_marginLeft="64dip" />
     </LinearLayout>
 </LinearLayout>
