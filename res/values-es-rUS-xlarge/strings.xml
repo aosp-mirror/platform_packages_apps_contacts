@@ -88,6 +88,10 @@
     <!-- XL -->
     <string name="delete_group_dialog_message" msgid="6739622355328278915">"¿Estás seguro de que deseas eliminar el grupo \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Los contactos no se eliminarán)."</string>
     <!-- XL -->
+    <string name="vcard_import_will_start_message_with_default_name" msgid="1059778205923280983">"El archivo se importará en unos instantes."</string>
+    <!-- XL -->
+    <string name="vcard_unknown_filename" msgid="3712595870046783485">"contacto"</string>
+    <!-- XL -->
     <string name="cancel_confirmation_dialog_title" msgid="4188526687652041851">"Descartar cambios"</string>
     <!-- XL -->
     <string name="cancel_confirmation_dialog_message" msgid="3455412448990434834">"¿Deseas descartar las modificaciones?"</string>
