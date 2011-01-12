@@ -25,7 +25,6 @@ import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.QuickContact;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -64,20 +63,6 @@ public class QuickContactTestsActivity extends Activity {
         mMediumBadge2 = (QuickContactBadge) findViewById(R.id.medium_badge2);
         mLargeBadge1 = (QuickContactBadge) findViewById(R.id.large_badge1);
         mLargeBadge2 = (QuickContactBadge) findViewById(R.id.large_badge2);
-
-        mSmallBadge1.setMode(QuickContact.MODE_SMALL);
-        mSmallBadge2.setMode(QuickContact.MODE_SMALL);
-        mMediumBadge1.setMode(QuickContact.MODE_MEDIUM);
-        mMediumBadge2.setMode(QuickContact.MODE_MEDIUM);
-        mLargeBadge1.setMode(QuickContact.MODE_LARGE);
-        mLargeBadge2.setMode(QuickContact.MODE_LARGE);
-
-        mSmallBadge1.setImageResource(R.drawable.ic_contact_picture);
-        mSmallBadge2.setImageResource(R.drawable.ic_contact_picture);
-        mMediumBadge1.setImageResource(R.drawable.ic_contact_picture);
-        mMediumBadge2.setImageResource(R.drawable.ic_contact_picture);
-        mLargeBadge1.setImageResource(R.drawable.ic_contact_picture);
-        mLargeBadge2.setImageResource(R.drawable.ic_contact_picture);
 
         mPickContact.setOnClickListener(new OnClickListener() {
             @Override

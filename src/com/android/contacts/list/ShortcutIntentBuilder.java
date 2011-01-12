@@ -30,7 +30,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
@@ -232,7 +231,7 @@ public class ShortcutIntentBuilder {
                 (String[]) null);
         shortcutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-        final Bitmap icon = scaleToAppIconSize(framePhoto(bitmap));
+        final Bitmap icon = scaleToAppIconSize(bitmap);
 
         Intent intent = new Intent();
         intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon);
@@ -268,33 +267,6 @@ public class ShortcutIntentBuilder {
         intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, displayName);
 
         mListener.onShortcutIntentCreated(uri, intent);
-    }
-
-    private Bitmap framePhoto(Bitmap photo) {
-        final Resources r = mContext.getResources();
-        final Drawable frame = r.getDrawable(com.android.internal.R.drawable.quickcontact_badge);
-
-        final int width = r.getDimensionPixelSize(R.dimen.contact_shortcut_frame_width);
-        final int height = r.getDimensionPixelSize(R.dimen.contact_shortcut_frame_height);
-
-        frame.setBounds(0, 0, width, height);
-
-        final Rect padding = new Rect();
-        frame.getPadding(padding);
-
-        final Rect source = new Rect(0, 0, photo.getWidth(), photo.getHeight());
-        final Rect destination = new Rect(padding.left, padding.top,
-                width - padding.right, height - padding.bottom);
-
-        final int d = Math.max(width, height);
-        final Bitmap b = Bitmap.createBitmap(d, d, Bitmap.Config.ARGB_8888);
-        final Canvas c = new Canvas(b);
-
-        c.translate((d - width) / 2.0f, (d - height) / 2.0f);
-        frame.draw(c);
-        c.drawBitmap(photo, source, destination, new Paint(Paint.FILTER_BITMAP_FLAG));
-
-        return b;
     }
 
     private Bitmap scaleToAppIconSize(Bitmap photo) {
