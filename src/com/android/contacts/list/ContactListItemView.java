@@ -33,6 +33,7 @@ import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -866,10 +867,12 @@ public class ContactListItemView extends ViewGroup
             int summarySnippetData1ColumnIndex, int summarySnippetData4ColumnIndex) {
         String snippet = null;
         String snippetMimeType = cursor.getString(summarySnippetMimetypeColumnIndex);
-        if (Email.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
-            String email = cursor.getString(summarySnippetData1ColumnIndex);
-            if (!TextUtils.isEmpty(email)) {
-                snippet = email;
+        if (Email.CONTENT_ITEM_TYPE.equals(snippetMimeType)
+                || Nickname.CONTENT_ITEM_TYPE.equals(snippetMimeType)
+                || Phone.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
+            String value = cursor.getString(summarySnippetData1ColumnIndex);
+            if (!TextUtils.isEmpty(value)) {
+                snippet = value;
             }
         } else if (Organization.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
             String company = cursor.getString(summarySnippetData1ColumnIndex);
@@ -882,11 +885,6 @@ public class ContactListItemView extends ViewGroup
                 }
             } else if (!TextUtils.isEmpty(title)) {
                 snippet = title;
-            }
-        } else if (Nickname.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
-            String nickname = cursor.getString(summarySnippetData1ColumnIndex);
-            if (!TextUtils.isEmpty(nickname)) {
-                snippet = nickname;
             }
         }
 
