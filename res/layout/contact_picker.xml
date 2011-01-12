@@ -14,21 +14,21 @@
      limitations under the License.
 -->
 
-<view
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    class="com.android.contacts.widget.FullHeightLinearLayout"
     style="@style/ContactPickerLayout"
-    android:paddingLeft="20dip"
-    android:paddingRight="20dip"
-    android:orientation="vertical">
+    android:paddingLeft="32dip"
+    android:paddingRight="32dip"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
     <view
         class="android.widget.SearchView"
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
         android:layout_marginBottom="10dip"
-        android:layout_marginRight="5dip"
         android:iconifiedByDefault="false" />
     <FrameLayout
         android:layout_width="match_parent"
@@ -48,4 +48,4 @@
             android:layout_height="wrap_content"
             android:text="@android:string/cancel"/>
     </LinearLayout>
-</view>
+</LinearLayout>
