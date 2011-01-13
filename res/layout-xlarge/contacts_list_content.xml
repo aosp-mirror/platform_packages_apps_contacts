@@ -29,7 +29,6 @@
         android:layout_height="0dip"
         android:fastScrollEnabled="true"
         android:layout_weight="1"
-        android:scrollingCache="false"
     />
 
     <ViewStub android:id="@+id/footer_stub"
