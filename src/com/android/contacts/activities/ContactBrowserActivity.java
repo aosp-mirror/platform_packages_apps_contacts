@@ -34,7 +34,6 @@ import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.ContactsUnavailableFragment;
 import com.android.contacts.list.CustomContactListFilterActivity;
-import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.list.DirectoryListLoader;
 import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactsUnavailableActionListener;
@@ -79,7 +78,7 @@ import java.util.ArrayList;
 
 /**
  * Displays a list to browse contacts. For xlarge screens, this also displays a detail-pane on
- * the right
+ * the right.
  */
 public class ContactBrowserActivity extends ContactsActivity
         implements View.OnCreateContextMenuListener, ActionBarAdapter.Listener,
@@ -144,13 +143,14 @@ public class ContactBrowserActivity extends ContactsActivity
         if (fragment instanceof ContactBrowseListFragment) {
             mListFragment = (ContactBrowseListFragment)fragment;
             mListFragment.setOnContactListActionListener(new ContactBrowserActionListener());
-            if (!mHasActionBar) {
+            if (!getWindow().hasFeature(Window.FEATURE_ACTION_BAR)) {
                 mListFragment.setContextMenuAdapter(
                         new ContactBrowseListContextMenuAdapter(mListFragment));
             }
         } else if (fragment instanceof ContactDetailFragment) {
             mDetailFragment = (ContactDetailFragment)fragment;
             mDetailFragment.setListener(mDetailFragmentListener);
+            mContactContentDisplayed = true;
         } else if (fragment instanceof ContactsUnavailableFragment) {
             mContactsUnavailableFragment = (ContactsUnavailableFragment)fragment;
             mContactsUnavailableFragment.setProviderStatusLoader(mProviderStatusLoader);
@@ -201,7 +201,6 @@ public class ContactBrowserActivity extends ContactsActivity
 
         if (createContentView) {
             setContentView(R.layout.contact_browser);
-            mContactContentDisplayed = findViewById(R.id.detail_container) != null;
         }
 
         if (mRequest.getActionCode() == ContactsRequest.ACTION_VIEW_CONTACT
@@ -299,31 +298,14 @@ public class ContactBrowserActivity extends ContactsActivity
                 mSearchMode = false;
             }
 
+            mListFragment.setContactsRequest(mRequest);
+            configureListFragmentForRequest();
+
         } else if (mHasActionBar) {
             mSearchMode = mActionBarAdapter.isSearchMode();
         }
 
-        if (mListFragment == null) {
-            mListFragment = new DefaultContactBrowseListFragment();
-            mListFragment.setContactsRequest(mRequest);
-
-            getFragmentManager().openTransaction()
-                    .replace(R.id.list_container, mListFragment)
-                    .commit();
-        }
-
-        if (fromRequest) {
-            configureListFragmentForRequest();
-        }
-
         configureListFragment();
-
-        if (mContactContentDisplayed && mDetailFragment == null) {
-            mDetailFragment = new ContactDetailFragment();
-            getFragmentManager().openTransaction()
-                    .replace(R.id.detail_container, mDetailFragment)
-                    .commit();
-        }
 
         invalidateOptionsMenu();
     }
@@ -732,7 +714,7 @@ public class ContactBrowserActivity extends ContactsActivity
     }
 
     public boolean isCustomFilterChangeable() {
-        return mRequest.getActionCode() == ContactsRequest.ACTION_DEFAULT;
+        return mRequest != null && mRequest.getActionCode() == ContactsRequest.ACTION_DEFAULT;
     }
 
     @Override
