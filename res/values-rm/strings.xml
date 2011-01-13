@@ -230,7 +230,10 @@
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Errur I/O"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Memoria insuffizienta (probablamain è la datoteca memia gronda)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"L\'analisa da las datas vCard n\'è betg reussida per motiv nunenconuschent."</string>
-    <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"\"Durant l\'analisa da las datas vCard è cumparida ina errur. Schebain che la vCard para dad esser d\'in format valid, na la sustegna l\'implementaziun actuala betg.\""</string>
+    <!-- no translation found for fail_reason_not_supported (294499264620201243) -->
+    <skip />
+    <!-- no translation found for vcard_import_failed (7718330063493653085) -->
+    <skip />
     <!-- no translation found for import_failure_no_vcard_file (8809370398968655782) -->
     <skip />
     <!-- no translation found for import_failure_no_vcard_file (1730986357514922756) -->
@@ -251,11 +254,15 @@
     <skip />
     <!-- no translation found for vcard_import_will_start_message (2804911199145873396) -->
     <skip />
+    <!-- no translation found for vcard_import_will_start_message_with_default_name (1022969530654129470) -->
+    <skip />
     <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
     <skip />
     <!-- no translation found for vcard_export_will_start_message (2210241345252081463) -->
     <skip />
     <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
+    <skip />
+    <!-- no translation found for vcard_unknown_filename (7171709890959915954) -->
     <skip />
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Confermar l\'export"</string>

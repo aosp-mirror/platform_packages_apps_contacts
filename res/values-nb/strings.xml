@@ -158,12 +158,12 @@
     <string name="simContacts_title" msgid="27341688347689769">"Kontakter på SIM-kort"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Du har ingen kontakter å vise. (Hvis du nettopp har lagt til en konto, kan det ta noen minutter å synkronisere kontaktene.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Du har ingen kontakter å vise."</string>
-    <!-- syntax error in translation for noContactsHelpText (6450346791169710787) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:292 in java.io.StringReader@593d93f4)  -->
-    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:293 in java.io.StringReader@59bca5f1)  -->
+    <!-- syntax error in translation for noContactsHelpText (6450346791169710787) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:292 in java.io.StringReader@4d20a47e)  -->
+    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:293 in java.io.StringReader@1a0f73c1)  -->
     <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Du har ingen kontakter å vise. (Hvis du nylig la til en konto, kan det ta noen minutter å synkronisere kontaktene.)"\n\n"Slik legger du til kontakter: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>", og trykk deretter på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer"</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til nettbrettet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativer"</b></font>" for å endre hvilke kontakter som vises"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt fra grunnen av"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Eksporter"</b></font>" for å importere kontakter fra SIM- eller SD-kort"\n</li></string>
     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Du har ingen kontakter å vise. (Hvis du nylig la til en konto, kan det ta noen minutter å synkronisere kontaktene.)"\n\n"Slik legger du til kontakter: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" og trykk deretter på: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer "</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativer"</b></font>" for å endre hvilke kontakter som vises"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importér/Eksportér"</b></font>" for å importere kontakter fra SIM- eller SD-kort"\n</li></string>
-    <!-- syntax error in translation for noContactsNoSimHelpText (6031363021287849874) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:297 in java.io.StringReader@70329f3d)  -->
-    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:297 in java.io.StringReader@b749757)  -->
+    <!-- syntax error in translation for noContactsNoSimHelpText (6031363021287849874) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:297 in java.io.StringReader@6c789144)  -->
+    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:297 in java.io.StringReader@5f893efe)  -->
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Du har ingen kontakter å vise. (Hvis du nylig la til en konto, kan det ta noen minutter å synkronisere kontaktene.)"\n\n"Slik legger du til kontakter: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>", og trykk deretter på: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer"</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til nettbrettet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativer"</b></font>" for å endre hvilke kontakter som vises"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt fra grunnen av"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/eksporter"</b></font>" for å importere kontakter fra SD-kortet"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Du har ingen kontakter å vise. (Hvis du nylig la til en konto, kan det ta noen minutter å synkronisere kontaktene.)"\n\n"Slik legger du til kontakter: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" og trykk deretter på: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer "</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativer"</b></font>" for å endre hvilke kontakter som vises"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importér/eksportér"</b></font>" for å importere kontakter fra SD-kortet"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Du har ingen favoritter."\n\n"Slik legger du til en kontakt i favorittlisten:"\n\n" "<li>"Trykk på fanen "<b>"Kontakter"</b>" "\n</li>" "\n<li>"Trykk på kontakten du vil legge til i favoritter"\n</li>" "\n<li>"Trykk på stjernen ved siden av kontaktnavnet"\n</li></string>
@@ -228,7 +228,10 @@
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Inn/ut-feil (årsak: «FAIL_REASON»)"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Ikke tilstrekkelig minne (filen kan være for stor)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Kan ikke analysere VCard av uventet årsak"</string>
-    <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"Kan ikke analysere VCard selv om det ser ut til å være i riktig format, fordi den aktuelle implementeringen ikke støtter det."</string>
+    <!-- no translation found for fail_reason_not_supported (294499264620201243) -->
+    <skip />
+    <!-- no translation found for vcard_import_failed (7718330063493653085) -->
+    <skip />
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"Finner ingen vCard-fil i USB-lagring"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Fant ingen vCard-fil på SD-kortet"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Kan ikke hente inn metainformasjon for de(n) aktuelle vCard-filen(e)."</string>
@@ -244,9 +247,11 @@
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Import av vCard-filen <xliff:g id="FILENAME">%s</xliff:g> er fullført"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Import av <xliff:g id="FILENAME">%s</xliff:g> ble avbrutt"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> vil importeres snart."</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Filen importeres snart."</string>
     <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"Forespørselen om vCard-import er avslått. Prøv på nytt senere."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> vil eksporteres snart."</string>
     <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"Forespørselen om vCard-eksport er avslått. Prøv på nytt senere."</string>
+    <string name="vcard_unknown_filename" msgid="7171709890959915954">"kontakt"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Eksportbekreftelse"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Vil du eksportere kontaktlisten din til «<xliff:g id="VCARD_FILENAME">%s</xliff:g>»?"</string>
@@ -474,10 +479,7 @@
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Skriv inn kontaktnavn før du registrerer deg med en annen kontakt."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Sammenslått kontakt"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Tekst kopiert"</string>
-    <!-- no translation found for cancel_confirmation_dialog_title (3950463632415908534) -->
-    <skip />
-    <!-- no translation found for cancel_confirmation_dialog_message (7021968394611740251) -->
-    <skip />
-    <!-- no translation found for discard (1234315037371251414) -->
-    <skip />
+    <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Forkast endringer"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Vil du forkaste endringene?"</string>
+    <string name="discard" msgid="1234315037371251414">"Forkast"</string>
 </resources>
