@@ -14,8 +14,9 @@
      limitations under the License.
 -->
 
-<LinearLayout
+<view
     xmlns:android="http://schemas.android.com/apk/res/android"
+    class="com.android.contacts.widget.FullHeightLinearLayout"
     style="@style/ContactPickerLayout"
     android:paddingLeft="32dip"
     android:paddingRight="32dip"
@@ -48,4 +49,4 @@
             android:layout_height="wrap_content"
             android:text="@android:string/cancel"/>
     </LinearLayout>
-</LinearLayout>
+</view>
