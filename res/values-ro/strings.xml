@@ -228,7 +228,10 @@
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Eroare I/E"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Memoria este insuficientă (probabil fişierul este prea mare)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Analiza vCard a eşuat dintr-un motiv necunoscut"</string>
-    <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"Analiza vCard a eşuat, deşi pare a fi în format valid. Implementarea actuală nu acceptă acest format."</string>
+    <!-- no translation found for fail_reason_not_supported (294499264620201243) -->
+    <skip />
+    <!-- no translation found for vcard_import_failed (7718330063493653085) -->
+    <skip />
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"Niciun fişier vCard găsit în stocarea USB"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Niciun fişier vCard găsit pe cardul SD"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Colectarea metainformaţiilor pentru fişierele vCard indicate a eşuat."</string>
@@ -244,9 +247,11 @@
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"S-a finalizat importul vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Importul <xliff:g id="FILENAME">%s</xliff:g> a fost anulat"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> va fi importat în curând."</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Fişierul va fi importat în scurt timp."</string>
     <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"Solicitarea de importare a fişierului vCard este respinsă. Încercaţi din nou mai târziu."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> va fi exportat în curând."</string>
     <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"Solicitarea de exportare a fişierului vCard este respinsă. Încercaţi din nou mai târziu."</string>
+    <string name="vcard_unknown_filename" msgid="7171709890959915954">"contact"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Confirmaţi exportul"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Sigur doriţi să exportaţi lista de persoane din agendă către „<xliff:g id="VCARD_FILENAME">%s</xliff:g>”?"</string>
@@ -477,10 +482,7 @@
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Introduceţi un nume pentru intrarea din agendă înainte de îmbinarea cu altă intrare."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Intrare în agendă îmbinată"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Text copiat"</string>
-    <!-- no translation found for cancel_confirmation_dialog_title (3950463632415908534) -->
-    <skip />
-    <!-- no translation found for cancel_confirmation_dialog_message (7021968394611740251) -->
-    <skip />
-    <!-- no translation found for discard (1234315037371251414) -->
-    <skip />
+    <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Renunţaţi la modificări"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Doriţi să renunţaţi la modificări?"</string>
+    <string name="discard" msgid="1234315037371251414">"Renunţaţi"</string>
 </resources>

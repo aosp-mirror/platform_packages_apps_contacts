@@ -228,7 +228,10 @@
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Chyba V/V"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Není k dispozici dostatek paměti (soubor může být příliš velký)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Analýza karty vCard se z neznámého důvodu nezdařila."</string>
-    <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"Analýza karty vCard se nezdařila. Přestože se zřejmě jedná o správný formát, aktuální implementace jej nepodporuje."</string>
+    <!-- no translation found for fail_reason_not_supported (294499264620201243) -->
+    <skip />
+    <!-- no translation found for vcard_import_failed (7718330063493653085) -->
+    <skip />
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"V úložišti USB nebyl nalezen žádný soubor vCard"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Na kartě SD nebyl nalezen žádný soubor vCard"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Shromáždění metainformací zadaných souborů vCard se nezdařilo."</string>
@@ -244,9 +247,11 @@
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Import souboru vCard byl dokončen <xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Import souboru <xliff:g id="FILENAME">%s</xliff:g> byl zrušen."</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"Soubor <xliff:g id="FILENAME">%s</xliff:g> bude za okamžik importován."</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Soubor bude zakrátko importován."</string>
     <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"Požadavek na import vizitek vCard byl zamítnut. Zkuste to prosím později."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"Soubor <xliff:g id="FILENAME">%s</xliff:g> bude za okamžik exportován."</string>
     <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"Požadavek na export vizitek vCard byl zamítnut. Zkuste to prosím později."</string>
+    <string name="vcard_unknown_filename" msgid="7171709890959915954">"kontakt"</string>
     <string name="percentage" msgid="34897865327092209">"%s %%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Potvrdit export"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Opravdu chcete exportovat seznam kontaktů do souboru <xliff:g id="VCARD_FILENAME">%s</xliff:g>?"</string>
@@ -474,10 +479,7 @@
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Před spojením s jiným kontaktem je třeba zadat jméno kontaktu."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Připojený kontakt"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Text zkopírován"</string>
-    <!-- no translation found for cancel_confirmation_dialog_title (3950463632415908534) -->
-    <skip />
-    <!-- no translation found for cancel_confirmation_dialog_message (7021968394611740251) -->
-    <skip />
-    <!-- no translation found for discard (1234315037371251414) -->
-    <skip />
+    <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Zrušit změny"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Opravdu chcete změny zrušit?"</string>
+    <string name="discard" msgid="1234315037371251414">"Zrušit"</string>
 </resources>

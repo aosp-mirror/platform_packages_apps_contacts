@@ -228,7 +228,10 @@
     <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O 错误"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"存储器空间不足（文件可能过大）"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"由于意外原因而无法解析 vCard"</string>
-    <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"虽然 vCard 似乎使用了有效的格式，但系统无法对其进行解析，因为当前的实现方案不支持该格式。"</string>
+    <!-- no translation found for fail_reason_not_supported (294499264620201243) -->
+    <skip />
+    <!-- no translation found for vcard_import_failed (7718330063493653085) -->
+    <skip />
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"未在 USB 存储设备中找到 vCard 文件"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"未在 SD 卡上找到 vCard 文件"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"无法收集指定的 vCard 文件的元信息。"</string>
@@ -244,9 +247,11 @@
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"导入 vCard <xliff:g id="FILENAME">%s</xliff:g> 已完成"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"已取消导入 <xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> 将在稍后导入。"</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"系统稍后就会导入该文件。"</string>
     <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"vCard 导入请求已遭到拒绝。请稍后再试。"</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> 将在稍后导出。"</string>
     <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"vCard 导出请求已遭到拒绝。请稍后再试。"</string>
+    <string name="vcard_unknown_filename" msgid="7171709890959915954">"联系人"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"确认导出"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"确定要将您的联系人列表导出到“<xliff:g id="VCARD_FILENAME">%s</xliff:g>”中吗？"</string>
@@ -474,10 +479,7 @@
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"请先输入联系人姓名，然后再与其他联系人合并。"</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"已合并的联系人"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"文本已复制"</string>
-    <!-- no translation found for cancel_confirmation_dialog_title (3950463632415908534) -->
-    <skip />
-    <!-- no translation found for cancel_confirmation_dialog_message (7021968394611740251) -->
-    <skip />
-    <!-- no translation found for discard (1234315037371251414) -->
-    <skip />
+    <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"舍弃更改"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"要舍弃更改吗？"</string>
+    <string name="discard" msgid="1234315037371251414">"舍弃"</string>
 </resources>
