@@ -24,11 +24,8 @@
         <item>LIST_ALL_CONTACTS_ACTION</item>
         <item>LIST_CONTACTS_WITH_PHONES_ACTION</item>
         <item>LIST_STARRED_ACTION</item>
-        <item>LIST_STARRED_ACTION (filter)</item>
         <item>LIST_FREQUENT_ACTION</item>
-        <item>LIST_FREQUENT_ACTION (filter)</item>
         <item>LIST_STREQUENT_ACTION</item>
-        <item>LIST_STREQUENT_ACTION (filter)</item>
         <item>ACTION_PICK: contact</item>
         <item>ACTION_PICK: contact (legacy)</item>
         <item>ACTION_PICK: phone</item>
@@ -36,20 +33,13 @@
         <item>ACTION_PICK: postal</item>
         <item>ACTION_PICK: postal (legacy)</item>
         <item>ACTION_CREATE_SHORTCUT: contact</item>
-        <item>ACTION_CREATE_SHORTCUT: contact (filter)</item>
         <item>ACTION_CREATE_SHORTCUT: dial</item>
-        <item>ACTION_CREATE_SHORTCUT: dial (filter)</item>
         <item>ACTION_CREATE_SHORTCUT: message</item>
-        <item>ACTION_CREATE_SHORTCUT: message (filter)</item>
         <item>ACTION_GET_CONTENT: contact</item>
-        <item>ACTION_GET_CONTENT: contact (filter)</item>
         <item>ACTION_GET_CONTENT: contact (legacy)</item>
-        <item>ACTION_GET_CONTENT: contact (filter, legacy)</item>
         <item>ACTION_GET_CONTENT: phone</item>
-        <item>ACTION_GET_CONTENT: phone (filter)</item>
         <item>ACTION_GET_CONTENT: phone (legacy)</item>
         <item>ACTION_GET_CONTENT: postal</item>
-        <item>ACTION_GET_CONTENT: postal (filter)</item>
         <item>ACTION_GET_CONTENT: postal (legacy)</item>
         <item>ACTION_INSERT_OR_EDIT</item>
         <item>ACTION_SEARCH (call button)</item>

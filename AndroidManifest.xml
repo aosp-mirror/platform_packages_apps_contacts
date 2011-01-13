@@ -176,6 +176,8 @@
             android:label="@string/contactsList"
             android:icon="@mipmap/ic_launcher_contacts"
             android:theme="@style/ContactBrowserTheme"
+            android:clearTaskOnLaunch="true"
+            android:launchMode="singleTop"
         >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -198,8 +200,9 @@
         <!-- The actual list of contacts -->
         <activity android:name=".activities.ContactBrowserActivity"
             android:label="@string/contactsList"
-            android:clearTaskOnLaunch="true"
             android:theme="@style/ContactBrowserTheme"
+            android:launchMode="singleTop"
+            android:clearTaskOnLaunch="true"
         >
             <intent-filter>
                 <action android:name="com.android.contacts.action.LIST_DEFAULT" />
@@ -261,8 +264,9 @@
         
         <activity android:name=".activities.ContactSelectionActivity"
             android:label="@string/contactsList"
-            android:clearTaskOnLaunch="true"
             android:theme="@style/ContactPickerTheme"
+            android:launchMode="singleTop"
+            android:clearTaskOnLaunch="true"
         >
             <intent-filter>
                 <action android:name="android.intent.action.INSERT_OR_EDIT" />

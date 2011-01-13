@@ -51,10 +51,8 @@ public abstract class ContactBrowseListFragment extends
 
     private static final String KEY_SELECTED_URI = "selectedUri";
     private static final String KEY_SELECTION_VERIFIED = "selectionVerified";
-    private static final String KEY_FILTER_ENABLED = "filterEnabled";
     private static final String KEY_FILTER = "filter";
 
-    private static final String KEY_PERSISTENT_SELECTION_ENABLED = "persistentSelectionEnabled";
     private static final String PERSISTENT_SELECTION_PREFIX = "defaultContactBrowserSelection";
 
     /**
@@ -88,9 +86,7 @@ public abstract class ContactBrowseListFragment extends
     private long mSelectedContactId;
     private boolean mSelectionVerified;
     private boolean mRefreshingContactUri;
-    private boolean mFilterEnabled;
     private ContactListFilter mFilter;
-    private boolean mPersistentSelectionEnabled;
     private String mPersistentSelectionPrefix = PERSISTENT_SELECTION_PREFIX;
 
     protected OnContactBrowserActionListener mListener;
@@ -164,8 +160,14 @@ public abstract class ContactBrowseListFragment extends
         restoreSelectedUri(false);
     }
 
-    public void setPersistentSelectionEnabled(boolean flag) {
-        this.mPersistentSelectionEnabled = flag;
+    @Override
+    public void setSearchMode(boolean flag) {
+        if (isSearchMode() != flag) {
+            if (!flag) {
+                restoreSelectedUri(true);
+            }
+            super.setSearchMode(flag);
+        }
     }
 
     public void setFilter(ContactListFilter filter) {
@@ -196,14 +198,6 @@ public abstract class ContactBrowseListFragment extends
         return mFilter;
     }
 
-    public boolean isFilterEnabled() {
-        return mFilterEnabled;
-    }
-
-    public void setFilterEnabled(boolean flag) {
-        this.mFilterEnabled = flag;
-    }
-
     @Override
     public void restoreSavedState(Bundle savedState) {
         super.restoreSavedState(savedState);
@@ -212,8 +206,6 @@ public abstract class ContactBrowseListFragment extends
             return;
         }
 
-        mPersistentSelectionEnabled = savedState.getBoolean(KEY_PERSISTENT_SELECTION_ENABLED);
-        mFilterEnabled = savedState.getBoolean(KEY_FILTER_ENABLED);
         mFilter = savedState.getParcelable(KEY_FILTER);
         mSelectedContactUri = savedState.getParcelable(KEY_SELECTED_URI);
         mSelectionVerified = savedState.getBoolean(KEY_SELECTION_VERIFIED);
@@ -223,8 +215,6 @@ public abstract class ContactBrowseListFragment extends
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean(KEY_PERSISTENT_SELECTION_ENABLED, mPersistentSelectionEnabled);
-        outState.putBoolean(KEY_FILTER_ENABLED, mFilterEnabled);
         outState.putParcelable(KEY_FILTER, mFilter);
         outState.putParcelable(KEY_SELECTED_URI, mSelectedContactUri);
         outState.putBoolean(KEY_SELECTION_VERIFIED, mSelectionVerified);
@@ -346,7 +336,8 @@ public abstract class ContactBrowseListFragment extends
             if (mSelectedContactUri.toString().startsWith(Contacts.CONTENT_LOOKUP_URI.toString())) {
                 List<String> pathSegments = mSelectedContactUri.getPathSegments();
                 mSelectedContactLookupKey = Uri.encode(pathSegments.get(2));
-            } else if (mSelectedContactUri.toString().startsWith(Contacts.CONTENT_URI.toString())) {
+            } else if (mSelectedContactUri.toString().startsWith(Contacts.CONTENT_URI.toString()) &&
+                    mSelectedContactUri.getPathSegments().size() >= 2) {
                 mSelectedContactLookupKey = null;
                 mSelectedContactId = ContentUris.parseId(mSelectedContactUri);
             } else {
@@ -371,7 +362,7 @@ public abstract class ContactBrowseListFragment extends
             return;
         }
 
-        if (mFilterEnabled && mFilter != null) {
+        if (!isSearchMode() && mFilter != null) {
             adapter.setFilter(mFilter);
             if (mSelectionRequired
                     || mFilter.filterType == ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
@@ -578,26 +569,22 @@ public abstract class ContactBrowseListFragment extends
     }
 
     private void saveSelectedUri(Uri contactUri) {
-        if (mFilterEnabled) {
-            ContactListFilter.storeToPreferences(mPrefs, mFilter);
-        }
-
-        if (mPersistentSelectionEnabled) {
-            Editor editor = mPrefs.edit();
-            if (contactUri == null) {
-                editor.remove(getPersistentSelectionKey());
-            } else {
-                editor.putString(getPersistentSelectionKey(), contactUri.toString());
-            }
-            editor.apply();
-        }
-    }
-
-    private void restoreSelectedUri(boolean willReloadData) {
-        if (!mPersistentSelectionEnabled) {
+        if (isSearchMode()) {
             return;
         }
 
+        ContactListFilter.storeToPreferences(mPrefs, mFilter);
+
+        Editor editor = mPrefs.edit();
+        if (contactUri == null) {
+            editor.remove(getPersistentSelectionKey());
+        } else {
+            editor.putString(getPersistentSelectionKey(), contactUri.toString());
+        }
+        editor.apply();
+    }
+
+    private void restoreSelectedUri(boolean willReloadData) {
         // The meaning of mSelectionRequired is that we need to show some
         // selection other than the previous selection saved in shared preferences
         if (mSelectionRequired) {
@@ -613,17 +600,13 @@ public abstract class ContactBrowseListFragment extends
     }
 
     private void saveFilter() {
-        if (mFilterEnabled) {
-            ContactListFilter.storeToPreferences(mPrefs, mFilter);
-        }
+        ContactListFilter.storeToPreferences(mPrefs, mFilter);
     }
 
     private void restoreFilter() {
-        if (mFilterEnabled) {
-            mFilter = ContactListFilter.restoreFromPreferences(mPrefs);
-            if (mFilter == null) {
-                mFilter = new ContactListFilter(ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
-            }
+        mFilter = ContactListFilter.restoreFromPreferences(mPrefs);
+        if (mFilter == null) {
+            mFilter = new ContactListFilter(ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
         }
     }
 
