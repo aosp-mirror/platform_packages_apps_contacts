@@ -33,8 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:fastScrollEnabled="true"
-        android:layout_weight="1"
-        android:scrollingCache="false" />
+        android:layout_weight="1"/>
 
     <ViewStub
         android:id="@+id/footer_stub"
