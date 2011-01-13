@@ -119,21 +119,9 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
-        if (v != mSearchView) {
-            return;
+        if (v == mSearchView && hasFocus) {
+            setSearchMode(true);
         }
-
-        // When we switch search mode on/off, the activity may need to change
-        // fragments, which may lead to focus temporarily leaving the search
-        // view or coming back to it, which could lead to an infinite loop.
-        // Postponing the change breaks that loop.
-        mNavigationBar.post(new Runnable() {
-
-            @Override
-            public void run() {
-                setSearchMode(mSearchView.hasFocus());
-            }
-        });
     }
 
     public boolean isSearchMode() {

@@ -69,7 +69,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         headerContainer.addView(mCounterHeaderView);
         mSearchHeaderView = inflater.inflate(R.layout.search_header, null, false);
         headerContainer.addView(mSearchHeaderView);
-        getListView().addHeaderView(headerContainer);
+        getListView().addHeaderView(headerContainer, null, false);
         checkHeaderViewVisibility();
     }
 
