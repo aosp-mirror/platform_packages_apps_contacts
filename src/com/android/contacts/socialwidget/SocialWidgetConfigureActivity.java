@@ -31,6 +31,7 @@ public class SocialWidgetConfigureActivity extends Activity {
 
         // Forward the Intent to the picker
         final Intent pickerIntent = new Intent(Intent.ACTION_PICK, Contacts.CONTENT_URI);
+        pickerIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivityForResult(pickerIntent, 0);
     }
 
