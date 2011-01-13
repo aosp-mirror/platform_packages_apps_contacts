@@ -424,13 +424,11 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
                         startLoading();
                     }
                 }
+            } else {
+                mDirectoryListStatus = STATUS_NOT_LOADED;
+                getLoaderManager().destroyLoader(DIRECTORY_LOADER_ID);
             }
         }
-
-// TODO fix the empty view
-//            if (mEmptyView != null && (data == null || data.getCount() == 0)) {
-//                prepareEmptyView();
-//            }
     }
 
     public void onLoaderReset(Loader<Cursor> loader) {
@@ -574,10 +572,24 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mSearchMode = flag;
             setSectionHeaderDisplayEnabled(!mSearchMode);
 
+            if (!flag) {
+                mDirectoryListStatus = STATUS_NOT_LOADED;
+                getLoaderManager().destroyLoader(DIRECTORY_LOADER_ID);
+            }
+
             if (mAdapter != null) {
-                mAdapter.clearPartitions();
-                mAdapter.setSearchMode(flag);
                 mAdapter.setPinnedPartitionHeadersEnabled(flag);
+                mAdapter.setSearchMode(flag);
+
+                mAdapter.clearPartitions();
+                if (!flag) {
+                    // If we are switching from search to regular display,
+                    // remove all directory partitions (except the default one).
+                    int count = mAdapter.getPartitionCount();
+                    for (int i = count; --i >= 1;) {
+                        mAdapter.removePartition(i);
+                    }
+                }
                 mAdapter.configureDefaultPartition(false, flag);
                 reloadData();
             }

@@ -16,7 +16,6 @@
 
 package com.android.contacts.tests.allintents;
 
-import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.tests.R;
 import com.google.android.collect.Lists;
 
@@ -61,74 +60,67 @@ public class AllIntentsActivity extends ListActivity
     private static final String CONTACT_LIST_ACTIVITY_CLASS_NAME =
             "com.android.contacts.activities.ContactBrowserActivity";
 
-    private static final int LIST_DEFAULT = 0;
-    private static final int LIST_ALL_CONTACTS_ACTION = 1;
-    private static final int LIST_CONTACTS_WITH_PHONES_ACTION = 2;
-    private static final int LIST_STARRED_ACTION = 3;
-    private static final int LIST_STARRED_ACTION_WITH_FILTER = 4;
-    private static final int LIST_FREQUENT_ACTION = 5;
-    private static final int LIST_FREQUENT_ACTION_WITH_FILTER = 6;
-    private static final int LIST_STREQUENT_ACTION = 7;
-    private static final int LIST_STREQUENT_ACTION_WITH_FILTER = 8;
-    private static final int ACTION_PICK_CONTACT = 9;
-    private static final int ACTION_PICK_CONTACT_LEGACY = 10;
-    private static final int ACTION_PICK_PHONE = 11;
-    private static final int ACTION_PICK_PHONE_LEGACY = 12;
-    private static final int ACTION_PICK_POSTAL = 13;
-    private static final int ACTION_PICK_POSTAL_LEGACY = 14;
-    private static final int ACTION_CREATE_SHORTCUT_CONTACT = 15;
-    private static final int ACTION_CREATE_SHORTCUT_CONTACT_FILTER = 16;
-    private static final int ACTION_CREATE_SHORTCUT_DIAL = 17;
-    private static final int ACTION_CREATE_SHORTCUT_DIAL_FILTER = 18;
-    private static final int ACTION_CREATE_SHORTCUT_MESSAGE = 19;
-    private static final int ACTION_CREATE_SHORTCUT_MESSAGE_FILTER = 20;
-    private static final int ACTION_GET_CONTENT_CONTACT = 21;
-    private static final int ACTION_GET_CONTENT_CONTACT_FILTER = 22;
-    private static final int ACTION_GET_CONTENT_CONTACT_LEGACY = 23;
-    private static final int ACTION_GET_CONTENT_CONTACT_FILTER_LEGACY = 24;
-    private static final int ACTION_GET_CONTENT_PHONE = 25;
-    private static final int ACTION_GET_CONTENT_PHONE_FILTER = 26;
-    private static final int ACTION_GET_CONTENT_PHONE_LEGACY = 27;
-    private static final int ACTION_GET_CONTENT_POSTAL = 28;
-    private static final int ACTION_GET_CONTENT_POSTAL_FILTER = 29;
-    private static final int ACTION_GET_CONTENT_POSTAL_LEGACY = 30;
-    private static final int ACTION_INSERT_OR_EDIT = 31;
-    private static final int ACTION_SEARCH_CALL = 32;
-    private static final int ACTION_SEARCH_CONTACT = 33;
-    private static final int ACTION_SEARCH_EMAIL = 34;
-    private static final int ACTION_SEARCH_PHONE = 35;
-    private static final int SEARCH_SUGGESTION_CLICKED_CALL_BUTTON = 36;
-    private static final int SEARCH_SUGGESTION_CLICKED_CONTACT = 37;
-    private static final int SEARCH_SUGGESTION_DIAL_NUMBER_CLICKED = 38;
-    private static final int SEARCH_SUGGESTION_CREATE_CONTACT_CLICKED = 39;
-    private static final int JOIN_CONTACT = 40;
+    public enum ContactsIntent {
+        LIST_DEFAULT,
+        LIST_ALL_CONTACTS_ACTION,
+        LIST_CONTACTS_WITH_PHONES_ACTION,
+        LIST_STARRED_ACTION,
+        LIST_FREQUENT_ACTION,
+        LIST_STREQUENT_ACTION,
+        ACTION_PICK_CONTACT,
+        ACTION_PICK_CONTACT_LEGACY,
+        ACTION_PICK_PHONE,
+        ACTION_PICK_PHONE_LEGACY,
+        ACTION_PICK_POSTAL,
+        ACTION_PICK_POSTAL_LEGACY,
+        ACTION_CREATE_SHORTCUT_CONTACT,
+        ACTION_CREATE_SHORTCUT_DIAL,
+        ACTION_CREATE_SHORTCUT_MESSAGE,
+        ACTION_GET_CONTENT_CONTACT,
+        ACTION_GET_CONTENT_CONTACT_LEGACY,
+        ACTION_GET_CONTENT_PHONE,
+        ACTION_GET_CONTENT_PHONE_LEGACY,
+        ACTION_GET_CONTENT_POSTAL,
+        ACTION_GET_CONTENT_POSTAL_LEGACY,
+        ACTION_INSERT_OR_EDIT,
+        ACTION_SEARCH_CALL,
+        ACTION_SEARCH_CONTACT,
+        ACTION_SEARCH_EMAIL,
+        ACTION_SEARCH_PHONE,
+        SEARCH_SUGGESTION_CLICKED_CALL_BUTTON,
+        SEARCH_SUGGESTION_CLICKED_CONTACT,
+        SEARCH_SUGGESTION_DIAL_NUMBER_CLICKED,
+        SEARCH_SUGGESTION_CREATE_CONTACT_CLICKED,
+        JOIN_CONTACT,
+        EDIT_CONTACT,
+        EDIT_CONTACT_LOOKUP,
+        EDIT_CONTACT_LOOKUP_ID,
+        EDIT_RAW_CONTACT,
+        EDIT_LEGACY,
+        EDIT_NEW_CONTACT,
+        EDIT_NEW_CONTACT_WITH_DATA,
+        EDIT_NEW_CONTACT_FOR_ACCOUNT,
+        EDIT_NEW_CONTACT_FOR_ACCOUNT_WITH_DATA,
+        EDIT_NEW_RAW_CONTACT,
+        EDIT_NEW_LEGACY,
+        VIEW_CONTACT,
+        VIEW_CONTACT_LOOKUP,
+        VIEW_CONTACT_LOOKUP_ID,
+        VIEW_RAW_CONTACT,
+        VIEW_LEGACY,
+        DIAL,
+        DIAL_phone,
+        DIAL_person,
+        DIAL_voicemail,
+        CALL_BUTTON,
+        DIAL_tel,
+        VIEW_tel,
+        VIEW_calllog;
 
-    private static final int EDIT_CONTACT = 41;
-    private static final int EDIT_CONTACT_LOOKUP = 42;
-    private static final int EDIT_CONTACT_LOOKUP_ID = 43;
-    private static final int EDIT_RAW_CONTACT = 44;
-    private static final int EDIT_LEGACY = 45;
-    private static final int EDIT_NEW_CONTACT = 46;
-    private static final int EDIT_NEW_CONTACT_WITH_DATA = 47;
-    private static final int EDIT_NEW_CONTACT_FOR_ACCOUNT = 48;
-    private static final int EDIT_NEW_CONTACT_FOR_ACCOUNT_WITH_DATA = 49;
-    private static final int EDIT_NEW_RAW_CONTACT = 50;
-    private static final int EDIT_NEW_LEGACY = 51;
-
-    private static final int VIEW_CONTACT = 52;
-    private static final int VIEW_CONTACT_LOOKUP = 53;
-    private static final int VIEW_CONTACT_LOOKUP_ID = 54;
-    private static final int VIEW_RAW_CONTACT = 55;
-    private static final int VIEW_LEGACY = 56;
-
-    private static final int DIAL = 57;
-    private static final int DIAL_phone = 58;
-    private static final int DIAL_person = 59;
-    private static final int DIAL_voicemail = 60;
-    private static final int CALL_BUTTON = 61;
-    private static final int DIAL_tel = 62;
-    private static final int VIEW_tel = 63;
-    private static final int VIEW_calllog = 64;
+        public static ContactsIntent get(int ordinal) {
+            return values()[ordinal];
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,7 +133,7 @@ public class AllIntentsActivity extends ListActivity
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        switch (position) {
+        switch (ContactsIntent.get(position)) {
             case LIST_DEFAULT: {
                 startContactListActivity(
                         new Intent(Intent.ACTION_VIEW, Contacts.CONTENT_URI));
@@ -162,28 +154,14 @@ public class AllIntentsActivity extends ListActivity
                         new Intent(UI.LIST_STARRED_ACTION, Contacts.CONTENT_URI));
                 break;
             }
-            case LIST_STARRED_ACTION_WITH_FILTER: {
-                startContactListActivity(buildFilterIntent(ContactsRequest.ACTION_STARRED, false));
-                break;
-            }
             case LIST_FREQUENT_ACTION: {
                 startContactListActivity(
                         new Intent(UI.LIST_FREQUENT_ACTION, Contacts.CONTENT_URI));
                 break;
             }
-            case LIST_FREQUENT_ACTION_WITH_FILTER: {
-                startContactListActivity(
-                        buildFilterIntent(ContactsRequest.ACTION_FREQUENT, false));
-                break;
-            }
             case LIST_STREQUENT_ACTION: {
                 startContactListActivity(
                         new Intent(UI.LIST_STREQUENT_ACTION, Contacts.CONTENT_URI));
-                break;
-            }
-            case LIST_STREQUENT_ACTION_WITH_FILTER: {
-                startContactListActivity(
-                        buildFilterIntent(ContactsRequest.ACTION_STREQUENT, false));
                 break;
             }
             case ACTION_PICK_CONTACT: {
@@ -222,12 +200,6 @@ public class AllIntentsActivity extends ListActivity
                 startContactSelectionActivityForResult(intent);
                 break;
             }
-            case ACTION_CREATE_SHORTCUT_CONTACT_FILTER: {
-                startContactSelectionActivityForResult(
-                        buildFilterIntent(ContactsRequest.ACTION_CREATE_SHORTCUT_CONTACT,
-                                false));
-                break;
-            }
             case ACTION_CREATE_SHORTCUT_DIAL: {
                 Intent intent = new Intent(Intent.ACTION_CREATE_SHORTCUT);
                 intent.setComponent(
@@ -235,22 +207,11 @@ public class AllIntentsActivity extends ListActivity
                 startActivityForResult(intent, 0);
                 break;
             }
-            case ACTION_CREATE_SHORTCUT_DIAL_FILTER: {
-                startContactSelectionActivityForResult(
-                        buildFilterIntent(ContactsRequest.ACTION_CREATE_SHORTCUT_CALL,
-                                false));
-                break;
-            }
             case ACTION_CREATE_SHORTCUT_MESSAGE: {
                 Intent intent = new Intent(Intent.ACTION_CREATE_SHORTCUT);
                 intent.setComponent(
                         new ComponentName(ANDROID_CONTACTS_PACKAGE, "alias.MessageShortcut"));
                 startActivityForResult(intent, 0);
-                break;
-            }
-            case ACTION_CREATE_SHORTCUT_MESSAGE_FILTER: {
-                startContactSelectionActivityForResult(
-                        buildFilterIntent(ContactsRequest.ACTION_CREATE_SHORTCUT_CALL, false));
                 break;
             }
             case ACTION_GET_CONTENT_CONTACT: {
@@ -265,26 +226,10 @@ public class AllIntentsActivity extends ListActivity
                 startContactSelectionActivityForResult(intent);
                 break;
             }
-            case ACTION_GET_CONTENT_CONTACT_FILTER: {
-                startContactSelectionActivityForResult(
-                        buildFilterIntent(ContactsRequest.ACTION_PICK_OR_CREATE_CONTACT, false));
-                break;
-            }
-            case ACTION_GET_CONTENT_CONTACT_FILTER_LEGACY: {
-                startContactSelectionActivityForResult(
-                        buildFilterIntent(ContactsRequest.ACTION_PICK_OR_CREATE_CONTACT,
-                                true));
-                break;
-            }
             case ACTION_GET_CONTENT_PHONE: {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType(Phone.CONTENT_ITEM_TYPE);
                 startContactSelectionActivityForResult(intent);
-                break;
-            }
-            case ACTION_GET_CONTENT_PHONE_FILTER: {
-                startContactSelectionActivityForResult(
-                        buildFilterIntent(ContactsRequest.ACTION_PICK_PHONE, true));
                 break;
             }
             case ACTION_GET_CONTENT_PHONE_LEGACY: {
@@ -297,11 +242,6 @@ public class AllIntentsActivity extends ListActivity
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType(StructuredPostal.CONTENT_ITEM_TYPE);
                 startContactSelectionActivityForResult(intent);
-                break;
-            }
-            case ACTION_GET_CONTENT_POSTAL_FILTER: {
-                startContactSelectionActivityForResult(
-                        buildFilterIntent(ContactsRequest.ACTION_PICK_POSTAL, false));
                 break;
             }
             case ACTION_GET_CONTENT_POSTAL_LEGACY: {
@@ -546,9 +486,9 @@ public class AllIntentsActivity extends ListActivity
     private Intent buildFilterIntent(int actionCode, boolean legacy) {
         Intent intent = new Intent(UI.FILTER_CONTACTS_ACTION);
         intent.putExtra(UI.FILTER_TEXT_EXTRA_KEY, "A");
-        ContactsRequest request = new ContactsRequest();
-        request.setActionCode(actionCode);
-        intent.putExtra("originalRequest", request);
+//        ContactsRequest request = new ContactsRequest();
+//        request.setActionCode(actionCode);
+//        intent.putExtra("originalRequest", request);
         return intent;
     }
 
@@ -627,7 +567,7 @@ public class AllIntentsActivity extends ListActivity
 
     @Override
     public void onAccountChosen(Account account, int tag) {
-        switch (tag) {
+        switch (ContactsIntent.get(tag)) {
             case EDIT_NEW_CONTACT_FOR_ACCOUNT: {
                 final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
                 intent.putExtra(Insert.ACCOUNT, account);
@@ -643,6 +583,8 @@ public class AllIntentsActivity extends ListActivity
                 startActivity(intent);
                 break;
             }
+            default:
+                break;
         }
     }
 

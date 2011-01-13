@@ -40,7 +40,6 @@ import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.list.ProviderStatusLoader;
 import com.android.contacts.list.ProviderStatusLoader.ProviderStatusListener;
-import com.android.contacts.list.StrequentContactListFragment;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.util.AccountSelectionUtil;
@@ -94,8 +93,6 @@ public class ContactBrowserActivity extends ContactsActivity
     private static final int SUBACTIVITY_EDIT_CONTACT = 4;
     private static final int SUBACTIVITY_CUSTOMIZE_FILTER = 5;
 
-    private static final int DEFAULT_DIRECTORY_RESULT_LIMIT = 20;
-
     private static final String KEY_SEARCH_MODE = "searchMode";
 
     private DialogManager mDialogManager = new DialogManager(this);
@@ -147,8 +144,9 @@ public class ContactBrowserActivity extends ContactsActivity
         if (fragment instanceof ContactBrowseListFragment) {
             mListFragment = (ContactBrowseListFragment)fragment;
             mListFragment.setOnContactListActionListener(new ContactBrowserActionListener());
-            if (mContactListFilterController.isLoaded()) {
-                mListFragment.setFilter(mContactListFilterController.getFilter());
+            if (!mHasActionBar) {
+                mListFragment.setContextMenuAdapter(
+                        new ContactBrowseListContextMenuAdapter(mListFragment));
             }
         } else if (fragment instanceof ContactDetailFragment) {
             mDetailFragment = (ContactDetailFragment)fragment;
@@ -165,10 +163,26 @@ public class ContactBrowserActivity extends ContactsActivity
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
 
-        if (savedState != null) {
-            mSearchMode = savedState.getBoolean(KEY_SEARCH_MODE);
-        }
+        mAddContactImageView = getLayoutInflater().inflate(
+                R.layout.add_contact_menu_item, null, false);
+        View item = mAddContactImageView.findViewById(R.id.menu_item);
+        item.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createNewContact();
+            }
+        });
 
+        configureContentView(true, savedState);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        setIntent(intent);
+        configureContentView(false, null);
+    }
+
+    private void configureContentView(boolean createContentView, Bundle savedState) {
         // Extract relevant information from the intent
         mRequest = mIntentResolver.resolveIntent(getIntent());
         if (!mRequest.isValid()) {
@@ -185,8 +199,10 @@ public class ContactBrowserActivity extends ContactsActivity
             return;
         }
 
-        setContentView(R.layout.contact_browser);
-        mContactContentDisplayed = findViewById(R.id.detail_container) != null;
+        if (createContentView) {
+            setContentView(R.layout.contact_browser);
+            mContactContentDisplayed = findViewById(R.id.detail_container) != null;
+        }
 
         if (mRequest.getActionCode() == ContactsRequest.ACTION_VIEW_CONTACT
                 && !mContactContentDisplayed) {
@@ -199,6 +215,7 @@ public class ContactBrowserActivity extends ContactsActivity
         }
 
         setTitle(mRequest.getActivityTitle());
+
         mHasActionBar = getWindow().hasFeature(Window.FEATURE_ACTION_BAR);
         if (mHasActionBar) {
             ActionBar actionBar = getActionBar();
@@ -206,41 +223,9 @@ public class ContactBrowserActivity extends ContactsActivity
             mActionBarAdapter = new ActionBarAdapter(this);
             mActionBarAdapter.onCreate(savedState, mRequest, actionBar);
             mActionBarAdapter.setContactListFilterController(mContactListFilterController);
-            // TODO: request may ask for FREQUENT - set the filter accordingly
-
-            mAddContactImageView = getLayoutInflater().inflate(
-                    R.layout.add_contact_menu_item, null, false);
-            View item = mAddContactImageView.findViewById(R.id.menu_item);
-            item.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    createNewContact();
-                }
-            });
         }
 
-        configureFragments(true /* from request */);
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        setIntent(intent);
-        if (Intent.ACTION_VIEW.equals(intent.getAction())) {
-            mRequest = mIntentResolver.resolveIntent(intent);
-
-            Uri uri = mRequest.getContactUri();
-            if (uri == null) {
-                return;
-            }
-
-            if (mHasActionBar) {
-                mActionBarAdapter.setSearchMode(false);
-                configureFragments(false /* from request */);
-            }
-
-            mListFragment.reloadDataAndSetSelectedUri(uri);
-        }
+        configureFragments(savedState == null);
     }
 
     @Override
@@ -248,6 +233,12 @@ public class ContactBrowserActivity extends ContactsActivity
         if (mActionBarAdapter != null) {
             mActionBarAdapter.setListener(null);
         }
+
+        mOptionsMenuContactsAvailable = false;
+        mOptionsMenuCustomFilterChangeable = false;
+        mOptionsMenuGroupActionsEnabled = false;
+
+        mProviderStatus = -1;
         mProviderStatusLoader.setProviderStatusListener(null);
         super.onPause();
     }
@@ -275,7 +266,6 @@ public class ContactBrowserActivity extends ContactsActivity
     }
 
     private void configureFragments(boolean fromRequest) {
-        boolean searchMode = mSearchMode;
         if (fromRequest) {
             ContactListFilter filter = null;
             int actionCode = mRequest.getActionCode();
@@ -299,48 +289,34 @@ public class ContactBrowserActivity extends ContactsActivity
 
             if (filter != null) {
                 mContactListFilterController.setContactListFilter(filter, false);
-                searchMode = false;
+                mSearchMode = false;
             } else if (mRequest.getActionCode() == ContactsRequest.ACTION_ALL_CONTACTS) {
                 mContactListFilterController.setContactListFilter(new ContactListFilter(
                         ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS), false);
             }
 
             if (mRequest.getContactUri() != null) {
-                searchMode = false;
+                mSearchMode = false;
             }
 
         } else if (mHasActionBar) {
-            searchMode = mActionBarAdapter.isSearchMode();
+            mSearchMode = mActionBarAdapter.isSearchMode();
         }
 
-        boolean replaceList = mListFragment == null || (mSearchMode != searchMode);
-        if (replaceList) {
-            if (mListFragment != null) {
-                mListFragment.setOnContactListActionListener(null);
-            }
+        if (mListFragment == null) {
+            mListFragment = new DefaultContactBrowseListFragment();
+            mListFragment.setContactsRequest(mRequest);
 
-            mSearchMode = searchMode;
-
-            if (mSearchMode) {
-                mListFragment = createContactSearchFragment();
-            } else {
-                mListFragment = createListFragment(ContactsRequest.ACTION_DEFAULT);
-                if (mRequest.getContactUri() != null) {
-                    mListFragment.setSelectedContactUri(mRequest.getContactUri());
-
-                }
-            }
-        }
-
-        if (mSearchMode && mHasActionBar) {
-            mListFragment.setQueryString(mActionBarAdapter.getQueryString());
-        }
-
-        if (replaceList) {
             getFragmentManager().openTransaction()
                     .replace(R.id.list_container, mListFragment)
                     .commit();
         }
+
+        if (fromRequest) {
+            configureListFragmentForRequest();
+        }
+
+        configureListFragment();
 
         if (mContactContentDisplayed && mDetailFragment == null) {
             mDetailFragment = new ContactDetailFragment();
@@ -349,9 +325,7 @@ public class ContactBrowserActivity extends ContactsActivity
                     .commit();
         }
 
-        if (replaceList) {
-            invalidateOptionsMenu();
-        }
+        invalidateOptionsMenu();
     }
 
     @Override
@@ -392,96 +366,38 @@ public class ContactBrowserActivity extends ContactsActivity
     @Override
     public void onAction() {
         configureFragments(false /* from request */);
+        mListFragment.setQueryString(mActionBarAdapter.getQueryString());
     }
 
-    /**
-     * Creates the list fragment for the specified mode.
-     */
-    private ContactBrowseListFragment createListFragment(int actionCode) {
-        switch (actionCode) {
-            case ContactsRequest.ACTION_DEFAULT: {
-                DefaultContactBrowseListFragment fragment = new DefaultContactBrowseListFragment();
-                fragment.setContactsRequest(mRequest);
-                fragment.setOnContactListActionListener(new ContactBrowserActionListener());
-                if (!mHasActionBar) {
-                    fragment.setContextMenuAdapter(
-                            new ContactBrowseListContextMenuAdapter(fragment));
-                }
-                fragment.setSearchMode(mRequest.isSearchMode());
-                fragment.setQueryString(mRequest.getQueryString());
-                if (mRequest.isSearchMode() && mRequest.isDirectorySearchEnabled()) {
-                    fragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DEFAULT);
-                } else {
-                    fragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_NONE);
-                }
-                fragment.setVisibleScrollbarEnabled(!mRequest.isSearchMode());
-                fragment.setVerticalScrollbarPosition(
-                        mContactContentDisplayed
-                                ? View.SCROLLBAR_POSITION_LEFT
-                                : View.SCROLLBAR_POSITION_RIGHT);
-                fragment.setSelectionVisible(mContactContentDisplayed);
-                fragment.setQuickContactEnabled(!mContactContentDisplayed);
-                fragment.setFilterEnabled(!mRequest.isSearchMode());
-                fragment.setPersistentSelectionEnabled(!mRequest.isSearchMode());
-                return fragment;
-            }
+    private void configureListFragmentForRequest() {
+        Uri contactUri = mRequest.getContactUri();
+        if (contactUri != null) {
+            mListFragment.setSelectedContactUri(contactUri);
+        }
 
-            case ContactsRequest.ACTION_GROUP: {
-                throw new UnsupportedOperationException("Not yet implemented");
-            }
+        mListFragment.setQueryString(mRequest.getQueryString());
 
-            case ContactsRequest.ACTION_STARRED: {
-                StrequentContactListFragment fragment = new StrequentContactListFragment();
-                fragment.setOnContactListActionListener(new ContactBrowserActionListener());
-                fragment.setFrequentlyContactedContactsIncluded(false);
-                fragment.setStarredContactsIncluded(true);
-                fragment.setSelectionVisible(mContactContentDisplayed);
-                fragment.setQuickContactEnabled(!mContactContentDisplayed);
-                return fragment;
-            }
+        if (mRequest.isDirectorySearchEnabled()) {
+            mListFragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DEFAULT);
+        } else {
+            mListFragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_NONE);
+        }
 
-            case ContactsRequest.ACTION_FREQUENT: {
-                StrequentContactListFragment fragment = new StrequentContactListFragment();
-                fragment.setOnContactListActionListener(new ContactBrowserActionListener());
-                fragment.setFrequentlyContactedContactsIncluded(true);
-                fragment.setStarredContactsIncluded(false);
-                fragment.setSelectionVisible(mContactContentDisplayed);
-                fragment.setQuickContactEnabled(!mContactContentDisplayed);
-                return fragment;
-            }
-
-            case ContactsRequest.ACTION_STREQUENT: {
-                StrequentContactListFragment fragment = new StrequentContactListFragment();
-                fragment.setOnContactListActionListener(new ContactBrowserActionListener());
-                fragment.setFrequentlyContactedContactsIncluded(true);
-                fragment.setStarredContactsIncluded(true);
-                fragment.setSelectionVisible(mContactContentDisplayed);
-                fragment.setQuickContactEnabled(!mContactContentDisplayed);
-                return fragment;
-            }
-
-            default:
-                throw new IllegalStateException("Invalid action code: " + actionCode);
+        if (mContactListFilterController.isLoaded()) {
+            mListFragment.setFilter(mContactListFilterController.getFilter());
         }
     }
 
-    private ContactBrowseListFragment createContactSearchFragment() {
-        DefaultContactBrowseListFragment fragment = new DefaultContactBrowseListFragment();
-        fragment.setOnContactListActionListener(new ContactBrowserActionListener());
-        if (!mHasActionBar) {
-            fragment.setContextMenuAdapter(new ContactBrowseListContextMenuAdapter(fragment));
-        }
-        fragment.setSearchMode(true);
-        fragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DEFAULT);
-        fragment.setDirectoryResultLimit(DEFAULT_DIRECTORY_RESULT_LIMIT);
-        fragment.setVisibleScrollbarEnabled(false);
-        fragment.setVerticalScrollbarPosition(
+    private void configureListFragment() {
+        mListFragment.setSearchMode(mSearchMode);
+
+        mListFragment.setVisibleScrollbarEnabled(!mSearchMode);
+        mListFragment.setVerticalScrollbarPosition(
                 mContactContentDisplayed
                         ? View.SCROLLBAR_POSITION_LEFT
                         : View.SCROLLBAR_POSITION_RIGHT);
-        fragment.setSelectionVisible(true);
-        fragment.setQuickContactEnabled(!mContactContentDisplayed);
-        return fragment;
+        mListFragment.setSelectionVisible(mContactContentDisplayed);
+        mListFragment.setQuickContactEnabled(!mContactContentDisplayed);
     }
 
     @Override
@@ -1054,6 +970,15 @@ public class ContactBrowserActivity extends ContactsActivity
         outState.putBoolean(KEY_SEARCH_MODE, mSearchMode);
         if (mActionBarAdapter != null) {
             mActionBarAdapter.onSaveInstanceState(outState);
+        }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle inState) {
+        super.onRestoreInstanceState(inState);
+        mSearchMode = inState.getBoolean(KEY_SEARCH_MODE);
+        if (mActionBarAdapter != null) {
+            mActionBarAdapter.onRestoreInstanceState(inState);
         }
     }
 
