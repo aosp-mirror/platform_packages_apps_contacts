@@ -228,7 +228,10 @@
     <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O грешка"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Няма достатъчно памет (файлът може да е твърде голям)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Неуспешен анализ на vCard по неизвестна причина"</string>
-    <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"Неуспешен анализ на vCard, въпреки че изглежда във валиден формат, защото текущото внедряване не го поддържа"</string>
+    <!-- no translation found for fail_reason_not_supported (294499264620201243) -->
+    <skip />
+    <!-- no translation found for vcard_import_failed (7718330063493653085) -->
+    <skip />
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"В USB устройството за съхранение не бе намерен vCard файл"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"На SD картата не бе намерен vCard файл"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Събирането на метаинформация от дадените vCard файлове не бе успешно."</string>
@@ -244,9 +247,11 @@
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Импортирането на vCard <xliff:g id="FILENAME">%s</xliff:g> завърши"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Импортирането на <xliff:g id="FILENAME">%s</xliff:g> бе анулирано"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> ще се импортира скоро."</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Файлът ще се импортира скоро."</string>
     <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"Заявката за импортиране на vCard е отхвърлена. Моля, опитайте по-късно."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> ще се експортира скоро."</string>
     <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"Заявката за експортиране на vCard е отхвърлена. Моля, опитайте по-късно."</string>
+    <string name="vcard_unknown_filename" msgid="7171709890959915954">"контакт"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Потвърждение на експортиране"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Наистина ли искате да експортирате списъка с контакти в „<xliff:g id="VCARD_FILENAME">%s</xliff:g>“?"</string>
@@ -477,10 +482,7 @@
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Моля, въведете името на контакта преди сливането му с друг."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Слят контакт"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Текстът бе копиран"</string>
-    <!-- no translation found for cancel_confirmation_dialog_title (3950463632415908534) -->
-    <skip />
-    <!-- no translation found for cancel_confirmation_dialog_message (7021968394611740251) -->
-    <skip />
-    <!-- no translation found for discard (1234315037371251414) -->
-    <skip />
+    <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Отхвърляне на промените"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Искате ли да отхвърлите направените от вас промени?"</string>
+    <string name="discard" msgid="1234315037371251414">"Отхвърляне"</string>
 </resources>

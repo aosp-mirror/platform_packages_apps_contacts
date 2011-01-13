@@ -158,12 +158,12 @@
     <string name="simContacts_title" msgid="27341688347689769">"Contacts de carte SIM"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Vous n\'avez aucun contact à afficher. Si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes."</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Vous n\'avez aucun contact à afficher."</string>
-    <!-- syntax error in translation for noContactsHelpText (6450346791169710787) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:560 in java.io.StringReader@86c347)  -->
-    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:567 in java.io.StringReader@f7e6a96)  -->
+    <!-- syntax error in translation for noContactsHelpText (6450346791169710787) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:560 in java.io.StringReader@635b9e68)  -->
+    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:567 in java.io.StringReader@13fcf0ce)  -->
     <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", puis sur :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts vers la tablette ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier les paramètres de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SIM ou SD."\n</li></string>
     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier le paramètre de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SIM ou SD."\n</li></string>
-    <!-- syntax error in translation for noContactsNoSimHelpText (6031363021287849874) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:565 in java.io.StringReader@3487a5cc)  -->
-    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:571 in java.io.StringReader@35960f05)  -->
+    <!-- syntax error in translation for noContactsNoSimHelpText (6031363021287849874) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:565 in java.io.StringReader@43256ea2)  -->
+    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:571 in java.io.StringReader@4e82701e)  -->
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", puis sur :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts vers la tablette ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier les paramètres de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SD."\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier le paramètre de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SD."\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Vous ne disposez d\'aucun favoris."\n\n"Pour ajouter un contact à la liste de favoris :"\n\n"        "<li>"Appuyez sur l\'onglet "<b>"Contacts"</b>"."\n</li>" "\n<li>"Appuyez sur le contact à ajouter à vos favoris."\n</li>" "\n<li>"Appuyez sur l\'étoile en regard du nom du contact."\n</li></string>
@@ -228,7 +228,10 @@
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Erreur d\'E/S"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Mémoire insuffisante (fichier probablement trop volumineux)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Échec de l\'analyse des données VCard pour une raison inattendue"</string>
-    <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"Échec de l\'analyse des données VCard. Le format semble valide, mais l\'implémentation actuelle ne le prend pas en charge."</string>
+    <!-- no translation found for fail_reason_not_supported (294499264620201243) -->
+    <skip />
+    <!-- no translation found for vcard_import_failed (7718330063493653085) -->
+    <skip />
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"Aucun fichier vCard n\'a été trouvé sur la mémoire de stockage USB."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Aucun fichier vCard trouvé sur la carte SD"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Échec de la collecte des métadonnées contenues dans le(s) fichier(s) vCard"</string>
@@ -244,9 +247,11 @@
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Fichier vCard <xliff:g id="FILENAME">%s</xliff:g> importé"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Importation du fichier <xliff:g id="FILENAME">%s</xliff:g> annulée"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"Importation du fichier <xliff:g id="FILENAME">%s</xliff:g> imminente"</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Le fichier va bientôt être importé."</string>
     <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"Demande d\'importation de fichier vCard rejetée. Veuillez réessayer ultérieurement."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"Exportation du fichier <xliff:g id="FILENAME">%s</xliff:g> imminente"</string>
     <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"Demande d\'exportation de fichier vCard rejetée. Veuillez réessayer ultérieurement."</string>
+    <string name="vcard_unknown_filename" msgid="7171709890959915954">"contact"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Confirmer l\'exportation"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Voulez-vous vraiment exporter la liste de contacts vers \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\" ?"</string>
@@ -474,10 +479,7 @@
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Veuillez saisir le nom de ce contact avant de l\'associer à un autre."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Contact associé"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Texte copié"</string>
-    <!-- no translation found for cancel_confirmation_dialog_title (3950463632415908534) -->
-    <skip />
-    <!-- no translation found for cancel_confirmation_dialog_message (7021968394611740251) -->
-    <skip />
-    <!-- no translation found for discard (1234315037371251414) -->
-    <skip />
+    <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Supprimer les modifications"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Voulez-vous vraiment supprimer vos modifications ?"</string>
+    <string name="discard" msgid="1234315037371251414">"Supprimer"</string>
 </resources>
