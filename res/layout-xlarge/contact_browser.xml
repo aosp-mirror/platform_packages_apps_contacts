@@ -45,11 +45,13 @@
                 android:layout_marginTop="40dip"
                 android:background="#7e7e87" />
 
-            <FrameLayout
-                android:id="@+id/list_container"
+            <fragment
+                android:id="@+id/list_fragment"
+                class="com.android.contacts.list.DefaultContactBrowseListFragment"
                 android:layout_height="0dip"
                 android:layout_width="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="1" 
+            />
         </LinearLayout>
 
         <view
@@ -67,10 +69,12 @@
             ex:enterAnimation="@android:animator/fade_in"
             ex:exitAnimation="@android:animator/fade_out"
             ex:animationDuration="200">
-            <FrameLayout
-                android:id="@+id/detail_container"
+            <fragment
+                android:id="@+id/detail_fragment"
+                class="com.android.contacts.detail.ContactDetailFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent" 
+            />
         </view>
 
     </com.android.contacts.widget.InterpolatingLayout>

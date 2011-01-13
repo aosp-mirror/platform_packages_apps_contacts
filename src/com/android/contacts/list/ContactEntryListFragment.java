@@ -498,11 +498,13 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     public void setSectionHeaderDisplayEnabled(boolean flag) {
-        mSectionHeaderDisplayEnabled = flag;
-        if (mAdapter != null) {
-            mAdapter.setSectionHeaderDisplayEnabled(flag);
+        if (mSectionHeaderDisplayEnabled != flag) {
+            mSectionHeaderDisplayEnabled = flag;
+            if (mAdapter != null) {
+                mAdapter.setSectionHeaderDisplayEnabled(flag);
+            }
+            configureVerticalScrollbar();
         }
-        configureVerticalScrollbar();
     }
 
     public boolean isSectionHeaderDisplayEnabled() {
@@ -510,8 +512,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     public void setVisibleScrollbarEnabled(boolean flag) {
-        mVisibleScrollbarEnabled = flag;
-        configureVerticalScrollbar();
+        if (mVisibleScrollbarEnabled != flag) {
+            mVisibleScrollbarEnabled = flag;
+            configureVerticalScrollbar();
+        }
     }
 
     public boolean isVisibleScrollbarEnabled() {
@@ -519,7 +523,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     public void setVerticalScrollbarPosition(int position) {
-        this.mVerticalScrollbarPosition = position;
+        if (mVerticalScrollbarPosition != position) {
+            mVerticalScrollbarPosition = position;
+            configureVerticalScrollbar();
+        }
     }
 
     private void configureVerticalScrollbar() {
