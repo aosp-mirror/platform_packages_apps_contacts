@@ -219,6 +219,11 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
         outState.putString(EXTRA_KEY_QUERY, mQueryString);
     }
 
+    public void onRestoreInstanceState(Bundle savedState) {
+        mSearchMode = savedState.getBoolean(EXTRA_KEY_SEARCH_MODE);
+        mQueryString = savedState.getString(EXTRA_KEY_QUERY);
+    }
+
     @Override
     public void onContactListFiltersLoaded() {
         update();

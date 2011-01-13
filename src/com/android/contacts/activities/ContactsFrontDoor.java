@@ -18,9 +18,9 @@ package com.android.contacts.activities;
 
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.DialtactsActivity;
+import com.android.contacts.util.PhoneCapabilityTester;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 
 public class ContactsFrontDoor extends ContactsActivity {
@@ -35,18 +35,16 @@ public class ContactsFrontDoor extends ContactsActivity {
         intent.setAction(originalIntent.getAction());
         intent.setDataAndType(originalIntent.getData(), originalIntent.getType());
         intent.setFlags(
-                Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+                Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_FORWARD_RESULT
+                        | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra(EXTRA_FRONT_DOOR, true);
 
-        // The user launched the config based front door, pick the right activity to go to
-        Configuration config = getResources().getConfiguration();
-        int screenLayoutSize = config.screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
-        if (screenLayoutSize == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
-            // XL screen, use two pane UI
-            intent.setClass(this, ContactBrowserActivity.class);
-        } else {
+        if (PhoneCapabilityTester.isPhone(this)) {
             // Default to the normal dialtacts layout
             intent.setClass(this, DialtactsActivity.class);
+        } else {
+            // No tabs, just a contact list
+            intent.setClass(this, ContactBrowserActivity.class);
         }
 
         startActivity(intent);

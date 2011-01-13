@@ -25,6 +25,8 @@ import android.view.View.OnClickListener;
 /**
  * Fragment containing a list of starred contacts followed by a list of frequently contacted.
  */
+
+// TODO: This class is currently unused.  Bring it back as a mode of ContactBrowserListFragment
 public class StrequentContactListFragment extends ContactBrowseListFragment
         implements OnClickListener {
 

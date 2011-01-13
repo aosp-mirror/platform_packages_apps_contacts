@@ -191,7 +191,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
     protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         final ContactListItemView view = (ContactListItemView)itemView;
 
-        view.setHighlightedPrefix(getUpperCaseQueryString());
+        view.setHighlightedPrefix(isSearchMode() ? getUpperCaseQueryString() : null);
 
         if (isSelectionVisible()) {
             view.setActivated(isSelectedContact(partition, cursor));
@@ -210,6 +210,8 @@ public class DefaultContactListAdapter extends ContactListAdapter {
 
         if (isSearchMode()) {
             bindSearchSnippet(view, cursor);
+        } else {
+            view.setSnippet(null);
         }
     }
 
