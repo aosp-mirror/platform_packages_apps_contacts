@@ -168,6 +168,39 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mStatusResPackage = statusResPackage;
         }
 
+        private Result(Result from) {
+            mLookupUri = from.mLookupUri;
+            mUri = from.mUri;
+            mDirectoryId = from.mDirectoryId;
+            mLookupKey = from.mLookupKey;
+            mId = from.mId;
+            mNameRawContactId = from.mNameRawContactId;
+            mDisplayNameSource = from.mDisplayNameSource;
+            mPhotoId = from.mPhotoId;
+            mPhotoUri = from.mPhotoUri;
+            mDisplayName = from.mDisplayName;
+            mPhoneticName = from.mPhoneticName;
+            mStarred = from.mStarred;
+            mPresence = from.mPresence;
+            mEntities = from.mEntities;
+            mStatuses = from.mStatuses;
+            mStatus = from.mStatus;
+            mStatusTimestamp = from.mStatusTimestamp;
+            mStatusLabel = from.mStatusLabel;
+            mStatusResPackage = from.mStatusResPackage;
+
+            mDirectoryDisplayName = from.mDirectoryDisplayName;
+            mDirectoryType = from.mDirectoryType;
+            mDirectoryAccountType = from.mDirectoryAccountType;
+            mDirectoryAccountName = from.mDirectoryAccountName;
+            mDirectoryExportSupport = from.mDirectoryExportSupport;
+
+            mGroups = from.mGroups;
+
+            mLoadingPhoto = from.mLoadingPhoto;
+            mPhotoBinaryData = from.mPhotoBinaryData;
+        }
+
         /**
          * @param exportSupport See {@link Directory#EXPORT_SUPPORT}.
          */
@@ -932,6 +965,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         @Override
         protected void onPostExecute(byte[] data) {
             if (mContact != null) {
+                mContact = new Result(mContact);
                 mContact.setPhotoBinaryData(data);
                 mContact.setLoadingPhoto(false);
                 deliverResult(mContact);
