@@ -89,4 +89,8 @@
     <string name="non_phone_caption" msgid="8339220263670193331">"Número de teléfono"</string>
     <!-- XL -->
     <string name="delete_group_dialog_message" msgid="6739622355328278915">"¿Estás seguro de que deseas eliminar el grupo \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Los contactos no se eliminarán)."</string>
+    <!-- XL -->
+    <string name="fail_reason_not_supported" msgid="2869697177825996431">"El formato no está admitido."</string>
+    <!-- XL -->
+    <string name="vcard_import_failed" msgid="5030663873475156120">"Falló la importación de la vCard"</string>
 </resources>
