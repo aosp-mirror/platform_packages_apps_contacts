@@ -30,6 +30,7 @@ public class PostalAddressPickerFragment
     private OnPostalAddressPickerActionListener mListener;
 
     public PostalAddressPickerFragment() {
+        setQuickContactEnabled(false);
         setPhotoLoaderEnabled(true);
         setSectionHeaderDisplayEnabled(true);
         setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DATA_SHORTCUT);
@@ -44,11 +45,7 @@ public class PostalAddressPickerFragment
     protected void onItemClick(int position, long id) {
         if (!isLegacyCompatibilityMode()) {
             PostalAddressListAdapter adapter = (PostalAddressListAdapter)getAdapter();
-//          if (adapter.isSearchAllContactsItemPosition(position)) {
-//              searchAllContacts();
-//          } else {
             pickPostalAddress(adapter.getDataUri(position));
-//          }
         } else {
             LegacyPostalAddressListAdapter adapter = (LegacyPostalAddressListAdapter)getAdapter();
             pickPostalAddress(adapter.getContactMethodUri(position));

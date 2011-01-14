@@ -34,6 +34,7 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     private String mShortcutAction;
 
     public PhoneNumberPickerFragment() {
+        setQuickContactEnabled(false);
         setPhotoLoaderEnabled(true);
         setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DATA_SHORTCUT);
     }
