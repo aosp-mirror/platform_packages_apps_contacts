@@ -32,7 +32,9 @@ import com.google.android.collect.Lists;
 import android.accounts.Account;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.LoaderManager.LoaderCallbacks;
 import android.app.ProgressDialog;
+import android.content.AsyncTaskLoader;
 import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -40,6 +42,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.EntityIterator;
 import android.content.Intent;
+import android.content.Loader;
 import android.content.OperationApplicationException;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -77,10 +80,12 @@ import java.util.Iterator;
  */
 public class CustomContactListFilterActivity extends ContactsActivity
         implements AdapterView.OnItemClickListener, View.OnClickListener,
-        ExpandableListView.OnChildClickListener
+        ExpandableListView.OnChildClickListener,
+        LoaderCallbacks<CustomContactListFilterActivity.AccountSet>
 {
-
     private static final String TAG = "CustomContactListFilterActivity";
+
+    private static final int ACCOUNT_SET_LOADER_ID = 1;
 
     private ExpandableListView mList;
     private DisplayAdapter mAdapter;
@@ -108,12 +113,17 @@ public class CustomContactListFilterActivity extends ContactsActivity
         createWithPhonesOnlyPreferenceView(inflater);
         createDisplayGroupHeader(inflater);
 
+        mList.addHeaderView(mHeaderPhones, null, true);
+        mList.addHeaderView(mHeaderSeparator, null, false);
+
         findViewById(R.id.btn_done).setOnClickListener(this);
         findViewById(R.id.btn_discard).setOnClickListener(this);
 
         // Catch clicks on the header views
         mList.setOnItemClickListener(this);
         mList.setOnCreateContextMenuListener(this);
+
+        mList.setAdapter(mAdapter);
     }
 
     private void createWithPhonesOnlyPreferenceView(LayoutInflater inflater) {
@@ -136,55 +146,123 @@ public class CustomContactListFilterActivity extends ContactsActivity
         text1.setText(R.string.headerContactGroups);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mList.removeHeaderView(mHeaderPhones);
-        mList.removeHeaderView(mHeaderSeparator);
+    private static final Comparator<AccountDisplay> ACCOUNT_COMPARATOR =
+            new Comparator<AccountDisplay>() {
 
-        // List adapter needs to be reset, because header views cannot be added
-        // to a list with an existing adapter.
-        mList.setAdapter((ExpandableListAdapter)null);
+        @Override
+        public int compare(AccountDisplay account1, AccountDisplay account2) {
+            int diff = account1.mType.compareTo(account2.mType);
+            if (diff != 0) {
+                return diff;
+            }
+            return account1.mName.compareTo(account2.mName);
+        }
+    };
 
-        mList.addHeaderView(mHeaderPhones, null, true);
-        mList.addHeaderView(mHeaderSeparator, null, false);
+    public static class CustomFilterConfigurationLoader extends AsyncTaskLoader<AccountSet> {
 
-        mList.setAdapter(mAdapter);
+        private AccountSet mAccountSet;
 
-        // Start background query to find account details
-        new QueryGroupsTask(this).execute();
-    }
-
-    /**
-     * Background operation to build set of {@link AccountDisplay} for each
-     * {@link AccountTypeManager#getAccounts(boolean)} that provides groups.
-     */
-    private static class QueryGroupsTask extends
-            WeakAsyncTask<Void, Void, AccountSet, CustomContactListFilterActivity> {
-        public QueryGroupsTask(CustomContactListFilterActivity target) {
-            super(target);
+        public CustomFilterConfigurationLoader(Context context) {
+            super(context);
         }
 
         @Override
-        protected AccountSet doInBackground(CustomContactListFilterActivity target,
-                Void... params) {
-            final Context context = target;
+        public AccountSet loadInBackground() {
+            Context context = getContext();
             final AccountTypeManager accountTypes = AccountTypeManager.getInstance(context);
             final ContentResolver resolver = context.getContentResolver();
 
-            // Inflate groups entry for each account
             final AccountSet accounts = new AccountSet();
             for (Account account : accountTypes.getAccounts(false)) {
-                accounts.add(new AccountDisplay(resolver, account.name, account.type));
+                AccountDisplay accountDisplay =
+                        new AccountDisplay(resolver, account.name, account.type);
+
+                final Uri groupsUri = Groups.CONTENT_URI.buildUpon()
+                        .appendQueryParameter(Groups.ACCOUNT_NAME, account.name)
+                        .appendQueryParameter(Groups.ACCOUNT_TYPE, account.type).build();
+                EntityIterator iterator = ContactsContract.Groups.newEntityIterator(resolver.query(
+                        groupsUri, null, null, null, null));
+                try {
+                    boolean hasGroups = false;
+
+                    // Create entries for each known group
+                    while (iterator.hasNext()) {
+                        final ContentValues values = iterator.next().getEntityValues();
+                        final GroupDelta group = GroupDelta.fromBefore(values);
+                        accountDisplay.addGroup(group);
+                        hasGroups = true;
+                    }
+                    // Create single entry handling ungrouped status
+                    accountDisplay.mUngrouped =
+                        GroupDelta.fromSettings(resolver, account.name, account.type, hasGroups);
+                    accountDisplay.addGroup(accountDisplay.mUngrouped);
+                } finally {
+                    iterator.close();
+                }
+
+                accounts.add(accountDisplay);
             }
 
+            Collections.sort(accounts, ACCOUNT_COMPARATOR);
             return accounts;
         }
 
         @Override
-        protected void onPostExecute(CustomContactListFilterActivity target, AccountSet result) {
-            target.mAdapter.setAccounts(result);
+        public void deliverResult(AccountSet cursor) {
+            if (isReset()) {
+                return;
+            }
+
+            mAccountSet = cursor;
+
+            if (isStarted()) {
+                super.deliverResult(cursor);
+            }
         }
+
+        @Override
+        protected void onStartLoading() {
+            if (mAccountSet != null) {
+                deliverResult(mAccountSet);
+            }
+            if (takeContentChanged() || mAccountSet == null) {
+                forceLoad();
+            }
+        }
+
+        @Override
+        protected void onStopLoading() {
+            cancelLoad();
+        }
+
+        @Override
+        protected void onReset() {
+            super.onReset();
+            onStopLoading();
+            mAccountSet = null;
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        getLoaderManager().initLoader(ACCOUNT_SET_LOADER_ID, null, this);
+        super.onStart();
+    }
+
+    @Override
+    public Loader<AccountSet> onCreateLoader(int id, Bundle args) {
+        return new CustomFilterConfigurationLoader(this);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<AccountSet> loader, AccountSet data) {
+        mAdapter.setAccounts(data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<AccountSet> loader) {
+        mAdapter.setAccounts(null);
     }
 
     private static final int DEFAULT_SHOULD_SYNC = 1;
@@ -408,28 +486,6 @@ public class CustomContactListFilterActivity extends ContactsActivity
         public AccountDisplay(ContentResolver resolver, String accountName, String accountType) {
             mName = accountName;
             mType = accountType;
-
-            final Uri groupsUri = Groups.CONTENT_URI.buildUpon()
-                    .appendQueryParameter(Groups.ACCOUNT_NAME, accountName)
-                    .appendQueryParameter(Groups.ACCOUNT_TYPE, accountType).build();
-            EntityIterator iterator = ContactsContract.Groups.newEntityIterator(resolver.query(
-                    groupsUri, null, null, null, null));
-            try {
-                boolean hasGroups = false;
-
-                // Create entries for each known group
-                while (iterator.hasNext()) {
-                    final ContentValues values = iterator.next().getEntityValues();
-                    final GroupDelta group = GroupDelta.fromBefore(values);
-                    addGroup(group);
-                    hasGroups = true;
-                }
-                // Create single entry handling ungrouped status
-                mUngrouped = GroupDelta.fromSettings(resolver, accountName, accountType, hasGroups);
-                addGroup(mUngrouped);
-            } finally {
-                iterator.close();
-            }
         }
 
         /**
