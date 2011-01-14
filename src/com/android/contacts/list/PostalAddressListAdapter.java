@@ -111,6 +111,7 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
         final ContactListItemView view = new ContactListItemView(context, null);
         view.setUnknownNameText(mUnknownNameText);
         view.setTextWithHighlightingFactory(getTextWithHighlightingFactory());
+        view.setQuickContactEnabled(isQuickContactEnabled());
         return view;
     }
 
