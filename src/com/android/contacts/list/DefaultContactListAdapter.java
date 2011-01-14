@@ -52,21 +52,29 @@ public class DefaultContactListAdapter extends ContactListAdapter {
         ContactListFilter filter = getFilter();
         if (isSearchMode()) {
             String query = getQueryString();
-            Builder builder = Contacts.CONTENT_FILTER_URI.buildUpon();
+            if (query == null) {
+                query = "";
+            }
+            query = query.trim();
             if (TextUtils.isEmpty(query)) {
-                builder.appendPath("");
+                // Regardless of the directory, we don't want anything returned,
+                // so let's just send a "nothing" query to the local directory.
+                loader.setUri(Contacts.CONTENT_URI);
+                loader.setProjection(PROJECTION_CONTACT);
+                loader.setSelection("0");
             } else {
+                Builder builder = Contacts.CONTENT_FILTER_URI.buildUpon();
                 builder.appendPath(query);      // Builder will encode the query
+                builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
+                        String.valueOf(directoryId));
+                if (directoryId != Directory.DEFAULT && directoryId != Directory.LOCAL_INVISIBLE) {
+                    builder.appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY,
+                            String.valueOf(getDirectoryResultLimit()));
+                }
+                applyDataRestriction(builder);
+                loader.setUri(builder.build());
+                loader.setProjection(FILTER_PROJECTION);
             }
-            builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
-                    String.valueOf(directoryId));
-            if (directoryId != Directory.DEFAULT && directoryId != Directory.LOCAL_INVISIBLE) {
-                builder.appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY,
-                        String.valueOf(getDirectoryResultLimit()));
-            }
-            applyDataRestriction(builder);
-            loader.setUri(builder.build());
-            loader.setProjection(FILTER_PROJECTION);
         } else {
             configureUri(loader, directoryId, filter);
             configureProjection(loader, directoryId, filter);

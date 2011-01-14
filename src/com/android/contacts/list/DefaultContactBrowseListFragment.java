@@ -18,6 +18,7 @@ package com.android.contacts.list;
 import com.android.contacts.R;
 
 import android.database.Cursor;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -110,7 +111,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
             }
 
             // In search mode we only display the header if there is nothing found
-            if (!adapter.areAllPartitionsEmpty()) {
+            if (TextUtils.isEmpty(getQueryString()) || !adapter.areAllPartitionsEmpty()) {
                 mSearchHeaderView.setVisibility(View.GONE);
             } else {
                 TextView textView = (TextView) mSearchHeaderView.findViewById(
