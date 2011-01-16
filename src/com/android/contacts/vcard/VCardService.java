@@ -486,7 +486,8 @@ public class VCardService extends Service {
                 .setSmallIcon(android.R.drawable.stat_sys_download_done)
                 .setContentTitle(title)
                 .setContentText(description)
-                .setContentIntent(PendingIntent.getActivity(context, 0, intent, 0))
+                .setContentIntent(PendingIntent.getActivity(context, 0,
+                        (intent != null ? intent : new Intent()), 0))
                 .getNotification();
     }
 
