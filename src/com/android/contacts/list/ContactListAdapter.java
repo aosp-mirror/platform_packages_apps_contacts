@@ -320,7 +320,8 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
                     offset = cursor.getPosition();
                     break;
                 }
-            } else {
+            }
+            if (mSelectedContactId != 0) {
                 long contactId = cursor.getLong(CONTACT_ID_COLUMN_INDEX);
                 if (contactId == mSelectedContactId) {
                     offset = cursor.getPosition();
