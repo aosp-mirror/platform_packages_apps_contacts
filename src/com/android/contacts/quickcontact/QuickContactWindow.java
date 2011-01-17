@@ -1303,6 +1303,12 @@ public class QuickContactWindow implements Window.Callback,
 
     /** {@inheritDoc} */
     @Override
+    public boolean dispatchGenericMotionEvent(MotionEvent event) {
+        return mWindow.superDispatchGenericMotionEvent(event);
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void onContentChanged() {
     }
 
