@@ -218,7 +218,8 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             return true;
         }
 
-        return getSelectedContactId() == cursor.getLong(CONTACT_ID_COLUMN_INDEX);
+        return directoryId != Directory.DEFAULT && directoryId != Directory.LOCAL_INVISIBLE
+                && getSelectedContactId() == cursor.getLong(CONTACT_ID_COLUMN_INDEX);
     }
 
     @Override
@@ -321,7 +322,9 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
                     break;
                 }
             }
-            if (mSelectedContactId != 0) {
+            if (mSelectedContactId != 0 &&
+                    mSelectedContactDirectoryId !=  Directory.DEFAULT &&
+                    mSelectedContactDirectoryId !=  Directory.LOCAL_INVISIBLE) {
                 long contactId = cursor.getLong(CONTACT_ID_COLUMN_INDEX);
                 if (contactId == mSelectedContactId) {
                     offset = cursor.getPosition();
