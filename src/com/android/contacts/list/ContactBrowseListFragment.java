@@ -52,6 +52,7 @@ public abstract class ContactBrowseListFragment extends
     private static final String KEY_SELECTED_URI = "selectedUri";
     private static final String KEY_SELECTION_VERIFIED = "selectionVerified";
     private static final String KEY_FILTER = "filter";
+    private static final String KEY_LAST_SELECTED_POSITION = "lastSelected";
 
     private static final String PERSISTENT_SELECTION_PREFIX = "defaultContactBrowserSelection";
 
@@ -85,6 +86,7 @@ public abstract class ContactBrowseListFragment extends
     private String mSelectedContactLookupKey;
     private long mSelectedContactId;
     private boolean mSelectionVerified;
+    private int mLastSelectedPosition = -1;
     private boolean mRefreshingContactUri;
     private ContactListFilter mFilter;
     private String mPersistentSelectionPrefix = PERSISTENT_SELECTION_PREFIX;
@@ -186,6 +188,7 @@ public abstract class ContactBrowseListFragment extends
         Log.v(TAG, "New filter: " + filter);
 
         mFilter = filter;
+        mLastSelectedPosition = -1;
         saveFilter();
         if (restoreSelectedUri) {
             mSelectedContactUri = null;
@@ -209,6 +212,7 @@ public abstract class ContactBrowseListFragment extends
         mFilter = savedState.getParcelable(KEY_FILTER);
         mSelectedContactUri = savedState.getParcelable(KEY_SELECTED_URI);
         mSelectionVerified = savedState.getBoolean(KEY_SELECTION_VERIFIED);
+        mLastSelectedPosition = savedState.getInt(KEY_LAST_SELECTED_POSITION);
         parseSelectedContactUri();
     }
 
@@ -218,6 +222,7 @@ public abstract class ContactBrowseListFragment extends
         outState.putParcelable(KEY_FILTER, mFilter);
         outState.putParcelable(KEY_SELECTED_URI, mSelectedContactUri);
         outState.putBoolean(KEY_SELECTION_VERIFIED, mSelectionVerified);
+        outState.putInt(KEY_LAST_SELECTED_POSITION, mLastSelectedPosition);
     }
 
     protected void refreshSelectedContactUri() {
@@ -427,7 +432,9 @@ public abstract class ContactBrowseListFragment extends
                 mSelectedContactDirectoryId, mSelectedContactLookupKey, mSelectedContactId);
 
         int selectedPosition = adapter.getSelectedContactPosition();
-        if (selectedPosition == -1) {
+        if (selectedPosition != -1) {
+            mLastSelectedPosition = selectedPosition;
+        } else {
             if (mSelectionRequired) {
                 mSelectionRequired = false;
                 notifyInvalidSelection();
@@ -485,8 +492,16 @@ public abstract class ContactBrowseListFragment extends
     }
 
     protected void selectDefaultContact() {
-        Uri firstContactUri = getAdapter().getFirstContactUri();
-        setSelectedContactUri(firstContactUri, false, mSmoothScrollRequested, false, false);
+        Uri contactUri = null;
+        if (mLastSelectedPosition != -1) {
+            contactUri = getAdapter().getContactUri(mLastSelectedPosition);
+        }
+
+        if (contactUri == null) {
+            contactUri = getAdapter().getFirstContactUri();
+        }
+
+        setSelectedContactUri(contactUri, false, mSmoothScrollRequested, false, false);
     }
 
     protected void requestSelectionToScreen() {
