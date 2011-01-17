@@ -506,9 +506,16 @@ public class ContactBrowserActivity extends ContactsActivity
 
         @Override
         public void onInvalidSelection() {
-            ContactListFilter filter =
-                    new ContactListFilter(ContactListFilter.FILTER_TYPE_SINGLE_CONTACT);
-            mListFragment.setFilter(filter, false);
+            ContactListFilter filter;
+            ContactListFilter currentFilter = mListFragment.getFilter();
+            if (currentFilter != null
+                    && currentFilter.filterType == ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
+                filter = new ContactListFilter(ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
+                mListFragment.setFilter(filter);
+            } else {
+                filter = new ContactListFilter(ContactListFilter.FILTER_TYPE_SINGLE_CONTACT);
+                mListFragment.setFilter(filter, false);
+            }
             mContactListFilterController.setContactListFilter(filter, true);
         }
     }
