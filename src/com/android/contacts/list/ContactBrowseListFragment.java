@@ -556,6 +556,7 @@ public abstract class ContactBrowseListFragment extends
     public void reloadData() {
         if (mStartedLoading) {
             mSelectionVerified = false;
+            mLastSelectedPosition = -1;
             super.reloadData();
         }
     }
