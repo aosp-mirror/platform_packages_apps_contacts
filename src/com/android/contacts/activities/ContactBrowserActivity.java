@@ -568,6 +568,7 @@ public class ContactBrowserActivity extends ContactsActivity
         @Override
         public void onAddAccountAction() {
             Intent intent = new Intent(Settings.ACTION_ADD_ACCOUNT);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
             intent.putExtra(Settings.EXTRA_AUTHORITIES,
                     new String[] { ContactsContract.AUTHORITY });
             startActivity(intent);
@@ -750,6 +751,7 @@ public class ContactBrowserActivity extends ContactsActivity
                 intent.putExtra(Settings.EXTRA_AUTHORITIES, new String[] {
                     ContactsContract.AUTHORITY
                 });
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
                 startActivity(intent);
                 return true;
             }
