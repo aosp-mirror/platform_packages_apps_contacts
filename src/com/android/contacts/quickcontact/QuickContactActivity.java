@@ -37,7 +37,7 @@ public final class QuickContactActivity extends ContactsActivity
     private static final String TAG = "QuickContactActivity";
 
     static final boolean LOGV = false;
-    static final boolean FORCE_CREATE = false;
+    static final boolean FORCE_CREATE = true;
 
     private QuickContactWindow mQuickContact;
 
