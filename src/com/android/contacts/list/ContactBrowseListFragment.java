@@ -341,7 +341,7 @@ public abstract class ContactBrowseListFragment extends
             if (mSelectedContactUri.toString().startsWith(Contacts.CONTENT_LOOKUP_URI.toString())) {
                 List<String> pathSegments = mSelectedContactUri.getPathSegments();
                 mSelectedContactLookupKey = Uri.encode(pathSegments.get(2));
-                if (mSelectedContactUri.getPathSegments().size() >= 3) {
+                if (pathSegments.size() == 4) {
                     mSelectedContactId = ContentUris.parseId(mSelectedContactUri);
                 }
             } else if (mSelectedContactUri.toString().startsWith(Contacts.CONTENT_URI.toString()) &&
