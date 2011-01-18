@@ -874,6 +874,7 @@ public class ContactEditorFragment extends Fragment implements
                         saveMode == SaveMode.HOME);
                 break;
             case SaveMode.RELOAD:
+            case SaveMode.JOIN:
                 if (success && contactLookupUri != null) {
                     // If this was in INSERT, we are changing into an EDIT now.
                     // If it already was an EDIT, we are changing to the new Uri now
@@ -881,6 +882,11 @@ public class ContactEditorFragment extends Fragment implements
                     load(Intent.ACTION_EDIT, contactLookupUri, null);
                     mStatus = Status.LOADING;
                     getLoaderManager().restartLoader(LOADER_DATA, null, mDataLoaderListener);
+
+                    // If it was a JOIN, we are now ready to bring up the join activity.
+                    if (saveMode == SaveMode.JOIN) {
+                        showJoinAggregateActivity(contactLookupUri);
+                    }
                 }
                 break;
             case SaveMode.SPLIT:
@@ -889,14 +895,6 @@ public class ContactEditorFragment extends Fragment implements
                     mListener.onContactSplit(contactLookupUri);
                 } else {
                     Log.d(TAG, "No listener registered, can not call onSplitFinished");
-                }
-                mStatus = Status.EDITING;
-                break;
-
-            case SaveMode.JOIN:
-                setEnabled(true);
-                if (success) {
-                    showJoinAggregateActivity(contactLookupUri);
                 }
                 mStatus = Status.EDITING;
                 break;
