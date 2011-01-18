@@ -261,7 +261,7 @@ public class ContactSelectionActivity extends ContactsActivity
         mListFragment.setQueryString(mRequest.getQueryString());
         mListFragment.setDirectoryResultLimit(DEFAULT_DIRECTORY_RESULT_LIMIT);
 
-        getFragmentManager().openTransaction()
+        getFragmentManager().beginTransaction()
                 .replace(R.id.list_container, mListFragment)
                 .commit();
     }

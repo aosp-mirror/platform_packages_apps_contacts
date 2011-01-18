@@ -87,7 +87,7 @@ public class JoinContactActivity extends ContactsActivity {
 
         mListFragment = new JoinContactListFragment();
 
-        getFragmentManager().openTransaction()
+        getFragmentManager().beginTransaction()
                 .replace(R.id.list_container, mListFragment)
                 .commit();
     }
