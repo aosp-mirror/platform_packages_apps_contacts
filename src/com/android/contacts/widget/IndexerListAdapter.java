@@ -20,7 +20,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SectionIndexer;
-import android.widget.TextView;
 
 /**
  * A list adapter that supports section indexer and a pinned header.
