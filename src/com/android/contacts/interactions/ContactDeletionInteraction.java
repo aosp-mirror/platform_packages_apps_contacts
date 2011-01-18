@@ -79,7 +79,7 @@ public class ContactDeletionInteraction extends Fragment
         if (fragment == null) {
             fragment = new ContactDeletionInteraction();
             fragment.setContactUri(contactUri);
-            fragmentManager.openTransaction().add(fragment, FRAGMENT_TAG).commit();
+            fragmentManager.beginTransaction().add(fragment, FRAGMENT_TAG).commit();
         } else {
             fragment.setContactUri(contactUri);
         }

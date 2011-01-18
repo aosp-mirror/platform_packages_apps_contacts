@@ -419,7 +419,7 @@ public class ContactBrowserActivity extends ContactsActivity
                 mContactsUnavailableFragment.setProviderStatusLoader(mProviderStatusLoader);
                 mContactsUnavailableFragment.setOnContactsUnavailableActionListener(
                         new ContactsUnavailableFragmentListener());
-                getFragmentManager().openTransaction()
+                getFragmentManager().beginTransaction()
                         .replace(R.id.contacts_unavailable_container, mContactsUnavailableFragment)
                         .commit();
             } else {
