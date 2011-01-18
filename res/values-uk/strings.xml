@@ -247,13 +247,11 @@
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Імпорт файлу <xliff:g id="FILENAME">%s</xliff:g> vCard завершено"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Імпорт файлу <xliff:g id="FILENAME">%s</xliff:g> скасовано"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"Файл <xliff:g id="FILENAME">%s</xliff:g> незабаром буде імпортовано."</string>
-    <!-- no translation found for vcard_import_will_start_message_with_default_name (1022969530654129470) -->
-    <skip />
+    <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Незабаром файл буде імпортовано."</string>
     <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"Запит на імпорт vCard відхилено. Спробуйте пізніше."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"Файл <xliff:g id="FILENAME">%s</xliff:g> незабаром буде експортовано."</string>
     <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"Запит на експорт vCard відхилено. Спробуйте пізніше."</string>
-    <!-- no translation found for vcard_unknown_filename (7171709890959915954) -->
-    <skip />
+    <string name="vcard_unknown_filename" msgid="7171709890959915954">"контакт"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Підтверд. експорт"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Дійсно експортувати список контактів до \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
@@ -484,10 +482,7 @@
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Введіть ім\'я контакта перед тим, як об\'єднати з іншим контактом."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Об\'єднаний контакт"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Текст скопійовано"</string>
-    <!-- no translation found for cancel_confirmation_dialog_title (3950463632415908534) -->
-    <skip />
-    <!-- no translation found for cancel_confirmation_dialog_message (7021968394611740251) -->
-    <skip />
-    <!-- no translation found for discard (1234315037371251414) -->
-    <skip />
+    <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Відхилити зміни"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Дійсно відхилити ці зміни?"</string>
+    <string name="discard" msgid="1234315037371251414">"Відхилити"</string>
 </resources>

@@ -43,7 +43,7 @@
     <string name="menu_editContact" msgid="3452858480713561396">"Editar contacto"</string>
     <string name="menu_deleteContact" msgid="1916555454274101750">"Eliminar contacto"</string>
     <string name="menu_call" msgid="3992595586042260618">"Llamar al contacto"</string>
-    <string name="menu_sendSMS" msgid="5535886767547006515">"Enviar un mensaje de texto al contacto"</string>
+    <string name="menu_sendSMS" msgid="5535886767547006515">"Enviar SMS al contacto"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Establecer como dirección de email predeterminada"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Dividir"</string>
     <string name="menu_renameGroup" msgid="2798886925154156075">"Cambiar el nombre del grupo"</string>
@@ -282,7 +282,7 @@
     <string name="add_2sec_pause" msgid="9214012315201040129">"Añadir pausa de dos segundos"</string>
     <string name="add_wait" msgid="3360818652790319634">"Añadir espera"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"Llamar a través de"</string>
-    <string name="sms_disambig_title" msgid="4675399294513152364">"Enviar un mensaje de texto a través de"</string>
+    <string name="sms_disambig_title" msgid="4675399294513152364">"Enviar SMS a través de"</string>
     <string name="make_primary" msgid="5829291915305113983">"Recordar esta opción"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"No se ha encontrado ninguna aplicación que pueda realizar esta acción."</string>
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Recordar esta opción"</string>
@@ -339,27 +339,27 @@
     <string name="call_work_pager" msgid="3419348514157949008">"Llamar al buscapersonas del trabajo"</string>
     <string name="call_assistant" msgid="2141641383068514308">"Llamar a <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="6274041545876221437">"Llamar a MMS"</string>
-    <string name="sms_custom" msgid="5932736853732191825">"Enviar un mensaje de texto a <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="sms_home" msgid="7524332261493162995">"Enviar un mensaje de texto a casa"</string>
+    <string name="sms_custom" msgid="5932736853732191825">"Enviar SMS a <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="sms_home" msgid="7524332261493162995">"Enviar SMS a casa"</string>
     <string name="sms_mobile" msgid="5200107250451030769">"Enviar SMS a móvil"</string>
     <string name="sms_work" msgid="2269624156655267740">"Enviar SMS a trabajo"</string>
-    <string name="sms_fax_work" msgid="8028189067816907075">"Enviar un mensaje de texto al fax del trabajo"</string>
-    <string name="sms_fax_home" msgid="9204042076306809634">"Enviar un mensaje de texto al fax de casa"</string>
+    <string name="sms_fax_work" msgid="8028189067816907075">"Enviar SMS al fax del trabajo"</string>
+    <string name="sms_fax_home" msgid="9204042076306809634">"Enviar SMS al fax de casa"</string>
     <string name="sms_pager" msgid="7730404569637015192">"Enviar SMS al buscapersonas"</string>
     <string name="sms_other" msgid="806127844607642331">"Enviar SMS"</string>
-    <string name="sms_callback" msgid="5004824430094288752">"Enviar un mensaje de texto a un número de devolución de llamada"</string>
-    <string name="sms_car" msgid="7444227058437359641">"Enviar un mensaje de texto al coche"</string>
-    <string name="sms_company_main" msgid="118970873419678087">"Enviar un mensaje de texto al teléfono principal de la empresa"</string>
-    <string name="sms_isdn" msgid="8153785037515047845">"Enviar un mensaje de texto a RDSI"</string>
-    <string name="sms_main" msgid="8621625784504541679">"Enviar un mensaje de texto al número de teléfono principal"</string>
+    <string name="sms_callback" msgid="5004824430094288752">"Enviar SMS a devolución de llamada"</string>
+    <string name="sms_car" msgid="7444227058437359641">"Enviar SMS al coche"</string>
+    <string name="sms_company_main" msgid="118970873419678087">"Enviar SMS al teléfono principal de la empresa"</string>
+    <string name="sms_isdn" msgid="8153785037515047845">"Enviar SMS a RDSI"</string>
+    <string name="sms_main" msgid="8621625784504541679">"Enviar SMS al teléfono principal"</string>
     <string name="sms_other_fax" msgid="3888842199855843152">"Enviar SMS a fax"</string>
-    <string name="sms_radio" msgid="3329166673433967820">"Enviar un mensaje de texto a la radio"</string>
-    <string name="sms_telex" msgid="9034802430065267848">"Enviar un mensaje de texto al télex"</string>
-    <string name="sms_tty_tdd" msgid="6782284969132531532">"Enviar un mensaje de texto a TTY/TDD"</string>
-    <string name="sms_work_mobile" msgid="2459939960512702560">"Enviar un mensaje de texto al móvil del trabajo"</string>
+    <string name="sms_radio" msgid="3329166673433967820">"Enviar SMS a la radio"</string>
+    <string name="sms_telex" msgid="9034802430065267848">"Enviar SMS al télex"</string>
+    <string name="sms_tty_tdd" msgid="6782284969132531532">"Enviar SMS a TTY/TDD"</string>
+    <string name="sms_work_mobile" msgid="2459939960512702560">"Enviar SMS al móvil del trabajo"</string>
     <string name="sms_work_pager" msgid="5566924423316960597">"Enviar SMS al buscapersonas del trabajo"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"Enviar un mensaje de texto a <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="sms_mms" msgid="4069352461380762677">"Enviar un mensaje de texto a MMS"</string>
+    <string name="sms_mms" msgid="4069352461380762677">"Enviar SMS a MMS"</string>
     <string name="email_home" msgid="8573740658148184279">"Enviar email a casa"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Enviar email al móvil"</string>
     <string name="email_work" msgid="2807430017302722689">"Enviar email al trabajo"</string>
