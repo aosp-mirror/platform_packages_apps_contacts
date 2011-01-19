@@ -137,6 +137,8 @@ public abstract class ContactBrowseListFragment extends
 
     private ContactUriQueryHandler mQueryHandler;
 
+    private boolean mDelaySelection;
+
     private Handler getHandler() {
         if (mHandler == null) {
             mHandler = new Handler() {
@@ -288,6 +290,12 @@ public abstract class ContactBrowseListFragment extends
         setSelectedContactUri(uri, true, true, true, false);
     }
 
+    @Override
+    public void setQueryString(String queryString, boolean delaySelection) {
+        mDelaySelection = delaySelection;
+        super.setQueryString(queryString, delaySelection);
+    }
+
     /**
      * Sets the new contact selection.
      *
@@ -436,14 +444,14 @@ public abstract class ContactBrowseListFragment extends
             mLastSelectedPosition = selectedPosition;
         } else {
             if (isSearchMode()) {
-                selectFirstFoundContactAfterDelay();
-                if (mListener != null) {
-                    mListener.onSelectionChange();
+                if (mDelaySelection) {
+                    selectFirstFoundContactAfterDelay();
+                    if (mListener != null) {
+                        mListener.onSelectionChange();
+                    }
+                    return;
                 }
-                return;
-            }
-
-            if (mSelectionRequired) {
+            } else if (mSelectionRequired) {
                 // A specific contact was requested, but it's not in the loaded list.
 
                 // Try reconfiguring and reloading the list that will hopefully contain
@@ -460,12 +468,10 @@ public abstract class ContactBrowseListFragment extends
                     notifyInvalidSelection();
                 }
                 return;
-            }
-
-            // If we were trying to load a specific contact, but that contact no longer
-            // exists, call the listener, which will adjust the filter.
-            if (mFilter != null
+            } else if (mFilter != null
                     && mFilter.filterType == ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
+                // If we were trying to load a specific contact, but that contact no longer
+                // exists, call the listener, which will adjust the filter.
                 notifyInvalidSelection();
                 return;
             }
