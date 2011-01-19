@@ -349,7 +349,7 @@ public class ContactBrowserActivity extends ContactsActivity
     @Override
     public void onAction() {
         configureFragments(false /* from request */);
-        mListFragment.setQueryString(mActionBarAdapter.getQueryString());
+        mListFragment.setQueryString(mActionBarAdapter.getQueryString(), true);
     }
 
     private void configureListFragmentForRequest() {
@@ -359,7 +359,7 @@ public class ContactBrowserActivity extends ContactsActivity
         }
 
         mListFragment.setSearchMode(mRequest.isSearchMode());
-        mListFragment.setQueryString(mRequest.getQueryString());
+        mListFragment.setQueryString(mRequest.getQueryString(), false);
 
         if (mRequest.isDirectorySearchEnabled()) {
             mListFragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DEFAULT);

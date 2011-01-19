@@ -615,7 +615,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         return mQueryString;
     }
 
-    public void setQueryString(String queryString) {
+    public void setQueryString(String queryString, boolean delaySelection) {
         if (!TextUtils.equals(mQueryString, queryString)) {
             mQueryString = queryString;
             if (mAdapter != null) {
