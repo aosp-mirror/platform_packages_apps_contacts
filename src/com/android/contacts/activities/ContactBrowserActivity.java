@@ -286,6 +286,7 @@ public class ContactBrowserActivity extends ContactsActivity
                     break;
             }
 
+            mSearchMode = mRequest.isSearchMode();
             if (filter != null) {
                 mContactListFilterController.setContactListFilter(filter, false);
                 mSearchMode = false;
@@ -357,6 +358,7 @@ public class ContactBrowserActivity extends ContactsActivity
             mListFragment.setSelectedContactUri(contactUri);
         }
 
+        mListFragment.setSearchMode(mRequest.isSearchMode());
         mListFragment.setQueryString(mRequest.getQueryString());
 
         if (mRequest.isDirectorySearchEnabled()) {

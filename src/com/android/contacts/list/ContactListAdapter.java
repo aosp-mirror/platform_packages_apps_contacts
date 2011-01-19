@@ -322,9 +322,8 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
                     break;
                 }
             }
-            if (mSelectedContactId != 0 &&
-                    mSelectedContactDirectoryId !=  Directory.DEFAULT &&
-                    mSelectedContactDirectoryId !=  Directory.LOCAL_INVISIBLE) {
+            if (mSelectedContactId != 0 && (mSelectedContactDirectoryId == Directory.DEFAULT
+                    || mSelectedContactDirectoryId == Directory.LOCAL_INVISIBLE)) {
                 long contactId = cursor.getLong(CONTACT_ID_COLUMN_INDEX);
                 if (contactId == mSelectedContactId) {
                     offset = cursor.getPosition();
