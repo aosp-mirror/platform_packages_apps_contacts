@@ -32,7 +32,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -49,7 +51,7 @@ public class EventFieldEditorView extends LabeledEditorView {
      */
     private final int DEFAULT_HOUR = 8;
 
-    private TextView mDateView;
+    private Button mDateView;
 
     public EventFieldEditorView(Context context) {
         super(context);
@@ -125,8 +127,14 @@ public class EventFieldEditorView extends LabeledEditorView {
         if (mDateView == null) {
 
             // TODO: Change to android.R.attr.spinnerTextStyle when available
-            mDateView = new TextView(getContext(), null, android.R.attr.editTextStyle);
-            mDateView.setFocusable(true);
+            // mDateView = new Button(getContext(), null, android.R.attr.editTextStyle);
+            mDateView = new Button(getContext());
+            // TODO: Remove hard-coded padding and gravity when android.R.attr.spinnerTextStyle
+            // becomes available
+            mDateView.setPadding(18, mDateView.getPaddingTop(),
+                    mDateView.getPaddingRight(), mDateView.getPaddingBottom());
+            mDateView.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
+
             mDateView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
             mDateView.setEnabled(isEnabled() && !readOnly);
@@ -145,7 +153,10 @@ public class EventFieldEditorView extends LabeledEditorView {
     private void rebuildDateView() {
         final EditField editField = getKind().fieldList.get(0);
         final String column = editField.column;
-        final String data = DateUtils.formatDate(getContext(), getEntry().getAsString(column));
+        String data = DateUtils.formatDate(getContext(), getEntry().getAsString(column));
+        if (TextUtils.isEmpty(data)) {
+            data = " ";
+        }
         mDateView.setText(data);
     }
 
