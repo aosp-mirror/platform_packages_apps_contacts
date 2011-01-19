@@ -42,6 +42,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.ClipboardManager;
 import android.content.ContentUris;
@@ -539,6 +540,9 @@ public class ContactDetailFragment extends Fragment implements
                     entry.uri = null;
                     mOtherEntries.add(entry);
                 } else if (Relation.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
+                    entry.intent = new Intent(Intent.ACTION_SEARCH);
+                    entry.intent.putExtra(SearchManager.QUERY, entry.data);
+                    entry.intent.setType(Contacts.CONTENT_TYPE);
                     mRelationEntries.add(entry);
                 } else {
                     // Handle showing custom rows
