@@ -22,6 +22,8 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.util.ContactBadgeUtil;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Entity;
@@ -43,13 +45,15 @@ import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Header for displaying a title bar with contact info. You
  * can bind specific values by calling
  * {@link ContactDetailHeaderView#loadData(com.android.contacts.ContactLoader.Result)}
  */
-public class ContactDetailHeaderView extends FrameLayout implements View.OnClickListener {
+public class ContactDetailHeaderView extends FrameLayout
+        implements View.OnClickListener, View.OnLongClickListener {
     private static final String TAG = "ContactDetailHeaderView";
 
     private static final int PHOTO_FADE_IN_ANIMATION_DURATION_MILLIS = 100;
@@ -91,10 +95,13 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
         inflater.inflate(R.layout.contact_detail_header_view, this);
 
         mDisplayNameView = (TextView) findViewById(R.id.name);
+        mDisplayNameView.setOnLongClickListener(this);
 
         mPhoneticNameView = (TextView) findViewById(R.id.phonetic_name);
+        mPhoneticNameView.setOnLongClickListener(this);
 
         mOrganizationTextView = (TextView) findViewById(R.id.organization);
+        mOrganizationTextView.setOnLongClickListener(this);
 
         mStarredView = (CheckBox)findViewById(R.id.star);
         mStarredView.setOnClickListener(this);
@@ -323,5 +330,24 @@ public class ContactDetailHeaderView extends FrameLayout implements View.OnClick
                 break;
             }
         }
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        if (!(v instanceof TextView)) {
+            return false;
+        }
+
+        CharSequence text = ((TextView)v).getText();
+
+        if (TextUtils.isEmpty(text)) {
+            return false;
+        }
+
+        ClipboardManager cm = (ClipboardManager) getContext().getSystemService(
+                Context.CLIPBOARD_SERVICE);
+        cm.setPrimaryClip(ClipData.newPlainText(null, text));
+        Toast.makeText(getContext(), R.string.toast_text_copied, Toast.LENGTH_SHORT).show();
+        return true;
     }
 }
