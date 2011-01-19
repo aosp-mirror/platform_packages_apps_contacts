@@ -30,6 +30,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
@@ -231,7 +232,7 @@ public class ShortcutIntentBuilder {
                 (String[]) null);
         shortcutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-        final Bitmap icon = scaleToAppIconSize(bitmap);
+        final Bitmap icon = generateQuickContactIcon(bitmap);
 
         Intent intent = new Intent();
         intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon);
@@ -269,7 +270,7 @@ public class ShortcutIntentBuilder {
         mListener.onShortcutIntentCreated(uri, intent);
     }
 
-    private Bitmap scaleToAppIconSize(Bitmap photo) {
+    private Bitmap generateQuickContactIcon(Bitmap photo) {
 
         // Setup the drawing classes
         Bitmap icon = Bitmap.createBitmap(mIconSize, mIconSize, Bitmap.Config.ARGB_8888);
@@ -282,6 +283,12 @@ public class ShortcutIntentBuilder {
         Rect src = new Rect(0,0, photo.getWidth(),photo.getHeight());
         Rect dst = new Rect(0,0, mIconSize, mIconSize);
         canvas.drawBitmap(photo, src, dst, photoPaint);
+
+        Drawable overlay = mContext.getResources().getDrawable(
+                com.android.internal.R.drawable.quickcontact_badge_overlay_dark);
+
+        overlay.setBounds(dst);
+        overlay.draw(canvas);
 
         return icon;
     }
