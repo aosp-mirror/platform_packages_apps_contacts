@@ -181,7 +181,11 @@ public class GroupMembershipView extends LinearLayout
         }
 
         mGroupList.setEnabled(isEnabled());
-        mGroupList.setText(sb);
+        if (sb.length() == 0) {
+            mGroupList.setText(" ");
+        } else {
+            mGroupList.setText(sb);
+        }
         setVisibility(VISIBLE);
 
         if (!mDefaultGroupVisibilityKnown) {
