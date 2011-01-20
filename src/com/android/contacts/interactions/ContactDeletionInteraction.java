@@ -49,6 +49,7 @@ public class ContactDeletionInteraction extends Fragment
     private static final String FRAGMENT_TAG = "deleteContact";
 
     private static final String KEY_ACTIVE = "active";
+    private static final String KEY_CONTACT_URI = "contactUri";
     public static final String ARG_CONTACT_URI = "contactUri";
 
     private static final String[] ENTITY_PROJECTION = new String[] {
@@ -209,6 +210,7 @@ public class ContactDeletionInteraction extends Fragment
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(KEY_ACTIVE, mActive);
+        outState.putParcelable(KEY_CONTACT_URI, mContactUri);
     }
 
     @Override
@@ -216,6 +218,7 @@ public class ContactDeletionInteraction extends Fragment
         super.onActivityCreated(savedInstanceState);
         if (savedInstanceState != null) {
             mActive = savedInstanceState.getBoolean(KEY_ACTIVE);
+            mContactUri = savedInstanceState.getParcelable(KEY_CONTACT_URI);
         }
     }
 
