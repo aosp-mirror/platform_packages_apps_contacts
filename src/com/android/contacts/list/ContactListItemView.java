@@ -865,6 +865,11 @@ public class ContactListItemView extends ViewGroup
      */
     public void showSnippet(Cursor cursor, int summarySnippetMimetypeColumnIndex,
             int summarySnippetData1ColumnIndex, int summarySnippetData4ColumnIndex) {
+        if (cursor.getColumnCount() <= summarySnippetMimetypeColumnIndex) {
+            setSnippet(null);
+            return;
+        }
+
         String snippet = null;
         String snippetMimeType = cursor.getString(summarySnippetMimetypeColumnIndex);
         if (Email.CONTENT_ITEM_TYPE.equals(snippetMimeType)
