@@ -37,7 +37,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
-import android.widget.NumberPicker.OnValueChangedListener;
+import android.widget.NumberPicker.OnValueChangeListener;
 
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
@@ -107,7 +107,7 @@ public class DatePicker extends FrameLayout {
         mDayPicker = (NumberPicker) findViewById(R.id.day);
         mDayPicker.setFormatter(NumberPicker.TWO_DIGIT_FORMATTER);
         mDayPicker.setOnLongPressUpdateInterval(100);
-        mDayPicker.setOnValueChangedListener(new OnValueChangedListener() {
+        mDayPicker.setOnValueChangedListener(new OnValueChangeListener() {
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 mDay = newVal;
                 notifyDateChanged();
@@ -136,7 +136,7 @@ public class DatePicker extends FrameLayout {
         }
 
         mMonthPicker.setOnLongPressUpdateInterval(200);
-        mMonthPicker.setOnValueChangedListener(new OnValueChangedListener() {
+        mMonthPicker.setOnValueChangedListener(new OnValueChangeListener() {
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
 
                 /* We display the month 1-12 but store it 0-11 so always
@@ -151,7 +151,7 @@ public class DatePicker extends FrameLayout {
         });
         mYearPicker = (NumberPicker) findViewById(R.id.year);
         mYearPicker.setOnLongPressUpdateInterval(100);
-        mYearPicker.setOnValueChangedListener(new OnValueChangedListener() {
+        mYearPicker.setOnValueChangedListener(new OnValueChangeListener() {
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 mYear = newVal;
                 // Adjust max day for leap years if needed
