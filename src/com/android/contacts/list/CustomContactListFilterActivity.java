@@ -146,19 +146,6 @@ public class CustomContactListFilterActivity extends ContactsActivity
         text1.setText(R.string.headerContactGroups);
     }
 
-    private static final Comparator<AccountDisplay> ACCOUNT_COMPARATOR =
-            new Comparator<AccountDisplay>() {
-
-        @Override
-        public int compare(AccountDisplay account1, AccountDisplay account2) {
-            int diff = account1.mType.compareTo(account2.mType);
-            if (diff != 0) {
-                return diff;
-            }
-            return account1.mName.compareTo(account2.mName);
-        }
-    };
-
     public static class CustomFilterConfigurationLoader extends AsyncTaskLoader<AccountSet> {
 
         private AccountSet mAccountSet;
@@ -204,7 +191,6 @@ public class CustomContactListFilterActivity extends ContactsActivity
                 accounts.add(accountDisplay);
             }
 
-            Collections.sort(accounts, ACCOUNT_COMPARATOR);
             return accounts;
         }
 
@@ -601,9 +587,9 @@ public class CustomContactListFilterActivity extends ContactsActivity
 
             final AccountType accountType = mAccountTypes.getAccountType(account.mType);
 
-            text1.setText(accountType.getDisplayLabel(mContext));
-            text2.setText(account.mName);
-            text2.setVisibility(account.mName == null ? View.GONE : View.VISIBLE);
+            text1.setText(account.mName);
+            text1.setVisibility(account.mName == null ? View.GONE : View.VISIBLE);
+            text2.setText(accountType.getDisplayLabel(mContext));
 
             return convertView;
         }
