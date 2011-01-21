@@ -32,13 +32,13 @@ import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
-import android.widget.SearchView.OnQueryChangeListener;
+import android.widget.SearchView.OnQueryTextListener;
 import android.widget.TextView;
 
 /**
  * Adapter for the action bar at the top of the Contacts activity.
  */
-public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
+public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener,
         ContactListFilterListener, OnFocusChangeListener {
 
     public interface Listener {
@@ -93,7 +93,7 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
         mSearchLabel = (TextView) mNavigationBar.findViewById(R.id.search_label);
         mSearchView = (SearchView) mNavigationBar.findViewById(R.id.search_view);
 
-        mSearchView.setOnQueryChangeListener(this);
+        mSearchView.setOnQueryTextListener(this);
         mSearchView.setOnCloseListener(this);
         mSearchView.setOnQueryTextFocusChangeListener(this);
         mSearchView.setQuery(mQueryString, false);
@@ -178,7 +178,7 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
     }
 
     @Override
-    public boolean onQueryTextChanged(String queryString) {
+    public boolean onQueryTextChange(String queryString) {
         mQueryString = queryString;
         if (!mSearchMode) {
             if (!TextUtils.isEmpty(queryString)) {
@@ -192,7 +192,7 @@ public class ActionBarAdapter implements OnQueryChangeListener, OnCloseListener,
     }
 
     @Override
-    public boolean onSubmitQuery(String query) {
+    public boolean onQueryTextSubmit(String query) {
         return true;
     }
 

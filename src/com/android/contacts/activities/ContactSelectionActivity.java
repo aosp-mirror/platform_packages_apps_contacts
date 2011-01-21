@@ -41,14 +41,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.SearchView;
-import android.widget.SearchView.OnQueryChangeListener;
+import android.widget.SearchView.OnQueryTextListener;
 
 /**
  * Displays a list of contacts (or phone numbers or postal addresses) for the
  * purposes of selecting one.
  */
 public class ContactSelectionActivity extends ContactsActivity
-        implements View.OnCreateContextMenuListener, OnQueryChangeListener, OnClickListener {
+        implements View.OnCreateContextMenuListener, OnQueryTextListener, OnClickListener {
     private static final String TAG = "ContactSelectionActivity";
 
     private static final String KEY_ACTION_CODE = "actionCode";
@@ -106,7 +106,7 @@ public class ContactSelectionActivity extends ContactsActivity
 
         mSearchView = (SearchView)findViewById(R.id.search_view);
         mSearchView.setQueryHint(getString(R.string.hint_findContacts));
-        mSearchView.setOnQueryChangeListener(this);
+        mSearchView.setOnQueryTextListener(this);
 
         // This is a hack to prevent the search view from grabbing focus
         // at this point.  If search view were visible, it would always grabs focus
@@ -349,14 +349,14 @@ public class ContactSelectionActivity extends ContactsActivity
     }
 
     @Override
-    public boolean onQueryTextChanged(String newText) {
+    public boolean onQueryTextChange(String newText) {
         mListFragment.setQueryString(newText, true);
         mListFragment.setSearchMode(!TextUtils.isEmpty(newText));
         return false;
     }
 
     @Override
-    public boolean onSubmitQuery(String query) {
+    public boolean onQueryTextSubmit(String query) {
         return false;
     }
 
