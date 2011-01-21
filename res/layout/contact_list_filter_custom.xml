@@ -24,16 +24,26 @@
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:layout_marginLeft="16dip"
+        android:layout_marginRight="16dip"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_marginLeft="16dip"
+        android:layout_marginRight="16dip"
+        android:background="?android:attr/dividerHorizontal" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        style="@android:style/ButtonBar">
+        style="?android:attr/buttonBarStyle">
 
         <Button
             android:id="@+id/btn_done"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -41,11 +51,11 @@
 
         <Button
             android:id="@+id/btn_discard"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@android:string/cancel" />
 
     </LinearLayout>
-
 </LinearLayout>
