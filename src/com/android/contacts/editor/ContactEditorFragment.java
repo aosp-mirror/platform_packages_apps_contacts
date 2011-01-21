@@ -1224,7 +1224,7 @@ public class ContactEditorFragment extends Fragment implements
 
     @Override
     public void onAggregationSuggestionChange() {
-        if (!isAdded()) {
+        if (!isAdded() || mState == null) {
             return;
         }
 
