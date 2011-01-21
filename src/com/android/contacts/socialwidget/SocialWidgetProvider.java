@@ -114,38 +114,41 @@ public class SocialWidgetProvider extends AppWidgetProvider {
 
     private static void bindRemoteViews(final Context context, final int widgetId,
             final AppWidgetManager widgetManager, ContactLoader.Result contactData) {
-        if (contactData == ContactLoader.Result.ERROR ||
-                contactData == ContactLoader.Result.NOT_FOUND) {
-            return;
-        }
-
         Log.d(TAG, "Loaded " + contactData.getLookupKey()
                 + " for widget with id=" + widgetId);
         final RemoteViews views = new RemoteViews(context.getPackageName(),
                 R.layout.social_widget);
 
-        setDisplayNameAndSnippet(context, views, contactData.getDisplayName(),
-                contactData.getPhoneticName(), contactData.getSocialSnippet());
+        if (contactData == ContactLoader.Result.ERROR ||
+                contactData == ContactLoader.Result.NOT_FOUND) {
+            setDisplayNameAndSnippet(context, views,
+                    context.getString(R.string.invalidContactMessage), null, null);
+            setPhoto(views, ContactBadgeUtil.loadPlaceholderPhoto(context));
+            setStatusAttribution(views, null);
+        } else {
+            setDisplayNameAndSnippet(context, views, contactData.getDisplayName(),
+                    contactData.getPhoneticName(), contactData.getSocialSnippet());
 
-        byte[] photo = contactData.getPhotoBinaryData();
-        setPhoto(views, photo != null
-                ? BitmapFactory.decodeByteArray(photo, 0, photo.length)
-                : ContactBadgeUtil.loadPlaceholderPhoto(context));
-        setStatusAttribution(views, ContactBadgeUtil.getSocialDate(
-                contactData, context));
+            byte[] photo = contactData.getPhotoBinaryData();
+            setPhoto(views, photo != null
+                    ? BitmapFactory.decodeByteArray(photo, 0, photo.length)
+                            : ContactBadgeUtil.loadPlaceholderPhoto(context));
+            setStatusAttribution(views, ContactBadgeUtil.getSocialDate(
+                    contactData, context));
 
-        // OnClick launch QuickContact
-        final Intent intent = new Intent(QuickContact.ACTION_QUICK_CONTACT);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                | Intent.FLAG_ACTIVITY_CLEAR_TOP
-                | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+            // OnClick launch QuickContact
+            final Intent intent = new Intent(QuickContact.ACTION_QUICK_CONTACT);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                    | Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
 
-        intent.setData(contactData.getLookupUri());
-        intent.putExtra(QuickContact.EXTRA_MODE, QuickContact.MODE_SMALL);
+            intent.setData(contactData.getLookupUri());
+            intent.putExtra(QuickContact.EXTRA_MODE, QuickContact.MODE_SMALL);
 
-        final PendingIntent pendingIntent = PendingIntent.getActivity(context,
-                0, intent, 0);
-        views.setOnClickPendingIntent(R.id.border, pendingIntent);
+            final PendingIntent pendingIntent = PendingIntent.getActivity(context,
+                    0, intent, 0);
+            views.setOnClickPendingIntent(R.id.border, pendingIntent);
+        }
 
         // Configure UI
         widgetManager.updateAppWidget(widgetId, views);
