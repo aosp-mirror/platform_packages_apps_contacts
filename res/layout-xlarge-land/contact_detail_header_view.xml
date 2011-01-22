@@ -85,7 +85,7 @@
                         android:layout_height="wrap_content"
                         android:singleLine="true"
                         android:ellipsize="end"
-                        android:textSize="26sp" />
+                        android:textSize="@dimen/contact_name_text_size" />
 
                     <TextView
                         android:id="@+id/phonetic_name"
