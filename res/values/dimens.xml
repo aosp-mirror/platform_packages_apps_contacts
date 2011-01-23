@@ -54,4 +54,7 @@
 
     <!-- Font size used for the social status in the widget -->
     <dimen name="widget_text_size_snippet">13sp</dimen>
+
+    <!-- Font size used for the contact name in the detail and the editor -->
+    <dimen name="contact_name_text_size">18sp</dimen>
 </resources>
