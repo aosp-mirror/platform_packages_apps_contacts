@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 <resources>
-    <style name="ContactBrowserTheme" parent="@android:Theme.Light.Holo">
+    <style name="ContactBrowserTheme" parent="@android:Theme.Holo.Light">
         <item name="list_item_height">66dip</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -57,7 +57,7 @@
         <item name="list_item_header_text_size">14sp</item>
     </style>
 
-    <style name="ContactsPreferencesTheme" parent="@android:Theme.Light.Holo">
+    <style name="ContactsPreferencesTheme" parent="@android:Theme.Holo.Light">
     </style>
 
     <style name="CustomContactListFilterTheme" parent="@android:Theme.Holo.Light.Dialog">
@@ -81,7 +81,7 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <style name="ContactEditorActivityTheme" parent="@android:Theme.Light.Holo">
+    <style name="ContactEditorActivityTheme" parent="@android:Theme.Holo.Light">
         <item name="android:actionBarStyle">@style/TransparentActionBarStyle</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
