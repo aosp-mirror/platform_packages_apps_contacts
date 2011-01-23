@@ -51,6 +51,7 @@ public abstract class BaseRawContactEditorView extends LinearLayout {
 
     private View mHeader;
     private View mBody;
+    private View mDivider;
 
     private boolean mExpanded = true;
 
@@ -68,6 +69,7 @@ public abstract class BaseRawContactEditorView extends LinearLayout {
 
         mHeader = findViewById(R.id.header);
         mBody = findViewById(R.id.body);
+        mDivider = findViewById(R.id.divider);
         mHeader.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,5 +140,6 @@ public abstract class BaseRawContactEditorView extends LinearLayout {
         if (newValue == mExpanded) return;
         mExpanded = newValue;
         mBody.setVisibility(newValue ? View.VISIBLE : View.GONE);
+        mDivider.setVisibility(newValue ? View.GONE : View.VISIBLE);
     }
 }

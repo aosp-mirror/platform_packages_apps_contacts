@@ -51,6 +51,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
     private ImageButton mMoreOrLess;
     private boolean mHideOptional = true;
     private boolean mHasShortAndLongForms;
+    private int mEditorTextSize;
 
     public TextFieldsEditorView(Context context) {
         super(context);
@@ -62,6 +63,10 @@ public class TextFieldsEditorView extends LabeledEditorView {
 
     public TextFieldsEditorView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+    }
+
+    public void setEditorTextSize(int textSize) {
+        this.mEditorTextSize = textSize;
     }
 
     @Override
@@ -258,6 +263,9 @@ public class TextFieldsEditorView extends LabeledEditorView {
             fieldView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
             fieldView.setGravity(Gravity.TOP);
+            if (mEditorTextSize != 0) {
+                fieldView.setTextSize(mEditorTextSize);
+            }
             mFieldEditTexts[index] = fieldView;
             fieldView.setId(vig.getId(state, kind, entry, index));
             if (field.titleRes > 0) {

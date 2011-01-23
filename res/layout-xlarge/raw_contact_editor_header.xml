@@ -23,13 +23,6 @@
     android:background="@android:drawable/list_selector_background">
 
     <ImageView
-        android:id="@+id/header_color_bar"
-        android:layout_width="match_parent"
-        android:layout_height="4dip"
-        android:layout_marginBottom="5dip"
-        android:background="@color/edit_divider" />
-
-    <ImageView
         android:id="@+id/header_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,9 +57,11 @@
         android:singleLine="true" />
 
     <View
+        android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_alignParentBottom="true"
+        android:background="?android:attr/listDivider"
+        android:visibility="gone" />
 
-        android:background="?android:attr/listDivider" />
 </RelativeLayout>

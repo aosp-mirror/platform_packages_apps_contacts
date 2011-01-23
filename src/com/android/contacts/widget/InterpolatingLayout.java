@@ -302,8 +302,7 @@ public class InterpolatingLayout extends ViewGroup {
             int rightMargin = params.resolveRightMargin(width);
 
             mInRect.set(offset + leftMargin, params.topMargin,
-                    right - left - offset - rightMargin,
-                    bottom - top - params.bottomMargin);
+                    right - rightMargin, bottom - params.bottomMargin);
 
             Gravity.apply(gravity, child.getMeasuredWidth(), child.getMeasuredHeight(),
                     mInRect, mOutRect);

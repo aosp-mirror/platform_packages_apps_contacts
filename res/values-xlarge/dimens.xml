@@ -17,4 +17,5 @@
     <dimen name="edit_photo_size">96dip</dimen>
     <dimen name="aggregation_suggestion_icon_size">64dip</dimen>
     <dimen name="quick_contact_width">356dip</dimen>
+    <dimen name="contact_name_text_size">26sp</dimen>
 </resources>

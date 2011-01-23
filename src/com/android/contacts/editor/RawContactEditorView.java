@@ -182,6 +182,8 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         setHasPhotoEditor((type.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null));
         getPhotoEditor().setEnabled(isEnabled());
         mName.setEnabled(isEnabled());
+        mName.setEditorTextSize(
+                mContext.getResources().getDimensionPixelSize(R.dimen.contact_name_text_size));
 
         // Show and hide the appropriate views
         mFields.setVisibility(View.VISIBLE);
