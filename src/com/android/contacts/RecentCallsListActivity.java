@@ -1042,7 +1042,7 @@ public class RecentCallsListActivity extends ListActivity
             case DIALOG_CONFIRM_DELETE_ALL:
                 return new AlertDialog.Builder(this)
                     .setTitle(R.string.clearCallLogConfirmation_title)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setIconAttribute(android.R.attr.alertDialogIcon)
                     .setMessage(R.string.clearCallLogConfirmation)
                     .setNegativeButton(android.R.string.cancel, null)
                     .setPositiveButton(android.R.string.ok, new OnClickListener() {

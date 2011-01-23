@@ -108,7 +108,7 @@ public class CancelActivity extends Activity implements ServiceConnection {
         case R.id.dialog_cancel_failed:
             final AlertDialog.Builder builder = new AlertDialog.Builder(this)
                     .setTitle(R.string.cancel_vcard_import_or_export_failed)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setIconAttribute(android.R.attr.alertDialogIcon)
                     .setMessage(getString(R.string.fail_reason_unknown))
                     .setOnCancelListener(mCancelListener)
                     .setPositiveButton(android.R.string.ok, mCancelListener);

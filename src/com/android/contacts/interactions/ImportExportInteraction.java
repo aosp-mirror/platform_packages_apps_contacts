@@ -82,7 +82,7 @@ public class ImportExportInteraction {
             case R.id.dialog_sdcard_not_found: {
                 return new AlertDialog.Builder(mContext)
                         .setTitle(R.string.no_sdcard_title)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setIconAttribute(android.R.attr.alertDialogIcon)
                         .setMessage(R.string.no_sdcard_message)
                         .setPositiveButton(android.R.string.ok, null).create();
             }
