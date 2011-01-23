@@ -47,7 +47,7 @@
     <dimen name="editor_min_line_item_height">48dip</dimen>
 
     <!-- Padding to be used between a visible scrollbar and the contact list -->
-    <dimen name="list_visible_scrollbar_padding">56dip</dimen>
+    <dimen name="list_visible_scrollbar_padding">40dip</dimen>
 
     <!-- Font size used for the contact name in the widget -->
     <dimen name="widget_text_size_name">14sp</dimen>
