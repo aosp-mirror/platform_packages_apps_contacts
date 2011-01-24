@@ -857,7 +857,7 @@ public class ImportVCardActivity extends ContactsActivity {
             case R.id.dialog_sdcard_not_found: {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this)
                     .setTitle(R.string.no_sdcard_title)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setIconAttribute(android.R.attr.alertDialogIcon)
                     .setMessage(R.string.no_sdcard_message)
                     .setOnCancelListener(mCancelListener)
                     .setPositiveButton(android.R.string.ok, mCancelListener);
@@ -905,7 +905,7 @@ public class ImportVCardActivity extends ContactsActivity {
                         getString(R.string.fail_reason_io_error)));
                 AlertDialog.Builder builder = new AlertDialog.Builder(this)
                     .setTitle(R.string.scanning_sdcard_failed_title)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setIconAttribute(android.R.attr.alertDialogIcon)
                     .setMessage(message)
                     .setOnCancelListener(mCancelListener)
                     .setPositiveButton(android.R.string.ok, mCancelListener);
@@ -919,7 +919,7 @@ public class ImportVCardActivity extends ContactsActivity {
                 }
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this)
                     .setTitle(getString(R.string.reading_vcard_failed_title))
-                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setIconAttribute(android.R.attr.alertDialogIcon)
                     .setMessage(message)
                     .setOnCancelListener(mCancelListener)
                     .setPositiveButton(android.R.string.ok, mCancelListener);
