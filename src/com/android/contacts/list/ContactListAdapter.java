@@ -234,9 +234,14 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     }
 
     protected void bindSectionHeaderAndDivider(ContactListItemView view, int position) {
-        Placement placement = getItemPlacementInSection(position);
-        view.setSectionHeader(placement.firstInSection ? placement.sectionHeader : null);
-        view.setDividerVisible(!placement.lastInSection);
+        if (isSectionHeaderDisplayEnabled()) {
+            Placement placement = getItemPlacementInSection(position);
+            view.setSectionHeader(placement.firstInSection ? placement.sectionHeader : null);
+            view.setDividerVisible(!placement.lastInSection);
+        } else {
+            view.setSectionHeader(null);
+            view.setDividerVisible(true);
+        }
     }
 
     protected void bindPhoto(final ContactListItemView view, int partitionIndex, Cursor cursor) {

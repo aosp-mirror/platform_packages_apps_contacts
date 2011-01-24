@@ -36,6 +36,8 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     public PhoneNumberPickerFragment() {
         setQuickContactEnabled(false);
         setPhotoLoaderEnabled(true);
+        setVisibleScrollbarEnabled(true);
+        setSectionHeaderDisplayEnabled(true);
         setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DATA_SHORTCUT);
     }
 
@@ -73,13 +75,6 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
             adapter.setDisplayPhotos(true);
             return adapter;
         }
-    }
-
-    @Override
-    protected void configureAdapter() {
-        setSectionHeaderDisplayEnabled(!isSearchMode());
-        setVisibleScrollbarEnabled(!isSearchMode());
-        super.configureAdapter();
     }
 
     @Override
