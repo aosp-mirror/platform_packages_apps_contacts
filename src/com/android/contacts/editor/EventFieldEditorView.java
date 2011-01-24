@@ -36,7 +36,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import java.text.ParsePosition;
 import java.util.Calendar;
@@ -126,15 +125,7 @@ public class EventFieldEditorView extends LabeledEditorView {
 
         if (mDateView == null) {
 
-            // TODO: Change to android.R.attr.spinnerTextStyle when available
-            // mDateView = new Button(getContext(), null, android.R.attr.editTextStyle);
-            mDateView = new Button(getContext());
-            // TODO: Remove hard-coded padding and gravity when android.R.attr.spinnerTextStyle
-            // becomes available
-            mDateView.setPadding(18, mDateView.getPaddingTop(),
-                    mDateView.getPaddingRight(), mDateView.getPaddingBottom());
-            mDateView.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
-
+            mDateView = new Button(getContext(), null, android.R.attr.spinnerStyle);
             mDateView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
             mDateView.setEnabled(isEnabled() && !readOnly);
