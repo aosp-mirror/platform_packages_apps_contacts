@@ -86,13 +86,13 @@
                         android:layout_height="wrap_content"
                         android:singleLine="true"
                         android:ellipsize="end"
-                        android:textSize="@dimen/contact_name_text_size"/>
+                        android:textSize="@dimen/contact_name_text_size" />
 
                     <TextView
                         android:id="@+id/phonetic_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:singleLine="true"
                         android:ellipsize="end"
                         android:layout_marginTop="-2dip"
@@ -104,8 +104,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="-2dip"
                         android:visibility="gone"
-                        android:textColor="#999999"
-                        android:textAppearance="?android:attr/textAppearanceLarge" />
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="?android:attr/textColorTertiary" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -121,19 +121,19 @@
         android:layout_marginLeft="16dip"
         android:layout_marginRight="24dip"
         android:layout_marginTop="10dip"
-        android:paddingLeft="32dip"
-        android:paddingTop="40dip"
+        android:paddingLeft="12dip"
+        android:paddingTop="36dip"
         android:paddingRight="16dip"
-        android:paddingBottom="16dip"
+        android:paddingBottom="12dip"
         android:visibility="gone">
 
         <TextView
             android:id="@+id/status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#66666666"
-            android:maxLines="2"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?android:attr/textColorSecondary"
+            android:maxLines="3"
             android:ellipsize="end"
             android:visibility="gone" />
 
@@ -141,8 +141,9 @@
             android:id="@+id/status_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#66666666"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?android:attr/textColorTertiary"
+            android:gravity="right"
             android:visibility="gone" />
     </LinearLayout>
 </LinearLayout>
