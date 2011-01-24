@@ -164,14 +164,16 @@ public class JoinContactListAdapter extends ContactListAdapter {
             ViewGroup parent) {
         switch (partition) {
             case PARTITION_SUGGESTIONS: {
-              TextView view = (TextView) inflate(R.layout.list_separator, parent);
-              view.setText(R.string.separatorJoinAggregateSuggestions);
-              return view;
+                View view = inflate(R.layout.join_contact_picker_section, parent);
+                ((TextView) view.findViewById(R.id.text)).setText(
+                        R.string.separatorJoinAggregateSuggestions);
+                return view;
             }
             case PARTITION_ALL_CONTACTS: {
-              TextView view = (TextView) inflate(R.layout.list_separator, parent);
-              view.setText(R.string.separatorJoinAggregateAll);
-              return view;
+                View view = inflate(R.layout.join_contact_picker_section, parent);
+                ((TextView) view.findViewById(R.id.text)).setText(
+                        R.string.separatorJoinAggregateAll);
+                return view;
             }
         }
 
@@ -191,7 +193,7 @@ public class JoinContactListAdapter extends ContactListAdapter {
             case PARTITION_ALL_CONTACTS:
                 return super.newView(context, partition, cursor, position, parent);
             case PARTITION_SHOW_ALL_CONTACTS:
-                return inflate(R.layout.contacts_list_show_all_item, parent);
+                return inflate(R.layout.join_contact_picker_show_all, parent);
         }
         return null;
     }
@@ -205,6 +207,7 @@ public class JoinContactListAdapter extends ContactListAdapter {
         switch (partition) {
             case PARTITION_SUGGESTIONS: {
                 final ContactListItemView view = (ContactListItemView)itemView;
+                view.setSectionHeader(null);
                 bindPhoto(view, partition, cursor);
                 bindName(view, cursor);
                 break;

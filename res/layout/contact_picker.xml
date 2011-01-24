@@ -37,16 +37,23 @@
         android:layout_weight="1"
         android:id="@+id/list_container">
     </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_marginLeft="16dip"
+        android:layout_marginRight="16dip"
+        android:background="?android:attr/dividerHorizontal" />
+
     <LinearLayout
         style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dip">
+        android:layout_height="wrap_content">
         <Button
             style="?android:attr/buttonBarButtonStyle"
             android:id="@+id/cancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@android:string/cancel"/>
+            android:text="@android:string/cancel" />
     </LinearLayout>
 </view>

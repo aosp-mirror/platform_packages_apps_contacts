@@ -18,12 +18,31 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     class="com.android.contacts.widget.FullHeightLinearLayout"
     style="@style/ContactPickerLayout"
-    android:paddingLeft="20dip"
-    android:paddingRight="20dip"
     android:orientation="vertical">
+
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
         android:id="@+id/list_container">
     </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_marginLeft="16dip"
+        android:layout_marginRight="16dip"
+        android:background="?android:attr/dividerHorizontal" />
+
+    <LinearLayout
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            style="?android:attr/buttonBarButtonStyle"
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@android:string/cancel"/>
+    </LinearLayout>
 </view>
