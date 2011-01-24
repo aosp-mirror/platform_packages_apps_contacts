@@ -39,11 +39,9 @@
             android:background="@drawable/list_background_holo">
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="2dip"
+                style="@style/SectionDivider"
                 android:layout_marginLeft="40dip"
-                android:layout_marginTop="24dip"
-                android:background="#7e7e87" />
+                android:layout_marginTop="24dip" />
 
             <fragment
                 android:id="@+id/list_fragment"
