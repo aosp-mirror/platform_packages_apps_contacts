@@ -619,7 +619,7 @@ public class ContactListItemView extends ViewGroup
             mNameTextView = new TextView(mContext);
             mNameTextView.setSingleLine(true);
             mNameTextView.setEllipsize(getTextEllipsis());
-            mNameTextView.setTextAppearance(mContext, android.R.style.TextAppearance_Large);
+            mNameTextView.setTextAppearance(mContext, android.R.style.TextAppearance_Medium);
             mNameTextView.setGravity(Gravity.CENTER_VERTICAL);
             addView(mNameTextView);
         }
