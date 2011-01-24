@@ -39,6 +39,8 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
 
     private static final int DISPLAY_NAME_LOADER = -2;
 
+    private static final String KEY_ALL_CONTACTS_LIST_SHOWN = "allContactsShown";
+
     private OnContactPickerActionListener mListener;
     private long mTargetContactId;
     private boolean mAllContactsListShown = false;
@@ -76,17 +78,13 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
                     break;
                 }
                 case JoinContactListAdapter.PARTITION_ALL_CONTACTS: {
-                    setVisibleScrollbarEnabled(mAllContactsListShown);
-
-                    JoinContactListAdapter adapter = getAdapter();
                     Cursor suggestionsCursor = ((JoinContactLoader)loader).getSuggestionsCursor();
-                    adapter.setSuggestionsCursor(suggestionsCursor);
-                    onPartitionLoaded(JoinContactListAdapter.PARTITION_ALL_CONTACTS, data);
+                    onContactListLoaded(suggestionsCursor, data);
                     break;
                 }
             }
         }
-        
+
         public void onLoaderReset(Loader<Cursor> loader) {
         }
     };
@@ -109,6 +107,16 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
         getLoaderManager().initLoader(DISPLAY_NAME_LOADER, null, mLoaderCallbacks);
         getLoaderManager().initLoader(JoinContactListAdapter.PARTITION_ALL_CONTACTS,
                 null, mLoaderCallbacks);
+    }
+
+    void onContactListLoaded(Cursor suggestionsCursor, Cursor allContacts) {
+        JoinContactListAdapter adapter = getAdapter();
+        adapter.setSuggestionsCursor(suggestionsCursor);
+        if (suggestionsCursor == null || suggestionsCursor.getCount() == 0) {
+            mAllContactsListShown = true;
+        }
+        setVisibleScrollbarEnabled(mAllContactsListShown);
+        onPartitionLoaded(JoinContactListAdapter.PARTITION_ALL_CONTACTS, allContacts);
     }
 
     private void showTargetContactName(String displayName) {
@@ -137,7 +145,7 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
 
     @Override
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
-        return inflater.inflate(R.layout.contacts_list_content_join, null);
+        return inflater.inflate(R.layout.join_contact_picker_list_content, null);
     }
 
     @Override
@@ -166,5 +174,19 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
     @Override
     public void onPickerResult(Intent data) {
         mListener.onPickContactAction(data.getData());
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(KEY_ALL_CONTACTS_LIST_SHOWN, mAllContactsListShown);
+    }
+
+    @Override
+    public void restoreSavedState(Bundle savedState) {
+        super.restoreSavedState(savedState);
+        if (savedState != null) {
+            mAllContactsListShown = savedState.getBoolean(KEY_ALL_CONTACTS_LIST_SHOWN);
+        }
     }
 }

@@ -32,11 +32,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 
 /**
  * An activity that shows a list of contacts that can be joined with the target contact.
  */
-public class JoinContactActivity extends ContactsActivity {
+public class JoinContactActivity extends ContactsActivity implements OnClickListener {
 
     private static final String TAG = "JoinContactActivity";
 
@@ -84,12 +86,17 @@ public class JoinContactActivity extends ContactsActivity {
         }
 
         setContentView(R.layout.join_contact_picker);
+        setTitle(R.string.titleJoinContactDataWith);
 
-        mListFragment = new JoinContactListFragment();
+        findViewById(R.id.cancel).setOnClickListener(this);
 
-        getFragmentManager().beginTransaction()
-                .replace(R.id.list_container, mListFragment)
-                .commit();
+        if (mListFragment == null) {
+            mListFragment = new JoinContactListFragment();
+
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.list_container, mListFragment)
+                    .commit();
+        }
     }
 
     public void setupActionListener() {
@@ -161,6 +168,13 @@ public class JoinContactActivity extends ContactsActivity {
         if (requestCode == ContactEntryListFragment.ACTIVITY_REQUEST_CODE_PICKER
                 && resultCode == RESULT_OK) {
             mListFragment.onPickerResult(data);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.cancel) {
+            finish();
         }
     }
 }

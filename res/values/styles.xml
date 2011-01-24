@@ -149,9 +149,7 @@
         <item name="list_item_header_text_size">14sp</item>
     </style>
 
-    <style name="JoinContactActivityTheme" parent="ContactPickerTheme">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowContentOverlay">@null</item>
+    <style name="JoinContactActivityTheme" parent="ContactPickerTheme" >
     </style>
 
     <style name="ContactsPreferencesTheme" parent="@android:Theme">
@@ -200,5 +198,11 @@
     </style>
 
     <style name="NonPhoneActivityTheme" parent="@android:Theme.Dialog">
+    </style>
+
+    <style name="SectionDivider">
+        <item name="android:background">#7e7e87</item>
+        <item name="android:layout_height">2dip</item>
+        <item name="android:layout_width">match_parent</item>
     </style>
 </resources>
