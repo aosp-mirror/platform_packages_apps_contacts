@@ -228,10 +228,8 @@
     <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O 오류"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"메모리가 부족합니다. 파일이 너무 크기 때문일 수 있습니다."</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"예기치 못한 이유로 인해 vCard를 구문분석하지 못했습니다."</string>
-    <!-- no translation found for fail_reason_not_supported (294499264620201243) -->
-    <skip />
-    <!-- no translation found for vcard_import_failed (7718330063493653085) -->
-    <skip />
+    <string name="fail_reason_not_supported" msgid="294499264620201243">"지원되지 않는 형식입니다."</string>
+    <string name="vcard_import_failed" msgid="7718330063493653085">"vCard를 가져오지 못했습니다."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"vCard 파일이 USB 저장소에 없습니다."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"SD 카드에 VCard 파일이 없습니다."</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"지정한 vCard 파일에 대한 메타 정보를 수집하지 못했습니다."</string>
