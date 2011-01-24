@@ -228,10 +228,8 @@
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Error d\'E/S"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"La memòria és insuficient (és possible que el fitxer sigui massa gran)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"No s\'ha pogut analitzar la vCard per un motiu inesperat"</string>
-    <!-- no translation found for fail_reason_not_supported (294499264620201243) -->
-    <skip />
-    <!-- no translation found for vcard_import_failed (7718330063493653085) -->
-    <skip />
+    <string name="fail_reason_not_supported" msgid="294499264620201243">"No s\'admet aquest format."</string>
+    <string name="vcard_import_failed" msgid="7718330063493653085">"No s\'ha pogut importar la vCard"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"No s\'ha trobat cap fitxer vCard a l\'emmagatzematge USB"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"No s\'ha trobat cap fitxer vCard a la targeta SD"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"S\'ha produït un error en aplegar metainformació dels fitxers vCard especificats."</string>

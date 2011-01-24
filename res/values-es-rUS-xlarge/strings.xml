@@ -48,6 +48,10 @@
     <!-- XL -->
     <string name="description_image_button_star" msgid="7658091418708665690">"estrella"</string>
     <!-- XL -->
+    <string name="fail_reason_not_supported" msgid="2869697177825996431">"El formato no está admitido."</string>
+    <!-- XL -->
+    <string name="vcard_import_failed" msgid="5030663873475156120">"Falló la importación de la vCard"</string>
+    <!-- XL -->
     <string name="vcard_import_will_start_message_with_default_name" msgid="1059778205923280983">"El archivo se importará en unos instantes."</string>
     <!-- XL -->
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1102663976836995021">"No hay ningún contacto exportable. Si en realidad tienes contactos en tu tableta, es posible que algún proveedor de datos prohíba la exportación de todos los contactos."</string>
@@ -89,8 +93,4 @@
     <string name="non_phone_caption" msgid="8339220263670193331">"Número de teléfono"</string>
     <!-- XL -->
     <string name="delete_group_dialog_message" msgid="6739622355328278915">"¿Estás seguro de que deseas eliminar el grupo \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Los contactos no se eliminarán)."</string>
-    <!-- XL -->
-    <string name="fail_reason_not_supported" msgid="2869697177825996431">"El formato no está admitido."</string>
-    <!-- XL -->
-    <string name="vcard_import_failed" msgid="5030663873475156120">"Falló la importación de la vCard"</string>
 </resources>
