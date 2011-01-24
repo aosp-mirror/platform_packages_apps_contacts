@@ -108,17 +108,22 @@ public class ContactSelectionActivity extends ContactsActivity
         mSearchView.setQueryHint(getString(R.string.hint_findContacts));
         mSearchView.setOnQueryTextListener(this);
 
-        // This is a hack to prevent the search view from grabbing focus
-        // at this point.  If search view were visible, it would always grabs focus
-        // because it is the first focusable widget in the window.
-        mSearchView.setVisibility(View.INVISIBLE);
-        mSearchView.post(new Runnable() {
+        // TODO: re-enable search for postal addresses
+        if (mRequest.getActionCode() == ContactsRequest.ACTION_PICK_POSTAL) {
+            mSearchView.setVisibility(View.GONE);
+        } else {
+            // This is a hack to prevent the search view from grabbing focus
+            // at this point.  If search view were visible, it would always grabs focus
+            // because it is the first focusable widget in the window.
+            mSearchView.setVisibility(View.INVISIBLE);
+            mSearchView.post(new Runnable() {
 
-            @Override
-            public void run() {
-                mSearchView.setVisibility(View.VISIBLE);
-            }
-        });
+                @Override
+                public void run() {
+                    mSearchView.setVisibility(View.VISIBLE);
+                }
+            });
+        }
 
         Button cancel = (Button) findViewById(R.id.cancel);
         cancel.setOnClickListener(this);
