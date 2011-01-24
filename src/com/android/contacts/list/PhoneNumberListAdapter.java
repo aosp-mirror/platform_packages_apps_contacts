@@ -174,19 +174,12 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     }
 
     protected void bindSectionHeaderAndDivider(final ContactListItemView view, int position) {
-        final int section = getSectionForPosition(position);
-        if (getPositionForSection(section) == position) {
-            String title = (String)getSections()[section];
-            view.setSectionHeader(title);
+        if (isSectionHeaderDisplayEnabled()) {
+            Placement placement = getItemPlacementInSection(position);
+            view.setSectionHeader(placement.firstInSection ? placement.sectionHeader : null);
+            view.setDividerVisible(!placement.lastInSection);
         } else {
-            view.setDividerVisible(false);
             view.setSectionHeader(null);
-        }
-
-        // move the divider for the last item in a section
-        if (getPositionForSection(section + 1) - 1 == position) {
-            view.setDividerVisible(false);
-        } else {
             view.setDividerVisible(true);
         }
     }
@@ -205,10 +198,4 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
         getPhotoLoader().loadPhoto(view.getPhotoView(), photoId);
     }
-//
-//    protected void bindSearchSnippet(final ContactListItemView view, Cursor cursor) {
-//        view.showSnippet(cursor, SUMMARY_SNIPPET_MIMETYPE_COLUMN_INDEX,
-//                SUMMARY_SNIPPET_DATA1_COLUMN_INDEX, SUMMARY_SNIPPET_DATA4_COLUMN_INDEX);
-//    }
-
 }
