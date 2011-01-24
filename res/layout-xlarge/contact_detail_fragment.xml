@@ -38,7 +38,7 @@
             ex:layout_wideMarginRight="48dip"
             ex:layout_narrowParentWidth="500dip"
             ex:layout_narrowMarginLeft="15dip"
-            ex:layout_narrowMarginRight="5dip"
+            ex:layout_narrowMarginRight="16dip"
         />
     </com.android.contacts.widget.InterpolatingLayout>
 
@@ -76,7 +76,7 @@
             ex:layout_widePaddingRight="48dip"
             ex:layout_narrowParentWidth="500dip"
             ex:layout_narrowMarginLeft="32dip"
-            ex:layout_narrowPaddingRight="0dip"
+            ex:layout_narrowPaddingRight="16dip"
             android:cacheColorHint="#00000000"
             android:divider="@android:color/transparent"
         />

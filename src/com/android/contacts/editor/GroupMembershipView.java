@@ -112,7 +112,7 @@ public class GroupMembershipView extends LinearLayout
     public void setKind(DataKind kind) {
         mKind = kind;
         TextView kindTitle = (TextView) findViewById(R.id.kind_title);
-        kindTitle.setText(getResources().getString(kind.titleRes).toUpperCase());
+        kindTitle.setText(getResources().getString(kind.titleRes));
     }
 
     public void setGroupMetaData(Cursor groupMetaData) {

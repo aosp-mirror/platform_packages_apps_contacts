@@ -17,33 +17,33 @@
  */
 -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
->
+    android:orientation="vertical">
+
     <!-- Longer separating line (between kinds) -->
     <View
         android:id="@+id/kind_divider"
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@drawable/list_item_divider_holo"
-    />
+        android:background="@drawable/list_item_divider_holo" />
+
     <!-- Shorter separating line if there was no kind-separator -->
     <View
         android:id="@+id/in_kind_divider"
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_marginLeft="164dip"
-        android:background="@drawable/list_item_divider_holo"
-    />
+        android:background="@drawable/list_item_divider_holo" />
+
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:minHeight="?android:attr/listPreferredItemHeight">
+        android:minHeight="@dimen/detail_min_line_item_height">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,14 +52,13 @@
             <TextView
                 android:id="@+id/kind"
                 android:layout_width="164dip"
-                android:layout_height="?android:attr/listPreferredItemHeight"
+                android:layout_height="@dimen/detail_min_line_item_height"
                 android:paddingLeft="19dip"
-                android:textColor="#7F7F7F"
                 android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="?android:attr/textColorTertiary"
                 android:singleLine="true"
                 android:ellipsize="marquee"
-                android:gravity="center_vertical"
-            />
+                android:gravity="center_vertical" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -72,44 +71,38 @@
                     android:id="@+id/data"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                />
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
                 <TextView
                     android:id="@+id/footer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:visibility="gone"
-                />
+                    android:visibility="gone" />
             </LinearLayout>
             <TextView
                 android:id="@+id/type"
                 android:layout_width="wrap_content"
-                android:layout_height="?android:attr/listPreferredItemHeight"
+                android:layout_height="@dimen/detail_min_line_item_height"
                 android:maxWidth="150dip"
-                android:textColor="#999999"
                 android:gravity="right|center_vertical"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-            />
+                android:textColor="@color/detail_item_type_color"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <ImageView
                 android:id="@+id/presence_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="?android:attr/listPreferredItemHeight"
+                android:layout_width="32dip"
+                android:layout_height="@dimen/detail_min_line_item_height"
                 android:layout_marginLeft="5dip"
                 android:gravity="center"
-                android:scaleType="centerInside"
-            />
+                android:scaleType="centerInside" />
 
             <ImageView
                 android:id="@+id/action_icon"
-                android:layout_width="30dip"
-                android:layout_height="?android:attr/listPreferredItemHeight"
-                android:layout_marginLeft="14dip"
-                android:layout_marginRight="14dip"
+                android:layout_width="32dip"
+                android:layout_height="@dimen/detail_min_line_item_height"
+                android:layout_marginLeft="16dip"
                 android:layout_gravity="center_vertical"
-                android:scaleType="centerInside"
-            />
+                android:scaleType="centerInside" />
 
             <View
                 android:id="@+id/divider"
@@ -117,27 +110,25 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dip"
                 android:layout_marginBottom="5dip"
-                android:background="@drawable/divider_vertical_dark"
-            />
+                android:layout_marginLeft="14dip"
+                android:layout_marginRight="14dip"
+                android:background="?android:attr/dividerVertical" />
 
             <ImageView
                 android:id="@+id/secondary_action_button"
-                android:layout_width="58dip"
+                android:layout_width="32dip"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
-                android:paddingLeft="14dip"
-                android:paddingRight="14dip"
                 android:gravity="center"
                 android:scaleType="center"
-                android:background="@android:drawable/list_selector_background"
-            />
+                android:background="?android:attr/selectableItemBackground" />
         </LinearLayout>
     </LinearLayout>
+
     <!-- Longer separating line (only for the last row) -->
     <View
         android:id="@+id/line_below_last"
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@drawable/list_item_divider_holo"
-    />
+        android:background="@drawable/list_item_divider_holo" />
 </LinearLayout>
