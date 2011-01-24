@@ -32,10 +32,8 @@
         android:textColor="@color/editor_label_text_color"
         android:ellipsize="marquee" />
 
-    <!-- TODO: Change to android.R.attr.spinnerTextStyle when available
-            style="?android:attr/editTextStyle"
-    -->
     <Button
+        style="?android:attr/spinnerStyle"
         android:id="@+id/group_list"
         android:layout_width="0dip"
         android:layout_height="wrap_content"
