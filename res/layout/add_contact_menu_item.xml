@@ -19,8 +19,8 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:divider="?android:attr/dividerVertical"
-    android:showDividers="beginning|end"
-    android:dividerPadding="8dip"
+    android:showDividers="end"
+    android:dividerPadding="12dip"
     android:orientation="horizontal">
 
     <LinearLayout
