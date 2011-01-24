@@ -151,7 +151,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         mTitleString = (kind.titleRes == -1 || kind.titleRes == 0)
                 ? ""
                 : getResources().getString(kind.titleRes);
-        mTitle.setText(mTitleString.toUpperCase());
+        mTitle.setText(mTitleString);
 
         rebuildFromState();
         updateAddVisible();

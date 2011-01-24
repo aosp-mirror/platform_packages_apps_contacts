@@ -574,7 +574,7 @@ public class ContactDetailFragment extends Fragment implements
                 sb.append(groups.get(i));
             }
             entry.mimetype = GroupMembership.MIMETYPE;
-            entry.kind = mContext.getString(R.string.groupsLabel).toUpperCase();
+            entry.kind = mContext.getString(R.string.groupsLabel);
             entry.data = sb.toString();
             mGroupEntries.add(entry);
         }
@@ -727,7 +727,7 @@ public class ContactDetailFragment extends Fragment implements
             entry.uri = ContentUris.withAppendedId(Data.CONTENT_URI, entry.id);
             entry.mimetype = mimeType;
             entry.kind = (kind.titleRes == -1 || kind.titleRes == 0) ? ""
-                    : context.getString(kind.titleRes).toUpperCase();
+                    : context.getString(kind.titleRes);
             entry.data = buildDataString(kind, values, context);
 
             if (kind.typeColumn != null && values.containsKey(kind.typeColumn)) {
