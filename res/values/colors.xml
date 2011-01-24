@@ -36,4 +36,7 @@
 
     <!-- Color of the line above the contact photo in the contact detail header -->
     <color name="contact_detail_header_divider_color">#FF999999</color>
+
+    <!-- Color of the text indicating the type of entry (e.g. Home, Work etc) -->
+    <color name="detail_item_type_color">#B4B4B4</color>
 </resources>
