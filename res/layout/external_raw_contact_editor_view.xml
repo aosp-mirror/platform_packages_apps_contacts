@@ -133,7 +133,7 @@
 
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="?android:attr/textColorPrimary"
-            android:drawableLeft="@android:drawable/ic_dialog_alert"
+            android:drawableLeft="?android:attr/alertDialogIcon"
             android:drawablePadding="10dip"
         />
 

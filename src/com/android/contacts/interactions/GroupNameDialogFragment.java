@@ -51,7 +51,7 @@ public abstract class GroupNameDialogFragment extends DialogFragment
         mEdit.addTextChangedListener(this);
 
         AlertDialog dialog = new AlertDialog.Builder(getActivity())
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setTitle(getTitleResourceId())
                 .setView(view)
                 .setPositiveButton(android.R.string.ok,
