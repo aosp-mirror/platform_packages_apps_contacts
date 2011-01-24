@@ -70,11 +70,7 @@ public class PostalAddressPickerFragment
 
     @Override
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
-        if (isSearchMode()) {
-            return inflater.inflate(R.layout.contacts_search_content, null);
-        } else {
-            return inflater.inflate(R.layout.contacts_list_content, null);
-        }
+        return inflater.inflate(R.layout.contacts_list_content, null);
     }
 
     public void pickPostalAddress(Uri uri) {
