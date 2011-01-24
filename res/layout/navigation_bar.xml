@@ -17,7 +17,6 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     style="?android:attr/actionBarTabBarStyle"
-    android:showDividers="beginning|middle|end"
     android:id="@+id/navigation_bar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -38,7 +37,7 @@
         style="?android:attr/actionDropDownStyle"
         android:id="@+id/filter_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="left|center_vertical"
         android:focusable="true"
         android:minWidth="220dip" >
@@ -62,8 +61,9 @@
     <SearchView
         android:id="@+id/search_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
+        android:layout_marginLeft="32dip"  
         android:maxWidth="300dip"
         android:iconifiedByDefault="false" />
 
