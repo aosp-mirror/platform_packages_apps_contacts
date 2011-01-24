@@ -48,7 +48,7 @@ public class GroupDeletionDialogFragment extends DialogFragment {
         String message = getActivity().getString(R.string.delete_group_dialog_message, label);
 
         return new AlertDialog.Builder(getActivity())
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setTitle(R.string.delete_group_dialog_title)
                 .setMessage(message)
                 .setPositiveButton(android.R.string.ok,

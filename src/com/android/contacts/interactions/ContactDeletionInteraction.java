@@ -182,7 +182,7 @@ public class ContactDeletionInteraction extends Fragment
     private void showDialog(int messageId, final Uri contactUri) {
         mDialog = new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.deleteConfirmation_title)
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setMessage(messageId)
                 .setNegativeButton(android.R.string.cancel, null)
                 .setPositiveButton(android.R.string.ok,
