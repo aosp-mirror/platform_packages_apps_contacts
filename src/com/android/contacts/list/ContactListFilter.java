@@ -43,6 +43,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
     private static final String KEY_GROUP_ID = "filter.groupId";
     private static final String KEY_GROUP_SOURCE_ID = "filter.groupSourceId";
     private static final String KEY_GROUP_READ_ONLY = "filter.groupReadOnly";
+    private static final String KEY_GROUP_TITLE = "filter.groupTitle";
 
     public int filterType;
     public String accountType;
@@ -177,6 +178,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
             .putLong(KEY_GROUP_ID, filter == null ? -1 : filter.groupId)
             .putString(KEY_GROUP_SOURCE_ID, filter == null ? null : filter.groupSourceId)
             .putBoolean(KEY_GROUP_READ_ONLY, filter == null ? false : filter.groupReadOnly)
+            .putString(KEY_GROUP_TITLE, filter == null ? null : filter.title)
             .apply();
     }
 
@@ -192,6 +194,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
         filter.groupId = prefs.getLong(KEY_GROUP_ID, -1);
         filter.groupSourceId = prefs.getString(KEY_GROUP_SOURCE_ID, null);
         filter.groupReadOnly = prefs.getBoolean(KEY_GROUP_READ_ONLY, false);
+        filter.title = prefs.getString(KEY_GROUP_TITLE, "group");
         return filter;
     }
 

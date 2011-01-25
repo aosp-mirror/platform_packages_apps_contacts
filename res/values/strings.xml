@@ -307,8 +307,8 @@
         <item quantity="other"><xliff:g id="count">%d</xliff:g> contacts with phone numbers</item>
     </plurals>
 
-    <!-- Displayed at the top of the contacts showing the zero as total number of contacts visible when "Only contacts with phones" is selected -->
-    <string name="listTotalPhoneContactsZero">No visible contacts with phone numbers</string>
+    <!-- Displayed at the top of the contacts showing the zero as total number of contacts visible when "Only contacts with phones" is selected [CHAR LIMIT=64]-->
+    <string name="listTotalPhoneContactsZero">No contacts with phone numbers</string>
 
     <!-- Displayed at the top of the contacts showing the total number of contacts visible when "Only contacts with phones" not selected -->
     <plurals name="listTotalAllContacts">
@@ -316,8 +316,17 @@
         <item quantity="other"><xliff:g id="count">%d</xliff:g> contacts</item>
     </plurals>
 
-    <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when "Only contacts with phones" not selected -->
-    <string name="listTotalAllContactsZero">No visible contacts</string>
+    <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when "All contacts" is selected  [CHAR LIMIT=64]-->
+    <string name="listTotalAllContactsZero">No contacts</string>
+
+    <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when "Custom" is selected  [CHAR LIMIT=64]-->
+    <string name="listTotalAllContactsZeroCustom">No visible contacts</string>
+
+    <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when starred contact list is selected  [CHAR LIMIT=64]-->
+    <string name="listTotalAllContactsZeroStarred">No starred contacts</string>
+
+    <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when a group or account is selected  [CHAR LIMIT=64]-->
+    <string name="listTotalAllContactsZeroGroup">No contacts in <xliff:g id="name" example="Friends">%s</xliff:g></string>
 
     <!-- Displayed at the top of the contacts showing the total number of contacts found when "Only contacts with phones" not selected -->
     <plurals name="listFoundAllContacts">

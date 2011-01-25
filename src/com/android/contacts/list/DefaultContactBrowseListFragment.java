@@ -95,15 +95,38 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     protected void showCount(int partitionIndex, Cursor data) {
         if (!isSearchMode() && data != null) {
             int count = data.getCount();
-            // TODO
-            // if (contactsListActivity.mDisplayOnlyPhones) {
-            // text = contactsListActivity.getQuantityText(count,
-            // R.string.listTotalPhoneContactsZero,
-            // R.plurals.listTotalPhoneContacts);
-            TextView textView = (TextView)mCounterHeaderView.findViewById(R.id.totalContactsText);
-            String text = getQuantityText(count, R.string.listTotalAllContactsZero,
-                    R.plurals.listTotalAllContacts);
-            textView.setText(text);
+            TextView textView = (TextView) mCounterHeaderView.findViewById(R.id.totalContactsText);
+            if (count != 0) {
+                String format = getResources().getQuantityText(
+                        R.plurals.listTotalAllContacts, count).toString();
+                textView.setText(String.format(format, count));
+            } else {
+                ContactListFilter filter = getFilter();
+                int filterType = filter != null ? filter.filterType
+                        : ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS;
+                switch (filterType) {
+                    case ContactListFilter.FILTER_TYPE_ACCOUNT:
+                        textView.setText(getString(
+                                R.string.listTotalAllContactsZeroGroup, filter.accountName));
+                        break;
+                    case ContactListFilter.FILTER_TYPE_GROUP:
+                        textView.setText(
+                                getString(R.string.listTotalAllContactsZeroGroup, filter.title));
+                        break;
+                    case ContactListFilter.FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY:
+                        textView.setText(R.string.listTotalPhoneContactsZero);
+                        break;
+                    case ContactListFilter.FILTER_TYPE_STARRED:
+                        textView.setText(R.string.listTotalAllContactsZeroStarred);
+                        break;
+                    case ContactListFilter.FILTER_TYPE_CUSTOM:
+                        textView.setText(R.string.listTotalAllContactsZeroCustom);
+                        break;
+                    default:
+                        textView.setText(R.string.listTotalAllContactsZero);
+                        break;
+                }
+            }
         } else {
             ContactListAdapter adapter = getAdapter();
             if (adapter == null) {
