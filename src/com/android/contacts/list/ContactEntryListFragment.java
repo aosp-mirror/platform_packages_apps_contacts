@@ -401,9 +401,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if (!mEnabled) {
-            if (data != null) {
-                data.close();
-            }
             return;
         }
 
