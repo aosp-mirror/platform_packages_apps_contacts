@@ -54,6 +54,9 @@ public class ContactSelectionActivity extends ContactsActivity
     private static final String KEY_ACTION_CODE = "actionCode";
     private static final int DEFAULT_DIRECTORY_RESULT_LIMIT = 20;
 
+    // Delay to allow the UI to settle before making search view visible
+    private static final int FOCUS_DELAY = 200;
+
     private ContactsIntentResolver mIntentResolver;
     protected ContactEntryListFragment<?> mListFragment;
 
@@ -116,13 +119,13 @@ public class ContactSelectionActivity extends ContactsActivity
             // at this point.  If search view were visible, it would always grabs focus
             // because it is the first focusable widget in the window.
             mSearchView.setVisibility(View.INVISIBLE);
-            mSearchView.post(new Runnable() {
+            mSearchView.postDelayed(new Runnable() {
 
                 @Override
                 public void run() {
                     mSearchView.setVisibility(View.VISIBLE);
                 }
-            });
+            }, FOCUS_DELAY);
         }
 
         Button cancel = (Button) findViewById(R.id.cancel);
