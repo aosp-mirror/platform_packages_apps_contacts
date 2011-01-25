@@ -760,7 +760,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     protected void configurePhotoLoader() {
         if (isPhotoLoaderEnabled() && mContext != null) {
             if (mPhotoLoader == null) {
-                mPhotoLoader = new ContactPhotoLoader(mContext, R.drawable.ic_contact_list_picture);
+                mPhotoLoader = new ContactPhotoLoader(mContext, R.drawable.ic_contact_picture);
             }
             if (mListView != null) {
                 mListView.setOnScrollListener(this);
