@@ -160,7 +160,6 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener,
                 this);
         setButton(BUTTON_NEGATIVE, context.getText(android.R.string.cancel),
                 (OnClickListener) null);
-        setIcon(com.android.internal.R.drawable.ic_dialog_time);
 
         LayoutInflater inflater =
                 (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
