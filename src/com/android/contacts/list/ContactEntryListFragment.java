@@ -892,17 +892,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
     }
 
-    // TODO: fix PluralRules to handle zero correctly and use Resources.getQuantityText directly
-    public String getQuantityText(int count, int zeroResourceId, int pluralResourceId) {
-        if (count == 0) {
-            return mContext.getString(zeroResourceId);
-        } else {
-            String format = mContext.getResources()
-                    .getQuantityText(pluralResourceId, count).toString();
-            return String.format(format, count);
-        }
-    }
-
     protected void setEmptyText(int resourceId) {
         TextView empty = (TextView) getEmptyView().findViewById(R.id.emptyText);
         empty.setText(mContext.getText(resourceId));
