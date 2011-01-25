@@ -203,7 +203,7 @@ public class GroupMembershipView extends LinearLayout
         }
 
         mAdapter = new ArrayAdapter<GroupSelectionItem>(
-                getContext(), android.R.layout.simple_list_item_multiple_choice);
+                getContext(), R.layout.group_membership_list_item);
 
         mGroupMetaData.moveToPosition(-1);
         while (mGroupMetaData.moveToNext()) {
