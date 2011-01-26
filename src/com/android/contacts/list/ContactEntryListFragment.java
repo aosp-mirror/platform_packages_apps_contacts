@@ -432,6 +432,12 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     protected void onPartitionLoaded(int partitionIndex, Cursor data) {
+        if (partitionIndex >= mAdapter.getPartitionCount()) {
+            // When we get unsolicited data, ignore it.  This could happen
+            // when we are switching from search mode to the default mode.
+            return;
+        }
+
         mAdapter.changeCursor(partitionIndex, data);
         showCount(partitionIndex, data);
 
