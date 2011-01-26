@@ -18,4 +18,8 @@
     <dimen name="aggregation_suggestion_icon_size">64dip</dimen>
     <dimen name="quick_contact_width">356dip</dimen>
     <dimen name="contact_name_text_size">26sp</dimen>
+    <dimen name="action_bar_filter_min_width">120dip</dimen>
+    <dimen name="action_bar_filter_max_width">120dip</dimen>
+    <dimen name="action_bar_search_max_width">300dip</dimen>
+    <dimen name="action_bar_search_spacing">12dip</dimen>
 </resources>

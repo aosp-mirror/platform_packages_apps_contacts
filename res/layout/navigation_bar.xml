@@ -30,7 +30,7 @@
         android:gravity="center_vertical"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/search_label"
-        android:minWidth="220dip" />
+        android:minWidth="@dimen/action_bar_filter_min_width" />
 
     <view
         class="com.android.contacts.list.ContactListFilterView"
@@ -40,7 +40,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="left|center_vertical"
         android:focusable="true"
-        android:minWidth="220dip" >
+        android:minWidth="@dimen/action_bar_filter_min_width"
+         >
         <ImageView
             android:id="@+id/icon"
             android:scaleType="fitCenter"
@@ -55,7 +56,9 @@
             android:layout_width="wrap_content"
             android:gravity="center_vertical"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:ellipsize="end" />
+            android:ellipsize="end"
+            android:singleLine="true" 
+            android:maxWidth="@dimen/action_bar_filter_max_width" />
     </view>
 
     <SearchView
@@ -63,8 +66,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="32dip"  
-        android:maxWidth="300dip"
+        android:layout_marginLeft="@dimen/action_bar_search_spacing"  
+        android:maxWidth="@dimen/action_bar_search_max_width"
         android:iconifiedByDefault="false" />
 
 </LinearLayout>
