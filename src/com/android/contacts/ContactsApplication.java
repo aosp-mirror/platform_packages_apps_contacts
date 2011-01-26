@@ -20,6 +20,7 @@ import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.test.InjectedServices;
 
 import android.app.Application;
+import android.app.LoaderManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -92,6 +93,7 @@ public final class ContactsApplication extends Application {
         Context context = getApplicationContext();
         PreferenceManager.getDefaultSharedPreferences(context);
         AccountTypeManager.getInstance(context);
+        LoaderManager.enableDebugLogging(true);
 
         StrictMode.setThreadPolicy(
                 new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
