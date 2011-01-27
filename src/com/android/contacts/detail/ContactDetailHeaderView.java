@@ -282,30 +282,16 @@ public class ContactDetailHeaderView extends FrameLayout
             mAttributionView.setText(R.string.indicator_joined_contact);
             mAttributionView.setVisibility(View.VISIBLE);
         } else if (isDirectoryEntry) {
-            String text = getContext().getString(R.string.contact_directory_description,
-                    buildDirectoryName(directoryType, directoryDisplayName));
+            String displayName = !TextUtils.isEmpty(directoryDisplayName)
+                    ? directoryDisplayName
+                    : directoryType;
+            String text = getContext().getString(
+                    R.string.contact_directory_description, displayName);
             mAttributionView.setText(text);
             mAttributionView.setVisibility(View.VISIBLE);
         } else {
             mAttributionView.setVisibility(View.INVISIBLE);
         }
-    }
-
-    private CharSequence buildDirectoryName(String directoryType, String directoryName) {
-        String title;
-        if (!TextUtils.isEmpty(directoryName)) {
-            title = directoryName;
-            // TODO: STOPSHIP - remove this once this is done by both directory providers
-            int atIndex = title.indexOf('@');
-            if (atIndex != -1 && atIndex < title.length() - 2) {
-                final char firstLetter = Character.toUpperCase(title.charAt(atIndex + 1));
-                title = firstLetter + title.substring(atIndex + 2);
-            }
-        } else {
-            title = directoryType;
-        }
-
-        return title;
     }
 
     @Override

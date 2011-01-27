@@ -502,8 +502,11 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
             displayNameTextView.setText(null);
         } else {
             labelTextView.setText(R.string.directory_search_label);
-            displayNameTextView.setText(buildDirectoryName(directoryPartition.getDirectoryType(),
-                    directoryPartition.getDisplayName()));
+            String directoryName = directoryPartition.getDisplayName();
+            String displayName = !TextUtils.isEmpty(directoryName)
+                    ? directoryName
+                    : directoryPartition.getDirectoryType();
+            displayNameTextView.setText(displayName);
         }
 
         TextView countText = (TextView)view.findViewById(R.id.count);
@@ -520,23 +523,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
                         count, R.string.listFoundAllContactsZero, R.plurals.searchFoundContacts));
             }
         }
-    }
-
-    private CharSequence buildDirectoryName(String directoryType, String directoryName) {
-        String title;
-        if (!TextUtils.isEmpty(directoryName)) {
-            title = directoryName;
-            // TODO: STOPSHIP - remove this once this is done by both directory providers
-            int atIndex = title.indexOf('@');
-            if (atIndex != -1 && atIndex < title.length() - 2) {
-                final char firstLetter = Character.toUpperCase(title.charAt(atIndex + 1));
-                title = firstLetter + title.substring(atIndex + 2);
-            }
-        } else {
-            title = directoryType;
-        }
-
-        return title;
     }
 
     // TODO: fix PluralRules to handle zero correctly and use Resources.getQuantityText directly
