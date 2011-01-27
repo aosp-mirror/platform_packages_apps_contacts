@@ -227,6 +227,7 @@ public class ContactEditorFragment extends Fragment implements
     private long mLoaderStartTime;
 
     private int mStatus;
+    private boolean mSaveOnStop = true;
 
     private AggregationSuggestionEngine mAggregationSuggestionEngine;
     private long mAggregationSuggestionsRawContactId;
@@ -265,8 +266,9 @@ public class ContactEditorFragment extends Fragment implements
         if (mAggregationSuggestionEngine != null) {
             mAggregationSuggestionEngine.quit();
         }
+
         // If anything was left unsaved, save it now but keep the editor open.
-        if (!getActivity().isChangingConfigurations() && mStatus == Status.EDITING) {
+        if (!getActivity().isChangingConfigurations() && mStatus == Status.EDITING && mSaveOnStop) {
             save(SaveMode.RELOAD);
         }
     }
@@ -321,6 +323,7 @@ public class ContactEditorFragment extends Fragment implements
 
     @Override
     public void onStart() {
+        mSaveOnStop = true;
         getLoaderManager().initLoader(LOADER_GROUPS, null, mGroupLoaderListener);
         super.onStart();
     }
@@ -736,6 +739,7 @@ public class ContactEditorFragment extends Fragment implements
 
             // Launch gallery to crop the photo
             final Intent intent = getCropImageIntent(Uri.fromFile(f));
+            mSaveOnStop = false;
             startActivityForResult(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA);
         } catch (Exception e) {
             Log.e(TAG, "Cannot crop image", e);
@@ -1821,6 +1825,7 @@ public class ContactEditorFragment extends Fragment implements
                 mCurrentPhotoFile = new File(PHOTO_DIR, getPhotoFileName());
                 final Intent intent = getTakePickIntent(mCurrentPhotoFile);
 
+                mSaveOnStop = false;
                 startActivityForResult(intent, REQUEST_CODE_CAMERA_WITH_DATA);
             } catch (ActivityNotFoundException e) {
                 Toast.makeText(mContext, R.string.photoPickerNotFoundText,
@@ -1837,6 +1842,7 @@ public class ContactEditorFragment extends Fragment implements
             try {
                 // Launch picker to choose photo for selected contact
                 final Intent intent = getPhotoPickIntent();
+                mSaveOnStop = false;
                 startActivityForResult(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA);
             } catch (ActivityNotFoundException e) {
                 Toast.makeText(mContext, R.string.photoPickerNotFoundText,
