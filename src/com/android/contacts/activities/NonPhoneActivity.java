@@ -72,7 +72,6 @@ public class NonPhoneActivity extends ContactsActivity {
                     getActivity().getString(R.string.non_phone_add_to_contacts), this);
             alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE,
                     getActivity().getString(R.string.non_phone_close), this);
-            alertDialog.setOnDismissListener(this);
             return alertDialog;
         }
 
