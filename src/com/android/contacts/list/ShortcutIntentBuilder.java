@@ -18,6 +18,7 @@ package com.android.contacts.list;
 import com.android.contacts.R;
 import com.android.contacts.util.Constants;
 
+import android.app.ActivityManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -75,6 +76,7 @@ public class ShortcutIntentBuilder {
     private final OnShortcutIntentCreatedListener mListener;
     private final Context mContext;
     private final int mIconSize;
+    private final int mIconDensity;
 
     /**
      * Listener interface.
@@ -95,7 +97,10 @@ public class ShortcutIntentBuilder {
         mContext = context;
         mListener = listener;
 
-        mIconSize = context.getResources().getDimensionPixelSize(android.R.dimen.app_icon_size);
+        final ActivityManager am = (ActivityManager) context
+                .getSystemService(Context.ACTIVITY_SERVICE);
+        mIconSize = am.getLauncherLargeIconSize();
+        mIconDensity = am.getLauncherLargeIconDensity();
     }
 
     public void createContactShortcutIntent(Uri contactUri) {
@@ -215,8 +220,8 @@ public class ShortcutIntentBuilder {
         if (bitmapData != null) {
             bitmap = BitmapFactory.decodeByteArray(bitmapData, 0, bitmapData.length, null);
         } else {
-            bitmap = BitmapFactory.decodeResource(mContext.getResources(),
-                    R.drawable.ic_contact_picture);
+            bitmap = ((BitmapDrawable) mContext.getResources().getDrawableForDensity(
+                    R.drawable.ic_contact_picture, mIconDensity)).getBitmap();
         }
 
         Intent shortcutIntent;
@@ -284,8 +289,8 @@ public class ShortcutIntentBuilder {
         Rect dst = new Rect(0,0, mIconSize, mIconSize);
         canvas.drawBitmap(photo, src, dst, photoPaint);
 
-        Drawable overlay = mContext.getResources().getDrawable(
-                com.android.internal.R.drawable.quickcontact_badge_overlay_dark);
+        Drawable overlay = mContext.getResources().getDrawableForDensity(
+                com.android.internal.R.drawable.quickcontact_badge_overlay_dark, mIconDensity);
 
         overlay.setBounds(dst);
         overlay.draw(canvas);
@@ -302,7 +307,8 @@ public class ShortcutIntentBuilder {
         boolean drawPhoneOverlay = true;
         final float scaleDensity = r.getDisplayMetrics().scaledDensity;
 
-        Bitmap phoneIcon = ((BitmapDrawable) r.getDrawable(actionResId)).getBitmap();
+        Bitmap phoneIcon = ((BitmapDrawable) r.getDrawableForDensity(actionResId, mIconDensity))
+                .getBitmap();
 
         // If there isn't a photo use the generic phone action icon instead
         if (photo == null) {
