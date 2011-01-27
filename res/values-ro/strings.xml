@@ -114,12 +114,18 @@
     <item quantity="one" msgid="3015357862286673986">"1 persoană din agendă cu număr de telefon"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> (de) persoane din agendă cu numere de telefon"</item>
   </plurals>
-    <string name="listTotalPhoneContactsZero" msgid="2756295259674938869">"Nicio persoană din agendă vizibilă cu numere de telefon"</string>
+    <!-- outdated translation 3100001705005525307 -->     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Nicio persoană din agendă vizibilă cu numere de telefon"</string>
   <plurals name="listTotalAllContacts">
     <item quantity="one" msgid="3405747744700823280">"1 persoană din Agendă"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> (de) persoane din Agendă"</item>
   </plurals>
-    <string name="listTotalAllContactsZero" msgid="6811347506748072822">"Nicio persoană din agendă nu este vizibilă"</string>
+    <!-- outdated translation 5917810721329112813 -->     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Nicio persoană din agendă nu este vizibilă"</string>
+    <!-- no translation found for listTotalAllContactsZeroCustom (4058252141420128998) -->
+    <skip />
+    <!-- no translation found for listTotalAllContactsZeroStarred (5391630590684099117) -->
+    <skip />
+    <!-- no translation found for listTotalAllContactsZeroGroup (5448979458248027615) -->
+    <skip />
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"A fost găsită 1 persoană din agendă"</item>
     <item quantity="other" msgid="3852668542926965042">"Au fost găsite <xliff:g id="COUNT">%d</xliff:g> (de) persoane din agendă"</item>
@@ -417,18 +423,12 @@
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Dezinstalaţi unele aplicaţii"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Încercaţi din nou trecerea la o versiune superioară"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"Se caută..."</string>
-    <!-- no translation found for menu_display_selected (6470001164297969034) -->
-    <skip />
-    <!-- no translation found for menu_display_all (8887488642609786198) -->
-    <skip />
-    <!-- no translation found for menu_select_all (621719255150713545) -->
-    <skip />
-    <!-- no translation found for menu_select_none (7093222469852132345) -->
-    <skip />
-    <!-- no translation found for multiple_picker_title:one (4761009734586319101) -->
+    <!-- outdated translation 7509416164257469826 -->     <string name="menu_display_selected" msgid="6470001164297969034">"Afişaţi elementele selectate"</string>
+    <!-- outdated translation 6157266246378155002 -->     <string name="menu_display_all" msgid="8887488642609786198">"Afişaţi-le pe toate"</string>
+    <!-- outdated translation 6071138984118728586 -->     <string name="menu_select_all" msgid="621719255150713545">"Selectaţi-le pe toate"</string>
+    <!-- outdated translation 6876179536556771017 -->     <string name="menu_select_none" msgid="7093222469852132345">"Deselectaţi-le pe toate"</string>
     <!-- no translation found for multiple_picker_title:other (4608837420986126229) -->
-    <!-- no translation found for no_contacts_selected (5877803471037324613) -->
-    <skip />
+    <!-- outdated translation 2762557778532289842 -->     <string name="no_contacts_selected" msgid="5877803471037324613">"Nu aţi selectat nicio persoană din Agendă."</string>
     <string name="add_field" msgid="2384260056674995230">"Adăugaţi alt câmp"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"de pe <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"La ora <xliff:g id="DATE">%1$s</xliff:g> de pe <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
