@@ -15,7 +15,7 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.ContactPhotoLoader;
+import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.R;
 import com.android.contacts.widget.IndexerListAdapter;
 import com.android.contacts.widget.TextWithHighlightingFactory;
@@ -62,7 +62,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     private boolean mDisplayPhotos;
     private boolean mQuickContactEnabled;
-    private ContactPhotoLoader mPhotoLoader;
+    private ContactPhotoManager mPhotoLoader;
 
     private String mQueryString;
     private char[] mUpperCaseQueryString;
@@ -226,11 +226,11 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         return mTextWithHighlightingFactory;
     }
 
-    public void setPhotoLoader(ContactPhotoLoader photoLoader) {
+    public void setPhotoLoader(ContactPhotoManager photoLoader) {
         mPhotoLoader = photoLoader;
     }
 
-    protected ContactPhotoLoader getPhotoLoader() {
+    protected ContactPhotoManager getPhotoLoader() {
         return mPhotoLoader;
     }
 

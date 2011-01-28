@@ -31,6 +31,7 @@ public final class ContactsApplication extends Application {
 
     private static InjectedServices sInjectedServices;
     private AccountTypeManager mAccountTypeManager;
+    private ContactPhotoManager mContactPhotoManager;
 
     /**
      * Overrides the system services with mocks for testing.
@@ -80,6 +81,13 @@ public final class ContactsApplication extends Application {
                 mAccountTypeManager = AccountTypeManager.createAccountTypeManager(this);
             }
             return mAccountTypeManager;
+        }
+
+        if (ContactPhotoManager.CONTACT_PHOTO_SERVICE.equals(name)) {
+            if (mContactPhotoManager == null) {
+                mContactPhotoManager = ContactPhotoManager.createContactPhotoManager(this);
+            }
+            return mContactPhotoManager;
         }
 
         return super.getSystemService(name);

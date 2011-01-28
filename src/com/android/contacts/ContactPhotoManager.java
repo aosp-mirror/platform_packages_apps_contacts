@@ -16,6 +16,7 @@
 
 package com.android.contacts;
 
+import com.android.contacts.model.AccountTypeManager;
 import com.google.android.collect.Lists;
 
 import android.content.ContentResolver;
@@ -41,13 +42,71 @@ import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Asynchronously loads contact photos and maintains cache of photos.  The class is
- * mostly single-threaded.  The only two methods accessed by the loader thread are
- * {@link #cacheBitmap} and {@link #obtainPhotoIdsAndUrisToLoad}. Those methods access concurrent
- * hash maps shared with the main thread.
+ * Asynchronously loads contact photos and maintains a cache of photos.
  */
-public class ContactPhotoLoader implements Callback {
-    private static final String TAG = "ContactPhotoLoader";
+public abstract class ContactPhotoManager {
+
+    static final String TAG = "ContactPhotoManager";
+
+    public static final String CONTACT_PHOTO_SERVICE = "contactPhotos";
+
+    /**
+     * The resource ID of the image to be used when the photo is unavailable or being
+     * loaded.
+     */
+    protected final int mDefaultResourceId = R.drawable.ic_contact_picture;
+
+    /**
+     * Requests the singleton instance of {@link AccountTypeManager} with data bound from
+     * the available authenticators. This method can safely be called from the UI thread.
+     */
+    public static ContactPhotoManager getInstance(Context context) {
+        ContactPhotoManager service =
+                (ContactPhotoManager) context.getSystemService(CONTACT_PHOTO_SERVICE);
+        if (service == null) {
+            service = createContactPhotoManager(context);
+            Log.e(TAG, "No contact photo service in context: " + context);
+        }
+        return service;
+    }
+
+    public static synchronized ContactPhotoManager createContactPhotoManager(Context context) {
+        return new ContactPhotoManagerImpl(context);
+    }
+
+    /**
+     * Load photo into the supplied image view.  If the photo is already cached,
+     * it is displayed immediately.  Otherwise a request is sent to load the photo
+     * from the database.
+     */
+    public abstract void loadPhoto(ImageView view, long photoId);
+
+    /**
+     * Load photo into the supplied image view.  If the photo is already cached,
+     * it is displayed immediately.  Otherwise a request is sent to load the photo
+     * from the location specified by the URI.
+     */
+    public abstract void loadPhoto(ImageView view, Uri photoUri);
+
+    /**
+     * Temporarily stops loading photos from the database.
+     */
+    public abstract void pause();
+
+    /**
+     * Resumes loading photos from the database.
+     */
+    public abstract void resume();
+
+    /**
+     * Marks all cached photos for reloading.  We can continue using cache but should
+     * also make sure the photos haven't changed in the background and notify the views
+     * if so.
+     */
+    public abstract void refreshCache();
+}
+
+class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
     private static final String LOADER_THREAD_NAME = "ContactPhotoLoader";
 
     /**
@@ -67,12 +126,6 @@ public class ContactPhotoLoader implements Callback {
     private final String[] COLUMNS = new String[] { Photo._ID, Photo.PHOTO };
 
     /**
-     * The resource ID of the image to be used when the photo is unavailable or being
-     * loaded.
-     */
-    private final int mDefaultResourceId;
-
-    /**
      * Maintains the state of a particular photo.
      */
     private static class BitmapHolder {
@@ -85,6 +138,8 @@ public class ContactPhotoLoader implements Callback {
         Bitmap bitmap;
         SoftReference<Bitmap> bitmapRef;
     }
+
+    private final Context mContext;
 
     /**
      * A soft cache for photos.
@@ -120,25 +175,11 @@ public class ContactPhotoLoader implements Callback {
      */
     private boolean mPaused;
 
-    private final Context mContext;
-
-    /**
-     * Constructor.
-     *
-     * @param context content context
-     * @param defaultResourceId the image resource ID to be used when there is
-     *            no photo for a contact
-     */
-    public ContactPhotoLoader(Context context, int defaultResourceId) {
-        mDefaultResourceId = defaultResourceId;
+    public ContactPhotoManagerImpl(Context context) {
         mContext = context;
     }
 
-    /**
-     * Load photo into the supplied image view.  If the photo is already cached,
-     * it is displayed immediately.  Otherwise a request is sent to load the photo
-     * from the database.
-     */
+    @Override
     public void loadPhoto(ImageView view, long photoId) {
         if (photoId == 0) {
             // No photo is needed
@@ -149,11 +190,7 @@ public class ContactPhotoLoader implements Callback {
         }
     }
 
-    /**
-     * Load photo into the supplied image view.  If the photo is already cached,
-     * it is displayed immediately.  Otherwise a request is sent to load the photo
-     * from the location specified by the URI.
-     */
+    @Override
     public void loadPhoto(ImageView view, Uri photoUri) {
         if (photoUri == null) {
             // No photo is needed
@@ -177,11 +214,7 @@ public class ContactPhotoLoader implements Callback {
         }
     }
 
-    /**
-     * Mark all cached photos for reloading.  We can continue using cache but should
-     * also make sure the photos haven't changed in the background and notify the views
-     * if so.
-     */
+    @Override
     public void refreshCache() {
         for (BitmapHolder holder : mBitmapCache.values()) {
             if (holder.state == BitmapHolder.LOADED) {
@@ -232,36 +265,17 @@ public class ContactPhotoLoader implements Callback {
         return false;
     }
 
-    /**
-     * Stops loading images, kills the image loader thread and clears all caches.
-     */
-    public void stop() {
-        pause();
-
-        if (mLoaderThread != null) {
-            mLoaderThread.quit();
-            mLoaderThread = null;
-        }
-
-        mPendingRequests.clear();
-        mBitmapCache.clear();
-    }
-
     public void clear() {
         mPendingRequests.clear();
         mBitmapCache.clear();
     }
 
-    /**
-     * Temporarily stops loading photos from the database.
-     */
+    @Override
     public void pause() {
         mPaused = true;
     }
 
-    /**
-     * Resumes loading photos from the database.
-     */
+    @Override
     public void resume() {
         mPaused = false;
         if (!mPendingRequests.isEmpty()) {

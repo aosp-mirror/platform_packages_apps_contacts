@@ -18,7 +18,7 @@ package com.android.contacts.list;
 
 import com.android.common.widget.CompositeCursorAdapter.Partition;
 import com.android.contacts.ContactListEmptyView;
-import com.android.contacts.ContactPhotoLoader;
+import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.preference.ContactsPreferences;
@@ -125,7 +125,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private int mDirectoryResultLimit = DEFAULT_DIRECTORY_RESULT_LIMIT;
 
     private ContextMenuAdapter mContextMenuAdapter;
-    private ContactPhotoLoader mPhotoLoader;
+    private ContactPhotoManager mPhotoManager;
     private ContactListEmptyView mEmptyView;
     private ProviderStatusLoader mProviderStatusLoader;
     private ContactsPreferences mContactsPrefs;
@@ -712,7 +712,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         boolean searchMode = isSearchMode();
         mAdapter.setSearchMode(searchMode);
         mAdapter.configureDefaultPartition(false, searchMode);
-        mAdapter.setPhotoLoader(mPhotoLoader);
+        mAdapter.setPhotoLoader(mPhotoManager);
         mListView.setAdapter(mAdapter);
 
         if (!isSearchMode()) {
@@ -763,14 +763,14 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     protected void configurePhotoLoader() {
         if (isPhotoLoaderEnabled() && mContext != null) {
-            if (mPhotoLoader == null) {
-                mPhotoLoader = new ContactPhotoLoader(mContext, R.drawable.ic_contact_picture);
+            if (mPhotoManager == null) {
+                mPhotoManager = ContactPhotoManager.getInstance(mContext);
             }
             if (mListView != null) {
                 mListView.setOnScrollListener(this);
             }
             if (mAdapter != null) {
-                mAdapter.setPhotoLoader(mPhotoLoader);
+                mAdapter.setPhotoLoader(mPhotoManager);
             }
         }
     }
@@ -814,27 +814,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
         if (scrollState == OnScrollListener.SCROLL_STATE_FLING) {
-            mPhotoLoader.pause();
+            mPhotoManager.pause();
         } else if (isPhotoLoaderEnabled()) {
-            mPhotoLoader.resume();
+            mPhotoManager.resume();
         }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        if (isPhotoLoaderEnabled()) {
-            mPhotoLoader.resume();
-        }
-    }
-
-    @Override
-    public void onDestroy() {
-        if (isPhotoLoaderEnabled()) {
-            mPhotoLoader.stop();
-        }
-        super.onDestroy();
     }
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
