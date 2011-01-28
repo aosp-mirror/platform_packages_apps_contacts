@@ -234,10 +234,8 @@
     <string name="fail_reason_io_error" msgid="5922864781066136340">"送受信エラー"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"メモリが不足しています（ファイルが大きすぎる可能性があります）"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"予期しない理由によりvCardの解析に失敗しました"</string>
-    <!-- no translation found for fail_reason_not_supported (294499264620201243) -->
-    <skip />
-    <!-- no translation found for vcard_import_failed (7718330063493653085) -->
-    <skip />
+    <string name="fail_reason_not_supported" msgid="294499264620201243">"このフォーマットはサポートされません。"</string>
+    <string name="vcard_import_failed" msgid="7718330063493653085">"vCardをインポートできませんでした。"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"USBストレージ内にvCardファイルが見つかりません"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"SDカード内にvCardファイルが見つかりません"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"指定されたvCardファイルのメタ情報を取得できませんでした。"</string>

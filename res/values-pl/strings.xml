@@ -71,7 +71,7 @@
     <string name="editContact_title_insert" msgid="9125600232291405757">"Nowy kontakt"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetycznie"</string>
     <string name="label_notes" msgid="8337354953278341042">"Notatki"</string>
-    <string name="label_sip_address" msgid="124073911714324974">"Rozmowa internetowa"</string>
+    <string name="label_sip_address" msgid="124073911714324974">"Dzwonienie przez internet"</string>
     <string name="label_ringtone" msgid="8833166825330686244">"Dzwonek"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Nazwisko (fonetycznie)"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Firma"</string>
@@ -97,7 +97,7 @@
     <string name="noContacts" msgid="8579310973261953559">"Brak kontaktów"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Nie znaleziono pasujących kontaktów."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Brak kontaktów z numerami telefonów"</string>
-    <string name="showFilterPhones" msgid="4184858075465653970">"Tylko kontakty z numerami telefonów"</string>
+    <string name="showFilterPhones" msgid="4184858075465653970">"Tylko kontakty z telefonami"</string>
     <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"Wyświetlaj tylko kontakty zawierające numery telefonów"</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Wybierz kontakty do wyświetlenia"</string>
   <plurals name="groupDescrip">
