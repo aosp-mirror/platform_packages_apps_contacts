@@ -234,10 +234,8 @@
     <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O 错误"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"存储器空间不足（文件可能过大）"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"由于意外原因而无法解析 vCard"</string>
-    <!-- no translation found for fail_reason_not_supported (294499264620201243) -->
-    <skip />
-    <!-- no translation found for vcard_import_failed (7718330063493653085) -->
-    <skip />
+    <string name="fail_reason_not_supported" msgid="294499264620201243">"不支持此格式。"</string>
+    <string name="vcard_import_failed" msgid="7718330063493653085">"未能导入 vCard"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"未在 USB 存储设备中找到 vCard 文件"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"未在 SD 卡上找到 vCard 文件"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"无法收集指定的 vCard 文件的元信息。"</string>
