@@ -170,7 +170,7 @@
     <string name="liveFolder_phones_label" msgid="1709786878793436245">"Telefones"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Usar teclado multifrequencial"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Retornar para a chamada em espera"</string>
-    <string name="dialer_addAnotherCall" msgid="4205688819890074468">"Adicionar chamada"</string>
+    <string name="dialer_addAnotherCall" msgid="4205688819890074468">"Ad. cham."</string>
     <string name="callDetailTitle" msgid="5340227785196217938">"Detalhes da chamada"</string>
     <string name="toast_call_detail_error" msgid="7200975244804730096">"Não foi possível ler os detalhes para a chamada solicitada."</string>
     <string name="type_incoming" msgid="6502076603836088532">"Recebendo chamada"</string>
