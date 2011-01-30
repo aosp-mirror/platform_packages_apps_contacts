@@ -34,6 +34,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Custom view for an entire section of data as segmented by
  * {@link DataKind} around a {@link Data#MIMETYPE}. This view shows a
@@ -247,13 +249,26 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     }
 
     public void addItem() {
+        ValuesDelta values = null;
         // if this is a list, we can freely add. if not, only allow adding the first
-        if (!mKind.isList && getEditorCount() == 1)
-            return;
+        if (!mKind.isList) {
+            if (getEditorCount() == 1) {
+                return;
+            }
+
+            // If we already have an item, just make it visible
+            ArrayList<ValuesDelta> entries = mState.getMimeEntries(mKind.mimeType);
+            if (entries != null && entries.size() > 0) {
+                values = entries.get(0);
+            }
+        }
 
         // Insert a new child, create its view and set its focus
-        final ValuesDelta newValues = EntityModifier.insertChild(mState, mKind);
-        final View newField = createEditorView(newValues);
+        if (values == null) {
+            values = EntityModifier.insertChild(mState, mKind);
+        }
+
+        final View newField = createEditorView(values);
         newField.requestFocus();
 
         // For non-lists (e.g. Notes we can only have one field. in that case we need to disable
