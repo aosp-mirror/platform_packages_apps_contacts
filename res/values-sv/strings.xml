@@ -261,7 +261,7 @@
     <string name="call_disambig_title" msgid="1911302597959335178">"Ring upp med"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Skicka SMS med"</string>
     <string name="make_primary" msgid="5829291915305113983">"Kom ihåg det här valet"</string>
-    <string name="quickcontact_missing_app" msgid="4600366393134289038">"Inget program som kan hantera åtgärden hittades"</string>
+    <string name="quickcontact_missing_app" msgid="4600366393134289038">"Ingen app som kan hantera åtgärden hittades"</string>
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Kom ihåg det här valet"</string>
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"Okänd"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Konton"</string>
