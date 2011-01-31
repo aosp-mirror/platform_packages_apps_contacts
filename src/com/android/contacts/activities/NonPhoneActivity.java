@@ -65,7 +65,8 @@ public class NonPhoneActivity extends ContactsActivity {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final AlertDialog alertDialog;
-            alertDialog = new AlertDialog.Builder(getActivity()).create();
+            alertDialog = new AlertDialog.Builder(getActivity(), R.style.NonPhoneDialogTheme)
+                    .create();
             alertDialog.setTitle(R.string.non_phone_caption);
             alertDialog.setMessage(getArgumentPhoneNumber());
             alertDialog.setButton(DialogInterface.BUTTON_POSITIVE,

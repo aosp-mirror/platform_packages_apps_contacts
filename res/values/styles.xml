@@ -197,7 +197,10 @@
         <item name="android:background">@drawable/directory_bg</item>
     </style>
 
-    <style name="NonPhoneActivityTheme" parent="@android:Theme.Dialog">
+    <style name="NonPhoneActivityTheme" parent="@android:Theme.Translucent">
+    </style>
+
+    <style name="NonPhoneDialogTheme" parent="@android:Theme.Dialog">
     </style>
 
     <style name="SectionDivider">
