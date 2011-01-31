@@ -94,7 +94,7 @@
         <item name="android:background">@drawable/directory_bg_holo</item>
     </style>
 
-    <style name="NonPhoneActivityTheme" parent="@android:Theme.Holo.Light.Dialog">
+    <style name="NonPhoneDialogTheme" parent="@android:Theme.Holo.Light.Dialog.Alert">
     </style>
 
     <style name="BackgroundOnly" parent="@android:Theme.Holo.Light">
