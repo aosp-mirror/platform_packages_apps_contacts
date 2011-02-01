@@ -114,18 +114,15 @@
     <item quantity="one" msgid="3015357862286673986">"1 kontaktpersona ar tālruņa numuru"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> kontaktpersonas ar tālruņa numuriem"</item>
   </plurals>
-    <!-- outdated translation 3100001705005525307 -->     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Nav redzamu kontaktpersonu ar tālruņa numuriem."</string>
+    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Nav nevienas kontaktpersonas ar tālruņa numuru"</string>
   <plurals name="listTotalAllContacts">
     <item quantity="one" msgid="3405747744700823280">"1 kontaktpersona"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> kontaktpersonas"</item>
   </plurals>
-    <!-- outdated translation 5917810721329112813 -->     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Nav redzamu kontaktpersonu"</string>
-    <!-- no translation found for listTotalAllContactsZeroCustom (4058252141420128998) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroStarred (5391630590684099117) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroGroup (5448979458248027615) -->
-    <skip />
+    <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Nav kontaktpersonu"</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Nav redzamu kontaktpersonu"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Nav ar zvaigznīti atzīmētu kontaktpersonu"</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Nav kontaktpersonu šādā sarakstā: <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"Atrasta 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Atrastas <xliff:g id="COUNT">%d</xliff:g>"</item>
