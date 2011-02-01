@@ -21,6 +21,7 @@ import com.google.android.collect.Lists;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -29,8 +30,11 @@ import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.HandlerThread;
 import android.os.Message;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Contacts.Photo;
 import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.Directory;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -39,6 +43,8 @@ import java.io.InputStream;
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -104,6 +110,12 @@ public abstract class ContactPhotoManager {
      * if so.
      */
     public abstract void refreshCache();
+
+    /**
+     * Initiates a background process that over time will fill up cache with
+     * preload photos.
+     */
+    public abstract void preloadPhotosInBackground();
 }
 
 class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
@@ -123,29 +135,40 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
 
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
 
-    private final String[] COLUMNS = new String[] { Photo._ID, Photo.PHOTO };
+    private static final String[] COLUMNS = new String[] { Photo._ID, Photo.PHOTO };
 
     /**
      * Maintains the state of a particular photo.
      */
     private static class BitmapHolder {
-        private static final int NEEDED = 0;
-        private static final int LOADING = 1;
-        private static final int LOADED = 2;
-        private static final int LOADED_NEEDS_RELOAD = 3;
+        final byte[] bytes;
 
-        int state;
+        volatile boolean fresh;
         Bitmap bitmap;
         SoftReference<Bitmap> bitmapRef;
+
+        public BitmapHolder(byte[] bytes) {
+            this.bytes = bytes;
+            this.fresh = true;
+        }
     }
 
     private final Context mContext;
 
+    private static final int BITMAP_CACHE_INITIAL_CAPACITY = 32;
+
     /**
-     * A soft cache for photos.
+     * An LRU cache for bitmap holders. The cache contains bytes for photos just
+     * as they come from the database. It also softly retains the actual bitmap.
      */
-    private final ConcurrentHashMap<Object, BitmapHolder> mBitmapCache =
-            new ConcurrentHashMap<Object, BitmapHolder>();
+    private final BitmapHolderCache mBitmapHolderCache;
+
+    /**
+     * Level 2 LRU cache for bitmaps. This is a smaller cache that holds
+     * the most recently used bitmaps to save time on decoding
+     * them from bytes (the bytes are stored in {@link #mBitmapHolderCache}.
+     */
+    private final BitmapCache mBitmapCache;
 
     /**
      * A map from ImageView to the corresponding photo ID. Please note that this
@@ -177,6 +200,18 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
 
     public ContactPhotoManagerImpl(Context context) {
         mContext = context;
+
+        Resources resources = context.getResources();
+        mBitmapCache = new BitmapCache(
+                resources.getInteger(R.integer.config_photo_cache_max_bitmaps));
+        mBitmapHolderCache = new BitmapHolderCache(mBitmapCache,
+                resources.getInteger(R.integer.config_photo_cache_max_bytes));
+    }
+
+    @Override
+    public void preloadPhotosInBackground() {
+        ensureLoaderThread();
+        mLoaderThread.requestPreloading();
     }
 
     @Override
@@ -216,58 +251,75 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
 
     @Override
     public void refreshCache() {
-        for (BitmapHolder holder : mBitmapCache.values()) {
-            if (holder.state == BitmapHolder.LOADED) {
-                holder.state = BitmapHolder.LOADED_NEEDS_RELOAD;
-            }
+        for (BitmapHolder holder : mBitmapHolderCache.values()) {
+            holder.fresh = false;
         }
     }
 
     /**
-     * Checks if the photo is present in cache.  If so, sets the photo on the view,
-     * otherwise sets the state of the photo to {@link BitmapHolder#NEEDED} and
-     * temporarily set the image to the default resource ID.
+     * Checks if the photo is present in cache.  If so, sets the photo on the view.
+     *
+     * @return false if the photo needs to be (re)loaded from the provider.
      */
     private boolean loadCachedPhoto(ImageView view, Object key) {
-        BitmapHolder holder = mBitmapCache.get(key);
+        BitmapHolder holder = mBitmapHolderCache.get(key);
         if (holder == null) {
-            holder = new BitmapHolder();
-            mBitmapCache.put(key, holder);
-        } else {
-            boolean loaded = (holder.state == BitmapHolder.LOADED);
-            boolean loadedNeedsReload = (holder.state == BitmapHolder.LOADED_NEEDS_RELOAD);
-            if (loadedNeedsReload) {
-                holder.state = BitmapHolder.NEEDED;
-            }
+            // The bitmap has not been loaded - should display the placeholder image.
+            view.setImageResource(mDefaultResourceId);
+            return false;
+        }
 
-            // Null bitmap reference means that database contains no bytes for the photo
-            if ((loaded || loadedNeedsReload) && holder.bitmapRef == null) {
-                view.setImageResource(mDefaultResourceId);
-                return loaded;
-            }
+        if (holder.bytes == null) {
+            view.setImageResource(mDefaultResourceId);
+            return holder.fresh;
+        }
 
-            if (holder.bitmapRef != null) {
-                Bitmap bitmap = holder.bitmapRef.get();
-                if (bitmap != null) {
-                    view.setImageBitmap(bitmap);
-                    return loaded;
-                }
+        // Optionally decode bytes into a bitmap
+        inflateBitmap(holder);
 
-                // Null bitmap means that the soft reference was released by the GC
-                // and we need to reload the photo.
-                holder.bitmapRef = null;
+        view.setImageBitmap(holder.bitmap);
+
+        // Put the bitmap in the LRU cache
+        mBitmapCache.put(key, holder.bitmap);
+
+        // Soften the reference
+        holder.bitmap = null;
+
+        return holder.fresh;
+    }
+
+    /**
+     * If necessary, decodes bytes stored in the holder to Bitmap.  As long as the
+     * bitmap is held either by {@link #mBitmapCache} or by a soft reference in
+     * the holder, it will not be necessary to decode the bitmap.
+     */
+    private void inflateBitmap(BitmapHolder holder) {
+        byte[] bytes = holder.bytes;
+        if (bytes == null || bytes.length == 0) {
+            return;
+        }
+
+        // Check the soft reference.  If will be retained if the bitmap is also
+        // in the LRU cache, so we don't need to check the LRU cache explicitly.
+        if (holder.bitmapRef != null) {
+            holder.bitmap = holder.bitmapRef.get();
+            if (holder.bitmap != null) {
+                return;
             }
         }
 
-        // The bitmap has not been loaded - should display the placeholder image.
-        view.setImageResource(mDefaultResourceId);
-        holder.state = BitmapHolder.NEEDED;
-        return false;
+        try {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, null);
+            holder.bitmap = bitmap;
+            holder.bitmapRef = new SoftReference<Bitmap>(bitmap);
+        } catch (OutOfMemoryError e) {
+            // Do nothing - the photo will appear to be missing
+        }
     }
 
     public void clear() {
         mPendingRequests.clear();
-        mBitmapCache.clear();
+        mBitmapHolderCache.clear();
     }
 
     @Override
@@ -304,11 +356,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
             case MESSAGE_REQUEST_LOADING: {
                 mLoadingRequested = false;
                 if (!mPaused) {
-                    if (mLoaderThread == null) {
-                        mLoaderThread = new LoaderThread(mContext.getContentResolver());
-                        mLoaderThread.start();
-                    }
-
+                    ensureLoaderThread();
                     mLoaderThread.requestLoading();
                 }
                 return true;
@@ -322,6 +370,13 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
             }
         }
         return false;
+    }
+
+    public void ensureLoaderThread() {
+        if (mLoaderThread == null) {
+            mLoaderThread = new LoaderThread(mContext.getContentResolver());
+            mLoaderThread.start();
+        }
     }
 
     /**
@@ -348,10 +403,10 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
 
     /**
      * Removes strong references to loaded bitmaps to allow them to be garbage collected
-     * if needed.
+     * if needed.  Some of the bitmaps will still be retained by {@link #mBitmapCache}.
      */
     private void softenCache() {
-        for (BitmapHolder holder : mBitmapCache.values()) {
+        for (BitmapHolder holder : mBitmapHolderCache.values()) {
             holder.bitmap = null;
         }
     }
@@ -359,23 +414,17 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
     /**
      * Stores the supplied bitmap in cache.
      */
-    private void cacheBitmap(Object key, byte[] bytes) {
-        if (mPaused) {
-            return;
+    private void cacheBitmap(Object key, byte[] bytes, boolean preloading) {
+        BitmapHolder holder = new BitmapHolder(bytes);
+        holder.fresh = true;
+
+        // Unless this image is being preloaded, decode it right away while
+        // we are still on the background thread.
+        if (!preloading) {
+            inflateBitmap(holder);
         }
 
-        BitmapHolder holder = new BitmapHolder();
-        holder.state = BitmapHolder.LOADED;
-        if (bytes != null) {
-            try {
-                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, null);
-                holder.bitmap = bitmap;
-                holder.bitmapRef = new SoftReference<Bitmap>(bitmap);
-            } catch (OutOfMemoryError e) {
-                // Do nothing - the photo will appear to be missing
-            }
-        }
-        mBitmapCache.put(key, holder);
+        mBitmapHolderCache.put(key, holder);
     }
 
     /**
@@ -398,10 +447,8 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         Iterator<Object> iterator = mPendingRequests.values().iterator();
         while (iterator.hasNext()) {
             Object key = iterator.next();
-            BitmapHolder holder = mBitmapCache.get(key);
-            if (holder != null && holder.state == BitmapHolder.NEEDED) {
-                // Assuming atomic behavior
-                holder.state = BitmapHolder.LOADING;
+            BitmapHolder holder = mBitmapHolderCache.get(key);
+            if (holder == null || !holder.fresh) {
                 if (key instanceof Long) {
                     photoIds.add((Long)key);
                     photoIdsAsStrings.add(key.toString());
@@ -417,28 +464,82 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
      */
     private class LoaderThread extends HandlerThread implements Callback {
         private static final int BUFFER_SIZE = 1024*16;
+        private static final int MESSAGE_PRELOAD_PHOTOS = 0;
+        private static final int MESSAGE_LOAD_PHOTOS = 1;
+
+        /**
+         * A pause between preload batches that yields to the UI thread.
+         */
+        private static final int PHOTO_PRELOAD_DELAY = 50;
+
+        /**
+         * Number of photos to preload per batch.
+         */
+        private static final int PRELOAD_BATCH = 25;
+
+        /**
+         * Maximum number of photos to preload.  If the cache size is 2Mb and
+         * the expected average size of a photo is 4kb, then this number should be 2Mb/4kb = 500.
+         */
+        private static final int MAX_PHOTOS_TO_PRELOAD = 500;
 
         private final ContentResolver mResolver;
         private final StringBuilder mStringBuilder = new StringBuilder();
         private final ArrayList<Long> mPhotoIds = Lists.newArrayList();
         private final ArrayList<String> mPhotoIdsAsStrings = Lists.newArrayList();
         private final ArrayList<Uri> mPhotoUris = Lists.newArrayList();
+        private ArrayList<Long> mPreloadPhotoIds = Lists.newArrayList();
+
         private Handler mLoaderThreadHandler;
         private byte mBuffer[];
+
+        private static final int PRELOAD_STATUS_NOT_STARTED = 0;
+        private static final int PRELOAD_STATUS_IN_PROGRESS = 1;
+        private static final int PRELOAD_STATUS_DONE = 2;
+
+        private int mPreloadStatus = PRELOAD_STATUS_NOT_STARTED;
 
         public LoaderThread(ContentResolver resolver) {
             super(LOADER_THREAD_NAME);
             mResolver = resolver;
         }
 
-        /**
-         * Sends a message to this thread to load requested photos.
-         */
-        public void requestLoading() {
+        public void ensureHandler() {
             if (mLoaderThreadHandler == null) {
                 mLoaderThreadHandler = new Handler(getLooper(), this);
             }
-            mLoaderThreadHandler.sendEmptyMessage(0);
+        }
+
+        /**
+         * Kicks off preloading of the next batch of photos on the background thread.
+         * Preloading will happen after a delay: we want to yield to the UI thread
+         * as much as possible.
+         * <p>
+         * If preloading is already complete, does nothing.
+         */
+        public void requestPreloading() {
+            if (mPreloadStatus == PRELOAD_STATUS_DONE) {
+                return;
+            }
+
+            ensureHandler();
+            if (mLoaderThreadHandler.hasMessages(MESSAGE_LOAD_PHOTOS)) {
+                return;
+            }
+
+            mLoaderThreadHandler.sendEmptyMessageDelayed(
+                    MESSAGE_PRELOAD_PHOTOS, PHOTO_PRELOAD_DELAY);
+        }
+
+        /**
+         * Sends a message to this thread to load requested photos.  Cancels a preloading
+         * request, if any: we don't want preloading to impede loading of the photos
+         * we need to display now.
+         */
+        public void requestLoading() {
+            ensureHandler();
+            mLoaderThreadHandler.removeMessages(MESSAGE_PRELOAD_PHOTOS);
+            mLoaderThreadHandler.sendEmptyMessage(MESSAGE_LOAD_PHOTOS);
         }
 
         /**
@@ -446,56 +547,164 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
          * to the main thread to process them.
          */
         public boolean handleMessage(Message msg) {
-            loadPhotosFromDatabase();
+            switch (msg.what) {
+                case MESSAGE_PRELOAD_PHOTOS:
+                    preloadPhotosInBackground();
+                    break;
+                case MESSAGE_LOAD_PHOTOS:
+                    loadPhotosInBackground();
+                    break;
+            }
             return true;
         }
 
-        private void loadPhotosFromDatabase() {
-            obtainPhotoIdsAndUrisToLoad(mPhotoIds, mPhotoIdsAsStrings, mPhotoUris);
-
-            int count = mPhotoIds.size();
-            if (count != 0) {
-                mStringBuilder.setLength(0);
-                mStringBuilder.append(Photo._ID + " IN(");
-                for (int i = 0; i < count; i++) {
-                    if (i != 0) {
-                        mStringBuilder.append(',');
-                    }
-                    mStringBuilder.append('?');
-                }
-                mStringBuilder.append(')');
-
-                Cursor cursor = null;
-                try {
-                    cursor = mResolver.query(Data.CONTENT_URI,
-                            COLUMNS,
-                            mStringBuilder.toString(),
-                            mPhotoIdsAsStrings.toArray(EMPTY_STRING_ARRAY),
-                            null);
-
-                    if (cursor != null) {
-                        while (cursor.moveToNext()) {
-                            Long id = cursor.getLong(0);
-                            byte[] bytes = cursor.getBlob(1);
-                            cacheBitmap(id, bytes);
-                            mPhotoIds.remove(id);
-                        }
-                    }
-                } finally {
-                    if (cursor != null) {
-                        cursor.close();
-                    }
-                }
-
-                // Remaining photos were not found in the database - mark the cache accordingly.
-                count = mPhotoIds.size();
-                for (int i = 0; i < count; i++) {
-                    cacheBitmap(mPhotoIds.get(i), null);
-                }
-                mMainThreadHandler.sendEmptyMessage(MESSAGE_PHOTOS_LOADED);
+        /**
+         * The first time it is called, figures out which photos need to be preloaded.
+         * Each subsequent call preloads the next batch of photos and requests
+         * another cycle of preloading after a delay.  The whole process ends when
+         * we either run out of photos to preload or fill up cache.
+         */
+        private void preloadPhotosInBackground() {
+            if (mPreloadStatus == PRELOAD_STATUS_DONE) {
+                return;
             }
 
-            count = mPhotoUris.size();
+            if (mPreloadStatus == PRELOAD_STATUS_NOT_STARTED) {
+                queryPhotosForPreload();
+                if (mPreloadPhotoIds.isEmpty()) {
+                    mPreloadStatus = PRELOAD_STATUS_DONE;
+                } else {
+                    mPreloadStatus = PRELOAD_STATUS_IN_PROGRESS;
+                }
+                requestPreloading();
+                return;
+            }
+
+            if (mBitmapHolderCache.isFull()) {
+                mPreloadStatus = PRELOAD_STATUS_DONE;
+                return;
+            }
+
+            mPhotoIds.clear();
+            mPhotoIdsAsStrings.clear();
+
+            int count = 0;
+            int preloadSize = mPreloadPhotoIds.size();
+            while(preloadSize > 0 && mPhotoIds.size() < PRELOAD_BATCH) {
+                preloadSize--;
+                count++;
+                Long photoId = mPreloadPhotoIds.get(preloadSize);
+                mPhotoIds.add(photoId);
+                mPhotoIdsAsStrings.add(photoId.toString());
+                mPreloadPhotoIds.remove(preloadSize);
+            }
+
+            loadPhotosFromDatabase(false);
+
+            if (preloadSize == 0) {
+                mPreloadStatus = PRELOAD_STATUS_DONE;
+            }
+
+            Log.v(TAG, "Preloaded " + count + " photos. Photos in cache: "
+                    + mBitmapHolderCache.size()
+                    + ". Total size: " + mBitmapHolderCache.getEstimatedSize());
+
+            requestPreloading();
+        }
+
+        private void queryPhotosForPreload() {
+            Cursor cursor = null;
+            try {
+                Uri uri = Contacts.CONTENT_URI.buildUpon().appendQueryParameter(
+                        ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT))
+                        .build();
+                cursor = mResolver.query(uri, new String[] { Contacts.PHOTO_ID },
+                        Contacts.PHOTO_ID + " NOT NULL AND " + Contacts.PHOTO_ID + "!=0",
+                        null,
+                        Contacts.STARRED + " DESC, " + Contacts.LAST_TIME_CONTACTED + " DESC"
+                                + " LIMIT " + MAX_PHOTOS_TO_PRELOAD);
+
+                if (cursor != null) {
+                    while (cursor.moveToNext()) {
+                        // Insert them in reverse order, because we will be taking
+                        // them from the end of the list for loading.
+                        mPreloadPhotoIds.add(0, cursor.getLong(0));
+                    }
+                }
+            } finally {
+                if (cursor != null) {
+                    cursor.close();
+                }
+            }
+        }
+
+        private void loadPhotosInBackground() {
+            obtainPhotoIdsAndUrisToLoad(mPhotoIds, mPhotoIdsAsStrings, mPhotoUris);
+            loadPhotosFromDatabase(true);
+            loadRemotePhotos();
+            requestPreloading();
+        }
+
+        private void loadPhotosFromDatabase(boolean preloading) {
+            int count = mPhotoIds.size();
+            if (count == 0) {
+                return;
+            }
+
+            // Remove loaded photos from the preload queue: we don't want
+            // the preloading process to load them again.
+            if (!preloading && mPreloadStatus == PRELOAD_STATUS_IN_PROGRESS) {
+                for (int i = 0; i < count; i++) {
+                    mPreloadPhotoIds.remove(mPhotoIds.get(i));
+                }
+                if (mPreloadPhotoIds.isEmpty()) {
+                    mPreloadStatus = PRELOAD_STATUS_DONE;
+                }
+            }
+
+            mStringBuilder.setLength(0);
+            mStringBuilder.append(Photo._ID + " IN(");
+            for (int i = 0; i < count; i++) {
+                if (i != 0) {
+                    mStringBuilder.append(',');
+                }
+                mStringBuilder.append('?');
+            }
+            mStringBuilder.append(')');
+
+            Cursor cursor = null;
+            try {
+                cursor = mResolver.query(Data.CONTENT_URI,
+                        COLUMNS,
+                        mStringBuilder.toString(),
+                        mPhotoIdsAsStrings.toArray(EMPTY_STRING_ARRAY),
+                        null);
+
+                if (cursor != null) {
+                    while (cursor.moveToNext()) {
+                        Long id = cursor.getLong(0);
+                        byte[] bytes = cursor.getBlob(1);
+                        cacheBitmap(id, bytes, preloading);
+                        mPhotoIds.remove(id);
+                    }
+                }
+            } finally {
+                if (cursor != null) {
+                    cursor.close();
+                }
+            }
+
+            // Remaining photos were not found in the database - mark the cache accordingly.
+            count = mPhotoIds.size();
+            for (int i = 0; i < count; i++) {
+                cacheBitmap(mPhotoIds.get(i), null, preloading);
+            }
+
+            mMainThreadHandler.sendEmptyMessage(MESSAGE_PHOTOS_LOADED);
+        }
+
+        private void loadRemotePhotos() {
+            int count = mPhotoUris.size();
             for (int i = 0; i < count; i++) {
                 Uri uri = mPhotoUris.get(i);
                 if (mBuffer == null) {
@@ -513,17 +722,95 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                         } finally {
                             is.close();
                         }
-                        cacheBitmap(uri, baos.toByteArray());
+                        cacheBitmap(uri, baos.toByteArray(), false);
                         mMainThreadHandler.sendEmptyMessage(MESSAGE_PHOTOS_LOADED);
                     } else {
                         Log.v(TAG, "Cannot load photo " + uri);
-                        cacheBitmap(uri, null);
+                        cacheBitmap(uri, null, false);
                     }
                 } catch (Exception ex) {
                     Log.v(TAG, "Cannot load photo " + uri, ex);
-                    cacheBitmap(uri, null);
+                    cacheBitmap(uri, null, false);
                 }
             }
+        }
+    }
+
+    /**
+     * An LRU cache of {@link BitmapHolder}'s.  It estimates the total size of
+     * loaded bitmaps and caps that number.
+     */
+    private static class BitmapHolderCache extends LinkedHashMap<Object, BitmapHolder> {
+        private final BitmapCache mBitmapCache;
+        private final int mMaxBytes;
+        private final int mRedZoneBytes;
+        private int mEstimatedBytes;
+
+        public BitmapHolderCache(BitmapCache bitmapCache, int maxBytes) {
+            super(BITMAP_CACHE_INITIAL_CAPACITY, 0.75f, true);
+            this.mBitmapCache = bitmapCache;
+            mMaxBytes = maxBytes;
+            mRedZoneBytes = (int) (mMaxBytes * 0.75);
+        }
+
+        // Leave unsynchronized: if the result is a bit off, that's ok
+        public boolean isFull() {
+            return mEstimatedBytes > mRedZoneBytes;
+        }
+
+        public int getEstimatedSize() {
+            return mEstimatedBytes;
+        }
+
+        @Override
+        public synchronized BitmapHolder get(Object key) {
+            return super.get(key);
+        }
+
+        @Override
+        public synchronized BitmapHolder put(Object key, BitmapHolder newValue) {
+            BitmapHolder oldValue = get(key);
+            if (oldValue != null && oldValue.bytes != null) {
+                mEstimatedBytes -= oldValue.bytes.length;
+            }
+            if (newValue.bytes != null) {
+                mEstimatedBytes += newValue.bytes.length;
+            }
+            return super.put(key, newValue);
+        }
+
+        @Override
+        public BitmapHolder remove(Object key) {
+            BitmapHolder value = get(key);
+            if (value != null && value.bytes != null) {
+                mEstimatedBytes -= value.bytes.length;
+            }
+            mBitmapCache.remove(key);
+            return super.remove(key);
+        }
+
+        @Override
+        protected boolean removeEldestEntry(Map.Entry<Object, BitmapHolder> eldest) {
+            return mEstimatedBytes > mMaxBytes;
+        }
+    }
+
+    /**
+     * An LRU cache of bitmaps.  These are the most recently used bitmaps that we want
+     * to protect from GC. The rest of bitmaps are softly retained and will be
+     * gradually released by GC.
+     */
+    private static class BitmapCache extends LinkedHashMap<Object, Bitmap> {
+        private int mMaxEntries;
+
+        public BitmapCache(int maxEntries) {
+            super(BITMAP_CACHE_INITIAL_CAPACITY, 0.75f, true);
+            mMaxEntries = maxEntries;
+        }
+
+        @Override
+        protected boolean removeEldestEntry(Map.Entry<Object, Bitmap> eldest) {
+            return size() > mMaxEntries;
         }
     }
 }
