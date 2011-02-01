@@ -114,18 +114,15 @@
     <item quantity="one" msgid="3015357862286673986">"1 liên hệ có số điện thoại"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> liên hệ có số điện thoại"</item>
   </plurals>
-    <!-- outdated translation 3100001705005525307 -->     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Không có liên hệ hiển thị nào có số điện thoại"</string>
+    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Không có liên hệ nào có số điện thoại"</string>
   <plurals name="listTotalAllContacts">
     <item quantity="one" msgid="3405747744700823280">"1 địa chỉ liên hệ"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> địa chỉ liên hệ"</item>
   </plurals>
-    <!-- outdated translation 5917810721329112813 -->     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Không có liên hệ hiển thị nào"</string>
-    <!-- no translation found for listTotalAllContactsZeroCustom (4058252141420128998) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroStarred (5391630590684099117) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroGroup (5448979458248027615) -->
-    <skip />
+    <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Không có liên hệ nào"</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Không có liên hệ hiển thị nào"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Không liên hệ nào được gắn dấu sao"</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Không có liên hệ nào trong <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"Đã tìm thấy 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Đã tìm thấy <xliff:g id="COUNT">%d</xliff:g>"</item>
