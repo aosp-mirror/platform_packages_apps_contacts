@@ -36,6 +36,7 @@ import android.provider.ContactsContract.Contacts.Photo;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.util.Log;
+import android.util.LruCache;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
@@ -43,8 +44,6 @@ import java.io.InputStream;
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -155,20 +154,24 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
 
     private final Context mContext;
 
-    private static final int BITMAP_CACHE_INITIAL_CAPACITY = 32;
-
     /**
      * An LRU cache for bitmap holders. The cache contains bytes for photos just
-     * as they come from the database. It also softly retains the actual bitmap.
+     * as they come from the database. Each holder has a soft reference to the
+     * actual bitmap.
      */
-    private final BitmapHolderCache mBitmapHolderCache;
+    private final LruCache<Object, BitmapHolder> mBitmapHolderCache;
+
+    /**
+     * Cache size threshold at which bitmaps will not be preloaded.
+     */
+    private final int mBitmapHolderCacheRedZoneBytes;
 
     /**
      * Level 2 LRU cache for bitmaps. This is a smaller cache that holds
      * the most recently used bitmaps to save time on decoding
      * them from bytes (the bytes are stored in {@link #mBitmapHolderCache}.
      */
-    private final BitmapCache mBitmapCache;
+    private final LruCache<Object, Bitmap> mBitmapCache;
 
     /**
      * A map from ImageView to the corresponding photo ID. Please note that this
@@ -202,10 +205,15 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         mContext = context;
 
         Resources resources = context.getResources();
-        mBitmapCache = new BitmapCache(
+        mBitmapCache = new LruCache<Object, Bitmap>(
                 resources.getInteger(R.integer.config_photo_cache_max_bitmaps));
-        mBitmapHolderCache = new BitmapHolderCache(mBitmapCache,
-                resources.getInteger(R.integer.config_photo_cache_max_bytes));
+        int maxBytes = resources.getInteger(R.integer.config_photo_cache_max_bytes);
+        mBitmapHolderCache = new LruCache<Object, BitmapHolder>(maxBytes) {
+            @Override protected int sizeOf(Object key, BitmapHolder value) {
+                return value.bytes.length;
+            }
+        };
+        mBitmapHolderCacheRedZoneBytes = (int) (maxBytes * 0.75);
     }
 
     @Override
@@ -251,7 +259,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
 
     @Override
     public void refreshCache() {
-        for (BitmapHolder holder : mBitmapHolderCache.values()) {
+        for (BitmapHolder holder : mBitmapHolderCache.snapshot().values()) {
             holder.fresh = false;
         }
     }
@@ -319,7 +327,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
 
     public void clear() {
         mPendingRequests.clear();
-        mBitmapHolderCache.clear();
+        mBitmapHolderCache.evictAll();
     }
 
     @Override
@@ -406,7 +414,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
      * if needed.  Some of the bitmaps will still be retained by {@link #mBitmapCache}.
      */
     private void softenCache() {
-        for (BitmapHolder holder : mBitmapHolderCache.values()) {
+        for (BitmapHolder holder : mBitmapHolderCache.snapshot().values()) {
             holder.bitmap = null;
         }
     }
@@ -580,7 +588,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                 return;
             }
 
-            if (mBitmapHolderCache.isFull()) {
+            if (mBitmapHolderCache.size() > mBitmapHolderCacheRedZoneBytes) {
                 mPreloadStatus = PRELOAD_STATUS_DONE;
                 return;
             }
@@ -607,7 +615,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
 
             Log.v(TAG, "Preloaded " + count + " photos. Photos in cache: "
                     + mBitmapHolderCache.size()
-                    + ". Total size: " + mBitmapHolderCache.getEstimatedSize());
+                    + ". Total size: " + mBitmapHolderCache.size());
 
             requestPreloading();
         }
@@ -733,84 +741,6 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                     cacheBitmap(uri, null, false);
                 }
             }
-        }
-    }
-
-    /**
-     * An LRU cache of {@link BitmapHolder}'s.  It estimates the total size of
-     * loaded bitmaps and caps that number.
-     */
-    private static class BitmapHolderCache extends LinkedHashMap<Object, BitmapHolder> {
-        private final BitmapCache mBitmapCache;
-        private final int mMaxBytes;
-        private final int mRedZoneBytes;
-        private int mEstimatedBytes;
-
-        public BitmapHolderCache(BitmapCache bitmapCache, int maxBytes) {
-            super(BITMAP_CACHE_INITIAL_CAPACITY, 0.75f, true);
-            this.mBitmapCache = bitmapCache;
-            mMaxBytes = maxBytes;
-            mRedZoneBytes = (int) (mMaxBytes * 0.75);
-        }
-
-        // Leave unsynchronized: if the result is a bit off, that's ok
-        public boolean isFull() {
-            return mEstimatedBytes > mRedZoneBytes;
-        }
-
-        public int getEstimatedSize() {
-            return mEstimatedBytes;
-        }
-
-        @Override
-        public synchronized BitmapHolder get(Object key) {
-            return super.get(key);
-        }
-
-        @Override
-        public synchronized BitmapHolder put(Object key, BitmapHolder newValue) {
-            BitmapHolder oldValue = get(key);
-            if (oldValue != null && oldValue.bytes != null) {
-                mEstimatedBytes -= oldValue.bytes.length;
-            }
-            if (newValue.bytes != null) {
-                mEstimatedBytes += newValue.bytes.length;
-            }
-            return super.put(key, newValue);
-        }
-
-        @Override
-        public BitmapHolder remove(Object key) {
-            BitmapHolder value = get(key);
-            if (value != null && value.bytes != null) {
-                mEstimatedBytes -= value.bytes.length;
-            }
-            mBitmapCache.remove(key);
-            return super.remove(key);
-        }
-
-        @Override
-        protected boolean removeEldestEntry(Map.Entry<Object, BitmapHolder> eldest) {
-            return mEstimatedBytes > mMaxBytes;
-        }
-    }
-
-    /**
-     * An LRU cache of bitmaps.  These are the most recently used bitmaps that we want
-     * to protect from GC. The rest of bitmaps are softly retained and will be
-     * gradually released by GC.
-     */
-    private static class BitmapCache extends LinkedHashMap<Object, Bitmap> {
-        private int mMaxEntries;
-
-        public BitmapCache(int maxEntries) {
-            super(BITMAP_CACHE_INITIAL_CAPACITY, 0.75f, true);
-            mMaxEntries = maxEntries;
-        }
-
-        @Override
-        protected boolean removeEldestEntry(Map.Entry<Object, Bitmap> eldest) {
-            return size() > mMaxEntries;
         }
     }
 }
