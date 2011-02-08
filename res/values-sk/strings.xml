@@ -114,18 +114,15 @@
     <item quantity="one" msgid="3015357862286673986">"1 kontakt s telefónnym číslom"</item>
     <item quantity="other" msgid="3299954047880968205">"Počet kontaktov s telefónnymi číslami: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <!-- outdated translation 3100001705005525307 -->     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Žiadne kontakty s telefónnymi číslami nie sú viditeľné"</string>
+    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Ku kontaktom nie sú priradené žiadne telefónne čísla"</string>
   <plurals name="listTotalAllContacts">
     <item quantity="one" msgid="3405747744700823280">"Počet kontaktov: 1"</item>
     <item quantity="other" msgid="3578469907265375314">"Počet kontaktov: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <!-- outdated translation 5917810721329112813 -->     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Žiadne kontakty nie sú viditeľné"</string>
-    <!-- no translation found for listTotalAllContactsZeroCustom (4058252141420128998) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroStarred (5391630590684099117) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroGroup (5448979458248027615) -->
-    <skip />
+    <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Žiadne kontakty"</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Žiadne kontakty nie sú viditeľné"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Žiadne kontakty označené hviezdičkou"</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Žiadne kontakty v položke <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"Počet nájdených položiek: 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Počet nájdených položiek: <xliff:g id="COUNT">%d</xliff:g>"</item>

@@ -114,18 +114,15 @@
     <item quantity="one" msgid="3015357862286673986">"Un (1) contacto con número de teléfono"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> contactos con números de teléfono"</item>
   </plurals>
-    <!-- outdated translation 3100001705005525307 -->     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"No hay ningún contacto visible con número de teléfono."</string>
+    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Ningún contacto con número de teléfono"</string>
   <plurals name="listTotalAllContacts">
     <item quantity="one" msgid="3405747744700823280">"Un (1) contacto"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> contactos"</item>
   </plurals>
-    <!-- outdated translation 5917810721329112813 -->     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"No hay contactos visibles."</string>
-    <!-- no translation found for listTotalAllContactsZeroCustom (4058252141420128998) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroStarred (5391630590684099117) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroGroup (5448979458248027615) -->
-    <skip />
+    <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Ningún contacto"</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Ningún contacto visible"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Ningún contacto destacado"</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Ningún contacto en <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 encontrado"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> encontrados"</item>
@@ -446,7 +443,7 @@
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"¿Deseas agrupar el contacto actual con el contacto seleccionado?"</string>
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Editar contactos seleccionados"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"¿Deseas editar el contacto seleccionado? Se copiará la información que hayas introducido hasta el momento."</string>
-    <string name="menu_copyContact" msgid="4401683725471696686">"Copiar a mis contactos"</string>
+    <string name="menu_copyContact" msgid="4401683725471696686">"Copiar en mis contactos"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Directorio <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="search_label" msgid="6789295859496641042">"Buscando todos los contactos"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Directorio"</string>

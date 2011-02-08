@@ -114,18 +114,15 @@
     <item quantity="one" msgid="3015357862286673986">"1 Kontakt mit Telefonnummer"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> Kontakte mit Telefonnummern"</item>
   </plurals>
-    <!-- outdated translation 3100001705005525307 -->     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Keine sichtbaren Kontakte mit Telefonnummern"</string>
+    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Keine Kontakte mit Telefonnummern"</string>
   <plurals name="listTotalAllContacts">
     <item quantity="one" msgid="3405747744700823280">"1 Kontakt"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> Kontakte"</item>
   </plurals>
-    <!-- outdated translation 5917810721329112813 -->     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Keine sichtbaren Kontakte"</string>
-    <!-- no translation found for listTotalAllContactsZeroCustom (4058252141420128998) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroStarred (5391630590684099117) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroGroup (5448979458248027615) -->
-    <skip />
+    <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Keine Kontakte"</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Keine sichtbaren Kontakte"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Keine markierten Kontakte"</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Keine Kontakte in <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 gefunden"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> gefunden"</item>

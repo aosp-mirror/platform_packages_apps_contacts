@@ -121,9 +121,8 @@
   </plurals>
     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Nincsenek névjegyek"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Nincsenek látható névjegyek"</string>
-    <!-- no translation found for listTotalAllContactsZeroStarred (5391630590684099117) -->
-    <skip />
-    <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"<xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Nincs csillaggal megjelölt névjegy"</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Nincsenek névjegyek itt: <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 találat"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> találat"</item>

@@ -114,18 +114,15 @@
     <item quantity="one" msgid="3015357862286673986">"1 persoană din agendă cu număr de telefon"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> (de) persoane din agendă cu numere de telefon"</item>
   </plurals>
-    <!-- outdated translation 3100001705005525307 -->     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Nicio persoană din agendă vizibilă cu numere de telefon"</string>
+    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Nicio persoană din agendă cu numere de telefon"</string>
   <plurals name="listTotalAllContacts">
     <item quantity="one" msgid="3405747744700823280">"1 persoană din Agendă"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> (de) persoane din Agendă"</item>
   </plurals>
-    <!-- outdated translation 5917810721329112813 -->     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Nicio persoană din agendă nu este vizibilă"</string>
-    <!-- no translation found for listTotalAllContactsZeroCustom (4058252141420128998) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroStarred (5391630590684099117) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroGroup (5448979458248027615) -->
-    <skip />
+    <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Nicio persoană în agendă"</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Nicio persoană din agendă nu este vizibilă"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Nicio persoană din agendă marcată cu stea"</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Nicio persoană din agendă în <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"A fost găsită 1 persoană din agendă"</item>
     <item quantity="other" msgid="3852668542926965042">"Au fost găsite <xliff:g id="COUNT">%d</xliff:g> (de) persoane din agendă"</item>

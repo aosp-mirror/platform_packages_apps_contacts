@@ -119,11 +119,10 @@
     <item quantity="one" msgid="3405747744700823280">"1 contacte"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> contactes"</item>
   </plurals>
-    <string name="listTotalAllContactsZero" msgid="1889349925514589304">"No hi ha contactes"</string>
+    <string name="listTotalAllContactsZero" msgid="1889349925514589304">"No hi ha cap contacte"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"No hi ha cap contacte visible"</string>
-    <!-- no translation found for listTotalAllContactsZeroStarred (5391630590684099117) -->
-    <skip />
-    <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"<xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"No hi ha cap contacte destacat"</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"No hi ha cap contacte a <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 contacte"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> contactes"</item>
