@@ -71,7 +71,7 @@
     <string name="editContact_title_insert" msgid="9125600232291405757">"Nowy kontakt"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetycznie"</string>
     <string name="label_notes" msgid="8337354953278341042">"Notatki"</string>
-    <string name="label_sip_address" msgid="124073911714324974">"Dzwonienie przez internet"</string>
+    <string name="label_sip_address" msgid="124073911714324974">"Rozmowa internetowa"</string>
     <string name="label_ringtone" msgid="8833166825330686244">"Dzwonek"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Nazwisko (fonetycznie)"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Firma"</string>
@@ -114,18 +114,15 @@
     <item quantity="one" msgid="3015357862286673986">"Liczba kontaktów z numerem telefonu: 1"</item>
     <item quantity="other" msgid="3299954047880968205">"Liczba kontaktów z numerami telefonów: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <!-- outdated translation 3100001705005525307 -->     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Brak widocznych kontaktów z numerami telefonów"</string>
+    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Brak kontaktów z numerami telefonów"</string>
   <plurals name="listTotalAllContacts">
     <item quantity="one" msgid="3405747744700823280">"Liczba kontaktów: 1"</item>
     <item quantity="other" msgid="3578469907265375314">"Liczba kontaktów: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <!-- outdated translation 5917810721329112813 -->     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Brak widocznych kontaktów"</string>
-    <!-- no translation found for listTotalAllContactsZeroCustom (4058252141420128998) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroStarred (5391630590684099117) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroGroup (5448979458248027615) -->
-    <skip />
+    <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Brak kontaktów"</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Brak widocznych kontaktów"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Brak kontaktów oznaczonych gwiazdką"</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Brak kontaktów w grupie <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"Znaleziono: 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Znaleziono: <xliff:g id="COUNT">%d</xliff:g>"</item>
