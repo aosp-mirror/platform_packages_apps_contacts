@@ -210,7 +210,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         int maxBytes = resources.getInteger(R.integer.config_photo_cache_max_bytes);
         mBitmapHolderCache = new LruCache<Object, BitmapHolder>(maxBytes) {
             @Override protected int sizeOf(Object key, BitmapHolder value) {
-                return value.bytes.length;
+                return value.bytes != null ? value.bytes.length : 0;
             }
         };
         mBitmapHolderCacheRedZoneBytes = (int) (maxBytes * 0.75);
