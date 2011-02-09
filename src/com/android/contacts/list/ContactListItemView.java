@@ -30,10 +30,6 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.provider.ContactsContract.CommonDataKinds.Email;
-import android.provider.ContactsContract.CommonDataKinds.Nickname;
-import android.provider.ContactsContract.CommonDataKinds.Organization;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -863,36 +859,14 @@ public class ContactListItemView extends ViewGroup
     /**
      * Shows search snippet.
      */
-    public void showSnippet(Cursor cursor, int summarySnippetMimetypeColumnIndex,
-            int summarySnippetData1ColumnIndex, int summarySnippetData4ColumnIndex) {
-        if (cursor.getColumnCount() <= summarySnippetMimetypeColumnIndex) {
+    public void showSnippet(Cursor cursor, int summarySnippetColumnIndex) {
+        if (cursor.getColumnCount() <= summarySnippetColumnIndex) {
             setSnippet(null);
             return;
         }
 
-        String snippet = null;
-        String snippetMimeType = cursor.getString(summarySnippetMimetypeColumnIndex);
-        if (Email.CONTENT_ITEM_TYPE.equals(snippetMimeType)
-                || Nickname.CONTENT_ITEM_TYPE.equals(snippetMimeType)
-                || Phone.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
-            String value = cursor.getString(summarySnippetData1ColumnIndex);
-            if (!TextUtils.isEmpty(value)) {
-                snippet = value;
-            }
-        } else if (Organization.CONTENT_ITEM_TYPE.equals(snippetMimeType)) {
-            String company = cursor.getString(summarySnippetData1ColumnIndex);
-            String title = cursor.getString(summarySnippetData4ColumnIndex);
-            if (!TextUtils.isEmpty(company)) {
-                if (!TextUtils.isEmpty(title)) {
-                    snippet = company + " / " + title;
-                } else {
-                    snippet = company;
-                }
-            } else if (!TextUtils.isEmpty(title)) {
-                snippet = title;
-            }
-        }
-
+        String snippet = cursor.getString(summarySnippetColumnIndex);
+        // TODO postprocess snippet
         setSnippet(snippet);
     }
 
