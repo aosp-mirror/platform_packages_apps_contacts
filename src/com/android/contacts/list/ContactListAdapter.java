@@ -79,9 +79,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         Contacts.LOOKUP_KEY,                    // 9
         Contacts.PHONETIC_NAME,                 // 10
         Contacts.HAS_PHONE_NUMBER,              // 11
-        SearchSnippetColumns.SNIPPET_MIMETYPE,  // 12
-        SearchSnippetColumns.SNIPPET_DATA1,     // 13
-        SearchSnippetColumns.SNIPPET_DATA4,     // 14
+        SearchSnippetColumns.SNIPPET,           // 12
     };
 
     protected static final int CONTACT_ID_COLUMN_INDEX = 0;
@@ -96,9 +94,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     protected static final int CONTACT_LOOKUP_KEY_COLUMN_INDEX = 9;
     protected static final int CONTACT_PHONETIC_NAME_COLUMN_INDEX = 10;
     protected static final int CONTACT_HAS_PHONE_COLUMN_INDEX = 11;
-    protected static final int CONTACT_SNIPPET_MIMETYPE_COLUMN_INDEX = 12;
-    protected static final int CONTACT_SNIPPET_DATA1_COLUMN_INDEX = 13;
-    protected static final int CONTACT_SNIPPET_DATA4_COLUMN_INDEX = 14;
+    protected static final int CONTACT_SNIPPET_COLUMN_INDEX = 12;
 
     private CharSequence mUnknownNameText;
     private int mDisplayNameColumnIndex;
@@ -289,8 +285,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     }
 
     protected void bindSearchSnippet(final ContactListItemView view, Cursor cursor) {
-        view.showSnippet(cursor, CONTACT_SNIPPET_MIMETYPE_COLUMN_INDEX,
-                CONTACT_SNIPPET_DATA1_COLUMN_INDEX, CONTACT_SNIPPET_DATA4_COLUMN_INDEX);
+        view.showSnippet(cursor, CONTACT_SNIPPET_COLUMN_INDEX);
     }
 
     public int getSelectedContactPosition() {
