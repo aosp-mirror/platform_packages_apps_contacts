@@ -218,7 +218,7 @@
     <string name="import_one_vcard_string" msgid="9059163467020328433">"vCard 파일 한 개 가져오기"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"vCard 파일 여러 개 가져오기"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"모든 vCard 파일 가져오기"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="8214795338181412751">"USB 저장소에서 vCard 데이터 검색"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="8214795338181412751">"USB 저장소에서 vCard 데이터 검색 중"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"SD 카드의 vCard 데이터 검색"</string>
     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="7447077516493667568">"USB 저장소 스캔 실패"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"SD 카드 스캔 실패"</string>

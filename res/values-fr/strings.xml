@@ -375,7 +375,7 @@
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Trier la liste par"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Prénom"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Nom de famille"</string>
-    <string name="display_options_view_names_as" msgid="18022868169627979">"Afficher les contacts avec"</string>
+    <string name="display_options_view_names_as" msgid="18022868169627979">"Afficher les contacts par"</string>
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Le prénom en premier"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Le nom de famille en premier"</string>
     <string name="search_bar_hint" msgid="1012756309632856553">"Rechercher..."</string>
