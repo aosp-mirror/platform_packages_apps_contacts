@@ -31,6 +31,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.SearchSnippetColumns;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -41,6 +42,14 @@ import java.util.List;
  * A cursor adapter for the {@link ContactsContract.Contacts#CONTENT_TYPE} content type.
  */
 public class DefaultContactListAdapter extends ContactListAdapter {
+
+    public static final char SNIPPET_START_MATCH = '\u0001';
+    public static final char SNIPPET_END_MATCH = '\u0001';
+    public static final String SNIPPET_ELLIPSIS = "\u2026";
+    public static final int SNIPPET_MAX_TOKENS = 5;
+
+    public static final String SNIPPET_ARGS = SNIPPET_START_MATCH + "," + SNIPPET_END_MATCH + ","
+            + SNIPPET_ELLIPSIS + "," + SNIPPET_MAX_TOKENS;
 
     public DefaultContactListAdapter(Context context) {
         super(context);
@@ -71,6 +80,8 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                     builder.appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY,
                             String.valueOf(getDirectoryResultLimit()));
                 }
+                builder.appendQueryParameter(SearchSnippetColumns.SNIPPET_ARGS_PARAM_KEY,
+                        SNIPPET_ARGS);
                 applyDataRestriction(builder);
                 loader.setUri(builder.build());
                 loader.setProjection(FILTER_PROJECTION);

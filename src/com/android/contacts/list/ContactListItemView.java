@@ -866,7 +866,34 @@ public class ContactListItemView extends ViewGroup
         }
 
         String snippet = cursor.getString(summarySnippetColumnIndex);
-        // TODO postprocess snippet
+        if (snippet != null) {
+            int from = 0;
+            int to = snippet.length();
+            int start = snippet.indexOf(DefaultContactListAdapter.SNIPPET_START_MATCH);
+            if (start != -1) {
+                int firstNl = snippet.lastIndexOf('\n', start);
+                if (firstNl != -1) {
+                    from = firstNl + 1;
+                }
+            }
+            int end = snippet.lastIndexOf(DefaultContactListAdapter.SNIPPET_END_MATCH);
+            if (end != -1) {
+                int lastNl = snippet.indexOf('\n', end);
+                if (lastNl != -1) {
+                    to = lastNl;
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = from; i < to; i++) {
+                char c = snippet.charAt(i);
+                if (c != DefaultContactListAdapter.SNIPPET_START_MATCH &&
+                        c != DefaultContactListAdapter.SNIPPET_END_MATCH) {
+                    sb.append(c);
+                }
+            }
+            snippet = sb.toString();
+        }
         setSnippet(snippet);
     }
 
