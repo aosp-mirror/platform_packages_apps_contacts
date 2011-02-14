@@ -101,6 +101,7 @@ public class PhotoActionPopup {
         listPopupWindow.setWidth(context.getResources().getDimensionPixelSize(
                 R.dimen.photo_action_popup_width));
         listPopupWindow.setModal(true);
+        listPopupWindow.setInputMethodMode(ListPopupWindow.INPUT_METHOD_NOT_NEEDED);
         return listPopupWindow;
     }
 
