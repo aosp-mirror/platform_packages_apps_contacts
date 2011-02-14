@@ -80,10 +80,6 @@ public class ExchangeAccountType extends BaseAccountType {
                     R.string.name_given, FLAGS_PERSON_NAME));
             kind.fieldList.add(new EditField(StructuredName.SUFFIX,
                     R.string.name_suffix, FLAGS_PERSON_NAME).setOptional(true));
-            kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
-                    R.string.name_phonetic_family, FLAGS_PHONETIC).setOptional(true));
-            kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
-                    R.string.name_phonetic_given, FLAGS_PHONETIC).setOptional(true));
         } else {
             kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME,
                     R.string.name_given, FLAGS_PERSON_NAME));
@@ -93,11 +89,12 @@ public class ExchangeAccountType extends BaseAccountType {
                     R.string.name_family, FLAGS_PERSON_NAME));
             kind.fieldList.add(new EditField(StructuredName.SUFFIX,
                     R.string.name_suffix, FLAGS_PERSON_NAME).setOptional(true));
-            kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
-                    R.string.name_phonetic_given, FLAGS_PHONETIC).setOptional(true));
-            kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
-                    R.string.name_phonetic_family, FLAGS_PHONETIC).setOptional(true));
         }
+
+        kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
+                R.string.name_phonetic_family, FLAGS_PHONETIC).setOptional(true));
+        kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
+                R.string.name_phonetic_given, FLAGS_PHONETIC).setOptional(true));
 
         return kind;
     }

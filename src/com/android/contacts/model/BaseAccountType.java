@@ -121,12 +121,6 @@ public class BaseAccountType extends AccountType {
                     FLAGS_PERSON_NAME).setLongForm(true));
             kind.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
                     FLAGS_PERSON_NAME).setLongForm(true));
-            kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
-                    R.string.name_phonetic_family, FLAGS_PHONETIC).setLongForm(true));
-            kind.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
-                    R.string.name_phonetic_middle, FLAGS_PHONETIC).setLongForm(true));
-            kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
-                    R.string.name_phonetic_given, FLAGS_PHONETIC).setLongForm(true));
         } else {
             kind.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
                     FLAGS_PERSON_NAME).setLongForm(true));
@@ -138,13 +132,13 @@ public class BaseAccountType extends AccountType {
                     FLAGS_PERSON_NAME).setLongForm(true));
             kind.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
                     FLAGS_PERSON_NAME).setLongForm(true));
-            kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
-                    R.string.name_phonetic_given, FLAGS_PHONETIC).setLongForm(true));
-            kind.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
-                    R.string.name_phonetic_middle, FLAGS_PHONETIC).setLongForm(true));
-            kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
-                    R.string.name_phonetic_family, FLAGS_PHONETIC).setLongForm(true));
         }
+        kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
+                R.string.name_phonetic_family, FLAGS_PHONETIC).setLongForm(true));
+        kind.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
+                R.string.name_phonetic_middle, FLAGS_PHONETIC).setLongForm(true));
+        kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
+                R.string.name_phonetic_given, FLAGS_PHONETIC).setLongForm(true));
 
         return kind;
     }
