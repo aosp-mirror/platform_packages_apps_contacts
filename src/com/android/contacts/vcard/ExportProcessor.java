@@ -178,6 +178,11 @@ public class ExportProcessor extends ProcessorBase {
             }
             Log.i(LOG_TAG, "Successfully finished exporting vCard " + request.destUri);
 
+            if (DEBUG) {
+                Log.d(LOG_TAG, "Ask MediaScanner to scan the file: " + request.destUri.getPath());
+            }
+            mService.updateMediaScanner(request.destUri.getPath());
+
             successful = true;
             final String filename = uri.getLastPathSegment();
             final String title = mService.getString(R.string.exporting_vcard_finished_title,
