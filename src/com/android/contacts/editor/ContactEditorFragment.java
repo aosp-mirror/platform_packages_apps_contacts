@@ -241,6 +241,7 @@ public class ContactEditorFragment extends Fragment implements
                     mContent.getChildAt(i).setEnabled(enabled);
                 }
             }
+            setAggregationSuggestionViewEnabled(enabled);
             final Activity activity = getActivity();
             if (activity != null) activity.invalidateOptionsMenu();
         }
@@ -469,6 +470,8 @@ public class ContactEditorFragment extends Fragment implements
     }
 
     private void bindEditorsForNewContact(Account account, final AccountType accountType) {
+        mStatus = Status.EDITING;
+
         final ContentValues values = new ContentValues();
         if (account != null) {
             values.put(RawContacts.ACCOUNT_NAME, account.name);
@@ -746,7 +749,7 @@ public class ContactEditorFragment extends Fragment implements
      * finishes the activity.
      */
     public boolean save(int saveMode) {
-        if (!hasValidState()) {
+        if (!hasValidState() || mStatus != Status.EDITING) {
             return false;
         }
 
@@ -1218,7 +1221,7 @@ public class ContactEditorFragment extends Fragment implements
 
     @Override
     public void onAggregationSuggestionChange() {
-        if (!isAdded() || mState == null) {
+        if (!isAdded() || mState == null || mStatus != Status.EDITING) {
             return;
         }
 
@@ -1265,6 +1268,7 @@ public class ContactEditorFragment extends Fragment implements
         }
 
         adjustAggregationSuggestionViewLayout(rawContactView);
+        setAggregationSuggestionViewEnabled(mEnabled);
         mAggregationSuggestionView.setVisibility(View.VISIBLE);
 
         if (requestOnScreen) {
@@ -1403,6 +1407,19 @@ public class ContactEditorFragment extends Fragment implements
             rect.union(getRelativeBounds(mContent, focused));
         }
         mContent.requestRectangleOnScreen(rect);
+    }
+
+    public void setAggregationSuggestionViewEnabled(boolean enabled) {
+        if (mAggregationSuggestionView == null) {
+            return;
+        }
+
+        LinearLayout itemList = (LinearLayout) mAggregationSuggestionView.findViewById(
+                R.id.aggregation_suggestions);
+        int count = itemList.getChildCount();
+        for (int i = 0; i < count; i++) {
+            itemList.getChildAt(i).setEnabled(enabled);
+        }
     }
 
     /**

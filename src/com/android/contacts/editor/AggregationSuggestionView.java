@@ -136,7 +136,7 @@ public class AggregationSuggestionView extends RelativeLayout {
 
     @Override
     public boolean performClick() {
-        if (mListener != null) {
+        if (mListener != null && isEnabled()) {
             if (canEditSuggestedContact()) {
                 mListener.onEditAction(Contacts.getLookupUri(mContactId, mLookupKey));
             } else {
