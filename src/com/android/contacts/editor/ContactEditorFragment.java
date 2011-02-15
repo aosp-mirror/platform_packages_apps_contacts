@@ -1345,6 +1345,10 @@ public class ContactEditorFragment extends Fragment implements
      * contacts), save all changes, and stay in the editor.
      */
     protected void doJoinSuggestedContact(long[] rawContactIds) {
+        if (!hasValidState() || mStatus != Status.EDITING) {
+            return;
+        }
+
         mState.setJoinWithRawContacts(rawContactIds);
         save(SaveMode.RELOAD);
     }
