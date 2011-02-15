@@ -50,6 +50,7 @@ public class ContactEditorActivity extends ContactsActivity
     private static final String TAG = "ContactEditorActivity";
 
     public static final String ACTION_JOIN_COMPLETED = "joinCompleted";
+    public static final String ACTION_SAVE_COMPLETED = "saveCompleted";
 
     private ContactEditorFragment mFragment;
     private Button mDoneButton;
@@ -113,6 +114,10 @@ public class ContactEditorActivity extends ContactsActivity
         String action = intent.getAction();
         if (Intent.ACTION_EDIT.equals(action)) {
             mFragment.setIntentExtras(intent.getExtras());
+        } else if (ACTION_SAVE_COMPLETED.equals(action)) {
+            mFragment.onSaveCompleted(true,
+                    intent.getIntExtra(ContactEditorFragment.SAVE_MODE_EXTRA_KEY, SaveMode.CLOSE),
+                    intent.getData());
         } else if (ACTION_JOIN_COMPLETED.equals(action)) {
             mFragment.onJoinCompleted(intent.getData());
         }

@@ -340,8 +340,16 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
         mSplitRawContacts = true;
     }
 
+    public boolean isMarkedForSplitting() {
+        return mSplitRawContacts;
+    }
+
     public void setJoinWithRawContacts(long[] rawContactIds) {
         mJoinWithRawContactIds = rawContactIds;
+    }
+
+    public boolean isMarkedForJoining() {
+        return mJoinWithRawContactIds != null && mJoinWithRawContactIds.length > 0;
     }
 
     /** {@inheritDoc} */
@@ -358,6 +366,7 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
             dest.writeParcelable(delta, flags);
         }
         dest.writeLongArray(mJoinWithRawContactIds);
+        dest.writeInt(mSplitRawContacts ? 1 : 0);
     }
 
     @SuppressWarnings("unchecked")
@@ -368,6 +377,7 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
             this.add(source.<EntityDelta> readParcelable(loader));
         }
         mJoinWithRawContactIds = source.createLongArray();
+        mSplitRawContacts = source.readInt() != 0;
     }
 
     public static final Parcelable.Creator<EntityDeltaList> CREATOR =

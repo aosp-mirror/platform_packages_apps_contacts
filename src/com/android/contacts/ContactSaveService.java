@@ -16,7 +16,9 @@
 
 package com.android.contacts;
 
-import com.android.contacts.R;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.EntityDeltaList;
+import com.android.contacts.model.EntityModifier;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Sets;
 
@@ -35,6 +37,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Parcelable;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.AggregationExceptions;
@@ -63,7 +66,9 @@ public class ContactSaveService extends IntentService {
     public static final String EXTRA_CONTENT_VALUES = "contentValues";
     public static final String EXTRA_CALLBACK_INTENT = "callbackIntent";
 
-    public static final String EXTRA_OPERATIONS = "Operations";
+    public static final String ACTION_SAVE_CONTACT = "saveContact";
+    public static final String EXTRA_CONTACT_STATE = "state";
+    public static final String EXTRA_SAVE_MODE = "saveMode";
 
     public static final String ACTION_CREATE_GROUP = "createGroup";
     public static final String ACTION_RENAME_GROUP = "renameGroup";
@@ -105,9 +110,21 @@ public class ContactSaveService extends IntentService {
         Data.DATA15
     );
 
+    private static final int PERSIST_TRIES = 3;
+
     public ContactSaveService() {
         super(TAG);
         setIntentRedelivery(true);
+    }
+
+    @Override
+    public Object getSystemService(String name) {
+        Object service = super.getSystemService(name);
+        if (service != null) {
+            return service;
+        }
+
+        return getApplicationContext().getSystemService(name);
     }
 
     @Override
@@ -115,6 +132,8 @@ public class ContactSaveService extends IntentService {
         String action = intent.getAction();
         if (ACTION_NEW_RAW_CONTACT.equals(action)) {
             createRawContact(intent);
+        } else if (ACTION_SAVE_CONTACT.equals(action)) {
+            saveContact(intent);
         } else if (ACTION_CREATE_GROUP.equals(action)) {
             createGroup(intent);
         } else if (ACTION_RENAME_GROUP.equals(action)) {
@@ -196,6 +215,121 @@ public class ContactSaveService extends IntentService {
         callbackIntent.setData(RawContacts.getContactLookupUri(resolver, rawContactUri));
 
         startActivity(callbackIntent);
+    }
+
+    /**
+     * Creates an intent that can be sent to this service to create a new raw contact
+     * using data presented as a set of ContentValues.
+     */
+    public static Intent createSaveContactIntent(Context context, EntityDeltaList state,
+            String saveModeExtraKey, int saveMode, Class<?> callbackActivity,
+            String callbackAction) {
+        Intent serviceIntent = new Intent(
+                context, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_SAVE_CONTACT);
+        serviceIntent.putExtra(EXTRA_CONTACT_STATE, (Parcelable) state);
+
+        // Callback intent will be invoked by the service once the contact is
+        // saved.  The service will put the URI of the new contact as "data" on
+        // the callback intent.
+        Intent callbackIntent = new Intent(context, callbackActivity);
+        callbackIntent.putExtra(saveModeExtraKey, saveMode);
+        callbackIntent.setAction(callbackAction);
+        callbackIntent.setFlags(
+                Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
+        return serviceIntent;
+    }
+
+    private void saveContact(Intent intent) {
+        EntityDeltaList state = intent.getParcelableExtra(EXTRA_CONTACT_STATE);
+        Intent callbackIntent = intent.getParcelableExtra(EXTRA_CALLBACK_INTENT);
+
+        // Trim any empty fields, and RawContacts, before persisting
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(this);
+        EntityModifier.trimEmpty(state, accountTypes);
+
+        Uri lookupUri = null;
+
+        final ContentResolver resolver = getContentResolver();
+
+        // Attempt to persist changes
+        int tries = 0;
+        while (tries++ < PERSIST_TRIES) {
+            try {
+                // Build operations and try applying
+                final ArrayList<ContentProviderOperation> diff = state.buildDiff();
+                ContentProviderResult[] results = null;
+                if (!diff.isEmpty()) {
+                    results = resolver.applyBatch(ContactsContract.AUTHORITY, diff);
+                }
+
+                final long rawContactId = getRawContactId(state, diff, results);
+                if (rawContactId == -1) {
+                    throw new IllegalStateException("Could not determine RawContact ID after save");
+                }
+                final Uri rawContactUri = ContentUris.withAppendedId(
+                        RawContacts.CONTENT_URI, rawContactId);
+                lookupUri = RawContacts.getContactLookupUri(resolver, rawContactUri);
+                Log.v(TAG, "Saved contact. New URI: " + lookupUri);
+                break;
+
+            } catch (RemoteException e) {
+                // Something went wrong, bail without success
+                Log.e(TAG, "Problem persisting user edits", e);
+                break;
+
+            } catch (OperationApplicationException e) {
+                // Version consistency failed, re-parent change and try again
+                Log.w(TAG, "Version consistency failed, re-parenting: " + e.toString());
+                final StringBuilder sb = new StringBuilder(RawContacts._ID + " IN(");
+                boolean first = true;
+                final int count = state.size();
+                for (int i = 0; i < count; i++) {
+                    Long rawContactId = state.getRawContactId(i);
+                    if (rawContactId != null && rawContactId != -1) {
+                        if (!first) {
+                            sb.append(',');
+                        }
+                        sb.append(rawContactId);
+                        first = false;
+                    }
+                }
+                sb.append(")");
+
+                if (first) {
+                    throw new IllegalStateException("Version consistency failed for a new contact");
+                }
+
+                final EntityDeltaList newState = EntityDeltaList.fromQuery(resolver,
+                        sb.toString(), null, null);
+                state = EntityDeltaList.mergeAfter(newState, state);
+            }
+        }
+
+        callbackIntent.setData(lookupUri);
+
+        startActivity(callbackIntent);
+    }
+
+    private long getRawContactId(EntityDeltaList state,
+            final ArrayList<ContentProviderOperation> diff,
+            final ContentProviderResult[] results) {
+        long rawContactId = state.findRawContactId();
+        if (rawContactId != -1) {
+            return rawContactId;
+        }
+
+        final int diffSize = diff.size();
+        for (int i = 0; i < diffSize; i++) {
+            ContentProviderOperation operation = diff.get(i);
+            if (operation.getType() == ContentProviderOperation.TYPE_INSERT
+                    && operation.getUri().getEncodedPath().contains(
+                            RawContacts.CONTENT_URI.getEncodedPath())) {
+                return ContentUris.parseId(results[i].uri);
+            }
+        }
+        return -1;
     }
 
     /**
