@@ -24,6 +24,8 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.media.MediaScannerConnection;
+import android.media.MediaScannerConnection.MediaScannerConnectionClient;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
@@ -36,8 +38,10 @@ import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
@@ -101,6 +105,33 @@ public class VCardService extends Service {
         }
     });
 
+    private class CustomMediaScannerConnectionClient implements MediaScannerConnectionClient {
+        final MediaScannerConnection mConnection;
+        final String mPath;
+
+        public CustomMediaScannerConnectionClient(String path) {
+            mConnection = new MediaScannerConnection(VCardService.this, this);
+            mPath = path;
+        }
+
+        public void start() {
+            mConnection.connect();
+        }
+
+        @Override
+        public void onMediaScannerConnected() {
+            if (DEBUG) { Log.d(LOG_TAG, "Connected to MediaScanner. Start scanning."); }
+            mConnection.scanFile(mPath, null);
+        }
+
+        @Override
+        public void onScanCompleted(String path, Uri uri) {
+            if (DEBUG) { Log.d(LOG_TAG, "scan completed: " + path); }
+            mConnection.disconnect();
+            removeConnectionClient(this);
+        }
+    }
+
     private NotificationManager mNotificationManager;
 
     // Should be single thread, as we don't want to simultaneously handle import and export
@@ -113,6 +144,11 @@ public class VCardService extends Service {
     // Key is jobId.
     private final Map<Integer, ProcessorBase> mRunningJobMap =
             new HashMap<Integer, ProcessorBase>();
+    // Stores ScannerConnectionClient objects until they finish scanning requested files.
+    // Uses List class for simplicity. It's not costly as we won't have multiple objects in
+    // almost all cases.
+    private final List<CustomMediaScannerConnectionClient> mRemainingScannerConnections =
+            new ArrayList<CustomMediaScannerConnectionClient>();
 
     /* ** vCard exporter params ** */
     // If true, VCardExporter is able to emits files longer than 8.3 format.
@@ -286,7 +322,7 @@ public class VCardService extends Service {
         } else {
             Log.w(LOG_TAG, String.format("Tried to remove unknown job (id: %d)", jobId));
         }
-        stopServiceWhenNoJob();
+        stopServiceIfAppropriate();
     }
 
     private synchronized void handleRequestAvailableExportDestination(Message msg) {
@@ -310,10 +346,11 @@ public class VCardService extends Service {
     }
 
     /**
-     * Checks job list and call {@link #stopSelf()} when there's no job now.
-     * A new job cannot be submitted any more after this call.
+     * Checks job list and call {@link #stopSelf()} when there's no job and no scanner connection
+     * is remaining.
+     * A new job (import/export) cannot be submitted any more after this call.
      */
-    private synchronized void stopServiceWhenNoJob() {
+    private synchronized void stopServiceIfAppropriate() {
         if (mRunningJobMap.size() > 0) {
             for (final Map.Entry<Integer, ProcessorBase> entry : mRunningJobMap.entrySet()) {
                 final int jobId = entry.getKey();
@@ -327,9 +364,39 @@ public class VCardService extends Service {
             }
         }
 
+        if (!mRemainingScannerConnections.isEmpty()) {
+            Log.i(LOG_TAG, "MediaScanner update is in progress.");
+            return;
+        }
+
         Log.i(LOG_TAG, "No unfinished job. Stop this service.");
         mExecutorService.shutdown();
         stopSelf();
+    }
+
+    /* package */ synchronized void updateMediaScanner(String path) {
+        if (DEBUG) {
+            Log.d(LOG_TAG, "MediaScanner is being updated: " + path);
+        }
+
+        if (mExecutorService.isShutdown()) {
+            Log.w(LOG_TAG, "MediaScanner update is requested after executor's being shut down. " +
+                    "Ignoring the update request");
+            return;
+        }
+        final CustomMediaScannerConnectionClient client =
+                new CustomMediaScannerConnectionClient(path);
+        mRemainingScannerConnections.add(client);
+        client.start();
+    }
+
+    private synchronized void removeConnectionClient(
+            CustomMediaScannerConnectionClient client) {
+        if (DEBUG) {
+            Log.d(LOG_TAG, "Removing custom MediaScannerConnectionClient.");
+        }
+        mRemainingScannerConnections.remove(client);
+        stopServiceIfAppropriate();
     }
 
     /* package */ synchronized void handleFinishImportNotification(
@@ -341,7 +408,7 @@ public class VCardService extends Service {
         if (mRunningJobMap.remove(jobId) == null) {
             Log.w(LOG_TAG, String.format("Tried to remove unknown job (id: %d)", jobId));
         }
-        stopServiceWhenNoJob();
+        stopServiceIfAppropriate();
     }
 
     /* package */ synchronized void handleFinishExportNotification(
@@ -362,7 +429,7 @@ public class VCardService extends Service {
             mReservedDestination.remove(path);
         }
 
-        stopServiceWhenNoJob();
+        stopServiceIfAppropriate();
     }
 
     /**

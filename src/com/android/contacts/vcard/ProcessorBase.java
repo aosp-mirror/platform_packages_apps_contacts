@@ -39,6 +39,7 @@ public abstract class ProcessorBase implements RunnableFuture<Object> {
      */
     public abstract int getType();
 
+    @Override
     public abstract void run();
 
     /**
@@ -49,8 +50,11 @@ public abstract class ProcessorBase implements RunnableFuture<Object> {
      *
      * @see Future#cancel(boolean)
      */
+    @Override
     public abstract boolean cancel(boolean mayInterruptIfRunning);
+    @Override
     public abstract boolean isCancelled();
+    @Override
     public abstract boolean isDone();
 
     /**
