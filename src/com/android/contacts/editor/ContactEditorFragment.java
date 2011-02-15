@@ -31,8 +31,6 @@ import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.GoogleAccountType;
-import com.android.contacts.util.EmptyService;
-import com.android.contacts.util.WeakAsyncTask;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -43,9 +41,6 @@ import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ActivityNotFoundException;
-import android.content.ContentProviderOperation;
-import android.content.ContentProviderResult;
-import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -54,7 +49,6 @@ import android.content.DialogInterface;
 import android.content.Entity;
 import android.content.Intent;
 import android.content.Loader;
-import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
@@ -62,7 +56,6 @@ import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.RemoteException;
 import android.os.SystemClock;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
@@ -115,10 +108,11 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_RAW_CONTACT_ID_REQUESTING_PHOTO = "photorequester";
     private static final String KEY_VIEW_ID_GENERATOR = "viewidgenerator";
     private static final String KEY_CURRENT_PHOTO_FILE = "currentphotofile";
-    private static final String KEY_QUERY_SELECTION = "queryselection";
     private static final String KEY_CONTACT_ID_FOR_JOIN = "contactidforjoin";
     private static final String KEY_SHOW_JOIN_SUGGESTIONS = "showJoinSuggestions";
     private static final String KEY_ENABLED = "enabled";
+
+    public static final String SAVE_MODE_EXTRA_KEY = "saveMode";
 
     /**
      * An intent extra that forces the editor to add the edited contact
@@ -214,8 +208,6 @@ public class ContactEditorFragment extends Fragment implements
     private Uri mLookupUri;
     private Bundle mIntentExtras;
     private Listener mListener;
-
-    private String mQuerySelection;
 
     private long mContactIdForJoin;
 
@@ -316,6 +308,8 @@ public class ContactEditorFragment extends Fragment implements
                     // Load Accounts async so that we can present them
                     selectAccountAndCreateContact();
                 }
+            } else if (ContactEditorActivity.ACTION_SAVE_COMPLETED.equals(mAction)) {
+                // do nothing
             } else throw new IllegalArgumentException("Unknown Action String " + mAction +
                     ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
         }
@@ -364,7 +358,6 @@ public class ContactEditorFragment extends Fragment implements
             if (fileName != null) {
                 mCurrentPhotoFile = new File(fileName);
             }
-            mQuerySelection = savedState.getString(KEY_QUERY_SELECTION);
             mContactIdForJoin = savedState.getLong(KEY_CONTACT_ID_FOR_JOIN);
             mAggregationSuggestionsRawContactId = savedState.getLong(KEY_SHOW_JOIN_SUGGESTIONS);
             mEnabled = savedState.getBoolean(KEY_ENABLED);
@@ -409,19 +402,7 @@ public class ContactEditorFragment extends Fragment implements
     private void bindEditorsForExistingContact(ContactLoader.Result data) {
         setEnabled(true);
 
-        // Build Filter mQuerySelection
-        final ArrayList<Entity> entities = data.getEntities();
-        final StringBuilder sb = new StringBuilder(RawContacts._ID + " IN(");
-        final int count = entities.size();
-        for (int i = 0; i < count; i++) {
-            if (i > 0) {
-                sb.append(',');
-            }
-            sb.append(entities.get(i).getEntityValues().get(RawContacts._ID));
-        }
-        sb.append(")");
-        mQuerySelection = sb.toString();
-        mState = EntityDeltaList.fromIterator(entities.iterator());
+        mState = EntityDeltaList.fromIterator(data.getEntities().iterator());
         setIntentExtras(mIntentExtras);
         mIntentExtras = null;
 
@@ -671,14 +652,12 @@ public class ContactEditorFragment extends Fragment implements
 
         // If we just started creating a new contact and haven't added any data, it's too
         // early to do a join
-        if (mState.size() == 1 && mState.get(0).isContactInsert()) {
-            final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
-            EntityModifier.trimEmpty(mState, accountTypes);
-            if (mState.buildDiff().isEmpty()) {
-                Toast.makeText(getActivity(), R.string.toast_join_with_empty_contact,
-                                Toast.LENGTH_LONG).show();
-                return true;
-            }
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
+        if (mState.size() == 1 && mState.get(0).isContactInsert()
+                && !EntityModifier.hasChanges(mState, accountTypes)) {
+            Toast.makeText(getActivity(), R.string.toast_join_with_empty_contact,
+                            Toast.LENGTH_LONG).show();
+            return true;
         }
 
         return save(SaveMode.JOIN);
@@ -772,24 +751,24 @@ public class ContactEditorFragment extends Fragment implements
         }
 
         // If we are about to close the editor - there is no need to refresh the data
-        if (saveMode == SaveMode.CLOSE) {
+        if (saveMode == SaveMode.CLOSE || saveMode == SaveMode.SPLIT) {
             getLoaderManager().destroyLoader(LOADER_DATA);
         }
 
         mStatus = Status.SAVING;
 
-        // Trim any empty fields, and RawContacts, before persisting
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
-        EntityModifier.trimEmpty(mState, accountTypes);
-
-        if (mState.buildDiff().isEmpty()) {
-            onSaveCompleted(true, saveMode, mLookupUri);
+        if (!EntityModifier.hasChanges(mState, accountTypes)) {
+            onSaveCompleted(false, saveMode, mLookupUri);
             return true;
         }
 
-        final PersistTask task = new PersistTask(this, saveMode);
-        task.execute(mState);
+        setEnabled(false);
 
+        Intent intent = ContactSaveService.createSaveContactIntent(getActivity(), mState,
+                SAVE_MODE_EXTRA_KEY, saveMode, getActivity().getClass(),
+                ContactEditorActivity.ACTION_SAVE_COMPLETED);
+        getActivity().startService(intent);
         return true;
     }
 
@@ -837,11 +816,21 @@ public class ContactEditorFragment extends Fragment implements
     }
 
     public void onJoinCompleted(Uri uri) {
-        onSaveCompleted(uri != null, SaveMode.RELOAD, uri);
+        onSaveCompleted(false, SaveMode.RELOAD, uri);
     }
 
-    public void onSaveCompleted(boolean success, int saveMode, Uri contactLookupUri) {
-        Log.d(TAG, "onSaveCompleted(" + success + ", " + saveMode + ", " + contactLookupUri);
+    public void onSaveCompleted(boolean hadChanges, int saveMode, Uri contactLookupUri) {
+        boolean success = contactLookupUri != null;
+        Log.d(TAG, "onSaveCompleted(" + saveMode + ", " + contactLookupUri);
+        if (hadChanges) {
+            if (success) {
+                if (saveMode != SaveMode.JOIN) {
+                    Toast.makeText(mContext, R.string.contactSavedToast, Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(mContext, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
+            }
+        }
         switch (saveMode) {
             case SaveMode.CLOSE:
             case SaveMode.HOME:
@@ -877,6 +866,7 @@ public class ContactEditorFragment extends Fragment implements
                 if (mListener != null) mListener.onSaveFinished(resultCode, resultIntent,
                         saveMode == SaveMode.HOME);
                 break;
+
             case SaveMode.RELOAD:
             case SaveMode.JOIN:
                 if (success && contactLookupUri != null) {
@@ -893,14 +883,14 @@ public class ContactEditorFragment extends Fragment implements
                     }
                 }
                 break;
+
             case SaveMode.SPLIT:
-                setEnabled(true);
+                mStatus = Status.CLOSING;
                 if (mListener != null) {
                     mListener.onContactSplit(contactLookupUri);
                 } else {
                     Log.d(TAG, "No listener registered, can not call onSplitFinished");
                 }
-                mStatus = Status.EDITING;
                 break;
         }
     }
@@ -1430,133 +1420,6 @@ public class ContactEditorFragment extends Fragment implements
         return rect;
     }
 
-    // TODO: There has to be a nicer way than this WeakAsyncTask...? Maybe call a service?
-    /**
-     * Background task for persisting edited contact data, using the changes
-     * defined by a set of {@link EntityDelta}. This task starts
-     * {@link EmptyService} to make sure the background thread can finish
-     * persisting in cases where the system wants to reclaim our process.
-     */
-    public static class PersistTask extends
-            WeakAsyncTask<EntityDeltaList, Void, Integer, ContactEditorFragment> {
-        private static final int PERSIST_TRIES = 3;
-
-        private static final int RESULT_UNCHANGED = 0;
-        private static final int RESULT_SUCCESS = 1;
-        private static final int RESULT_FAILURE = 2;
-
-        private final Context mContext;
-
-        private int mSaveMode;
-        private Uri mContactLookupUri = null;
-
-        public PersistTask(ContactEditorFragment target, int saveMode) {
-            super(target);
-            mSaveMode = saveMode;
-            mContext = target.mContext;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        protected void onPreExecute(ContactEditorFragment target) {
-            target.setEnabled(false);
-
-            // Before starting this task, start an empty service to protect our
-            // process from being reclaimed by the system.
-            mContext.startService(new Intent(mContext, EmptyService.class));
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        protected Integer doInBackground(ContactEditorFragment target, EntityDeltaList... params) {
-            final ContentResolver resolver = mContext.getContentResolver();
-
-            EntityDeltaList state = params[0];
-
-            // Attempt to persist changes
-            int tries = 0;
-            Integer result = RESULT_FAILURE;
-            while (tries++ < PERSIST_TRIES) {
-                try {
-                    // Build operations and try applying
-                    final ArrayList<ContentProviderOperation> diff = state.buildDiff();
-                    ContentProviderResult[] results = null;
-                    if (!diff.isEmpty()) {
-                        results = resolver.applyBatch(ContactsContract.AUTHORITY, diff);
-                    }
-
-                    final long rawContactId = getRawContactId(state, diff, results);
-                    if (rawContactId != -1) {
-                        final Uri rawContactUri = ContentUris.withAppendedId(
-                                RawContacts.CONTENT_URI, rawContactId);
-
-                        // convert the raw contact URI to a contact URI
-                        mContactLookupUri = RawContacts.getContactLookupUri(resolver,
-                                rawContactUri);
-                        Log.d(TAG, "Looked up RawContact Uri " + rawContactUri +
-                                " into ContactLookupUri " + mContactLookupUri);
-                    } else {
-                        Log.w(TAG, "Could not determine RawContact ID after save");
-                    }
-                    result = (diff.size() > 0) ? RESULT_SUCCESS : RESULT_UNCHANGED;
-                    break;
-
-                } catch (RemoteException e) {
-                    // Something went wrong, bail without success
-                    Log.e(TAG, "Problem persisting user edits", e);
-                    break;
-
-                } catch (OperationApplicationException e) {
-                    // Version consistency failed, re-parent change and try again
-                    Log.w(TAG, "Version consistency failed, re-parenting: " + e.toString());
-                    final EntityDeltaList newState = EntityDeltaList.fromQuery(resolver,
-                            target.mQuerySelection, null, null);
-                    state = EntityDeltaList.mergeAfter(newState, state);
-                }
-            }
-
-            return result;
-        }
-
-        private long getRawContactId(EntityDeltaList state,
-                final ArrayList<ContentProviderOperation> diff,
-                final ContentProviderResult[] results) {
-            long rawContactId = state.findRawContactId();
-            if (rawContactId != -1) {
-                return rawContactId;
-            }
-
-
-            // we gotta do some searching for the id
-            final int diffSize = diff.size();
-            for (int i = 0; i < diffSize; i++) {
-                ContentProviderOperation operation = diff.get(i);
-                if (operation.getType() == ContentProviderOperation.TYPE_INSERT
-                        && operation.getUri().getEncodedPath().contains(
-                                RawContacts.CONTENT_URI.getEncodedPath())) {
-                    return ContentUris.parseId(results[i].uri);
-                }
-            }
-            return -1;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        protected void onPostExecute(ContactEditorFragment target, Integer result) {
-            Log.d(TAG, "onPostExecute(something," + result + "). mSaveMode=" + mSaveMode);
-            if (result == RESULT_SUCCESS && mSaveMode != SaveMode.JOIN) {
-                Toast.makeText(mContext, R.string.contactSavedToast, Toast.LENGTH_SHORT).show();
-            } else if (result == RESULT_FAILURE) {
-                Toast.makeText(mContext, R.string.contactSavedErrorToast, Toast.LENGTH_LONG).show();
-            }
-
-            // Stop the service that was protecting us
-            mContext.stopService(new Intent(mContext, EmptyService.class));
-
-            target.onSaveCompleted(result != RESULT_FAILURE, mSaveMode, mContactLookupUri);
-        }
-    }
-
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putParcelable(KEY_URI, mLookupUri);
@@ -1572,7 +1435,6 @@ public class ContactEditorFragment extends Fragment implements
         if (mCurrentPhotoFile != null) {
             outState.putString(KEY_CURRENT_PHOTO_FILE, mCurrentPhotoFile.toString());
         }
-        outState.putString(KEY_QUERY_SELECTION, mQuerySelection);
         outState.putLong(KEY_CONTACT_ID_FOR_JOIN, mContactIdForJoin);
         outState.putLong(KEY_SHOW_JOIN_SUGGESTIONS, mAggregationSuggestionsRawContactId);
         outState.putBoolean(KEY_ENABLED, mEnabled);

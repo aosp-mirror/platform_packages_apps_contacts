@@ -344,7 +344,7 @@ public class EntityModifier {
         }
 
         final ValuesDelta child = ValuesDelta.fromAfter(after);
-	state.addEntry(child);
+        state.addEntry(child);
         return child;
     }
 
@@ -357,9 +357,24 @@ public class EntityModifier {
     public static void trimEmpty(EntityDeltaList set, AccountTypeManager accountTypes) {
         for (EntityDelta state : set) {
             final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final AccountType source = accountTypes.getAccountType(accountType);
-            trimEmpty(state, source);
+            final AccountType type = accountTypes.getAccountType(accountType);
+            trimEmpty(state, type);
         }
+    }
+
+    public static boolean hasChanges(EntityDeltaList set, AccountTypeManager accountTypes) {
+        if (set.isMarkedForSplitting() || set.isMarkedForJoining()) {
+            return true;
+        }
+
+        for (EntityDelta state : set) {
+            final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
+            final AccountType type = accountTypes.getAccountType(accountType);
+            if (hasChanges(state, type)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -404,6 +419,21 @@ public class EntityModifier {
             // Trim overall entity if no children exist
             state.markDeleted();
         }
+    }
+
+    private static boolean hasChanges(EntityDelta state, AccountType accountType) {
+        for (DataKind kind : accountType.getSortedDataKinds()) {
+            final String mimeType = kind.mimeType;
+            final ArrayList<ValuesDelta> entries = state.getMimeEntries(mimeType);
+            if (entries == null) continue;
+
+            for (ValuesDelta entry : entries) {
+                if ((entry.isInsert() || entry.isUpdate()) && !isEmpty(entry, kind)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
