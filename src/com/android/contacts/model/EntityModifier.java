@@ -428,7 +428,8 @@ public class EntityModifier {
             if (entries == null) continue;
 
             for (ValuesDelta entry : entries) {
-                if ((entry.isInsert() || entry.isUpdate()) && !isEmpty(entry, kind)) {
+                if ((entry.isInsert() || entry.isUpdate() || entry.isDelete())
+                        && !isEmpty(entry, kind)) {
                     return true;
                 }
             }
