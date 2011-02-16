@@ -111,6 +111,7 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_CONTACT_ID_FOR_JOIN = "contactidforjoin";
     private static final String KEY_SHOW_JOIN_SUGGESTIONS = "showJoinSuggestions";
     private static final String KEY_ENABLED = "enabled";
+    private static final String KEY_STATUS = "status";
 
     public static final String SAVE_MODE_EXTRA_KEY = "saveMode";
 
@@ -366,7 +367,7 @@ public class ContactEditorFragment extends Fragment implements
             mContactIdForJoin = savedState.getLong(KEY_CONTACT_ID_FOR_JOIN);
             mAggregationSuggestionsRawContactId = savedState.getLong(KEY_SHOW_JOIN_SUGGESTIONS);
             mEnabled = savedState.getBoolean(KEY_ENABLED);
-            mStatus = Status.EDITING;
+            mStatus = savedState.getInt(KEY_STATUS);
         }
     }
 
@@ -1463,6 +1464,7 @@ public class ContactEditorFragment extends Fragment implements
         outState.putLong(KEY_CONTACT_ID_FOR_JOIN, mContactIdForJoin);
         outState.putLong(KEY_SHOW_JOIN_SUGGESTIONS, mAggregationSuggestionsRawContactId);
         outState.putBoolean(KEY_ENABLED, mEnabled);
+        outState.putInt(KEY_STATUS, mStatus);
         super.onSaveInstanceState(outState);
     }
 
