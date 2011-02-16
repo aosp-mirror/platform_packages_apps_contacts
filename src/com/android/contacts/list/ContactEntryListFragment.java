@@ -545,6 +545,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             if (mVerticalScrollbarPosition == View.SCROLLBAR_POSITION_LEFT) {
                 leftPadding = mContext.getResources().getDimensionPixelOffset(
                         R.dimen.list_visible_scrollbar_padding);
+                mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
             } else if (hasScrollbar){
                 rightPadding = mContext.getResources().getDimensionPixelOffset(
                         R.dimen.list_visible_scrollbar_padding);
