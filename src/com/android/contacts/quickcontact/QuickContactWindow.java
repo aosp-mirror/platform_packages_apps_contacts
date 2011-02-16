@@ -32,7 +32,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.ActivityNotFoundException;
-import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -720,7 +719,17 @@ public class QuickContactWindow implements Window.Callback,
             }
         }
 
-        if (mDefaultsMap.size() != 0) {
+        // Make sure that we only display the "clear default" action if there
+        // are actually several items to chose from
+        boolean shouldDisplayClearDefaults = false;
+        for (String mimetype : mDefaultsMap.keySet()) {
+            if (mActions.get(mimetype).size() > 1) {
+                shouldDisplayClearDefaults = true;
+                break;
+            }
+        }
+
+        if (shouldDisplayClearDefaults) {
             final Action action = new ClearDefaultsAction();
             mActions.put(action.getMimeType(), action);
         }
