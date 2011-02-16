@@ -114,18 +114,15 @@
     <item quantity="one" msgid="3015357862286673986">"en kontakt med telefonnummer"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> kontakter med telefonnummer"</item>
   </plurals>
-    <!-- outdated translation 3100001705005525307 -->     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Inga synliga kontakter med telefonnummer"</string>
+    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Inga kontakter med telefonnummer"</string>
   <plurals name="listTotalAllContacts">
     <item quantity="one" msgid="3405747744700823280">"1 kontakt"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> kontakter"</item>
   </plurals>
-    <!-- outdated translation 5917810721329112813 -->     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Det finns inga synliga kontakter"</string>
-    <!-- no translation found for listTotalAllContactsZeroCustom (4058252141420128998) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroStarred (5391630590684099117) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroGroup (5448979458248027615) -->
-    <skip />
+    <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Inga kontakter"</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Det finns inga synliga kontakter"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Inga stjärnmärkta kontakter"</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Inga kontakter i <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 hittades"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> hittades"</item>
@@ -420,7 +417,7 @@
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Kontaktlistan uppdateras så att språkändringen visas."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontaktlistan uppdateras."</string>
     <string name="upgrade_out_of_memory" msgid="6153384328042175667">"Kontakter håller på att uppgraderas. "\n\n"Uppgraderingsprocessen kräver ungefär <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB internt lagringsutrymme."\n\n"Välj ett av följande alternativ:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Avinstallera några program"</string>
+    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Avinstallera några appar"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Försök uppgradera igen"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"Söker..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Visa markerade"</string>

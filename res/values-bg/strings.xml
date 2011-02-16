@@ -122,7 +122,7 @@
     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Няма контакти"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Няма видими контакти"</string>
     <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Няма контакти със звезда"</string>
-    <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Няма контакти в: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Няма контакти във: <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 намерен"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> намерени"</item>

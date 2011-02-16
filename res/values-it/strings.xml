@@ -121,7 +121,7 @@
   </plurals>
     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Nessun contatto"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Nessun contatto visibile"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Nessun contatto aggiunto a speciali"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Nessun contatto aggiunto a Speciali"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Nessun contatto in <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 trovato"</item>

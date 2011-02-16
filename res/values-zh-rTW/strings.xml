@@ -114,7 +114,7 @@
     <item quantity="one" msgid="3015357862286673986">"1 位有電話號碼的聯絡人"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> 位有電話號碼的聯絡人"</item>
   </plurals>
-    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"沒有包含電話號碼的聯絡人"</string>
+    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"所有聯絡人資訊中都沒有電話號碼"</string>
   <plurals name="listTotalAllContacts">
     <item quantity="one" msgid="3405747744700823280">"1 位聯絡人"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> 位聯絡人"</item>
@@ -122,7 +122,7 @@
     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"沒有聯絡人"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"沒有可顯示的聯絡人"</string>
     <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"沒有已加星號的聯絡人"</string>
-    <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"<xliff:g id="NAME">%s</xliff:g>中沒有聯絡人"</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"「<xliff:g id="NAME">%s</xliff:g>」中沒有聯絡人"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"找到 1 位聯絡人"</item>
     <item quantity="other" msgid="3852668542926965042">"找到 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人"</item>
