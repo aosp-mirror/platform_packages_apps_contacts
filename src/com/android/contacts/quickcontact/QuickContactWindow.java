@@ -379,20 +379,7 @@ public class QuickContactWindow implements Window.Callback,
      * {@link Contacts#CONTENT_LOOKUP_URI} style {@link Uri}.
      */
     private Uri getDataUri(Uri lookupUri) {
-        // TODO: Formalize method of extracting LOOKUP_KEY
-        final List<String> path = lookupUri.getPathSegments();
-        final boolean validLookup = path.size() >= 3 && "lookup".equals(path.get(1));
-        if (!validLookup) {
-            // We only accept valid lookup-style Uris
-            throw new IllegalArgumentException("Expecting lookup-style Uri");
-        } else if (path.size() == 3) {
-            // No direct _ID provided, so force a lookup
-            lookupUri = Contacts.lookupContact(mContext.getContentResolver(), lookupUri);
-        }
-
-        final long contactId = ContentUris.parseId(lookupUri);
-        return Uri.withAppendedPath(ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId),
-                Contacts.Data.CONTENT_DIRECTORY);
+        return Uri.withAppendedPath(lookupUri, Contacts.Data.CONTENT_DIRECTORY);
     }
 
     /**
