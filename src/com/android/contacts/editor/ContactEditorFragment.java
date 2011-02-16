@@ -162,15 +162,21 @@ public class ContactEditorFragment extends Fragment implements
         public static final int EDITING = 1;
 
         /**
-         * The data is currently being saved. This is used to prevent more auto-saves (they shouldn't
-         * overlap)
+         * The data is currently being saved. This is used to prevent more
+         * auto-saves (they shouldn't overlap)
          */
         public static final int SAVING = 2;
 
         /**
-         * Prevents any more savings (this is used if Save/Close or Revert was executed by the user)
+         * Prevents any more savings (this is used if Save/Close or Revert was
+         * executed by the user)
          */
         public static final int CLOSING = 3;
+
+        /**
+         * Prevents saving while running a child activity.
+         */
+        public static final int SUB_ACTIVITY = 4;
     }
 
     private static final int REQUEST_CODE_JOIN = 0;
@@ -219,7 +225,6 @@ public class ContactEditorFragment extends Fragment implements
     private long mLoaderStartTime;
 
     private int mStatus;
-    private boolean mSaveOnStop = true;
 
     private AggregationSuggestionEngine mAggregationSuggestionEngine;
     private long mAggregationSuggestionsRawContactId;
@@ -261,7 +266,7 @@ public class ContactEditorFragment extends Fragment implements
         }
 
         // If anything was left unsaved, save it now but keep the editor open.
-        if (!getActivity().isChangingConfigurations() && mStatus == Status.EDITING && mSaveOnStop) {
+        if (!getActivity().isChangingConfigurations() && mStatus == Status.EDITING) {
             save(SaveMode.RELOAD);
         }
     }
@@ -318,7 +323,6 @@ public class ContactEditorFragment extends Fragment implements
 
     @Override
     public void onStart() {
-        mSaveOnStop = true;
         getLoaderManager().initLoader(LOADER_GROUPS, null, mGroupLoaderListener);
         super.onStart();
     }
@@ -721,7 +725,7 @@ public class ContactEditorFragment extends Fragment implements
 
             // Launch gallery to crop the photo
             final Intent intent = getCropImageIntent(Uri.fromFile(f));
-            mSaveOnStop = false;
+            mStatus = Status.SUB_ACTIVITY;
             startActivityForResult(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA);
         } catch (Exception e) {
             Log.e(TAG, "Cannot crop image", e);
@@ -1464,6 +1468,10 @@ public class ContactEditorFragment extends Fragment implements
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (mStatus == Status.SUB_ACTIVITY) {
+            mStatus = Status.EDITING;
+        }
+
         // Ignore failed requests
         if (resultCode != Activity.RESULT_OK) return;
         switch (requestCode) {
@@ -1708,7 +1716,7 @@ public class ContactEditorFragment extends Fragment implements
                 mCurrentPhotoFile = new File(PHOTO_DIR, getPhotoFileName());
                 final Intent intent = getTakePickIntent(mCurrentPhotoFile);
 
-                mSaveOnStop = false;
+                mStatus = Status.SUB_ACTIVITY;
                 startActivityForResult(intent, REQUEST_CODE_CAMERA_WITH_DATA);
             } catch (ActivityNotFoundException e) {
                 Toast.makeText(mContext, R.string.photoPickerNotFoundText,
@@ -1725,7 +1733,7 @@ public class ContactEditorFragment extends Fragment implements
             try {
                 // Launch picker to choose photo for selected contact
                 final Intent intent = getPhotoPickIntent();
-                mSaveOnStop = false;
+                mStatus = Status.SUB_ACTIVITY;
                 startActivityForResult(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA);
             } catch (ActivityNotFoundException e) {
                 Toast.makeText(mContext, R.string.photoPickerNotFoundText,
