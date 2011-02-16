@@ -114,14 +114,14 @@
     <item quantity="one" msgid="3015357862286673986">"전화번호가 포함된 연락처 1개"</item>
     <item quantity="other" msgid="3299954047880968205">"전화번호가 포함된 연락처 <xliff:g id="COUNT">%d</xliff:g>개"</item>
   </plurals>
-    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"전화번호가 포함된 연락처가 없습니다."</string>
+    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"전화번호가 포함된 주소록이 없습니다."</string>
   <plurals name="listTotalAllContacts">
     <item quantity="one" msgid="3405747744700823280">"연락처 1개"</item>
     <item quantity="other" msgid="3578469907265375314">"연락처 <xliff:g id="COUNT">%d</xliff:g>개"</item>
   </plurals>
     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"주소록이 없습니다."</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"표시할 수 있는 연락처가 없습니다."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"별표표시한 연락처가 없습니다."</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"표시할 수 있는 주소록이 없습니다."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"별표 주소록이 없습니다."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"<xliff:g id="NAME">%s</xliff:g>에 주소록이 없습니다."</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1개를 찾았습니다."</item>
