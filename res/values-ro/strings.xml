@@ -114,12 +114,15 @@
     <item quantity="one" msgid="3015357862286673986">"1 persoană din agendă cu număr de telefon"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> (de) persoane din agendă cu numere de telefon"</item>
   </plurals>
-    <string name="listTotalPhoneContactsZero" msgid="2756295259674938869">"Nicio persoană din agendă vizibilă cu numere de telefon"</string>
+    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Nicio persoană din agendă cu numere de telefon"</string>
   <plurals name="listTotalAllContacts">
     <item quantity="one" msgid="3405747744700823280">"1 persoană din Agendă"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> (de) persoane din Agendă"</item>
   </plurals>
-    <string name="listTotalAllContactsZero" msgid="6811347506748072822">"Nicio persoană din agendă nu este vizibilă"</string>
+    <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Nicio persoană în agendă"</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Nicio persoană din agendă nu este vizibilă"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Nicio persoană din agendă marcată cu stea"</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Nicio persoană din agendă în <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"A fost găsită 1 persoană din agendă"</item>
     <item quantity="other" msgid="3852668542926965042">"Au fost găsite <xliff:g id="COUNT">%d</xliff:g> (de) persoane din agendă"</item>
@@ -205,34 +208,33 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"fotografia persoanei din agendă"</string>
     <string name="description_minus_button" msgid="387136707700230172">"minus"</string>
     <string name="description_plus_button" msgid="515164827856229880">"plus"</string>
-    <string name="no_sdcard_title" product="nosdcard" msgid="5362631473262100989">"Stoc. USB nu este disp."</string>
+    <!-- outdated translation 5362631473262100989 -->     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"Stoc. USB nu este disp."</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Niciun card SD"</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="8045830739790534254">"Stocare USB nedetectată"</string>
+    <!-- outdated translation 8045830739790534254 -->     <string name="no_sdcard_message" product="nosdcard" msgid="1334170151822669976">"Stocare USB nedetectată"</string>
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Niciun card SD detectat"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Se caută date în format vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importaţi de pe cardul SIM"</string>
-    <string name="import_from_sdcard" product="nosdcard" msgid="8294728696808674154">"Import. din stocarea USB"</string>
+    <!-- outdated translation 8294728696808674154 -->     <string name="import_from_sdcard" product="nosdcard" msgid="8668347930577565175">"Import. din stocarea USB"</string>
     <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Importaţi de pe cardul SD"</string>
-    <string name="export_to_sdcard" product="nosdcard" msgid="7201274701382901259">"Exportaţi în stocarea USB"</string>
+    <!-- outdated translation 7201274701382901259 -->     <string name="export_to_sdcard" product="nosdcard" msgid="6092815580965201089">"Exportaţi în stocarea USB"</string>
     <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Exportaţi pe cardul SD"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Distribuiţi persoanele vizibile din agendă"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Importaţi un fişier vCard"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Importaţi fişiere multiple vCard"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Importaţi toate fişierele vCard"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="8214795338181412751">"Se caută date vCard în spaţiul de stocare USB"</string>
+    <!-- outdated translation 8214795338181412751 -->     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Se caută date vCard în spaţiul de stocare USB"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Se caută date vCard pe cardul SD"</string>
-    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="7447077516493667568">"Scanarea stocării USB a eşuat"</string>
+    <!-- outdated translation 7447077516493667568 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="6957414493948497249">"Scanarea stocării USB a eşuat"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Scanarea cardului SD a eşuat"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="5645544323676912703">"Scanarea stocării USB a eşuat (Motiv: „<xliff:g id="FAIL_REASON">%s</xliff:g>”)"</string>
+    <!-- no translation found for scanning_sdcard_failed_message (4106156155205860626) -->
+    <skip />
     <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Scanarea cardului SD eşuată (Motiv: „<xliff:g id="FAIL_REASON">%s</xliff:g>”)"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Eroare I/E"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Memoria este insuficientă (probabil fişierul este prea mare)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Analiza vCard a eşuat dintr-un motiv necunoscut"</string>
-    <!-- no translation found for fail_reason_not_supported (294499264620201243) -->
-    <skip />
-    <!-- no translation found for vcard_import_failed (7718330063493653085) -->
-    <skip />
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"Niciun fişier vCard găsit în stocarea USB"</string>
+    <string name="fail_reason_not_supported" msgid="294499264620201243">"Formatul nu este acceptat."</string>
+    <string name="vcard_import_failed" msgid="7718330063493653085">"Nu a reuşit să importe vCard"</string>
+    <!-- outdated translation 1730986357514922756 -->     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"Niciun fişier vCard găsit pe cardul SD"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Niciun fişier vCard găsit pe cardul SD"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Colectarea metainformaţiilor pentru fişierele vCard indicate a eşuat."</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Unul sau mai multe fişiere nu s-au putut importa (%s)."</string>
@@ -258,7 +260,7 @@
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Exportul datelor persoanei din agendă a eşuat"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Exportul datelor din agendă a eşuat."\n" Motivul erorii: „<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Nicio persoană în agendă exportabilă"</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"Prea multe fişiere vCard pe spaţiul de stocare USB"</string>
+    <!-- outdated translation 2638638826954895225 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Prea multe fişiere vCard pe spaţiul de stocare USB"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Prea multe fişiere de tip vCard pe cardul SD"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Numele de fişier este prea lung („<xliff:g id="FILENAME">%s</xliff:g>”)"</string>
     <string name="exporting_vcard_finished_title" msgid="4259736138838583213">"S-a finalizat exportul <xliff:g id="FILENAME">%s</xliff:g>"</string>

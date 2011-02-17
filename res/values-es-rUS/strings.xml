@@ -114,12 +114,15 @@
     <item quantity="one" msgid="3015357862286673986">"1 contacto con el número de teléfono"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> contactos con números de teléfono"</item>
   </plurals>
-    <string name="listTotalPhoneContactsZero" msgid="2756295259674938869">"No hay contactos visibles con números de teléfono."</string>
+    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"No hay contactos con números de teléfono"</string>
   <plurals name="listTotalAllContacts">
     <item quantity="one" msgid="3405747744700823280">"1 contacto"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> contactos"</item>
   </plurals>
-    <string name="listTotalAllContactsZero" msgid="6811347506748072822">"No hay contactos visibles"</string>
+    <string name="listTotalAllContactsZero" msgid="1889349925514589304">"No hay contactos"</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"No hay contactos visibles"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"No hay contactos con estrellas"</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"No hay contactos en <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"Se encontró uno (1)"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g>Se encontró un"</item>
@@ -205,34 +208,33 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"foto de contacto"</string>
     <string name="description_minus_button" msgid="387136707700230172">"negativo"</string>
     <string name="description_plus_button" msgid="515164827856229880">"más"</string>
-    <string name="no_sdcard_title" product="nosdcard" msgid="5362631473262100989">"Almacenamiento USB no disponible"</string>
+    <!-- outdated translation 5362631473262100989 -->     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"Almacenamiento USB no disponible"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"No hay tarjeta SD"</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="8045830739790534254">"No se detectó el almacenamiento USB"</string>
+    <!-- outdated translation 8045830739790534254 -->     <string name="no_sdcard_message" product="nosdcard" msgid="1334170151822669976">"No se detectó el almacenamiento USB"</string>
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"No se ha detectado ninguna tarjeta SD"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Buscando vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importar de la tarjeta SIM"</string>
-    <string name="import_from_sdcard" product="nosdcard" msgid="8294728696808674154">"Importar desde almacenamiento USB"</string>
+    <!-- outdated translation 8294728696808674154 -->     <string name="import_from_sdcard" product="nosdcard" msgid="8668347930577565175">"Importar desde almacenamiento USB"</string>
     <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Importar de la tarjeta SD"</string>
-    <string name="export_to_sdcard" product="nosdcard" msgid="7201274701382901259">"Exportar a almacenamiento USB"</string>
+    <!-- outdated translation 7201274701382901259 -->     <string name="export_to_sdcard" product="nosdcard" msgid="6092815580965201089">"Exportar a almacenamiento USB"</string>
     <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Exportar a la tarjeta SD"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Compartir contactos visibles"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Importar un archivo de vCard"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Importar múltiples archivos de vCard"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Importar todos los archivos de vCard"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="8214795338181412751">"Buscando datos de vCard en el almacenamiento USB"</string>
+    <!-- outdated translation 8214795338181412751 -->     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Buscando datos de vCard en el almacenamiento USB"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Buscando datos de vCard en la tarjeta SD"</string>
-    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="7447077516493667568">"No se pudo explorar el almacenamiento USB"</string>
+    <!-- outdated translation 7447077516493667568 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="6957414493948497249">"No se pudo explorar el almacenamiento USB"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"No se ha podido explorar la tarjeta SD"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="5645544323676912703">"No se pudo explorar el almacenamiento USB (Motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <!-- no translation found for scanning_sdcard_failed_message (4106156155205860626) -->
+    <skip />
     <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"No se ha podido explorar la tarjeta SD. (Motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Error de E/S"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Memoria insuficiente (es probable que el archivo sea muy grande)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"No se ha podido analizar vCard debido a un motivo inesperado"</string>
-    <!-- no translation found for fail_reason_not_supported (294499264620201243) -->
-    <skip />
-    <!-- no translation found for vcard_import_failed (7718330063493653085) -->
-    <skip />
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"No se encontró ningún archivo vCard en el almacenamiento USB."</string>
+    <string name="fail_reason_not_supported" msgid="294499264620201243">"El formato no es compatible."</string>
+    <string name="vcard_import_failed" msgid="7718330063493653085">"No se pudo importar vCard"</string>
+    <!-- outdated translation 1730986357514922756 -->     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"No se ha encontrado un archivo de vCard en la Tarjeta SD."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"No se ha encontrado un archivo de vCard en la Tarjeta SD."</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Error al recopilar metadatos de un archivo específico de la vCard."</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"No se pudieron importar uno o más archivos (%s)."</string>
@@ -258,7 +260,7 @@
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"No se han podido exportar los datos de contacto"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"No se han podido exportar los datos de contacto."\n"Motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"No hay ningún contacto exportable"</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"Demasiados archivos de vCard en el almacenamiento USB"</string>
+    <!-- outdated translation 2638638826954895225 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Demasiados archivos de vCard en el almacenamiento USB"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Demasiados archivos de vCard en la tarjeta SD"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"El nombre de archivo requerido es demasiado largo (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
     <string name="exporting_vcard_finished_title" msgid="4259736138838583213">"Finalizó la exportación de <xliff:g id="FILENAME">%s</xliff:g>."</string>
