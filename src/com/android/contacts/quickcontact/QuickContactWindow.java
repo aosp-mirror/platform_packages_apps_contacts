@@ -623,7 +623,7 @@ public class QuickContactWindow implements Window.Callback,
      * Handle the result from the {@link #TOKEN_DATA} query.
      */
     private void handleData(Cursor cursor) {
-        final ResolveCache cache = ResolveCache.getInstance(mContext.getPackageManager());
+        final ResolveCache cache = ResolveCache.getInstance(mContext);
         if (cursor == null) return;
         if (cursor.getCount() == 0) {
             Toast.makeText(mContext, R.string.invalidContactMessage, Toast.LENGTH_LONG).show();

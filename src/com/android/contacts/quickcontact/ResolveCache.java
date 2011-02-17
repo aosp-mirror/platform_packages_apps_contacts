@@ -16,14 +16,17 @@
 
 package com.android.contacts.quickcontact;
 
+import com.android.contacts.util.PhoneCapabilityTester;
 import com.google.android.collect.Sets;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
+import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.text.TextUtils;
 
 import java.lang.ref.SoftReference;
@@ -51,6 +54,7 @@ public class ResolveCache {
             "com.android.phone",
             "com.android.browser");
 
+    private final Context mContext;
     private final PackageManager mPackageManager;
 
     private static ResolveCache sInstance;
@@ -59,9 +63,9 @@ public class ResolveCache {
      * Returns an instance of the ResolveCache. Only one internal instance is kept, so
      * the argument packageManagers is ignored for all but the first call
      */
-    public synchronized static ResolveCache getInstance(PackageManager packageManager) {
+    public synchronized static ResolveCache getInstance(Context context) {
         if (sInstance == null) {
-            return sInstance = new ResolveCache(packageManager);
+            return sInstance = new ResolveCache(context.getApplicationContext());
         }
         return sInstance;
     }
@@ -81,8 +85,10 @@ public class ResolveCache {
 
     private HashMap<String, Entry> mCache = new HashMap<String, Entry>();
 
-    private ResolveCache(PackageManager packageManager) {
-        mPackageManager = packageManager;
+
+    private ResolveCache(Context context) {
+        mContext = context;
+        mPackageManager = context.getPackageManager();
     }
 
     /**
@@ -95,7 +101,12 @@ public class ResolveCache {
         if (entry != null) return entry;
         entry = new Entry();
 
-        final Intent intent = action.getIntent();
+        Intent intent = action.getIntent();
+        if (SipAddress.CONTENT_ITEM_TYPE.equals(mimeType)
+                && !PhoneCapabilityTester.isSipPhone(mContext)) {
+            intent = null;
+        }
+
         if (intent != null) {
             final List<ResolveInfo> matches = mPackageManager.queryIntentActivities(intent,
                     PackageManager.MATCH_DEFAULT_ONLY);
