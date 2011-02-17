@@ -198,7 +198,7 @@ public class ImportProcessor extends ProcessorBase {
         }
         final Notification notification =
                    VCardService.constructFinishNotification(mService,
-                           description, description, intent);
+                           description, null, intent);
         mNotificationManager.notify(mJobId, notification);
     }
 

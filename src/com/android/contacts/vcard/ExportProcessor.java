@@ -109,7 +109,7 @@ public class ExportProcessor extends ProcessorBase {
                 final String errorReason =
                     mService.getString(R.string.fail_reason_could_not_open_file,
                             uri, e.getMessage());
-                doFinishNotification(errorReason, "");
+                doFinishNotification(errorReason, null);
                 return;
             }
 
@@ -139,7 +139,7 @@ public class ExportProcessor extends ProcessorBase {
                 final String title =
                         mService.getString(R.string.fail_reason_could_not_initialize_exporter,
                                 translatedErrorReason);
-                doFinishNotification(title, "");
+                doFinishNotification(title, null);
                 return;
             }
 
@@ -147,7 +147,7 @@ public class ExportProcessor extends ProcessorBase {
             if (total == 0) {
                 final String title =
                         mService.getString(R.string.fail_reason_no_exportable_contact);
-                doFinishNotification(title, "");
+                doFinishNotification(title, null);
                 return;
             }
 
@@ -165,7 +165,7 @@ public class ExportProcessor extends ProcessorBase {
                     final String title =
                             mService.getString(R.string.fail_reason_error_occurred_during_export,
                                     translatedErrorReason);
-                    doFinishNotification(title, "");
+                    doFinishNotification(title, null);
                     return;
                 }
 
@@ -182,7 +182,7 @@ public class ExportProcessor extends ProcessorBase {
             final String filename = uri.getLastPathSegment();
             final String title = mService.getString(R.string.exporting_vcard_finished_title,
                     filename);
-            doFinishNotification(title, "");
+            doFinishNotification(title, null);
         } finally {
             if (composer != null) {
                 composer.terminate();
