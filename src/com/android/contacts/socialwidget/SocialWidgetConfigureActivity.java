@@ -51,7 +51,7 @@ public class SocialWidgetConfigureActivity extends Activity {
 
             // Update the widget
             SocialWidgetProvider.loadWidgetData(
-                    context, AppWidgetManager.getInstance(this), widgetId);
+                    context, AppWidgetManager.getInstance(this), widgetId, true);
 
             // Return OK so that the system won't remove the widget
             final Intent resultValue = new Intent();
