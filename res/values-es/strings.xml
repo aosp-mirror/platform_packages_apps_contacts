@@ -43,7 +43,7 @@
     <string name="menu_editContact" msgid="3452858480713561396">"Editar contacto"</string>
     <string name="menu_deleteContact" msgid="1916555454274101750">"Eliminar contacto"</string>
     <string name="menu_call" msgid="3992595586042260618">"Llamar al contacto"</string>
-    <string name="menu_sendSMS" msgid="5535886767547006515">"Enviar un mensaje de texto al contacto"</string>
+    <string name="menu_sendSMS" msgid="5535886767547006515">"Enviar SMS al contacto"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Establecer como dirección de email predeterminada"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Dividir"</string>
     <string name="menu_renameGroup" msgid="2798886925154156075">"Cambiar el nombre del grupo"</string>
@@ -114,12 +114,15 @@
     <item quantity="one" msgid="3015357862286673986">"Un (1) contacto con número de teléfono"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> contactos con números de teléfono"</item>
   </plurals>
-    <string name="listTotalPhoneContactsZero" msgid="2756295259674938869">"No hay ningún contacto visible con número de teléfono."</string>
+    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Ningún contacto con número de teléfono"</string>
   <plurals name="listTotalAllContacts">
     <item quantity="one" msgid="3405747744700823280">"Un (1) contacto"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> contactos"</item>
   </plurals>
-    <string name="listTotalAllContactsZero" msgid="6811347506748072822">"No hay contactos visibles."</string>
+    <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Ningún contacto"</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Ningún contacto visible"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Ningún contacto destacado"</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Ningún contacto en <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 encontrado"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> encontrados"</item>
@@ -205,34 +208,33 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"foto de contacto"</string>
     <string name="description_minus_button" msgid="387136707700230172">"menos"</string>
     <string name="description_plus_button" msgid="515164827856229880">"más"</string>
-    <string name="no_sdcard_title" product="nosdcard" msgid="5362631473262100989">"USB no disponible"</string>
+    <!-- outdated translation 5362631473262100989 -->     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"USB no disponible"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Falta la tarjeta SD."</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="8045830739790534254">"USB no detectado"</string>
+    <!-- outdated translation 8045830739790534254 -->     <string name="no_sdcard_message" product="nosdcard" msgid="1334170151822669976">"USB no detectado"</string>
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"No se ha detectado ninguna tarjeta SD."</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Buscando vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importar contactos desde la tarjeta SIM"</string>
-    <string name="import_from_sdcard" product="nosdcard" msgid="8294728696808674154">"Importar de USB"</string>
+    <!-- outdated translation 8294728696808674154 -->     <string name="import_from_sdcard" product="nosdcard" msgid="8668347930577565175">"Importar de USB"</string>
     <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Importar contactos desde la tarjeta SD"</string>
-    <string name="export_to_sdcard" product="nosdcard" msgid="7201274701382901259">"Exportar a USB"</string>
+    <!-- outdated translation 7201274701382901259 -->     <string name="export_to_sdcard" product="nosdcard" msgid="6092815580965201089">"Exportar a USB"</string>
     <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Exportar contactos a la tarjeta SD"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Compartir contactos visibles"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Importar un archivo de vCard"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Importar varios archivos de vCard"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Importar todos los archivos de vCard"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="8214795338181412751">"Buscando datos de vCard en USB"</string>
+    <!-- outdated translation 8214795338181412751 -->     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Buscando datos de vCard en USB"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Buscando datos de vCard en la tarjeta SD"</string>
-    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="7447077516493667568">"Error al analizar USB"</string>
+    <!-- outdated translation 7447077516493667568 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="6957414493948497249">"Error al analizar USB"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Error al buscar en la tarjeta SD"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="5645544323676912703">"Error al analizar USB (Motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <!-- no translation found for scanning_sdcard_failed_message (4106156155205860626) -->
+    <skip />
     <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Error al buscar en la tarjeta SD (motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Error de E/S"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Memoria insuficiente (el archivo puede ser demasiado grande)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"No se ha podido analizar el archivo de vCard debido a un error inesperado."</string>
-    <!-- no translation found for fail_reason_not_supported (294499264620201243) -->
-    <skip />
-    <!-- no translation found for vcard_import_failed (7718330063493653085) -->
-    <skip />
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="8809370398968655782">"No se ha encontrado el archivo de vCard en el almacenamiento USB."</string>
+    <string name="fail_reason_not_supported" msgid="294499264620201243">"No se admite este formato."</string>
+    <string name="vcard_import_failed" msgid="7718330063493653085">"Se ha producido un error al importar vCard."</string>
+    <!-- outdated translation 1730986357514922756 -->     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"No se ha encontrado ningún archivo de vCard en la tarjeta SD."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"No se ha encontrado ningún archivo de vCard en la tarjeta SD."</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Error al recopilar metainformación de los archivos vCard"</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"No ha sido posible importar uno o varios archivos (%s)."</string>
@@ -258,7 +260,7 @@
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Error al exportar los datos del contacto"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Se ha producido un error al exportar los datos del contacto."\n"Motivo del error: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"No hay contactos que exportar."</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"Hay demasiados archivos de vCard en el almacenamiento USB."</string>
+    <!-- outdated translation 2638638826954895225 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Hay demasiados archivos de vCard en el almacenamiento USB."</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Hay demasiados archivos de vCard en la tarjeta SD."</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"El nombre de archivo necesario es demasiado largo (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="exporting_vcard_finished_title" msgid="4259736138838583213">"Exportación de <xliff:g id="FILENAME">%s</xliff:g> finalizada"</string>
@@ -282,7 +284,7 @@
     <string name="add_2sec_pause" msgid="9214012315201040129">"Añadir pausa de dos segundos"</string>
     <string name="add_wait" msgid="3360818652790319634">"Añadir espera"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"Llamar a través de"</string>
-    <string name="sms_disambig_title" msgid="4675399294513152364">"Enviar un mensaje de texto a través de"</string>
+    <string name="sms_disambig_title" msgid="4675399294513152364">"Enviar SMS a través de"</string>
     <string name="make_primary" msgid="5829291915305113983">"Recordar esta opción"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"No se ha encontrado ninguna aplicación que pueda realizar esta acción."</string>
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Recordar esta opción"</string>
@@ -339,27 +341,27 @@
     <string name="call_work_pager" msgid="3419348514157949008">"Llamar al buscapersonas del trabajo"</string>
     <string name="call_assistant" msgid="2141641383068514308">"Llamar a <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="6274041545876221437">"Llamar a MMS"</string>
-    <string name="sms_custom" msgid="5932736853732191825">"Enviar un mensaje de texto a <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="sms_home" msgid="7524332261493162995">"Enviar un mensaje de texto a casa"</string>
+    <string name="sms_custom" msgid="5932736853732191825">"Enviar SMS a <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="sms_home" msgid="7524332261493162995">"Enviar SMS a casa"</string>
     <string name="sms_mobile" msgid="5200107250451030769">"Enviar SMS a móvil"</string>
     <string name="sms_work" msgid="2269624156655267740">"Enviar SMS a trabajo"</string>
-    <string name="sms_fax_work" msgid="8028189067816907075">"Enviar un mensaje de texto al fax del trabajo"</string>
-    <string name="sms_fax_home" msgid="9204042076306809634">"Enviar un mensaje de texto al fax de casa"</string>
+    <string name="sms_fax_work" msgid="8028189067816907075">"Enviar SMS al fax del trabajo"</string>
+    <string name="sms_fax_home" msgid="9204042076306809634">"Enviar SMS al fax de casa"</string>
     <string name="sms_pager" msgid="7730404569637015192">"Enviar SMS al buscapersonas"</string>
     <string name="sms_other" msgid="806127844607642331">"Enviar SMS"</string>
-    <string name="sms_callback" msgid="5004824430094288752">"Enviar un mensaje de texto a un número de devolución de llamada"</string>
-    <string name="sms_car" msgid="7444227058437359641">"Enviar un mensaje de texto al coche"</string>
-    <string name="sms_company_main" msgid="118970873419678087">"Enviar un mensaje de texto al teléfono principal de la empresa"</string>
-    <string name="sms_isdn" msgid="8153785037515047845">"Enviar un mensaje de texto a RDSI"</string>
-    <string name="sms_main" msgid="8621625784504541679">"Enviar un mensaje de texto al número de teléfono principal"</string>
+    <string name="sms_callback" msgid="5004824430094288752">"Enviar SMS a devolución de llamada"</string>
+    <string name="sms_car" msgid="7444227058437359641">"Enviar SMS al coche"</string>
+    <string name="sms_company_main" msgid="118970873419678087">"Enviar SMS al teléfono principal de la empresa"</string>
+    <string name="sms_isdn" msgid="8153785037515047845">"Enviar SMS a RDSI"</string>
+    <string name="sms_main" msgid="8621625784504541679">"Enviar SMS al teléfono principal"</string>
     <string name="sms_other_fax" msgid="3888842199855843152">"Enviar SMS a fax"</string>
-    <string name="sms_radio" msgid="3329166673433967820">"Enviar un mensaje de texto a la radio"</string>
-    <string name="sms_telex" msgid="9034802430065267848">"Enviar un mensaje de texto al télex"</string>
-    <string name="sms_tty_tdd" msgid="6782284969132531532">"Enviar un mensaje de texto a TTY/TDD"</string>
-    <string name="sms_work_mobile" msgid="2459939960512702560">"Enviar un mensaje de texto al móvil del trabajo"</string>
+    <string name="sms_radio" msgid="3329166673433967820">"Enviar SMS a la radio"</string>
+    <string name="sms_telex" msgid="9034802430065267848">"Enviar SMS al télex"</string>
+    <string name="sms_tty_tdd" msgid="6782284969132531532">"Enviar SMS a TTY/TDD"</string>
+    <string name="sms_work_mobile" msgid="2459939960512702560">"Enviar SMS al móvil del trabajo"</string>
     <string name="sms_work_pager" msgid="5566924423316960597">"Enviar SMS al buscapersonas del trabajo"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"Enviar un mensaje de texto a <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="sms_mms" msgid="4069352461380762677">"Enviar un mensaje de texto a MMS"</string>
+    <string name="sms_mms" msgid="4069352461380762677">"Enviar SMS a MMS"</string>
     <string name="email_home" msgid="8573740658148184279">"Enviar email a casa"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Enviar email al móvil"</string>
     <string name="email_work" msgid="2807430017302722689">"Enviar email al trabajo"</string>
@@ -442,7 +444,7 @@
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"¿Deseas agrupar el contacto actual con el contacto seleccionado?"</string>
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Editar contactos seleccionados"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"¿Deseas editar el contacto seleccionado? Se copiará la información que hayas introducido hasta el momento."</string>
-    <string name="menu_copyContact" msgid="4401683725471696686">"Copiar a mis contactos"</string>
+    <string name="menu_copyContact" msgid="4401683725471696686">"Copiar en mis contactos"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Directorio <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="search_label" msgid="6789295859496641042">"Buscando todos los contactos"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Directorio"</string>

@@ -117,9 +117,15 @@
     <string name="contactSavedToast" msgid="7152589189385441091">"Contact memorisà."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Errur: impussibel da memorisar las modificaziuns dal contact"</string>
     <!-- no translation found for listTotalPhoneContacts:other (3299954047880968205) -->
-    <string name="listTotalPhoneContactsZero" msgid="2756295259674938869">"Nagins contacts visibels cun numer da telefon"</string>
+    <!-- outdated translation 2756295259674938869 -->     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Nagins contacts visibels cun numer da telefon"</string>
     <!-- no translation found for listTotalAllContacts:other (3578469907265375314) -->
-    <string name="listTotalAllContactsZero" msgid="6811347506748072822">"Nagins contacts visibels"</string>
+    <!-- outdated translation 6811347506748072822 -->     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Nagins contacts visibels"</string>
+    <!-- no translation found for listTotalAllContactsZeroCustom (4058252141420128998) -->
+    <skip />
+    <!-- no translation found for listTotalAllContactsZeroStarred (5391630590684099117) -->
+    <skip />
+    <!-- no translation found for listTotalAllContactsZeroGroup (5448979458248027615) -->
+    <skip />
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"chattà 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Chattà <xliff:g id="COUNT">%d</xliff:g>"</item>
@@ -206,25 +212,25 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"foto dal contact"</string>
     <string name="description_minus_button" msgid="387136707700230172">"minus"</string>
     <string name="description_plus_button" msgid="515164827856229880">"plus"</string>
-    <!-- outdated translation 5911758680339949273 -->     <string name="no_sdcard_title" product="nosdcard" msgid="5362631473262100989">"Nagina carta SD"</string>
+    <!-- outdated translation 5911758680339949273 -->     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"Nagina carta SD"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Nagina carta SD"</string>
-    <!-- outdated translation 6019391476490445358 -->     <string name="no_sdcard_message" product="nosdcard" msgid="8045830739790534254">"Betg chattà ina carta SD."</string>
+    <!-- outdated translation 6019391476490445358 -->     <string name="no_sdcard_message" product="nosdcard" msgid="1334170151822669976">"Betg chattà ina carta SD."</string>
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Betg chattà ina carta SD."</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Tschertgar datas vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importar da la carta SIM"</string>
-    <!-- outdated translation 8550360976693202816 -->     <string name="import_from_sdcard" product="nosdcard" msgid="8294728696808674154">"Importar da la carta SD"</string>
+    <!-- outdated translation 8550360976693202816 -->     <string name="import_from_sdcard" product="nosdcard" msgid="8668347930577565175">"Importar da la carta SD"</string>
     <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Importar da la carta SD"</string>
-    <!-- outdated translation 2597105442616166277 -->     <string name="export_to_sdcard" product="nosdcard" msgid="7201274701382901259">"Exportar sin la carta SD"</string>
+    <!-- outdated translation 2597105442616166277 -->     <string name="export_to_sdcard" product="nosdcard" msgid="6092815580965201089">"Exportar sin la carta SD"</string>
     <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Exportar sin la carta SD"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Cundivider ils contacts visibels"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Importar ina datoteca vCard"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Importar pliras datotecas vCard"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Importar tut las datotecas vCard"</string>
-    <!-- outdated translation 6917522333561434546 -->     <string name="searching_vcard_message" product="nosdcard" msgid="8214795338181412751">"Tschertgar datas vCard sin la carta SD"</string>
+    <!-- outdated translation 6917522333561434546 -->     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Tschertgar datas vCard sin la carta SD"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Tschertgar datas vCard sin la carta SD"</string>
-    <!-- outdated translation 3506782007953167180 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="7447077516493667568">"Errur cun leger la carta SD"</string>
+    <!-- outdated translation 3506782007953167180 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="6957414493948497249">"Errur cun leger la carta SD"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Errur cun leger la carta SD"</string>
-    <!-- no translation found for scanning_sdcard_failed_message (5645544323676912703) -->
+    <!-- no translation found for scanning_sdcard_failed_message (4106156155205860626) -->
     <skip />
     <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Errur cun leger la carta SD. Il motiv: «<xliff:g id="FAIL_REASON">%s</xliff:g>»"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Errur I/O"</string>
@@ -234,7 +240,7 @@
     <skip />
     <!-- no translation found for vcard_import_failed (7718330063493653085) -->
     <skip />
-    <!-- no translation found for import_failure_no_vcard_file (8809370398968655782) -->
+    <!-- no translation found for import_failure_no_vcard_file (6339234836196984924) -->
     <skip />
     <!-- no translation found for import_failure_no_vcard_file (1730986357514922756) -->
     <skip />
@@ -270,7 +276,7 @@
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Errur cun exportar las datas da contact"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Errur cun exportar las datas da contact. "\n"Il motiv: «<xliff:g id="FAIL_REASON">%s</xliff:g>»"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Nagin contact exportabel"</string>
-    <!-- outdated translation 7084146295639672658 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"La carta SD cuntegna memia bleras datotecas vCard"</string>
+    <!-- outdated translation 7084146295639672658 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"La carta SD cuntegna memia bleras datotecas vCard"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"La carta SD cuntegna memia bleras datotecas vCard"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Il num da datoteca necessari è memia lung («<xliff:g id="FILENAME">%s</xliff:g>»)"</string>
     <!-- no translation found for exporting_vcard_finished_title (4259736138838583213) -->
