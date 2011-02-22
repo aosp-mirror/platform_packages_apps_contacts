@@ -58,7 +58,7 @@ public class SocialWidgetProvider extends AppWidgetProvider {
         }
 
         for (int appWidgetId : appWidgetIds) {
-            loadWidgetData(context, appWidgetManager, appWidgetId);
+            loadWidgetData(context, appWidgetManager, appWidgetId, false);
         }
     }
 
@@ -75,41 +75,46 @@ public class SocialWidgetProvider extends AppWidgetProvider {
         SocialWidgetSettings.getInstance().remove(context, appWidgetIds);
     }
 
-    public static void loadWidgetData(
-            final Context context, final AppWidgetManager appWidgetManager, final int widgetId) {
-        final ContactLoader previousLoader = sLoaders.get(widgetId);
+    public static void loadWidgetData(final Context context,
+            final AppWidgetManager appWidgetManager, final int widgetId, boolean forceLoad) {
+        ContactLoader previousLoader = sLoaders.get(widgetId);
+
+        if (previousLoader != null && !forceLoad) {
+            previousLoader.startLoading();
+            return;
+        }
 
         if (previousLoader != null) {
-            previousLoader.startLoading();
-        } else {
-            // Show that we are loading
-            final RemoteViews loadingViews =
-                    new RemoteViews(context.getPackageName(), R.layout.social_widget);
-            loadingViews.setTextViewText(R.id.name,
-                    context.getString(R.string.social_widget_loading));
-            loadingViews.setViewVisibility(R.id.name, View.VISIBLE);
-            loadingViews.setViewVisibility(R.id.name_and_snippet, View.GONE);
-            appWidgetManager.updateAppWidget(widgetId, loadingViews);
-
-            // Load
-            final Uri contactUri =
-                    SocialWidgetSettings.getInstance().getContactUri(context, widgetId);
-            if (contactUri == null) {
-                // Not yet set-up (this can happen while the Configuration activity is visible)
-                return;
-            }
-            final ContactLoader contactLoader = new ContactLoader(context, contactUri);
-            contactLoader.registerListener(0,
-                    new ContactLoader.OnLoadCompleteListener<ContactLoader.Result>() {
-                        @Override
-                        public void onLoadComplete(Loader<ContactLoader.Result> loader,
-                                ContactLoader.Result contactData) {
-                            bindRemoteViews(context, widgetId, appWidgetManager, contactData);
-                        }
-                    });
-            contactLoader.startLoading();
-            sLoaders.append(widgetId, contactLoader);
+            previousLoader.reset();
         }
+
+        // Show that we are loading
+        final RemoteViews loadingViews =
+                new RemoteViews(context.getPackageName(), R.layout.social_widget);
+        loadingViews.setTextViewText(R.id.name,
+                context.getString(R.string.social_widget_loading));
+        loadingViews.setViewVisibility(R.id.name, View.VISIBLE);
+        loadingViews.setViewVisibility(R.id.name_and_snippet, View.GONE);
+        appWidgetManager.updateAppWidget(widgetId, loadingViews);
+
+        // Load
+        final Uri contactUri =
+                SocialWidgetSettings.getInstance().getContactUri(context, widgetId);
+        if (contactUri == null) {
+            // Not yet set-up (this can happen while the Configuration activity is visible)
+            return;
+        }
+        final ContactLoader contactLoader = new ContactLoader(context, contactUri);
+        contactLoader.registerListener(0,
+                new ContactLoader.OnLoadCompleteListener<ContactLoader.Result>() {
+                    @Override
+                    public void onLoadComplete(Loader<ContactLoader.Result> loader,
+                            ContactLoader.Result contactData) {
+                        bindRemoteViews(context, widgetId, appWidgetManager, contactData);
+                    }
+                });
+        contactLoader.startLoading();
+        sLoaders.append(widgetId, contactLoader);
     }
 
     private static void bindRemoteViews(final Context context, final int widgetId,
