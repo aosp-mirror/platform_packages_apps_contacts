@@ -520,12 +520,18 @@ public abstract class ContactBrowseListFragment extends
 
     protected void selectDefaultContact() {
         Uri contactUri = null;
+        ContactListAdapter adapter = getAdapter();
         if (mLastSelectedPosition != -1) {
-            contactUri = getAdapter().getContactUri(mLastSelectedPosition);
+            int count = adapter.getCount();
+            int pos = mLastSelectedPosition;
+            if (pos >= count && count > 0) {
+                pos = count - 1;
+            }
+            contactUri = adapter.getContactUri(pos);
         }
 
         if (contactUri == null) {
-            contactUri = getAdapter().getFirstContactUri();
+            contactUri = adapter.getFirstContactUri();
         }
 
         setSelectedContactUri(contactUri, false, mSmoothScrollRequested, false, false);
