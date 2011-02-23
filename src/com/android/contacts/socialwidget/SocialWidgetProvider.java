@@ -19,10 +19,12 @@ package com.android.contacts.socialwidget;
 import com.android.contacts.ContactLoader;
 import com.android.contacts.R;
 import com.android.contacts.util.ContactBadgeUtil;
+import com.android.contacts.util.DataStatus;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
@@ -30,6 +32,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.QuickContact;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -39,6 +42,8 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.RemoteViews;
+
+import java.util.HashMap;
 
 public class SocialWidgetProvider extends AppWidgetProvider {
     private static final String TAG = "SocialWidgetProvider";
@@ -127,13 +132,10 @@ public class SocialWidgetProvider extends AppWidgetProvider {
         if (contactData == ContactLoader.Result.ERROR ||
                 contactData == ContactLoader.Result.NOT_FOUND) {
             setDisplayNameAndSnippet(context, views,
-                    context.getString(R.string.invalidContactMessage), null, null);
+                    context.getString(R.string.invalidContactMessage), null, null, null);
             setPhoto(views, ContactBadgeUtil.loadPlaceholderPhoto(context));
             setStatusAttribution(views, null);
         } else {
-            setDisplayNameAndSnippet(context, views, contactData.getDisplayName(),
-                    contactData.getPhoneticName(), contactData.getSocialSnippet());
-
             byte[] photo = contactData.getPhotoBinaryData();
             setPhoto(views, photo != null
                     ? BitmapFactory.decodeByteArray(photo, 0, photo.length)
@@ -153,6 +155,9 @@ public class SocialWidgetProvider extends AppWidgetProvider {
             final PendingIntent pendingIntent = PendingIntent.getActivity(context,
                     0, intent, 0);
             views.setOnClickPendingIntent(R.id.border, pendingIntent);
+
+            setDisplayNameAndSnippet(context, views, contactData.getDisplayName(),
+                    contactData.getPhoneticName(), contactData.getStatuses(), pendingIntent);
         }
 
         // Configure UI
@@ -169,7 +174,7 @@ public class SocialWidgetProvider extends AppWidgetProvider {
      */
     private static void setDisplayNameAndSnippet(Context context, RemoteViews views,
             CharSequence displayName, CharSequence phoneticName,
-            CharSequence snippet) {
+            HashMap<Long, DataStatus> statuses, PendingIntent defaultIntent) {
         SpannableStringBuilder sb = new SpannableStringBuilder();
 
         CharSequence name = displayName;
@@ -185,20 +190,41 @@ public class SocialWidgetProvider extends AppWidgetProvider {
         sb.setSpan(sizeSpan, 0, name.length(), 0);
         sb.setSpan(styleSpan, 0, name.length(), 0);
 
-        if (TextUtils.isEmpty(snippet)) {
+        long latestStatusId = 0;
+        DataStatus latestStatus = null;
+        if (statuses != null) {
+            for (HashMap.Entry<Long, DataStatus> entry : statuses.entrySet()) {
+                DataStatus status = entry.getValue();
+                if (!TextUtils.isEmpty(status.getStatus())
+                        && (latestStatus == null
+                                || latestStatus.getTimestamp() < status.getTimestamp())) {
+                    latestStatusId = entry.getKey();
+                    latestStatus = status;
+                }
+            }
+        }
+
+        if (latestStatus == null) {
             views.setTextViewText(R.id.name, sb);
             views.setViewVisibility(R.id.name, View.VISIBLE);
             views.setViewVisibility(R.id.name_and_snippet, View.GONE);
+            views.setOnClickPendingIntent(R.id.widget_container, defaultIntent);
         } else {
-            if (snippet.length() <= SHORT_SNIPPET_LENGTH) {
+            CharSequence status = latestStatus.getStatus();
+            if (status.length() <= SHORT_SNIPPET_LENGTH) {
                 sb.append("\n");
             } else {
                 sb.append("  ");
             }
-            sb.append(snippet);
+            sb.append(status);
             views.setTextViewText(R.id.name_and_snippet, sb);
             views.setViewVisibility(R.id.name, View.GONE);
             views.setViewVisibility(R.id.name_and_snippet, View.VISIBLE);
+            final Intent intent = new Intent(Intent.ACTION_VIEW,
+                    ContentUris.withAppendedId(Data.CONTENT_URI, latestStatusId));
+
+            views.setOnClickPendingIntent(R.id.name_and_snippet_container,
+                    PendingIntent.getActivity(context, 0, intent, 0));
         }
     }
 

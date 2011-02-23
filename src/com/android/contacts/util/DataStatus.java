@@ -94,6 +94,10 @@ public class DataStatus {
         return mStatus;
     }
 
+    public long getTimestamp() {
+        return mTimestamp;
+    }
+
     /**
      * Build any timestamp and label into a single string.
      */

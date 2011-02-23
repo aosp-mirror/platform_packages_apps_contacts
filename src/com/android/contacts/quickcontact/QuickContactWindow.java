@@ -99,6 +99,7 @@ public class QuickContactWindow implements Window.Callback,
         NotifyingAsyncQueryHandler.AsyncQueryListener, View.OnClickListener,
         AbsListView.OnItemClickListener, KeyEvent.Callback, OnGlobalLayoutListener,
         QuickContactRootLayout.Listener {
+
     private static final String TAG = "QuickContactWindow";
 
     /**
@@ -113,6 +114,12 @@ public class QuickContactWindow implements Window.Callback,
     private final static int ANIMATION_FADE_OUT_TIME = 100;
     private final static int ANIMATION_EXPAND_TIME = 100;
     private final static int ANIMATION_COLLAPSE_TIME = 100;
+
+    /**
+     * If the anchor is wider than (quick contact width * this constant) then
+     * center quick contact.  Otherwise, left-align.
+     */
+    private static final double MIN_RELATIVE_ANCHOR_WIDTH_TO_CENTER = 0.5;
 
     private final Context mContext;
     private final LayoutInflater mInflater;
@@ -401,9 +408,13 @@ public class QuickContactWindow implements Window.Callback,
                 R.dimen.quick_contact_width);
         layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
 
-        // Try to left align with the anchor control
+        // Try to left align with the anchor control or center if the anchor is wide
         if (mAnchor.left + layoutParams.width <= mScreenWidth) {
-            layoutParams.x = mAnchor.left;
+            if (mAnchor.width() > layoutParams.width * MIN_RELATIVE_ANCHOR_WIDTH_TO_CENTER) {
+                layoutParams.x = mAnchor.left + (mAnchor.width() - layoutParams.width) / 2;
+            } else {
+                layoutParams.x = mAnchor.left;
+            }
         } else {
             // Not enough space. Try to right align to the anchor
             if (mAnchor.right - layoutParams.width >= 0) {
