@@ -94,7 +94,7 @@ public class ContactDetailActivity extends ContactsActivity {
 
         @Override
         public void onDeleteRequested(Uri contactUri) {
-            ContactDeletionInteraction.start(ContactDetailActivity.this, contactUri);
+            ContactDeletionInteraction.start(ContactDetailActivity.this, contactUri, true);
         }
 
         @Override

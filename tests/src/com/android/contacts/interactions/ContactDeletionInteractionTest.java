@@ -132,7 +132,7 @@ public class ContactDeletionInteractionTest
         getInstrumentation().runOnMainSync(new Runnable() {
             @Override
             public void run() {
-                mFragment = ContactDeletionInteraction.start(activity, CONTACT_URI);
+                mFragment = ContactDeletionInteraction.start(activity, CONTACT_URI, false);
             }
         });
 

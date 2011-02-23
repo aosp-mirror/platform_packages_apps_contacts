@@ -498,7 +498,7 @@ public class ContactBrowserActivity extends ContactsActivity
 
         @Override
         public void onDeleteContactAction(Uri contactUri) {
-            ContactDeletionInteraction.start(ContactBrowserActivity.this, contactUri);
+            ContactDeletionInteraction.start(ContactBrowserActivity.this, contactUri, false);
         }
 
         @Override
@@ -545,7 +545,7 @@ public class ContactBrowserActivity extends ContactsActivity
 
         @Override
         public void onDeleteRequested(Uri contactUri) {
-            ContactDeletionInteraction.start(ContactBrowserActivity.this, contactUri);
+            ContactDeletionInteraction.start(ContactBrowserActivity.this, contactUri, false);
         }
 
         @Override

@@ -200,7 +200,7 @@ public class ContactEditorActivity extends ContactsActivity
 
         @Override
         public void onDeleteRequested(Uri contactUri) {
-            ContactDeletionInteraction.start(ContactEditorActivity.this, contactUri);
+            ContactDeletionInteraction.start(ContactEditorActivity.this, contactUri, true);
         }
 
         @Override

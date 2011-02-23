@@ -50,6 +50,7 @@ public class ContactDeletionInteraction extends Fragment
 
     private static final String KEY_ACTIVE = "active";
     private static final String KEY_CONTACT_URI = "contactUri";
+    private static final String KEY_FINISH_WHEN_DONE = "finishWhenDone";
     public static final String ARG_CONTACT_URI = "contactUri";
 
     private static final String[] ENTITY_PROJECTION = new String[] {
@@ -66,6 +67,7 @@ public class ContactDeletionInteraction extends Fragment
 
     private boolean mActive;
     private Uri mContactUri;
+    private boolean mFinishActivityWhenDone;
     private Context mContext;
 
     private AlertDialog mDialog;
@@ -73,16 +75,19 @@ public class ContactDeletionInteraction extends Fragment
     // Visible for testing
     int mMessageId;
 
-    public static ContactDeletionInteraction start(Activity activity, Uri contactUri) {
+    public static ContactDeletionInteraction start(
+            Activity activity, Uri contactUri, boolean finishActivityWhenDone) {
         FragmentManager fragmentManager = activity.getFragmentManager();
         ContactDeletionInteraction fragment =
                 (ContactDeletionInteraction) fragmentManager.findFragmentByTag(FRAGMENT_TAG);
         if (fragment == null) {
             fragment = new ContactDeletionInteraction();
             fragment.setContactUri(contactUri);
+            fragment.setFinishActivityWhenDone(finishActivityWhenDone);
             fragmentManager.beginTransaction().add(fragment, FRAGMENT_TAG).commit();
         } else {
             fragment.setContactUri(contactUri);
+            fragment.setFinishActivityWhenDone(finishActivityWhenDone);
         }
         return fragment;
     }
@@ -101,6 +106,11 @@ public class ContactDeletionInteraction extends Fragment
             args.putParcelable(ARG_CONTACT_URI, mContactUri);
             getLoaderManager().restartLoader(R.id.dialog_delete_contact_loader_id, args, this);
         }
+    }
+
+    private void setFinishActivityWhenDone(boolean finishActivityWhenDone) {
+        this.mFinishActivityWhenDone = finishActivityWhenDone;
+
     }
 
     /* Visible for testing */
@@ -211,6 +221,7 @@ public class ContactDeletionInteraction extends Fragment
         super.onSaveInstanceState(outState);
         outState.putBoolean(KEY_ACTIVE, mActive);
         outState.putParcelable(KEY_CONTACT_URI, mContactUri);
+        outState.putBoolean(KEY_FINISH_WHEN_DONE, mFinishActivityWhenDone);
     }
 
     @Override
@@ -219,10 +230,14 @@ public class ContactDeletionInteraction extends Fragment
         if (savedInstanceState != null) {
             mActive = savedInstanceState.getBoolean(KEY_ACTIVE);
             mContactUri = savedInstanceState.getParcelable(KEY_CONTACT_URI);
+            mFinishActivityWhenDone = savedInstanceState.getBoolean(KEY_FINISH_WHEN_DONE);
         }
     }
 
     protected void doDeleteContact(Uri contactUri) {
         mContext.startService(ContactSaveService.createDeleteContactIntent(mContext, contactUri));
+        if (isAdded() && mFinishActivityWhenDone) {
+            getActivity().finish();
+        }
     }
 }
