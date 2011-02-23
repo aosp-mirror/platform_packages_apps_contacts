@@ -26,6 +26,7 @@ import com.android.contacts.model.GoogleAccountType;
 import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.LocalizedNameResolver;
+import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.WeakAsyncTask;
 import com.google.android.collect.Lists;
 
@@ -113,8 +114,10 @@ public class CustomContactListFilterActivity extends ContactsActivity
         createWithPhonesOnlyPreferenceView(inflater);
         createDisplayGroupHeader(inflater);
 
-        mList.addHeaderView(mHeaderPhones, null, true);
-        mList.addHeaderView(mHeaderSeparator, null, false);
+        if (mHeaderPhones != null) {
+            mList.addHeaderView(mHeaderPhones, null, true);
+            mList.addHeaderView(mHeaderSeparator, null, false);
+        }
 
         findViewById(R.id.btn_done).setOnClickListener(this);
         findViewById(R.id.btn_discard).setOnClickListener(this);
@@ -127,12 +130,18 @@ public class CustomContactListFilterActivity extends ContactsActivity
     }
 
     private void createWithPhonesOnlyPreferenceView(LayoutInflater inflater) {
+        boolean optionSelected = mPrefs.getBoolean(ContactsPreferences.PREF_DISPLAY_ONLY_PHONES,
+                ContactsPreferences.PREF_DISPLAY_ONLY_PHONES_DEFAULT);
+
+        if (!optionSelected && !PhoneCapabilityTester.isPhone(this)) {
+            return;
+        }
+
         // Add the "Only contacts with phones" header modifier.
         mHeaderPhones = inflater.inflate(R.layout.contact_list_filter_phones_only, mList, false);
         mHeaderPhones.setId(R.id.header_phones);
         mDisplayPhones = (CheckBox) mHeaderPhones.findViewById(android.R.id.checkbox);
-        mDisplayPhones.setChecked(mPrefs.getBoolean(ContactsPreferences.PREF_DISPLAY_ONLY_PHONES,
-                ContactsPreferences.PREF_DISPLAY_ONLY_PHONES_DEFAULT));
+        mDisplayPhones.setChecked(optionSelected);
         final TextView text1 = (TextView) mHeaderPhones.findViewById(android.R.id.text1);
         text1.setText(R.string.showFilterPhones);
         final TextView text2 = (TextView) mHeaderPhones.findViewById(android.R.id.text2);
@@ -871,7 +880,10 @@ public class CustomContactListFilterActivity extends ContactsActivity
             return;
         }
 
-        setDisplayOnlyPhones(mDisplayPhones.isChecked());
+        if (mDisplayPhones != null) {
+            setDisplayOnlyPhones(mDisplayPhones.isChecked());
+        }
+
         setResult(RESULT_OK);
 
         final ArrayList<ContentProviderOperation> diff = mAdapter.mAccounts.buildDiff();
