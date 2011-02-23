@@ -22,4 +22,5 @@
     <dimen name="action_bar_filter_max_width">120dip</dimen>
     <dimen name="action_bar_search_max_width">300dip</dimen>
     <dimen name="action_bar_search_spacing">12dip</dimen>
+    <dimen name="shortcut_icon_size">64dip</dimen>
 </resources>

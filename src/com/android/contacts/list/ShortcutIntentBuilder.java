@@ -75,7 +75,7 @@ public class ShortcutIntentBuilder {
 
     private final OnShortcutIntentCreatedListener mListener;
     private final Context mContext;
-    private final int mIconSize;
+    private int mIconSize;
     private final int mIconDensity;
 
     /**
@@ -99,7 +99,10 @@ public class ShortcutIntentBuilder {
 
         final ActivityManager am = (ActivityManager) context
                 .getSystemService(Context.ACTIVITY_SERVICE);
-        mIconSize = am.getLauncherLargeIconSize();
+        mIconSize = context.getResources().getDimensionPixelSize(R.dimen.shortcut_icon_size);
+        if (mIconSize == 0) {
+            mIconSize = am.getLauncherLargeIconSize();
+        }
         mIconDensity = am.getLauncherLargeIconDensity();
     }
 

@@ -73,4 +73,6 @@
     <!-- Spacing on the left the search field in the action bar -->
     <dimen name="action_bar_search_spacing">12dip</dimen>
 
+    <!-- Size of the shortcut icon. 0dip means: use the system default -->    
+    <dimen name="shortcut_icon_size">0dip</dimen>
 </resources>
