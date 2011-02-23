@@ -29,7 +29,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnFocusChangeListener;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
 import android.widget.SearchView.OnQueryTextListener;
@@ -38,8 +37,8 @@ import android.widget.TextView;
 /**
  * Adapter for the action bar at the top of the Contacts activity.
  */
-public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener,
-        ContactListFilterListener, OnFocusChangeListener {
+public class ActionBarAdapter
+        implements OnQueryTextListener, OnCloseListener, ContactListFilterListener {
 
     public interface Listener {
         void onAction();
@@ -95,7 +94,6 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener,
 
         mSearchView.setOnQueryTextListener(this);
         mSearchView.setOnCloseListener(this);
-        mSearchView.setOnQueryTextFocusChangeListener(this);
         mSearchView.setQuery(mQueryString, false);
         mSearchView.setQueryHint(mContext.getString(R.string.hint_findContacts));
 
@@ -115,13 +113,6 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener,
         mFilterController = controller;
         mFilterController.setAnchor(mFilterView);
         mFilterController.addListener(this);
-    }
-
-    @Override
-    public void onFocusChange(View v, boolean hasFocus) {
-        if (v == mSearchView && hasFocus) {
-            setSearchMode(true);
-        }
     }
 
     public boolean isSearchMode() {
