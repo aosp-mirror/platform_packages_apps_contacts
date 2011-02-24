@@ -419,7 +419,7 @@
     <string name="upgrade_out_of_memory" msgid="6153384328042175667">"Ihre Kontakte werden momentan aktualisiert."\n\n"Für den Aktualisierungsvorgang sind ca. <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB interner Speicher erforderlich."\n\n"Wählen Sie eine der folgenden Optionen:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Einige Anwendungen deinstallieren"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Upgrade wiederholen"</string>
-    <string name="search_results_searching" msgid="7755623475227227314">"Suche..."</string>
+    <string name="search_results_searching" msgid="7755623475227227314">"Suche läuft..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Auswahl anzeigen"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Alle anzeigen"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Alle auswählen"</string>
