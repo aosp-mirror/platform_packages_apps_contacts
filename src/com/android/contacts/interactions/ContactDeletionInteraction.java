@@ -102,6 +102,16 @@ public class ContactDeletionInteraction extends Fragment
         mContext = activity;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (mDialog != null && mDialog.isShowing()) {
+            mDialog.setOnDismissListener(null);
+            mDialog.dismiss();
+            mDialog = null;
+        }
+    }
+
     public void setContactUri(Uri contactUri) {
         mContactUri = contactUri;
         mActive = true;
@@ -130,6 +140,14 @@ public class ContactDeletionInteraction extends Fragment
             getLoaderManager().initLoader(R.id.dialog_delete_contact_loader_id, args, this);
         }
         super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mDialog != null) {
+            mDialog.hide();
+        }
     }
 
     @Override
