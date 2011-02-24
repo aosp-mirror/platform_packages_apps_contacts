@@ -77,6 +77,10 @@ public class ContactDeletionInteraction extends Fragment
 
     public static ContactDeletionInteraction start(
             Activity activity, Uri contactUri, boolean finishActivityWhenDone) {
+        if (contactUri == null) {
+            return null;
+        }
+
         FragmentManager fragmentManager = activity.getFragmentManager();
         ContactDeletionInteraction fragment =
                 (ContactDeletionInteraction) fragmentManager.findFragmentByTag(FRAGMENT_TAG);
