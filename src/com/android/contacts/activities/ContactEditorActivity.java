@@ -71,6 +71,11 @@ public class ContactEditorActivity extends ContactsActivity
             return;
         }
 
+        if (ACTION_SAVE_COMPLETED.equals(action)) {
+            finish();
+            return;
+        }
+
         setContentView(R.layout.contact_editor_activity);
 
         // This Activity will always fall back to the "top" Contacts screen when touched on the
