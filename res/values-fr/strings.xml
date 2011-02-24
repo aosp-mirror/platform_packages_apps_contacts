@@ -161,12 +161,12 @@
     <string name="simContacts_title" msgid="27341688347689769">"Contacts de carte SIM"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Vous n\'avez aucun contact à afficher. Si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes."</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Vous n\'avez aucun contact à afficher."</string>
-    <!-- syntax error in translation for noContactsHelpText (6450346791169710787) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:560 in java.io.StringReader@34aeffdf)  -->
-    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:567 in java.io.StringReader@4d20a47e)  -->
+    <!-- syntax error in translation for noContactsHelpText (6450346791169710787) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:560 in java.io.StringReader@3ced0338)  -->
+    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:567 in java.io.StringReader@6c6e70c7)  -->
     <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", puis sur :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts vers la tablette ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier les paramètres de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SIM ou SD."\n</li></string>
     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier le paramètre de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SIM ou SD."\n</li></string>
-    <!-- syntax error in translation for noContactsNoSimHelpText (6031363021287849874) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:565 in java.io.StringReader@1a0f73c1)  -->
-    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:571 in java.io.StringReader@6c789144)  -->
+    <!-- syntax error in translation for noContactsNoSimHelpText (6031363021287849874) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:565 in java.io.StringReader@42b988a6)  -->
+    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:571 in java.io.StringReader@5829428e)  -->
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", puis sur :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts vers la tablette ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier les paramètres de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SD."\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier le paramètre de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SD."\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Vous ne disposez d\'aucun favoris."\n\n"Pour ajouter un contact à la liste de favoris :"\n\n"        "<li>"Appuyez sur l\'onglet "<b>"Contacts"</b>"."\n</li>" "\n<li>"Appuyez sur le contact à ajouter à vos favoris."\n</li>" "\n<li>"Appuyez sur l\'étoile en regard du nom du contact."\n</li></string>
@@ -208,33 +208,32 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"photo du contact"</string>
     <string name="description_minus_button" msgid="387136707700230172">"moins"</string>
     <string name="description_plus_button" msgid="515164827856229880">"plus"</string>
-    <!-- outdated translation 5362631473262100989 -->     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"Mémoire de stockage USB indisponible"</string>
+    <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"Mémoire non disponible"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Aucune carte SD trouvée"</string>
-    <!-- outdated translation 8045830739790534254 -->     <string name="no_sdcard_message" product="nosdcard" msgid="1334170151822669976">"Mémoire de stockage USB non détectée"</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="1334170151822669976">"Aucune mémoire stockage détectée"</string>
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Aucune carte SD n\'a été détectée."</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Recherche des données VCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importer à partir de la carte SIM"</string>
-    <!-- outdated translation 8294728696808674154 -->     <string name="import_from_sdcard" product="nosdcard" msgid="8668347930577565175">"Importer depuis mémoire USB"</string>
+    <string name="import_from_sdcard" product="nosdcard" msgid="8668347930577565175">"Importer depuis mémoire"</string>
     <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Importer à partir de la carte SD"</string>
-    <!-- outdated translation 7201274701382901259 -->     <string name="export_to_sdcard" product="nosdcard" msgid="6092815580965201089">"Exporter vers mémoire USB"</string>
+    <string name="export_to_sdcard" product="nosdcard" msgid="6092815580965201089">"Exporter vers la mémoire"</string>
     <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Exporter vers la carte SD"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Partager les contacts visibles"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Importer un fichier vCard"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Importer plusieurs fichiers vCard"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Importer tous les fichiers vCard"</string>
-    <!-- outdated translation 8214795338181412751 -->     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Recherche de données VCard sur la mémoire de stockage USB"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Recherche de données vCard sur la mémoire de stockage"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Recherche de données VCard sur la carte SD"</string>
-    <!-- outdated translation 7447077516493667568 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="6957414493948497249">"Impossible d\'analyser la mémoire de stockage USB"</string>
+    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="6957414493948497249">"Échec de la recherche dans la mémoire de stockage"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Échec de l\'analyse de la carte SD"</string>
-    <!-- no translation found for scanning_sdcard_failed_message (4106156155205860626) -->
-    <skip />
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="4106156155205860626">"Échec de la recherche dans la mémoire de stockage (Raison : \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Échec de l\'analyse de la carte SD (Raison : \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Erreur d\'E/S"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Mémoire insuffisante (fichier probablement trop volumineux)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Échec de l\'analyse des données VCard pour une raison inattendue"</string>
     <string name="fail_reason_not_supported" msgid="294499264620201243">"Le format n\'est pas compatible."</string>
     <string name="vcard_import_failed" msgid="7718330063493653085">"Échec de l\'importation du fichier vCard"</string>
-    <!-- outdated translation 1730986357514922756 -->     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"Aucun fichier vCard trouvé sur la carte SD"</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"Aucun fichier vCard trouvé sur la mémoire de stockage"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Aucun fichier vCard trouvé sur la carte SD"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Échec de la collecte des métadonnées contenues dans le(s) fichier(s) vCard"</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Échec de l\'importation d\'un ou de plusieurs fichiers (%s)"</string>
@@ -260,7 +259,7 @@
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Échec lors de l\'exportation des données du contact"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Échec lors de l\'exportation des données du contact."\n"Motif : \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Aucun contact exportable"</string>
-    <!-- outdated translation 2638638826954895225 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"La mémoire de stockage USB contient trop de fichiers VCard."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"La mémoire de stockage contient trop de fichiers vCard."</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"La carte SD contient trop de fichiers VCard."</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Le nom de fichier requis est trop long (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="exporting_vcard_finished_title" msgid="4259736138838583213">"Fichier vCard <xliff:g id="FILENAME">%s</xliff:g> exporté"</string>
