@@ -44,7 +44,8 @@ public class CallContactActivity extends ContactsActivity implements OnDismissLi
             finish();
         }
 
-        // If we are being invoked with a saved state, rely on Activity to restore it
+        // If this method is being invoked with a saved state, rely on Activity
+        // to restore it
         if (savedInstanceState != null) {
             return;
         }
@@ -57,6 +58,7 @@ public class CallContactActivity extends ContactsActivity implements OnDismissLi
         }
     }
 
+    @Override
     public void onDismiss(DialogInterface dialog) {
         if (!isChangingConfigurations()) {
             finish();
