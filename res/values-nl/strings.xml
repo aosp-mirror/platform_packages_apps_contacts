@@ -285,7 +285,7 @@
     <string name="call_disambig_title" msgid="1911302597959335178">"Bellen met"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Sms\'en met"</string>
     <string name="make_primary" msgid="5829291915305113983">"Deze keuze onthouden"</string>
-    <string name="quickcontact_missing_app" msgid="4600366393134289038">"Er is geen toepassing gevonden om deze actie uit te voeren"</string>
+    <string name="quickcontact_missing_app" msgid="4600366393134289038">"Er is geen app gevonden om deze actie uit te voeren"</string>
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Deze keuze onthouden"</string>
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"Onbekend"</string>
     <string name="quickcontact_no_data" msgid="2098000859125253675">"Geen gegevens"</string>
@@ -417,7 +417,7 @@
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Lijst met contacten wordt bijgewerkt om de gewijzigde taal te weerspiegelen."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Lijst met contactpersonen wordt bijgewerkt."</string>
     <string name="upgrade_out_of_memory" msgid="6153384328042175667">"Contacten worden bijgewerkt. "\n\n"Voor het upgradeproces is ongeveer <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB interne telefoonopslag vereist."\n\n"Kies een van de volgende opties."</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Verwijder enkele toepassingen"</string>
+    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Verwijder enkele apps"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Upgrade opnieuw proberen"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"Zoeken..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Selectie weergeven"</string>
