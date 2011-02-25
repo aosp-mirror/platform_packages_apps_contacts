@@ -442,6 +442,10 @@ public class EntityModifier {
      * terms of {@link DataKind#fieldList}.
      */
     public static boolean isEmpty(ValuesDelta values, DataKind kind) {
+        if (Photo.CONTENT_ITEM_TYPE.equals(kind.mimeType)) {
+            return false;
+        }
+
         // No defined fields mean this row is always empty
         if (kind.fieldList == null) return true;
 
