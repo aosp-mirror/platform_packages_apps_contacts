@@ -809,7 +809,8 @@ public class ContactEditorFragment extends Fragment implements
     }
 
     private boolean revert() {
-        if (mState == null || mState.buildDiff().isEmpty()) {
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
+        if (mState == null || !EntityModifier.hasChanges(mState, accountTypes)) {
             doRevertAction();
         } else {
             CancelEditDialogFragment.show(this);

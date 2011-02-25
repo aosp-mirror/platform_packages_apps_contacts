@@ -443,22 +443,21 @@ public class EntityModifier {
      */
     public static boolean isEmpty(ValuesDelta values, DataKind kind) {
         if (Photo.CONTENT_ITEM_TYPE.equals(kind.mimeType)) {
-            return false;
+            return values.isInsert() && values.getAsByteArray(Photo.PHOTO) == null;
         }
 
         // No defined fields mean this row is always empty
         if (kind.fieldList == null) return true;
 
-        boolean hasValues = false;
         for (EditField field : kind.fieldList) {
             // If any field has values, we're not empty
             final String value = values.getAsString(field.column);
             if (ContactsUtils.isGraphic(value)) {
-                hasValues = true;
+                return false;
             }
         }
 
-        return !hasValues;
+        return true;
     }
 
     /**
