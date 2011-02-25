@@ -269,7 +269,13 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         }
 
         final View newField = createEditorView(values);
-        newField.requestFocus();
+        post(new Runnable() {
+
+            @Override
+            public void run() {
+                newField.requestFocus();
+            }
+        });
 
         // For non-lists (e.g. Notes we can only have one field. in that case we need to disable
         // the add button

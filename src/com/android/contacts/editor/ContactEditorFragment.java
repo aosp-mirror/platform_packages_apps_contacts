@@ -234,6 +234,7 @@ public class ContactEditorFragment extends Fragment implements
     private boolean mAutoAddToDefaultGroup;
 
     private boolean mEnabled = true;
+    private boolean mRequestFocus;
 
     public ContactEditorFragment() {
     }
@@ -412,6 +413,8 @@ public class ContactEditorFragment extends Fragment implements
         setIntentExtras(mIntentExtras);
         mIntentExtras = null;
 
+        mRequestFocus = true;
+
         bindEditors();
     }
 
@@ -508,6 +511,8 @@ public class ContactEditorFragment extends Fragment implements
             mState.add(insert);
         }
 
+        mRequestFocus = true;
+
         bindEditors();
     }
 
@@ -552,6 +557,10 @@ public class ContactEditorFragment extends Fragment implements
             if (editor instanceof RawContactEditorView) {
                 final RawContactEditorView rawContactEditor = (RawContactEditorView) editor;
                 final TextFieldsEditorView nameEditor = rawContactEditor.getNameEditor();
+                if (mRequestFocus) {
+                    nameEditor.requestFocus();
+                    mRequestFocus = false;
+                }
                 nameEditor.setEditorListener(new EditorListener() {
 
                     @Override
@@ -572,6 +581,8 @@ public class ContactEditorFragment extends Fragment implements
             }
         }
 
+        mRequestFocus = false;
+
         bindGroupMetaData();
 
         // Show editor now that we've loaded state
@@ -581,6 +592,7 @@ public class ContactEditorFragment extends Fragment implements
         // Activity can be null if we have been detached from the Activity
         final Activity activity = getActivity();
         if (activity != null) activity.invalidateOptionsMenu();
+
     }
 
     private void bindGroupMetaData() {
