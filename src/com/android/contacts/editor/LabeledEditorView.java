@@ -35,6 +35,7 @@ import android.content.Entity;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -326,11 +327,9 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void onFieldChanged(String column, String value) {
-        String oldValue = mEntry.getAsString(column);
-        if (oldValue == null && value.equals("") || oldValue != null && oldValue.equals(value)) {
+        if (!isFieldChanged(column, value)) {
             return;
         }
 
@@ -339,6 +338,11 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
         if (mListener != null) {
             mListener.onRequest(EditorListener.FIELD_CHANGED);
         }
+    }
+
+    protected boolean isFieldChanged(String column, String value) {
+        String oldValue = mEntry.getAsString(column);
+        return !TextUtils.equals(oldValue, value);
     }
 
     protected void rebuildValues() {

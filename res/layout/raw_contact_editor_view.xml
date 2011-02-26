@@ -96,7 +96,7 @@
 
         </FrameLayout>
 
-        <com.android.contacts.editor.TextFieldsEditorView
+        <com.android.contacts.editor.StructuredNameEditorView
             android:id="@+id/edit_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
