@@ -1097,10 +1097,12 @@ public class ContactEditorFragment extends Fragment implements
      * Returns the contact ID for the currently edited contact or 0 if the contact is new.
      */
     protected long getContactId() {
-        for (EntityDelta rawContact : mState) {
-            Long contactId = rawContact.getValues().getAsLong(RawContacts.CONTACT_ID);
-            if (contactId != null) {
-                return contactId;
+        if (mState != null) {
+            for (EntityDelta rawContact : mState) {
+                Long contactId = rawContact.getValues().getAsLong(RawContacts.CONTACT_ID);
+                if (contactId != null) {
+                    return contactId;
+                }
             }
         }
         return 0;
