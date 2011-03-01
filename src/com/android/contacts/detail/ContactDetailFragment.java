@@ -444,7 +444,6 @@ public class ContactDetailFragment extends Fragment implements
                         entry.actionIcon = -1;
                     }
 
-
                     // Remember super-primary phone
                     if (isSuperPrimary) mPrimaryPhoneUri = entry.uri;
 
@@ -472,7 +471,8 @@ public class ContactDetailFragment extends Fragment implements
                 } else if (StructuredPostal.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     // Build postal entries
                     entry.maxLines = 4;
-                    entry.intent = new Intent(Intent.ACTION_VIEW, entry.uri);
+                    entry.intent = new Intent(
+                            Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + Uri.encode(entry.data)));
                     mPostalEntries.add(entry);
                 } else if (Im.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     // Build IM entries
