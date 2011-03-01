@@ -222,34 +222,38 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
     @Override
     protected void onRestoreInstanceState(Parcelable state) {
         SavedState ss = (SavedState) state;
-        super.onRestoreInstanceState(ss.getSuperState());
+        super.onRestoreInstanceState(ss.mSuperState);
 
         mChanged = ss.mChanged;
         mSnapshot = ss.mSnapshot;
     }
 
-    private static class SavedState extends BaseSavedState {
+    private static class SavedState implements Parcelable {
         public boolean mChanged;
         public ContentValues mSnapshot;
+        public Parcelable mSuperState;
 
         SavedState(Parcelable superState) {
-            super(superState);
+            mSuperState = superState;
         }
 
         private SavedState(Parcel in) {
-            super(in);
+            ClassLoader loader = getClass().getClassLoader();
+            mSuperState = in.readParcelable(loader);
+
             mChanged = in.readInt() != 0;
-            mSnapshot = in.readParcelable(SavedState.class.getClassLoader());
+            mSnapshot = in.readParcelable(loader);
         }
 
         @Override
         public void writeToParcel(Parcel out, int flags) {
-            super.writeToParcel(out, flags);
+            out.writeParcelable(mSuperState, 0);
+
             out.writeInt(mChanged ? 1 : 0);
             out.writeParcelable(mSnapshot, 0);
         }
 
-        @SuppressWarnings({"unused", "hiding" })
+        @SuppressWarnings({"unused"})
         public static final Parcelable.Creator<SavedState> CREATOR
                 = new Parcelable.Creator<SavedState>() {
             @Override
@@ -262,5 +266,10 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
                 return new SavedState[size];
             }
         };
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
     }
 }
