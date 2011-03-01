@@ -60,6 +60,7 @@ import android.net.WebAddress;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
@@ -409,7 +410,8 @@ public class ContactDetailFragment extends Fragment implements
                 if (kind == null) continue;
 
                 final ViewEntry entry = ViewEntry.fromValues(mContext, mimeType, kind, dataId,
-                        entryValues);
+                        entryValues, mContactData.isDirectoryEntry(),
+                        mContactData.getDirectoryId());
 
                 final boolean hasData = !TextUtils.isEmpty(entry.data);
                 Integer superPrimary = entryValues.getAsInteger(Data.IS_SUPER_PRIMARY);
@@ -462,8 +464,9 @@ public class ContactDetailFragment extends Fragment implements
                         final String imMime = Im.CONTENT_ITEM_TYPE;
                         final DataKind imKind = accountTypes.getKindOrFallback(accountType,
                                 imMime);
-                        final ViewEntry imEntry = ViewEntry.fromValues(mContext,
-                                imMime, imKind, dataId, entryValues);
+                        final ViewEntry imEntry = ViewEntry.fromValues(mContext, imMime, imKind,
+                                dataId, entryValues, mContactData.isDirectoryEntry(),
+                                mContactData.getDirectoryId());
                         buildImActions(imEntry, entryValues);
                         imEntry.applyStatus(status, false);
                         mImEntries.add(imEntry);
@@ -546,7 +549,8 @@ public class ContactDetailFragment extends Fragment implements
                     mRelationEntries.add(entry);
                 } else {
                     // Handle showing custom rows
-                    entry.intent = new Intent(Intent.ACTION_VIEW, entry.uri);
+                    entry.intent = new Intent(Intent.ACTION_VIEW);
+                    entry.intent.setDataAndType(entry.uri, entry.mimetype);
 
                     // Use social summary when requested by external source
                     final DataStatus status = mContactData.getStatuses().get(entry.id);
@@ -720,11 +724,15 @@ public class ContactDetailFragment extends Fragment implements
          * Build new {@link ViewEntry} and populate from the given values.
          */
         public static ViewEntry fromValues(Context context, String mimeType, DataKind kind,
-                long dataId, ContentValues values) {
+                long dataId, ContentValues values, boolean isDirectoryEntry, long directoryId) {
             final ViewEntry entry = new ViewEntry();
             entry.context = context;
             entry.id = dataId;
             entry.uri = ContentUris.withAppendedId(Data.CONTENT_URI, entry.id);
+            if (isDirectoryEntry) {
+                entry.uri = entry.uri.buildUpon().appendQueryParameter(
+                        ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(directoryId)).build();
+            }
             entry.mimetype = mimeType;
             entry.kind = (kind.titleRes == -1 || kind.titleRes == 0) ? ""
                     : context.getString(kind.titleRes);
