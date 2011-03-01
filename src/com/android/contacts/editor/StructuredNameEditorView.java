@@ -65,9 +65,10 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
         super.setValues(kind, entry, state, readOnly, vig);
         if (mSnapshot == null) {
             mSnapshot = new ContentValues(getValues().getCompleteValues());
+            mChanged = entry.isInsert();
+        } else {
+            mChanged = false;
         }
-
-        mChanged = false;
     }
 
     @Override

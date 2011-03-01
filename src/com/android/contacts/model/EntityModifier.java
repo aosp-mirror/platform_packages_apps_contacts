@@ -26,13 +26,12 @@ import com.google.android.collect.Lists;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
-import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.Intents;
-import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.BaseTypes;
 import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Note;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
@@ -40,7 +39,10 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
+import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.Intents.Insert;
+import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseIntArray;
@@ -489,28 +491,8 @@ public class EntityModifier {
             return;
         }
 
-        {
-            // StructuredName
-            EntityModifier.ensureKindExists(state, accountType, StructuredName.CONTENT_ITEM_TYPE);
-            final ValuesDelta child = state.getPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
-
-            final String name = extras.getString(Insert.NAME);
-            if (ContactsUtils.isGraphic(name)) {
-                child.put(StructuredName.DISPLAY_NAME, name);
-            }
-
-            final String phoneticName = extras.getString(Insert.PHONETIC_NAME);
-            if (ContactsUtils.isGraphic(phoneticName)) {
-                child.put(StructuredName.PHONETIC_GIVEN_NAME, phoneticName);
-            }
-        }
-
-        {
-            // StructuredPostal
-            final DataKind kind = accountType.getKindForMimetype(StructuredPostal.CONTENT_ITEM_TYPE);
-            parseExtras(state, kind, extras, Insert.POSTAL_TYPE, Insert.POSTAL,
-                    StructuredPostal.FORMATTED_ADDRESS);
-        }
+        parseStructuredNameExtra(context, accountType, state, extras);
+        parseStructuredPostalExtra(accountType, state, extras);
 
         {
             // Phone
@@ -573,6 +555,87 @@ public class EntityModifier {
         ArrayList<ContentValues> values = extras.getParcelableArrayList(Insert.DATA);
         if (values != null) {
             parseValues(state, accountType, values);
+        }
+    }
+
+    private static void parseStructuredNameExtra(
+            Context context, AccountType accountType, EntityDelta state, Bundle extras) {
+        // StructuredName
+        EntityModifier.ensureKindExists(state, accountType, StructuredName.CONTENT_ITEM_TYPE);
+        final ValuesDelta child = state.getPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
+
+        final String name = extras.getString(Insert.NAME);
+        if (ContactsUtils.isGraphic(name)) {
+            final DataKind kind = accountType.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE);
+            boolean supportsDisplayName = false;
+            if (kind.fieldList != null) {
+                for (EditField field : kind.fieldList) {
+                    if (StructuredName.DISPLAY_NAME.equals(field.column)) {
+                        supportsDisplayName = true;
+                        break;
+                    }
+                }
+            }
+
+            if (supportsDisplayName) {
+                child.put(StructuredName.DISPLAY_NAME, name);
+            } else {
+                Uri uri = ContactsContract.AUTHORITY_URI.buildUpon()
+                        .appendPath("complete_name")
+                        .appendQueryParameter(StructuredName.DISPLAY_NAME, name)
+                        .build();
+                Cursor cursor = context.getContentResolver().query(uri,
+                        new String[]{
+                                StructuredName.PREFIX,
+                                StructuredName.GIVEN_NAME,
+                                StructuredName.MIDDLE_NAME,
+                                StructuredName.FAMILY_NAME,
+                                StructuredName.SUFFIX,
+                        }, null, null, null);
+
+                try {
+                    if (cursor.moveToFirst()) {
+                        child.put(StructuredName.PREFIX, cursor.getString(0));
+                        child.put(StructuredName.GIVEN_NAME, cursor.getString(1));
+                        child.put(StructuredName.MIDDLE_NAME, cursor.getString(2));
+                        child.put(StructuredName.FAMILY_NAME, cursor.getString(3));
+                        child.put(StructuredName.SUFFIX, cursor.getString(4));
+                    }
+                } finally {
+                    cursor.close();
+                }
+            }
+        }
+
+        final String phoneticName = extras.getString(Insert.PHONETIC_NAME);
+        if (ContactsUtils.isGraphic(phoneticName)) {
+            child.put(StructuredName.PHONETIC_GIVEN_NAME, phoneticName);
+        }
+    }
+
+    private static void parseStructuredPostalExtra(
+            AccountType accountType, EntityDelta state, Bundle extras) {
+        // StructuredPostal
+        final DataKind kind = accountType.getKindForMimetype(StructuredPostal.CONTENT_ITEM_TYPE);
+        final ValuesDelta child = parseExtras(state, kind, extras, Insert.POSTAL_TYPE,
+                Insert.POSTAL, StructuredPostal.FORMATTED_ADDRESS);
+        String address = child == null ? null
+                : child.getAsString(StructuredPostal.FORMATTED_ADDRESS);
+        if (!TextUtils.isEmpty(address)) {
+            boolean supportsFormatted = false;
+            if (kind.fieldList != null) {
+                for (EditField field : kind.fieldList) {
+                    if (StructuredPostal.FORMATTED_ADDRESS.equals(field.column)) {
+                        supportsFormatted = true;
+                        break;
+                    }
+                }
+            }
+
+            if (!supportsFormatted) {
+                child.put(StructuredPostal.STREET, address);
+                child.putNull(StructuredPostal.FORMATTED_ADDRESS);
+            }
         }
     }
 
@@ -755,6 +818,7 @@ public class EntityModifier {
      * Attempt to parse legacy {@link Insert#IM_PROTOCOL} values, replacing them
      * with updated values.
      */
+    @SuppressWarnings("deprecation")
     private static void fixupLegacyImType(Bundle bundle) {
         final String encodedString = bundle.getString(Insert.IM_PROTOCOL);
         if (encodedString == null) return;
@@ -782,17 +846,17 @@ public class EntityModifier {
      * @param valueExtra {@link Bundle} key that holds the incoming value.
      * @param valueColumn Column to write value into {@link ValuesDelta}.
      */
-    public static void parseExtras(EntityDelta state, DataKind kind, Bundle extras,
+    public static ValuesDelta parseExtras(EntityDelta state, DataKind kind, Bundle extras,
             String typeExtra, String valueExtra, String valueColumn) {
         final CharSequence value = extras.getCharSequence(valueExtra);
 
         // Bail early if account type doesn't handle this MIME type
-        if (kind == null) return;
+        if (kind == null) return null;
 
         // Bail when can't insert type, or value missing
         final boolean canInsert = EntityModifier.canInsert(state, kind);
         final boolean validValue = (value != null && TextUtils.isGraphic(value));
-        if (!validValue || !canInsert) return;
+        if (!validValue || !canInsert) return null;
 
         // Find exact type when requested, otherwise best available type
         final boolean hasType = extras.containsKey(typeExtra);
@@ -809,5 +873,7 @@ public class EntityModifier {
             final String customType = extras.getString(typeExtra);
             child.put(editType.customColumn, customType);
         }
+
+        return child;
     }
 }
