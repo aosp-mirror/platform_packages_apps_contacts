@@ -73,6 +73,8 @@ public class ExternalAccountType extends BaseAccountType {
 
         // Bring in name and photo from fallback source, which are non-optional
         addDataKindStructuredName(context);
+        addDataKindDisplayName(context);
+        addDataKindPhoneticName(context);
         addDataKindPhoto(context);
     }
 

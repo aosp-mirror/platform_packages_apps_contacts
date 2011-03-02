@@ -166,6 +166,11 @@ public abstract class AccountType {
      * labels and editable {@link EditField}.
      */
     public static class DataKind {
+
+        public static final String PSEUDO_MIME_TYPE_DISPLAY_NAME = "#displayName";
+        public static final String PSEUDO_MIME_TYPE_PHONETIC_NAME = "#phoneticName";
+        public static final String PSEUDO_COLUMN_PHONETIC_NAME = "#phoneticName";
+
         public String resPackageName;
         public String mimeType;
         public int titleRes;

@@ -47,6 +47,8 @@ public class ExchangeAccountType extends BaseAccountType {
         this.summaryResPackageName = resPackageName;
 
         addDataKindStructuredName(context);
+        addDataKindDisplayName(context);
+        addDataKindPhoneticName(context);
         addDataKindNickname(context);
         addDataKindPhone(context);
         addDataKindEmail(context);
@@ -62,7 +64,37 @@ public class ExchangeAccountType extends BaseAccountType {
 
     @Override
     protected DataKind addDataKindStructuredName(Context context) {
-        final DataKind kind = super.addDataKindStructuredName(context);
+        DataKind kind = addKind(new DataKind(StructuredName.CONTENT_ITEM_TYPE,
+                R.string.nameLabelsGroup, -1, -1, true));
+        kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
+        kind.actionBody = new SimpleInflater(Nickname.NAME);
+
+        kind.typeOverallMax = 1;
+
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
+                FLAGS_PERSON_NAME).setOptional(true));
+        kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME,
+                R.string.name_family, FLAGS_PERSON_NAME));
+        kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME,
+                R.string.name_middle, FLAGS_PERSON_NAME));
+        kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME,
+                R.string.name_given, FLAGS_PERSON_NAME));
+        kind.fieldList.add(new EditField(StructuredName.SUFFIX,
+                R.string.name_suffix, FLAGS_PERSON_NAME));
+
+        kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
+                R.string.name_phonetic_family, FLAGS_PHONETIC));
+        kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
+                R.string.name_phonetic_given, FLAGS_PHONETIC));
+
+        return kind;
+    }
+
+    @Override
+    protected DataKind addDataKindDisplayName(Context context) {
+        DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME,
+                R.string.nameLabelsGroup, -1, -1, true));
 
         boolean displayOrderPrimary =
                 context.getResources().getBoolean(R.bool.config_editor_field_order_primary);
@@ -78,8 +110,6 @@ public class ExchangeAccountType extends BaseAccountType {
                     R.string.name_middle, FLAGS_PERSON_NAME).setOptional(true));
             kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME,
                     R.string.name_given, FLAGS_PERSON_NAME));
-            kind.fieldList.add(new EditField(StructuredName.SUFFIX,
-                    R.string.name_suffix, FLAGS_PERSON_NAME).setOptional(true));
         } else {
             kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME,
                     R.string.name_given, FLAGS_PERSON_NAME));
@@ -87,14 +117,27 @@ public class ExchangeAccountType extends BaseAccountType {
                     R.string.name_middle, FLAGS_PERSON_NAME).setOptional(true));
             kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME,
                     R.string.name_family, FLAGS_PERSON_NAME));
-            kind.fieldList.add(new EditField(StructuredName.SUFFIX,
-                    R.string.name_suffix, FLAGS_PERSON_NAME).setOptional(true));
         }
+        kind.fieldList.add(new EditField(StructuredName.SUFFIX,
+                R.string.name_suffix, FLAGS_PERSON_NAME).setOptional(true));
 
+        return kind;
+    }
+
+    @Override
+    protected DataKind addDataKindPhoneticName(Context context) {
+        DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME,
+                R.string.name_phonetic, -1, -1, true));
+        kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
+        kind.actionBody = new SimpleInflater(Nickname.NAME);
+
+        kind.typeOverallMax = 1;
+
+        kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
-                R.string.name_phonetic_family, FLAGS_PHONETIC).setOptional(true));
+                R.string.name_phonetic_family, FLAGS_PHONETIC));
         kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
-                R.string.name_phonetic_given, FLAGS_PHONETIC).setOptional(true));
+                R.string.name_phonetic_given, FLAGS_PHONETIC));
 
         return kind;
     }
