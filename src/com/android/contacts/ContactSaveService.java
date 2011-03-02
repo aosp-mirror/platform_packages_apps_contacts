@@ -23,6 +23,7 @@ import com.google.android.collect.Lists;
 import com.google.android.collect.Sets;
 
 import android.accounts.Account;
+import android.app.Activity;
 import android.app.IntentService;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderOperation.Builder;
@@ -51,6 +52,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -112,9 +114,34 @@ public class ContactSaveService extends IntentService {
 
     private static final int PERSIST_TRIES = 3;
 
+    public interface Listener {
+        public void onServiceCompleted(Intent callbackIntent);
+    }
+
+    private static final LinkedList<Listener> sListeners = new LinkedList<Listener>();
+
+    private Handler mMainHandler;
+
     public ContactSaveService() {
         super(TAG);
         setIntentRedelivery(true);
+        mMainHandler = new Handler(Looper.getMainLooper());
+    }
+
+    public static void registerListener(Listener listener) {
+        if (!(listener instanceof Activity)) {
+            throw new ClassCastException("Only activities can be registered to"
+                    + " receive callback from " + ContactSaveService.class.getName());
+        }
+        synchronized (sListeners) {
+            sListeners.addFirst(listener);
+        }
+    }
+
+    public static void unregisterListener(Listener listener) {
+        synchronized (sListeners) {
+            sListeners.remove(listener);
+        }
     }
 
     @Override
@@ -175,8 +202,6 @@ public class ContactSaveService extends IntentService {
         // the callback intent.
         Intent callbackIntent = new Intent(context, callbackActivity);
         callbackIntent.setAction(callbackAction);
-        callbackIntent.setFlags(
-                Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
         return serviceIntent;
     }
@@ -214,7 +239,7 @@ public class ContactSaveService extends IntentService {
         Uri rawContactUri = results[0].uri;
         callbackIntent.setData(RawContacts.getContactLookupUri(resolver, rawContactUri));
 
-        startActivity(callbackIntent);
+        deliverCallback(callbackIntent);
     }
 
     /**
@@ -235,8 +260,6 @@ public class ContactSaveService extends IntentService {
         Intent callbackIntent = new Intent(context, callbackActivity);
         callbackIntent.putExtra(saveModeExtraKey, saveMode);
         callbackIntent.setAction(callbackAction);
-        callbackIntent.setFlags(
-                Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
         return serviceIntent;
     }
@@ -309,7 +332,7 @@ public class ContactSaveService extends IntentService {
 
         callbackIntent.setData(lookupUri);
 
-        startActivity(callbackIntent);
+        deliverCallback(callbackIntent);
     }
 
     private long getRawContactId(EntityDeltaList state,
@@ -348,8 +371,6 @@ public class ContactSaveService extends IntentService {
         // of the callback intent.
         Intent callbackIntent = new Intent(context, callbackActivity);
         callbackIntent.setAction(callbackAction);
-        callbackIntent.setFlags(
-                Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
 
         return serviceIntent;
@@ -377,7 +398,7 @@ public class ContactSaveService extends IntentService {
         Intent callbackIntent = intent.getParcelableExtra(EXTRA_CALLBACK_INTENT);
         callbackIntent.putExtra(ContactsContract.Intents.Insert.DATA, Lists.newArrayList(values));
 
-        startActivity(callbackIntent);
+        deliverCallback(callbackIntent);
     }
 
     /**
@@ -541,8 +562,6 @@ public class ContactSaveService extends IntentService {
         // Callback intent will be invoked by the service once the contacts are joined.
         Intent callbackIntent = new Intent(context, callbackActivity);
         callbackIntent.setAction(callbackAction);
-        callbackIntent.setFlags(
-                Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
 
         return serviceIntent;
@@ -657,7 +676,7 @@ public class ContactSaveService extends IntentService {
                     ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactIds[0]));
             callbackIntent.setData(uri);
         }
-        startActivity(callbackIntent);
+        deliverCallback(callbackIntent);
     }
 
     /**
@@ -677,12 +696,37 @@ public class ContactSaveService extends IntentService {
      * Shows a toast on the UI thread.
      */
     private void showToast(final int message) {
-        new Handler(Looper.getMainLooper()).post(new Runnable() {
+        mMainHandler.post(new Runnable() {
 
             @Override
             public void run() {
                 Toast.makeText(ContactSaveService.this, message, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void deliverCallback(final Intent callbackIntent) {
+        mMainHandler.post(new Runnable() {
+
+            @Override
+            public void run() {
+                deliverCallbackOnUiThread(callbackIntent);
+            }
+        });
+    }
+
+    void deliverCallbackOnUiThread(final Intent callbackIntent) {
+        // TODO: this assumes that if there are multiple instances of the same
+        // activity registered, the last one registered is the one waiting for
+        // the callback. Validity of this assumption needs to be verified.
+        synchronized (sListeners) {
+            for (Listener listener : sListeners) {
+                if (callbackIntent.getComponent().equals(
+                        ((Activity) listener).getIntent().getComponent())) {
+                    listener.onServiceCompleted(callbackIntent);
+                    return;
+                }
+            }
+        }
     }
 }

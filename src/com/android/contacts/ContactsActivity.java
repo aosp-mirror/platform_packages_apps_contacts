@@ -20,12 +20,16 @@ import com.android.contacts.test.InjectedServices;
 
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 
 /**
  * A common superclass for Contacts activities that handles application-wide services.
  */
-public abstract class ContactsActivity extends Activity {
+public abstract class ContactsActivity extends Activity
+    implements ContactSaveService.Listener
+{
 
     private ContentResolver mContentResolver;
 
@@ -64,5 +68,22 @@ public abstract class ContactsActivity extends Activity {
         }
 
         return getApplicationContext().getSystemService(name);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        ContactSaveService.registerListener(this);
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onDestroy() {
+        ContactSaveService.unregisterListener(this);
+        super.onDestroy();
+    }
+
+    @Override
+    public void onServiceCompleted(Intent callbackIntent) {
+        onNewIntent(callbackIntent);
     }
 }
