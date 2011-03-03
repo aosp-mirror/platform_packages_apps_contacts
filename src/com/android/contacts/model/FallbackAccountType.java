@@ -31,6 +31,8 @@ public class FallbackAccountType extends BaseAccountType {
         this.summaryResPackageName = resPackageName;
 
         addDataKindStructuredName(context);
+        addDataKindDisplayName(context);
+        addDataKindPhoneticName(context);
         addDataKindNickname(context);
         addDataKindPhone(context);
         addDataKindEmail(context);

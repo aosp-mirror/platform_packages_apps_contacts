@@ -62,7 +62,8 @@ import java.util.ArrayList;
 public class RawContactEditorView extends BaseRawContactEditorView {
     private LayoutInflater mInflater;
 
-    private TextFieldsEditorView mName;
+    private StructuredNameEditorView mName;
+    private PhoneticNameEditorView mPhoneticName;
     private GroupMembershipView mGroupMembershipView;
 
     private ViewGroup mFields;
@@ -79,6 +80,8 @@ public class RawContactEditorView extends BaseRawContactEditorView {
     private DataKind mGroupMembershipKind;
     private EntityDelta mState;
 
+    private boolean mPhoneticNameAdded;
+
     public RawContactEditorView(Context context) {
         super(context);
     }
@@ -93,11 +96,15 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
         View view = getPhotoEditor();
         if (view != null) {
-            view.setEnabled(isEnabled());
+            view.setEnabled(enabled);
         }
 
         if (mName != null) {
-            mName.setEnabled(isEnabled());
+            mName.setEnabled(enabled);
+        }
+
+        if (mPhoneticName != null) {
+            mPhoneticName.setEnabled(enabled);
         }
 
         if (mFields != null) {
@@ -111,7 +118,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
             mGroupMembershipView.setEnabled(enabled);
         }
 
-        mAddFieldButton.setEnabled(isEnabled());
+        mAddFieldButton.setEnabled(enabled);
     }
 
     @Override
@@ -122,9 +129,11 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
         final int photoSize = getResources().getDimensionPixelSize(R.dimen.edit_photo_size);
 
-        mName = (TextFieldsEditorView)findViewById(R.id.edit_name);
+        mName = (StructuredNameEditorView)findViewById(R.id.edit_name);
         mName.setMinimumHeight(photoSize);
         mName.setDeletable(false);
+
+        mPhoneticName = (PhoneticNameEditorView)findViewById(R.id.edit_phonetic_name);
 
         mFields = (ViewGroup)findViewById(R.id.sect_fields);
 
@@ -185,9 +194,12 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         mName.setEditorTextSize(
                 mContext.getResources().getDimensionPixelSize(R.dimen.contact_name_text_size));
 
+        mPhoneticName.setEnabled(isEnabled());
+
         // Show and hide the appropriate views
         mFields.setVisibility(View.VISIBLE);
         mName.setVisibility(View.VISIBLE);
+        mPhoneticName.setVisibility(View.VISIBLE);
 
         mGroupMembershipKind = type.getKindForMimetype(GroupMembership.CONTENT_ITEM_TYPE);
         if (mGroupMembershipKind != null) {
@@ -206,7 +218,12 @@ public class RawContactEditorView extends BaseRawContactEditorView {
             if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 // Handle special case editor for structured name
                 final ValuesDelta primary = state.getPrimaryEntry(mimeType);
-                mName.setValues(kind, primary, state, false, vig);
+                mName.setValues(
+                        type.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME),
+                        primary, state, false, vig);
+                mPhoneticName.setValues(
+                        type.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME),
+                        primary, state, false, vig);
             } else if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 // Handle special case editor for photos
                 final ValuesDelta primary = state.getPrimaryEntry(mimeType);
@@ -229,6 +246,8 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         if (mGroupMembershipView != null) {
             mFields.addView(mGroupMembershipView);
         }
+
+        updatePhoneticNameVisibility();
 
         addToDefaultGroupIfNeeded();
 
@@ -307,6 +326,21 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         return mName;
     }
 
+    public TextFieldsEditorView getPhoneticNameEditor() {
+        return mPhoneticName;
+    }
+
+    private void updatePhoneticNameVisibility() {
+        boolean showByDefault =
+                getContext().getResources().getBoolean(R.bool.config_editor_include_phonetic_name);
+
+        if (showByDefault || mPhoneticName.hasData() || mPhoneticNameAdded) {
+            mPhoneticName.setVisibility(View.VISIBLE);
+        } else {
+            mPhoneticName.setVisibility(View.GONE);
+        }
+    }
+
     @Override
     public long getRawContactId() {
         return mRawContactId;
@@ -323,18 +357,34 @@ public class RawContactEditorView extends BaseRawContactEditorView {
             if (child instanceof KindSectionView) {
                 final KindSectionView sectionView = (KindSectionView) child;
                 // not a list and already exists? ignore
-                if (!sectionView.getKind().isList && sectionView.getEditorCount() != 0) {
+                DataKind kind = sectionView.getKind();
+                if (!kind.isList && sectionView.getEditorCount() != 0) {
                     continue;
                 }
+                if (DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME.equals(kind.mimeType)) {
+                    continue;
+                }
+
+                if (DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME.equals(kind.mimeType)
+                        && mPhoneticName.getVisibility() == View.VISIBLE) {
+                    continue;
+                }
+
                 menu.add(Menu.NONE, fields.size(), Menu.NONE, sectionView.getTitle());
                 fields.add(sectionView);
             }
         }
+
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 final KindSectionView view = fields.get(item.getItemId());
-                view.addItem();
+                if (DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME.equals(view.getKind().mimeType)) {
+                    mPhoneticNameAdded = true;
+                    updatePhoneticNameVisibility();
+                } else {
+                    view.addItem();
+                }
                 return true;
             }
         });

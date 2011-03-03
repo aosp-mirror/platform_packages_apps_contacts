@@ -553,12 +553,7 @@ public class ContactEditorFragment extends Fragment implements
                     new PhotoEditorListener(editor, type.readOnly));
             if (editor instanceof RawContactEditorView) {
                 final RawContactEditorView rawContactEditor = (RawContactEditorView) editor;
-                final TextFieldsEditorView nameEditor = rawContactEditor.getNameEditor();
-                if (mRequestFocus) {
-                    nameEditor.requestFocus();
-                    mRequestFocus = false;
-                }
-                nameEditor.setEditorListener(new EditorListener() {
+                EditorListener listener = new EditorListener() {
 
                     @Override
                     public void onRequest(int request) {
@@ -570,8 +565,18 @@ public class ContactEditorFragment extends Fragment implements
                     @Override
                     public void onDeleted(Editor removedEditor) {
                     }
-                });
+                };
 
+                final TextFieldsEditorView nameEditor = rawContactEditor.getNameEditor();
+                if (mRequestFocus) {
+                    nameEditor.requestFocus();
+                    mRequestFocus = false;
+                }
+                nameEditor.setEditorListener(listener);
+
+                final TextFieldsEditorView phoneticNameEditor =
+                        rawContactEditor.getPhoneticNameEditor();
+                phoneticNameEditor.setEditorListener(listener);
                 rawContactEditor.setAutoAddToDefaultGroup(mAutoAddToDefaultGroup);
 
                 if (rawContactId == mAggregationSuggestionsRawContactId) {

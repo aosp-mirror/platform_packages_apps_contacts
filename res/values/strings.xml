@@ -1216,6 +1216,8 @@
     <string name="name_phonetic_middle">Phonetic middle name</string>
     <!-- Field title for the phonetic family name of a contact -->
     <string name="name_phonetic_family">Phonetic family name</string>
+    <!-- Field title for the phonetic name of a contact [CHAR LIMIT=64]-->
+    <string name="name_phonetic">Phonetic name</string>
 
     <!-- String describing which account type a contact came from when editing it -->
     <string name="account_type_format"><xliff:g id="source" example="Gmail">%1$s</xliff:g> contact</string>
