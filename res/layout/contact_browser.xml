@@ -18,4 +18,25 @@
     android:id="@+id/list_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <FrameLayout
+        android:id="@+id/main_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <fragment
+            android:id="@+id/list_fragment"
+            class="com.android.contacts.list.DefaultContactBrowseListFragment"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+        />
+    </FrameLayout>
+    <FrameLayout
+        android:id="@+id/contacts_unavailable_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+        <FrameLayout
+            android:id="@+id/contacts_unavailable_container"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent" />
+    </FrameLayout>
 </FrameLayout>
