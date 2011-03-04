@@ -40,6 +40,7 @@ import android.widget.LinearLayout;
 import java.text.ParsePosition;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Editor that allows editing Events using a {@link DatePickerDialog}
@@ -175,7 +176,7 @@ public class EventFieldEditorView extends LabeledEditorView {
         final String oldValue = getEntry().getAsString(column);
         final DataKind kind = getKind();
 
-        final Calendar calendar = Calendar.getInstance();
+        final Calendar calendar = Calendar.getInstance(DateUtils.UTC_TIMEZONE, Locale.US);
         final int defaultYear = calendar.get(Calendar.YEAR);
 
         // Check whether the year is optional
@@ -206,7 +207,7 @@ public class EventFieldEditorView extends LabeledEditorView {
         final String oldValue = getEntry().getAsString(column);
         final DataKind kind = getKind();
 
-        final Calendar calendar = Calendar.getInstance();
+        final Calendar calendar = Calendar.getInstance(DateUtils.UTC_TIMEZONE, Locale.US);
         final int defaultYear = calendar.get(Calendar.YEAR);
 
         // Check whether the year is optional
@@ -245,7 +246,8 @@ public class EventFieldEditorView extends LabeledEditorView {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 if (year == 0 && !isYearOptional) throw new IllegalStateException();
-                final Calendar outCalendar = Calendar.getInstance();
+                final Calendar outCalendar =
+                        Calendar.getInstance(DateUtils.UTC_TIMEZONE, Locale.US);
 
                 // If no year specified, set it to 1900. The format string will ignore that year
                 // For formats other than Exchange, the time of the day is ignored
