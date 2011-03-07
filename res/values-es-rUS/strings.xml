@@ -41,7 +41,7 @@
     <string name="menu_addStar" msgid="2908478235715404876">"Agregar a favoritos"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Eliminar de favoritos"</string>
     <string name="menu_editContact" msgid="3452858480713561396">"Editar contacto"</string>
-    <string name="menu_deleteContact" msgid="1916555454274101750">"Suprimir contacto"</string>
+    <string name="menu_deleteContact" msgid="1916555454274101750">"Eliminar contacto"</string>
     <string name="menu_call" msgid="3992595586042260618">"Llamar al contacto"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Enviar texto al contacto"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Crear correo electrónico predeterminado"</string>

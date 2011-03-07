@@ -419,7 +419,7 @@
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Kişi listesi, dil değişikliğini yansıtmak üzere güncelleniyor."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kişi listesi güncelleniyor."</string>
     <string name="upgrade_out_of_memory" msgid="6153384328042175667">"Kişilerin yeni sürüme geçirilmesi devam ediyor. "\n\n"Yeni sürüme geçirme işlemi yaklaşık <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> Mb dahili depolama alanı gerektirir."\n\n"Aşağıdaki seçeneklerden birini belirleyin:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Bazı uygulamaları kaldır"</string>
+    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Bazı uygulamaları kaldırın"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Yeni sürüme geçmeyi tekrar dene"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"Aranıyor..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Seçileni göster"</string>
@@ -473,7 +473,7 @@
     <string name="social_widget_loading" msgid="3697996166985327861">"Yükleniyor …"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Yeni kişi oluştur"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Bir hesapta oturum açın"</string>
-    <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Bir dosyadaki kişileri içe aktarma"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Bir dosyadaki kişileri içe aktar"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Yeni grup oluştur"</string>
     <string name="create_group_item_label" msgid="5218022006186243310">"[Yeni grup oluştur]"</string>
     <string name="rename_group_dialog_title" msgid="3765299704290513289">"Grubu yeniden adlandırma"</string>
