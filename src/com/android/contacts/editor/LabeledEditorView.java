@@ -341,8 +341,12 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
     }
 
     protected boolean isFieldChanged(String column, String value) {
-        String oldValue = mEntry.getAsString(column);
-        return !TextUtils.equals(oldValue, value);
+        final String dbValue = mEntry.getAsString(column);
+        // nullable fields (e.g. Middle Name) are usually represented as empty columns,
+        // so lets treat null and empty space equivalently here
+        final String dbValueNoNull = dbValue == null ? "" : dbValue;
+        final String valueNoNull = value == null ? "" : value;
+        return !TextUtils.equals(dbValueNoNull, valueNoNull);
     }
 
     protected void rebuildValues() {
