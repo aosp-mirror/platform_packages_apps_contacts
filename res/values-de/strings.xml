@@ -218,7 +218,7 @@
     <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Von SD-Karte importieren"</string>
     <string name="export_to_sdcard" product="nosdcard" msgid="6092815580965201089">"In Speicher exportieren"</string>
     <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Auf SD-Karte exportieren"</string>
-    <string name="share_visible_contacts" msgid="890150378880783797">"Sichtbare Kontakte weiterleiten"</string>
+    <string name="share_visible_contacts" msgid="890150378880783797">"Sichtbare Kontakte weitergeben"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Eine VCard-Datei importieren"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Mehrere VCard-Dateien importieren"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Alle VCard-Dateien importieren"</string>
@@ -296,8 +296,8 @@
     <string name="menu_import_export" msgid="3765725645491577190">"Importieren/Exportieren"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Kontakte importieren/exportieren"</string>
     <string name="menu_share" msgid="8746849630474240344">"Kontakt weitergeben"</string>
-    <string name="share_via" msgid="563121028023030093">"Kontakt weiterleiten über"</string>
-    <string name="share_error" msgid="4374508848981697170">"Dieser Kontakt kann nicht freigegeben werden."</string>
+    <string name="share_via" msgid="563121028023030093">"Kontakt weitergeben über"</string>
+    <string name="share_error" msgid="4374508848981697170">"Dieser Kontakt kann nicht weitergegeben werden."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Name"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Alias"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Firma/Organisation"</string>
