@@ -16,6 +16,11 @@
 package com.android.contacts.interactions;
 
 
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.PhoneNumberUtil.MatchType;
+import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
+
 import com.android.contacts.Collapser;
 import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.ContactSaveService;
@@ -46,7 +51,7 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
-import android.telephony.PhoneNumberUtils;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -112,8 +117,16 @@ public class PhoneNumberInteraction
         }
 
         public boolean shouldCollapseWith(PhoneItem phoneItem) {
-            if (PhoneNumberUtils.compareStrictly(phoneNumber, phoneItem.phoneNumber)) {
-                return true;
+            try {
+                PhoneNumberUtil util = PhoneNumberUtil.getInstance();
+                PhoneNumber phoneNumber1 = util.parse(phoneNumber, "ZZ" /* Unknown */);
+                PhoneNumber phoneNumber2 = util.parse(phoneItem.phoneNumber, "ZZ" /* Unknown */);
+                MatchType matchType = util.isNumberMatch(phoneNumber1, phoneNumber2);
+                if (matchType == MatchType.SHORT_NSN_MATCH) {
+                    return true;
+                }
+            } catch (NumberParseException e) {
+                return TextUtils.equals(phoneNumber, phoneItem.phoneNumber);
             }
             return false;
         }

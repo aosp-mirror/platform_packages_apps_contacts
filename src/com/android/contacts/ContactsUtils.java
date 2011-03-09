@@ -16,6 +16,11 @@
 
 package com.android.contacts;
 
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.PhoneNumberUtil.MatchType;
+import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
+
 import android.content.Context;
 import android.content.Intent;
 import android.location.CountryDetector;
@@ -114,9 +119,19 @@ public class ContactsUtils {
             if (dataParts1.length != dataParts2.length) {
                 return false;
             }
+            PhoneNumberUtil util = PhoneNumberUtil.getInstance();
             for (int i = 0; i < dataParts1.length; i++) {
-                if (!PhoneNumberUtils.compare(context, dataParts1[i], dataParts2[i])) {
-                    return false;
+                try {
+                    PhoneNumber phoneNumber1 = util.parse(dataParts1[i], "ZZ" /* Unknown */);
+                    PhoneNumber phoneNumber2 = util.parse(dataParts2[i], "ZZ" /* Unknown */);
+                    MatchType matchType = util.isNumberMatch(phoneNumber1, phoneNumber2);
+                    if (matchType != MatchType.SHORT_NSN_MATCH) {
+                        return false;
+                    }
+                } catch (NumberParseException e) {
+                    if (!TextUtils.equals(dataParts1[i], dataParts2[i])) {
+                        return false;
+                    }
                 }
             }
 
