@@ -28,6 +28,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContactsEntity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -135,7 +136,10 @@ public class ExportProcessor extends ProcessorBase {
             final Uri contentUriForRawContactsEntity = RawContactsEntity.CONTENT_URI.buildUpon()
                     .appendQueryParameter(RawContactsEntity.FOR_EXPORT_ONLY, "1")
                     .build();
-            if (!composer.initWithRawContactsEntityUri(contentUriForRawContactsEntity)) {
+            // TODO: should provide better selection.
+            if (!composer.init(Contacts.CONTENT_URI, new String[] {Contacts._ID},
+                    null, null,
+                    null, contentUriForRawContactsEntity)) {
                 final String errorReason = composer.getErrorReason();
                 Log.e(LOG_TAG, "initialization of vCard composer failed: " + errorReason);
                 final String translatedErrorReason =
