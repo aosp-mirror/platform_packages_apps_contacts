@@ -430,8 +430,10 @@ public class EntityModifier {
             if (entries == null) continue;
 
             for (ValuesDelta entry : entries) {
-                if ((entry.isInsert() || entry.isUpdate() || entry.isDelete())
-                        && !isEmpty(entry, kind)) {
+                // An empty Insert must be ignored, because it won't save anything (an example
+                // is an empty name that stays empty)
+                final boolean isRealInsert = entry.isInsert() && !isEmpty(entry, kind);
+                if (isRealInsert || entry.isUpdate() || entry.isDelete()) {
                     return true;
                 }
             }
