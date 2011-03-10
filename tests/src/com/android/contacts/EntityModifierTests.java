@@ -81,45 +81,50 @@ public class EntityModifierTests extends AndroidTestCase {
         MockContactsSource() {
             this.accountType = TEST_ACCOUNT_TYPE;
 
+            final DataKind nameKind = new DataKind(StructuredName.CONTENT_ITEM_TYPE,
+                    R.string.nameLabelsGroup, -1, -1, true);
+            nameKind.typeOverallMax = 1;
+            addKind(nameKind);
+
             // Phone allows maximum 2 home, 1 work, and unlimited other, with
             // constraint of 5 numbers maximum.
-            DataKind kind = new DataKind(Phone.CONTENT_ITEM_TYPE, -1, -1, 10, true);
+            final DataKind phoneKind = new DataKind(Phone.CONTENT_ITEM_TYPE, -1, -1, 10, true);
 
-            kind.typeOverallMax = 5;
-            kind.typeColumn = Phone.TYPE;
-            kind.typeList = Lists.newArrayList();
-            kind.typeList.add(new EditType(Phone.TYPE_HOME, -1).setSpecificMax(2));
-            kind.typeList.add(new EditType(Phone.TYPE_WORK, -1).setSpecificMax(1));
-            kind.typeList.add(new EditType(Phone.TYPE_FAX_WORK, -1).setSecondary(true));
-            kind.typeList.add(new EditType(Phone.TYPE_OTHER, -1));
+            phoneKind.typeOverallMax = 5;
+            phoneKind.typeColumn = Phone.TYPE;
+            phoneKind.typeList = Lists.newArrayList();
+            phoneKind.typeList.add(new EditType(Phone.TYPE_HOME, -1).setSpecificMax(2));
+            phoneKind.typeList.add(new EditType(Phone.TYPE_WORK, -1).setSpecificMax(1));
+            phoneKind.typeList.add(new EditType(Phone.TYPE_FAX_WORK, -1).setSecondary(true));
+            phoneKind.typeList.add(new EditType(Phone.TYPE_OTHER, -1));
 
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Phone.NUMBER, -1, -1));
-            kind.fieldList.add(new EditField(Phone.LABEL, -1, -1));
+            phoneKind.fieldList = Lists.newArrayList();
+            phoneKind.fieldList.add(new EditField(Phone.NUMBER, -1, -1));
+            phoneKind.fieldList.add(new EditField(Phone.LABEL, -1, -1));
 
-            addKind(kind);
+            addKind(phoneKind);
 
             // Email is unlimited
-            kind = new DataKind(Email.CONTENT_ITEM_TYPE, -1, -1, 10, true);
-            kind.typeOverallMax = -1;
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Email.DATA, -1, -1));
-            addKind(kind);
+            final DataKind emailKind = new DataKind(Email.CONTENT_ITEM_TYPE, -1, -1, 10, true);
+            emailKind.typeOverallMax = -1;
+            emailKind.fieldList = Lists.newArrayList();
+            emailKind.fieldList.add(new EditField(Email.DATA, -1, -1));
+            addKind(emailKind);
 
             // IM is only one
-            kind = new DataKind(Im.CONTENT_ITEM_TYPE, -1, -1, 10, true);
-            kind.typeOverallMax = 1;
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Im.DATA, -1, -1));
-            addKind(kind);
+            final DataKind imKind = new DataKind(Im.CONTENT_ITEM_TYPE, -1, -1, 10, true);
+            imKind.typeOverallMax = 1;
+            imKind.fieldList = Lists.newArrayList();
+            imKind.fieldList.add(new EditField(Im.DATA, -1, -1));
+            addKind(imKind);
 
             // Organization is only one
-            kind = new DataKind(Organization.CONTENT_ITEM_TYPE, -1, -1, 10, true);
-            kind.typeOverallMax = 1;
-            kind.fieldList = Lists.newArrayList();
-            kind.fieldList.add(new EditField(Organization.COMPANY, -1, -1));
-            kind.fieldList.add(new EditField(Organization.TITLE, -1, -1));
-            addKind(kind);
+            final DataKind orgKind = new DataKind(Organization.CONTENT_ITEM_TYPE, -1, -1, 10, true);
+            orgKind.typeOverallMax = 1;
+            orgKind.fieldList = Lists.newArrayList();
+            orgKind.fieldList.add(new EditField(Organization.COMPANY, -1, -1));
+            orgKind.fieldList.add(new EditField(Organization.TITLE, -1, -1));
+            addKind(orgKind);
         }
 
         @Override
@@ -330,7 +335,7 @@ public class EntityModifierTests extends AndroidTestCase {
 
         // Test row that has type values, but core fields are empty
         final EntityDelta state = getEntity(TEST_ID);
-        final ValuesDelta values = EntityModifier.insertChild(state, kindPhone, typeHome);
+        EntityModifier.insertChild(state, kindPhone, typeHome);
 
         // Build diff, expecting insert for data row and update enforcement
         final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
@@ -420,7 +425,7 @@ public class EntityModifierTests extends AndroidTestCase {
     public void testTrimEmptyUntouched() {
         final AccountType source = getAccountType();
         final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
-        final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
+        EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
 
         // Build "before" that has empty row
         final EntityDelta state = getEntity(TEST_ID);
@@ -497,7 +502,7 @@ public class EntityModifierTests extends AndroidTestCase {
         final AccountType accountType = getAccountType();
         final AccountTypeManager accountTypes = getAccountTypes(accountType);
         final DataKind kindPhone = accountType.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
-        final EditType typeHome = EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
+        EntityModifier.getType(kindPhone, Phone.TYPE_HOME);
 
         // Try creating a contact without any child entries
         final EntityDelta state = getEntity(null);
@@ -528,7 +533,7 @@ public class EntityModifierTests extends AndroidTestCase {
 
         // Try creating a contact with single empty entry
         final EntityDelta state = getEntity(null);
-        final ValuesDelta values = EntityModifier.insertChild(state, kindPhone, typeHome);
+        EntityModifier.insertChild(state, kindPhone, typeHome);
         final EntityDeltaList set = EntityDeltaList.fromSingle(state);
 
         // Build diff, expecting two insert operations
