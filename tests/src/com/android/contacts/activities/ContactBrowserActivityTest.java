@@ -16,6 +16,7 @@
 
 package com.android.contacts.activities;
 
+import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.ContactsApplication;
 import com.android.contacts.R;
 import com.android.contacts.detail.ContactDetailFragment;
@@ -26,6 +27,7 @@ import com.android.contacts.model.BaseAccountType;
 import com.android.contacts.test.InjectedServices;
 import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockAccountTypeManager;
+import com.android.contacts.tests.mocks.MockContactPhotoManager;
 import com.android.contacts.tests.mocks.MockContentProvider;
 import com.android.contacts.tests.mocks.MockContentProvider.Query;
 import com.android.contacts.tests.mocks.MockSharedPreferences;
@@ -85,7 +87,8 @@ public class ContactBrowserActivityTest
         InjectedServices services = new InjectedServices();
         services.setContentResolver(mContext.getContentResolver());
         services.setSharedPreferences(new MockSharedPreferences());
-
+        services.setSystemService(ContactPhotoManager.CONTACT_PHOTO_SERVICE,
+                new MockContactPhotoManager());
         AccountType accountType = new BaseAccountType();
         accountType.accountType = TEST_ACCOUNT_TYPE;
 
