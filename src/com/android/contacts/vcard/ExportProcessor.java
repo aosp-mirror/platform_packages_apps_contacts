@@ -165,7 +165,7 @@ public class ExportProcessor extends ProcessorBase {
                     Log.i(LOG_TAG, "Export request is cancelled during composing vCard");
                     return;
                 }
-                if (!composer.createOneEntry()) {
+                if (!composer.createOneEntryLegacy()) {
                     final String errorReason = composer.getErrorReason();
                     Log.e(LOG_TAG, "Failed to read a contact: " + errorReason);
                     final String translatedErrorReason =
