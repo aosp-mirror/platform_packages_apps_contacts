@@ -96,7 +96,7 @@
     <string name="removePhoto" msgid="4898105274130284565">"Foto entfernen"</string>
     <string name="noContacts" msgid="8579310973261953559">"Keine Kontakte"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Keine passenden Kontakte gefunden"</string>
-    <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Keine Kontakte mit Telefonnummern"</string>
+    <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Keine sichtbaren Kontakte mit Telefonnummern"</string>
     <string name="showFilterPhones" msgid="4184858075465653970">"Nur Kontakte mit Telefon"</string>
     <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"Nur Kontakte mit Telefonnummern anzeigen"</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Kontakte zum Anzeigen auswählen"</string>
@@ -114,7 +114,7 @@
     <item quantity="one" msgid="3015357862286673986">"1 Kontakt mit Telefonnummer"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> Kontakte mit Telefonnummern"</item>
   </plurals>
-    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Keine Kontakte mit Telefonnummern"</string>
+    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Keine sichtbaren Kontakte mit Telefonnummern"</string>
   <plurals name="listTotalAllContacts">
     <item quantity="one" msgid="3405747744700823280">"1 Kontakt"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> Kontakte"</item>
@@ -140,7 +140,7 @@
     <string name="liveFolderAll" msgid="4789010460767506206">"Alle Kontakte"</string>
     <string name="liveFolderFavorites" msgid="3100957542927222282">"Markierte Kontakte"</string>
     <string name="liveFolderPhone" msgid="3739376066610926780">"Kontakte mit Telefonnummern"</string>
-    <string name="menu_sendTextMessage" msgid="6937343460284499306">"Textnachricht senden"</string>
+    <string name="menu_sendTextMessage" msgid="6937343460284499306">"SMS/MMS senden"</string>
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"<xliff:g id="NAME">%s</xliff:g> anrufen"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Nr. vor Anruf bearbeiten"</string>
     <string name="recentCalls_addToContact" msgid="1429899535546487008">"Zu Kontakten hinzufügen"</string>
@@ -159,8 +159,8 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Nummer wählen"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Ladevorgang von SIM-Karte läuft..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"Kontakte auf SIM-Karte"</string>
-    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Sie haben keine Kontakte. Wenn Sie gerade ein Konto hinzugefügt haben, kann die Synchronisierung der Kontakte einige Minuten dauern."</string>
-    <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Sie haben keine Kontakte."</string>
+    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Es sind keine Kontakte vorhanden. Wenn Sie gerade ein Konto hinzugefügt haben, kann die Synchronisierung der Kontakte einige Minuten dauern."</string>
+    <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Es sind keine Kontakte vorhanden."</string>
     <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"Es können keine Kontakte angezeigt werden."\n\n"Tippen Sie zum Hinzufügen von Kontakten auf "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" und dann auf "\n" "\n<li><font fgcolor="#ffffffff"><b>"Konten"</b></font>", um ein Konto hinzuzufügen oder mit Kontakten für die Synchronisierung mit dem Tablet zu konfigurieren"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Neuer Kontakt"</b></font>", um einen Kontakt neu zu erstellen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>", um Kontakte von Ihrer SIM- oder SD-Karte zu importieren"\n</li></string>
     <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"Es können keine Kontakte angezeigt werden."\n\n"Tippen Sie zum Hinzufügen von Kontakten auf "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" und dann auf "\n" "\n<li><font fgcolor="#ffffffff"><b>"Konten"</b></font>", um ein Konto hinzuzufügen oder mit Kontakten für die Synchronisierung mit dem Telefon zu konfigurieren"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Neuer Kontakt"</b></font>", um einen Kontakt neu zu erstellen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>", um Kontakte aus Ihrer SIM- oder SD-Karte zu importieren"\n</li></string>
     <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Es können keine Kontakte angezeigt werden. Wenn Sie gerade ein Konto hinzugefügt haben, kann die Kontaktsynchronisierung etwas dauern."\n\n"Zum Hinzufügen von Kontakten drücken Sie "<font fgcolor="#ffffffff"><b>"Menü"</b></font>" und tippen dann auf "\n" "\n<li><font fgcolor="#ffffffff"><b>"Konten"</b></font>", um ein Konto hinzuzufügen oder mit Kontakten für die Synchronisierung mit dem Tablet zu konfigurieren"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Anzeigeoptionen"</b></font>", um zu ändern, welche Kontakte angezeigt werden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Neuer Kontakt"</b></font>", um einen Kontakt neu zu erstellen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>", um Kontakte von Ihrer SIM- oder SD-Karte zu importieren"\n</li></string>
@@ -218,7 +218,7 @@
     <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Von SD-Karte importieren"</string>
     <string name="export_to_sdcard" product="nosdcard" msgid="6092815580965201089">"In Speicher exportieren"</string>
     <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Auf SD-Karte exportieren"</string>
-    <string name="share_visible_contacts" msgid="890150378880783797">"Sichtbare Kontakte weiterleiten"</string>
+    <string name="share_visible_contacts" msgid="890150378880783797">"Sichtbare Kontakte weitergeben"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Eine VCard-Datei importieren"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Mehrere VCard-Dateien importieren"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Alle VCard-Dateien importieren"</string>
@@ -296,8 +296,8 @@
     <string name="menu_import_export" msgid="3765725645491577190">"Importieren/Exportieren"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Kontakte importieren/exportieren"</string>
     <string name="menu_share" msgid="8746849630474240344">"Kontakt weitergeben"</string>
-    <string name="share_via" msgid="563121028023030093">"Kontakt weiterleiten über"</string>
-    <string name="share_error" msgid="4374508848981697170">"Dieser Kontakt kann nicht freigegeben werden."</string>
+    <string name="share_via" msgid="563121028023030093">"Kontakt weitergeben über"</string>
+    <string name="share_error" msgid="4374508848981697170">"Dieser Kontakt kann nicht weitergegeben werden."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Name"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Alias"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Firma/Organisation"</string>
@@ -397,6 +397,8 @@
     <string name="name_phonetic_given" msgid="6853570431394449191">"Phonetischer Vorname"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Phonetischer zweiter Vorname"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Phonetischer Nachname"</string>
+    <!-- no translation found for name_phonetic (4259595234312430484) -->
+    <skip />
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>-Kontakt"</string>
     <string name="from_account_format" msgid="687567483928582084">"von <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Dieses Foto verwenden"</string>

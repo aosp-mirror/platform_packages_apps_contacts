@@ -75,7 +75,7 @@
     <string name="label_ringtone" msgid="8833166825330686244">"鈴聲"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"姓名拼音"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"公司"</string>
-    <string name="ghostData_title" msgid="7496735200318496110">"標題"</string>
+    <string name="ghostData_title" msgid="7496735200318496110">"職稱"</string>
     <string name="invalidContactMessage" msgid="5816991830260044593">"聯絡人不存在。"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"建立新聯絡人"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"電話"</string>
@@ -397,6 +397,8 @@
     <string name="name_phonetic_given" msgid="6853570431394449191">"名字 (拼音)"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"中間名 (拼音)"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"姓氏 (拼音)"</string>
+    <!-- no translation found for name_phonetic (4259595234312430484) -->
+    <skip />
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> 聯絡人"</string>
     <string name="from_account_format" msgid="687567483928582084">"來自 <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="use_photo_as_primary" msgid="8807110122951157246">"使用此相片"</string>
