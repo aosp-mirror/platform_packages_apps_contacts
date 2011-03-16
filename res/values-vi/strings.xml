@@ -397,8 +397,7 @@
     <string name="name_phonetic_given" msgid="6853570431394449191">"Tên đúng phát âm"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Tên đệm đúng phát âm"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Họ đúng phát âm"</string>
-    <!-- no translation found for name_phonetic (4259595234312430484) -->
-    <skip />
+    <string name="name_phonetic" msgid="4259595234312430484">"Tên theo phiên âm"</string>
     <string name="account_type_format" msgid="718948015590343010">"Liên hệ <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="from_account_format" msgid="687567483928582084">"từ <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Sử dụng ảnh này"</string>

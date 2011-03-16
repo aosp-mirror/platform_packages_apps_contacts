@@ -397,8 +397,7 @@
     <string name="name_phonetic_given" msgid="6853570431394449191">"Fonética do segundo nome"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Fonética do primeiro apelido"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Fonética do segundo apelido"</string>
-    <!-- no translation found for name_phonetic (4259595234312430484) -->
-    <skip />
+    <string name="name_phonetic" msgid="4259595234312430484">"Nome fonético"</string>
     <string name="account_type_format" msgid="718948015590343010">"Contacto de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="from_account_format" msgid="687567483928582084">"de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Utilizar esta fotografia"</string>
