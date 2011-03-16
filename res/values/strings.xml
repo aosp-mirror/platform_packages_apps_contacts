@@ -388,6 +388,9 @@
     <!-- Confirmation dialog for clearing the call log  -->
     <string name="clearCallLogConfirmation">Are you sure you want to clear the call log?</string>
 
+    <!-- Title of the "Clearing call log" progress-dialog [CHAR LIMIT=35] -->
+    <string name="clearCallLogProgress_title">Clearing call log</string>
+
     <!-- The title of a dialog that displays the IMEI of the phone -->
     <string name="imei">IMEI</string>
 

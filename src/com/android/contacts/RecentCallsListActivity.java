@@ -23,8 +23,10 @@ import com.android.internal.telephony.ITelephony;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.AsyncQueryHandler;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -39,6 +41,7 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteFullException;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -1040,21 +1043,42 @@ public class RecentCallsListActivity extends ListActivity
     protected Dialog onCreateDialog(int id, Bundle args) {
         switch (id) {
             case DIALOG_CONFIRM_DELETE_ALL:
+                final ContentResolver resolver = getContentResolver();
+                final OnClickListener okListener = new OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        final ProgressDialog progressDialog = ProgressDialog.show(
+                                RecentCallsListActivity.this,
+                                getString(R.string.clearCallLogProgress_title),
+                                "", true, false);
+                        final AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
+                            @Override
+                            protected Void doInBackground(Void... params) {
+                                resolver.delete(Calls.CONTENT_URI, null, null);
+                                return null;
+                            }
+                            @Override
+                            protected void onPostExecute(Void result) {
+                                progressDialog.dismiss();
+                                // TODO The change notification should do this automatically, but
+                                // it isn't working right now. Remove this when the change
+                                // notification is working properly.
+                                startQuery();
+                            }
+                        };
+                        // TODO: Once we have the API, we should configure this ProgressDialog
+                        // to only show up after a certain time (e.g. 150ms)
+                        progressDialog.show();
+                        task.execute();
+                    }
+                };
                 return new AlertDialog.Builder(this)
                     .setTitle(R.string.clearCallLogConfirmation_title)
                     .setIconAttribute(android.R.attr.alertDialogIcon)
                     .setMessage(R.string.clearCallLogConfirmation)
                     .setNegativeButton(android.R.string.cancel, null)
-                    .setPositiveButton(android.R.string.ok, new OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            getContentResolver().delete(Calls.CONTENT_URI, null, null);
-                            // TODO The change notification should do this automatically, but it
-                            // isn't working right now. Remove this when the change notification
-                            // is working properly.
-                            startQuery();
-                        }
-                    })
-                    .setCancelable(false)
+                    .setPositiveButton(android.R.string.ok, okListener)
+                    .setCancelable(true)
                     .create();
         }
         return null;
