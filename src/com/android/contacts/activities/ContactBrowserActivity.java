@@ -686,7 +686,9 @@ public class ContactBrowserActivity extends ContactsActivity
         }
 
         MenuItem settings = menu.findItem(R.id.menu_settings);
-        settings.setVisible(!ContactsPreferenceActivity.isEmpty(this));
+        if (settings != null) {
+            settings.setVisible(!ContactsPreferenceActivity.isEmpty(this));
+        }
 
         mOptionsMenuCustomFilterChangeable = isCustomFilterChangeable();
 
