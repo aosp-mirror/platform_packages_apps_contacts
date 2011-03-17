@@ -53,8 +53,6 @@ public class ContactEditorActivity extends ContactsActivity
     public static final String ACTION_SAVE_COMPLETED = "saveCompleted";
 
     private ContactEditorFragment mFragment;
-    private Button mDoneButton;
-    private Button mRevertButton;
 
     private DialogManager mDialogManager = new DialogManager(this);
 
@@ -90,22 +88,6 @@ public class ContactEditorActivity extends ContactsActivity
         mFragment.setListener(mFragmentListener);
         Uri uri = Intent.ACTION_EDIT.equals(action) ? getIntent().getData() : null;
         mFragment.load(action, uri, getIntent().getExtras());
-
-        // Depending on the use-case, this activity has Done and Revert buttons or not.
-        mDoneButton = (Button) findViewById(R.id.done);
-        mRevertButton = (Button) findViewById(R.id.revert);
-        if (mDoneButton != null) mDoneButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mFragment.save(SaveMode.CLOSE);
-            }
-        });
-        if (mRevertButton != null) mRevertButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 
     @Override

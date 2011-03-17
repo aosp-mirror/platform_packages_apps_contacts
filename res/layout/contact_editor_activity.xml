@@ -22,21 +22,4 @@
             android:id="@+id/contact_editor_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="50dip"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
-
-        <Button
-            android:id="@+id/done"
-            android:layout_width="150dip"
-            android:layout_height="match_parent"
-            android:text="@string/menu_done" />
-        <Button
-            android:id="@+id/revert"
-            android:layout_width="150dip"
-            android:layout_height="match_parent"
-            android:text="@string/menu_doNotSave" />
-    </LinearLayout>
 </FrameLayout>
