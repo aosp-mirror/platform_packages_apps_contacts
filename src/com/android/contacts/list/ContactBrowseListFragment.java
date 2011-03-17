@@ -583,7 +583,7 @@ public abstract class ContactBrowseListFragment extends
 
     public void viewContact(Uri contactUri) {
         setSelectedContactUri(contactUri, false, false, true, false);
-        if (mListener != null) { mListener.onViewContactAction(contactUri); }
+        if (mListener != null) mListener.onViewContactAction(contactUri);
     }
 
     public void editContact(Uri contactUri) {
