@@ -149,6 +149,8 @@
     <string name="recentCalls_empty" msgid="247053222448663107">"通話履歴なし"</string>
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"通話履歴を消去"</string>
     <string name="clearCallLogConfirmation" msgid="7625927669136267636">"通話履歴を消去してもよろしいですか？"</string>
+    <!-- no translation found for clearCallLogProgress_title (6870412675015656948) -->
+    <skip />
     <string name="imei" msgid="3045126336951684285">"IMEI（端末識別番号）"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"ボイスメール"</string>
@@ -397,8 +399,7 @@
     <string name="name_phonetic_given" msgid="6853570431394449191">"名のよみがな"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"ミドルネームのよみがな"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"姓のよみがな"</string>
-    <!-- no translation found for name_phonetic (4259595234312430484) -->
-    <skip />
+    <string name="name_phonetic" msgid="4259595234312430484">"よみがな"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>からの連絡先"</string>
     <string name="from_account_format" msgid="687567483928582084">"<xliff:g id="SOURCE">%1$s</xliff:g>からの連絡先"</string>
     <string name="use_photo_as_primary" msgid="8807110122951157246">"この写真を使用"</string>

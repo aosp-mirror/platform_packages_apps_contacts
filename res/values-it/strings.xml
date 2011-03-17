@@ -149,6 +149,8 @@
     <string name="recentCalls_empty" msgid="247053222448663107">"Il registro chiamate è vuoto."</string>
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Cancella registro chiamate"</string>
     <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Cancellare il registro chiamate?"</string>
+    <!-- no translation found for clearCallLogProgress_title (6870412675015656948) -->
+    <skip />
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Segreteria"</string>
@@ -397,8 +399,7 @@
     <string name="name_phonetic_given" msgid="6853570431394449191">"Nome fonetico fornito"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Secondo nome fonetico"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Cognome fonetico"</string>
-    <!-- no translation found for name_phonetic (4259595234312430484) -->
-    <skip />
+    <string name="name_phonetic" msgid="4259595234312430484">"Nome fonetico"</string>
     <string name="account_type_format" msgid="718948015590343010">"Contatto da <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="from_account_format" msgid="687567483928582084">"da <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Utilizza questa foto"</string>

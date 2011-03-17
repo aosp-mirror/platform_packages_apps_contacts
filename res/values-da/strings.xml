@@ -149,6 +149,8 @@
     <string name="recentCalls_empty" msgid="247053222448663107">"Opkaldslisten er tom."</string>
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Ryd opkaldsliste"</string>
     <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Er du sikker på, at du vil rydde opkaldslisten?"</string>
+    <!-- no translation found for clearCallLogProgress_title (6870412675015656948) -->
+    <skip />
     <string name="imei" msgid="3045126336951684285">"IMEI-nummer"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Voicemail"</string>
@@ -397,8 +399,7 @@
     <string name="name_phonetic_given" msgid="6853570431394449191">"Fonetisk fornavn"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Fonetisk mellemnavn"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Fonetisk efternavn"</string>
-    <!-- no translation found for name_phonetic (4259595234312430484) -->
-    <skip />
+    <string name="name_phonetic" msgid="4259595234312430484">"Fonetisk navn"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kontaktperson"</string>
     <string name="from_account_format" msgid="687567483928582084">"fra<xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Brug dette billede"</string>
