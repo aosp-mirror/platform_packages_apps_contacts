@@ -99,4 +99,8 @@
 
     <!-- If true, phonetic name is included in the contact editor by default -->
     <bool name="config_editor_include_phonetic_name">false</bool>
+
+    <!-- If true, Contacts uses two panes: List and Detail. If false, Details are
+         shown in their own screens. This flag must be in sync with the layout definitions. -->
+    <bool name="config_use_two_panes">false</bool>
 </resources>

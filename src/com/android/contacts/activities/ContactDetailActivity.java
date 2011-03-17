@@ -22,6 +22,7 @@ import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.detail.ContactDetailFragment;
 import com.android.contacts.interactions.ContactDeletionInteraction;
+import com.android.contacts.util.PhoneCapabilityTester;
 
 import android.accounts.Account;
 import android.content.ActivityNotFoundException;
@@ -43,6 +44,23 @@ public class ContactDetailActivity extends ContactsActivity {
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
+
+        if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
+            // This activity must not be shown. We have to select the contact in the
+            // ContactBrowserActivity instead ==> Create a forward intent and finish
+            final Intent originalIntent = getIntent();
+            Intent intent = new Intent();
+            intent.setAction(originalIntent.getAction());
+            intent.setDataAndType(originalIntent.getData(), originalIntent.getType());
+            intent.setFlags(
+                    Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_FORWARD_RESULT
+                            | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            intent.setClass(this, ContactBrowserActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
 
         setContentView(R.layout.contact_detail_activity);
 

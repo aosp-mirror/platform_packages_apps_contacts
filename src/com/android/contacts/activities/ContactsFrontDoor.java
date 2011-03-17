@@ -39,12 +39,12 @@ public class ContactsFrontDoor extends ContactsActivity {
                         | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra(EXTRA_FRONT_DOOR, true);
 
-        if (PhoneCapabilityTester.isPhone(this)) {
-            // Default to the normal dialtacts layout
-            intent.setClass(this, DialtactsActivity.class);
-        } else {
+        if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
             // No tabs, just a contact list
             intent.setClass(this, ContactBrowserActivity.class);
+        } else {
+            // Default to the normal dialtacts layout
+            intent.setClass(this, DialtactsActivity.class);
         }
 
         startActivity(intent);

@@ -185,16 +185,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
-
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.dir/person" />
-                <data android:mimeType="vnd.android.cursor.dir/contact" />
-                <data android:mimeType="vnd.android.cursor.item/person" />
-                <data android:mimeType="vnd.android.cursor.item/contact" />
-                <data android:mimeType="vnd.android.cursor.item/raw_contact" />
-            </intent-filter>
         </activity>
 
         <!-- The actual list of contacts -->
@@ -442,6 +432,11 @@
             <intent-filter android:label="@string/viewContactDesription">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.dir/person" />
+                <data android:mimeType="vnd.android.cursor.dir/contact" />
+                <data android:mimeType="vnd.android.cursor.item/person" />
+                <data android:mimeType="vnd.android.cursor.item/contact" />
+                <data android:mimeType="vnd.android.cursor.item/raw_contact" />
             </intent-filter>
         </activity>
 

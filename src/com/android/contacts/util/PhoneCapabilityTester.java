@@ -16,6 +16,8 @@
 
 package com.android.contacts.util;
 
+import com.android.contacts.R;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -78,5 +80,13 @@ public final class PhoneCapabilityTester {
         final Intent intent = new Intent(Intent.ACTION_SENDTO,
                 Uri.fromParts(Constants.SCHEME_SMSTO, "", null));
         return isIntentRegistered(context, intent);
+    }
+
+    /**
+     * True if we are using two-pane layouts ("tablet mode"), false if we are using single views
+     * ("phone mode")
+     */
+    public static boolean isUsingTwoPanes(Context context) {
+        return context.getResources().getBoolean(R.bool.config_use_two_panes);
     }
 }
