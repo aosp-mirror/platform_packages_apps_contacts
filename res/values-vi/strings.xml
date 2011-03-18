@@ -90,7 +90,7 @@
   </string-array>
     <string name="photoPickerNotFoundText" msgid="431331662154342581">"Không có ảnh nào trong điện thoại."</string>
     <string name="attachToContact" msgid="8820530304406066714">"Biểu tượng của liên hệ"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Tên nhãn tuỳ chỉnh"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Tên nhãn tùy chỉnh"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"Tuỳ chọn hiển thị"</string>
     <string name="displayGroups" msgid="2278964020773993336">"Tuỳ chọn hiển thị"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Gửi cuộc gọi trực tiếp tới thư thoại"</string>

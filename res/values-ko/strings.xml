@@ -64,7 +64,7 @@
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"읽기 전용 계정의 주소록은 삭제할 수 없지만 주소록 목록에서 숨길 수는 있습니다."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"연락처에 여러 계정의 정보가 들어 있습니다. 읽기 전용 계정의 정보는 주소록 목록에서 숨길 수 있지만 삭제할 수는 없습니다."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"이 연락처를 삭제하면 여러 계정의 정보가 삭제됩니다."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"연락처가 삭제됩니다."</string>
+    <string name="deleteConfirmation" msgid="811706994761610640">"이 연락처를 삭제합니다."</string>
     <string name="menu_done" msgid="796017761764190697">"완료"</string>
     <string name="menu_doNotSave" msgid="2174577548513895144">"되돌리기"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"연락처 수정"</string>
@@ -76,7 +76,7 @@
     <string name="ghostData_name" msgid="6490954238641157585">"이름"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"이름(소리나는 대로)"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"회사"</string>
-    <string name="ghostData_title" msgid="7496735200318496110">"제목"</string>
+    <string name="ghostData_title" msgid="7496735200318496110">"직함"</string>
     <string name="invalidContactMessage" msgid="5816991830260044593">"연락처가 없습니다."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"새 연락처 만들기"</string>
     <string name="selectLabel" msgid="4255424123394910733">"라벨 선택"</string>
@@ -100,7 +100,7 @@
     <string name="noContacts" msgid="8579310973261953559">"주소록이 없습니다."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"일치하는 연락처가 없습니다."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"전화번호가 포함된 주소록이 없습니다."</string>
-    <string name="showFilterPhones" msgid="4184858075465653970">"전화가 있는 연락처만"</string>
+    <string name="showFilterPhones" msgid="4184858075465653970">"전화번호가 있는 연락처만"</string>
     <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"전화번호가 있는 연락처만 표시"</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"표시할 연락처 선택"</string>
   <plurals name="groupDescrip">
@@ -214,7 +214,7 @@
     <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"SD 카드에서 가져오기"</string>
     <string name="export_to_sdcard" product="nosdcard" msgid="7201274701382901259">"USB 저장소로 내보내기"</string>
     <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"SD 카드로 내보내기"</string>
-    <string name="share_visible_contacts" msgid="890150378880783797">"표시되는 연락처 공유"</string>
+    <string name="share_visible_contacts" msgid="890150378880783797">"표시되는 연락처 모두 공유"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"vCard 파일 한 개 가져오기"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"vCard 파일 여러 개 가져오기"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"모든 vCard 파일 가져오기"</string>
@@ -283,7 +283,7 @@
     <string name="edit_read_only" msgid="8158629550655830981">"연락처가 읽기 전용입니다."</string>
     <string name="edit_secondary_collapse" msgid="5371618426594477103">"더보기"</string>
     <string name="dialog_primary_name" msgid="5521591005692614833">"기본 이름"</string>
-    <string name="dialog_new_contact_account" msgid="9044704073286262197">"계정에서 연락처 만들기"</string>
+    <string name="dialog_new_contact_account" msgid="9044704073286262197">"연락처 추가할 계정 선택하기"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"동기화 그룹 삭제"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"동기화 그룹 추가"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"그룹 더보기..."</string>

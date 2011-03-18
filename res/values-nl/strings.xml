@@ -261,7 +261,7 @@
     <string name="call_disambig_title" msgid="1911302597959335178">"Bellen met"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Sms\'en met"</string>
     <string name="make_primary" msgid="5829291915305113983">"Deze keuze onthouden"</string>
-    <string name="quickcontact_missing_app" msgid="4600366393134289038">"Er is geen toepassing gevonden om deze actie uit te voeren"</string>
+    <string name="quickcontact_missing_app" msgid="4600366393134289038">"Er is geen app gevonden om deze actie uit te voeren"</string>
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Deze keuze onthouden"</string>
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"Onbekend"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Accounts"</string>
@@ -385,7 +385,7 @@
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Lijst met contacten wordt bijgewerkt om de gewijzigde taal te weerspiegelen."\n\n"Een ogenblik geduld..."</string>
     <string name="upgrade_in_progress" msgid="7530893673211750223">"Lijst met contacten wordt bijgewerkt."\n\n"Een ogenblik geduld..."</string>
     <string name="upgrade_out_of_memory" msgid="492151063059824962">"Contacten worden bijgewerkt. "\n\n"Voor het upgradeproces is ongeveer <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g> MB interne telefoonopslag vereist."\n\n"Kies een van de volgende opties:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Verwijder enkele toepassingen"</string>
+    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Verwijder enkele apps"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Upgrade opnieuw proberen"</string>
     <string name="search_results_for" msgid="8705490885073188513">"Zoekresultaten voor: <xliff:g id="QUERY">%s</xliff:g>"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"Zoeken..."</string>

@@ -99,7 +99,7 @@
     <string name="removePicture" msgid="3041230993155966350">"Symbol entfernen"</string>
     <string name="noContacts" msgid="8579310973261953559">"Keine Kontakte"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Keine passenden Kontakte gefunden"</string>
-    <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Keine Kontakte mit Telefonnummern"</string>
+    <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Keine sichtbaren Kontakte mit Telefonnummern"</string>
     <string name="showFilterPhones" msgid="4184858075465653970">"Nur Kontakte mit Telefon"</string>
     <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"Nur Kontakte mit Telefonnummern anzeigen"</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Kontakte zum Anzeigen auswählen"</string>
@@ -139,7 +139,7 @@
     <string name="liveFolderAll" msgid="4789010460767506206">"Alle Kontakte"</string>
     <string name="liveFolderFavorites" msgid="3100957542927222282">"Markierte Kontakte"</string>
     <string name="liveFolderPhone" msgid="3739376066610926780">"Kontakte mit Telefonnummern"</string>
-    <string name="menu_sendTextMessage" msgid="6937343460284499306">"Textnachricht senden"</string>
+    <string name="menu_sendTextMessage" msgid="6937343460284499306">"SMS/MMS senden"</string>
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"<xliff:g id="NAME">%s</xliff:g> anrufen"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Nr. vor Anruf bearbeiten"</string>
     <string name="recentCalls_addToContact" msgid="1429899535546487008">"Zu Kontakten hinzufügen"</string>
@@ -158,8 +158,8 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Nummer wählen"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Ladevorgang von SIM-Karte läuft..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"Kontakte auf SIM-Karte"</string>
-    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Sie haben keine Kontakte. Wenn Sie gerade ein Konto hinzugefügt haben, kann die Synchronisierung der Kontakte einige Minuten dauern."</string>
-    <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Sie haben keine Kontakte."</string>
+    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Es sind keine Kontakte vorhanden. Wenn Sie gerade ein Konto hinzugefügt haben, kann die Synchronisierung der Kontakte einige Minuten dauern."</string>
+    <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Es sind keine Kontakte vorhanden."</string>
     <string name="noContactsHelpText" msgid="6788487368878712350">"Es sind keine Kontakte vorhanden."\n\n"Drücken Sie zum Hinzufügen von Kontakten die "<font fgcolor="#ffffffff"><b>"Menütaste"</b></font>" und berühren Sie anschließend "\n" "\n<li><font fgcolor="#ffffffff"><b>"Konten"</b></font>", um ein Konto mit Kontakten, die Sie mit dem Telefon synchronisieren möchten, hinzuzufügen oder zu konfigurieren."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Neuer Kontakt"</b></font>", um einen neuen Kontakt von Grund auf zu erstellen."\n</li>\n<li><font fgcolor="#ffffffff"><b>"Importieren/Exportieren"</b></font>\n</li></string>
     <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"Es sind keine Kontakte vorhanden. Wenn Sie gerade ein Konto hinzugefügt haben, kann es einige Minuten dauern, bis die Kontakte synchronisiert sind."\n\n"Drücken Sie zum Hinzufügen von Kontakten die "<font fgcolor="#ffffffff"><b>"Menütaste"</b></font>" und tippen Sie anschließend auf "\n" "\n<li><font fgcolor="#ffffffff"><b>"Konten"</b></font>", um ein Konto mit Kontakten, die Sie mit dem Telefon synchronisieren möchten, hinzuzufügen oder zu konfigurieren."\n" "</li>\n<li><font fgcolor="#ffffffff"><b>"Anzeigeoptionen"</b></font>", um zu ändern, welche Kontakte angezeigt werden."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Neuer Kontakt"</b></font>", um einen neuen Kontakt von Grund auf zu erstellen."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importieren/Exportieren"</b></font>\n</li></string>
     <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"Es sind keine Kontakte vorhanden."\n\n"Drücken Sie zum Hinzufügen von Kontakten die "<font fgcolor="#ffffffff"><b>"Menütaste"</b></font>" und berühren Sie anschließend "\n" "\n<li><font fgcolor="#ffffffff"><b>"Konten"</b></font>", um ein Konto mit Kontakten, die Sie mit dem Telefon synchronisieren möchten, hinzuzufügen oder zu konfigurieren."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Neuer Kontakt"</b></font>", um einen neuen Kontakt von Grund auf zu erstellen."\n</li>\n<li><font fgcolor="#ffffffff"><b>"Importieren/Exportieren"</b></font>\n</li></string>
@@ -214,7 +214,7 @@
     <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Von SD-Karte importieren"</string>
     <string name="export_to_sdcard" product="nosdcard" msgid="7201274701382901259">"In USB-Speicher exportieren"</string>
     <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Auf SD-Karte exportieren"</string>
-    <string name="share_visible_contacts" msgid="890150378880783797">"Sichtbare Kontakte weiterleiten"</string>
+    <string name="share_visible_contacts" msgid="890150378880783797">"Sichtbare Kontakte weitergeben"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Eine VCard-Datei importieren"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Mehrere VCard-Dateien importieren"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Alle VCard-Dateien importieren"</string>
@@ -267,9 +267,9 @@
     <string name="menu_accounts" msgid="8499114602017077970">"Konten"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Importieren/Exportieren"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Kontakte importieren/exportieren"</string>
-    <string name="menu_share" msgid="943789700636542260">"Weiterleiten"</string>
-    <string name="share_via" msgid="563121028023030093">"Kontakt weiterleiten über"</string>
-    <string name="share_error" msgid="4374508848981697170">"Dieser Kontakt kann nicht freigegeben werden."</string>
+    <string name="menu_share" msgid="943789700636542260">"Weitergeben"</string>
+    <string name="share_via" msgid="563121028023030093">"Kontakt weitergeben über"</string>
+    <string name="share_error" msgid="4374508848981697170">"Dieser Kontakt kann nicht weitergegeben werden."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Name"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Alias"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Firma/Organisation"</string>
@@ -388,5 +388,5 @@
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Einige Anwendungen deinstallieren"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Upgrade wiederholen"</string>
     <string name="search_results_for" msgid="8705490885073188513">"Suchergebnisse für: <xliff:g id="QUERY">%s</xliff:g>"</string>
-    <string name="search_results_searching" msgid="7755623475227227314">"Suche..."</string>
+    <string name="search_results_searching" msgid="7755623475227227314">"Suche läuft..."</string>
 </resources>
