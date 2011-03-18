@@ -76,7 +76,7 @@
     <string name="ghostData_name" msgid="6490954238641157585">"姓名"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"姓名拼音"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"公司"</string>
-    <string name="ghostData_title" msgid="7496735200318496110">"標題"</string>
+    <string name="ghostData_title" msgid="7496735200318496110">"職稱"</string>
     <string name="invalidContactMessage" msgid="5816991830260044593">"聯絡人不存在。"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"建立新聯絡人"</string>
     <string name="selectLabel" msgid="4255424123394910733">"選取標籤"</string>
