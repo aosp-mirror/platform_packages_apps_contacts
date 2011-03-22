@@ -3121,7 +3121,7 @@ public class ContactsListActivity extends ListActivity implements View.OnCreateC
                 nameView.setText(mUnknownNameText);
             }
 
-            boolean hasPhone = cursor.getColumnCount() >= SUMMARY_HAS_PHONE_COLUMN_INDEX
+            boolean hasPhone = cursor.getColumnCount() > SUMMARY_HAS_PHONE_COLUMN_INDEX
                     && cursor.getInt(SUMMARY_HAS_PHONE_COLUMN_INDEX) != 0;
 
             // Make the call button visible if requested.
