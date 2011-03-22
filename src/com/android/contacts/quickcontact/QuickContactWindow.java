@@ -541,7 +541,11 @@ public class QuickContactWindow implements Window.Callback,
 
         // Recycle any chiclets in use
         for (int i = mTrack.getChildCount() - 1; i >= 0; i--) {
-            releaseView((CheckableImageView)mTrack.getChildAt(i));
+            final View child = mTrack.getChildAt(i);
+            // there can be non-CheckableImageView children, e.g. a "No Data" label
+            if (child instanceof CheckableImageView) {
+                releaseView((CheckableImageView)child);
+            }
             mTrack.removeViewAt(i);
         }
 
