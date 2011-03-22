@@ -734,6 +734,11 @@ public class QuickContactWindow implements Window.Callback,
             }
         }
 
+        // Collapse Action Lists (remove e.g. duplicate e-mail addresses from different sources)
+        for (ArrayList<Action> actionChildren : mActions.values()) {
+            Collapser.collapseList(actionChildren);
+        }
+
         // Make sure that we only display the "clear default" action if there
         // are actually several items to chose from
         boolean shouldDisplayClearDefaults = false;
@@ -915,9 +920,6 @@ public class QuickContactWindow implements Window.Callback,
 
         // Add direct intent if single child, otherwise flag for multiple
         List<Action> children = mActions.get(mimeType);
-        if (children.size() > 1) {
-            Collapser.collapseList(children);
-        }
         view.setTag(mimeType);
         final Action firstInfo = children.get(0);
 
