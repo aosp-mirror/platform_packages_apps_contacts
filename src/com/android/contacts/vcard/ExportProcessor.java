@@ -22,7 +22,6 @@ import com.android.vcard.VCardConfig;
 
 import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -32,10 +31,13 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContactsEntity;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.RemoteViews;
 
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 
 /**
  * Class for processing one export request from a user. Dropped after exporting requested Uri(s).
@@ -94,6 +96,7 @@ public class ExportProcessor extends ProcessorBase {
         if (DEBUG) Log.d(LOG_TAG, String.format("vCard export (id: %d) has started.", mJobId));
         final ExportRequest request = mExportRequest;
         VCardComposer composer = null;
+        Writer writer = null;
         boolean successful = false;
         try {
             if (isCancelled()) {
@@ -131,8 +134,7 @@ public class ExportProcessor extends ProcessorBase {
             //     VCardConfig.FLAG_USE_QP_TO_PRIMARY_PROPERTIES);
             // composer = new VCardComposer(ExportVCardActivity.this, vcardType, true);
 
-            composer.addHandler(composer.new HandlerForOutputStream(outputStream));
-
+            writer = new BufferedWriter(new OutputStreamWriter(outputStream));
             final Uri contentUriForRawContactsEntity = RawContactsEntity.CONTENT_URI.buildUpon()
                     .appendQueryParameter(RawContactsEntity.FOR_EXPORT_ONLY, "1")
                     .build();
@@ -165,7 +167,9 @@ public class ExportProcessor extends ProcessorBase {
                     Log.i(LOG_TAG, "Export request is cancelled during composing vCard");
                     return;
                 }
-                if (!composer.createOneEntryLegacy()) {
+                try {
+                    writer.write(composer.createOneEntry());
+                } catch (IOException e) {
                     final String errorReason = composer.getErrorReason();
                     Log.e(LOG_TAG, "Failed to read a contact: " + errorReason);
                     final String translatedErrorReason =
@@ -200,7 +204,13 @@ public class ExportProcessor extends ProcessorBase {
             if (composer != null) {
                 composer.terminate();
             }
-
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    Log.w(LOG_TAG, "IOException is thrown during close(). Ignored. " + e);
+                }
+            }
             mService.handleFinishExportNotification(mJobId, successful);
         }
     }
