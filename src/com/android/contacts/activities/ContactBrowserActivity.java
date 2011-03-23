@@ -912,8 +912,7 @@ public class ContactBrowserActivity extends ContactsActivity
             default: {
                 // Bring up the search UI if the user starts typing
                 final int unicodeChar = event.getUnicodeChar();
-
-                if (unicodeChar != 0) {
+                if (unicodeChar != 0 && !Character.isWhitespace(unicodeChar)) {
                     String query = new String(new int[]{ unicodeChar }, 0, 1);
                     if (mHasActionBar) {
                         if (!mActionBarAdapter.isSearchMode()) {
