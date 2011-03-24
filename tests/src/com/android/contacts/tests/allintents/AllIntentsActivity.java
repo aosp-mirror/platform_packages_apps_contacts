@@ -73,6 +73,7 @@ public class AllIntentsActivity extends ListActivity
         ACTION_PICK_PHONE_LEGACY,
         ACTION_PICK_POSTAL,
         ACTION_PICK_POSTAL_LEGACY,
+        ACTION_PICK_EMAIL,
         ACTION_CREATE_SHORTCUT_CONTACT,
         ACTION_CREATE_SHORTCUT_DIAL,
         ACTION_CREATE_SHORTCUT_MESSAGE,
@@ -193,6 +194,11 @@ public class AllIntentsActivity extends ListActivity
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType(ContactMethods.CONTENT_POSTAL_TYPE);
                 startContactSelectionActivityForResult(intent);
+                break;
+            }
+            case ACTION_PICK_EMAIL: {
+                startContactSelectionActivityForResult(
+                        new Intent(Intent.ACTION_PICK, Email.CONTENT_URI));
                 break;
             }
             case ACTION_CREATE_SHORTCUT_CONTACT: {

@@ -23,7 +23,9 @@ import com.android.contacts.list.ContactPickerFragment;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.DirectoryListLoader;
+import com.android.contacts.list.EmailAddressPickerFragment;
 import com.android.contacts.list.OnContactPickerActionListener;
+import com.android.contacts.list.OnEmailAddressPickerActionListener;
 import com.android.contacts.list.OnPhoneNumberPickerActionListener;
 import com.android.contacts.list.OnPostalAddressPickerActionListener;
 import com.android.contacts.list.PhoneNumberPickerFragment;
@@ -171,6 +173,11 @@ public class ContactSelectionActivity extends ContactsActivity
                 break;
             }
 
+            case ContactsRequest.ACTION_PICK_EMAIL: {
+                setTitle(R.string.contactPickerActivityTitle);
+                break;
+            }
+
             case ContactsRequest.ACTION_CREATE_SHORTCUT_CALL: {
                 setTitle(R.string.callShortcutActivityTitle);
                 break;
@@ -236,6 +243,11 @@ public class ContactSelectionActivity extends ContactsActivity
                 break;
             }
 
+            case ContactsRequest.ACTION_PICK_EMAIL: {
+                mListFragment = new EmailAddressPickerFragment();
+                break;
+            }
+
             case ContactsRequest.ACTION_CREATE_SHORTCUT_CALL: {
                 PhoneNumberPickerFragment fragment = new PhoneNumberPickerFragment();
                 fragment.setShortcutAction(Intent.ACTION_CALL);
@@ -284,6 +296,9 @@ public class ContactSelectionActivity extends ContactsActivity
         } else if (mListFragment instanceof PostalAddressPickerFragment) {
             ((PostalAddressPickerFragment) mListFragment).setOnPostalAddressPickerActionListener(
                     new PostalAddressPickerActionListener());
+        } else if (mListFragment instanceof EmailAddressPickerFragment) {
+            ((EmailAddressPickerFragment) mListFragment).setOnEmailAddressPickerActionListener(
+                    new EmailAddressPickerActionListener());
         } else {
             throw new IllegalStateException("Unsupported list fragment type: " + mListFragment);
         }
@@ -330,6 +345,14 @@ public class ContactSelectionActivity extends ContactsActivity
             OnPostalAddressPickerActionListener {
         @Override
         public void onPickPostalAddressAction(Uri dataUri) {
+            returnPickerResult(dataUri);
+        }
+    }
+
+    private final class EmailAddressPickerActionListener implements
+            OnEmailAddressPickerActionListener {
+        @Override
+        public void onPickEmailAddressAction(Uri dataUri) {
             returnPickerResult(dataUri);
         }
     }

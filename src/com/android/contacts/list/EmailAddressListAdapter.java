@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 The Android Open Source Project
+ * Copyright (C) 2011 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,41 +20,44 @@ import android.content.Context;
 import android.content.CursorLoader;
 import android.database.Cursor;
 import android.net.Uri;
+import android.net.Uri.Builder;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
+import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * A cursor adapter for the {@link StructuredPostal#CONTENT_TYPE} content type.
+ * A cursor adapter for the {@link Email#CONTENT_TYPE} content type.
  */
-public class PostalAddressListAdapter extends ContactEntryListAdapter {
+public class EmailAddressListAdapter extends ContactEntryListAdapter {
 
-    static final String[] POSTALS_PROJECTION = new String[] {
-        StructuredPostal._ID,                       // 0
-        StructuredPostal.TYPE,                      // 1
-        StructuredPostal.LABEL,                     // 2
-        StructuredPostal.DATA,                      // 3
-        StructuredPostal.DISPLAY_NAME_PRIMARY,      // 4
-        StructuredPostal.DISPLAY_NAME_ALTERNATIVE,  // 5
-        StructuredPostal.PHOTO_ID,                  // 6
+    static final String[] EMAILS_PROJECTION = new String[] {
+        Email._ID,                       // 0
+        Email.TYPE,                      // 1
+        Email.LABEL,                     // 2
+        Email.DATA,                      // 3
+        Email.DISPLAY_NAME_PRIMARY,      // 4
+        Email.DISPLAY_NAME_ALTERNATIVE,  // 5
+        Email.PHOTO_ID,                  // 6
     };
 
-    protected static final int POSTAL_ID_COLUMN_INDEX = 0;
-    protected static final int POSTAL_TYPE_COLUMN_INDEX = 1;
-    protected static final int POSTAL_LABEL_COLUMN_INDEX = 2;
-    protected static final int POSTAL_ADDRESS_COLUMN_INDEX = 3;
-    protected static final int POSTAL_PRIMARY_DISPLAY_NAME_COLUMN_INDEX = 4;
-    protected static final int POSTAL_ALTERNATIVE_DISPLAY_NAME_COLUMN_INDEX = 5;
-    protected static final int POSTAL_PHOTO_ID_COLUMN_INDEX = 6;
+    protected static final int EMAIL_ID_COLUMN_INDEX = 0;
+    protected static final int EMAIL_TYPE_COLUMN_INDEX = 1;
+    protected static final int EMAIL_LABEL_COLUMN_INDEX = 2;
+    protected static final int EMAIL_ADDRESS_COLUMN_INDEX = 3;
+    protected static final int EMAIL_PRIMARY_DISPLAY_NAME_COLUMN_INDEX = 4;
+    protected static final int EMAIL_ALTERNATIVE_DISPLAY_NAME_COLUMN_INDEX = 5;
+    protected static final int EMAIL_PHOTO_ID_COLUMN_INDEX = 6;
 
     private CharSequence mUnknownNameText;
     private int mDisplayNameColumnIndex;
     private int mAlternativeDisplayNameColumnIndex;
 
-    public PostalAddressListAdapter(Context context) {
+    public EmailAddressListAdapter(Context context) {
         super(context);
 
         mUnknownNameText = context.getText(android.R.string.unknownName);
@@ -62,21 +65,30 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
 
     @Override
     public void configureLoader(CursorLoader loader, long directoryId) {
-        Uri uri = buildSectionIndexerUri(StructuredPostal.CONTENT_URI);
-        uri = applyDataRestriction(uri);
-        loader.setUri(uri);
-        loader.setProjection(POSTALS_PROJECTION);
+        final Builder builder;
+        if (isSearchMode()) {
+            builder = Email.CONTENT_FILTER_URI.buildUpon();
+            String query = getQueryString();
+            builder.appendPath(TextUtils.isEmpty(query) ? "" : query);
+        } else {
+            builder = Email.CONTENT_URI.buildUpon();
+        }
+        builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
+                String.valueOf(directoryId));
+        applyDataRestriction(builder);
+        loader.setUri(builder.build());
+        loader.setProjection(EMAILS_PROJECTION);
 
         if (getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
-            loader.setSortOrder(StructuredPostal.SORT_KEY_PRIMARY);
+            loader.setSortOrder(Email.SORT_KEY_PRIMARY);
         } else {
-            loader.setSortOrder(StructuredPostal.SORT_KEY_ALTERNATIVE);
+            loader.setSortOrder(Email.SORT_KEY_ALTERNATIVE);
         }
     }
 
-    protected static Uri buildSectionIndexerUri(Uri uri) {
+    protected static Builder buildSectionIndexerUri(Uri uri) {
         return uri.buildUpon()
-                .appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true").build();
+                .appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true");
     }
 
     @Override
@@ -88,11 +100,11 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
     public void setContactNameDisplayOrder(int displayOrder) {
         super.setContactNameDisplayOrder(displayOrder);
         if (getContactNameDisplayOrder() == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
-            mDisplayNameColumnIndex = POSTAL_PRIMARY_DISPLAY_NAME_COLUMN_INDEX;
-            mAlternativeDisplayNameColumnIndex = POSTAL_ALTERNATIVE_DISPLAY_NAME_COLUMN_INDEX;
+            mDisplayNameColumnIndex = EMAIL_PRIMARY_DISPLAY_NAME_COLUMN_INDEX;
+            mAlternativeDisplayNameColumnIndex = EMAIL_ALTERNATIVE_DISPLAY_NAME_COLUMN_INDEX;
         } else {
-            mDisplayNameColumnIndex = POSTAL_ALTERNATIVE_DISPLAY_NAME_COLUMN_INDEX;
-            mAlternativeDisplayNameColumnIndex = POSTAL_PRIMARY_DISPLAY_NAME_COLUMN_INDEX;
+            mDisplayNameColumnIndex = EMAIL_ALTERNATIVE_DISPLAY_NAME_COLUMN_INDEX;
+            mAlternativeDisplayNameColumnIndex = EMAIL_PRIMARY_DISPLAY_NAME_COLUMN_INDEX;
         }
     }
 
@@ -101,7 +113,7 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
      * position.
      */
     public Uri getDataUri(int position) {
-        long id = ((Cursor)getItem(position)).getLong(POSTAL_ID_COLUMN_INDEX);
+        long id = ((Cursor)getItem(position)).getLong(EMAIL_ID_COLUMN_INDEX);
         return ContentUris.withAppendedId(Data.CONTENT_URI, id);
     }
 
@@ -121,20 +133,20 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
         bindSectionHeaderAndDivider(view, position);
         bindName(view, cursor);
         bindPhoto(view, cursor);
-        bindPostalAddress(view, cursor);
+        bindEmailAddress(view, cursor);
     }
 
-    protected void bindPostalAddress(ContactListItemView view, Cursor cursor) {
+    protected void bindEmailAddress(ContactListItemView view, Cursor cursor) {
         CharSequence label = null;
-        if (!cursor.isNull(POSTAL_TYPE_COLUMN_INDEX)) {
-            final int type = cursor.getInt(POSTAL_TYPE_COLUMN_INDEX);
-            final String customLabel = cursor.getString(POSTAL_LABEL_COLUMN_INDEX);
+        if (!cursor.isNull(EMAIL_TYPE_COLUMN_INDEX)) {
+            final int type = cursor.getInt(EMAIL_TYPE_COLUMN_INDEX);
+            final String customLabel = cursor.getString(EMAIL_LABEL_COLUMN_INDEX);
 
             // TODO cache
-            label = StructuredPostal.getTypeLabel(getContext().getResources(), type, customLabel);
+            label = Email.getTypeLabel(getContext().getResources(), type, customLabel);
         }
         view.setLabel(label);
-        view.showData(cursor, POSTAL_ADDRESS_COLUMN_INDEX);
+        view.showData(cursor, EMAIL_ADDRESS_COLUMN_INDEX);
     }
 
     protected void bindSectionHeaderAndDivider(final ContactListItemView view, int position) {
@@ -163,8 +175,8 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
 
     protected void bindPhoto(final ContactListItemView view, Cursor cursor) {
         long photoId = 0;
-        if (!cursor.isNull(POSTAL_PHOTO_ID_COLUMN_INDEX)) {
-            photoId = cursor.getLong(POSTAL_PHOTO_ID_COLUMN_INDEX);
+        if (!cursor.isNull(EMAIL_PHOTO_ID_COLUMN_INDEX)) {
+            photoId = cursor.getLong(EMAIL_PHOTO_ID_COLUMN_INDEX);
         }
 
         getPhotoLoader().loadPhoto(view.getPhotoView(), photoId);

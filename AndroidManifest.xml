@@ -281,6 +281,7 @@
                 <data android:mimeType="vnd.android.cursor.dir/phone" />
                 <data android:mimeType="vnd.android.cursor.dir/postal-address_v2" />
                 <data android:mimeType="vnd.android.cursor.dir/postal-address" />
+                <data android:mimeType="vnd.android.cursor.dir/email_v2" />
             </intent-filter>
 
             <intent-filter>

@@ -32,6 +32,7 @@
         <item>ACTION_PICK: phone (legacy)</item>
         <item>ACTION_PICK: postal</item>
         <item>ACTION_PICK: postal (legacy)</item>
+        <item>ACTION_PICK: e-mail</item>
         <item>ACTION_CREATE_SHORTCUT: contact</item>
         <item>ACTION_CREATE_SHORTCUT: dial</item>
         <item>ACTION_CREATE_SHORTCUT: message</item>

@@ -73,7 +73,7 @@ public class PostalAddressPickerFragment
         return inflater.inflate(R.layout.contacts_list_content, null);
     }
 
-    public void pickPostalAddress(Uri uri) {
+    private void pickPostalAddress(Uri uri) {
         mListener.onPickPostalAddressAction(uri);
     }
 }

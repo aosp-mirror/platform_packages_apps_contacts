@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.provider.Contacts.ContactMethods;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
+import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Contacts;
@@ -95,6 +96,8 @@ public class ContactsIntentResolver {
             } else if (ContactMethods.CONTENT_POSTAL_TYPE.equals(resolvedType)) {
                 request.setActionCode(ContactsRequest.ACTION_PICK_POSTAL);
                 request.setLegacyCompatibilityMode(true);
+            } else if (Email.CONTENT_TYPE.equals(resolvedType)) {
+                request.setActionCode(ContactsRequest.ACTION_PICK_EMAIL);
             }
         } else if (Intent.ACTION_CREATE_SHORTCUT.equals(action)) {
             String component = intent.getComponent().getClassName();
