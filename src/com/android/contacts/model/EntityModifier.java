@@ -16,11 +16,17 @@
 
 package com.android.contacts.model;
 
+import com.google.android.collect.Lists;
+
 import com.android.contacts.ContactsUtils;
+import com.android.contacts.editor.EventFieldEditorView;
+import com.android.contacts.editor.PhoneticNameEditorView;
+import com.android.contacts.editor.StructuredNameEditorView;
 import com.android.contacts.model.AccountType.EditField;
 import com.android.contacts.model.AccountType.EditType;
+import com.android.contacts.model.AccountType.EventEditType;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.google.android.collect.Lists;
+import com.android.contacts.util.DateUtils;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -30,14 +36,19 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.BaseTypes;
 import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.CommonDataKinds.Im;
+import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.Note;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
+import android.provider.ContactsContract.CommonDataKinds.Relation;
+import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
+import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.Intents.Insert;
@@ -46,9 +57,18 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseIntArray;
 
+import java.text.ParsePosition;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Helper methods for modifying an {@link EntityDelta}, such as inserting
@@ -876,5 +896,513 @@ public class EntityModifier {
         }
 
         return child;
+    }
+
+    /**
+     * Generic mime types with type support (e.g. TYPE_HOME).
+     * Here, "type support" means if the data kind has CommonColumns#TYPE or not. Data kinds which
+     * have their own migrate methods aren't listed here.
+     */
+    private static final Set<String> sGenericMimeTypesWithTypeSupport = new HashSet<String>(
+            Arrays.asList(Phone.CONTENT_ITEM_TYPE,
+                    Email.CONTENT_ITEM_TYPE,
+                    Im.CONTENT_ITEM_TYPE,
+                    Nickname.CONTENT_ITEM_TYPE,
+                    Website.CONTENT_ITEM_TYPE,
+                    Relation.CONTENT_ITEM_TYPE,
+                    SipAddress.CONTENT_ITEM_TYPE));
+    private static final Set<String> sGenericMimeTypesWithoutTypeSupport = new HashSet<String>(
+            Arrays.asList(Organization.CONTENT_ITEM_TYPE,
+                    Note.CONTENT_ITEM_TYPE,
+                    Photo.CONTENT_ITEM_TYPE,
+                    GroupMembership.CONTENT_ITEM_TYPE));
+    // CommonColumns.TYPE cannot be accessed as it is protected interface, so use
+    // Phone.TYPE instead.
+    private static final String COLUMN_FOR_TYPE  = Phone.TYPE;
+    private static final String COLUMN_FOR_LABEL  = Phone.LABEL;
+    private static final int TYPE_CUSTOM = Phone.TYPE_CUSTOM;
+
+    /**
+     * Migrates old EntityDelta to newly created one with a new restriction supplied from
+     * newAccountType.
+     *
+     * This is only for account switch during account creation (which must be insert operation).
+     */
+    public static void migrateStateForNewContact(Context context,
+            EntityDelta oldState, EntityDelta newState,
+            AccountType oldAccountType, AccountType newAccountType) {
+        if (newAccountType == oldAccountType) {
+            // Just copying all data in oldState isn't enough, but we can still rely on a lot of
+            // shortcuts.
+            for (DataKind kind : newAccountType.getSortedDataKinds()) {
+                final String mimeType = kind.mimeType;
+                // The fields with short/long form capability must be treated properly.
+                if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    migrateStructuredName(context, oldState, newState, kind);
+                } else {
+                    List<ValuesDelta> entryList = oldState.getMimeEntries(mimeType);
+                    if (entryList != null && !entryList.isEmpty()) {
+                        for (ValuesDelta entry : entryList) {
+                            ContentValues values = entry.getAfter();
+                            if (values != null) {
+                                newState.addEntry(ValuesDelta.fromAfter(values));
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            // Migrate data supported by the new account type.
+            // All the other data inside oldState are silently dropped.
+            for (DataKind kind : newAccountType.getSortedDataKinds()) {
+                final String mimeType = kind.mimeType;
+                final int fieldCount = kind.fieldList.size();
+                final Set<String> allowedColumns = new HashSet<String>();
+                if (DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME.equals(mimeType)
+                        || DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME.equals(mimeType)) {
+                    // Ignore pseude data.
+                    continue;
+                } else if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    migrateStructuredName(context, oldState, newState, kind);
+                } else if (StructuredPostal.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    migratePostal(oldState, newState, kind);
+                } else if (Event.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    migrateEvent(oldState, newState, kind, null /* default Year */);
+                } else if (sGenericMimeTypesWithoutTypeSupport.contains(mimeType)) {
+                    migrateGenericWithoutTypeColumn(oldState, newState, kind);
+                } else {
+                    migrateGenericWithTypeColumn(oldState, newState, kind);
+                }
+            }
+        }
+    }
+
+    /**
+     * Checks {@link DataKind#isList} and {@link DataKind#typeOverallMax}, and restricts
+     * the number of entries (ValuesDelta) inside newState.
+     */
+    private static ArrayList<ValuesDelta> ensureEntryMaxSize(EntityDelta newState, DataKind kind,
+            ArrayList<ValuesDelta> mimeEntries) {
+        if (mimeEntries == null) {
+            return null;
+        }
+
+        int typeOverallMax = kind.typeOverallMax;
+        if (!kind.isList) {
+            typeOverallMax = 1;
+        }
+        if (typeOverallMax >= 0 && (mimeEntries.size() > typeOverallMax)) {
+            ArrayList<ValuesDelta> newMimeEntries = new ArrayList<ValuesDelta>(typeOverallMax);
+            for (int i = 0; i < typeOverallMax; i++) {
+                newMimeEntries.add(mimeEntries.get(i));
+            }
+            mimeEntries = newMimeEntries;
+        }
+        return mimeEntries;
+    }
+
+    /** @hide Public only for testing. */
+    public static void migrateStructuredName(
+            Context context, EntityDelta oldState, EntityDelta newState, DataKind newDataKind) {
+        final ContentValues values =
+                oldState.getPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE).getAfter();
+        if (values == null) {
+            return;
+        }
+
+        boolean supportDisplayName = false;
+        boolean supportPhoneticFullName = false;
+        boolean supportPhoneticFamilyName = false;
+        boolean supportPhoneticMiddleName = false;
+        boolean supportPhoneticGivenName = false;
+        for (EditField editField : newDataKind.fieldList) {
+            if (StructuredName.DISPLAY_NAME.equals(editField.column)) {
+                supportDisplayName = true;
+            }
+            if (DataKind.PSEUDO_COLUMN_PHONETIC_NAME.equals(editField.column)) {
+                supportPhoneticFullName = true;
+            }
+            if (StructuredName.PHONETIC_FAMILY_NAME.equals(editField.column)) {
+                supportPhoneticFamilyName = true;
+            }
+            if (StructuredName.PHONETIC_MIDDLE_NAME.equals(editField.column)) {
+                supportPhoneticMiddleName = true;
+            }
+            if (StructuredName.PHONETIC_GIVEN_NAME.equals(editField.column)) {
+                supportPhoneticGivenName = true;
+            }
+        }
+
+        // DISPLAY_NAME <-> PREFIX, GIVEN_NAME, MIDDLE_NAME, FAMILY_NAME, SUFFIX
+        final String displayName = values.getAsString(StructuredName.DISPLAY_NAME);
+        if (!TextUtils.isEmpty(displayName)) {
+            if (!supportDisplayName) {
+                // Old data has a display name, while the new account doesn't allow it.
+                StructuredNameEditorView.buildStructuredNameFromFullName(
+                        context, displayName, values);
+
+                // We don't want to migrate unseen data which may confuse users after the creation.
+                values.remove(StructuredName.DISPLAY_NAME);
+            }
+        } else {
+            if (supportDisplayName) {
+                // Old data does not have display name, while the new account requires it.
+                values.put(StructuredName.DISPLAY_NAME,
+                        StructuredNameEditorView.buildFullNameFromStructuredName(context,
+                                values.getAsString(StructuredName.PREFIX),
+                                values.getAsString(StructuredName.GIVEN_NAME),
+                                values.getAsString(StructuredName.MIDDLE_NAME),
+                                values.getAsString(StructuredName.FAMILY_NAME),
+                                values.getAsString(StructuredName.SUFFIX)));
+
+                values.remove(StructuredName.PREFIX);
+                values.remove(StructuredName.GIVEN_NAME);
+                values.remove(StructuredName.MIDDLE_NAME);
+                values.remove(StructuredName.FAMILY_NAME);
+                values.remove(StructuredName.SUFFIX);
+            }
+        }
+
+        // Phonetic (full) name <-> PHONETIC_FAMILY_NAME, PHONETIC_MIDDLE_NAME, PHONETIC_GIVEN_NAME
+        final String phoneticFullName = values.getAsString(DataKind.PSEUDO_COLUMN_PHONETIC_NAME);
+        if (!TextUtils.isEmpty(phoneticFullName)) {
+            if (!supportPhoneticFullName) {
+                // Old data has a phonetic (full) name, while the new account doesn't allow it.
+                final ContentValues tmpValues =
+                        PhoneticNameEditorView.parsePhoneticName(phoneticFullName, null);
+                values.remove(DataKind.PSEUDO_COLUMN_PHONETIC_NAME);
+                if (supportPhoneticFamilyName) {
+                    values.put(StructuredName.PHONETIC_FAMILY_NAME,
+                            tmpValues.getAsString(StructuredName.PHONETIC_FAMILY_NAME));
+                } else {
+                    values.remove(StructuredName.PHONETIC_FAMILY_NAME);
+                }
+                if (supportPhoneticMiddleName) {
+                    values.put(StructuredName.PHONETIC_MIDDLE_NAME,
+                            tmpValues.getAsString(StructuredName.PHONETIC_MIDDLE_NAME));
+                } else {
+                    values.remove(StructuredName.PHONETIC_MIDDLE_NAME);
+                }
+                if (supportPhoneticGivenName) {
+                    values.put(StructuredName.PHONETIC_GIVEN_NAME,
+                            tmpValues.getAsString(StructuredName.PHONETIC_GIVEN_NAME));
+                } else {
+                    values.remove(StructuredName.PHONETIC_GIVEN_NAME);
+                }
+            }
+        } else {
+            if (supportPhoneticFullName) {
+                // Old data does not have a phonetic (full) name, while the new account requires it.
+                values.put(DataKind.PSEUDO_COLUMN_PHONETIC_NAME,
+                        PhoneticNameEditorView.buildPhoneticName(
+                                values.getAsString(StructuredName.PHONETIC_FAMILY_NAME),
+                                values.getAsString(StructuredName.PHONETIC_MIDDLE_NAME),
+                                values.getAsString(StructuredName.PHONETIC_GIVEN_NAME)));
+            }
+            if (!supportPhoneticFamilyName) {
+                values.remove(StructuredName.PHONETIC_FAMILY_NAME);
+            }
+            if (!supportPhoneticMiddleName) {
+                values.remove(StructuredName.PHONETIC_MIDDLE_NAME);
+            }
+            if (!supportPhoneticGivenName) {
+                values.remove(StructuredName.PHONETIC_GIVEN_NAME);
+            }
+        }
+
+        newState.addEntry(ValuesDelta.fromAfter(values));
+    }
+
+    /** @hide Public only for testing. */
+    public static void migratePostal(EntityDelta oldState, EntityDelta newState,
+            DataKind newDataKind) {
+        final ArrayList<ValuesDelta> mimeEntries = ensureEntryMaxSize(newState, newDataKind,
+                oldState.getMimeEntries(StructuredPostal.CONTENT_ITEM_TYPE));
+        if (mimeEntries == null || mimeEntries.isEmpty()) {
+            return;
+        }
+
+        boolean supportFormattedAddress = false;
+        boolean supportStreet = false;
+        final String firstColumn = newDataKind.fieldList.get(0).column;
+        for (EditField editField : newDataKind.fieldList) {
+            if (StructuredPostal.FORMATTED_ADDRESS.equals(editField.column)) {
+                supportFormattedAddress = true;
+            }
+            if (StructuredPostal.STREET.equals(editField.column)) {
+                supportStreet = true;
+            }
+        }
+
+        final Set<Integer> supportedTypes = new HashSet<Integer>();
+        if (newDataKind.typeList != null && !newDataKind.typeList.isEmpty()) {
+            for (EditType editType : newDataKind.typeList) {
+                supportedTypes.add(editType.rawValue);
+            }
+        }
+
+        for (ValuesDelta entry : mimeEntries) {
+            final ContentValues values = entry.getAfter();
+            if (values == null) {
+                continue;
+            }
+            final Integer oldType = values.getAsInteger(StructuredPostal.TYPE);
+            if (!supportedTypes.contains(oldType)) {
+                int defaultType;
+                if (newDataKind.defaultValues != null) {
+                    defaultType = newDataKind.defaultValues.getAsInteger(StructuredPostal.TYPE);
+                } else {
+                    defaultType = newDataKind.typeList.get(0).rawValue;
+                }
+                values.put(StructuredPostal.TYPE, defaultType);
+                if (oldType != null && oldType == StructuredPostal.TYPE_CUSTOM) {
+                    values.remove(StructuredPostal.LABEL);
+                }
+            }
+
+            final String formattedAddress = values.getAsString(StructuredPostal.FORMATTED_ADDRESS);
+            if (!TextUtils.isEmpty(formattedAddress)) {
+                if (!supportFormattedAddress) {
+                    // Old data has a formatted address, while the new account doesn't allow it.
+                    values.remove(StructuredPostal.FORMATTED_ADDRESS);
+
+                    // Unlike StructuredName we don't have logic to split it, so first
+                    // try to use street field and. If the new account doesn't have one,
+                    // then select first one anyway.
+                    if (supportStreet) {
+                        values.put(StructuredPostal.STREET, formattedAddress);
+                    } else {
+                        values.put(firstColumn, formattedAddress);
+                    }
+                }
+            } else {
+                if (supportFormattedAddress) {
+                    // Old data does not have formatted address, while the new account requires it.
+                    // Unlike StructuredName we don't have logic to join multiple address values.
+                    // Use poor join heuristics for now.
+                    String[] structuredData;
+                    final boolean useJapaneseOrder =
+                            Locale.JAPANESE.getLanguage().equals(Locale.getDefault().getLanguage());
+                    if (useJapaneseOrder) {
+                        structuredData = new String[] {
+                                values.getAsString(StructuredPostal.COUNTRY),
+                                values.getAsString(StructuredPostal.POSTCODE),
+                                values.getAsString(StructuredPostal.REGION),
+                                values.getAsString(StructuredPostal.CITY),
+                                values.getAsString(StructuredPostal.NEIGHBORHOOD),
+                                values.getAsString(StructuredPostal.STREET),
+                                values.getAsString(StructuredPostal.POBOX) };
+                    } else {
+                        structuredData = new String[] {
+                                values.getAsString(StructuredPostal.POBOX),
+                                values.getAsString(StructuredPostal.STREET),
+                                values.getAsString(StructuredPostal.NEIGHBORHOOD),
+                                values.getAsString(StructuredPostal.CITY),
+                                values.getAsString(StructuredPostal.REGION),
+                                values.getAsString(StructuredPostal.POSTCODE),
+                                values.getAsString(StructuredPostal.COUNTRY) };
+                    }
+                    final StringBuilder builder = new StringBuilder();
+                    for (String elem : structuredData) {
+                        if (!TextUtils.isEmpty(elem)) {
+                            builder.append(elem + "\n");
+                        }
+                    }
+                    values.put(StructuredPostal.FORMATTED_ADDRESS, builder.toString());
+
+                    values.remove(StructuredPostal.POBOX);
+                    values.remove(StructuredPostal.STREET);
+                    values.remove(StructuredPostal.NEIGHBORHOOD);
+                    values.remove(StructuredPostal.CITY);
+                    values.remove(StructuredPostal.REGION);
+                    values.remove(StructuredPostal.POSTCODE);
+                    values.remove(StructuredPostal.COUNTRY);
+                }
+            }
+
+            newState.addEntry(ValuesDelta.fromAfter(values));
+        }
+    }
+
+    /** @hide Public only for testing. */
+    public static void migrateEvent(EntityDelta oldState, EntityDelta newState,
+            DataKind newDataKind, Integer defaultYear) {
+        final ArrayList<ValuesDelta> mimeEntries = ensureEntryMaxSize(newState, newDataKind,
+                oldState.getMimeEntries(Event.CONTENT_ITEM_TYPE));
+        if (mimeEntries == null || mimeEntries.isEmpty()) {
+            return;
+        }
+
+        final Map<Integer, EventEditType> allowedTypes = new HashMap<Integer, EventEditType>();
+        for (EditType editType : newDataKind.typeList) {
+            allowedTypes.put(editType.rawValue, (EventEditType) editType);
+        }
+        for (ValuesDelta entry : mimeEntries) {
+            final ContentValues values = entry.getAfter();
+            if (values == null) {
+                continue;
+            }
+            final String dateString = values.getAsString(Event.START_DATE);
+            final Integer type = values.getAsInteger(Event.TYPE);
+            if (type != null && allowedTypes.containsKey(type) && !TextUtils.isEmpty(dateString)) {
+                EventEditType suitableType = allowedTypes.get(type);
+
+                final ParsePosition position = new ParsePosition(0);
+                boolean yearOptional = false;
+                Date date = DateUtils.DATE_AND_TIME_FORMAT.parse(dateString, position);
+                if (date == null) {
+                    yearOptional = true;
+                    date = DateUtils.NO_YEAR_DATE_FORMAT.parse(dateString, position);
+                }
+                if (date != null) {
+                    if (yearOptional && !suitableType.isYearOptional()) {
+                        // The new EditType doesn't allow optional year. Supply default.
+                        final Calendar calendar = Calendar.getInstance(DateUtils.UTC_TIMEZONE,
+                                Locale.US);
+                        if (defaultYear == null) {
+                            defaultYear = calendar.get(Calendar.YEAR);
+                        }
+                        calendar.setTime(date);
+                        final int month = calendar.get(Calendar.MONTH);
+                        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+                        // Exchange requires 8:00 for birthdays
+                        calendar.set(defaultYear, month, day,
+                                EventFieldEditorView.getDefaultHourForBirthday(), 0, 0);
+                        values.put(Event.START_DATE,
+                                DateUtils.FULL_DATE_FORMAT.format(calendar.getTime()));
+                    }
+                }
+                newState.addEntry(ValuesDelta.fromAfter(values));
+            } else {
+                // Just drop it.
+            }
+        }
+    }
+
+    /** @hide Public only for testing. */
+    public static void migrateGenericWithoutTypeColumn(
+            EntityDelta oldState, EntityDelta newState, DataKind newDataKind) {
+        final ArrayList<ValuesDelta> mimeEntries = ensureEntryMaxSize(newState, newDataKind,
+                oldState.getMimeEntries(newDataKind.mimeType));
+        if (mimeEntries == null || mimeEntries.isEmpty()) {
+            return;
+        }
+
+        for (ValuesDelta entry : mimeEntries) {
+            ContentValues values = entry.getAfter();
+            if (values != null) {
+                newState.addEntry(ValuesDelta.fromAfter(values));
+            }
+        }
+    }
+
+    /** @hide Public only for testing. */
+    public static void migrateGenericWithTypeColumn(
+            EntityDelta oldState, EntityDelta newState, DataKind newDataKind) {
+        if (!sGenericMimeTypesWithTypeSupport.contains(newDataKind.mimeType)) {
+            throw new RuntimeException("not supported: " + newDataKind.mimeType);
+        }
+
+        final ArrayList<ValuesDelta> mimeEntries = oldState.getMimeEntries(newDataKind.mimeType);
+        if (mimeEntries == null || mimeEntries.isEmpty()) {
+            return;
+        }
+
+        // Note that type specified with the old account may be invalid with the new account, while
+        // we want to preserve its data as much as possible. e.g. if a user typed a phone number
+        // with a type which is valid with an old account but not with a new account, the user
+        // probably wants to have the number with default type, rather than seeing complete data
+        // loss.
+        //
+        // Specifically, this method works as follows:
+        // 1. detect defaultType
+        // 2. prepare constants & variables for iteration
+        // 3. iterate over mimeEntries:
+        // 3.1 stop iteration if total number of mimeEntries reached typeOverallMax specified in
+        //     DataKind
+        // 3.2 replace unallowed types with defaultType
+        // 3.3 check if the number of entries is below specificMax specified in AccountType
+
+        // Here, defaultType can be supplied in two ways
+        // - via kind.defaultValues
+        // - via kind.typeList.get(0).rawValue
+        Integer defaultType = null;
+        if (newDataKind.defaultValues != null) {
+            defaultType = newDataKind.defaultValues.getAsInteger(COLUMN_FOR_TYPE);
+        }
+        final Set<Integer> allowedTypes = new HashSet<Integer>();
+        // key: type, value: the number of entries allowed for the type (specificMax)
+        final Map<Integer, Integer> typeSpecificMaxMap = new HashMap<Integer, Integer>();
+        if (defaultType != null) {
+            allowedTypes.add(defaultType);
+            typeSpecificMaxMap.put(defaultType, -1);
+        }
+        // Note: typeList may be used in different purposes when defaultValues are specified.
+        // Especially in IM, typeList contains available protocols (e.g. PROTOCOL_GOOGLE_TALK)
+        // instead of "types" which we want to treate here (e.g. TYPE_HOME). So we don't add
+        // anything other than defaultType into allowedTypes and typeSpecificMapMax.
+        if (!Im.CONTENT_ITEM_TYPE.equals(newDataKind.mimeType) &&
+                newDataKind.typeList != null && !newDataKind.typeList.isEmpty()) {
+            for (EditType editType : newDataKind.typeList) {
+                allowedTypes.add(editType.rawValue);
+                typeSpecificMaxMap.put(editType.rawValue, editType.specificMax);
+            }
+            if (defaultType == null) {
+                defaultType = newDataKind.typeList.get(0).rawValue;
+            }
+        }
+
+        if (defaultType == null) {
+            Log.w(TAG, "Default type isn't available for mimetype " + newDataKind.mimeType);
+        }
+
+        final int typeOverallMax = newDataKind.isList ? newDataKind.typeOverallMax : 1;
+
+        // key: type, value: the number of current entries.
+        final Map<Integer, Integer> currentEntryCount = new HashMap<Integer, Integer>();
+        int totalCount = 0;
+
+        for (ValuesDelta entry : mimeEntries) {
+            if (typeOverallMax != -1 && totalCount >= typeOverallMax) {
+                break;
+            }
+
+            final ContentValues values = entry.getAfter();
+            if (values == null) {
+                continue;
+            }
+
+            final Integer oldType = entry.getAsInteger(COLUMN_FOR_TYPE);
+            final Integer typeForNewAccount;
+            if (!allowedTypes.contains(oldType)) {
+                // The new account doesn't support the type.
+                if (defaultType != null) {
+                    typeForNewAccount = defaultType.intValue();
+                    values.put(COLUMN_FOR_TYPE, defaultType.intValue());
+                    if (oldType != null && oldType == TYPE_CUSTOM) {
+                        values.remove(COLUMN_FOR_LABEL);
+                    }
+                } else {
+                    typeForNewAccount = null;
+                    values.remove(COLUMN_FOR_TYPE);
+                }
+            } else {
+                typeForNewAccount = oldType;
+            }
+            if (typeForNewAccount != null) {
+                final int specificMax = (typeSpecificMaxMap.containsKey(typeForNewAccount) ?
+                        typeSpecificMaxMap.get(typeForNewAccount) : 0);
+                if (specificMax >= 0) {
+                    final int currentCount = (currentEntryCount.get(typeForNewAccount) != null ?
+                            currentEntryCount.get(typeForNewAccount) : 0);
+                    if (currentCount >= specificMax) {
+                        continue;
+                    }
+                    currentEntryCount.put(typeForNewAccount, currentCount + 1);
+                }
+            }
+            newState.addEntry(ValuesDelta.fromAfter(values));
+            totalCount++;
+        }
     }
 }

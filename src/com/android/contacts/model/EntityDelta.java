@@ -330,7 +330,7 @@ public class EntityDelta implements Parcelable {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("\n(");
-        builder.append(mValues.toString());
+        builder.append(mValues != null ? mValues.toString() : "null");
         builder.append(") = {");
         for (ArrayList<ValuesDelta> mimeEntries : mEntries.values()) {
             for (ValuesDelta child : mimeEntries) {

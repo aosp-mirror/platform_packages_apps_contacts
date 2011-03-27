@@ -49,7 +49,6 @@ public abstract class BaseRawContactEditorView extends LinearLayout {
     private PhotoEditorView mPhoto;
     private boolean mHasPhotoEditor = false;
 
-    private View mHeader;
     private View mBody;
     private View mDivider;
 
@@ -67,15 +66,8 @@ public abstract class BaseRawContactEditorView extends LinearLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
 
-        mHeader = findViewById(R.id.header);
         mBody = findViewById(R.id.body);
         mDivider = findViewById(R.id.divider);
-        mHeader.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setExpanded(!mExpanded);
-            }
-        });
 
         mPhoto = (PhotoEditorView)findViewById(R.id.edit_photo);
         mPhoto.setEnabled(isEnabled());

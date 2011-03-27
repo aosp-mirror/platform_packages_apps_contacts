@@ -21,9 +21,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <include
-        layout="@layout/raw_contact_editor_header"
-        android:id="@+id/header" />
+    <FrameLayout
+        android:id="@+id/anchor_for_account_switcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <include
+            layout="@layout/raw_contact_editor_header"
+            android:id="@+id/header" />
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/body"

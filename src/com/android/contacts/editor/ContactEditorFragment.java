@@ -31,6 +31,7 @@ import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.GoogleAccountType;
+import com.android.contacts.util.AccountsListAdapter;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -78,7 +79,9 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.view.ViewStub;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.ListPopupWindow;
 import android.widget.Toast;
 
 import java.io.File;
@@ -90,7 +93,7 @@ import java.util.Date;
 import java.util.List;
 
 public class ContactEditorFragment extends Fragment implements
-        SplitContactConfirmationDialogFragment.Listener, SelectAccountDialogFragment.Listener,
+        SplitContactConfirmationDialogFragment.Listener,
         AggregationSuggestionEngine.Listener, AggregationSuggestionView.Listener,
         ExternalRawContactEditorView.Listener {
 
@@ -313,7 +316,7 @@ public class ContactEditorFragment extends Fragment implements
                 } else {
                     // No Account specified. Let the user choose
                     // Load Accounts async so that we can present them
-                    selectAccountAndCreateContact();
+                    createContact();
                 }
             } else if (ContactEditorActivity.ACTION_SAVE_COMPLETED.equals(mAction)) {
                 // do nothing
@@ -437,7 +440,11 @@ public class ContactEditorFragment extends Fragment implements
         }
     }
 
-    private void selectAccountAndCreateContact() {
+    /**
+     * Shows the account creation screen. An account associated with the contact is automatically
+     * selected. If there's no available account, device-local contact should be created.
+     */
+    private void createContact() {
         final ArrayList<Account> accounts =
                 AccountTypeManager.getInstance(mContext).getAccounts(true);
         // No Accounts available.  Create a phone-local contact.
@@ -446,21 +453,16 @@ public class ContactEditorFragment extends Fragment implements
             return;  // Don't show a dialog.
         }
 
-        // In the common case of a single account being writable, auto-select
-        // it without showing a dialog.
-        if (accounts.size() == 1) {
-            createContact(accounts.get(0));
-            return;  // Don't show a dialog.
-        }
-
-        final SelectAccountDialogFragment dialog = new SelectAccountDialogFragment();
-        dialog.setTargetFragment(this, 0);
-        dialog.show(getFragmentManager(), SelectAccountDialogFragment.TAG);
+        // We have an account switcher in "create-account" screen, so don't need to ask a user to
+        // select an account here.
+        createContact(accounts.get(0));
     }
 
+
     /**
-     * @param account may be null to signal a device-local contact should
-     *     be created.
+     * Shows account creation screen associated with a given account.
+     *
+     * @param account may be null to signal a device-local contact should be created.
      */
     private void createContact(Account account) {
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
@@ -476,31 +478,66 @@ public class ContactEditorFragment extends Fragment implements
         }
     }
 
+    /**
+     * Removes a current editor ({@link #mState}) and rebinds new editor for a new account.
+     * Some of old data are reused with new restriction enforced by the new account.
+     *
+     * @param oldState Old data being editted.
+     * @param oldAccount Old account associated with oldState.
+     * @param newAccount New account to be used.
+     */
+    private void rebindEditorsForNewContact(
+            EntityDelta oldState, Account oldAccount, Account newAccount) {
+        AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
+        AccountType oldAccountType = accountTypes.getAccountType(oldAccount.type);
+        AccountType newAccountType = accountTypes.getAccountType(newAccount.type);
+
+        if (newAccountType.getCreateContactActivityClassName() != null) {
+            Log.w(TAG, "external activity called in rebind situation");
+            if (mListener != null) {
+                mListener.onCustomCreateContactActivityRequested(newAccount, mIntentExtras);
+            }
+        } else {
+            mState = null;
+            bindEditorsForNewContact(newAccount, newAccountType, oldState, oldAccountType);
+        }
+    }
+
     private void bindEditorsForNewContact(Account account, final AccountType accountType) {
+        bindEditorsForNewContact(account, accountType, null, null);
+    }
+
+    private void bindEditorsForNewContact(Account newAccount, final AccountType newAccountType,
+            EntityDelta oldState, AccountType oldAccountType) {
         mStatus = Status.EDITING;
 
         final ContentValues values = new ContentValues();
-        if (account != null) {
-            values.put(RawContacts.ACCOUNT_NAME, account.name);
-            values.put(RawContacts.ACCOUNT_TYPE, account.type);
+        if (newAccount != null) {
+            values.put(RawContacts.ACCOUNT_NAME, newAccount.name);
+            values.put(RawContacts.ACCOUNT_TYPE, newAccount.type);
         } else {
             values.putNull(RawContacts.ACCOUNT_NAME);
             values.putNull(RawContacts.ACCOUNT_TYPE);
         }
 
-        // Parse any values from incoming intent
         EntityDelta insert = new EntityDelta(ValuesDelta.fromAfter(values));
-        EntityModifier.parseExtras(mContext, accountType, insert, mIntentExtras);
+        if (oldState == null) {
+            // Parse any values from incoming intent
+            EntityModifier.parseExtras(mContext, newAccountType, insert, mIntentExtras);
+        } else {
+            EntityModifier.migrateStateForNewContact(mContext, oldState, insert,
+                    oldAccountType, newAccountType);
+        }
 
         // Ensure we have some default fields (if the account type does not support a field,
         // ensureKind will not add it, so it is safe to add e.g. Event)
-        EntityModifier.ensureKindExists(insert, accountType, Phone.CONTENT_ITEM_TYPE);
-        EntityModifier.ensureKindExists(insert, accountType, Email.CONTENT_ITEM_TYPE);
-        EntityModifier.ensureKindExists(insert, accountType, Note.CONTENT_ITEM_TYPE);
-        EntityModifier.ensureKindExists(insert, accountType, Organization.CONTENT_ITEM_TYPE);
-        EntityModifier.ensureKindExists(insert, accountType, Event.CONTENT_ITEM_TYPE);
-        EntityModifier.ensureKindExists(insert, accountType, Website.CONTENT_ITEM_TYPE);
-        EntityModifier.ensureKindExists(insert, accountType, StructuredPostal.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(insert, newAccountType, Phone.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(insert, newAccountType, Email.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(insert, newAccountType, Note.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(insert, newAccountType, Organization.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(insert, newAccountType, Event.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(insert, newAccountType, Website.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(insert, newAccountType, StructuredPostal.CONTENT_ITEM_TYPE);
 
         if (mState == null) {
             // Create state if none exists yet
@@ -544,6 +581,13 @@ public class ContactEditorFragment extends Fragment implements
             } else {
                 editor = (BaseRawContactEditorView)
                         inflater.inflate(R.layout.raw_contact_editor_view, mContent, false);
+            }
+            if (Intent.ACTION_INSERT.equals(mAction) && size == 1) {
+                final ArrayList<Account> accounts =
+                        AccountTypeManager.getInstance(mContext).getAccounts(true);
+                if (accounts.size() > 1) {
+                    addAccountSwitcher(mState.get(0), editor);
+                }
             }
             editor.setEnabled(mEnabled);
 
@@ -611,6 +655,40 @@ public class ContactEditorFragment extends Fragment implements
             BaseRawContactEditorView editor = (BaseRawContactEditorView) mContent.getChildAt(i);
             editor.setGroupMetaData(mGroupMetaData);
         }
+    }
+
+    private void addAccountSwitcher(
+            final EntityDelta currentState, BaseRawContactEditorView editor) {
+        ValuesDelta values = currentState.getValues();
+        final Account currentAccount = new Account(
+                values.getAsString(RawContacts.ACCOUNT_NAME),
+                values.getAsString(RawContacts.ACCOUNT_TYPE));
+        final View accountView = editor.findViewById(R.id.account);
+        final View anchorView = editor.findViewById(R.id.anchor_for_account_switcher);
+        accountView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final ListPopupWindow popup = new ListPopupWindow(mContext, null);
+                final AccountsListAdapter adapter = new AccountsListAdapter(mContext, true);
+                popup.setWidth(anchorView.getWidth());
+                popup.setAnchorView(anchorView);
+                popup.setAdapter(adapter);
+                popup.setModal(true);
+                popup.setInputMethodMode(ListPopupWindow.INPUT_METHOD_NOT_NEEDED);
+                popup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position,
+                            long id) {
+                        popup.dismiss();
+                        Account newAccount = adapter.getItem(position);
+                        if (!newAccount.equals(currentAccount)) {
+                            rebindEditorsForNewContact(currentState, currentAccount, newAccount);
+                        }
+                    }
+                });
+                popup.show();
+            }
+        });
     }
 
     @Override
@@ -1536,24 +1614,6 @@ public class ContactEditorFragment extends Fragment implements
     public void onSplitContactConfirmed() {
         mState.markRawContactsForSplitting();
         save(SaveMode.SPLIT);
-    }
-
-    /**
-     * Account was chosen in the selector. Create a RawContact for this account now
-     */
-    @Override
-    public void onAccountChosen(Account account) {
-        createContact(account);
-    }
-
-    /**
-     * The account selector has been aborted. If we are in "New" mode, we have to close now
-     */
-    @Override
-    public void onAccountSelectorCancelled() {
-        if (!hasValidState() && mListener != null) {
-            mListener.onAccountSelectorAborted();
-        }
     }
 
     private final class PhotoEditorListener
