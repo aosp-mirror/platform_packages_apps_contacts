@@ -30,15 +30,12 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
-import android.view.View;
 import android.widget.EditText;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Internal structure that represents constraints and styles for a specific data
@@ -157,87 +154,6 @@ public abstract class AccountType {
         this.mKinds.add(kind);
         this.mMimeKinds.put(kind.mimeType, kind);
         return kind;
-    }
-
-    /**
-     * Description of a specific data type, usually marked by a unique
-     * {@link Data#MIMETYPE}. Includes details about how to view and edit
-     * {@link Data} rows of this kind, including the possible {@link EditType}
-     * labels and editable {@link EditField}.
-     */
-    public static class DataKind {
-
-        public static final String PSEUDO_MIME_TYPE_DISPLAY_NAME = "#displayName";
-        public static final String PSEUDO_MIME_TYPE_PHONETIC_NAME = "#phoneticName";
-        public static final String PSEUDO_COLUMN_PHONETIC_NAME = "#phoneticName";
-
-        public String resPackageName;
-        public String mimeType;
-        public int titleRes;
-        public int iconRes;
-        public int iconAltRes;
-        public int weight;
-        public boolean editable;
-
-        /**
-         * If this is true (default), the user can add and remove values.
-         * If false, the editor will always show a single field (which might be empty).
-         */
-        public boolean isList;
-
-        public StringInflater actionHeader;
-        public StringInflater actionAltHeader;
-        public StringInflater actionBody;
-
-        public boolean actionBodySocial = false;
-
-        public String typeColumn;
-
-        /**
-         * Maximum number of values allowed in the list. -1 represents infinity.
-         * If {@link DataKind#isList} is false, this value is ignored.
-         */
-        public int typeOverallMax;
-
-        public List<EditType> typeList;
-        public List<EditField> fieldList;
-
-        public ContentValues defaultValues;
-
-        public Class<? extends View> editorClass;
-
-        /**
-         * If this is a date field, this specifies the format of the date when saving. The
-         * date includes year, month and day. If this is not a date field or the date field is not
-         * editable, this value should be ignored.
-         */
-        public SimpleDateFormat dateFormatWithoutYear;
-
-        /**
-         * If this is a date field, this specifies the format of the date when saving. The
-         * date includes month and day. If this is not a date field, the field is not editable or
-         * dates without year are not supported, this value should be ignored.
-         */
-        public SimpleDateFormat dateFormatWithYear;
-
-        public DataKind() {
-        }
-
-        public DataKind(String mimeType, int titleRes, int iconRes, int weight, boolean editable) {
-            this(mimeType, titleRes, iconRes, weight, editable, null);
-        }
-
-        public DataKind(String mimeType, int titleRes, int iconRes, int weight, boolean editable,
-                Class<? extends View> editorClass) {
-            this.mimeType = mimeType;
-            this.titleRes = titleRes;
-            this.iconRes = iconRes;
-            this.weight = weight;
-            this.editable = editable;
-            this.isList = true;
-            this.typeOverallMax = -1;
-            this.editorClass = editorClass;
-        }
     }
 
     /**

@@ -21,9 +21,9 @@ import static android.content.ContentProviderOperation.TYPE_INSERT;
 import static android.content.ContentProviderOperation.TYPE_UPDATE;
 
 import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountType.DataKind;
 import com.android.contacts.model.AccountType.EditType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityDeltaList;
