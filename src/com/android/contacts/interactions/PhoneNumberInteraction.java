@@ -26,9 +26,9 @@ import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
-import com.android.contacts.model.AccountType.DataKind;
 import com.android.contacts.model.AccountType.StringInflater;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.DataKind;
 
 import android.app.Activity;
 import android.app.AlertDialog;

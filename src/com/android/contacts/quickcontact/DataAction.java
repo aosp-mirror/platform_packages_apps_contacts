@@ -2,7 +2,7 @@ package com.android.contacts.quickcontact;
 
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
-import com.android.contacts.model.AccountType.DataKind;
+import com.android.contacts.model.DataKind;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.PhoneCapabilityTester;
 

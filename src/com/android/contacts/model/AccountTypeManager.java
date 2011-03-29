@@ -16,7 +16,6 @@
 
 package com.android.contacts.model;
 
-import com.android.contacts.model.AccountType.DataKind;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
