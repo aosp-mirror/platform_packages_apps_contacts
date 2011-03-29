@@ -71,7 +71,7 @@
     <string name="editContact_title_insert" msgid="9125600232291405757">"Nouveau contact"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Prononciation phonétique"</string>
     <string name="label_notes" msgid="8337354953278341042">"Notes"</string>
-    <string name="label_sip_address" msgid="124073911714324974">"Appel VoIP"</string>
+    <string name="label_sip_address" msgid="124073911714324974">"Appel Internet"</string>
     <string name="label_ringtone" msgid="8833166825330686244">"Sonnerie"</string>
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Nom phonétique"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Entreprise"</string>
@@ -153,7 +153,7 @@
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Messagerie vocale"</string>
     <string name="unknown" msgid="740067747858270469">"Inconnu"</string>
-    <string name="private_num" msgid="6374339738119166953">"Numéro privée"</string>
+    <string name="private_num" msgid="6374339738119166953">"Numéro privé"</string>
     <string name="payphone" msgid="4864313342828942922">"Cabine téléphonique"</string>
     <string name="dialerKeyboardHintText" msgid="5401660096579787344">"Utilisez le clavier pour composer le numéro"</string>
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Composer"</string>
@@ -161,12 +161,12 @@
     <string name="simContacts_title" msgid="27341688347689769">"Contacts de carte SIM"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Vous n\'avez aucun contact à afficher. Si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes."</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Vous n\'avez aucun contact à afficher."</string>
-    <!-- syntax error in translation for noContactsHelpText (6450346791169710787) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:560 in java.io.StringReader@9d04653)  -->
-    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:567 in java.io.StringReader@48b8f82d)  -->
+    <!-- syntax error in translation for noContactsHelpText (6450346791169710787) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:560 in java.io.StringReader@2e8f4fb3)  -->
+    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:567 in java.io.StringReader@42b988a6)  -->
     <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", puis sur :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts vers la tablette ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier les paramètres de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SIM ou SD."\n</li></string>
     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier le paramètre de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SIM ou SD."\n</li></string>
-    <!-- syntax error in translation for noContactsNoSimHelpText (6031363021287849874) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:565 in java.io.StringReader@67ad77a7)  -->
-    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:571 in java.io.StringReader@2d8aaa1e)  -->
+    <!-- syntax error in translation for noContactsNoSimHelpText (6031363021287849874) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:565 in java.io.StringReader@22ba6c83)  -->
+    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:571 in java.io.StringReader@7d2a1e44)  -->
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", puis sur :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts vers la tablette ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier les paramètres de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SD."\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier le paramètre de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SD."\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Vous ne disposez d\'aucun favoris."\n\n"Pour ajouter un contact à la liste de favoris :"\n\n"        "<li>"Appuyez sur l\'onglet "<b>"Contacts"</b>"."\n</li>" "\n<li>"Appuyez sur le contact à ajouter à vos favoris."\n</li>" "\n<li>"Appuyez sur l\'étoile en regard du nom du contact."\n</li></string>
@@ -208,7 +208,7 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"photo du contact"</string>
     <string name="description_minus_button" msgid="387136707700230172">"moins"</string>
     <string name="description_plus_button" msgid="515164827856229880">"plus"</string>
-    <string name="no_sdcard_title" product="nosdcard" msgid="5362631473262100989">"Mémoire de stockage USB indisponible"</string>
+    <string name="no_sdcard_title" product="nosdcard" msgid="5362631473262100989">"Mémoire de stockage USB non disponible"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Aucune carte SD trouvée"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="8045830739790534254">"Mémoire de stockage USB non détectée"</string>
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Aucune carte SD n\'a été détectée."</string>
@@ -336,7 +336,7 @@
     <string name="call_radio" msgid="8296755876398357063">"Appeler par signal radio"</string>
     <string name="call_telex" msgid="2223170774548648114">"Appeler par télex"</string>
     <string name="call_tty_tdd" msgid="8951266948204379604">"Appeler TTY/TTD (malentendants)"</string>
-    <string name="call_work_mobile" msgid="8707874281430105394">"Appeler mobile professionnel"</string>
+    <string name="call_work_mobile" msgid="8707874281430105394">"Appeler mobile bureau"</string>
     <string name="call_work_pager" msgid="3419348514157949008">"Appeler téléavertisseur bureau"</string>
     <string name="call_assistant" msgid="2141641383068514308">"Appeler <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="6274041545876221437">"Appeler MMS"</string>
@@ -350,7 +350,7 @@
     <string name="sms_other" msgid="806127844607642331">"Envoyer un SMS"</string>
     <string name="sms_callback" msgid="5004824430094288752">"Envoyer un SMS au numéro de rappel"</string>
     <string name="sms_car" msgid="7444227058437359641">"Envoyer un SMS vers voiture"</string>
-    <string name="sms_company_main" msgid="118970873419678087">"Envoyer un SMS à entreprise(principal)"</string>
+    <string name="sms_company_main" msgid="118970873419678087">"Envoyer un SMS à entreprise (principal)"</string>
     <string name="sms_isdn" msgid="8153785037515047845">"Envoyer un SMS vers numéro RNIS"</string>
     <string name="sms_main" msgid="8621625784504541679">"Envoyer un SMS au numéro principal"</string>
     <string name="sms_other_fax" msgid="3888842199855843152">"Envoyer un SMS à ce numéro de fax"</string>
@@ -359,7 +359,7 @@
     <string name="sms_tty_tdd" msgid="6782284969132531532">"Envoyer SMS vers numéro TTY/TTD (malentendants)"</string>
     <string name="sms_work_mobile" msgid="2459939960512702560">"Envoyer un SMS sur le mobile professionnel"</string>
     <string name="sms_work_pager" msgid="5566924423316960597">"Envoyer un SMS vers téléavertisseur (bureau)"</string>
-    <string name="sms_assistant" msgid="2773424339923116234">"Envoyer un message texte à <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="sms_assistant" msgid="2773424339923116234">"Envoyer un SMS à <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Envoyer un MMS"</string>
     <string name="email_home" msgid="8573740658148184279">"Env. e-mail domicile"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Envoyer un e-mail sur le mobile"</string>
@@ -461,7 +461,7 @@
     <string name="menu_settings" msgid="377929915873428211">"Paramètres"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Options d\'affichage"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
-    <string name="hint_findContacts" msgid="1808681193458772072">"Recherchez des contacts."</string>
+    <string name="hint_findContacts" msgid="1808681193458772072">"Recherchez des contacts"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Numéro de téléphone"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Ajouter aux contacts"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Fermer"</string>

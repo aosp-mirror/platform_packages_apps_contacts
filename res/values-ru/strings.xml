@@ -73,7 +73,7 @@
     <string name="label_notes" msgid="8337354953278341042">"Примечания"</string>
     <string name="label_sip_address" msgid="124073911714324974">"Интернет-вызов"</string>
     <string name="label_ringtone" msgid="8833166825330686244">"Мелодия"</string>
-    <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Произношение имени"</string>
+    <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Транскрипция имени"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Компания"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Название"</string>
     <string name="invalidContactMessage" msgid="5816991830260044593">"Контакт не существует."</string>

@@ -420,12 +420,15 @@
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"I-uninstall ang ilang application"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Muling subukan ang i-upgrade"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"Naghahanap..."</string>
-    <!-- outdated translation 7509416164257469826 -->     <string name="menu_display_selected" msgid="6470001164297969034">"Ipakita ang napili"</string>
-    <!-- outdated translation 6157266246378155002 -->     <string name="menu_display_all" msgid="8887488642609786198">"Ipakita lahat"</string>
-    <!-- outdated translation 6071138984118728586 -->     <string name="menu_select_all" msgid="621719255150713545">"Piliin lahat"</string>
-    <!-- outdated translation 6876179536556771017 -->     <string name="menu_select_none" msgid="7093222469852132345">"Alisin sa pagkakapili ang lahat"</string>
-    <!-- no translation found for multiple_picker_title:other (4608837420986126229) -->
-    <!-- outdated translation 2762557778532289842 -->     <string name="no_contacts_selected" msgid="5877803471037324613">"Walang mga napiling kontrata."</string>
+    <string name="menu_display_selected" msgid="6470001164297969034">"Ipakita ang napili"</string>
+    <string name="menu_display_all" msgid="8887488642609786198">"Ipakita lahat"</string>
+    <string name="menu_select_all" msgid="621719255150713545">"Piliin lahat"</string>
+    <string name="menu_select_none" msgid="7093222469852132345">"Alisin sa pagkakapili ang lahat"</string>
+  <plurals name="multiple_picker_title">
+    <item quantity="one" msgid="4761009734586319101">"Napili ang 1 recipient"</item>
+    <item quantity="other" msgid="4608837420986126229">"Napili ang <xliff:g id="COUNT">%d</xliff:g> (na) recipient"</item>
+  </plurals>
+    <string name="no_contacts_selected" msgid="5877803471037324613">"Walang napiling contact."</string>
     <string name="add_field" msgid="2384260056674995230">"Magdagdag ng ibang field"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"sa pamamagitan ng <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> sa pamamagitan ng <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
