@@ -261,7 +261,7 @@
     <string name="call_disambig_title" msgid="1911302597959335178">"Ring med"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Send SMS med"</string>
     <string name="make_primary" msgid="5829291915305113983">"Husk dette valget"</string>
-    <string name="quickcontact_missing_app" msgid="4600366393134289038">"Ingen programmer som kan utføre denne handlingen ble funnet"</string>
+    <string name="quickcontact_missing_app" msgid="4600366393134289038">"Ingen applikasjoner som kan utføre denne handlingen ble funnet"</string>
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Husk dette valget"</string>
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"Ukjent"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Kontoer"</string>
@@ -385,7 +385,7 @@
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Kontaktlisten er oppdatert med nytt språk."\n\n"Vent litt ..."</string>
     <string name="upgrade_in_progress" msgid="7530893673211750223">"Kontaktlisten oppdateres."\n\n"Vent litt ..."</string>
     <string name="upgrade_out_of_memory" msgid="492151063059824962">"Oppgradering av kontakter pågår. "\n\n"Oppgraderingsprosessen krever cirka <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g> MB internt minne på telefonen."\n\n"Velg ett av følgende alternativer:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Avinstaller noen programmer"</string>
+    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Avinstaller noen applikasjoner"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Prøv å oppgradere på nytt"</string>
     <string name="search_results_for" msgid="8705490885073188513">"Søkeresultater for <xliff:g id="QUERY">%s</xliff:g>"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"Søker ..."</string>
