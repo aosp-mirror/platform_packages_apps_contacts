@@ -42,6 +42,7 @@ public final class TypePrecedence {
     //TODO These may need to be tweaked.
     private static final int[] TYPE_PRECEDENCE_PHONES = {
             Phone.TYPE_CUSTOM,
+            Phone.TYPE_MAIN,
             Phone.TYPE_MOBILE,
             Phone.TYPE_HOME,
             Phone.TYPE_WORK,
