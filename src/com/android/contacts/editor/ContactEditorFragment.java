@@ -166,8 +166,10 @@ public class ContactEditorFragment extends Fragment implements
         public static final int SAVING = 2;
 
         /**
-         * Prevents any more savings (this is used if Save/Close or Revert was
-         * executed by the user)
+         * Prevents any more saves. This is used if in the following cases:
+         * - After Save/Close
+         * - After Revert
+         * - After the user has accepted an edit suggestion
          */
         public static final int CLOSING = 3;
 
@@ -1314,6 +1316,8 @@ public class ContactEditorFragment extends Fragment implements
      */
     protected void doEditSuggestedContact(Uri contactUri) {
         if (mListener != null) {
+            // make sure we don't save this contact when closing down
+            mStatus = Status.CLOSING;
             mListener.onEditOtherContactRequested(
                     contactUri, mState.get(0).getContentValues());
         }
