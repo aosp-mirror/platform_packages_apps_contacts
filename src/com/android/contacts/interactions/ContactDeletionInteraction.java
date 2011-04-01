@@ -206,8 +206,13 @@ public class ContactDeletionInteraction extends Fragment
 
         final Uri contactUri = Contacts.getLookupUri(contactId, lookupKey);
         showDialog(mMessageId, contactUri);
+
+        // We don't want onLoadFinished() calls any more, which may come when the database is
+        // updating.
+        getLoaderManager().destroyLoader(R.id.dialog_delete_contact_loader_id);
     }
 
+    @Override
     public void onLoaderReset(Loader<Cursor> loader) {
     }
 
@@ -235,7 +240,6 @@ public class ContactDeletionInteraction extends Fragment
     public void onDismiss(DialogInterface dialog) {
         mActive = false;
         mDialog = null;
-        getLoaderManager().destroyLoader(R.id.dialog_delete_contact_loader_id);
     }
 
     @Override
