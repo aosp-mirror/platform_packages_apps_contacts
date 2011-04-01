@@ -21,7 +21,6 @@ import com.android.contacts.R;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.vcard.VCardEntryCounter;
-import com.android.vcard.VCardInterpreterCollection;
 import com.android.vcard.VCardParser;
 import com.android.vcard.VCardParser_V21;
 import com.android.vcard.VCardParser_V30;
@@ -399,7 +398,6 @@ public class ImportVCardActivity extends ContactsActivity {
             final ContentResolver resolver = ImportVCardActivity.this.getContentResolver();
             VCardEntryCounter counter = null;
             VCardSourceDetector detector = null;
-            VCardInterpreterCollection interpreter = null;
             int vcardVersion = VCARD_VERSION_V21;
             try {
                 boolean shouldUseV30 = false;
@@ -408,9 +406,9 @@ public class ImportVCardActivity extends ContactsActivity {
                 try {
                     counter = new VCardEntryCounter();
                     detector = new VCardSourceDetector();
-                    interpreter = new VCardInterpreterCollection(
-                            Arrays.asList(counter, detector));
-                    mVCardParser.parse(is, interpreter);
+                    mVCardParser.addInterpreter(counter);
+                    mVCardParser.addInterpreter(detector);
+                    mVCardParser.parse(is);
                 } catch (VCardVersionException e1) {
                     try {
                         is.close();
@@ -423,9 +421,9 @@ public class ImportVCardActivity extends ContactsActivity {
                     try {
                         counter = new VCardEntryCounter();
                         detector = new VCardSourceDetector();
-                        interpreter = new VCardInterpreterCollection(
-                                Arrays.asList(counter, detector));
-                        mVCardParser.parse(is, interpreter);
+                        mVCardParser.addInterpreter(counter);
+                        mVCardParser.addInterpreter(detector);
+                        mVCardParser.parse(is);
                     } catch (VCardVersionException e2) {
                         throw new VCardException("vCard with unspported version.");
                     }
