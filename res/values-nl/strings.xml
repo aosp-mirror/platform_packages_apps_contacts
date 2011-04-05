@@ -149,8 +149,7 @@
     <string name="recentCalls_empty" msgid="247053222448663107">"Gesprekken is leeg"</string>
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Oproeplogboek wissen"</string>
     <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Weet u zeker dat u het oproeplogboek wilt wissen?"</string>
-    <!-- no translation found for clearCallLogProgress_title (6870412675015656948) -->
-    <skip />
+    <string name="clearCallLogProgress_title" msgid="6870412675015656948">"Oproeplogboek wissen"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI-nummer"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Voicemail"</string>

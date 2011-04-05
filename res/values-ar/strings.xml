@@ -149,8 +149,7 @@
     <string name="recentCalls_empty" msgid="247053222448663107">"سجل المكالمات فارغ."</string>
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"محو سجل المكالمات"</string>
     <string name="clearCallLogConfirmation" msgid="7625927669136267636">"هل أنت متأكد من أنك تريد محو سجل المكالمات؟"</string>
-    <!-- no translation found for clearCallLogProgress_title (6870412675015656948) -->
-    <skip />
+    <string name="clearCallLogProgress_title" msgid="6870412675015656948">"جارٍ محو سجل المكالمات"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"البريد الصوتي"</string>

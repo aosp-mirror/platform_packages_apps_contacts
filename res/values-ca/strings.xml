@@ -149,8 +149,7 @@
     <string name="recentCalls_empty" msgid="247053222448663107">"El registre de trucades és buit."</string>
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Esborrament del registre de trucades"</string>
     <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Esteu segur que voleu esborrar el registre de trucades?"</string>
-    <!-- no translation found for clearCallLogProgress_title (6870412675015656948) -->
-    <skip />
+    <string name="clearCallLogProgress_title" msgid="6870412675015656948">"Esborrant el registre de trucada"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Correu de veu"</string>

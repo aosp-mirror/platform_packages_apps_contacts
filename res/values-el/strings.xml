@@ -149,8 +149,7 @@
     <string name="recentCalls_empty" msgid="247053222448663107">"Το αρχείο καταγραφής κλήσεων είναι κενό."</string>
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Εκκαθάριση αρχείου καταγραφής κλήσεων"</string>
     <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Είστε βέβαιοι ότι θέλετε να γίνει εκκαθάριση του αρχείου καταγραφής κλήσεων;"</string>
-    <!-- no translation found for clearCallLogProgress_title (6870412675015656948) -->
-    <skip />
+    <string name="clearCallLogProgress_title" msgid="6870412675015656948">"Εκκαθάριση αρχείου καταγρ. κλήσεων"</string>
     <string name="imei" msgid="3045126336951684285">"Αριθμός ΙΜΕΙ"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Αυτόματος τηλεφωνητής"</string>
