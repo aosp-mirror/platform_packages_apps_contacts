@@ -26,37 +26,43 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 
 /**
- * Drawable that draws three pictures for the QuickContact-Background. ColorFilter is ignored
+ * Background {@link Drawable} for {@link QuickContactWindow} that draws arrow
+ * centered around requested position.
  */
 public class QuickContactBackgroundDrawable extends Drawable {
     private Drawable mLeftDrawable;
     private Drawable mMiddleDrawable;
     private Drawable mRightDrawable;
-    private int mRequestedX = Integer.MIN_VALUE;
-    private boolean mBoundsSet = false;
-    private int mAlpha = -1;
+
     private int mBottomOverride = Integer.MIN_VALUE;
+
+    public QuickContactBackgroundDrawable(Resources res) {
+        mLeftDrawable = res.getDrawable(R.drawable.quickactions_arrow_left_holo_light);
+        mMiddleDrawable = res.getDrawable(R.drawable.quickactions_arrow_middle_holo_light);
+        mRightDrawable = res.getDrawable(R.drawable.quickactions_arrow_right_holo_light);
+    }
 
     @Override
     public void setAlpha(int alpha) {
-        mAlpha = alpha;
-        setChildAlpha();
+        mLeftDrawable.setAlpha(alpha);
+        mMiddleDrawable.setAlpha(alpha);
+        mRightDrawable.setAlpha(alpha);
     }
 
     /**
-     * Overrides the bottom bounds. This is used for the animation when the QuickContact
-     * expands/collapses options
+     * Overrides the bottom bounds. This is used for the animation when the
+     * QuickContact expands/collapses options
      */
     public void setBottomOverride(int value) {
         mBottomOverride = value;
-        setChildBounds();
+        onBoundsChange(getBounds());
         invalidateSelf();
     }
 
     public void clearBottomOverride() {
         mBottomOverride = Integer.MIN_VALUE;
+        onBoundsChange(getBounds());
         invalidateSelf();
-        setChildBounds();
     }
 
     public float getBottomOverride() {
@@ -64,7 +70,29 @@ public class QuickContactBackgroundDrawable extends Drawable {
     }
 
     @Override
+    public boolean isStateful() {
+        return true;
+    }
+
+    @Override
+    protected boolean onStateChange(int[] state) {
+        super.onStateChange(state);
+        mLeftDrawable.setState(state);
+        mMiddleDrawable.setState(state);
+        mRightDrawable.setState(state);
+        return true;
+    }
+
+    @Override
+    protected boolean onLevelChange(int level) {
+        return true;
+    }
+
+    @Override
     public void setColorFilter(ColorFilter cf) {
+        mLeftDrawable.setColorFilter(cf);
+        mMiddleDrawable.setColorFilter(cf);
+        mRightDrawable.setColorFilter(cf);
     }
 
     @Override
@@ -72,54 +100,22 @@ public class QuickContactBackgroundDrawable extends Drawable {
         return PixelFormat.TRANSLUCENT;
     }
 
-    public void configure(Resources resources, boolean arrowUp, int requestedX) {
-        mLeftDrawable = resources.getDrawable(arrowUp
-                ? R.drawable.quickactions_arrowup_left_holo_light
-                : R.drawable.quickactions_arrowdown_left_holo_light);
-        mMiddleDrawable = resources.getDrawable(arrowUp
-                ? R.drawable.quickactions_arrowup_middle_holo_light
-                : R.drawable.quickactions_arrowdown_middle_holo_light);
-        mRightDrawable = resources.getDrawable(arrowUp
-                ? R.drawable.quickactions_arrowup_right_holo_light
-                : R.drawable.quickactions_arrowdown_right_holo_light);
-
-        mRequestedX = requestedX;
-
-        setChildAlpha();
-        setChildBounds();
-    }
-
     @Override
     protected void onBoundsChange(Rect bounds) {
-        mBoundsSet = true;
-        setChildBounds();
-    }
+        final int requestedX = getLevel();
 
-    private void setChildAlpha() {
-        if (mAlpha == -1) return;
-
-        if (mLeftDrawable != null) mLeftDrawable.setAlpha(mAlpha);
-        if (mMiddleDrawable != null) mMiddleDrawable.setAlpha(mAlpha);
-        if (mRightDrawable != null) mRightDrawable.setAlpha(mAlpha);
-    }
-
-    private void setChildBounds() {
-        if (mRequestedX == Integer.MIN_VALUE) return;
-        if (!mBoundsSet) return;
-
-        final Rect bounds = getBounds();
-        int middleLeft = mRequestedX - mMiddleDrawable.getIntrinsicWidth() / 2;
-        int middleRight = mRequestedX + mMiddleDrawable.getIntrinsicWidth() / 2;
+        int middleLeft = requestedX - mMiddleDrawable.getIntrinsicWidth() / 2;
+        int middleRight = requestedX + mMiddleDrawable.getIntrinsicWidth() / 2;
 
         // ensure left drawable is not smaller than its Intrinsic Width
-        final int leftExtra =  (middleLeft - bounds.left) - mLeftDrawable.getIntrinsicWidth();
+        final int leftExtra = (middleLeft - bounds.left) - mLeftDrawable.getIntrinsicWidth();
         if (leftExtra < 0) {
             middleLeft -= leftExtra;
             middleRight -= leftExtra;
         }
 
         // ensure right drawable is not smaller than its Intrinsic Width
-        final int rightExtra =  (bounds.right - middleRight) - mRightDrawable.getIntrinsicWidth();
+        final int rightExtra = (bounds.right - middleRight) - mRightDrawable.getIntrinsicWidth();
         if (rightExtra < 0) {
             middleLeft += rightExtra;
             middleRight += rightExtra;

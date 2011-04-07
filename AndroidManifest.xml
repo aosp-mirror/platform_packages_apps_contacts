@@ -326,7 +326,7 @@
 
         <activity
             android:name=".activities.ShowOrCreateActivity"
-            android:theme="@style/FullyTranslucent">
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
 
             <intent-filter>
                 <action android:name="com.android.contacts.action.SHOW_OR_CREATE_CONTACT" />
@@ -339,13 +339,12 @@
         <!-- Used to show QuickContact window over a translucent activity, which is a
              temporary hack until we add better framework support. -->
         <activity
-            android:name=".quickcontact.QuickContactActivity"
-            android:theme="@style/FullyTranslucent.QuickContact"
+            android:name=".quickcontact.QuickContactWindow"
+            android:theme="@style/Theme.QuickContact"
             android:launchMode="singleTop"
             android:excludeFromRecents="true"
             android:taskAffinity="android.task.quickcontact"
-            android:windowSoftInputMode="stateUnchanged"
-            >
+            android:windowSoftInputMode="stateUnchanged">
 
             <intent-filter>
                 <action android:name="com.android.contacts.action.QUICK_CONTACT" />

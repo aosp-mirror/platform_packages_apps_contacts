@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2009 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,13 +13,12 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
-<view
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    class="com.android.contacts.quickcontact.QuickContactRootLayout"
-    android:id="@+id/root"
-    android:layout_width="match_parent"
+    android:id="@android:id/content"
+    android:layout_width="@dimen/quick_contact_width"
     android:layout_height="wrap_content"
+    android:visibility="invisible"
     android:orientation="vertical">
 
     <FrameLayout
@@ -133,4 +133,4 @@
                 android:text="@string/quickcontact_clear_defaults_button" />
         </LinearLayout>
     </FrameLayout>
-</view>
+</LinearLayout>

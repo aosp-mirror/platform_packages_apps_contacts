@@ -25,13 +25,15 @@ import com.android.contacts.model.DataKind;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
-import com.android.internal.policy.PolicyManager;
 import com.google.android.collect.Lists;
+import com.google.common.base.Preconditions;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -41,6 +43,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
@@ -54,30 +57,16 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.ActionMode;
-import android.view.ContextThemeWrapper;
-import android.view.Gravity;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewStub;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.accessibility.AccessibilityEvent;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -88,72 +77,44 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
 /**
- * Window that shows QuickContact dialog for a specific {@link Contacts#_ID}.
+ * Mostly translucent {@link Activity} that shows QuickContact dialog. It loads
+ * data asynchronously, and then shows a popup with details centered around
+ * {@link Intent#getSourceBounds()}.
  */
-public class QuickContactWindow implements Window.Callback,
+public class QuickContactWindow extends Activity implements
         NotifyingAsyncQueryHandler.AsyncQueryListener, View.OnClickListener,
-        AbsListView.OnItemClickListener, KeyEvent.Callback, OnGlobalLayoutListener,
-        QuickContactRootLayout.Listener {
+        AbsListView.OnItemClickListener {
+    private static final String TAG = "QuickContact";
 
-    private static final String TAG = "QuickContactWindow";
+    private static final boolean TRACE_LAUNCH = false;
+    private static final String TRACE_TAG = "quickcontact";
 
-    /**
-     * Interface used to allow the person showing a {@link QuickContactWindow} to
-     * know when the window has been dismissed.
-     */
-    public interface OnDismissListener {
-        public void onDismiss(QuickContactWindow dialog);
-    }
-
-    private final static int ANIMATION_FADE_IN_TIME = 100;
-    private final static int ANIMATION_FADE_OUT_TIME = 100;
-    private final static int ANIMATION_EXPAND_TIME = 100;
-    private final static int ANIMATION_COLLAPSE_TIME = 100;
-
-    /**
-     * If the anchor is wider than (quick contact width * this constant) then
-     * center quick contact.  Otherwise, left-align.
-     */
-    private static final double MIN_RELATIVE_ANCHOR_WIDTH_TO_CENTER = 0.5;
-
-    private final Context mContext;
-    private final LayoutInflater mInflater;
-    private final WindowManager mWindowManager;
-    private Window mWindow;
-    private View mDecor;
-    private final Rect mRect = new Rect();
-
-    private boolean mDismissed = false;
-    private boolean mQuerying = false;
-    private boolean mShowing = false;
+    private static final int ANIMATION_FADE_IN_TIME = 100;
+    private static final int ANIMATION_FADE_OUT_TIME = 100;
+    private static final int ANIMATION_EXPAND_TIME = 100;
+    private static final int ANIMATION_COLLAPSE_TIME = 100;
 
     private NotifyingAsyncQueryHandler mHandler;
-    private OnDismissListener mDismissListener;
 
     private Uri mLookupUri;
-    private Rect mAnchor;
-
-    private int mScreenWidth;
-    private int mUseableScreenHeight;
-    private int mRequestedY;
+    private int mMode;
+    private String[] mExcludeMimes;
 
     private boolean mHasValidSocial = false;
 
-    private int mMode;
-    private QuickContactRootLayout mRootView;
+    private FloatingChildLayout mFloatingLayout;
     private QuickContactBackgroundDrawable mBackground;
-    private View mHeader;
-    private HorizontalScrollView mTrackScroll;
-    private ViewGroup mTrack;
 
+    private View mHeader;
+    private ViewGroup mTrack;
     private FrameLayout mFooter;
     private LinearLayout mFooterDisambig;
     private LinearLayout mFooterClearDefaults;
+
     private ListView mResolveList;
     private CheckableImageView mLastAction;
     private CheckBox mSetPrimaryCheckBox;
@@ -165,23 +126,12 @@ public class QuickContactWindow implements Window.Callback,
      */
     private HashMap<String, Action> mDefaultsMap = new HashMap<String, Action>();
 
-    private int mWindowRecycled = 0;
-    private int mActionRecycled = 0;
-
     /**
      * Set of {@link Action} that are associated with the aggregate currently
      * displayed by this dialog, represented as a map from {@link String}
      * MIME-type to a list of {@link Action}.
      */
     private ActionMultiMap mActions = new ActionMultiMap();
-
-    /**
-     * Pool of unused {@link CheckableImageView} that have previously been
-     * inflated, and are ready to be recycled through {@link #obtainView()}.
-     */
-    private LinkedList<CheckableImageView> mActionPool = new LinkedList<CheckableImageView>();
-
-    private String[] mExcludeMimes;
 
     /**
      * {@link #PRECEDING_MIMETYPES} and {@link #FOLLOWING_MIMETYPES} are used to sort MIME-types.
@@ -221,82 +171,48 @@ public class QuickContactWindow implements Window.Callback,
     });
     private static final int TOKEN_DATA = 1;
 
-    static final boolean TRACE_LAUNCH = false;
-    static final String TRACE_TAG = "quickcontact";
+    @Override
+    protected void onCreate(Bundle icicle) {
+        super.onCreate(icicle);
 
-    /**
-     * Prepare a dialog to show in the given {@link Context}.
-     */
-    public QuickContactWindow(Context context) {
-        mContext = new ContextThemeWrapper(context, R.style.QuickContact);
-        mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mWindowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+        setContentView(R.layout.quickcontact_activity);
 
-        mWindow = PolicyManager.makeNewWindow(mContext);
-        mWindow.setCallback(this);
-        mWindow.setWindowManager(mWindowManager, null, null);
-        mWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_UNCHANGED);
+        mBackground = new QuickContactBackgroundDrawable(getResources());
 
-        mWindow.setContentView(R.layout.quickcontact);
+        mFloatingLayout = findTypedViewById(R.id.floating_layout);
+        mFloatingLayout.getChild().setBackgroundDrawable(mBackground);
+        mFloatingLayout.setOnOutsideTouchListener(mOnOutsideTouchListener);
 
-        mRootView = (QuickContactRootLayout)mWindow.findViewById(R.id.root);
-        mRootView.setListener(this);
-        mRootView.setFocusable(true);
-        mRootView.setFocusableInTouchMode(true);
-        mRootView.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
+        mTrack = findTypedViewById(R.id.quickcontact);
+        mFooter = findTypedViewById(R.id.footer);
+        mFooterDisambig = findTypedViewById(R.id.footer_disambig);
+        mFooterClearDefaults = findTypedViewById(R.id.footer_clear_defaults);
+        mResolveList = findTypedViewById(android.R.id.list);
+        mSetPrimaryCheckBox = findTypedViewById(android.R.id.checkbox);
 
-        mBackground = new QuickContactBackgroundDrawable();
-        mRootView.setBackgroundDrawable(mBackground);
+        mDefaultsListView = findTypedViewById(R.id.defaults_list);
 
-        mScreenWidth = mWindowManager.getDefaultDisplay().getWidth();
-        // Status bar height
-        final int screenMarginBottom = context.getResources().getDimensionPixelSize(
-                com.android.internal.R.dimen.screen_margin_bottom);
-        mUseableScreenHeight = mWindowManager.getDefaultDisplay().getHeight() - screenMarginBottom;
+        mClearDefaultsButton = findTypedViewById(R.id.clear_defaults_button);
+        mClearDefaultsButton.setOnClickListener(mOnClearDefaultsClickListener);
 
-        mTrack = (ViewGroup) mWindow.findViewById(R.id.quickcontact);
-        mTrackScroll = (HorizontalScrollView) mWindow.findViewById(R.id.scroll);
+        mResolveList.setOnItemClickListener(this);
 
-        mFooter = (FrameLayout) mWindow.findViewById(R.id.footer);
-        mFooterDisambig = (LinearLayout) mWindow.findViewById(R.id.footer_disambig);
-        mFooterClearDefaults = (LinearLayout) mWindow.findViewById(R.id.footer_clear_defaults);
-        mResolveList = (ListView) mWindow.findViewById(android.R.id.list);
-        mSetPrimaryCheckBox = (CheckBox) mWindow.findViewById(android.R.id.checkbox);
+        mHandler = new NotifyingAsyncQueryHandler(this, this);
 
-        mDefaultsListView = (ListView) mWindow.findViewById(R.id.defaults_list);
-        mClearDefaultsButton = (Button) mWindow.findViewById(R.id.clear_defaults_button);
-        mClearDefaultsButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clearDefaults();
-            }
-        });
-
-        mResolveList.setOnItemClickListener(QuickContactWindow.this);
-
-        mHandler = new NotifyingAsyncQueryHandler(mContext, this);
-    }
-
-    /**
-     * Prepare a dialog to show in the given {@link Context}, and notify the
-     * given {@link OnDismissListener} each time this dialog is dismissed.
-     */
-    public QuickContactWindow(Context context, OnDismissListener dismissListener) {
-        this(context);
-        mDismissListener = dismissListener;
+        show();
     }
 
     private View getHeaderView(int mode) {
         View header = null;
         switch (mode) {
             case QuickContact.MODE_SMALL:
-                header = mWindow.findViewById(R.id.header_small);
+                header = findViewById(R.id.header_small);
                 break;
             case QuickContact.MODE_MEDIUM:
-                header = mWindow.findViewById(R.id.header_medium);
+                header = findViewById(R.id.header_medium);
                 break;
             case QuickContact.MODE_LARGE:
-                header = mWindow.findViewById(R.id.header_large);
+                header = findViewById(R.id.header_large);
                 break;
         }
 
@@ -311,60 +227,52 @@ public class QuickContactWindow implements Window.Callback,
         return header;
     }
 
-    /**
-     * Start showing a dialog for the given {@link Contacts#_ID} pointing
-     * towards the given location.
-     */
-    public synchronized void show(Uri lookupUri, Rect anchor, int mode, String[] excludeMimes) {
-        if (mQuerying || mShowing) {
-            Log.w(TAG, "dismissing before showing");
-            dismissInternal();
-        }
+    private void show() {
 
-        if (TRACE_LAUNCH && !android.os.Debug.isMethodTracingActive()) {
+        if (TRACE_LAUNCH) {
             android.os.Debug.startMethodTracing(TRACE_TAG);
         }
 
-        // Validate incoming parameters
-        final boolean validMode = (mode == QuickContact.MODE_SMALL
-                || mode == QuickContact.MODE_MEDIUM || mode == QuickContact.MODE_LARGE);
-        if (!validMode) {
-            throw new IllegalArgumentException("Invalid mode, expecting MODE_LARGE, "
-                    + "MODE_MEDIUM, or MODE_SMALL");
+        final Intent intent = getIntent();
+
+        Uri lookupUri = intent.getData();
+
+        // Check to see whether it comes from the old version.
+        if (android.provider.Contacts.AUTHORITY.equals(lookupUri.getAuthority())) {
+            final long rawContactId = ContentUris.parseId(lookupUri);
+            lookupUri = RawContacts.getContactLookupUri(getContentResolver(),
+                    ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId));
         }
 
-        if (anchor == null) {
-            throw new IllegalArgumentException("Missing anchor rectangle");
+        mLookupUri = Preconditions.checkNotNull(lookupUri, "missing lookupUri");
+
+        // Read requested parameters for displaying
+        final Rect targetScreen = intent.getSourceBounds();
+        Preconditions.checkNotNull(targetScreen, "missing targetScreen");
+        mFloatingLayout.setChildTargetScreen(targetScreen);
+
+        mMode = intent.getIntExtra(QuickContact.EXTRA_MODE, QuickContact.MODE_MEDIUM);
+        mExcludeMimes = intent.getStringArrayExtra(QuickContact.EXTRA_EXCLUDE_MIMES);
+
+        switch (mMode) {
+            case QuickContact.MODE_SMALL:
+            case QuickContact.MODE_MEDIUM:
+            case QuickContact.MODE_LARGE:
+                break;
+            default:
+                throw new IllegalArgumentException("Unexpected mode: " + mMode);
         }
 
-        // Prepare header view for requested mode
-        mLookupUri = lookupUri;
-        mAnchor = new Rect(anchor);
-        mMode = mode;
-        mExcludeMimes = excludeMimes;
-
-        mHeader = getHeaderView(mode);
-
+        // find and prepare correct header view
+        mHeader = getHeaderView(mMode);
         setHeaderText(R.id.name, R.string.quickcontact_missing_name);
-
         setHeaderText(R.id.status, null);
         setHeaderText(R.id.timestamp, null);
-
         setHeaderImage(R.id.presence, null);
-
-        resetTrack();
-
-        // We need to have a focused view inside the QuickContact window so
-        // that the BACK key event can be intercepted
-        mRootView.requestFocus();
-
-        mHasValidSocial = false;
-        mDismissed = false;
-        mQuerying = true;
 
         // Start background query for data, but only select photo rows when they
         // directly match the super-primary PHOTO_ID.
-        final Uri dataUri = getDataUri(lookupUri);
+        final Uri dataUri = Uri.withAppendedPath(lookupUri, Contacts.Data.CONTENT_DIRECTORY);
         mHandler.cancelOperation(TOKEN_DATA);
 
         // Only request photo data when required by mode
@@ -380,226 +288,85 @@ public class QuickContactWindow implements Window.Callback,
         }
     }
 
-    /**
-     * Build a {@link Uri} into the {@link Data} table for the requested
-     * {@link Contacts#CONTENT_LOOKUP_URI} style {@link Uri}.
-     */
-    private Uri getDataUri(Uri lookupUri) {
-        return Uri.withAppendedPath(lookupUri, Contacts.Data.CONTENT_DIRECTORY);
+    @SuppressWarnings("unchecked")
+    private <T> T findTypedViewById(int id) {
+        return (T) super.findViewById(id);
     }
 
-    /**
-     * Creates and configures the background resource
-     */
-    private void configureBackground(boolean arrowUp, int requestedX) {
-        mBackground.configure(mContext.getResources(), arrowUp, requestedX);
+    private View.OnTouchListener mOnOutsideTouchListener = new View.OnTouchListener() {
+        /** {@inheritDoc} */
+        public boolean onTouch(View v, MotionEvent event) {
+            hide(true);
+            return true;
+        }
+    };
+
+    private View.OnClickListener mOnClearDefaultsClickListener = new View.OnClickListener() {
+        /** {@inheritDoc} */
+        public void onClick(View v) {
+            clearDefaults();
+        }
+    };
+
+    private void hide(boolean withAnimation) {
+        // cancel any pending queries
+        mHandler.cancelOperation(TOKEN_DATA);
+
+        if (withAnimation) {
+            mFloatingLayout.hideChild(new Runnable() {
+                /** {@inheritDoc} */
+                public void run() {
+                    finish();
+                }
+            });
+        } else {
+            mFloatingLayout.hideChild(null);
+            finish();
+        }
     }
 
-    /**
-     * Actual internal method to show this dialog. Called only by
-     * {@link #considerShowing()} when all data requirements have been met.
-     */
-    private void showInternal() {
-        mDecor = mWindow.getDecorView();
-        mDecor.getViewTreeObserver().addOnGlobalLayoutListener(this);
-        WindowManager.LayoutParams layoutParams = mWindow.getAttributes();
-
-        layoutParams.width = mContext.getResources().getDimensionPixelSize(
-                R.dimen.quick_contact_width);
-        layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
-
-        // Try to left align with the anchor control or center if the anchor is wide
-        if (mAnchor.left + layoutParams.width <= mScreenWidth) {
-            if (mAnchor.width() > layoutParams.width * MIN_RELATIVE_ANCHOR_WIDTH_TO_CENTER) {
-                layoutParams.x = mAnchor.left + (mAnchor.width() - layoutParams.width) / 2;
-            } else {
-                layoutParams.x = mAnchor.left;
-            }
-        } else {
-            // Not enough space. Try to right align to the anchor
-            if (mAnchor.right - layoutParams.width >= 0) {
-                layoutParams.x = mAnchor.right - layoutParams.width;
-            } else {
-                // Also not enough space. Use the whole screen width available
-                layoutParams.x = 0;
-                layoutParams.width = mScreenWidth;
-            }
-        }
-
-        // Force layout measuring pass so we have baseline numbers
-        mDecor.measure(layoutParams.width, layoutParams.height);
-        final int blockHeight = mDecor.getMeasuredHeight();
-
-        layoutParams.gravity = Gravity.TOP | Gravity.LEFT;
-
-        if (mUseableScreenHeight - mAnchor.bottom > blockHeight) {
-            // Show downwards callout when enough room, aligning block top with bottom of
-            // anchor area, and adjusting to inset arrow.
-            configureBackground(true, mAnchor.centerX() - layoutParams.x);
-            layoutParams.y = mAnchor.bottom;
-            layoutParams.windowAnimations = R.style.QuickContactBelowAnimation;
-        } else {
-            // Show upwards callout, aligning bottom block
-            // edge with top of anchor area, and adjusting to inset arrow.
-            configureBackground(false, mAnchor.centerX() - layoutParams.x);
-            layoutParams.y = mAnchor.top - blockHeight;
-            layoutParams.windowAnimations = R.style.QuickContactAboveAnimation;
-        }
-
-        layoutParams.flags = WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-                | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;
-
-        mRequestedY = layoutParams.y;
-        mWindowManager.addView(mDecor, layoutParams);
-        mShowing = true;
-        mQuerying = false;
-        mDismissed = false;
-
-        if (TRACE_LAUNCH) {
-            android.os.Debug.stopMethodTracing();
-            Log.d(TAG, "Window recycled " + mWindowRecycled + " times, chiclets "
-                    + mActionRecycled + " times");
-        }
+    @Override
+    public void onBackPressed() {
+        hide(true);
     }
 
     /** {@inheritDoc} */
-    @Override
-    public void onGlobalLayout() {
-        layoutInScreen();
-    }
-
-    /**
-     * Adjust vertical {@link WindowManager.LayoutParams} to fit window as best
-     * as possible, shifting up to display content as needed.
-     */
-    private void layoutInScreen() {
-        if (!mShowing) return;
-
-        final WindowManager.LayoutParams l = mWindow.getAttributes();
-        final int originalY = l.y;
-
-        final int blockHeight = mDecor.getHeight();
-
-        l.y = mRequestedY;
-        if (mRequestedY + blockHeight > mUseableScreenHeight) {
-            // Shift up from bottom when overflowing
-            l.y = mUseableScreenHeight - blockHeight;
-        }
-
-        if (originalY != l.y) {
-            // Only update when value is changed
-            mWindow.setAttributes(l);
-        }
-    }
-
-    /**
-     * Dismiss this dialog if showing.
-     */
-    public synchronized void dismiss() {
-        // Notify any listeners that we've been dismissed
-        if (mDismissListener != null) {
-            mDismissListener.onDismiss(this);
-        }
-
-        dismissInternal();
-    }
-
-    private void dismissInternal() {
-        // Remove any attached window decor for recycling
-        boolean hadDecor = mDecor != null;
-        if (hadDecor) {
-            mWindowManager.removeView(mDecor);
-            mWindowRecycled++;
-            mDecor.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-            mDecor = null;
-            mWindow.closeAllPanels();
-        }
-        mShowing = false;
-        mDismissed = true;
-
-        // Cancel any pending queries
-        mHandler.cancelOperation(TOKEN_DATA);
-        mQuerying = false;
-
-        // Completely hide header and reset track
-        mHeader.setVisibility(View.GONE);
-        resetTrack();
-    }
-
-    /**
-     * Reset track to initial state, recycling any chiclets.
-     */
-    private void resetTrack() {
-        // Clear background height-animation override
-        mBackground.clearBottomOverride();
-
-        // Release reference to last chiclet
-        mLastAction = null;
-
-        // Clear track actions and scroll to hard left
-        mActions.clear();
-
-        // Recycle any chiclets in use
-        for (int i = mTrack.getChildCount() - 1; i >= 0; i--) {
-            final View child = mTrack.getChildAt(i);
-            // there can be non-CheckableImageView children, e.g. a "No Data" label
-            if (child instanceof CheckableImageView) {
-                releaseView((CheckableImageView)child);
+    public synchronized void onQueryComplete(int token, Object cookie, Cursor cursor) {
+        try {
+            if (isFinishing()) {
+                hide(false);
+                return;
+            } else if (cursor == null || cursor.getCount() == 0) {
+                Toast.makeText(this, R.string.invalidContactMessage, Toast.LENGTH_LONG).show();
+                hide(false);
+                return;
             }
-            mTrack.removeViewAt(i);
-        }
 
-        mTrackScroll.fullScroll(View.FOCUS_LEFT);
+            bindData(cursor);
 
-        // Clear any primary requests
-        mSetPrimaryCheckBox.setChecked(false);
-
-        setNewActionViewChecked(null);
-        mFooter.setVisibility(View.GONE);
-    }
-
-    /**
-     * Consider showing this window, which will only call through to
-     * {@link #showInternal()} when all data items are present.
-     */
-    private void considerShowing() {
-        if (!mShowing && !mDismissed) {
             if (mMode == QuickContact.MODE_MEDIUM && !mHasValidSocial) {
                 // Missing valid social, swap medium for small header
                 mHeader.setVisibility(View.GONE);
                 mHeader = getHeaderView(QuickContact.MODE_SMALL);
             }
 
-            // All queries have returned, pull curtain
-            showInternal();
+            if (TRACE_LAUNCH) {
+                android.os.Debug.stopMethodTracing();
+            }
+
+            // data bound and ready, pull curtain to show
+            mFloatingLayout.showChild();
+
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public synchronized void onQueryComplete(int token, Object cookie, Cursor cursor) {
-        // Bail early when query is stale
-        if (cookie != mLookupUri) return;
-
-        if (cursor == null) {
-            // Problem while running query, so bail without showing
-            Log.w(TAG, "Missing cursor for token=" + token);
-            this.dismiss();
-            return;
-        }
-
-        handleData(cursor);
-
-        if (!cursor.isClosed()) {
-            cursor.close();
-        }
-
-        considerShowing();
     }
 
     /** Assign this string to the view, if found in {@link #mHeader}. */
     private void setHeaderText(int id, int resId) {
-        setHeaderText(id, mContext.getResources().getText(resId));
+        setHeaderText(id, getText(resId));
     }
 
     /** Assign this string to the view, if found in {@link #mHeader}. */
@@ -637,26 +404,22 @@ public class QuickContactWindow implements Window.Callback,
     /**
      * Handle the result from the {@link #TOKEN_DATA} query.
      */
-    private void handleData(Cursor cursor) {
-        final ResolveCache cache = ResolveCache.getInstance(mContext);
-        if (cursor == null) return;
-        if (cursor.getCount() == 0) {
-            Toast.makeText(mContext, R.string.invalidContactMessage, Toast.LENGTH_LONG).show();
-            dismiss();
-            return;
-        }
+    private void bindData(Cursor cursor) {
+        final ResolveCache cache = ResolveCache.getInstance(this);
+        final Context context = this;
 
         if (!isMimeExcluded(Contacts.CONTENT_ITEM_TYPE)) {
             // Add the profile shortcut action
-            final Action action = new ProfileAction(mContext, mLookupUri);
+            final Action action = new ProfileAction(context, mLookupUri);
             mActions.put(Contacts.CONTENT_ITEM_TYPE, action);
         }
 
         mDefaultsMap.clear();
 
         final DataStatus status = new DataStatus();
-        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
-        final ImageView photoView = (ImageView)mHeader.findViewById(R.id.photo);
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(
+                context.getApplicationContext());
+        final ImageView photoView = (ImageView) mHeader.findViewById(R.id.photo);
 
         Bitmap photoBitmap = null;
         while (cursor.moveToNext()) {
@@ -688,7 +451,7 @@ public class QuickContactWindow implements Window.Callback,
                 // Build an action for this data entry, find a mapping to a UI
                 // element, build its summary from the cursor, and collect it
                 // along with all others of this MIME-type.
-                final Action action = new DataAction(mContext, mimeType, kind, dataId, cursor);
+                final Action action = new DataAction(context, mimeType, kind, dataId, cursor);
                 final boolean wasAdded = considerAdd(action, cache);
                 if (wasAdded) {
                     // Remember the default
@@ -700,7 +463,7 @@ public class QuickContactWindow implements Window.Callback,
 
             // If phone number, also insert as text message action
             if (Phone.CONTENT_ITEM_TYPE.equals(mimeType) && kind != null) {
-                final DataAction action = new DataAction(mContext, Constants.MIME_TYPE_SMS_ADDRESS,
+                final DataAction action = new DataAction(context, Constants.MIME_TYPE_SMS_ADDRESS,
                         kind, dataId, cursor);
                 considerAdd(action, cache);
             }
@@ -713,7 +476,7 @@ public class QuickContactWindow implements Window.Callback,
                 final DataKind imKind = accountTypes.getKindOrFallback(accountType,
                         Im.CONTENT_ITEM_TYPE);
                 if (imKind != null) {
-                    final DataAction action = new DataAction(mContext, Im.CONTENT_ITEM_TYPE, imKind,
+                    final DataAction action = new DataAction(context, Im.CONTENT_ITEM_TYPE, imKind,
                             dataId, cursor);
                     considerAdd(action, cache);
                     isIm = true;
@@ -726,7 +489,7 @@ public class QuickContactWindow implements Window.Callback,
                     final DataKind imKind = accountTypes.getKindOrFallback(accountType,
                             Im.CONTENT_ITEM_TYPE);
                     if (imKind != null) {
-                        final DataAction chatAction = new DataAction(mContext,
+                        final DataAction chatAction = new DataAction(context,
                                 Constants.MIME_TYPE_VIDEO_CHAT, imKind, dataId, cursor);
                         considerAdd(chatAction, cache);
                     }
@@ -760,7 +523,7 @@ public class QuickContactWindow implements Window.Callback,
             final int presence = cursor.getInt(DataQuery.CONTACT_PRESENCE);
             final int chatCapability = cursor.getInt(DataQuery.CONTACT_CHAT_CAPABILITY);
             final Drawable statusIcon = ContactPresenceIconUtil.getChatCapabilityIcon(
-                    mContext, presence, chatCapability);
+                    context, presence, chatCapability);
 
             setHeaderText(R.id.name, name);
             setHeaderImage(R.id.presence, statusIcon);
@@ -776,7 +539,7 @@ public class QuickContactWindow implements Window.Callback,
         if (mHasValidSocial && mMode != QuickContact.MODE_SMALL) {
             // Update status when valid was found
             setHeaderText(R.id.status, status.getStatus());
-            setHeaderText(R.id.timestamp, status.getTimestampLabel(mContext));
+            setHeaderText(R.id.timestamp, status.getTimestampLabel(context));
         }
 
         // Turn our list of actions into UI elements
@@ -790,7 +553,7 @@ public class QuickContactWindow implements Window.Callback,
         for (String mimeType : PRECEDING_MIMETYPES) {
             if (containedTypes.contains(mimeType)) {
                 hasData = true;
-                mTrack.addView(inflateAction(mimeType, cache));
+                mTrack.addView(inflateAction(mimeType, cache, mTrack));
                 containedTypes.remove(mimeType);
             }
         }
@@ -802,7 +565,7 @@ public class QuickContactWindow implements Window.Callback,
         for (String mimeType : FOLLOWING_MIMETYPES) {
             if (containedTypes.contains(mimeType)) {
                 hasData = true;
-                mTrack.addView(inflateAction(mimeType, cache));
+                mTrack.addView(inflateAction(mimeType, cache, mTrack));
                 containedTypes.remove(mimeType);
             }
         }
@@ -811,9 +574,11 @@ public class QuickContactWindow implements Window.Callback,
         if (containedTypes.contains(ClearDefaultsAction.PSEUDO_MIME_TYPE)) {
             final ClearDefaultsAction action = (ClearDefaultsAction) mActions.get(
                     ClearDefaultsAction.PSEUDO_MIME_TYPE).get(0);
-            final CheckableImageView view = obtainView();
+            final CheckableImageView view = (CheckableImageView) getLayoutInflater().inflate(
+                    R.layout.quickcontact_item, mTrack, false);
+
             view.setChecked(false);
-            final String description = mContext.getResources().getString(
+            final String description = context.getResources().getString(
                     R.string.quickcontact_clear_defaults_description);
             view.setContentDescription(description);
             view.setImageResource(R.drawable.ic_menu_settings_holo_light);
@@ -829,12 +594,13 @@ public class QuickContactWindow implements Window.Callback,
         if (remainingTypes.length > 0) hasData = true;
         Arrays.sort(remainingTypes);
         for (String mimeType : remainingTypes) {
-            mTrack.addView(inflateAction(mimeType, cache), index++);
+            mTrack.addView(inflateAction(mimeType, cache, mTrack), index++);
         }
 
         if (!hasData) {
             // When there is no data to display, add a TextView to show the user there's no data
-            View view = mInflater.inflate(R.layout.quickcontact_item_nodata, mTrack, false);
+            View view = getLayoutInflater().inflate(
+                    R.layout.quickcontact_item_nodata, mTrack, false);
             mTrack.addView(view, index++);
         }
     }
@@ -843,7 +609,9 @@ public class QuickContactWindow implements Window.Callback,
      * Clears the defaults currently set on the Contact
      */
     private void clearDefaults() {
+        final Context context = this;
         final Set<String> mimeTypesKeySet = mDefaultsMap.keySet();
+
         // Copy to array so that we can modify the HashMap below
         final String[] mimeTypes = new String[mimeTypesKeySet.size()];
         mimeTypesKeySet.toArray(mimeTypes);
@@ -851,9 +619,9 @@ public class QuickContactWindow implements Window.Callback,
         // Send clear default Intents, one by one
         for (String mimeType : mimeTypes) {
             final Action action = mDefaultsMap.get(mimeType);
-            final Intent intent =
-                    ContactSaveService.createClearPrimaryIntent(mContext, action.getDataId());
-            mContext.startService(intent);
+            final Intent intent = ContactSaveService.createClearPrimaryIntent(
+                    context, action.getDataId());
+            context.startService(intent);
             mDefaultsMap.remove(mimeType);
         }
 
@@ -864,7 +632,6 @@ public class QuickContactWindow implements Window.Callback,
                 for (int i = mTrack.getChildCount() - 1; i >= 0; i--) {
                     final CheckableImageView button = (CheckableImageView) mTrack.getChildAt(i);
                     if (button.getTag() instanceof ClearDefaultsAction) {
-                        releaseView(button);
                         mTrack.removeViewAt(i);
                         break;
                     }
@@ -888,35 +655,12 @@ public class QuickContactWindow implements Window.Callback,
     }
 
     /**
-     * Obtain a new {@link CheckableImageView} for a new chiclet, either by
-     * recycling one from {@link #mActionPool}, or by inflating a new one. When
-     * finished, use {@link #releaseView(CheckableImageView)} to return back into the pool for
-     * later recycling.
-     */
-    private synchronized CheckableImageView obtainView() {
-        CheckableImageView view = mActionPool.poll();
-        if (view == null || QuickContactActivity.FORCE_CREATE) {
-            view = (CheckableImageView) mInflater.inflate(R.layout.quickcontact_item, mTrack,
-                    false);
-        }
-        return view;
-    }
-
-    /**
-     * Return the given {@link CheckableImageView} into our internal pool for
-     * possible recycling during another pass.
-     */
-    private synchronized void releaseView(CheckableImageView view) {
-        mActionPool.offer(view);
-        mActionRecycled++;
-    }
-
-    /**
      * Inflate the in-track view for the action of the given MIME-type, collapsing duplicate values.
      * Will use the icon provided by the {@link DataKind}.
      */
-    private View inflateAction(String mimeType, ResolveCache resolveCache) {
-        final CheckableImageView view = obtainView();
+    private View inflateAction(String mimeType, ResolveCache resolveCache, ViewGroup root) {
+        final CheckableImageView view = (CheckableImageView) getLayoutInflater().inflate(
+                R.layout.quickcontact_item, root, false);
 
         // Add direct intent if single child, otherwise flag for multiple
         List<Action> children = mActions.get(mimeType);
@@ -996,6 +740,13 @@ public class QuickContactWindow implements Window.Callback,
                 expandAnimator.setDuration(ANIMATION_EXPAND_TIME);
                 expandAnimator.start();
 
+                expandAnimator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        mBackground.clearBottomOverride();
+                    }
+                });
+
                 final ObjectAnimator fadeInAnimator = ObjectAnimator.ofFloat(mFooter,
                         "alpha", 0.0f, 1.0f);
                 fadeInAnimator.setDuration(ANIMATION_FADE_IN_TIME);
@@ -1008,9 +759,12 @@ public class QuickContactWindow implements Window.Callback,
     /** {@inheritDoc} */
     @Override
     public void onClick(View view) {
+        final Context context = this;
+
         final boolean isActionView = (view instanceof CheckableImageView);
         final CheckableImageView actionView = isActionView ? (CheckableImageView)view : null;
         final Object tag = view.getTag();
+
         if (tag instanceof ClearDefaultsAction) {
             // Do nothing if already open
             if (actionView == mLastAction) return;
@@ -1051,29 +805,28 @@ public class QuickContactWindow implements Window.Callback,
 
                         @Override
                         public View getView(int position, View convertView, ViewGroup parent) {
-                            final View result = convertView != null ? convertView :
-                                    mInflater.inflate(R.layout.quickcontact_default_item,
-                                    parent, false);
+                            if (convertView == null) {
+                                convertView = getLayoutInflater().inflate(
+                                        R.layout.quickcontact_default_item, parent, false);
+                            }
+
                             // Set action title based on summary value
                             final Action defaultAction = actions[position];
 
-                            TextView text1 = (TextView)result.findViewById(android.R.id.text1);
-                            TextView text2 = (TextView)result.findViewById(android.R.id.text2);
+                            final TextView text1 = (TextView) convertView.findViewById(
+                                    android.R.id.text1);
+                            final TextView text2 = (TextView) convertView.findViewById(
+                                    android.R.id.text2);
 
                             text1.setText(defaultAction.getHeader());
                             text2.setText(defaultAction.getBody());
 
-                            result.setTag(defaultAction);
-                            return result;
+                            convertView.setTag(defaultAction);
+                            return convertView;
                         }
                     });
 
                     animateExpand(true);
-                    // Make sure we resize to make room for ListView
-                    if (mDecor != null) {
-                        mDecor.forceLayout();
-                        mDecor.invalidate();
-                    }
                 }
             };
             if (mFooter.getVisibility() == View.VISIBLE) {
@@ -1122,24 +875,24 @@ public class QuickContactWindow implements Window.Callback,
                 public void run() {
                     // Incoming tag is concrete intent, so try launching
                     try {
-                        mContext.startActivity(action.getIntent());
+                        context.startActivity(action.getIntent());
                     } catch (ActivityNotFoundException e) {
-                        Toast.makeText(mContext, R.string.quickcontact_missing_app,
+                        Toast.makeText(context, R.string.quickcontact_missing_app,
                                 Toast.LENGTH_SHORT).show();
                     }
 
                     // Hide the resolution list, if present
                     setNewActionViewChecked(null);
-                    dismiss();
-                    mFooter.setVisibility(View.GONE);
 
                     // Set default?
                     final long dataId = action.getDataId();
                     if (makePrimary && dataId != -1) {
                         Intent serviceIntent = ContactSaveService.createSetSuperPrimaryIntent(
-                                mContext, dataId);
-                        mContext.startService(serviceIntent);
+                                context, dataId);
+                        context.startService(serviceIntent);
                     }
+
+                    hide(false);
                 }
             };
             if (isActionView && mFooter.getVisibility() == View.VISIBLE) {
@@ -1184,31 +937,31 @@ public class QuickContactWindow implements Window.Callback,
 
                     @Override
                     public View getView(int position, View convertView, ViewGroup parent) {
-                        final View result = convertView != null ? convertView :
-                                mInflater.inflate(R.layout.quickcontact_resolve_item,
-                                parent, false);
+                        if (convertView == null) {
+                            convertView = getLayoutInflater().inflate(
+                                    R.layout.quickcontact_resolve_item, parent, false);
+                        }
+
                         // Set action title based on summary value
                         final Action listAction = actionList.get(position);
 
-                        TextView text1 = (TextView)result.findViewById(android.R.id.text1);
-                        TextView text2 = (TextView)result.findViewById(android.R.id.text2);
+                        final TextView text1 = (TextView) convertView.findViewById(
+                                android.R.id.text1);
+                        final TextView text2 = (TextView) convertView.findViewById(
+                                android.R.id.text2);
 
                         text1.setText(listAction.getHeader());
                         text2.setText(listAction.getBody());
 
-                        result.setTag(listAction);
-                        return result;
+                        convertView.setTag(listAction);
+                        return convertView;
                     }
                 });
 
                 animateExpand(false);
-                // Make sure we resize to make room for ListView
-                if (mDecor != null) {
-                    mDecor.forceLayout();
-                    mDecor.invalidate();
-                }
             }
         };
+
         if (mFooter.getVisibility() == View.VISIBLE) {
             // If the expansion list is currently opened, animate its collapse and then
             // execute the target app
@@ -1219,191 +972,6 @@ public class QuickContactWindow implements Window.Callback,
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        dismiss();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        if (mWindow.superDispatchKeyEvent(event)) {
-            return true;
-        }
-        return event.dispatch(this, mDecor != null
-                ? mDecor.getKeyDispatcherState() : null, this);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            event.startTracking();
-            return true;
-        }
-
-        return false;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.isTracking()
-                && !event.isCanceled()) {
-            onBackPressed();
-            return true;
-        }
-
-        return false;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
-        return false;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean onKeyMultiple(int keyCode, int count, KeyEvent event) {
-        return false;
-    }
-
-    /** {@inheritDoc} */
-    public boolean dispatchKeyShortcutEvent(KeyEvent event) {
-        return mWindow.superDispatchKeyShortcutEvent(event);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent event) {
-        // TODO: make this window accessible
-        return false;
-    }
-
-    /**
-     * Detect if the given {@link MotionEvent} is outside the boundaries of this
-     * window, which usually means we should dismiss.
-     */
-    protected void detectEventOutside(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN && mDecor != null) {
-            // Only try detecting outside events on down-press
-            mDecor.getHitRect(mRect);
-            final int x = (int)event.getX();
-            final int y = (int)event.getY();
-            if (!mRect.contains(x, y)) {
-                event.setAction(MotionEvent.ACTION_OUTSIDE);
-            }
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent event) {
-        detectEventOutside(event);
-        if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
-            dismiss();
-            return true;
-        }
-        return mWindow.superDispatchTouchEvent(event);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean dispatchTrackballEvent(MotionEvent event) {
-        return mWindow.superDispatchTrackballEvent(event);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean dispatchGenericMotionEvent(MotionEvent event) {
-        return mWindow.superDispatchGenericMotionEvent(event);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void onContentChanged() {
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean onCreatePanelMenu(int featureId, Menu menu) {
-        return false;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public View onCreatePanelView(int featureId) {
-        return null;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean onMenuItemSelected(int featureId, MenuItem item) {
-        return false;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean onMenuOpened(int featureId, Menu menu) {
-        return false;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void onPanelClosed(int featureId, Menu menu) {
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean onPreparePanel(int featureId, View view, Menu menu) {
-        return false;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean onSearchRequested() {
-        return false;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void onWindowAttributesChanged(android.view.WindowManager.LayoutParams attrs) {
-        if (mDecor != null) {
-            mWindowManager.updateViewLayout(mDecor, attrs);
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void onAttachedToWindow() {
-        // No actions
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void onDetachedFromWindow() {
-        // No actions
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ActionMode onWindowStartingActionMode(ActionMode.Callback callback) {
-        return null;
-    }
-
-    @Override
-    public void onActionModeStarted(ActionMode mode) {
-    }
-
-    @Override
-    public void onActionModeFinished(ActionMode mode) {
-    }
 
     private interface DataQuery {
         final String[] PROJECTION = new String[] {
