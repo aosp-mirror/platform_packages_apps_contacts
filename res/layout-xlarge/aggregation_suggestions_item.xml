@@ -24,6 +24,8 @@
     android:orientation="horizontal"
     android:paddingLeft="5dip"
     android:paddingRight="15dip"
+    android:background="?android:attr/selectableItemBackground"
+    android:focusable="true"
 >
     <ImageView
         android:id="@+id/aggregation_suggestion_photo"
