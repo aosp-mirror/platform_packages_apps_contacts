@@ -75,4 +75,7 @@
 
     <!-- Size of the shortcut icon. 0dip means: use the system default -->    
     <dimen name="shortcut_icon_size">0dip</dimen>
+
+    <!-- Height of list sections (A, B, C) that show the first character of the contacts -->
+    <dimen name="list_section_height">25dip</dimen>
 </resources>
