@@ -14,12 +14,12 @@
      limitations under the License.
 -->
 <resources>
-    <style name="DialtactsTheme" parent="@android:Theme">
+    <style name="DialtactsTheme" parent="android:Theme.Holo.Light">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <style name="CallDetailActivityTheme" parent="android:Theme.NoTitleBar">
+    <style name="CallDetailActivityTheme" parent="android:Theme.Holo.Light">
         <item name="android:windowContentOverlay">@null</item>
     </style>
     <style name="ContactDetailActivityTheme" parent="android:Theme.Holo.Light">
@@ -152,7 +152,7 @@
     <style name="JoinContactActivityTheme" parent="ContactPickerTheme" >
     </style>
 
-    <style name="ContactsPreferencesTheme" parent="@android:Theme">
+    <style name="ContactsPreferencesTheme" parent="@android:Theme.Holo.Light">
     </style>
 
     <style name="CustomContactListFilterTheme" parent="@android:Theme">

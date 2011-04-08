@@ -57,9 +57,6 @@
         <item name="list_item_header_text_size">14sp</item>
     </style>
 
-    <style name="ContactsPreferencesTheme" parent="@android:Theme.Holo.Light">
-    </style>
-
     <style name="CustomContactListFilterTheme" parent="@android:Theme.Holo.Light.Dialog">
     </style>
 

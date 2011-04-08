@@ -14,11 +14,14 @@
      limitations under the License.
 -->
 
+<!-- TODO (stopship) We don't want to specify a background color here. For now we just
+keep it because otherwise the dialer needs some imagination to use (white on white) -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/top"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@android:color/black"
 >
 
     <!-- Text field above the keypad where the digits are displayed.
