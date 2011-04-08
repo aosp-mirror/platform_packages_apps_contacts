@@ -29,8 +29,6 @@ import java.lang.ref.WeakReference;
  * <p>
  * This pattern can be used to perform background queries without leaking
  * {@link Context} objects.
- *
- * @hide pending API council review
  */
 public class NotifyingAsyncQueryHandler extends AsyncQueryHandler {
     private WeakReference<AsyncQueryListener> mListener;
