@@ -151,7 +151,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     }
 
     private void setupContactsTab() {
-        Intent intent = new Intent(UI.LIST_DEFAULT);
+        Intent intent = new Intent(UI.LIST_ALL_CONTACTS_ACTION);
         intent.setClass(this, ContactBrowserActivity.class);
 
         mTabHost.addTab(mTabHost.newTabSpec("contacts")

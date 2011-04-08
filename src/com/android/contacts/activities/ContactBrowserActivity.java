@@ -125,7 +125,6 @@ public class ContactBrowserActivity extends ContactsActivity
 
     private boolean mOptionsMenuContactsAvailable;
     private boolean mOptionsMenuGroupActionsEnabled;
-    private boolean mOptionsMenuCustomFilterChangeable;
 
     public ContactBrowserActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
@@ -234,7 +233,6 @@ public class ContactBrowserActivity extends ContactsActivity
         }
 
         mOptionsMenuContactsAvailable = false;
-        mOptionsMenuCustomFilterChangeable = false;
         mOptionsMenuGroupActionsEnabled = false;
 
         mProviderStatus = -1;
@@ -635,7 +633,7 @@ public class ContactBrowserActivity extends ContactsActivity
             final MenuItem addContact = menu.findItem(R.id.menu_add);
             addContact.setActionView(mAddContactImageView);
             return true;
-        } else if (mRequest.getActionCode() == ContactsRequest.ACTION_DEFAULT ||
+        } else if (mRequest.getActionCode() == ContactsRequest.ACTION_ALL_CONTACTS ||
                 mRequest.getActionCode() == ContactsRequest.ACTION_STREQUENT) {
             inflater.inflate(R.menu.list, menu);
             return true;
@@ -663,10 +661,6 @@ public class ContactBrowserActivity extends ContactsActivity
             return true;
         }
 
-        if (mOptionsMenuCustomFilterChangeable != isCustomFilterChangeable()) {
-            return true;
-        }
-
         if (mListFragment != null && mListFragment.isOptionsMenuChanged()) {
             return true;
         }
@@ -688,13 +682,6 @@ public class ContactBrowserActivity extends ContactsActivity
         MenuItem settings = menu.findItem(R.id.menu_settings);
         if (settings != null) {
             settings.setVisible(!ContactsPreferenceActivity.isEmpty(this));
-        }
-
-        mOptionsMenuCustomFilterChangeable = isCustomFilterChangeable();
-
-        MenuItem displayGroups = menu.findItem(R.id.menu_display_groups);
-        if (displayGroups != null) {
-            displayGroups.setVisible(mOptionsMenuCustomFilterChangeable);
         }
 
         mOptionsMenuGroupActionsEnabled = areGroupActionsEnabled();
@@ -723,10 +710,6 @@ public class ContactBrowserActivity extends ContactsActivity
             }
         }
         return groupActionsEnabled;
-    }
-
-    public boolean isCustomFilterChangeable() {
-        return mRequest != null && mRequest.getActionCode() == ContactsRequest.ACTION_DEFAULT;
     }
 
     @Override
