@@ -1262,7 +1262,7 @@ public class ContactDetailFragment extends Fragment implements
 
         @Override
         public void onLoadFinished(Loader<ContactLoader.Result> loader, ContactLoader.Result data) {
-            if (!((ContactLoader)loader).getLookupUri().equals(mLookupUri)) {
+            if (!mLookupUri.equals(data.getUri())) {
                 return;
             }
 
