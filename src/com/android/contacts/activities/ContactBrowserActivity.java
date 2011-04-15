@@ -105,7 +105,13 @@ public class ContactBrowserActivity extends ContactsActivity
     private boolean mSearchMode;
 
     private ContactBrowseListFragment mListFragment;
+
+    /**
+     * Whether we have a right-side contact pane for displaying contact info while browsing.
+     * Generally means "this is a tablet".
+     */
     private boolean mContactContentDisplayed;
+
     private ContactDetailFragment mDetailFragment;
     private DetailFragmentListener mDetailFragmentListener = new DetailFragmentListener();
 
@@ -838,7 +844,7 @@ public class ContactBrowserActivity extends ContactsActivity
 
             case SUBACTIVITY_EDIT_CONTACT:
             case SUBACTIVITY_NEW_CONTACT: {
-                if (resultCode == RESULT_OK) {
+                if (resultCode == RESULT_OK && mContactContentDisplayed) {
                     mRequest.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
                     mListFragment.reloadDataAndSetSelectedUri(data.getData());
                 }
