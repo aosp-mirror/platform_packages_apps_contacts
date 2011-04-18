@@ -220,13 +220,15 @@ public class ContactBrowserActivity extends ContactsActivity
 
         setTitle(mRequest.getActivityTitle());
 
-        mHasActionBar = getWindow().hasFeature(Window.FEATURE_ACTION_BAR);
-        if (mHasActionBar) {
-            ActionBar actionBar = getActionBar();
+        if (createContentView) {
+            mHasActionBar = getWindow().hasFeature(Window.FEATURE_ACTION_BAR);
+            if (mHasActionBar) {
+                ActionBar actionBar = getActionBar();
 
-            mActionBarAdapter = new ActionBarAdapter(this);
-            mActionBarAdapter.onCreate(savedState, mRequest, actionBar);
-            mActionBarAdapter.setContactListFilterController(mContactListFilterController);
+                mActionBarAdapter = new ActionBarAdapter(this);
+                mActionBarAdapter.onCreate(savedState, mRequest, actionBar);
+                mActionBarAdapter.setContactListFilterController(mContactListFilterController);
+            }
         }
 
         configureFragments(savedState == null);
