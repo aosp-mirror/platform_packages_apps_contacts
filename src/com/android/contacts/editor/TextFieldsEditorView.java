@@ -102,9 +102,14 @@ public class TextFieldsEditorView extends LabeledEditorView {
         int r1 = getMeasuredWidth() - getPaddingRight();
 
         if ((mMoreOrLess != null)) {
+            // Ensure that the more-or-less button does not overlap the delete button.
+            int moreOrLessTop = t1;
+            if (getDelete() != null) {
+                moreOrLessTop = getDelete().getBottom() + getPaddingTop();
+            }
             mMoreOrLess.layout(
-                    r1 - mMoreOrLess.getMeasuredWidth(), t1,
-                    r1, t1 + mMoreOrLess.getMeasuredHeight());
+                    r1 - mMoreOrLess.getMeasuredWidth(), moreOrLessTop,
+                    r1, moreOrLessTop + mMoreOrLess.getMeasuredHeight());
         }
 
         // Subtract buttons if necessary
