@@ -28,11 +28,11 @@ import android.os.Handler;
 import android.provider.ContactsContract.Data;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -47,7 +47,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     private ViewGroup mEditors;
     private View mAddPlusButtonContainer;
     private ImageButton mAddPlusButton;
-    private TextView mTitle;
     private String mTitleString;
 
     private DataKind mKind;
@@ -56,7 +55,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
 
     private ViewIdGenerator mViewIdGenerator;
 
-    private int mMinLineItemHeight;
+    private LayoutInflater mInflater;
 
     public KindSectionView(Context context) {
         this(context, null);
@@ -64,8 +63,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
 
     public KindSectionView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mMinLineItemHeight = context.getResources().getDimensionPixelSize(
-                R.dimen.editor_min_line_item_height);
     }
 
     @Override
@@ -108,6 +105,8 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         setDrawingCacheEnabled(true);
         setAlwaysDrawnWithCacheEnabled(true);
 
+        mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
         mEditors = (ViewGroup)findViewById(R.id.kind_editors);
 
         mAddPlusButtonContainer = findViewById(R.id.kind_plus_container);
@@ -124,8 +123,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
                 });
             }
         });
-
-        mTitle = (TextView)findViewById(R.id.kind_title);
     }
 
     /** {@inheritDoc} */
@@ -153,7 +150,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         mTitleString = (kind.titleRes == -1 || kind.titleRes == 0)
                 ? ""
                 : getResources().getString(kind.titleRes);
-        mTitle.setText(mTitleString);
 
         rebuildFromState();
         updateAddVisible();
@@ -193,16 +189,12 @@ public class KindSectionView extends LinearLayout implements EditorListener {
      */
     private View createEditorView(ValuesDelta entry) {
         final View view;
-        if (mKind.editorClass == null) {
-            view = new TextFieldsEditorView(mContext);
-        } else {
-            try {
-                view = mKind.editorClass.getConstructor(Context.class).newInstance(
-                        mContext);
-            } catch (Exception e) {
-                throw new RuntimeException(
-                        "Cannot allocate editor for " + mKind.editorClass);
-            }
+        try {
+            view = mInflater.inflate(mKind.editorLayoutResourceId, mEditors, false);
+        } catch (Exception e) {
+            throw new RuntimeException(
+                    "Cannot allocate editor with layout resource ID " +
+                    mKind.editorLayoutResourceId);
         }
 
         view.setEnabled(isEnabled());

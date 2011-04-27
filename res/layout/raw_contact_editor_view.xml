@@ -86,9 +86,7 @@
         <FrameLayout
             android:id="@+id/stub_photo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="12dip"
-            android:paddingTop="10dip">
+            android:layout_height="wrap_content">
 
             <include
                 android:id="@+id/edit_photo"
@@ -96,21 +94,13 @@
 
         </FrameLayout>
 
-        <com.android.contacts.editor.StructuredNameEditorView
+        <include
             android:id="@+id/edit_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingRight="?android:attr/scrollbarSize"
-            android:layout_marginTop="6dip"
-            android:layout_marginBottom="4dip" />
+            layout="@layout/structured_name_editor_view" />
 
-        <com.android.contacts.editor.PhoneticNameEditorView
+        <include
             android:id="@+id/edit_phonetic_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingRight="?android:attr/scrollbarSize"
-            android:layout_marginTop="6dip"
-            android:layout_marginBottom="4dip" />
+            layout="@layout/phonetic_name_editor_view" />
 
         <ViewStub android:id="@+id/aggregation_suggestion_stub"
             android:inflatedId="@+id/aggregation_suggestion"

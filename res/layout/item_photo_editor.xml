@@ -27,7 +27,7 @@
         android:src="@drawable/ic_contact_picture"
         android:cropToPadding="true"
         android:scaleType="centerCrop"
-        android:gravity="center"
+        android:gravity="left"
     />
     <View
         android:id="@+id/frame"

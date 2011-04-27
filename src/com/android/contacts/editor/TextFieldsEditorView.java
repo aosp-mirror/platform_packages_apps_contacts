@@ -22,11 +22,9 @@ import com.android.contacts.model.AccountType.EditField;
 import com.android.contacts.model.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.util.ThemeUtils;
 
 import android.content.Context;
 import android.content.Entity;
-import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -37,18 +35,21 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 /**
- * Simple editor that handles labels and any {@link EditField} defined for
- * the entry. Uses {@link ValuesDelta} to read any existing
- * {@link Entity} values, and to correctly write any changes values.
+ * Simple editor that handles labels and any {@link EditField} defined for the
+ * entry. Uses {@link ValuesDelta} to read any existing {@link Entity} values,
+ * and to correctly write any changes values.
  */
 public class TextFieldsEditorView extends LabeledEditorView {
     private EditText[] mFieldEditTexts = null;
-    private ImageButton mMoreOrLess;
+    private ViewGroup mFields = null;
+    private View mExpansionButtonContainer;
+    private ImageButton mExpansionButton;
     private boolean mHideOptional = true;
     private boolean mHasShortAndLongForms;
     private int mEditorTextSize;
@@ -65,102 +66,43 @@ public class TextFieldsEditorView extends LabeledEditorView {
         super(context, attrs, defStyle);
     }
 
+    /** {@inheritDoc} */
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+
+        setDrawingCacheEnabled(true);
+        setAlwaysDrawnWithCacheEnabled(true);
+
+        mEditorTextSize = getResources().getDimensionPixelSize(R.dimen.editor_field_text_size);
+        mFields = (ViewGroup) findViewById(R.id.editors);
+        mExpansionButtonContainer = findViewById(R.id.expansion_button_container);
+        mExpansionButton = (ImageButton) findViewById(R.id.expansion_button);
+        mExpansionButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Save focus
+                final View focusedChild = getFocusedChild();
+                final int focusedViewId = focusedChild == null ? -1 : focusedChild.getId();
+
+                // Reconfigure GUI
+                mHideOptional = !mHideOptional;
+                onOptionalFieldVisibilityChange();
+                rebuildValues();
+
+                // Restore focus
+                View newFocusView = findViewById(focusedViewId);
+                if (newFocusView == null || newFocusView.getVisibility() == GONE) {
+                    // find first visible child
+                    newFocusView = TextFieldsEditorView.this;
+                }
+                newFocusView.requestFocus();
+            }
+        });
+    }
+
     public void setEditorTextSize(int textSize) {
         this.mEditorTextSize = textSize;
-    }
-
-    @Override
-    protected int getLineItemCount() {
-        int count = mFieldEditTexts == null ? 0 : mFieldEditTexts.length;
-        return Math.max(count, super.getLineItemCount());
-    }
-
-    @Override
-    protected boolean isLineItemVisible(int row) {
-        return mFieldEditTexts != null && mFieldEditTexts[row].getVisibility() != View.GONE;
-    }
-
-    @Override
-    public int getBaseline(int row) {
-        int baseline = super.getBaseline(row);
-        if (mFieldEditTexts != null) {
-            EditText editText = mFieldEditTexts[row];
-            // The text field will be centered vertically in the corresponding line item
-            int lineItemHeight = getLineItemHeight(row);
-            int offset = (lineItemHeight - editText.getMeasuredHeight()) / 2;
-            baseline = Math.max(baseline, offset + editText.getBaseline());
-        }
-        return baseline;
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        super.onLayout(changed, l, t, r, b);
-
-        int l1 = getPaddingLeft();
-        int t1 = getPaddingTop();
-        int r1 = getMeasuredWidth() - getPaddingRight();
-
-        if ((mMoreOrLess != null)) {
-            // Ensure that the more-or-less button does not overlap the delete button.
-            int moreOrLessTop = t1;
-            if (getDelete() != null) {
-                moreOrLessTop = getDelete().getBottom() + getPaddingTop();
-            }
-            mMoreOrLess.layout(
-                    r1 - mMoreOrLess.getMeasuredWidth(), moreOrLessTop,
-                    r1, moreOrLessTop + mMoreOrLess.getMeasuredHeight());
-        }
-
-        // Subtract buttons if necessary
-        final int labelWidth = (getLabel() != null) ? getLabel().getMeasuredWidth() : 0;
-        final int deleteWidth = (getDelete() != null) ? getDelete().getMeasuredWidth() : 0;
-        final int moreOrLessWidth = mMoreOrLess != null ? mMoreOrLess.getMeasuredWidth() : 0;
-        final int r2 = r1 - Math.max(deleteWidth, moreOrLessWidth) - labelWidth;
-
-        // Layout text fields
-        int y = t1;
-        if (mFieldEditTexts != null) {
-            for (int i = 0; i < mFieldEditTexts.length; i++) {
-                int baseline = getBaseline(i);
-                EditText editText = mFieldEditTexts[i];
-                if (editText.getVisibility() != View.GONE) {
-                    int height = editText.getMeasuredHeight();
-                    int top = t1 + y + baseline - editText.getBaseline();
-                    editText.layout(
-                            l1, top,
-                            r2, top + height);
-                    y += getLineItemHeight(i);
-                }
-            }
-        }
-    }
-
-    @Override
-    protected int getLineItemHeight(int row) {
-        int fieldHeight = 0;
-        int buttonHeight = 0;
-
-        boolean lastLineItem = true;
-        if (mFieldEditTexts != null) {
-            fieldHeight = mFieldEditTexts[row].getMeasuredHeight();
-            lastLineItem = (row == mFieldEditTexts.length - 1);
-        }
-
-        // Ensure there is enough space for the more/less button
-        if (row == 0) {
-            final int moreOrLessHeight = mMoreOrLess != null ? mMoreOrLess.getMeasuredHeight() : 0;
-            buttonHeight += moreOrLessHeight;
-        }
-
-        // Ensure there is enough space for the minus button
-        if (lastLineItem) {
-            View deleteButton = getDelete();
-            final int deleteHeight = (deleteButton != null) ? deleteButton.getMeasuredHeight() : 0;
-            buttonHeight += deleteHeight;
-        }
-
-        return Math.max(Math.max(buttonHeight, fieldHeight), super.getLineItemHeight(row));
     }
 
     @Override
@@ -172,7 +114,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
                 mFieldEditTexts[index].setEnabled(!isReadOnly() && enabled);
             }
         }
-        if (mMoreOrLess != null) mMoreOrLess.setEnabled(!isReadOnly() && enabled);
+        mExpansionButton.setEnabled(!isReadOnly() && enabled);
     }
 
     /**
@@ -180,51 +122,12 @@ public class TextFieldsEditorView extends LabeledEditorView {
      */
     private void setupMoreOrLessButton(boolean shouldExist, boolean collapsed) {
         if (shouldExist) {
-            if (mMoreOrLess == null) {
-                mMoreOrLess = new ImageButton(mContext);
-                mMoreOrLess.setBackgroundResource(
-                        ThemeUtils.getSelectableItemBackground(mContext.getTheme()));
-                final Resources resources = mContext.getResources();
-                mMoreOrLess.setPadding(
-                        resources.getDimensionPixelOffset(
-                                R.dimen.editor_round_button_padding_left),
-                        resources.getDimensionPixelOffset(
-                                R.dimen.editor_round_button_padding_top),
-                        resources.getDimensionPixelOffset(
-                                R.dimen.editor_round_button_padding_right),
-                        resources.getDimensionPixelOffset(
-                                R.dimen.editor_round_button_padding_bottom));
-                mMoreOrLess.setLayoutParams(
-                        new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-                mMoreOrLess.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Save focus
-                        final View focusedChild = getFocusedChild();
-                        final int focusedViewId = focusedChild == null ? -1 : focusedChild.getId();
-
-                        // Reconfigure GUI
-                        mHideOptional = !mHideOptional;
-                        onOptionalFieldVisibilityChange();
-                        rebuildValues();
-
-                        // Restore focus
-                        View newFocusView = findViewById(focusedViewId);
-                        if (newFocusView == null || newFocusView.getVisibility() == GONE) {
-                            // find first visible child
-                            newFocusView = TextFieldsEditorView.this;
-                        }
-                        newFocusView.requestFocus();
-                    }
-                });
-                addView(mMoreOrLess);
-            }
-            mMoreOrLess.setImageResource(collapsed
+            mExpansionButtonContainer.setVisibility(View.VISIBLE);
+            mExpansionButton.setImageResource(collapsed
                     ? R.drawable.ic_menu_expander_minimized_holo_light
                     : R.drawable.ic_menu_expander_maximized_holo_light);
-        } else if (mMoreOrLess != null) {
-            removeView(mMoreOrLess);
-            mMoreOrLess = null;
+        } else {
+            mExpansionButtonContainer.setVisibility(View.GONE);
         }
     }
 
@@ -255,7 +158,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
         // Remove edit texts that we currently have
         if (mFieldEditTexts != null) {
             for (EditText fieldEditText : mFieldEditTexts) {
-                removeView(fieldEditText);
+                mFields.removeView(fieldEditText);
             }
         }
         boolean hidePossible = false;
@@ -268,9 +171,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
             fieldView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
             fieldView.setGravity(Gravity.TOP);
-            if (mEditorTextSize != 0) {
-                fieldView.setTextSize(mEditorTextSize);
-            }
+            fieldView.setTextSize(mEditorTextSize);
             mFieldEditTexts[index] = fieldView;
             fieldView.setId(vig.getId(state, kind, entry, index));
             if (field.titleRes > 0) {
@@ -324,12 +225,12 @@ public class TextFieldsEditorView extends LabeledEditorView {
                 hidePossible = hidePossible || couldHide;
             }
 
-            addView(fieldView);
+            mFields.addView(fieldView);
         }
 
         // When hiding fields, place expandable
         setupMoreOrLessButton(hidePossible, mHideOptional);
-        if (mMoreOrLess != null) mMoreOrLess.setEnabled(!readOnly && isEnabled());
+        mExpansionButton.setEnabled(!readOnly && isEnabled());
     }
 
     /**

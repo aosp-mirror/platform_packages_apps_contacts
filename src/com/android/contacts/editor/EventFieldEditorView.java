@@ -32,10 +32,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
 import java.text.ParsePosition;
 import java.util.Calendar;
@@ -65,57 +63,30 @@ public class EventFieldEditorView extends LabeledEditorView {
         super(context, attrs, defStyle);
     }
 
+    /** {@inheritDoc} */
     @Override
-    public int getBaseline(int row) {
-        int baseline = super.getBaseline(row);
-        if (mDateView != null) {
-            // The date view will be centered vertically in the corresponding line item
-            int lineItemHeight = getLineItemHeight(row);
-            int offset = (lineItemHeight - mDateView.getMeasuredHeight()) / 2;
-            baseline = Math.max(baseline, offset + mDateView.getBaseline());
-        }
-        return baseline;
-    }
+    protected void onFinishInflate() {
+        super.onFinishInflate();
 
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        super.onLayout(changed, l, t, r, b);
-
-        int l1 = getPaddingLeft();
-        int t1 = getPaddingTop();
-        int r1 = getMeasuredWidth() - getPaddingRight();
-
-        // Fields
-        // Subtract buttons left and right if necessary
-        final int labelWidth = (getLabel() != null) ? getLabel().getMeasuredWidth() : 0;
-        final int deleteWidth = (getDelete() != null) ? getDelete().getMeasuredWidth() : 0;
-        final int r2 = r1 - deleteWidth - labelWidth;
-        if (mDateView != null) {
-            int height = mDateView.getMeasuredHeight();
-            int baseline = getBaseline(0);
-            int top = t1 + baseline - mDateView.getBaseline();
-            mDateView.layout(
-                    l1, top,
-                    r2, top + height);
-        }
-    }
-
-    @Override
-    protected int getLineItemHeight(int row) {
-        int height = mDateView == null ? 0 : mDateView.getMeasuredHeight();
-        return Math.max(height, super.getLineItemHeight(row));
+        mDateView = (Button) findViewById(R.id.date_view);
+        mDateView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog(R.id.dialog_event_date_picker);
+            }
+        });
     }
 
     @Override
     protected void requestFocusForFirstEditField() {
-        if (mDateView != null) mDateView.requestFocus();
+        mDateView.requestFocus();
     }
 
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
-        if (mDateView != null) mDateView.setEnabled(!isReadOnly() && enabled);
+        mDateView.setEnabled(!isReadOnly() && enabled);
     }
 
     @Override
@@ -124,20 +95,7 @@ public class EventFieldEditorView extends LabeledEditorView {
         if (kind.fieldList.size() != 1) throw new IllegalStateException("kind must have 1 field");
         super.setValues(kind, entry, state, readOnly, vig);
 
-        if (mDateView == null) {
-
-            mDateView = new Button(getContext(), null, android.R.attr.spinnerStyle);
-            mDateView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
-                    LayoutParams.WRAP_CONTENT));
-            mDateView.setEnabled(isEnabled() && !readOnly);
-            mDateView.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showDialog(R.id.dialog_event_date_picker);
-                }
-            });
-            addView(mDateView);
-        }
+        mDateView.setEnabled(isEnabled() && !readOnly);
 
         rebuildDateView();
     }

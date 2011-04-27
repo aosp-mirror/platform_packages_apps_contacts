@@ -1,12 +1,12 @@
 package com.android.contacts.model;
 
+import com.android.contacts.R;
 import com.android.contacts.model.AccountType.EditField;
 import com.android.contacts.model.AccountType.EditType;
 import com.android.contacts.model.AccountType.StringInflater;
 
 import android.content.ContentValues;
 import android.provider.ContactsContract.Data;
-import android.view.View;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -56,7 +56,12 @@ public class DataKind {
 
     public ContentValues defaultValues;
 
-    public Class<? extends View> editorClass;
+    /**
+     * Layout resource id for an editor {@link View} to edit this
+     * {@link DataKind}. The default is a text editor, but this can be
+     * overridden when a more appropriate XML layout is available.
+     */
+    public int editorLayoutResourceId = R.layout.text_fields_editor_view;
 
     /**
      * If this is a date field, this specifies the format of the date when saving. The
@@ -76,11 +81,11 @@ public class DataKind {
     }
 
     public DataKind(String mimeType, int titleRes, int iconRes, int weight, boolean editable) {
-        this(mimeType, titleRes, iconRes, weight, editable, null);
+        this(mimeType, titleRes, iconRes, weight, editable, R.layout.text_fields_editor_view);
     }
 
     public DataKind(String mimeType, int titleRes, int iconRes, int weight, boolean editable,
-            Class<? extends View> editorClass) {
+            int editorLayoutResourceId) {
         this.mimeType = mimeType;
         this.titleRes = titleRes;
         this.iconRes = iconRes;
@@ -88,6 +93,6 @@ public class DataKind {
         this.editable = editable;
         this.isList = true;
         this.typeOverallMax = -1;
-        this.editorClass = editorClass;
+        this.editorLayoutResourceId = editorLayoutResourceId;
     }
 }

@@ -303,7 +303,7 @@ public class ExchangeAccountType extends BaseAccountType {
         kind.typeList.add(buildEventType(Event.TYPE_BIRTHDAY, false).setSpecificMax(1));
 
         kind.dateFormatWithYear = DateUtils.DATE_AND_TIME_FORMAT;
-        kind.editorClass = EventFieldEditorView.class;
+        kind.editorLayoutResourceId = R.layout.event_field_editor_view;
 
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(new EditField(Event.DATA, R.string.eventLabelsGroup, FLAGS_EVENT));

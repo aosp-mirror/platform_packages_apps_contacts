@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 <resources>
-    <dimen name="edit_photo_size">76dip</dimen>
+    <dimen name="edit_photo_size">120dip</dimen>
 
     <!-- The height of the ScrollingTabWidget -->
     <dimen name="tab_height">40dip</dimen>
@@ -41,10 +41,22 @@
     <dimen name="editor_round_button_padding_bottom">8dip</dimen>
 
     <!-- Width of the Type-Label in the Editor -->
-    <dimen name="editor_type_label_width">180dip</dimen>
-    
+    <dimen name="editor_type_label_width">120dip</dimen>
+
+    <!-- Padding of the title of a field in the Editor -->
+    <dimen name="editor_field_title_padding">10dip</dimen>
+
     <!-- Minimum height of a row in the Editor -->
     <dimen name="editor_min_line_item_height">48dip</dimen>
+
+    <!-- Font size used for the value of a field in the contact editor. -->
+    <dimen name="editor_field_text_size">18sp</dimen>
+
+    <!-- Font size used for the title of a field in the contact editor. -->
+    <dimen name="editor_field_title_text_size">15sp</dimen>
+
+    <!-- Font size for the entries in a spinner in the contact editor. -->
+    <dimen name="editor_field_spinner_text_size">10sp</dimen>
 
     <!-- Minimum height of a row in the contact detail -->
     <dimen name="detail_min_line_item_height">48dip</dimen>

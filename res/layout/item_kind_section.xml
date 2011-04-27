@@ -25,7 +25,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1px"
+        android:layout_height="15dip"
         android:background="?android:attr/listDivider" />
 
     <LinearLayout
@@ -40,7 +40,8 @@
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:focusable="true"
-        android:clickable="true">
+        android:clickable="true"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/kind_title"

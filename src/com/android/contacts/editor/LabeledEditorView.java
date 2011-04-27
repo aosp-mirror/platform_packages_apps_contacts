@@ -25,14 +25,12 @@ import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.DialogManager.DialogShowingView;
-import com.android.contacts.util.ThemeUtils;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Entity;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -46,25 +44,28 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.List;
 
 /**
- * Base class for editors that handles labels and values.
- * Uses {@link ValuesDelta} to read any existing
- * {@link Entity} values, and to correctly write any changes values.
+ * Base class for editors that handles labels and values. Uses
+ * {@link ValuesDelta} to read any existing {@link Entity} values, and to
+ * correctly write any changes values.
  */
-public abstract class LabeledEditorView extends ViewGroup implements Editor, DialogShowingView {
+public abstract class LabeledEditorView extends LinearLayout implements Editor, DialogShowingView {
     protected static final String DIALOG_ID_KEY = "dialog_id";
     private static final int DIALOG_ID_CUSTOM = 1;
 
     private static final int INPUT_TYPE_CUSTOM = EditorInfo.TYPE_CLASS_TEXT
             | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS;
 
+    private TextView mTitle;
     private Spinner mLabel;
     private EditTypeAdapter mEditTypeAdapter;
+    private View mDeleteContainer;
     private ImageButton mDelete;
 
     private DataKind mKind;
@@ -117,6 +118,39 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
                 R.dimen.editor_min_line_item_height);
     }
 
+    /** {@inheritDoc} */
+    @Override
+    protected void onFinishInflate() {
+
+        mTitle = (TextView) findViewById(R.id.title);
+
+        mLabel = (Spinner) findViewById(R.id.spinner);
+        mLabel.setOnItemSelectedListener(mSpinnerListener);
+
+        mDeleteContainer = findViewById(R.id.delete_button_container);
+        mDelete = (ImageButton) findViewById(R.id.delete_button);
+        mDelete.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // defer removal of this button so that the pressed state is visible shortly
+                new Handler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Keep around in model, but mark as deleted
+                        mEntry.markDeleted();
+
+                        ((ViewGroup) getParent()).removeView(LabeledEditorView.this);
+
+                        if (mListener != null) {
+                            // Notify listener when present
+                            mListener.onDeleted(LabeledEditorView.this);
+                        }
+                    }
+                });
+            }
+        });
+    }
+
     public boolean isReadOnly() {
         return mReadOnly;
     }
@@ -129,96 +163,18 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
     }
 
     /**
-     * Returns the number of rows in this editor, including the invisible ones.
-     */
-    protected int getLineItemCount() {
-        return 1;
-    }
-
-    protected boolean isLineItemVisible(int row) {
-        return true;
-    }
-
-    protected int getLineItemHeight(int row) {
-        int fieldHeight = 0;
-        int buttonHeight = 0;
-        if (row == 0) {
-            // summarize the EditText heights
-            if (mLabel != null) {
-                fieldHeight = mLabel.getMeasuredHeight();
-            }
-
-            // Ensure there is enough space for the minus button
-            View deleteButton = getDelete();
-            final int deleteHeight = (deleteButton != null) ? deleteButton.getMeasuredHeight() : 0;
-            buttonHeight += deleteHeight;
-        }
-
-        return Math.max(Math.max(buttonHeight, fieldHeight), mMinLineItemHeight);
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        measureChildren(widthMeasureSpec, heightMeasureSpec);
-
-        int height = 0;
-        height += getPaddingTop() + getPaddingBottom();
-
-        int count = getLineItemCount();
-        for (int i = 0; i < count; i++) {
-            if (isLineItemVisible(i)) {
-                height += getLineItemHeight(i);
-            }
-        }
-
-        setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),
-                resolveSize(height, heightMeasureSpec));
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        // Subtract padding from the borders ==> x1 variables
-        int t1 = getPaddingTop();
-        int r1 = getMeasuredWidth() - getPaddingRight();
-        int b1 = getMeasuredHeight() - getPaddingBottom();
-
-        final int r2;
-        if (mDelete != null) {
-            r2 = r1 - mDelete.getMeasuredWidth();
-            // Vertically center the delete button in the first line item
-            int height = mDelete.getMeasuredHeight();
-            int top = t1 + (mMinLineItemHeight - height) / 2;
-            mDelete.layout(
-                    r2, top,
-                    r1, top + height);
-        } else {
-            r2 = r1;
-        }
-
-        if (mLabel != null) {
-            int baseline = getBaseline(0);
-            int y = t1 + baseline - mLabel.getBaseline();
-            mLabel.layout(
-                    r2 - mLabel.getMeasuredWidth(), y,
-                    r2, y + mLabel.getMeasuredHeight());
-        }
-    }
-
-    /**
      * Creates or removes the type/label button. Doesn't do anything if already correctly configured
      */
     private void setupLabelButton(boolean shouldExist) {
-        if (shouldExist && mLabel == null) {
-            mLabel = new Spinner(mContext);
-            final int width =
-                    mContext.getResources().getDimensionPixelSize(R.dimen.editor_type_label_width);
-            mLabel.setLayoutParams(new LayoutParams(width, LayoutParams.WRAP_CONTENT));
-            mLabel.setOnItemSelectedListener(mSpinnerListener);
+        if (shouldExist) {
             mLabel.setEnabled(!mReadOnly && isEnabled());
-            addView(mLabel);
-        } else if (!shouldExist && mLabel != null) {
-            removeView(mLabel);
-            mLabel = null;
+            mLabel.setVisibility(View.VISIBLE);
+
+            // Since there's a spinner for this editor, use this as the title
+            // instead of the title TextView.
+            mTitle.setVisibility(View.GONE);
+        } else {
+            mLabel.setVisibility(View.GONE);
         }
     }
 
@@ -226,46 +182,11 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
      * Creates or removes the remove button. Doesn't do anything if already correctly configured
      */
     private void setupDeleteButton(boolean shouldExist) {
-        if (shouldExist && mDelete == null) {
-            mDelete = new ImageButton(mContext);
-            mDelete.setImageResource(R.drawable.ic_menu_remove_field_holo_light);
-            mDelete.setBackgroundResource(
-                    ThemeUtils.getSelectableItemBackground(mContext.getTheme()));
-            final Resources resources = mContext.getResources();
-            mDelete.setPadding(
-                    resources.getDimensionPixelOffset(R.dimen.editor_round_button_padding_left),
-                    resources.getDimensionPixelOffset(R.dimen.editor_round_button_padding_top),
-                    resources.getDimensionPixelOffset(R.dimen.editor_round_button_padding_right),
-                    resources.getDimensionPixelOffset(R.dimen.editor_round_button_padding_bottom));
-            mDelete.setContentDescription(
-                    getResources().getText(R.string.description_minus_button));
-            mDelete.setLayoutParams(
-                    new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-            mDelete.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // defer removal of this button so that the pressed state is visible shortly
-                    new Handler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            // Keep around in model, but mark as deleted
-                            mEntry.markDeleted();
-
-                            ((ViewGroup) getParent()).removeView(LabeledEditorView.this);
-
-                            if (mListener != null) {
-                                // Notify listener when present
-                                mListener.onDeleted(LabeledEditorView.this);
-                            }
-                        }
-                    });
-                }
-            });
+        if (shouldExist) {
+            mDeleteContainer.setVisibility(View.VISIBLE);
             mDelete.setEnabled(!mReadOnly && isEnabled());
-            addView(mDelete);
-        } else if (!shouldExist && mDelete != null) {
-            removeView(mDelete);
-            mDelete = null;
+        } else {
+            mDeleteContainer.setVisibility(View.GONE);
         }
     }
 
@@ -288,8 +209,8 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
-        if (mLabel != null) mLabel.setEnabled(!mReadOnly && enabled);
-        if (mDelete != null) mDelete.setEnabled(!mReadOnly && enabled);
+        mLabel.setEnabled(!mReadOnly && enabled);
+        mDelete.setEnabled(!mReadOnly && enabled);
     }
 
     public Spinner getLabel() {
@@ -317,7 +238,6 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
      * possible custom label string.
      */
     private void rebuildLabel() {
-        if (mLabel == null) return;
         mEditTypeAdapter = new EditTypeAdapter(mContext);
         mLabel.setAdapter(mEditTypeAdapter);
         if (mEditTypeAdapter.hasCustomSelection()) {
@@ -374,10 +294,18 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
         }
         setVisibility(View.VISIBLE);
 
+        // TODO: handle resources from remote packages
+        String titleString = (kind.titleRes == -1 || kind.titleRes == 0)
+                ? ""
+                : getResources().getString(kind.titleRes);
+
+        // Setup title (may not be shown if there is a Spinner setup later).
+        mTitle.setText(titleString.toUpperCase());
+
         // Display label selector if multiple types available
         final boolean hasTypes = EntityModifier.hasEditTypes(kind);
         setupLabelButton(hasTypes);
-        if (mLabel != null) mLabel.setEnabled(!readOnly && isEnabled());
+        mLabel.setEnabled(!readOnly && isEnabled());
         if (hasTypes) {
             mType = EntityModifier.getCurrentType(entry, kind);
             rebuildLabel();
@@ -502,10 +430,13 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
     private class EditTypeAdapter extends ArrayAdapter<EditType> {
         private final LayoutInflater mInflater;
         private boolean mHasCustomSelection;
+        private int mTextSize;
 
         public EditTypeAdapter(Context context) {
             super(context, 0);
             mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            mTextSize = getResources().getDimensionPixelSize(
+                    R.dimen.editor_field_spinner_text_size);
 
             if (mType != null && mType.customColumn != null) {
 
@@ -548,6 +479,7 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
             }
 
             textView = (TextView) view;
+            textView.setTextSize(mTextSize);
 
             EditType type = getItem(position);
             String text;
@@ -556,7 +488,7 @@ public abstract class LabeledEditorView extends ViewGroup implements Editor, Dia
             } else {
                 text = getContext().getString(type.labelRes);
             }
-            textView.setText(text);
+            textView.setText(text.toUpperCase());
             return view;
         }
     }

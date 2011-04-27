@@ -67,25 +67,13 @@
                     android:layout_height="1px"
                     android:background="@color/contact_detail_header_divider_color" />
 
-                <com.android.contacts.editor.StructuredNameEditorView
+                <include
                     android:id="@+id/edit_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="?android:attr/scrollbarSize"
-                    android:layout_marginLeft="52dip"
-                    android:layout_marginRight="48dip"
-                    android:layout_marginTop="6dip"
-                    android:layout_marginBottom="4dip" />
+                    layout="@layout/structured_name_editor_view" />
 
-                <com.android.contacts.editor.PhoneticNameEditorView
+                <include
                     android:id="@+id/edit_phonetic_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="?android:attr/scrollbarSize"
-                    android:layout_marginLeft="52dip"
-                    android:layout_marginRight="48dip"
-                    android:layout_marginTop="6dip"
-                    android:layout_marginBottom="4dip" />
+                    layout="@layout/phonetic_name_editor_view" />
 
                 <FrameLayout
                     android:layout_width="match_parent"

@@ -138,7 +138,7 @@ public class GoogleAccountType extends BaseAccountType {
                     R.string.eventLabelsGroup, -1, 150, true));
         kind.actionHeader = new EventActionInflater();
         kind.actionBody = new SimpleInflater(Event.START_DATE);
-        kind.editorClass = EventFieldEditorView.class;
+        kind.editorLayoutResourceId = R.layout.event_field_editor_view;
 
         kind.typeColumn = Event.TYPE;
         kind.typeList = Lists.newArrayList();
