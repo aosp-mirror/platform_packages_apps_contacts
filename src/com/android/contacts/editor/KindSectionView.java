@@ -24,17 +24,27 @@ import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityModifier;
 
 import android.content.Context;
-import android.os.Handler;
+import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Event;
+import android.provider.ContactsContract.CommonDataKinds.Im;
+import android.provider.ContactsContract.CommonDataKinds.Note;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.Relation;
+import android.provider.ContactsContract.CommonDataKinds.SipAddress;
+import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
+import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Data;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Custom view for an entire section of data as segmented by
@@ -45,8 +55,8 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     private static final String TAG = "KindSectionView";
 
     private ViewGroup mEditors;
-    private View mAddPlusButtonContainer;
-    private ImageButton mAddPlusButton;
+    private View mAddFieldFooter;
+    private TextView mAddFieldText;
     private String mTitleString;
 
     private DataKind mKind;
@@ -56,6 +66,31 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     private ViewIdGenerator mViewIdGenerator;
 
     private LayoutInflater mInflater;
+
+    /**
+     * Map of data MIME types to the "add field" footer text resource ID
+     * (that for example, maps to "Add new phone number").
+     */
+    private static final HashMap<String, Integer> sAddFieldFooterTextResourceIds =
+            new HashMap<String, Integer>();
+
+    static {
+        final HashMap<String, Integer> hashMap = sAddFieldFooterTextResourceIds;
+        hashMap.put(Phone.CONTENT_ITEM_TYPE, R.string.add_phone);
+        hashMap.put(Email.CONTENT_ITEM_TYPE, R.string.add_email);
+        hashMap.put(Im.CONTENT_ITEM_TYPE, R.string.add_im);
+        hashMap.put(StructuredPostal.CONTENT_ITEM_TYPE, R.string.add_address);
+        hashMap.put(Note.CONTENT_ITEM_TYPE, R.string.add_note);
+        hashMap.put(Website.CONTENT_ITEM_TYPE, R.string.add_website);
+        hashMap.put(SipAddress.CONTENT_ITEM_TYPE, R.string.add_internet_call);
+        hashMap.put(Event.CONTENT_ITEM_TYPE, R.string.add_event);
+        hashMap.put(Relation.CONTENT_ITEM_TYPE, R.string.add_relationship);
+    }
+
+    /**
+     * List of the empty editor views.
+     */
+    private List<View> mEmptyEditorViews = new ArrayList<View>();
 
     public KindSectionView(Context context) {
         this(context, null);
@@ -75,24 +110,11 @@ public class KindSectionView extends LinearLayout implements EditorListener {
             }
         }
 
-        if (mAddPlusButton != null) {
-            mAddPlusButton.setEnabled(enabled && !mReadOnly);
+        if (enabled && !mReadOnly) {
+            mAddFieldFooter.setVisibility(View.VISIBLE);
+        } else {
+            mAddFieldFooter.setVisibility(View.GONE);
         }
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        super.onLayout(changed, l, t, r, b);
-
-        if (mAddPlusButton == null || mEditors == null || mEditors.getChildCount() < 2) {
-            return;
-        }
-
-        // Align the "+" button with the "-" button in the last editor
-        View lastEditor = mEditors.getChildAt(mEditors.getChildCount() - 1);
-        int top = lastEditor.getTop();
-        mAddPlusButtonContainer.layout(mAddPlusButtonContainer.getLeft(), top,
-                mAddPlusButtonContainer.getRight(), top + mAddPlusButtonContainer.getHeight());
     }
 
     public boolean isReadOnly() {
@@ -108,19 +130,14 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         mEditors = (ViewGroup)findViewById(R.id.kind_editors);
-
-        mAddPlusButtonContainer = findViewById(R.id.kind_plus_container);
-        mAddPlusButton = (ImageButton) findViewById(R.id.kind_plus);
-        mAddPlusButton.setOnClickListener(new OnClickListener() {
+        mAddFieldText = (TextView) findViewById(R.id.add_text);
+        mAddFieldFooter = findViewById(R.id.add_field_footer);
+        mAddFieldFooter.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // defer action so that the pressed state of the button is visible shortly
-                new Handler().post(new Runnable() {
-                    @Override
-                    public void run() {
-                        addItem();
-                    }
-                });
+                // Setup click listener to add an empty field when the footer is clicked.
+                mAddFieldFooter.setVisibility(View.GONE);
+                addItem();
             }
         });
     }
@@ -128,14 +145,17 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     /** {@inheritDoc} */
     @Override
     public void onDeleted(Editor editor) {
-        updateAddVisible();
-        updateVisible();
+        updateAddFooterVisible();
+        updateSectionVisible();
     }
 
     /** {@inheritDoc} */
     @Override
     public void onRequest(int request) {
-        // Ignore requests
+        // If a field has changed, then check if another row can be added dynamically.
+        if (request == FIELD_CHANGED) {
+            updateAddFooterVisible();
+        }
     }
 
     public void setState(DataKind kind, EntityDelta state, boolean readOnly, ViewIdGenerator vig) {
@@ -151,9 +171,17 @@ public class KindSectionView extends LinearLayout implements EditorListener {
                 ? ""
                 : getResources().getString(kind.titleRes);
 
+        // Set "add field" footer message according to MIME type. Some MIME types
+        // can only have max 1 field, so the map will return null if these sections
+        // should not have an "Add field" option.
+        Integer textResourceId = sAddFieldFooterTextResourceIds.get(kind.mimeType);
+        if (textResourceId != null) {
+            mAddFieldText.setText(textResourceId);
+        }
+
         rebuildFromState();
-        updateAddVisible();
-        updateVisible();
+        updateAddFooterVisible();
+        updateSectionVisible();
     }
 
     public String getTitle() {
@@ -223,21 +251,58 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         return true;
     }
 
-    private void updateVisible() {
+    private void updateSectionVisible() {
         setVisibility(getEditorCount() != 0 ? VISIBLE : GONE);
     }
 
-
-    protected void updateAddVisible() {
-        final boolean isVisible;
-        if (!mKind.isList) {
-            isVisible = false;
-        } else {
-            // Set enabled state on the "add" view
-            final boolean canInsert = EntityModifier.canInsert(mState, mKind);
-            isVisible = !mReadOnly && canInsert;
+    protected void updateAddFooterVisible() {
+        if (!mReadOnly && mKind.isList) {
+            // First determine whether there are any existing empty editors.
+            updateEmptyEditors();
+            // If there are no existing empty editors and it's possible to add
+            // another field, then make the "add footer" field visible.
+            if (!hasEmptyEditor() && EntityModifier.canInsert(mState, mKind)) {
+                mAddFieldFooter.setVisibility(View.VISIBLE);
+                return;
+            }
         }
-        mAddPlusButton.setVisibility(isVisible ? View.VISIBLE : View.INVISIBLE);
+        mAddFieldFooter.setVisibility(View.GONE);
+    }
+
+    /**
+     * Determines a list of {@link Editor} {@link View}s that have an empty
+     * field in them and removes extra ones, so there is max 1 empty
+     * {@link Editor} {@link View} at a time.
+     */
+    private void updateEmptyEditors() {
+        mEmptyEditorViews.clear();
+
+        // Construct a list of editors that have an empty field in them.
+        for (int i = 0; i < mEditors.getChildCount(); i++) {
+            View v = mEditors.getChildAt(i);
+            if (((Editor) v).hasEmptyField()) {
+                mEmptyEditorViews.add(v);
+            }
+        }
+
+        // If there is more than 1 empty editor, then remove it from the list of editors.
+        if (mEmptyEditorViews.size() > 1) {
+            for (View emptyEditorView : mEmptyEditorViews) {
+                // If no child {@link View}s are being focused on within
+                // this {@link View}, then remove this empty editor.
+                if (emptyEditorView.findFocus() == null) {
+                    mEditors.removeView(emptyEditorView);
+                }
+            }
+        }
+    }
+
+    /**
+     * Returns true if one of the editors has an empty field, or false
+     * otherwise.
+     */
+    private boolean hasEmptyEditor() {
+        return mEmptyEditorViews.size() > 0;
     }
 
     public void addItem() {
@@ -269,12 +334,11 @@ public class KindSectionView extends LinearLayout implements EditorListener {
             }
         });
 
-        // For non-lists (e.g. Notes we can only have one field. in that case we need to disable
-        // the add button
-        updateAddVisible();
+        // Hide the "add field" footer because there is now a blank field.
+        mAddFieldFooter.setVisibility(View.GONE);
 
         // Ensure we are visible
-        updateVisible();
+        updateSectionVisible();
     }
 
     public int getEditorCount() {

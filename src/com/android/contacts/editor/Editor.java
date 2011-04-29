@@ -51,7 +51,13 @@ public interface Editor {
     }
 
     /**
-     * Prepare this editor for the given {@link ValuesDelta}, which
+     * Returns whether or not there is at least one empty field (i.e. text
+     * fields) in this {@link Editor}.
+     */
+    public boolean hasEmptyField();
+
+    /**
+     * Prepares this editor for the given {@link ValuesDelta}, which
      * builds any needed views. Any changes performed by the user will be
      * written back to that same object.
      */

@@ -31,6 +31,7 @@ import android.os.Parcelable;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -231,6 +232,16 @@ public class TextFieldsEditorView extends LabeledEditorView {
         // When hiding fields, place expandable
         setupMoreOrLessButton(hidePossible, mHideOptional);
         mExpansionButton.setEnabled(!readOnly && isEnabled());
+    }
+
+    public boolean hasEmptyField() {
+        for (int i = 0; i < mFields.getChildCount(); i++) {
+            EditText editText = (EditText) mFields.getChildAt(i);
+            if (TextUtils.isEmpty(editText.getText())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

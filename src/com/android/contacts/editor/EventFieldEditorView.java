@@ -110,6 +110,10 @@ public class EventFieldEditorView extends LabeledEditorView {
         mDateView.setText(data);
     }
 
+    public boolean hasEmptyField() {
+        return TextUtils.isEmpty(mDateView.getText());
+    }
+
     @Override
     public Dialog createDialog(Bundle bundle) {
         if (bundle == null) throw new IllegalArgumentException("bundle must not be null");

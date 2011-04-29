@@ -20,31 +20,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dip"
+        android:background="?android:attr/listDivider" />
 
     <LinearLayout
         android:id="@+id/kind_editors"
-        android:layout_width="0dip"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_gravity="bottom"
         android:orientation="vertical" />
 
-    <FrameLayout
-        android:id="@+id/kind_plus_container"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/editor_min_line_item_height">
-        <ImageButton
-            android:id="@+id/kind_plus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:paddingLeft="@dimen/editor_round_button_padding_left"
-            android:paddingRight="@dimen/editor_round_button_padding_right"
-            android:paddingTop="@dimen/editor_round_button_padding_top"
-            android:paddingBottom="@dimen/editor_round_button_padding_bottom"
-            android:background="?android:attr/selectableItemBackground"
-            android:src="@drawable/ic_menu_add_field_holo_light"
-            android:contentDescription="@string/description_plus_button" />
-    </FrameLayout>
+    <include
+        android:id="@+id/add_field_footer"
+        layout="@layout/edit_add_field" />
+
 </com.android.contacts.editor.KindSectionView>
