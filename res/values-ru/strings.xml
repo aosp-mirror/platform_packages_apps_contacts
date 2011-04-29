@@ -233,7 +233,7 @@
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Не удалось обработать vCard по неизвестной причине."</string>
     <string name="fail_reason_not_supported" msgid="294499264620201243">"Формат не поддерживается."</string>
     <string name="vcard_import_failed" msgid="7718330063493653085">"Не удалось импортировать vCard"</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"На накопителе отсутствуют файлы vCard"</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"На накопителе нет vCard-файлов"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"На SD-карте не найдены файлы VCard"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Не удалось собрать метаинформацию файлов VCard."</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Не удалось импортировать один или несколько файлов (%s)."</string>
@@ -259,7 +259,7 @@
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Не удалось экспортировать данные контакта."</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Не удалось экспортировать данные контакта."\n"Причина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Нет контактов, которые можно экспортировать."</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Слишком много файлов vCard на накопителе"</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Слишком много vCard-файлов на накопителе"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Слишком много файлов VCard на SD-карте."</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Название файла слишком длинное (<xliff:g id="FILENAME">%s</xliff:g>)."</string>
     <string name="exporting_vcard_finished_title" msgid="4259736138838583213">"Экспорт <xliff:g id="FILENAME">%s</xliff:g> завершен"</string>
