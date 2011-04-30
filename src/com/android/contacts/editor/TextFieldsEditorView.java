@@ -234,14 +234,15 @@ public class TextFieldsEditorView extends LabeledEditorView {
         mExpansionButton.setEnabled(!readOnly && isEnabled());
     }
 
-    public boolean hasEmptyField() {
+    @Override
+    public boolean isEmpty() {
         for (int i = 0; i < mFields.getChildCount(); i++) {
             EditText editText = (EditText) mFields.getChildAt(i);
-            if (TextUtils.isEmpty(editText.getText())) {
-                return true;
+            if (!TextUtils.isEmpty(editText.getText())) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     /**

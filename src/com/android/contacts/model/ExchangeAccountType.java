@@ -17,7 +17,6 @@
 package com.android.contacts.model;
 
 import com.android.contacts.R;
-import com.android.contacts.editor.EventFieldEditorView;
 import com.android.contacts.util.DateUtils;
 import com.google.android.collect.Lists;
 
@@ -65,7 +64,8 @@ public class ExchangeAccountType extends BaseAccountType {
     @Override
     protected DataKind addDataKindStructuredName(Context context) {
         DataKind kind = addKind(new DataKind(StructuredName.CONTENT_ITEM_TYPE,
-                R.string.nameLabelsGroup, -1, -1, true));
+                R.string.nameLabelsGroup, -1, -1, true,
+                R.layout.structured_name_editor_view, -1));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
 
@@ -94,7 +94,8 @@ public class ExchangeAccountType extends BaseAccountType {
     @Override
     protected DataKind addDataKindDisplayName(Context context) {
         DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME,
-                R.string.nameLabelsGroup, -1, -1, true));
+                R.string.nameLabelsGroup, -1, -1, true,
+                R.layout.text_fields_editor_view, -1));
 
         boolean displayOrderPrimary =
                 context.getResources().getBoolean(R.bool.config_editor_field_order_primary);
@@ -127,7 +128,8 @@ public class ExchangeAccountType extends BaseAccountType {
     @Override
     protected DataKind addDataKindPhoneticName(Context context) {
         DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME,
-                R.string.name_phonetic, -1, -1, true));
+                R.string.name_phonetic, -1, -1, true,
+                R.layout.phonetic_name_editor_view, -1));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
 
@@ -292,7 +294,8 @@ public class ExchangeAccountType extends BaseAccountType {
 
     protected DataKind addDataKindEvent(Context context) {
         DataKind kind = addKind(
-                new DataKind(Event.CONTENT_ITEM_TYPE, R.string.eventLabelsGroup, -1, 150, true));
+                new DataKind(Event.CONTENT_ITEM_TYPE, R.string.eventLabelsGroup, -1, 150, true,
+                R.layout.event_field_editor_view, R.string.add_event));
         kind.actionHeader = new EventActionInflater();
         kind.actionBody = new SimpleInflater(Event.START_DATE);
 
@@ -303,7 +306,6 @@ public class ExchangeAccountType extends BaseAccountType {
         kind.typeList.add(buildEventType(Event.TYPE_BIRTHDAY, false).setSpecificMax(1));
 
         kind.dateFormatWithYear = DateUtils.DATE_AND_TIME_FORMAT;
-        kind.editorLayoutResourceId = R.layout.event_field_editor_view;
 
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(new EditField(Event.DATA, R.string.eventLabelsGroup, FLAGS_EVENT));

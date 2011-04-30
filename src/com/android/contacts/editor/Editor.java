@@ -27,9 +27,7 @@ import android.provider.ContactsContract.Data;
  * {@link ValuesDelta} object.
  */
 public interface Editor {
-    /**
-     * Listener for an {@link Editor}, usually to handle deleted items.
-     */
+
     public interface EditorListener {
         /**
          * Called when the given {@link Editor} has been deleted.
@@ -44,17 +42,18 @@ public interface Editor {
 
         public static final int REQUEST_PICK_PHOTO = 1;
         public static final int FIELD_CHANGED = 2;
+        public static final int FIELD_TURNED_EMPTY = 3;
+        public static final int FIELD_TURNED_NON_EMPTY = 4;
 
         // The editor has switched between different representations of the same
         // data, e.g. from full name to structured name
-        public static final int EDITOR_FORM_CHANGED = 3;
+        public static final int EDITOR_FORM_CHANGED = 5;
     }
 
     /**
-     * Returns whether or not there is at least one empty field (i.e. text
-     * fields) in this {@link Editor}.
+     * Returns whether or not all the fields are empty in this {@link Editor}.
      */
-    public boolean hasEmptyField();
+    public boolean isEmpty();
 
     /**
      * Prepares this editor for the given {@link ValuesDelta}, which

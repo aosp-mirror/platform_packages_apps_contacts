@@ -110,7 +110,8 @@ public class EventFieldEditorView extends LabeledEditorView {
         mDateView.setText(data);
     }
 
-    public boolean hasEmptyField() {
+    @Override
+    public boolean isEmpty() {
         return TextUtils.isEmpty(mDateView.getText());
     }
 

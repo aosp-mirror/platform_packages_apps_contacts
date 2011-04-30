@@ -179,7 +179,8 @@ public class PhotoEditorView extends FrameLayout implements Editor {
         // Photo is not deletable
     }
 
-    public boolean hasEmptyField() {
-        return mHasSetPhoto;
+    @Override
+    public boolean isEmpty() {
+        return !mHasSetPhoto;
     }
 }

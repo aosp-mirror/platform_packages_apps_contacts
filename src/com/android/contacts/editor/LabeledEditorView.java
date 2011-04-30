@@ -72,6 +72,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
     private ValuesDelta mEntry;
     private EntityDelta mState;
     private boolean mReadOnly;
+    private boolean mWasEmpty = true;
 
     private EditType mType;
 
@@ -257,6 +258,16 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
         mEntry.put(column, value);
         if (mListener != null) {
             mListener.onRequest(EditorListener.FIELD_CHANGED);
+        }
+
+        boolean isEmpty = isEmpty();
+        if (mWasEmpty != isEmpty) {
+            if (isEmpty) {
+                mListener.onRequest(EditorListener.FIELD_TURNED_EMPTY);
+            } else {
+                mListener.onRequest(EditorListener.FIELD_TURNED_NON_EMPTY);
+            }
+            mWasEmpty = isEmpty;
         }
     }
 

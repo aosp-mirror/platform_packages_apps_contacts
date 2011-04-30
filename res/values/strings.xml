@@ -1337,9 +1337,6 @@
     <!-- The editable field hint text to add a new website to a contact in the Raw Contact Editor [CHAR LIMIT=22] -->
     <string name="add_website">Add new website</string>
 
-    <!-- The editable field hint text to add a new internet call method to a contact in the Raw Contact Editor [CHAR LIMIT=22] -->
-    <string name="add_internet_call">Add new internet call</string>
-
     <!-- The editable field hint text to add a new event to a contact in the Raw Contact Editor [CHAR LIMIT=22] -->
     <string name="add_event">Add new event</string>
 

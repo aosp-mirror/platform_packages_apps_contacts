@@ -56,12 +56,15 @@ public class DataKind {
 
     public ContentValues defaultValues;
 
+    /** Layout resource id for an editor view to edit this {@link DataKind}. */
+    public final int editorLayoutResourceId;
+
     /**
-     * Layout resource id for an editor {@link View} to edit this
-     * {@link DataKind}. The default is a text editor, but this can be
-     * overridden when a more appropriate XML layout is available.
+     * String resource id for the "add field" footer. This is equal to -1 if it
+     * is not applicable to add a new field to this class (i.e. for a structured
+     * name because a user should only have one structured name).
      */
-    public int editorLayoutResourceId = R.layout.text_fields_editor_view;
+    public final int addNewFieldTextResourceId;
 
     /**
      * If this is a date field, this specifies the format of the date when saving. The
@@ -78,14 +81,12 @@ public class DataKind {
     public SimpleDateFormat dateFormatWithYear;
 
     public DataKind() {
-    }
-
-    public DataKind(String mimeType, int titleRes, int iconRes, int weight, boolean editable) {
-        this(mimeType, titleRes, iconRes, weight, editable, R.layout.text_fields_editor_view);
+        editorLayoutResourceId = R.layout.text_fields_editor_view;
+        addNewFieldTextResourceId = -1;
     }
 
     public DataKind(String mimeType, int titleRes, int iconRes, int weight, boolean editable,
-            int editorLayoutResourceId) {
+            int editorLayoutResourceId, int addNewFieldTextResourceId) {
         this.mimeType = mimeType;
         this.titleRes = titleRes;
         this.iconRes = iconRes;
@@ -94,5 +95,6 @@ public class DataKind {
         this.isList = true;
         this.typeOverallMax = -1;
         this.editorLayoutResourceId = editorLayoutResourceId;
+        this.addNewFieldTextResourceId = addNewFieldTextResourceId;
     }
 }

@@ -24,16 +24,6 @@ import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityModifier;
 
 import android.content.Context;
-import android.provider.ContactsContract.CommonDataKinds.Email;
-import android.provider.ContactsContract.CommonDataKinds.Event;
-import android.provider.ContactsContract.CommonDataKinds.Im;
-import android.provider.ContactsContract.CommonDataKinds.Note;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.ContactsContract.CommonDataKinds.Relation;
-import android.provider.ContactsContract.CommonDataKinds.SipAddress;
-import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
-import android.provider.ContactsContract.CommonDataKinds.Website;
-import android.provider.ContactsContract.Data;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -43,7 +33,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -66,31 +55,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     private ViewIdGenerator mViewIdGenerator;
 
     private LayoutInflater mInflater;
-
-    /**
-     * Map of data MIME types to the "add field" footer text resource ID
-     * (that for example, maps to "Add new phone number").
-     */
-    private static final HashMap<String, Integer> sAddFieldFooterTextResourceIds =
-            new HashMap<String, Integer>();
-
-    static {
-        final HashMap<String, Integer> hashMap = sAddFieldFooterTextResourceIds;
-        hashMap.put(Phone.CONTENT_ITEM_TYPE, R.string.add_phone);
-        hashMap.put(Email.CONTENT_ITEM_TYPE, R.string.add_email);
-        hashMap.put(Im.CONTENT_ITEM_TYPE, R.string.add_im);
-        hashMap.put(StructuredPostal.CONTENT_ITEM_TYPE, R.string.add_address);
-        hashMap.put(Note.CONTENT_ITEM_TYPE, R.string.add_note);
-        hashMap.put(Website.CONTENT_ITEM_TYPE, R.string.add_website);
-        hashMap.put(SipAddress.CONTENT_ITEM_TYPE, R.string.add_internet_call);
-        hashMap.put(Event.CONTENT_ITEM_TYPE, R.string.add_event);
-        hashMap.put(Relation.CONTENT_ITEM_TYPE, R.string.add_relationship);
-    }
-
-    /**
-     * List of the empty editor views.
-     */
-    private List<View> mEmptyEditorViews = new ArrayList<View>();
 
     public KindSectionView(Context context) {
         this(context, null);
@@ -152,8 +116,9 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     /** {@inheritDoc} */
     @Override
     public void onRequest(int request) {
-        // If a field has changed, then check if another row can be added dynamically.
-        if (request == FIELD_CHANGED) {
+        // If a field has become empty or non-empty, then check if another row
+        // can be added dynamically.
+        if (request == FIELD_TURNED_EMPTY || request == FIELD_TURNED_NON_EMPTY) {
             updateAddFooterVisible();
         }
     }
@@ -172,11 +137,10 @@ public class KindSectionView extends LinearLayout implements EditorListener {
                 : getResources().getString(kind.titleRes);
 
         // Set "add field" footer message according to MIME type. Some MIME types
-        // can only have max 1 field, so the map will return null if these sections
+        // can only have max 1 field, so the resource ID will be -1 if these sections
         // should not have an "Add field" option.
-        Integer textResourceId = sAddFieldFooterTextResourceIds.get(kind.mimeType);
-        if (textResourceId != null) {
-            mAddFieldText.setText(textResourceId);
+        if (kind.addNewFieldTextResourceId != -1) {
+            mAddFieldText.setText(getResources().getString(kind.addNewFieldTextResourceId));
         }
 
         rebuildFromState();
@@ -222,7 +186,8 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         } catch (Exception e) {
             throw new RuntimeException(
                     "Cannot allocate editor with layout resource ID " +
-                    mKind.editorLayoutResourceId);
+                    mKind.editorLayoutResourceId + " for MIME type " + mKind.mimeType +
+                    " with error " + e.toString());
         }
 
         view.setEnabled(isEnabled());
@@ -270,24 +235,15 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     }
 
     /**
-     * Determines a list of {@link Editor} {@link View}s that have an empty
-     * field in them and removes extra ones, so there is max 1 empty
-     * {@link Editor} {@link View} at a time.
+     * Updates the editors being displayed to the user removing extra empty
+     * {@link Editor}s, so there is only max 1 empty {@link Editor} view at a time.
      */
     private void updateEmptyEditors() {
-        mEmptyEditorViews.clear();
-
-        // Construct a list of editors that have an empty field in them.
-        for (int i = 0; i < mEditors.getChildCount(); i++) {
-            View v = mEditors.getChildAt(i);
-            if (((Editor) v).hasEmptyField()) {
-                mEmptyEditorViews.add(v);
-            }
-        }
+        List<View> emptyEditors = getEmptyEditors();
 
         // If there is more than 1 empty editor, then remove it from the list of editors.
-        if (mEmptyEditorViews.size() > 1) {
-            for (View emptyEditorView : mEmptyEditorViews) {
+        if (emptyEditors.size() > 1) {
+            for (View emptyEditorView : emptyEditors) {
                 // If no child {@link View}s are being focused on within
                 // this {@link View}, then remove this empty editor.
                 if (emptyEditorView.findFocus() == null) {
@@ -298,16 +254,30 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     }
 
     /**
-     * Returns true if one of the editors has an empty field, or false
+     * Returns a list of empty editor views in this section.
+     */
+    private List<View> getEmptyEditors() {
+        List<View> emptyEditorViews = new ArrayList<View>();
+        for (int i = 0; i < mEditors.getChildCount(); i++) {
+            View view = mEditors.getChildAt(i);
+            if (((Editor) view).isEmpty()) {
+                emptyEditorViews.add(view);
+            }
+        }
+        return emptyEditorViews;
+    }
+
+    /**
+     * Returns true if one of the editors has all of its fields empty, or false
      * otherwise.
      */
     private boolean hasEmptyEditor() {
-        return mEmptyEditorViews.size() > 0;
+        return getEmptyEditors().size() > 0;
     }
 
     public void addItem() {
         ValuesDelta values = null;
-        // if this is a list, we can freely add. if not, only allow adding the first
+        // If this is a list, we can freely add. If not, only allow adding the first.
         if (!mKind.isList) {
             if (getEditorCount() == 1) {
                 return;
