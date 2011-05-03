@@ -136,7 +136,7 @@ public class BaseAccountType extends AccountType {
 
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(new EditField(StructuredName.DISPLAY_NAME,
-                R.string.full_name, FLAGS_PERSON_NAME).setShortForm(true));
+                R.string.full_name, FLAGS_PERSON_NAME).setShortForm(true).setIsFullName(true));
 
         boolean displayOrderPrimary =
                 context.getResources().getBoolean(R.bool.config_editor_field_order_primary);

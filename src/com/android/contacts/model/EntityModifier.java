@@ -16,12 +16,10 @@
 
 package com.android.contacts.model;
 
-import com.google.android.collect.Lists;
-
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.editor.EventFieldEditorView;
+import com.android.contacts.util.NameConverter;
 import com.android.contacts.editor.PhoneticNameEditorView;
-import com.android.contacts.editor.StructuredNameEditorView;
 import com.android.contacts.model.AccountType.EditField;
 import com.android.contacts.model.AccountType.EditType;
 import com.android.contacts.model.AccountType.EventEditType;
@@ -156,7 +154,7 @@ public class EntityModifier {
      */
     private static ArrayList<EditType> getValidTypes(EntityDelta state, DataKind kind,
             EditType forceInclude, boolean includeSecondary, SparseIntArray typeCount) {
-        final ArrayList<EditType> validTypes = Lists.newArrayList();
+        final ArrayList<EditType> validTypes = new ArrayList<EditType>();
 
         // Bail early if no types provided
         if (!hasEditTypes(kind)) return validTypes;
@@ -1038,8 +1036,7 @@ public class EntityModifier {
         if (!TextUtils.isEmpty(displayName)) {
             if (!supportDisplayName) {
                 // Old data has a display name, while the new account doesn't allow it.
-                StructuredNameEditorView.buildStructuredNameFromFullName(
-                        context, displayName, values);
+                NameConverter.displayNameToStructuredName(context, displayName, values);
 
                 // We don't want to migrate unseen data which may confuse users after the creation.
                 values.remove(StructuredName.DISPLAY_NAME);
@@ -1048,18 +1045,10 @@ public class EntityModifier {
             if (supportDisplayName) {
                 // Old data does not have display name, while the new account requires it.
                 values.put(StructuredName.DISPLAY_NAME,
-                        StructuredNameEditorView.buildFullNameFromStructuredName(context,
-                                values.getAsString(StructuredName.PREFIX),
-                                values.getAsString(StructuredName.GIVEN_NAME),
-                                values.getAsString(StructuredName.MIDDLE_NAME),
-                                values.getAsString(StructuredName.FAMILY_NAME),
-                                values.getAsString(StructuredName.SUFFIX)));
-
-                values.remove(StructuredName.PREFIX);
-                values.remove(StructuredName.GIVEN_NAME);
-                values.remove(StructuredName.MIDDLE_NAME);
-                values.remove(StructuredName.FAMILY_NAME);
-                values.remove(StructuredName.SUFFIX);
+                        NameConverter.structuredNameToDisplayName(context, values));
+                for (String field : NameConverter.STRUCTURED_NAME_FIELDS) {
+                    values.remove(field);
+                }
             }
         }
 

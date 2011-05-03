@@ -249,6 +249,7 @@ public abstract class AccountType {
         public boolean optional;
         public boolean shortForm;
         public boolean longForm;
+        public boolean isFullName;
 
         public EditField(String column, int titleRes) {
             this.column = column;
@@ -277,6 +278,11 @@ public abstract class AccountType {
 
         public EditField setMinLines(int minLines) {
             this.minLines = minLines;
+            return this;
+        }
+
+        public EditField setIsFullName(boolean isFullName) {
+            this.isFullName = isFullName;
             return this;
         }
     }

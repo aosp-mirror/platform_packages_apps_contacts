@@ -54,7 +54,6 @@
             android:gravity="bottom"
             android:textSize="@dimen/detail_header_name_text_size"
             android:textColor="@color/detail_header_view_text_color"
-            android:textStyle="bold"
          />
 
         <TextView android:id="@+id/phonetic_name"

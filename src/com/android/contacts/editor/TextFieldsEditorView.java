@@ -22,19 +22,22 @@ import com.android.contacts.model.AccountType.EditField;
 import com.android.contacts.model.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.util.NameConverter;
 
 import android.content.Context;
 import android.content.Entity;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.Spannable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -42,7 +45,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+
+import java.util.Map;
 
 /**
  * Simple editor that handles labels and any {@link EditField} defined for the
@@ -189,6 +193,9 @@ public class TextFieldsEditorView extends LabeledEditorView {
             }
             int inputType = field.inputType;
             fieldView.setInputType(inputType);
+            if (field.isFullName) {
+                fieldView.addTextChangedListener(new NameFormattingTextWatcher());
+            }
             if (inputType == InputType.TYPE_CLASS_PHONE) {
                 fieldView.addTextChangedListener(new PhoneNumberFormattingTextWatcher(
                         ContactsUtils.getCurrentCountryIso(mContext)));
@@ -350,5 +357,61 @@ public class TextFieldsEditorView extends LabeledEditorView {
                 return new SavedState[size];
             }
         };
+    }
+
+    private class NameFormattingTextWatcher implements TextWatcher {
+
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            String displayName = s.toString();
+            Map<String, String> structuredName = NameConverter.displayNameToStructuredName(
+                    getContext(), displayName);
+            String givenName = structuredName.get(StructuredName.GIVEN_NAME);
+            if (!TextUtils.isEmpty(givenName)) {
+                int spanStart = -1;
+                int spanEnd = -1;
+                if (displayName.startsWith(givenName + " ")) {
+                    spanStart = 0;
+                    spanEnd = givenName.length();
+                } else {
+                    spanStart = displayName.lastIndexOf(" " + givenName);
+                    if (spanStart > -1) {
+                        spanStart++;
+                        spanEnd = spanStart + givenName.length();
+                    }
+                }
+
+                // If the requested range is already bolded, don't make any changes.
+                if (spanStart > -1) {
+                    StyleSpan[] existingSpans = s.getSpans(0, s.length(), StyleSpan.class);
+                    for (StyleSpan span : existingSpans) {
+                        if (span.getStyle() == Typeface.BOLD
+                                && s.getSpanStart(span.getUnderlying()) == spanStart
+                                && s.getSpanEnd(span.getUnderlying()) == spanEnd) {
+                            // Nothing to do - the correct portion is already bolded.
+                            return;
+                        }
+                    }
+
+                    // Clear any existing bold style spans.
+                    for (StyleSpan span : existingSpans) {
+                        if (span.getStyle() == Typeface.BOLD) {
+                            s.removeSpan(span);
+                        }
+                    }
+
+                    // Set the new bold span.
+                    s.setSpan(new StyleSpan(Typeface.BOLD), spanStart, spanEnd,
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }
+            }
+        }
     }
 }

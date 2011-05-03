@@ -18,6 +18,7 @@ package com.android.contacts.list;
 
 import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.R;
+import com.android.contacts.format.FormatUtils;
 import com.android.contacts.widget.TextWithHighlighting;
 import com.android.contacts.widget.TextWithHighlightingFactory;
 
@@ -30,8 +31,11 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
+import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.text.style.ForegroundColorSpan;
@@ -44,6 +48,8 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
+
+import java.util.Arrays;
 
 /**
  * A custom view for an item in the contact list.
@@ -805,9 +811,21 @@ public class ContactListItemView extends ViewGroup
         return mActivatedStateSupported ? TruncateAt.START : TruncateAt.MARQUEE;
     }
 
-    public void showDisplayName(Cursor cursor, int nameColumnIndex, boolean highlightingEnabled,
-            int alternativeNameColumnIndex) {
+    public void showDisplayName(Cursor cursor, int nameColumnIndex, int alternativeNameColumnIndex,
+            boolean highlightingEnabled, int displayOrder) {
+
+        // Copy out the display name and alternate display name, and compute the point at which
+        // the two overlap (for bolding).
         cursor.copyStringToBuffer(nameColumnIndex, mNameBuffer);
+        cursor.copyStringToBuffer(alternativeNameColumnIndex, mHighlightedTextBuffer);
+        int overlapPoint = FormatUtils.overlapPoint(mNameBuffer, mHighlightedTextBuffer);
+        int boldStart = 0;
+        int boldEnd = overlapPoint;
+        if (displayOrder == ContactsContract.Preferences.DISPLAY_ORDER_ALTERNATIVE) {
+            boldStart = overlapPoint;
+            boldEnd = mNameBuffer.sizeCopied;
+        }
+
         TextView nameView = getNameTextView();
         int size = mNameBuffer.sizeCopied;
         if (size != 0) {
@@ -818,11 +836,24 @@ public class ContactListItemView extends ViewGroup
                     mTextWithHighlighting =
                             mTextWithHighlightingFactory.createTextWithHighlighting();
                 }
-                cursor.copyStringToBuffer(alternativeNameColumnIndex, mHighlightedTextBuffer);
                 mTextWithHighlighting.setText(mNameBuffer, mHighlightedTextBuffer);
-                nameView.setText(mTextWithHighlighting);
+                if (overlapPoint > 0) {
+                    // Bold the first name.
+                    nameView.setText(FormatUtils.applyStyleToSpan(Typeface.BOLD,
+                            mTextWithHighlighting, boldStart, boldEnd,
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE));
+                } else {
+                    nameView.setText(mTextWithHighlighting);
+                }
             } else {
-                nameView.setText(mNameBuffer.data, 0, size);
+                if (overlapPoint > 0) {
+                    // Bold the first name.
+                    nameView.setText(FormatUtils.applyStyleToSpan(Typeface.BOLD,
+                            new String(Arrays.copyOfRange(mNameBuffer.data, 0, size)),
+                            boldStart, boldEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE));
+                } else {
+                    nameView.setText(mNameBuffer.data, 0, size);
+                }
             }
         } else {
             nameView.setText(mUnknownNameText);
@@ -934,7 +965,9 @@ public class ContactListItemView extends ViewGroup
             }
 
             String string = new String(text.data, 0, text.sizeCopied);
-            SpannableString name = new SpannableString(string);
+            SpannableString name = new SpannableString(
+                    FormatUtils.applyStyleToSpan(Typeface.BOLD, string, 0, index,
+                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE));
             name.setSpan(mPrefixColorSpan, index, index + mHighlightedPrefix.length, 0 /* flags */);
             textView.setText(name);
         } else {

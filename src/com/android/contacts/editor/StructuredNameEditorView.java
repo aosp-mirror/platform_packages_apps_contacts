@@ -19,18 +19,19 @@ package com.android.contacts.editor;
 import com.android.contacts.model.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.util.NameConverter;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.net.Uri;
-import android.net.Uri.Builder;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A dedicated editor for structured name.  When the user collapses/expands
@@ -107,65 +108,25 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
         ValuesDelta values = getValues();
 
         if (!mChanged) {
-            values.put(StructuredName.PREFIX,
-                    mSnapshot.getAsString(StructuredName.PREFIX));
-            values.put(StructuredName.GIVEN_NAME,
-                    mSnapshot.getAsString(StructuredName.GIVEN_NAME));
-            values.put(StructuredName.MIDDLE_NAME,
-                    mSnapshot.getAsString(StructuredName.MIDDLE_NAME));
-            values.put(StructuredName.FAMILY_NAME,
-                    mSnapshot.getAsString(StructuredName.FAMILY_NAME));
-            values.put(StructuredName.SUFFIX,
-                    mSnapshot.getAsString(StructuredName.SUFFIX));
+            for (String field : NameConverter.STRUCTURED_NAME_FIELDS) {
+                values.put(field, mSnapshot.getAsString(field));
+            }
             return;
         }
 
         String displayName = values.getAsString(StructuredName.DISPLAY_NAME);
-        ContentValues tmpCVs = buildStructuredNameFromFullName(
-                getContext(), displayName, null);
-        if (tmpCVs.size() > 0) {
+        Map<String, String> structuredNameMap = NameConverter.displayNameToStructuredName(
+                getContext(), displayName);
+        if (!structuredNameMap.isEmpty()) {
             eraseFullName(values);
-            values.put(StructuredName.PREFIX, tmpCVs.getAsString(StructuredName.PREFIX));
-            values.put(StructuredName.GIVEN_NAME, tmpCVs.getAsString(StructuredName.GIVEN_NAME));
-            values.put(StructuredName.MIDDLE_NAME, tmpCVs.getAsString(StructuredName.MIDDLE_NAME));
-            values.put(StructuredName.FAMILY_NAME, tmpCVs.getAsString(StructuredName.FAMILY_NAME));
-            values.put(StructuredName.SUFFIX, tmpCVs.getAsString(StructuredName.SUFFIX));
+            for (String field : structuredNameMap.keySet()) {
+                values.put(field, structuredNameMap.get(field));
+            }
         }
 
         mSnapshot.clear();
         mSnapshot.putAll(values.getCompleteValues());
         mSnapshot.put(StructuredName.DISPLAY_NAME, displayName);
-    }
-
-    public static ContentValues buildStructuredNameFromFullName(
-            Context context, String displayName, ContentValues contentValues) {
-        if (contentValues == null) {
-            contentValues = new ContentValues();
-        }
-
-        Builder builder = ContactsContract.AUTHORITY_URI.buildUpon().appendPath("complete_name");
-        appendQueryParameter(builder, StructuredName.DISPLAY_NAME, displayName);
-        Cursor cursor = context.getContentResolver().query(builder.build(), new String[]{
-                StructuredName.PREFIX,
-                StructuredName.GIVEN_NAME,
-                StructuredName.MIDDLE_NAME,
-                StructuredName.FAMILY_NAME,
-                StructuredName.SUFFIX,
-        }, null, null, null);
-
-        try {
-            if (cursor.moveToFirst()) {
-                contentValues.put(StructuredName.PREFIX, cursor.getString(0));
-                contentValues.put(StructuredName.GIVEN_NAME, cursor.getString(1));
-                contentValues.put(StructuredName.MIDDLE_NAME, cursor.getString(2));
-                contentValues.put(StructuredName.FAMILY_NAME, cursor.getString(3));
-                contentValues.put(StructuredName.SUFFIX, cursor.getString(4));
-            }
-        } finally {
-            cursor.close();
-        }
-
-        return contentValues;
     }
 
     private void switchFromStructuredNameToFullName() {
@@ -177,14 +138,9 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
             return;
         }
 
-        String prefix = values.getAsString(StructuredName.PREFIX);
-        String givenName = values.getAsString(StructuredName.GIVEN_NAME);
-        String middleName = values.getAsString(StructuredName.MIDDLE_NAME);
-        String familyName = values.getAsString(StructuredName.FAMILY_NAME);
-        String suffix = values.getAsString(StructuredName.SUFFIX);
-
-        String displayName = buildFullNameFromStructuredName(getContext(),
-                prefix, givenName, middleName, familyName, suffix);
+        Map<String, String> structuredNameMap = valuesToStructuredNameMap(values);
+        String displayName = NameConverter.structuredNameToDisplayName(getContext(),
+                structuredNameMap);
         if (!TextUtils.isEmpty(displayName)) {
             eraseStructuredName(values);
             values.put(StructuredName.DISPLAY_NAME, displayName);
@@ -192,35 +148,17 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
 
         mSnapshot.clear();
         mSnapshot.put(StructuredName.DISPLAY_NAME, values.getAsString(StructuredName.DISPLAY_NAME));
-        mSnapshot.put(StructuredName.PREFIX, prefix);
-        mSnapshot.put(StructuredName.GIVEN_NAME, givenName);
-        mSnapshot.put(StructuredName.MIDDLE_NAME, middleName);
-        mSnapshot.put(StructuredName.FAMILY_NAME, familyName);
-        mSnapshot.put(StructuredName.SUFFIX, suffix);
+        for (String field : structuredNameMap.keySet()) {
+            mSnapshot.put(field, structuredNameMap.get(field));
+        }
     }
 
-    public static String buildFullNameFromStructuredName(Context context,
-            String prefix, String given, String middle, String family, String suffix) {
-        Uri.Builder builder = ContactsContract.AUTHORITY_URI.buildUpon()
-                .appendPath("complete_name");
-        appendQueryParameter(builder, StructuredName.PREFIX, prefix);
-        appendQueryParameter(builder, StructuredName.GIVEN_NAME, given);
-        appendQueryParameter(builder, StructuredName.MIDDLE_NAME, middle);
-        appendQueryParameter(builder, StructuredName.FAMILY_NAME, family);
-        appendQueryParameter(builder, StructuredName.SUFFIX, suffix);
-        Cursor cursor = context.getContentResolver().query(builder.build(), new String[]{
-                StructuredName.DISPLAY_NAME,
-        }, null, null, null);
-
-        try {
-            if (cursor.moveToFirst()) {
-                return cursor.getString(0);
-            }
-        } finally {
-            cursor.close();
+    private Map<String, String> valuesToStructuredNameMap(ValuesDelta values) {
+        Map<String, String> structuredNameMap = new HashMap<String, String>();
+        for (String key : NameConverter.STRUCTURED_NAME_FIELDS) {
+            structuredNameMap.put(key, values.getAsString(key));
         }
-
-        return null;
+        return structuredNameMap;
     }
 
     private void eraseFullName(ValuesDelta values) {
@@ -228,11 +166,9 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
     }
 
     private void eraseStructuredName(ValuesDelta values) {
-        values.putNull(StructuredName.PREFIX);
-        values.putNull(StructuredName.GIVEN_NAME);
-        values.putNull(StructuredName.MIDDLE_NAME);
-        values.putNull(StructuredName.FAMILY_NAME);
-        values.putNull(StructuredName.SUFFIX);
+        for (String field : NameConverter.STRUCTURED_NAME_FIELDS) {
+            values.putNull(field);
+        }
     }
 
     private static void appendQueryParameter(Uri.Builder builder, String field, String value) {

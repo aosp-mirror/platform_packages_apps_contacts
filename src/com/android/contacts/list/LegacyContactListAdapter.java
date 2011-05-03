@@ -85,7 +85,8 @@ public class LegacyContactListAdapter extends ContactEntryListAdapter {
     }
 
     protected void bindName(final ContactListItemView view, Cursor cursor) {
-        view.showDisplayName(cursor, PERSON_DISPLAY_NAME_COLUMN_INDEX, false, 0);
+        view.showDisplayName(cursor, PERSON_DISPLAY_NAME_COLUMN_INDEX, 0, false,
+                getContactNameDisplayOrder());
         view.showPhoneticName(cursor, PERSON_PHONETIC_NAME_COLUMN_INDEX);
     }
 
