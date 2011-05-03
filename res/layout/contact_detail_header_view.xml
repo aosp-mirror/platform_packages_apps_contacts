@@ -14,46 +14,54 @@
      limitations under the License.
 -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/banner"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:background="@drawable/title_bar_medium"
-    android:paddingRight="5dip">
+    android:layout_height="150dip">
 
     <ImageView android:id="@+id/photo"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="-1dip"
-        android:layout_marginTop="4dip"
-        android:layout_marginBottom="4dip"
-        android:layout_marginRight="8dip"
-        android:layout_width="64dip"
-        android:layout_height="64dip"
-    />
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        />
+
+    <!-- Transparent view to overlay on the contact's photo
+    (to allow white text to appear over a white photo). -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:background="#000000"
+        android:alpha=".25"
+        />
 
     <LinearLayout
-        android:layout_width="0dip"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:layout_gravity="center_vertical" >
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dip"
+        android:orientation="vertical" >
 
         <TextView android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="0dip"
+            android:layout_weight="1"
             android:singleLine="true"
             android:ellipsize="end"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:gravity="bottom"
+            android:textSize="30sp"
+            android:textColor="@color/detail_header_view_text_color"
             android:textStyle="bold"
-            android:shadowColor="#BB000000"
-            android:shadowRadius="2.75"
          />
 
         <TextView android:id="@+id/phonetic_name"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/detail_header_view_text_color"
             android:singleLine="true"
             android:ellipsize="end"
             android:layout_marginTop="-2dip"
@@ -61,9 +69,10 @@
         />
 
         <TextView android:id="@+id/organization"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/detail_header_view_text_color"
             android:singleLine="true"
             android:ellipsize="end"
             android:layout_marginTop="-2dip"
@@ -71,7 +80,7 @@
         />
 
         <TextView android:id="@+id/attribution"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="?android:attr/textColorSecondary"
@@ -82,9 +91,10 @@
         />
 
         <TextView android:id="@+id/status"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/detail_header_view_text_color"
             android:singleLine="true"
             android:ellipsize="end"
             android:layout_marginTop="-2dip"
@@ -92,9 +102,8 @@
         />
 
         <TextView android:id="@+id/status_date"
-            android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textSize="12sp"
             android:layout_marginTop="-2dip"
@@ -106,9 +115,13 @@
         android:id="@+id/star"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
         android:layout_gravity="center_vertical"
         android:contentDescription="@string/description_star"
         android:visibility="invisible"
         style="?android:attr/starStyle"
     />
-</LinearLayout>
+</RelativeLayout>

@@ -23,68 +23,41 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <!-- Seperator that shows the kind -->
-    <LinearLayout
+    <!-- Separating line (between kinds) -->
+    <include
         android:id="@+id/kind_divider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@drawable/list_item_divider_holo" />
-        <TextView
-            android:id="@+id/kind"
-            android:gravity="center_vertical"
-            android:layout_width="match_parent"
-            android:layout_height="31dip"
-            android:paddingLeft="16dip"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="?android:attr/textColorTertiary" />
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@drawable/list_item_divider_holo" />
-    </LinearLayout>
-
-    <!-- Shorter seperating line if there was no kind-seperator -->
-    <ImageView
-        android:id="@+id/in_kind_divider"
-        android:layout_marginLeft="31dip"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@drawable/list_item_divider_holo" />
+        layout="@layout/contact_detail_divider" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/detail_item_side_margin"
+        android:layout_marginBottom="7dip"
         android:minHeight="@dimen/detail_min_line_item_height"
         android:orientation="horizontal"
-        android:paddingLeft="31dip"
         android:gravity="center_vertical">
+
         <LinearLayout
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginLeft="5dip"
             android:orientation="vertical"
-            android:paddingTop="5dip"
-            android:paddingBottom="7dip"
             android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/kind"
+                style="@style/ContactDetailItemType" />
+
+            <TextView
+                android:id="@+id/type"
+                style="@style/ContactDetailItemType" />
 
             <TextView
                 android:id="@+id/data"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:id="@+id/type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/detail_item_type_color" />
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
                 android:id="@+id/footer"
@@ -104,31 +77,29 @@
             android:gravity="center"
             android:scaleType="centerInside" />
 
-        <ImageView
-            android:id="@+id/action_icon"
-            android:layout_width="32dip"
-            android:layout_height="32dip"
-            android:layout_marginLeft="16dip"
-            android:gravity="center"
-            android:scaleType="centerInside" />
-
         <View
             android:id="@+id/divider"
             android:layout_width="1px"
             android:layout_height="match_parent"
-            android:layout_marginTop="5dip"
-            android:layout_marginBottom="5dip"
-            android:layout_marginLeft="14dip"
-            android:layout_marginRight="14dip"
+            android:layout_marginTop="15dip"
+            android:layout_marginBottom="8dip"
             android:background="?android:attr/dividerVertical" />
 
         <ImageView
             android:id="@+id/secondary_action_button"
             android:layout_width="32dip"
             android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:scaleType="center"
+            android:layout_marginLeft="@dimen/detail_item_icon_margin"
+            android:layout_marginRight="@dimen/detail_item_icon_margin"
+            android:duplicateParentState="false"
+            android:layout_gravity="bottom"
             android:background="?android:attr/selectableItemBackground" />
     </LinearLayout>
+
+    <!-- Separating line (only for the last row) -->
+    <include
+        android:id="@+id/line_below_last"
+        android:layout_marginBottom="8dip"
+        layout="@layout/contact_detail_divider" />
+
 </LinearLayout>

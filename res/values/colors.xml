@@ -39,4 +39,7 @@
 
     <!-- Color of the text indicating the type of entry (e.g. Home, Work etc) -->
     <color name="detail_item_type_color">#B4B4B4</color>
+
+    <!-- Color of the text indicating the type of entry (e.g. Home, Work etc) -->
+    <color name="detail_header_view_text_color">#FFFFFF</color>
 </resources>

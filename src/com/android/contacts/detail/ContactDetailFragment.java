@@ -846,13 +846,11 @@ public class ContactDetailFragment extends Fragment implements
     /** Cache of the children views of a row */
     private static class ViewCache {
         public View kindDivider;
-        public View inKindDivider;
         public View lineBelowLast;
         public TextView kind;
         public TextView type;
         public TextView data;
         public TextView footer;
-        public ImageView actionIcon;
         public ImageView presenceIcon;
         public ImageView secondaryActionButton;
         public View secondaryActionDivider;
@@ -878,11 +876,9 @@ public class ContactDetailFragment extends Fragment implements
                 viewCache.kind = (TextView) v.findViewById(R.id.kind);
                 viewCache.kindDivider = v.findViewById(R.id.kind_divider);
                 viewCache.lineBelowLast = v.findViewById(R.id.line_below_last);
-                viewCache.inKindDivider = v.findViewById(R.id.in_kind_divider);
                 viewCache.type = (TextView) v.findViewById(R.id.type);
                 viewCache.data = (TextView) v.findViewById(R.id.data);
                 viewCache.footer = (TextView) v.findViewById(R.id.footer);
-                viewCache.actionIcon = (ImageView) v.findViewById(R.id.action_icon);
                 viewCache.presenceIcon = (ImageView) v.findViewById(R.id.presence_icon);
                 viewCache.secondaryActionButton = (ImageView) v.findViewById(
                         R.id.secondary_action_button);
@@ -894,28 +890,42 @@ public class ContactDetailFragment extends Fragment implements
             final ViewEntry previousEntry = position == 0 ? null : getEntry(position - 1);
             final boolean isFirstOfItsKind =
                     previousEntry == null ? true : !previousEntry.kind.equals(entry.kind);
-            final boolean isLast = position == getCount() - 1;
 
             // Bind the data to the view
-            bindView(v, entry, isFirstOfItsKind, isLast);
+            bindView(v, entry, position, isFirstOfItsKind);
             return v;
         }
 
-        protected void bindView(View view, ViewEntry entry, boolean isFirstOfItsKind,
-                boolean isLast) {
+        private void bindView(View view, ViewEntry entry, int position,
+                boolean isFirstOfItsKind) {
             final Resources resources = mContext.getResources();
             ViewCache views = (ViewCache) view.getTag();
 
-            views.kind.setText(isFirstOfItsKind ? entry.kind : "");
-            views.kindDivider.setVisibility(isFirstOfItsKind ? View.VISIBLE : View.GONE);
-            views.inKindDivider.setVisibility(isFirstOfItsKind ? View.GONE : View.VISIBLE);
-            if (views.lineBelowLast != null) {
-                views.lineBelowLast.setVisibility(isLast ? View.VISIBLE : View.GONE);
+            if (isFirstOfItsKind) {
+                views.kind.setText(entry.kind != null ? entry.kind.toUpperCase() : "");
+                views.kind.setVisibility(View.VISIBLE);
+            } else {
+                views.kind.setVisibility(View.GONE);
             }
 
-            views.type.setText(entry.typeString);
-            views.type.setVisibility(
-                    TextUtils.isEmpty(entry.typeString) ? View.GONE : View.VISIBLE);
+            views.kindDivider.setVisibility(isFirstOfItsKind && position != 0 ?
+                    View.VISIBLE : View.GONE);
+
+            if (position == getCount() - 1) {
+                views.lineBelowLast.setVisibility(View.VISIBLE);
+            } else {
+                views.lineBelowLast.setVisibility(View.GONE);
+            }
+
+            if (!TextUtils.isEmpty(entry.typeString)) {
+                views.type.setText(entry.typeString.toUpperCase());
+                views.type.setVisibility(View.VISIBLE);
+                if (isFirstOfItsKind) {
+                    views.kind.setVisibility(View.GONE);
+                }
+            } else {
+                views.type.setVisibility(View.GONE);
+            }
 
             views.data.setText(entry.data);
             setMaxLines(views.data, entry.maxLines);
@@ -926,24 +936,6 @@ public class ContactDetailFragment extends Fragment implements
                 views.footer.setVisibility(View.VISIBLE);
             } else {
                 views.footer.setVisibility(View.GONE);
-            }
-
-            // Set the action icon
-            final ImageView action = views.actionIcon;
-            if (entry.actionIcon != -1) {
-                Drawable actionIcon;
-                if (entry.resPackageName != null) {
-                    // Load external resources through PackageManager
-                    actionIcon = mContext.getPackageManager().getDrawable(entry.resPackageName,
-                            entry.actionIcon, null);
-                } else {
-                    actionIcon = resources.getDrawable(entry.actionIcon);
-                }
-                action.setImageDrawable(actionIcon);
-                action.setVisibility(View.VISIBLE);
-            } else {
-                // Things should still line up as if there was an icon, so make it invisible
-                action.setVisibility(View.INVISIBLE);
             }
 
             // Set the presence icon

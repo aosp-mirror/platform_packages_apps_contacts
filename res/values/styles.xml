@@ -189,4 +189,15 @@
         <item name="android:layout_height">2dip</item>
         <item name="android:layout_width">match_parent</item>
     </style>
+
+    <style name="ContactDetailItemType">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="android:textColor">@color/detail_item_type_color</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingTop">5dip</item>
+    </style>
 </resources>

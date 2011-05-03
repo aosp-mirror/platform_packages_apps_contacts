@@ -34,11 +34,11 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="28dip"
             ex:layout_wideParentWidth="800dip"
-            ex:layout_wideMarginLeft="80dip"
-            ex:layout_wideMarginRight="48dip"
+            ex:layout_wideMarginLeft="64dip"
+            ex:layout_widePaddingRight="48dip"
             ex:layout_narrowParentWidth="500dip"
-            ex:layout_narrowMarginLeft="15dip"
-            ex:layout_narrowMarginRight="16dip"
+            ex:layout_narrowMarginLeft="32dip"
+            ex:layout_narrowPaddingRight="16dip"
         />
     </com.android.contacts.widget.InterpolatingLayout>
 
@@ -78,7 +78,7 @@
             ex:layout_narrowMarginLeft="32dip"
             ex:layout_narrowPaddingRight="16dip"
             android:cacheColorHint="#00000000"
-            android:divider="@android:color/transparent"
+            android:divider="@null"
         />
     </com.android.contacts.widget.InterpolatingLayout>
 

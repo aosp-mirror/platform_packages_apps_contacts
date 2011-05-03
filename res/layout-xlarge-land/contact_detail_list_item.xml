@@ -23,20 +23,10 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <!-- Longer separating line (between kinds) -->
-    <View
+    <!-- Separating line (between kinds) -->
+    <include
         android:id="@+id/kind_divider"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@drawable/list_item_divider_holo" />
-
-    <!-- Shorter separating line if there was no kind-separator -->
-    <View
-        android:id="@+id/in_kind_divider"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_marginLeft="164dip"
-        android:background="@drawable/list_item_divider_holo" />
+        layout="@layout/contact_detail_divider" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,21 +34,27 @@
         android:gravity="center_vertical"
         android:orientation="vertical"
         android:minHeight="@dimen/detail_min_line_item_height">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center_vertical">
-            <TextView
-                android:id="@+id/kind"
-                android:layout_width="164dip"
+
+            <FrameLayout
+                android:layout_width="@dimen/detail_item_type_width"
                 android:layout_height="@dimen/detail_min_line_item_height"
-                android:paddingLeft="19dip"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="?android:attr/textColorTertiary"
-                android:singleLine="true"
-                android:ellipsize="marquee"
-                android:gravity="center_vertical" />
+                android:paddingLeft="@dimen/detail_item_side_margin">
+
+                <TextView
+                    android:id="@+id/kind"
+                    style="@style/ContactDetailItemType" />
+
+                <TextView
+                    android:id="@+id/type"
+                    style="@style/ContactDetailItemType" />
+
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -67,26 +63,21 @@
                 android:layout_weight="1"
                 android:paddingLeft="12dip"
                 android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/data"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
                 <TextView
                     android:id="@+id/footer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:visibility="gone" />
+
             </LinearLayout>
-            <TextView
-                android:id="@+id/type"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/detail_min_line_item_height"
-                android:maxWidth="150dip"
-                android:gravity="right|center_vertical"
-                android:textColor="@color/detail_item_type_color"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <ImageView
                 android:id="@+id/presence_icon"
@@ -94,14 +85,6 @@
                 android:layout_height="@dimen/detail_min_line_item_height"
                 android:layout_marginLeft="5dip"
                 android:gravity="center"
-                android:scaleType="centerInside" />
-
-            <ImageView
-                android:id="@+id/action_icon"
-                android:layout_width="32dip"
-                android:layout_height="@dimen/detail_min_line_item_height"
-                android:layout_marginLeft="16dip"
-                android:layout_gravity="center_vertical"
                 android:scaleType="centerInside" />
 
             <View
@@ -125,10 +108,10 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Longer separating line (only for the last row) -->
-    <View
+    <!-- Separating line (only for the last row) -->
+    <include
         android:id="@+id/line_below_last"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@drawable/list_item_divider_holo" />
+        android:layout_marginBottom="8dip"
+        layout="@layout/contact_detail_divider" />
+
 </LinearLayout>

@@ -58,8 +58,17 @@
     <!-- Font size for the entries in a spinner in the contact editor. -->
     <dimen name="editor_field_spinner_text_size">10sp</dimen>
 
+    <!-- Left and right padding for a contact detail item -->
+    <dimen name="detail_item_icon_margin">10dip</dimen>
+
+    <!-- Left and right padding for a contact detail item -->
+    <dimen name="detail_item_side_margin">10dip</dimen>
+
     <!-- Minimum height of a row in the contact detail -->
     <dimen name="detail_min_line_item_height">48dip</dimen>
+
+    <!-- Width of a contact detail item type (i.e. Nickname or Website). -->
+    <dimen name="detail_item_type_width">164dip</dimen>
 
     <!-- Padding to be used between a visible scrollbar and the contact list -->
     <dimen name="list_visible_scrollbar_padding">40dip</dimen>
