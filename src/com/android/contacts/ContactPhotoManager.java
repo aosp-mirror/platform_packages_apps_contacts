@@ -625,12 +625,13 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
             try {
                 Uri uri = Contacts.CONTENT_URI.buildUpon().appendQueryParameter(
                         ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT))
+                        .appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY,
+                                String.valueOf(MAX_PHOTOS_TO_PRELOAD))
                         .build();
                 cursor = mResolver.query(uri, new String[] { Contacts.PHOTO_ID },
                         Contacts.PHOTO_ID + " NOT NULL AND " + Contacts.PHOTO_ID + "!=0",
                         null,
-                        Contacts.STARRED + " DESC, " + Contacts.LAST_TIME_CONTACTED + " DESC"
-                                + " LIMIT " + MAX_PHOTOS_TO_PRELOAD);
+                        Contacts.STARRED + " DESC, " + Contacts.LAST_TIME_CONTACTED + " DESC");
 
                 if (cursor != null) {
                     while (cursor.moveToNext()) {
