@@ -20,13 +20,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.android.contacts.detail.ContactDetailHeaderView
-        android:id="@+id/contact_header_widget"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
     <ListView android:id="@android:id/list"
-        android:paddingTop="5dip"
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1"

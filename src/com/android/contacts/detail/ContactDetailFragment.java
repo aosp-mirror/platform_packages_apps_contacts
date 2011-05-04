@@ -164,34 +164,26 @@ public class ContactDetailFragment extends Fragment implements
      * A list of distinct contact IDs included in the current contact.
      */
     private ArrayList<Long> mRawContactIds = new ArrayList<Long>();
-    private ArrayList<ViewEntry> mPhoneEntries = new ArrayList<ViewEntry>();
-    private ArrayList<ViewEntry> mSmsEntries = new ArrayList<ViewEntry>();
-    private ArrayList<ViewEntry> mEmailEntries = new ArrayList<ViewEntry>();
-    private ArrayList<ViewEntry> mPostalEntries = new ArrayList<ViewEntry>();
-    private ArrayList<ViewEntry> mImEntries = new ArrayList<ViewEntry>();
-    private ArrayList<ViewEntry> mNicknameEntries = new ArrayList<ViewEntry>();
-    private ArrayList<ViewEntry> mGroupEntries = new ArrayList<ViewEntry>();
-    private ArrayList<ViewEntry> mRelationEntries = new ArrayList<ViewEntry>();
-    private ArrayList<ViewEntry> mOtherEntries = new ArrayList<ViewEntry>();
-    private ArrayList<ArrayList<ViewEntry>> mSections = new ArrayList<ArrayList<ViewEntry>>();
+    private ArrayList<DetailViewEntry> mPhoneEntries = new ArrayList<DetailViewEntry>();
+    private ArrayList<DetailViewEntry> mSmsEntries = new ArrayList<DetailViewEntry>();
+    private ArrayList<DetailViewEntry> mEmailEntries = new ArrayList<DetailViewEntry>();
+    private ArrayList<DetailViewEntry> mPostalEntries = new ArrayList<DetailViewEntry>();
+    private ArrayList<DetailViewEntry> mImEntries = new ArrayList<DetailViewEntry>();
+    private ArrayList<DetailViewEntry> mNicknameEntries = new ArrayList<DetailViewEntry>();
+    private ArrayList<DetailViewEntry> mGroupEntries = new ArrayList<DetailViewEntry>();
+    private ArrayList<DetailViewEntry> mRelationEntries = new ArrayList<DetailViewEntry>();
+    private ArrayList<DetailViewEntry> mNoteEntries = new ArrayList<DetailViewEntry>();
+    private ArrayList<DetailViewEntry> mWebsiteEntries = new ArrayList<DetailViewEntry>();
+    private ArrayList<DetailViewEntry> mSipEntries = new ArrayList<DetailViewEntry>();
+    private ArrayList<DetailViewEntry> mEventEntries = new ArrayList<DetailViewEntry>();
+    private ArrayList<DetailViewEntry> mOtherEntries = new ArrayList<DetailViewEntry>();
+    private ArrayList<ViewEntry> mAllEntries = new ArrayList<ViewEntry>();
     private LayoutInflater mInflater;
 
     private boolean mTransitionAnimationRequested;
 
     public ContactDetailFragment() {
         // Explicit constructor for inflation
-
-        // Build the list of sections. The order they're added to mSections dictates the
-        // order they are displayed in the list.
-        mSections.add(mPhoneEntries);
-        mSections.add(mSmsEntries);
-        mSections.add(mEmailEntries);
-        mSections.add(mImEntries);
-        mSections.add(mPostalEntries);
-        mSections.add(mNicknameEntries);
-        mSections.add(mOtherEntries);
-        mSections.add(mRelationEntries);
-        mSections.add(mGroupEntries);
     }
 
     @Override
@@ -222,9 +214,6 @@ public class ContactDetailFragment extends Fragment implements
         setHasOptionsMenu(true);
 
         mInflater = inflater;
-
-        mHeaderView = (ContactDetailHeaderView) mView.findViewById(R.id.contact_header_widget);
-        mHeaderView.setListener(mHeaderViewListener);
 
         mListView = (ListView) mView.findViewById(android.R.id.list);
         mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
@@ -304,18 +293,21 @@ public class ContactDetailFragment extends Fragment implements
             return;
         }
 
-        // Set the header
-        mHeaderView.loadData(mContactData);
+        // Clear old header
+        mHeaderView = null;
 
         // Build up the contact entries
         buildEntries();
 
-        // Collapse similar data items in select sections.
+        // Collapse similar data items for select {@link DataKind}s.
         Collapser.collapseList(mPhoneEntries);
         Collapser.collapseList(mSmsEntries);
         Collapser.collapseList(mEmailEntries);
         Collapser.collapseList(mPostalEntries);
         Collapser.collapseList(mImEntries);
+
+        // Make one aggregated list of all entries for display to the user.
+        flattenAllLists();
 
         if (mAdapter == null) {
             mAdapter = new ViewAdapter();
@@ -350,10 +342,7 @@ public class ContactDetailFragment extends Fragment implements
         mHasSip = PhoneCapabilityTester.isSipPhone(mContext);
 
         // Clear out the old entries
-        final int numSections = mSections.size();
-        for (int i = 0; i < numSections; i++) {
-            mSections.get(i).clear();
-        }
+        mAllEntries.clear();
 
         mRawContactIds.clear();
 
@@ -409,8 +398,8 @@ public class ContactDetailFragment extends Fragment implements
                         accountType, mimeType);
                 if (kind == null) continue;
 
-                final ViewEntry entry = ViewEntry.fromValues(mContext, mimeType, kind, dataId,
-                        entryValues, mContactData.isDirectoryEntry(),
+                final DetailViewEntry entry = DetailViewEntry.fromValues(mContext, mimeType, kind,
+                        dataId, entryValues, mContactData.isDirectoryEntry(),
                         mContactData.getDirectoryId());
 
                 final boolean hasData = !TextUtils.isEmpty(entry.data);
@@ -464,8 +453,8 @@ public class ContactDetailFragment extends Fragment implements
                         final String imMime = Im.CONTENT_ITEM_TYPE;
                         final DataKind imKind = accountTypes.getKindOrFallback(accountType,
                                 imMime);
-                        final ViewEntry imEntry = ViewEntry.fromValues(mContext, imMime, imKind,
-                                dataId, entryValues, mContactData.isDirectoryEntry(),
+                        final DetailViewEntry imEntry = DetailViewEntry.fromValues(mContext, imMime,
+                                imKind, dataId, entryValues, mContactData.isDirectoryEntry(),
                                 mContactData.getDirectoryId());
                         buildImActions(imEntry, entryValues);
                         imEntry.applyStatus(status, false);
@@ -507,7 +496,7 @@ public class ContactDetailFragment extends Fragment implements
                     // Build note entries
                     entry.uri = null;
                     entry.maxLines = 100;
-                    mOtherEntries.add(entry);
+                    mNoteEntries.add(entry);
                 } else if (Website.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     // Build Website entries
                     entry.uri = null;
@@ -519,7 +508,7 @@ public class ContactDetailFragment extends Fragment implements
                     } catch (ParseException e) {
                         Log.e(TAG, "Couldn't parse website: " + entry.data);
                     }
-                    mOtherEntries.add(entry);
+                    mWebsiteEntries.add(entry);
                 } else if (SipAddress.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     // Build SipAddress entries
                     entry.uri = null;
@@ -531,17 +520,17 @@ public class ContactDetailFragment extends Fragment implements
                         entry.intent = null;
                         entry.actionIcon = -1;
                     }
-                    mOtherEntries.add(entry);
-                    // TODO: Consider moving the SipAddress into its own
-                    // section (rather than lumping it in with mOtherEntries)
-                    // so that we can reposition it right under the phone number.
+                    mSipEntries.add(entry);
+                    // TODO: Now that SipAddress is in its own list of entries
+                    // (instead of grouped in mOtherEntries), consider
+                    // repositioning it right under the phone number.
                     // (Then, we'd also update FallbackAccountType.java to set
                     // secondary=false for this field, and tweak the weight
                     // of its DataKind.)
                 } else if (Event.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     entry.data = DateUtils.formatDate(mContext, entry.data);
                     entry.uri = null;
-                    mOtherEntries.add(entry);
+                    mEventEntries.add(entry);
                 } else if (Relation.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     entry.intent = new Intent(Intent.ACTION_SEARCH);
                     entry.intent.putExtra(SearchManager.QUERY, entry.data);
@@ -567,7 +556,7 @@ public class ContactDetailFragment extends Fragment implements
         }
 
         if (!groups.isEmpty()) {
-            ViewEntry entry = new ViewEntry();
+            DetailViewEntry entry = new DetailViewEntry();
             Collections.sort(groups);
             StringBuilder sb = new StringBuilder();
             int size = groups.size();
@@ -582,6 +571,49 @@ public class ContactDetailFragment extends Fragment implements
             entry.data = sb.toString();
             mGroupEntries.add(entry);
         }
+    }
+
+    /**
+     * Collapse all contact detail entries into one aggregated list with a {@link HeaderViewEntry}
+     * at the top.
+     */
+    private void flattenAllLists() {
+        // All contacts should have a header view (even if there is no data for the contact).
+        mAllEntries.add(new HeaderViewEntry());
+
+        flattenList(mPhoneEntries);
+        flattenList(mSmsEntries);
+        flattenList(mEmailEntries);
+        flattenList(mImEntries);
+        flattenList(mPostalEntries);
+        flattenList(mNicknameEntries);
+        flattenList(mNoteEntries);
+        flattenList(mWebsiteEntries);
+        flattenList(mSipEntries);
+        flattenList(mEventEntries);
+        flattenList(mOtherEntries);
+        flattenList(mRelationEntries);
+        flattenList(mGroupEntries);
+    }
+
+    /**
+     * Iterate through {@link DetailViewEntry} in the given list and add it to a list of all
+     * entries. Add a {@link SeparatorViewEntry} at the end if the length of the list was not 0.
+     * Clear the original list.
+     */
+    private void flattenList(ArrayList<DetailViewEntry> entries) {
+        int count = entries.size();
+
+        for (int i = 0; i < count; i++) {
+            mAllEntries.add(entries.get(i));
+        }
+
+        if (count > 0) {
+            mAllEntries.add(new SeparatorViewEntry());
+        }
+
+        // Clear old list because it's not needed anymore.
+        entries.clear();
     }
 
     /**
@@ -621,7 +653,7 @@ public class ContactDetailFragment extends Fragment implements
      * {@link Email} row. If the result is non-null, it either contains one or two Intents
      * (e.g. [Text, Videochat] or just [Text])
      */
-    public static void buildImActions(ViewEntry entry, ContentValues values) {
+    public static void buildImActions(DetailViewEntry entry, ContentValues values) {
         final boolean isEmail = Email.CONTENT_ITEM_TYPE.equals(values.getAsString(Data.MIMETYPE));
 
         if (!isEmail && !isProtocolValid(values)) {
@@ -690,15 +722,65 @@ public class ContactDetailFragment extends Fragment implements
     }
 
     /**
-     * A basic structure with the data for a contact entry in the list.
+     * Base class for an item in the {@link ViewAdapter} list of data, which is
+     * supplied to the {@link ListView}.
      */
-    static class ViewEntry implements Collapsible<ViewEntry> {
+    static class ViewEntry {
+        private final int viewTypeForAdapter;
+        protected long id = -1;
+        /** Whether or not the entry can be focused on or not. */
+        protected boolean isEnabled = false;
+
+        ViewEntry(int viewType) {
+            viewTypeForAdapter = viewType;
+        }
+
+        int getViewType() {
+            return viewTypeForAdapter;
+        }
+
+        long getId() {
+            return id;
+        }
+
+        boolean isEnabled(){
+            return isEnabled;
+        }
+    }
+
+    /**
+     * Header item in the {@link ViewAdapter} list of data.
+     */
+    static class HeaderViewEntry extends ViewEntry {
+
+        HeaderViewEntry() {
+            super(ViewAdapter.VIEW_TYPE_HEADER_ENTRY);
+        }
+
+    }
+
+    /**
+     * Separator between items of the same {@link DataKind} in the
+     * {@link ViewAdapter} list of data.
+     */
+    static class SeparatorViewEntry extends ViewEntry {
+
+        SeparatorViewEntry() {
+            super(ViewAdapter.VIEW_TYPE_SEPARATOR_ENTRY);
+        }
+
+    }
+
+    /**
+     * An item with a single detail for a contact in the {@link ViewAdapter}
+     * list of data.
+     */
+    static class DetailViewEntry extends ViewEntry implements Collapsible<DetailViewEntry> {
         public int type = -1;
         public String kind;
         public String typeString;
         public String data;
         public Uri uri;
-        public long id = 0;
         public int maxLines = 1;
         public String mimetype;
 
@@ -717,17 +799,19 @@ public class ContactDetailFragment extends Fragment implements
 
         public CharSequence footerLine = null;
 
-        ViewEntry() {
+        DetailViewEntry() {
+            super(ViewAdapter.VIEW_TYPE_DETAIL_ENTRY);
+            isEnabled = true;
         }
 
         /**
-         * Build new {@link ViewEntry} and populate from the given values.
+         * Build new {@link DetailViewEntry} and populate from the given values.
          */
-        public static ViewEntry fromValues(Context context, String mimeType, DataKind kind,
+        public static DetailViewEntry fromValues(Context context, String mimeType, DataKind kind,
                 long dataId, ContentValues values, boolean isDirectoryEntry, long directoryId) {
-            final ViewEntry entry = new ViewEntry();
-            entry.context = context;
+            final DetailViewEntry entry = new DetailViewEntry();
             entry.id = dataId;
+            entry.context = context;
             entry.uri = ContentUris.withAppendedId(Data.CONTENT_URI, entry.id);
             if (isDirectoryEntry) {
                 entry.uri = entry.uri.buildUpon().appendQueryParameter(
@@ -770,13 +854,13 @@ public class ContactDetailFragment extends Fragment implements
         }
 
         /**
-         * Apply given {@link DataStatus} values over this {@link ViewEntry}
+         * Apply given {@link DataStatus} values over this {@link DetailViewEntry}
          *
          * @param fillData When true, the given status replaces {@link #data}
          *            and {@link #footerLine}. Otherwise only {@link #presence}
          *            is updated.
          */
-        public ViewEntry applyStatus(DataStatus status, boolean fillData) {
+        public DetailViewEntry applyStatus(DataStatus status, boolean fillData) {
             presence = status.getPresence();
             if (fillData && status.isValid()) {
                 this.data = status.getStatus().toString();
@@ -787,7 +871,7 @@ public class ContactDetailFragment extends Fragment implements
         }
 
         @Override
-        public boolean collapseWith(ViewEntry entry) {
+        public boolean collapseWith(DetailViewEntry entry) {
             // assert equal collapse keys
             if (!shouldCollapseWith(entry)) {
                 return false;
@@ -816,13 +900,13 @@ public class ContactDetailFragment extends Fragment implements
             // uri, and contactdId, shouldn't make a difference. Just keep the original.
 
             // Keep track of all the ids that have been collapsed with this one.
-            ids.add(entry.id);
+            ids.add(entry.getId());
             collapseCount++;
             return true;
         }
 
         @Override
-        public boolean shouldCollapseWith(ViewEntry entry) {
+        public boolean shouldCollapseWith(DetailViewEntry entry) {
             if (entry == null) {
                 return false;
             }
@@ -845,8 +929,6 @@ public class ContactDetailFragment extends Fragment implements
 
     /** Cache of the children views of a row */
     private static class ViewCache {
-        public View kindDivider;
-        public View lineBelowLast;
         public TextView kind;
         public TextView type;
         public TextView data;
@@ -858,9 +940,53 @@ public class ContactDetailFragment extends Fragment implements
     }
 
     private final class ViewAdapter extends BaseAdapter {
+
+        public static final int VIEW_TYPE_DETAIL_ENTRY = 0;
+        public static final int VIEW_TYPE_HEADER_ENTRY = 1;
+        public static final int VIEW_TYPE_SEPARATOR_ENTRY = 2;
+        private static final int VIEW_TYPE_COUNT = 3;
+
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            final ViewEntry entry = getEntry(position);
+            switch (getItemViewType(position)) {
+                case VIEW_TYPE_HEADER_ENTRY:
+                    return getHeaderEntryView(convertView, parent);
+                case VIEW_TYPE_SEPARATOR_ENTRY:
+                    return getSeparatorEntryView(convertView, parent);
+                case VIEW_TYPE_DETAIL_ENTRY:
+                    return getDetailEntryView(position, convertView, parent);
+                default:
+                    throw new IllegalStateException("Invalid view type ID " +
+                            getItemViewType(position));
+            }
+        }
+
+        private View getHeaderEntryView(View convertView, ViewGroup parent) {
+            // We don't want to rely on the recycled header view because it may
+            // have been left over from a previously viewed contact (since we
+            // reuse the adapter), so we would have to bind the data to the
+            // header each time. However, since there is only 1 header per list,
+            // just hold onto the original header view for this contact and
+            // return that each time.
+            if (mHeaderView != null) {
+                return mHeaderView;
+            }
+            mHeaderView = (ContactDetailHeaderView) mInflater.inflate(
+                    R.layout.contact_detail_header_view_list_item, parent, false);
+            mHeaderView.setListener(mHeaderViewListener);
+            mHeaderView.loadData(mContactData);
+            return mHeaderView;
+        }
+
+        private View getSeparatorEntryView(View convertView, ViewGroup parent) {
+            if (convertView != null) {
+                return convertView;
+            }
+            return mInflater.inflate(R.layout.contact_detail_separator_list_item, parent, false);
+        }
+
+        private View getDetailEntryView(int position, View convertView, ViewGroup parent) {
+            final DetailViewEntry entry = (DetailViewEntry) getItem(position);
             final View v;
             final ViewCache viewCache;
 
@@ -875,8 +1001,6 @@ public class ContactDetailFragment extends Fragment implements
                 // Cache the children
                 viewCache = new ViewCache();
                 viewCache.kind = (TextView) v.findViewById(R.id.kind);
-                viewCache.kindDivider = v.findViewById(R.id.kind_divider);
-                viewCache.lineBelowLast = v.findViewById(R.id.line_below_last);
                 viewCache.type = (TextView) v.findViewById(R.id.type);
                 viewCache.data = (TextView) v.findViewById(R.id.data);
                 viewCache.footer = (TextView) v.findViewById(R.id.footer);
@@ -891,17 +1015,16 @@ public class ContactDetailFragment extends Fragment implements
                 v.setTag(viewCache);
             }
 
-            final ViewEntry previousEntry = position == 0 ? null : getEntry(position - 1);
-            final boolean isFirstOfItsKind =
-                    previousEntry == null ? true : !previousEntry.kind.equals(entry.kind);
+            final ViewEntry previousEntry = position == 0 ? null : getItem(position - 1);
+            final boolean isFirstOfItsKind = (previousEntry == null) ? true :
+                    (previousEntry.getViewType() != VIEW_TYPE_DETAIL_ENTRY);
 
             // Bind the data to the view
-            bindView(v, entry, position, isFirstOfItsKind);
+            bindView(v, entry, isFirstOfItsKind);
             return v;
         }
 
-        private void bindView(View view, ViewEntry entry, int position,
-                boolean isFirstOfItsKind) {
+        private void bindView(View view, DetailViewEntry entry, boolean isFirstOfItsKind) {
             final Resources resources = mContext.getResources();
             ViewCache views = (ViewCache) view.getTag();
 
@@ -910,15 +1033,6 @@ public class ContactDetailFragment extends Fragment implements
                 views.kind.setVisibility(View.VISIBLE);
             } else {
                 views.kind.setVisibility(View.GONE);
-            }
-
-            views.kindDivider.setVisibility(isFirstOfItsKind && position != 0 ?
-                    View.VISIBLE : View.GONE);
-
-            if (position == getCount() - 1) {
-                views.lineBelowLast.setVisibility(View.VISIBLE);
-            } else {
-                views.lineBelowLast.setVisibility(View.GONE);
             }
 
             if (!TextUtils.isEmpty(entry.typeString)) {
@@ -994,8 +1108,9 @@ public class ContactDetailFragment extends Fragment implements
                 if (mListener == null) return;
                 if (v == null) return;
                 final ViewEntry entry = (ViewEntry) v.getTag();
-                if (entry == null) return;
-                final Intent intent = entry.secondaryIntent;
+                if (entry == null || !(entry instanceof DetailViewEntry)) return;
+                final DetailViewEntry detailViewEntry = (DetailViewEntry) entry;
+                final Intent intent = detailViewEntry.secondaryIntent;
                 if (intent == null) return;
                 mListener.onItemClicked(intent);
             }
@@ -1003,40 +1118,42 @@ public class ContactDetailFragment extends Fragment implements
 
         @Override
         public int getCount() {
-            int count = 0;
-            final int numSections = mSections.size();
-            for (int i = 0; i < numSections; i++) {
-                final ArrayList<ViewEntry> section = mSections.get(i);
-                count += section.size();
-            }
-            return count;
+            return mAllEntries.size();
         }
 
         @Override
-        public Object getItem(int position) {
-            return getEntry(position);
+        public ViewEntry getItem(int position) {
+            return mAllEntries.get(position);
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            return mAllEntries.get(position).getViewType();
+        }
+
+        @Override
+        public int getViewTypeCount() {
+            return VIEW_TYPE_COUNT;
         }
 
         @Override
         public long getItemId(int position) {
-            final ViewEntry entry = getEntry(position);
+            final ViewEntry entry = mAllEntries.get(position);
             if (entry != null) {
-                return entry.id;
+                return entry.getId();
             }
             return -1;
         }
 
-        private ViewEntry getEntry(int position) {
-            final int numSections = mSections.size();
-            for (int i = 0; i < numSections; i++) {
-                final ArrayList<ViewEntry> section = mSections.get(i);
-                final int sectionSize = section.size();
-                if (position < sectionSize) {
-                    return section.get(position);
-                }
-                position -= sectionSize;
-            }
-            return null;
+        @Override
+        public boolean areAllItemsEnabled() {
+            // Header will always be an item that is not enabled.
+            return false;
+        }
+
+        @Override
+        public boolean isEnabled(int position) {
+            return getItem(position).isEnabled();
         }
     }
 
@@ -1182,9 +1299,9 @@ public class ContactDetailFragment extends Fragment implements
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (mListener == null) return;
-        final ViewEntry entry = mAdapter.getEntry(position);
-        if (entry == null) return;
-        final Intent intent = entry.intent;
+        final ViewEntry entry = mAdapter.getItem(position);
+        if (entry == null || !(entry instanceof DetailViewEntry)) return;
+        final Intent intent = ((DetailViewEntry) entry).intent;
         if (intent == null) return;
         mListener.onItemClicked(intent);
     }
@@ -1220,7 +1337,7 @@ public class ContactDetailFragment extends Fragment implements
 
                 int index = mListView.getSelectedItemPosition();
                 if (index != -1) {
-                    final ViewEntry entry = mAdapter.getEntry(index);
+                    final DetailViewEntry entry = (DetailViewEntry) mAdapter.getItem(index);
                     if (entry != null && entry.intent != null &&
                             entry.intent.getAction() == Intent.ACTION_CALL_PRIVILEGED) {
                         mContext.startActivity(entry.intent);

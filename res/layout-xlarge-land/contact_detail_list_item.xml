@@ -23,11 +23,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <!-- Separating line (between kinds) -->
-    <include
-        android:id="@+id/kind_divider"
-        layout="@layout/contact_detail_divider" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -118,12 +113,7 @@
 
              </FrameLayout>
         </LinearLayout>
-    </LinearLayout>
 
-    <!-- Separating line (only for the last row) -->
-    <include
-        android:id="@+id/line_below_last"
-        android:layout_marginBottom="8dip"
-        layout="@layout/contact_detail_divider" />
+    </LinearLayout>
 
 </LinearLayout>
