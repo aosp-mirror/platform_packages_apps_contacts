@@ -31,6 +31,7 @@ import com.android.contacts.tests.mocks.MockContactPhotoManager;
 import com.android.contacts.tests.mocks.MockContentProvider;
 import com.android.contacts.tests.mocks.MockContentProvider.Query;
 import com.android.contacts.tests.mocks.MockSharedPreferences;
+import com.android.contacts.util.PhoneCapabilityTester;
 
 import android.accounts.Account;
 import android.content.ContentValues;
@@ -101,6 +102,10 @@ public class ContactBrowserActivityTest
     }
 
     public void testSingleAccountNoGroups() {
+        // This two-pane UI test only makes sense if we run with two panes.
+        // Let's ignore this in the single pane case
+        if (!PhoneCapabilityTester.isUsingTwoPanes(mContext)) return;
+
         expectSettingsQueriesAndReturnDefault();
         expectProviderStatusQueryAndReturnNormal();
         expectGroupsQueryAndReturnEmpty();
