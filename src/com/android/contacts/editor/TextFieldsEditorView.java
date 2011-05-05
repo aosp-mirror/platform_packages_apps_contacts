@@ -38,7 +38,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 /**
@@ -49,8 +49,8 @@ import android.widget.LinearLayout;
 public class TextFieldsEditorView extends LabeledEditorView {
     private EditText[] mFieldEditTexts = null;
     private ViewGroup mFields = null;
-    private View mExpansionButtonContainer;
-    private ImageButton mExpansionButton;
+    private View mExpansionViewContainer;
+    private ImageView mExpansionView;
     private boolean mHideOptional = true;
     private boolean mHasShortAndLongForms;
     private int mEditorTextSize;
@@ -77,9 +77,9 @@ public class TextFieldsEditorView extends LabeledEditorView {
 
         mEditorTextSize = getResources().getDimensionPixelSize(R.dimen.editor_field_text_size);
         mFields = (ViewGroup) findViewById(R.id.editors);
-        mExpansionButtonContainer = findViewById(R.id.expansion_button_container);
-        mExpansionButton = (ImageButton) findViewById(R.id.expansion_button);
-        mExpansionButton.setOnClickListener(new OnClickListener() {
+        mExpansionView = (ImageView) findViewById(R.id.expansion_view);
+        mExpansionViewContainer = findViewById(R.id.expansion_view_container);
+        mExpansionViewContainer.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Save focus
@@ -115,20 +115,20 @@ public class TextFieldsEditorView extends LabeledEditorView {
                 mFieldEditTexts[index].setEnabled(!isReadOnly() && enabled);
             }
         }
-        mExpansionButton.setEnabled(!isReadOnly() && enabled);
+        mExpansionView.setEnabled(!isReadOnly() && enabled);
     }
 
     /**
      * Creates or removes the type/label button. Doesn't do anything if already correctly configured
      */
-    private void setupMoreOrLessButton(boolean shouldExist, boolean collapsed) {
+    private void setupExpansionView(boolean shouldExist, boolean collapsed) {
         if (shouldExist) {
-            mExpansionButtonContainer.setVisibility(View.VISIBLE);
-            mExpansionButton.setImageResource(collapsed
+            mExpansionViewContainer.setVisibility(View.VISIBLE);
+            mExpansionView.setImageResource(collapsed
                     ? R.drawable.ic_menu_expander_minimized_holo_light
                     : R.drawable.ic_menu_expander_maximized_holo_light);
         } else {
-            mExpansionButtonContainer.setVisibility(View.GONE);
+            mExpansionViewContainer.setVisibility(View.GONE);
         }
     }
 
@@ -230,8 +230,8 @@ public class TextFieldsEditorView extends LabeledEditorView {
         }
 
         // When hiding fields, place expandable
-        setupMoreOrLessButton(hidePossible, mHideOptional);
-        mExpansionButton.setEnabled(!readOnly && isEnabled());
+        setupExpansionView(hidePossible, mHideOptional);
+        mExpansionView.setEnabled(!readOnly && isEnabled());
     }
 
     @Override

@@ -49,8 +49,8 @@
             layout="@layout/edit_field_list" />
 
         <include
-            android:id="@+id/expansion_button_container"
-            layout="@layout/edit_expansion_button"
+            android:id="@+id/expansion_view_container"
+            layout="@layout/edit_expansion_view"
             android:visibility="gone" />
 
         <include

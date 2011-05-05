@@ -853,6 +853,7 @@ public class ContactDetailFragment extends Fragment implements
         public TextView footer;
         public ImageView presenceIcon;
         public ImageView secondaryActionButton;
+        public View secondaryActionButtonContainer;
         public View secondaryActionDivider;
     }
 
@@ -882,7 +883,10 @@ public class ContactDetailFragment extends Fragment implements
                 viewCache.presenceIcon = (ImageView) v.findViewById(R.id.presence_icon);
                 viewCache.secondaryActionButton = (ImageView) v.findViewById(
                         R.id.secondary_action_button);
-                viewCache.secondaryActionButton.setOnClickListener(mSecondaryActionClickListener);
+                viewCache.secondaryActionButtonContainer = v.findViewById(
+                        R.id.secondary_action_button_container);
+                viewCache.secondaryActionButtonContainer.setOnClickListener(
+                        mSecondaryActionClickListener);
                 viewCache.secondaryActionDivider = v.findViewById(R.id.divider);
                 v.setTag(viewCache);
             }
@@ -964,11 +968,11 @@ public class ContactDetailFragment extends Fragment implements
 
             if (entry.secondaryIntent != null && secondaryActionIcon != null) {
                 secondaryActionView.setImageDrawable(secondaryActionIcon);
-                secondaryActionView.setTag(entry);
-                secondaryActionView.setVisibility(View.VISIBLE);
+                views.secondaryActionButtonContainer.setTag(entry);
+                views.secondaryActionButtonContainer.setVisibility(View.VISIBLE);
                 views.secondaryActionDivider.setVisibility(View.VISIBLE);
             } else {
-                secondaryActionView.setVisibility(View.GONE);
+                views.secondaryActionButtonContainer.setVisibility(View.GONE);
                 views.secondaryActionDivider.setVisibility(View.GONE);
             }
         }

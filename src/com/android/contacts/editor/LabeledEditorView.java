@@ -43,7 +43,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -66,7 +66,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
     private Spinner mLabel;
     private EditTypeAdapter mEditTypeAdapter;
     private View mDeleteContainer;
-    private ImageButton mDelete;
+    private ImageView mDelete;
 
     private DataKind mKind;
     private ValuesDelta mEntry;
@@ -128,9 +128,9 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
         mLabel = (Spinner) findViewById(R.id.spinner);
         mLabel.setOnItemSelectedListener(mSpinnerListener);
 
+        mDelete = (ImageView) findViewById(R.id.delete_button);
         mDeleteContainer = findViewById(R.id.delete_button_container);
-        mDelete = (ImageButton) findViewById(R.id.delete_button);
-        mDelete.setOnClickListener(new OnClickListener() {
+        mDeleteContainer.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 // defer removal of this button so that the pressed state is visible shortly
@@ -218,7 +218,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
         return mLabel;
     }
 
-    public ImageButton getDelete() {
+    public ImageView getDelete() {
         return mDelete;
     }
 
