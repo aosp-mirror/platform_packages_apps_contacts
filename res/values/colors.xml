@@ -21,6 +21,10 @@
     <color name="quickcontact_disambig_divider">#afafaf</color>
 
     <color name="edit_divider">#ff666666</color>
+
+    <!-- Color of the background of the contact detail and editor pages -->
+    <color name="background_primary">#FFFFFF</color>
+
     <color name="background_secondary">#ff202020</color>
 
     <color name="translucent_search_background">#cc000000</color>
