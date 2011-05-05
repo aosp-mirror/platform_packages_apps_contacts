@@ -16,7 +16,7 @@
 
 <View xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="10dip"
+    android:layout_height="wrap_content"
     android:layout_marginTop="8dip"
-    android:background="?android:attr/listDivider"
+    android:background="@drawable/divider_horizontal_light"
     />
