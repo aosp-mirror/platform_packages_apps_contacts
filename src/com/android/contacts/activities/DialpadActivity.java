@@ -14,8 +14,12 @@
  * limitations under the License.
  */
 
-package com.android.contacts;
+package com.android.contacts.activities;
 
+import com.android.contacts.ContactsSearchManager;
+import com.android.contacts.ContactsUtils;
+import com.android.contacts.R;
+import com.android.contacts.SpecialCharSequenceMgr;
 import com.android.internal.telephony.ITelephony;
 import com.android.phone.CallLogAsync;
 import com.android.phone.HapticFeedback;
@@ -71,11 +75,11 @@ import android.widget.TextView;
  * Dialer activity that displays the typical twelve key interface.
  */
 @SuppressWarnings("deprecation")
-public class TwelveKeyDialer extends Activity implements View.OnClickListener,
+public class DialpadActivity extends Activity implements View.OnClickListener,
         View.OnLongClickListener, View.OnKeyListener,
         AdapterView.OnItemClickListener, TextWatcher {
     private static final String EMPTY_NUMBER = "";
-    private static final String TAG = "TwelveKeyDialer";
+    private static final String TAG = "DialpadActivity";
 
     /** The length of DTMF tones in milliseconds */
     private static final int TONE_LENGTH_MS = 150;
@@ -278,7 +282,7 @@ public class TwelveKeyDialer extends Activity implements View.OnClickListener,
      * Overridden by subclasses to control the resource used by the content view.
      */
     protected int getContentViewResource() {
-        return R.layout.twelve_key_dialer;
+        return R.layout.dialpad_activity;
     }
 
     private boolean resolveIntent() {

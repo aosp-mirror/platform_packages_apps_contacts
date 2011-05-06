@@ -14,10 +14,12 @@
  * limitations under the License.
  */
 
-package com.android.contacts;
+package com.android.contacts.activities;
 
+import com.android.contacts.R;
 import com.android.contacts.activities.ContactsFrontDoor;
 import com.android.contacts.activities.ContactBrowserActivity;
+import com.android.contacts.activities.DialpadActivity;
 import com.android.internal.telephony.ITelephony;
 
 import android.app.Activity;
@@ -42,7 +44,7 @@ import android.widget.TabHost;
  * The dialer tab's title is 'phone', a more common name (see strings.xml).
  */
 public class DialtactsActivity extends TabActivity implements TabHost.OnTabChangeListener {
-    private static final String TAG = "Dailtacts";
+    private static final String TAG = "DialtactsActivity";
 
     private static final int TAB_INDEX_DIALER = 0;
     private static final int TAB_INDEX_CALL_LOG = 1;
@@ -79,7 +81,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
         fixIntent(intent);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.dialer_activity);
+        setContentView(R.layout.dialtacts_activity);
 
         mTabHost = getTabHost();
         mTabHost.setOnTabChangedListener(this);
@@ -132,7 +134,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     private void setupCallLogTab() {
         // Force the class since overriding tab entries doesn't work
         Intent intent = new Intent("com.android.phone.action.RECENT_CALLS");
-        intent.setClass(this, RecentCallsListActivity.class);
+        intent.setClass(this, CallLogActivity.class);
 
         mTabHost.addTab(mTabHost.newTabSpec("call_log")
                 .setIndicator(getString(R.string.recentCallsIconLabel),
@@ -142,7 +144,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
 
     private void setupDialerTab() {
         Intent intent = new Intent("com.android.phone.action.TOUCH_DIALER");
-        intent.setClass(this, TwelveKeyDialer.class);
+        intent.setClass(this, DialpadActivity.class);
 
         mTabHost.addTab(mTabHost.newTabSpec("dialer")
                 .setIndicator(getString(R.string.dialerIconLabel),

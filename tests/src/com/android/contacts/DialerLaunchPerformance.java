@@ -32,7 +32,7 @@ public class DialerLaunchPerformance extends LaunchPerformanceBase {
         mIntent.setAction(Intent.ACTION_MAIN);
         mIntent.addCategory(Intent.CATEGORY_LAUNCHER);
         mIntent.setComponent(new ComponentName("com.android.contacts",
-                "com.android.contacts.DialtactsActivity"));
+                "com.android.contacts.activities.DialtactsActivity"));
 
         start();
     }

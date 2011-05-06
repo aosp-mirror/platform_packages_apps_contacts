@@ -54,7 +54,7 @@ public class SpecialCharSequenceMgr {
     private SpecialCharSequenceMgr() {
     }
 
-    static boolean handleChars(Context context, String input, EditText textField) {
+    public static boolean handleChars(Context context, String input, EditText textField) {
         return handleChars(context, input, false, textField);
     }
 
