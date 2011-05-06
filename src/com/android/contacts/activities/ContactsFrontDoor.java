@@ -17,7 +17,6 @@
 package com.android.contacts.activities;
 
 import com.android.contacts.ContactsActivity;
-import com.android.contacts.DialtactsActivity;
 import com.android.contacts.util.PhoneCapabilityTester;
 
 import android.content.Intent;

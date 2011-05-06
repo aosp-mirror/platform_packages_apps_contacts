@@ -14,23 +14,20 @@
  * limitations under the License.
  */
 
-package com.android.contacts;
+package com.android.contacts.activities;
+
+import com.android.internal.telephony.CallerInfo;
 
 import android.content.res.Resources;
-import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.provider.CallLog.Calls;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.MediumTest;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
-import com.android.contacts.RecentCallsListActivity;
-import com.android.internal.telephony.CallerInfo;
+
 import java.util.Date;
 import java.util.Formatter;
 import java.util.HashMap;
@@ -47,9 +44,9 @@ import java.util.Random;
  *     -w com.android.contacts.tests/android.test.InstrumentationTestRunner
  */
 
-public class RecentCallsListActivityTests
-        extends ActivityInstrumentationTestCase2<RecentCallsListActivity> {
-    static private final String TAG = "RecentCallsListActivityTests";
+public class CallLogActivityTests
+        extends ActivityInstrumentationTestCase2<CallLogActivity> {
+    static private final String TAG = "CallLogActivityTests";
     static private final String[] CALL_LOG_PROJECTION = new String[] {
             Calls._ID,
             Calls.NUMBER,
@@ -66,11 +63,11 @@ public class RecentCallsListActivityTests
 
     // We get the call list activity and assign is a frame to build
     // its list.  mAdapter is an inner class of
-    // RecentCallsListActivity to build the rows (view) in the call
+    // CallLogActivity to build the rows (view) in the call
     // list. We reuse it with our own in-mem DB.
-    private RecentCallsListActivity mActivity;
+    private CallLogActivity mActivity;
     private FrameLayout mParentView;
-    private RecentCallsListActivity.RecentCallsAdapter mAdapter;
+    private CallLogActivity.CallLogAdapter mAdapter;
     private String mVoicemail;
 
     // In memory array to hold the rows corresponding to the 'calls' table.
@@ -85,13 +82,13 @@ public class RecentCallsListActivityTests
     private HashMap<Integer, Bitmap> mCallTypeIcons;
 
     // An item in the call list. All the methods performing checks use it.
-    private RecentCallsListActivity.RecentCallsListItemViews mItem;
+    private CallLogActivity.CallLogListItemViews mItem;
     // The list of views representing the data in the DB. View are in
     // reverse order compare to the DB.
     private View[] mList;
 
-    public RecentCallsListActivityTests() {
-        super("com.android.contacts", RecentCallsListActivity.class);
+    public CallLogActivityTests() {
+        super("com.android.contacts", CallLogActivity.class);
         mIndex = 1;
         mRnd = new Random();
     }
@@ -170,7 +167,7 @@ public class RecentCallsListActivityTests
             if (null == mList[i]) {
                 break;
             }
-            mItem = (RecentCallsListActivity.RecentCallsListItemViews) mList[i].getTag();
+            mItem = (CallLogActivity.CallLogListItemViews) mList[i].getTag();
 
             // callView tag is the phone number.
             String number = (String) mItem.callView.getTag();

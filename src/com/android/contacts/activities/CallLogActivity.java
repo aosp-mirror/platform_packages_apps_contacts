@@ -14,9 +14,13 @@
  * limitations under the License.
  */
 
-package com.android.contacts;
+package com.android.contacts.activities;
 
 import com.android.common.widget.GroupingListAdapter;
+import com.android.contacts.CallDetailActivity;
+import com.android.contacts.ContactsSearchManager;
+import com.android.contacts.ContactsUtils;
+import com.android.contacts.R;
 import com.android.internal.telephony.CallerInfo;
 import com.android.internal.telephony.ITelephony;
 
@@ -84,9 +88,9 @@ import java.util.LinkedList;
 /**
  * Displays a list of call log entries.
  */
-public class RecentCallsListActivity extends ListActivity
+public class CallLogActivity extends ListActivity
         implements View.OnCreateContextMenuListener {
-    private static final String TAG = "RecentCallsList";
+    private static final String TAG = "CallLogActivity";
 
     /** The projection to use when querying the call log table */
     static final String[] CALL_LOG_PROJECTION = new String[] {
@@ -135,7 +139,7 @@ public class RecentCallsListActivity extends ListActivity
 
     private static final int DIALOG_CONFIRM_DELETE_ALL = 1;
 
-    RecentCallsAdapter mAdapter;
+    CallLogAdapter mAdapter;
     private QueryHandler mQueryHandler;
     String mVoiceMailNumber;
     private String mCurrentCountryIso;
@@ -154,7 +158,7 @@ public class RecentCallsListActivity extends ListActivity
         public static ContactInfo EMPTY = new ContactInfo();
     }
 
-    public static final class RecentCallsListItemViews {
+    public static final class CallLogListItemViews {
         TextView line1View;
         TextView labelView;
         TextView numberView;
@@ -174,7 +178,7 @@ public class RecentCallsListActivity extends ListActivity
     }
 
     /** Adapter class to fill in data for the Call Log */
-    final class RecentCallsAdapter extends GroupingListAdapter
+    final class CallLogAdapter extends GroupingListAdapter
             implements Runnable, ViewTreeObserver.OnPreDrawListener, View.OnClickListener {
         HashMap<String,ContactInfo> mContactInfo;
         private final LinkedList<CallerInfoQuery> mRequests;
@@ -236,8 +240,8 @@ public class RecentCallsListActivity extends ListActivity
             }
         };
 
-        public RecentCallsAdapter() {
-            super(RecentCallsListActivity.this);
+        public CallLogAdapter() {
+            super(CallLogActivity.this);
 
             mContactInfo = new HashMap<String,ContactInfo>();
             mRequests = new LinkedList<CallerInfoQuery>();
@@ -310,7 +314,7 @@ public class RecentCallsListActivity extends ListActivity
             values.put(Calls.CACHED_NUMBER_LABEL, ci.label);
 
             try {
-                RecentCallsListActivity.this.getContentResolver().update(Calls.CONTENT_URI, values,
+                CallLogActivity.this.getContentResolver().update(Calls.CONTENT_URI, values,
                         Calls.NUMBER + "='" + ciq.number + "'", null);
             } catch (SQLiteDiskIOException e) {
                 Log.w(TAG, "Exception while updating call info", e);
@@ -372,7 +376,7 @@ public class RecentCallsListActivity extends ListActivity
                     String[] selectionArgs = new String[] { ciq.number.toUpperCase() };
 
                     Cursor dataTableCursor =
-                            RecentCallsListActivity.this.getContentResolver().query(
+                            CallLogActivity.this.getContentResolver().query(
                                     contactRef,
                                     null,  // projection
                                     selection,  // selection
@@ -413,7 +417,7 @@ public class RecentCallsListActivity extends ListActivity
                     // "number" is a regular phone number, so use the
                     // PhoneLookup table:
                     Cursor phonesCursor =
-                            RecentCallsListActivity.this.getContentResolver().query(
+                            CallLogActivity.this.getContentResolver().query(
                                 Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI,
                                         Uri.encode(ciq.number)),
                                 PHONES_PROJECTION, null, null, null);
@@ -545,7 +549,7 @@ public class RecentCallsListActivity extends ListActivity
         protected View newStandAloneView(Context context, ViewGroup parent) {
             LayoutInflater inflater =
                     (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.recent_calls_list_item, parent, false);
+            View view = inflater.inflate(R.layout.call_log_list_item, parent, false);
             findAndCacheViews(view);
             return view;
         }
@@ -559,7 +563,7 @@ public class RecentCallsListActivity extends ListActivity
         protected View newChildView(Context context, ViewGroup parent) {
             LayoutInflater inflater =
                     (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.recent_calls_list_child_item, parent, false);
+            View view = inflater.inflate(R.layout.call_log_list_child_item, parent, false);
             findAndCacheViews(view);
             return view;
         }
@@ -573,7 +577,7 @@ public class RecentCallsListActivity extends ListActivity
         protected View newGroupView(Context context, ViewGroup parent) {
             LayoutInflater inflater =
                     (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.recent_calls_list_group_item, parent, false);
+            View view = inflater.inflate(R.layout.call_log_list_group_item, parent, false);
             findAndCacheViews(view);
             return view;
         }
@@ -581,7 +585,7 @@ public class RecentCallsListActivity extends ListActivity
         @Override
         protected void bindGroupView(View view, Context context, Cursor cursor, int groupSize,
                 boolean expanded) {
-            final RecentCallsListItemViews views = (RecentCallsListItemViews) view.getTag();
+            final CallLogListItemViews views = (CallLogListItemViews) view.getTag();
             int groupIndicator = expanded
                     ? com.android.internal.R.drawable.expander_ic_maximized
                     : com.android.internal.R.drawable.expander_ic_minimized;
@@ -593,7 +597,7 @@ public class RecentCallsListActivity extends ListActivity
         private void findAndCacheViews(View view) {
 
             // Get the views to bind to
-            RecentCallsListItemViews views = new RecentCallsListItemViews();
+            CallLogListItemViews views = new CallLogListItemViews();
             views.line1View = (TextView) view.findViewById(R.id.line1);
             views.labelView = (TextView) view.findViewById(R.id.label);
             views.numberView = (TextView) view.findViewById(R.id.number);
@@ -607,7 +611,7 @@ public class RecentCallsListActivity extends ListActivity
         }
 
         public void bindView(Context context, View view, Cursor c) {
-            final RecentCallsListItemViews views = (RecentCallsListItemViews) view.getTag();
+            final CallLogListItemViews views = (CallLogListItemViews) view.getTag();
 
             String number = c.getString(NUMBER_COLUMN_INDEX);
             String formattedNumber = null;
@@ -767,7 +771,7 @@ public class RecentCallsListActivity extends ListActivity
     }
 
     private static final class QueryHandler extends AsyncQueryHandler {
-        private final WeakReference<RecentCallsListActivity> mActivity;
+        private final WeakReference<CallLogActivity> mActivity;
 
         /**
          * Simple handler that wraps background calls to catch
@@ -801,15 +805,15 @@ public class RecentCallsListActivity extends ListActivity
 
         public QueryHandler(Context context) {
             super(context.getContentResolver());
-            mActivity = new WeakReference<RecentCallsListActivity>(
-                    (RecentCallsListActivity) context);
+            mActivity = new WeakReference<CallLogActivity>(
+                    (CallLogActivity) context);
         }
 
         @Override
         protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
-            final RecentCallsListActivity activity = mActivity.get();
+            final CallLogActivity activity = mActivity.get();
             if (activity != null && !activity.isFinishing()) {
-                final RecentCallsListActivity.RecentCallsAdapter callsAdapter = activity.mAdapter;
+                final CallLogActivity.CallLogAdapter callsAdapter = activity.mAdapter;
                 callsAdapter.setLoading(false);
                 callsAdapter.changeCursor(cursor);
                 if (activity.mScrollToTop) {
@@ -829,12 +833,12 @@ public class RecentCallsListActivity extends ListActivity
     protected void onCreate(Bundle state) {
         super.onCreate(state);
 
-        setContentView(R.layout.recent_calls);
+        setContentView(R.layout.call_log_activity);
 
         // Typing here goes to the dialer
         setDefaultKeyMode(DEFAULT_KEYS_DIALER);
 
-        mAdapter = new RecentCallsAdapter();
+        mAdapter = new CallLogAdapter();
         getListView().setOnCreateContextMenuListener(this);
         setListAdapter(mAdapter);
 
@@ -1048,7 +1052,7 @@ public class RecentCallsListActivity extends ListActivity
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         final ProgressDialog progressDialog = ProgressDialog.show(
-                                RecentCallsListActivity.this,
+                                CallLogActivity.this,
                                 getString(R.string.clearCallLogProgress_title),
                                 "", true, false);
                         final AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
@@ -1197,7 +1201,7 @@ public class RecentCallsListActivity extends ListActivity
         } else {
             try {
                 Cursor phonesCursor =
-                    RecentCallsListActivity.this.getContentResolver().query(
+                    CallLogActivity.this.getContentResolver().query(
                             Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI,
                                     number),
                     PHONES_PROJECTION, null, null, null);

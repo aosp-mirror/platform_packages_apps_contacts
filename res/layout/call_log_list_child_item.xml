@@ -33,6 +33,6 @@
         android:background="@drawable/call_background_secondary"
     />
 
-    <include layout="@layout/recent_calls_list_item_layout"/>
+    <include layout="@layout/call_log_list_item_layout"/>
 
 </RelativeLayout>
