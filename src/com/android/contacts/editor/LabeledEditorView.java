@@ -167,6 +167,9 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
      * Creates or removes the type/label button. Doesn't do anything if already correctly configured
      */
     private void setupLabelButton(boolean shouldExist) {
+        if (mTitle == null) {
+            return;
+        }
         if (shouldExist) {
             mLabel.setEnabled(!mReadOnly && isEnabled());
             mLabel.setVisibility(View.VISIBLE);
@@ -310,8 +313,12 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
                 ? ""
                 : getResources().getString(kind.titleRes);
 
-        // Setup title (may not be shown if there is a Spinner setup later).
-        mTitle.setText(titleString.toUpperCase());
+        // If there is a title field, then setup the title (although it may not be shown if there is
+        // a Spinner setup later). There are cases where a title may not be present (i.e. structured
+        // name).
+        if (mTitle != null) {
+            mTitle.setText(titleString.toUpperCase());
+        }
 
         // Display label selector if multiple types available
         final boolean hasTypes = EntityModifier.hasEditTypes(kind);
@@ -441,13 +448,10 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
     private class EditTypeAdapter extends ArrayAdapter<EditType> {
         private final LayoutInflater mInflater;
         private boolean mHasCustomSelection;
-        private int mTextSize;
 
         public EditTypeAdapter(Context context) {
             super(context, 0);
             mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            mTextSize = getResources().getDimensionPixelSize(
-                    R.dimen.editor_field_spinner_text_size);
 
             if (mType != null && mType.customColumn != null) {
 
@@ -490,7 +494,6 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
             }
 
             textView = (TextView) view;
-            textView.setTextSize(mTextSize);
 
             EditType type = getItem(position);
             String text;

@@ -14,16 +14,14 @@
      limitations under the License.
 -->
 
-<!-- Title of a field in the contact editor. -->
+<!-- Spinner for a field in the contact editor. -->
 
-<TextView
+<Spinner
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/title"
+    android:id="@+id/spinner"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/editor_field_top_padding"
-    android:paddingLeft="@dimen/editor_field_left_padding"
-    android:textAppearance="?android:attr/textAppearanceMedium"
-    android:singleLine="true"
-    android:ellipsize="marquee"
-    android:fadingEdge="horizontal" />
+    android:layout_marginLeft="@dimen/editor_field_left_padding"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:paddingLeft="5dip"
+    android:paddingTop="5dip"/>

@@ -28,6 +28,8 @@ import android.content.Entity;
 import android.graphics.Rect;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.InputType;
@@ -40,6 +42,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 /**
  * Simple editor that handles labels and any {@link EditField} defined for the
@@ -53,7 +56,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
     private ImageView mExpansionView;
     private boolean mHideOptional = true;
     private boolean mHasShortAndLongForms;
-    private int mEditorTextSize;
+    private int mEditorTextSize = 0;
 
     public TextFieldsEditorView(Context context) {
         super(context);
@@ -75,7 +78,6 @@ public class TextFieldsEditorView extends LabeledEditorView {
         setDrawingCacheEnabled(true);
         setAlwaysDrawnWithCacheEnabled(true);
 
-        mEditorTextSize = getResources().getDimensionPixelSize(R.dimen.editor_field_text_size);
         mFields = (ViewGroup) findViewById(R.id.editors);
         mExpansionView = (ImageView) findViewById(R.id.expansion_view);
         mExpansionViewContainer = findViewById(R.id.expansion_view_container);
@@ -102,8 +104,12 @@ public class TextFieldsEditorView extends LabeledEditorView {
         });
     }
 
+    /**
+     * Set the text size of the value of all fields in this class, which will override the default
+     * text appearance style for the associated {@link DataKind}.
+     */
     public void setEditorTextSize(int textSize) {
-        this.mEditorTextSize = textSize;
+        mEditorTextSize = textSize;
     }
 
     @Override
@@ -171,8 +177,11 @@ public class TextFieldsEditorView extends LabeledEditorView {
             final EditText fieldView = new EditText(mContext);
             fieldView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
+            fieldView.setTextAppearance(getContext(), kind.textAppearanceResourceId);
+            if (mEditorTextSize != 0) {
+                fieldView.setTextSize(mEditorTextSize);
+            }
             fieldView.setGravity(Gravity.TOP);
-            fieldView.setTextSize(mEditorTextSize);
             mFieldEditTexts[index] = fieldView;
             fieldView.setId(vig.getId(state, kind, entry, index));
             if (field.titleRes > 0) {

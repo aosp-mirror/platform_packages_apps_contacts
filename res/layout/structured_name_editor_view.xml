@@ -18,17 +18,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="?android:attr/listPreferredItemHeight"
-    android:orientation="vertical"
-    android:paddingRight="?android:attr/scrollbarSize">
+    android:orientation="vertical">
 
     <include
         android:id="@+id/divider"
         layout="@layout/edit_divider" />
-
-    <include
-        android:id="@+id/title"
-        layout="@layout/edit_field_title" />
 
     <include
         android:id="@+id/spinner"

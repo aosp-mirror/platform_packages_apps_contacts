@@ -18,7 +18,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="10dip"
+    android:paddingLeft="13dip"
     android:background="?android:attr/selectableItemBackground">
     <TextView
         android:id="@+id/add_text"
@@ -26,7 +26,7 @@
         android:layout_width="0dip"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="?android:attr/textColorTertiary" />
     <ImageView
         android:id="@+id/add_button"
@@ -35,7 +35,5 @@
         android:src="@drawable/ic_menu_add_field_holo_light"
         android:paddingLeft="@dimen/editor_round_button_padding_left"
         android:paddingRight="@dimen/editor_round_button_padding_right"
-        android:paddingTop="@dimen/editor_round_button_padding_top"
-        android:paddingBottom="@dimen/editor_round_button_padding_bottom"
         android:contentDescription="@string/description_plus_button" />
 </LinearLayout>

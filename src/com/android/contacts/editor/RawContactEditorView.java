@@ -130,7 +130,6 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         final int photoSize = getResources().getDimensionPixelSize(R.dimen.edit_photo_size);
 
         mName = (StructuredNameEditorView)findViewById(R.id.edit_name);
-        mName.setMinimumHeight(photoSize);
         mName.setDeletable(false);
 
         mPhoneticName = (PhoneticNameEditorView)findViewById(R.id.edit_phonetic_name);
@@ -191,8 +190,8 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         setHasPhotoEditor((type.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null));
         getPhotoEditor().setEnabled(isEnabled());
         mName.setEnabled(isEnabled());
-        mName.setEditorTextSize(
-                mContext.getResources().getDimensionPixelSize(R.dimen.contact_name_text_size));
+        mName.setEditorTextSize(mContext.getResources().getDimensionPixelSize(
+                R.dimen.editor_structured_name_text_size));
 
         mPhoneticName.setEnabled(isEnabled());
 

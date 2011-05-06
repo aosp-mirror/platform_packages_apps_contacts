@@ -193,7 +193,7 @@
     <style name="ContactDetailItemType">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
         <item name="android:textColor">@color/detail_item_type_color</item>
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">marquee</item>

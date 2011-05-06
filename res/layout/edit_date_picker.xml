@@ -22,5 +22,6 @@
     android:layout_width="0dip"
     android:layout_height="wrap_content"
     android:layout_weight="1"
-    android:textAppearance="?android:attr/textAppearanceLarge"
-    style="@android:style/Widget.Holo.Spinner" />
+    android:layout_marginLeft="@dimen/editor_field_left_padding"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    style="@android:style/Widget.Holo.Light.Spinner" />

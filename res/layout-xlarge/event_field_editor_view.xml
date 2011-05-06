@@ -24,10 +24,6 @@
     android:orientation="vertical">
 
     <include
-        android:id="@+id/divider"
-        layout="@layout/edit_divider" />
-
-    <include
         android:id="@+id/title"
         layout="@layout/edit_field_title" />
 
@@ -36,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:gravity="center_vertical"
+        android:gravity="bottom"
         android:focusable="true"
         android:clickable="true">
 
@@ -47,6 +43,7 @@
         <include
             android:id="@+id/spinner"
             layout="@layout/edit_spinner"
+            android:paddingTop="15dip"
             android:visibility="gone" />
 
         <include

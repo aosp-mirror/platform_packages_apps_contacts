@@ -22,10 +22,6 @@
     android:orientation="vertical">
 
     <include
-        android:id="@+id/divider"
-        layout="@layout/edit_divider" />
-
-    <include
         android:id="@+id/title"
         layout="@layout/edit_field_title" />
 
@@ -45,6 +41,7 @@
         <include
             android:id="@+id/spinner"
             layout="@layout/edit_spinner"
+            android:paddingTop="15dip"
             android:visibility="gone" />
 
         <include

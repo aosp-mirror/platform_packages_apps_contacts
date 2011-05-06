@@ -59,6 +59,9 @@ public class DataKind {
     /** Layout resource id for an editor view to edit this {@link DataKind}. */
     public final int editorLayoutResourceId;
 
+    /** Text appearance resource id for the value of a field in this {@link DataKind}. */
+    public final int textAppearanceResourceId;
+
     /**
      * String resource id for the "add field" footer. This is equal to -1 if it
      * is not applicable to add a new field to this class (i.e. for a structured
@@ -82,11 +85,13 @@ public class DataKind {
 
     public DataKind() {
         editorLayoutResourceId = R.layout.text_fields_editor_view;
+        textAppearanceResourceId = android.R.style.TextAppearance_Medium;
         addNewFieldTextResourceId = -1;
     }
 
     public DataKind(String mimeType, int titleRes, int iconRes, int weight, boolean editable,
-            int editorLayoutResourceId, int addNewFieldTextResourceId) {
+            int editorLayoutResourceId, int textAppearanceResourceId,
+            int addNewFieldTextResourceId) {
         this.mimeType = mimeType;
         this.titleRes = titleRes;
         this.iconRes = iconRes;
@@ -95,6 +100,7 @@ public class DataKind {
         this.isList = true;
         this.typeOverallMax = -1;
         this.editorLayoutResourceId = editorLayoutResourceId;
+        this.textAppearanceResourceId = textAppearanceResourceId;
         this.addNewFieldTextResourceId = addNewFieldTextResourceId;
     }
 }

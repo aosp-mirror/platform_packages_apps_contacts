@@ -35,16 +35,25 @@
     <dimen name="quick_contact_width">352dip</dimen>
 
     <!-- Padding of the rounded plus/minus/expand/collapse buttons in the editor  -->
-    <dimen name="editor_round_button_padding_left">8dip</dimen>
-    <dimen name="editor_round_button_padding_right">8dip</dimen>
+    <dimen name="editor_round_button_padding_left">4dip</dimen>
+    <dimen name="editor_round_button_padding_right">4dip</dimen>
     <dimen name="editor_round_button_padding_top">8dip</dimen>
     <dimen name="editor_round_button_padding_bottom">8dip</dimen>
+
+    <!-- Font size for the structured name in the contact detail page -->
+    <dimen name="editor_structured_name_text_size">25sp</dimen>
 
     <!-- Width of the Type-Label in the Editor -->
     <dimen name="editor_type_label_width">120dip</dimen>
 
-    <!-- Padding of the title of a field in the Editor -->
-    <dimen name="editor_field_title_padding">10dip</dimen>
+    <!-- Left padding of a field in the Editor -->
+    <dimen name="editor_field_left_padding">5dip</dimen>
+
+    <!-- Top padding of a field in the Editor -->
+    <dimen name="editor_field_top_padding">10dip</dimen>
+
+    <!-- Bottom padding of a field in the Editor -->
+    <dimen name="editor_field_bottom_padding">5dip</dimen>
 
     <!-- Minimum height of a row in the Editor -->
     <dimen name="editor_min_line_item_height">48dip</dimen>
@@ -70,6 +79,9 @@
     <!-- Width of a contact detail item type (i.e. Nickname or Website). -->
     <dimen name="detail_item_type_width">164dip</dimen>
 
+    <!-- Font size for the display name in header of the contact detail page -->
+    <dimen name="detail_header_name_text_size">30sp</dimen>
+
     <!-- Padding to be used between a visible scrollbar and the contact list -->
     <dimen name="list_visible_scrollbar_padding">40dip</dimen>
 
@@ -78,9 +90,6 @@
 
     <!-- Font size used for the social status in the widget -->
     <dimen name="widget_text_size_snippet">13sp</dimen>
-
-    <!-- Font size used for the contact name in the detail and the editor -->
-    <dimen name="contact_name_text_size">18sp</dimen>
 
     <!-- Minimum width of the filter selector in the action bar -->
     <dimen name="action_bar_filter_min_width">100dip</dimen>
