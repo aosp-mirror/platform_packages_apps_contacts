@@ -45,11 +45,9 @@
         android:hardwareAccelerated="true"
     >
 
-        <!-- A virtual 12 key dialer. This definition is only used internally, so that we can use
-             the activity inside of a TabActivity -->
+        <!-- A virtual 12 key dialer -->
         <activity android:name=".activities.DialpadActivity"
             android:launchMode="singleTop"
-            android:exported="false"
         >
             <intent-filter>
                 <action android:name="com.android.phone.action.TOUCH_DIALER" />
@@ -58,11 +56,9 @@
             </intent-filter>
         </activity>
 
-        <!-- A list of recent calls. This definition is only used internally, so that we can use
-             the activity inside of a TabActivity -->
+        <!-- A list of recent calls -->
         <activity android:name=".activities.CallLogActivity"
             android:label="@string/recentCallsIconLabel"
-            android:exported="false"
         >
             <intent-filter>
                 <action android:name="com.android.phone.action.RECENT_CALLS" />
