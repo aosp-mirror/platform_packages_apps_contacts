@@ -16,6 +16,7 @@
 
 package com.android.contacts.activities;
 
+import com.android.contacts.calllog.CallLogFragment;
 import com.android.internal.telephony.CallerInfo;
 
 import android.content.res.Resources;
@@ -66,8 +67,9 @@ public class CallLogActivityTests
     // CallLogActivity to build the rows (view) in the call
     // list. We reuse it with our own in-mem DB.
     private CallLogActivity mActivity;
+    private CallLogFragment mFragment;
     private FrameLayout mParentView;
-    private CallLogActivity.CallLogAdapter mAdapter;
+    private CallLogFragment.CallLogAdapter mAdapter;
     private String mVoicemail;
 
     // In memory array to hold the rows corresponding to the 'calls' table.
@@ -82,7 +84,7 @@ public class CallLogActivityTests
     private HashMap<Integer, Bitmap> mCallTypeIcons;
 
     // An item in the call list. All the methods performing checks use it.
-    private CallLogActivity.CallLogListItemViews mItem;
+    private CallLogFragment.CallLogListItemViews mItem;
     // The list of views representing the data in the DB. View are in
     // reverse order compare to the DB.
     private View[] mList;
@@ -96,8 +98,9 @@ public class CallLogActivityTests
     @Override
     public void setUp() {
         mActivity = getActivity();
-        mVoicemail = mActivity.mVoiceMailNumber;
-        mAdapter = mActivity.mAdapter;
+        mFragment = mActivity.getFragment();
+        mVoicemail = mFragment.getVoiceMailNumber();
+        mAdapter = mFragment.getAdapter();
         mParentView = new FrameLayout(mActivity);
         mCursor = new MatrixCursor(CALL_LOG_PROJECTION);
         buildIconMap();
@@ -167,7 +170,7 @@ public class CallLogActivityTests
             if (null == mList[i]) {
                 break;
             }
-            mItem = (CallLogActivity.CallLogListItemViews) mList[i].getTag();
+            mItem = (CallLogFragment.CallLogListItemViews) mList[i].getTag();
 
             // callView tag is the phone number.
             String number = (String) mItem.callView.getTag();
