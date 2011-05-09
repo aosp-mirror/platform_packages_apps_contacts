@@ -79,7 +79,7 @@
     <string name="invalidContactMessage" msgid="5816991830260044593">"A névjegy nem létezik."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Új névjegy létrehozása"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefon"</string>
-    <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail küldése"</string>
+    <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail cím"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"Azonnali üzenetküldés"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Cím"</string>
   <string-array name="otherLabels">
