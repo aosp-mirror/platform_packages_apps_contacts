@@ -432,6 +432,14 @@
   </plurals>
     <string name="no_contacts_selected" msgid="5877803471037324613">"未选择联系人。"</string>
     <string name="add_field" msgid="2384260056674995230">"添加其他字段"</string>
+    <string name="add_phone" msgid="4421904942555210013">"添加新电话号码"</string>
+    <string name="add_email" msgid="175079666329862215">"添加新电子邮件地址"</string>
+    <string name="add_im" msgid="5158094627521120439">"添加新即时通讯帐户"</string>
+    <string name="add_address" msgid="418292312672970688">"添加新地址"</string>
+    <string name="add_note" msgid="2753771325725383279">"添加新备注"</string>
+    <string name="add_website" msgid="4312391288948517344">"添加新网站"</string>
+    <string name="add_event" msgid="7488781591843886426">"添加新活动"</string>
+    <string name="add_relationship" msgid="3083762399737240006">"添加新关系"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"来源：<xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"时间：<xliff:g id="DATE">%1$s</xliff:g>，来源：<xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"收藏"</string>

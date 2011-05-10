@@ -432,6 +432,14 @@
   </plurals>
     <string name="no_contacts_selected" msgid="5877803471037324613">"Nevybrali jste žádné kontakty."</string>
     <string name="add_field" msgid="2384260056674995230">"Přidat další pole"</string>
+    <string name="add_phone" msgid="4421904942555210013">"Přidat nové tel. číslo"</string>
+    <string name="add_email" msgid="175079666329862215">"Přidat nový e-mail"</string>
+    <string name="add_im" msgid="5158094627521120439">"Přidat nový účet IM"</string>
+    <string name="add_address" msgid="418292312672970688">"Přidat novou adresu"</string>
+    <string name="add_note" msgid="2753771325725383279">"Přidat novou poznámku"</string>
+    <string name="add_website" msgid="4312391288948517344">"Přidat nový web"</string>
+    <string name="add_event" msgid="7488781591843886426">"Přidat novou událost"</string>
+    <string name="add_relationship" msgid="3083762399737240006">"Přidat nový vztah"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"pomocí služby <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> prostřednictvím služby <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"oblíbené"</string>

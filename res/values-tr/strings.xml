@@ -432,6 +432,14 @@
   </plurals>
     <string name="no_contacts_selected" msgid="5877803471037324613">"Seçili kişi yok."</string>
     <string name="add_field" msgid="2384260056674995230">"Başka alan ekle"</string>
+    <string name="add_phone" msgid="4421904942555210013">"Yeni telf numarası ekl"</string>
+    <string name="add_email" msgid="175079666329862215">"Yeni e-posta ekle"</string>
+    <string name="add_im" msgid="5158094627521120439">"Yeni IM hesabı ekle"</string>
+    <string name="add_address" msgid="418292312672970688">"Yeni adres ekle"</string>
+    <string name="add_note" msgid="2753771325725383279">"Yeni not ekle"</string>
+    <string name="add_website" msgid="4312391288948517344">"Yeni web sitesi ekle"</string>
+    <string name="add_event" msgid="7488781591843886426">"Yeni etkinlik ekle"</string>
+    <string name="add_relationship" msgid="3083762399737240006">"Yeni ilişki ekle"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"<xliff:g id="SOURCE">%1$s</xliff:g> aracılığıyla"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="SOURCE">%2$s</xliff:g> üzerinden şu saatte: <xliff:g id="DATE">%1$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"favori"</string>

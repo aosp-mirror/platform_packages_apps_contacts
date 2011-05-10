@@ -432,6 +432,14 @@
   </plurals>
     <string name="no_contacts_selected" msgid="5877803471037324613">"No contacts selected."</string>
     <string name="add_field" msgid="2384260056674995230">"Add another field"</string>
+    <string name="add_phone" msgid="4421904942555210013">"Add new phone number"</string>
+    <string name="add_email" msgid="175079666329862215">"Add new email"</string>
+    <string name="add_im" msgid="5158094627521120439">"Add new IM account"</string>
+    <string name="add_address" msgid="418292312672970688">"Add new address"</string>
+    <string name="add_note" msgid="2753771325725383279">"Add new note"</string>
+    <string name="add_website" msgid="4312391288948517344">"Add new website"</string>
+    <string name="add_event" msgid="7488781591843886426">"Add new event"</string>
+    <string name="add_relationship" msgid="3083762399737240006">"Add new relationship"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"via <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> via <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"favourite"</string>
