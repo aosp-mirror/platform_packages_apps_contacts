@@ -79,7 +79,7 @@
     <string name="invalidContactMessage" msgid="5816991830260044593">"A névjegy nem létezik."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Új névjegy létrehozása"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefon"</string>
-    <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail küldése"</string>
+    <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail cím"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"Azonnali üzenetküldés"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Cím"</string>
   <string-array name="otherLabels">
@@ -432,6 +432,14 @@
   </plurals>
     <string name="no_contacts_selected" msgid="5877803471037324613">"Nincs kijelölt névjegy."</string>
     <string name="add_field" msgid="2384260056674995230">"Más mező hozzáadása"</string>
+    <string name="add_phone" msgid="4421904942555210013">"Új telefonszám"</string>
+    <string name="add_email" msgid="175079666329862215">"Új e-mail hozzáadása"</string>
+    <string name="add_im" msgid="5158094627521120439">"Új IM-fiók hozzáadása"</string>
+    <string name="add_address" msgid="418292312672970688">"Új cím hozzáadása"</string>
+    <string name="add_note" msgid="2753771325725383279">"Új megjegyzés"</string>
+    <string name="add_website" msgid="4312391288948517344">"Új webhely hozzáadása"</string>
+    <string name="add_event" msgid="7488781591843886426">"Új esemény hozzáadása"</string>
+    <string name="add_relationship" msgid="3083762399737240006">"Új kapcsolat"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"- <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> - <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"kedvenc"</string>
