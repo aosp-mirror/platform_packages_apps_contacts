@@ -19,6 +19,7 @@ package com.android.contacts.group;
 import com.android.contacts.GroupMetaData;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
+import com.android.contacts.activities.GroupDetailActivity;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -26,6 +27,7 @@ import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -36,6 +38,8 @@ import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -137,6 +141,24 @@ public class GroupBrowseListFragment extends Fragment
 
         mListView.setAdapter(new GroupBrowseListAdapter(mContext, mGroupList));
         mListView.setEmptyView(mEmptyView);
+        mListView.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startGroupDetailActivity((GroupMetaData) view.getTag());
+            }
+        });
+    }
+
+    private void startGroupDetailActivity(GroupMetaData group) {
+        if (group == null) {
+            return;
+        }
+        Intent intent = new Intent(mContext, GroupDetailActivity.class);
+        intent.putExtra(GroupDetailActivity.KEY_ACCOUNT_TYPE, group.getAccountType());
+        intent.putExtra(GroupDetailActivity.KEY_ACCOUNT_NAME, group.getAccountName());
+        intent.putExtra(GroupDetailActivity.KEY_GROUP_ID, group.getGroupId());
+        intent.putExtra(GroupDetailActivity.KEY_GROUP_TITLE, group.getTitle());
+        mContext.startActivity(intent);
     }
 
     private void hideSoftKeyboard() {

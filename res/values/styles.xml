@@ -111,6 +111,30 @@
         <item name="contact_filter_popup_width">320dip</item>
     </style>
 
+    <!-- TODO: Clean up this file so themes aren't copied. -->
+    <style name="GroupDetailTheme" parent="@android:Theme">
+        <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
+        <item name="activated_background">@drawable/list_item_activated_background</item>
+        <item name="section_header_background">@drawable/list_title_holo</item>
+        <item name="list_section_header_height">32dip</item>
+        <item name="list_item_divider">@drawable/list_item_divider</item>
+        <item name="list_item_padding_top">4dip</item>
+        <item name="list_item_padding_right">11dip</item>
+        <item name="list_item_padding_bottom">4dip</item>
+        <item name="list_item_padding_left">4dip</item>
+        <item name="list_item_gap_between_image_and_text">8dip</item>
+        <item name="list_item_gap_between_label_and_data">5dip</item>
+        <item name="list_item_call_button_padding">14dip</item>
+        <item name="list_item_vertical_divider_margin">5dip</item>
+        <item name="list_item_presence_icon_margin">5dip</item>
+        <item name="list_item_photo_size">56dip</item>
+        <item name="list_item_prefix_highlight_color">#729a27</item>
+        <item name="list_item_header_text_indent">56dip</item>
+        <item name="list_item_header_text_color">?color/section_header_text_color</item>
+        <item name="list_item_header_text_size">14sp</item>
+        <item name="contact_filter_popup_width">320dip</item>
+    </style>
+
     <style name="ContactPickerTheme" parent="@android:Theme">
         <item name="section_header_background">@drawable/section_header</item>
         <item name="list_item_divider">@drawable/list_item_divider</item>

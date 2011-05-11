@@ -69,6 +69,10 @@ public class GroupBrowseListAdapter extends BaseAdapter {
         icon.setImageResource(R.drawable.ic_menu_display_all_holo_light);
         label.setText(group.getTitle());
         account.setText(group.getAccountName());
+
+        // Set the tag to be the GroupMetaData object, in order to extract group attributes from the
+        // view later.
+        convertView.setTag(group);
         return convertView;
     }
 
