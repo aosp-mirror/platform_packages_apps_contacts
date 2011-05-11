@@ -60,7 +60,9 @@ public final class AccountsListAdapter extends BaseAdapter {
         final AccountType accountType = mAccountTypes.getAccountType(account.type);
 
         text1.setText(account.name);
-        text2.setText(accountType.getDisplayLabel(mContext));
+        if (text2 != null) {
+            text2.setText(accountType.getDisplayLabel(mContext));
+        }
         icon.setImageDrawable(accountType.getDisplayIcon(mContext));
 
         return resultView;

@@ -26,6 +26,9 @@
     <dimen name="aggregation_suggestion_icon_size">40dip</dimen>
 
     <dimen name="account_selector_popup_width">400dip</dimen>
+    <dimen name="account_selector_icon_size">30dip</dimen>
+    <dimen name="account_selector_min_item_height">48dip</dimen>
+    <dimen name="account_selector_horizontal_margin">6dip</dimen>
 
     <dimen name="photo_action_popup_width">400dip</dimen>
 
