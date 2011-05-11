@@ -17,23 +17,29 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/account_selector_horizontal_margin"
-    android:paddingRight="@dimen/account_selector_horizontal_margin"
-    android:minHeight="@dimen/account_selector_min_item_height" >
+    android:minHeight="?android:attr/listPreferredItemHeight"
+>
+    <ImageView android:id="@android:id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dip"
+        android:layout_centerVertical="true"
+    />
 
     <TextView android:id="@android:id/text1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@android:id/icon"
-        android:layout_centerVertical="true"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginLeft="6dip"
+        android:layout_marginTop="6dip"
+        android:layout_toRightOf="@android:id/icon"
+        android:textAppearance="?android:attr/textAppearanceLarge"
     />
 
-    <ImageView android:id="@android:id/icon"
-        android:layout_width="@dimen/account_selector_icon_size"
-        android:layout_height="@dimen/account_selector_icon_size"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
+    <TextView android:id="@android:id/text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@android:id/text1"
+        android:layout_alignLeft="@android:id/text1"
+        android:textAppearance="?android:attr/textAppearanceSmall"
     />
 </RelativeLayout>

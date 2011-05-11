@@ -20,11 +20,13 @@ import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.EditType;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityModifier;
 
+import android.accounts.Account;
 import android.content.Context;
 import android.content.Entity;
 import android.database.Cursor;
@@ -68,6 +70,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
     private ViewGroup mFields;
 
+    private View mAccountContainer;
     private ImageView mAccountIcon;
     private TextView mAccountTypeTextView;
     private TextView mAccountNameTextView;
@@ -136,6 +139,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
         mFields = (ViewGroup)findViewById(R.id.sect_fields);
 
+        mAccountContainer = findViewById(R.id.account);
         mAccountIcon = (ImageView) findViewById(R.id.account_icon);
         mAccountTypeTextView = (TextView) findViewById(R.id.account_type);
         mAccountNameTextView = (TextView) findViewById(R.id.account_name);
@@ -169,21 +173,28 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         // Make sure we have StructuredName
         EntityModifier.ensureKindExists(state, type, StructuredName.CONTENT_ITEM_TYPE);
 
-        // Fill in the header info
         ValuesDelta values = state.getValues();
-        String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
-        CharSequence accountType = type.getDisplayLabel(mContext);
-        if (TextUtils.isEmpty(accountType)) {
-            accountType = mContext.getString(R.string.account_phone);
-        }
-        if (!TextUtils.isEmpty(accountName)) {
-            mAccountNameTextView.setText(
-                    mContext.getString(R.string.from_account_format, accountName));
-        }
-        mAccountTypeTextView.setText(mContext.getString(R.string.account_type_format, accountType));
-        mAccountIcon.setImageDrawable(type.getDisplayIcon(mContext));
-
         mRawContactId = values.getAsLong(RawContacts._ID);
+
+        final ArrayList<Account> accounts =
+                AccountTypeManager.getInstance(mContext).getAccounts(true);
+        if (accounts.size() > 1) {
+            // Fill in the account info
+            String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
+            CharSequence accountType = type.getDisplayLabel(mContext);
+            if (TextUtils.isEmpty(accountType)) {
+                accountType = mContext.getString(R.string.account_phone);
+            }
+            if (!TextUtils.isEmpty(accountName)) {
+                mAccountNameTextView.setText(
+                        mContext.getString(R.string.from_account_format, accountName));
+            }
+            mAccountTypeTextView.setText(
+                    mContext.getString(R.string.account_type_format, accountType));
+            mAccountIcon.setImageDrawable(type.getDisplayIcon(mContext));
+        } else {
+            mAccountContainer.setVisibility(View.GONE);
+        }
 
         // Show photo editor when supported
         EntityModifier.ensureKindExists(state, type, Photo.CONTENT_ITEM_TYPE);
