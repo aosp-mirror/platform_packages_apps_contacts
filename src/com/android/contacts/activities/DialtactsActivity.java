@@ -51,7 +51,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     private static final int TAB_INDEX_CONTACTS = 2;
     private static final int TAB_INDEX_FAVORITES = 3;
 
-    static final String EXTRA_IGNORE_STATE = "ignore-state";
+    public static final String EXTRA_IGNORE_STATE = "ignore-state";
 
     /** Name of the dialtacts shared preferences */
     static final String PREFS_DIALTACTS = "dialtacts";

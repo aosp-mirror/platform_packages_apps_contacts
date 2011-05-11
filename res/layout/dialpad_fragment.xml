@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2009 The Android Open Source Project
+<!-- Copyright (C) 2011 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -31,11 +31,11 @@ keep it because otherwise the dialer needs some imagination to use (white on whi
     <!-- TODO: Use a textAppearance to control the display of the number -->
     <EditText android:id="@+id/digits"
         android:layout_width="match_parent"
-        android:layout_height="74dip"
+        android:layout_height="67dip"
         android:gravity="center"
         android:maxLines="1"
         android:scrollHorizontally="true"
-        android:textSize="34sp"
+        android:textSize="33sp"
         android:freezesText="true"
         android:background="@drawable/btn_dial_textfield"
         android:textColor="@color/dialer_button_text"
@@ -43,6 +43,7 @@ keep it because otherwise the dialer needs some imagination to use (white on whi
         android:editable="true"
         android:cursorVisible="false"
         android:layout_weight="0"
+        android:contentDescription="@string/description_digits_edittext"
     />
 
     <!-- Keypad section -->
