@@ -821,6 +821,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
     }
 
+    @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         hideSoftKeyboard();
 
@@ -840,6 +841,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     /**
      * Dismisses the soft keyboard when the list takes focus.
      */
+    @Override
     public void onFocusChange(View view, boolean hasFocus) {
         if (view == mListView && hasFocus) {
             hideSoftKeyboard();
@@ -849,6 +851,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     /**
      * Dismisses the soft keyboard when the list is touched.
      */
+    @Override
     public boolean onTouch(View view, MotionEvent event) {
         if (view == mListView) {
             hideSoftKeyboard();

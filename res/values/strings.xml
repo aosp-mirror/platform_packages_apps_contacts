@@ -264,6 +264,9 @@
     <!-- The text displayed when the contacts list is empty while displaying all contacts -->
     <string name="noContacts">No contacts.</string>
 
+    <!-- The text displayed when the groups list is empty while displaying all groups [CHAR LIMIT=NONE] -->
+    <string name="noGroups">No groups.</string>
+
     <!-- The text displayed when the contacts list is empty while displaying results after searching contacts -->
     <string name="noMatchingContacts">No matching contacts found.</string>
 
@@ -348,6 +351,9 @@
 
     <!-- The description text for the contacts tab. Space is limited for this string, so the shorter the better -->
     <string name="contactsIconLabel">Contacts</string>
+
+    <!-- The description text for the groups tab. Space is limited for this string, so the shorter the better -->
+    <string name="contactsGroupsLabel">Groups</string>
 
     <!-- The description text for the favorites tab. Space is limited for this string, so the shorter the better -->
     <string name="contactsFavoritesLabel">Favorites</string>

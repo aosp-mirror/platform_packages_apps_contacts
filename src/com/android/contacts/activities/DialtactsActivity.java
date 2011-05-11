@@ -91,6 +91,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
         setupCallLogTab();
         setupContactsTab();
         setupFavoritesTab();
+        setupGroupsTab();
 
         // Load the last manually loaded tab
         final SharedPreferences prefs = getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE);
@@ -169,6 +170,18 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
         mTabHost.addTab(mTabHost.newTabSpec("favorites")
                 .setIndicator(getString(R.string.contactsFavoritesLabel),
                         getResources().getDrawable(R.drawable.ic_tab_starred))
+                .setContent(intent));
+    }
+
+    private void setupGroupsTab() {
+        // This is a temporary intent action until the refactoring for the phone/contacts
+        // split is complete.
+        Intent intent = new Intent("com.android.phone.action.GROUPS_LIST");
+                        intent.setClass(this, GroupBrowserActivity.class);
+
+        mTabHost.addTab(mTabHost.newTabSpec("groups")
+                .setIndicator(getString(R.string.contactsGroupsLabel),
+                        getResources().getDrawable(R.drawable.ic_menu_display_all_holo_light))
                 .setContent(intent));
     }
 

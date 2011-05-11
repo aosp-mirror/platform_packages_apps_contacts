@@ -336,6 +336,22 @@
             </intent-filter>
         </activity>
 
+
+        <!-- List of groups -->
+        <activity android:name=".activities.GroupBrowserActivity"
+            android:label="@string/contactsGroupsLabel"
+            android:theme="@style/ContactBrowserTheme"
+            android:launchMode="singleTop"
+            android:clearTaskOnLaunch="true">
+            <!-- TODO: Remove this temporary intent action name when the fragmentization
+                 work is done. -->
+            <intent-filter>
+                <action android:name="com.android.phone.action.GROUPS_LIST" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.TAB" />
+            </intent-filter>
+        </activity>
+
         <!-- Used to show QuickContact window over a translucent activity, which is a
              temporary hack until we add better framework support. -->
         <activity
