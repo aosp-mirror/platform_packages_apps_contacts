@@ -20,6 +20,8 @@ import static android.content.ContentProviderOperation.TYPE_DELETE;
 import static android.content.ContentProviderOperation.TYPE_INSERT;
 import static android.content.ContentProviderOperation.TYPE_UPDATE;
 
+import com.google.android.collect.Lists;
+
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.EditType;
 import com.android.contacts.model.AccountTypeManager;
@@ -28,15 +30,21 @@ import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.model.EntityModifier;
+import com.android.contacts.model.ExchangeAccountType;
+import com.android.contacts.model.GoogleAccountType;
+import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockAccountTypeManager;
-import com.google.android.collect.Lists;
+import com.android.contacts.tests.mocks.MockContentProvider;
 
 import android.content.ContentProviderOperation;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Entity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
@@ -754,5 +762,449 @@ public class EntityModifierTests extends AndroidTestCase {
 
         final int count = state.getMimeEntries(Organization.CONTENT_ITEM_TYPE).size();
         assertEquals("Expected to create organization", 1, count);
+    }
+
+    public void testMigrateWithDisplayNameFromGoogleToExchange1() {
+        AccountType oldAccountType = new GoogleAccountType(getContext(), "");
+        AccountType newAccountType = new ExchangeAccountType(getContext(), "");
+        DataKind kind = newAccountType.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE);
+
+        ContactsMockContext context = new ContactsMockContext(getContext());
+
+        EntityDelta oldState = new EntityDelta();
+        ContentValues mockNameValues = new ContentValues();
+        mockNameValues.put(Data.MIMETYPE, StructuredName.CONTENT_ITEM_TYPE);
+        mockNameValues.put(StructuredName.PREFIX, "prefix");
+        mockNameValues.put(StructuredName.GIVEN_NAME, "given");
+        mockNameValues.put(StructuredName.MIDDLE_NAME, "middle");
+        mockNameValues.put(StructuredName.FAMILY_NAME, "family");
+        mockNameValues.put(StructuredName.SUFFIX, "suffix");
+        mockNameValues.put(StructuredName.PHONETIC_FAMILY_NAME, "PHONETIC_FAMILY");
+        mockNameValues.put(StructuredName.PHONETIC_MIDDLE_NAME, "PHONETIC_MIDDLE");
+        mockNameValues.put(StructuredName.PHONETIC_GIVEN_NAME, "PHONETIC_GIVEN");
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+
+        EntityDelta newState = new EntityDelta();
+        EntityModifier.migrateStructuredName(context, oldState, newState, kind);
+        List<ValuesDelta> list = newState.getMimeEntries(StructuredName.CONTENT_ITEM_TYPE);
+        assertEquals(1, list.size());
+
+        ContentValues output = list.get(0).getAfter();
+        assertEquals("prefix", output.getAsString(StructuredName.PREFIX));
+        assertEquals("given", output.getAsString(StructuredName.GIVEN_NAME));
+        assertEquals("middle", output.getAsString(StructuredName.MIDDLE_NAME));
+        assertEquals("family", output.getAsString(StructuredName.FAMILY_NAME));
+        assertEquals("suffix", output.getAsString(StructuredName.SUFFIX));
+        // Phonetic middle name isn't supported by Exchange.
+        assertEquals("PHONETIC_FAMILY", output.getAsString(StructuredName.PHONETIC_FAMILY_NAME));
+        assertEquals("PHONETIC_GIVEN", output.getAsString(StructuredName.PHONETIC_GIVEN_NAME));
+    }
+
+    public void testMigrateWithDisplayNameFromGoogleToExchange2() {
+        AccountType oldAccountType = new GoogleAccountType(getContext(), "");
+        AccountType newAccountType = new ExchangeAccountType(getContext(), "");
+        DataKind kind = newAccountType.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE);
+
+        ContactsMockContext context = new ContactsMockContext(getContext());
+        MockContentProvider provider = context.getContactsProvider();
+
+        String inputDisplayName = "prefix given middle family suffix";
+        // The method will ask the provider to split/join StructuredName.
+        Uri uriForBuildDisplayName =
+                ContactsContract.AUTHORITY_URI
+                        .buildUpon()
+                        .appendPath("complete_name")
+                        .appendQueryParameter(StructuredName.DISPLAY_NAME, inputDisplayName)
+                        .build();
+        provider.expectQuery(uriForBuildDisplayName)
+                .returnRow("prefix", "given", "middle", "family", "suffix")
+                .withProjection(StructuredName.PREFIX, StructuredName.GIVEN_NAME,
+                        StructuredName.MIDDLE_NAME, StructuredName.FAMILY_NAME,
+                        StructuredName.SUFFIX);
+
+        EntityDelta oldState = new EntityDelta();
+        ContentValues mockNameValues = new ContentValues();
+        mockNameValues.put(Data.MIMETYPE, StructuredName.CONTENT_ITEM_TYPE);
+        mockNameValues.put(StructuredName.DISPLAY_NAME, inputDisplayName);
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+
+        EntityDelta newState = new EntityDelta();
+        EntityModifier.migrateStructuredName(context, oldState, newState, kind);
+        List<ValuesDelta> list = newState.getMimeEntries(StructuredName.CONTENT_ITEM_TYPE);
+        assertEquals(1, list.size());
+
+        ContentValues outputValues = list.get(0).getAfter();
+        assertEquals("prefix", outputValues.getAsString(StructuredName.PREFIX));
+        assertEquals("given", outputValues.getAsString(StructuredName.GIVEN_NAME));
+        assertEquals("middle", outputValues.getAsString(StructuredName.MIDDLE_NAME));
+        assertEquals("family", outputValues.getAsString(StructuredName.FAMILY_NAME));
+        assertEquals("suffix", outputValues.getAsString(StructuredName.SUFFIX));
+    }
+
+    public void testMigrateWithStructuredNameFromExchangeToGoogle() {
+        AccountType oldAccountType = new ExchangeAccountType(getContext(), "");
+        AccountType newAccountType = new GoogleAccountType(getContext(), "");
+        DataKind kind = newAccountType.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE);
+
+        ContactsMockContext context = new ContactsMockContext(getContext());
+        MockContentProvider provider = context.getContactsProvider();
+
+        // The method will ask the provider to split/join StructuredName.
+        Uri uriForBuildDisplayName =
+                ContactsContract.AUTHORITY_URI
+                        .buildUpon()
+                        .appendPath("complete_name")
+                        .appendQueryParameter(StructuredName.PREFIX, "prefix")
+                        .appendQueryParameter(StructuredName.GIVEN_NAME, "given")
+                        .appendQueryParameter(StructuredName.MIDDLE_NAME, "middle")
+                        .appendQueryParameter(StructuredName.FAMILY_NAME, "family")
+                        .appendQueryParameter(StructuredName.SUFFIX, "suffix")
+                        .build();
+        provider.expectQuery(uriForBuildDisplayName)
+                .returnRow("prefix given middle family suffix")
+                .withProjection(StructuredName.DISPLAY_NAME);
+
+        EntityDelta oldState = new EntityDelta();
+        ContentValues mockNameValues = new ContentValues();
+        mockNameValues.put(Data.MIMETYPE, StructuredName.CONTENT_ITEM_TYPE);
+        mockNameValues.put(StructuredName.PREFIX, "prefix");
+        mockNameValues.put(StructuredName.GIVEN_NAME, "given");
+        mockNameValues.put(StructuredName.MIDDLE_NAME, "middle");
+        mockNameValues.put(StructuredName.FAMILY_NAME, "family");
+        mockNameValues.put(StructuredName.SUFFIX, "suffix");
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+
+        EntityDelta newState = new EntityDelta();
+        EntityModifier.migrateStructuredName(context, oldState, newState, kind);
+
+        List<ValuesDelta> list = newState.getMimeEntries(StructuredName.CONTENT_ITEM_TYPE);
+        assertNotNull(list);
+        assertEquals(1, list.size());
+        ContentValues outputValues = list.get(0).getAfter();
+        assertEquals("prefix given middle family suffix",
+                outputValues.getAsString(StructuredName.DISPLAY_NAME));
+    }
+
+    public void testMigratePostalFromGoogleToExchange() {
+        AccountType oldAccountType = new GoogleAccountType(getContext(), "");
+        AccountType newAccountType = new ExchangeAccountType(getContext(), "");
+        DataKind kind = newAccountType.getKindForMimetype(StructuredPostal.CONTENT_ITEM_TYPE);
+
+        EntityDelta oldState = new EntityDelta();
+        ContentValues mockNameValues = new ContentValues();
+        mockNameValues.put(Data.MIMETYPE, StructuredPostal.CONTENT_ITEM_TYPE);
+        mockNameValues.put(StructuredPostal.FORMATTED_ADDRESS, "formatted_address");
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+
+        EntityDelta newState = new EntityDelta();
+        EntityModifier.migratePostal(oldState, newState, kind);
+
+        List<ValuesDelta> list = newState.getMimeEntries(StructuredPostal.CONTENT_ITEM_TYPE);
+        assertNotNull(list);
+        assertEquals(1, list.size());
+        ContentValues outputValues = list.get(0).getAfter();
+        // FORMATTED_ADDRESS isn't supported by Exchange.
+        assertNull(outputValues.getAsString(StructuredPostal.FORMATTED_ADDRESS));
+        assertEquals("formatted_address", outputValues.getAsString(StructuredPostal.STREET));
+    }
+
+    public void testMigratePostalFromExchangeToGoogle() {
+        AccountType oldAccountType = new ExchangeAccountType(getContext(), "");
+        AccountType newAccountType = new GoogleAccountType(getContext(), "");
+        DataKind kind = newAccountType.getKindForMimetype(StructuredPostal.CONTENT_ITEM_TYPE);
+
+        EntityDelta oldState = new EntityDelta();
+        ContentValues mockNameValues = new ContentValues();
+        mockNameValues.put(Data.MIMETYPE, StructuredPostal.CONTENT_ITEM_TYPE);
+        mockNameValues.put(StructuredPostal.COUNTRY, "country");
+        mockNameValues.put(StructuredPostal.POSTCODE, "postcode");
+        mockNameValues.put(StructuredPostal.REGION, "region");
+        mockNameValues.put(StructuredPostal.CITY, "city");
+        mockNameValues.put(StructuredPostal.STREET, "street");
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+
+        EntityDelta newState = new EntityDelta();
+        EntityModifier.migratePostal(oldState, newState, kind);
+
+        List<ValuesDelta> list = newState.getMimeEntries(StructuredPostal.CONTENT_ITEM_TYPE);
+        assertNotNull(list);
+        assertEquals(1, list.size());
+        ContentValues outputValues = list.get(0).getAfter();
+
+        // Check FORMATTED_ADDRESS contains all info.
+        String formattedAddress = outputValues.getAsString(StructuredPostal.FORMATTED_ADDRESS);
+        assertNotNull(formattedAddress);
+        assertTrue(formattedAddress.contains("country"));
+        assertTrue(formattedAddress.contains("postcode"));
+        assertTrue(formattedAddress.contains("region"));
+        assertTrue(formattedAddress.contains("postcode"));
+        assertTrue(formattedAddress.contains("city"));
+        assertTrue(formattedAddress.contains("street"));
+    }
+
+    public void testMigrateEventFromGoogleToExchange1() {
+        testMigrateEventCommon(new GoogleAccountType(getContext(), ""),
+                new ExchangeAccountType(getContext(), ""));
+    }
+
+    public void testMigrateEventFromExchangeToGoogle() {
+        testMigrateEventCommon(new ExchangeAccountType(getContext(), ""),
+                new GoogleAccountType(getContext(), ""));
+    }
+
+    private void testMigrateEventCommon(AccountType oldAccountType, AccountType newAccountType) {
+        DataKind kind = newAccountType.getKindForMimetype(Event.CONTENT_ITEM_TYPE);
+
+        EntityDelta oldState = new EntityDelta();
+        ContentValues mockNameValues = new ContentValues();
+        mockNameValues.put(Data.MIMETYPE, Event.CONTENT_ITEM_TYPE);
+        mockNameValues.put(Event.START_DATE, "1972-02-08");
+        mockNameValues.put(Event.TYPE, Event.TYPE_BIRTHDAY);
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+
+        EntityDelta newState = new EntityDelta();
+        EntityModifier.migrateEvent(oldState, newState, kind, 1990);
+
+        List<ValuesDelta> list = newState.getMimeEntries(Event.CONTENT_ITEM_TYPE);
+        assertNotNull(list);
+        assertEquals(1, list.size());  // Anniversary should be dropped.
+        ContentValues outputValues = list.get(0).getAfter();
+
+        assertEquals("1972-02-08", outputValues.getAsString(Event.START_DATE));
+        assertEquals(Event.TYPE_BIRTHDAY, outputValues.getAsInteger(Event.TYPE).intValue());
+    }
+
+    public void testMigrateEventFromGoogleToExchange2() {
+        AccountType oldAccountType = new GoogleAccountType(getContext(), "");
+        AccountType newAccountType = new ExchangeAccountType(getContext(), "");
+        DataKind kind = newAccountType.getKindForMimetype(Event.CONTENT_ITEM_TYPE);
+
+        EntityDelta oldState = new EntityDelta();
+        ContentValues mockNameValues = new ContentValues();
+        mockNameValues.put(Data.MIMETYPE, Event.CONTENT_ITEM_TYPE);
+        // No year format is not supported by Exchange.
+        mockNameValues.put(Event.START_DATE, "--06-01");
+        mockNameValues.put(Event.TYPE, Event.TYPE_BIRTHDAY);
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+        mockNameValues = new ContentValues();
+        mockNameValues.put(Data.MIMETYPE, Event.CONTENT_ITEM_TYPE);
+        mockNameValues.put(Event.START_DATE, "1980-08-02");
+        // Anniversary is not supported by Exchange
+        mockNameValues.put(Event.TYPE, Event.TYPE_ANNIVERSARY);
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+
+        EntityDelta newState = new EntityDelta();
+        EntityModifier.migrateEvent(oldState, newState, kind, 1990);
+
+        List<ValuesDelta> list = newState.getMimeEntries(Event.CONTENT_ITEM_TYPE);
+        assertNotNull(list);
+        assertEquals(1, list.size());  // Anniversary should be dropped.
+        ContentValues outputValues = list.get(0).getAfter();
+
+        // Default year should be used.
+        assertEquals("1990-06-01", outputValues.getAsString(Event.START_DATE));
+        assertEquals(Event.TYPE_BIRTHDAY, outputValues.getAsInteger(Event.TYPE).intValue());
+    }
+
+    public void testMigrateEmailFromGoogleToExchange() {
+        AccountType oldAccountType = new GoogleAccountType(getContext(), "");
+        AccountType newAccountType = new ExchangeAccountType(getContext(), "");
+        DataKind kind = newAccountType.getKindForMimetype(Email.CONTENT_ITEM_TYPE);
+
+        EntityDelta oldState = new EntityDelta();
+        ContentValues mockNameValues = new ContentValues();
+        mockNameValues.put(Data.MIMETYPE, Email.CONTENT_ITEM_TYPE);
+        mockNameValues.put(Email.TYPE, Email.TYPE_CUSTOM);
+        mockNameValues.put(Email.LABEL, "custom_type");
+        mockNameValues.put(Email.ADDRESS, "address1");
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+        mockNameValues = new ContentValues();
+        mockNameValues.put(Data.MIMETYPE, Email.CONTENT_ITEM_TYPE);
+        mockNameValues.put(Email.TYPE, Email.TYPE_HOME);
+        mockNameValues.put(Email.ADDRESS, "address2");
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+        mockNameValues = new ContentValues();
+        mockNameValues.put(Data.MIMETYPE, Email.CONTENT_ITEM_TYPE);
+        mockNameValues.put(Email.TYPE, Email.TYPE_WORK);
+        mockNameValues.put(Email.ADDRESS, "address3");
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+        // Exchange can have up to 3 email entries. This 4th entry should be dropped.
+        mockNameValues = new ContentValues();
+        mockNameValues.put(Data.MIMETYPE, Email.CONTENT_ITEM_TYPE);
+        mockNameValues.put(Email.TYPE, Email.TYPE_OTHER);
+        mockNameValues.put(Email.ADDRESS, "address4");
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+
+        EntityDelta newState = new EntityDelta();
+        EntityModifier.migrateGenericWithTypeColumn(oldState, newState, kind);
+
+        List<ValuesDelta> list = newState.getMimeEntries(Email.CONTENT_ITEM_TYPE);
+        assertNotNull(list);
+        assertEquals(3, list.size());
+
+        ContentValues outputValues = list.get(0).getAfter();
+        assertEquals(Email.TYPE_CUSTOM, outputValues.getAsInteger(Email.TYPE).intValue());
+        assertEquals("custom_type", outputValues.getAsString(Email.LABEL));
+        assertEquals("address1", outputValues.getAsString(Email.ADDRESS));
+
+        outputValues = list.get(1).getAfter();
+        assertEquals(Email.TYPE_HOME, outputValues.getAsInteger(Email.TYPE).intValue());
+        assertEquals("address2", outputValues.getAsString(Email.ADDRESS));
+
+        outputValues = list.get(2).getAfter();
+        assertEquals(Email.TYPE_WORK, outputValues.getAsInteger(Email.TYPE).intValue());
+        assertEquals("address3", outputValues.getAsString(Email.ADDRESS));
+    }
+
+    public void testMigrateImFromGoogleToExchange() {
+        AccountType oldAccountType = new GoogleAccountType(getContext(), "");
+        AccountType newAccountType = new ExchangeAccountType(getContext(), "");
+        DataKind kind = newAccountType.getKindForMimetype(Im.CONTENT_ITEM_TYPE);
+
+        EntityDelta oldState = new EntityDelta();
+        ContentValues mockNameValues = new ContentValues();
+        mockNameValues.put(Data.MIMETYPE, Im.CONTENT_ITEM_TYPE);
+        // Exchange doesn't support TYPE_HOME
+        mockNameValues.put(Im.TYPE, Im.TYPE_HOME);
+        mockNameValues.put(Im.PROTOCOL, Im.PROTOCOL_JABBER);
+        mockNameValues.put(Im.DATA, "im1");
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+
+        mockNameValues = new ContentValues();
+        mockNameValues.put(Data.MIMETYPE, Im.CONTENT_ITEM_TYPE);
+        // Exchange doesn't support TYPE_WORK
+        mockNameValues.put(Im.TYPE, Im.TYPE_WORK);
+        mockNameValues.put(Im.PROTOCOL, Im.PROTOCOL_YAHOO);
+        mockNameValues.put(Im.DATA, "im2");
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+
+        mockNameValues = new ContentValues();
+        mockNameValues.put(Data.MIMETYPE, Im.CONTENT_ITEM_TYPE);
+        mockNameValues.put(Im.TYPE, Im.TYPE_OTHER);
+        mockNameValues.put(Im.PROTOCOL, Im.PROTOCOL_CUSTOM);
+        mockNameValues.put(Im.CUSTOM_PROTOCOL, "custom_protocol");
+        mockNameValues.put(Im.DATA, "im3");
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+
+        // Exchange can have up to 3 IM entries. This 4th entry should be dropped.
+        mockNameValues = new ContentValues();
+        mockNameValues.put(Data.MIMETYPE, Im.CONTENT_ITEM_TYPE);
+        mockNameValues.put(Im.TYPE, Im.TYPE_OTHER);
+        mockNameValues.put(Im.PROTOCOL, Im.PROTOCOL_GOOGLE_TALK);
+        mockNameValues.put(Im.DATA, "im4");
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+
+        EntityDelta newState = new EntityDelta();
+        EntityModifier.migrateGenericWithTypeColumn(oldState, newState, kind);
+
+        List<ValuesDelta> list = newState.getMimeEntries(Im.CONTENT_ITEM_TYPE);
+        assertNotNull(list);
+        assertEquals(3, list.size());
+
+        assertNotNull(kind.defaultValues.getAsInteger(Im.TYPE));
+
+        int defaultType = kind.defaultValues.getAsInteger(Im.TYPE);
+
+        ContentValues outputValues = list.get(0).getAfter();
+        // HOME should become default type.
+        assertEquals(defaultType, outputValues.getAsInteger(Im.TYPE).intValue());
+        assertEquals(Im.PROTOCOL_JABBER, outputValues.getAsInteger(Im.PROTOCOL).intValue());
+        assertEquals("im1", outputValues.getAsString(Im.DATA));
+
+        outputValues = list.get(1).getAfter();
+        assertEquals(defaultType, outputValues.getAsInteger(Im.TYPE).intValue());
+        assertEquals(Im.PROTOCOL_YAHOO, outputValues.getAsInteger(Im.PROTOCOL).intValue());
+        assertEquals("im2", outputValues.getAsString(Im.DATA));
+
+        outputValues = list.get(2).getAfter();
+        assertEquals(defaultType, outputValues.getAsInteger(Im.TYPE).intValue());
+        assertEquals(Im.PROTOCOL_CUSTOM, outputValues.getAsInteger(Im.PROTOCOL).intValue());
+        assertEquals("custom_protocol", outputValues.getAsString(Im.CUSTOM_PROTOCOL));
+        assertEquals("im3", outputValues.getAsString(Im.DATA));
+    }
+
+    public void testMigratePhoneFromGoogleToExchange() {
+        AccountType oldAccountType = new GoogleAccountType(getContext(), "");
+        AccountType newAccountType = new ExchangeAccountType(getContext(), "");
+        DataKind kind = newAccountType.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
+
+        EntityDelta oldState = new EntityDelta();
+        ContentValues mockNameValues = new ContentValues();
+        mockNameValues.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
+        mockNameValues.put(Phone.TYPE, Phone.TYPE_HOME);
+        mockNameValues.put(Phone.NUMBER, "1");
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+        mockNameValues = new ContentValues();
+        mockNameValues.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
+        mockNameValues.put(Phone.TYPE, Phone.TYPE_MOBILE);
+        mockNameValues.put(Phone.NUMBER, "2");
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+        mockNameValues = new ContentValues();
+        mockNameValues.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
+        // Exchange doesn't support this type. Default to HOME
+        mockNameValues.put(Phone.TYPE, Phone.TYPE_CUSTOM);
+        mockNameValues.put(Phone.LABEL, "custom_type");
+        mockNameValues.put(Phone.NUMBER, "3");
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+        mockNameValues = new ContentValues();
+        mockNameValues.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
+        mockNameValues.put(Phone.TYPE, Phone.TYPE_WORK);
+        mockNameValues.put(Phone.NUMBER, "4");
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+        mockNameValues = new ContentValues();
+
+        // This field should be ignored, as Exchange only allows 2 HOME phone numbers while we
+        // already have that number of HOME phones.
+        mockNameValues.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
+        mockNameValues.put(Phone.TYPE, Phone.TYPE_WORK_MOBILE);
+        mockNameValues.put(Phone.NUMBER, "5");
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+
+        EntityDelta newState = new EntityDelta();
+        EntityModifier.migrateGenericWithTypeColumn(oldState, newState, kind);
+
+        List<ValuesDelta> list = newState.getMimeEntries(Phone.CONTENT_ITEM_TYPE);
+        assertNotNull(list);
+        assertEquals(4, list.size());
+
+        int defaultType = kind.typeList.get(0).rawValue;
+
+        ContentValues outputValues = list.get(0).getAfter();
+        assertEquals(Phone.TYPE_HOME, outputValues.getAsInteger(Phone.TYPE).intValue());
+        assertEquals("1", outputValues.getAsString(Phone.NUMBER));
+        outputValues = list.get(1).getAfter();
+        assertEquals(Phone.TYPE_MOBILE, outputValues.getAsInteger(Phone.TYPE).intValue());
+        assertEquals("2", outputValues.getAsString(Phone.NUMBER));
+        outputValues = list.get(2).getAfter();
+        assertEquals(defaultType, outputValues.getAsInteger(Phone.TYPE).intValue());
+        assertNull(outputValues.getAsInteger(Phone.LABEL));
+        assertEquals("3", outputValues.getAsString(Phone.NUMBER));
+        outputValues = list.get(3).getAfter();
+        assertEquals(Phone.TYPE_WORK, outputValues.getAsInteger(Phone.TYPE).intValue());
+        assertEquals("4", outputValues.getAsString(Phone.NUMBER));
+    }
+
+    public void testMigrateOrganizationFromGoogleToExchange() {
+        AccountType oldAccountType = new GoogleAccountType(getContext(), "");
+        AccountType newAccountType = new ExchangeAccountType(getContext(), "");
+        DataKind kind = newAccountType.getKindForMimetype(Organization.CONTENT_ITEM_TYPE);
+
+        EntityDelta oldState = new EntityDelta();
+        ContentValues mockNameValues = new ContentValues();
+        mockNameValues.put(Data.MIMETYPE, Organization.CONTENT_ITEM_TYPE);
+        mockNameValues.put(Organization.COMPANY, "company1");
+        mockNameValues.put(Organization.DEPARTMENT, "department1");
+        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
+
+        EntityDelta newState = new EntityDelta();
+        EntityModifier.migrateGenericWithoutTypeColumn(oldState, newState, kind);
+
+        List<ValuesDelta> list = newState.getMimeEntries(Organization.CONTENT_ITEM_TYPE);
+        assertNotNull(list);
+        assertEquals(1, list.size());
+
+        ContentValues outputValues = list.get(0).getAfter();
+        assertEquals("company1", outputValues.getAsString(Organization.COMPANY));
+        assertEquals("department1", outputValues.getAsString(Organization.DEPARTMENT));
     }
 }

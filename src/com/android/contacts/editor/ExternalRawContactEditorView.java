@@ -60,9 +60,9 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
     private Button mEditExternallyButton;
     private ViewGroup mGeneral;
 
-    private ImageView mHeaderIcon;
-    private TextView mHeaderAccountType;
-    private TextView mHeaderAccountName;
+    private ImageView mAccountIcon;
+    private TextView mAccountTypeTextView;
+    private TextView mAccountNameTextView;
 
     private String mAccountName;
     private String mAccountType;
@@ -102,9 +102,9 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
         mEditExternallyButton.setOnClickListener(this);
         mGeneral = (ViewGroup)findViewById(R.id.sect_general);
 
-        mHeaderIcon = (ImageView) findViewById(R.id.header_icon);
-        mHeaderAccountType = (TextView) findViewById(R.id.header_account_type);
-        mHeaderAccountName = (TextView) findViewById(R.id.header_account_name);
+        mAccountIcon = (ImageView) findViewById(R.id.account_icon);
+        mAccountTypeTextView = (TextView) findViewById(R.id.account_type);
+        mAccountNameTextView = (TextView) findViewById(R.id.account_name);
     }
 
     /**
@@ -132,11 +132,11 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
             accountType = mContext.getString(R.string.account_phone);
         }
         if (!TextUtils.isEmpty(mAccountName)) {
-            mHeaderAccountName.setText(
+            mAccountNameTextView.setText(
                     mContext.getString(R.string.from_account_format, mAccountName));
         }
-        mHeaderAccountType.setText(mContext.getString(R.string.account_type_format, accountType));
-        mHeaderIcon.setImageDrawable(type.getDisplayIcon(mContext));
+        mAccountTypeTextView.setText(mContext.getString(R.string.account_type_format, accountType));
+        mAccountIcon.setImageDrawable(type.getDisplayIcon(mContext));
 
         mRawContactId = values.getAsLong(RawContacts._ID);
 

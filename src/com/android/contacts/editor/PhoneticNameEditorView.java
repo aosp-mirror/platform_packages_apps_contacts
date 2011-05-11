@@ -20,6 +20,7 @@ import com.android.contacts.model.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.TextUtils;
@@ -60,55 +61,20 @@ public class PhoneticNameEditorView extends TextFieldsEditorView {
         }
 
         private void parsePhoneticName(String value) {
-            String family = null;
-            String middle = null;
-            String given = null;
-
-            if (!TextUtils.isEmpty(value)) {
-                String[] strings = value.split(" ", 3);
-                switch (strings.length) {
-                    case 1:
-                        family = strings[0];
-                        break;
-                    case 2:
-                        family = strings[0];
-                        given = strings[1];
-                        break;
-                    case 3:
-                        family = strings[0];
-                        middle = strings[1];
-                        given = strings[2];
-                        break;
-                }
-            }
-
-            mValues.put(StructuredName.PHONETIC_FAMILY_NAME, family);
-            mValues.put(StructuredName.PHONETIC_MIDDLE_NAME, middle);
-            mValues.put(StructuredName.PHONETIC_GIVEN_NAME, given);
+            ContentValues values = PhoneticNameEditorView.parsePhoneticName(value, null);
+            mValues.put(StructuredName.PHONETIC_FAMILY_NAME,
+                    values.getAsString(StructuredName.PHONETIC_FAMILY_NAME));
+            mValues.put(StructuredName.PHONETIC_MIDDLE_NAME,
+                    values.getAsString(StructuredName.PHONETIC_MIDDLE_NAME));
+            mValues.put(StructuredName.PHONETIC_GIVEN_NAME,
+                    values.getAsString(StructuredName.PHONETIC_GIVEN_NAME));
         }
 
         private void buildPhoneticName() {
             String family = mValues.getAsString(StructuredName.PHONETIC_FAMILY_NAME);
             String middle = mValues.getAsString(StructuredName.PHONETIC_MIDDLE_NAME);
             String given = mValues.getAsString(StructuredName.PHONETIC_GIVEN_NAME);
-
-            if (!TextUtils.isEmpty(family) || !TextUtils.isEmpty(middle)
-                    || !TextUtils.isEmpty(given)) {
-                StringBuilder sb = new StringBuilder();
-                if (!TextUtils.isEmpty(family)) {
-                    sb.append(family.trim()).append(' ');
-                }
-                if (!TextUtils.isEmpty(middle)) {
-                    sb.append(middle.trim()).append(' ');
-                }
-                if (!TextUtils.isEmpty(given)) {
-                    sb.append(given.trim()).append(' ');
-                }
-                sb.setLength(sb.length() - 1);  // Yank the last space
-                mPhoneticName = sb.toString();
-            } else {
-                mPhoneticName = null;
-            }
+            mPhoneticName = PhoneticNameEditorView.buildPhoneticName(family, middle, given);
         }
 
         @Override
@@ -119,6 +85,73 @@ public class PhoneticNameEditorView extends TextFieldsEditorView {
         @Override
         public boolean isVisible() {
             return mValues.isVisible();
+        }
+    }
+
+    /**
+     * Parses phonetic name and returns parsed data (family, middle, given) as ContentValues.
+     * Parsed data should be {@link StructuredName#PHONETIC_FAMILY_NAME},
+     * {@link StructuredName#PHONETIC_MIDDLE_NAME}, and
+     * {@link StructuredName#PHONETIC_GIVEN_NAME}.
+     * If this method cannot parse given phoneticName, null values will be stored.
+     *
+     * @param phoneticName Phonetic name to be parsed
+     * @param values ContentValues to be used for storing data. If null, new instance will be
+     * created.
+     * @return ContentValues with parsed data. Those data can be null.
+     */
+    public static ContentValues parsePhoneticName(String phoneticName, ContentValues values) {
+        String family = null;
+        String middle = null;
+        String given = null;
+
+        if (!TextUtils.isEmpty(phoneticName)) {
+            String[] strings = phoneticName.split(" ", 3);
+            switch (strings.length) {
+                case 1:
+                    family = strings[0];
+                    break;
+                case 2:
+                    family = strings[0];
+                    given = strings[1];
+                    break;
+                case 3:
+                    family = strings[0];
+                    middle = strings[1];
+                    given = strings[2];
+                    break;
+            }
+        }
+
+        if (values == null) {
+            values = new ContentValues();
+        }
+        values.put(StructuredName.PHONETIC_FAMILY_NAME, family);
+        values.put(StructuredName.PHONETIC_MIDDLE_NAME, middle);
+        values.put(StructuredName.PHONETIC_GIVEN_NAME, given);
+        return values;
+    }
+
+    /**
+     * Constructs and returns a phonetic full name from given parts.
+     */
+    public static String buildPhoneticName(String family, String middle, String given) {
+        if (!TextUtils.isEmpty(family) || !TextUtils.isEmpty(middle)
+                || !TextUtils.isEmpty(given)) {
+            StringBuilder sb = new StringBuilder();
+            if (!TextUtils.isEmpty(family)) {
+                sb.append(family.trim()).append(' ');
+            }
+            if (!TextUtils.isEmpty(middle)) {
+                sb.append(middle.trim()).append(' ');
+            }
+            if (!TextUtils.isEmpty(given)) {
+                sb.append(given.trim()).append(' ');
+            }
+            sb.setLength(sb.length() - 1);  // Yank the last space
+            return sb.toString();
+        } else {
+            return null;
         }
     }
 

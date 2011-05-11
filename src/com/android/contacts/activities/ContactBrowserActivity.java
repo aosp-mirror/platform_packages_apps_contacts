@@ -767,32 +767,15 @@ public class ContactBrowserActivity extends ContactsActivity
     }
 
     private void createNewContact() {
+        // We have an account switcher in "create-account" screen, so don't need to ask a user to
+        // select an account here.
         final ArrayList<Account> accounts =
                 AccountTypeManager.getInstance(this).getAccounts(true);
-        if (accounts.size() <= 1 || mAddContactImageView == null) {
-            // No account to choose or no control to anchor the popup-menu to
-            // ==> just go straight to the editor which will disambig if necessary
-            final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-            startActivityForResult(intent, SUBACTIVITY_NEW_CONTACT);
-            return;
+        final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+        if (accounts.size() > 0) {
+            intent.putExtra(Intents.Insert.ACCOUNT, accounts.get(0));
         }
-
-        final ListPopupWindow popup = new ListPopupWindow(this, null);
-        popup.setWidth(getResources().getDimensionPixelSize(R.dimen.account_selector_popup_width));
-        popup.setAnchorView(mAddContactImageView);
-        final AccountsListAdapter adapter = new AccountsListAdapter(this, true);
-        popup.setAdapter(adapter);
-        popup.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                popup.dismiss();
-                final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-                intent.putExtra(Intents.Insert.ACCOUNT, adapter.getItem(position));
-                startActivityForResult(intent, SUBACTIVITY_NEW_CONTACT);
-            }
-        });
-        popup.setModal(true);
-        popup.show();
+        startActivityForResult(intent, SUBACTIVITY_NEW_CONTACT);
     }
 
     @Override

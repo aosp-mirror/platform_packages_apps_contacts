@@ -166,6 +166,10 @@ public abstract class AccountType {
         public int rawValue;
         public int labelRes;
         public boolean secondary;
+        /**
+         * The number of entries allowed for the type. -1 if not specified.
+         * @see DataKind#typeOverallMax
+         */
         public int specificMax;
         public String customColumn;
 

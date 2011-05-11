@@ -1226,7 +1226,7 @@
     <string name="account_type_format"><xliff:g id="source" example="Gmail">%1$s</xliff:g> contact</string>
 
     <!-- String describing which account a contact came from when editing it -->
-    <string name="from_account_format">from <xliff:g id="source" example="user@gmail.com">%1$s</xliff:g></string>
+    <string name="from_account_format"><xliff:g id="source" example="user@gmail.com">%1$s</xliff:g></string>
 
     <!-- Checkbox asking the user if they want to display a particular photo for a contact -->
     <string name="use_photo_as_primary">Use this photo</string>

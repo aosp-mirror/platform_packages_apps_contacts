@@ -68,9 +68,9 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
     private ViewGroup mFields;
 
-    private ImageView mHeaderIcon;
-    private TextView mHeaderAccountType;
-    private TextView mHeaderAccountName;
+    private ImageView mAccountIcon;
+    private TextView mAccountTypeTextView;
+    private TextView mAccountNameTextView;
 
     private Button mAddFieldButton;
 
@@ -136,9 +136,9 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
         mFields = (ViewGroup)findViewById(R.id.sect_fields);
 
-        mHeaderIcon = (ImageView) findViewById(R.id.header_icon);
-        mHeaderAccountType = (TextView) findViewById(R.id.header_account_type);
-        mHeaderAccountName = (TextView) findViewById(R.id.header_account_name);
+        mAccountIcon = (ImageView) findViewById(R.id.account_icon);
+        mAccountTypeTextView = (TextView) findViewById(R.id.account_type);
+        mAccountNameTextView = (TextView) findViewById(R.id.account_name);
 
         mAddFieldButton = (Button) findViewById(R.id.button_add_field);
         mAddFieldButton.setOnClickListener(new OnClickListener() {
@@ -177,11 +177,11 @@ public class RawContactEditorView extends BaseRawContactEditorView {
             accountType = mContext.getString(R.string.account_phone);
         }
         if (!TextUtils.isEmpty(accountName)) {
-            mHeaderAccountName.setText(
+            mAccountNameTextView.setText(
                     mContext.getString(R.string.from_account_format, accountName));
         }
-        mHeaderAccountType.setText(mContext.getString(R.string.account_type_format, accountType));
-        mHeaderIcon.setImageDrawable(type.getDisplayIcon(mContext));
+        mAccountTypeTextView.setText(mContext.getString(R.string.account_type_format, accountType));
+        mAccountIcon.setImageDrawable(type.getDisplayIcon(mContext));
 
         mRawContactId = values.getAsLong(RawContacts._ID);
 

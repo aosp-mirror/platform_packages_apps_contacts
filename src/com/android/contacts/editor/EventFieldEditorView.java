@@ -47,7 +47,7 @@ public class EventFieldEditorView extends LabeledEditorView {
     /**
      * Exchange requires 8:00 for birthdays
      */
-    private final int DEFAULT_HOUR = 8;
+    private final static int DEFAULT_HOUR = 8;
 
     private Button mDateView;
 
@@ -231,5 +231,12 @@ public class EventFieldEditorView extends LabeledEditorView {
         final DatePickerDialog resultDialog = new DatePickerDialog(getContext(), callBack,
                 oldYear, oldMonth, oldDay, isYearOptional);
         return resultDialog;
+    }
+
+    /**
+     * @return Default hour which should be used for birthday field.
+     */
+    public static int getDefaultHourForBirthday() {
+        return DEFAULT_HOUR;
     }
 }

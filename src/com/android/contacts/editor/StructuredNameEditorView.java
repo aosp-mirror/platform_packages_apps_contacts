@@ -121,9 +121,31 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
         }
 
         String displayName = values.getAsString(StructuredName.DISPLAY_NAME);
+        ContentValues tmpCVs = buildStructuredNameFromFullName(
+                getContext(), displayName, null);
+        if (tmpCVs.size() > 0) {
+            eraseFullName(values);
+            values.put(StructuredName.PREFIX, tmpCVs.getAsString(StructuredName.PREFIX));
+            values.put(StructuredName.GIVEN_NAME, tmpCVs.getAsString(StructuredName.GIVEN_NAME));
+            values.put(StructuredName.MIDDLE_NAME, tmpCVs.getAsString(StructuredName.MIDDLE_NAME));
+            values.put(StructuredName.FAMILY_NAME, tmpCVs.getAsString(StructuredName.FAMILY_NAME));
+            values.put(StructuredName.SUFFIX, tmpCVs.getAsString(StructuredName.SUFFIX));
+        }
+
+        mSnapshot.clear();
+        mSnapshot.putAll(values.getCompleteValues());
+        mSnapshot.put(StructuredName.DISPLAY_NAME, displayName);
+    }
+
+    public static ContentValues buildStructuredNameFromFullName(
+            Context context, String displayName, ContentValues contentValues) {
+        if (contentValues == null) {
+            contentValues = new ContentValues();
+        }
+
         Builder builder = ContactsContract.AUTHORITY_URI.buildUpon().appendPath("complete_name");
         appendQueryParameter(builder, StructuredName.DISPLAY_NAME, displayName);
-        Cursor cursor = getContext().getContentResolver().query(builder.build(), new String[]{
+        Cursor cursor = context.getContentResolver().query(builder.build(), new String[]{
                 StructuredName.PREFIX,
                 StructuredName.GIVEN_NAME,
                 StructuredName.MIDDLE_NAME,
@@ -133,20 +155,17 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
 
         try {
             if (cursor.moveToFirst()) {
-                eraseFullName(values);
-                values.put(StructuredName.PREFIX, cursor.getString(0));
-                values.put(StructuredName.GIVEN_NAME, cursor.getString(1));
-                values.put(StructuredName.MIDDLE_NAME, cursor.getString(2));
-                values.put(StructuredName.FAMILY_NAME, cursor.getString(3));
-                values.put(StructuredName.SUFFIX, cursor.getString(4));
+                contentValues.put(StructuredName.PREFIX, cursor.getString(0));
+                contentValues.put(StructuredName.GIVEN_NAME, cursor.getString(1));
+                contentValues.put(StructuredName.MIDDLE_NAME, cursor.getString(2));
+                contentValues.put(StructuredName.FAMILY_NAME, cursor.getString(3));
+                contentValues.put(StructuredName.SUFFIX, cursor.getString(4));
             }
         } finally {
             cursor.close();
         }
 
-        mSnapshot.clear();
-        mSnapshot.putAll(values.getCompleteValues());
-        mSnapshot.put(StructuredName.DISPLAY_NAME, displayName);
+        return contentValues;
     }
 
     private void switchFromStructuredNameToFullName() {
@@ -164,24 +183,11 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
         String familyName = values.getAsString(StructuredName.FAMILY_NAME);
         String suffix = values.getAsString(StructuredName.SUFFIX);
 
-        Uri.Builder builder = ContactsContract.AUTHORITY_URI.buildUpon().appendPath(
-                "complete_name");
-        appendQueryParameter(builder, StructuredName.PREFIX, prefix);
-        appendQueryParameter(builder, StructuredName.GIVEN_NAME, givenName);
-        appendQueryParameter(builder, StructuredName.MIDDLE_NAME, middleName);
-        appendQueryParameter(builder, StructuredName.FAMILY_NAME, familyName);
-        appendQueryParameter(builder, StructuredName.SUFFIX, suffix);
-        Cursor cursor = getContext().getContentResolver().query(builder.build(), new String[]{
-                StructuredName.DISPLAY_NAME,
-        }, null, null, null);
-
-        try {
-            if (cursor.moveToFirst()) {
-                eraseStructuredName(values);
-                values.put(StructuredName.DISPLAY_NAME, cursor.getString(0));
-            }
-        } finally {
-            cursor.close();
+        String displayName = buildFullNameFromStructuredName(getContext(),
+                prefix, givenName, middleName, familyName, suffix);
+        if (!TextUtils.isEmpty(displayName)) {
+            eraseStructuredName(values);
+            values.put(StructuredName.DISPLAY_NAME, displayName);
         }
 
         mSnapshot.clear();
@@ -191,6 +197,30 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
         mSnapshot.put(StructuredName.MIDDLE_NAME, middleName);
         mSnapshot.put(StructuredName.FAMILY_NAME, familyName);
         mSnapshot.put(StructuredName.SUFFIX, suffix);
+    }
+
+    public static String buildFullNameFromStructuredName(Context context,
+            String prefix, String given, String middle, String family, String suffix) {
+        Uri.Builder builder = ContactsContract.AUTHORITY_URI.buildUpon()
+                .appendPath("complete_name");
+        appendQueryParameter(builder, StructuredName.PREFIX, prefix);
+        appendQueryParameter(builder, StructuredName.GIVEN_NAME, given);
+        appendQueryParameter(builder, StructuredName.MIDDLE_NAME, middle);
+        appendQueryParameter(builder, StructuredName.FAMILY_NAME, family);
+        appendQueryParameter(builder, StructuredName.SUFFIX, suffix);
+        Cursor cursor = context.getContentResolver().query(builder.build(), new String[]{
+                StructuredName.DISPLAY_NAME,
+        }, null, null, null);
+
+        try {
+            if (cursor.moveToFirst()) {
+                return cursor.getString(0);
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return null;
     }
 
     private void eraseFullName(ValuesDelta values) {
@@ -205,7 +235,7 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
         values.putNull(StructuredName.SUFFIX);
     }
 
-    private void appendQueryParameter(Uri.Builder builder, String field, String value) {
+    private static void appendQueryParameter(Uri.Builder builder, String field, String value) {
         if (!TextUtils.isEmpty(value)) {
             builder.appendQueryParameter(field, value);
         }
