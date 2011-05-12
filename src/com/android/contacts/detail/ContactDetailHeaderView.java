@@ -20,6 +20,8 @@ import com.android.contacts.ContactLoader;
 import com.android.contacts.ContactLoader.Result;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
+import com.android.contacts.format.FormatUtils;
+import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.util.ContactBadgeUtil;
 
 import android.content.ClipData;
@@ -31,10 +33,13 @@ import android.content.Entity.NamedContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.DisplayNameSources;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -122,7 +127,8 @@ public class ContactDetailHeaderView extends FrameLayout
     public void loadData(ContactLoader.Result contactData) {
         mContactUri = contactData.getLookupUri();
 
-        setDisplayName(contactData.getDisplayName(), contactData.getPhoneticName());
+        setDisplayName(contactData.getDisplayName(), contactData.getAltDisplayName(),
+                contactData.getPhoneticName());
         setCompany(contactData);
         if (contactData.isLoadingPhoto()) {
             setPhoto(null, false);
@@ -188,8 +194,36 @@ public class ContactDetailHeaderView extends FrameLayout
     /**
      * Set the display name and phonetic name to show in the header.
      */
-    private void setDisplayName(CharSequence displayName, CharSequence phoneticName) {
-        mDisplayNameView.setText(displayName);
+    private void setDisplayName(CharSequence displayName, CharSequence altDisplayName,
+            CharSequence phoneticName) {
+
+        // Check the preference for display name ordering, and bold the contact's first name if
+        // possible.
+        ContactsPreferences prefs = new ContactsPreferences(getContext());
+        CharSequence styledName;
+        if (prefs.getDisplayOrder() == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
+            int overlapPoint = FormatUtils.overlapPoint(
+                    displayName.toString(), altDisplayName.toString());
+            if (overlapPoint > 0) {
+                styledName = FormatUtils.applyStyleToSpan(Typeface.BOLD,
+                        displayName, 0, overlapPoint, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            } else {
+                styledName = displayName;
+            }
+        } else {
+            // Displaying alternate display name.
+            int overlapPoint = FormatUtils.overlapPoint(
+                    altDisplayName.toString(), displayName.toString());
+            if (overlapPoint > 0) {
+                styledName = FormatUtils.applyStyleToSpan(Typeface.BOLD,
+                        altDisplayName, overlapPoint, altDisplayName.length(),
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            } else {
+                styledName = altDisplayName;
+            }
+        }
+        mDisplayNameView.setText(styledName);
+
         if (TextUtils.isEmpty(phoneticName)) {
             mPhoneticNameView.setVisibility(View.GONE);
         } else {

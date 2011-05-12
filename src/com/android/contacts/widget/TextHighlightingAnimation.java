@@ -15,6 +15,7 @@
  */
 package com.android.contacts.widget;
 
+import com.android.contacts.format.FormatUtils;
 import com.android.internal.R;
 
 import android.database.CharArrayBuffer;
@@ -72,7 +73,7 @@ public abstract class TextHighlightingAnimation implements Runnable, TextWithHig
             // TODO figure out a way to avoid string allocation
             mString = new String(mText.data, 0, mText.sizeCopied);
 
-            int index = indexOf(baseText, highlightedText);
+            int index = FormatUtils.overlapPoint(baseText, highlightedText);
 
             if (index == 0 || index == -1) {
                 mDimmingEnabled = false;
@@ -82,42 +83,6 @@ public abstract class TextHighlightingAnimation implements Runnable, TextWithHig
                 mDimmingSpanEnd = index;
             }
         }
-
-        /**
-         * An implementation of indexOf on CharArrayBuffers that finds the first match of
-         * the start of buffer2 in buffer1.  For example, indexOf("abcd", "cdef") == 2
-         */
-        private int indexOf(CharArrayBuffer buffer1, CharArrayBuffer buffer2) {
-            char[] string1 = buffer1.data;
-            char[] string2 = buffer2.data;
-            int count1 = buffer1.sizeCopied;
-            int count2 = buffer2.sizeCopied;
-
-            // Ignore matching tails of the two buffers
-            while (count1 > 0 && count2 > 0 && string1[count1 - 1] == string2[count2 - 1]) {
-                count1--;
-                count2--;
-            }
-
-            int size = count2;
-            for (int i = 0; i < count1; i++) {
-                if (i + size > count1) {
-                    size = count1 - i;
-                }
-                int j;
-                for (j = 0; j < size; j++) {
-                    if (string1[i+j] != string2[j]) {
-                        break;
-                    }
-                }
-                if (j == size) {
-                    return i;
-                }
-            }
-
-            return -1;
-        }
-
 
         @SuppressWarnings("unchecked")
         public <T> T[] getSpans(int start, int end, Class<T> type) {

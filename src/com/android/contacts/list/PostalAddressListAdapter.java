@@ -156,8 +156,8 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
     }
 
     protected void bindName(final ContactListItemView view, Cursor cursor) {
-        view.showDisplayName(cursor, mDisplayNameColumnIndex, isNameHighlightingEnabled(),
-                mAlternativeDisplayNameColumnIndex);
+        view.showDisplayName(cursor, mDisplayNameColumnIndex, mAlternativeDisplayNameColumnIndex,
+                isNameHighlightingEnabled(), getContactNameDisplayOrder());
 //        view.showPhoneticName(cursor, PHONE_PHONETIC_NAME_COLUMN_INDEX);
     }
 

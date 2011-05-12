@@ -93,6 +93,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         private final long mPhotoId;
         private final String mPhotoUri;
         private final String mDisplayName;
+        private final String mAltDisplayName;
         private final String mPhoneticName;
         private final boolean mStarred;
         private final Integer mPresence;
@@ -131,6 +132,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mPhotoId = -1;
             mPhotoUri = null;
             mDisplayName = null;
+            mAltDisplayName = null;
             mPhoneticName = null;
             mStarred = false;
             mPresence = null;
@@ -145,8 +147,9 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
          */
         private Result(Uri uri, Uri lookupUri, long directoryId, String lookupKey, long id,
                 long nameRawContactId, int displayNameSource, long photoId, String photoUri,
-                String displayName, String phoneticName, boolean starred, Integer presence,
-                String status, Long statusTimestamp, Integer statusLabel, String statusResPackage) {
+                String displayName, String altDisplayName, String phoneticName, boolean starred,
+                Integer presence, String status, Long statusTimestamp, Integer statusLabel,
+                String statusResPackage) {
             mLookupUri = lookupUri;
             mUri = uri;
             mDirectoryId = directoryId;
@@ -159,6 +162,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mPhotoId = photoId;
             mPhotoUri = photoUri;
             mDisplayName = displayName;
+            mAltDisplayName = altDisplayName;
             mPhoneticName = phoneticName;
             mStarred = starred;
             mPresence = presence;
@@ -179,6 +183,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mPhotoId = from.mPhotoId;
             mPhotoUri = from.mPhotoUri;
             mDisplayName = from.mDisplayName;
+            mAltDisplayName = from.mAltDisplayName;
             mPhoneticName = from.mPhoneticName;
             mStarred = from.mStarred;
             mPresence = from.mPresence;
@@ -255,6 +260,10 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
         public String getDisplayName() {
             return mDisplayName;
+        }
+
+        public String getAltDisplayName() {
+            return mAltDisplayName;
         }
 
         public String getPhoneticName() {
@@ -380,6 +389,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 Contacts.DISPLAY_NAME_SOURCE,
                 Contacts.LOOKUP_KEY,
                 Contacts.DISPLAY_NAME,
+                Contacts.DISPLAY_NAME_ALTERNATIVE,
                 Contacts.PHONETIC_NAME,
                 Contacts.PHOTO_ID,
                 Contacts.STARRED,
@@ -447,67 +457,68 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         public final static int DISPLAY_NAME_SOURCE = 1;
         public final static int LOOKUP_KEY = 2;
         public final static int DISPLAY_NAME = 3;
-        public final static int PHONETIC_NAME = 4;
-        public final static int PHOTO_ID = 5;
-        public final static int STARRED = 6;
-        public final static int CONTACT_PRESENCE = 7;
-        public final static int CONTACT_STATUS = 8;
-        public final static int CONTACT_STATUS_TIMESTAMP = 9;
-        public final static int CONTACT_STATUS_RES_PACKAGE = 10;
-        public final static int CONTACT_STATUS_LABEL = 11;
-        public final static int CONTACT_ID = 12;
-        public final static int RAW_CONTACT_ID = 13;
+        public final static int ALT_DISPLAY_NAME = 4;
+        public final static int PHONETIC_NAME = 5;
+        public final static int PHOTO_ID = 6;
+        public final static int STARRED = 7;
+        public final static int CONTACT_PRESENCE = 8;
+        public final static int CONTACT_STATUS = 9;
+        public final static int CONTACT_STATUS_TIMESTAMP = 10;
+        public final static int CONTACT_STATUS_RES_PACKAGE = 11;
+        public final static int CONTACT_STATUS_LABEL = 12;
+        public final static int CONTACT_ID = 13;
+        public final static int RAW_CONTACT_ID = 14;
 
-        public final static int ACCOUNT_NAME = 14;
-        public final static int ACCOUNT_TYPE = 15;
-        public final static int DIRTY = 16;
-        public final static int VERSION = 17;
-        public final static int SOURCE_ID = 18;
-        public final static int SYNC1 = 19;
-        public final static int SYNC2 = 20;
-        public final static int SYNC3 = 21;
-        public final static int SYNC4 = 22;
-        public final static int DELETED = 23;
-        public final static int IS_RESTRICTED = 24;
-        public final static int NAME_VERIFIED = 25;
+        public final static int ACCOUNT_NAME = 15;
+        public final static int ACCOUNT_TYPE = 16;
+        public final static int DIRTY = 17;
+        public final static int VERSION = 18;
+        public final static int SOURCE_ID = 19;
+        public final static int SYNC1 = 20;
+        public final static int SYNC2 = 21;
+        public final static int SYNC3 = 22;
+        public final static int SYNC4 = 23;
+        public final static int DELETED = 24;
+        public final static int IS_RESTRICTED = 25;
+        public final static int NAME_VERIFIED = 26;
 
-        public final static int DATA_ID = 26;
-        public final static int DATA1 = 27;
-        public final static int DATA2 = 28;
-        public final static int DATA3 = 29;
-        public final static int DATA4 = 30;
-        public final static int DATA5 = 31;
-        public final static int DATA6 = 32;
-        public final static int DATA7 = 33;
-        public final static int DATA8 = 34;
-        public final static int DATA9 = 35;
-        public final static int DATA10 = 36;
-        public final static int DATA11 = 37;
-        public final static int DATA12 = 38;
-        public final static int DATA13 = 39;
-        public final static int DATA14 = 40;
-        public final static int DATA15 = 41;
-        public final static int DATA_SYNC1 = 42;
-        public final static int DATA_SYNC2 = 43;
-        public final static int DATA_SYNC3 = 44;
-        public final static int DATA_SYNC4 = 45;
-        public final static int DATA_VERSION = 46;
-        public final static int IS_PRIMARY = 47;
-        public final static int IS_SUPERPRIMARY = 48;
-        public final static int MIMETYPE = 49;
-        public final static int RES_PACKAGE = 50;
+        public final static int DATA_ID = 27;
+        public final static int DATA1 = 28;
+        public final static int DATA2 = 29;
+        public final static int DATA3 = 30;
+        public final static int DATA4 = 31;
+        public final static int DATA5 = 32;
+        public final static int DATA6 = 33;
+        public final static int DATA7 = 34;
+        public final static int DATA8 = 35;
+        public final static int DATA9 = 36;
+        public final static int DATA10 = 37;
+        public final static int DATA11 = 38;
+        public final static int DATA12 = 39;
+        public final static int DATA13 = 40;
+        public final static int DATA14 = 41;
+        public final static int DATA15 = 42;
+        public final static int DATA_SYNC1 = 43;
+        public final static int DATA_SYNC2 = 44;
+        public final static int DATA_SYNC3 = 45;
+        public final static int DATA_SYNC4 = 46;
+        public final static int DATA_VERSION = 47;
+        public final static int IS_PRIMARY = 48;
+        public final static int IS_SUPERPRIMARY = 49;
+        public final static int MIMETYPE = 50;
+        public final static int RES_PACKAGE = 51;
 
-        public final static int GROUP_SOURCE_ID = 51;
+        public final static int GROUP_SOURCE_ID = 52;
 
-        public final static int PRESENCE = 52;
-        public final static int CHAT_CAPABILITY = 53;
-        public final static int STATUS = 54;
-        public final static int STATUS_RES_PACKAGE = 55;
-        public final static int STATUS_ICON = 56;
-        public final static int STATUS_LABEL = 57;
-        public final static int STATUS_TIMESTAMP = 58;
+        public final static int PRESENCE = 53;
+        public final static int CHAT_CAPABILITY = 54;
+        public final static int STATUS = 55;
+        public final static int STATUS_RES_PACKAGE = 56;
+        public final static int STATUS_ICON = 57;
+        public final static int STATUS_LABEL = 58;
+        public final static int STATUS_TIMESTAMP = 59;
 
-        public final static int PHOTO_URI = 59;
+        public final static int PHOTO_URI = 60;
     }
 
     private static class DirectoryQuery {
@@ -699,6 +710,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             final long nameRawContactId = cursor.getLong(ContactQuery.NAME_RAW_CONTACT_ID);
             final int displayNameSource = cursor.getInt(ContactQuery.DISPLAY_NAME_SOURCE);
             final String displayName = cursor.getString(ContactQuery.DISPLAY_NAME);
+            final String altDisplayName = cursor.getString(ContactQuery.ALT_DISPLAY_NAME);
             final String phoneticName = cursor.getString(ContactQuery.PHONETIC_NAME);
             final long photoId = cursor.getLong(ContactQuery.PHOTO_ID);
             final String photoUri = cursor.getString(ContactQuery.PHOTO_URI);
@@ -726,8 +738,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
             return new Result(contactUri, lookupUri, directoryId, lookupKey, contactId,
                     nameRawContactId, displayNameSource, photoId, photoUri, displayName,
-                    phoneticName, starred, presence, status, statusTimestamp, statusLabel,
-                    statusResPackage);
+                    altDisplayName, phoneticName, starred, presence, status, statusTimestamp,
+                    statusLabel, statusResPackage);
         }
 
         /**
