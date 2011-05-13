@@ -14,26 +14,35 @@
      limitations under the License.
 -->
 
-<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@android:id/tabhost"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <!-- Dialer --> -->
+    <fragment
+        class="com.android.contacts.dialpad.DialpadFragment"
+        android:id="@+id/dialpad_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" />
 
-        <TabWidget android:id="@android:id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-        />
+    <!-- Call Log -->
+    <fragment
+        class="com.android.contacts.calllog.CallLogFragment"
+        android:id="@+id/call_log_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-        <FrameLayout android:id="@android:id/tabcontent"
-            android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:layout_weight="1"
-        />
-    </LinearLayout>
-</TabHost>
+    <!-- Contacts -->
+    <fragment
+        android:id="@+id/contacts_fragment"
+        class="com.android.contacts.list.DefaultContactBrowseListFragment"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" />
 
+    <!-- Favorites -->
+    <fragment
+        android:id="@+id/favorites_fragment"
+        class="com.android.contacts.list.DefaultContactBrowseListFragment"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" />
+</FrameLayout>
