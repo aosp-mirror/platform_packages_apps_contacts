@@ -17,13 +17,26 @@
 package com.android.contacts.activities;
 
 import com.android.contacts.R;
-import com.android.contacts.activities.ContactsFrontDoor;
-import com.android.contacts.activities.ContactBrowserActivity;
-import com.android.contacts.activities.DialpadActivity;
+import com.android.contacts.calllog.CallLogFragment;
+import com.android.contacts.dialpad.DialpadFragment;
+import com.android.contacts.interactions.ImportExportInteraction;
+import com.android.contacts.list.ContactListFilter;
+import com.android.contacts.list.ContactsIntentResolver;
+import com.android.contacts.list.ContactsRequest;
+import com.android.contacts.list.DefaultContactBrowseListFragment;
+import com.android.contacts.list.DirectoryListLoader;
+import com.android.contacts.list.OnContactBrowserActionListener;
+import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.internal.telephony.ITelephony;
 
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
+import android.app.ActionBar.TabListener;
 import android.app.Activity;
-import android.app.TabActivity;
+import android.app.Dialog;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -31,10 +44,14 @@ import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.provider.CallLog.Calls;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.Contacts;
+import android.provider.Settings;
 import android.provider.ContactsContract.Intents.UI;
 import android.util.Log;
-import android.view.Window;
-import android.widget.TabHost;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 /**
  * The dialer activity that has one tab with the virtual 12key
@@ -43,7 +60,7 @@ import android.widget.TabHost;
  * embedded using intents.
  * The dialer tab's title is 'phone', a more common name (see strings.xml).
  */
-public class DialtactsActivity extends TabActivity implements TabHost.OnTabChangeListener {
+public class DialtactsActivity extends Activity {
     private static final String TAG = "DialtactsActivity";
 
     private static final int TAB_INDEX_DIALER = 0;
@@ -63,9 +80,13 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     private static final String PREF_LAST_MANUALLY_SELECTED_TAB = "last_manually_selected_tab";
     private static final int PREF_LAST_MANUALLY_SELECTED_TAB_DEFAULT = TAB_INDEX_DIALER;
 
-    private TabHost mTabHost;
     private String mFilterText;
     private Uri mDialUri;
+    private DialpadFragment mDialpadFragment;
+    private CallLogFragment mCallLogFragment;
+    private DefaultContactBrowseListFragment mContactsFragment;
+    private DefaultContactBrowseListFragment mFavoritesFragment;
+    private ImportExportInteraction mImportExportInteraction;
 
     /**
      * The index of the tab that has last been manually selected (the user clicked on a tab).
@@ -80,18 +101,34 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
         final Intent intent = getIntent();
         fixIntent(intent);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialtacts_activity);
 
-        mTabHost = getTabHost();
-        mTabHost.setOnTabChangedListener(this);
+        final FragmentManager fragmentManager = getFragmentManager();
+        mDialpadFragment = (DialpadFragment) fragmentManager
+                .findFragmentById(R.id.dialpad_fragment);
+        mCallLogFragment = (CallLogFragment) fragmentManager
+                .findFragmentById(R.id.call_log_fragment);
+        mContactsFragment = (DefaultContactBrowseListFragment) fragmentManager
+                .findFragmentById(R.id.contacts_fragment);
+        mFavoritesFragment = (DefaultContactBrowseListFragment) fragmentManager
+                .findFragmentById(R.id.favorites_fragment);
 
-        // Setup the tabs
-        setupDialerTab();
-        setupCallLogTab();
-        setupContactsTab();
-        setupFavoritesTab();
-        setupGroupsTab();
+        // Hide all tabs (the current tab will later be reshown once a tab is selected)
+        final FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.hide(mDialpadFragment);
+        transaction.hide(mCallLogFragment);
+        transaction.hide(mContactsFragment);
+        transaction.hide(mFavoritesFragment);
+        transaction.commit();
+
+        // Setup the ActionBar tabs (the order matches the tab-index contants TAB_INDEX_*)
+        setupDialer();
+        setupCallLog();
+        setupContacts();
+        setupFavorites();
+        getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        getActionBar().setDisplayShowTitleEnabled(false);
+        getActionBar().setDisplayShowHomeEnabled(false);
 
         // Load the last manually loaded tab
         final SharedPreferences prefs = getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE);
@@ -110,7 +147,7 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
     protected void onPause() {
         super.onPause();
 
-        final int currentTabIndex = mTabHost.getCurrentTab();
+        final int currentTabIndex = getActionBar().getSelectedTab().getPosition();
         final SharedPreferences.Editor editor =
                 getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE).edit();
         if (currentTabIndex == TAB_INDEX_CONTACTS || currentTabIndex == TAB_INDEX_FAVORITES) {
@@ -132,57 +169,73 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
         }
     }
 
-    private void setupCallLogTab() {
-        // Force the class since overriding tab entries doesn't work
-        Intent intent = new Intent("com.android.phone.action.RECENT_CALLS");
-        intent.setClass(this, CallLogActivity.class);
-
-        mTabHost.addTab(mTabHost.newTabSpec("call_log")
-                .setIndicator(getString(R.string.recentCallsIconLabel),
-                        getResources().getDrawable(R.drawable.ic_tab_recent))
-                .setContent(intent));
+    private void setupDialer() {
+        final Tab tab = getActionBar().newTab();
+        tab.setText(R.string.dialerIconLabel);
+        tab.setTabListener(new TabChangeListener(mDialpadFragment));
+        tab.setIcon(R.drawable.ic_tab_dialer);
+        getActionBar().addTab(tab);
+        mDialpadFragment.resolveIntent();
     }
 
-    private void setupDialerTab() {
-        Intent intent = new Intent("com.android.phone.action.TOUCH_DIALER");
-        intent.setClass(this, DialpadActivity.class);
-
-        mTabHost.addTab(mTabHost.newTabSpec("dialer")
-                .setIndicator(getString(R.string.dialerIconLabel),
-                        getResources().getDrawable(R.drawable.ic_tab_dialer))
-                .setContent(intent));
+    private void setupCallLog() {
+        final Tab tab = getActionBar().newTab();
+        tab.setText(R.string.recentCallsIconLabel);
+        tab.setIcon(R.drawable.ic_tab_recent);
+        tab.setTabListener(new TabChangeListener(mCallLogFragment));
+        getActionBar().addTab(tab);
     }
 
-    private void setupContactsTab() {
+    private void setupContacts() {
+        final Tab tab = getActionBar().newTab();
+        tab.setText(R.string.contactsIconLabel);
+        tab.setIcon(R.drawable.ic_tab_contacts);
+        tab.setTabListener(new TabChangeListener(mContactsFragment));
+        getActionBar().addTab(tab);
+
+        // TODO: We should not artificially create Intents and put them into the Fragment.
+        // It would be nicer to directly pass in the UI constant
         Intent intent = new Intent(UI.LIST_ALL_CONTACTS_ACTION);
         intent.setClass(this, ContactBrowserActivity.class);
 
-        mTabHost.addTab(mTabHost.newTabSpec("contacts")
-                .setIndicator(getText(R.string.contactsIconLabel),
-                        getResources().getDrawable(R.drawable.ic_tab_contacts))
-                .setContent(intent));
+        ContactsIntentResolver resolver = new ContactsIntentResolver(this);
+        ContactsRequest request = resolver.resolveIntent(intent);
+        final ContactListFilter filter = new ContactListFilter(
+                ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
+        mContactsFragment.setFilter(filter, false);
+        mContactsFragment.setSearchMode(request.isSearchMode());
+        mContactsFragment.setQueryString(request.getQueryString(), false);
+        mContactsFragment.setContactsRequest(request);
+        mContactsFragment.setDirectorySearchMode(request.isDirectorySearchEnabled()
+                ? DirectoryListLoader.SEARCH_MODE_DEFAULT
+                : DirectoryListLoader.SEARCH_MODE_NONE);
+        mContactsFragment.setOnContactListActionListener(mListFragmentListener);
     }
 
-    private void setupFavoritesTab() {
+    private void setupFavorites() {
+        final Tab tab = getActionBar().newTab();
+        tab.setText(R.string.contactsFavoritesLabel);
+        tab.setIcon(R.drawable.ic_tab_starred);
+        tab.setTabListener(new TabChangeListener(mFavoritesFragment));
+        getActionBar().addTab(tab);
+
+        // TODO: We should not artificially create Intents and put them into the Fragment.
+        // It would be nicer to directly pass in the UI constant
         Intent intent = new Intent(UI.LIST_STREQUENT_ACTION);
         intent.setClass(this, ContactBrowserActivity.class);
 
-        mTabHost.addTab(mTabHost.newTabSpec("favorites")
-                .setIndicator(getString(R.string.contactsFavoritesLabel),
-                        getResources().getDrawable(R.drawable.ic_tab_starred))
-                .setContent(intent));
-    }
-
-    private void setupGroupsTab() {
-        // This is a temporary intent action until the refactoring for the phone/contacts
-        // split is complete.
-        Intent intent = new Intent("com.android.phone.action.GROUPS_LIST");
-                        intent.setClass(this, GroupBrowserActivity.class);
-
-        mTabHost.addTab(mTabHost.newTabSpec("groups")
-                .setIndicator(getString(R.string.contactsGroupsLabel),
-                        getResources().getDrawable(R.drawable.ic_menu_display_all_holo_light))
-                .setContent(intent));
+        ContactsIntentResolver resolver = new ContactsIntentResolver(this);
+        ContactsRequest request = resolver.resolveIntent(intent);
+        final ContactListFilter filter = new ContactListFilter(
+                ContactListFilter.FILTER_TYPE_STARRED);
+        mFavoritesFragment.setFilter(filter, false);
+        mFavoritesFragment.setSearchMode(request.isSearchMode());
+        mFavoritesFragment.setQueryString(request.getQueryString(), false);
+        mFavoritesFragment.setContactsRequest(request);
+        mFavoritesFragment.setDirectorySearchMode(request.isDirectorySearchEnabled()
+                ? DirectoryListLoader.SEARCH_MODE_DEFAULT
+                : DirectoryListLoader.SEARCH_MODE_NONE);
+        mFavoritesFragment.setOnContactListActionListener(mListFragmentListener);
     }
 
     /**
@@ -223,13 +276,6 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
             return;
         }
 
-        // Dismiss menu provided by any children activities
-        Activity activity = getLocalActivityManager().
-                getActivity(mTabHost.getCurrentTabTag());
-        if (activity != null) {
-            activity.closeOptionsMenu();
-        }
-
         // Tell the children activities that they should ignore any possible saved
         // state and instead reload their state from the parent's intent
         intent.putExtra(EXTRA_IGNORE_STATE, true);
@@ -246,21 +292,21 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
             boolean favoritesAsContacts = prefs.getBoolean(PREF_FAVORITES_AS_CONTACTS,
                     PREF_FAVORITES_AS_CONTACTS_DEFAULT);
             if (favoritesAsContacts) {
-                mTabHost.setCurrentTab(TAB_INDEX_FAVORITES);
+                getActionBar().selectTab(getActionBar().getTabAt(TAB_INDEX_FAVORITES));
             } else {
-                mTabHost.setCurrentTab(TAB_INDEX_CONTACTS);
+                getActionBar().selectTab(getActionBar().getTabAt(TAB_INDEX_CONTACTS));
             }
         } else {
             // Not launched through the front door, look at the component to determine the tab
             String componentName = intent.getComponent().getClassName();
             if (getClass().getName().equals(componentName)) {
                 if (recentCallsRequest) {
-                    mTabHost.setCurrentTab(TAB_INDEX_CALL_LOG);
+                    getActionBar().selectTab(getActionBar().getTabAt(TAB_INDEX_CALL_LOG));
                 } else {
-                    mTabHost.setCurrentTab(TAB_INDEX_DIALER);
+                    getActionBar().selectTab(getActionBar().getTabAt(TAB_INDEX_DIALER));
                 }
             } else {
-                mTabHost.setCurrentTab(mLastManuallySelectedTab);
+                getActionBar().selectTab(getActionBar().getTabAt(mLastManuallySelectedTab));
             }
         }
 
@@ -371,19 +417,158 @@ public class DialtactsActivity extends TabActivity implements TabHost.OnTabChang
         }
     }
 
-    /** {@inheritDoc} */
-    public void onTabChanged(String tabId) {
-        // Because we're using Activities as our tab children, we trigger
-        // onWindowFocusChanged() to let them know when they're active.  This may
-        // seem to duplicate the purpose of onResume(), but it's needed because
-        // onResume() can't reliably check if a keyguard is active.
-        Activity activity = getLocalActivityManager().getActivity(tabId);
-        if (activity != null) {
-            activity.onWindowFocusChanged(true);
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+
+        // Pass this lifecycle event down to the fragment
+        mDialpadFragment.onPostCreate();
+    }
+
+    /**
+     * Tab change listener that is instantiated once for each tab. Handles showing/hiding tabs
+     * and remembers manual tab selections
+     */
+    private class TabChangeListener implements TabListener {
+        private final Fragment mFragment;
+
+        public TabChangeListener(Fragment fragment) {
+            mFragment = fragment;
         }
 
-        // Remember this tab index. This function is also called, if the tab is set automatically
-        // in which case the setter (setCurrentTab) has to set this to its old value afterwards
-        mLastManuallySelectedTab = mTabHost.getCurrentTab();
+        @Override
+        public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+            ft.hide(mFragment);
+        }
+
+        @Override
+        public void onTabSelected(Tab tab, FragmentTransaction ft) {
+            ft.show(mFragment);
+
+            // Remember this tab index. This function is also called, if the tab is set
+            // automatically in which case the setter (setCurrentTab) has to set this to its old
+            // value afterwards
+            mLastManuallySelectedTab = tab.getPosition();
+        }
+
+        @Override
+        public void onTabReselected(Tab tab, FragmentTransaction ft) {
+        }
+    }
+
+    private OnContactBrowserActionListener mListFragmentListener =
+            new OnContactBrowserActionListener() {
+        @Override
+        public void onViewContactAction(Uri contactLookupUri) {
+            startActivity(new Intent(Intent.ACTION_VIEW, contactLookupUri));
+        }
+
+        @Override
+        public void onSmsContactAction(Uri contactUri) {
+        }
+
+        @Override
+        public void onSelectionChange() {
+        }
+
+        @Override
+        public void onRemoveFromFavoritesAction(Uri contactUri) {
+        }
+
+        @Override
+        public void onInvalidSelection() {
+        }
+
+        @Override
+        public void onFinishAction() {
+        }
+
+        @Override
+        public void onEditContactAction(Uri contactLookupUri) {
+        }
+
+        @Override
+        public void onDeleteContactAction(Uri contactUri) {
+        }
+
+        @Override
+        public void onCreateNewContactAction() {
+        }
+
+        @Override
+        public void onCallContactAction(Uri contactUri) {
+        }
+
+        @Override
+        public void onAddToFavoritesAction(Uri contactUri) {
+        }
+    };
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // For now, create the menu in here. It would be nice to do this in the Fragment,
+        // but that Fragment is re-used in other views.
+        final ActionBar actionBar = getActionBar();
+        if (actionBar == null) return false;
+        final Tab tab = actionBar.getSelectedTab();
+        if (tab == null) return false;
+        final int tabIndex = tab.getPosition();
+        if (tabIndex != TAB_INDEX_CONTACTS && tabIndex != TAB_INDEX_FAVORITES) return false;
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.list, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // This is currently a copy of the equivalent code of ContactBrowserActivity (with the
+        // exception of menu_add, because we do not select items in the list).
+        // Should be consolidated
+        switch (item.getItemId()) {
+        case R.id.menu_settings: {
+            final Intent intent = new Intent(this, ContactsPreferenceActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        case R.id.menu_search: {
+            onSearchRequested();
+            return true;
+        }
+        case R.id.menu_add: {
+            final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+            startActivity(intent);
+            return true;
+        }
+        case R.id.menu_import_export: {
+            getImportExportInteraction().startInteraction();
+            return true;
+        }
+        case R.id.menu_accounts: {
+            final Intent intent = new Intent(Settings.ACTION_SYNC_SETTINGS);
+            intent.putExtra(Settings.EXTRA_AUTHORITIES, new String[] {
+                ContactsContract.AUTHORITY
+            });
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+            startActivity(intent);
+            return true;
+        }
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id, Bundle bundle) {
+        Dialog dialog = getImportExportInteraction().onCreateDialog(id, bundle);
+        if (dialog != null) return dialog;
+        return super.onCreateDialog(id, bundle);
+    }
+
+    private ImportExportInteraction getImportExportInteraction() {
+        if (mImportExportInteraction == null) {
+            mImportExportInteraction = new ImportExportInteraction(this);
+        }
+        return mImportExportInteraction;
     }
 }

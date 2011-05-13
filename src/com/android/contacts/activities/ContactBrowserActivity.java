@@ -42,7 +42,6 @@ import com.android.contacts.list.ProviderStatusLoader.ProviderStatusListener;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.util.AccountSelectionUtil;
-import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.widget.ContextMenuAdapter;
 
@@ -69,9 +68,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListPopupWindow;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -88,9 +84,8 @@ public class ContactBrowserActivity extends ContactsActivity
     private static final String TAG = "ContactBrowserActivity";
 
     private static final int SUBACTIVITY_NEW_CONTACT = 2;
-    private static final int SUBACTIVITY_SETTINGS = 3;
-    private static final int SUBACTIVITY_EDIT_CONTACT = 4;
-    private static final int SUBACTIVITY_CUSTOMIZE_FILTER = 5;
+    private static final int SUBACTIVITY_EDIT_CONTACT = 3;
+    private static final int SUBACTIVITY_CUSTOMIZE_FILTER = 4;
 
     private static final String KEY_SEARCH_MODE = "searchMode";
 
@@ -725,7 +720,7 @@ public class ContactBrowserActivity extends ContactsActivity
         switch (item.getItemId()) {
             case R.id.menu_settings: {
                 final Intent intent = new Intent(this, ContactsPreferenceActivity.class);
-                startActivityForResult(intent, SUBACTIVITY_SETTINGS);
+                startActivity(intent);
                 return true;
             }
             case R.id.menu_search: {
@@ -835,9 +830,6 @@ public class ContactBrowserActivity extends ContactsActivity
                 }
                 break;
             }
-
-            case SUBACTIVITY_SETTINGS:
-                break;
 
             // TODO: Using the new startActivityWithResultFromFragment API this should not be needed
             // anymore

@@ -516,17 +516,14 @@ public class DialpadFragment extends Fragment
                 .setIcon(R.drawable.ic_menu_wait);
     }
 
-    /** @return true if an options menu should be shown in our containing activity. */
-    public boolean allowOptionsMenu() {
-        // We never show a menu if the "choose dialpad" UI is up.
-        // Otherwise the menu is allowed (see onPrepareOptionsMenu() below.)
-        return (!dialpadChooserVisible());
-    }
-
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        // Note that we won't show a menu at all if the "choose dialpad" UI is up.
-        // (See allowOptionsMenu() above, along with DialogActivity.onPrepareOptionsMenu().)
+        // If we have not been inflated yet, there is no menu
+        if (mDialpadChooser == null) return;
+
+        // We never show a menu if the "choose dialpad" UI is up.
+        // Otherwise the menu is allowed (see onPrepareOptionsMenu() below.)
+        if (!dialpadChooserVisible()) return;
 
         if (isDigitsEmpty()) {
             mAddToContactMenuItem.setVisible(false);

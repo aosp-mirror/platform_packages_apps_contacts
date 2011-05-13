@@ -108,31 +108,6 @@ public class DialpadActivity extends Activity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-
-        // Nothing to do here; see DialpadFragment.onCreateOptionsMenu().
-        return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        // The DialpadFragment completely owns the options menu,
-        // so we don't add any items here.  We *do* however
-        // have to return false here if the DialpadFragment
-        // says there shouldn't be a menu at all.
-        if (!mFragment.allowOptionsMenu()) {
-            return false;
-        }
-
-        super.onPrepareOptionsMenu(menu);
-
-        // See DialpadFragment.onPrepareOptionsMenu() for the actual menu
-        // contents.
-        return true;
-    }
-
-    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_CALL: {
