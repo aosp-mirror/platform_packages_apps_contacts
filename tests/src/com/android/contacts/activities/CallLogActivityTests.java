@@ -25,6 +25,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.provider.CallLog.Calls;
 import android.test.ActivityInstrumentationTestCase2;
+import android.test.suitebuilder.annotation.LargeTest;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -44,7 +45,7 @@ import java.util.Random;
  *   adb shell am instrument \
  *     -w com.android.contacts.tests/android.test.InstrumentationTestRunner
  */
-
+@LargeTest
 public class CallLogActivityTests
         extends ActivityInstrumentationTestCase2<CallLogActivity> {
     static private final String TAG = "CallLogActivityTests";
