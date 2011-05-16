@@ -29,10 +29,12 @@ import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.StatusUpdates;
 import android.test.LoaderTestCase;
+import android.test.suitebuilder.annotation.LargeTest;
 
 /**
  * Runs ContactLoader tests for the the contact-detail and editor view.
  */
+@LargeTest
 public class ContactLoaderTest extends LoaderTestCase {
     ContactsMockContext mMockContext;
     MockContentProvider mContactsProvider;
@@ -265,7 +267,8 @@ public class ContactLoaderTest extends LoaderTestCase {
             mContactsProvider.expectQuery(baseUri)
                     .withProjection(new String[] {
                         Contacts.NAME_RAW_CONTACT_ID, Contacts.DISPLAY_NAME_SOURCE,
-                        Contacts.LOOKUP_KEY, Contacts.DISPLAY_NAME, Contacts.PHONETIC_NAME,
+                        Contacts.LOOKUP_KEY, Contacts.DISPLAY_NAME,
+                        Contacts.DISPLAY_NAME_ALTERNATIVE, Contacts.PHONETIC_NAME,
                         Contacts.PHOTO_ID, Contacts.STARRED, Contacts.CONTACT_PRESENCE,
                         Contacts.CONTACT_STATUS, Contacts.CONTACT_STATUS_TIMESTAMP,
                         Contacts.CONTACT_STATUS_RES_PACKAGE, Contacts.CONTACT_STATUS_LABEL,
@@ -299,7 +302,7 @@ public class ContactLoaderTest extends LoaderTestCase {
                     .withSortOrder(Contacts.Entity.RAW_CONTACT_ID)
                     .returnRow(
                         rawContactId, 40,
-                        "aa%12%@!", "John Doe", "jdo",
+                        "aa%12%@!", "John Doe", "Doe, John", "jdo",
                         0, 0, StatusUpdates.AVAILABLE,
                         "Having lunch", 0,
                         "mockPkg1", 10,
