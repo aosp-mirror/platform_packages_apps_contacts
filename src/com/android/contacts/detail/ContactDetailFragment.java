@@ -1286,7 +1286,7 @@ public class ContactDetailFragment extends Fragment implements
     }
 
     @Override
-    public void onAccountChosen(Account account) {
+    public void onAccountChosen(int requestCode, Account account) {
         createCopy(account);
     }
 

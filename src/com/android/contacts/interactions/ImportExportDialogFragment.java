@@ -17,14 +17,16 @@
 package com.android.contacts.interactions;
 
 import com.android.contacts.R;
+import com.android.contacts.editor.SelectAccountDialogFragment;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.vcard.ExportVCardActivity;
 
 import android.accounts.Account;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -35,7 +37,6 @@ import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,70 +47,39 @@ import android.widget.Toast;
 import java.util.List;
 
 /**
- * An interaction invoked to import/export contacts.
+ * An dialog invoked to import/export contacts.
  */
-public class ImportExportInteraction {
-
-    private static final String TAG = "ImportExportInteraction";
+public class ImportExportDialogFragment extends DialogFragment {
+    public static final String TAG = "ImportExportDialogFragment";
 
     private final String[] LOOKUP_PROJECTION = new String[] {
             Contacts.LOOKUP_KEY
     };
 
-    private final Context mContext;
-
-    public ImportExportInteraction(Context context) {
-        this.mContext = context;
+    /** Preferred way to show this dialog */
+    public static void show(FragmentManager fragmentManager) {
+        final ImportExportDialogFragment fragment = new ImportExportDialogFragment();
+        fragment.show(fragmentManager, ImportExportDialogFragment.TAG);
     }
 
-    /**
-     * Creates a {@link Dialog} that allows the user to choose between a bulk import
-     * and bulk export task across all contacts.
-     */
-    public void startInteraction() {
-        showDialog(R.id.dialog_import_export_options, null);
-    }
-
-    public Dialog onCreateDialog(int id, Bundle bundle) {
-        switch (id) {
-            case R.id.dialog_import_export_options: {
-                return createOptionsDialog();
-            }
-            case R.string.import_from_sim:
-            case R.string.import_from_sdcard: {
-                return AccountSelectionUtil.getSelectAccountDialog(mContext, id);
-            }
-            case R.id.dialog_sdcard_not_found: {
-                return new AlertDialog.Builder(mContext)
-                        .setTitle(R.string.no_sdcard_title)
-                        .setIconAttribute(android.R.attr.alertDialogIcon)
-                        .setMessage(R.string.no_sdcard_message)
-                        .setPositiveButton(android.R.string.ok, null).create();
-            }
-        }
-
-        return null;
-    }
-
-    private Dialog createOptionsDialog() {
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Wrap our context to inflate list items using the correct theme
-        final Resources res = mContext.getResources();
-        final LayoutInflater dialogInflater = (LayoutInflater)mContext
+        final Resources res = getActivity().getResources();
+        final LayoutInflater dialogInflater = (LayoutInflater)getActivity()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         // Adapter that shows a list of string resources
-        final ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(mContext,
+        final ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(getActivity(),
                 android.R.layout.select_dialog_item) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-                if (convertView == null) {
-                    convertView = dialogInflater.inflate(android.R.layout.select_dialog_item,
-                            parent, false);
-                }
+                final TextView result = (TextView)(convertView != null ? convertView :
+                        dialogInflater.inflate(android.R.layout.select_dialog_item, parent, false));
 
-                final int resId = this.getItem(position);
-                ((TextView)convertView).setText(resId);
-                return convertView;
+                final int resId = getItem(position);
+                result.setText(resId);
+                return result;
             }
         };
 
@@ -128,6 +98,7 @@ public class ImportExportInteraction {
 
         final DialogInterface.OnClickListener clickListener =
                 new DialogInterface.OnClickListener() {
+            @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
 
@@ -139,8 +110,8 @@ public class ImportExportInteraction {
                         break;
                     }
                     case R.string.export_to_sdcard: {
-                        Intent exportIntent = new Intent(mContext, ExportVCardActivity.class);
-                        mContext.startActivity(exportIntent);
+                        Intent exportIntent = new Intent(getActivity(), ExportVCardActivity.class);
+                        getActivity().startActivity(exportIntent);
                         break;
                     }
                     case R.string.share_visible_contacts: {
@@ -148,14 +119,13 @@ public class ImportExportInteraction {
                         break;
                     }
                     default: {
-                        Log.e(TAG, "Unexpected resource: " +
-                                mContext.getResources().getResourceEntryName(resId));
+                        Log.e(TAG, "Unexpected resource: "
+                                + getActivity().getResources().getResourceEntryName(resId));
                     }
                 }
             }
         };
-
-        return new AlertDialog.Builder(mContext)
+        return new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.dialog_import_export)
                 .setNegativeButton(android.R.string.cancel, null)
                 .setSingleChoiceItems(adapter, -1, clickListener)
@@ -163,13 +133,12 @@ public class ImportExportInteraction {
     }
 
     private void doShareVisibleContacts() {
-
-        // TODO move the query into a loader
-        final Cursor cursor = mContext.getContentResolver().query(Contacts.CONTENT_URI,
+        // TODO move the query into a loader and do this in a background thread
+        final Cursor cursor = getActivity().getContentResolver().query(Contacts.CONTENT_URI,
                 LOOKUP_PROJECTION, Contacts.IN_VISIBLE_GROUP + "!=0", null, null);
         try {
             if (!cursor.moveToFirst()) {
-                Toast.makeText(mContext, R.string.share_error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.share_error, Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -188,7 +157,7 @@ public class ImportExportInteraction {
             final Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType(Contacts.CONTENT_VCARD_TYPE);
             intent.putExtra(Intent.EXTRA_STREAM, uri);
-            mContext.startActivity(intent);
+            getActivity().startActivity(intent);
         } finally {
             cursor.close();
         }
@@ -199,19 +168,37 @@ public class ImportExportInteraction {
         // - more than one accounts -> ask the user
         // - just one account -> use the account without asking the user
         // - no account -> use phone-local storage without asking the user
-        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(getActivity());
         final List<Account> accountList = accountTypes.getAccounts(true);
         final int size = accountList.size();
         if (size > 1) {
-            showDialog(resId, null);
+            // Send over to the account selector
+            ImportExportAccountSelectorDialog.show(getFragmentManager(), resId);
             return;
         }
 
-        AccountSelectionUtil.doImport(mContext, resId, (size == 1 ? accountList.get(0) : null));
+        AccountSelectionUtil.doImport(getActivity(), resId,
+                (size == 1 ? accountList.get(0) : null));
     }
 
-    /* Visible for testing */
-    void showDialog(int dialogId, Bundle bundle) {
-        ((Activity)mContext).showDialog(dialogId, bundle);
+    /** Sub-Dialog for showing an account selector in case there are several accounts */
+    public static class ImportExportAccountSelectorDialog extends SelectAccountDialogFragment {
+        private static final String SELECTOR_TAG = "ImportExportAccountSelectorDialog";
+        private static final String BUNDLE_RES_ID = "resourceId";
+
+        public static void show(FragmentManager manager, int resId) {
+            final ImportExportAccountSelectorDialog dialog =
+                new ImportExportAccountSelectorDialog();
+            final Bundle bundle = new Bundle();
+            bundle.putInt(BUNDLE_RES_ID, resId);
+            dialog.setArguments(bundle);
+            dialog.show(manager, SELECTOR_TAG);
+        }
+
+        @Override
+        protected void onAccountSelected(Account account) {
+            final int resourceId = getArguments().getInt(BUNDLE_RES_ID);
+            AccountSelectionUtil.doImport(getActivity(), resourceId, account);
+        }
     }
 }

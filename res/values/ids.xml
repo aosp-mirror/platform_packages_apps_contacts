@@ -18,7 +18,6 @@
     <item type="id" name="data"/>
     <item type="id" name="header_phones"/>
     <item type="id" name="dialog_sync_add"/>
-    <item type="id" name="dialog_import_export"/>
 
     <!-- For vcard.ImportVCardActivity -->
     <item type="id" name="dialog_searching_vcard"/>
@@ -38,9 +37,6 @@
     <!-- For ContactDeletionInteraction -->
     <item type="id" name="dialog_delete_contact_confirmation"/>
     <item type="id" name="dialog_delete_contact_loader_id" />
-
-    <!-- For ImportExportInteraction -->
-    <item type="id" name="dialog_import_export_options"/>
 
     <!-- For ExportVCardActivity -->
     <item type="id" name="dialog_export_confirmation"/>

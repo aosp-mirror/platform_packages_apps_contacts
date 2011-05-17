@@ -53,8 +53,7 @@ public class SelectAccountDialogFragment extends DialogFragment {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
 
-                final Listener target = (Listener) getTargetFragment();
-                target.onAccountChosen(accountAdapter.getItem(which));
+                onAccountSelected(accountAdapter.getItem(which));
             }
         };
 
@@ -67,12 +66,27 @@ public class SelectAccountDialogFragment extends DialogFragment {
     @Override
     public void onCancel(DialogInterface dialog) {
         super.onCancel(dialog);
-        final Listener target = (Listener) getTargetFragment();
-        target.onAccountSelectorCancelled();
+        final Fragment targetFragment = getTargetFragment();
+        if (targetFragment != null && targetFragment instanceof Listener) {
+            final Listener target = (Listener) targetFragment;
+            target.onAccountSelectorCancelled();
+        }
+    }
+
+    /**
+     * Calls {@link Listener#onAccountChosen(int, Account)} if the target fragment is castable
+     * to {@link Listener}. Subclasses can also overide to directly perform an operation
+     */
+    protected void onAccountSelected(Account account) {
+        final Fragment targetFragment = getTargetFragment();
+        if (targetFragment != null && targetFragment instanceof Listener) {
+            final Listener target = (Listener) targetFragment;
+            target.onAccountChosen(getTargetRequestCode(), account);
+        }
     }
 
     public interface Listener {
-        void onAccountChosen(Account account);
+        void onAccountChosen(int requestCode, Account account);
         void onAccountSelectorCancelled();
     }
 }

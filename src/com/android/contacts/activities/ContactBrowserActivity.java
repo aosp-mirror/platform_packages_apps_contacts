@@ -23,7 +23,7 @@ import com.android.contacts.detail.ContactDetailFragment;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.GroupDeletionDialogFragment;
 import com.android.contacts.interactions.GroupRenamingDialogFragment;
-import com.android.contacts.interactions.ImportExportInteraction;
+import com.android.contacts.interactions.ImportExportDialogFragment;
 import com.android.contacts.interactions.PhoneNumberInteraction;
 import com.android.contacts.list.ContactBrowseListContextMenuAdapter;
 import com.android.contacts.list.ContactBrowseListFragment;
@@ -112,7 +112,6 @@ public class ContactBrowserActivity extends ContactsActivity
 
     private PhoneNumberInteraction mPhoneNumberCallInteraction;
     private PhoneNumberInteraction mSendTextMessageInteraction;
-    private ImportExportInteraction mImportExportInteraction;
 
     private boolean mSearchInitiated;
 
@@ -733,7 +732,7 @@ public class ContactBrowserActivity extends ContactsActivity
                 return true;
             }
             case R.id.menu_import_export: {
-                getImportExportInteraction().startInteraction();
+                ImportExportDialogFragment.show(getFragmentManager());
                 return true;
             }
             case R.id.menu_accounts: {
@@ -791,9 +790,6 @@ public class ContactBrowserActivity extends ContactsActivity
         if (dialog != null) return dialog;
 
         dialog = getSendTextMessageInteraction().onCreateDialog(id, bundle);
-        if (dialog != null) return dialog;
-
-        dialog = getImportExportInteraction().onCreateDialog(id, bundle);
         if (dialog != null) return dialog;
 
         return super.onCreateDialog(id, bundle);
@@ -954,13 +950,6 @@ public class ContactBrowserActivity extends ContactsActivity
             mSendTextMessageInteraction = new PhoneNumberInteraction(this, true, null);
         }
         return mSendTextMessageInteraction;
-    }
-
-    private ImportExportInteraction getImportExportInteraction() {
-        if (mImportExportInteraction == null) {
-            mImportExportInteraction = new ImportExportInteraction(this);
-        }
-        return mImportExportInteraction;
     }
 
     @Override

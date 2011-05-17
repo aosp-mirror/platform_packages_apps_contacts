@@ -19,7 +19,7 @@ package com.android.contacts.activities;
 import com.android.contacts.R;
 import com.android.contacts.calllog.CallLogFragment;
 import com.android.contacts.dialpad.DialpadFragment;
-import com.android.contacts.interactions.ImportExportInteraction;
+import com.android.contacts.interactions.ImportExportDialogFragment;
 import com.android.contacts.list.ContactListFilter;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
@@ -33,7 +33,6 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -46,8 +45,8 @@ import android.os.ServiceManager;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
-import android.provider.Settings;
 import android.provider.ContactsContract.Intents.UI;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -86,7 +85,6 @@ public class DialtactsActivity extends Activity {
     private CallLogFragment mCallLogFragment;
     private DefaultContactBrowseListFragment mContactsFragment;
     private DefaultContactBrowseListFragment mFavoritesFragment;
-    private ImportExportInteraction mImportExportInteraction;
 
     /**
      * The index of the tab that has last been manually selected (the user clicked on a tab).
@@ -541,7 +539,7 @@ public class DialtactsActivity extends Activity {
             return true;
         }
         case R.id.menu_import_export: {
-            getImportExportInteraction().startInteraction();
+            ImportExportDialogFragment.show(getFragmentManager());
             return true;
         }
         case R.id.menu_accounts: {
@@ -556,19 +554,5 @@ public class DialtactsActivity extends Activity {
         default:
             return super.onOptionsItemSelected(item);
         }
-    }
-
-    @Override
-    protected Dialog onCreateDialog(int id, Bundle bundle) {
-        Dialog dialog = getImportExportInteraction().onCreateDialog(id, bundle);
-        if (dialog != null) return dialog;
-        return super.onCreateDialog(id, bundle);
-    }
-
-    private ImportExportInteraction getImportExportInteraction() {
-        if (mImportExportInteraction == null) {
-            mImportExportInteraction = new ImportExportInteraction(this);
-        }
-        return mImportExportInteraction;
     }
 }
