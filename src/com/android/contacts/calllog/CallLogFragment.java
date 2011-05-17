@@ -806,8 +806,8 @@ public class CallLogFragment extends ListFragment
         @Override
         protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
             final CallLogFragment fragment = mFragment.get();
-            // TODO: Do we still need the isFinishing check if we use a fragmented-Tabs?
-            if (fragment != null && !fragment.getActivity().isFinishing()) {
+            if (fragment != null && fragment.getActivity() != null &&
+                    !fragment.getActivity().isFinishing()) {
                 final CallLogFragment.CallLogAdapter callsAdapter = fragment.mAdapter;
                 callsAdapter.setLoading(false);
                 callsAdapter.changeCursor(cursor);
