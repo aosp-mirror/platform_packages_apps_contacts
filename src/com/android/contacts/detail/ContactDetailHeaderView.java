@@ -200,26 +200,28 @@ public class ContactDetailHeaderView extends FrameLayout
         // Check the preference for display name ordering, and bold the contact's first name if
         // possible.
         ContactsPreferences prefs = new ContactsPreferences(getContext());
-        CharSequence styledName;
-        if (prefs.getDisplayOrder() == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
-            int overlapPoint = FormatUtils.overlapPoint(
-                    displayName.toString(), altDisplayName.toString());
-            if (overlapPoint > 0) {
-                styledName = FormatUtils.applyStyleToSpan(Typeface.BOLD,
-                        displayName, 0, overlapPoint, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        CharSequence styledName = "";
+        if (!TextUtils.isEmpty(displayName) && !TextUtils.isEmpty(altDisplayName)) {
+            if (prefs.getDisplayOrder() == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
+                int overlapPoint = FormatUtils.overlapPoint(
+                        displayName.toString(), altDisplayName.toString());
+                if (overlapPoint > 0) {
+                    styledName = FormatUtils.applyStyleToSpan(Typeface.BOLD,
+                            displayName, 0, overlapPoint, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                } else {
+                    styledName = displayName;
+                }
             } else {
-                styledName = displayName;
-            }
-        } else {
-            // Displaying alternate display name.
-            int overlapPoint = FormatUtils.overlapPoint(
-                    altDisplayName.toString(), displayName.toString());
-            if (overlapPoint > 0) {
-                styledName = FormatUtils.applyStyleToSpan(Typeface.BOLD,
-                        altDisplayName, overlapPoint, altDisplayName.length(),
-                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            } else {
-                styledName = altDisplayName;
+                // Displaying alternate display name.
+                int overlapPoint = FormatUtils.overlapPoint(
+                        altDisplayName.toString(), displayName.toString());
+                if (overlapPoint > 0) {
+                    styledName = FormatUtils.applyStyleToSpan(Typeface.BOLD,
+                            altDisplayName, overlapPoint, altDisplayName.length(),
+                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                } else {
+                    styledName = altDisplayName;
+                }
             }
         }
         mDisplayNameView.setText(styledName);
