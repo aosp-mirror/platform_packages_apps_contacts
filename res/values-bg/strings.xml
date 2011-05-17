@@ -95,6 +95,8 @@
     <string name="default_ringtone" msgid="9099988849649827972">"По подразбиране"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Премахване на снимката"</string>
     <string name="noContacts" msgid="8579310973261953559">"Няма контакти."</string>
+    <!-- no translation found for noGroups (8614664663561385253) -->
+    <skip />
     <string name="noMatchingContacts" msgid="4266283206853990471">"Не са намерени съответстващи контакти."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Няма контакти с тел. номера."</string>
     <string name="showFilterPhones" msgid="4184858075465653970">"Само контакти с тел. номера"</string>
@@ -134,6 +136,8 @@
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> намерени"</item>
   </plurals>
     <string name="contactsIconLabel" msgid="7666609097606552806">"Контакти"</string>
+    <!-- no translation found for contactsGroupsLabel (2841971472518003524) -->
+    <skip />
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Любими"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Телефон"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Списък на обажданията"</string>
@@ -400,7 +404,8 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"Фамилия, както се произнася"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Име, както се произнася"</string>
     <string name="account_type_format" msgid="718948015590343010">"Контакт от <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
-    <string name="from_account_format" msgid="687567483928582084">"от <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <!-- no translation found for from_account_format (4469138575127580203) -->
+    <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Използване на тази снимка"</string>
     <string name="contact_read_only" msgid="1203216914575723978">"Информацията за контакта от <xliff:g id="SOURCE">%1$s</xliff:g> не може да бъде редактирана на това устройство."</string>
     <string name="no_contact_details" msgid="6754415338321837001">"Няма допълнителна информация за този контакт"</string>

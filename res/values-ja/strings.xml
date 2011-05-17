@@ -95,6 +95,8 @@
     <string name="default_ringtone" msgid="9099988849649827972">"プリセット着信音"</string>
     <string name="removePhoto" msgid="4898105274130284565">"写真を削除"</string>
     <string name="noContacts" msgid="8579310973261953559">"連絡先がありません。"</string>
+    <!-- no translation found for noGroups (8614664663561385253) -->
+    <skip />
     <string name="noMatchingContacts" msgid="4266283206853990471">"一致する連絡先が見つかりません。"</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"電話番号付きの連絡先はありません。"</string>
     <string name="showFilterPhones" msgid="4184858075465653970">"電話番号のある連絡先のみ"</string>
@@ -134,6 +136,8 @@
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g>件見つかりました"</item>
   </plurals>
     <string name="contactsIconLabel" msgid="7666609097606552806">"連絡先"</string>
+    <!-- no translation found for contactsGroupsLabel (2841971472518003524) -->
+    <skip />
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"お気入り"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"電話"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"通話履歴"</string>
@@ -400,7 +404,8 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"姓のよみがな"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"よみがな"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>からの連絡先"</string>
-    <string name="from_account_format" msgid="687567483928582084">"<xliff:g id="SOURCE">%1$s</xliff:g>からの連絡先"</string>
+    <!-- no translation found for from_account_format (4469138575127580203) -->
+    <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"この写真を使用"</string>
     <string name="contact_read_only" msgid="1203216914575723978">"<xliff:g id="SOURCE">%1$s</xliff:g>からの連絡先情報はこの携帯端末では編集できません。"</string>
     <string name="no_contact_details" msgid="6754415338321837001">"この連絡先の詳細情報はありません"</string>
@@ -432,22 +437,14 @@
   </plurals>
     <string name="no_contacts_selected" msgid="5877803471037324613">"連絡先が選択されていません。"</string>
     <string name="add_field" msgid="2384260056674995230">"別のフィールドを追加"</string>
-    <!-- no translation found for add_phone (4421904942555210013) -->
-    <skip />
-    <!-- no translation found for add_email (175079666329862215) -->
-    <skip />
-    <!-- no translation found for add_im (5158094627521120439) -->
-    <skip />
-    <!-- no translation found for add_address (418292312672970688) -->
-    <skip />
-    <!-- no translation found for add_note (2753771325725383279) -->
-    <skip />
-    <!-- no translation found for add_website (4312391288948517344) -->
-    <skip />
-    <!-- no translation found for add_event (7488781591843886426) -->
-    <skip />
-    <!-- no translation found for add_relationship (3083762399737240006) -->
-    <skip />
+    <string name="add_phone" msgid="4421904942555210013">"新しい電話番号を追加"</string>
+    <string name="add_email" msgid="175079666329862215">"新しいメールを追加"</string>
+    <string name="add_im" msgid="5158094627521120439">"新規IMアカウントを追加"</string>
+    <string name="add_address" msgid="418292312672970688">"新しい住所を追加"</string>
+    <string name="add_note" msgid="2753771325725383279">"新しいメモを追加"</string>
+    <string name="add_website" msgid="4312391288948517344">"新しいサイトを追加"</string>
+    <string name="add_event" msgid="7488781591843886426">"新しいイベントを追加"</string>
+    <string name="add_relationship" msgid="3083762399737240006">"新しい関係を追加"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"<xliff:g id="SOURCE">%1$s</xliff:g>経由"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g>、<xliff:g id="SOURCE">%2$s</xliff:g>経由"</string>
     <string name="description_star" msgid="2605854427360036550">"お気に入り"</string>

@@ -95,6 +95,8 @@
     <string name="default_ringtone" msgid="9099988849649827972">"Προεπιλογή"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Κατάργηση εικόνας"</string>
     <string name="noContacts" msgid="8579310973261953559">"Δεν υπάρχουν επαφές."</string>
+    <!-- no translation found for noGroups (8614664663561385253) -->
+    <skip />
     <string name="noMatchingContacts" msgid="4266283206853990471">"Δεν βρέθηκαν επαφές που να αντιστοιχούν."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Δεν υπάρχουν επαφές με αριθμούς τηλεφώνου."</string>
     <string name="showFilterPhones" msgid="4184858075465653970">"Μόνο επαφές με τηλέφωνα"</string>
@@ -134,6 +136,8 @@
     <item quantity="other" msgid="7988132539476575389">"Βρέθηκαν <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
     <string name="contactsIconLabel" msgid="7666609097606552806">"Επαφές"</string>
+    <!-- no translation found for contactsGroupsLabel (2841971472518003524) -->
+    <skip />
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Αγαπ."</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Τηλέφωνο"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Αρχείο"</string>
@@ -400,7 +404,8 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"Φωνητική γραφή επιθέτου"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Όνομα σε φωνητική γραφή"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> επαφή"</string>
-    <string name="from_account_format" msgid="687567483928582084">"από <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <!-- no translation found for from_account_format (4469138575127580203) -->
+    <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Χρήση αυτής της φωτογραφίας"</string>
     <string name="contact_read_only" msgid="1203216914575723978">"Τα στοιχεία επικοινωνίας της επαφής <xliff:g id="SOURCE">%1$s</xliff:g> δεν μπορούν να υποβληθούν σε επεξεργασία σε αυτήν τη συσκευή."</string>
     <string name="no_contact_details" msgid="6754415338321837001">"Δεν υπάρχουν πρόσθετες πληροφορίες για αυτήν την επαφή"</string>
@@ -433,7 +438,7 @@
     <string name="no_contacts_selected" msgid="5877803471037324613">"Δεν έχουν επιλεγεί επαφές."</string>
     <string name="add_field" msgid="2384260056674995230">"Προσθήκη άλλου πεδίου"</string>
     <string name="add_phone" msgid="4421904942555210013">"Προσθ. νέου αριθ. τηλ."</string>
-    <string name="add_email" msgid="175079666329862215">"Προσθ.νέας διεύθ.email"</string>
+    <string name="add_email" msgid="175079666329862215">"Νέα διεύθ. ηλ. ταχ."</string>
     <string name="add_im" msgid="5158094627521120439">"Προσθήκη νέου λογ. IM"</string>
     <string name="add_address" msgid="418292312672970688">"Προσθήκη νέας διεύθ."</string>
     <string name="add_note" msgid="2753771325725383279">"Προσθ. νέας σημείωσης"</string>

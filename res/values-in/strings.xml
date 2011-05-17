@@ -95,6 +95,8 @@
     <string name="default_ringtone" msgid="9099988849649827972">"Bawaan"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Hapus foto"</string>
     <string name="noContacts" msgid="8579310973261953559">"Tidak ada kenalan."</string>
+    <!-- no translation found for noGroups (8614664663561385253) -->
+    <skip />
     <string name="noMatchingContacts" msgid="4266283206853990471">"Tidak ditemukan kenalan yang cocok."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Tidak ada kenalan dengan nomor telepon."</string>
     <string name="showFilterPhones" msgid="4184858075465653970">"Hanya kenalan dengan telepon"</string>
@@ -134,6 +136,8 @@
     <item quantity="other" msgid="7988132539476575389">"Ada <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
     <string name="contactsIconLabel" msgid="7666609097606552806">"Kenalan"</string>
+    <!-- no translation found for contactsGroupsLabel (2841971472518003524) -->
+    <skip />
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favorit"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Telepon"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Log panggilan"</string>
@@ -400,7 +404,8 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"Nama keluarga fonetik"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Nama fonetik"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kenalan"</string>
-    <string name="from_account_format" msgid="687567483928582084">"dari <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <!-- no translation found for from_account_format (4469138575127580203) -->
+    <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Gunakan foto ini"</string>
     <string name="contact_read_only" msgid="1203216914575723978">"Informasi kenalan <xliff:g id="SOURCE">%1$s</xliff:g> tidak dapat diedit pada perangkat ini."</string>
     <string name="no_contact_details" msgid="6754415338321837001">"Tidak ada informasi tambahan untuk kenalan ini"</string>

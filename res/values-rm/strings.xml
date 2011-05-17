@@ -101,6 +101,8 @@
     <!-- no translation found for removePhoto (4898105274130284565) -->
     <skip />
     <string name="noContacts" msgid="8579310973261953559">"Nagins contacts"</string>
+    <!-- no translation found for noGroups (8614664663561385253) -->
+    <skip />
     <string name="noMatchingContacts" msgid="4266283206853990471">"Betg chattà in contact correspundent."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Nagin contact dispona d\'in numer da telefon."</string>
     <string name="showFilterPhones" msgid="4184858075465653970">"Mo contacts cun telefon"</string>
@@ -138,6 +140,8 @@
     <item quantity="other" msgid="7988132539476575389">"Chattà <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
     <string name="contactsIconLabel" msgid="7666609097606552806">"Contacts"</string>
+    <!-- no translation found for contactsGroupsLabel (2841971472518003524) -->
+    <skip />
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favurits"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Telefon"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Cloms"</string>
@@ -430,7 +434,8 @@
     <!-- no translation found for name_phonetic (4259595234312430484) -->
     <skip />
     <string name="account_type_format" msgid="718948015590343010">"Contact <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
-    <string name="from_account_format" msgid="687567483928582084">"da <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <!-- no translation found for from_account_format (4469138575127580203) -->
+    <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Utilisar quest foto"</string>
     <string name="contact_read_only" msgid="1203216914575723978">"Vus na pudais betg modifitgar las infurmaziuns dal contact <xliff:g id="SOURCE">%1$s</xliff:g> sin quest apparat."</string>
     <string name="no_contact_details" msgid="6754415338321837001">"Naginas infurmaziuns supplementaras per quest contact"</string>

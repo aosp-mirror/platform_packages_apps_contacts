@@ -95,6 +95,8 @@
     <string name="default_ringtone" msgid="9099988849649827972">"默认日历"</string>
     <string name="removePhoto" msgid="4898105274130284565">"删除照片"</string>
     <string name="noContacts" msgid="8579310973261953559">"没有联系人。"</string>
+    <!-- no translation found for noGroups (8614664663561385253) -->
+    <skip />
     <string name="noMatchingContacts" msgid="4266283206853990471">"未找到匹配的联系人。"</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"没有联系人拥有电话号码。"</string>
     <string name="showFilterPhones" msgid="4184858075465653970">"仅显示有电话号码的联系人"</string>
@@ -134,6 +136,8 @@
     <item quantity="other" msgid="7988132539476575389">"找到 <xliff:g id="COUNT">%d</xliff:g> 个联系人"</item>
   </plurals>
     <string name="contactsIconLabel" msgid="7666609097606552806">"通讯录"</string>
+    <!-- no translation found for contactsGroupsLabel (2841971472518003524) -->
+    <skip />
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"收藏"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"拨号"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"通话记录"</string>
@@ -400,7 +404,8 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"姓氏拼音"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"姓名拼音"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> 联系人"</string>
-    <string name="from_account_format" msgid="687567483928582084">"来自 <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <!-- no translation found for from_account_format (4469138575127580203) -->
+    <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"使用此照片"</string>
     <string name="contact_read_only" msgid="1203216914575723978">"<xliff:g id="SOURCE">%1$s</xliff:g> 联系人信息在此设备上不可编辑。"</string>
     <string name="no_contact_details" msgid="6754415338321837001">"无此联系人的其他信息"</string>

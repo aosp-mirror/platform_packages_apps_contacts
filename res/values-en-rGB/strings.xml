@@ -95,6 +95,7 @@
     <string name="default_ringtone" msgid="9099988849649827972">"Default"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Remove photo"</string>
     <string name="noContacts" msgid="8579310973261953559">"No contacts."</string>
+    <string name="noGroups" msgid="8614664663561385253">"No groups."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"No matching contacts found."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"No contacts with phone numbers."</string>
     <string name="showFilterPhones" msgid="4184858075465653970">"Only contacts with phones"</string>
@@ -134,6 +135,7 @@
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> found"</item>
   </plurals>
     <string name="contactsIconLabel" msgid="7666609097606552806">"Contacts"</string>
+    <string name="contactsGroupsLabel" msgid="2841971472518003524">"Groups"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favourites"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Phone"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Call log"</string>
@@ -400,7 +402,8 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"Phonetic family name"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Phonetic name"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> contact"</string>
-    <string name="from_account_format" msgid="687567483928582084">"from <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <!-- no translation found for from_account_format (4469138575127580203) -->
+    <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Use this photo"</string>
     <string name="contact_read_only" msgid="1203216914575723978">"<xliff:g id="SOURCE">%1$s</xliff:g> contact information cannot be edited on this device."</string>
     <string name="no_contact_details" msgid="6754415338321837001">"No additional information for this contact"</string>
