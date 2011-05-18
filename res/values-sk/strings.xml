@@ -95,6 +95,8 @@
     <string name="default_ringtone" msgid="9099988849649827972">"Predvolené"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Odstrániť fotografiu"</string>
     <string name="noContacts" msgid="8579310973261953559">"Žiadne kontakty."</string>
+    <!-- no translation found for noGroups (8614664663561385253) -->
+    <skip />
     <string name="noMatchingContacts" msgid="4266283206853990471">"Nenašli sa žiadne zodpovedajúce kontakty."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Ku kontaktom nie sú priradené žiadne telefónne čísla."</string>
     <string name="showFilterPhones" msgid="4184858075465653970">"Iba kontakty s telefónmi"</string>
@@ -134,6 +136,8 @@
     <item quantity="other" msgid="7988132539476575389">"Počet nájdených položiek: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
     <string name="contactsIconLabel" msgid="7666609097606552806">"Kontakty"</string>
+    <!-- no translation found for contactsGroupsLabel (2841971472518003524) -->
+    <skip />
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Obľúbené"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Telefón"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Denník hovorov"</string>
@@ -400,7 +404,8 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"Priezvisko (foneticky)"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Meno (foneticky)"</string>
     <string name="account_type_format" msgid="718948015590343010">"Kontakt <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
-    <string name="from_account_format" msgid="687567483928582084">"z miesta: <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <!-- no translation found for from_account_format (4469138575127580203) -->
+    <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Použiť túto fotografiu"</string>
     <string name="contact_read_only" msgid="1203216914575723978">"Kontaktné informácie zo zdroja <xliff:g id="SOURCE">%1$s</xliff:g> nie je možné na tomto zariadení upraviť."</string>
     <string name="no_contact_details" msgid="6754415338321837001">"Pri tomto kontakte nie sú uvedené ďalšie informácie"</string>

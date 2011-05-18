@@ -95,6 +95,7 @@
     <string name="default_ringtone" msgid="9099988849649827972">"Mặc định"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Xóa ảnh"</string>
     <string name="noContacts" msgid="8579310973261953559">"Không có liên hệ nào."</string>
+    <string name="noGroups" msgid="8614664663561385253">"Không có nhóm nào."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Không tìm thấy liên hệ nào phù hợp."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Không có liên hệ nào có số điện thoại"</string>
     <string name="showFilterPhones" msgid="4184858075465653970">"Chỉ các liên hệ có số điện thoại"</string>
@@ -134,6 +135,7 @@
     <item quantity="other" msgid="7988132539476575389">"Đã tìm thấy <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
     <string name="contactsIconLabel" msgid="7666609097606552806">"Danh bạ"</string>
+    <string name="contactsGroupsLabel" msgid="2841971472518003524">"Nhóm"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Mục ưa thích"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Điện thoại"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Nhật ký cuộc gọi"</string>
@@ -400,7 +402,8 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"Họ đúng phát âm"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Tên theo phiên âm"</string>
     <string name="account_type_format" msgid="718948015590343010">"Liên hệ <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
-    <string name="from_account_format" msgid="687567483928582084">"từ <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <!-- no translation found for from_account_format (4469138575127580203) -->
+    <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Sử dụng ảnh này"</string>
     <string name="contact_read_only" msgid="1203216914575723978">"Không thể chỉnh sửa thông tin liên hệ <xliff:g id="SOURCE">%1$s</xliff:g> trên thiết bị này."</string>
     <string name="no_contact_details" msgid="6754415338321837001">"Không có thông tin bổ sung cho liên hệ này"</string>
