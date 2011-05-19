@@ -163,16 +163,6 @@ public class ContactBrowserActivity extends ContactsActivity
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
 
-        mAddContactImageView = getLayoutInflater().inflate(
-                R.layout.add_contact_menu_item, null, false);
-        View item = mAddContactImageView.findViewById(R.id.menu_item);
-        item.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createNewContact();
-            }
-        });
-
         configureContentView(true, savedState);
     }
 
@@ -631,9 +621,24 @@ public class ContactBrowserActivity extends ContactsActivity
         if (mHasActionBar) {
             inflater.inflate(R.menu.actions, menu);
 
-            // Change add contact button to button with a custom view
+            // On narrow screens we specify a NEW contact button in the {@link ActionBar}, so that
+            // it can be in the overflow menu. On wide screens, we use a custom view because we need
+            // its location for anchoring the account-selector popup.
+            // TODO: Take this hack out later when the account switcher in the contact editor is
+            // present.
             final MenuItem addContact = menu.findItem(R.id.menu_add);
-            addContact.setActionView(mAddContactImageView);
+            if (addContact != null) {
+                mAddContactImageView = getLayoutInflater().inflate(
+                        R.layout.add_contact_menu_item, null, false);
+                View item = mAddContactImageView.findViewById(R.id.menu_item);
+                item.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        createNewContact();
+                    }
+                });
+                addContact.setActionView(mAddContactImageView);
+            }
             return true;
         } else if (mRequest.getActionCode() == ContactsRequest.ACTION_DEFAULT ||
                 mRequest.getActionCode() == ContactsRequest.ACTION_STREQUENT) {
@@ -740,6 +745,10 @@ public class ContactBrowserActivity extends ContactsActivity
                 return true;
             }
             case R.id.menu_add: {
+                createNewContact();
+                return true;
+            }
+            case R.id.menu_new_contact: {
                 final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
                 startActivityForResult(intent, SUBACTIVITY_NEW_CONTACT);
                 return true;

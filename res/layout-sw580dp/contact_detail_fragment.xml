@@ -36,32 +36,17 @@
             ex:layout_wideParentWidth="800dip"
             ex:layout_wideMarginLeft="80dip"
             ex:layout_wideMarginRight="48dip"
-            ex:layout_narrowParentWidth="500dip"
-            ex:layout_narrowMarginLeft="15dip"
+            ex:layout_narrowParentWidth="300dip"
+            ex:layout_narrowMarginLeft="5dip"
             ex:layout_narrowMarginRight="16dip"
         />
     </com.android.contacts.widget.InterpolatingLayout>
 
     <!-- Placeholder for empty list -->
-    <com.android.contacts.widget.InterpolatingLayout
+    <include
         android:id="@android:id/empty"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone">
-        <TextView android:id="@+id/emptyText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/no_contact_details"
-            android:textSize="20sp"
-            android:textColor="?android:attr/textColorSecondary"
-            ex:layout_wideParentWidth="800dip"
-            ex:layout_wideMarginLeft="64dip"
-            ex:layout_narrowParentWidth="500dip"
-            ex:layout_narrowMarginLeft="42dip"
-            android:paddingTop="10dip"
-            android:lineSpacingMultiplier="0.92"
-        />
-    </com.android.contacts.widget.InterpolatingLayout>
+        layout="@layout/contact_detail_empty"
+        android:visibility="gone" />
 
     <!-- Real list -->
     <com.android.contacts.widget.InterpolatingLayout
@@ -74,8 +59,8 @@
             ex:layout_wideParentWidth="800dip"
             ex:layout_wideMarginLeft="64dip"
             ex:layout_widePaddingRight="48dip"
-            ex:layout_narrowParentWidth="500dip"
-            ex:layout_narrowMarginLeft="32dip"
+            ex:layout_narrowParentWidth="300dip"
+            ex:layout_narrowMarginLeft="5dip"
             ex:layout_narrowPaddingRight="16dip"
             android:cacheColorHint="#00000000"
             android:divider="@android:color/transparent"

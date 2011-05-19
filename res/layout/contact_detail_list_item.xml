@@ -38,7 +38,7 @@
             android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="31dip"
-            android:paddingLeft="16dip"
+            android:paddingLeft="8dip"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="?android:attr/textColorTertiary" />
         <ImageView
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:minHeight="@dimen/detail_min_line_item_height"
         android:orientation="horizontal"
-        android:paddingLeft="31dip"
+        android:paddingLeft="15dip"
         android:gravity="center_vertical">
         <LinearLayout
             android:layout_width="0dip"
