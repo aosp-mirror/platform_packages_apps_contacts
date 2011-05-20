@@ -31,6 +31,7 @@
         <item name="list_item_vertical_divider_margin">5dip</item>
         <item name="list_item_presence_icon_margin">30dip</item>
         <item name="list_item_photo_size">64dip</item>
+        <item name="list_item_profile_photo_size">80dip</item>
         <item name="list_item_prefix_highlight_color">#729a27</item>
         <item name="list_item_header_text_indent">77dip</item>
         <item name="list_item_header_text_color">?color/section_header_text_color</item>
@@ -53,6 +54,7 @@
         <item name="list_item_vertical_divider_margin">5dip</item>
         <item name="list_item_presence_icon_margin">30dip</item>
         <item name="list_item_photo_size">64dip</item>
+        <item name="list_item_profile_photo_size">80dip</item>
         <item name="list_item_header_text_indent">77dip</item>
         <item name="list_item_header_text_color">?color/section_header_text_color</item>
         <item name="list_item_header_text_size">14sp</item>

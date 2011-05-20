@@ -131,6 +131,11 @@ public class DefaultContactListAdapter extends ContactListAdapter {
         }
         uri = applyDataRestriction(uri);
 
+        // Include the user's personal profile.
+        if (shouldIncludeProfile()) {
+            uri = includeProfileEntry(uri);
+        }
+
         loader.setUri(uri);
     }
 

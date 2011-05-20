@@ -1537,4 +1537,8 @@
     <string name="call_type_and_date">
         <xliff:g id="call_type" example="Friends">%1$s</xliff:g>  <xliff:g id="call_short_date" example="Friends">%2$s</xliff:g>
     </string>
+
+    <!-- Text displayed in place of the display name for the contact that represents the user's
+      personal profile entry [CHAR LIMIT=64] -->
+    <string name="profile_display_name">My profile</string>
 </resources>

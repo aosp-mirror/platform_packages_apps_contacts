@@ -23,6 +23,7 @@ import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
+import android.provider.ContactsContract.Profile;
 import android.provider.ContactsContract.SearchSnippetColumns;
 import android.text.TextUtils;
 import android.view.View;
@@ -30,9 +31,10 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.QuickContactBadge;
 
-
 /**
  * A cursor adapter for the {@link ContactsContract.Contacts#CONTENT_TYPE} content type.
+ * Also includes support for including the {@link ContactsContract.Profile} record in the
+ * list.
  */
 public abstract class ContactListAdapter extends ContactEntryListAdapter {
 
@@ -49,6 +51,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         Contacts.LOOKUP_KEY,                    // 9
         Contacts.PHONETIC_NAME,                 // 10
         Contacts.HAS_PHONE_NUMBER,              // 11
+        Contacts.IS_USER_PROFILE,               // 12
     };
 
     protected static final String[] PROJECTION_DATA = new String[] {
@@ -79,7 +82,8 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         Contacts.LOOKUP_KEY,                    // 9
         Contacts.PHONETIC_NAME,                 // 10
         Contacts.HAS_PHONE_NUMBER,              // 11
-        SearchSnippetColumns.SNIPPET,           // 12
+        Contacts.IS_USER_PROFILE,               // 12
+        SearchSnippetColumns.SNIPPET,           // 13
     };
 
     protected static final int CONTACT_ID_COLUMN_INDEX = 0;
@@ -94,7 +98,8 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     protected static final int CONTACT_LOOKUP_KEY_COLUMN_INDEX = 9;
     protected static final int CONTACT_PHONETIC_NAME_COLUMN_INDEX = 10;
     protected static final int CONTACT_HAS_PHONE_COLUMN_INDEX = 11;
-    protected static final int CONTACT_SNIPPET_COLUMN_INDEX = 12;
+    protected static final int CONTACT_IS_USER_PROFILE = 12;
+    protected static final int CONTACT_SNIPPET_COLUMN_INDEX = 13;
 
     private CharSequence mUnknownNameText;
     private int mDisplayNameColumnIndex;
@@ -106,10 +111,15 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
 
     private ContactListFilter mFilter;
 
+    // View types for entries in the list view.
+    private final int mViewTypeProfileEntry;
+
+
     public ContactListAdapter(Context context) {
         super(context);
 
         mUnknownNameText = context.getText(android.R.string.unknownName);
+        mViewTypeProfileEntry = getViewTypeCount() - 1;
     }
 
     public CharSequence getUnknownNameText() {
@@ -148,6 +158,11 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     protected static Uri buildSectionIndexerUri(Uri uri) {
         return uri.buildUpon()
                 .appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true").build();
+    }
+
+    protected static Uri includeProfileEntry(Uri uri) {
+        return uri.buildUpon()
+                .appendQueryParameter(ContactsContract.INCLUDE_PROFILE, "true").build();
     }
 
     public boolean getHasPhoneNumber(int position) {
@@ -221,12 +236,35 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     @Override
     protected View newView(Context context, int partition, Cursor cursor, int position,
             ViewGroup parent) {
-        final ContactListItemView view = new ContactListItemView(context, null);
+        ContactListItemView view;
+        if (getItemViewType(position) == mViewTypeProfileEntry) {
+            view = new ContactListProfileItemView(context, null);
+        } else {
+            view = new ContactListItemView(context, null);
+        }
         view.setUnknownNameText(mUnknownNameText);
         view.setTextWithHighlightingFactory(getTextWithHighlightingFactory());
         view.setQuickContactEnabled(isQuickContactEnabled());
         view.setActivatedStateSupported(isSelectionVisible());
         return view;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return isUserProfile(position)
+                ? mViewTypeProfileEntry
+                : super.getItemViewType(position);
+    }
+
+    @Override
+    public int getItemViewTypeCount() {
+        return super.getItemViewTypeCount() + 1;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        // One extra view type - the user's profile entry view.
+        return super.getViewTypeCount() + 1;
     }
 
     protected void bindSectionHeaderAndDivider(ContactListItemView view, int position) {
