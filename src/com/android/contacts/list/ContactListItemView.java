@@ -63,6 +63,7 @@ public class ContactListItemView extends ViewGroup
     private final int mPaddingRight;
     private final int mPaddingBottom;
     private final int mPaddingLeft;
+    private final int mFadingEdgeLength;
     private final int mGapBetweenImageAndText;
     private final int mGapBetweenLabelAndData;
     private final int mCallButtonPadding;
@@ -168,6 +169,8 @@ public class ContactListItemView extends ViewGroup
                 R.styleable.ContactListItemView_list_item_padding_left, 0);
         mPaddingRight = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_padding_right, 0);
+        mFadingEdgeLength = a.getDimensionPixelOffset(
+                R.styleable.ContactListItemView_list_item_fading_edge_length, 0);
         mGapBetweenImageAndText = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_gap_between_image_and_text, 0);
         mGapBetweenLabelAndData = a.getDimensionPixelOffset(
@@ -614,6 +617,8 @@ public class ContactListItemView extends ViewGroup
         if (mNameTextView == null) {
             mNameTextView = new TextView(mContext);
             mNameTextView.setSingleLine(true);
+            mNameTextView.setHorizontalFadingEdgeEnabled(true);
+            mNameTextView.setFadingEdgeLength(mFadingEdgeLength);
             mNameTextView.setEllipsize(getTextEllipsis());
             mNameTextView.setTextAppearance(mContext, android.R.style.TextAppearance_Medium);
             mNameTextView.setGravity(Gravity.CENTER_VERTICAL);
@@ -669,6 +674,8 @@ public class ContactListItemView extends ViewGroup
         if (mPhoneticNameTextView == null) {
             mPhoneticNameTextView = new TextView(mContext);
             mPhoneticNameTextView.setSingleLine(true);
+            mPhoneticNameTextView.setHorizontalFadingEdgeEnabled(true);
+            mPhoneticNameTextView.setFadingEdgeLength(mFadingEdgeLength);
             mPhoneticNameTextView.setEllipsize(getTextEllipsis());
             mPhoneticNameTextView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
             mPhoneticNameTextView.setTypeface(mPhoneticNameTextView.getTypeface(), Typeface.BOLD);
@@ -714,6 +721,8 @@ public class ContactListItemView extends ViewGroup
         if (mLabelView == null) {
             mLabelView = new TextView(mContext);
             mLabelView.setSingleLine(true);
+            mLabelView.setHorizontalFadingEdgeEnabled(true);
+            mLabelView.setFadingEdgeLength(mFadingEdgeLength);
             mLabelView.setEllipsize(getTextEllipsis());
             mLabelView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
             mLabelView.setTypeface(mLabelView.getTypeface(), Typeface.BOLD);
@@ -745,6 +754,8 @@ public class ContactListItemView extends ViewGroup
         if (mDataView == null) {
             mDataView = new TextView(mContext);
             mDataView.setSingleLine(true);
+            mDataView.setHorizontalFadingEdgeEnabled(true);
+            mDataView.setFadingEdgeLength(mFadingEdgeLength);
             mDataView.setEllipsize(getTextEllipsis());
             mDataView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
             addView(mDataView);
@@ -774,6 +785,8 @@ public class ContactListItemView extends ViewGroup
         if (mSnippetView == null) {
             mSnippetView = new TextView(mContext);
             mSnippetView.setSingleLine(true);
+            mSnippetView.setHorizontalFadingEdgeEnabled(true);
+            mSnippetView.setFadingEdgeLength(mFadingEdgeLength);
             mSnippetView.setEllipsize(getTextEllipsis());
             mSnippetView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
             mSnippetView.setTypeface(mSnippetView.getTypeface(), Typeface.BOLD);
