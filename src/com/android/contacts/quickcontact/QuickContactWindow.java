@@ -54,6 +54,7 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ActionMode;
 import android.view.ContextThemeWrapper;
@@ -248,11 +249,9 @@ public class QuickContactWindow implements Window.Callback,
         mBackground = new QuickContactBackgroundDrawable();
         mRootView.setBackgroundDrawable(mBackground);
 
-        mScreenWidth = mWindowManager.getDefaultDisplay().getWidth();
-        // Status bar height
-        final int screenMarginBottom = context.getResources().getDimensionPixelSize(
-                com.android.internal.R.dimen.screen_margin_bottom);
-        mUseableScreenHeight = mWindowManager.getDefaultDisplay().getHeight() - screenMarginBottom;
+        final DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        mScreenWidth = metrics.widthPixels;
+        mUseableScreenHeight = metrics.heightPixels;
 
         mTrack = (ViewGroup) mWindow.findViewById(R.id.quickcontact);
         mTrackScroll = (HorizontalScrollView) mWindow.findViewById(R.id.scroll);
