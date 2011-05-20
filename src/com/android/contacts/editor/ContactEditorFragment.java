@@ -1058,11 +1058,6 @@ public class ContactEditorFragment extends Fragment implements
         void onContactSplit(Uri newLookupUri);
 
         /**
-         * User was presented with an account selection and couldn't decide.
-         */
-        void onAccountSelectorAborted();
-
-        /**
          * User has tapped Revert, close the fragment now.
          */
         void onReverted();

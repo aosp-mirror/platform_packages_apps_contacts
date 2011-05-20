@@ -168,7 +168,8 @@ public class ContactBrowserActivity extends ContactsActivity
         item.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                createNewContact();
+                final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+                startActivityForResult(intent, SUBACTIVITY_NEW_CONTACT);
             }
         });
 
@@ -758,18 +759,6 @@ public class ContactBrowserActivity extends ContactsActivity
             }
         }
         return false;
-    }
-
-    private void createNewContact() {
-        // We have an account switcher in "create-account" screen, so don't need to ask a user to
-        // select an account here.
-        final ArrayList<Account> accounts =
-                AccountTypeManager.getInstance(this).getAccounts(true);
-        final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-        if (accounts.size() > 0) {
-            intent.putExtra(Intents.Insert.ACCOUNT, accounts.get(0));
-        }
-        startActivityForResult(intent, SUBACTIVITY_NEW_CONTACT);
     }
 
     @Override

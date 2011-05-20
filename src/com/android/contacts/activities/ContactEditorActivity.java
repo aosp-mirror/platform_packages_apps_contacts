@@ -170,11 +170,6 @@ public class ContactEditorActivity extends ContactsActivity
         }
 
         @Override
-        public void onAccountSelectorAborted() {
-            finish();
-        }
-
-        @Override
         public void onContactNotFound() {
             setResult(Activity.RESULT_CANCELED, null);
             finish();
