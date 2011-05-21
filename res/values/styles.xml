@@ -208,4 +208,9 @@
         <item name="android:layout_height">2dip</item>
         <item name="android:layout_width">match_parent</item>
     </style>
+
+    <style name="ContactDetailHeaderTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 </resources>

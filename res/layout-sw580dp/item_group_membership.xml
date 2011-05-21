@@ -24,7 +24,7 @@
 
     <TextView
         android:id="@+id/kind_title"
-        android:layout_width="150dip"
+        android:layout_width="@dimen/editor_title_label_width"
         android:layout_height="@dimen/editor_min_line_item_height"
         android:gravity="center_vertical"
         android:textAppearance="?android:attr/textAppearanceSmall"

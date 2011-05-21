@@ -43,7 +43,7 @@
                 android:layout_gravity="top|left"
                 ex:layout_wideParentWidth="960dip"
                 ex:layout_wideMarginLeft="96dip"
-                ex:layout_narrowParentWidth="800dip"
+                ex:layout_narrowParentWidth="@dimen/editor_interpolator_narrow_width"
                 ex:layout_narrowMarginLeft="15dip">
 
                 <include
@@ -58,7 +58,7 @@
                 android:layout_gravity="top"
                 ex:layout_wideParentWidth="960dip"
                 ex:layout_wideMarginRight="48dip"
-                ex:layout_narrowParentWidth="800dip"
+                ex:layout_narrowParentWidth="@dimen/editor_interpolator_narrow_width"
                 ex:layout_narrowMarginRight="15dip"
                 android:orientation="vertical">
 
@@ -71,7 +71,7 @@
                     android:id="@+id/read_only_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="64dip"
+                    android:layout_marginLeft="@dimen/editor_name_text_field_left_margin"
                     android:layout_marginRight="48dip"
                     android:layout_marginTop="6dip"
                     android:layout_marginBottom="4dip"
@@ -91,7 +91,7 @@
                 ex:layout_wideParentWidth="960dip"
                 ex:layout_wideMarginLeft="96dip"
                 ex:layout_wideMarginRight="96dip"
-                ex:layout_narrowParentWidth="800dip"
+                ex:layout_narrowParentWidth="@dimen/editor_interpolator_narrow_width"
                 ex:layout_narrowMarginLeft="15dip"
                 ex:layout_narrowMarginRight="15dip">
 
@@ -132,7 +132,7 @@
                 ex:layout_wideParentWidth="960dip"
                 ex:layout_wideMarginLeft="246dip"
                 ex:layout_wideMarginRight="156dip"
-                ex:layout_narrowParentWidth="800dip"
+                ex:layout_narrowParentWidth="@dimen/editor_interpolator_narrow_width"
                 ex:layout_narrowMarginLeft="165dip"
                 ex:layout_narrowMarginRight="121dip"
                 android:layout_width="match_parent"

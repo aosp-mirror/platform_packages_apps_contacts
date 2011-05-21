@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2011 The Android Open Source Project
+<!-- Copyright (C) 2010 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,9 +14,11 @@
      limitations under the License.
 -->
 <resources>
-    <dimen name="quick_contact_width">452dip</dimen>
-    <dimen name="action_bar_filter_min_width">220dip</dimen>
-    <dimen name="action_bar_filter_max_width">300dip</dimen>
-    <dimen name="action_bar_search_max_width">336dip</dimen>
-    <dimen name="action_bar_search_spacing">32dip</dimen>
+    <dimen name="editor_type_label_width">180dip</dimen>
+    <dimen name="editor_round_button_padding_left">8dip</dimen>
+    <dimen name="editor_round_button_padding_right">8dip</dimen>
+    <dimen name="editor_name_text_field_left_margin">52dip</dimen>
+    <dimen name="editor_title_label_width">150dip</dimen>
+    <dimen name="editor_interpolator_narrow_width">800dip</dimen>
+    <dimen name="editor_name_text_field_right_margin">10dip</dimen>
 </resources>
