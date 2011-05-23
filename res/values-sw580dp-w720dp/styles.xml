@@ -25,6 +25,7 @@
         <item name="list_item_padding_right">24dip</item>
         <item name="list_item_padding_bottom">0dip</item>
         <item name="list_item_padding_left">0dip</item>
+        <item name="list_item_fading_edge_length">15dip</item>
         <item name="list_item_gap_between_image_and_text">16dip</item>
         <item name="list_item_gap_between_label_and_data">5dip</item>
         <item name="list_item_call_button_padding">14dip</item>
