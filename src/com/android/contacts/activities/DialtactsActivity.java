@@ -20,12 +20,14 @@ import com.android.contacts.R;
 import com.android.contacts.calllog.CallLogFragment;
 import com.android.contacts.dialpad.DialpadFragment;
 import com.android.contacts.interactions.ImportExportDialogFragment;
+import com.android.contacts.interactions.PhoneNumberInteraction;
 import com.android.contacts.list.ContactListFilter;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.list.DirectoryListLoader;
 import com.android.contacts.list.OnContactBrowserActionListener;
+import com.android.contacts.list.StrequentContactListFragment;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.internal.telephony.ITelephony;
 
@@ -84,13 +86,16 @@ public class DialtactsActivity extends Activity {
     private DialpadFragment mDialpadFragment;
     private CallLogFragment mCallLogFragment;
     private DefaultContactBrowseListFragment mContactsFragment;
-    private DefaultContactBrowseListFragment mFavoritesFragment;
+    private StrequentContactListFragment mStrequentFragment;
 
     /**
      * The index of the tab that has last been manually selected (the user clicked on a tab).
      * This value does not keep track of programmatically set Tabs (e.g. Call Log after a Call)
      */
     private int mLastManuallySelectedTab;
+
+    // TODO: It would be great to eventually remove all interactions and replace by DialogFragments
+    private PhoneNumberInteraction mPhoneNumberCallInteraction;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -108,7 +113,7 @@ public class DialtactsActivity extends Activity {
                 .findFragmentById(R.id.call_log_fragment);
         mContactsFragment = (DefaultContactBrowseListFragment) fragmentManager
                 .findFragmentById(R.id.contacts_fragment);
-        mFavoritesFragment = (DefaultContactBrowseListFragment) fragmentManager
+        mStrequentFragment = (StrequentContactListFragment) fragmentManager
                 .findFragmentById(R.id.favorites_fragment);
 
         // Hide all tabs (the current tab will later be reshown once a tab is selected)
@@ -116,7 +121,7 @@ public class DialtactsActivity extends Activity {
         transaction.hide(mDialpadFragment);
         transaction.hide(mCallLogFragment);
         transaction.hide(mContactsFragment);
-        transaction.hide(mFavoritesFragment);
+        transaction.hide(mStrequentFragment);
         transaction.commit();
 
         // Setup the ActionBar tabs (the order matches the tab-index contants TAB_INDEX_*)
@@ -214,7 +219,7 @@ public class DialtactsActivity extends Activity {
         final Tab tab = getActionBar().newTab();
         tab.setText(R.string.contactsFavoritesLabel);
         tab.setIcon(R.drawable.ic_tab_starred);
-        tab.setTabListener(new TabChangeListener(mFavoritesFragment));
+        tab.setTabListener(new TabChangeListener(mStrequentFragment));
         getActionBar().addTab(tab);
 
         // TODO: We should not artificially create Intents and put them into the Fragment.
@@ -226,14 +231,14 @@ public class DialtactsActivity extends Activity {
         ContactsRequest request = resolver.resolveIntent(intent);
         final ContactListFilter filter = new ContactListFilter(
                 ContactListFilter.FILTER_TYPE_STARRED);
-        mFavoritesFragment.setFilter(filter, false);
-        mFavoritesFragment.setSearchMode(request.isSearchMode());
-        mFavoritesFragment.setQueryString(request.getQueryString(), false);
-        mFavoritesFragment.setContactsRequest(request);
-        mFavoritesFragment.setDirectorySearchMode(request.isDirectorySearchEnabled()
+        mStrequentFragment.setFilter(filter, false);
+        mStrequentFragment.setSearchMode(request.isSearchMode());
+        mStrequentFragment.setQueryString(request.getQueryString(), false);
+        mStrequentFragment.setContactsRequest(request);
+        mStrequentFragment.setDirectorySearchMode(request.isDirectorySearchEnabled()
                 ? DirectoryListLoader.SEARCH_MODE_DEFAULT
                 : DirectoryListLoader.SEARCH_MODE_NONE);
-        mFavoritesFragment.setOnContactListActionListener(mListFragmentListener);
+        mStrequentFragment.setOnContactListActionListener(mListFragmentListener);
     }
 
     /**
@@ -415,6 +420,13 @@ public class DialtactsActivity extends Activity {
         }
     }
 
+    private PhoneNumberInteraction getPhoneNumberCallInteraction() {
+        if (mPhoneNumberCallInteraction == null) {
+            mPhoneNumberCallInteraction = new PhoneNumberInteraction(this, false, null);
+        }
+        return mPhoneNumberCallInteraction;
+    }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -495,6 +507,7 @@ public class DialtactsActivity extends Activity {
 
         @Override
         public void onCallContactAction(Uri contactUri) {
+            getPhoneNumberCallInteraction().startInteraction(contactUri);
         }
 
         @Override
