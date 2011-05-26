@@ -95,8 +95,7 @@
     <string name="default_ringtone" msgid="9099988849649827972">"默认日历"</string>
     <string name="removePhoto" msgid="4898105274130284565">"删除照片"</string>
     <string name="noContacts" msgid="8579310973261953559">"没有联系人。"</string>
-    <!-- no translation found for noGroups (8614664663561385253) -->
-    <skip />
+    <string name="noGroups" msgid="8614664663561385253">"没有任何群组。"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"未找到匹配的联系人。"</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"没有联系人拥有电话号码。"</string>
     <string name="showFilterPhones" msgid="4184858075465653970">"仅显示有电话号码的联系人"</string>
@@ -136,8 +135,7 @@
     <item quantity="other" msgid="7988132539476575389">"找到 <xliff:g id="COUNT">%d</xliff:g> 个联系人"</item>
   </plurals>
     <string name="contactsIconLabel" msgid="7666609097606552806">"通讯录"</string>
-    <!-- no translation found for contactsGroupsLabel (2841971472518003524) -->
-    <skip />
+    <string name="contactsGroupsLabel" msgid="2841971472518003524">"群组"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"收藏"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"拨号"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"通话记录"</string>

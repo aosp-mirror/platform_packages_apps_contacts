@@ -95,8 +95,7 @@
     <string name="default_ringtone" msgid="9099988849649827972">"기본값"</string>
     <string name="removePhoto" msgid="4898105274130284565">"사진 삭제"</string>
     <string name="noContacts" msgid="8579310973261953559">"주소록이 없습니다."</string>
-    <!-- no translation found for noGroups (8614664663561385253) -->
-    <skip />
+    <string name="noGroups" msgid="8614664663561385253">"그룹 없음"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"일치하는 연락처가 없습니다."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"전화번호가 포함된 주소록이 없습니다."</string>
     <string name="showFilterPhones" msgid="4184858075465653970">"전화번호가 있는 연락처만"</string>
@@ -136,8 +135,7 @@
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g>개를 찾았습니다."</item>
   </plurals>
     <string name="contactsIconLabel" msgid="7666609097606552806">"주소록"</string>
-    <!-- no translation found for contactsGroupsLabel (2841971472518003524) -->
-    <skip />
+    <string name="contactsGroupsLabel" msgid="2841971472518003524">"그룹"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"즐겨찾기"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"휴대전화"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"통화기록"</string>

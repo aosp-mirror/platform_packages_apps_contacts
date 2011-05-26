@@ -95,8 +95,7 @@
     <string name="default_ringtone" msgid="9099988849649827972">"Bawaan"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Hapus foto"</string>
     <string name="noContacts" msgid="8579310973261953559">"Tidak ada kenalan."</string>
-    <!-- no translation found for noGroups (8614664663561385253) -->
-    <skip />
+    <string name="noGroups" msgid="8614664663561385253">"Tidak ada grup."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Tidak ditemukan kenalan yang cocok."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Tidak ada kenalan dengan nomor telepon."</string>
     <string name="showFilterPhones" msgid="4184858075465653970">"Hanya kenalan dengan telepon"</string>
@@ -136,8 +135,7 @@
     <item quantity="other" msgid="7988132539476575389">"Ada <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
     <string name="contactsIconLabel" msgid="7666609097606552806">"Kenalan"</string>
-    <!-- no translation found for contactsGroupsLabel (2841971472518003524) -->
-    <skip />
+    <string name="contactsGroupsLabel" msgid="2841971472518003524">"Grup"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favorit"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Telepon"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Log panggilan"</string>

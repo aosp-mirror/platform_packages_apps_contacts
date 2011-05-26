@@ -95,8 +95,7 @@
     <string name="default_ringtone" msgid="9099988849649827972">"По умолчанию"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Удалить фото"</string>
     <string name="noContacts" msgid="8579310973261953559">"Нет контактов."</string>
-    <!-- no translation found for noGroups (8614664663561385253) -->
-    <skip />
+    <string name="noGroups" msgid="8614664663561385253">"Нет групп."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Подходящие контакты не найдены."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Нет контактов с номерами телефонов."</string>
     <string name="showFilterPhones" msgid="4184858075465653970">"Контакты с телефонами"</string>
@@ -136,8 +135,7 @@
     <item quantity="other" msgid="7988132539476575389">"Найдено: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
     <string name="contactsIconLabel" msgid="7666609097606552806">"Контакты"</string>
-    <!-- no translation found for contactsGroupsLabel (2841971472518003524) -->
-    <skip />
+    <string name="contactsGroupsLabel" msgid="2841971472518003524">"Группы"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Избранное"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Кнопки"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Вызовы"</string>

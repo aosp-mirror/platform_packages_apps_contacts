@@ -95,8 +95,7 @@
     <string name="default_ringtone" msgid="9099988849649827972">"プリセット着信音"</string>
     <string name="removePhoto" msgid="4898105274130284565">"写真を削除"</string>
     <string name="noContacts" msgid="8579310973261953559">"連絡先がありません。"</string>
-    <!-- no translation found for noGroups (8614664663561385253) -->
-    <skip />
+    <string name="noGroups" msgid="8614664663561385253">"グループはありません。"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"一致する連絡先が見つかりません。"</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"電話番号付きの連絡先はありません。"</string>
     <string name="showFilterPhones" msgid="4184858075465653970">"電話番号のある連絡先のみ"</string>
@@ -136,8 +135,7 @@
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g>件見つかりました"</item>
   </plurals>
     <string name="contactsIconLabel" msgid="7666609097606552806">"連絡先"</string>
-    <!-- no translation found for contactsGroupsLabel (2841971472518003524) -->
-    <skip />
+    <string name="contactsGroupsLabel" msgid="2841971472518003524">"グループ"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"お気入り"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"電話"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"通話履歴"</string>
