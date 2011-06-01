@@ -21,18 +21,7 @@
     android:background="@drawable/list_item_background_secondary"
 >
 
-    <ImageView android:id="@+id/call_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:paddingLeft="14dip"
-        android:paddingRight="14dip"
-        android:layout_alignParentRight="true"
-
-        android:gravity="center_vertical"
-        android:src="@android:drawable/sym_action_call"
-        android:background="@drawable/call_background_secondary"
-    />
-
+    <include layout="@layout/call_log_action_call"/>
     <include layout="@layout/call_log_list_item_layout"/>
 
 </RelativeLayout>

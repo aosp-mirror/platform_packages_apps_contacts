@@ -16,6 +16,7 @@
 
 package com.android.contacts.activities;
 
+import com.android.contacts.R;
 import com.android.contacts.calllog.CallLogFragment;
 import com.android.internal.telephony.CallerInfo;
 
@@ -136,6 +137,38 @@ public class CallLogActivityTests
 
         buildViewListFromDb();
         checkCallStatus();
+    }
+
+    @MediumTest
+    public void testCallAndGroupViews_GroupView() {
+        mCursor.moveToFirst();
+        insert(CallerInfo.PRIVATE_NUMBER, NOW, 0, Calls.INCOMING_TYPE);
+        insert(CallerInfo.PRIVATE_NUMBER, NOW, 0, Calls.INCOMING_TYPE);
+        insert(CallerInfo.PRIVATE_NUMBER, NOW, 0, Calls.INCOMING_TYPE);
+        View view = mAdapter.newGroupView(getActivity(), mParentView);
+        mAdapter.bindGroupView(view, getActivity(), mCursor, 3, false);
+        assertNull(view.findViewById(R.id.call_icon));
+        assertNotNull(view.findViewById(R.id.groupIndicator));
+    }
+
+    @MediumTest
+    public void testCallAndGroupViews_StandAloneView() {
+        mCursor.moveToFirst();
+        insert(CallerInfo.PRIVATE_NUMBER, NOW, 0, Calls.INCOMING_TYPE);
+        View view = mAdapter.newStandAloneView(getActivity(), mParentView);
+        mAdapter.bindStandAloneView(view, getActivity(), mCursor);
+        assertNotNull(view.findViewById(R.id.call_icon));
+        assertNull(view.findViewById(R.id.groupIndicator));
+    }
+
+    @MediumTest
+    public void testCallAndGroupViews_ChildView() {
+        mCursor.moveToFirst();
+        insert(CallerInfo.PRIVATE_NUMBER, NOW, 0, Calls.INCOMING_TYPE);
+        View view = mAdapter.newChildView(getActivity(), mParentView);
+        mAdapter.bindChildView(view, getActivity(), mCursor);
+        assertNotNull(view.findViewById(R.id.call_icon));
+        assertNull(view.findViewById(R.id.groupIndicator));
     }
 
     //
@@ -273,6 +306,8 @@ public class CallLogActivityTests
         row.add(number);
         if (NOW == date) {
             row.add(new Date().getTime());
+        } else {
+            row.add(date);
         }
         if (duration < 0) {
             duration = mRnd.nextInt(10 * 60);  // 0 - 10 minutes random.

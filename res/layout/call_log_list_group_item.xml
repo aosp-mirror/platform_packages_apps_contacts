@@ -20,27 +20,7 @@
     android:paddingLeft="7dip"
 >
 
-    <ImageView android:id="@+id/call_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:paddingLeft="14dip"
-        android:paddingRight="14dip"
-        android:layout_alignParentRight="true"
-
-        android:gravity="center_vertical"
-        android:src="@android:drawable/sym_action_call"
-        android:background="@drawable/call_background"
-    />
-
-    <View android:id="@+id/divider"
-        android:layout_width="1px"
-        android:layout_height="match_parent"
-        android:layout_marginTop="5dip"
-        android:layout_marginBottom="5dip"
-        android:layout_toLeftOf="@id/call_icon"
-        android:layout_marginLeft="11dip"
-        android:background="@drawable/divider_vertical_dark"
-    />
+    <include layout="@layout/call_log_action_group"/>
 
     <TextView android:id="@+id/date"
         android:layout_width="wrap_content"
@@ -110,16 +90,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:singleLine="true"
         android:ellipsize="marquee"
-        android:gravity="center_vertical"
-    />
-
-    <ImageView
-        android:id="@+id/groupIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:src="@*android:drawable/expander_ic_minimized"
         android:gravity="center_vertical"
     />
 </RelativeLayout>

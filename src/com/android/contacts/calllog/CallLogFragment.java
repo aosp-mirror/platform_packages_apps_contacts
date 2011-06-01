@@ -21,6 +21,7 @@ import com.android.contacts.CallDetailActivity;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.internal.telephony.CallerInfo;
+import com.google.common.annotations.VisibleForTesting;
 
 import android.app.ListFragment;
 import android.content.AsyncQueryHandler;
@@ -155,8 +156,14 @@ public class CallLogFragment extends ListFragment
         public TextView numberView;
         public TextView dateView;
         public ImageView iconView;
+        /** The icon used to place a call to the contact. Only present for non-group entries. */
         public View callView;
+        /** The icon used to expand and collapse an entry. Only present for group entries. */
         public ImageView groupIndicator;
+        /**
+         * The text view containing the number of items in the group. Only present for group
+         * entries.
+         */
         public TextView groupSize;
     }
 
@@ -540,6 +547,7 @@ public class CallLogFragment extends ListFragment
         }
 
 
+        @VisibleForTesting
         @Override
         public View newStandAloneView(Context context, ViewGroup parent) {
             LayoutInflater inflater =
@@ -549,13 +557,15 @@ public class CallLogFragment extends ListFragment
             return view;
         }
 
+        @VisibleForTesting
         @Override
         public void bindStandAloneView(View view, Context context, Cursor cursor) {
             bindView(context, view, cursor);
         }
 
+        @VisibleForTesting
         @Override
-        protected View newChildView(Context context, ViewGroup parent) {
+        public View newChildView(Context context, ViewGroup parent) {
             LayoutInflater inflater =
                     (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = inflater.inflate(R.layout.call_log_list_child_item, parent, false);
@@ -563,13 +573,15 @@ public class CallLogFragment extends ListFragment
             return view;
         }
 
+        @VisibleForTesting
         @Override
-        protected void bindChildView(View view, Context context, Cursor cursor) {
+        public void bindChildView(View view, Context context, Cursor cursor) {
             bindView(context, view, cursor);
         }
 
+        @VisibleForTesting
         @Override
-        protected View newGroupView(Context context, ViewGroup parent) {
+        public View newGroupView(Context context, ViewGroup parent) {
             LayoutInflater inflater =
                     (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = inflater.inflate(R.layout.call_log_list_group_item, parent, false);
@@ -577,8 +589,9 @@ public class CallLogFragment extends ListFragment
             return view;
         }
 
+        @VisibleForTesting
         @Override
-        protected void bindGroupView(View view, Context context, Cursor cursor, int groupSize,
+        public void bindGroupView(View view, Context context, Cursor cursor, int groupSize,
                 boolean expanded) {
             final CallLogListItemViews views = (CallLogListItemViews) view.getTag();
             int groupIndicator = expanded
@@ -599,7 +612,9 @@ public class CallLogFragment extends ListFragment
             views.dateView = (TextView) view.findViewById(R.id.date);
             views.iconView = (ImageView) view.findViewById(R.id.call_type_icon);
             views.callView = view.findViewById(R.id.call_icon);
-            views.callView.setOnClickListener(this);
+            if (views.callView != null) {
+                views.callView.setOnClickListener(this);
+            }
             views.groupIndicator = (ImageView) view.findViewById(R.id.groupIndicator);
             views.groupSize = (TextView) view.findViewById(R.id.groupSize);
             view.setTag(views);
@@ -615,7 +630,9 @@ public class CallLogFragment extends ListFragment
             String callerNumberLabel = c.getString(CallLogQuery.CALLER_NUMBERLABEL);
             String countryIso = c.getString(CallLogQuery.COUNTRY_ISO);
             // Store away the number so we can call it directly if you click on the call icon
-            views.callView.setTag(number);
+            if (views.callView != null) {
+                views.callView.setTag(number);
+            }
 
             // Lookup contacts with this number
             ContactInfo info = mContactInfo.get(number);
@@ -663,7 +680,9 @@ public class CallLogFragment extends ListFragment
             // Set the text lines and call icon.
             // Assumes the call back feature is on most of the
             // time. For private and unknown numbers: hide it.
-            views.callView.setVisibility(View.VISIBLE);
+            if (views.callView != null) {
+                views.callView.setVisibility(View.VISIBLE);
+            }
 
             if (!TextUtils.isEmpty(name)) {
                 views.line1View.setText(name);
@@ -711,10 +730,14 @@ public class CallLogFragment extends ListFragment
             } else {
                 if (number.equals(CallerInfo.UNKNOWN_NUMBER)) {
                     number = getString(R.string.unknown);
-                    views.callView.setVisibility(View.INVISIBLE);
+                    if (views.callView != null) {
+                        views.callView.setVisibility(View.INVISIBLE);
+                    }
                 } else if (number.equals(CallerInfo.PRIVATE_NUMBER)) {
                     number = getString(R.string.private_num);
-                    views.callView.setVisibility(View.INVISIBLE);
+                    if (views.callView != null) {
+                        views.callView.setVisibility(View.INVISIBLE);
+                    }
                 } else if (number.equals(CallerInfo.PAYPHONE_NUMBER)) {
                     number = getString(R.string.payphone);
                 } else if (PhoneNumberUtils.extractNetworkPortion(number)
