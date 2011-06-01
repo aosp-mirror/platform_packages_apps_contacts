@@ -156,8 +156,7 @@ public class ContactEditorActivity extends ContactsActivity
         public void onSaveFinished(int resultCode, Intent resultIntent, boolean navigateHome) {
             setResult(resultCode, resultIntent);
             if (navigateHome) {
-                Intent intent = new Intent(ContactEditorActivity.this,
-                        ContactBrowserActivity.class);
+                Intent intent = new Intent(ContactEditorActivity.this, PeopleActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }

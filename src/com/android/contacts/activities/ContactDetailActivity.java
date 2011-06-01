@@ -56,7 +56,7 @@ public class ContactDetailActivity extends ContactsActivity {
                     Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_FORWARD_RESULT
                             | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-            intent.setClass(this, ContactBrowserActivity.class);
+            intent.setClass(this, PeopleActivity.class);
             startActivity(intent);
             finish();
             return;

@@ -107,7 +107,7 @@
         <attr name="list_item_header_text_size" format="dimension" />
     </declare-styleable>
 
-    <style name="ContactBrowserTheme" parent="@android:Theme">
+    <style name="PeopleTheme" parent="@android:Theme">
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="section_header_background">@drawable/list_title_holo</item>
@@ -217,7 +217,7 @@
         <attr name="animationDuration" format="integer"/>
     </declare-styleable>
     
-    <style name="DirectoryHeader" parent="ContactBrowserTheme">
+    <style name="DirectoryHeader" parent="PeopleTheme">
         <item name="android:background">@drawable/directory_bg</item>
     </style>
 

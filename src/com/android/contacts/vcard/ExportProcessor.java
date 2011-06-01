@@ -16,7 +16,7 @@
 package com.android.contacts.vcard;
 
 import com.android.contacts.R;
-import com.android.contacts.activities.ContactBrowserActivity;
+import com.android.contacts.activities.PeopleActivity;
 import com.android.vcard.VCardComposer;
 import com.android.vcard.VCardConfig;
 
@@ -251,7 +251,7 @@ public class ExportProcessor extends ProcessorBase {
 
     private void doFinishNotification(final String title, final String description) {
         if (DEBUG) Log.d(LOG_TAG, "send finish notification: " + title + ", " + description);
-        final Intent intent = new Intent(mService, ContactBrowserActivity.class);
+        final Intent intent = new Intent(mService, PeopleActivity.class);
         final Notification notification =
                 VCardService.constructFinishNotification(mService, title, description, intent);
         mNotificationManager.notify(mJobId, notification);
