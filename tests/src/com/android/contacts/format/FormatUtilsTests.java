@@ -16,6 +16,7 @@
 
 package com.android.contacts.format;
 
+import android.database.CharArrayBuffer;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
@@ -31,5 +32,65 @@ public class FormatUtilsTests extends AndroidTestCase {
         assertEquals(5, FormatUtils.overlapPoint("John Doe", "Doe, John"));
         assertEquals(-1, FormatUtils.overlapPoint("Mr. John Doe", "Mr. Doe, John"));
         assertEquals(13, FormatUtils.overlapPoint("John Herbert Doe", "Doe, John Herbert"));
+    }
+
+    public void testCopyToCharArrayBuffer() {
+        CharArrayBuffer charArrayBuffer = new CharArrayBuffer(20);
+        checkCopyToCharArrayBuffer(charArrayBuffer, null, 0);
+        checkCopyToCharArrayBuffer(charArrayBuffer, "", 0);
+        checkCopyToCharArrayBuffer(charArrayBuffer, "test", 4);
+        // Check that it works after copying something into it.
+        checkCopyToCharArrayBuffer(charArrayBuffer, "", 0);
+        checkCopyToCharArrayBuffer(charArrayBuffer, "test", 4);
+        checkCopyToCharArrayBuffer(charArrayBuffer, null, 0);
+        // This requires a resize of the actual buffer.
+        checkCopyToCharArrayBuffer(charArrayBuffer, "test test test test test", 24);
+    }
+
+    /**
+     * Checks that copying into the char array buffer copies the values correctly.
+     */
+    private void checkCopyToCharArrayBuffer(CharArrayBuffer buffer, String value, int length) {
+        FormatUtils.copyToCharArrayBuffer(value, buffer);
+        assertEquals(length, buffer.sizeCopied);
+        for (int index = 0; index < length; ++index) {
+            assertEquals(value.charAt(index), buffer.data[index]);
+        }
+    }
+
+    public void testIndexOfWordPrefix_MatchingPrefix() {
+        checkIndexOfWordPrefix("test", "TE", 0);
+        checkIndexOfWordPrefix("Test", "TE", 0);
+        checkIndexOfWordPrefix("TEst", "TE", 0);
+        checkIndexOfWordPrefix("TEST", "TE", 0);
+        checkIndexOfWordPrefix("a test", "TE", 2);
+        checkIndexOfWordPrefix("test test", "TE", 0);
+        checkIndexOfWordPrefix("a test test", "TE", 2);
+    }
+
+    public void testIndexOfWordPrefix_NotMatchingPrefix() {
+        checkIndexOfWordPrefix("test", "TA", -1);
+        checkIndexOfWordPrefix("test type theme", "TA", -1);
+        checkIndexOfWordPrefix("atest retest pretest", "TEST", -1);
+        checkIndexOfWordPrefix("tes", "TEST", -1);
+    }
+
+    public void testIndexOfWordPrefix_LowerCase() {
+        // The prefix match only works if the prefix is un upper case.
+        checkIndexOfWordPrefix("test", "te", -1);
+    }
+
+    /**
+     * Checks that getting the index of a word prefix in the given text returns the expected index.
+     *
+     * @param text the text in which to look for the word
+     * @param wordPrefix the word prefix to look for
+     * @param expectedIndex the expected value to be returned by the function
+     */
+    private void checkIndexOfWordPrefix(String text, String wordPrefix, int expectedIndex) {
+        CharArrayBuffer buffer = new CharArrayBuffer(text.length());
+        FormatUtils.copyToCharArrayBuffer(text, buffer);
+        assertEquals(expectedIndex,
+                FormatUtils.indexOfWordPrefix(buffer, wordPrefix.toCharArray()));
     }
 }

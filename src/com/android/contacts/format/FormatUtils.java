@@ -105,4 +105,64 @@ public class FormatUtils {
         text.setSpan(new StyleSpan(style), start, end, flags);
         return text;
     }
+
+    public static void copyToCharArrayBuffer(String text, CharArrayBuffer buffer) {
+        if (text != null) {
+            char[] data = buffer.data;
+            if (data == null || data.length < text.length()) {
+                buffer.data = text.toCharArray();
+            } else {
+                text.getChars(0, text.length(), data, 0);
+            }
+            buffer.sizeCopied = text.length();
+        } else {
+            buffer.sizeCopied = 0;
+        }
+    }
+
+    /**
+     * Finds the index of the first word that starts with the given prefix.
+     * <p>
+     * If not found, returns -1.
+     */
+    public static int indexOfWordPrefix(CharArrayBuffer buffer, char[] prefix) {
+        if (prefix == null || prefix.length == 0) {
+            return -1;
+        }
+
+        char[] string1 = buffer.data;
+        int bufferSize = buffer.sizeCopied;
+        int prefixSize = prefix.length;
+
+        int i = 0;
+        while (i < bufferSize) {
+
+            // Skip non-word characters
+            while (i < bufferSize && !Character.isLetterOrDigit(string1[i])) {
+                i++;
+            }
+
+            if (i + prefixSize > bufferSize) {
+                return -1;
+            }
+
+            // Compare the prefixes
+            int j;
+            for (j = 0; j < prefixSize; j++) {
+                if (Character.toUpperCase(string1[i+j]) != prefix[j]) {
+                    break;
+                }
+            }
+            if (j == prefixSize) {
+                return i;
+            }
+
+            // Skip this word
+            while (i < bufferSize && Character.isLetterOrDigit(string1[i])) {
+                i++;
+            }
+        }
+
+        return -1;
+    }
 }
