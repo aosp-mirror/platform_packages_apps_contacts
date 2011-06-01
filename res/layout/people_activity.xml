@@ -18,17 +18,30 @@
     android:id="@+id/list_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <FrameLayout
-        android:id="@+id/main_view"
+
+    <!-- Favorites -->
+    <fragment
+        android:id="@+id/favorites_fragment"
+        class="com.android.contacts.list.StrequentContactListFragment"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" />
+
+    <!-- Contacts -->
+    <fragment
+        android:id="@+id/contacts_fragment"
+        class="com.android.contacts.list.DefaultContactBrowseListFragment"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <fragment
-            android:id="@+id/list_fragment"
-            class="com.android.contacts.list.DefaultContactBrowseListFragment"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-        />
-    </FrameLayout>
+    />
+
+    <!-- Groups -->
+    <fragment
+        android:id="@+id/groups_fragment"
+        class="com.android.contacts.group.GroupBrowseListFragment"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+    />
+
     <FrameLayout
         android:id="@+id/contacts_unavailable_view"
         android:layout_width="match_parent"

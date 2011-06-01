@@ -43,12 +43,28 @@
                 android:layout_marginLeft="40dip"
                 android:layout_marginTop="24dip" />
 
+            <!-- Favorites -->
             <fragment
-                android:id="@+id/list_fragment"
+                android:id="@+id/favorites_fragment"
+                class="com.android.contacts.list.StrequentContactListFragment"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+
+            <!-- Contacts -->
+            <fragment
+                android:id="@+id/contacts_fragment"
                 class="com.android.contacts.list.DefaultContactBrowseListFragment"
                 android:layout_height="0dip"
                 android:layout_width="match_parent"
-                android:layout_weight="1" 
+                android:layout_weight="1"
+            />
+
+            <!-- Groups -->
+            <fragment
+                android:id="@+id/groups_fragment"
+                class="com.android.contacts.group.GroupBrowseListFragment"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
             />
         </LinearLayout>
 

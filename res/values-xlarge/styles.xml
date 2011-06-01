@@ -36,6 +36,7 @@
         <item name="list_item_header_text_color">?color/section_header_text_color</item>
         <item name="list_item_header_text_size">14sp</item>
         <item name="contact_filter_popup_width">320dip</item>
+        <item name="show_home_icon">true</item>
     </style>
 
     <style name="ContactPickerTheme" parent="@android:Theme.Holo.Light.Dialog">

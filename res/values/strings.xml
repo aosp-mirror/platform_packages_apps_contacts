@@ -993,6 +993,9 @@
     <!-- The menu item to open the list of accounts -->
     <string name="menu_accounts">Accounts</string>
 
+    <!-- The menu item to filter the list of contacts displayed -->
+    <string name="menu_contacts_filter">Contacts to display</string>
+
     <!-- The menu item to bulk import or bulk export contacts from SIM card or SD card. -->
     <string name="menu_import_export">Import/Export</string>
 

@@ -19,7 +19,10 @@ package com.android.contacts.activities;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
+import com.android.contacts.calllog.CallLogFragment;
 import com.android.contacts.detail.ContactDetailFragment;
+import com.android.contacts.dialpad.DialpadFragment;
+import com.android.contacts.group.GroupBrowseListFragment;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.GroupDeletionDialogFragment;
 import com.android.contacts.interactions.GroupRenamingDialogFragment;
@@ -34,11 +37,13 @@ import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.ContactsUnavailableFragment;
 import com.android.contacts.list.CustomContactListFilterActivity;
+import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.list.DirectoryListLoader;
 import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.list.ProviderStatusLoader;
 import com.android.contacts.list.ProviderStatusLoader.ProviderStatusListener;
+import com.android.contacts.list.StrequentContactListFragment;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.util.AccountSelectionUtil;
@@ -47,12 +52,17 @@ import com.android.contacts.widget.ContextMenuAdapter;
 
 import android.accounts.Account;
 import android.app.ActionBar;
+import android.app.ActionBar.Tab;
+import android.app.ActionBar.TabListener;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -68,6 +78,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -94,7 +105,6 @@ public class PeopleActivity extends ContactsActivity
     private ContactsIntentResolver mIntentResolver;
     private ContactsRequest mRequest;
 
-    private boolean mHasActionBar;
     private ActionBarAdapter mActionBarAdapter;
 
     private boolean mSearchMode;
@@ -126,8 +136,14 @@ public class PeopleActivity extends ContactsActivity
     private boolean mOptionsMenuContactsAvailable;
     private boolean mOptionsMenuGroupActionsEnabled;
 
+    private DefaultContactBrowseListFragment mContactsFragment;
+    private StrequentContactListFragment mFavoritesFragment;
+    private GroupBrowseListFragment mGroupsFragment;
+
     public PeopleActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
+        // TODO: Get rid of the ContactListFilterController class because there aren't any
+        // dropdown filters anymore. Just store the selected filter as a member variable.
         mContactListFilterController = new ContactListFilterController(this);
         mContactListFilterController.addListener(this);
         mProviderStatusLoader = new ProviderStatusLoader(this);
@@ -201,6 +217,21 @@ public class PeopleActivity extends ContactsActivity
 
         if (createContentView) {
             setContentView(R.layout.people_activity);
+
+            final FragmentManager fragmentManager = getFragmentManager();
+            mFavoritesFragment = (StrequentContactListFragment) fragmentManager
+                    .findFragmentById(R.id.favorites_fragment);
+            mContactsFragment = (DefaultContactBrowseListFragment) fragmentManager
+                    .findFragmentById(R.id.contacts_fragment);
+            mGroupsFragment = (GroupBrowseListFragment) fragmentManager
+                    .findFragmentById(R.id.groups_fragment);
+
+            // Hide all tabs (the current tab will later be reshown once a tab is selected)
+            final FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.hide(mFavoritesFragment);
+            transaction.hide(mContactsFragment);
+            transaction.hide(mGroupsFragment);
+            transaction.commit();
         }
 
         if (mRequest.getActionCode() == ContactsRequest.ACTION_VIEW_CONTACT
@@ -214,19 +245,64 @@ public class PeopleActivity extends ContactsActivity
         }
 
         setTitle(mRequest.getActivityTitle());
+        ActionBar actionBar = getActionBar();
+        mActionBarAdapter = new ActionBarAdapter(this);
+        mActionBarAdapter.onCreate(savedState, mRequest, getActionBar());
+        mActionBarAdapter.setContactListFilterController(mContactListFilterController);
 
         if (createContentView) {
-            mHasActionBar = getWindow().hasFeature(Window.FEATURE_ACTION_BAR);
-            if (mHasActionBar) {
-                ActionBar actionBar = getActionBar();
+            actionBar.removeAllTabs();
+            Tab favoritesTab = actionBar.newTab();
+            favoritesTab.setText(getString(R.string.strequentList));
+            favoritesTab.setTabListener(new TabChangeListener(mFavoritesFragment));
+            actionBar.addTab(favoritesTab);
 
-                mActionBarAdapter = new ActionBarAdapter(this);
-                mActionBarAdapter.onCreate(savedState, mRequest, actionBar);
-                mActionBarAdapter.setContactListFilterController(mContactListFilterController);
-            }
+            Tab peopleTab = actionBar.newTab();
+            peopleTab.setText(getString(R.string.people));
+            peopleTab.setTabListener(new TabChangeListener(mContactsFragment));
+            actionBar.addTab(peopleTab);
+
+            Tab groupsTab = actionBar.newTab();
+            groupsTab.setText(getString(R.string.contactsGroupsLabel));
+            groupsTab.setTabListener(new TabChangeListener(mGroupsFragment));
+            actionBar.addTab(groupsTab);
+            actionBar.setDisplayShowTitleEnabled(true);
+
+            TypedArray a = obtainStyledAttributes(null, R.styleable.ActionBarHomeIcon);
+            boolean showHomeIcon = a.getBoolean(R.styleable.ActionBarHomeIcon_show_home_icon, true);
+            actionBar.setDisplayShowHomeEnabled(showHomeIcon);
+
+            invalidateOptionsMenu();
         }
 
         configureFragments(savedState == null);
+    }
+
+    /**
+     * Tab change listener that is instantiated once for each tab. Handles showing/hiding fragments.
+     * TODO: Use ViewPager so that tabs can be swiped left and right. Figure out how to use the
+     * support library in our app.
+     */
+    private class TabChangeListener implements TabListener {
+        private final Fragment mFragment;
+
+        public TabChangeListener(Fragment fragment) {
+            mFragment = fragment;
+        }
+
+        @Override
+        public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+            ft.hide(mFragment);
+        }
+
+        @Override
+        public void onTabSelected(Tab tab, FragmentTransaction ft) {
+            ft.show(mFragment);
+        }
+
+        @Override
+        public void onTabReselected(Tab tab, FragmentTransaction ft) {
+        }
     }
 
     @Override
@@ -257,12 +333,6 @@ public class PeopleActivity extends ContactsActivity
     protected void onStart() {
         mContactListFilterController.onStart();
         super.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        mContactListFilterController.onStop();
-        super.onStop();
     }
 
     private void configureFragments(boolean fromRequest) {
@@ -303,7 +373,7 @@ public class PeopleActivity extends ContactsActivity
             mListFragment.setContactsRequest(mRequest);
             configureListFragmentForRequest();
 
-        } else if (mHasActionBar) {
+        } else {
             mSearchMode = mActionBarAdapter.isSearchMode();
         }
 
@@ -348,9 +418,23 @@ public class PeopleActivity extends ContactsActivity
      * Handler for action bar actions.
      */
     @Override
-    public void onAction() {
-        configureFragments(false /* from request */);
-        mListFragment.setQueryString(mActionBarAdapter.getQueryString(), true);
+    public void onAction(Action action) {
+        switch (action) {
+            case START_SEARCH_MODE:
+                // Bring the contact list fragment to the front.
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.show(mContactsFragment);
+                ft.commit();
+                break;
+            case STOP_SEARCH_MODE:
+            case CHANGE_SEARCH_QUERY:
+                // Refresh the contact list fragment.
+                configureFragments(false /* from request */);
+                mListFragment.setQueryString(mActionBarAdapter.getQueryString(), true);
+                break;
+            default:
+                throw new IllegalStateException("Unkonwn ActionBarAdapter action: " + action);
+        }
     }
 
     private void configureListFragmentForRequest() {
@@ -403,17 +487,13 @@ public class PeopleActivity extends ContactsActivity
 
         if (mProviderStatus == ProviderStatus.STATUS_NORMAL) {
             contactsUnavailableView.setVisibility(View.GONE);
-            mainView.setVisibility(View.VISIBLE);
+            if (mainView != null) {
+                mainView.setVisibility(View.VISIBLE);
+            }
             if (mListFragment != null) {
                 mListFragment.setEnabled(true);
             }
-            if (mHasActionBar) {
-                mActionBarAdapter.setEnabled(true);
-            }
         } else {
-            if (mHasActionBar) {
-                mActionBarAdapter.setEnabled(false);
-            }
             if (mListFragment != null) {
                 mListFragment.setEnabled(false);
             }
@@ -429,7 +509,9 @@ public class PeopleActivity extends ContactsActivity
                 mContactsUnavailableFragment.update();
             }
             contactsUnavailableView.setVisibility(View.VISIBLE);
-            mainView.setVisibility(View.INVISIBLE);
+            if (mainView != null) {
+                mainView.setVisibility(View.INVISIBLE);
+            }
         }
 
         invalidateOptionsMenu();
@@ -625,27 +707,28 @@ public class PeopleActivity extends ContactsActivity
         if (!areContactsAvailable()) {
             return false;
         }
-
         super.onCreateOptionsMenu(menu);
 
         MenuInflater inflater = getMenuInflater();
-        if (mHasActionBar) {
-            inflater.inflate(R.menu.actions, menu);
+        inflater.inflate(R.menu.actions, menu);
+        // TODO: Figure out if R.menu.list or R.menu.search are necessary according to the overflow
+        // menus on the UX mocks.
+        MenuItem searchMenuItem = menu.findItem(R.id.menu_search);
+        if (searchMenuItem != null && searchMenuItem.getActionView() instanceof SearchView) {
+            SearchView searchView = (SearchView) searchMenuItem.getActionView();
+            searchView.setQueryHint(getString(R.string.hint_findContacts));
+            searchView.setIconifiedByDefault(false);
 
-            // Change add contact button to button with a custom view
-            final MenuItem addContact = menu.findItem(R.id.menu_add);
-            addContact.setActionView(mAddContactImageView);
-            return true;
-        } else if (mRequest.getActionCode() == ContactsRequest.ACTION_ALL_CONTACTS ||
-                mRequest.getActionCode() == ContactsRequest.ACTION_STREQUENT) {
-            inflater.inflate(R.menu.list, menu);
-            return true;
-        } else if (!mListFragment.isSearchMode()) {
-            inflater.inflate(R.menu.search, menu);
-            return true;
-        } else {
-            return false;
+            if (mActionBarAdapter != null) {
+                mActionBarAdapter.setSearchView(searchView);
+            }
         }
+
+        // TODO: Can remove this as a custom view because the account selector is in the editor now.
+        // Change add contact button to button with a custom view
+        final MenuItem addContact = menu.findItem(R.id.menu_add);
+        addContact.setActionView(mAddContactImageView);
+        return true;
     }
 
     @Override
@@ -721,6 +804,11 @@ public class PeopleActivity extends ContactsActivity
             case R.id.menu_settings: {
                 final Intent intent = new Intent(this, ContactsPreferenceActivity.class);
                 startActivity(intent);
+                return true;
+            }
+            case R.id.menu_contacts_filter: {
+                final Intent intent = new Intent(this, CustomContactListFilterActivity.class);
+                startActivityForResult(intent, SUBACTIVITY_CUSTOMIZE_FILTER);
                 return true;
             }
             case R.id.menu_search: {
@@ -865,12 +953,10 @@ public class PeopleActivity extends ContactsActivity
                 final int unicodeChar = event.getUnicodeChar();
                 if (unicodeChar != 0 && !Character.isWhitespace(unicodeChar)) {
                     String query = new String(new int[]{ unicodeChar }, 0, 1);
-                    if (mHasActionBar) {
-                        if (!mActionBarAdapter.isSearchMode()) {
-                            mActionBarAdapter.setQueryString(query);
-                            mActionBarAdapter.setSearchMode(true);
-                            return true;
-                        }
+                    if (!mActionBarAdapter.isSearchMode()) {
+                        mActionBarAdapter.setQueryString(query);
+                        mActionBarAdapter.setSearchMode(true);
+                        return true;
                     } else if (!mRequest.isSearchMode()) {
                         if (!mSearchInitiated) {
                             mSearchInitiated = true;

@@ -43,6 +43,8 @@ import java.util.List;
 /**
  * Controls a list of {@link ContactListFilter}'s.
  */
+// TODO: Remove the extra functionality dealing with loading and displaying a list of filters in
+// the action bar.
 public class ContactListFilterController
         implements LoaderCallbacks<List<ContactListFilter>>, OnClickListener, OnItemClickListener {
 
@@ -84,11 +86,6 @@ public class ContactListFilterController
         mListeners.remove(listener);
     }
 
-    public void setAnchor(View anchor) {
-        mAnchor = anchor;
-        mAnchor.setOnClickListener(this);
-    }
-
     public ContactListFilter getFilter() {
         return mFilter;
     }
@@ -105,11 +102,6 @@ public class ContactListFilterController
         if (mFilter == null) {
             mFilter = ContactListFilter.restoreFromPreferences(getSharedPreferences());
         }
-        mLoaderManager.initLoader(R.id.contact_list_filter_loader, null, this);
-    }
-
-    public void onStop() {
-        mLoaderManager.destroyLoader(R.id.contact_list_filter_loader);
     }
 
     private SharedPreferences getSharedPreferences() {

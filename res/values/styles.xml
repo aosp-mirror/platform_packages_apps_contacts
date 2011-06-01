@@ -107,7 +107,12 @@
         <attr name="list_item_header_text_size" format="dimension" />
     </declare-styleable>
 
-    <style name="PeopleTheme" parent="@android:Theme">
+    <!-- This style defines visibility of the action bar home icon -->
+    <declare-styleable name="ActionBarHomeIcon">
+        <attr name="show_home_icon" format="boolean"/>
+    </declare-styleable>
+
+    <style name="PeopleTheme" parent="android:Theme.Holo.Light">
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="section_header_background">@drawable/list_title_holo</item>
@@ -128,6 +133,7 @@
         <item name="list_item_header_text_color">?color/section_header_text_color</item>
         <item name="list_item_header_text_size">14sp</item>
         <item name="contact_filter_popup_width">320dip</item>
+        <item name="show_home_icon">false</item>
     </style>
 
     <!-- TODO: Clean up this file so themes aren't copied. -->

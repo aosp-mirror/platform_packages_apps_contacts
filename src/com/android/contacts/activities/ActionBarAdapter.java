@@ -17,22 +17,18 @@
 package com.android.contacts.activities;
 
 import com.android.contacts.R;
+import com.android.contacts.activities.ActionBarAdapter.Listener.Action;
 import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.list.ContactListFilterController.ContactListFilterListener;
-import com.android.contacts.list.ContactListFilterView;
 import com.android.contacts.list.ContactsRequest;
 
 import android.app.ActionBar;
-import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
 import android.widget.SearchView.OnQueryTextListener;
-import android.widget.TextView;
 
 /**
  * Adapter for the action bar at the top of the Contacts activity.
@@ -41,7 +37,11 @@ public class ActionBarAdapter
         implements OnQueryTextListener, OnCloseListener, ContactListFilterListener {
 
     public interface Listener {
-        void onAction();
+        public enum Action {
+            CHANGE_SEARCH_QUERY, START_SEARCH_MODE, STOP_SEARCH_MODE
+        }
+
+        void onAction(Action action);
     }
 
     private static final String EXTRA_KEY_SEARCH_MODE = "navBar.searchMode";
@@ -50,24 +50,25 @@ public class ActionBarAdapter
     private boolean mSearchMode;
     private String mQueryString;
 
-    private View mNavigationBar;
-    private TextView mSearchLabel;
+    private String mSearchLabelText;
     private SearchView mSearchView;
 
     private final Context mContext;
 
     private Listener mListener;
-    private ContactListFilterView mFilterView;
     private ContactListFilterController mFilterController;
 
-    private boolean mEnabled;
+    private ActionBar mActionBar;
 
     public ActionBarAdapter(Context context) {
         mContext = context;
+        mSearchLabelText = mContext.getString(R.string.search_label);
     }
 
     public void onCreate(Bundle savedState, ContactsRequest request, ActionBar actionBar) {
+        mActionBar = actionBar;
         mQueryString = null;
+
         if (savedState != null) {
             mSearchMode = savedState.getBoolean(EXTRA_KEY_SEARCH_MODE);
             mQueryString = savedState.getString(EXTRA_KEY_QUERY);
@@ -76,33 +77,18 @@ public class ActionBarAdapter
             mQueryString = request.getQueryString();
         }
 
-        if (actionBar != null) {
-            actionBar.setDisplayOptions(
-                    ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);
+        if (mSearchView != null) {
+            mSearchView.setQuery(mQueryString, false);
         }
-
-        mNavigationBar = LayoutInflater.from(mContext).inflate(R.layout.navigation_bar, null);
-        LayoutParams layoutParams = new LayoutParams(
-                LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        if (actionBar != null) {
-            actionBar.setCustomView(mNavigationBar, layoutParams);
-        }
-
-        mFilterView = (ContactListFilterView) mNavigationBar.findViewById(R.id.filter_view);
-        mSearchLabel = (TextView) mNavigationBar.findViewById(R.id.search_label);
-        mSearchView = (SearchView) mNavigationBar.findViewById(R.id.search_view);
-
-        mSearchView.setOnQueryTextListener(this);
-        mSearchView.setOnCloseListener(this);
-        mSearchView.setQuery(mQueryString, false);
-        mSearchView.setQueryHint(mContext.getString(R.string.hint_findContacts));
 
         update();
     }
 
-    public void setEnabled(boolean enabled) {
-        mEnabled = enabled;
-        update();
+    public void setSearchView(SearchView searchView) {
+        mSearchView = searchView;
+        mSearchView.setOnQueryTextListener(this);
+        mSearchView.setOnCloseListener(this);
+        mSearchView.setQuery(mQueryString, false);
     }
 
     public void setListener(Listener listener) {
@@ -111,7 +97,6 @@ public class ActionBarAdapter
 
     public void setContactListFilterController(ContactListFilterController controller) {
         mFilterController = controller;
-        mFilterController.setAnchor(mFilterView);
         mFilterController.addListener(this);
     }
 
@@ -128,9 +113,6 @@ public class ActionBarAdapter
             } else {
                 mSearchView.setQuery(null, false);
             }
-            if (mListener != null) {
-                mListener.onAction();
-            }
         }
     }
 
@@ -144,39 +126,36 @@ public class ActionBarAdapter
     }
 
     public void update() {
-        if (!mEnabled) {
-            mNavigationBar.setVisibility(View.GONE);
-        } else if (mSearchMode) {
-            mNavigationBar.setVisibility(View.VISIBLE);
-            mSearchLabel.setVisibility(View.VISIBLE);
-            mFilterView.setVisibility(View.GONE);
-            if (mFilterController != null) {
-                mFilterController.setEnabled(false);
+        if (mSearchMode) {
+            mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+            mActionBar.setTitle(mSearchLabelText);
+            if (mListener != null) {
+                mListener.onAction(Action.START_SEARCH_MODE);
             }
         } else {
-            mNavigationBar.setVisibility(View.VISIBLE);
-            mSearchLabel.setVisibility(View.GONE);
-            mFilterView.setVisibility(View.VISIBLE);
-            if (mFilterController != null){
-                mFilterController.setEnabled(true);
-                if (mFilterController.isLoaded()) {
-                    mFilterView.setContactListFilter(mFilterController.getFilter());
-                    mFilterView.setSingleAccount(mFilterController.getAccountCount() == 1);
-                    mFilterView.bindView(false);
-                }
+            mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+            mActionBar.setTitle(null);
+            if (mListener != null) {
+                mListener.onAction(Action.STOP_SEARCH_MODE);
             }
         }
     }
 
     @Override
     public boolean onQueryTextChange(String queryString) {
+        // TODO: Clean up SearchView code because it keeps setting the SearchView query,
+        // invoking onQueryChanged, setting up the fragment again, invalidating the options menu,
+        // storing the SearchView again, and etc... unless we add in the early return statements.
+        if (queryString.equals(mQueryString)) {
+            return false;
+        }
         mQueryString = queryString;
         if (!mSearchMode) {
             if (!TextUtils.isEmpty(queryString)) {
                 setSearchMode(true);
             }
         } else if (mListener != null) {
-            mListener.onAction();
+            mListener.onAction(Action.CHANGE_SEARCH_QUERY);
         }
 
         return true;
