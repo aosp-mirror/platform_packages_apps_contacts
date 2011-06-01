@@ -174,7 +174,11 @@ public class DialtactsActivity extends Activity {
 
     private void setupDialer() {
         final Tab tab = getActionBar().newTab();
-        tab.setText(R.string.dialerIconLabel);
+        // TODO: Temporarily disable tab text labels (in all 4 tabs in this
+        //   activity) so that the current tabs will all fit onscreen in
+        //   portrait (bug 4520620).  (Also note we do setText("") rather
+        //   leaving the text null, to work around bug 4521549.)
+        tab.setText("");  // R.string.dialerIconLabel
         tab.setTabListener(new TabChangeListener(mDialpadFragment));
         tab.setIcon(R.drawable.ic_tab_dialer);
         getActionBar().addTab(tab);
@@ -183,7 +187,7 @@ public class DialtactsActivity extends Activity {
 
     private void setupCallLog() {
         final Tab tab = getActionBar().newTab();
-        tab.setText(R.string.recentCallsIconLabel);
+        tab.setText("");  // R.string.recentCallsIconLabel
         tab.setIcon(R.drawable.ic_tab_recent);
         tab.setTabListener(new TabChangeListener(mCallLogFragment));
         getActionBar().addTab(tab);
@@ -191,7 +195,7 @@ public class DialtactsActivity extends Activity {
 
     private void setupContacts() {
         final Tab tab = getActionBar().newTab();
-        tab.setText(R.string.contactsIconLabel);
+        tab.setText("");  // R.string.contactsIconLabel
         tab.setIcon(R.drawable.ic_tab_contacts);
         tab.setTabListener(new TabChangeListener(mContactsFragment));
         getActionBar().addTab(tab);
@@ -217,7 +221,7 @@ public class DialtactsActivity extends Activity {
 
     private void setupFavorites() {
         final Tab tab = getActionBar().newTab();
-        tab.setText(R.string.contactsFavoritesLabel);
+        tab.setText("");  // R.string.contactsFavoritesLabel
         tab.setIcon(R.drawable.ic_tab_starred);
         tab.setTabListener(new TabChangeListener(mStrequentFragment));
         getActionBar().addTab(tab);
