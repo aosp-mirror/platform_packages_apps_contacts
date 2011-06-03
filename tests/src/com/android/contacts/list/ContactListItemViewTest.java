@@ -24,6 +24,7 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.provider.ContactsContract;
 import android.test.ActivityInstrumentationTestCase2;
+import android.test.suitebuilder.annotation.LargeTest;
 import android.widget.TextView;
 
 /**
@@ -32,6 +33,7 @@ import android.widget.TextView;
  * It uses an {@link ActivityInstrumentationTestCase2} for {@link DialtactsActivity} because we need
  * to have the style properly setup.
  */
+@LargeTest
 public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<DialtactsActivity> {
     public ContactListItemViewTest() {
         super(DialtactsActivity.class);
