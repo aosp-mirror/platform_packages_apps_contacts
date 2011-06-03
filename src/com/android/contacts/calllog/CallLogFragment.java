@@ -477,10 +477,11 @@ public class CallLogFragment extends ListFragment
                             mRequests.wait(1000);
                         } catch (InterruptedException ie) {
                             // Ignore and continue processing requests
+                            Thread.currentThread().interrupt();
                         }
                     }
                 }
-                if (ciq != null && queryContactInfo(ciq)) {
+                if (!mDone && ciq != null && queryContactInfo(ciq)) {
                     needNotify = true;
                 }
             }
