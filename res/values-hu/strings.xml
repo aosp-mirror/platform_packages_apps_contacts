@@ -313,7 +313,7 @@
     <string name="type_short_work" msgid="4925330752504537861">"Mh"</string>
     <string name="type_short_pager" msgid="2613818970827594238">"Cs"</string>
     <string name="type_short_other" msgid="5669407180177236769">"E"</string>
-    <string name="dialog_new_contact_account" msgid="9044704073286262197">"Névjegy létrehozása a következő fiókban:"</string>
+    <string name="dialog_new_contact_account" msgid="9044704073286262197">"Névjegy létrehozása a következő fiókban"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Szinkronizálási csoport eltávolítása"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Szinkronizálási csoport hozzáadása"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"További csoportok..."</string>
