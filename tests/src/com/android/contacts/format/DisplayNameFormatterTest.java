@@ -28,6 +28,10 @@ import android.widget.TextView;
 @SmallTest
 public class DisplayNameFormatterTest extends AndroidTestCase {
     private static final int TEST_PREFIX_HIGHLIGHT_COLOR = 0xFF0000;
+    /** The HTML code used to mark the start of the highlighted part. */
+    private static final String START = "<font color =\"#1ff0000\">";
+    /** The HTML code used to mark the end of the highlighted part. */
+    private static final String END = "</font>";
 
     private PrefixHighlighter mPrefixHighlighter;
     /** The object under test. */
@@ -86,7 +90,26 @@ public class DisplayNameFormatterTest extends AndroidTestCase {
     public void testSetDisplayName_Prefix() {
         setNames("John Doe", "Doe John");
         setDisplayNameWithPrefix("DO");
-        SpannedTestUtils.checkHtmlText("<b>John </b><font color =\"#1ff0000\">Do</font>e", mView);
+        SpannedTestUtils.checkHtmlText("<b>John </b>" + START + "Do" + END + "e", mView);
+    }
+
+    public void testSetDisplayName_PrefixFirstName() {
+        setNames("John Doe", "Doe John");
+        setDisplayNameWithPrefix("JO");
+        SpannedTestUtils.checkHtmlText(START + "<b>Jo</b>" + END + "<b>hn </b>Doe", mView);
+    }
+
+    public void testSetDisplayName_PrefixMiddleName() {
+        setNames("John Paul Doe", "Doe John Paul");
+        setDisplayNameWithPrefix("PAU");
+        SpannedTestUtils.checkHtmlText("<b>John </b>" + START + "<b>Pau</b>" + END + "<b>l </b>Doe",
+                mView);
+    }
+
+    public void testSetDisplayName_ReversedPrefix() {
+        setNames("John Doe", "Doe John");
+        setDisplayNameReversedWithPrefix("DO");
+        SpannedTestUtils.checkHtmlText("John " + START + "<b>Do</b>" + END + "<b>e</b>", mView);
     }
 
     public void testSetDisplayName_Empty() {
@@ -150,6 +173,15 @@ public class DisplayNameFormatterTest extends AndroidTestCase {
     private void setDisplayNameWithPrefix(String prefix) {
         mDisplayNameFormatter.setDisplayName(mView,
                 ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY, false, prefix.toCharArray());
+    }
+
+    /**
+     * Sets the display name reversed on the text view with prefix highlighting enabled.
+     */
+    private void setDisplayNameReversedWithPrefix(String prefix) {
+        mDisplayNameFormatter.setDisplayName(mView,
+                ContactsContract.Preferences.DISPLAY_ORDER_ALTERNATIVE, false,
+                prefix.toCharArray());
     }
 
     /**

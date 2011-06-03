@@ -47,6 +47,19 @@ public class FormatUtilsTests extends AndroidTestCase {
         checkCopyToCharArrayBuffer(charArrayBuffer, "test test test test test", 24);
     }
 
+    public void testCharArrayBufferToString() {
+        checkCharArrayBufferToString("");
+        checkCharArrayBufferToString("test");
+        checkCharArrayBufferToString("test test test test test");
+    }
+
+    /** Checks that copying a string into a {@link CharArrayBuffer} and back works correctly. */
+    private void checkCharArrayBufferToString(String text) {
+        CharArrayBuffer buffer = new CharArrayBuffer(20);
+        FormatUtils.copyToCharArrayBuffer(text, buffer);
+        assertEquals(text, FormatUtils.charArrayBufferToString(buffer));
+    }
+
     /**
      * Checks that copying into the char array buffer copies the values correctly.
      */
@@ -88,9 +101,6 @@ public class FormatUtilsTests extends AndroidTestCase {
      * @param expectedIndex the expected value to be returned by the function
      */
     private void checkIndexOfWordPrefix(String text, String wordPrefix, int expectedIndex) {
-        CharArrayBuffer buffer = new CharArrayBuffer(text.length());
-        FormatUtils.copyToCharArrayBuffer(text, buffer);
-        assertEquals(expectedIndex,
-                FormatUtils.indexOfWordPrefix(buffer, wordPrefix.toCharArray()));
+        assertEquals(expectedIndex, FormatUtils.indexOfWordPrefix(text, wordPrefix.toCharArray()));
     }
 }

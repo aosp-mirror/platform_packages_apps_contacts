@@ -35,6 +35,11 @@ import android.widget.TextView;
  */
 @LargeTest
 public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<DialtactsActivity> {
+    /** The HTML code used to mark the start of the highlighted part. */
+    private static final String START = "<font color =\"#729a27\">";
+    /** The HTML code used to mark the end of the highlighted part. */
+    private static final String END = "</font>";
+
     public ContactListItemViewTest() {
         super(DialtactsActivity.class);
     }
@@ -68,7 +73,19 @@ public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<Di
         view.showDisplayName(cursor, 0, 1, false,
                 ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY);
 
-        SpannedTestUtils.checkHtmlText("<b>John </b><font color =\"#729a27\">Doe</font>",
+        SpannedTestUtils.checkHtmlText("<b>John </b>" + START + "Doe" + END,
+                view.getNameTextView());
+    }
+
+    public void testShowDisplayName_WithPrefixReversed() {
+        Cursor cursor = createCursor("John Doe", "Doe John");
+        ContactListItemView view = createView();
+
+        view.setHighlightedPrefix("DOE".toCharArray());
+        view.showDisplayName(cursor, 0, 1, false,
+                ContactsContract.Preferences.DISPLAY_ORDER_ALTERNATIVE);
+
+        SpannedTestUtils.checkHtmlText("John " + START + "<b>Doe</b>" + END,
                 view.getNameTextView());
     }
 
@@ -88,7 +105,7 @@ public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<Di
         ContactListItemView view = createView();
         view.setHighlightedPrefix("TEST".toCharArray());
         view.setSnippet("This is a test");
-        SpannedTestUtils.checkHtmlText("<b>This is a </b><font color =\"#729a27\">test</font>",
+        SpannedTestUtils.checkHtmlText("This is a " + START + "test" + END,
                 view.getSnippetView());
     }
 

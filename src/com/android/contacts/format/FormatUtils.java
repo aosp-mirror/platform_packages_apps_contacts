@@ -120,45 +120,51 @@ public class FormatUtils {
         }
     }
 
+    /** Returns a String that represents the content of the given {@link CharArrayBuffer}. */
+    public static String charArrayBufferToString(CharArrayBuffer buffer) {
+        return new String(buffer.data, 0, buffer.sizeCopied);
+    }
+
     /**
      * Finds the index of the first word that starts with the given prefix.
      * <p>
      * If not found, returns -1.
+     *
+     * @param text the text in which to search for the prefix
+     * @param prefix the text to find, in upper case letters
      */
-    public static int indexOfWordPrefix(CharArrayBuffer buffer, char[] prefix) {
-        if (prefix == null || prefix.length == 0) {
+    public static int indexOfWordPrefix(CharSequence text, char[] prefix) {
+        int textLength = text.length();
+        int prefixLength = prefix.length;
+
+        if (prefix == null || prefixLength == 0 || textLength < prefixLength) {
             return -1;
         }
 
-        char[] string1 = buffer.data;
-        int bufferSize = buffer.sizeCopied;
-        int prefixSize = prefix.length;
-
         int i = 0;
-        while (i < bufferSize) {
-
+        while (i < textLength) {
             // Skip non-word characters
-            while (i < bufferSize && !Character.isLetterOrDigit(string1[i])) {
+            while (i < textLength && !Character.isLetterOrDigit(text.charAt(i))) {
                 i++;
             }
 
-            if (i + prefixSize > bufferSize) {
+            if (i + prefixLength > textLength) {
                 return -1;
             }
 
             // Compare the prefixes
             int j;
-            for (j = 0; j < prefixSize; j++) {
-                if (Character.toUpperCase(string1[i+j]) != prefix[j]) {
+            for (j = 0; j < prefixLength; j++) {
+                if (Character.toUpperCase(text.charAt(i + j)) != prefix[j]) {
                     break;
                 }
             }
-            if (j == prefixSize) {
+            if (j == prefixLength) {
                 return i;
             }
 
             // Skip this word
-            while (i < bufferSize && Character.isLetterOrDigit(string1[i])) {
+            while (i < textLength && Character.isLetterOrDigit(text.charAt(i))) {
                 i++;
             }
         }

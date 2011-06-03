@@ -25,8 +25,6 @@ import android.provider.ContactsContract;
 import android.text.Spannable;
 import android.widget.TextView;
 
-import java.util.Arrays;
-
 /**
  * Sets the content of the given text view, to contain the formatted display name, with a
  * prefix if necessary.
@@ -62,6 +60,11 @@ public final class DisplayNameFormatter {
 
     public void setDisplayName(TextView view, int displayOrder,
             boolean highlightingEnabled, char[] highlightedPrefix) {
+        view.setText(getDisplayName(displayOrder, highlightingEnabled, highlightedPrefix));
+    }
+
+    public CharSequence getDisplayName(int displayOrder, boolean highlightingEnabled,
+            char[] highlightedPrefix) {
         // Compute the point at which name and alternate name overlap (for bolding).
         int overlapPoint = FormatUtils.overlapPoint(mNameBuffer, mAlternateNameBuffer);
         int boldStart = 0;
@@ -72,35 +75,29 @@ public final class DisplayNameFormatter {
         }
 
         int size = mNameBuffer.sizeCopied;
-        if (size != 0) {
-            if (highlightedPrefix != null) {
-                mPrefixHighlighter.setText(view, mNameBuffer, highlightedPrefix);
-            } else if (highlightingEnabled) {
-                if (mTextWithHighlighting == null) {
-                    mTextWithHighlighting =
-                            mTextWithHighlightingFactory.createTextWithHighlighting();
-                }
-                mTextWithHighlighting.setText(mNameBuffer, mAlternateNameBuffer);
-                if (overlapPoint > 0) {
-                    // Bold the first name.
-                    view.setText(FormatUtils.applyStyleToSpan(Typeface.BOLD,
-                            mTextWithHighlighting, boldStart, boldEnd,
-                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE));
-                } else {
-                    view.setText(mTextWithHighlighting);
-                }
-            } else {
-                if (overlapPoint > 0) {
-                    // Bold the first name.
-                    view.setText(FormatUtils.applyStyleToSpan(Typeface.BOLD,
-                            new String(Arrays.copyOfRange(mNameBuffer.data, 0, size)),
-                            boldStart, boldEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE));
-                } else {
-                    view.setText(mNameBuffer.data, 0, size);
-                }
-            }
-        } else {
-            view.setText(mUnknownNameText);
+        if (size == 0) {
+            return mUnknownNameText;
         }
+
+        CharSequence text;
+        if (highlightingEnabled) {
+            if (mTextWithHighlighting == null) {
+                mTextWithHighlighting =
+                        mTextWithHighlightingFactory.createTextWithHighlighting();
+            }
+            mTextWithHighlighting.setText(mNameBuffer, mAlternateNameBuffer);
+            text = mTextWithHighlighting;
+        } else {
+            text = FormatUtils.charArrayBufferToString(mNameBuffer);
+        }
+        if (highlightedPrefix != null) {
+            text = mPrefixHighlighter.apply(text, highlightedPrefix);
+        }
+        if (overlapPoint > 0) {
+            // Bold the first or last name.
+            text = FormatUtils.applyStyleToSpan(Typeface.BOLD, text, boldStart, boldEnd,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        return text;
     }
 }
