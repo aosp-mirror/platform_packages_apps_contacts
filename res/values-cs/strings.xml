@@ -214,10 +214,8 @@
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Nebyla zjištěna žádná karta SD"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Vyhledávání karty vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importovat z karty SIM"</string>
-    <string name="import_from_sdcard" product="nosdcard" msgid="8668347930577565175">"Importovat z úložiště"</string>
-    <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Importovat z karty SD"</string>
-    <string name="export_to_sdcard" product="nosdcard" msgid="6092815580965201089">"Exportovat do úložiště"</string>
-    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Exportovat na kartu SD"</string>
+    <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Importovat z úložiště"</string>
+    <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"Exportovat do úložiště"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Sdílet viditelné kontakty"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Importovat jeden soubor vCard"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Importovat několik souborů vCard"</string>

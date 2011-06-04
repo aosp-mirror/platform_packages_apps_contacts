@@ -214,10 +214,8 @@
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"هیچ کارت SD شناسایی نشد"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"جستجوی کارت ویزیت"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"وارد کردن از سیم کارت"</string>
-    <string name="import_from_sdcard" product="nosdcard" msgid="8668347930577565175">"وارد کردن از حافظه"</string>
-    <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"وارد کردن از کارت SD"</string>
-    <string name="export_to_sdcard" product="nosdcard" msgid="6092815580965201089">"صادر کردن به حافظه"</string>
-    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"صدور به کارت SD"</string>
+    <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"وارد کردن از حافظه"</string>
+    <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"صادر کردن به حافظه"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"اشتراک گذاری مخاطبین قابل مشاهده"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"وارد کردن یک فایل کارت ویزیت"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"وارد کردن چند فایل کارت ویزیت"</string>

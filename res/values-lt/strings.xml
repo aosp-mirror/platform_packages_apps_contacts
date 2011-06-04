@@ -214,10 +214,8 @@
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"SD kortelė neaptikta"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Ieškoma „vCard“ kortelės"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importuoti iš SIM kortelės"</string>
-    <string name="import_from_sdcard" product="nosdcard" msgid="8668347930577565175">"Importuoti iš saugyklos"</string>
-    <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Importuoti iš SD kortelės"</string>
-    <string name="export_to_sdcard" product="nosdcard" msgid="6092815580965201089">"Eksportuoti į saugyklą"</string>
-    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Eksportuoti į SD kortelę"</string>
+    <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Importuoti iš saugyklos"</string>
+    <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"Eksportuoti į saugyklą"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Bendrinti matomus adresatus"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Importuoti vieną „vCard“ failą"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Importuoti kelis „vCard“ failus"</string>
