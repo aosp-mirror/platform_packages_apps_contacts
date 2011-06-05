@@ -24,7 +24,6 @@
         android:paddingRight="14dip"
         android:layout_alignParentRight="true"
         android:gravity="center_vertical"
-        android:background="@drawable/call_background"
         android:src="@android:drawable/sym_action_call"
     />
 

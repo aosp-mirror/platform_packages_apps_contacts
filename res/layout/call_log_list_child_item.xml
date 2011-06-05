@@ -18,7 +18,6 @@
     android:layout_width="match_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:paddingLeft="7dip"
-    android:background="@drawable/list_item_background_secondary"
 >
 
     <include layout="@layout/call_log_action_call"/>

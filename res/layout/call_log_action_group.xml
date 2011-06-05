@@ -24,7 +24,6 @@
         android:paddingRight="13dip"
         android:layout_alignParentRight="true"
         android:gravity="center_vertical"
-        android:background="@drawable/call_background"
         android:src="@*android:drawable/expander_ic_minimized"
     />
 
