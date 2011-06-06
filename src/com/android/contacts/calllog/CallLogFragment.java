@@ -290,7 +290,16 @@ public class CallLogFragment extends ListFragment
             mCallerIdThread.start();
         }
 
+        /**
+         * Stops the background thread that processes updates and cancels any pending requests to
+         * start it.
+         * <p>
+         * Should be called from the main thread to prevent a race condition between the request to
+         * start the thread being processed and stopping the thread.
+         */
         public void stopRequestProcessing() {
+            // Remove any pending requests to start the processing thread.
+            mHandler.removeMessages(START_THREAD);
             mDone = true;
             if (mCallerIdThread != null) mCallerIdThread.interrupt();
         }
