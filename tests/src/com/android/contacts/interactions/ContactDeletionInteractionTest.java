@@ -129,16 +129,18 @@ public class ContactDeletionInteractionTest
     private void assertWithMessageId(int messageId) {
         final FragmentTestActivity activity = getActivity();
 
+        final TestLoaderManager mockLoaderManager = new TestLoaderManager();
         getInstrumentation().runOnMainSync(new Runnable() {
             @Override
             public void run() {
-                mFragment = ContactDeletionInteraction.start(activity, CONTACT_URI, false);
+                mFragment = ContactDeletionInteraction.startWithTestLoaderManager(
+                        activity, CONTACT_URI, false, mockLoaderManager);
             }
         });
 
         getInstrumentation().waitForIdleSync();
 
-        mContext.waitForLoaders(mFragment.getLoaderManager(), R.id.dialog_delete_contact_loader_id);
+        mockLoaderManager.waitForLoaders(R.id.dialog_delete_contact_loader_id);
 
         getInstrumentation().waitForIdleSync();
 

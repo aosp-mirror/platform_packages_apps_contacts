@@ -20,6 +20,7 @@ import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.ContactsApplication;
 import com.android.contacts.R;
 import com.android.contacts.detail.ContactDetailFragment;
+import com.android.contacts.interactions.TestLoaderManager;
 import com.android.contacts.list.ContactBrowseListFragment;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
@@ -129,7 +130,7 @@ public class PeopleActivityTest
 
         // TODO: wait for detail loader
         // TODO: wait for lookup key loading
-        mContext.waitForLoaders(filterLoader, listLoader);
+        TestLoaderManager.waitForLoaders(filterLoader, listLoader);
 
         getInstrumentation().waitForIdleSync();
 
