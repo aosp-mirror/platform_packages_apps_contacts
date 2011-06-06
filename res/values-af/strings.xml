@@ -18,9 +18,11 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- no translation found for sharedUserLabel (7965035505237135241) -->
     <skip />
+    <string name="launcherDialer" msgid="8636288196618486553">"Foon"</string>
+    <!-- no translation found for people (1048457247435785074) -->
+    <skip />
     <!-- no translation found for contactsList (8661624236494819731) -->
     <skip />
-    <string name="launcherDialer" msgid="8636288196618486553">"Foon"</string>
     <!-- no translation found for shortcutContact (749243779392912958) -->
     <skip />
     <string name="shortcutDialContact" msgid="746622101599186779">"Direk skakel"</string>
@@ -283,10 +285,8 @@
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Geen SD-kaart bespeur nie"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Soek vir vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Voer in van SIM-kaart"</string>
-    <!-- outdated translation 8550360976693202816 -->     <string name="import_from_sdcard" product="nosdcard" msgid="8668347930577565175">"Voer in van SD-kaart"</string>
-    <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Voer in van SD-kaart"</string>
-    <!-- outdated translation 2597105442616166277 -->     <string name="export_to_sdcard" product="nosdcard" msgid="6092815580965201089">"Voer uit na SD-kaart"</string>
-    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Voer uit na SD-kaart"</string>
+    <!-- outdated translation 8550360976693202816 -->     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Voer in van SD-kaart"</string>
+    <!-- outdated translation 2597105442616166277 -->     <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"Voer uit na SD-kaart"</string>
     <!-- no translation found for share_visible_contacts (890150378880783797) -->
     <skip />
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Voer een vCard-lêer in"</string>

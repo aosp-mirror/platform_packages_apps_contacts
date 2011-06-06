@@ -17,8 +17,10 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="sharedUserLabel" msgid="7965035505237135241">"Alap Android-alkalmazások"</string>
-    <string name="contactsList" msgid="8661624236494819731">"Címtár"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"Telefon"</string>
+    <!-- no translation found for people (1048457247435785074) -->
+    <skip />
+    <string name="contactsList" msgid="8661624236494819731">"Címtár"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Névjegy"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Közvetlen tárcsázás"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Közvetlen üzenet"</string>
@@ -217,10 +219,8 @@
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Az SD-kártya nem észlelhető"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"vCard keresése"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importálás a SIM-kártyáról"</string>
-    <string name="import_from_sdcard" product="nosdcard" msgid="8668347930577565175">"Importálás a tárhelyről"</string>
-    <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Importálás az SD-kártyáról"</string>
-    <string name="export_to_sdcard" product="nosdcard" msgid="6092815580965201089">"Exportálás a tárhelyre"</string>
-    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Exportálás SD-kártyára"</string>
+    <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Importálás a tárhelyről"</string>
+    <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"Exportálás a tárhelyre"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Látható névjegyek megosztása"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Egyetlen vCard fájl importálása"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Több vCard fájl importálása"</string>

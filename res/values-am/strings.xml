@@ -17,9 +17,11 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="sharedUserLabel" msgid="7965035505237135241">"Android ኮር ትግበራ"</string>
+    <string name="launcherDialer" msgid="8636288196618486553">"ስልክ"</string>
+    <!-- no translation found for people (1048457247435785074) -->
+    <skip />
     <!-- no translation found for contactsList (8661624236494819731) -->
     <skip />
-    <string name="launcherDialer" msgid="8636288196618486553">"ስልክ"</string>
     <!-- no translation found for shortcutContact (749243779392912958) -->
     <skip />
     <string name="shortcutDialContact" msgid="746622101599186779">"ቀጥታ ደውል"</string>
@@ -279,10 +281,8 @@
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"ምንም SD ካርድ አልተገኘም"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"vCard ፍለጋ"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"ከSIM ካርድ አስመጣ"</string>
-    <!-- outdated translation 8550360976693202816 -->     <string name="import_from_sdcard" product="nosdcard" msgid="8668347930577565175">"ከSD ካርድአስመጣ"</string>
-    <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"ከSD ካርድአስመጣ"</string>
-    <!-- outdated translation 2597105442616166277 -->     <string name="export_to_sdcard" product="nosdcard" msgid="6092815580965201089">"ወደ SD ካርድ ላክ"</string>
-    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"ወደ SD ካርድ ላክ"</string>
+    <!-- outdated translation 8550360976693202816 -->     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"ከSD ካርድአስመጣ"</string>
+    <!-- outdated translation 2597105442616166277 -->     <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"ወደ SD ካርድ ላክ"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"የሚታዩ እውቂያዎችን አጋራ"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"አንድ vCard ፋይል አስመጣ"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"ብዙ vCard ፋይሎች አስመጣ"</string>
