@@ -214,10 +214,8 @@
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"SD-korttia ei havaittu"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Etsitään vCardia"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Tuo SIM-kortilta"</string>
-    <string name="import_from_sdcard" product="nosdcard" msgid="8668347930577565175">"Tuo tallennustilasta"</string>
-    <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Tuo SD-kortilta"</string>
-    <string name="export_to_sdcard" product="nosdcard" msgid="6092815580965201089">"Vie tallennustilaan"</string>
-    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Vie SD-kortille"</string>
+    <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Tuo tallennustilasta"</string>
+    <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"Vie tallennustilaan"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Jaa näkyvät yhteystiedot"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Tuo yksi vCard-tiedosto"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Tuo useita vCard-tiedostoja"</string>

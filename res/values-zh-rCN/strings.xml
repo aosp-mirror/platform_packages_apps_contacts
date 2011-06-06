@@ -214,10 +214,8 @@
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"未检测到 SD 卡"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"正在搜索 vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"从 SIM 卡导入"</string>
-    <string name="import_from_sdcard" product="nosdcard" msgid="8668347930577565175">"从存储设备导入"</string>
-    <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"从 SD 卡导入"</string>
-    <string name="export_to_sdcard" product="nosdcard" msgid="6092815580965201089">"导出到存储设备"</string>
-    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"导出到 SD 卡"</string>
+    <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"从存储设备导入"</string>
+    <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"导出到存储设备"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"分享可见的联系人"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"导入一个 vCard 文件"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"导入多个 vCard 文件"</string>

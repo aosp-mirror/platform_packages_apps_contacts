@@ -218,10 +218,8 @@
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Betg chattà ina carta SD."</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Tschertgar datas vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importar da la carta SIM"</string>
-    <!-- outdated translation 8550360976693202816 -->     <string name="import_from_sdcard" product="nosdcard" msgid="8668347930577565175">"Importar da la carta SD"</string>
-    <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Importar da la carta SD"</string>
-    <!-- outdated translation 2597105442616166277 -->     <string name="export_to_sdcard" product="nosdcard" msgid="6092815580965201089">"Exportar sin la carta SD"</string>
-    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Exportar sin la carta SD"</string>
+    <!-- outdated translation 8550360976693202816 -->     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Importar da la carta SD"</string>
+    <!-- outdated translation 2597105442616166277 -->     <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"Exportar sin la carta SD"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Cundivider ils contacts visibels"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Importar ina datoteca vCard"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Importar pliras datotecas vCard"</string>

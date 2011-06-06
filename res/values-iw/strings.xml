@@ -214,10 +214,8 @@
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"לא אותר כרטיס SD"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"מחפש vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"ייבא מכרטיס SIM"</string>
-    <string name="import_from_sdcard" product="nosdcard" msgid="8668347930577565175">"ייבא מאמצעי אחסון"</string>
-    <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"ייבא מכרטיס SD"</string>
-    <string name="export_to_sdcard" product="nosdcard" msgid="6092815580965201089">"ייצא לאמצעי אחסון"</string>
-    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"ייצא לכרטיס SD"</string>
+    <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"ייבא מאמצעי אחסון"</string>
+    <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"ייצא לאמצעי אחסון"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"שתף אנשי קשר גלויים"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"ייבא קובץ אחד של vCard"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"ייבא קובצי vCard מרובים"</string>
