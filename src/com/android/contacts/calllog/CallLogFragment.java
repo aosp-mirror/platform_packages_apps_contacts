@@ -188,8 +188,6 @@ public class CallLogFragment extends ListFragment
         private boolean mFirst;
         private Thread mCallerIdThread;
 
-        private CharSequence[] mLabelArray;
-
         private Drawable mDrawableIncoming;
         private Drawable mDrawableOutgoing;
         private Drawable mDrawableMissed;
@@ -253,7 +251,6 @@ public class CallLogFragment extends ListFragment
                     R.drawable.ic_call_log_list_outgoing_call);
             mDrawableMissed = getResources().getDrawable(
                     R.drawable.ic_call_log_list_missed_call);
-            mLabelArray = getResources().getTextArray(com.android.internal.R.array.phoneTypes);
         }
 
         /**
@@ -692,8 +689,7 @@ public class CallLogFragment extends ListFragment
                 // "type" and "label" are currently unused for SIP addresses.
                 CharSequence numberLabel = null;
                 if (!PhoneNumberUtils.isUriNumber(number)) {
-                    numberLabel = Phone.getDisplayLabel(context, ntype, label,
-                            mLabelArray);
+                    numberLabel = Phone.getTypeLabel(getResources(), ntype, label);
                 }
                 views.numberView.setVisibility(View.VISIBLE);
                 views.numberView.setText(formattedNumber);
