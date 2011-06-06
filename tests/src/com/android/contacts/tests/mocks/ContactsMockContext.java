@@ -16,22 +16,14 @@
 
 package com.android.contacts.tests.mocks;
 
-//import com.android.providers.contacts.ContactsMockPackageManager;
-
-import android.app.LoaderManager;
-import android.content.AsyncTaskLoader;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.ContextWrapper;
-import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.pm.ProviderInfo;
 import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.test.mock.MockContentResolver;
-import android.util.Log;
-
-import junit.framework.Assert;
 
 /**
  * A mock context for contacts unit tests. Forwards everything to
@@ -86,58 +78,4 @@ public class ContactsMockContext extends ContextWrapper {
         mContactsProvider.verify();
         mSettingsProvider.verify();
     }
-
-    /**
-     * Waits for the specified loaders to complete loading.
-     */
-    public void waitForLoaders(LoaderManager loaderManager, int... loaderIds) {
-        Loader<?>[] loaders = new Loader<?>[loaderIds.length];
-        for (int i = 0; i < loaderIds.length; i++) {
-            final int loaderId = loaderIds[i];
-            final AsyncTaskLoader<?> loader =
-                    (AsyncTaskLoader<?>) loaderManager.getLoader(loaderId);
-            if (loader == null) {
-                Assert.fail("Loader does not exist: " + loaderId);
-                return;
-            }
-
-            loaders[i] = loader;
-        }
-
-        waitForLoaders(loaders);
-    }
-
-    /**
-     * Waits for the specified loaders to complete loading.
-     */
-    public void waitForLoaders(Loader<?>... loaders) {
-        // We want to wait for each loader using a separate thread, so that we can
-        // simulate race conditions.
-        Thread[] waitThreads = new Thread[loaders.length];
-        for (int i = 0; i < loaders.length; i++) {
-            final AsyncTaskLoader<?> loader = (AsyncTaskLoader<?>) loaders[i];
-            waitThreads[i] = new Thread("LoaderWaitingThread" + i) {
-                @Override
-                public void run() {
-                    try {
-                        loader.waitForLoader();
-                    } catch (Throwable e) {
-                        Log.e(TAG, "Exception while waiting for loader: " + loader.getId(), e);
-                        Assert.fail("Exception while waiting for loader: " + loader.getId());
-                    }
-                }
-            };
-            waitThreads[i].start();
-        }
-
-        // Now we wait for all these threads to finish
-        for (Thread thread : waitThreads) {
-            try {
-                thread.join();
-            } catch (InterruptedException e) {
-                // Ignore
-            }
-        }
-    }
-
 }

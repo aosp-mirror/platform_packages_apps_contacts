@@ -21,11 +21,13 @@ import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.google.android.collect.Sets;
+import com.google.common.annotations.VisibleForTesting;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.CursorLoader;
@@ -37,6 +39,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Contacts.Entity;
+import android.util.Log;
 
 import java.util.HashSet;
 
@@ -69,14 +72,43 @@ public class ContactDeletionInteraction extends Fragment
     private Uri mContactUri;
     private boolean mFinishActivityWhenDone;
     private Context mContext;
-
     private AlertDialog mDialog;
 
-    // Visible for testing
+    /** This is a wrapper around the fragment's loader manager to be used only during testing. */
+    private TestLoaderManager mTestLoaderManager;
+
+    @VisibleForTesting
     int mMessageId;
 
+    /**
+     * Starts the interaction.
+     *
+     * @param activity the activity within which to start the interaction
+     * @param contactUri the URI of the contact to delete
+     * @param finishActivityWhenDone whether to finish the activity upon completion of the
+     *        interaction
+     * @return the newly created interaction
+     */
     public static ContactDeletionInteraction start(
             Activity activity, Uri contactUri, boolean finishActivityWhenDone) {
+        return startWithTestLoaderManager(activity, contactUri, finishActivityWhenDone, null);
+    }
+
+    /**
+     * Starts the interaction and optionally set up a {@link TestLoaderManager}.
+     *
+     * @param activity the activity within which to start the interaction
+     * @param contactUri the URI of the contact to delete
+     * @param finishActivityWhenDone whether to finish the activity upon completion of the
+     *        interaction
+     * @param testLoaderManager the {@link TestLoaderManager} to use to load the data, may be null
+     *        in which case the default {@link LoaderManager} is used
+     * @return the newly created interaction
+     */
+    @VisibleForTesting
+    static ContactDeletionInteraction startWithTestLoaderManager(
+            Activity activity, Uri contactUri, boolean finishActivityWhenDone,
+            TestLoaderManager testLoaderManager) {
         if (contactUri == null) {
             return null;
         }
@@ -86,14 +118,34 @@ public class ContactDeletionInteraction extends Fragment
                 (ContactDeletionInteraction) fragmentManager.findFragmentByTag(FRAGMENT_TAG);
         if (fragment == null) {
             fragment = new ContactDeletionInteraction();
+            fragment.setTestLoaderManager(testLoaderManager);
             fragment.setContactUri(contactUri);
             fragment.setFinishActivityWhenDone(finishActivityWhenDone);
             fragmentManager.beginTransaction().add(fragment, FRAGMENT_TAG).commit();
         } else {
+            fragment.setTestLoaderManager(testLoaderManager);
             fragment.setContactUri(contactUri);
             fragment.setFinishActivityWhenDone(finishActivityWhenDone);
         }
         return fragment;
+    }
+
+    @Override
+    public LoaderManager getLoaderManager() {
+        // Return the TestLoaderManager if one is set up.
+        LoaderManager loaderManager = super.getLoaderManager();
+        if (mTestLoaderManager != null) {
+            // Set the delegate: this operation is idempotent, so let's just do it every time.
+            mTestLoaderManager.setDelegate(loaderManager);
+            return mTestLoaderManager;
+        } else {
+            return loaderManager;
+        }
+    }
+
+    /** Sets the TestLoaderManager that is used to wrap the actual LoaderManager in tests. */
+    private void setTestLoaderManager(TestLoaderManager mockLoaderManager) {
+        mTestLoaderManager = mockLoaderManager;
     }
 
     @Override
