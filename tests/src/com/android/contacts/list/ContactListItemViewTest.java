@@ -16,7 +16,7 @@
 
 package com.android.contacts.list;
 
-import com.android.contacts.activities.DialtactsActivity;
+import com.android.contacts.activities.PeopleActivity;
 import com.android.contacts.format.SpannedTestUtils;
 import com.android.contacts.format.TestTextWithHighlightingFactory;
 
@@ -30,18 +30,18 @@ import android.widget.TextView;
 /**
  * Unit tests for {@link ContactListItemView}.
  *
- * It uses an {@link ActivityInstrumentationTestCase2} for {@link DialtactsActivity} because we need
+ * It uses an {@link ActivityInstrumentationTestCase2} for {@link PeopleActivity} because we need
  * to have the style properly setup.
  */
 @LargeTest
-public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<DialtactsActivity> {
+public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<PeopleActivity> {
     /** The HTML code used to mark the start of the highlighted part. */
     private static final String START = "<font color =\"#729a27\">";
     /** The HTML code used to mark the end of the highlighted part. */
     private static final String END = "</font>";
 
     public ContactListItemViewTest() {
-        super(DialtactsActivity.class);
+        super(PeopleActivity.class);
     }
 
     public void testShowDisplayName_Simple() {
