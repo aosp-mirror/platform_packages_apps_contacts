@@ -51,7 +51,7 @@ import android.test.suitebuilder.annotation.Smoke;
 import android.widget.TextView;
 
 /**
- * Tests for {@link ContactBrowserActivity}.
+ * Tests for {@link PeopleActivity}.
  *
  * Running all tests:
  *
@@ -61,8 +61,8 @@ import android.widget.TextView;
  *     -w com.android.contacts.tests/android.test.InstrumentationTestRunner
  */
 @Smoke
-public class ContactBrowserActivityTest
-        extends ActivityInstrumentationTestCase2<ContactBrowserActivity>
+public class PeopleActivityTest
+        extends ActivityInstrumentationTestCase2<PeopleActivity>
 {
     static {
         // AsyncTask class needs to be initialized on the main thread.
@@ -76,8 +76,8 @@ public class ContactBrowserActivityTest
     private MockContentProvider mContactsProvider;
     private MockContentProvider mSettingsProvider;
 
-    public ContactBrowserActivityTest() {
-        super(ContactBrowserActivity.class);
+    public PeopleActivityTest() {
+        super(PeopleActivity.class);
     }
 
     @Override
@@ -115,7 +115,7 @@ public class ContactBrowserActivityTest
 
         setActivityIntent(new Intent(Intent.ACTION_DEFAULT));
 
-        ContactBrowserActivity activity = getActivity();
+        PeopleActivity activity = getActivity();
 
         getInstrumentation().waitForIdleSync();
 

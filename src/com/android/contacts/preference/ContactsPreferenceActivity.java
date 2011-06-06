@@ -17,7 +17,7 @@
 package com.android.contacts.preference;
 
 import com.android.contacts.R;
-import com.android.contacts.activities.ContactBrowserActivity;
+import com.android.contacts.activities.PeopleActivity;
 
 import android.app.ActionBar;
 import android.content.Context;
@@ -66,7 +66,7 @@ public final class ContactsPreferenceActivity extends PreferenceActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: {
-                Intent intent = new Intent(this, ContactBrowserActivity.class);
+                Intent intent = new Intent(this, PeopleActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();

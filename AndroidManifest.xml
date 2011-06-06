@@ -127,6 +127,7 @@
             android:icon="@mipmap/ic_launcher_phone"
             android:screenOrientation="nosensor"
             android:enabled="@*android:bool/config_voice_capable"
+            android:taskAffinity="android.task.contacts.phone"
         >
             <intent-filter>
                 <action android:name="android.intent.action.DIAL" />
@@ -171,11 +172,10 @@
             </intent-filter>
         </activity>
 
-        <!-- Front door proxy that picks the right UI based on the screen config -->
-        <activity android:name=".activities.ContactsFrontDoor"
-            android:label="@string/contactsList"
-            android:icon="@mipmap/ic_launcher_contacts"
-            android:theme="@style/ContactBrowserTheme"
+        <!-- The main Contacts activity with the contact list, favorites, and groups. -->
+        <activity android:name=".activities.PeopleActivity"
+            android:label="@string/people"
+            android:theme="@style/PeopleTheme"
             android:clearTaskOnLaunch="true"
             android:launchMode="singleTop"
         >
@@ -185,15 +185,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
-        </activity>
-
-        <!-- The actual list of contacts -->
-        <activity android:name=".activities.ContactBrowserActivity"
-            android:label="@string/contactsList"
-            android:theme="@style/ContactBrowserTheme"
-            android:launchMode="singleTop"
-            android:clearTaskOnLaunch="true"
-        >
             <intent-filter>
                 <action android:name="com.android.contacts.action.LIST_DEFAULT" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -298,7 +289,7 @@
 
         <!-- Backwards compatibility: somebody may have hard coded this activity name -->
         <activity-alias android:name="ContactsListActivity"
-            android:targetActivity=".activities.ContactBrowserActivity"
+            android:targetActivity=".activities.PeopleActivity"
         />
 
         <!-- An activity for joining contacts -->
@@ -340,7 +331,7 @@
         <!-- List of groups -->
         <activity android:name=".activities.GroupBrowserActivity"
             android:label="@string/contactsGroupsLabel"
-            android:theme="@style/ContactBrowserTheme"
+            android:theme="@style/PeopleTheme"
             android:launchMode="singleTop"
             android:clearTaskOnLaunch="true">
             <!-- TODO: Remove this temporary intent action name when the fragmentization
@@ -437,6 +428,7 @@
         <activity android:name="CallDetailActivity"
             android:label="@string/callDetailTitle"
             android:theme="@style/CallDetailActivityTheme"
+            android:taskAffinity="android.task.contacts.phone"
         >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -527,10 +519,10 @@
             android:theme="@android:style/Theme.Translucent">
         </activity>
 
-        <!-- Makes .ContactBrowserActivity the search target for any activity in Contacts -->
+        <!-- Makes .PeopleActivity the search target for any activity in Contacts -->
         <meta-data
             android:name="android.app.default_searchable"
-            android:value=".activities.ContactBrowserActivity" />
+            android:value=".activities.PeopleActivity" />
 
 
         <!-- LIVE FOLDERS -->

@@ -76,7 +76,7 @@ import java.util.ArrayList;
  * Displays a list to browse contacts. For xlarge screens, this also displays a detail-pane on
  * the right.
  */
-public class ContactBrowserActivity extends ContactsActivity
+public class PeopleActivity extends ContactsActivity
         implements View.OnCreateContextMenuListener, ActionBarAdapter.Listener,
         DialogManager.DialogShowingViewActivity,
         ContactListFilterController.ContactListFilterListener, ProviderStatusListener {
@@ -126,7 +126,7 @@ public class ContactBrowserActivity extends ContactsActivity
     private boolean mOptionsMenuContactsAvailable;
     private boolean mOptionsMenuGroupActionsEnabled;
 
-    public ContactBrowserActivity() {
+    public PeopleActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
         mContactListFilterController = new ContactListFilterController(this);
         mContactListFilterController.addListener(this);
@@ -200,7 +200,7 @@ public class ContactBrowserActivity extends ContactsActivity
         }
 
         if (createContentView) {
-            setContentView(R.layout.contact_browser);
+            setContentView(R.layout.people_activity);
         }
 
         if (mRequest.getActionCode() == ContactsRequest.ACTION_VIEW_CONTACT
@@ -499,7 +499,7 @@ public class ContactBrowserActivity extends ContactsActivity
 
         @Override
         public void onDeleteContactAction(Uri contactUri) {
-            ContactDeletionInteraction.start(ContactBrowserActivity.this, contactUri, false);
+            ContactDeletionInteraction.start(PeopleActivity.this, contactUri, false);
         }
 
         @Override
@@ -546,16 +546,16 @@ public class ContactBrowserActivity extends ContactsActivity
 
         @Override
         public void onDeleteRequested(Uri contactUri) {
-            ContactDeletionInteraction.start(ContactBrowserActivity.this, contactUri, false);
+            ContactDeletionInteraction.start(PeopleActivity.this, contactUri, false);
         }
 
         @Override
         public void onCreateRawContactRequested(ArrayList<ContentValues> values, Account account) {
-            Toast.makeText(ContactBrowserActivity.this, R.string.toast_making_personal_copy,
+            Toast.makeText(PeopleActivity.this, R.string.toast_making_personal_copy,
                     Toast.LENGTH_LONG).show();
             Intent serviceIntent = ContactSaveService.createNewRawContactIntent(
-                    ContactBrowserActivity.this, values, account,
-                    ContactBrowserActivity.class, Intent.ACTION_VIEW);
+                    PeopleActivity.this, values, account,
+                    PeopleActivity.class, Intent.ACTION_VIEW);
             startService(serviceIntent);
         }
     }
@@ -579,7 +579,7 @@ public class ContactBrowserActivity extends ContactsActivity
 
         @Override
         public void onImportContactsFromFileAction() {
-            AccountSelectionUtil.doImportFromSdCard(ContactBrowserActivity.this, null);
+            AccountSelectionUtil.doImportFromSdCard(PeopleActivity.this, null);
         }
 
         @Override

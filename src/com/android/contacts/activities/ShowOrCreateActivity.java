@@ -182,7 +182,7 @@ public final class ShowOrCreateActivity extends ContactsActivity
         } else if (count > 1) {
             // If more than one, show pick list
             Intent listIntent = new Intent(Intent.ACTION_SEARCH);
-            listIntent.setComponent(new ComponentName(this, ContactBrowserActivity.class));
+            listIntent.setComponent(new ComponentName(this, PeopleActivity.class));
             listIntent.putExtras(mCreateExtras);
             startActivity(listIntent);
             finish();

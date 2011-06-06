@@ -18,13 +18,16 @@
          apps sharing the uid). -->
     <string name="sharedUserLabel">Android Core Apps</string>
 
-    <!-- Title for the activity that shows contacts.  This is the name
-         used in the Launcher icon. -->
-    <string name="contactsList">Contacts</string>
-
     <!-- Title for the activity that dials the phone.  This is the name
          used in the Launcher icon. -->
     <string name="launcherDialer">Phone</string>
+
+    <!-- Title for the activity that opens the People app.  This is the name
+         used in the Launcher icon. -->
+    <string name="people">People</string>
+
+    <!-- Directory partition name -->
+    <string name="contactsList">Contacts</string>
 
     <!-- Name of activity that allows users to create shortcuts on the home screen to a contact.
          This shows up in a list of things like bookmark, folder, music playlist, etc -->

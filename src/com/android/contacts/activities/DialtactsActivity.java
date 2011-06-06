@@ -203,7 +203,7 @@ public class DialtactsActivity extends Activity {
         // TODO: We should not artificially create Intents and put them into the Fragment.
         // It would be nicer to directly pass in the UI constant
         Intent intent = new Intent(UI.LIST_ALL_CONTACTS_ACTION);
-        intent.setClass(this, ContactBrowserActivity.class);
+        intent.setClass(this, PeopleActivity.class);
 
         ContactsIntentResolver resolver = new ContactsIntentResolver(this);
         ContactsRequest request = resolver.resolveIntent(intent);
@@ -229,7 +229,7 @@ public class DialtactsActivity extends Activity {
         // TODO: We should not artificially create Intents and put them into the Fragment.
         // It would be nicer to directly pass in the UI constant
         Intent intent = new Intent(UI.LIST_STREQUENT_ACTION);
-        intent.setClass(this, ContactBrowserActivity.class);
+        intent.setClass(this, PeopleActivity.class);
 
         ContactsIntentResolver resolver = new ContactsIntentResolver(this);
         ContactsRequest request = resolver.resolveIntent(intent);
@@ -291,30 +291,16 @@ public class DialtactsActivity extends Activity {
         // overwritten by one of the programmatic tab selections
         final int savedTabIndex = mLastManuallySelectedTab;
 
-        // Choose the tab based on the inbound intent
-        if (intent.getBooleanExtra(ContactsFrontDoor.EXTRA_FRONT_DOOR, false)) {
-            // Launched through the contacts front door, set the proper contacts tab (sticky
-            // between favorites and contacts)
-            SharedPreferences prefs = getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE);
-            boolean favoritesAsContacts = prefs.getBoolean(PREF_FAVORITES_AS_CONTACTS,
-                    PREF_FAVORITES_AS_CONTACTS_DEFAULT);
-            if (favoritesAsContacts) {
-                getActionBar().selectTab(getActionBar().getTabAt(TAB_INDEX_FAVORITES));
+        // Look at the component to determine the tab
+        String componentName = intent.getComponent().getClassName();
+        if (getClass().getName().equals(componentName)) {
+            if (recentCallsRequest) {
+                getActionBar().selectTab(getActionBar().getTabAt(TAB_INDEX_CALL_LOG));
             } else {
-                getActionBar().selectTab(getActionBar().getTabAt(TAB_INDEX_CONTACTS));
+                getActionBar().selectTab(getActionBar().getTabAt(TAB_INDEX_DIALER));
             }
         } else {
-            // Not launched through the front door, look at the component to determine the tab
-            String componentName = intent.getComponent().getClassName();
-            if (getClass().getName().equals(componentName)) {
-                if (recentCallsRequest) {
-                    getActionBar().selectTab(getActionBar().getTabAt(TAB_INDEX_CALL_LOG));
-                } else {
-                    getActionBar().selectTab(getActionBar().getTabAt(TAB_INDEX_DIALER));
-                }
-            } else {
-                getActionBar().selectTab(getActionBar().getTabAt(mLastManuallySelectedTab));
-            }
+            getActionBar().selectTab(getActionBar().getTabAt(mLastManuallySelectedTab));
         }
 
         // Restore to the previous manual selection
