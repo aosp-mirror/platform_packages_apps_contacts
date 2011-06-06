@@ -17,8 +17,10 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="sharedUserLabel" msgid="7965035505237135241">"Android Core Apps"</string>
-    <string name="contactsList" msgid="8661624236494819731">"Kontaktpersonas"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"Tālrunis"</string>
+    <!-- no translation found for people (1048457247435785074) -->
+    <skip />
+    <string name="contactsList" msgid="8661624236494819731">"Kontaktpersonas"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontaktpersona"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Tiešais zvans"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Tiešais ziņojums"</string>
@@ -217,10 +219,8 @@
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"SD karte nav noteikta."</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"vCard faila meklēšana"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importēt no SIM kartes"</string>
-    <string name="import_from_sdcard" product="nosdcard" msgid="8668347930577565175">"Importēt no USB atmiņas"</string>
-    <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Importēt no SD kartes"</string>
-    <string name="export_to_sdcard" product="nosdcard" msgid="6092815580965201089">"Eksportēt uz USB atmiņu"</string>
-    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Eksportēt uz SD karti"</string>
+    <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Importēt no USB atmiņas"</string>
+    <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"Eksportēt uz USB atmiņu"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Kopīgot redzamās kontaktpersonas"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Importēt vienu vCard failu"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Importēt vairākus vCard failus"</string>

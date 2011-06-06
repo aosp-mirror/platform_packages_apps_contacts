@@ -18,9 +18,11 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- no translation found for sharedUserLabel (7965035505237135241) -->
     <skip />
-    <string name="contactsList" msgid="8661624236494819731">"Kenalan"</string>
     <!-- no translation found for launcherDialer (8636288196618486553) -->
     <skip />
+    <!-- no translation found for people (1048457247435785074) -->
+    <skip />
+    <string name="contactsList" msgid="8661624236494819731">"Kenalan"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kenalan"</string>
     <!-- no translation found for shortcutDialContact (746622101599186779) -->
     <skip />
@@ -286,11 +288,7 @@
     <skip />
     <!-- no translation found for import_from_sdcard (8668347930577565175) -->
     <skip />
-    <!-- no translation found for import_from_sdcard (8550360976693202816) -->
-    <skip />
     <!-- no translation found for export_to_sdcard (6092815580965201089) -->
-    <skip />
-    <!-- no translation found for export_to_sdcard (2597105442616166277) -->
     <skip />
     <!-- no translation found for share_visible_contacts (890150378880783797) -->
     <skip />

@@ -17,8 +17,10 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="sharedUserLabel" msgid="7965035505237135241">"Android Core Apps"</string>
-    <string name="contactsList" msgid="8661624236494819731">"Kişiler"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"Telefon"</string>
+    <!-- no translation found for people (1048457247435785074) -->
+    <skip />
+    <string name="contactsList" msgid="8661624236494819731">"Kişiler"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kişi"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Doğrudan çevirme"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Doğrudan ileti"</string>
@@ -217,10 +219,8 @@
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Hiçbir SD kart tespit edilmedi"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"vCard aranıyor"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"SIM karttan içe aktar"</string>
-    <string name="import_from_sdcard" product="nosdcard" msgid="8668347930577565175">"Depl biriminden içe aktar"</string>
-    <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"SD karttan içe aktar"</string>
-    <string name="export_to_sdcard" product="nosdcard" msgid="6092815580965201089">"Depolama birimine aktar"</string>
-    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"SD karta dışa aktar"</string>
+    <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Depl biriminden içe aktar"</string>
+    <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"Depolama birimine aktar"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Görülebilir kişileri paylaş"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Bir vCard dosyasını içe aktar"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Birden fazla vCard dosyasını içe aktar"</string>

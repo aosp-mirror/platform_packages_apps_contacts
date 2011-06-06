@@ -17,8 +17,10 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="sharedUserLabel" msgid="7965035505237135241">"Aplicaciones básicas"</string>
-    <string name="contactsList" msgid="8661624236494819731">"Contactos"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"Teléfono"</string>
+    <!-- no translation found for people (1048457247435785074) -->
+    <skip />
+    <string name="contactsList" msgid="8661624236494819731">"Contactos"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Contacto"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Llamada directa"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Mensaje directo"</string>
@@ -217,10 +219,8 @@
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"No se ha detectado ninguna tarjeta SD."</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Buscando vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importar contactos desde la tarjeta SIM"</string>
-    <string name="import_from_sdcard" product="nosdcard" msgid="8668347930577565175">"Importar de almacenamiento"</string>
-    <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"Importar contactos desde la tarjeta SD"</string>
-    <string name="export_to_sdcard" product="nosdcard" msgid="6092815580965201089">"Exportar a almacenamiento"</string>
-    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"Exportar contactos a la tarjeta SD"</string>
+    <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Importar de almacenamiento"</string>
+    <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"Exportar a almacenamiento"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Compartir contactos visibles"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Importar un archivo de vCard"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Importar varios archivos de vCard"</string>
