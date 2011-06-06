@@ -134,10 +134,14 @@ public class FormatUtils {
      * @param prefix the text to find, in upper case letters
      */
     public static int indexOfWordPrefix(CharSequence text, char[] prefix) {
+        if (prefix == null || text == null) {
+            return -1;
+        }
+
         int textLength = text.length();
         int prefixLength = prefix.length;
 
-        if (prefix == null || prefixLength == 0 || textLength < prefixLength) {
+        if (prefixLength == 0 || textLength < prefixLength) {
             return -1;
         }
 

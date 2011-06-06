@@ -71,6 +71,14 @@ public class FormatUtilsTests extends AndroidTestCase {
         }
     }
 
+    public void testIndexOfWordPrefix_NullPrefix() {
+        assertEquals(-1, FormatUtils.indexOfWordPrefix("test", null));
+    }
+
+    public void testIndexOfWordPrefix_NullText() {
+        assertEquals(-1, FormatUtils.indexOfWordPrefix(null, "TE".toCharArray()));
+    }
+
     public void testIndexOfWordPrefix_MatchingPrefix() {
         checkIndexOfWordPrefix("test", "TE", 0);
         checkIndexOfWordPrefix("Test", "TE", 0);
