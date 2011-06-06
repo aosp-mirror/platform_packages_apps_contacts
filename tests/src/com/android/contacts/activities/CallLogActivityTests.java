@@ -18,7 +18,7 @@ package com.android.contacts.activities;
 
 import com.android.contacts.R;
 import com.android.contacts.calllog.CallLogFragment;
-import com.android.contacts.calllog.CallLogFragment.CallLogListItemViews;
+import com.android.contacts.calllog.CallLogListItemViews;
 import com.android.internal.telephony.CallerInfo;
 
 import android.content.res.Resources;
@@ -93,7 +93,7 @@ public class CallLogActivityTests
     private HashMap<Integer, Bitmap> mCallTypeIcons;
 
     // An item in the call list. All the methods performing checks use it.
-    private CallLogFragment.CallLogListItemViews mItem;
+    private CallLogListItemViews mItem;
     // The list of views representing the data in the DB. View are in
     // reverse order compare to the DB.
     private View[] mList;
@@ -300,7 +300,7 @@ public class CallLogActivityTests
             if (null == mList[i]) {
                 break;
             }
-            mItem = (CallLogFragment.CallLogListItemViews) mList[i].getTag();
+            mItem = (CallLogListItemViews) mList[i].getTag();
 
             // callView tag is the phone number.
             String number = (String) mItem.callView.getTag();

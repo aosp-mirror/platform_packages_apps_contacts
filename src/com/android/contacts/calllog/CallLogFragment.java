@@ -44,7 +44,6 @@ import android.os.Looper;
 import android.os.Message;
 import android.provider.CallLog;
 import android.provider.CallLog.Calls;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
@@ -53,7 +52,6 @@ import android.provider.ContactsContract.PhoneLookup;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -154,25 +152,6 @@ public class CallLogFragment extends ListFragment
         public static ContactInfo EMPTY = new ContactInfo();
     }
 
-    public static final class CallLogListItemViews {
-        public TextView line1View;
-        public TextView labelView;
-        public TextView numberView;
-        public TextView dateView;
-        public ImageView iconView;
-        /** The icon used to place a call to the contact. Only present for non-group entries. */
-        public View callView;
-        /** The icon used to expand and collapse an entry. Only present for group entries. */
-        public ImageView groupIndicator;
-        /**
-         * The text view containing the number of items in the group. Only present for group
-         * entries.
-         */
-        public TextView groupSize;
-        /** The contact photo for the contact. Only present for group and stand alone entries. */
-        public ImageView photoView;
-    }
-
     public static final class CallerInfoQuery {
         public String number;
         public int position;
@@ -195,9 +174,8 @@ public class CallLogFragment extends ListFragment
         private boolean mFirst;
         private Thread mCallerIdThread;
 
-        private Drawable mDrawableIncoming;
-        private Drawable mDrawableOutgoing;
-        private Drawable mDrawableMissed;
+        /** Instance of helper class for managing views. */
+        private final CallLogListItemHelper mCallLogViewsHelper;
 
         /**
          * Reusable char array buffers.
@@ -254,14 +232,16 @@ public class CallLogFragment extends ListFragment
             mRequests = new LinkedList<CallerInfoQuery>();
             mPreDrawListener = null;
 
-            mDrawableIncoming = getResources().getDrawable(
+            Drawable drawableIncoming = getResources().getDrawable(
                     R.drawable.ic_call_log_list_incoming_call);
-            mDrawableOutgoing = getResources().getDrawable(
+            Drawable drawableOutgoing = getResources().getDrawable(
                     R.drawable.ic_call_log_list_outgoing_call);
-            mDrawableMissed = getResources().getDrawable(
+            Drawable drawableMissed = getResources().getDrawable(
                     R.drawable.ic_call_log_list_missed_call);
 
             mContactPhotoManager = ContactPhotoManager.getInstance(getActivity());
+            mCallLogViewsHelper = new CallLogListItemHelper(getResources(), mVoiceMailNumber,
+                    drawableIncoming, drawableOutgoing, drawableMissed);
         }
 
         /**
@@ -702,7 +682,7 @@ public class CallLogFragment extends ListFragment
                 // Format the cached call_log phone number
                 formattedNumber = formatPhoneNumber(number, null, countryIso);
             }
-            // Set the text lines and call icon.
+
             // Assumes the call back feature is on most of the
             // time. For private and unknown numbers: hide it.
             if (views.callView != null) {
@@ -710,102 +690,21 @@ public class CallLogFragment extends ListFragment
             }
 
             if (!TextUtils.isEmpty(name)) {
-                views.line1View.setText(name);
-                views.labelView.setVisibility(View.VISIBLE);
-
-                // "type" and "label" are currently unused for SIP addresses.
-                CharSequence numberLabel = null;
-                if (!PhoneNumberUtils.isUriNumber(number)) {
-                    numberLabel = Phone.getTypeLabel(getResources(), ntype, label);
-                }
-                views.numberView.setVisibility(View.VISIBLE);
-                views.numberView.setText(formattedNumber);
-                if (!TextUtils.isEmpty(numberLabel)) {
-                    views.labelView.setText(numberLabel);
-                    views.labelView.setVisibility(View.VISIBLE);
-
-                    // Zero out the numberView's left margin (see below)
-                    ViewGroup.MarginLayoutParams numberLP =
-                            (ViewGroup.MarginLayoutParams) views.numberView.getLayoutParams();
-                    numberLP.leftMargin = 0;
-                    views.numberView.setLayoutParams(numberLP);
-                } else {
-                    // There's nothing to display in views.labelView, so hide it.
-                    // We can't set it to View.GONE, since it's the anchor for
-                    // numberView in the RelativeLayout, so make it INVISIBLE.
-                    //   Also, we need to manually *subtract* some left margin from
-                    // numberView to compensate for the right margin built in to
-                    // labelView (otherwise the number will be indented by a very
-                    // slight amount).
-                    //   TODO: a cleaner fix would be to contain both the label and
-                    // number inside a LinearLayout, and then set labelView *and*
-                    // its padding to GONE when there's no label to display.
-                    views.labelView.setText(null);
-                    views.labelView.setVisibility(View.INVISIBLE);
-
-                    ViewGroup.MarginLayoutParams labelLP =
-                            (ViewGroup.MarginLayoutParams) views.labelView.getLayoutParams();
-                    ViewGroup.MarginLayoutParams numberLP =
-                            (ViewGroup.MarginLayoutParams) views.numberView.getLayoutParams();
-                    // Equivalent to setting android:layout_marginLeft in XML
-                    numberLP.leftMargin = -labelLP.rightMargin;
-                    views.numberView.setLayoutParams(numberLP);
-                }
+                mCallLogViewsHelper.setContactNameLabelAndNumber(views, name, number, ntype, label,
+                        formattedNumber);
             } else {
-                if (number.equals(CallerInfo.UNKNOWN_NUMBER)) {
-                    number = getString(R.string.unknown);
-                    if (views.callView != null) {
-                        views.callView.setVisibility(View.INVISIBLE);
-                    }
-                } else if (number.equals(CallerInfo.PRIVATE_NUMBER)) {
-                    number = getString(R.string.private_num);
-                    if (views.callView != null) {
-                        views.callView.setVisibility(View.INVISIBLE);
-                    }
-                } else if (number.equals(CallerInfo.PAYPHONE_NUMBER)) {
-                    number = getString(R.string.payphone);
-                } else if (PhoneNumberUtils.extractNetworkPortion(number)
-                                .equals(mVoiceMailNumber)) {
-                    number = getString(R.string.voicemail);
-                } else {
-                    // Just a raw number, and no cache, so format it nicely
-                    number = formatPhoneNumber(number, null, countryIso);
-                }
-
-                views.line1View.setText(number);
-                views.numberView.setVisibility(View.GONE);
-                views.labelView.setVisibility(View.GONE);
+                // TODO: Do we need to format the number again? Is formattedNumber already storing
+                // this value?
+                mCallLogViewsHelper.setContactNumberOnly(views, number,
+                        formatPhoneNumber(number, null, countryIso));
             }
-
+            mCallLogViewsHelper.setDate(views, c.getLong(CallLogQuery.DATE),
+                    System.currentTimeMillis());
+            mCallLogViewsHelper.setCallType(views, c.getInt(CallLogQuery.CALL_TYPE));
             if (views.photoView != null) {
                 mContactPhotoManager.loadPhoto(views.photoView, photoId);
             }
 
-            long date = c.getLong(CallLogQuery.DATE);
-
-            // Set the date/time field by mixing relative and absolute times.
-            int flags = DateUtils.FORMAT_ABBREV_RELATIVE;
-
-            views.dateView.setText(DateUtils.getRelativeTimeSpanString(date,
-                    System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS, flags));
-
-            if (views.iconView != null) {
-                int type = c.getInt(CallLogQuery.CALL_TYPE);
-                // Set the icon
-                switch (type) {
-                    case Calls.INCOMING_TYPE:
-                        views.iconView.setImageDrawable(mDrawableIncoming);
-                        break;
-
-                    case Calls.OUTGOING_TYPE:
-                        views.iconView.setImageDrawable(mDrawableOutgoing);
-                        break;
-
-                    case Calls.MISSED_TYPE:
-                        views.iconView.setImageDrawable(mDrawableMissed);
-                        break;
-                }
-            }
 
             // Listen for the first draw
             if (mPreDrawListener == null) {
