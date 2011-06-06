@@ -225,24 +225,7 @@ public class DialtactsActivity extends Activity {
         tab.setIcon(R.drawable.ic_tab_starred);
         tab.setTabListener(new TabChangeListener(mStrequentFragment));
         getActionBar().addTab(tab);
-
-        // TODO: We should not artificially create Intents and put them into the Fragment.
-        // It would be nicer to directly pass in the UI constant
-        Intent intent = new Intent(UI.LIST_STREQUENT_ACTION);
-        intent.setClass(this, PeopleActivity.class);
-
-        ContactsIntentResolver resolver = new ContactsIntentResolver(this);
-        ContactsRequest request = resolver.resolveIntent(intent);
-        final ContactListFilter filter = ContactListFilter.createFilterWithType(
-                ContactListFilter.FILTER_TYPE_STARRED);
-        mStrequentFragment.setFilter(filter, false);
-        mStrequentFragment.setSearchMode(request.isSearchMode());
-        mStrequentFragment.setQueryString(request.getQueryString(), false);
-        mStrequentFragment.setContactsRequest(request);
-        mStrequentFragment.setDirectorySearchMode(request.isDirectorySearchEnabled()
-                ? DirectoryListLoader.SEARCH_MODE_DEFAULT
-                : DirectoryListLoader.SEARCH_MODE_NONE);
-        mStrequentFragment.setOnContactListActionListener(mListFragmentListener);
+        mStrequentFragment.setListener(mStrequentListener);
     }
 
     /**
@@ -502,6 +485,14 @@ public class DialtactsActivity extends Activity {
 
         @Override
         public void onAddToFavoritesAction(Uri contactUri) {
+        }
+    };
+
+    private StrequentContactListFragment.Listener mStrequentListener =
+            new StrequentContactListFragment.Listener() {
+        @Override
+        public void onContactSelected(Uri contactUri) {
+            getPhoneNumberCallInteraction().startInteraction(contactUri);
         }
     };
 

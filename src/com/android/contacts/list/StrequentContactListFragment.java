@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 The Android Open Source Project
+ * Copyright (C) 2011 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,94 +16,94 @@
 package com.android.contacts.list;
 
 import com.android.contacts.R;
+import com.android.contacts.StrequentMetaDataLoader;
 
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.LoaderManager;
+import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Context;
+import android.content.CursorLoader;
+import android.content.Loader;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
+import android.widget.ListView;
 
 /**
  * Fragment containing a list of starred contacts followed by a list of frequently contacted.
  */
-public class StrequentContactListFragment extends ContactBrowseListFragment
-        implements OnClickListener {
+public class StrequentContactListFragment extends Fragment {
+    public interface Listener {
+        public void onContactSelected(Uri contactUri);
+    }
 
-    private static final int CALL_BUTTON_ID = android.R.id.button1;
+    private static int LOADER_STREQUENT = 1;
 
-    private boolean mStarredContactsIncluded = true;
-    private boolean mFrequentlyContactedContactsIncluded = true;
+    private Listener mListener;
+    private StrequentAdapter mAdapter;
+    private ListView mListView;
+    private Context mContext;
 
-    public StrequentContactListFragment() {
-        setSectionHeaderDisplayEnabled(false);
-        setPhotoLoaderEnabled(true);
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mAdapter = new StrequentAdapter(getActivity(), mAdapterListener);
+        mContext = activity;
     }
 
     @Override
-    protected boolean isNameHighlighingEnabled() {
-        // Since the list is not ordered alphabetically, we don't need to highlight the part
-        // that is used for sorting.
-        return false;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.strequent_fragment, container, false);
+        mListView = (ListView) v.findViewById(R.id.strequent_list);
+        mListView.setItemsCanFocus(true);
+        return v;
     }
 
-    public void setStarredContactsIncluded(boolean flag) {
-        mStarredContactsIncluded = flag;
-        configureAdapter();
-    }
-
-    public void setFrequentlyContactedContactsIncluded(boolean flag) {
-        mFrequentlyContactedContactsIncluded = flag;
-        configureAdapter();
+    public void setListener(Listener listener) {
+        mListener = listener;
     }
 
     @Override
-    protected void onItemClick(int position, long id) {
-        ContactListAdapter adapter = getAdapter();
-        viewContact(adapter.getContactUri(position));
+    public void onStart(){
+        super.onStart();
+        getLoaderManager().restartLoader(LOADER_STREQUENT, null, mStrequentLoaderListener);
     }
 
-    @Override
-    protected ContactListAdapter createListAdapter() {
-        StrequentContactListAdapter adapter =
-                new StrequentContactListAdapter(getActivity(), CALL_BUTTON_ID);
-        adapter.setSectionHeaderDisplayEnabled(false);
-        adapter.setDisplayPhotos(true);
-        adapter.setQuickContactEnabled(true);
-        adapter.setCallButtonListener(this);
+    /**
+     * The listener for the strequent meta data loader.
+     */
+    private final LoaderManager.LoaderCallbacks<Cursor> mStrequentLoaderListener =
+            new LoaderCallbacks<Cursor>() {
 
-        return adapter;
-    }
-
-    @Override
-    protected void configureAdapter() {
-        super.configureAdapter();
-
-        StrequentContactListAdapter adapter = (StrequentContactListAdapter)getAdapter();
-        if (adapter != null) {
-            adapter.setStarredContactsIncluded(mStarredContactsIncluded);
-            adapter.setFrequentlyContactedContactsIncluded(mFrequentlyContactedContactsIncluded);
+        @Override
+        public CursorLoader onCreateLoader(int id, Bundle args) {
+            return new StrequentMetaDataLoader(mContext);
         }
-    }
 
-    @Override
-    protected View inflateView(LayoutInflater inflater, ViewGroup container) {
-        return inflater.inflate(R.layout.contacts_list_content, null);
-    }
+        @Override
+        public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+            mAdapter.setCursor(data);
+            mListView.setAdapter(mAdapter);
+        }
 
-    @Override
-    protected void prepareEmptyView() {
-        setEmptyText(R.string.noFavoritesHelpText);
-    }
+        @Override
+        public void onLoaderReset(Loader<Cursor> loader) {
+            mAdapter.setCursor(null);
+        }
+    };
 
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        switch (id) {
-            case CALL_BUTTON_ID: {
-                final int position = (Integer)v.getTag();
-                ContactListAdapter adapter = getAdapter();
-                callContact(adapter.getContactUri(position));
-                break;
+    private StrequentAdapter.Listener mAdapterListener =
+            new StrequentAdapter.Listener() {
+        @Override
+        public void onContactSelected(Uri contactUri) {
+            if (mListener != null) {
+                mListener.onContactSelected(contactUri);
             }
         }
-    }
+    };
 }

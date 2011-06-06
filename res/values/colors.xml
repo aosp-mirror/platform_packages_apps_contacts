@@ -48,4 +48,8 @@
 
     <!-- Color of the text indicating the type of entry (e.g. Home, Work etc) -->
     <color name="detail_header_view_text_color">#FFFFFF</color>
+
+    <!--  Color of the text foreground and background of Regular Sized ContactTile -->
+    <color name="contact_tile_regular_text">#2B1B17</color>
+    <color name="contact_tile_regular_text_background">#FFFFFF</color>
 </resources>

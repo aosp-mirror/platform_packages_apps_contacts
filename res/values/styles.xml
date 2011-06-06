@@ -274,4 +274,52 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingTop">5dip</item>
     </style>
+
+    <style name="ContactTileRegularText">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:background">@color/contact_tile_regular_text</item>
+        <item name="android:textColor">@color/contact_tile_regular_text_background</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:alpha">0.7</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="ContactTileRegularImage">
+        <item name="android:layout_width">160dip</item>
+        <item name="android:layout_height">160dip</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="ContactTileRegularLayout">
+        <item name="android:layout_width">155dip</item>
+        <item name="android:layout_height">160dip</item>
+        <item name="android:focusable">true</item>
+        <item name="android:padding">5dip</item>
+        <item name="android:background">@drawable/list_selector</item>
+    </style>
+
+    <style name="ContactTileSmallText">
+        <item name="android:layout_width">80dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">8dip</item>
+        <item name="android:paddingLeft">4dip</item>
+    </style>
+
+    <style name="ContactTileSmallImage">
+        <item name="android:layout_width">80dip</item>
+        <item name="android:layout_height">80dip</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="ContactTileSmallLayout">
+        <item name="android:layout_width">160dip</item>
+        <item name="android:layout_height">80dip</item>
+        <item name="android:focusable">true</item>
+        <item name="android:padding">5dip</item>
+        <item name="android:background">@drawable/list_selector</item>
+    </style>
 </resources>
