@@ -20,6 +20,7 @@
     android:paddingLeft="7dip"
 >
 
+    <include layout="@layout/call_log_contact_photo"/>
     <include layout="@layout/call_log_action_call"/>
     <include layout="@layout/call_log_list_item_layout"/>
 
