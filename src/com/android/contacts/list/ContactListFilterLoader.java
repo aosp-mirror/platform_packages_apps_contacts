@@ -81,7 +81,8 @@ public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFil
         for (Account account : accounts) {
             AccountType accountType = accountTypes.getAccountType(account.type);
             Drawable icon = accountType != null ? accountType.getDisplayIcon(getContext()) : null;
-            results.add(new ContactListFilter(account.type, account.name, icon, account.name));
+            results.add(ContactListFilter.createAccountFilter(account.type, account.name, icon,
+                    account.name));
         }
 
         ContentResolver resolver = context.getContentResolver();
@@ -111,8 +112,8 @@ public class ContactListFilterLoader extends AsyncTaskLoader<List<ContactListFil
                     }
                 } else {
                     String title = cursor.getString(GroupQuery.TITLE);
-                    results.add(new ContactListFilter(accountType, accountName, groupId,
-                            groupSourceId, groupReadOnly, title));
+                    results.add(ContactListFilter.createGroupFilter(accountType, accountName,
+                            groupId, groupSourceId, groupReadOnly, title));
                 }
             }
         } finally {

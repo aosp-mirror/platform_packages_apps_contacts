@@ -17,21 +17,26 @@
 package com.android.contacts.group;
 
 import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.GroupMetaData;
+import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.activities.GroupDetailActivity;
 import com.android.contacts.list.ContactListAdapter;
 import com.android.contacts.list.ContactListFilter;
 import com.android.contacts.list.DefaultContactListAdapter;
 
+import android.accounts.Account;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Directory;
@@ -43,23 +48,46 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * Displays the details of a group and shows a list of actions possible for the group.
  */
 public class GroupDetailFragment extends Fragment implements OnScrollListener {
 
+    public static interface Listener {
+        /**
+         * The group title has been loaded
+         */
+        public void onGroupTitleUpdated(String title);
+
+        /**
+         * The number of group members has been determined
+         */
+        public void onGroupSizeUpdated(String size);
+    }
+
     private static final String TAG = "GroupDetailFragment";
 
-    private static final int LOADER_MEMBERS = 0;
+    private static final int LOADER_METADATA = 0;
+    private static final int LOADER_MEMBERS = 1;
 
     private Context mContext;
 
     private View mRootView;
+    private TextView mGroupTitle;
+    private TextView mGroupSize;
     private ListView mMemberListView;
+
+    private Listener mListener;
 
     private ContactListAdapter mAdapter;
     private ContactPhotoManager mPhotoManager;
+
+    private Uri mGroupUri;
+    private long mGroupId;
 
     public GroupDetailFragment() {
     }
@@ -80,7 +108,9 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
         mRootView = inflater.inflate(R.layout.group_detail_fragment, container, false);
-        mMemberListView = (ListView) mRootView.findViewById(R.id.member_list);
+        mGroupTitle = (TextView) mRootView.findViewById(R.id.group_title);
+        mGroupSize = (TextView) mRootView.findViewById(R.id.group_size);
+        mMemberListView = (ListView) mRootView.findViewById(android.R.id.list);
         mMemberListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -90,22 +120,12 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         return mRootView;
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        Intent intent = getActivity().getIntent();
-        String accountType = intent.getStringExtra(GroupDetailActivity.KEY_ACCOUNT_TYPE);
-        String accountName = intent.getStringExtra(GroupDetailActivity.KEY_ACCOUNT_NAME);
-        long groupId = intent.getLongExtra(GroupDetailActivity.KEY_GROUP_ID, -1);
-        String groupTitle = intent.getStringExtra(GroupDetailActivity.KEY_GROUP_TITLE);
-
-        configureAdapter(accountType, accountName, groupId, groupTitle);
-        startGroupMembersLoader();
+    public void loadGroup(Uri groupUri) {
+        mGroupUri= groupUri;
+        startGroupMetadataLoader();
     }
 
-    private void configureAdapter(String accountType, String accountName,
-                long groupId, String groupTitle) {
+    private void configureAdapter(long groupId) {
         mAdapter = new DefaultContactListAdapter(getActivity());
         mAdapter.setSectionHeaderDisplayEnabled(false);
         mAdapter.setDisplayPhotos(true);
@@ -115,8 +135,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         mAdapter.setContactNameDisplayOrder(ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY);
         mAdapter.setSortOrder(ContactsContract.Preferences.SORT_ORDER_PRIMARY);
         mAdapter.setPhotoLoader(mPhotoManager);
-        mAdapter.setFilter(new ContactListFilter(accountType, accountName, groupId, "", false,
-                groupTitle));
+        mAdapter.setFilter(ContactListFilter.createGroupFilter(groupId));
         mMemberListView.setAdapter(mAdapter);
     }
 
@@ -134,6 +153,18 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         }
     }
 
+    public void setListener(Listener value) {
+        mListener = value;
+    }
+
+    /**
+     * Start the loader to retrieve the metadata for this group.
+     */
+    private void startGroupMetadataLoader() {
+        getLoaderManager().destroyLoader(LOADER_METADATA);
+        getLoaderManager().restartLoader(LOADER_METADATA, null, mGroupMetadataLoaderListener);
+    }
+
     /**
      * Start the loader to retrieve the list of group members.
      */
@@ -141,6 +172,30 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         getLoaderManager().destroyLoader(LOADER_MEMBERS);
         getLoaderManager().restartLoader(LOADER_MEMBERS, null, mGroupMemberListLoaderListener);
     }
+
+    /**
+     * The listener for the group metadata loader.
+     */
+    private final LoaderManager.LoaderCallbacks<Cursor> mGroupMetadataLoaderListener =
+            new LoaderCallbacks<Cursor>() {
+
+        @Override
+        public CursorLoader onCreateLoader(int id, Bundle args) {
+            return new GroupMetaDataLoader(mContext, mGroupUri);
+        }
+
+        @Override
+        public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+            bindGroupMetaData(data);
+
+            // Retrieve the list of members
+            configureAdapter(mGroupId);
+            startGroupMembersLoader();
+        }
+
+        @Override
+        public void onLoaderReset(Loader<Cursor> loader) {}
+    };
 
     /**
      * The listener for the group members list loader
@@ -157,12 +212,37 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
 
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-            mAdapter.changeCursor(loader.getId(), data);
+            updateSize(Integer.toString(data.getCount()));
+            mAdapter.changeCursor(0, data);
         }
 
         @Override
         public void onLoaderReset(Loader<Cursor> loader) {}
     };
+
+    private void bindGroupMetaData(Cursor cursor) {
+        cursor.moveToPosition(-1);
+        if (cursor.moveToNext()) {
+            mGroupId = cursor.getLong(GroupMetaDataLoader.GROUP_ID);
+            updateTitle(cursor.getString(GroupMetaDataLoader.TITLE));
+        }
+    }
+
+    private void updateTitle(String title) {
+        if (mGroupTitle != null) {
+            mGroupTitle.setText(title);
+        } else {
+            mListener.onGroupTitleUpdated(title);
+        }
+    }
+
+    private void updateSize(String size) {
+        if (mGroupSize != null) {
+            mGroupSize.setText(size);
+        } else {
+            mListener.onGroupSizeUpdated(size);
+        }
+    }
 
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,

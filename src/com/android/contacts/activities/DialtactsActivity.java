@@ -207,7 +207,7 @@ public class DialtactsActivity extends Activity {
 
         ContactsIntentResolver resolver = new ContactsIntentResolver(this);
         ContactsRequest request = resolver.resolveIntent(intent);
-        final ContactListFilter filter = new ContactListFilter(
+        final ContactListFilter filter = ContactListFilter.createFilterWithType(
                 ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
         mContactsFragment.setFilter(filter, false);
         mContactsFragment.setSearchMode(request.isSearchMode());
@@ -233,7 +233,7 @@ public class DialtactsActivity extends Activity {
 
         ContactsIntentResolver resolver = new ContactsIntentResolver(this);
         ContactsRequest request = resolver.resolveIntent(intent);
-        final ContactListFilter filter = new ContactListFilter(
+        final ContactListFilter filter = ContactListFilter.createFilterWithType(
                 ContactListFilter.FILTER_TYPE_STARRED);
         mStrequentFragment.setFilter(filter, false);
         mStrequentFragment.setSearchMode(request.isSearchMode());

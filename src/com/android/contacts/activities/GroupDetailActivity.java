@@ -18,19 +18,13 @@ package com.android.contacts.activities;
 
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
+import com.android.contacts.group.GroupDetailFragment;
 
 import android.os.Bundle;
 
 public class GroupDetailActivity extends ContactsActivity {
 
     private static final String TAG = "GroupDetailActivity";
-
-    public static final String KEY_ACCOUNT_TYPE = "accountType";
-    public static final String KEY_ACCOUNT_NAME = "accountName";
-    public static final String KEY_GROUP_ID = "groupId";
-    public static final String KEY_GROUP_SOURCE_ID = "groupSourceId";
-    public static final String KEY_GROUP_READ_ONLY = "groupReadOnly";
-    public static final String KEY_GROUP_TITLE = "title";
 
     @Override
     public void onCreate(Bundle savedState) {
@@ -40,5 +34,26 @@ public class GroupDetailActivity extends ContactsActivity {
         // TODO: Handle search or key down
 
         setContentView(R.layout.group_detail_activity);
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        GroupDetailFragment fragment = (GroupDetailFragment) getFragmentManager().findFragmentById(
+                R.id.group_detail_fragment);
+        fragment.setListener(mFragmentListener);
+        fragment.loadGroup(getIntent().getData());
     }
+
+    private final GroupDetailFragment.Listener mFragmentListener =
+            new GroupDetailFragment.Listener() {
+
+        @Override
+        public void onGroupSizeUpdated(String size) {
+            getActionBar().setSubtitle(size);
+        }
+
+        @Override
+        public void onGroupTitleUpdated(String title) {
+            getActionBar().setTitle(title);
+        }
+    };
 }

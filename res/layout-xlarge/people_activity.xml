@@ -84,10 +84,16 @@
             ex:exitAnimation="@android:animator/fade_out"
             ex:animationDuration="200">
             <fragment
-                android:id="@+id/detail_fragment"
+                android:id="@+id/contact_detail_fragment"
                 class="com.android.contacts.detail.ContactDetailFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" 
+                android:layout_height="match_parent"
+            />
+            <fragment
+                android:id="@+id/group_detail_fragment"
+                class="com.android.contacts.group.GroupDetailFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
             />
         </view>
 

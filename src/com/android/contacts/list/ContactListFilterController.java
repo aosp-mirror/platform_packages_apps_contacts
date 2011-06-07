@@ -160,10 +160,10 @@ public class ContactListFilterController
         }
 
         if (mAccountCount != 1) {
-            mFilters.append(mNextFilterId++,
-                    new ContactListFilter(ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS));
-            mFilters.append(mNextFilterId++,
-                    new ContactListFilter(ContactListFilter.FILTER_TYPE_STARRED));
+            mFilters.append(mNextFilterId++, ContactListFilter.createFilterWithType(
+                    ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS));
+            mFilters.append(mNextFilterId++, ContactListFilter.createFilterWithType(
+                    ContactListFilter.FILTER_TYPE_STARRED));
         }
 
         for (int index = 0; index < count; index++) {
@@ -174,7 +174,8 @@ public class ContactListFilterController
 
             // If we only have one account, don't show it as "account", instead show it as "all"
             if (firstAndOnly) {
-                filter = new ContactListFilter(ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
+                filter = ContactListFilter.createFilterWithType(
+                        ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
             }
 
             mFilters.append(mNextFilterId++, filter);
@@ -186,14 +187,14 @@ public class ContactListFilterController
             }
 
             if (firstAndOnly) {
-                mFilters.append(mNextFilterId++,
-                        new ContactListFilter(ContactListFilter.FILTER_TYPE_STARRED));
+                mFilters.append(mNextFilterId++, ContactListFilter.createFilterWithType(
+                        ContactListFilter.FILTER_TYPE_STARRED));
             }
         }
 
         if (mAccountCount > 0) {
-            mFilters.append(
-                    mNextFilterId++, new ContactListFilter(ContactListFilter.FILTER_TYPE_CUSTOM));
+            mFilters.append(mNextFilterId++, ContactListFilter.createFilterWithType(
+                    ContactListFilter.FILTER_TYPE_CUSTOM));
         }
 
         boolean filterChanged = false;
@@ -222,11 +223,14 @@ public class ContactListFilterController
     private void setContactListFilter(int filterId) {
         ContactListFilter filter;
         if (filterId == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
-            filter = new ContactListFilter(ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
+            filter = ContactListFilter.createFilterWithType(
+                    ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
         } else if (filterId == ContactListFilter.FILTER_TYPE_CUSTOM) {
-            filter = new ContactListFilter(ContactListFilter.FILTER_TYPE_CUSTOM);
+            filter = ContactListFilter.createFilterWithType(
+                    ContactListFilter.FILTER_TYPE_CUSTOM);
         } else if (filterId == ContactListFilter.FILTER_TYPE_STARRED) {
-            filter = new ContactListFilter(ContactListFilter.FILTER_TYPE_STARRED);
+            filter = ContactListFilter.createFilterWithType(
+                    ContactListFilter.FILTER_TYPE_STARRED);
         } else {
             filter = mFilters.get(filterId);
             if (filter == null) {
@@ -286,7 +290,7 @@ public class ContactListFilterController
     }
 
     public void selectCustomFilter() {
-        mFilter = new ContactListFilter(ContactListFilter.FILTER_TYPE_CUSTOM);
+        mFilter = ContactListFilter.createFilterWithType(ContactListFilter.FILTER_TYPE_CUSTOM);
         notifyContactListFilterChanged();
     }
 

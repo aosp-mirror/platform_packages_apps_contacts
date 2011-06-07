@@ -45,38 +45,47 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
     private static final String KEY_GROUP_READ_ONLY = "filter.groupReadOnly";
     private static final String KEY_GROUP_TITLE = "filter.groupTitle";
 
-    public int filterType;
-    public String accountType;
-    public String accountName;
-    public Drawable icon;
+    public final int filterType;
+    public final String accountType;
+    public final String accountName;
+    public final Drawable icon;
     public long groupId;
     public String groupSourceId;
-    public boolean groupReadOnly;
-    public String title;
+    public final boolean groupReadOnly;
+    public final String title;
     private String mId;
 
-    public ContactListFilter(int filterType) {
+    public ContactListFilter(int filterType, String accountType, String accountName, Drawable icon,
+            long groupId, String groupSourceId, boolean groupReadOnly, String title) {
         this.filterType = filterType;
-    }
-
-    public ContactListFilter(
-            String accountType, String accountName, Drawable icon, String title) {
-        this.filterType = ContactListFilter.FILTER_TYPE_ACCOUNT;
         this.accountType = accountType;
         this.accountName = accountName;
         this.icon = icon;
-        this.title = title;
-    }
-
-    public ContactListFilter(String accountType, String accountName, long groupId,
-            String groupSourceId, boolean groupReadOnly, String title) {
-        this.filterType = ContactListFilter.FILTER_TYPE_GROUP;
-        this.accountType = accountType;
-        this.accountName = accountName;
         this.groupId = groupId;
         this.groupSourceId = groupSourceId;
         this.groupReadOnly = groupReadOnly;
         this.title = title;
+    }
+
+    public static ContactListFilter createFilterWithType(int filterType) {
+        return new ContactListFilter(filterType, null, null, null, 0, null, false, null);
+    }
+
+    public static ContactListFilter createGroupFilter(long groupId) {
+        return new ContactListFilter(ContactListFilter.FILTER_TYPE_GROUP, null, null, null, groupId,
+                null, false, null);
+    }
+
+    public static ContactListFilter createGroupFilter(String accountType, String accountName,
+            long groupId, String groupSourceId, boolean groupReadOnly, String title) {
+        return new ContactListFilter(ContactListFilter.FILTER_TYPE_GROUP, accountType, accountName,
+                null, groupId, groupSourceId, groupReadOnly, title);
+    }
+
+    public static ContactListFilter createAccountFilter(String accountType, String accountName,
+            Drawable icon, String title) {
+        return new ContactListFilter(ContactListFilter.FILTER_TYPE_ACCOUNT, accountType,
+                accountName, icon, 0, null, false, title);
     }
 
     /**
@@ -188,14 +197,14 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
             return null;
         }
 
-        ContactListFilter filter = new ContactListFilter(filterType);
-        filter.accountName = prefs.getString(KEY_ACCOUNT_NAME, null);
-        filter.accountType = prefs.getString(KEY_ACCOUNT_TYPE, null);
-        filter.groupId = prefs.getLong(KEY_GROUP_ID, -1);
-        filter.groupSourceId = prefs.getString(KEY_GROUP_SOURCE_ID, null);
-        filter.groupReadOnly = prefs.getBoolean(KEY_GROUP_READ_ONLY, false);
-        filter.title = prefs.getString(KEY_GROUP_TITLE, "group");
-        return filter;
+        String accountName = prefs.getString(KEY_ACCOUNT_NAME, null);
+        String accountType = prefs.getString(KEY_ACCOUNT_TYPE, null);
+        long groupId = prefs.getLong(KEY_GROUP_ID, -1);
+        String groupSourceId = prefs.getString(KEY_GROUP_SOURCE_ID, null);
+        boolean groupReadOnly = prefs.getBoolean(KEY_GROUP_READ_ONLY, false);
+        String title = prefs.getString(KEY_GROUP_TITLE, "group");
+        return new ContactListFilter(filterType, accountType, accountName, null, groupId,
+                groupSourceId, groupReadOnly, title);
     }
 
 
@@ -210,18 +219,17 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
     }
 
     public static final Parcelable.Creator<ContactListFilter> CREATOR =
-            new Parcelable.Creator<ContactListFilter>()
-    {
+            new Parcelable.Creator<ContactListFilter>() {
         @Override
         public ContactListFilter createFromParcel(Parcel source) {
             int filterType = source.readInt();
-            ContactListFilter filter = new ContactListFilter(filterType);
-            filter.accountName = source.readString();
-            filter.accountType = source.readString();
-            filter.groupId = source.readLong();
-            filter.groupSourceId = source.readString();
-            filter.groupReadOnly = source.readInt() != 0;
-            return filter;
+            String accountName = source.readString();
+            String accountType = source.readString();
+            long groupId = source.readLong();
+            String groupSourceId = source.readString();
+            boolean groupReadOnly = source.readInt() != 0;
+            return new ContactListFilter(filterType, accountType, accountName, null, groupId,
+                    groupSourceId, groupReadOnly, null);
         }
 
         @Override

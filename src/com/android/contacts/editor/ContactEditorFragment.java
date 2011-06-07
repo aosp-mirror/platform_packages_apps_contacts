@@ -66,6 +66,7 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.MediaStore;
@@ -1585,14 +1586,14 @@ public class ContactEditorFragment extends Fragment implements
     };
 
     /**
-     * The listener for the group meta data loader
+     * The listener for the group meta data loader for all groups.
      */
     private final LoaderManager.LoaderCallbacks<Cursor> mGroupLoaderListener =
             new LoaderCallbacks<Cursor>() {
 
         @Override
         public CursorLoader onCreateLoader(int id, Bundle args) {
-            return new GroupMetaDataLoader(mContext);
+            return new GroupMetaDataLoader(mContext, Groups.CONTENT_URI);
         }
 
         @Override

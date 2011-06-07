@@ -658,7 +658,8 @@ public abstract class ContactBrowseListFragment extends
     private void restoreFilter() {
         mFilter = ContactListFilter.restoreFromPreferences(mPrefs);
         if (mFilter == null) {
-            mFilter = new ContactListFilter(ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
+            mFilter = ContactListFilter.createFilterWithType(
+                    ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
         }
     }
 

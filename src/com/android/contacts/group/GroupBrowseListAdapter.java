@@ -16,15 +16,19 @@
 
 package com.android.contacts.group;
 
-import com.android.contacts.R;
 import com.android.contacts.GroupMetaData;
+import com.android.contacts.R;
 
+import android.content.ContentUris;
 import android.content.Context;
+import android.net.Uri;
+import android.provider.ContactsContract.Groups;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -59,21 +63,50 @@ public class GroupBrowseListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = mLayoutInflater.inflate(R.layout.group_browse_list_item, parent, false);
-        }
-        GroupMetaData group = getItem(position);
-        ImageView icon = (ImageView) convertView.findViewById(R.id.icon);
-        TextView label = (TextView) convertView.findViewById(R.id.label);
-        TextView account = (TextView) convertView.findViewById(R.id.account);
-        icon.setImageResource(R.drawable.ic_menu_display_all_holo_light);
-        label.setText(group.getTitle());
-        account.setText(group.getAccountName());
-
-        // Set the tag to be the GroupMetaData object, in order to extract group attributes from the
-        // view later.
-        convertView.setTag(group);
-        return convertView;
+        GroupListItem result = (GroupListItem) (convertView == null ?
+                mLayoutInflater.inflate(R.layout.group_browse_list_item, parent, false) :
+                convertView);
+        result.loadFromGroup(getItem(position));
+        return result;
     }
 
+    /**
+     * A row in a list of groups, where this row displays a single group's title
+     * and associated account.
+     */
+    public static class GroupListItem extends LinearLayout {
+
+        private TextView mLabel;
+        private TextView mAccount;
+        private Uri mUri;
+
+        public GroupListItem(Context context, AttributeSet attrs, int defStyle) {
+            super(context, attrs, defStyle);
+        }
+
+        public GroupListItem(Context context, AttributeSet attrs) {
+            super(context, attrs);
+        }
+
+        public GroupListItem(Context context) {
+            super(context);
+        }
+
+        @Override
+        protected void onFinishInflate() {
+            super.onFinishInflate();
+            mLabel = (TextView) findViewById(R.id.label);
+            mAccount = (TextView) findViewById(R.id.account);
+        }
+
+        public void loadFromGroup(GroupMetaData group) {
+            mLabel.setText(group.getTitle());
+            mAccount.setText(group.getAccountName());
+            mUri = ContentUris.withAppendedId(Groups.CONTENT_URI, group.getGroupId());
+        }
+
+        public Uri getUri() {
+            return mUri;
+        }
+    }
 }

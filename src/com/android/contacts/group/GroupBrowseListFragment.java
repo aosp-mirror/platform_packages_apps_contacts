@@ -19,7 +19,7 @@ package com.android.contacts.group;
 import com.android.contacts.GroupMetaData;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
-import com.android.contacts.activities.GroupDetailActivity;
+import com.android.contacts.group.GroupBrowseListAdapter.GroupListItem;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -27,10 +27,11 @@ import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.CursorLoader;
-import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract.Groups;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -51,6 +52,19 @@ import java.util.List;
 public class GroupBrowseListFragment extends Fragment
         implements OnFocusChangeListener, OnTouchListener {
 
+    /**
+     * Action callbacks that can be sent by a group list.
+     */
+    public interface OnGroupBrowserActionListener  {
+
+        /**
+         * Opens the specified group for viewing.
+         *
+         * @param groupUri for the group that the user wishes to view.
+         */
+        void onViewGroupAction(Uri groupUri);
+    }
+
     private static final String TAG = "GroupBrowseListFragment";
 
     private static final int LOADER_GROUPS = 1;
@@ -62,6 +76,8 @@ public class GroupBrowseListFragment extends Fragment
     private View mRootView;
     private ListView mListView;
     private View mEmptyView;
+
+    private OnGroupBrowserActionListener mListener;
 
     public GroupBrowseListFragment() {
     }
@@ -96,14 +112,14 @@ public class GroupBrowseListFragment extends Fragment
     }
 
     /**
-     * The listener for the group meta data loader.
+     * The listener for the group meta data loader for all groups.
      */
     private final LoaderManager.LoaderCallbacks<Cursor> mGroupLoaderListener =
             new LoaderCallbacks<Cursor>() {
 
         @Override
         public CursorLoader onCreateLoader(int id, Bundle args) {
-            return new GroupMetaDataLoader(mContext);
+            return new GroupMetaDataLoader(mContext, Groups.CONTENT_URI);
         }
 
         @Override
@@ -144,21 +160,18 @@ public class GroupBrowseListFragment extends Fragment
         mListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startGroupDetailActivity((GroupMetaData) view.getTag());
+                GroupListItem groupListItem = (GroupListItem) view;
+                viewGroup(groupListItem.getUri());
             }
         });
     }
 
-    private void startGroupDetailActivity(GroupMetaData group) {
-        if (group == null) {
-            return;
-        }
-        Intent intent = new Intent(mContext, GroupDetailActivity.class);
-        intent.putExtra(GroupDetailActivity.KEY_ACCOUNT_TYPE, group.getAccountType());
-        intent.putExtra(GroupDetailActivity.KEY_ACCOUNT_NAME, group.getAccountName());
-        intent.putExtra(GroupDetailActivity.KEY_GROUP_ID, group.getGroupId());
-        intent.putExtra(GroupDetailActivity.KEY_GROUP_TITLE, group.getTitle());
-        mContext.startActivity(intent);
+    public void setListener(OnGroupBrowserActionListener listener) {
+        mListener = listener;
+    }
+
+    private void viewGroup(Uri groupUri) {
+        if (mListener != null) mListener.onViewGroupAction(groupUri);
     }
 
     private void hideSoftKeyboard() {

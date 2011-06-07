@@ -111,4 +111,13 @@
 
     <!-- Height of list sections (A, B, C) that show the first character of the contacts -->
     <dimen name="list_section_height">25dip</dimen>
+
+    <!-- Border padding for the group detail fragment header -->
+    <dimen name="group_detail_border_padding">20dip</dimen>
+
+    <!-- Vertical padding for the group detail fragment header -->
+    <dimen name="group_detail_vertical_padding">15dip</dimen>
+
+    <!-- Margins for the group detail fragment divider in the header -->
+    <dimen name="group_detail_divider_margin">15dip</dimen>
 </resources>

@@ -17,10 +17,12 @@ package com.android.contacts;
 
 import android.content.Context;
 import android.content.CursorLoader;
+import android.net.Uri;
 import android.provider.ContactsContract.Groups;
 
 /**
- * Group meta-data loader.  Loads all groups from the database.
+ * Group meta-data loader. Loads all groups or just a single group from the
+ * database (if given a {@link Uri}).
  */
 public final class GroupMetaDataLoader extends CursorLoader {
 
@@ -40,8 +42,23 @@ public final class GroupMetaDataLoader extends CursorLoader {
     public final static int AUTO_ADD = 4;
     public final static int FAVORITES = 5;
 
-    public GroupMetaDataLoader(Context context) {
-        super(context, Groups.CONTENT_URI, COLUMNS, Groups.ACCOUNT_TYPE + " NOT NULL AND "
+    public GroupMetaDataLoader(Context context, Uri groupUri) {
+        super(context, ensureIsGroupUri(groupUri), COLUMNS, Groups.ACCOUNT_TYPE + " NOT NULL AND "
                 + Groups.ACCOUNT_NAME + " NOT NULL", null, null);
+    }
+
+    /**
+     * Ensures that this is a valid group URI. If invalid, then an exception is
+     * thrown. Otherwise, the original URI is returned.
+     */
+    private static Uri ensureIsGroupUri(final Uri groupUri) {
+        // TODO: Fix ContactsProvider2 getType method to resolve the group Uris
+        if (groupUri == null) {
+            throw new IllegalArgumentException("Uri must not be null");
+        }
+        if (!groupUri.toString().startsWith(Groups.CONTENT_URI.toString())) {
+            throw new IllegalArgumentException("Invalid group Uri: " + groupUri);
+        }
+        return groupUri;
     }
 }
