@@ -188,12 +188,12 @@ public class ImportVCardActivity extends ContactsActivity {
     private class ImportRequestConnection implements ServiceConnection {
         private Messenger mMessenger;
 
-        public void sendImportRequest(final ImportRequest request) {
-            Log.i(LOG_TAG, String.format("Send an import request (Uri: %s)", request.uri));
+        public void sendImportRequest(final List<ImportRequest> requests) {
+            Log.i(LOG_TAG, "Send an import request");
             try {
                 mMessenger.send(Message.obtain(null,
                         VCardService.MSG_IMPORT_REQUEST,
-                        request));
+                        requests));
             } catch (RemoteException e) {
                 Log.e(LOG_TAG, "RemoteException is thrown when trying to send request");
                 runOnUiThread(new DialogDisplayer(getString(R.string.fail_reason_unknown)));
@@ -273,6 +273,7 @@ public class ImportVCardActivity extends ContactsActivity {
                 // We may be able to read content of each vCard file during copying them
                 // to local storage, but currently vCard code does not allow us to do so.
                 int cache_index = 0;
+                ArrayList<ImportRequest> requests = new ArrayList<ImportRequest>();
                 for (Uri sourceUri : mSourceUris) {
                     String filename = null;
                     // Note: caches are removed by VCardService.
@@ -297,9 +298,9 @@ public class ImportVCardActivity extends ContactsActivity {
                         Log.w(LOG_TAG, "destUri is null");
                         break;
                     }
-                    final ImportRequest parameter;
+                    final ImportRequest request;
                     try {
-                        parameter = constructImportRequest(localDataUri, sourceUri);
+                        request = constructImportRequest(localDataUri, sourceUri);
                     } catch (VCardException e) {
                         Log.e(LOG_TAG, "Maybe the file is in wrong format", e);
                         showFailureNotification(R.string.fail_reason_not_supported);
@@ -313,7 +314,12 @@ public class ImportVCardActivity extends ContactsActivity {
                         Log.i(LOG_TAG, "vCard cache operation is canceled.");
                         return;
                     }
-                    mConnection.sendImportRequest(parameter);
+                    requests.add(request);
+                }
+                if (!requests.isEmpty()) {
+                    mConnection.sendImportRequest(requests);
+                } else {
+                    Log.w(LOG_TAG, "Empty import requests. Ignore it.");
                 }
             } catch (OutOfMemoryError e) {
                 Log.e(LOG_TAG, "OutOfMemoryError occured during caching vCard");

@@ -59,7 +59,7 @@ import java.util.concurrent.RejectedExecutionException;
 // works fine enough. Investigate the feasibility.
 public class VCardService extends Service {
     private final static String LOG_TAG = "VCardService";
-    /* package */ final static boolean DEBUG = true;
+    /* package */ final static boolean DEBUG = false;
 
     /* package */ static final int MSG_IMPORT_REQUEST = 1;
     /* package */ static final int MSG_EXPORT_REQUEST = 2;
@@ -81,7 +81,7 @@ public class VCardService extends Service {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MSG_IMPORT_REQUEST: {
-                    handleImportRequest((ImportRequest)msg.obj);
+                    handleImportRequest((List<ImportRequest>)msg.obj);
                     break;
                 }
                 case MSG_EXPORT_REQUEST: {
@@ -217,40 +217,57 @@ public class VCardService extends Service {
         super.onDestroy();
     }
 
-    private synchronized void handleImportRequest(ImportRequest request) {
+    private synchronized void handleImportRequest(List<ImportRequest> requests) {
         if (DEBUG) {
-            Log.d(LOG_TAG,
-                    String.format("received import request (uri: %s, originalUri: %s)",
-                            request.uri, request.originalUri));
-        }
-        if (tryExecute(new ImportProcessor(this, request, mCurrentJobId))) {
-            final String displayName;
-            final String message;
-            final String lastPathSegment = request.originalUri.getLastPathSegment();
-            if ("file".equals(request.originalUri.getScheme()) &&
-                    lastPathSegment != null) {
-                displayName = lastPathSegment;
-                message = getString(R.string.vcard_import_will_start_message, displayName);
-            } else {
-                displayName = getString(R.string.vcard_unknown_filename);
-                message = getString(R.string.vcard_import_will_start_message_with_default_name);
+            final ArrayList<String> uris = new ArrayList<String>();
+            final ArrayList<String> originalUris = new ArrayList<String>();
+            for (ImportRequest request : requests) {
+                uris.add(request.uri.toString());
+                originalUris.add(request.originalUri.toString());
             }
+            Log.d(LOG_TAG,
+                    String.format("received multiple import request (uri: %s, originalUri: %s)",
+                            uris.toString(), originalUris.toString()));
+        }
+        final int size = requests.size();
+        for (int i = 0; i < size; i++) {
+            ImportRequest request = requests.get(i);
 
-            // TODO: Ideally we should detect the current status of import/export and show
-            // "started" when we can import right now and show "will start" when we cannot.
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+            if (tryExecute(new ImportProcessor(this, request, mCurrentJobId))) {
+                final String displayName;
+                final String message;
+                final String lastPathSegment = request.originalUri.getLastPathSegment();
+                if ("file".equals(request.originalUri.getScheme()) &&
+                        lastPathSegment != null) {
+                    displayName = lastPathSegment;
+                    message = getString(R.string.vcard_import_will_start_message, displayName);
+                } else {
+                    displayName = getString(R.string.vcard_unknown_filename);
+                    message = getString(
+                            R.string.vcard_import_will_start_message_with_default_name);
+                }
 
-            final Notification notification =
-                    constructProgressNotification(
-                            this, TYPE_IMPORT, message, message, mCurrentJobId,
-                            displayName, -1, 0);
-            mNotificationManager.notify(mCurrentJobId, notification);
-            mCurrentJobId++;
-        } else {
-            // TODO: a little unkind to show Toast in this case, which is shown just a moment.
-            // Ideally we should show some persistent something users can notice more easily.
-            Toast.makeText(this, getString(R.string.vcard_import_request_rejected_message),
-                    Toast.LENGTH_LONG).show();
+                // We just want to show notification for the first vCard.
+                if (i == 0) {
+                    // TODO: Ideally we should detect the current status of import/export and show
+                    // "started" when we can import right now and show "will start" when we cannot.
+                    Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+                }
+
+                final Notification notification =
+                        constructProgressNotification(
+                                this, TYPE_IMPORT, message, message, mCurrentJobId,
+                                displayName, -1, 0);
+                mNotificationManager.notify(mCurrentJobId, notification);
+                mCurrentJobId++;
+            } else {
+                // TODO: a little unkind to show Toast in this case, which is shown just a moment.
+                // Ideally we should show some persistent something users can notice more easily.
+                Toast.makeText(this, getString(R.string.vcard_import_request_rejected_message),
+                        Toast.LENGTH_LONG).show();
+                // A rejection means executor doesn't run any more. Exit.
+                break;
+            }
         }
     }
 
@@ -289,6 +306,10 @@ public class VCardService extends Service {
      */
     private synchronized boolean tryExecute(ProcessorBase processor) {
         try {
+            if (DEBUG) {
+                Log.d(LOG_TAG, "Executor service status: shutdown: " + mExecutorService.isShutdown()
+                        + ", terminated: " + mExecutorService.isTerminated());
+            }
             mExecutorService.execute(processor);
             mRunningJobMap.put(mCurrentJobId, processor);
             return true;
