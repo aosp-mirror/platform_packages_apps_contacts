@@ -4,9 +4,9 @@
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
-  
+
           http://www.apache.org/licenses/LICENSE-2.0
-  
+
      Unless required by applicable law or agreed to in writing, software
      distributed under the License is distributed on an "AS IS" BASIS,
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,95 +14,158 @@
      limitations under the License.
 -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
+    android:gravity="top"
+    android:paddingTop="?attr/call_detail_top_gap"
+    android:background="?attr/call_detail_transparent_background"
 >
-
-    <LinearLayout
+    <ImageView
+        android:id="@+id/contact_background"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/title_bar_tall"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingLeft="9dip"
-        android:paddingRight="5dip"
+        android:layout_height="?attr/call_detail_contact_background_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:scaleX="2.5"
+        android:scaleY="2.5"
+
+        android:background="@drawable/ic_contact_picture"
+    />
+    <View
+        android:id="@+id/contact_background_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/call_detail_contact_background_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="?attr/call_detail_primary_background_color"
+        android:alpha="?attr/call_detail_contact_background_overlay_alpha"
+    />
+
+    <RelativeLayout
+        android:id="@+id/photo_panel"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/call_detail_contact_background_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:paddingBottom="10dp"
     >
-    
-        <ImageView android:id="@+id/icon"
-            android:layout_width="32dip"
-            android:layout_height="32dip"
-            android:layout_marginRight="5dip"
+        <ImageView
+            android:id="@+id/contact_photo"
+            android:layout_width="?attr/call_detail_contact_photo_size"
+            android:layout_height="?attr/call_detail_contact_photo_size"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+
+            android:background="@drawable/ic_contact_picture"
         />
-            
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:layout_marginLeft="5dip"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/contact_photo"
+            android:layout_marginLeft="10dp"
         >
-        
-            <TextView android:id="@+id/type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-            />
-        
-            <TextView android:id="@+id/time"
+            <TextView
+                android:id="@+id/number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="?android:attr/textColorPrimaryInverse"
+                android:textColor="?attr/call_detail_primary_text_color"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
             />
-        
-            <TextView android:id="@+id/duration"
+            <TextView
+                android:id="@+id/call_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="?android:attr/textColorPrimaryInverse"
+                android:textColor="?attr/call_detail_primary_text_color"
+                android:layout_alignParentLeft="true"
+                android:layout_above="@id/number"
             />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:layout_height="0dip"
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="?attr/call_detail_primary_text_color"
+                android:layout_alignParentLeft="true"
+                android:layout_above="@id/call_type"
+                android:paddingBottom="2dp"
+            />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/call_detail_action_icon_size"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+        >
+            <ImageView
+                android:id="@+id/call"
+                android:layout_width="?attr/call_detail_action_icon_size"
+                android:layout_height="?attr/call_detail_action_icon_size"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:src="@android:drawable/sym_action_call"
+                android:scaleType="center"
+            />
+            <View
+                android:id="@+id/divider"
+                android:layout_width="1px"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:layout_marginBottom="5dip"
+                android:layout_toLeftOf="@id/call"
+                android:layout_marginLeft="11dip"
+                android:background="#FFFFFF"
+            />
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/call_panel"
         android:layout_width="match_parent"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/photo_panel"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="80dp"
+        android:background="#FFFFFF"
     >
-        <ListView android:id="@android:id/list"
-            android:layout_width="match_parent" 
-            android:layout_height="match_parent"
-            android:scrollbarStyle="outsideOverlay"
-        />
-
-        <ScrollView android:id="@android:id/empty"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fillViewport="true">
-
-            <TextView android:id="@+id/emptyText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/unknown"
-                android:textSize="20sp"
-                android:textColor="?android:attr/textColorSecondary"
-                android:paddingLeft="10dip"
-                android:paddingRight="10dip"
-                android:paddingTop="10dip"
-                android:gravity="center"
-                android:lineSpacingMultiplier="0.92"/>
-
-        </ScrollView>
-
-        <View
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/title_bar_shadow"
+            android:layout_alignParentLeft="true"
         />
-
-    </FrameLayout>
-</LinearLayout>
+        <TextView
+            android:id="@+id/duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/time"
+            android:layout_alignLeft="@id/time"
+        />
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="?attr/call_detail_action_icon_size"
+            android:layout_height="?attr/call_detail_action_icon_size"
+            android:layout_alignParentRight="true"
+            android:scaleType="center"
+            android:gravity="center_vertical"
+            android:src="@android:drawable/sym_action_call"
+            android:visibility="gone"
+        />
+    </RelativeLayout>
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/call_panel"
+        android:background="?attr/call_detail_secondary_background_color"
+    />
+</RelativeLayout>
