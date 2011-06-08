@@ -20,6 +20,7 @@
     android:paddingLeft="7dip"
 >
 
+    <include layout="@layout/call_log_contact_photo"/>
     <include layout="@layout/call_log_action_group"/>
 
     <TextView android:id="@+id/date"
@@ -39,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="36dip"
+        android:layout_marginLeft="86dip"
         android:layout_marginRight="5dip"
         android:layout_alignBaseline="@id/date"
 
@@ -84,7 +85,7 @@
         android:layout_toLeftOf="@+id/groupSize"
         android:layout_above="@id/date"
         android:layout_alignWithParentIfMissing="true"
-        android:layout_marginLeft="36dip"
+        android:layout_marginLeft="86dip"
         android:layout_marginBottom="-10dip"
 
         android:textAppearance="?android:attr/textAppearanceLarge"

@@ -19,9 +19,9 @@
     <ImageView android:id="@+id/call_type_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="4dip"
+        android:layout_marginLeft="54dip"
     />
 
     <TextView android:id="@+id/date"
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="36dip"
+        android:layout_marginLeft="86dip"
         android:layout_marginRight="5dip"
         android:layout_alignBaseline="@id/date"
 
@@ -72,7 +72,7 @@
         android:layout_toLeftOf="@id/divider"
         android:layout_above="@id/date"
         android:layout_alignWithParentIfMissing="true"
-        android:layout_marginLeft="36dip"
+        android:layout_marginLeft="86dip"
         android:layout_marginBottom="-10dip"
 
         android:textAppearance="?android:attr/textAppearanceLarge"
