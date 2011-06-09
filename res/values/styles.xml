@@ -40,6 +40,19 @@
 
     <style name="CallDetailActivityTheme" parent="android:Theme.Holo.Light">
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:gravity">top</item>
+        <item name="call_detail_top_gap">49dip</item>
+        <item name="call_detail_transparent_background">#CC000000</item>
+        <item name="call_detail_contact_background_height">150dip</item>
+        <item name="call_detail_contact_background_overlay_alpha">0.25</item>
+        <item name="call_detail_primary_background_color">#000000</item>
+        <item name="call_detail_contact_photo_size">60dip</item>
+        <item name="call_detail_primary_text_color">#FFFFFF</item>
+        <item name="call_detail_action_icon_size">50dip</item>
+        <item name="call_detail_secondary_background_color">#FFFFFF</item>
     </style>
     <style name="ContactDetailActivityTheme" parent="android:Theme.Holo.Light">
         <item name="android:windowContentOverlay">@null</item>
@@ -110,6 +123,18 @@
     <!-- This style defines visibility of the action bar home icon -->
     <declare-styleable name="ActionBarHomeIcon">
         <attr name="show_home_icon" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="CallDetailActivity">
+        <attr name="call_detail_top_gap" format="dimension" />
+        <attr name="call_detail_transparent_background" format="color" />
+        <attr name="call_detail_contact_background_height" format="dimension" />
+        <attr name="call_detail_contact_background_overlay_alpha" format="float" />
+        <attr name="call_detail_contact_photo_size" format="dimension" />
+        <attr name="call_detail_action_icon_size" format="dimension" />
+        <attr name="call_detail_primary_text_color" format="color" />
+        <attr name="call_detail_primary_background_color" format="color" />
+        <attr name="call_detail_secondary_background_color" format="color" />
     </declare-styleable>
 
     <style name="PeopleTheme" parent="android:Theme.Holo.Light">
@@ -212,7 +237,7 @@
         <attr name="layout_widePaddingLeft" format="dimension"/>
         <attr name="layout_widePaddingRight" format="dimension"/>
     </declare-styleable>
-    
+
     <declare-styleable name="TransitionAnimationView">
         <attr name="clipMarginLeft" format="dimension"/>
         <attr name="clipMarginRight" format="dimension"/>
@@ -222,7 +247,7 @@
         <attr name="exitAnimation" format="reference"/>
         <attr name="animationDuration" format="integer"/>
     </declare-styleable>
-    
+
     <style name="DirectoryHeader" parent="PeopleTheme">
         <item name="android:background">@drawable/directory_bg</item>
     </style>

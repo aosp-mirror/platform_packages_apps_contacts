@@ -1523,4 +1523,9 @@
 
     <!-- Button in the alert dialog when the user hits the Cancel button in the editor [CHAR LIMIT=20] -->
     <string name="discard">Discard</string>
+
+    <!-- Description of a call log entry, made of a call type and a date -->
+    <string name="call_type_and_date">
+        <xliff:g id="call_type" example="Friends">%1$s</xliff:g>  <xliff:g id="call_short_date" example="Friends">%2$s</xliff:g>
+    </string>
 </resources>

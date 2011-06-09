@@ -16,6 +16,7 @@
 
 package com.android.contacts;
 
+import com.android.contacts.format.FormatUtils;
 import com.android.internal.telephony.CallerInfo;
 
 import android.app.ListActivity;
@@ -25,16 +26,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CallLog;
 import android.provider.CallLog.Calls;
+import android.provider.Contacts.Intents.Insert;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.PhoneLookup;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.Contacts.Intents.Insert;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.view.KeyEvent;
@@ -57,16 +60,23 @@ public class CallDetailActivity extends ListActivity implements
         AdapterView.OnItemClickListener {
     private static final String TAG = "CallDetail";
 
-    private TextView mCallType;
-    private ImageView mCallTypeIcon;
-    private TextView mCallTime;
-    private TextView mCallDuration;
+    private TextView mNameView;
+    private TextView mCallTypeView;
+    private TextView mNumberView;
+    private TextView mCallTimeView;
+    private TextView mCallDurationView;
+    private View mCallActionView;
+    private ImageView mContactPhotoView;
+    private ImageView mContactBackgroundView;
 
     private String mNumber = null;
     private String mDefaultCountryIso;
 
     /* package */ LayoutInflater mInflater;
     /* package */ Resources mResources;
+    /** Helper to load contact photos. */
+    private ContactPhotoManager mContactPhotoManager;
+    /** Attached to the call action button in the UI. */
 
     static final String[] CALL_LOG_PROJECTION = new String[] {
         CallLog.Calls.DATE,
@@ -89,6 +99,7 @@ public class CallDetailActivity extends ListActivity implements
         PhoneLookup.LABEL,
         PhoneLookup.NUMBER,
         PhoneLookup.NORMALIZED_NUMBER,
+        PhoneLookup.PHOTO_ID,
     };
     static final int COLUMN_INDEX_ID = 0;
     static final int COLUMN_INDEX_NAME = 1;
@@ -96,6 +107,7 @@ public class CallDetailActivity extends ListActivity implements
     static final int COLUMN_INDEX_LABEL = 3;
     static final int COLUMN_INDEX_NUMBER = 4;
     static final int COLUMN_INDEX_NORMALIZED_NUMBER = 5;
+    static final int COLUMN_INDEX_PHOTO_ID = 6;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -106,12 +118,16 @@ public class CallDetailActivity extends ListActivity implements
         mInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         mResources = getResources();
 
-        mCallType = (TextView) findViewById(R.id.type);
-        mCallTypeIcon = (ImageView) findViewById(R.id.icon);
-        mCallTime = (TextView) findViewById(R.id.time);
-        mCallDuration = (TextView) findViewById(R.id.duration);
+        mNameView = (TextView) findViewById(R.id.name);
+        mCallTypeView = (TextView) findViewById(R.id.call_type);
+        mNumberView = (TextView) findViewById(R.id.number);
+        mCallActionView = findViewById(R.id.call);
+        mContactPhotoView = (ImageView) findViewById(R.id.contact_photo);
+        mContactBackgroundView = (ImageView) findViewById(R.id.contact_background);
+        mCallTimeView = (TextView) findViewById(R.id.time);
+        mCallDurationView = (TextView) findViewById(R.id.duration);
         mDefaultCountryIso = ContactsUtils.getCurrentCountryIso(this);
-
+        mContactPhotoManager = ContactPhotoManager.getInstance(this);
         getListView().setOnItemClickListener(this);
     }
 
@@ -163,84 +179,103 @@ public class CallDetailActivity extends ListActivity implements
                 CharSequence dateClause = DateUtils.formatDateRange(this, date, date,
                         DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE |
                         DateUtils.FORMAT_SHOW_WEEKDAY | DateUtils.FORMAT_SHOW_YEAR);
-                mCallTime.setText(dateClause);
+                mCallTimeView.setText(dateClause);
 
                 // Set the duration
                 if (callType == Calls.MISSED_TYPE) {
-                    mCallDuration.setVisibility(View.GONE);
+                    mCallDurationView.setVisibility(View.GONE);
                 } else {
-                    mCallDuration.setVisibility(View.VISIBLE);
-                    mCallDuration.setText(formatDuration(duration));
+                    mCallDurationView.setVisibility(View.VISIBLE);
+                    mCallDurationView.setText(formatDuration(duration));
                 }
 
-                // Set the call type icon and caption
-                String callText = null;
+                CharSequence shortDateText =
+                        DateUtils.getRelativeTimeSpanString(date,
+                                System.currentTimeMillis(),
+                                DateUtils.MINUTE_IN_MILLIS,
+                                DateUtils.FORMAT_ABBREV_RELATIVE);
+
+                CharSequence callTypeText = "";
                 switch (callType) {
                     case Calls.INCOMING_TYPE:
-                        mCallTypeIcon.setImageResource(R.drawable.ic_call_log_header_incoming_call);
-                        mCallType.setText(R.string.type_incoming);
-                        callText = getString(R.string.callBack);
+                        callTypeText = getString(R.string.type_incoming);
                         break;
 
                     case Calls.OUTGOING_TYPE:
-                        mCallTypeIcon.setImageResource(R.drawable.ic_call_log_header_outgoing_call);
-                        mCallType.setText(R.string.type_outgoing);
-                        callText = getString(R.string.callAgain);
+                        callTypeText = getString(R.string.type_outgoing);
                         break;
 
                     case Calls.MISSED_TYPE:
-                        mCallTypeIcon.setImageResource(R.drawable.ic_call_log_header_missed_call);
-                        mCallType.setText(R.string.type_missed);
-                        callText = getString(R.string.returnCall);
+                        callTypeText = getString(R.string.type_missed);
                         break;
                 }
 
+                mCallTypeView.setText(
+                        getString(R.string.call_type_and_date,
+                                FormatUtils.applyStyleToSpan(Typeface.BOLD,
+                                        callTypeText, 0, callTypeText.length(),
+                                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE),
+                                shortDateText));
+
+                long photoId = 0L;
+                CharSequence nameText = "";
+                CharSequence numberText = "";
                 if (mNumber.equals(CallerInfo.UNKNOWN_NUMBER) ||
                         mNumber.equals(CallerInfo.PRIVATE_NUMBER)) {
-                    // List is empty, let the empty view show instead.
-                    TextView emptyText = (TextView) findViewById(R.id.emptyText);
-                    if (emptyText != null) {
-                        emptyText.setText(mNumber.equals(CallerInfo.PRIVATE_NUMBER)
-                                ? R.string.private_num : R.string.unknown);
-                    }
+                    nameText = getString(mNumber.equals(CallerInfo.PRIVATE_NUMBER)
+                            ? R.string.private_num : R.string.unknown);
+                    numberText = "";
+                    mCallActionView.setVisibility(View.GONE);
                 } else {
                     // Perform a reverse-phonebook lookup to find the PERSON_ID
-                    String callLabel = null;
+                    CharSequence callLabel = null;
                     Uri personUri = null;
                     Uri phoneUri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI,
                             Uri.encode(mNumber));
-                    Cursor phonesCursor = resolver.query(phoneUri, PHONES_PROJECTION, null, null, null);
+                    Cursor phonesCursor = resolver.query(
+                            phoneUri, PHONES_PROJECTION, null, null, null);
                     try {
                         if (phonesCursor != null && phonesCursor.moveToFirst()) {
                             long personId = phonesCursor.getLong(COLUMN_INDEX_ID);
                             personUri = ContentUris.withAppendedId(
                                     Contacts.CONTENT_URI, personId);
-                            callText = getString(R.string.recentCalls_callNumber,
-                                    phonesCursor.getString(COLUMN_INDEX_NAME));
+                            nameText = phonesCursor.getString(COLUMN_INDEX_NAME);
+                            photoId = phonesCursor.getLong(COLUMN_INDEX_PHOTO_ID);
                             mNumber = PhoneNumberUtils.formatNumber(
                                     phonesCursor.getString(COLUMN_INDEX_NUMBER),
                                     phonesCursor.getString(COLUMN_INDEX_NORMALIZED_NUMBER),
                                     countryIso);
-                            callLabel = Phone.getDisplayLabel(this,
+                            callLabel = Phone.getTypeLabel(getResources(),
                                     phonesCursor.getInt(COLUMN_INDEX_TYPE),
-                                    phonesCursor.getString(COLUMN_INDEX_LABEL)).toString();
+                                    phonesCursor.getString(COLUMN_INDEX_LABEL));
                         } else {
                             mNumber = PhoneNumberUtils.formatNumber(mNumber, countryIso);
                         }
                     } finally {
-                        if (phonesCursor != null) phonesCursor.close();
+                      if (phonesCursor != null) phonesCursor.close();
+                    }
+
+                    mCallActionView.setVisibility(View.VISIBLE);
+                    mCallActionView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent callIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
+                                    Uri.fromParts("tel", mNumber, null));
+                            startActivity(callIntent);
+                        }
+                    });
+
+                    if (callLabel != null) {
+                        numberText = FormatUtils.applyStyleToSpan(Typeface.BOLD,
+                                callLabel + " " + mNumber, 0,
+                                callLabel.length(),
+                                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    } else {
+                        numberText = mNumber;
                     }
 
                     // Build list of various available actions
                     List<ViewEntry> actions = new ArrayList<ViewEntry>();
-
-                    Intent callIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                            Uri.fromParts("tel", mNumber, null));
-                    ViewEntry entry = new ViewEntry(android.R.drawable.sym_action_call, callText,
-                            callIntent);
-                    entry.number = mNumber;
-                    entry.label = callLabel;
-                    actions.add(entry);
 
                     Intent smsIntent = new Intent(Intent.ACTION_SENDTO,
                             Uri.fromParts("sms", mNumber, null));
@@ -264,6 +299,10 @@ public class CallDetailActivity extends ListActivity implements
                     ViewAdapter adapter = new ViewAdapter(this, actions);
                     setListAdapter(adapter);
                 }
+                mNameView.setText(nameText);
+                mNumberView.setText(numberText);
+
+                loadContactPhotos(photoId);
             } else {
                 // Something went wrong reading in our primary data, so we're going to
                 // bail out and show error to users.
@@ -276,6 +315,25 @@ public class CallDetailActivity extends ListActivity implements
                 callCursor.close();
             }
         }
+    }
+
+    /** Load the contact photos and places them in the corresponding views. */
+    private void loadContactPhotos(final long photoId) {
+        // There seem to be a limitation in the ContactPhotoManager that does not allow requesting
+        // two photos at once.
+        // TODO: Figure out the problem with ContactPhotoManager and remove this nonsense.
+        mContactPhotoView.post(new Runnable() {
+            @Override
+            public void run() {
+                mContactPhotoManager.loadPhoto(mContactPhotoView, photoId);
+                mContactPhotoView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mContactPhotoManager.loadPhoto(mContactBackgroundView, photoId);
+                    }
+                }, 100);
+            }
+        });
     }
 
     private String formatDuration(long elapsedSeconds) {
@@ -316,18 +374,22 @@ public class CallDetailActivity extends ListActivity implements
             mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
+        @Override
         public int getCount() {
             return mActions.size();
         }
 
+        @Override
         public Object getItem(int position) {
             return mActions.get(position);
         }
 
+        @Override
         public long getItemId(int position) {
             return position;
         }
 
+        @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             // Make sure we have a valid convertView to start with
             if (convertView == null) {
@@ -368,7 +430,8 @@ public class CallDetailActivity extends ListActivity implements
         }
     }
 
-    public void onItemClick(AdapterView parent, View view, int position, long id) {
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         // Handle passing action off to correct handler.
         if (view.getTag() instanceof ViewEntry) {
             ViewEntry entry = (ViewEntry) view.getTag();
