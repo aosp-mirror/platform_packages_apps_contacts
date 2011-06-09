@@ -68,34 +68,7 @@
             android:layout_toRightOf="@id/contact_photo"
             android:layout_marginLeft="10dp"
         >
-            <TextView
-                android:id="@+id/number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="?attr/call_detail_primary_text_color"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentBottom="true"
-            />
-            <TextView
-                android:id="@+id/call_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="?attr/call_detail_primary_text_color"
-                android:layout_alignParentLeft="true"
-                android:layout_above="@id/number"
-            />
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="?attr/call_detail_primary_text_color"
-                android:layout_alignParentLeft="true"
-                android:layout_above="@id/call_type"
-                android:paddingBottom="2dp"
-            />
+            <include layout="@layout/call_log_phone_call_details" />
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="wrap_content"
