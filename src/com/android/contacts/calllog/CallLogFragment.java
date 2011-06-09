@@ -21,6 +21,7 @@ import com.android.contacts.CallDetailActivity;
 import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
+import com.android.contacts.util.ExpirableCache;
 import com.android.internal.telephony.CallerInfo;
 import com.google.common.annotations.VisibleForTesting;
 
@@ -68,7 +69,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.lang.ref.WeakReference;
-import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -77,6 +77,11 @@ import java.util.LinkedList;
 public class CallLogFragment extends ListFragment
         implements View.OnCreateContextMenuListener {
     private static final String TAG = "CallLogFragment";
+
+    /**
+     * The size of the cache of contact info.
+     */
+    private static final int CONTACT_INFO_CACHE_SIZE = 100;
 
     /** The query for the call log table */
     private static final class CallLogQuery {
@@ -164,7 +169,7 @@ public class CallLogFragment extends ListFragment
     /** Adapter class to fill in data for the Call Log */
     public final class CallLogAdapter extends GroupingListAdapter
             implements Runnable, ViewTreeObserver.OnPreDrawListener, View.OnClickListener {
-        HashMap<String,ContactInfo> mContactInfo;
+        ExpirableCache<String, ContactInfo> mContactInfoCache;
         private final LinkedList<CallerInfoQuery> mRequests;
         private volatile boolean mDone;
         private boolean mLoading = true;
@@ -228,7 +233,7 @@ public class CallLogFragment extends ListFragment
         public CallLogAdapter() {
             super(getActivity());
 
-            mContactInfo = new HashMap<String,ContactInfo>();
+            mContactInfoCache = ExpirableCache.create(CONTACT_INFO_CACHE_SIZE);
             mRequests = new LinkedList<CallerInfoQuery>();
             mPreDrawListener = null;
 
@@ -268,7 +273,7 @@ public class CallLogFragment extends ListFragment
         }
 
         public ContactInfo getContactInfo(String number) {
-            return mContactInfo.get(number);
+            return mContactInfoCache.getPossiblyExpired(number);
         }
 
         public void startRequestProcessing() {
@@ -292,10 +297,8 @@ public class CallLogFragment extends ListFragment
             if (mCallerIdThread != null) mCallerIdThread.interrupt();
         }
 
-        public void clearCache() {
-            synchronized (mContactInfo) {
-                mContactInfo.clear();
-            }
+        public void invalidateCache() {
+            mContactInfoCache.expireAll();
         }
 
         private void updateCallLog(CallerInfoQuery ciq, ContactInfo ci) {
@@ -341,7 +344,7 @@ public class CallLogFragment extends ListFragment
         private boolean queryContactInfo(CallerInfoQuery ciq) {
             // First check if there was a prior request for the same number
             // that was already satisfied
-            ContactInfo info = mContactInfo.get(ciq.number);
+            ContactInfo info = mContactInfoCache.get(ciq.number);
             boolean needNotify = false;
             if (info != null && info != ContactInfo.EMPTY) {
                 return true;
@@ -446,7 +449,7 @@ public class CallLogFragment extends ListFragment
                     // cache. Any cache fills happen only on the GUI thread.
                     info.formattedNumber = null;
 
-                    mContactInfo.put(ciq.number, info);
+                    mContactInfoCache.put(ciq.number, info);
 
                     // Inform list to update this item, if in view
                     needNotify = true;
@@ -639,12 +642,15 @@ public class CallLogFragment extends ListFragment
             }
 
             // Lookup contacts with this number
-            ContactInfo info = mContactInfo.get(number);
-            if (info == null) {
+            ExpirableCache.CachedValue<ContactInfo> cachedInfo =
+                    mContactInfoCache.getCachedValue(number);
+            ContactInfo info = cachedInfo == null ? null : cachedInfo.getValue();
+            if (cachedInfo == null) {
                 // Mark it as empty and queue up a request to find the name
                 // The db request should happen on a non-UI thread
                 info = ContactInfo.EMPTY;
-                mContactInfo.put(number, info);
+                mContactInfoCache.put(number, info);
+                Log.d(TAG, "Contact info missing: " + number);
                 enqueueRequest(number, c.getPosition(),
                         callerName, callerNumberType, callerNumberLabel, 0L);
             } else if (info != ContactInfo.EMPTY) { // Has been queried
@@ -655,8 +661,17 @@ public class CallLogFragment extends ListFragment
                         || info.type != callerNumberType
                         || !TextUtils.equals(info.label, callerNumberLabel)) {
                     // Something is amiss, so sync up.
+                    Log.w(TAG, "Contact info inconsistent: " + number);
                     enqueueRequest(number, c.getPosition(),
                             callerName, callerNumberType, callerNumberLabel, info.photoId);
+                } else if (cachedInfo.isExpired()) {
+                    Log.d(TAG, "Contact info expired: " + number);
+                    // Put it back in the cache, therefore marking it as not expired, so that other
+                    // entries with the same number will not re-request it.
+                    mContactInfoCache.put(number, info);
+                    // The contact info is no longer up to date, we should request it.
+                    enqueueRequest(number, c.getPosition(), info.name, info.type, info.label,
+                            info.photoId);
                 }
 
                 // Format and cache phone number for found contact
@@ -809,10 +824,10 @@ public class CallLogFragment extends ListFragment
 
     @Override
     public void onResume() {
-        // The adapter caches looked up numbers, clear it so they will get
-        // looked up again.
+        // Mark all entries in the contact info cache as out of date, so they will be looked up
+        // again once being shown.
         if (mAdapter != null) {
-            mAdapter.clearCache();
+            mAdapter.invalidateCache();
         }
 
         startQuery();
@@ -1032,7 +1047,7 @@ public class CallLogFragment extends ListFragment
     private String getBetterNumberFromContacts(String number) {
         String matchingNumber = null;
         // Look in the cache first. If it's not found then query the Phones db
-        ContactInfo ci = mAdapter.mContactInfo.get(number);
+        ContactInfo ci = mAdapter.mContactInfoCache.getPossiblyExpired(number);
         if (ci != null && ci != ContactInfo.EMPTY) {
             matchingNumber = ci.number;
         } else {
