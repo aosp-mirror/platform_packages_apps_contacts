@@ -26,7 +26,9 @@
       android:layout_height="0dip"
       android:fastScrollEnabled="true"
       android:scrollbarStyle="outsideOverlay"
-      android:layout_weight="1" />
+      android:layout_weight="1"
+      android:cacheColorHint="@android:color/transparent"
+      android:divider="@null" />
 
    <TextView
      android:id="@+id/empty"

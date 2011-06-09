@@ -1497,6 +1497,12 @@
     <!-- Title of the dialog that allows deletion of a contact group [CHAR LIMIT=128] -->
     <string name="delete_group_dialog_title">Delete group</string>
 
+    <!-- Shows how many groups are from the specified account [CHAR LIMIT=15] -->
+    <plurals name="num_groups_in_account">
+        <item quantity="one">1 group</item>
+        <item quantity="other"><xliff:g id="count">%0$d</xliff:g> groups</item>
+    </plurals>
+
     <!-- Confirmation message of the dialog that allows deletion of a contact group  [CHAR LIMIT=256] -->
     <string name="delete_group_dialog_message">Are you sure you want to delete the group 
       \'<xliff:g id="group_label" example="Friends">%1$s</xliff:g>\'?

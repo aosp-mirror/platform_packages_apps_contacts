@@ -44,7 +44,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Fragment to display the list of groups.
@@ -71,11 +73,23 @@ public class GroupBrowseListFragment extends Fragment
 
     private Context mContext;
     private Cursor mGroupListCursor;
-    private List<GroupMetaData> mGroupList = new ArrayList<GroupMetaData>();
+
+    /**
+     * Map of account name to a list of {@link GroupMetaData} objects
+     * representing groups within that account.
+     * TODO: Change account name string into a wrapper object that has
+     * account name, type, and authority.
+     */
+    private Map<String, List<GroupMetaData>> mGroupMap = new HashMap<String, List<GroupMetaData>>();
 
     private View mRootView;
     private ListView mListView;
     private View mEmptyView;
+
+    private GroupBrowseListAdapter mAdapter;
+    private boolean mSelectionVisible;
+
+    private int mVerticalScrollbarPosition = View.SCROLLBAR_POSITION_RIGHT;
 
     private OnGroupBrowserActionListener mListener;
 
@@ -91,6 +105,31 @@ public class GroupBrowseListFragment extends Fragment
         mListView.setOnTouchListener(this);
         mEmptyView = mRootView.findViewById(R.id.empty);
         return mRootView;
+    }
+
+    public void setVerticalScrollbarPosition(int position) {
+        if (mVerticalScrollbarPosition != position) {
+            mVerticalScrollbarPosition = position;
+            configureVerticalScrollbar();
+        }
+    }
+
+    private void configureVerticalScrollbar() {
+        mListView.setFastScrollEnabled(true);
+        mListView.setFastScrollAlwaysVisible(true);
+        mListView.setVerticalScrollbarPosition(mVerticalScrollbarPosition);
+        mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
+        int leftPadding = 0;
+        int rightPadding = 0;
+        if (mVerticalScrollbarPosition == View.SCROLLBAR_POSITION_LEFT) {
+            leftPadding = mContext.getResources().getDimensionPixelOffset(
+                    R.dimen.list_visible_scrollbar_padding);
+        } else {
+            rightPadding = mContext.getResources().getDimensionPixelOffset(
+                    R.dimen.list_visible_scrollbar_padding);
+        }
+        mListView.setPadding(leftPadding, mListView.getPaddingTop(),
+                rightPadding, mListView.getPaddingBottom());
     }
 
     @Override
@@ -136,7 +175,7 @@ public class GroupBrowseListFragment extends Fragment
         if (mGroupListCursor == null) {
             return;
         }
-        mGroupList.clear();
+        mGroupMap.clear();
         mGroupListCursor.moveToPosition(-1);
         while (mGroupListCursor.moveToNext()) {
             String accountName = mGroupListCursor.getString(GroupMetaDataLoader.ACCOUNT_NAME);
@@ -150,12 +189,24 @@ public class GroupBrowseListFragment extends Fragment
                     ? false
                     : mGroupListCursor.getInt(GroupMetaDataLoader.FAVORITES) != 0;
 
-            // TODO: Separate groups according to account name and type.
-            mGroupList.add(new GroupMetaData(
-                    accountName, accountType, groupId, title, defaultGroup, favorites));
+            GroupMetaData newGroup = new GroupMetaData(accountName, accountType, groupId, title,
+                    defaultGroup, favorites);
+
+            if (mGroupMap.containsKey(accountName)) {
+                List<GroupMetaData> groups = mGroupMap.get(accountName);
+                groups.add(newGroup);
+            } else {
+                List<GroupMetaData> groups = new ArrayList<GroupMetaData>();
+                groups.add(newGroup);
+                mGroupMap.put(accountName, groups);
+            }
+
         }
 
-        mListView.setAdapter(new GroupBrowseListAdapter(mContext, mGroupList));
+        mAdapter = new GroupBrowseListAdapter(mContext, mGroupMap);
+        mAdapter.setSelectionVisible(mSelectionVisible);
+
+        mListView.setAdapter(mAdapter);
         mListView.setEmptyView(mEmptyView);
         mListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -170,7 +221,17 @@ public class GroupBrowseListFragment extends Fragment
         mListener = listener;
     }
 
+    public void setSelectionVisible(boolean flag) {
+        mSelectionVisible = flag;
+    }
+
+    private void setSelectedGroup(Uri groupUri) {
+        mAdapter.setSelectedGroup(groupUri);
+        mListView.invalidateViews();
+    }
+
     private void viewGroup(Uri groupUri) {
+        setSelectedGroup(groupUri);
         if (mListener != null) mListener.onViewGroupAction(groupUri);
     }
 

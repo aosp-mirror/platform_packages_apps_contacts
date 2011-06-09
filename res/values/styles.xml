@@ -322,4 +322,8 @@
         <item name="android:padding">5dip</item>
         <item name="android:background">@drawable/list_selector</item>
     </style>
+
+    <style name="GroupBrowseListItem">
+        <item name="android:paddingRight">20dip</item>
+    </style>
 </resources>

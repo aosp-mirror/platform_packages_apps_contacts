@@ -18,6 +18,7 @@ package com.android.contacts.group;
 
 import com.android.contacts.GroupMetaData;
 import com.android.contacts.R;
+import com.android.contacts.list.ContactListPinnedHeaderView;
 
 import android.content.ContentUris;
 import android.content.Context;
@@ -31,19 +32,55 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Adapter to populate the list of groups.
  */
 public class GroupBrowseListAdapter extends BaseAdapter {
 
+    private Context mContext;
     private LayoutInflater mLayoutInflater;
-    private List<GroupMetaData> mGroupList;
 
-    public GroupBrowseListAdapter(Context context, List<GroupMetaData> groupList) {
+    private List<GroupListEntry> mGroupList = new ArrayList<GroupListEntry>();
+    private boolean mSelectionVisible;
+    private Uri mSelectedGroupUri;
+
+    enum ViewType {
+        HEADER, ITEM;
+    }
+
+    private static final int VIEW_TYPE_COUNT = ViewType.values().length;
+
+    public GroupBrowseListAdapter(Context context, Map<String, List<GroupMetaData>> groupMap) {
+        mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
-        mGroupList = groupList;
+        for (String accountName : groupMap.keySet()) {
+            List<GroupMetaData> groupsListForAccount = groupMap.get(accountName);
+
+            // Add account name as header for section
+            mGroupList.add(GroupListEntry.createEntryForHeader(accountName,
+                    groupsListForAccount.size()));
+
+            // Add groups within that account as subsequent list items.
+            for (GroupMetaData singleGroup : groupsListForAccount) {
+                mGroupList.add(GroupListEntry.createEntryForGroup(singleGroup));
+            }
+        }
+    }
+
+    public void setSelectionVisible(boolean flag) {
+        mSelectionVisible = flag;
+    }
+
+    public void setSelectedGroup(Uri groupUri) {
+        mSelectedGroupUri = groupUri;
+    }
+
+    private boolean isSelectedGroup(Uri groupUri) {
+        return mSelectedGroupUri != null && mSelectedGroupUri.equals(groupUri);
     }
 
     @Override
@@ -53,21 +90,106 @@ public class GroupBrowseListAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return getItem(position).getGroupId();
+        return mGroupList.get(position).id;
     }
 
     @Override
-    public GroupMetaData getItem(int position) {
+    public GroupListEntry getItem(int position) {
         return mGroupList.get(position);
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return mGroupList.get(position).type.ordinal();
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return VIEW_TYPE_COUNT;
+    }
+
+    @Override
+    public boolean areAllItemsEnabled() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+        return mGroupList.get(position).type == ViewType.ITEM;
+    }
+
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        GroupListEntry item = getItem(position);
+        switch (item.type) {
+            case HEADER:
+                return getHeaderView(item, convertView, parent);
+            case ITEM:
+                return getGroupListItemView(item, convertView, parent);
+            default:
+                throw new IllegalStateException("Invalid GroupListEntry item type " + item.type);
+        }
+
+    }
+
+    private View getHeaderView(GroupListEntry entry, View convertView, ViewGroup parent) {
+        ContactListPinnedHeaderView result = (ContactListPinnedHeaderView) (convertView == null ?
+                new ContactListPinnedHeaderView(mContext, null) :
+                convertView);
+        String groupCountString = mContext.getResources().getQuantityString(
+                R.plurals.num_groups_in_account, entry.count, entry.count);
+        // TODO: Format this correctly by using 2 TextViews when the
+        // ContactListPinnedHeaderView is refactored.
+        result.setSectionHeader(entry.title + " " + groupCountString);
+                        return result;
+    }
+
+    private View getGroupListItemView(GroupListEntry entry, View convertView, ViewGroup parent) {
         GroupListItem result = (GroupListItem) (convertView == null ?
                 mLayoutInflater.inflate(R.layout.group_browse_list_item, parent, false) :
                 convertView);
-        result.loadFromGroup(getItem(position));
+        result.loadFromGroup(entry.groupData);
+        if (mSelectionVisible) {
+            result.setActivated(isSelectedGroup(result.getUri()));
+        }
         return result;
+    }
+
+    /**
+     * This is a data model object to represent one row in the list of groups were the entry
+     * could be a header or group item.
+     */
+    public static class GroupListEntry {
+        public final ViewType type;
+        public final String title;
+        public final int count;
+        public final GroupMetaData groupData;
+        /**
+         * The id is equal to the group ID (if groupData is available), otherwise it is -1 for
+         * header entries.
+         */
+        public final long id;
+
+        private GroupListEntry(ViewType entryType, String headerTitle, int headerGroupCount,
+                GroupMetaData groupMetaData, long entryId) {
+            type = entryType;
+            title = headerTitle;
+            count = headerGroupCount;
+            groupData = groupMetaData;
+            id = entryId;
+        }
+
+        public static GroupListEntry createEntryForHeader(String headerTitle, int groupCount) {
+            return new GroupListEntry(ViewType.HEADER, headerTitle, groupCount, null, -1);
+        }
+
+        public static GroupListEntry createEntryForGroup(GroupMetaData groupMetaData) {
+            if (groupMetaData == null) {
+                throw new IllegalStateException("Cannot create list entry for a hull group");
+            }
+            return new GroupListEntry(ViewType.ITEM, null, 0, groupMetaData,
+                    groupMetaData.getGroupId());
+        }
     }
 
     /**

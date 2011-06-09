@@ -19,24 +19,15 @@
     class="com.android.contacts.group.GroupBrowseListAdapter$GroupListItem"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <ImageView
-        android:id="@+id/icon"
-        android:scaleType="center"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:layout_gravity="center_vertical"
-        android:src="@drawable/ic_menu_display_all_holo_light" />
+    android:layout_height="wrap_content"
+    style="@style/GroupBrowseListItem">
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="0dip"
         android:layout_height="match_parent"
-        android:paddingTop="5dip"
-        android:paddingBottom="5dip">
+        android:layout_weight="1"
+        android:padding="5dip">
 
         <TextView
             android:id="@+id/label"
@@ -59,5 +50,14 @@
             android:textStyle="italic" />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/icon"
+        android:scaleType="center"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginRight="20dip"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ic_menu_display_all_holo_light" />
 
 </view>

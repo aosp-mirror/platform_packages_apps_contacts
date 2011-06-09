@@ -408,13 +408,14 @@ public class PeopleActivity extends ContactsActivity
             }
 
             mListFragment.setContactsRequest(mRequest);
-            configureListFragmentForRequest();
+            configureContactListFragmentForRequest();
 
         } else {
             mSearchMode = mActionBarAdapter.isSearchMode();
         }
 
-        configureListFragment();
+        configureContactListFragment();
+        configureGroupListFragment();
 
         invalidateOptionsMenu();
     }
@@ -478,7 +479,7 @@ public class PeopleActivity extends ContactsActivity
         }
     }
 
-    private void configureListFragmentForRequest() {
+    private void configureContactListFragmentForRequest() {
         Uri contactUri = mRequest.getContactUri();
         if (contactUri != null) {
             mListFragment.setSelectedContactUri(contactUri);
@@ -498,7 +499,7 @@ public class PeopleActivity extends ContactsActivity
         }
     }
 
-    private void configureListFragment() {
+    private void configureContactListFragment() {
         mListFragment.setSearchMode(mSearchMode);
 
         mListFragment.setVisibleScrollbarEnabled(!mSearchMode);
@@ -508,6 +509,14 @@ public class PeopleActivity extends ContactsActivity
                         : View.SCROLLBAR_POSITION_RIGHT);
         mListFragment.setSelectionVisible(mContentPaneDisplayed);
         mListFragment.setQuickContactEnabled(!mContentPaneDisplayed);
+    }
+
+    private void configureGroupListFragment() {
+        mGroupsFragment.setVerticalScrollbarPosition(
+                mContentPaneDisplayed
+                        ? View.SCROLLBAR_POSITION_LEFT
+                        : View.SCROLLBAR_POSITION_RIGHT);
+        mGroupsFragment.setSelectionVisible(mContentPaneDisplayed);
     }
 
     @Override
