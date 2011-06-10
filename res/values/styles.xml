@@ -255,6 +255,9 @@
     <style name="NonPhoneActivityTheme" parent="@android:Theme.Translucent">
     </style>
 
+    <style name="NonPhoneDialogTheme" parent="@android:Theme.Dialog">
+    </style>
+
     <style name="SectionDivider">
         <item name="android:background">#7e7e87</item>
         <item name="android:layout_height">2dip</item>
