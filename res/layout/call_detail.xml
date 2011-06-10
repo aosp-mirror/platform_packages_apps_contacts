@@ -29,8 +29,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:adjustViewBounds="true"
-        android:scaleX="2.5"
-        android:scaleY="2.5"
+        android:scaleType="centerCrop"
 
         android:background="@drawable/ic_contact_picture"
     />
