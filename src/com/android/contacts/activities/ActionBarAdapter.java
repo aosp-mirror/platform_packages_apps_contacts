@@ -108,6 +108,9 @@ public class ActionBarAdapter
         if (mSearchMode != flag) {
             mSearchMode = flag;
             update();
+            if (mSearchView == null) {
+                return;
+            }
             if (mSearchMode) {
                 mSearchView.requestFocus();
             } else {
@@ -122,7 +125,9 @@ public class ActionBarAdapter
 
     public void setQueryString(String query) {
         mQueryString = query;
-        mSearchView.setQuery(query, false);
+        if (mSearchView != null) {
+            mSearchView.setQuery(query, false);
+        }
     }
 
     public void update() {
