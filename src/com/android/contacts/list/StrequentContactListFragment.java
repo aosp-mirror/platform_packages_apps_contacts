@@ -37,21 +37,23 @@ import android.widget.ListView;
  * Fragment containing a list of starred contacts followed by a list of frequently contacted.
  */
 public class StrequentContactListFragment extends Fragment {
+
     public interface Listener {
         public void onContactSelected(Uri contactUri);
     }
 
     private static int LOADER_STREQUENT = 1;
+    private static final int NUM_COLS = 2;
 
     private Listener mListener;
-    private StrequentAdapter mAdapter;
+    private ContactTileAdapter mAdapter;
     private ListView mListView;
     private Context mContext;
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        mAdapter = new StrequentAdapter(getActivity(), mAdapterListener);
+        mAdapter = new ContactTileAdapter(activity, mAdapterListener, NUM_COLS);
         mContext = activity;
     }
 
@@ -97,8 +99,8 @@ public class StrequentContactListFragment extends Fragment {
         }
     };
 
-    private StrequentAdapter.Listener mAdapterListener =
-            new StrequentAdapter.Listener() {
+    private ContactTileAdapter.Listener mAdapterListener =
+            new ContactTileAdapter.Listener() {
         @Override
         public void onContactSelected(Uri contactUri) {
             if (mListener != null) {
