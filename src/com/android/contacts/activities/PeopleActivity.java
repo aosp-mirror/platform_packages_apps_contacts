@@ -95,7 +95,7 @@ public class PeopleActivity extends ContactsActivity
         DialogManager.DialogShowingViewActivity,
         ContactListFilterController.ContactListFilterListener, ProviderStatusListener {
 
-    private static final String TAG = "ContactBrowserActivity";
+    private static final String TAG = "PeopleActivity";
 
     private static final int SUBACTIVITY_NEW_CONTACT = 2;
     private static final int SUBACTIVITY_EDIT_CONTACT = 3;

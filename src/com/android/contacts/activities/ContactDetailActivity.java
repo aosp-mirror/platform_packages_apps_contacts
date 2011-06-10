@@ -47,7 +47,7 @@ public class ContactDetailActivity extends ContactsActivity {
 
         if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
             // This activity must not be shown. We have to select the contact in the
-            // ContactBrowserActivity instead ==> Create a forward intent and finish
+            // PeopleActivity instead ==> Create a forward intent and finish
             final Intent originalIntent = getIntent();
             Intent intent = new Intent();
             intent.setAction(originalIntent.getAction());

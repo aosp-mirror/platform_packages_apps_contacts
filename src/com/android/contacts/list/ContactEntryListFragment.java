@@ -70,7 +70,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
                 LoaderCallbacks<Cursor> {
     private static final String TAG = "ContactEntryListFragment";
 
-    // TODO: Make this protected. This should not be used from the ContactBrowserActivity but
+    // TODO: Make this protected. This should not be used from the PeopleActivity but
     // instead use the new startActivityWithResultFromFragment API
     public static final int ACTIVITY_REQUEST_CODE_PICKER = 1;
 

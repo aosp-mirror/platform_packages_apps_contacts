@@ -514,7 +514,7 @@ public class DialtactsActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // This is currently a copy of the equivalent code of ContactBrowserActivity (with the
+        // This is currently a copy of the equivalent code of PeopleActivity (with the
         // exception of menu_add, because we do not select items in the list).
         // Should be consolidated
         switch (item.getItemId()) {

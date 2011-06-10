@@ -58,7 +58,7 @@ public class AllIntentsActivity extends ListActivity
     private static final String ANDROID_CONTACTS_PACKAGE = "com.android.contacts";
 
     private static final String CONTACT_LIST_ACTIVITY_CLASS_NAME =
-            "com.android.contacts.activities.ContactBrowserActivity";
+            "com.android.contacts.activities.PeopleActivity";
 
     public enum ContactsIntent {
         LIST_DEFAULT,
