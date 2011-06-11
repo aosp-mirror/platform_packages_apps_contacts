@@ -17,23 +17,21 @@
 package com.android.contacts.group;
 
 import com.android.contacts.ContactPhotoManager;
-import com.android.contacts.GroupMetaData;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
-import com.android.contacts.activities.GroupDetailActivity;
+import com.android.contacts.interactions.GroupDeletionDialogFragment;
+import com.android.contacts.interactions.GroupRenamingDialogFragment;
 import com.android.contacts.list.ContactListAdapter;
 import com.android.contacts.list.ContactListFilter;
 import com.android.contacts.list.DefaultContactListAdapter;
+import com.android.contacts.util.PhoneCapabilityTester;
 
-import android.accounts.Account;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.CursorLoader;
-import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
@@ -41,6 +39,9 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Directory;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -49,8 +50,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import java.util.ArrayList;
+import android.widget.Toast;
 
 /**
  * Displays the details of a group and shows a list of actions possible for the group.
@@ -88,6 +88,9 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
 
     private Uri mGroupUri;
     private long mGroupId;
+    private String mGroupName;
+
+    private boolean mOptionsMenuEditable;
 
     public GroupDetailFragment() {
     }
@@ -107,6 +110,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
+        setHasOptionsMenu(true);
         mRootView = inflater.inflate(R.layout.group_detail_fragment, container, false);
         mGroupTitle = (TextView) mRootView.findViewById(R.id.group_title);
         mGroupSize = (TextView) mRootView.findViewById(R.id.group_size);
@@ -224,7 +228,8 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         cursor.moveToPosition(-1);
         if (cursor.moveToNext()) {
             mGroupId = cursor.getLong(GroupMetaDataLoader.GROUP_ID);
-            updateTitle(cursor.getString(GroupMetaDataLoader.TITLE));
+            mGroupName = cursor.getString(GroupMetaDataLoader.TITLE);
+            updateTitle(mGroupName);
         }
     }
 
@@ -256,5 +261,54 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         } else {
             mPhotoManager.resume();
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
+        inflater.inflate(R.menu.view_group, menu);
+    }
+
+    public boolean isOptionsMenuChanged() {
+        return mOptionsMenuEditable != isGroupEditable();
+    }
+
+    public boolean isGroupEditable() {
+        // TODO: This should check the group_is_read_only flag. Modify GroupMetaDataLoader.
+        // Bug: 4601729.
+        return mGroupUri != null;
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        mOptionsMenuEditable = isGroupEditable();
+
+        final MenuItem editMenu = menu.findItem(R.id.menu_edit_group);
+        editMenu.setVisible(mOptionsMenuEditable);
+
+        final MenuItem renameMenu = menu.findItem(R.id.menu_rename_group);
+        renameMenu.setVisible(mOptionsMenuEditable);
+
+        final MenuItem deleteMenu = menu.findItem(R.id.menu_delete_group);
+        deleteMenu.setVisible(mOptionsMenuEditable);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_edit_group: {
+                // TODO: Open group editor
+                Toast.makeText(mContext, "EDIT GROUP", Toast.LENGTH_SHORT).show();
+                break;
+            }
+            case R.id.menu_rename_group: {
+                GroupRenamingDialogFragment.show(getFragmentManager(), mGroupId, mGroupName);
+                return true;
+            }
+            case R.id.menu_delete_group: {
+                GroupDeletionDialogFragment.show(getFragmentManager(), mGroupId, mGroupName);
+                return true;
+            }
+        }
+        return false;
     }
 }

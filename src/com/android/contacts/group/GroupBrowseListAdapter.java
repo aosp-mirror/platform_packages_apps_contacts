@@ -185,7 +185,7 @@ public class GroupBrowseListAdapter extends BaseAdapter {
 
         public static GroupListEntry createEntryForGroup(GroupMetaData groupMetaData) {
             if (groupMetaData == null) {
-                throw new IllegalStateException("Cannot create list entry for a hull group");
+                throw new IllegalStateException("Cannot create list entry for a null group");
             }
             return new GroupListEntry(ViewType.ITEM, null, 0, groupMetaData,
                     groupMetaData.getGroupId());

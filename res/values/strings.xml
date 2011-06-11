@@ -118,6 +118,9 @@
     <!-- Menu item that splits an item from the contact detail into a separate aggregate -->
     <string name="menu_splitAggregate">Separate</string>
 
+    <!-- Menu item that edits the currently selected group [CHAR LIMIT=30] -->
+    <string name="menu_editGroup">Edit group</string>
+
     <!-- Menu item that renames the currently selected group [CHAR LIMIT=30] -->
     <string name="menu_renameGroup">Rename group</string>
 

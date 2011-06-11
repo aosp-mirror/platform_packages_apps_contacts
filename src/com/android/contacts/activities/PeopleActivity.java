@@ -133,18 +133,21 @@ public class PeopleActivity extends ContactsActivity
 
     private ContactListFilterController mContactListFilterController;
 
-    private View mAddContactImageView;
-
     private ContactsUnavailableFragment mContactsUnavailableFragment;
     private ProviderStatusLoader mProviderStatusLoader;
     private int mProviderStatus = -1;
 
     private boolean mOptionsMenuContactsAvailable;
-    private boolean mOptionsMenuGroupActionsEnabled;
 
     private DefaultContactBrowseListFragment mContactsFragment;
     private StrequentContactListFragment mFavoritesFragment;
     private GroupBrowseListFragment mGroupsFragment;
+
+    private enum TabState {
+        FAVORITES, CONTACTS, GROUPS
+    }
+
+    private TabState mSelectedTab;
 
     public PeopleActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
@@ -189,17 +192,6 @@ public class PeopleActivity extends ContactsActivity
     @Override
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
-
-        mAddContactImageView = getLayoutInflater().inflate(
-                R.layout.add_contact_menu_item, null, false);
-        View item = mAddContactImageView.findViewById(R.id.menu_item);
-        item.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-                startActivityForResult(intent, SUBACTIVITY_NEW_CONTACT);
-            }
-        });
 
         configureContentView(true, savedState);
     }
@@ -273,19 +265,19 @@ public class PeopleActivity extends ContactsActivity
             Tab favoritesTab = actionBar.newTab();
             favoritesTab.setText(getString(R.string.strequentList));
             favoritesTab.setTabListener(new TabChangeListener(mFavoritesFragment,
-                    mContactDetailFragment));
+                    mContactDetailFragment, TabState.FAVORITES));
             actionBar.addTab(favoritesTab);
 
             Tab peopleTab = actionBar.newTab();
             peopleTab.setText(getString(R.string.people));
             peopleTab.setTabListener(new TabChangeListener(mContactsFragment,
-                    mContactDetailFragment));
+                    mContactDetailFragment, TabState.CONTACTS));
             actionBar.addTab(peopleTab);
 
             Tab groupsTab = actionBar.newTab();
             groupsTab.setText(getString(R.string.contactsGroupsLabel));
             groupsTab.setTabListener(new TabChangeListener(mGroupsFragment,
-                    mGroupDetailFragment));
+                    mGroupDetailFragment, TabState.GROUPS));
             actionBar.addTab(groupsTab);
             actionBar.setDisplayShowTitleEnabled(true);
 
@@ -293,7 +285,7 @@ public class PeopleActivity extends ContactsActivity
             boolean showHomeIcon = a.getBoolean(R.styleable.ActionBarHomeIcon_show_home_icon, true);
             actionBar.setDisplayShowHomeEnabled(showHomeIcon);
 
-            invalidateOptionsMenu();
+            invalidateOptionsMenuIfNeeded();
         }
 
         configureFragments(savedState == null);
@@ -312,10 +304,12 @@ public class PeopleActivity extends ContactsActivity
          * null for smaller screen sizes).
          */
         private final Fragment mDetailFragment;
+        private final TabState mTabState;
 
-        public TabChangeListener(Fragment listFragment, Fragment detailFragment) {
+        public TabChangeListener(Fragment listFragment, Fragment detailFragment, TabState state) {
             mBrowseListFragment = listFragment;
             mDetailFragment = detailFragment;
+            mTabState = state;
         }
 
         @Override
@@ -332,11 +326,17 @@ public class PeopleActivity extends ContactsActivity
             if (mDetailFragment != null) {
                 ft.show(mDetailFragment);
             }
+            setSelectedTab(mTabState);
+            invalidateOptionsMenu();
         }
 
         @Override
         public void onTabReselected(Tab tab, FragmentTransaction ft) {
         }
+    }
+
+    private void setSelectedTab(TabState tab) {
+        mSelectedTab = tab;
     }
 
     @Override
@@ -346,7 +346,6 @@ public class PeopleActivity extends ContactsActivity
         }
 
         mOptionsMenuContactsAvailable = false;
-        mOptionsMenuGroupActionsEnabled = false;
 
         mProviderStatus = -1;
         mProviderStatusLoader.setProviderStatusListener(null);
@@ -417,7 +416,7 @@ public class PeopleActivity extends ContactsActivity
         configureContactListFragment();
         configureGroupListFragment();
 
-        invalidateOptionsMenu();
+        invalidateOptionsMenuIfNeeded();
     }
 
     @Override
@@ -428,7 +427,7 @@ public class PeopleActivity extends ContactsActivity
 
         mListFragment.setFilter(mContactListFilterController.getFilter());
 
-        invalidateOptionsMenu();
+        invalidateOptionsMenuIfNeeded();
     }
 
     @Override
@@ -439,7 +438,7 @@ public class PeopleActivity extends ContactsActivity
 
         mListFragment.setFilter(mContactListFilterController.getFilter());
 
-        invalidateOptionsMenu();
+        invalidateOptionsMenuIfNeeded();
     }
 
     @Override
@@ -450,10 +449,12 @@ public class PeopleActivity extends ContactsActivity
 
     private void setupContactDetailFragment(final Uri contactLookupUri) {
         mContactDetailFragment.loadUri(contactLookupUri);
+        invalidateOptionsMenuIfNeeded();
     }
 
     private void setupGroupDetailFragment(Uri groupUri) {
         mGroupDetailFragment.loadGroup(groupUri);
+        invalidateOptionsMenuIfNeeded();
     }
 
     /**
@@ -463,20 +464,42 @@ public class PeopleActivity extends ContactsActivity
     public void onAction(Action action) {
         switch (action) {
             case START_SEARCH_MODE:
-                // Bring the contact list fragment to the front.
+                // Bring the contact list fragment (and detail fragment if applicable) to the front
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.show(mContactsFragment);
+                if (mContactDetailFragment != null) ft.show(mContactDetailFragment);
                 ft.commit();
+                clearSearch();
                 break;
             case STOP_SEARCH_MODE:
+                // Refresh the fragments because search mode was using them to display search
+                // results.
+                clearSearch();
+
+                // If the last selected tab was not the "All contacts" tab, then hide these
+                // fragments because we need to show favorites or groups.
+                if (mSelectedTab != null && !mSelectedTab.equals(TabState.CONTACTS)) {
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.hide(mContactsFragment);
+                    if (mContactDetailFragment != null) transaction.hide(mContactDetailFragment);
+                    transaction.commit();
+                }
+                break;
             case CHANGE_SEARCH_QUERY:
-                // Refresh the contact list fragment.
-                configureFragments(false /* from request */);
-                mListFragment.setQueryString(mActionBarAdapter.getQueryString(), true);
+                loadSearch(mActionBarAdapter.getQueryString());
                 break;
             default:
                 throw new IllegalStateException("Unkonwn ActionBarAdapter action: " + action);
         }
+    }
+
+    private void clearSearch() {
+        loadSearch("");
+    }
+
+    private void loadSearch(String query) {
+        configureFragments(false /* from request */);
+        mListFragment.setQueryString(query, true);
     }
 
     private void configureContactListFragmentForRequest() {
@@ -564,7 +587,7 @@ public class PeopleActivity extends ContactsActivity
             }
         }
 
-        invalidateOptionsMenu();
+        invalidateOptionsMenuIfNeeded();
     }
 
     private final class ContactBrowserActionListener implements OnContactBrowserActionListener {
@@ -789,18 +812,12 @@ public class PeopleActivity extends ContactsActivity
                 mActionBarAdapter.setSearchView(searchView);
             }
         }
-
-        // TODO: Can remove this as a custom view because the account selector is in the editor now.
-        // Change add contact button to button with a custom view
-        final MenuItem addContact = menu.findItem(R.id.menu_add);
-        addContact.setActionView(mAddContactImageView);
         return true;
     }
 
-    @Override
-    public void invalidateOptionsMenu() {
+    private void invalidateOptionsMenuIfNeeded() {
         if (isOptionsMenuChanged()) {
-            super.invalidateOptionsMenu();
+            invalidateOptionsMenu();
         }
     }
 
@@ -809,15 +826,15 @@ public class PeopleActivity extends ContactsActivity
             return true;
         }
 
-        if (mOptionsMenuGroupActionsEnabled != areGroupActionsEnabled()) {
-            return true;
-        }
-
         if (mListFragment != null && mListFragment.isOptionsMenuChanged()) {
             return true;
         }
 
         if (mContactDetailFragment != null && mContactDetailFragment.isOptionsMenuChanged()) {
+            return true;
+        }
+
+        if (mGroupDetailFragment != null && mGroupDetailFragment.isOptionsMenuChanged()) {
             return true;
         }
 
@@ -831,37 +848,34 @@ public class PeopleActivity extends ContactsActivity
             return false;
         }
 
+        final MenuItem addContactMenu = menu.findItem(R.id.menu_add_contact);
+        final MenuItem addGroupMenu = menu.findItem(R.id.menu_add_group);
+
+        if (mActionBarAdapter.isSearchMode()) {
+            addContactMenu.setVisible(false);
+            addGroupMenu.setVisible(false);
+        } else {
+            switch (mSelectedTab) {
+                case FAVORITES:
+                    // TODO: Fall through until we determine what the menu items should be for
+                    // this tab
+                case CONTACTS:
+                    addContactMenu.setVisible(true);
+                    addGroupMenu.setVisible(false);
+                    break;
+                case GROUPS:
+                    addContactMenu.setVisible(false);
+                    addGroupMenu.setVisible(true);
+                    break;
+            }
+        }
+
         MenuItem settings = menu.findItem(R.id.menu_settings);
         if (settings != null) {
             settings.setVisible(!ContactsPreferenceActivity.isEmpty(this));
         }
 
-        mOptionsMenuGroupActionsEnabled = areGroupActionsEnabled();
-
-        MenuItem renameGroup = menu.findItem(R.id.menu_rename_group);
-        if (renameGroup != null) {
-            renameGroup.setVisible(mOptionsMenuGroupActionsEnabled);
-        }
-
-        MenuItem deleteGroup = menu.findItem(R.id.menu_delete_group);
-        if (deleteGroup != null) {
-            deleteGroup.setVisible(mOptionsMenuGroupActionsEnabled);
-        }
-
         return true;
-    }
-
-    private boolean areGroupActionsEnabled() {
-        boolean groupActionsEnabled = false;
-        if (mListFragment != null) {
-            ContactListFilter filter = mListFragment.getFilter();
-            if (filter != null
-                    && filter.filterType == ContactListFilter.FILTER_TYPE_GROUP
-                    && !filter.groupReadOnly) {
-                groupActionsEnabled = true;
-            }
-        }
-        return groupActionsEnabled;
     }
 
     @Override
@@ -881,9 +895,14 @@ public class PeopleActivity extends ContactsActivity
                 onSearchRequested();
                 return true;
             }
-            case R.id.menu_add: {
+            case R.id.menu_add_contact: {
                 final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
                 startActivityForResult(intent, SUBACTIVITY_NEW_CONTACT);
+                return true;
+            }
+            case R.id.menu_add_group: {
+                // TODO: Hook up "new group" functionality
+                Toast.makeText(this, "NEW GROUP", Toast.LENGTH_SHORT).show();
                 return true;
             }
             case R.id.menu_import_export: {
@@ -897,18 +916,6 @@ public class PeopleActivity extends ContactsActivity
                 });
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
                 startActivity(intent);
-                return true;
-            }
-            case R.id.menu_rename_group: {
-                ContactListFilter filter = mListFragment.getFilter();
-                GroupRenamingDialogFragment.show(getFragmentManager(), filter.groupId,
-                        filter.title);
-                return true;
-            }
-            case R.id.menu_delete_group: {
-                ContactListFilter filter = mListFragment.getFilter();
-                GroupDeletionDialogFragment.show(getFragmentManager(), filter.groupId,
-                        filter.title);
                 return true;
             }
         }

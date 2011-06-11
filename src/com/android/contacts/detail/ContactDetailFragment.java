@@ -1159,7 +1159,7 @@ public class ContactDetailFragment extends Fragment implements
 
     @Override
     public void onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
-        inflater.inflate(R.menu.view, menu);
+        inflater.inflate(R.menu.view_contact, menu);
     }
 
     public boolean isOptionsMenuChanged() {
