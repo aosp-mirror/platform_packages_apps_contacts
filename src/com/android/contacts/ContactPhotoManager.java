@@ -607,7 +607,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                 mPreloadPhotoIds.remove(preloadSize);
             }
 
-            loadPhotosFromDatabase(false);
+            loadPhotosFromDatabase(true);
 
             if (preloadSize == 0) {
                 mPreloadStatus = PRELOAD_STATUS_DONE;
@@ -649,7 +649,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
 
         private void loadPhotosInBackground() {
             obtainPhotoIdsAndUrisToLoad(mPhotoIds, mPhotoIdsAsStrings, mPhotoUris);
-            loadPhotosFromDatabase(true);
+            loadPhotosFromDatabase(false);
             loadRemotePhotos();
             requestPreloading();
         }
