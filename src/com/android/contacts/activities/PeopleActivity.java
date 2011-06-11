@@ -18,17 +18,12 @@ package com.android.contacts.activities;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
-import com.android.contacts.GroupMetaData;
 import com.android.contacts.R;
-import com.android.contacts.calllog.CallLogFragment;
 import com.android.contacts.detail.ContactDetailFragment;
-import com.android.contacts.dialpad.DialpadFragment;
 import com.android.contacts.group.GroupBrowseListFragment;
 import com.android.contacts.group.GroupBrowseListFragment.OnGroupBrowserActionListener;
 import com.android.contacts.group.GroupDetailFragment;
 import com.android.contacts.interactions.ContactDeletionInteraction;
-import com.android.contacts.interactions.GroupDeletionDialogFragment;
-import com.android.contacts.interactions.GroupRenamingDialogFragment;
 import com.android.contacts.interactions.ImportExportDialogFragment;
 import com.android.contacts.interactions.PhoneNumberInteraction;
 import com.android.contacts.list.ContactBrowseListContextMenuAdapter;
@@ -47,7 +42,6 @@ import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.list.ProviderStatusLoader;
 import com.android.contacts.list.ProviderStatusLoader.ProviderStatusListener;
 import com.android.contacts.list.StrequentContactListFragment;
-import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.DialogManager;
@@ -70,7 +64,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.ProviderStatus;
 import android.provider.Settings;
 import android.util.Log;
@@ -79,7 +72,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -256,8 +248,8 @@ public class PeopleActivity extends ContactsActivity
 
         setTitle(mRequest.getActivityTitle());
         ActionBar actionBar = getActionBar();
-        mActionBarAdapter = new ActionBarAdapter(this);
-        mActionBarAdapter.onCreate(savedState, mRequest, getActionBar());
+        mActionBarAdapter = new ActionBarAdapter(this, this);
+        mActionBarAdapter.onCreate(savedState, mRequest, getActionBar(), !mContentPaneDisplayed);
         mActionBarAdapter.setContactListFilterController(mContactListFilterController);
 
         if (createContentView) {
@@ -800,8 +792,6 @@ public class PeopleActivity extends ContactsActivity
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.actions, menu);
-        // TODO: Figure out if R.menu.list or R.menu.search are necessary according to the overflow
-        // menus on the UX mocks.
         MenuItem searchMenuItem = menu.findItem(R.id.menu_search);
         if (searchMenuItem != null && searchMenuItem.getActionView() instanceof SearchView) {
             SearchView searchView = (SearchView) searchMenuItem.getActionView();
@@ -850,10 +840,16 @@ public class PeopleActivity extends ContactsActivity
 
         final MenuItem addContactMenu = menu.findItem(R.id.menu_add_contact);
         final MenuItem addGroupMenu = menu.findItem(R.id.menu_add_group);
+        final MenuItem searchMenu = menu.findItem(R.id.menu_search);
 
         if (mActionBarAdapter.isSearchMode()) {
             addContactMenu.setVisible(false);
             addGroupMenu.setVisible(false);
+            // If search is normally in the overflow menu, when we are in search
+            // mode, hide this option.
+            if (mActionBarAdapter.isSearchInOverflowMenu()) {
+                searchMenu.setVisible(false);
+            }
         } else {
             switch (mSelectedTab) {
                 case FAVORITES:

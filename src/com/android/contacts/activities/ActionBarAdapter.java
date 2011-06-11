@@ -23,9 +23,12 @@ import com.android.contacts.list.ContactListFilterController.ContactListFilterLi
 import com.android.contacts.list.ContactsRequest;
 
 import android.app.ActionBar;
+import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
 import android.widget.SearchView.OnQueryTextListener;
@@ -60,14 +63,21 @@ public class ActionBarAdapter
 
     private ActionBar mActionBar;
 
-    public ActionBarAdapter(Context context) {
+    private View mCustomSearchView;
+    private LayoutParams mLayoutParams;
+    private boolean mIsSearchInOverflowMenu;
+
+    public ActionBarAdapter(Context context, Listener listener) {
         mContext = context;
+        mListener = listener;
         mSearchLabelText = mContext.getString(R.string.search_label);
     }
 
-    public void onCreate(Bundle savedState, ContactsRequest request, ActionBar actionBar) {
+    public void onCreate(Bundle savedState, ContactsRequest request, ActionBar actionBar,
+            boolean searchInOverflowMenu) {
         mActionBar = actionBar;
         mQueryString = null;
+        mIsSearchInOverflowMenu = searchInOverflowMenu;
 
         if (savedState != null) {
             mSearchMode = savedState.getBoolean(EXTRA_KEY_SEARCH_MODE);
@@ -98,6 +108,10 @@ public class ActionBarAdapter
     public void setContactListFilterController(ContactListFilterController controller) {
         mFilterController = controller;
         mFilterController.addListener(this);
+    }
+
+    public boolean isSearchInOverflowMenu() {
+        return mIsSearchInOverflowMenu;
     }
 
     public boolean isSearchMode() {
@@ -132,12 +146,31 @@ public class ActionBarAdapter
 
     public void update() {
         if (mSearchMode) {
+            // If the search icon was in the overflow menu, then inflate a custom view containing
+            // a search view for the action bar (and hide the tabs).
+            if (mIsSearchInOverflowMenu) {
+                if (mCustomSearchView == null) {
+                    mCustomSearchView = LayoutInflater.from(mContext).inflate(
+                            R.layout.custom_action_bar, null);
+                    mLayoutParams = new LayoutParams(LayoutParams.MATCH_PARENT,
+                            LayoutParams.WRAP_CONTENT);
+                    SearchView searchView = (SearchView) mCustomSearchView.
+                            findViewById(R.id.search_view);
+                    searchView.setQueryHint(mContext.getString(R.string.hint_findContacts));
+                    setSearchView(searchView);
+                }
+                mActionBar.setDisplayShowCustomEnabled(true);
+                mActionBar.setCustomView(mCustomSearchView, mLayoutParams);
+                mSearchView.requestFocus();
+            } else {
+                mActionBar.setTitle(mSearchLabelText);
+            }
             mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-            mActionBar.setTitle(mSearchLabelText);
             if (mListener != null) {
                 mListener.onAction(Action.START_SEARCH_MODE);
             }
         } else {
+            mActionBar.setDisplayShowCustomEnabled(false);
             mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
             mActionBar.setTitle(null);
             if (mListener != null) {
