@@ -87,6 +87,11 @@
     <string name="pinnedHeaderList">Pinned Headers</string>
     <string name="quickContactTests">Quick Contact modes</string>
     <string name="pickContact">Pick contact</string>
+    <string name="fillCallLogTest">Fill call log test</string>
+    <string name="addToCallLogButton">Add</string>
+    <string name="numberOfCallLogEntries">Number of call log entries to add:</string>
+    <string name="addedLogEntriesToast">Added %1$d call log entries.</string>
+    <string name="noLogEntriesToast">No entries in the call log yet.</string>
 
     <string-array name="pinnedHeaderUseCases">
         <item>One short section - no headers</item>
