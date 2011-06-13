@@ -61,20 +61,24 @@ public class StrequentAdapter extends BaseAdapter implements OnClickListener {
         mAllEntries = new ArrayList<StrequentEntry>();
         mMostFrequentCount = mStarredCount = 0;
 
-        while (cursor.moveToNext()) {
-            StrequentEntry contact = new StrequentEntry();
+        // If the loader was canceled we will be given a null cursor.
+        // In that case, show an empty list of contacts.
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                StrequentEntry contact = new StrequentEntry();
 
-            contact.id = cursor.getLong(StrequentMetaDataLoader.CONTACT_ID);
-            contact.photoId = cursor.getLong(StrequentMetaDataLoader.PHOTO_ID);
-            contact.name = cursor.getString(StrequentMetaDataLoader.DISPLAY_NAME);
+                contact.id = cursor.getLong(StrequentMetaDataLoader.CONTACT_ID);
+                contact.photoId = cursor.getLong(StrequentMetaDataLoader.PHOTO_ID);
+                contact.name = cursor.getString(StrequentMetaDataLoader.DISPLAY_NAME);
 
-            // Adding Starred Contact
-            if (cursor.getInt(StrequentMetaDataLoader.STARRED) == 1) {
-                mStarredCount++;
-            } else {
-                mMostFrequentCount++;
+                // Adding Starred Contact
+                if (cursor.getInt(StrequentMetaDataLoader.STARRED) == 1) {
+                    mStarredCount++;
+                } else {
+                    mMostFrequentCount++;
+                }
+                mAllEntries.add(contact);
             }
-            mAllEntries.add(contact);
         }
         this.notifyDataSetChanged();
     }
