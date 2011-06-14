@@ -28,6 +28,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.ContactCounts;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Directory;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -62,6 +63,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     private boolean mDisplayPhotos;
     private boolean mQuickContactEnabled;
+    private boolean mIncludeProfile;
     private ContactPhotoManager mPhotoLoader;
 
     private String mQueryString;
@@ -266,6 +268,14 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         mQuickContactEnabled = quickContactEnabled;
     }
 
+    public boolean shouldIncludeProfile() {
+        return mIncludeProfile;
+    }
+
+    public void setIncludeProfile(boolean includeProfile) {
+        mIncludeProfile = includeProfile;
+    }
+
     public boolean isDataRestrictedByCallingPackage() {
         return mDataRestrictedByCallingPackage;
     }
@@ -411,7 +421,9 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     @Override
     public int getItemViewType(int partitionIndex, int position) {
         int type = super.getItemViewType(partitionIndex, position);
-        if (isSectionHeaderDisplayEnabled() && partitionIndex == getIndexedPartition()) {
+        if (!isUserProfile(position)
+                && isSectionHeaderDisplayEnabled()
+                && partitionIndex == getIndexedPartition()) {
             Placement placement = getItemPlacementInSection(position);
             return placement.firstInSection ? type : getItemViewTypeCount() + type;
         } else {
@@ -526,6 +538,33 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         }
     }
 
+    /**
+     * Checks whether the contact entry at the given position represents the user's profile.
+     */
+    protected boolean isUserProfile(int position) {
+        // The profile only ever appears in the first position if it is present.  So if the position
+        // is anything beyond 0, it can't be the profile.
+        boolean isUserProfile = false;
+        if (position == 0) {
+            int partition = getPartitionForPosition(position);
+            if (partition >= 0) {
+                // Save the old cursor position - the call to getItem() may modify the cursor
+                // position.
+                int offset = getCursor(partition).getPosition();
+                Cursor cursor = (Cursor) getItem(position);
+                if (cursor != null) {
+                    int profileColumnIndex = cursor.getColumnIndex(Contacts.IS_USER_PROFILE);
+                    if (profileColumnIndex != -1) {
+                        isUserProfile = cursor.getInt(profileColumnIndex) == 1;
+                    }
+                    // Restore the old cursor position.
+                    cursor.moveToPosition(offset);
+                }
+            }
+        }
+        return isUserProfile;
+    }
+
     // TODO: fix PluralRules to handle zero correctly and use Resources.getQuantityText directly
     public String getQuantityText(int count, int zeroResourceId, int pluralResourceId) {
         if (count == 0) {
@@ -543,5 +582,31 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
             return ((DirectoryPartition) partition).isPhotoSupported();
         }
         return true;
+    }
+
+    @Override
+    public Placement getItemPlacementInSection(int position) {
+        // Special case code to prevent a section header from being displayed above the user's
+        // profile entry.
+        if (isUserProfile(position)) {
+            // The user profile entry shouldn't display a section header above; the header should be
+            // displayed on top of the item below.
+            Placement placement = new Placement();
+            placement.firstInSection = false;
+            placement.lastInSection = false;
+            placement.sectionHeader = null;
+            return placement;
+        } else if (position > 0 && isUserProfile(position - 1)) {
+            // If the item in the previous position is the user's profile, behave as if this entry
+            // is the first in the section.
+            Placement profilePlacement = super.getItemPlacementInSection(position - 1);
+            String profileHeader = profilePlacement.sectionHeader;
+            Placement placement = super.getItemPlacementInSection(position);
+            placement.firstInSection = true;
+            placement.sectionHeader = profileHeader;
+            return placement;
+        } else {
+            return super.getItemPlacementInSection(position);
+        }
     }
 }

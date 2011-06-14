@@ -472,9 +472,17 @@ public class ContactListItemView extends ViewGroup
                         ViewGroup.LayoutParams.WRAP_CONTENT);
                 a.recycle();
             } else {
-                mPhotoViewWidth = mPhotoViewHeight = mDefaultPhotoViewSize;
+                mPhotoViewWidth = mPhotoViewHeight = getDefaultPhotoViewSize();
             }
         }
+    }
+
+    protected void setDefaultPhotoViewSize(int pixels) {
+        mDefaultPhotoViewSize = pixels;
+    }
+
+    protected int getDefaultPhotoViewSize() {
+        return mDefaultPhotoViewSize;
     }
 
     @Override

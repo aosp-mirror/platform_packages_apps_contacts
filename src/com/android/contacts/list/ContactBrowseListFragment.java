@@ -386,6 +386,9 @@ public abstract class ContactBrowseListFragment extends
                         mSelectedContactDirectoryId, mSelectedContactLookupKey, mSelectedContactId);
             }
         }
+
+        // Display the user's profile.
+        adapter.setIncludeProfile(true);
     }
 
     @Override

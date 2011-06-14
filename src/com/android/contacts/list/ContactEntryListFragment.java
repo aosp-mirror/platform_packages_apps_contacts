@@ -78,6 +78,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private static final String KEY_SECTION_HEADER_DISPLAY_ENABLED = "sectionHeaderDisplayEnabled";
     private static final String KEY_PHOTO_LOADER_ENABLED = "photoLoaderEnabled";
     private static final String KEY_QUICK_CONTACT_ENABLED = "quickContactEnabled";
+    private static final String KEY_INCLUDE_PROFILE = "includeProfile";
     private static final String KEY_SEARCH_MODE = "searchMode";
     private static final String KEY_VISIBLE_SCROLLBAR_ENABLED = "visibleScrollbarEnabled";
     private static final String KEY_SCROLLBAR_POSITION = "scrollbarPosition";
@@ -100,6 +101,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private boolean mSectionHeaderDisplayEnabled;
     private boolean mPhotoLoaderEnabled;
     private boolean mQuickContactEnabled = true;
+    private boolean mIncludeProfile;
     private boolean mSearchMode;
     private boolean mVisibleScrollbarEnabled;
     private int mVerticalScrollbarPosition = View.SCROLLBAR_POSITION_RIGHT;
@@ -235,6 +237,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         outState.putBoolean(KEY_SECTION_HEADER_DISPLAY_ENABLED, mSectionHeaderDisplayEnabled);
         outState.putBoolean(KEY_PHOTO_LOADER_ENABLED, mPhotoLoaderEnabled);
         outState.putBoolean(KEY_QUICK_CONTACT_ENABLED, mQuickContactEnabled);
+        outState.putBoolean(KEY_INCLUDE_PROFILE, mIncludeProfile);
         outState.putBoolean(KEY_SEARCH_MODE, mSearchMode);
         outState.putBoolean(KEY_VISIBLE_SCROLLBAR_ENABLED, mVisibleScrollbarEnabled);
         outState.putInt(KEY_SCROLLBAR_POSITION, mVerticalScrollbarPosition);
@@ -266,6 +269,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mSectionHeaderDisplayEnabled = savedState.getBoolean(KEY_SECTION_HEADER_DISPLAY_ENABLED);
         mPhotoLoaderEnabled = savedState.getBoolean(KEY_PHOTO_LOADER_ENABLED);
         mQuickContactEnabled = savedState.getBoolean(KEY_QUICK_CONTACT_ENABLED);
+        mIncludeProfile = savedState.getBoolean(KEY_INCLUDE_PROFILE);
         mSearchMode = savedState.getBoolean(KEY_SEARCH_MODE);
         mVisibleScrollbarEnabled = savedState.getBoolean(KEY_VISIBLE_SCROLLBAR_ENABLED);
         mVerticalScrollbarPosition = savedState.getInt(KEY_SCROLLBAR_POSITION);
@@ -579,6 +583,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         this.mQuickContactEnabled = flag;
     }
 
+    public void setIncludeProfile(boolean flag) {
+        mIncludeProfile = flag;
+    }
+
     public void setSearchMode(boolean flag) {
         if (mSearchMode != flag) {
             mSearchMode = flag;
@@ -782,6 +790,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
 
         mAdapter.setQuickContactEnabled(mQuickContactEnabled);
+        mAdapter.setIncludeProfile(mIncludeProfile);
         mAdapter.setQueryString(mQueryString);
         mAdapter.setDirectorySearchMode(mDirectorySearchMode);
         mAdapter.setPinnedPartitionHeadersEnabled(mSearchMode);
