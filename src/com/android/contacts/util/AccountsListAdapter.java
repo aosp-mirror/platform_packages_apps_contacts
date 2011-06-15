@@ -17,8 +17,8 @@
 package com.android.contacts.util;
 
 import com.android.contacts.R;
-import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypeManager;
 
 import android.accounts.Account;
 import android.content.Context;
@@ -29,6 +29,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,9 +42,25 @@ public final class AccountsListAdapter extends BaseAdapter {
     private final Context mContext;
 
     public AccountsListAdapter(Context context, boolean writableOnly) {
+        this(context, writableOnly, null);
+    }
+
+    /**
+     * @param currentAccount the Account currently selected by the user, which should come
+     * first in the list. Can be null.
+     */
+    public AccountsListAdapter(Context context, boolean writableOnly,
+            Account currentAccount) {
         mContext = context;
         mAccountTypes = AccountTypeManager.getInstance(context);
-        mAccounts = mAccountTypes.getAccounts(writableOnly);
+        // We don't want possible side-effect toward AccountTypeManager
+        mAccounts = new ArrayList<Account>(mAccountTypes.getAccounts(writableOnly));
+        if (currentAccount != null
+                && !mAccounts.isEmpty()
+                && !mAccounts.get(0).equals(currentAccount)
+                && mAccounts.remove(currentAccount)) {
+            mAccounts.add(0, currentAccount);
+        }
         mInflater = LayoutInflater.from(context);
     }
 

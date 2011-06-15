@@ -670,7 +670,8 @@ public class ContactEditorFragment extends Fragment implements
             @Override
             public void onClick(View v) {
                 final ListPopupWindow popup = new ListPopupWindow(mContext, null);
-                final AccountsListAdapter adapter = new AccountsListAdapter(mContext, true);
+                final AccountsListAdapter adapter =
+                        new AccountsListAdapter(mContext, true, currentAccount);
                 popup.setWidth(anchorView.getWidth());
                 popup.setAnchorView(anchorView);
                 popup.setAdapter(adapter);
