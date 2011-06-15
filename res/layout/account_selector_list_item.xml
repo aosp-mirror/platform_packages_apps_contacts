@@ -16,10 +16,9 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/account_selector_min_item_height"
     android:paddingLeft="@dimen/account_selector_horizontal_margin"
-    android:paddingRight="@dimen/account_selector_horizontal_margin"
-    android:minHeight="@dimen/account_selector_min_item_height" >
+    android:paddingRight="@dimen/account_selector_horizontal_margin" >
 
     <TextView android:id="@android:id/text1"
         android:layout_width="match_parent"
