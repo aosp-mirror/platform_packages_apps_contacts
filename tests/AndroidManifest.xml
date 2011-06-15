@@ -18,6 +18,7 @@
     package="com.android.contacts.tests">
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <application>
@@ -55,6 +56,16 @@
 
         <activity android:name=".quickcontact.QuickContactTestsActivity"
             android:label="@string/quickContactTests"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".calllog.FillCallLogTestActivity"
+            android:label="@string/fillCallLogTest"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
