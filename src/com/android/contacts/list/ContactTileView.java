@@ -17,12 +17,13 @@ package com.android.contacts.list;
 
 import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.R;
-import com.android.contacts.list.ContactTileAdapter.StrequentEntry;
+import com.android.contacts.list.ContactTileAdapter.ContactEntry;
 
 import android.content.Context;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -36,11 +37,10 @@ public class ContactTileView extends RelativeLayout {
     private Uri mLookupUri;
     private ImageView mPhoto;
     private TextView mName;
-    private ContactPhotoManager mPhotoManager;
+    private ContactPhotoManager mPhotoManager = null;
 
     public ContactTileView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mPhotoManager = ContactPhotoManager.createContactPhotoManager(context);
     }
 
     @Override
@@ -50,22 +50,25 @@ public class ContactTileView extends RelativeLayout {
         mPhoto = (ImageView) findViewById(R.id.contact_tile_image);
     }
 
-    public void loadFromContact(StrequentEntry entry) {
+    public void setPhotoManager(ContactPhotoManager photoManager) {
+        mPhotoManager = photoManager;
+    }
+
+    public void loadFromContact(ContactEntry entry) {
         if (entry != null) {
             mName.setText(entry.name);
             mLookupUri = entry.lookupKey;
+            mPhoto.setImageBitmap(null);
+            setVisibility(View.VISIBLE);
 
-            if (mPhotoManager != null) mPhotoManager.loadPhoto(mPhoto, entry.photoUri);
-            else Log.w(TAG, "contactPhotoManger not set");
-
+            if (mPhotoManager != null) {
+                mPhotoManager.loadPhoto(mPhoto, entry.photoUri);
+            } else {
+                Log.w(TAG, "contactPhotoManager not set");
+            }
         } else {
-            Log.w(TAG, "loadFromContact received null formal");
-            throw new IllegalArgumentException();
+            setVisibility(View.INVISIBLE);
         }
-    }
-
-    public void setContactPhotoManager(ContactPhotoManager manager) {
-        mPhotoManager = manager;
     }
 
     public Uri getLookupUri() {

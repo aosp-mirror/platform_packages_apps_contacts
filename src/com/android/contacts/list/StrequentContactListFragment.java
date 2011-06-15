@@ -17,6 +17,7 @@ package com.android.contacts.list;
 
 import com.android.contacts.R;
 import com.android.contacts.StrequentMetaDataLoader;
+import com.android.contacts.list.ContactTileAdapter.DisplayType;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -53,7 +54,8 @@ public class StrequentContactListFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        mAdapter = new ContactTileAdapter(activity, mAdapterListener, NUM_COLS);
+        mAdapter = new ContactTileAdapter(activity, mAdapterListener,
+                NUM_COLS, DisplayType.STREQUENT);
         mContext = activity;
     }
 
@@ -73,9 +75,7 @@ public class StrequentContactListFragment extends Fragment {
     @Override
     public void onStart(){
         super.onStart();
-        // Commenting this out temporarily to fix a crash on load
-        // TODO: Bring this back
-//        getLoaderManager().restartLoader(LOADER_STREQUENT, null, mStrequentLoaderListener);
+        getLoaderManager().restartLoader(LOADER_STREQUENT, null, mStrequentLoaderListener);
     }
 
     /**
@@ -91,13 +91,13 @@ public class StrequentContactListFragment extends Fragment {
 
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-            mAdapter.setCursor(data);
+            mAdapter.loadFromCursor(data);
             mListView.setAdapter(mAdapter);
         }
 
         @Override
         public void onLoaderReset(Loader<Cursor> loader) {
-            mAdapter.setCursor(null);
+            mAdapter.loadFromCursor(null);
         }
     };
 
