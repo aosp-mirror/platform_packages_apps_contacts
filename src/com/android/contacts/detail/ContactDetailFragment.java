@@ -23,6 +23,7 @@ import com.android.contacts.ContactOptionsActivity;
 import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.GroupMetaData;
+import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
 import com.android.contacts.TypePrecedence;
 import com.android.contacts.editor.SelectAccountDialogFragment;
@@ -120,6 +121,7 @@ public class ContactDetailFragment extends Fragment implements
     private View mView;
     private Uri mLookupUri;
     private Listener mListener;
+    private NfcHandler mNfcHandler;
 
     private ContactLoader.Result mContactData;
     private ContactDetailHeaderView mHeaderView;
@@ -192,12 +194,25 @@ public class ContactDetailFragment extends Fragment implements
         if (savedInstanceState != null) {
             mLookupUri = savedInstanceState.getParcelable(KEY_CONTACT_URI);
         }
+        mNfcHandler = new NfcHandler(this);
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(KEY_CONTACT_URI, mLookupUri);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mNfcHandler.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mNfcHandler.onResume();
     }
 
     @Override
