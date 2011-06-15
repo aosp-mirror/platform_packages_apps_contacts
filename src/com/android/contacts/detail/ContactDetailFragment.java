@@ -26,6 +26,7 @@ import com.android.contacts.GroupMetaData;
 import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
 import com.android.contacts.TypePrecedence;
+import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
 import com.android.contacts.editor.SelectAccountDialogFragment;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.EditType;
@@ -107,7 +108,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ContactDetailFragment extends Fragment implements
+public class ContactDetailFragment extends Fragment implements FragmentKeyListener,
         OnItemClickListener, OnItemLongClickListener, SelectAccountDialogFragment.Listener {
 
     private static final String TAG = "ContactDetailFragment";
@@ -250,8 +251,24 @@ public class ContactDetailFragment extends Fragment implements
         return mView;
     }
 
+    protected View inflate(int resource, ViewGroup root, boolean attachToRoot) {
+        return mInflater.inflate(resource, root, attachToRoot);
+    }
+
     public void setListener(Listener value) {
         mListener = value;
+    }
+
+    protected Context getContext() {
+        return mContext;
+    }
+
+    protected Listener getListener() {
+        return mListener;
+    }
+
+    protected ContactLoader.Result getContactData() {
+        return mContactData;
     }
 
     public Uri getUri() {
@@ -289,7 +306,7 @@ public class ContactDetailFragment extends Fragment implements
         }
     }
 
-    private void bindData() {
+    protected void bindData() {
         if (mView == null) {
             return;
         }
@@ -986,11 +1003,7 @@ public class ContactDetailFragment extends Fragment implements
             if (mHeaderView != null) {
                 return mHeaderView;
             }
-            mHeaderView = (ContactDetailHeaderView) mInflater.inflate(
-                    R.layout.contact_detail_header_view_list_item, parent, false);
-            mHeaderView.setListener(mHeaderViewListener);
-            mHeaderView.loadData(mContactData);
-            return mHeaderView;
+            return createNewHeaderView(parent);
         }
 
         private View getSeparatorEntryView(View convertView, ViewGroup parent) {
@@ -1172,6 +1185,16 @@ public class ContactDetailFragment extends Fragment implements
         }
     }
 
+    /**
+     * Returns a new header view for the top of the list of contact details.
+     */
+    protected View createNewHeaderView(ViewGroup parent) {
+        mHeaderView = (ContactDetailHeaderView) inflate(
+                R.layout.contact_detail_header_view_list_item, parent, false);
+        mHeaderView.loadData(mContactData);
+        return mHeaderView;
+    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
         inflater.inflate(R.menu.view_contact, menu);
@@ -1336,6 +1359,7 @@ public class ContactDetailFragment extends Fragment implements
         return true;
     }
 
+    @Override
     public boolean handleKeyDown(int keyCode) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_CALL: {
@@ -1414,23 +1438,17 @@ public class ContactDetailFragment extends Fragment implements
         }
     };
 
-    private ContactDetailHeaderView.Listener mHeaderViewListener =
-            new ContactDetailHeaderView.Listener() {
-        @Override
-        public void onDisplayNameClick(View view) {
-        }
-
-        @Override
-        public void onPhotoClick(View view) {
-        }
-    };
-
     public static interface Listener {
         /**
          * Contact was not found, so somehow close this fragment. This is raised after a contact
          * is removed via Menu/Delete
          */
         public void onContactNotFound();
+
+        /**
+         * This contact's details have been loaded.
+         */
+        public void onDetailsLoaded(ContactLoader.Result result);
 
         /**
          * User decided to go to Edit-Mode

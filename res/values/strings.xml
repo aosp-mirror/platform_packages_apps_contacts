@@ -78,6 +78,12 @@
          creating a new contact. This string represents the built in way to create the contact. -->
     <string name="insertContactDescription">Create contact</string>
 
+    <!-- The tab label for the contact detail activity that displays information about the contact [CHAR LIMIT=11] -->
+    <string name="contactDetailAbout">About</string>
+
+    <!-- The tab label for the contact detail activity that displays information about the contact [CHAR LIMIT=11] -->
+    <string name="contactDetailUpdates">Updates</string>
+
     <!-- Hint text in the search box when the user hits the Search key while in the contacts app -->
     <string name="searchHint">Search contacts</string>
 

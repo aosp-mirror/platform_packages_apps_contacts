@@ -9,7 +9,9 @@ LOCAL_STATIC_JAVA_LIBRARIES := \
     com.android.phone.common \
     com.android.vcard \
     android-common \
-    guava
+    guava \
+    android-support-v13 \
+    android-support-v4
 
 LOCAL_PACKAGE_NAME := Contacts
 LOCAL_CERTIFICATE := shared

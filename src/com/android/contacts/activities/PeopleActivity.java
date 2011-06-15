@@ -16,6 +16,7 @@
 
 package com.android.contacts.activities;
 
+import com.android.contacts.ContactLoader;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
@@ -675,6 +676,11 @@ public class PeopleActivity extends ContactsActivity
     private class ContactDetailFragmentListener implements ContactDetailFragment.Listener {
         @Override
         public void onContactNotFound() {
+            // Nothing needs to be done here
+        }
+
+        @Override
+        public void onDetailsLoaded(ContactLoader.Result result) {
             // Nothing needs to be done here
         }
 

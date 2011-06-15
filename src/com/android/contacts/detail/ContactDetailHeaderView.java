@@ -56,6 +56,7 @@ import android.widget.Toast;
  * Header for displaying a title bar with contact info. You
  * can bind specific values by calling
  * {@link ContactDetailHeaderView#loadData(com.android.contacts.ContactLoader.Result)}
+ * TODO: Refactor to use {@link ContactDetailDisplayUtils}
  */
 public class ContactDetailHeaderView extends FrameLayout
         implements View.OnClickListener, View.OnLongClickListener {

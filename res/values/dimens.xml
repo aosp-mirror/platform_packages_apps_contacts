@@ -70,6 +70,21 @@
     <!-- Font size for the entries in a spinner in the contact editor. -->
     <dimen name="editor_field_spinner_text_size">10sp</dimen>
 
+    <!-- Height of the tab carousel on the contact detail page -->
+    <dimen name="detail_tab_carousel_height">150dip</dimen>
+
+    <!-- Width of a tab in the tab carousel on the contact detail page -->
+    <dimen name="detail_tab_carousel_tab_width">240dip</dimen>
+
+    <!-- Height of the tab text label in the tab carousel on the contact detail page -->
+    <dimen name="detail_tab_carousel_tab_label_height">40dip</dimen>
+
+    <!-- Vertical margin of the text within the update tab in the tab carousel -->
+    <dimen name="detail_update_tab_vertical_margin">20dip</dimen>
+
+    <!-- Left and right padding of the text within the update tab in the tab carousel -->
+    <dimen name="detail_update_tab_side_padding">10dip</dimen>
+
     <!-- Left and right padding for a contact detail item -->
     <dimen name="detail_item_icon_margin">10dip</dimen>
 
