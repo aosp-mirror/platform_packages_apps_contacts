@@ -16,7 +16,6 @@
 
 package com.android.contacts;
 
-import com.android.contacts.format.FormatUtils;
 import com.android.internal.telephony.CallerInfo;
 
 import android.app.ListActivity;
@@ -26,18 +25,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CallLog;
 import android.provider.CallLog.Calls;
 import android.provider.Contacts.Intents.Insert;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.PhoneLookup;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
-import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.view.KeyEvent;
@@ -60,9 +56,8 @@ public class CallDetailActivity extends ListActivity implements
         AdapterView.OnItemClickListener {
     private static final String TAG = "CallDetail";
 
-    private TextView mNameView;
-    private TextView mCallTypeView;
-    private TextView mNumberView;
+    /** The views representing the details of a phone call. */
+    PhoneCallDetailsViews mPhoneCallDetailsViews;
     private TextView mCallTimeView;
     private TextView mCallDurationView;
     private View mCallActionView;
@@ -118,9 +113,7 @@ public class CallDetailActivity extends ListActivity implements
         mInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         mResources = getResources();
 
-        mNameView = (TextView) findViewById(R.id.name);
-        mCallTypeView = (TextView) findViewById(R.id.call_type);
-        mNumberView = (TextView) findViewById(R.id.number);
+        mPhoneCallDetailsViews = new PhoneCallDetailsViews(getWindow().getDecorView());
         mCallActionView = findViewById(R.id.call);
         mContactPhotoView = (ImageView) findViewById(R.id.contact_photo);
         mContactBackgroundView = (ImageView) findViewById(R.id.contact_background);
@@ -189,46 +182,18 @@ public class CallDetailActivity extends ListActivity implements
                     mCallDurationView.setText(formatDuration(duration));
                 }
 
-                CharSequence shortDateText =
-                        DateUtils.getRelativeTimeSpanString(date,
-                                System.currentTimeMillis(),
-                                DateUtils.MINUTE_IN_MILLIS,
-                                DateUtils.FORMAT_ABBREV_RELATIVE);
-
-                CharSequence callTypeText = "";
-                switch (callType) {
-                    case Calls.INCOMING_TYPE:
-                        callTypeText = getString(R.string.type_incoming);
-                        break;
-
-                    case Calls.OUTGOING_TYPE:
-                        callTypeText = getString(R.string.type_outgoing);
-                        break;
-
-                    case Calls.MISSED_TYPE:
-                        callTypeText = getString(R.string.type_missed);
-                        break;
-                }
-
-                mCallTypeView.setText(
-                        getString(R.string.call_type_and_date,
-                                FormatUtils.applyStyleToSpan(Typeface.BOLD,
-                                        callTypeText, 0, callTypeText.length(),
-                                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE),
-                                shortDateText));
-
                 long photoId = 0L;
                 CharSequence nameText = "";
-                CharSequence numberText = "";
+                final CharSequence numberText;
+                int numberType = 0;
+                CharSequence numberLabel = "";
                 if (mNumber.equals(CallerInfo.UNKNOWN_NUMBER) ||
                         mNumber.equals(CallerInfo.PRIVATE_NUMBER)) {
-                    nameText = getString(mNumber.equals(CallerInfo.PRIVATE_NUMBER)
+                    numberText = getString(mNumber.equals(CallerInfo.PRIVATE_NUMBER)
                             ? R.string.private_num : R.string.unknown);
-                    numberText = "";
                     mCallActionView.setVisibility(View.GONE);
                 } else {
                     // Perform a reverse-phonebook lookup to find the PERSON_ID
-                    CharSequence callLabel = null;
                     Uri personUri = null;
                     Uri phoneUri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI,
                             Uri.encode(mNumber));
@@ -245,15 +210,15 @@ public class CallDetailActivity extends ListActivity implements
                                     phonesCursor.getString(COLUMN_INDEX_NUMBER),
                                     phonesCursor.getString(COLUMN_INDEX_NORMALIZED_NUMBER),
                                     countryIso);
-                            callLabel = Phone.getTypeLabel(getResources(),
-                                    phonesCursor.getInt(COLUMN_INDEX_TYPE),
-                                    phonesCursor.getString(COLUMN_INDEX_LABEL));
+                            numberType = phonesCursor.getInt(COLUMN_INDEX_TYPE);
+                            numberLabel = phonesCursor.getString(COLUMN_INDEX_LABEL);
                         } else {
                             mNumber = PhoneNumberUtils.formatNumber(mNumber, countryIso);
                         }
                     } finally {
                       if (phonesCursor != null) phonesCursor.close();
                     }
+                    numberText = mNumber;
 
                     mCallActionView.setVisibility(View.VISIBLE);
                     mCallActionView.setOnClickListener(new View.OnClickListener() {
@@ -264,15 +229,6 @@ public class CallDetailActivity extends ListActivity implements
                             startActivity(callIntent);
                         }
                     });
-
-                    if (callLabel != null) {
-                        numberText = FormatUtils.applyStyleToSpan(Typeface.BOLD,
-                                callLabel + " " + mNumber, 0,
-                                callLabel.length(),
-                                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    } else {
-                        numberText = mNumber;
-                    }
 
                     // Build list of various available actions
                     List<ViewEntry> actions = new ArrayList<ViewEntry>();
@@ -299,8 +255,8 @@ public class CallDetailActivity extends ListActivity implements
                     ViewAdapter adapter = new ViewAdapter(this, actions);
                     setListAdapter(adapter);
                 }
-                mNameView.setText(nameText);
-                mNumberView.setText(numberText);
+                mPhoneCallDetailsViews.setPhoneCallDetails(getResources(), date, callType, nameText,
+                        numberText, numberType, numberLabel);
 
                 loadContactPhotos(photoId);
             } else {
