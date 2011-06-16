@@ -35,6 +35,14 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+  * This class implements sharing the currently displayed
+  * contact to another device using NFC. NFC sharing is only
+  * enabled when the activity is in the foreground and resumed.
+  * When an NFC link is established, {@link #createMessage}
+  * will be called to create the data to be sent over the link,
+  * which is a vCard in this case.
+  */
 public class NfcHandler implements NfcAdapter.NdefPushCallback {
     private NfcAdapter mNfcAdapter;
     private ContactDetailFragment mContactFragment;
@@ -76,7 +84,6 @@ public class NfcHandler implements NfcAdapter.NdefPushCallback {
             int r;
             try {
                 InputStream vcardInputStream = resolver.openInputStream(shareUri);
-                vcardInputStream = resolver.openInputStream(shareUri);
                 while ((r = vcardInputStream.read(buffer)) > 0) {
                     ndefBytes.write(buffer, 0, r);
                 }
@@ -96,6 +103,5 @@ public class NfcHandler implements NfcAdapter.NdefPushCallback {
 
     @Override
     public void onMessagePushed() {
-        // We may add a sound/notification here at some point.
     }
 }
