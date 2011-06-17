@@ -281,7 +281,7 @@
     </style>
 
     <style name="ContactTileRegularText">
-        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_width">160dip</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:background">@color/contact_tile_regular_text</item>

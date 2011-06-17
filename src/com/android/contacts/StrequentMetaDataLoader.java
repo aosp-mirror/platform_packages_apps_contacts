@@ -28,14 +28,14 @@ public final class StrequentMetaDataLoader extends CursorLoader {
     public final static int DISPLAY_NAME = 1;
     public final static int STARRED = 2;
     public final static int PHOTO_URI = 3;
-    public final static int PHOTO_ID = 4;
+    public final static int LOOKUP_KEY = 4;
 
     private static final String[] COLUMNS = new String[] {
         Contacts._ID,
         Contacts.DISPLAY_NAME,
         Contacts.STARRED,
         Contacts.PHOTO_URI,
-        Contacts.PHOTO_ID
+        Contacts.LOOKUP_KEY
     };
 
     public StrequentMetaDataLoader(Context context) {
