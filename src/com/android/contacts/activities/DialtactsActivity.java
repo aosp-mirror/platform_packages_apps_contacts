@@ -305,6 +305,8 @@ public class DialtactsActivity extends Activity {
         } else if (isDialIntent(newIntent)) {
             setupDialUri(newIntent);
         }
+        // Fill in a phone number again.
+        mDialpadFragment.resolveIntent();
     }
 
     /** Returns true if the given intent contains a phone number to populate the dialer with */
