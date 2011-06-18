@@ -73,7 +73,9 @@ public class StrequentContactListFragment extends Fragment {
     @Override
     public void onStart(){
         super.onStart();
-        getLoaderManager().restartLoader(LOADER_STREQUENT, null, mStrequentLoaderListener);
+        // Commenting this out temporarily to fix a crash on load
+        // TODO: Bring this back
+//        getLoaderManager().restartLoader(LOADER_STREQUENT, null, mStrequentLoaderListener);
     }
 
     /**
