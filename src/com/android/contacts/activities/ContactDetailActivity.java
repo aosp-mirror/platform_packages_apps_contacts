@@ -46,6 +46,8 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -103,6 +105,7 @@ public class ContactDetailActivity extends ContactsActivity {
         if (fragment instanceof ContactDetailAboutFragment) {
             mAboutFragment = (ContactDetailAboutFragment) fragment;
             mAboutFragment.setListener(mFragmentListener);
+            mAboutFragment.setVerticalScrollListener(mVerticalScrollListener);
             mAboutFragment.loadUri(mUri);
         } else if (fragment instanceof ContactDetailUpdatesFragment) {
             mUpdatesFragment = (ContactDetailUpdatesFragment) fragment;
@@ -215,7 +218,8 @@ public class ContactDetailActivity extends ContactsActivity {
             if (mViewPager.isFakeDragging()) {
                 return;
             }
-            int x = (int) ((position + positionOffset) * mTabCarousel.getAllowedScrollLength());
+            int x = (int) ((position + positionOffset) *
+                    mTabCarousel.getAllowedHorizontalScrollLength());
             mTabCarousel.scrollTo(x, 0);
         }
 
@@ -267,6 +271,31 @@ public class ContactDetailActivity extends ContactsActivity {
             // The user selected a tab, so update the {@link ViewPager}
             mViewPager.setCurrentItem(position);
         }
+    };
+
+    private OnScrollListener mVerticalScrollListener = new OnScrollListener() {
+
+        @Override
+        public void onScroll(
+                AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            // Only re-position the tab carousel vertically if the FIRST item is still visible on
+            // the screen, otherwise the carousel should be in the correct place (pinned at the
+            // top).
+            if (firstVisibleItem != 0) {
+                return;
+            }
+            View topView = view.getChildAt(firstVisibleItem);
+            if (topView == null) {
+                return;
+            }
+            int amtToScroll = Math.max((int) view.getChildAt(firstVisibleItem).getY(),
+                    -mTabCarousel.getAllowedVerticalScrollLength());
+            mTabCarousel.setY(amtToScroll);
+        }
+
+        @Override
+        public void onScrollStateChanged(AbsListView view, int scrollState) {}
+
     };
 
     /**

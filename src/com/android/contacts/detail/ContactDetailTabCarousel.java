@@ -55,7 +55,8 @@ public class ContactDetailTabCarousel extends HorizontalScrollView
 
     private View[] mTabs = new View[2];
 
-    private int mAllowedScrollLength;
+    private int mAllowedHorizontalScrollLength = Integer.MIN_VALUE;
+    private int mAllowedVerticalScrollLength = Integer.MIN_VALUE;
 
     /**
      * Interface for callbacks invoked when the user interacts with the carousel.
@@ -92,10 +93,13 @@ public class ContactDetailTabCarousel extends HorizontalScrollView
     }
 
     /**
-     * Returns the number of pixels that this view can be scrolled.
+     * Returns the number of pixels that this view can be scrolled horizontally.
      */
-    public int getAllowedScrollLength() {
-        if (mAllowedScrollLength == 0) {
+    public int getAllowedHorizontalScrollLength() {
+        // We can't compute this in the constructor because the view widths are 0, so do the
+        // calculation only when this getter method is called (all the views should be created
+        // by this time).
+        if (mAllowedHorizontalScrollLength == Integer.MIN_VALUE) {
             // Find the total length of two tabs side-by-side
             int totalLength = 0;
             for (int i=0; i < mTabs.length; i++) {
@@ -103,9 +107,27 @@ public class ContactDetailTabCarousel extends HorizontalScrollView
             }
             // Find the allowed scrolling length by subtracting the current visible screen width
             // from the total length of the tabs.
-            mAllowedScrollLength = totalLength - getWidth();
+            mAllowedHorizontalScrollLength = totalLength - getWidth();
         }
-        return mAllowedScrollLength;
+        return mAllowedHorizontalScrollLength;
+    }
+
+    /**
+     * Returns the number of pixels that this view can be scrolled vertically while still allowing
+     * the tab labels to still show.
+     */
+    public int getAllowedVerticalScrollLength() {
+        if (mAllowedVerticalScrollLength == Integer.MIN_VALUE) {
+            // Find the total height of a tab
+            View aboutView = findViewById(R.id.tab_about);
+            int totalHeight = aboutView.getHeight();
+            // Find the height of a tab label
+            TextView aboutTab = (TextView) aboutView.findViewById(R.id.label);
+            int labelHeight = aboutTab.getHeight();
+            // Find the allowed scrolling length by subtracting the two values
+            mAllowedVerticalScrollLength = totalHeight - labelHeight;
+        }
+        return mAllowedVerticalScrollLength;
     }
 
     /**

@@ -94,6 +94,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
@@ -120,6 +121,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
     private Context mContext;
     private View mView;
+    private OnScrollListener mVerticalScrollListener;
     private Uri mLookupUri;
     private Listener mListener;
     private NfcHandler mNfcHandler;
@@ -235,6 +237,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
         mListView.setOnItemClickListener(this);
         mListView.setOnItemLongClickListener(this);
+        mListView.setOnScrollListener(mVerticalScrollListener);
 
         // Don't set it to mListView yet.  We do so later when we bind the adapter.
         mEmptyView = mView.findViewById(android.R.id.empty);
@@ -269,6 +272,10 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
     protected ContactLoader.Result getContactData() {
         return mContactData;
+    }
+
+    public void setVerticalScrollListener(OnScrollListener listener) {
+        mVerticalScrollListener = listener;
     }
 
     public Uri getUri() {

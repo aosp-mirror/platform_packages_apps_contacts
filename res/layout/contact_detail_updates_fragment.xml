@@ -28,6 +28,7 @@
         android:textColor="?android:attr/textColorSecondary"
         android:paddingLeft="10dip"
         android:paddingRight="10dip"
-        android:paddingTop="10dip"/>
+        android:paddingTop="@dimen/detail_tab_carousel_height"
+        android:layout_marginTop="10dip"/>
 </LinearLayout>
 
