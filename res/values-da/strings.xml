@@ -18,8 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="sharedUserLabel" msgid="7965035505237135241">"Android-kerneprogrammer"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"Telefon"</string>
-    <!-- no translation found for people (1048457247435785074) -->
-    <skip />
+    <string name="people" msgid="1048457247435785074">"Personer"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kontakter"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Direkte opkald"</string>
@@ -48,6 +47,8 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Send sms til kontakt"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Benyt e-mail som standard"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Opdel"</string>
+    <!-- no translation found for menu_editGroup (8311763560942217614) -->
+    <skip />
     <string name="menu_renameGroup" msgid="2798886925154156075">"Omdøb gruppe"</string>
     <string name="menu_deleteGroup" msgid="644571524292675446">"Slet gruppe"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Ny"</string>
@@ -288,7 +289,7 @@
     <string name="call_disambig_title" msgid="1911302597959335178">"Ring ved hjælp af"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Send sms ved hjælp af"</string>
     <string name="make_primary" msgid="5829291915305113983">"Husk dette valg"</string>
-    <string name="quickcontact_missing_app" msgid="4600366393134289038">"Der blev ikke fundet noget program til denne handling"</string>
+    <string name="quickcontact_missing_app" msgid="4600366393134289038">"Der blev ikke fundet nogen applikation til denne handling"</string>
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Husk dette valg"</string>
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"Ukendte"</string>
     <string name="quickcontact_no_data" msgid="2098000859125253675">"Ingen data"</string>
@@ -296,6 +297,7 @@
     <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"Standardindstillinger for denne kontakt:"</string>
     <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"Ryd"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Konti"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontaktpersoner, der skal vises"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Import/eksport"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importer/eksporter kontakter"</string>
     <string name="menu_share" msgid="8746849630474240344">"Del kontaktperson"</string>
@@ -422,7 +424,7 @@
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Listen over kontaktpersoner opdateres for at afspejle det nye sprog."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Listen over kontaktpersoner opdateres."</string>
     <string name="upgrade_out_of_memory" msgid="6153384328042175667">"Kontaktpersoner opgraderes."\n\n" Opgraderingsprocessen kræver ca. <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> Mb intern hukommelse."\n\n"Vælg én af følgende muligheder:"</string>
-    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Afinstaller nogle programmer"</string>
+    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Afinstaller nogle applikationer"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Prøv at opgradere igen"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"Søger ..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Vis valgte"</string>
@@ -489,6 +491,8 @@
     <string name="create_group_item_label" msgid="5218022006186243310">"[Opret en ny gruppe]"</string>
     <string name="rename_group_dialog_title" msgid="3765299704290513289">"Omdøb gruppe"</string>
     <string name="delete_group_dialog_title" msgid="7368429698398624427">"Slet gruppe"</string>
+    <!-- no translation found for num_groups_in_account:one (2944819210288517794) -->
+    <!-- no translation found for num_groups_in_account:other (1276758425904917367) -->
     <string name="delete_group_dialog_message" msgid="295063284548750881">"Er du sikker på, at du vil slette gruppen \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Selve kontakterne vil ikke blive slettet)."</string>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Indtast kontaktpersonens navn, før du forbinder med en anden kontakt."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Samlet kontaktperson"</string>
@@ -496,4 +500,7 @@
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Kasser ændringer"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Er du sikker på, at du vil kassere dine ændringer?"</string>
     <string name="discard" msgid="1234315037371251414">"Kasser"</string>
+    <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
+    <!-- no translation found for profile_display_name (4179677761341328409) -->
+    <skip />
 </resources>

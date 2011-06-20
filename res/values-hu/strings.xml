@@ -18,8 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="sharedUserLabel" msgid="7965035505237135241">"Alap Android-alkalmazások"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"Telefon"</string>
-    <!-- no translation found for people (1048457247435785074) -->
-    <skip />
+    <string name="people" msgid="1048457247435785074">"Személyek"</string>
     <string name="contactsList" msgid="8661624236494819731">"Címtár"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Névjegy"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Közvetlen tárcsázás"</string>
@@ -48,6 +47,8 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"SMS küldése ismerősnek"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Legyen ez az alapértelmezett e-mail cím"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Szétválasztás"</string>
+    <!-- no translation found for menu_editGroup (8311763560942217614) -->
+    <skip />
     <string name="menu_renameGroup" msgid="2798886925154156075">"Csoport átnevezése"</string>
     <string name="menu_deleteGroup" msgid="644571524292675446">"Csoport törlése"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Új"</string>
@@ -296,6 +297,7 @@
     <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"A névjegy alapbeállításai:"</string>
     <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"Törlés"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Fiókok"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Megjelenítendő névjegyek"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Importálás/exportálás"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Névjegyek importálása/exportálása"</string>
     <string name="menu_share" msgid="8746849630474240344">"Névjegy megosztása"</string>
@@ -489,6 +491,8 @@
     <string name="create_group_item_label" msgid="5218022006186243310">"[Új csoport létrehozása]"</string>
     <string name="rename_group_dialog_title" msgid="3765299704290513289">"Csoport átnevezése"</string>
     <string name="delete_group_dialog_title" msgid="7368429698398624427">"Csoport törlése"</string>
+    <!-- no translation found for num_groups_in_account:one (2944819210288517794) -->
+    <!-- no translation found for num_groups_in_account:other (1276758425904917367) -->
     <string name="delete_group_dialog_message" msgid="295063284548750881">"Biztosan törölni szeretné a(z) \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" csoportot? (Maguk a névjegyek nem kerülnek törlésre.)"</string>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Kérjük, adja meg az ismerős nevét, mielőtt összekapcsolná egy másik ismerősével."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Összekapcsolt névjegy"</string>
@@ -496,4 +500,7 @@
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Módosítások elvetése"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Biztosan elveti a módosításokat?"</string>
     <string name="discard" msgid="1234315037371251414">"Elvetés"</string>
+    <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
+    <!-- no translation found for profile_display_name (4179677761341328409) -->
+    <skip />
 </resources>

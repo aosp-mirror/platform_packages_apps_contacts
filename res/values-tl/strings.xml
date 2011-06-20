@@ -18,8 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="sharedUserLabel" msgid="7965035505237135241">"Android Core Apps"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"Telepono"</string>
-    <!-- no translation found for people (1048457247435785074) -->
-    <skip />
+    <string name="people" msgid="1048457247435785074">"Mga Tao"</string>
     <string name="contactsList" msgid="8661624236494819731">"Mga Contact"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Contact"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Direktang pag-dial"</string>
@@ -48,6 +47,8 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Mag-text sa contact"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Gumawa ng default na email"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Hiwalay"</string>
+    <!-- no translation found for menu_editGroup (8311763560942217614) -->
+    <skip />
     <string name="menu_renameGroup" msgid="2798886925154156075">"Muling pangalanan ang pangkat"</string>
     <string name="menu_deleteGroup" msgid="644571524292675446">"Magtanggal ng pangkat"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Bago"</string>
@@ -296,6 +297,7 @@
     <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"Default na itinakda sa contact na ito."</string>
     <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"I-clear"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Mga Account"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Mga contact na ipapakita"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Mag-import/Mag-export"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Mag-import/Mag-export ng mga contact"</string>
     <string name="menu_share" msgid="8746849630474240344">"Magbahagi ng contact"</string>
@@ -489,6 +491,8 @@
     <string name="create_group_item_label" msgid="5218022006186243310">"[Lumikha ng bagong pangkat]"</string>
     <string name="rename_group_dialog_title" msgid="3765299704290513289">"Palitan ng pangalan ang pangkat"</string>
     <string name="delete_group_dialog_title" msgid="7368429698398624427">"Tanggalin ang pangkat"</string>
+    <!-- no translation found for num_groups_in_account:one (2944819210288517794) -->
+    <!-- no translation found for num_groups_in_account:other (1276758425904917367) -->
     <string name="delete_group_dialog_message" msgid="295063284548750881">"Sigurado ka bang gusto mong tanggalin ang pangkat na \'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\'? (Hindi tatanggalin ang mga mismong contact.)"</string>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Mangyaring magpasok ng pangalan ng contact bago sumali sa ibang contact."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Sumaling contact"</string>
@@ -496,4 +500,7 @@
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Itapon ang mga pagbabago"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Nais mo ba talagang itapon ang iyong mga pagbabago?"</string>
     <string name="discard" msgid="1234315037371251414">"Itapon"</string>
+    <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
+    <!-- no translation found for profile_display_name (4179677761341328409) -->
+    <skip />
 </resources>

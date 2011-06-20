@@ -18,8 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="sharedUserLabel" msgid="7965035505237135241">"Aplikacje główne systemu Android"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"Telefon"</string>
-    <!-- no translation found for people (1048457247435785074) -->
-    <skip />
+    <string name="people" msgid="1048457247435785074">"Osoby"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kontakty"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Telefon do osoby"</string>
@@ -48,6 +47,8 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Wyślij tekst do kontaktu"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Ustaw jako domyślny adres e-mail"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Podziel"</string>
+    <!-- no translation found for menu_editGroup (8311763560942217614) -->
+    <skip />
     <string name="menu_renameGroup" msgid="2798886925154156075">"Zmień nazwę grupy"</string>
     <string name="menu_deleteGroup" msgid="644571524292675446">"Usuń grupę"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Nowy"</string>
@@ -296,6 +297,7 @@
     <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"Wartości domyślne dla tego kontaktu:"</string>
     <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"Wyczyść"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Konta"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakty do wyświetlenia"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Importuj/eksportuj"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importuj/eksportuj kontakty"</string>
     <string name="menu_share" msgid="8746849630474240344">"Udostępnij kontakt"</string>
@@ -489,6 +491,8 @@
     <string name="create_group_item_label" msgid="5218022006186243310">"[Utwórz nową grupę]"</string>
     <string name="rename_group_dialog_title" msgid="3765299704290513289">"Zmień nazwę grupy"</string>
     <string name="delete_group_dialog_title" msgid="7368429698398624427">"Usuń grupę"</string>
+    <!-- no translation found for num_groups_in_account:one (2944819210288517794) -->
+    <!-- no translation found for num_groups_in_account:other (1276758425904917367) -->
     <string name="delete_group_dialog_message" msgid="295063284548750881">"Czy na pewno chcesz usunąć grupę „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>”? (Kontakty nie zostaną usunięte)."</string>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Wprowadź w kontakcie imię i nazwisko, zanim połączysz go z innym kontaktem."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Łączony kontakt"</string>
@@ -496,4 +500,7 @@
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Odrzuć zmiany"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Czy chcesz odrzucić wprowadzone zmiany?"</string>
     <string name="discard" msgid="1234315037371251414">"Odrzuć"</string>
+    <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
+    <!-- no translation found for profile_display_name (4179677761341328409) -->
+    <skip />
 </resources>

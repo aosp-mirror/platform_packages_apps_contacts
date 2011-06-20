@@ -18,8 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="sharedUserLabel" msgid="7965035505237135241">"Ứng dụng Lõi Android"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"Điện thoại"</string>
-    <!-- no translation found for people (1048457247435785074) -->
-    <skip />
+    <string name="people" msgid="1048457247435785074">"Mọi người"</string>
     <string name="contactsList" msgid="8661624236494819731">"Danh bạ"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Liên hệ"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Quay số trực tiếp"</string>
@@ -48,6 +47,8 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Nhắn tin tới liên hệ"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Đặt làm email mặc định"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Tách"</string>
+    <!-- no translation found for menu_editGroup (8311763560942217614) -->
+    <skip />
     <string name="menu_renameGroup" msgid="2798886925154156075">"Đổi tên nhóm"</string>
     <string name="menu_deleteGroup" msgid="644571524292675446">"Xóa nhóm"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Mới"</string>
@@ -296,6 +297,7 @@
     <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"Mặc định được đặt cho địa chỉ liên hệ này:"</string>
     <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"Xóa"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Tài khoản"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Danh sách liên hệ để hiển thị"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Nhập/Xuất"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Nhập/Xuất danh bạ"</string>
     <string name="menu_share" msgid="8746849630474240344">"Chia sẻ địa chỉ liên hệ"</string>
@@ -489,6 +491,8 @@
     <string name="create_group_item_label" msgid="5218022006186243310">"[Tạo nhóm mới]"</string>
     <string name="rename_group_dialog_title" msgid="3765299704290513289">"Đổi tên nhóm"</string>
     <string name="delete_group_dialog_title" msgid="7368429698398624427">"Xóa nhóm"</string>
+    <!-- no translation found for num_groups_in_account:one (2944819210288517794) -->
+    <!-- no translation found for num_groups_in_account:other (1276758425904917367) -->
     <string name="delete_group_dialog_message" msgid="295063284548750881">"Bạn có chắc chắn muốn xóa nhóm \'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\'? (Danh bạ sẽ không bị xóa)."</string>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Vui lòng nhập tên liên hệ trước khi kết hợp với một địa chỉ liên hệ khác."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Địa chỉ liên hệ đã kết hợp"</string>
@@ -496,4 +500,7 @@
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Hủy thay đổi"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Bạn muốn hủy thay đổi của mình?"</string>
     <string name="discard" msgid="1234315037371251414">"Hủy"</string>
+    <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
+    <!-- no translation found for profile_display_name (4179677761341328409) -->
+    <skip />
 </resources>

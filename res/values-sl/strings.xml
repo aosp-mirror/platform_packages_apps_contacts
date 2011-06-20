@@ -18,8 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="sharedUserLabel" msgid="7965035505237135241">"Osnovni programi Android"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"Telefon"</string>
-    <!-- no translation found for people (1048457247435785074) -->
-    <skip />
+    <string name="people" msgid="1048457247435785074">"Ljudje"</string>
     <string name="contactsList" msgid="8661624236494819731">"Stiki"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Vizitka"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Bližnjice za klicanje"</string>
@@ -48,6 +47,8 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Pošlji SMS stiku"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Nastavi kot privzeti e-poštni naslov"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Razdruži"</string>
+    <!-- no translation found for menu_editGroup (8311763560942217614) -->
+    <skip />
     <string name="menu_renameGroup" msgid="2798886925154156075">"Preimenovanje skupine"</string>
     <string name="menu_deleteGroup" msgid="644571524292675446">"Izbriši skupino"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Nov"</string>
@@ -296,6 +297,7 @@
     <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"Privzete nastavitve za ta stik:"</string>
     <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"Počisti"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Računi"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Stiki, ki naj bodo prikazani"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Uvozi/izvozi"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Uvozi/izvozi stike"</string>
     <string name="menu_share" msgid="8746849630474240344">"Delite stik"</string>
@@ -489,6 +491,8 @@
     <string name="create_group_item_label" msgid="5218022006186243310">"[Ustvarjanje nove skupine]"</string>
     <string name="rename_group_dialog_title" msgid="3765299704290513289">"Preimenovanje skupine"</string>
     <string name="delete_group_dialog_title" msgid="7368429698398624427">"Izbris skupine"</string>
+    <!-- no translation found for num_groups_in_account:one (2944819210288517794) -->
+    <!-- no translation found for num_groups_in_account:other (1276758425904917367) -->
     <string name="delete_group_dialog_message" msgid="295063284548750881">"Res želite izbrisati skupino »<xliff:g id="GROUP_LABEL">%1$s</xliff:g>«? (Stiki ne bodo izbrisani.)"</string>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Vnesite ime stika, preden ga pridružite drugemu stiku."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Pridruženi stik"</string>
@@ -496,4 +500,7 @@
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Zavrzi spremembe"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Želite zavreči spremembe?"</string>
     <string name="discard" msgid="1234315037371251414">"Zavrzi"</string>
+    <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
+    <!-- no translation found for profile_display_name (4179677761341328409) -->
+    <skip />
 </resources>

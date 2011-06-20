@@ -18,8 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="sharedUserLabel" msgid="7965035505237135241">"แอปพลิเคชันหลักของ Android"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"โทรศัพท์"</string>
-    <!-- no translation found for people (1048457247435785074) -->
-    <skip />
+    <string name="people" msgid="1048457247435785074">"บุคคล"</string>
     <string name="contactsList" msgid="8661624236494819731">"รายชื่อในสมุดโทรศัพท์"</string>
     <string name="shortcutContact" msgid="749243779392912958">"สมุดโทรศัพท์"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"โทรโดยตรง"</string>
@@ -48,6 +47,8 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"ส่งข้อความถึงรายชื่อในสมุดโทรศัพท์"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"กำหนดเป็นอีเมลค่าเริ่มต้น"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"แยก"</string>
+    <!-- no translation found for menu_editGroup (8311763560942217614) -->
+    <skip />
     <string name="menu_renameGroup" msgid="2798886925154156075">"เปลี่ยนชื่อกลุ่ม"</string>
     <string name="menu_deleteGroup" msgid="644571524292675446">"ลบกลุ่ม"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"ใหม่"</string>
@@ -296,6 +297,7 @@
     <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"ค่าเริ่มต้นที่กำหนดไว้สำหรับรายชื่อนี้:"</string>
     <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"ล้าง"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"บัญชี"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"รายชื่อติดต่อที่จะแสดง"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"นำเข้า/ส่งออก"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"นำเข้า/ส่งออกรายชื่อในสมุดโทรศัพท์"</string>
     <string name="menu_share" msgid="8746849630474240344">"แบ่งปันที่อยู่ติดต่อ"</string>
@@ -489,6 +491,8 @@
     <string name="create_group_item_label" msgid="5218022006186243310">"[สร้างกลุ่มใหม่]"</string>
     <string name="rename_group_dialog_title" msgid="3765299704290513289">"เปลี่ยนชื่อกลุ่ม"</string>
     <string name="delete_group_dialog_title" msgid="7368429698398624427">"ลบกลุ่ม"</string>
+    <!-- no translation found for num_groups_in_account:one (2944819210288517794) -->
+    <!-- no translation found for num_groups_in_account:other (1276758425904917367) -->
     <string name="delete_group_dialog_message" msgid="295063284548750881">"คุณต้องการลบกลุ่ม \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" หรือไม่ (ตัวที่อยู่ติดต่อเองจะไม่ถูกลบ)"</string>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"โปรดป้อนชื่อบุคคลติดต่อก่อนนำไปรวมกับรายชื่อติดต่ออื่น"</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"รายชื่อติดต่อที่รวมกัน"</string>
@@ -496,4 +500,7 @@
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"ยกเลิกการเปลี่ยนแปลง"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"คุณต้องการยกเลิกการเปลี่ยนแปลงของคุณหรือไม่"</string>
     <string name="discard" msgid="1234315037371251414">"ยกเลิก"</string>
+    <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
+    <!-- no translation found for profile_display_name (4179677761341328409) -->
+    <skip />
 </resources>

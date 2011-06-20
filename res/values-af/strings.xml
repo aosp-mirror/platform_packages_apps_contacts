@@ -16,8 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for sharedUserLabel (7965035505237135241) -->
-    <skip />
+    <string name="sharedUserLabel" msgid="7965035505237135241">"Android-kernprogramme"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"Foon"</string>
     <!-- no translation found for people (1048457247435785074) -->
     <skip />
@@ -30,8 +29,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Kies \'n kontakkortpad"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Kies \'n nommer om te bel"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Kies \'n nommer om te stuur"</string>
-    <!-- no translation found for contactPickerActivityTitle (6886592363525235031) -->
-    <skip />
+    <string name="contactPickerActivityTitle" msgid="6886592363525235031">"Kies \'n kontak"</string>
     <!-- no translation found for starredList (4817256136413959463) -->
     <skip />
     <!-- no translation found for frequentList (7154768136473953056) -->
@@ -66,12 +64,11 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Teks - kontak"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Stel as verstek e-posprogram"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Skei"</string>
-    <!-- no translation found for menu_renameGroup (2798886925154156075) -->
+    <!-- no translation found for menu_editGroup (8311763560942217614) -->
     <skip />
-    <!-- no translation found for menu_deleteGroup (644571524292675446) -->
-    <skip />
-    <!-- no translation found for menu_new_contact_action_bar (8887818026717394343) -->
-    <skip />
+    <string name="menu_renameGroup" msgid="2798886925154156075">"Hernoem groep"</string>
+    <string name="menu_deleteGroup" msgid="644571524292675446">"Vee groep uit"</string>
+    <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Nuut"</string>
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Skei kontak"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"Is jy seker jy wil hierdie enkele kontak in meerdere kontakte opdeel: een vir elke stel kontakinligting wat daarby saamgevoeg is?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Voeg saam"</string>
@@ -91,7 +88,7 @@
     <!-- no translation found for deleteConfirmation (811706994761610640) -->
     <skip />
     <string name="menu_done" msgid="796017761764190697">"Klaar"</string>
-    <!-- outdated translation 2174577548513895144 -->     <string name="menu_doNotSave" msgid="58593876893538465">"Laai terug"</string>
+    <string name="menu_doNotSave" msgid="58593876893538465">"Kanselleer"</string>
     <!-- no translation found for editContact_title_edit (7678695190666836093) -->
     <skip />
     <!-- no translation found for editContact_title_insert (9125600232291405757) -->
@@ -99,15 +96,13 @@
     <string name="label_phonetic_name" msgid="2288082649573927286">"Foneties"</string>
     <!-- no translation found for label_notes (8337354953278341042) -->
     <skip />
-    <!-- no translation found for label_sip_address (124073911714324974) -->
-    <skip />
+    <string name="label_sip_address" msgid="124073911714324974">"Internetoproep"</string>
     <!-- no translation found for label_ringtone (8833166825330686244) -->
     <skip />
     <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Fonetiese naam"</string>
     <!-- no translation found for ghostData_company (5414421120553765775) -->
     <skip />
-    <!-- no translation found for ghostData_title (7496735200318496110) -->
-    <skip />
+    <string name="ghostData_title" msgid="7496735200318496110">"Titel"</string>
     <!-- no translation found for invalidContactMessage (5816991830260044593) -->
     <skip />
     <!-- no translation found for pickerNewContactHeader (7750705279843568147) -->
@@ -118,25 +113,20 @@
     <skip />
     <!-- no translation found for imLabelsGroup (3898238486262614027) -->
     <skip />
-    <!-- no translation found for postalLabelsGroup (3487738141112589324) -->
-    <skip />
+    <string name="postalLabelsGroup" msgid="3487738141112589324">"Adres"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Organisasie"</item>
     <item msgid="7196592230748086755">"Let wel"</item>
   </string-array>
-    <!-- no translation found for photoPickerNotFoundText (6247290728908599701) -->
-    <skip />
-    <!-- no translation found for photoPickerNotFoundText (431331662154342581) -->
-    <skip />
-    <!-- no translation found for attach_photo_dialog_title (5599827035558557169) -->
-    <skip />
+    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Geen prente is op die tablet beskikbaar nie."</string>
+    <!-- outdated translation 6247290728908599701 -->     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Geen prente is op die tablet beskikbaar nie."</string>
+    <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Kontak se foto"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Gepasmaakte etiketnaam"</string>
     <string name="menu_displayGroup" msgid="5655505437727616553">"Vertoonopsies"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Stuur oproepe direk na stemboodskap"</string>
     <!-- no translation found for default_ringtone (9099988849649827972) -->
     <skip />
-    <!-- no translation found for removePhoto (4898105274130284565) -->
-    <skip />
+    <string name="removePhoto" msgid="4898105274130284565">"Verwyder foto"</string>
     <!-- no translation found for noContacts (8579310973261953559) -->
     <skip />
     <!-- no translation found for noGroups (8614664663561385253) -->
@@ -158,9 +148,15 @@
     <!-- no translation found for contactSavedToast (7152589189385441091) -->
     <skip />
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Fout, kan nie kontakwysigings stoor nie."</string>
-    <!-- no translation found for listTotalPhoneContacts:other (3299954047880968205) -->
+  <plurals name="listTotalPhoneContacts">
+    <item quantity="one" msgid="3015357862286673986">"1 kontak met foonnommer"</item>
+    <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> kontakte met foonnommers"</item>
+  </plurals>
     <!-- outdated translation 2756295259674938869 -->     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Geen sigbare kontakte met foonnommers nie"</string>
-    <!-- no translation found for listTotalAllContacts:other (3578469907265375314) -->
+  <plurals name="listTotalAllContacts">
+    <item quantity="one" msgid="3405747744700823280">"1 kontak"</item>
+    <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> kontakte"</item>
+  </plurals>
     <!-- outdated translation 6811347506748072822 -->     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Geen sigbare kontakte nie"</string>
     <!-- no translation found for listTotalAllContactsZeroCustom (4058252141420128998) -->
     <skip />
@@ -168,12 +164,16 @@
     <skip />
     <!-- no translation found for listTotalAllContactsZeroGroup (5448979458248027615) -->
     <skip />
-    <!-- no translation found for listFoundAllContacts:other (3852668542926965042) -->
-    <!-- no translation found for foundTooManyContacts (2548148047461758967) -->
-    <skip />
-    <!-- outdated translation 5554368784319460828 -->     <string name="listFoundAllContactsZero" msgid="777952841930508289">"Kontak nie gevind nie"</string>
-    <!-- no translation found for searchFoundContacts:one (4826918429708286628) -->
-    <!-- no translation found for searchFoundContacts:other (7988132539476575389) -->
+  <plurals name="listFoundAllContacts">
+    <item quantity="one" msgid="5517063038754171134">"1 gevind"</item>
+    <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> gevind"</item>
+  </plurals>
+    <string name="foundTooManyContacts" msgid="2548148047461758967">"meer as <xliff:g id="COUNT">%d</xliff:g> gevind"</string>
+    <string name="listFoundAllContactsZero" msgid="777952841930508289">"Nie gevind nie"</string>
+  <plurals name="searchFoundContacts">
+    <item quantity="one" msgid="4826918429708286628">"1 gevind"</item>
+    <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> gevind"</item>
+  </plurals>
     <!-- no translation found for contactsIconLabel (7666609097606552806) -->
     <skip />
     <!-- no translation found for contactsGroupsLabel (2841971472518003524) -->
@@ -198,10 +198,8 @@
     <skip />
     <!-- no translation found for recentCalls_empty (247053222448663107) -->
     <skip />
-    <!-- no translation found for clearCallLogConfirmation_title (718072843006222703) -->
-    <skip />
-    <!-- no translation found for clearCallLogConfirmation (7625927669136267636) -->
-    <skip />
+    <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Vee oproeprekord uit"</string>
+    <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Is jy seker jy wil die oproeprekord uitvee?"</string>
     <!-- no translation found for clearCallLogProgress_title (6870412675015656948) -->
     <skip />
     <!-- no translation found for imei (3045126336951684285) -->
@@ -221,18 +219,16 @@
     <skip />
     <!-- no translation found for simContacts_title (27341688347689769) -->
     <skip />
-    <!-- no translation found for noContactsHelpTextWithSyncForCreateShortcut (801504710275614594) -->
-    <skip />
-    <!-- no translation found for noContactsHelpTextForCreateShortcut (3081286388667108335) -->
-    <skip />
-    <!-- outdated translation 6788487368878712350 -->     <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"Jy het nie enige kontakte om te wys nie."\n\n"Om kontakte by te voeg, druk "<font fgcolor="#ffffffff"><b>"Kieslys"</b></font>" en raak:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Rekeninge"</b></font>" om \'n rekening by te voeg of op te stel met kontakte wat jy met die foon kan sinkroniseer"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuwe kontak"</b></font>" om \'n nuwe kontak van meet af te skep"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Voer in/uit"</b></font>\n</li></string>
-    <!-- outdated translation 6788487368878712350 -->     <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"Jy het nie enige kontakte om te wys nie."\n\n"Om kontakte by te voeg, druk "<font fgcolor="#ffffffff"><b>"Kieslys"</b></font>" en raak:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Rekeninge"</b></font>" om \'n rekening by te voeg of op te stel met kontakte wat jy met die foon kan sinkroniseer"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuwe kontak"</b></font>" om \'n nuwe kontak van meet af te skep"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Voer in/uit"</b></font>\n</li></string>
-    <!-- outdated translation 3734101165712848179 -->     <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Jy het nie enige kontakte om te wys nie. (As jy sopas \'n rekening bygevoeg het, kan dit \'n paar minute neem om kontakte te sinkroniseer.)"\n\n"Om kontakte by te voeg, druk "<font fgcolor="#ffffffff"><b>"Kieslys"</b></font>" en raak:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Rekeninge"</b></font>" om \'n rekening by te voeg en op te stel met kontakte wat jy met die foon kan sinkroniseer"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Vertoonopsies"</b></font>" om te verander watter kontakte sigbaar is"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuwe kontak"</b></font>" om \'n nuwe kontak van meet af te skep"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Invoer/uitvoer"</b></font>\n</li></string>
-    <!-- outdated translation 3734101165712848179 -->     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Jy het nie enige kontakte om te wys nie. (As jy sopas \'n rekening bygevoeg het, kan dit \'n paar minute neem om kontakte te sinkroniseer.)"\n\n"Om kontakte by te voeg, druk "<font fgcolor="#ffffffff"><b>"Kieslys"</b></font>" en raak:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Rekeninge"</b></font>" om \'n rekening by te voeg en op te stel met kontakte wat jy met die foon kan sinkroniseer"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Vertoonopsies"</b></font>" om te verander watter kontakte sigbaar is"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuwe kontak"</b></font>" om \'n nuwe kontak van meet af te skep"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Invoer/uitvoer"</b></font>\n</li></string>
-    <!-- outdated translation 6553845386917463292 -->     <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"Jy het nie enige kontakte om te wys nie."\n\n" Om kontakte by te voeg, druk "<font fgcolor="#ffffffff"><b>"Kieslys"</b></font>" en raak:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Rekeninge"</b></font>" om \'n rekening by te voeg of op te stel met kontakte wat jy met die foon kan sinkroniseer"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuwe kontak"</b></font>" om \'n nuwe kontak van meet af te skep"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Voer in/uit"</b></font>\n</li></string>
-    <!-- outdated translation 6553845386917463292 -->     <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"Jy het nie enige kontakte om te wys nie."\n\n" Om kontakte by te voeg, druk "<font fgcolor="#ffffffff"><b>"Kieslys"</b></font>" en raak:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Rekeninge"</b></font>" om \'n rekening by te voeg of op te stel met kontakte wat jy met die foon kan sinkroniseer"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuwe kontak"</b></font>" om \'n nuwe kontak van meet af te skep"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Voer in/uit"</b></font>\n</li></string>
-    <!-- outdated translation 1122296298361373488 -->     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Jy het nie enige kontakte om te wys nie. (As jy sopas \'n rekening bygevoeg het, kan dit \'n paar minute neem om kontakte te sinkroniseer.)"\n\n"Om kontakte by te voeg, druk "<font fgcolor="#ffffffff"><b>"Kieslys"</b></font>" en raak:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Rekeninge"</b></font>" om \'n rekening by te voeg en op te stel met kontakte wat jy met die foon kan sinkroniseer"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Vertoonopsies"</b></font>" om te verander watter kontakte sigbaar is"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuwe kontak"</b></font>" om \'n nuwe kontak van meet af te skep"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Invoer/uitvoer"</b></font>\n</li></string>
-    <!-- outdated translation 1122296298361373488 -->     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Jy het nie enige kontakte om te wys nie. (As jy sopas \'n rekening bygevoeg het, kan dit \'n paar minute neem om kontakte te sinkroniseer.)"\n\n"Om kontakte by te voeg, druk "<font fgcolor="#ffffffff"><b>"Kieslys"</b></font>" en raak:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Rekeninge"</b></font>" om \'n rekening by te voeg en op te stel met kontakte wat jy met die foon kan sinkroniseer"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Vertoonopsies"</b></font>" om te verander watter kontakte sigbaar is"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuwe kontak"</b></font>" om \'n nuwe kontak van meet af te skep"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Invoer/uitvoer"</b></font>\n</li></string>
+    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Jy het geen kontakte om te wys nie. (As jy sopas \'n rekening bygevoeg het, kan dit \'n rukkie neem om kontakte te sinkroniseer.)"</string>
+    <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Jy het geen kontakte om te wys nie."</string>
+    <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"Jy het nie enige kontakte om te wys nie."\n\n"Om kontakte by te voeg, druk "<font fgcolor="#ffffffff"><b>"Kieslys"</b></font>" en raak:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Rekeninge"</b></font>" om \'n rekening met kontakte by te voeg of op te stel wat jy met die tablet kan sinkroniseer"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuwe kontak"</b></font>" om \'n nuwe kontak van meet af te skep"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Invoer/uitvoer"</b></font>" om kontakte van jou SD-kaart in te voer"\n</li></string>
+    <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"Jy het geen kontakte om te wys nie."\n\n"Om kontakte by te voeg, druk "<font fgcolor="#ffffffff"><b>"Kieslys"</b></font>" en raak:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Rekeninge"</b></font>" om \'n rekening met kontakte by te voeg of op te stel wat jy met die foon kan sinkroniseer"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuwe kontak"</b></font>" om \'n splinternuwe kontak te skep"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Invoer/uitvoer"</b></font>" om kontakte van jou SIM of SD-kaart in te voer"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Jy het nie enige kontakte om te wys nie. (As jy sopas \'n rekening bygevoeg het, kan dit \'n paar minute neem om kontakte te sinkroniseer.)"\n\n"Om kontakte by te voeg, druk "<font fgcolor="#ffffffff"><b>"Kieslys"</b></font>" en raak:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Rekeninge"</b></font>" om \'n rekening met kontakte by te voeg of op te stel wat jy met die tablet kan sinkroniseer"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Vertoonopsies"</b></font>" om te verander watter kontakte sigbaar is"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuwe kontak"</b></font>" om \'n nuwe kontak van meet af te skep"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Invoer/uitvoer "</b></font>"om kontakte van jou SD-kaart in te voer"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Jy het geen kontakte om te wys nie. (As jy sopas \'n rekening bygevoeg het, kan dit \'n paar minute neem om kontakte te sinkroniseer.)"\n\n"Om kontakte by te voeg, druk "<font fgcolor="#ffffffff"><b>"Kieslys"</b></font>" en raak:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Rekeninge"</b></font>" om \'n rekening met kontakte by te voeg of op te stel wat jy met die foon kan sinkroniseer"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Vertoonopsies"</b></font>" om te verander watter kontakte sigbaar is"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuwe kontak"</b></font>" om \'n splinternuwe kontak te skep"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Invoer/uitvoer"</b></font>" om kontakte van jou SIM of SD-kaart in te voer"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"Jy het nie enige kontakte om te wys nie."\n\n"Om kontakte by te voeg, druk "<font fgcolor="#ffffffff"><b>"Kieslys"</b></font>" en raak:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Rekeninge"</b></font>" om \'n rekening met kontakte by te voeg of op te stel wat met die tablet kan sinkroniseer"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuwe kontak"</b></font>" om \'n nuwe kontak van meet af te skep"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Invoer/uitvoer"</b></font>" om kontakte van jou SD-kaart in te voer"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"Jy het geen kontakte om te wys nie."\n\n"Om kontakte by te voeg, druk "<font fgcolor="#ffffffff"><b>"Kieslys"</b></font>" en raak:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Rekeninge"</b></font>" om \'n rekening met kontakte by te voeg of op te stel om met die foon te kan sinkroniseer"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuwe kontak"</b></font>" om \'n splinternuwe kontak te skep"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Invoer/uitvoer"</b></font>" om kontakte van jou SD-kaart in te voer"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Jy het nie enige kontakte om te wys nie. (As jy sopas \'n rekening bygevoeg het, kan dit \'n paar minute neem om kontakte te sinkroniseer.)"\n\n"Om kontakte by te voeg, druk "<font fgcolor="#ffffffff"><b>"Kieslys"</b></font>" en raak:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Rekeninge"</b></font>" om \'n rekening met kontakte by te voeg of op te stel wat jy met die tablet kan sinkroniseer"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Vertoonopsies"</b></font>" om te verander watter kontakte sigbaar is"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuwe kontak"</b></font>" om \'n nuwe kontak van meet af te skep"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Invoer/uitvoer "</b></font>"om kontakte van jou SD-kaart in te voer"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Jy het nie enige kontakte om te wys nie. (As jy sopas \'n rekening bygevoeg het, kan dit \'n paar minute neem om kontakte te sinkroniseer.)"\n\n"Om kontakte by te voeg, druk "<font fgcolor="#ffffffff"><b>"Kieslys"</b></font>" en raak:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Rekeninge"</b></font>" om \'n rekening met kontakte by te voeg of op te stel wat jy met die foon kan sinkroniseer"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Vertoonopsies"</b></font>" om te verander watter kontakte sigbaar is"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nuwe kontak"</b></font>" om \'n splinternuwe kontak te skep"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Invoer/uitvoer"</b></font>" om kontakte van jou SD-kaart in te voer"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Jy het nie enige gunstelinge nie."\n\n" Om \'n kontak by jou lys gunstelinge te voeg:"\n\n"        "<li>"Raak die "<b>"Kontakte"</b>"-oortjie"\n</li>" "\n<li>"Raak die kontak wat jy by jou gunstelinge wil voeg"\n</li>" "\n<li>"Raak die ster langs die kontak se naam"\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Alle kontakte"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Gester"</string>
@@ -250,7 +246,7 @@
     <string name="callAgain" msgid="3197312117049874778">"Bel weer"</string>
     <string name="returnCall" msgid="8171961914203617813">"Bel terug"</string>
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> min. <xliff:g id="SECONDS">%s</xliff:g> sek."</string>
-    <!-- outdated translation 5007070838253932139 -->     <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"Gereeld gebel"</string>
+    <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"Gereeld gekontak"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Voeg kontak by"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Voeg \"<xliff:g id="EMAIL">%s</xliff:g>\" by kontakte?"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"een"</string>
@@ -265,118 +261,83 @@
     <string name="description_image_button_star" msgid="3365919907520767866">"ster"</string>
     <string name="description_image_button_zero" msgid="4133108949401820710">"nul"</string>
     <string name="description_image_button_pound" msgid="3039765597595889230">"huts"</string>
-    <!-- no translation found for description_voicemail_button (3402506823655455591) -->
-    <skip />
-    <!-- no translation found for description_dial_button (1274091017188142646) -->
-    <skip />
-    <!-- no translation found for description_delete_button (6263102114033407382) -->
-    <skip />
-    <!-- no translation found for description_digits_edittext (8760207516497016437) -->
-    <skip />
-    <!-- no translation found for description_contact_photo (3387458082667894062) -->
-    <skip />
-    <!-- no translation found for description_minus_button (387136707700230172) -->
-    <skip />
-    <!-- no translation found for description_plus_button (515164827856229880) -->
-    <skip />
-    <!-- outdated translation 5911758680339949273 -->     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"Geen SD-kaart nie"</string>
+    <string name="description_voicemail_button" msgid="3402506823655455591">"stemboodskap"</string>
+    <string name="description_dial_button" msgid="1274091017188142646">"bel"</string>
+    <string name="description_delete_button" msgid="6263102114033407382">"terugvee"</string>
+    <string name="description_digits_edittext" msgid="8760207516497016437">"nommer om te skakel"</string>
+    <string name="description_contact_photo" msgid="3387458082667894062">"kontakfoto"</string>
+    <string name="description_minus_button" msgid="387136707700230172">"minus"</string>
+    <string name="description_plus_button" msgid="515164827856229880">"plus"</string>
+    <!-- outdated translation 5362631473262100989 -->     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"USB-berging nie beskikbaar nie"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Geen SD-kaart nie"</string>
-    <!-- outdated translation 6019391476490445358 -->     <string name="no_sdcard_message" product="nosdcard" msgid="1334170151822669976">"Geen SD-kaart bespeur nie"</string>
+    <!-- outdated translation 8045830739790534254 -->     <string name="no_sdcard_message" product="nosdcard" msgid="1334170151822669976">"Geen USB-berging bespeur nie"</string>
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Geen SD-kaart bespeur nie"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Soek vir vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Voer in van SIM-kaart"</string>
-    <!-- outdated translation 8550360976693202816 -->     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Voer in van SD-kaart"</string>
-    <!-- outdated translation 2597105442616166277 -->     <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"Voer uit na SD-kaart"</string>
-    <!-- no translation found for share_visible_contacts (890150378880783797) -->
-    <skip />
+    <!-- outdated translation 8294728696808674154 -->     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Voer in uit USB-berging"</string>
+    <!-- outdated translation 7201274701382901259 -->     <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"Voer uit na USB-berging"</string>
+    <string name="share_visible_contacts" msgid="890150378880783797">"Deel sigbare kontakte"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Voer een vCard-lêer in"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Voer meerdere vCard-lêers in"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Voer alle vCard-lêers in"</string>
-    <!-- outdated translation 6917522333561434546 -->     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Soek vir vCard-data op SD-kaart"</string>
+    <!-- outdated translation 8214795338181412751 -->     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Soek vir vCard-data in USB-berging"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Soek vir vCard-data op SD-kaart"</string>
-    <!-- outdated translation 3506782007953167180 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="6957414493948497249">"Kon nie SD-kaart ondersoek nie"</string>
+    <!-- outdated translation 7447077516493667568 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="6957414493948497249">"Kon nie USB-berging ondersoek nie"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Kon nie SD-kaart ondersoek nie"</string>
     <!-- no translation found for scanning_sdcard_failed_message (4106156155205860626) -->
     <skip />
     <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Kon nie SD-kaart ondersoek nie (Rede: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"T/A-fout"</string>
-    <!-- no translation found for fail_reason_low_memory_during_import (7514918659342886381) -->
-    <skip />
+    <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Geheue is onvoldoende (die lêer is dalk te groot)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Kon om \'n onverwagse rede nie vCard ontleed nie"</string>
-    <!-- no translation found for fail_reason_not_supported (294499264620201243) -->
-    <skip />
-    <!-- no translation found for vcard_import_failed (7718330063493653085) -->
-    <skip />
-    <!-- no translation found for import_failure_no_vcard_file (6339234836196984924) -->
-    <skip />
-    <!-- no translation found for import_failure_no_vcard_file (1730986357514922756) -->
-    <skip />
-    <!-- no translation found for fail_reason_failed_to_collect_vcard_meta_info (4154492282316067754) -->
-    <skip />
+    <string name="fail_reason_not_supported" msgid="294499264620201243">"Die formaat word nie ondersteun nie."</string>
+    <string name="vcard_import_failed" msgid="7718330063493653085">"Kon nie vCard invoer nie"</string>
+    <!-- outdated translation 1730986357514922756 -->     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"Geen vCard-lêer op die SD-kaart gevind nie"</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Geen vCard-lêer op die SD-kaart gevind nie"</string>
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Kon nie meta-inligting van gegewe vCard-lêer(s) kry nie."</string>
     <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Een of meer lêers kon nie ingevoer word nie (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Onbekende fout"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Kies vCard-lêer"</string>
-    <!-- no translation found for caching_vcard_title (5009556022082659780) -->
-    <skip />
-    <!-- no translation found for caching_vcard_message (2380844718093378900) -->
-    <skip />
-    <!-- no translation found for progress_notifier_message (2311011466908220528) -->
-    <skip />
-    <!-- no translation found for importing_vcard_description (4245275224298571351) -->
-    <skip />
-    <!-- outdated translation 4923008144735294994 -->     <string name="reading_vcard_failed_title" msgid="2162610359561887043">"Kon nie vCard-data lees nie"</string>
-    <!-- no translation found for reading_vcard_canceled_title (1770608329958463131) -->
-    <skip />
-    <!-- no translation found for importing_vcard_finished_title (3341541727268747967) -->
-    <skip />
-    <!-- no translation found for importing_vcard_canceled_title (6367906965439777280) -->
-    <skip />
-    <!-- no translation found for vcard_import_will_start_message (2804911199145873396) -->
-    <skip />
-    <!-- no translation found for vcard_import_will_start_message_with_default_name (1022969530654129470) -->
-    <skip />
-    <!-- no translation found for vcard_import_request_rejected_message (2592424820635325951) -->
-    <skip />
-    <!-- no translation found for vcard_export_will_start_message (2210241345252081463) -->
-    <skip />
-    <!-- no translation found for vcard_export_request_rejected_message (8259494002258326330) -->
-    <skip />
-    <!-- no translation found for vcard_unknown_filename (7171709890959915954) -->
-    <skip />
-    <!-- no translation found for percentage (34897865327092209) -->
-    <skip />
+    <string name="caching_vcard_title" msgid="5009556022082659780">"Kas vCard(s) na plaaslike tydelike berging"</string>
+    <string name="caching_vcard_message" msgid="2380844718093378900">"Invoerder kas vCard(s) na plaaslike tydelike berging. Werklike invoer sal binnekort plaasvind."</string>
+    <string name="progress_notifier_message" msgid="2311011466908220528">"Voer <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> in: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="importing_vcard_description" msgid="4245275224298571351">"Voer <xliff:g id="NAME">%s</xliff:g> in"</string>
+    <string name="reading_vcard_failed_title" msgid="2162610359561887043">"Kon nie vCard-data lees nie"</string>
+    <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Lees van vCard-data is gekanselleer"</string>
+    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Klaar met invoer van vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Invoer van <xliff:g id="FILENAME">%s</xliff:g> is gekanselleer"</string>
+    <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> sal binnekort ingevoer word."</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Die lêer sal binnekort ingevoer word."</string>
+    <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"vCard-invoerversoek is verwerp. Probeer asseblief later."</string>
+    <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> sal binnekort uitgevoer word."</string>
+    <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"vCard-uitvoerversoek is verwerp. Probeer asseblief later."</string>
+    <string name="vcard_unknown_filename" msgid="7171709890959915954">"kontak"</string>
+    <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Bevestig uitvoer"</string>
     <string name="confirm_export_message" msgid="3875683519257829750">"Is jy seker jy wil jou kontaklys uitvoer na \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Kon nie kontakdata uitvoer nie"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Kon nie kontakdata uitvoer nie."\n"Rede vir mislukking: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Daar is geen uitvoerbare kontak nie"</string>
-    <!-- outdated translation 7084146295639672658 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Te veel vCard-lêers op die SD-kaart"</string>
+    <!-- outdated translation 2638638826954895225 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Te veel vCard-lêers in die USB-berging"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Te veel vCard-lêers op die SD-kaart"</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Vereiste lêernaam is te lank (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
-    <!-- no translation found for exporting_vcard_finished_title (4259736138838583213) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_canceled_title (1827672399438062140) -->
-    <skip />
+    <string name="exporting_vcard_finished_title" msgid="4259736138838583213">"Het <xliff:g id="FILENAME">%s</xliff:g> klaar uitgevoer"</string>
+    <string name="exporting_vcard_canceled_title" msgid="1827672399438062140">"Uitvoer van <xliff:g id="FILENAME">%s</xliff:g> is gekanselleer"</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Voer kontakdata uit"</string>
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Voer kontakdata uit na \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Kon nie die uitvoerder inisialiseer nie: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Fout het voorgekom tydens uitvoer: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Kon nie databasisinligting kry nie"</string>
-    <!-- outdated translation 2239503301380653777 -->     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Daar is geen uitvoerbare kontak nie. Jy kan ook nie-uitvoerbare data kies"</string>
-    <!-- outdated translation 2239503301380653777 -->     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Daar is geen uitvoerbare kontak nie. Jy kan ook nie-uitvoerbare data kies"</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Daar is geen uitvoerbare kontakte nie. As jy wel kontakte op jou tablet het, kan dit dalk gebeur dat sekere dataverskaffers verbied dat kontakte na buite die tablet uitgevoer word."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Daar is geen uitvoerbare kontakte nie. As jy wel kontakte op jou foon het, kan dit dalk gebeur dat sekere dataverskaffers verbied dat kontakte na buite die foon uitgevoer word."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"Die vCard-skepper is nie korrek geïnisialiseer nie"</string>
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Kon nie \"<xliff:g id="FILE_NAME">%s</xliff:g>\" open nie: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> van <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontakte"</string>
-    <!-- no translation found for cancel_import_confirmation_title (5578683596010294836) -->
-    <skip />
-    <!-- no translation found for cancel_import_confirmation_message (8560937090143057107) -->
-    <skip />
-    <!-- no translation found for cancel_export_confirmation_title (6516467140276768528) -->
-    <skip />
-    <!-- no translation found for cancel_export_confirmation_message (1392976902396351957) -->
-    <skip />
-    <!-- no translation found for cancel_vcard_import_or_export_failed (7096533244663846810) -->
-    <skip />
+    <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"Kanselleer vCard-invoer"</string>
+    <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"Is jy seker jy wil invoer van <xliff:g id="FILENAME">%s</xliff:g> kanselleer?"</string>
+    <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Kanselleer vCard-uitvoer"</string>
+    <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"Is jy seker jy wil uitvoer van <xliff:g id="FILENAME">%s</xliff:g> kanselleer?"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7096533244663846810">"Kon nie vCard se invoer/uitvoer kanselleer nie"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Name van jou kontakte"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Voeg 2-sek.-pouse by"</string>
     <string name="add_wait" msgid="3360818652790319634">"Voeg wagtyd by"</string>
@@ -386,18 +347,16 @@
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Geen program gevind om hierdie handeling te hanteer nie"</string>
     <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Onthou hierdie keuse"</string>
     <string name="quickcontact_missing_name" msgid="5590266114306996632">"Onbekend"</string>
-    <!-- no translation found for quickcontact_no_data (2098000859125253675) -->
-    <skip />
-    <!-- no translation found for quickcontact_clear_defaults_description (3792792870662989100) -->
-    <skip />
-    <!-- no translation found for quickcontact_clear_defaults_caption (4287306111861545753) -->
-    <skip />
-    <!-- no translation found for quickcontact_clear_defaults_button (8728754360205289059) -->
-    <skip />
+    <string name="quickcontact_no_data" msgid="2098000859125253675">"Geen data nie"</string>
+    <string name="quickcontact_clear_defaults_description" msgid="3792792870662989100">"Vee verstek instellings uit"</string>
+    <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"Verstek stel vir hierdie kontak:"</string>
+    <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"Vee uit"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Rekeninge"</string>
+    <!-- no translation found for menu_contacts_filter (2165153460860262501) -->
+    <skip />
     <string name="menu_import_export" msgid="3765725645491577190">"Voer in/uit"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Voer kontakte in/uit"</string>
-    <!-- outdated translation 943789700636542260 -->     <string name="menu_share" msgid="8746849630474240344">"Deel"</string>
+    <string name="menu_share" msgid="8746849630474240344">"Deel kontak"</string>
     <string name="share_via" msgid="563121028023030093">"Deel kontak via"</string>
     <string name="share_error" msgid="4374508848981697170">"Hierdie kontak kan nie gedeel word nie."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Naam"</string>
@@ -405,10 +364,8 @@
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organisasie"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Webwerf"</string>
     <string name="eventLabelsGroup" msgid="8069912895912714412">"Gebeurtenis"</string>
-    <!-- no translation found for relationLabelsGroup (1854373894284572781) -->
-    <skip />
-    <!-- no translation found for groupsLabel (8573535366319059326) -->
-    <skip />
+    <string name="relationLabelsGroup" msgid="1854373894284572781">"Verhouding"</string>
+    <string name="groupsLabel" msgid="8573535366319059326">"Groepe"</string>
     <string name="type_short_home" msgid="7770424864090605384">"H"</string>
     <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
     <string name="type_short_work" msgid="4925330752504537861">"W"</string>
@@ -421,8 +378,8 @@
     <string name="display_ungrouped" msgid="4602580795576261158">"Alle ander kontakte"</string>
     <string name="display_all_contacts" msgid="6846131371214707956">"Alle kontakte"</string>
     <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"As jy \'<xliff:g id="GROUP">%s</xliff:g>\' uit sinkronisering verwyder, sal dit ook enige ongegroepeerde kontakte uit sinkronisering verwyder."</string>
-    <!-- outdated translation 4025734638492419713 -->     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Slegs foon (ongesinkroniseer)"</string>
-    <!-- outdated translation 4025734638492419713 -->     <string name="account_phone" product="default" msgid="3682950835276226870">"Slegs foon (ongesinkroniseer)"</string>
+    <string name="account_phone" product="tablet" msgid="7946049152658522054">"Net tablet, ongesinkroniseer"</string>
+    <string name="account_phone" product="default" msgid="3682950835276226870">"Net foon, ongesinkroniseer"</string>
     <string name="call_custom" msgid="7756571794763171802">"Bel <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"Bel tuis"</string>
     <string name="call_mobile" msgid="7502236805487609178">"Bel selfoon"</string>
@@ -430,13 +387,13 @@
     <string name="call_fax_work" msgid="7467763592359059243">"Bel werkfaks"</string>
     <string name="call_fax_home" msgid="8342175628887571876">"Bel huisfaks"</string>
     <string name="call_pager" msgid="9003902812293983281">"Bel roeper"</string>
-    <!-- outdated translation 5605584621798108205 -->     <string name="call_other" msgid="8563753966926932052">"Bel ander"</string>
+    <string name="call_other" msgid="8563753966926932052">"Bel"</string>
     <string name="call_callback" msgid="1910165691349426858">"Bel - terugbel"</string>
     <string name="call_car" msgid="3280537320306436445">"Bel motor"</string>
     <string name="call_company_main" msgid="6105120947138711257">"Bel maatskappy, hoof"</string>
     <string name="call_isdn" msgid="1541590690193403411">"Bel ISDN"</string>
     <string name="call_main" msgid="6082900571803441339">"Bel hoof"</string>
-    <!-- outdated translation 7777261153532968503 -->     <string name="call_other_fax" msgid="5745314124619636674">"Bel ander faks"</string>
+    <string name="call_other_fax" msgid="5745314124619636674">"Bel faks"</string>
     <string name="call_radio" msgid="8296755876398357063">"Bel radio"</string>
     <string name="call_telex" msgid="2223170774548648114">"Bel teleks"</string>
     <string name="call_tty_tdd" msgid="8951266948204379604">"Oproep-TTY/TDD"</string>
@@ -451,13 +408,13 @@
     <string name="sms_fax_work" msgid="8028189067816907075">"Teks - werkfaks"</string>
     <string name="sms_fax_home" msgid="9204042076306809634">"Teks - huisfaks"</string>
     <string name="sms_pager" msgid="7730404569637015192">"Teks - roeper"</string>
-    <!-- outdated translation 5131921487474531617 -->     <string name="sms_other" msgid="806127844607642331">"Teks - ander"</string>
+    <string name="sms_other" msgid="806127844607642331">"Teks"</string>
     <string name="sms_callback" msgid="5004824430094288752">"Teks-terugbel"</string>
     <string name="sms_car" msgid="7444227058437359641">"Teks - motor"</string>
     <string name="sms_company_main" msgid="118970873419678087">"Teks - maatskappy, hoof"</string>
     <string name="sms_isdn" msgid="8153785037515047845">"Teks - ISDN"</string>
     <string name="sms_main" msgid="8621625784504541679">"Teks - hoof"</string>
-    <!-- outdated translation 3930666870074006114 -->     <string name="sms_other_fax" msgid="3888842199855843152">"Teks - ander faks"</string>
+    <string name="sms_other_fax" msgid="3888842199855843152">"Teksfaks"</string>
     <string name="sms_radio" msgid="3329166673433967820">"Teks - radio"</string>
     <string name="sms_telex" msgid="9034802430065267848">"Teks - teleks"</string>
     <string name="sms_tty_tdd" msgid="6782284969132531532">"Teks - TTY/TDD"</string>
@@ -468,12 +425,12 @@
     <string name="email_home" msgid="8573740658148184279">"E-postuis"</string>
     <string name="email_mobile" msgid="2042889209787989814">"E-pos - mobiel"</string>
     <string name="email_work" msgid="2807430017302722689">"E-pos - werk"</string>
-    <!-- outdated translation 8093933498541795832 -->     <string name="email_other" msgid="3454004077967657109">"E-pos ander"</string>
+    <string name="email_other" msgid="3454004077967657109">"E-pos"</string>
     <string name="email_custom" msgid="7548003991586214105">"E-pos <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="email" msgid="5668400997660065897">"E-pos"</string>
     <string name="map_home" msgid="1243547733423343982">"Sien huisadres"</string>
     <string name="map_work" msgid="1360474076921878088">"Sien werkadres"</string>
-    <!-- outdated translation 5560707927535653892 -->     <string name="map_other" msgid="3817820803587012641">"Sien ander adres"</string>
+    <string name="map_other" msgid="3817820803587012641">"Sien adres"</string>
     <string name="map_custom" msgid="6184363799976265281">"Sien <xliff:g id="CUSTOM">%s</xliff:g> adres"</string>
     <string name="chat_aim" msgid="2588492205291249142">"Klets met AIM"</string>
     <string name="chat_msn" msgid="8041633440091073484">"Klets met Windows Live"</string>
@@ -484,8 +441,7 @@
     <string name="chat_icq" msgid="8438405386153745775">"Klets met ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Klets met Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Klets"</string>
-    <!-- no translation found for postal_address (8765560217149624536) -->
-    <skip />
+    <string name="postal_address" msgid="8765560217149624536">"Adres"</string>
     <string name="postal_street" msgid="8133143961580058972">"Straat"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Posbus"</string>
     <string name="postal_neighborhood" msgid="1450783874558956739">"Buurt"</string>
@@ -493,8 +449,7 @@
     <string name="postal_region" msgid="6045263193478437672">"Deelstaat"</string>
     <string name="postal_postcode" msgid="572136414136673751">"Poskode"</string>
     <string name="postal_country" msgid="7638264508416368690">"Land"</string>
-    <!-- no translation found for full_name (6602579550613988977) -->
-    <skip />
+    <string name="full_name" msgid="6602579550613988977">"Naam"</string>
     <string name="name_given" msgid="1687286314106019813">"Voornaam"</string>
     <string name="name_family" msgid="3416695586119999058">"Van"</string>
     <string name="name_prefix" msgid="59756378548779822">"Naamvoorvoegsel"</string>
@@ -511,56 +466,34 @@
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Gebruik hierdie foto"</string>
     <string name="contact_read_only" msgid="1203216914575723978">"<xliff:g id="SOURCE">%1$s</xliff:g> kontakinligting is nie op hierdie toestel redigeerbaar nie."</string>
     <string name="no_contact_details" msgid="6754415338321837001">"Geen bykomende inligting vir hierdie kontak nie"</string>
-    <!-- no translation found for display_options_sort_list_by (6080091755852211076) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_given_name (184916793466387067) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_family_name (7857986975275712622) -->
-    <skip />
-    <!-- no translation found for display_options_view_names_as (18022868169627979) -->
-    <skip />
-    <!-- no translation found for display_options_view_given_name_first (6968288511197363292) -->
-    <skip />
-    <!-- no translation found for display_options_view_family_name_first (1447288164951453714) -->
-    <skip />
-    <!-- no translation found for search_bar_hint (1012756309632856553) -->
-    <skip />
-    <!-- no translation found for search_for_all_contacts (6644963335787294131) -->
-    <skip />
-    <!-- no translation found for take_photo (7496128293167402354) -->
-    <skip />
-    <!-- no translation found for take_new_photo (7341354729436576304) -->
-    <skip />
-    <!-- no translation found for pick_photo (448886509158039462) -->
-    <skip />
-    <!-- no translation found for pick_new_photo (7962368009197147617) -->
-    <skip />
-    <!-- no translation found for locale_change_in_progress (7583992153091537467) -->
-    <skip />
-    <!-- no translation found for upgrade_in_progress (474511436863451061) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory (6153384328042175667) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory_uninstall (1721798828992091432) -->
-    <skip />
-    <!-- no translation found for upgrade_out_of_memory_retry (8431289830472724609) -->
-    <skip />
-    <!-- no translation found for search_results_searching (7755623475227227314) -->
-    <skip />
-    <!-- no translation found for menu_display_selected (6470001164297969034) -->
-    <skip />
-    <!-- no translation found for menu_display_all (8887488642609786198) -->
-    <skip />
-    <!-- no translation found for menu_select_all (621719255150713545) -->
-    <skip />
-    <!-- no translation found for menu_select_none (7093222469852132345) -->
-    <skip />
-    <!-- no translation found for multiple_picker_title:one (4761009734586319101) -->
-    <!-- no translation found for multiple_picker_title:other (4608837420986126229) -->
-    <!-- no translation found for no_contacts_selected (5877803471037324613) -->
-    <skip />
-    <!-- no translation found for add_field (2384260056674995230) -->
-    <skip />
+    <string name="display_options_sort_list_by" msgid="6080091755852211076">"Rangskik lys volgens"</string>
+    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Voornaam"</string>
+    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Van"</string>
+    <string name="display_options_view_names_as" msgid="18022868169627979">"Sien kontakname as"</string>
+    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Voornaam eerste"</string>
+    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Van eerste"</string>
+    <string name="search_bar_hint" msgid="1012756309632856553">"Deursoek kontakte"</string>
+    <string name="search_for_all_contacts" msgid="6644963335787294131">"Soek vir alle kontakte"</string>
+    <string name="take_photo" msgid="7496128293167402354">"Neem foto"</string>
+    <string name="take_new_photo" msgid="7341354729436576304">"Neem nuwe foto"</string>
+    <string name="pick_photo" msgid="448886509158039462">"Kies foto uit galery"</string>
+    <string name="pick_new_photo" msgid="7962368009197147617">"Kies nuwe foto uit galery"</string>
+    <string name="locale_change_in_progress" msgid="7583992153091537467">"Kontaklys word tans opgedateer om die taalverandering te weerspieël."</string>
+    <string name="upgrade_in_progress" msgid="474511436863451061">"Kontaklys word opgedateer."</string>
+    <string name="upgrade_out_of_memory" msgid="6153384328042175667">"Kontakte word tans opgradeer. "\n\n"Die opgraderingsproses benodig interne geheue van omtrent <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> Mb."\n\n"Kies een van die volgende opsies:"</string>
+    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Deïnstalleer sekere programme"</string>
+    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Herprobeer opgradering"</string>
+    <string name="search_results_searching" msgid="7755623475227227314">"Soek tans..."</string>
+    <string name="menu_display_selected" msgid="6470001164297969034">"Wys gekose"</string>
+    <string name="menu_display_all" msgid="8887488642609786198">"Wys alle"</string>
+    <string name="menu_select_all" msgid="621719255150713545">"Kies alle"</string>
+    <string name="menu_select_none" msgid="7093222469852132345">"Ontkies almal"</string>
+  <plurals name="multiple_picker_title">
+    <item quantity="one" msgid="4761009734586319101">"1 ontvanger gekies"</item>
+    <item quantity="other" msgid="4608837420986126229">"<xliff:g id="COUNT">%d</xliff:g> ontvangers gekies"</item>
+  </plurals>
+    <string name="no_contacts_selected" msgid="5877803471037324613">"Geen kontakte gekies nie."</string>
+    <string name="add_field" msgid="2384260056674995230">"Voeg nog \'n veld by"</string>
     <!-- no translation found for add_phone (4421904942555210013) -->
     <skip />
     <!-- no translation found for add_email (175079666329862215) -->
@@ -577,104 +510,63 @@
     <skip />
     <!-- no translation found for add_relationship (3083762399737240006) -->
     <skip />
-    <!-- no translation found for contact_status_update_attribution (752179367353018597) -->
+    <string name="contact_status_update_attribution" msgid="752179367353018597">"via <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> via <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
+    <string name="description_star" msgid="2605854427360036550">"gunsteling"</string>
+    <string name="edit_contact" msgid="7529281274005689512">"Redigeer kontak"</string>
+  <plurals name="merge_info">
+    <item quantity="one" msgid="148365587896371969">"nie saamgevoeg nie"</item>
+    <item quantity="other" msgid="425683718017380845">"saamgevoeg uit <xliff:g id="COUNT">%0$d</xliff:g> bronne"</item>
+  </plurals>
+    <string name="local_invisible_directory" msgid="6046691709127661065">"Ander"</string>
+    <string name="aggregation_suggestion_join_dialog_title" msgid="5276699501316246253">"Voeg kontakte saam"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Voeg die huidige kontak by die gekose kontak saam?"</string>
+    <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Redigeer gekose kontakte"</string>
+    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Wissel na redigering van die gekose kontak? Inligting wat jy tot dusver ingevoer het, sal gekopieer word."</string>
+    <string name="menu_copyContact" msgid="4401683725471696686">"Kopieer na my kontakte"</string>
+    <string name="contact_directory_description" msgid="683398073603909119">"Gids <xliff:g id="TYPE">%1$s</xliff:g>"</string>
+    <string name="search_label" msgid="6789295859496641042">"Deursoek alle kontakte"</string>
+    <string name="directory_search_label" msgid="1887759056597975053">"Gids"</string>
+    <string name="local_search_label" msgid="1686089693064201315">"Kontakte"</string>
+    <string name="toast_making_personal_copy" msgid="7905283986345263275">"Skep \'n persoonlike kopie"</string>
+    <string name="list_filter_prompt" msgid="7481426622828055116">"Kies kontaklys"</string>
+    <string name="list_filter_all_accounts" msgid="8908683398914322369">"Alle kontakte"</string>
+    <string name="list_filter_all_starred" msgid="5031734941601931356">"Gester"</string>
+    <string name="list_filter_custom" msgid="8910173055702057002">"Gepasmaakte"</string>
+    <string name="list_filter_customize" msgid="2035084418635775579">"Pasmaak..."</string>
+    <string name="list_filter_phones" msgid="7905045603593508221">"Kontakte met foonnommers"</string>
+    <string name="list_filter_single" msgid="5871400283515893087">"Kontak"</string>
+    <string name="custom_list_filter" msgid="7836035257402013957">"Definieer gepasmaakte aansig"</string>
+    <string name="activity_title_settings" msgid="5464130076132770781">"Instellings"</string>
+    <string name="menu_settings" msgid="377929915873428211">"Instellings"</string>
+    <string name="preference_displayOptions" msgid="1341720270148252393">"Vertoonopsies"</string>
+    <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
+    <string name="hint_findContacts" msgid="1808681193458772072">"Vind kontakte"</string>
+    <string name="non_phone_caption" msgid="1541655052330027380">"Foonnommer"</string>
+    <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Voeg by kontakte"</string>
+    <string name="non_phone_close" msgid="7608506439725515667">"Maak toe"</string>
+    <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
+    <string name="date_year_toggle" msgid="7356532842767854606">"Gee \'n jaar"</string>
+    <string name="social_widget_label" msgid="6378905543028924592">"Kontak"</string>
+    <string name="social_widget_loading" msgid="3697996166985327861">"Laai tans …"</string>
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Skep \'n nuwe kontak"</string>
+    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Meld aan by \'n rekening"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Voer kontakte van \'n lêer in"</string>
+    <string name="create_group_dialog_title" msgid="6874527142828424475">"Skep nuwe groep"</string>
+    <string name="create_group_item_label" msgid="5218022006186243310">"[Skep nuwe groep]"</string>
+    <string name="rename_group_dialog_title" msgid="3765299704290513289">"Hernoem groep"</string>
+    <string name="delete_group_dialog_title" msgid="7368429698398624427">"Vee groep uit"</string>
+    <!-- no translation found for num_groups_in_account:one (2944819210288517794) -->
+    <!-- no translation found for num_groups_in_account:other (1276758425904917367) -->
+    <string name="delete_group_dialog_message" msgid="295063284548750881">"Is jy seker jy wil die groep \'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\' uitvee? (Kontakte sal nie uitgevee word nie.)"</string>
+    <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Voer asseblief kontaknaam in voor jy dit by \'n ander kontak saamvoeg."</string>
+    <string name="indicator_joined_contact" msgid="3321049349627022128">"Kontak saamgevoeg"</string>
+    <string name="toast_text_copied" msgid="5143776250008541719">"Teks gekopieer"</string>
+    <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Ontdoen wysigings"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Wil jy jou wysigings ontdoen?"</string>
+    <string name="discard" msgid="1234315037371251414">"Gooi weg"</string>
+    <!-- no translation found for call_type_and_date (1766269584078149149) -->
     <skip />
-    <!-- no translation found for contact_status_update_attribution_with_date (7358045508107825068) -->
-    <skip />
-    <!-- no translation found for description_star (2605854427360036550) -->
-    <skip />
-    <!-- no translation found for edit_contact (7529281274005689512) -->
-    <skip />
-    <!-- no translation found for merge_info:one (148365587896371969) -->
-    <!-- no translation found for merge_info:other (425683718017380845) -->
-    <!-- no translation found for local_invisible_directory (6046691709127661065) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_join_dialog_title (5276699501316246253) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_join_dialog_message (3842757977671434836) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_edit_dialog_title (1064042382692091314) -->
-    <skip />
-    <!-- no translation found for aggregation_suggestion_edit_dialog_message (6549585283910518095) -->
-    <skip />
-    <!-- no translation found for menu_copyContact (4401683725471696686) -->
-    <skip />
-    <!-- no translation found for contact_directory_description (683398073603909119) -->
-    <skip />
-    <!-- no translation found for search_label (6789295859496641042) -->
-    <skip />
-    <!-- no translation found for directory_search_label (1887759056597975053) -->
-    <skip />
-    <!-- no translation found for local_search_label (1686089693064201315) -->
-    <skip />
-    <!-- no translation found for toast_making_personal_copy (7905283986345263275) -->
-    <skip />
-    <!-- no translation found for list_filter_prompt (7481426622828055116) -->
-    <skip />
-    <!-- no translation found for list_filter_all_accounts (8908683398914322369) -->
-    <skip />
-    <!-- no translation found for list_filter_all_starred (5031734941601931356) -->
-    <skip />
-    <!-- no translation found for list_filter_custom (8910173055702057002) -->
-    <skip />
-    <!-- no translation found for list_filter_customize (2035084418635775579) -->
-    <skip />
-    <!-- no translation found for list_filter_phones (7905045603593508221) -->
-    <skip />
-    <!-- no translation found for list_filter_single (5871400283515893087) -->
-    <skip />
-    <!-- no translation found for custom_list_filter (7836035257402013957) -->
-    <skip />
-    <!-- no translation found for activity_title_settings (5464130076132770781) -->
-    <skip />
-    <!-- no translation found for menu_settings (377929915873428211) -->
-    <skip />
-    <!-- no translation found for preference_displayOptions (1341720270148252393) -->
-    <skip />
-    <!-- no translation found for organization_company_and_title (6718207751363732025) -->
-    <skip />
-    <!-- no translation found for hint_findContacts (1808681193458772072) -->
-    <skip />
-    <!-- no translation found for non_phone_caption (1541655052330027380) -->
-    <skip />
-    <!-- no translation found for non_phone_add_to_contacts (6590985286250471169) -->
-    <skip />
-    <!-- no translation found for non_phone_close (7608506439725515667) -->
-    <skip />
-    <!-- no translation found for widget_name_and_phonetic (8739586586600099979) -->
-    <skip />
-    <!-- no translation found for date_year_toggle (7356532842767854606) -->
-    <skip />
-    <!-- no translation found for social_widget_label (6378905543028924592) -->
-    <skip />
-    <!-- no translation found for social_widget_loading (3697996166985327861) -->
-    <skip />
-    <!-- no translation found for contacts_unavailable_create_contact (7014525713871959208) -->
-    <skip />
-    <!-- no translation found for contacts_unavailable_add_account (7911101713860139754) -->
-    <skip />
-    <!-- no translation found for contacts_unavailable_import_contacts (4456440183590517471) -->
-    <skip />
-    <!-- no translation found for create_group_dialog_title (6874527142828424475) -->
-    <skip />
-    <!-- no translation found for create_group_item_label (5218022006186243310) -->
-    <skip />
-    <!-- no translation found for rename_group_dialog_title (3765299704290513289) -->
-    <skip />
-    <!-- no translation found for delete_group_dialog_title (7368429698398624427) -->
-    <skip />
-    <!-- no translation found for delete_group_dialog_message (295063284548750881) -->
-    <skip />
-    <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
-    <skip />
-    <!-- no translation found for indicator_joined_contact (3321049349627022128) -->
-    <skip />
-    <!-- no translation found for toast_text_copied (5143776250008541719) -->
-    <skip />
-    <!-- no translation found for cancel_confirmation_dialog_title (3950463632415908534) -->
-    <skip />
-    <!-- no translation found for cancel_confirmation_dialog_message (7021968394611740251) -->
-    <skip />
-    <!-- no translation found for discard (1234315037371251414) -->
+    <!-- no translation found for profile_display_name (4179677761341328409) -->
     <skip />
 </resources>

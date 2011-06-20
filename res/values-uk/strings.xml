@@ -18,8 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="sharedUserLabel" msgid="7965035505237135241">"Служби Android Core"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"Телеф."</string>
-    <!-- no translation found for people (1048457247435785074) -->
-    <skip />
+    <string name="people" msgid="1048457247435785074">"Люди"</string>
     <string name="contactsList" msgid="8661624236494819731">"Контакти"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Контакт"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Прямий набір"</string>
@@ -48,6 +47,8 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Повід. контакт"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Зроб. ел.адр. за умовч."</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Розділити"</string>
+    <!-- no translation found for menu_editGroup (8311763560942217614) -->
+    <skip />
     <string name="menu_renameGroup" msgid="2798886925154156075">"Перейменувати групу"</string>
     <string name="menu_deleteGroup" msgid="644571524292675446">"Видалити групу"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Новий"</string>
@@ -296,6 +297,7 @@
     <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"Налашт-ня за умовч. для цього контакта:"</string>
     <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"Очистити"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Обл. записи"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Контакти для показу"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Імпорт/експорт"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Імпорт/експорт контактів"</string>
     <string name="menu_share" msgid="8746849630474240344">"Надіслати контакт"</string>
@@ -489,6 +491,8 @@
     <string name="create_group_item_label" msgid="5218022006186243310">"[Створити нову групу]"</string>
     <string name="rename_group_dialog_title" msgid="3765299704290513289">"Перейменувати групу"</string>
     <string name="delete_group_dialog_title" msgid="7368429698398624427">"Видалити групу"</string>
+    <!-- no translation found for num_groups_in_account:one (2944819210288517794) -->
+    <!-- no translation found for num_groups_in_account:other (1276758425904917367) -->
     <string name="delete_group_dialog_message" msgid="295063284548750881">"Дійсно видалити групу \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Самі контакти не буде видалено)."</string>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Введіть ім\'я контакта перед тим, як об\'єднати з іншим контактом."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Об\'єднаний контакт"</string>
@@ -496,4 +500,7 @@
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Відхилити зміни"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Дійсно відхилити ці зміни?"</string>
     <string name="discard" msgid="1234315037371251414">"Відхилити"</string>
+    <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
+    <!-- no translation found for profile_display_name (4179677761341328409) -->
+    <skip />
 </resources>

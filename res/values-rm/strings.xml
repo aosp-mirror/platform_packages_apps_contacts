@@ -49,6 +49,8 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Trametter in SMS al contact"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"E-mail predefinì"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Divider"</string>
+    <!-- no translation found for menu_editGroup (8311763560942217614) -->
+    <skip />
     <!-- no translation found for menu_renameGroup (2798886925154156075) -->
     <skip />
     <!-- no translation found for menu_deleteGroup (644571524292675446) -->
@@ -325,6 +327,8 @@
     <!-- no translation found for quickcontact_clear_defaults_button (8728754360205289059) -->
     <skip />
     <string name="menu_accounts" msgid="8499114602017077970">"Contos"</string>
+    <!-- no translation found for menu_contacts_filter (2165153460860262501) -->
+    <skip />
     <string name="menu_import_export" msgid="3765725645491577190">"Importar/exportar"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importar/exportar ils contacts"</string>
     <!-- outdated translation 943789700636542260 -->     <string name="menu_share" msgid="8746849630474240344">"Cundivider"</string>
@@ -575,6 +579,8 @@
     <skip />
     <!-- no translation found for delete_group_dialog_title (7368429698398624427) -->
     <skip />
+    <!-- no translation found for num_groups_in_account:one (2944819210288517794) -->
+    <!-- no translation found for num_groups_in_account:other (1276758425904917367) -->
     <!-- no translation found for delete_group_dialog_message (295063284548750881) -->
     <skip />
     <!-- no translation found for toast_join_with_empty_contact (5015189525953438968) -->
@@ -588,5 +594,9 @@
     <!-- no translation found for cancel_confirmation_dialog_message (7021968394611740251) -->
     <skip />
     <!-- no translation found for discard (1234315037371251414) -->
+    <skip />
+    <!-- no translation found for call_type_and_date (1766269584078149149) -->
+    <skip />
+    <!-- no translation found for profile_display_name (4179677761341328409) -->
     <skip />
 </resources>

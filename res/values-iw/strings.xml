@@ -18,8 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="sharedUserLabel" msgid="7965035505237135241">"Android Core Apps"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"טלפון"</string>
-    <!-- no translation found for people (1048457247435785074) -->
-    <skip />
+    <string name="people" msgid="1048457247435785074">"אנשים"</string>
     <string name="contactsList" msgid="8661624236494819731">"אנשי קשר"</string>
     <string name="shortcutContact" msgid="749243779392912958">"איש קשר"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"חיוג ישיר"</string>
@@ -48,6 +47,8 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"שלח הודעת טקסט לאיש קשר"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"הגדר דוא\"ל כברירת מחדל"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"הפרד"</string>
+    <!-- no translation found for menu_editGroup (8311763560942217614) -->
+    <skip />
     <string name="menu_renameGroup" msgid="2798886925154156075">"שנה את שם הקבוצה"</string>
     <string name="menu_deleteGroup" msgid="644571524292675446">"מחק את הקבוצה"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"חדש"</string>
@@ -296,6 +297,7 @@
     <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"ברירות מחדל שהוגדרו לאיש קשר זה:"</string>
     <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"נקה"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"חשבונות"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"אנשי קשר להצגה"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"ייבוא/ייצוא"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"ייבא/יצא אנשי קשר"</string>
     <string name="menu_share" msgid="8746849630474240344">"שתף איש קשר"</string>
@@ -489,6 +491,8 @@
     <string name="create_group_item_label" msgid="5218022006186243310">"[צור קבוצה חדשה]"</string>
     <string name="rename_group_dialog_title" msgid="3765299704290513289">"שנה שם קבוצה"</string>
     <string name="delete_group_dialog_title" msgid="7368429698398624427">"מחק קבוצה"</string>
+    <!-- no translation found for num_groups_in_account:one (2944819210288517794) -->
+    <!-- no translation found for num_groups_in_account:other (1276758425904917367) -->
     <string name="delete_group_dialog_message" msgid="295063284548750881">"האם אתה בטוח שברצונך למחוק את הקבוצה \'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\'? (אנשי הקשר עצמם לא יימחקו)."</string>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"הזן שם של איש קשר לפני צירוף לאיש קשר אחר."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"איש קשר מצורף"</string>
@@ -496,4 +500,7 @@
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"מחק שינויים"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"האם אתה רוצה למחוק את השינויים?"</string>
     <string name="discard" msgid="1234315037371251414">"מחק"</string>
+    <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
+    <!-- no translation found for profile_display_name (4179677761341328409) -->
+    <skip />
 </resources>

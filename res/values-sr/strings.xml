@@ -18,8 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="sharedUserLabel" msgid="7965035505237135241">"Android Core апликације"</string>
     <string name="launcherDialer" msgid="8636288196618486553">"Телефон"</string>
-    <!-- no translation found for people (1048457247435785074) -->
-    <skip />
+    <string name="people" msgid="1048457247435785074">"Особе"</string>
     <string name="contactsList" msgid="8661624236494819731">"Контакти"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Контакт"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Директно бирање"</string>
@@ -48,6 +47,8 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Пошаљи SMS контакту"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Постави за подразумевану адресу е-поште"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Подели"</string>
+    <!-- no translation found for menu_editGroup (8311763560942217614) -->
+    <skip />
     <string name="menu_renameGroup" msgid="2798886925154156075">"Преименуј групу"</string>
     <string name="menu_deleteGroup" msgid="644571524292675446">"Избриши групу"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Ново"</string>
@@ -296,6 +297,7 @@
     <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"Подразумеване вредности контакта:"</string>
     <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"Обриши"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Налози"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Контакти за приказ"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Увоз/извоз"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Увоз/извоз контаката"</string>
     <string name="menu_share" msgid="8746849630474240344">"Дели контакт"</string>
@@ -489,6 +491,8 @@
     <string name="create_group_item_label" msgid="5218022006186243310">"[Направи нову групу]"</string>
     <string name="rename_group_dialog_title" msgid="3765299704290513289">"Преименовање групе"</string>
     <string name="delete_group_dialog_title" msgid="7368429698398624427">"Избриши групу"</string>
+    <!-- no translation found for num_groups_in_account:one (2944819210288517794) -->
+    <!-- no translation found for num_groups_in_account:other (1276758425904917367) -->
     <string name="delete_group_dialog_message" msgid="295063284548750881">"Да ли заиста желите да избришете групу „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>“? (Контакти неће бити избрисани.)"</string>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Унесите име контакта пре него што га придружите другом контакту."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Придружени контакт"</string>
@@ -496,4 +500,7 @@
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Одбацивање промена"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Желите ли да одбаците промене?"</string>
     <string name="discard" msgid="1234315037371251414">"Одбаци"</string>
+    <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
+    <!-- no translation found for profile_display_name (4179677761341328409) -->
+    <skip />
 </resources>
