@@ -16,17 +16,30 @@
 <view
     xmlns:android="http://schemas.android.com/apk/res/android"
     class="com.android.contacts.list.ContactTileView"
-    style="@style/ContactTileSmallLayout">
+    android:focusable="true"
+    android:padding="5dip"
+    android:background="@drawable/list_selector" >
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
         <ImageView
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:id="@+id/contact_tile_image"
-            style="@style/ContactTileSmallImage" />
+            android:gravity="top"
+            android:scaleType="centerCrop" />
+
         <TextView
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:id="@+id/contact_tile_name"
-            style="@style/ContactTileSmallText" />
+            android:paddingTop="8dip"
+            android:paddingLeft="4dip" />
+
     </LinearLayout>
 
 </view>
