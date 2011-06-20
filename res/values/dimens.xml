@@ -97,11 +97,17 @@
     <!-- Height of the tab text label in the tab carousel on the contact detail page -->
     <dimen name="detail_tab_carousel_tab_label_height">40dip</dimen>
 
+    <!-- Width of one fragment in the fragment carousel on the contact detail page -->
+    <dimen name="detail_fragment_carousel_fragment_width">420dip</dimen>
+
     <!-- Vertical margin of the text within the update tab in the tab carousel -->
     <dimen name="detail_update_tab_vertical_margin">20dip</dimen>
 
     <!-- Left and right padding of the text within the update tab in the tab carousel -->
     <dimen name="detail_update_tab_side_padding">10dip</dimen>
+
+    <!-- Margin around the contact's photo on the contact card -->
+    <dimen name="detail_contact_photo_margin">15dip</dimen>
 
     <!-- Left and right padding for a contact detail item -->
     <dimen name="detail_item_icon_margin">10dip</dimen>

@@ -23,11 +23,10 @@ import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.detail.ContactDetailAboutFragment;
 import com.android.contacts.detail.ContactDetailFragment;
-import com.android.contacts.detail.ContactDetailHeaderView;
+import com.android.contacts.detail.ContactDetailFragmentCarousel;
 import com.android.contacts.detail.ContactDetailTabCarousel;
 import com.android.contacts.detail.ContactDetailUpdatesFragment;
 import com.android.contacts.interactions.ContactDeletionInteraction;
-import com.android.contacts.list.ContactBrowseListFragment;
 import com.android.contacts.util.PhoneCapabilityTester;
 
 import android.accounts.Account;
@@ -43,9 +42,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.Toast;
@@ -63,12 +60,11 @@ public class ContactDetailActivity extends ContactsActivity {
     private ContactDetailTabCarousel mTabCarousel;
     private ViewPager mViewPager;
 
-    private Uri mUri;
+    private ContactDetailFragmentCarousel mFragmentCarousel;
 
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
-
         if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
             // This activity must not be shown. We have to select the contact in the
             // PeopleActivity instead ==> Create a forward intent and finish
@@ -88,17 +84,27 @@ public class ContactDetailActivity extends ContactsActivity {
 
         setContentView(R.layout.contact_detail_activity);
 
+        // Narrow width screens have a {@link ViewPager} and {@link ContactDetailTabCarousel}
         mViewPager = (ViewPager) findViewById(R.id.pager);
-        mViewPager.setAdapter(new ViewPagerAdapter(getFragmentManager()));
-        mViewPager.setOnPageChangeListener(mOnPageChangeListener);
+        if (mViewPager != null) {
+            mViewPager.setAdapter(new ViewPagerAdapter(getFragmentManager()));
+            mViewPager.setOnPageChangeListener(mOnPageChangeListener);
+        }
 
         mTabCarousel = (ContactDetailTabCarousel) findViewById(R.id.tab_carousel);
-        mTabCarousel.setListener(mTabCarouselListener);
+        if (mTabCarousel != null) {
+            mTabCarousel.setListener(mTabCarouselListener);
+        }
 
-        mUri = getIntent().getData();
+        // Otherwise, wide width screens have a {@link ContactDetailFragmentCarousel}
+        mFragmentCarousel = (ContactDetailFragmentCarousel) findViewById(R.id.fragment_carousel);
+        if (mFragmentCarousel != null) {
+            if (mAboutFragment != null) mFragmentCarousel.setAboutFragment(mAboutFragment);
+            if (mUpdatesFragment != null) mFragmentCarousel.setUpdatesFragment(mUpdatesFragment);
+        }
+
         Log.i(TAG, getIntent().getData().toString());
     }
-
 
     @Override
     public void onAttachFragment(Fragment fragment) {
@@ -106,7 +112,7 @@ public class ContactDetailActivity extends ContactsActivity {
             mAboutFragment = (ContactDetailAboutFragment) fragment;
             mAboutFragment.setListener(mFragmentListener);
             mAboutFragment.setVerticalScrollListener(mVerticalScrollListener);
-            mAboutFragment.loadUri(mUri);
+            mAboutFragment.loadUri(getIntent().getData());
         } else if (fragment instanceof ContactDetailUpdatesFragment) {
             mUpdatesFragment = (ContactDetailUpdatesFragment) fragment;
         }
@@ -125,7 +131,7 @@ public class ContactDetailActivity extends ContactsActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         FragmentKeyListener mCurrentFragment;
-        switch (mViewPager.getCurrentItem()) {
+        switch (getCurrentPage()) {
             case 0:
                 mCurrentFragment = (FragmentKeyListener) mAboutFragment;
                 break;
@@ -140,6 +146,16 @@ public class ContactDetailActivity extends ContactsActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+    private int getCurrentPage() {
+        if (mViewPager != null) {
+            return mViewPager.getCurrentItem();
+        } else if (mFragmentCarousel != null) {
+            return mFragmentCarousel.getCurrentPage();
+        }
+        throw new IllegalStateException("Can't figure out the currently selected page. The activity"
+                + "must either have the ViewPager or fragment carousel");
+    }
+
     private final ContactDetailFragment.Listener mFragmentListener =
             new ContactDetailFragment.Listener() {
         @Override
@@ -149,7 +165,9 @@ public class ContactDetailActivity extends ContactsActivity {
 
         @Override
         public void onDetailsLoaded(ContactLoader.Result result) {
-            mTabCarousel.loadData(result);
+            if (mTabCarousel != null) {
+                mTabCarousel.loadData(result);
+            }
         }
 
         @Override
@@ -278,6 +296,9 @@ public class ContactDetailActivity extends ContactsActivity {
         @Override
         public void onScroll(
                 AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            if (mTabCarousel == null) {
+                return;
+            }
             // Only re-position the tab carousel vertically if the FIRST item is still visible on
             // the screen, otherwise the carousel should be in the correct place (pinned at the
             // top).

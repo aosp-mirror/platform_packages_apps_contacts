@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/contact_detail"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -30,5 +30,20 @@
         android:paddingRight="10dip"
         android:paddingTop="@dimen/detail_tab_carousel_height"
         android:layout_marginTop="10dip"/>
-</LinearLayout>
+
+    <View
+        android:id="@+id/alpha_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        android:alpha=".50"
+        android:visibility="gone"/>
+
+    <View
+        android:id="@+id/touch_intercept_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:visibility="gone"/>
+</FrameLayout>
 

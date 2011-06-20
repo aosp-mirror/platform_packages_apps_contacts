@@ -109,7 +109,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ContactDetailFragment extends Fragment implements FragmentKeyListener,
+public class ContactDetailFragment extends Fragment implements FragmentKeyListener, FragmentOverlay,
         OnItemClickListener, OnItemLongClickListener, SelectAccountDialogFragment.Listener {
 
     private static final String TAG = "ContactDetailFragment";
@@ -128,6 +128,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
     private ContactLoader.Result mContactData;
     private ContactDetailHeaderView mHeaderView;
+    private ImageView mPhotoView;
     private ListView mListView;
     private ViewAdapter mAdapter;
     private Uri mPrimaryPhoneUri = null;
@@ -164,6 +165,17 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
      * we're loading data.
      */
     private View mEmptyView;
+
+    /**
+     * This optional view adds an alpha layer over the entire fragment.
+     */
+    private View mAlphaLayer;
+
+    /**
+     * This optional view adds a layer over the entire fragment so that when visible, it intercepts
+     * all touch events on the fragment.
+     */
+    private View mTouchInterceptLayer;
 
     /**
      * A list of distinct contact IDs included in the current contact.
@@ -233,6 +245,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
         mInflater = inflater;
 
+        mPhotoView = (ImageView) mView.findViewById(R.id.photo);
+
         mListView = (ListView) mView.findViewById(android.R.id.list);
         mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
         mListView.setOnItemClickListener(this);
@@ -241,6 +255,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
         // Don't set it to mListView yet.  We do so later when we bind the adapter.
         mEmptyView = mView.findViewById(android.R.id.empty);
+
+        mAlphaLayer = mView.findViewById(R.id.alpha_overlay);
+        mTouchInterceptLayer = mView.findViewById(R.id.touch_intercept_overlay);
 
         mCopyGalToLocalButton = (Button) mView.findViewById(R.id.copyLocal);
         mCopyGalToLocalButton.setOnClickListener(new OnClickListener() {
@@ -260,6 +277,35 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
     public void setListener(Listener value) {
         mListener = value;
+    }
+
+    @Override
+    public void setAlphaLayerValue(float alpha) {
+        if (mAlphaLayer != null) {
+            mAlphaLayer.setAlpha(alpha);
+        }
+    }
+
+    @Override
+    public void enableAlphaLayer() {
+        if (mAlphaLayer != null) {
+            mAlphaLayer.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void enableTouchInterceptor(OnClickListener clickListener) {
+        if (mTouchInterceptLayer != null) {
+            mTouchInterceptLayer.setVisibility(View.VISIBLE);
+            mTouchInterceptLayer.setOnClickListener(clickListener);
+        }
+    }
+
+    @Override
+    public void disableTouchInterceptor() {
+        if (mTouchInterceptLayer != null) {
+            mTouchInterceptLayer.setVisibility(View.GONE);
+        }
     }
 
     protected Context getContext() {
@@ -334,6 +380,11 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
         // Clear old header
         mHeaderView = null;
+
+        // Setup the photo if applicable
+        if (mPhotoView != null) {
+            ContactDetailDisplayUtils.setPhoto(mContext, mContactData, mPhotoView);
+        }
 
         // Build up the contact entries
         buildEntries();

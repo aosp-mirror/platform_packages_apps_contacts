@@ -23,11 +23,24 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
-public class ContactDetailUpdatesFragment extends Fragment implements FragmentKeyListener {
+public class ContactDetailUpdatesFragment extends Fragment
+        implements FragmentKeyListener, FragmentOverlay {
 
     private static final String TAG = "ContactDetailUpdatesFragment";
+
+    /**
+     * This optional view adds an alpha layer over the entire fragment.
+     */
+    private View mAlphaLayer;
+
+    /**
+     * This optional view adds a layer over the entire fragment so that when visible, it intercepts
+     * all touch events on the fragment.
+     */
+    private View mTouchInterceptLayer;
 
     public ContactDetailUpdatesFragment() {
         // Explicit constructor for inflation
@@ -35,7 +48,42 @@ public class ContactDetailUpdatesFragment extends Fragment implements FragmentKe
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
-        return inflater.inflate(R.layout.contact_detail_updates_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.contact_detail_updates_fragment, container,
+                false);
+
+        mAlphaLayer = rootView.findViewById(R.id.alpha_overlay);
+        mTouchInterceptLayer = rootView.findViewById(R.id.touch_intercept_overlay);
+
+        return rootView;
+    }
+
+    @Override
+    public void setAlphaLayerValue(float alpha) {
+        if (mAlphaLayer != null) {
+            mAlphaLayer.setAlpha(alpha);
+        }
+    }
+
+    @Override
+    public void enableAlphaLayer() {
+        if (mAlphaLayer != null) {
+            mAlphaLayer.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void enableTouchInterceptor(OnClickListener clickListener) {
+        if (mTouchInterceptLayer != null) {
+            mTouchInterceptLayer.setVisibility(View.VISIBLE);
+            mTouchInterceptLayer.setOnClickListener(clickListener);
+        }
+    }
+
+    @Override
+    public void disableTouchInterceptor() {
+        if (mTouchInterceptLayer != null) {
+            mTouchInterceptLayer.setVisibility(View.GONE);
+        }
     }
 
     @Override
