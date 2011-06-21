@@ -17,14 +17,13 @@
 package com.android.contacts.group;
 
 import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.GroupMemberLoader;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.interactions.GroupDeletionDialogFragment;
 import com.android.contacts.interactions.GroupRenamingDialogFragment;
-import com.android.contacts.list.ContactListAdapter;
-import com.android.contacts.list.ContactListFilter;
-import com.android.contacts.list.DefaultContactListAdapter;
-import com.android.contacts.util.PhoneCapabilityTester;
+import com.android.contacts.list.ContactTileAdapter;
+import com.android.contacts.list.ContactTileAdapter.DisplayType;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -36,8 +35,6 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.provider.ContactsContract.Directory;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -46,8 +43,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -73,6 +68,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
 
     private static final int LOADER_METADATA = 0;
     private static final int LOADER_MEMBERS = 1;
+    private static final int NUM_COLS = 4;
 
     private Context mContext;
 
@@ -83,7 +79,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
 
     private Listener mListener;
 
-    private ContactListAdapter mAdapter;
+    private ContactTileAdapter mAdapter;
     private ContactPhotoManager mPhotoManager;
 
     private Uri mGroupUri;
@@ -99,6 +95,8 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mContext = activity;
+        mAdapter = new ContactTileAdapter(activity, mContactTileListener, NUM_COLS,
+                DisplayType.GROUP_MEMBERS);
         configurePhotoLoader();
     }
 
@@ -115,12 +113,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         mGroupTitle = (TextView) mRootView.findViewById(R.id.group_title);
         mGroupSize = (TextView) mRootView.findViewById(R.id.group_size);
         mMemberListView = (ListView) mRootView.findViewById(android.R.id.list);
-        mMemberListView.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // TODO: Open contact detail for this person
-            }
-        });
+
         return mRootView;
     }
 
@@ -130,16 +123,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
     }
 
     private void configureAdapter(long groupId) {
-        mAdapter = new DefaultContactListAdapter(getActivity());
-        mAdapter.setSectionHeaderDisplayEnabled(false);
-        mAdapter.setDisplayPhotos(true);
-        mAdapter.setHasHeader(0, false);
-        mAdapter.setQuickContactEnabled(false);
-        mAdapter.setPinnedPartitionHeadersEnabled(false);
-        mAdapter.setContactNameDisplayOrder(ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY);
-        mAdapter.setSortOrder(ContactsContract.Preferences.SORT_ORDER_PRIMARY);
-        mAdapter.setPhotoLoader(mPhotoManager);
-        mAdapter.setFilter(ContactListFilter.createGroupFilter(groupId));
+        mGroupId = groupId;
         mMemberListView.setAdapter(mAdapter);
     }
 
@@ -177,6 +161,15 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         getLoaderManager().restartLoader(LOADER_MEMBERS, null, mGroupMemberListLoaderListener);
     }
 
+    private final ContactTileAdapter.Listener mContactTileListener =
+            new ContactTileAdapter.Listener() {
+
+        @Override
+        public void onContactSelected(Uri contactUri) {
+            // TODO: Launch Quick Contact
+        }
+    };
+
     /**
      * The listener for the group metadata loader.
      */
@@ -209,15 +202,13 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
 
         @Override
         public CursorLoader onCreateLoader(int id, Bundle args) {
-            CursorLoader loader = new CursorLoader(mContext, null, null, null, null, null);
-            mAdapter.configureLoader(loader, Directory.DEFAULT);
-            return loader;
+            return new GroupMemberLoader(mContext, mGroupId);
         }
 
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
             updateSize(Integer.toString(data.getCount()));
-            mAdapter.changeCursor(0, data);
+            mAdapter.loadFromCursor(data);
         }
 
         @Override

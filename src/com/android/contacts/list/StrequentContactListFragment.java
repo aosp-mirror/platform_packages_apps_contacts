@@ -15,6 +15,7 @@
  */
 package com.android.contacts.list;
 
+import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.R;
 import com.android.contacts.StrequentMetaDataLoader;
 import com.android.contacts.list.ContactTileAdapter.DisplayType;
@@ -23,7 +24,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
-import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
@@ -49,27 +49,22 @@ public class StrequentContactListFragment extends Fragment {
     private Listener mListener;
     private ContactTileAdapter mAdapter;
     private ListView mListView;
-    private Context mContext;
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mAdapter = new ContactTileAdapter(activity, mAdapterListener,
                 NUM_COLS, DisplayType.STREQUENT);
-        mContext = activity;
+        mAdapter.setPhotoLoader(ContactPhotoManager.getInstance(activity));
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.strequent_fragment, container, false);
-        mListView = (ListView) v.findViewById(R.id.strequent_list);
+        View v = inflater.inflate(R.layout.contact_tile_list, container, false);
+        mListView = (ListView) v.findViewById(R.id.contact_tile_list);
         mListView.setItemsCanFocus(true);
         return v;
-    }
-
-    public void setListener(Listener listener) {
-        mListener = listener;
     }
 
     @Override
@@ -86,7 +81,7 @@ public class StrequentContactListFragment extends Fragment {
 
         @Override
         public CursorLoader onCreateLoader(int id, Bundle args) {
-            return new StrequentMetaDataLoader(mContext);
+            return new StrequentMetaDataLoader(getActivity());
         }
 
         @Override
@@ -100,6 +95,10 @@ public class StrequentContactListFragment extends Fragment {
             mAdapter.loadFromCursor(null);
         }
     };
+
+    public void setListener(Listener listener) {
+        mListener = listener;
+    }
 
     private ContactTileAdapter.Listener mAdapterListener =
             new ContactTileAdapter.Listener() {

@@ -16,8 +16,10 @@
 package com.android.contacts.list;
 
 import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.GroupMemberLoader;
 import com.android.contacts.R;
 import com.android.contacts.StrequentMetaDataLoader;
+
 import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
@@ -58,6 +60,11 @@ public class ContactTileAdapter extends BaseAdapter {
     private int mColumnCount;
     private int mDividerRowIndex;
     private ContactPhotoManager mPhotoManager;
+    private int mIdIndex;
+    private int mLookupIndex;
+    private int mPhotoUriIndex;
+    private int mNameIndex;
+    private int mStarredIndex;
 
     /**
      * Configures the adapter to filter and display contacts using different view types.
@@ -85,7 +92,8 @@ public class ContactTileAdapter extends BaseAdapter {
 
         /**
          * Display all contacts from a group in the cursor in a
-         * regular {@link ContactTileView} layout.
+         * regular {@link ContactTileView} layout. Use {@link GroupMemberLoader}
+         * when passing {@link Cursor} into loadFromCusor method.
          */
         GROUP_MEMBERS
     }
@@ -95,10 +103,46 @@ public class ContactTileAdapter extends BaseAdapter {
         mListener = listener;
         mContext = context;
         mColumnCount = numCols;
-        mPhotoManager = ContactPhotoManager.getInstance(context);
         mDisplayType = displayType;
+
+        bindColumnIndices();
     }
 
+    public void setPhotoLoader(ContactPhotoManager photoLoader) {
+        mPhotoManager = photoLoader;
+    }
+
+    /**
+     * Sets the column indices for expected {@link Cursor}
+     * based on {@link DisplayType}.
+     */
+    private void bindColumnIndices() {
+        /**
+         * Need to check for {@link DisplayType#GROUP_MEMBERS} because
+         * it has different projections than all other {@link DisplayType}s
+         * By using {@link GroupMemberLoader} and {@link StrequentMetaDataLoader}
+         * the correct {@link Cursor}s will be given.
+         */
+        if (mDisplayType == DisplayType.GROUP_MEMBERS) {
+            mIdIndex = GroupMemberLoader.CONTACT_PHOTO_ID_COLUMN_INDEX;
+            mLookupIndex = GroupMemberLoader.CONTACT_LOOKUP_KEY_COLUMN_INDEX;
+            mPhotoUriIndex = GroupMemberLoader.CONTACT_PHOTO_URI_COLUMN_INDEX;
+            mNameIndex = GroupMemberLoader.CONTACT_DISPLAY_NAME_PRIMARY_COLUMN_INDEX;
+            mStarredIndex = GroupMemberLoader.CONTACT_STARRED_COLUMN_INDEX;
+        } else {
+            mIdIndex = StrequentMetaDataLoader.CONTACT_ID;
+            mLookupIndex = StrequentMetaDataLoader.LOOKUP_KEY;
+            mPhotoUriIndex = StrequentMetaDataLoader.PHOTO_URI;
+            mNameIndex = StrequentMetaDataLoader.DISPLAY_NAME;
+            mStarredIndex = StrequentMetaDataLoader.STARRED;
+        }
+    }
+
+    /**
+     * Creates {@link ContactTileView}s for each item in {@link Cursor}.
+     * If {@link DisplayType} is {@link DisplayType#GROUP_MEMBERS} use {@link GroupMemberLoader}
+     * Else use {@link StrequentMetaDataLoader}
+     */
     public void loadFromCursor(Cursor cursor) {
         mContacts.clear();
         mContacts2.clear();
@@ -107,19 +151,16 @@ public class ContactTileAdapter extends BaseAdapter {
         // In that case, show an empty list of contacts.
         if (cursor != null) {
             while (cursor.moveToNext()) {
+                long id = cursor.getLong(mIdIndex);
+                String photoUri = cursor.getString(mPhotoUriIndex);
+                String lookupKey = cursor.getString(mLookupIndex);
+                boolean isStarred = (cursor.getInt(mStarredIndex) == 1);
+
                 ContactEntry contact = new ContactEntry();
-
-                long id = cursor.getLong(StrequentMetaDataLoader.CONTACT_ID);
-                String lookupKey = cursor.getString(StrequentMetaDataLoader.LOOKUP_KEY);
-                String photoUri = cursor.getString(StrequentMetaDataLoader.PHOTO_URI);
-
+                contact.name = cursor.getString(mNameIndex);
                 contact.photoUri = (photoUri != null ? Uri.parse(photoUri) : null);
-
                 contact.lookupKey = ContentUris.withAppendedId(
                         Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey), id);
-                contact.name = cursor.getString(StrequentMetaDataLoader.DISPLAY_NAME);
-
-                boolean isStarred = (cursor.getInt(StrequentMetaDataLoader.STARRED) == 1);
 
                 switch (mDisplayType) {
                     case STREQUENT:
@@ -155,11 +196,6 @@ public class ContactTileAdapter extends BaseAdapter {
         // Adding Divider Row if Neccessary
         if (mDisplayType == DisplayType.STREQUENT && mContacts.size() > 0) numRows++;
         return numRows;
-    }
-
-    public void setColumnCount(int colCount) {
-        mColumnCount = colCount;
-        notifyDataSetChanged();
     }
 
     /**
