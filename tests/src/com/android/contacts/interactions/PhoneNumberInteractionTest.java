@@ -30,6 +30,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.test.InstrumentationTestCase;
 import android.test.suitebuilder.annotation.Smoke;
@@ -101,6 +102,24 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
 
         assertEquals(Intent.ACTION_SENDTO, intent.getAction());
         assertEquals("sms:123", intent.getDataString());
+    }
+
+    public void testSendSmsWhenDataIdIsProvided() {
+        Uri dataUri = ContentUris.withAppendedId(Data.CONTENT_URI, 1);
+        expectQuery(dataUri, true /* isDataUri */ )
+                .returnRow(1, "987", 0, null, Phone.TYPE_HOME, null);
+
+        TestPhoneNumberInteraction interaction = new TestPhoneNumberInteraction(
+                mContext, InteractionType.SMS, null);
+
+        interaction.startInteraction(dataUri);
+        interaction.getLoader().waitForLoader();
+
+        Intent intent = mContext.getIntentForStartActivity();
+        assertNotNull(intent);
+
+        assertEquals(Intent.ACTION_SENDTO, intent.getAction());
+        assertEquals("sms:987", intent.getDataString());
     }
 
     public void testSendSmsWhenThereIsPrimaryNumber() {
@@ -186,7 +205,16 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
     }
 
     private Query expectQuery(Uri contactUri) {
-        Uri dataUri = Uri.withAppendedPath(contactUri, Contacts.Data.CONTENT_DIRECTORY);
+        return expectQuery(contactUri, false);
+    }
+
+    private Query expectQuery(Uri uri, boolean isDataUri) {
+        final Uri dataUri;
+        if (isDataUri) {
+            dataUri = uri;
+        } else {
+            dataUri = Uri.withAppendedPath(uri, Contacts.Data.CONTENT_DIRECTORY);
+        }
         return mContactsProvider
                 .expectQuery(dataUri)
                 .withProjection(

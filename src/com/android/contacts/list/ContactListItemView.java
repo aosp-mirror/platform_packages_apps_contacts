@@ -99,8 +99,33 @@ public class ContactListItemView extends ViewGroup
     private char[] mHighlightedPrefix;
 
     private int mDefaultPhotoViewSize;
+    /**
+     * Can be effective even when {@link #mPhotoView} is null, as we want to have horizontal padding
+     * to align other data in this View.
+     */
     private int mPhotoViewWidth;
+    /**
+     * Can be effective even when {@link #mPhotoView} is null, as we want to have vertical padding.
+     */
     private int mPhotoViewHeight;
+
+    /**
+     * Only effective when {@link #mPhotoView} is null.
+     * When true all the Views on the right side of the photo should have horizontal padding on
+     * those left assuming there is a photo.
+     */
+    private boolean mKeepHorizontalPaddingForPhotoView;
+    /**
+     * Only effective when {@link #mPhotoView} is null.
+     */
+    private boolean mKeepVerticalPaddingForPhotoView;
+
+    /**
+     * True when {@link #mPhotoViewWidth} and {@link #mPhotoViewHeight} are ready for being used.
+     * False indicates those values should be updated before being used in position calculation.
+     */
+    private boolean mPhotoViewWidthAndHeightAreReady = false;
+
     private int mLine1Height;
     private int mLine2Height;
     private int mLine3Height;
@@ -392,6 +417,9 @@ public class ContactListItemView extends ViewGroup
                     leftBound + mPhotoViewWidth,
                     photoTop + mPhotoViewHeight);
             leftBound += mPhotoViewWidth + mGapBetweenImageAndText;
+        } else if (mKeepHorizontalPaddingForPhotoView) {
+            // Draw nothing but keep the padding.
+            leftBound += mPhotoViewWidth + mGapBetweenImageAndText;
         }
         return leftBound;
     }
@@ -459,7 +487,7 @@ public class ContactListItemView extends ViewGroup
      * Extracts width and height from the style
      */
     private void ensurePhotoViewSize() {
-        if (mPhotoViewWidth == 0 && mPhotoViewHeight == 0) {
+        if (!mPhotoViewWidthAndHeightAreReady) {
             if (mQuickContactEnabled) {
                 TypedArray a = mContext.obtainStyledAttributes(null,
                         com.android.internal.R.styleable.ViewGroup_Layout,
@@ -471,9 +499,15 @@ public class ContactListItemView extends ViewGroup
                         android.R.styleable.ViewGroup_Layout_layout_height,
                         ViewGroup.LayoutParams.WRAP_CONTENT);
                 a.recycle();
-            } else {
+            } else if (mPhotoView != null) {
                 mPhotoViewWidth = mPhotoViewHeight = getDefaultPhotoViewSize();
+            } else {
+                final int defaultPhotoViewSize = getDefaultPhotoViewSize();
+                mPhotoViewWidth = mKeepHorizontalPaddingForPhotoView ? defaultPhotoViewSize : 0;
+                mPhotoViewHeight = mKeepVerticalPaddingForPhotoView ? defaultPhotoViewSize : 0;
             }
+
+            mPhotoViewWidthAndHeightAreReady = true;
         }
     }
 
@@ -567,6 +601,7 @@ public class ContactListItemView extends ViewGroup
             mQuickContact = new QuickContactBadge(mContext, null, QUICK_CONTACT_BADGE_STYLE);
             mQuickContact.setExcludeMimes(new String[] { Contacts.CONTENT_ITEM_TYPE });
             addView(mQuickContact);
+            mPhotoViewWidthAndHeightAreReady = false;
         }
         return mQuickContact;
     }
@@ -584,15 +619,30 @@ public class ContactListItemView extends ViewGroup
             // Quick contact style used above will set a background - remove it
             mPhotoView.setBackgroundDrawable(null);
             addView(mPhotoView);
+            mPhotoViewWidthAndHeightAreReady = false;
         }
         return mPhotoView;
     }
 
     /**
-     * Removes the photo view.  Should not be needed once we start handling different
-     * types of views as different types of views from the List's perspective.
+     * Removes the photo view.
      */
     public void removePhotoView() {
+        removePhotoView(false, true);
+    }
+
+    /**
+     * Removes the photo view.
+     *
+     * @param keepHorizontalPadding True means data on the right side will have padding on left,
+     * pretending there is still a photo view.
+     * @param keepVerticalPadding True means the View will have some height enough for
+     * accommodating a photo view.
+     */
+    public void removePhotoView(boolean keepHorizontalPadding, boolean keepVerticalPadding) {
+        mPhotoViewWidthAndHeightAreReady = false;
+        mKeepHorizontalPaddingForPhotoView = keepHorizontalPadding;
+        mKeepVerticalPaddingForPhotoView = keepVerticalPadding;
         if (mPhotoView != null) {
             removeView(mPhotoView);
             mPhotoView = null;
@@ -821,6 +871,13 @@ public class ContactListItemView extends ViewGroup
                 getNameTextView(), displayOrder, highlightingEnabled, mHighlightedPrefix);
     }
 
+    public void hideDisplayName() {
+        if (mNameTextView != null) {
+            removeView(mNameTextView);
+            mNameTextView = null;
+        }
+    }
+
     public void showPhoneticName(Cursor cursor, int phoneticNameColumnIndex) {
         cursor.copyStringToBuffer(phoneticNameColumnIndex, mPhoneticNameBuffer);
         int phoneticNameSize = mPhoneticNameBuffer.sizeCopied;
@@ -828,6 +885,13 @@ public class ContactListItemView extends ViewGroup
             setPhoneticName(mPhoneticNameBuffer.data, phoneticNameSize);
         } else {
             setPhoneticName(null, 0);
+        }
+    }
+
+    public void hidePhoneticName() {
+        if (mPhoneticNameTextView != null) {
+            removeView(mPhoneticNameTextView);
+            mPhoneticNameTextView = null;
         }
     }
 

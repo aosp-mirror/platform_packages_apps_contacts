@@ -282,13 +282,29 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
      * Initiates the interaction. This may result in a phone call or sms message started
      * or a disambiguation dialog to determine which phone number should be used.
      */
-    public void startInteraction(Uri contactUri) {
+    @VisibleForTesting
+    /* package */ void startInteraction(Uri uri) {
         if (mLoader != null) {
             mLoader.reset();
         }
 
+        final Uri queryUri;
+        final String inputUriAsString = uri.toString();
+        if (inputUriAsString.startsWith(Contacts.CONTENT_URI.toString())) {
+            if (!inputUriAsString.endsWith(Contacts.Data.CONTENT_DIRECTORY)) {
+                queryUri = Uri.withAppendedPath(uri, Contacts.Data.CONTENT_DIRECTORY);
+            } else {
+                queryUri = uri;
+            }
+        } else if (inputUriAsString.startsWith(Data.CONTENT_URI.toString())) {
+            queryUri = uri;
+        } else {
+            throw new UnsupportedOperationException(
+                    "Input Uri must be contact Uri or data Uri (input: \"" + uri + "\")");
+        }
+
         mLoader = new CursorLoader(mContext,
-                Uri.withAppendedPath(contactUri, Contacts.Data.CONTENT_DIRECTORY),
+                queryUri,
                 PHONE_NUMBER_PROJECTION,
                 PHONE_NUMBER_SELECTION,
                 null,
@@ -356,29 +372,36 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
     /**
      * Start call action using given contact Uri. If there are multiple candidates for the phone
      * call, dialog is automatically shown and the user is asked to choose one.
+     *
+     * @param uri contact Uri (built from {@link Contacts#CONTENT_URI}) or data Uri
+     * (built from {@link Data#CONTENT_URI}). Contact Uri may show the disambiguation dialog while
+     * data Uri won't.
      */
-    public static void startInteractionForPhoneCall(Activity activity, Uri contactUri) {
+    public static void startInteractionForPhoneCall(Activity activity, Uri uri) {
         (new PhoneNumberInteraction(activity, InteractionType.PHONE_CALL, null))
-                .startInteraction(contactUri);
+                .startInteraction(uri);
     }
 
     /**
      * Start text messaging (a.k.a SMS) action using given contact Uri. If there are multiple
      * candidates for the phone call, dialog is automatically shown and the user is asked to choose
      * one.
+     *
+     * @param uri contact Uri (built from {@link Contacts#CONTENT_URI}) or data Uri
+     * (built from {@link Data#CONTENT_URI}). Contact Uri may show the disambiguation dialog while
+     * data Uri won't.
      */
-    public static void startInteractionForTextMessage(Activity activity, Uri contactUri) {
-        (new PhoneNumberInteraction(activity, InteractionType.SMS, null))
-                .startInteraction(contactUri);
+    public static void startInteractionForTextMessage(Activity activity, Uri uri) {
+        (new PhoneNumberInteraction(activity, InteractionType.SMS, null)).startInteraction(uri);
     }
 
     @VisibleForTesting
-    CursorLoader getLoader() {
+    /* package */ CursorLoader getLoader() {
         return mLoader;
     }
 
     @VisibleForTesting
-    void showDisambiguationDialog(ArrayList<PhoneItem> phoneList) {
+    /* package */ void showDisambiguationDialog(ArrayList<PhoneItem> phoneList) {
         PhoneDisambiguationDialogFragment.show(((Activity)mContext).getFragmentManager(),
                 phoneList, mInteractionType);
     }

@@ -27,11 +27,14 @@ import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.list.DirectoryListLoader;
 import com.android.contacts.list.OnContactBrowserActionListener;
+import com.android.contacts.list.OnPhoneNumberPickerActionListener;
+import com.android.contacts.list.PhoneNumberPickerFragment;
 import com.android.contacts.list.StrequentContactListFragment;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.internal.telephony.ITelephony;
 
 import android.app.ActionBar;
+import android.app.ActionBar.LayoutParams;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
 import android.app.Activity;
@@ -49,10 +52,15 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents.UI;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.SearchView;
+import android.widget.SearchView.OnCloseListener;
+import android.widget.SearchView.OnQueryTextListener;
 
 /**
  * The dialer activity that has one tab with the virtual 12key
@@ -94,6 +102,80 @@ public class DialtactsActivity extends Activity {
      */
     private int mLastManuallySelectedTab;
 
+    /**
+     * Fragment for searching phone numbers. Unlike the other Fragments, this doesn't correspond
+     * to tab but is shown by a search action.
+     */
+    private PhoneNumberPickerFragment mPhoneNumberPickerFragment;
+
+    private SearchView mSearchView;
+
+    /**
+     * True when this Activity is in its search UI (with a {@link SearchView} and
+     * {@link PhoneNumberPickerFragment}).
+     */
+    private boolean mInSearchUi;
+
+    /**
+     * Listener used when one of phone numbers in search UI is selected. This will initiate a
+     * phone call using the phone number.
+     */
+    private final OnPhoneNumberPickerActionListener mPhoneNumberPickerActionListener =
+            new OnPhoneNumberPickerActionListener() {
+                @Override
+                public void onPickPhoneNumberAction(Uri dataUri) {
+                    PhoneNumberInteraction.startInteractionForPhoneCall(
+                            DialtactsActivity.this, dataUri);
+                }
+
+                @Override
+                public void onShortcutIntentCreated(Intent intent) {
+                    Log.w(TAG, "Unsupported intent has come (" + intent + "). Ignoring.");
+                }
+    };
+
+    /**
+     * Listener used to send search queries to the phone search fragment.
+     */
+    private final OnQueryTextListener mPhoneSearchQueryTextListener =
+            new OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    // Ignore.
+                    return true;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    // Show search result with non-empty text. Show a bare list otherwise.
+                    mPhoneNumberPickerFragment.setQueryString(newText, true);
+                    mPhoneNumberPickerFragment.setSearchMode(!TextUtils.isEmpty(newText));
+                    return true;
+                }
+    };
+
+    /**
+     * Listener used to handle the "close" button on the right side of {@link SearchView}.
+     * If some text is in the search view, this will clean it up. Otherwise this will exit
+     * the search UI and let users go back to usual Phone UI.
+     *
+     * This does _not_ handle back button.
+     *
+     * TODO: need "up" button instead of close button
+     */
+    private final OnCloseListener mPhoneSearchCloseListener =
+            new OnCloseListener() {
+                @Override
+                public boolean onClose() {
+                    if (TextUtils.isEmpty(mSearchView.getQuery())) {
+                        exitSearchUi();
+                    } else {
+                        mSearchView.setQuery(null, true);
+                    }
+                    return true;
+                }
+    };
+
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -112,6 +194,10 @@ public class DialtactsActivity extends Activity {
                 .findFragmentById(R.id.contacts_fragment);
         mStrequentFragment = (StrequentContactListFragment) fragmentManager
                 .findFragmentById(R.id.favorites_fragment);
+        mPhoneNumberPickerFragment = (PhoneNumberPickerFragment) fragmentManager
+                .findFragmentById(R.id.phone_number_picker_fragment);
+        mPhoneNumberPickerFragment.setOnPhoneNumberPickerActionListener(
+                mPhoneNumberPickerActionListener);
 
         // Hide all tabs (the current tab will later be reshown once a tab is selected)
         final FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -119,6 +205,7 @@ public class DialtactsActivity extends Activity {
         transaction.hide(mCallLogFragment);
         transaction.hide(mContactsFragment);
         transaction.hide(mStrequentFragment);
+        transaction.hide(mPhoneNumberPickerFragment);
         transaction.commit();
 
         // Setup the ActionBar tabs (the order matches the tab-index contants TAB_INDEX_*)
@@ -147,11 +234,16 @@ public class DialtactsActivity extends Activity {
     protected void onPause() {
         super.onPause();
 
-        final int currentTabIndex = getActionBar().getSelectedTab().getPosition();
         final SharedPreferences.Editor editor =
                 getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE).edit();
-        if (currentTabIndex == TAB_INDEX_CONTACTS || currentTabIndex == TAB_INDEX_FAVORITES) {
-            editor.putBoolean(PREF_FAVORITES_AS_CONTACTS, currentTabIndex == TAB_INDEX_FAVORITES);
+        // selectedTab becomes null in search UI.
+        final Tab selectedTab = getActionBar().getSelectedTab();
+        if (selectedTab != null) {
+            final int currentTabIndex = selectedTab.getPosition();
+            if (currentTabIndex == TAB_INDEX_CONTACTS || currentTabIndex == TAB_INDEX_FAVORITES) {
+                editor.putBoolean(
+                        PREF_FAVORITES_AS_CONTACTS, currentTabIndex == TAB_INDEX_FAVORITES);
+            }
         }
         editor.putInt(PREF_LAST_MANUALLY_SELECTED_TAB, mLastManuallySelectedTab);
 
@@ -381,7 +473,10 @@ public class DialtactsActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        if (isTaskRoot()) {
+        if (mInSearchUi) {
+            // We should let the user go back to usual screens with tabs.
+            exitSearchUi();
+        } else if (isTaskRoot()) {
             // Instead of stopping, simply push this to the back of the stack.
             // This is only done when running at the top of the stack;
             // otherwise, we have been launched by someone else so need to
@@ -419,6 +514,7 @@ public class DialtactsActivity extends Activity {
         @Override
         public void onTabSelected(Tab tab, FragmentTransaction ft) {
             ft.show(mFragment);
+            ft.hide(mPhoneNumberPickerFragment);
 
             // Remember this tab index. This function is also called, if the tab is set
             // automatically in which case the setter (setCurrentTab) has to set this to its old
@@ -542,5 +638,72 @@ public class DialtactsActivity extends Activity {
         default:
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void startSearch(String initialQuery, boolean selectInitialQuery,
+            Bundle appSearchData, boolean globalSearch) {
+        if (mPhoneNumberPickerFragment != null && mPhoneNumberPickerFragment.isAdded()
+                && !globalSearch) {
+            enterSearchUi();
+        } else {
+            super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
+        }
+    }
+
+    /**
+     * Hides every tab and shows search UI for phone lookup.
+     */
+    private void enterSearchUi() {
+        final ActionBar actionBar = getActionBar();
+
+        final Tab tab = actionBar.getSelectedTab();
+        if (tab != null) {
+            mLastManuallySelectedTab = tab.getPosition();
+        }
+
+        // Instantiate or reset SearchView in ActionBar.
+        if (mSearchView == null) {
+            // TODO: layout is not what we want. Need "up" button instead of "close" button, etc.
+            final View searchViewLayout =
+                    getLayoutInflater().inflate(R.layout.custom_action_bar, null);
+            mSearchView = (SearchView) searchViewLayout.findViewById(R.id.search_view);
+            mSearchView.setQueryHint(getString(R.string.hint_findContacts));
+            mSearchView.setOnQueryTextListener(mPhoneSearchQueryTextListener);
+            mSearchView.setOnCloseListener(mPhoneSearchCloseListener);
+            mSearchView.requestFocus();
+            actionBar.setCustomView(searchViewLayout,
+                    new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+        } else {
+            mSearchView.setQuery(null, true);
+        }
+
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+
+        // Show the search fragment and hide everything else.
+        final FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.show(mPhoneNumberPickerFragment);
+        transaction.hide(mDialpadFragment);
+        transaction.hide(mCallLogFragment);
+        transaction.hide(mContactsFragment);
+        transaction.hide(mStrequentFragment);
+        transaction.commit();
+
+        mInSearchUi = true;
+    }
+
+    /**
+     * Goes back to usual Phone UI with tags. Previously selected Tag and associated Fragment
+     * should be automatically focused again.
+     */
+    private void exitSearchUi() {
+        final ActionBar actionBar = getActionBar();
+
+        // We want to hide SearchView and show Tabs. Also focus on previously selected one.
+        actionBar.setDisplayShowCustomEnabled(false);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+        mInSearchUi = false;
     }
 }

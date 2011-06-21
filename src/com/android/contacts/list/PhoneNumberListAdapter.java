@@ -103,6 +103,8 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         }
 
         loader.setUri(uri);
+
+        // TODO: we probably want to use default sort order in search mode.
         if (getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
             loader.setSortOrder(Phone.SORT_KEY_PRIMARY);
         } else {
@@ -154,10 +156,46 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     @Override
     protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         ContactListItemView view = (ContactListItemView)itemView;
+
+        // Look at elements before and after this position, checking if contact IDs are same.
+        // If they have one same contact ID, it means they can be grouped.
+        //
+        // In one group, only the first entry will show its photo and names (display name and
+        // phonetic name), and the other entries in the group show just their data (e.g. phone
+        // number, email address).
+        cursor.moveToPosition(position);
+        boolean isFirstEntry = true;
+        boolean showBottomDivider = true;
+        final long currentContactId = cursor.getLong(PHONE_CONTACT_ID_COLUMN_INDEX);
+        if (cursor.moveToPrevious() && !cursor.isBeforeFirst()) {
+            final long previousContactId = cursor.getLong(PHONE_CONTACT_ID_COLUMN_INDEX);
+            if (currentContactId == previousContactId) {
+                isFirstEntry = false;
+            }
+        }
+        cursor.moveToPosition(position);
+        if (cursor.moveToNext() && !cursor.isAfterLast()) {
+            final long nextContactId = cursor.getLong(PHONE_CONTACT_ID_COLUMN_INDEX);
+            if (currentContactId == nextContactId) {
+                // The following entry should be in the same group, which means we don't want a
+                // divider between them.
+                // TODO: we want a different divider than the divider between groups. Just hiding
+                // this divider won't be enough.
+                showBottomDivider = false;
+            }
+        }
+        cursor.moveToPosition(position);
+
         bindSectionHeaderAndDivider(view, position);
-        bindName(view, cursor);
-        bindPhoto(view, cursor);
+        if (isFirstEntry) {
+            bindName(view, cursor);
+            bindPhoto(view, cursor);
+        } else {
+            unbindName(view);
+            unbindPhoto(view);
+        }
         bindPhoneNumber(view, cursor);
+        view.setDividerVisible(showBottomDivider);
     }
 
     protected void bindPhoneNumber(ContactListItemView view, Cursor cursor) {
@@ -190,6 +228,11 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         view.showPhoneticName(cursor, PHONE_PHONETIC_NAME_COLUMN_INDEX);
     }
 
+    protected void unbindName(final ContactListItemView view) {
+        view.hideDisplayName();
+        view.hidePhoneticName();
+    }
+
     protected void bindPhoto(final ContactListItemView view, Cursor cursor) {
         long photoId = 0;
         if (!cursor.isNull(PHONE_PHOTO_ID_COLUMN_INDEX)) {
@@ -197,5 +240,9 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         }
 
         getPhotoLoader().loadPhoto(view.getPhotoView(), photoId);
+    }
+
+    protected void unbindPhoto(final ContactListItemView view) {
+        view.removePhotoView(true, false);
     }
 }

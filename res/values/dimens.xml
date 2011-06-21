@@ -135,4 +135,7 @@
 
     <!-- Margins for the group detail fragment divider in the header -->
     <dimen name="group_detail_divider_margin">15dip</dimen>
+
+    <!-- Height for directory headers in contact lists -->
+    <dimen name="directory_header_height">28dip</dimen>
 </resources>

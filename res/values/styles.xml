@@ -16,7 +16,6 @@
 <resources>
     <style name="DialtactsTheme" parent="android:Theme.Holo.Light">
         <item name="android:windowContentOverlay">@null</item>
-        <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="section_header_background">@drawable/list_title_holo</item>
         <item name="list_section_header_height">32dip</item>
@@ -189,7 +188,7 @@
         <item name="contact_filter_popup_width">320dip</item>
     </style>
 
-    <style name="ContactPickerTheme" parent="@android:Theme">
+    <style name="ContactPickerTheme" parent="@android:Theme.Holo.Light">
         <item name="section_header_background">@drawable/section_header</item>
         <item name="list_item_divider">@drawable/list_item_divider</item>
         <item name="list_item_padding_top">4dip</item>
