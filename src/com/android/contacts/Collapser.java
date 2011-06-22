@@ -43,7 +43,7 @@ public final class Collapser {
 
     /**
      * Collapses a list of Collapsible items into a list of collapsed items. Items are collapsed
-     * if {@link Collapsible#shouldCollapseWith(Object)} returns strue, and are collapsed
+     * if {@link Collapsible#shouldCollapseWith(Object)} returns true, and are collapsed
      * through the {@Link Collapsible#collapseWith(Object)} function implemented by the data item.
      *
      * @param list List of Objects of type <T extends Collapsible<T>> to be collapsed.

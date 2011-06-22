@@ -94,9 +94,6 @@ public class DialtactsActivity extends Activity {
      */
     private int mLastManuallySelectedTab;
 
-    // TODO: It would be great to eventually remove all interactions and replace by DialogFragments
-    private PhoneNumberInteraction mPhoneNumberCallInteraction;
-
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -395,13 +392,6 @@ public class DialtactsActivity extends Activity {
         }
     }
 
-    private PhoneNumberInteraction getPhoneNumberCallInteraction() {
-        if (mPhoneNumberCallInteraction == null) {
-            mPhoneNumberCallInteraction = new PhoneNumberInteraction(this, false, null);
-        }
-        return mPhoneNumberCallInteraction;
-    }
-
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -482,7 +472,8 @@ public class DialtactsActivity extends Activity {
 
         @Override
         public void onCallContactAction(Uri contactUri) {
-            getPhoneNumberCallInteraction().startInteraction(contactUri);
+            PhoneNumberInteraction.startInteractionForPhoneCall(
+                    DialtactsActivity.this, contactUri);
         }
 
         @Override
@@ -494,7 +485,8 @@ public class DialtactsActivity extends Activity {
             new StrequentContactListFragment.Listener() {
         @Override
         public void onContactSelected(Uri contactUri) {
-            getPhoneNumberCallInteraction().startInteraction(contactUri);
+            PhoneNumberInteraction.startInteractionForPhoneCall(
+                    DialtactsActivity.this, contactUri);
         }
     };
 

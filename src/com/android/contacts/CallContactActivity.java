@@ -32,12 +32,9 @@ import android.provider.ContactsContract.Contacts;
  */
 public class CallContactActivity extends ContactsActivity implements OnDismissListener {
 
-    private PhoneNumberInteraction mPhoneNumberInteraction;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPhoneNumberInteraction = new PhoneNumberInteraction(this, false, this);
 
         Uri contactUri = getIntent().getData();
         if (contactUri == null) {
@@ -51,7 +48,7 @@ public class CallContactActivity extends ContactsActivity implements OnDismissLi
         }
 
         if (Contacts.CONTENT_ITEM_TYPE.equals(getContentResolver().getType(contactUri))) {
-            mPhoneNumberInteraction.startInteraction(contactUri);
+            PhoneNumberInteraction.startInteractionForPhoneCall(this, contactUri);
         } else {
             startActivity(new Intent(Intent.ACTION_CALL_PRIVILEGED, contactUri));
             finish();
@@ -63,15 +60,5 @@ public class CallContactActivity extends ContactsActivity implements OnDismissLi
         if (!isChangingConfigurations()) {
             finish();
         }
-    }
-
-    @Override
-    protected Dialog onCreateDialog(int id, Bundle args) {
-        return mPhoneNumberInteraction.onCreateDialog(id, args);
-    }
-
-    @Override
-    protected void onPrepareDialog(int id, Dialog dialog, Bundle args) {
-        mPhoneNumberInteraction.onPrepareDialog(id, dialog, args);
     }
 }

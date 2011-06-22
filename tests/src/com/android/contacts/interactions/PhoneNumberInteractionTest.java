@@ -16,7 +16,7 @@
 
 package com.android.contacts.interactions;
 
-import com.android.contacts.R;
+import com.android.contacts.interactions.PhoneNumberInteraction.InteractionType;
 import com.android.contacts.interactions.PhoneNumberInteraction.PhoneItem;
 import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockContentProvider;
@@ -28,7 +28,6 @@ import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
@@ -36,6 +35,7 @@ import android.test.InstrumentationTestCase;
 import android.test.suitebuilder.annotation.Smoke;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Tests for {@link PhoneNumberInteraction}.
@@ -56,24 +56,16 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
     }
 
     private final static class TestPhoneNumberInteraction extends PhoneNumberInteraction {
-        Intent startedIntent;
-        int dialogId;
-        Bundle dialogArgs;
+        private ArrayList<PhoneItem> mPhoneList;
 
-        public TestPhoneNumberInteraction(
-                Context context, boolean sendTextMessage, OnDismissListener dismissListener) {
-            super(context, sendTextMessage, dismissListener);
+        public TestPhoneNumberInteraction(Context context, InteractionType interactionType,
+                OnDismissListener dismissListener) {
+            super(context, interactionType, dismissListener);
         }
 
         @Override
-        void startActivity(Intent intent) {
-            this.startedIntent = intent;
-        }
-
-        @Override
-        void showDialog(int dialogId, Bundle bundle) {
-            this.dialogId = dialogId;
-            this.dialogArgs = bundle;
+        void showDisambiguationDialog(ArrayList<PhoneItem> phoneList) {
+            this.mPhoneList = phoneList;
         }
     }
 
@@ -99,13 +91,16 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
                 .returnRow(1, "123", 0, null, Phone.TYPE_HOME, null);
 
         TestPhoneNumberInteraction interaction = new TestPhoneNumberInteraction(
-                mContext, true, null);
+                mContext, InteractionType.SMS, null);
 
         interaction.startInteraction(contactUri);
         interaction.getLoader().waitForLoader();
 
-        assertEquals(Intent.ACTION_SENDTO, interaction.startedIntent.getAction());
-        assertEquals("sms:123", interaction.startedIntent.getDataString());
+        Intent intent = mContext.getIntentForStartActivity();
+        assertNotNull(intent);
+
+        assertEquals(Intent.ACTION_SENDTO, intent.getAction());
+        assertEquals("sms:123", intent.getDataString());
     }
 
     public void testSendSmsWhenThereIsPrimaryNumber() {
@@ -115,13 +110,16 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
                 .returnRow(2, "456", 1, null, Phone.TYPE_HOME, null);
 
         TestPhoneNumberInteraction interaction = new TestPhoneNumberInteraction(
-                mContext, true, null);
+                mContext, InteractionType.SMS, null);
 
         interaction.startInteraction(contactUri);
         interaction.getLoader().waitForLoader();
 
-        assertEquals(Intent.ACTION_SENDTO, interaction.startedIntent.getAction());
-        assertEquals("sms:456", interaction.startedIntent.getDataString());
+        Intent intent = mContext.getIntentForStartActivity();
+        assertNotNull(intent);
+
+        assertEquals(Intent.ACTION_SENDTO, intent.getAction());
+        assertEquals("sms:456", intent.getDataString());
     }
 
     public void testShouldCollapseWith() {
@@ -151,13 +149,16 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
                 .returnRow(2, "123", 0, null, Phone.TYPE_WORK, null);
 
         TestPhoneNumberInteraction interaction = new TestPhoneNumberInteraction(
-                mContext, false, null);
+                mContext, InteractionType.PHONE_CALL, null);
 
         interaction.startInteraction(contactUri);
         interaction.getLoader().waitForLoader();
 
-        assertEquals(Intent.ACTION_CALL_PRIVILEGED, interaction.startedIntent.getAction());
-        assertEquals("tel:123", interaction.startedIntent.getDataString());
+        Intent intent = mContext.getIntentForStartActivity();
+        assertNotNull(intent);
+
+        assertEquals(Intent.ACTION_CALL_PRIVILEGED, intent.getAction());
+        assertEquals("tel:123", intent.getDataString());
     }
 
     public void testShowDisambigDialogForCalling() {
@@ -167,15 +168,13 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
                 .returnRow(2, "456", 0, null, Phone.TYPE_WORK, null);
 
         TestPhoneNumberInteraction interaction = new TestPhoneNumberInteraction(
-                mContext, false, null);
+                mContext, InteractionType.PHONE_CALL, null);
 
         interaction.startInteraction(contactUri);
         interaction.getLoader().waitForLoader();
 
-        assertEquals(R.id.dialog_phone_number_call_disambiguation, interaction.dialogId);
-
-        ArrayList<PhoneItem> items = interaction.dialogArgs.getParcelableArrayList(
-                PhoneNumberInteraction.EXTRA_KEY_ITEMS);
+        List<PhoneItem> items = interaction.mPhoneList;
+        assertNotNull(items);
         assertEquals(2, items.size());
 
         PhoneItem item = items.get(0);

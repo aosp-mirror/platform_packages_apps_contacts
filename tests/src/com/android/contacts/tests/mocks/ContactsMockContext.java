@@ -19,6 +19,7 @@ package com.android.contacts.tests.mocks;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ProviderInfo;
 import android.provider.ContactsContract;
@@ -38,6 +39,7 @@ public class ContactsMockContext extends ContextWrapper {
     private MockContentResolver mContentResolver;
     private MockContentProvider mContactsProvider;
     private MockContentProvider mSettingsProvider;
+    private Intent mIntentForStartActivity;
 
     public ContactsMockContext(Context base) {
         super(base);
@@ -72,6 +74,19 @@ public class ContactsMockContext extends ContextWrapper {
     @Override
     public Context getApplicationContext() {
         return this;
+    }
+
+    /**
+     * Instead of actually sending Intent, this method just remembers what Intent was supplied last.
+     * You can check the content via {@link #getIntentForStartActivity()} for verification.
+     */
+    @Override
+    public void startActivity(Intent intent) {
+        mIntentForStartActivity = intent;
+    }
+
+    public Intent getIntentForStartActivity() {
+        return mIntentForStartActivity;
     }
 
     public void verify() {

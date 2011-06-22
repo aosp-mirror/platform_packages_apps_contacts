@@ -119,9 +119,6 @@ public class PeopleActivity extends ContactsActivity
 
     private GroupDetailFragment mGroupDetailFragment;
 
-    private PhoneNumberInteraction mPhoneNumberCallInteraction;
-    private PhoneNumberInteraction mSendTextMessageInteraction;
-
     private boolean mSearchInitiated;
 
     private ContactListFilterController mContactListFilterController;
@@ -637,12 +634,12 @@ public class PeopleActivity extends ContactsActivity
 
         @Override
         public void onCallContactAction(Uri contactUri) {
-            getPhoneNumberCallInteraction().startInteraction(contactUri);
+            PhoneNumberInteraction.startInteractionForPhoneCall(PeopleActivity.this, contactUri);
         }
 
         @Override
         public void onSmsContactAction(Uri contactUri) {
-            getSendTextMessageInteraction().startInteraction(contactUri);
+            PhoneNumberInteraction.startInteractionForTextMessage(PeopleActivity.this, contactUri);
         }
 
         @Override
@@ -935,32 +932,6 @@ public class PeopleActivity extends ContactsActivity
     }
 
     @Override
-    protected Dialog onCreateDialog(int id, Bundle bundle) {
-        if (DialogManager.isManagedId(id)) return mDialogManager.onCreateDialog(id, bundle);
-
-        Dialog dialog = getPhoneNumberCallInteraction().onCreateDialog(id, bundle);
-        if (dialog != null) return dialog;
-
-        dialog = getSendTextMessageInteraction().onCreateDialog(id, bundle);
-        if (dialog != null) return dialog;
-
-        return super.onCreateDialog(id, bundle);
-    }
-
-    @Override
-    protected void onPrepareDialog(int id, Dialog dialog, Bundle bundle) {
-        if (getPhoneNumberCallInteraction().onPrepareDialog(id, dialog, bundle)) {
-            return;
-        }
-
-        if (getSendTextMessageInteraction().onPrepareDialog(id, dialog, bundle)) {
-            return;
-        }
-
-        super.onPrepareDialog(id, dialog, bundle);
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case SUBACTIVITY_CUSTOMIZE_FILTER: {
@@ -1086,20 +1057,6 @@ public class PeopleActivity extends ContactsActivity
         if (mActionBarAdapter != null) {
             mActionBarAdapter.onRestoreInstanceState(inState);
         }
-    }
-
-    private PhoneNumberInteraction getPhoneNumberCallInteraction() {
-        if (mPhoneNumberCallInteraction == null) {
-            mPhoneNumberCallInteraction = new PhoneNumberInteraction(this, false, null);
-        }
-        return mPhoneNumberCallInteraction;
-    }
-
-    private PhoneNumberInteraction getSendTextMessageInteraction() {
-        if (mSendTextMessageInteraction == null) {
-            mSendTextMessageInteraction = new PhoneNumberInteraction(this, true, null);
-        }
-        return mSendTextMessageInteraction;
     }
 
     @Override
