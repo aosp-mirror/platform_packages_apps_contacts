@@ -24,20 +24,25 @@ import android.net.Uri;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-/*
+/**
  * A ContactTile displays the contact's picture overlayed with their name
  */
-public class ContactTileView extends RelativeLayout {
+public class ContactTileView extends FrameLayout {
     private final static String TAG = "ContactTileView";
 
     private Uri mLookupUri;
     private ImageView mPhoto;
     private TextView mName;
     private ContactPhotoManager mPhotoManager = null;
+    /*
+     * Is set to true if the {@link ContactTileView} is a square.
+     * A {@link ViewType#REGULAR} is displayed as a square.
+     */
+    private boolean mIsSquare;
 
     public ContactTileView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -48,6 +53,14 @@ public class ContactTileView extends RelativeLayout {
         super.onFinishInflate();
         mName = (TextView) findViewById(R.id.contact_tile_name);
         mPhoto = (ImageView) findViewById(R.id.contact_tile_image);
+    }
+
+    public boolean isSquare() {
+        return mIsSquare;
+    }
+
+    public void setIsSquare(boolean isSquare) {
+        mIsSquare = isSquare;
     }
 
     public void setPhotoManager(ContactPhotoManager photoManager) {
@@ -73,5 +86,15 @@ public class ContactTileView extends RelativeLayout {
 
     public Uri getLookupUri() {
         return mLookupUri;
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        // Getting how much space is currently available and telling our
+        // Children to split it.
+        int width = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
+        int childMeasureSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
+        measureChildren(childMeasureSpec, childMeasureSpec);
+        setMeasuredDimension(width, width / (mIsSquare ? 1 : 2));
     }
 }

@@ -18,7 +18,6 @@ package com.android.contacts.list;
 import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.R;
 import com.android.contacts.StrequentMetaDataLoader;
-
 import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
@@ -158,6 +157,11 @@ public class ContactTileAdapter extends BaseAdapter {
         return numRows;
     }
 
+    public void setColumnCount(int colCount) {
+        mColumnCount = colCount;
+        notifyDataSetChanged();
+    }
+
     /**
      * Returns the number of rows required to show the provided number of entries
      * with the current number of columns.
@@ -230,12 +234,13 @@ public class ContactTileAdapter extends BaseAdapter {
 
         // Creating new row if needed
         if (contactTileRowView == null) {
-            int layoutResId = getLayoutResourceId(getItemViewType(position));
-            contactTileRowView = new ContactTileRow(mContext, layoutResId);
+            int itemViewType = getItemViewType(position);
+            int layoutResId = getLayoutResourceId(itemViewType);
+            contactTileRowView = new ContactTileRow(mContext, layoutResId,
+                    itemViewType == ViewTypes.REGULAR);
         }
 
         contactTileRowView.configureRow(contactList);
-
         return contactTileRowView;
     }
 
@@ -268,9 +273,11 @@ public class ContactTileAdapter extends BaseAdapter {
 
     /**
      * Returns view type based on {@link DisplayType}.
-     * STARRED_ONLY and GROUP_MEMBERS are {@link ViewTypes}.REGULAR.
-     * FREQUENT_ONLY is {@link ViewTypes}.SMALL.
-     * STREQUENT mixes both {@link ViewTypes} and also adds in {@link ViewTypes}.DIVIDER.
+     * {@link DisplayType#STARRED_ONLY} and {@link DisplayType#GROUP_MEMBERS}
+     * are {@link ViewTypes#REGULAR}.
+     * {@link DisplayType#FREQUENT_ONLY} is {@link ViewTypes#SMALL}.
+     * {@link DisplayType#STREQUENT} mixes both {@link ViewTypes}
+     * and also adds in {@link ViewTypes#DIVIDER}.
      */
     @Override
     public int getItemViewType(int position) {
@@ -299,10 +306,12 @@ public class ContactTileAdapter extends BaseAdapter {
      */
     private class ContactTileRow extends LinearLayout implements OnClickListener {
         private int mLayoutResId;
+        private boolean mIsContactTileSquare;
 
-        public ContactTileRow(Context context, int layoutResId) {
+        public ContactTileRow(Context context, int layoutResId, boolean isSquare) {
             super(context);
             mLayoutResId = layoutResId;
+            mIsContactTileSquare = isSquare;
         }
 
         /**
@@ -322,6 +331,9 @@ public class ContactTileAdapter extends BaseAdapter {
 
             if (getChildCount() <= tileIndex) {
                 contactTile = (ContactTileView) inflate(mContext, mLayoutResId, null);
+                contactTile.setIsSquare(mIsContactTileSquare);
+                contactTile.setLayoutParams(new LinearLayout.LayoutParams(0,
+                        LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f));
                 contactTile.setPhotoManager(mPhotoManager);
                 contactTile.setOnClickListener(this);
                 addView(contactTile);
