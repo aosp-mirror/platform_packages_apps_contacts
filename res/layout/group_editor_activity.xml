@@ -14,15 +14,12 @@
      limitations under the License.
 -->
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/menu_edit_group"
-        android:icon="@drawable/ic_menu_compose_holo_light"
-        android:title="@string/menu_editGroup"
-        android:alphabeticShortcut="e" />
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <item
-        android:id="@+id/menu_delete_group"
-        android:icon="@drawable/ic_menu_trash_holo_light"
-        android:title="@string/menu_deleteGroup" />
-</menu>
+    <fragment class="com.android.contacts.group.GroupEditorFragment"
+            android:id="@+id/group_editor_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+</FrameLayout>

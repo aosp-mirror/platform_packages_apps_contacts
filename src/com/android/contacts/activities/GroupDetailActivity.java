@@ -20,6 +20,7 @@ import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.group.GroupDetailFragment;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 public class GroupDetailActivity extends ContactsActivity {
@@ -54,6 +55,11 @@ public class GroupDetailActivity extends ContactsActivity {
         @Override
         public void onGroupTitleUpdated(String title) {
             getActionBar().setTitle(title);
+        }
+
+        @Override
+        public void onEditRequested(Uri groupUri) {
+            // TODO: Disabling editor activity for phone right now because it's not ready
         }
     };
 }

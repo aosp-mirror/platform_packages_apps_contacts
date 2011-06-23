@@ -33,6 +33,7 @@ public final class GroupMetaDataLoader extends CursorLoader {
         Groups.TITLE,
         Groups.AUTO_ADD,
         Groups.FAVORITES,
+        Groups.GROUP_IS_READ_ONLY,
     };
 
     public final static int ACCOUNT_NAME = 0;
@@ -41,6 +42,7 @@ public final class GroupMetaDataLoader extends CursorLoader {
     public final static int TITLE = 3;
     public final static int AUTO_ADD = 4;
     public final static int FAVORITES = 5;
+    public final static int IS_READ_ONLY = 6;
 
     public GroupMetaDataLoader(Context context, Uri groupUri) {
         super(context, ensureIsGroupUri(groupUri), COLUMNS, Groups.ACCOUNT_TYPE + " NOT NULL AND "

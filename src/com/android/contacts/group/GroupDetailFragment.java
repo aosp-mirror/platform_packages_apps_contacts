@@ -21,7 +21,6 @@ import com.android.contacts.GroupMemberLoader;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.interactions.GroupDeletionDialogFragment;
-import com.android.contacts.interactions.GroupRenamingDialogFragment;
 import com.android.contacts.list.ContactTileAdapter;
 import com.android.contacts.list.ContactTileAdapter.DisplayType;
 
@@ -62,6 +61,11 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
          * The number of group members has been determined
          */
         public void onGroupSizeUpdated(String size);
+
+        /**
+         * User decided to go to Edit-Mode
+         */
+        public void onEditRequested(Uri groupUri);
     }
 
     private static final String TAG = "GroupDetailFragment";
@@ -276,9 +280,6 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         final MenuItem editMenu = menu.findItem(R.id.menu_edit_group);
         editMenu.setVisible(mOptionsMenuEditable);
 
-        final MenuItem renameMenu = menu.findItem(R.id.menu_rename_group);
-        renameMenu.setVisible(mOptionsMenuEditable);
-
         final MenuItem deleteMenu = menu.findItem(R.id.menu_delete_group);
         deleteMenu.setVisible(mOptionsMenuEditable);
     }
@@ -287,13 +288,8 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_edit_group: {
-                // TODO: Open group editor
-                Toast.makeText(mContext, "EDIT GROUP", Toast.LENGTH_SHORT).show();
+                if (mListener != null) mListener.onEditRequested(mGroupUri);
                 break;
-            }
-            case R.id.menu_rename_group: {
-                GroupRenamingDialogFragment.show(getFragmentManager(), mGroupId, mGroupName);
-                return true;
             }
             case R.id.menu_delete_group: {
                 GroupDeletionDialogFragment.show(getFragmentManager(), mGroupId, mGroupName);

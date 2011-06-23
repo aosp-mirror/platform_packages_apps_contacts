@@ -160,6 +160,9 @@
     <!-- Margins for the group detail fragment divider in the header -->
     <dimen name="group_detail_divider_margin">15dip</dimen>
 
+    <!-- Height of the member list in the group editor -->
+    <dimen name="group_editor_member_list_height">550dip</dimen>
+
     <!-- Height for directory headers in contact lists -->
     <dimen name="directory_header_height">28dip</dimen>
 

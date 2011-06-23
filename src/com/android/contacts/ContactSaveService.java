@@ -396,6 +396,7 @@ public class ContactSaveService extends IntentService {
         values.put(GroupMembership.GROUP_ROW_ID, ContentUris.parseId(groupUri));
 
         Intent callbackIntent = intent.getParcelableExtra(EXTRA_CALLBACK_INTENT);
+        callbackIntent.setData(groupUri);
         callbackIntent.putExtra(ContactsContract.Intents.Insert.DATA, Lists.newArrayList(values));
 
         deliverCallback(callbackIntent);
@@ -404,11 +405,18 @@ public class ContactSaveService extends IntentService {
     /**
      * Creates an intent that can be sent to this service to rename a group.
      */
-    public static Intent createGroupRenameIntent(Context context, long groupId, String newLabel) {
+    public static Intent createGroupRenameIntent(Context context, long groupId, String newLabel,
+            Class<?> callbackActivity, String callbackAction) {
         Intent serviceIntent = new Intent(context, ContactSaveService.class);
         serviceIntent.setAction(ContactSaveService.ACTION_RENAME_GROUP);
         serviceIntent.putExtra(ContactSaveService.EXTRA_GROUP_ID, groupId);
         serviceIntent.putExtra(ContactSaveService.EXTRA_GROUP_LABEL, newLabel);
+
+        // Callback intent will be invoked by the service once the group is renamed.
+        Intent callbackIntent = new Intent(context, callbackActivity);
+        callbackIntent.setAction(callbackAction);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
+
         return serviceIntent;
     }
 
@@ -423,8 +431,12 @@ public class ContactSaveService extends IntentService {
 
         ContentValues values = new ContentValues();
         values.put(Groups.TITLE, label);
-        getContentResolver().update(
-                ContentUris.withAppendedId(Groups.CONTENT_URI, groupId), values, null, null);
+        final Uri groupUri = ContentUris.withAppendedId(Groups.CONTENT_URI, groupId);
+        getContentResolver().update(groupUri, values, null, null);
+
+        Intent callbackIntent = intent.getParcelableExtra(EXTRA_CALLBACK_INTENT);
+        callbackIntent.setData(groupUri);
+        deliverCallback(callbackIntent);
     }
 
     /**

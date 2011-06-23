@@ -78,6 +78,14 @@
          creating a new contact. This string represents the built in way to create the contact. -->
     <string name="insertContactDescription">Create contact</string>
 
+    <!-- The description presented to the user in the Intent choose when there are multiple activities that allow
+         editing a group. This string represents the built in way to edit the group. [CHAR LIMIT=NONE] -->
+    <string name="editGroupDescription">Edit group</string>
+
+    <!-- The description presented to the user in the Intent choose when there are multiple activities that allow
+         creating a new group. This string represents the built in way to create the group. [CHAR LIMIT=NONE] -->
+    <string name="insertGroupDescription">Create group</string>
+
     <!-- The tab label for the contact detail activity that displays information about the contact [CHAR LIMIT=11] -->
     <string name="contactDetailAbout">About</string>
 
@@ -315,6 +323,18 @@
 
     <!-- Toast displayed when saving a contact failed -->
     <string name="contactSavedErrorToast">Error, unable to save contact changes.</string>
+
+    <!-- Toast displayed when a group is saved [CHAR LIMIT=NONE] -->
+    <string name="groupSavedToast">Group saved.</string>
+
+    <!-- Toast displayed when saving a group failed [CHAR LIMIT=NONE] -->
+    <string name="groupSavedErrorToast">Error, unable to save group changes.</string>
+
+    <!-- Toast displayed when adding or removing a member from a group has been saved. [CHAR LIMIT=NONE] -->
+    <string name="groupMembershipChangeSavedToast">Change has been saved.</string>
+
+    <!-- Toast displayed when trying to add a contact that has already been added to the group. [CHAR LIMIT=NONE] -->
+    <string name="contactAlreadyInGroup">Contact has already been added to the group.</string>
 
     <!-- Displayed at the top of the contacts showing the total number of contacts visible when "Only contacts with phones" is selected -->
     <plurals name="listTotalPhoneContacts">
@@ -1550,4 +1570,13 @@
     <!-- Text displayed in place of the display name for the contact that represents the user's
       personal profile entry [CHAR LIMIT=64] -->
     <string name="profile_display_name">My profile</string>
+
+    <!-- Label to instruct the user to type in a contact's name to add the contact as a member of the current group. [CHAR LIMIT=64] -->
+    <string name="enter_contact_name">Enter contact\'s name</string>
+
+    <!-- The title of the activity that creates a new group [CHAR LIMIT=NONE] -->
+    <string name="editGroup_title_insert">New group</string>
+
+    <!-- The title of the activity that edits an existing group [CHAR LIMIT=NONE] -->
+    <string name="editGroup_title_edit">Edit group</string>
 </resources>

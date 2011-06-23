@@ -353,6 +353,12 @@
             android:label=""
             android:theme="@style/GroupDetailTheme" />
 
+        <!-- Create a new or edit an existing group -->
+        <activity
+            android:name=".activities.GroupEditorActivity"
+            android:theme="@style/ContactEditorActivityTheme"
+            android:windowSoftInputMode="adjustResize" />
+
         <!-- Used to show QuickContact window over a translucent activity, which is a
              temporary hack until we add better framework support. -->
         <activity
