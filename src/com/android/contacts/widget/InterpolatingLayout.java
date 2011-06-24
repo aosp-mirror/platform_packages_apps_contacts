@@ -283,6 +283,10 @@ public class InterpolatingLayout extends ViewGroup {
         for (int i = 0; i < count; i++) {
             View child = getChildAt(i);
 
+            if (child.getVisibility() == View.GONE) {
+                continue;
+            }
+
             LayoutParams params = (LayoutParams) child.getLayoutParams();
             int gravity = params.gravity;
             if (gravity == -1) {
