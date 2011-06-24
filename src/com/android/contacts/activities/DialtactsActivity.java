@@ -698,6 +698,9 @@ public class DialtactsActivity extends Activity {
         actionBar.setDisplayShowCustomEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
+        // Request to update option menu.
+        invalidateOptionsMenu();
+
         mInSearchUi = false;
     }
 }

@@ -39,6 +39,9 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
         setVisibleScrollbarEnabled(true);
         setSectionHeaderDisplayEnabled(true);
         setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DATA_SHORTCUT);
+
+        // Show nothing instead of letting caller Activity show something.
+        setHasOptionsMenu(true);
     }
 
     public void setOnPhoneNumberPickerActionListener(OnPhoneNumberPickerActionListener listener) {
