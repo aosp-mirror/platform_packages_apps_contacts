@@ -287,4 +287,19 @@
     <style name="GroupBrowseListItem">
         <item name="android:paddingRight">20dip</item>
     </style>
+
+    <style name="DialtactsDigitsTextAppearance"
+           parent="@android:attr/textAppearanceMedium">
+        <item name="android:maxLines">1</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:textSize">@dimen/dialpad_digits_text_size</item>
+        <item name="android:freezesText">true</item>
+        <item name="android:textColor">@color/dialer_button_text</item>
+        <item name="android:background">@drawable/btn_dial_textfield</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:editable">true</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:layout_weight">0</item>
+    </style>
+
 </resources>
