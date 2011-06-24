@@ -363,14 +363,8 @@ public class DialtactsActivity extends Activity {
         // overwritten by one of the programmatic tab selections
         final int savedTabIndex = mLastManuallySelectedTab;
 
-        // Look at the component to determine the tab
-        String componentName = intent.getComponent().getClassName();
-        if (getClass().getName().equals(componentName)) {
-            if (recentCallsRequest) {
-                getActionBar().selectTab(getActionBar().getTabAt(TAB_INDEX_CALL_LOG));
-            } else {
-                getActionBar().selectTab(getActionBar().getTabAt(TAB_INDEX_DIALER));
-            }
+        if (recentCallsRequest) {
+            getActionBar().selectTab(getActionBar().getTabAt(TAB_INDEX_CALL_LOG));
         } else {
             getActionBar().selectTab(getActionBar().getTabAt(mLastManuallySelectedTab));
         }
