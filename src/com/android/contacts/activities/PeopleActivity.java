@@ -119,6 +119,9 @@ public class PeopleActivity extends ContactsActivity
 
     private GroupDetailFragment mGroupDetailFragment;
 
+    private StrequentContactListFragment.Listener mFavoritesFragmentListener =
+            new StrequentContactListFragmentListener();
+
     private boolean mSearchInitiated;
 
     private ContactListFilterController mContactListFilterController;
@@ -176,6 +179,9 @@ public class PeopleActivity extends ContactsActivity
         } else if (fragment instanceof GroupDetailFragment) {
             mGroupDetailFragment = (GroupDetailFragment) fragment;
             mContentPaneDisplayed = true;
+        } else if (fragment instanceof StrequentContactListFragment) {
+            mFavoritesFragment = (StrequentContactListFragment) fragment;
+            mFavoritesFragment.setListener(mFavoritesFragmentListener);
         }
     }
 
@@ -737,6 +743,18 @@ public class PeopleActivity extends ContactsActivity
         @Override
         public void onFreeInternalStorageAction() {
             startActivity(new Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS));
+        }
+    }
+
+    private final class StrequentContactListFragmentListener
+            implements StrequentContactListFragment.Listener {
+        @Override
+        public void onContactSelected(Uri contactUri) {
+            if (mContentPaneDisplayed) {
+                setupContactDetailFragment(contactUri);
+            } else {
+                startActivity(new Intent(Intent.ACTION_VIEW, contactUri));
+            }
         }
     }
 
