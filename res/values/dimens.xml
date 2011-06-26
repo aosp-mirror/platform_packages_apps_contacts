@@ -38,8 +38,8 @@
     <dimen name="quick_contact_width">352dip</dimen>
 
     <!-- Padding of the rounded plus/minus/expand/collapse buttons in the editor  -->
-    <dimen name="editor_round_button_padding_left">4dip</dimen>
-    <dimen name="editor_round_button_padding_right">4dip</dimen>
+    <dimen name="editor_round_button_padding_left">2dip</dimen>
+    <dimen name="editor_round_button_padding_right">2dip</dimen>
     <dimen name="editor_round_button_padding_top">8dip</dimen>
     <dimen name="editor_round_button_padding_bottom">8dip</dimen>
 
@@ -69,6 +69,24 @@
 
     <!-- Font size for the entries in a spinner in the contact editor. -->
     <dimen name="editor_field_spinner_text_size">10sp</dimen>
+
+    <!-- Left margin of the name text input fields and the photo in the contact editor -->
+    <dimen name="editor_name_text_field_left_margin">25dip</dimen>
+
+    <!-- Right margin of the text input fields in the contact editor -->
+    <dimen name="editor_name_text_field_right_margin">0dip</dimen>
+
+    <!-- Width of the title labels in the contact editor -->
+    <dimen name="editor_title_label_width">120dip</dimen>
+
+    <!-- Interpolator layout narrow width value of the contact editor -->
+    <dimen name="editor_interpolator_narrow_width">600dip</dimen>
+
+    <!-- Height of the attribution text view in the contact detail header view -->
+    <dimen name="detail_header_attribution_height">40dip</dimen>
+
+    <!-- Margin between the photo, the star, and text in the contact detail header view -->
+    <dimen name="detail_header_view_margin">8dip</dimen>
 
     <!-- Height of the tab carousel on the contact detail page -->
     <dimen name="detail_tab_carousel_height">150dip</dimen>

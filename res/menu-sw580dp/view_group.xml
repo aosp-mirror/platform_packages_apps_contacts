@@ -13,10 +13,21 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources>
-    <dimen name="quick_contact_width">452dip</dimen>
-    <dimen name="action_bar_filter_min_width">220dip</dimen>
-    <dimen name="action_bar_filter_max_width">300dip</dimen>
-    <dimen name="action_bar_search_max_width">336dip</dimen>
-    <dimen name="action_bar_search_spacing">32dip</dimen>
-</resources>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_edit_group"
+        android:icon="@drawable/ic_menu_compose_holo_light"
+        android:title="@string/menu_editGroup"
+        android:alphabeticShortcut="e" />
+
+    <item
+        android:id="@+id/menu_rename_group"
+        android:icon="@drawable/ic_menu_settings_holo_light"
+        android:title="@string/menu_renameGroup" />
+
+    <item
+        android:id="@+id/menu_delete_group"
+        android:icon="@drawable/ic_menu_trash_holo_light"
+        android:title="@string/menu_deleteGroup" />
+</menu>

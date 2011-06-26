@@ -25,8 +25,8 @@
     <TextView
         android:id="@+id/attribution"
         android:layout_width="match_parent"
-        android:layout_height="56dip"
-        android:paddingRight="16dip"
+        android:layout_height="@dimen/detail_header_attribution_height"
+        android:paddingRight="24dip"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="?android:attr/textColorTertiary"
         android:gravity="right|center_vertical"
@@ -39,7 +39,7 @@
 
         <ImageView
             android:id="@+id/photo"
-            android:layout_marginLeft="-1dip"
+            android:layout_marginLeft="@dimen/detail_header_view_margin"
             android:layout_width="96dip"
             android:layout_height="96dip" />
 
@@ -47,8 +47,8 @@
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_gravity="top"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_gravity="top">
 
             <View
                 android:layout_width="match_parent"
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingTop="16dip"
-                android:layout_marginLeft="16dip">
+                android:layout_marginLeft="@dimen/detail_header_view_margin">>
 
                 <!-- Star -->
                 <CheckBox
@@ -77,82 +77,66 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="16dip"
+                    android:paddingLeft="@dimen/detail_header_view_margin"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:ellipsize="end"
+                        style="@style/ContactDetailHeaderTextView"
                         android:textSize="@dimen/contact_name_text_size" />
 
                     <TextView
                         android:id="@+id/phonetic_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        style="@style/ContactDetailHeaderTextView"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:singleLine="true"
-                        android:ellipsize="end"
                         android:layout_marginTop="-2dip"
                         android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/organization"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:ellipsize="end"
+                        style="@style/ContactDetailHeaderTextView"
                         android:layout_marginTop="-2dip"
                         android:visibility="gone"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="?android:attr/textColorTertiary" />
                 </LinearLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <!-- Status info -->
-                <LinearLayout
-                    android:id="@+id/status_container"
-                    android:layout_width="0px"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:background="@drawable/statusbox_landscape_holo_light"
-                    android:layout_marginLeft="10dip"
-                    android:layout_marginTop="30dip"
-                    android:paddingLeft="52dip"
-                    android:paddingTop="12dip"
-                    android:paddingRight="16dip"
-                    android:paddingBottom="12dip"
-                    android:visibility="gone">
-
-                    <TextView
-                        android:id="@+id/status"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:textColor="?android:attr/textColorSecondary"
-                        android:maxLines="3"
-                        android:ellipsize="end"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:id="@+id/status_date"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dip"
-                        android:layout_weight="1"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:textColor="?android:attr/textColorTertiary"
-                        android:gravity="right"
-                        android:visibility="gone" />
-                </LinearLayout>
-            </LinearLayout>
         </LinearLayout>
+    </LinearLayout>
+
+    <!-- Status info -->
+    <LinearLayout
+        android:id="@+id/status_container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/statusbox_portrait_holo_light"
+        android:layout_marginLeft="16dip"
+        android:layout_marginRight="24dip"
+        android:layout_marginTop="10dip"
+        android:paddingLeft="12dip"
+        android:paddingTop="36dip"
+        android:paddingRight="16dip"
+        android:paddingBottom="12dip"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?android:attr/textColorSecondary"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/status_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?android:attr/textColorTertiary"
+            android:gravity="right"
+            android:visibility="gone" />
     </LinearLayout>
 </LinearLayout>
