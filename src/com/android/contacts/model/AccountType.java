@@ -114,6 +114,11 @@ public abstract class AccountType {
         }
     }
 
+    /**
+     * Whether or not groups created under this account type have editable membership lists.
+     */
+    abstract public boolean isGroupMembershipEditable();
+
     abstract public int getHeaderColor(Context context);
 
     abstract public int getSideBarColor(Context context);

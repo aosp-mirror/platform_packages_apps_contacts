@@ -335,4 +335,9 @@ public class ExchangeAccountType extends BaseAccountType {
     public int getSideBarColor(Context context) {
         return 0xffb58e59;
     }
+
+    @Override
+    public boolean isGroupMembershipEditable() {
+        return true;
+    }
 }

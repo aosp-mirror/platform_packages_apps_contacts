@@ -170,4 +170,9 @@ public class GoogleAccountType extends BaseAccountType {
     public int getSideBarColor(Context context) {
         return 0xff5bb4b4;
     }
+
+    @Override
+    public boolean isGroupMembershipEditable() {
+        return true;
+    }
 }

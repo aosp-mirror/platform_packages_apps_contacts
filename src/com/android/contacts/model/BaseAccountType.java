@@ -663,4 +663,9 @@ public class BaseAccountType extends AccountType {
     public int getSideBarColor(Context context) {
         return 0xffbdc7b8;
     }
+
+    @Override
+    public boolean isGroupMembershipEditable() {
+        return false;
+    }
 }

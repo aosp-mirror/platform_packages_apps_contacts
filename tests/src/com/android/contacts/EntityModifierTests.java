@@ -148,6 +148,11 @@ public class EntityModifierTests extends AndroidTestCase {
         public int getSideBarColor(Context context) {
             return 0xffffff;
         }
+
+        @Override
+        public boolean isGroupMembershipEditable() {
+            return false;
+        }
     }
 
     /**
