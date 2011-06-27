@@ -74,15 +74,14 @@ public class DialtactsActivity extends Activity {
 
     private static final int TAB_INDEX_DIALER = 0;
     private static final int TAB_INDEX_CALL_LOG = 1;
-    private static final int TAB_INDEX_CONTACTS = 2;
-    private static final int TAB_INDEX_FAVORITES = 3;
+    private static final int TAB_INDEX_FAVORITES = 2;
+
+    private static final int TAB_INDEX_COUNT = 3;
 
     public static final String EXTRA_IGNORE_STATE = "ignore-state";
 
     /** Name of the dialtacts shared preferences */
     static final String PREFS_DIALTACTS = "dialtacts";
-    /** If true, when handling the contacts intent the favorites tab will be shown instead */
-    static final String PREF_FAVORITES_AS_CONTACTS = "favorites_as_contacts";
     static final boolean PREF_FAVORITES_AS_CONTACTS_DEFAULT = false;
 
     /** Last manually selected tab index */
@@ -188,6 +187,12 @@ public class DialtactsActivity extends Activity {
         final FragmentManager fragmentManager = getFragmentManager();
         mDialpadFragment = (DialpadFragment) fragmentManager
                 .findFragmentById(R.id.dialpad_fragment);
+        mDialpadFragment.setListener(new DialpadFragment.Listener() {
+            @Override
+            public void onSearchButtonPressed() {
+                enterSearchUi();
+            }
+        });
         mCallLogFragment = (CallLogFragment) fragmentManager
                 .findFragmentById(R.id.call_log_fragment);
         mContactsFragment = (DefaultContactBrowseListFragment) fragmentManager
@@ -203,7 +208,6 @@ public class DialtactsActivity extends Activity {
         final FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.hide(mDialpadFragment);
         transaction.hide(mCallLogFragment);
-        transaction.hide(mContactsFragment);
         transaction.hide(mStrequentFragment);
         transaction.hide(mPhoneNumberPickerFragment);
         transaction.commit();
@@ -211,7 +215,6 @@ public class DialtactsActivity extends Activity {
         // Setup the ActionBar tabs (the order matches the tab-index contants TAB_INDEX_*)
         setupDialer();
         setupCallLog();
-        setupContacts();
         setupFavorites();
         getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         getActionBar().setDisplayShowTitleEnabled(false);
@@ -221,6 +224,10 @@ public class DialtactsActivity extends Activity {
         final SharedPreferences prefs = getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE);
         mLastManuallySelectedTab = prefs.getInt(PREF_LAST_MANUALLY_SELECTED_TAB,
                 PREF_LAST_MANUALLY_SELECTED_TAB_DEFAULT);
+        if (mLastManuallySelectedTab >= TAB_INDEX_COUNT) {
+            // Stored value may have exceeded the number of current tabs. Reset it.
+            mLastManuallySelectedTab = PREF_LAST_MANUALLY_SELECTED_TAB_DEFAULT;
+        }
 
         setCurrentTab(intent);
 
@@ -236,15 +243,6 @@ public class DialtactsActivity extends Activity {
 
         final SharedPreferences.Editor editor =
                 getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE).edit();
-        // selectedTab becomes null in search UI.
-        final Tab selectedTab = getActionBar().getSelectedTab();
-        if (selectedTab != null) {
-            final int currentTabIndex = selectedTab.getPosition();
-            if (currentTabIndex == TAB_INDEX_CONTACTS || currentTabIndex == TAB_INDEX_FAVORITES) {
-                editor.putBoolean(
-                        PREF_FAVORITES_AS_CONTACTS, currentTabIndex == TAB_INDEX_FAVORITES);
-            }
-        }
         editor.putInt(PREF_LAST_MANUALLY_SELECTED_TAB, mLastManuallySelectedTab);
 
         editor.apply();
@@ -589,7 +587,7 @@ public class DialtactsActivity extends Activity {
         final Tab tab = actionBar.getSelectedTab();
         if (tab == null) return false;
         final int tabIndex = tab.getPosition();
-        if (tabIndex != TAB_INDEX_CONTACTS && tabIndex != TAB_INDEX_FAVORITES) return false;
+        if (tabIndex != TAB_INDEX_FAVORITES) return false;
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.list, menu);
@@ -680,7 +678,6 @@ public class DialtactsActivity extends Activity {
         transaction.show(mPhoneNumberPickerFragment);
         transaction.hide(mDialpadFragment);
         transaction.hide(mCallLogFragment);
-        transaction.hide(mContactsFragment);
         transaction.hide(mStrequentFragment);
         transaction.commit();
 

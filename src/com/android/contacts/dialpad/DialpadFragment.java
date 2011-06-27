@@ -20,6 +20,7 @@ import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.SpecialCharSequenceMgr;
 import com.android.contacts.activities.DialtactsActivity;
+import com.android.contacts.list.StrequentContactListFragment.Listener;
 import com.android.internal.telephony.ITelephony;
 import com.android.phone.CallLogAsync;
 import com.android.phone.HapticFeedback;
@@ -87,6 +88,10 @@ public class DialpadFragment extends Fragment
     /** Stream type used to play the DTMF tones off call, and mapped to the volume control keys */
     private static final int DIAL_TONE_STREAM_TYPE = AudioManager.STREAM_MUSIC;
 
+    public interface Listener {
+        public void onSearchButtonPressed();
+    }
+
     private EditText mDigits;
     private View mDelete;
     private MenuItem mAddToContactMenuItem;
@@ -95,8 +100,11 @@ public class DialpadFragment extends Fragment
     private Drawable mDigitsBackground;
     private Drawable mDigitsEmptyBackground;
     private View mDialpad;
-    private View mVoicemailDialAndDeleteRow;
-    private View mVoicemailButton;
+    private View mAdditionalButtonsRow;
+
+    private View mSearchButton;
+    private Listener mListener;
+
     private View mDialButton;
     private ListView mDialpadChooser;
     private DialpadChooserAdapter mDialpadChooserAdapter;
@@ -106,6 +114,8 @@ public class DialpadFragment extends Fragment
     private static final int MENU_ADD_CONTACTS = 1;
     private static final int MENU_2S_PAUSE = 2;
     private static final int MENU_WAIT = 3;
+
+    private boolean mHasVoicemail = false;
 
     // Last number dialed, retrieved asynchronously from the call DB
     // in onCreate. This number is displayed when the user hits the
@@ -227,12 +237,17 @@ public class DialpadFragment extends Fragment
             setupKeypad(fragmentView);
         }
 
-        mVoicemailDialAndDeleteRow = fragmentView.findViewById(R.id.voicemailAndDialAndDelete);
+        mAdditionalButtonsRow = fragmentView.findViewById(R.id.dialpadAdditionalButtons);
 
         initVoicemailButton();
 
+        mSearchButton = mAdditionalButtonsRow.findViewById(R.id.searchButton);
+        if (mSearchButton != null) {
+            mSearchButton.setOnClickListener(this);
+        }
+
         // Check whether we should show the onscreen "Dial" button.
-        mDialButton = mVoicemailDialAndDeleteRow.findViewById(R.id.dialButton);
+        mDialButton = mAdditionalButtonsRow.findViewById(R.id.dialButton);
 
         if (r.getBoolean(R.bool.config_show_onscreen_dial_button)) {
             mDialButton.setOnClickListener(this);
@@ -241,7 +256,7 @@ public class DialpadFragment extends Fragment
             mDialButton = null;
         }
 
-        mDelete = mVoicemailDialAndDeleteRow.findViewById(R.id.deleteButton);
+        mDelete = mAdditionalButtonsRow.findViewById(R.id.deleteButton);
         mDelete.setOnClickListener(this);
         mDelete.setOnLongClickListener(this);
 
@@ -666,9 +681,10 @@ public class DialpadFragment extends Fragment
                 dialButtonPressed();
                 return;
             }
-            case R.id.voicemailButton: {
-                callVoicemail();
-                mHaptic.vibrate();
+            case R.id.searchButton: {
+                if (mListener != null) {
+                    mListener.onSearchButtonPressed();
+                }
                 return;
             }
             case R.id.digits: {
@@ -693,7 +709,7 @@ public class DialpadFragment extends Fragment
                 return true;
             }
             case R.id.one: {
-                if (isDigitsEmpty()) {
+                if (mHasVoicemail && isDigitsEmpty()) {
                     callVoicemail();
                     return true;
                 }
@@ -821,7 +837,7 @@ public class DialpadFragment extends Fragment
             // Log.i(TAG, "Showing dialpad chooser!");
             mDigits.setVisibility(View.GONE);
             if (mDialpad != null) mDialpad.setVisibility(View.GONE);
-            mVoicemailDialAndDeleteRow.setVisibility(View.GONE);
+            mAdditionalButtonsRow.setVisibility(View.GONE);
             mDialpadChooser.setVisibility(View.VISIBLE);
 
             // Instantiate the DialpadChooserAdapter and hook it up to the
@@ -834,7 +850,7 @@ public class DialpadFragment extends Fragment
             // Log.i(TAG, "Displaying normal Dialer UI.");
             mDigits.setVisibility(View.VISIBLE);
             if (mDialpad != null) mDialpad.setVisibility(View.VISIBLE);
-            mVoicemailDialAndDeleteRow.setVisibility(View.VISIBLE);
+            mAdditionalButtonsRow.setVisibility(View.VISIBLE);
             mDialpadChooser.setVisibility(View.GONE);
         }
     }
@@ -1122,18 +1138,10 @@ public class DialpadFragment extends Fragment
      * Check if voicemail is enabled/accessible.
      */
     private void initVoicemailButton() {
-        boolean hasVoicemail = false;
         try {
-            hasVoicemail = TelephonyManager.getDefault().getVoiceMailNumber() != null;
+            mHasVoicemail = TelephonyManager.getDefault().getVoiceMailNumber() != null;
         } catch (SecurityException se) {
             // Possibly no READ_PHONE_STATE privilege.
-        }
-
-        mVoicemailButton = mVoicemailDialAndDeleteRow.findViewById(R.id.voicemailButton);
-        if (hasVoicemail) {
-            mVoicemailButton.setOnClickListener(this);
-        } else {
-            mVoicemailButton.setEnabled(false);
         }
     }
 
@@ -1212,5 +1220,9 @@ public class DialpadFragment extends Fragment
                                          Uri.fromParts("tel", number, null));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         return intent;
+    }
+
+    public void setListener(Listener listener) {
+        mListener = listener;
     }
 }

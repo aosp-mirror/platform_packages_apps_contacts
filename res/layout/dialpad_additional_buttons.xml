@@ -14,49 +14,45 @@
      limitations under the License.
 -->
 
-<!-- Horizontal row of buttons (Voicemail + DialButton + Delete.)
-     Tall screen version with taller buttons.
- -->
+<!-- Horizontal row of buttons (Voicemail + DialButton + Delete.) -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/voicemailAndDialAndDelete"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:id="@+id/dialpadAdditionalButtons"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dialpad_additional_buttons_height"
     android:layout_gravity="center_horizontal"
-    android:layout_weight="2.5"
+    android:layout_marginTop="6dip"
+    android:layout_weight="0.25"
     android:orientation="horizontal">
 
-    <!-- Onscreen "Voicemail" button.
-         The width is 75 (from the mocks) + 12 of padding from the
-         9patch, total is 87.
-    -->
-    <ImageButton android:id="@+id/voicemailButton"
-        android:layout_width="87dip"
-        android:layout_height="58dip"
+    <!-- Onscreen "Search button -->
+    <ImageButton android:id="@+id/searchButton"
+        android:layout_width="0px"
+        android:layout_weight="0.25"
+        android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:state_enabled="false"
         android:background="@drawable/btn_dial_voicemail"
         android:contentDescription="@string/description_voicemail_button"
-        android:src="@drawable/ic_dial_action_voice_mail" />
+        android:src="@drawable/ic_dial_action_search" />
 
-    <!-- Onscreen "Dial" button, used on all platforms by
+    <!-- Onscreen "Dial" button, diused on all platforms by
          default. Its usage can be disabled using resources (see
          config.xml.) -->
     <ImageButton android:id="@+id/dialButton"
-        android:layout_width="116dip"
-        android:layout_height="58dip"
+        android:layout_width="0px"
+        android:layout_weight="0.50"
+        android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:state_enabled="false"
         android:background="@drawable/btn_dial_action"
         android:contentDescription="@string/description_dial_button"
         android:src="@drawable/ic_dial_action_call" />
 
-    <!-- Onscreen "Backspace/Delete" button
-         The width is 75 (from the mocks) + 12 of padding from the
-         9patch, total is 87.
-    -->
+    <!-- Onscreen "Backspace/Delete" button -->
     <ImageButton android:id="@+id/deleteButton"
-        android:layout_width="87dip"
-        android:layout_height="58dip"
+        android:layout_width="0px"
+        android:layout_weight="0.25"
+        android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:state_enabled="false"
         android:background="@drawable/btn_dial_delete"
