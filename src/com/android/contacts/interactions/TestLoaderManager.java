@@ -16,6 +16,8 @@
 
 package com.android.contacts.interactions;
 
+import com.google.common.annotations.VisibleForTesting;
+
 import android.app.Activity;
 import android.app.LoaderManager;
 import android.content.AsyncTaskLoader;
@@ -123,7 +125,8 @@ public class TestLoaderManager extends LoaderManager {
      * If one of the loaders has already completed since the last call to {@link #reset()}, it will
      * not wait for it to complete again.
      */
-    public synchronized void waitForLoaders(int... loaderIds) {
+    @VisibleForTesting
+    /*package*/ synchronized void waitForLoaders(int... loaderIds) {
         List<Loader<?>> loaders = new ArrayList<Loader<?>>(loaderIds.length);
         for (int loaderId : loaderIds) {
             if (mFinishedLoaders.contains(loaderId)) {

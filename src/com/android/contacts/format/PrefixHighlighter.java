@@ -16,7 +16,6 @@
 
 package com.android.contacts.format;
 
-import android.database.CharArrayBuffer;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.widget.TextView;
@@ -42,17 +41,6 @@ public class PrefixHighlighter {
      */
     public void setText(TextView view, String text, char[] prefix) {
         view.setText(apply(text, prefix));
-    }
-
-    /**
-     * Sets the text on the given text view, highlighting the word that matches the given prefix.
-     *
-     * @param view the view on which to set the text
-     * @param text the text to use as the text
-     * @param prefix the prefix to look for
-     */
-    public void setText(TextView view, CharArrayBuffer text, char[] prefix) {
-        setText(view, FormatUtils.charArrayBufferToString(text), prefix);
     }
 
     /**

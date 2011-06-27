@@ -17,6 +17,7 @@
 package com.android.contacts.test;
 
 import com.google.android.collect.Maps;
+import com.google.common.annotations.VisibleForTesting;
 
 import android.content.ContentResolver;
 import android.content.SharedPreferences;
@@ -34,6 +35,7 @@ public class InjectedServices {
     private SharedPreferences mSharedPreferences;
     private HashMap<String, Object> mSystemServices;
 
+    @VisibleForTesting
     public void setContentResolver(ContentResolver contentResolver) {
         this.mContentResolver = contentResolver;
     }
@@ -42,6 +44,7 @@ public class InjectedServices {
         return mContentResolver;
     }
 
+    @VisibleForTesting
     public void setSharedPreferences(SharedPreferences sharedPreferences) {
         this.mSharedPreferences = sharedPreferences;
     }
@@ -50,6 +53,7 @@ public class InjectedServices {
         return mSharedPreferences;
     }
 
+    @VisibleForTesting
     public void setSystemService(String name, Object service) {
         if (mSystemServices == null) {
             mSystemServices = Maps.newHashMap();

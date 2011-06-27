@@ -15,6 +15,8 @@
  */
 package com.android.contacts.widget;
 
+import com.google.common.annotations.VisibleForTesting;
+
 import android.database.DataSetObserver;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +66,8 @@ public class CompositeListAdapter extends BaseAdapter {
         mViewTypeCounts = new int[INITIAL_CAPACITY];
     }
 
-    public void addAdapter(ListAdapter adapter) {
+    @VisibleForTesting
+    /*package*/ void addAdapter(ListAdapter adapter) {
         if (mSize >= mAdapters.length) {
             int newCapacity = mSize + 2;
             ListAdapter[] newAdapters = new ListAdapter[newCapacity];

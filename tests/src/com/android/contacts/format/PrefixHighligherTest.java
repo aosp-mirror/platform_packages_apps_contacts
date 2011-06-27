@@ -16,7 +16,6 @@
 
 package com.android.contacts.format;
 
-import android.database.CharArrayBuffer;
 import android.test.AndroidTestCase;
 import android.widget.TextView;
 
@@ -87,21 +86,5 @@ public class PrefixHighligherTest extends AndroidTestCase {
 
         mPrefixHighlighter.setText(mView, "atest test", "TE".toCharArray());
         SpannedTestUtils.checkHtmlText("atest " + START + "te" + END + "st", mView);
-    }
-
-    public void testSetText_CharArrayBuffer() {
-        CharArrayBuffer buffer = new CharArrayBuffer(100);
-
-        FormatUtils.copyToCharArrayBuffer("test", buffer);
-        mPrefixHighlighter.setText(mView, buffer, new char[0]);
-        SpannedTestUtils.checkHtmlText("test", mView);
-
-        FormatUtils.copyToCharArrayBuffer("a test", buffer);
-        mPrefixHighlighter.setText(mView, buffer, "TE".toCharArray());
-        SpannedTestUtils.checkHtmlText("a " + START + "te" + END + "st", mView);
-
-        FormatUtils.copyToCharArrayBuffer("test", buffer);
-        mPrefixHighlighter.setText(mView, buffer, "TA".toCharArray());
-        SpannedTestUtils.checkHtmlText("test", mView);
     }
 }

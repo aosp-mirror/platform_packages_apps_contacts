@@ -20,6 +20,7 @@ import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.calllog.CallLogFragment;
 import com.android.internal.telephony.ITelephony;
+import com.google.common.annotations.VisibleForTesting;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -54,7 +55,8 @@ public class CallLogActivity extends Activity {
                 R.id.call_log_fragment);
     }
 
-    public CallLogFragment getFragment() {
+    @VisibleForTesting
+    /*package*/ CallLogFragment getFragment() {
         return mFragment;
     }
 

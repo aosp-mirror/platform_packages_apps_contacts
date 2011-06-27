@@ -18,6 +18,7 @@ package com.android.contacts;
 
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.test.InjectedServices;
+import com.google.common.annotations.VisibleForTesting;
 
 import android.app.Application;
 import android.app.LoaderManager;
@@ -36,6 +37,7 @@ public final class ContactsApplication extends Application {
     /**
      * Overrides the system services with mocks for testing.
      */
+    @VisibleForTesting
     public static void injectServices(InjectedServices services) {
         sInjectedServices = services;
     }

@@ -1111,10 +1111,12 @@ public class CallLogFragment extends ListFragment
         }
     }
 
+    @VisibleForTesting
     public CallLogAdapter getAdapter() {
         return mAdapter;
     }
 
+    @VisibleForTesting
     public String getVoiceMailNumber() {
         return mVoiceMailNumber;
     }

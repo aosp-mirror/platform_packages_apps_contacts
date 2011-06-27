@@ -17,6 +17,7 @@
 package com.android.contacts;
 
 import com.android.contacts.util.DataStatus;
+import com.google.common.annotations.VisibleForTesting;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -238,7 +239,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             return mUri;
         }
 
-        public long getId() {
+        @VisibleForTesting
+        /*package*/ long getId() {
             return mId;
         }
 
