@@ -23,7 +23,6 @@ import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
-import android.provider.ContactsContract.Profile;
 import android.provider.ContactsContract.SearchSnippetColumns;
 import android.text.TextUtils;
 import android.view.View;
@@ -162,7 +161,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
 
     protected static Uri includeProfileEntry(Uri uri) {
         return uri.buildUpon()
-                .appendQueryParameter(ContactsContract.INCLUDE_PROFILE, "true").build();
+                .appendQueryParameter(ContactsContract.ALLOW_PROFILE, "true").build();
     }
 
     public boolean getHasPhoneNumber(int position) {
