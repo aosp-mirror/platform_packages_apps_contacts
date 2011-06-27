@@ -31,7 +31,9 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:textSize="18sp"
-            android:textColor="#333333"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:paddingTop="24dip" />
 
         <ImageView

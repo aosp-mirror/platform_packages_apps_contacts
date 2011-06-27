@@ -17,7 +17,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     class="com.android.contacts.list.ContactTileView"
     android:focusable="true"
-    android:padding="1dip"
+    android:padding="1px"
     android:background="@drawable/list_selector" >
 
     <RelativeLayout
@@ -30,15 +30,27 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop" />
 
+        <View
+            android:id="@+id/contact_tile_background"
+            android:layout_width="match_parent"
+            android:layout_height="48dip"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:alpha="0.5"
+            android:background="@android:color/black" />
+
         <TextView
             android:id="@+id/contact_tile_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dip"
             android:layout_alignParentBottom="true"
-            android:background="@color/contact_tile_regular_text"
-            android:textColor="@color/contact_tile_regular_text_background"
-            android:textSize="17sp"
-            android:alpha="0.7" />
+            android:layout_alignParentLeft="true"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dip"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="@android:color/white"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </RelativeLayout>
 
