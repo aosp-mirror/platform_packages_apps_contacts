@@ -86,7 +86,7 @@ public class ContactTileAdapter extends BaseAdapter {
 
         /**
          * Display only most frequently contacted in a
-         * small {@link ContactTileView} layout.
+         * single {@link ContactTileView} layout.
          */
         FREQUENT_ONLY,
 
@@ -192,10 +192,21 @@ public class ContactTileAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        int numRows = getNumRows(mContacts2.size()) + getNumRows(mContacts.size());
+        // Addin Containter (if any) that always has multi columns
+        int rowCount = getNumRows(mContacts2.size());
+
+        if (mDisplayType == DisplayType.FREQUENT_ONLY || mDisplayType == DisplayType.STREQUENT) {
+            // Adding Container that has single columns
+            rowCount += mContacts.size();
+        } else {
+            // Adding Containter that has multi columns
+            rowCount += getNumRows(mContacts.size());
+        }
+
         // Adding Divider Row if Neccessary
-        if (mDisplayType == DisplayType.STREQUENT && mContacts.size() > 0) numRows++;
-        return numRows;
+        if (mDisplayType == DisplayType.STREQUENT && mContacts.size() > 0) rowCount++;
+
+        return rowCount;
     }
 
     /**
@@ -223,6 +234,9 @@ public class ContactTileAdapter extends BaseAdapter {
         } else {
             if (mDisplayType == DisplayType.STREQUENT) {
                 contactIndex = (position - mDividerRowIndex - 1) * mColumnCount;
+
+                resultList.add(mContacts.get(position - mDividerRowIndex - 1));
+                return resultList;
             }
             contactList = mContacts;
         }
@@ -259,24 +273,37 @@ public class ContactTileAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        int itemViewType = getItemViewType(position);
 
-        // Checking position to draw the divider
-        if (position == mDividerRowIndex) {
+        if (itemViewType == ViewTypes.DIVIDER) {
+            // Checking For Divider First so not to cast convertView
             return convertView == null ? createDivider() : convertView;
         }
 
         ContactTileRow contactTileRowView = (ContactTileRow) convertView;
         ArrayList<ContactEntry> contactList = getItem(position);
+        int layoutResId = getLayoutResourceId(itemViewType);
+        int columnCount = -1;
 
-        // Creating new row if needed
-        if (contactTileRowView == null) {
-            int itemViewType = getItemViewType(position);
-            int layoutResId = getLayoutResourceId(itemViewType);
-            contactTileRowView = new ContactTileRow(mContext, layoutResId,
-                    itemViewType == ViewTypes.REGULAR);
+        switch (itemViewType) {
+            case ViewTypes.REGULAR:
+                if (contactTileRowView == null) {
+                    // Creating new row if needed
+                    contactTileRowView = new ContactTileRow(mContext, layoutResId, true);
+                }
+                columnCount = mColumnCount;
+                break;
+
+            case ViewTypes.SINGLE_ROW:
+                if (contactTileRowView == null) {
+                    // Creating new row if needed
+                    contactTileRowView = new ContactTileRow(mContext, layoutResId, false);
+                }
+                columnCount = 1;
+                break;
         }
 
-        contactTileRowView.configureRow(contactList);
+        contactTileRowView.configureRow(contactList, columnCount);
         return contactTileRowView;
     }
 
@@ -294,10 +321,10 @@ public class ContactTileAdapter extends BaseAdapter {
 
     private int getLayoutResourceId(int viewType) {
         switch (viewType) {
-            case ViewTypes.SMALL:
-                return R.layout.contact_tile_small;
             case ViewTypes.REGULAR:
                 return R.layout.contact_tile_regular;
+            case ViewTypes.SINGLE_ROW:
+                return R.layout.contact_tile_single;
             default:
                 throw new IllegalArgumentException("Received unrecognized viewType " + viewType);
         }
@@ -324,13 +351,13 @@ public class ContactTileAdapter extends BaseAdapter {
                 } else if (position == mDividerRowIndex) {
                     return ViewTypes.DIVIDER;
                 } else {
-                    return ViewTypes.SMALL;
+                    return ViewTypes.SINGLE_ROW;
                 }
             case STARRED_ONLY:
             case GROUP_MEMBERS:
                 return ViewTypes.REGULAR;
             case FREQUENT_ONLY:
-                return ViewTypes.SMALL;
+                return ViewTypes.SINGLE_ROW;
             default:
                 throw new IllegalStateException(
                         "Received unrecognized DisplayType " + mDisplayType);
@@ -353,9 +380,9 @@ public class ContactTileAdapter extends BaseAdapter {
         /**
          * Configures the row to add {@link ContactEntry}s information to the views
          */
-        public void configureRow(ArrayList<ContactEntry> list) {
+        public void configureRow(ArrayList<ContactEntry> list, int columnCount) {
             // Adding tiles to row and filling in contact information
-            for (int columnCounter = 0; columnCounter < mColumnCount; columnCounter++) {
+            for (int columnCounter = 0; columnCounter < columnCount; columnCounter++) {
                 ContactEntry entry =
                         columnCounter < list.size() ? list.get(columnCounter) : null;
                 addTileFromEntry(entry, columnCounter);
@@ -397,9 +424,9 @@ public class ContactTileAdapter extends BaseAdapter {
 
     private static class ViewTypes {
         public static final int COUNT = 3;
-        public static final int SMALL = 0;
-        public static final int REGULAR = 1;
-        public static final int DIVIDER = 2;
+        public static final int REGULAR = 0;
+        public static final int DIVIDER = 1;
+        public static final int SINGLE_ROW = 2;
     }
 
     public interface Listener {

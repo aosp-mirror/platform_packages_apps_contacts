@@ -34,11 +34,16 @@ import android.widget.TextView;
 public class ContactTileView extends FrameLayout {
     private final static String TAG = "ContactTileView";
 
+    /**
+     * This divides into the width to define the height when
+     * {link DisplayTypes@SINLGE_ROW} is true.
+     */
+    private final static int HEIGHT_RATIO = 5;
     private Uri mLookupUri;
     private ImageView mPhoto;
     private TextView mName;
     private ContactPhotoManager mPhotoManager = null;
-    /*
+    /**
      * Is set to true if the {@link ContactTileView} is a square.
      * A {@link ViewType#REGULAR} is displayed as a square.
      */
@@ -95,6 +100,6 @@ public class ContactTileView extends FrameLayout {
         int width = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
         int childMeasureSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
         measureChildren(childMeasureSpec, childMeasureSpec);
-        setMeasuredDimension(width, width / (mIsSquare ? 1 : 2));
+        setMeasuredDimension(width, width / (mIsSquare ? 1 : HEIGHT_RATIO));
     }
 }
