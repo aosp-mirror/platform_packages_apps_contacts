@@ -31,6 +31,7 @@ import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Directory;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -320,9 +321,16 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     /**
      * Updates partitions according to the directory meta-data contained in the supplied
-     * cursor.  Takes ownership of the cursor and will close it.
+     * cursor.
      */
     public void changeDirectories(Cursor cursor) {
+        if (cursor.getCount() == 0) {
+            // Directory table must have at least local directory, without which this adapter will
+            // enter very weird state.
+            Log.e(TAG, "Directory search loader returned an empty cursor, which implies we have " +
+                    "no directory entries.", new RuntimeException());
+            return;
+        }
         HashSet<Long> directoryIds = new HashSet<Long>();
 
         int idColumnIndex = cursor.getColumnIndex(Directory._ID);
