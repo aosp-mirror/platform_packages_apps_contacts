@@ -45,7 +45,6 @@ public class ContactTileView extends FrameLayout {
     private ContactPhotoManager mPhotoManager = null;
     /**
      * Is set to true if the {@link ContactTileView} is a square.
-     * A {@link ViewType#REGULAR} is displayed as a square.
      */
     private boolean mIsSquare;
 

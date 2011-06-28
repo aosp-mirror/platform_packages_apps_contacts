@@ -102,7 +102,7 @@ public class ContactTileAdapter extends BaseAdapter {
             DisplayType displayType) {
         mListener = listener;
         mContext = context;
-        mColumnCount = numCols;
+        mColumnCount = (displayType == DisplayType.FREQUENT_ONLY ? 1 : numCols);
         mDisplayType = displayType;
 
         bindColumnIndices();
@@ -110,6 +110,14 @@ public class ContactTileAdapter extends BaseAdapter {
 
     public void setPhotoLoader(ContactPhotoManager photoLoader) {
         mPhotoManager = photoLoader;
+    }
+
+    public void setColumnCount(int columnCount) {
+        mColumnCount = columnCount;
+    }
+
+    public void setDisplayType(DisplayType displayType) {
+        mDisplayType = displayType;
     }
 
     /**
@@ -202,7 +210,6 @@ public class ContactTileAdapter extends BaseAdapter {
             // Adding Containter that has multi columns
             rowCount += getNumRows(mContacts.size());
         }
-
         // Adding Divider Row if Neccessary
         if (mDisplayType == DisplayType.STREQUENT && mContacts.size() > 0) rowCount++;
 
@@ -232,9 +239,8 @@ public class ContactTileAdapter extends BaseAdapter {
         if (contactIndex < mContacts2.size()) {
             contactList = mContacts2;
         } else {
-            if (mDisplayType == DisplayType.STREQUENT) {
-                contactIndex = (position - mDividerRowIndex - 1) * mColumnCount;
-
+            if (mDisplayType == DisplayType.STREQUENT ||
+                    mDisplayType == DisplayType.FREQUENT_ONLY) {
                 resultList.add(mContacts.get(position - mDividerRowIndex - 1));
                 return resultList;
             }
@@ -385,9 +391,9 @@ public class ContactTileAdapter extends BaseAdapter {
             for (int columnCounter = 0; columnCounter < columnCount; columnCounter++) {
                 ContactEntry entry =
                         columnCounter < list.size() ? list.get(columnCounter) : null;
-                addTileFromEntry(entry, columnCounter);
+                        addTileFromEntry(entry, columnCounter);
+                }
             }
-        }
 
         private void addTileFromEntry(ContactEntry entry, int tileIndex) {
             ContactTileView contactTile;
