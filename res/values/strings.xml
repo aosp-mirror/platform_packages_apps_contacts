@@ -967,6 +967,9 @@
     <!-- Title for the call disambiguation dialog -->
     <string name="call_disambig_title">Call using</string>
 
+    <!-- Menu item label for call settings [CHAR LIMIT=30] -->
+    <string name="call_settings">Call settings</string>
+
     <!-- Title for the sms disambiguation dialog -->
     <string name="sms_disambig_title">Text using</string>
 
