@@ -14,21 +14,23 @@
      limitations under the License.
 -->
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="none"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <fragment class="com.android.contacts.detail.ContactDetailFragment"
-        android:id="@+id/about_fragment"
-        android:layout_width="@dimen/detail_fragment_carousel_fragment_width"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <fragment class="com.android.contacts.detail.ContactDetailUpdatesFragment"
-        android:id="@+id/updates_fragment"
-        android:layout_width="@dimen/detail_fragment_carousel_fragment_width"
-        android:layout_height="match_parent" />
+    <com.android.contacts.detail.ContactDetailTabCarousel
+        android:id="@+id/tab_carousel"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-</LinearLayout>
+</RelativeLayout>

@@ -14,24 +14,17 @@
      limitations under the License.
 -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/contact_detail_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <!-- This fragment is an invisible worker fragment that loads the contact details. -->
+    <fragment
+        android:id="@+id/loader_fragment"
+        class="com.android.contacts.detail.ContactLoaderFragment"
+        android:layout_height="0dip"
+        android:layout_width="0dip"
+        android:visibility="gone"/>
 
-    <com.android.contacts.detail.ContactDetailTabCarousel
-        android:id="@+id/tab_carousel"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-</RelativeLayout>
+</FrameLayout>

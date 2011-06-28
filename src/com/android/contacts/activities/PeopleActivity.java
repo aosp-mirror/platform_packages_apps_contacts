@@ -728,11 +728,6 @@ public class PeopleActivity extends ContactsActivity
         }
 
         @Override
-        public void onDetailsLoaded(ContactLoader.Result result) {
-            // Nothing needs to be done here
-        }
-
-        @Override
         public void onEditRequested(Uri contactLookupUri) {
             startActivityForResult(
                     new Intent(Intent.ACTION_EDIT, contactLookupUri), SUBACTIVITY_EDIT_CONTACT);

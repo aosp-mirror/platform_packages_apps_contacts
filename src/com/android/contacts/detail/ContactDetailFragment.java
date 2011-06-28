@@ -21,6 +21,7 @@ import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.ContactLoader;
 import com.android.contacts.ContactOptionsActivity;
 import com.android.contacts.ContactPresenceIconUtil;
+import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.GroupMetaData;
 import com.android.contacts.NfcHandler;
@@ -40,6 +41,7 @@ import com.android.contacts.widget.TransitionAnimationView;
 import com.android.internal.telephony.ITelephony;
 
 import android.accounts.Account;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
@@ -100,6 +102,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -127,7 +130,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     private NfcHandler mNfcHandler;
 
     private ContactLoader.Result mContactData;
-    private ContactDetailHeaderView mHeaderView;
+    private ViewGroup mHeaderView;
     private ImageView mPhotoView;
     private ListView mListView;
     private ViewAdapter mAdapter;
@@ -139,6 +142,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     private int mNumPhoneNumbers = 0;
     private String mDefaultCountryIso;
     private boolean mContactDataDisplayed;
+    private boolean mContactPhotoDisplayedInHeader = true;
 
     private boolean mOptionsMenuOptions;
     private boolean mOptionsMenuEditable;
@@ -268,6 +272,10 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         });
 
         mView.setVisibility(View.INVISIBLE);
+
+        if (mContactData != null) {
+            bindData();
+        }
         return mView;
     }
 
@@ -357,6 +365,19 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             args.putParcelable(LOADER_ARG_CONTACT_URI, mLookupUri);
             getLoaderManager().restartLoader(LOADER_DETAILS, args, mDetailLoaderListener);
         }
+    }
+
+    /**
+     * Sets whether or not the contact photo should be shown in the list of contact details in this
+     * {@link Fragment}.
+     */
+    public void setShowPhotoInHeader(boolean showPhoto) {
+        mContactPhotoDisplayedInHeader = showPhoto;
+    }
+
+    public void setData(ContactLoader.Result result) {
+        mContactData = result;
+        bindData();
     }
 
     protected void bindData() {
@@ -1061,7 +1082,49 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             if (mHeaderView != null) {
                 return mHeaderView;
             }
-            return createNewHeaderView(parent);
+
+            mHeaderView = (ViewGroup) inflate(
+                    R.layout.simple_contact_detail_header_view_list_item, parent, false);
+
+            TextView displayNameView = (TextView) mHeaderView.findViewById(R.id.name);
+            TextView companyView = (TextView) mHeaderView.findViewById(R.id.company);
+            TextView phoneticNameView = (TextView) mHeaderView.findViewById(R.id.phonetic_name);
+            TextView attributionView = (TextView) mHeaderView.findViewById(R.id.attribution);
+            ImageView photoView = (ImageView) mHeaderView.findViewById(R.id.photo);
+
+            ContactDetailDisplayUtils.setDisplayName(mContext, mContactData, displayNameView);
+            ContactDetailDisplayUtils.setCompanyName(mContext, mContactData, companyView);
+            ContactDetailDisplayUtils.setPhoneticName(mContext, mContactData, phoneticNameView);
+            ContactDetailDisplayUtils.setAttribution(mContext, mContactData, attributionView);
+
+            // Set the photo if it should be displayed
+            if (mContactPhotoDisplayedInHeader) {
+                ContactDetailDisplayUtils.setPhoto(mContext, mContactData, photoView);
+            } else {
+                // Otherwise hide the view
+                photoView.setVisibility(View.INVISIBLE);
+            }
+
+            // Set the starred state if it should be displayed
+            final CheckBox starredView = (CheckBox) mHeaderView.findViewById(R.id.star);
+            if (starredView != null) {
+                ContactDetailDisplayUtils.setStarred(mContactData, starredView);
+                final Uri lookupUri = mContactData.getLookupUri();
+                starredView.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Toggle "starred" state
+                        // Make sure there is a contact
+                        if (lookupUri != null) {
+                            Intent intent = ContactSaveService.createSetStarredIntent(
+                                    getContext(), lookupUri, starredView.isChecked());
+                            getContext().startService(intent);
+                        }
+                    }
+                });
+            }
+
+            return mHeaderView;
         }
 
         private View getSeparatorEntryView(View convertView, ViewGroup parent) {
@@ -1241,16 +1304,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         public boolean isEnabled(int position) {
             return getItem(position).isEnabled();
         }
-    }
-
-    /**
-     * Returns a new header view for the top of the list of contact details.
-     */
-    protected View createNewHeaderView(ViewGroup parent) {
-        mHeaderView = (ContactDetailHeaderView) inflate(
-                R.layout.contact_detail_header_view_list_item, parent, false);
-        mHeaderView.loadData(mContactData);
-        return mHeaderView;
     }
 
     @Override
@@ -1502,11 +1555,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
          * is removed via Menu/Delete
          */
         public void onContactNotFound();
-
-        /**
-         * This contact's details have been loaded.
-         */
-        public void onDetailsLoaded(ContactLoader.Result result);
 
         /**
          * User decided to go to Edit-Mode

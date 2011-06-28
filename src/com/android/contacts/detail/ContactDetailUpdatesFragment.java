@@ -16,6 +16,7 @@
 
 package com.android.contacts.detail;
 
+import com.android.contacts.ContactLoader;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
 
@@ -30,6 +31,8 @@ public class ContactDetailUpdatesFragment extends Fragment
         implements FragmentKeyListener, FragmentOverlay {
 
     private static final String TAG = "ContactDetailUpdatesFragment";
+
+    private ContactLoader.Result mContactData;
 
     /**
      * This optional view adds an alpha layer over the entire fragment.
@@ -55,6 +58,11 @@ public class ContactDetailUpdatesFragment extends Fragment
         mTouchInterceptLayer = rootView.findViewById(R.id.touch_intercept_overlay);
 
         return rootView;
+    }
+
+    public void setData(ContactLoader.Result result) {
+        mContactData = result;
+        // TODO: Load up the "recent updates" section based on the result
     }
 
     @Override

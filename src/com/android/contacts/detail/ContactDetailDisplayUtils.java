@@ -209,8 +209,33 @@ public class ContactDetailDisplayUtils {
      */
     public static void setSocialSnippetAndDate(Context context, Result contactData,
             TextView statusView, TextView dateView) {
+        if (statusView == null || dateView == null) {
+            return;
+        }
         setDataOrHideIfNone(contactData.getSocialSnippet(), statusView);
         setDataOrHideIfNone(ContactBadgeUtil.getSocialDate(contactData, context), dateView);
+    }
+
+    /**
+     * Sets the display name of this contact to the given {@link TextView}. If
+     * there is none, then set the view to gone.
+     */
+    public static void setDisplayName(Context context, Result contactData, TextView textView) {
+        if (textView == null) {
+            return;
+        }
+        setDataOrHideIfNone(getDisplayName(context, contactData), textView);
+    }
+
+    /**
+     * Sets the company and job title of this contact to the given {@link TextView}. If
+     * there is none, then set the view to gone.
+     */
+    public static void setCompanyName(Context context, Result contactData, TextView textView) {
+        if (textView == null) {
+            return;
+        }
+        setDataOrHideIfNone(getCompany(context, contactData), textView);
     }
 
     /**
@@ -218,6 +243,9 @@ public class ContactDetailDisplayUtils {
      * there is none, then set the view to gone.
      */
     public static void setPhoneticName(Context context, Result contactData, TextView textView) {
+        if (textView == null) {
+            return;
+        }
         setDataOrHideIfNone(getPhoneticName(context, contactData), textView);
     }
 
@@ -226,6 +254,9 @@ public class ContactDetailDisplayUtils {
      * there is none, then set the view to gone.
      */
     public static void setAttribution(Context context, Result contactData, TextView textView) {
+        if (textView == null) {
+            return;
+        }
         setDataOrHideIfNone(getAttribution(context, contactData), textView);
     }
 

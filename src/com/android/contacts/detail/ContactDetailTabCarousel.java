@@ -154,6 +154,10 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
      * from the outside to fully setup the View
      */
     public void loadData(ContactLoader.Result contactData) {
+        if (contactData == null) {
+            return;
+        }
+
         View aboutView = findViewById(R.id.tab_about);
         View updateView = findViewById(R.id.tab_update);
 

@@ -15,7 +15,7 @@
 -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/contact_detail"
+    android:id="@+id/contact_detail_about_fragment"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -25,15 +25,14 @@
         android:layout_height="0px"
         android:layout_weight="1"
         android:background="@color/background_primary"
-        android:divider="@null"
-    />
+        android:divider="@null"/>
 
     <ScrollView android:id="@android:id/empty"
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1"
-        android:visibility="gone"
-    >
+        android:visibility="gone">
+
         <TextView android:id="@+id/emptyText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,8 +42,8 @@
             android:paddingLeft="10dip"
             android:paddingRight="10dip"
             android:paddingTop="10dip"
-            android:lineSpacingMultiplier="0.92"
-        />
+            android:lineSpacingMultiplier="0.92"/>
+
     </ScrollView>
 
     <!-- "Copy to my contacts"- button -->

@@ -24,26 +24,46 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingTop="20dip">
 
     <ImageView
         android:id="@+id/photo"
         android:scaleType="centerCrop"
+        android:layout_width="@dimen/detail_contact_photo_size"
+        android:layout_height="@dimen/detail_contact_photo_size" />
+
+    <TextView
+        android:id="@+id/name"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/detail_tab_carousel_height" />
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="36sp" />
+
+    <TextView
+        android:id="@+id/company"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/phonetic_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dip"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
         android:id="@+id/attribution"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dip"
         android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <CheckBox
+        android:id="@+id/star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:contentDescription="@string/description_star"
+        style="?android:attr/starStyle" />
 
 </LinearLayout>
