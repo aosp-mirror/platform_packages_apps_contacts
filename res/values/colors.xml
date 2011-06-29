@@ -51,8 +51,4 @@
 
     <!-- Color of the background of the tabs on the contact detail page -->
     <color name="detail_tab_background">#DBDBDB</color>
-
-    <!--  Color of the text foreground and background of Regular Sized ContactTile -->
-    <color name="contact_tile_regular_text">#2B1B17</color>
-    <color name="contact_tile_regular_text_background">#FFFFFF</color>
 </resources>
