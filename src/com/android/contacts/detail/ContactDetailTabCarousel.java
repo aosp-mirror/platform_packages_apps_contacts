@@ -39,16 +39,13 @@ import android.widget.TextView;
  * TODO: Create custom views for the tabs so their width can be programatically set as 2/3 of the
  * screen width.
  */
-public class ContactDetailTabCarousel extends HorizontalScrollView
-        implements View.OnClickListener, OnTouchListener {
+public class ContactDetailTabCarousel extends HorizontalScrollView implements OnTouchListener {
     private static final String TAG = "ContactDetailTabCarousel";
 
-    private CheckBox mStarredView;
     private ImageView mPhotoView;
     private TextView mStatusView;
     private TextView mStatusDateView;
 
-    private Uri mContactUri;
     private Listener mListener;
 
     private View[] mTabs = new View[2];
@@ -157,8 +154,6 @@ public class ContactDetailTabCarousel extends HorizontalScrollView
      * from the outside to fully setup the View
      */
     public void loadData(ContactLoader.Result contactData) {
-        mContactUri = contactData.getLookupUri();
-
         View aboutView = findViewById(R.id.tab_about);
         View updateView = findViewById(R.id.tab_update);
 
@@ -187,17 +182,14 @@ public class ContactDetailTabCarousel extends HorizontalScrollView
         mTabs[0] = aboutTab;
         mTabs[1] = updatesTab;
 
-        // Retrieve the photo and star views for the "about" tab
+        // Retrieve the photo view for the "about" tab
         mPhotoView = (ImageView) aboutView.findViewById(R.id.photo);
-        mStarredView = (CheckBox) aboutView.findViewById(R.id.star);
-        mStarredView.setOnClickListener(this);
 
         // Retrieve the social update views for the "updates" tab
         mStatusView = (TextView) updateView.findViewById(R.id.status);
         mStatusDateView = (TextView) updateView.findViewById(R.id.status_date);
 
         ContactDetailDisplayUtils.setPhoto(mContext, contactData, mPhotoView);
-        ContactDetailDisplayUtils.setStarred(contactData, mStarredView);
         ContactDetailDisplayUtils.setSocialSnippetAndDate(mContext, contactData, mStatusView,
                 mStatusDateView);
     }
@@ -207,23 +199,6 @@ public class ContactDetailTabCarousel extends HorizontalScrollView
      */
     public void setListener(Listener listener) {
         mListener = listener;
-    }
-
-    // TODO: The starred icon needs to move to the action bar.
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.star: {
-                // Toggle "starred" state
-                // Make sure there is a contact
-                if (mContactUri != null) {
-                    Intent intent = ContactSaveService.createSetStarredIntent(
-                            getContext(), mContactUri, mStarredView.isChecked());
-                    getContext().startService(intent);
-                }
-                break;
-            }
-        }
     }
 
     @Override

@@ -22,6 +22,7 @@ import com.android.contacts.ContactsActivity;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.detail.ContactDetailAboutFragment;
+import com.android.contacts.detail.ContactDetailDisplayUtils;
 import com.android.contacts.detail.ContactDetailFragment;
 import com.android.contacts.detail.ContactDetailFragmentCarousel;
 import com.android.contacts.detail.ContactDetailTabCarousel;
@@ -42,9 +43,15 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -53,6 +60,9 @@ public class ContactDetailActivity extends ContactsActivity {
     private static final String TAG = "ContactDetailActivity";
 
     public static final int FRAGMENT_COUNT = 2;
+
+    private ContactLoader.Result mContactData;
+    private Uri mLookupUri;
 
     private ContactDetailAboutFragment mAboutFragment;
     private ContactDetailUpdatesFragment mUpdatesFragment;
@@ -129,6 +139,40 @@ public class ContactDetailActivity extends ContactsActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.star, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem starredMenuItem = menu.findItem(R.id.menu_star);
+        ViewGroup starredContainer = (ViewGroup) getLayoutInflater().inflate(
+                R.layout.favorites_star, null, false);
+        final CheckBox starredView = (CheckBox) starredContainer.findViewById(R.id.star);
+        starredView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Toggle "starred" state
+                // Make sure there is a contact
+                if (mLookupUri != null) {
+                    Intent intent = ContactSaveService.createSetStarredIntent(
+                            ContactDetailActivity.this, mLookupUri, starredView.isChecked());
+                    ContactDetailActivity.this.startService(intent);
+                }
+            }
+        });
+        // If there is contact data, update the starred state
+        if (mContactData != null) {
+            ContactDetailDisplayUtils.setStarred(mContactData, starredView);
+        }
+        starredMenuItem.setActionView(starredContainer);
+        return true;
+    }
+
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         FragmentKeyListener mCurrentFragment;
         switch (getCurrentPage()) {
@@ -165,6 +209,12 @@ public class ContactDetailActivity extends ContactsActivity {
 
         @Override
         public void onDetailsLoaded(ContactLoader.Result result) {
+            if (result == null) {
+                return;
+            }
+            mContactData = result;
+            mLookupUri = result.getLookupUri();
+            invalidateOptionsMenu();
             if (mTabCarousel != null) {
                 mTabCarousel.loadData(result);
             }
