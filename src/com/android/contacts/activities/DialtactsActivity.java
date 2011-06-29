@@ -41,6 +41,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -58,6 +59,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnAttachStateChangeListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
 import android.widget.SearchView.OnQueryTextListener;
@@ -664,6 +667,22 @@ public class DialtactsActivity extends Activity {
             mSearchView.setOnQueryTextListener(mPhoneSearchQueryTextListener);
             mSearchView.setOnCloseListener(mPhoneSearchCloseListener);
             mSearchView.requestFocus();
+            mSearchView.addOnAttachStateChangeListener(new OnAttachStateChangeListener() {
+                @Override
+                public void onViewDetachedFromWindow(View v) {
+                }
+
+                @Override
+                public void onViewAttachedToWindow(View v) {
+                    if (mSearchView.hasFocus()) {
+                        mSearchView.postDelayed(new Runnable() {
+                            public void run() {
+                                showInputMethod(mSearchView.findFocus());
+                            }
+                        }, 0);
+                    }
+                }
+            });
             actionBar.setCustomView(searchViewLayout,
                     new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
         } else {
@@ -682,6 +701,13 @@ public class DialtactsActivity extends Activity {
         transaction.commit();
 
         mInSearchUi = true;
+    }
+
+    private void showInputMethod(View view) {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.showSoftInput(view, 0);
+        }
     }
 
     /**
