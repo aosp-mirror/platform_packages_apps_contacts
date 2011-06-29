@@ -20,7 +20,6 @@ import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.SpecialCharSequenceMgr;
 import com.android.contacts.activities.DialtactsActivity;
-import com.android.contacts.list.StrequentContactListFragment.Listener;
 import com.android.internal.telephony.ITelephony;
 import com.android.phone.CallLogAsync;
 import com.android.phone.HapticFeedback;
@@ -111,9 +110,11 @@ public class DialpadFragment extends Fragment
     //Member variables for dialpad options
     private MenuItem m2SecPauseMenuItem;
     private MenuItem mWaitMenuItem;
+    private MenuItem mCallSettingsItem;
     private static final int MENU_ADD_CONTACTS = 1;
     private static final int MENU_2S_PAUSE = 2;
     private static final int MENU_WAIT = 3;
+    private static final int MENU_CALL_SETTINGS = 4;
 
     private boolean mHasVoicemail = false;
 
@@ -529,18 +530,27 @@ public class DialpadFragment extends Fragment
                 .setIcon(R.drawable.ic_menu_2sec_pause);
         mWaitMenuItem = menu.add(0, MENU_WAIT, 0, R.string.add_wait)
                 .setIcon(R.drawable.ic_menu_wait);
+        // TODO: icon
+        mCallSettingsItem = menu.add(0, MENU_CALL_SETTINGS, 0, R.string.call_settings);
     }
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        // If we have not been inflated yet, there is no menu
-        if (mDialpadChooser == null) return;
+        if (mDialpadChooser == null || mDigits == null) {
+            // The layout itself isn't ready yet. Let's ignore this call.
+            return;
+        }
 
+        // We show "Call Settings" menu every time
+        mCallSettingsItem.setVisible(true);
+        Intent settingsIntent = new Intent(Intent.ACTION_MAIN);
+        settingsIntent.setClassName("com.android.phone", "com.android.phone.CallFeaturesSetting");
+        mCallSettingsItem.setIntent(settingsIntent);
+
+        // We show "add to contacts", "2sec pause", and "add wait" menus only when the user is
+        // seeing usual dialpads and has typed at least one digit.
         // We never show a menu if the "choose dialpad" UI is up.
-        // Otherwise the menu is allowed (see onPrepareOptionsMenu() below.)
-        if (!dialpadChooserVisible()) return;
-
-        if (isDigitsEmpty()) {
+        if (dialpadChooserVisible() || isDigitsEmpty()) {
             mAddToContactMenuItem.setVisible(false);
             m2SecPauseMenuItem.setVisible(false);
             mWaitMenuItem.setVisible(false);
