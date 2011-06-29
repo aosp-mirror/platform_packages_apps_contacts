@@ -32,6 +32,7 @@ import com.android.contacts.list.ContactBrowseListFragment;
 import com.android.contacts.list.ContactEntryListFragment;
 import com.android.contacts.list.ContactListFilter;
 import com.android.contacts.list.ContactListFilterController;
+import com.android.contacts.list.ContactTileAdapter.DisplayType;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.ContactsUnavailableFragment;
@@ -53,7 +54,6 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -93,6 +93,7 @@ public class PeopleActivity extends ContactsActivity
     private static final int SUBACTIVITY_NEW_CONTACT = 2;
     private static final int SUBACTIVITY_EDIT_CONTACT = 3;
     private static final int SUBACTIVITY_CUSTOMIZE_FILTER = 4;
+    private static final int FAVORITES_COLUMN_COUNT = 4;
 
     private static final String KEY_SEARCH_MODE = "searchMode";
 
@@ -134,7 +135,12 @@ public class PeopleActivity extends ContactsActivity
 
     private DefaultContactBrowseListFragment mContactsFragment;
     private StrequentContactListFragment mFavoritesFragment;
+    private StrequentContactListFragment mFrequentFragment;
     private GroupBrowseListFragment mGroupsFragment;
+
+    private View mFavoritesView;
+    private View mBrowserView;
+    private View mDetailsView;
 
     private enum TabState {
         FAVORITES, CONTACTS, GROUPS
@@ -182,6 +188,8 @@ public class PeopleActivity extends ContactsActivity
         } else if (fragment instanceof StrequentContactListFragment) {
             mFavoritesFragment = (StrequentContactListFragment) fragment;
             mFavoritesFragment.setListener(mFavoritesFragmentListener);
+            mFavoritesFragment.setColumnCount(FAVORITES_COLUMN_COUNT);
+            mFavoritesFragment.setDisplayType(DisplayType.STARRED_ONLY);
         }
     }
 
@@ -218,19 +226,27 @@ public class PeopleActivity extends ContactsActivity
         if (createContentView) {
             setContentView(R.layout.people_activity);
 
+            mFavoritesView = findViewById(R.id.favorites_view);
+            mDetailsView = findViewById(R.id.details_view);
+            mBrowserView = findViewById(R.id.browse_view);
+
             final FragmentManager fragmentManager = getFragmentManager();
             mFavoritesFragment = (StrequentContactListFragment) fragmentManager
                     .findFragmentById(R.id.favorites_fragment);
+            mFrequentFragment = (StrequentContactListFragment) fragmentManager
+                    .findFragmentById(R.id.frequent_fragment);
             mContactsFragment = (DefaultContactBrowseListFragment) fragmentManager
                     .findFragmentById(R.id.contacts_fragment);
             mGroupsFragment = (GroupBrowseListFragment) fragmentManager
                     .findFragmentById(R.id.groups_fragment);
-
             // Hide all tabs (the current tab will later be reshown once a tab is selected)
             final FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.hide(mFavoritesFragment);
             transaction.hide(mContactsFragment);
             transaction.hide(mGroupsFragment);
+
+            if (mFrequentFragment != null) {
+                mFrequentFragment.setDisplayType(DisplayType.FREQUENT_ONLY);
+            }
             if (mContactDetailFragment != null) {
                 transaction.hide(mContactDetailFragment);
             }
@@ -261,7 +277,7 @@ public class PeopleActivity extends ContactsActivity
             Tab favoritesTab = actionBar.newTab();
             favoritesTab.setText(getString(R.string.strequentList));
             favoritesTab.setTabListener(new TabChangeListener(mFavoritesFragment,
-                    mContactDetailFragment, TabState.FAVORITES));
+                    mFrequentFragment, TabState.FAVORITES));
             actionBar.addTab(favoritesTab);
 
             Tab peopleTab = actionBar.newTab();
@@ -333,6 +349,22 @@ public class PeopleActivity extends ContactsActivity
 
     private void setSelectedTab(TabState tab) {
         mSelectedTab = tab;
+
+        if (mFrequentFragment != null) {
+            switch (mSelectedTab) {
+                case FAVORITES:
+                    mFavoritesView.setVisibility(View.VISIBLE);
+                    mBrowserView.setVisibility(View.GONE);
+                    mDetailsView.setVisibility(View.GONE);
+                    break;
+                case GROUPS:
+                case CONTACTS:
+                    mFavoritesView.setVisibility(View.GONE);
+                    mBrowserView.setVisibility(View.VISIBLE);
+                    mDetailsView.setVisibility(View.VISIBLE);
+                    break;
+            }
+        }
     }
 
     @Override
@@ -461,6 +493,9 @@ public class PeopleActivity extends ContactsActivity
         switch (action) {
             case START_SEARCH_MODE:
                 // Bring the contact list fragment (and detail fragment if applicable) to the front
+                mFavoritesView.setVisibility(View.GONE);
+                mBrowserView.setVisibility(View.VISIBLE);
+                mDetailsView.setVisibility(View.VISIBLE);
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.show(mContactsFragment);
                 if (mContactDetailFragment != null) ft.show(mContactDetailFragment);
@@ -480,6 +515,7 @@ public class PeopleActivity extends ContactsActivity
                     if (mContactDetailFragment != null) transaction.hide(mContactDetailFragment);
                     transaction.commit();
                 }
+                if (mSelectedTab != null) setSelectedTab(mSelectedTab);
                 break;
             case CHANGE_SEARCH_QUERY:
                 loadSearch(mActionBarAdapter.getQueryString());

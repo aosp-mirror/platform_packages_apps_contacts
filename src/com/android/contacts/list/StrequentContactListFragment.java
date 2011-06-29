@@ -73,6 +73,14 @@ public class StrequentContactListFragment extends Fragment {
         getLoaderManager().restartLoader(LOADER_STREQUENT, null, mStrequentLoaderListener);
     }
 
+    public void setColumnCount(int columnCount) {
+        mAdapter.setColumnCount(columnCount);
+    }
+
+    public void setDisplayType(DisplayType displayType) {
+        mAdapter.setDisplayType(displayType);
+    }
+
     /**
      * The listener for the strequent meta data loader.
      */

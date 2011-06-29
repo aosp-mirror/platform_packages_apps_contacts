@@ -28,6 +28,7 @@
         android:splitMotionEvents="true">
 
         <LinearLayout
+            android:id="@+id/browse_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -36,19 +37,13 @@
             ex:layout_narrowWidth="310dip"
             ex:layout_wideParentWidth="1280dip"
             ex:layout_wideWidth="430dip"
-            android:background="@drawable/list_background_holo">
+            android:background="@drawable/list_background_holo"
+            android:visibility="gone">
 
             <View
                 style="@style/SectionDivider"
                 android:layout_marginLeft="40dip"
                 android:layout_marginTop="24dip" />
-
-            <!-- Favorites -->
-            <fragment
-                android:id="@+id/favorites_fragment"
-                class="com.android.contacts.list.StrequentContactListFragment"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent" />
 
             <!-- Contacts -->
             <fragment
@@ -56,20 +51,19 @@
                 class="com.android.contacts.list.DefaultContactBrowseListFragment"
                 android:layout_height="0dip"
                 android:layout_width="match_parent"
-                android:layout_weight="1"
-            />
+                android:layout_weight="1" />
 
             <!-- Groups -->
             <fragment
                 android:id="@+id/groups_fragment"
                 class="com.android.contacts.group.GroupBrowseListFragment"
                 android:layout_height="match_parent"
-                android:layout_width="match_parent"
-            />
+                android:layout_width="match_parent" />
         </LinearLayout>
 
         <view
             class="com.android.contacts.widget.TransitionAnimationView"
+            android:id="@+id/details_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             ex:layout_narrowParentWidth="800dip"
@@ -82,19 +76,61 @@
             ex:clipMarginBottom="9dip"
             ex:enterAnimation="@android:animator/fade_in"
             ex:exitAnimation="@android:animator/fade_out"
-            ex:animationDuration="200">
+            ex:animationDuration="200"
+            android:visibility="gone">
+
             <fragment
                 android:id="@+id/contact_detail_fragment"
                 class="com.android.contacts.detail.ContactDetailFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-            />
+                android:layout_height="match_parent" />
             <fragment
                 android:id="@+id/group_detail_fragment"
                 class="com.android.contacts.group.GroupDetailFragment"
                 android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </view>
+
+        <view
+            class="com.android.contacts.widget.TransitionAnimationView"
+            android:id="@+id/favorites_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ex:layout_narrowParentWidth="800dip"
+            ex:layout_narrowMarginRight="0dip"
+            ex:layout_wideParentWidth="1280dip"
+            ex:layout_wideMarginRight="48dip"
+            ex:clipMarginLeft="0dip"
+            ex:clipMarginTop="3dip"
+            ex:clipMarginRight="3dip"
+            ex:clipMarginBottom="9dip"
+            ex:enterAnimation="@android:animator/fade_in"
+            ex:exitAnimation="@android:animator/fade_out"
+            ex:animationDuration="200"
+            android:paddingTop="32dip"
+            android:paddingRight="32dip">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-            />
+                android:background="@drawable/list_background_holo">
+
+                <!-- Starred -->
+                <fragment
+                    android:id="@+id/favorites_fragment"
+                    class="com.android.contacts.list.StrequentContactListFragment"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dip"
+                    android:layout_weight="2" />
+
+                <!-- Most Frequent -->
+                <fragment
+                    android:id="@+id/frequent_fragment"
+                    class="com.android.contacts.list.StrequentContactListFragment"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dip"
+                    android:layout_weight="1" />
+            </LinearLayout>
         </view>
 
     </com.android.contacts.widget.InterpolatingLayout>
