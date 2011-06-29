@@ -20,6 +20,7 @@ import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.SpecialCharSequenceMgr;
 import com.android.contacts.activities.DialtactsActivity;
+import com.android.contacts.activities.DialtactsActivity.ViewPagerVisibilityListener;
 import com.android.internal.telephony.ITelephony;
 import com.android.phone.CallLogAsync;
 import com.android.phone.HapticFeedback;
@@ -73,7 +74,8 @@ import android.widget.TextView;
 public class DialpadFragment extends Fragment
         implements View.OnClickListener,
         View.OnLongClickListener, View.OnKeyListener,
-        AdapterView.OnItemClickListener, TextWatcher {
+        AdapterView.OnItemClickListener, TextWatcher,
+        ViewPagerVisibilityListener {
     private static final String TAG = "DialpadFragment";
 
     private static final String EMPTY_NUMBER = "";
@@ -107,7 +109,8 @@ public class DialpadFragment extends Fragment
     private View mDialButton;
     private ListView mDialpadChooser;
     private DialpadChooserAdapter mDialpadChooserAdapter;
-    //Member variables for dialpad options
+
+    // Member variables for dialpad options
     private MenuItem m2SecPauseMenuItem;
     private MenuItem mWaitMenuItem;
     private MenuItem mCallSettingsItem;
@@ -115,6 +118,8 @@ public class DialpadFragment extends Fragment
     private static final int MENU_2S_PAUSE = 2;
     private static final int MENU_WAIT = 3;
     private static final int MENU_CALL_SETTINGS = 4;
+
+    private boolean mShowMenu;
 
     private boolean mHasVoicemail = false;
 
@@ -231,6 +236,7 @@ public class DialpadFragment extends Fragment
         mDigits.setKeyListener(DialerKeyListener.getInstance());
         mDigits.setOnClickListener(this);
         mDigits.setOnKeyListener(this);
+        mDigits.addTextChangedListener(this);
 
         maybeAddNumberFormatting();
 
@@ -278,6 +284,8 @@ public class DialpadFragment extends Fragment
         mDialpadChooser = (ListView) fragmentView.findViewById(R.id.dialpadChooser);
         mDialpadChooser.setOnItemClickListener(this);
 
+        resolveIntent(getActivity().getIntent());
+
         return fragmentView;
     }
 
@@ -301,18 +309,8 @@ public class DialpadFragment extends Fragment
      *    any possible saved state, and instead reset our state based on the parent's
      *    intent.
      */
-    public boolean resolveIntent() {
+    public boolean resolveIntent(Intent intent) {
         boolean ignoreState = false;
-
-        // Find the proper intent
-        final Intent intent;
-        if (getActivity().isChild()) {
-            intent = getActivity().getParent().getIntent();
-            ignoreState = intent.getBooleanExtra(DialtactsActivity.EXTRA_IGNORE_STATE, false);
-        } else {
-            intent = getActivity().getIntent();
-        }
-        // Log.i(TAG, "==> resolveIntent(): intent: " + intent);
 
         // by default we are not adding a call.
         mIsAddCallMode = false;
@@ -420,16 +418,6 @@ public class DialpadFragment extends Fragment
         fragmentView.findViewById(R.id.pound).setOnClickListener(this);
     }
 
-    // Do some stuff that needs to happen only once, but which we
-    // can't do directly from onCreate().
-    public void onPostCreate() {
-        // This can't be done in onCreate(), since the auto-restoring of the digits
-        // will play DTMF tones for all the old digits if it is when onRestoreSavedInstanceState()
-        // is called. This method will be called every time the activity is created, and
-        // will always happen after onRestoreSavedInstanceState().
-        mDigits.addTextChangedListener(this);
-    }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -462,13 +450,13 @@ public class DialpadFragment extends Fragment
             }
         }
 
-        Activity parent = getActivity().getParent();
+        Activity parent = getActivity();
         // See if we were invoked with a DIAL intent. If we were, fill in the appropriate
         // digits in the dialer field.
-        if (parent != null && parent instanceof DialtactsActivity) {
+        if (parent instanceof DialtactsActivity) {
             Uri dialUri = ((DialtactsActivity) parent).getAndClearDialUri();
             if (dialUri != null) {
-                resolveIntent();
+                resolveIntent(parent.getIntent());
             }
         }
 
@@ -543,7 +531,14 @@ public class DialpadFragment extends Fragment
             return;
         }
 
-        // We show "Call Settings" menu every time
+        if (!mShowMenu) {
+            mCallSettingsItem.setVisible(false);
+            mAddToContactMenuItem.setVisible(false);
+            m2SecPauseMenuItem.setVisible(false);
+            mWaitMenuItem.setVisible(false);
+            return;
+        }
+
         mCallSettingsItem.setVisible(true);
         Intent settingsIntent = new Intent(Intent.ACTION_MAIN);
         settingsIntent.setClassName("com.android.phone", "com.android.phone.CallFeaturesSetting");
@@ -1236,5 +1231,10 @@ public class DialpadFragment extends Fragment
 
     public void setListener(Listener listener) {
         mListener = listener;
+    }
+
+    @Override
+    public void onVisibilityChange(boolean visible) {
+        mShowMenu = visible;
     }
 }

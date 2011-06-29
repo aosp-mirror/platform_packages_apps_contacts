@@ -21,6 +21,7 @@ import com.android.contacts.CallDetailActivity;
 import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
+import com.android.contacts.activities.DialtactsActivity.ViewPagerVisibilityListener;
 import com.android.contacts.util.ExpirableCache;
 import com.android.internal.telephony.CallerInfo;
 import com.google.common.annotations.VisibleForTesting;
@@ -75,7 +76,7 @@ import java.util.LinkedList;
  * Displays a list of call log entries.
  */
 public class CallLogFragment extends ListFragment
-        implements View.OnCreateContextMenuListener {
+        implements View.OnCreateContextMenuListener, ViewPagerVisibilityListener {
     private static final String TAG = "CallLogFragment";
 
     /**
@@ -143,6 +144,9 @@ public class CallLogFragment extends ListFragment
     private String mVoiceMailNumber;
     private String mCurrentCountryIso;
     private boolean mScrollToTop;
+
+    private MenuItem mDeleteAllCallLogMenuItem;
+    private boolean mShowMenu;
 
     public static final class ContactInfo {
         public long personId;
@@ -902,8 +906,14 @@ public class CallLogFragment extends ListFragment
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        menu.add(0, OptionsMenuItems.DELETE_ALL, 0, R.string.recentCalls_deleteAll).setIcon(
-                android.R.drawable.ic_menu_close_clear_cancel);
+        mDeleteAllCallLogMenuItem = menu.add(0, OptionsMenuItems.DELETE_ALL,
+                0, R.string.recentCalls_deleteAll)
+                .setIcon(android.R.drawable.ic_menu_close_clear_cancel);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        mDeleteAllCallLogMenuItem.setVisible(mShowMenu);
     }
 
     @Override
@@ -1134,5 +1144,10 @@ public class CallLogFragment extends ListFragment
     @VisibleForTesting
     public String getVoiceMailNumber() {
         return mVoiceMailNumber;
+    }
+
+    @Override
+    public void onVisibilityChange(boolean visible) {
+        mShowMenu = visible;
     }
 }
