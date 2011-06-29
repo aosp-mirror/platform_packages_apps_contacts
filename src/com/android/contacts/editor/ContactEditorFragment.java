@@ -66,6 +66,7 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.DisplayPhoto;
 import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.RawContacts;
@@ -196,8 +197,6 @@ public class ContactEditorFragment extends Fragment implements
 
     private final EntityDeltaComparator mComparator = new EntityDeltaComparator();
 
-    private static final int ICON_SIZE = 96;
-
     private static final File PHOTO_DIR = new File(
             Environment.getExternalStorageDirectory() + "/DCIM/Camera");
 
@@ -215,6 +214,9 @@ public class ContactEditorFragment extends Fragment implements
     private static final int AGGREGATION_SUGGESTION_SCROLL_DELAY = 200;
 
     private File mCurrentPhotoFile;
+
+    // Height/width (in pixels) to request for the photo - queried from the provider.
+    private int mPhotoPickSize;
 
     private Context mContext;
     private String mAction;
@@ -265,6 +267,7 @@ public class ContactEditorFragment extends Fragment implements
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mContext = activity;
+        loadPhotoPickSize();
     }
 
     @Override
@@ -774,17 +777,28 @@ public class ContactEditorFragment extends Fragment implements
         return save(SaveMode.JOIN);
     }
 
+    private void loadPhotoPickSize() {
+        Cursor c = mContext.getContentResolver().query(DisplayPhoto.CONTENT_MAX_DIMENSIONS_URI,
+                new String[]{DisplayPhoto.DISPLAY_MAX_DIM}, null, null, null);
+        try {
+            c.moveToFirst();
+            mPhotoPickSize = c.getInt(0);
+        } finally {
+            c.close();
+        }
+    }
+
     /**
      * Constructs an intent for picking a photo from Gallery, cropping it and returning the bitmap.
      */
-    public static Intent getPhotoPickIntent() {
+    public Intent getPhotoPickIntent() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
         intent.setType("image/*");
         intent.putExtra("crop", "true");
         intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1);
-        intent.putExtra("outputX", ICON_SIZE);
-        intent.putExtra("outputY", ICON_SIZE);
+        intent.putExtra("outputX", mPhotoPickSize);
+        intent.putExtra("outputY", mPhotoPickSize);
         intent.putExtra("return-data", true);
         return intent;
     }
@@ -840,14 +854,14 @@ public class ContactEditorFragment extends Fragment implements
     /**
      * Constructs an intent for image cropping.
      */
-    public static Intent getCropImageIntent(Uri photoUri) {
+    public Intent getCropImageIntent(Uri photoUri) {
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(photoUri, "image/*");
         intent.putExtra("crop", "true");
         intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1);
-        intent.putExtra("outputX", ICON_SIZE);
-        intent.putExtra("outputY", ICON_SIZE);
+        intent.putExtra("outputX", mPhotoPickSize);
+        intent.putExtra("outputY", mPhotoPickSize);
         intent.putExtra("return-data", true);
         return intent;
     }

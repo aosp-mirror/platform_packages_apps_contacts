@@ -35,6 +35,7 @@ import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.DisplayPhoto;
 import android.provider.ContactsContract.RawContacts;
 import android.widget.Toast;
 
@@ -57,6 +58,9 @@ public class AttachPhotoActivity extends ContactsActivity {
 
     private ContentResolver mContentResolver;
 
+    // Height/width (in pixels) to request for the photo - queried from the provider.
+    private static int mPhotoDim;
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -70,6 +74,16 @@ public class AttachPhotoActivity extends ContactsActivity {
         }
 
         mContentResolver = getContentResolver();
+
+        // Load the photo dimension to request.
+        Cursor c = mContentResolver.query(DisplayPhoto.CONTENT_MAX_DIMENSIONS_URI,
+                new String[]{DisplayPhoto.DISPLAY_MAX_DIM}, null, null, null);
+        try {
+            c.moveToFirst();
+            mPhotoDim = c.getInt(0);
+        } finally {
+            c.close();
+        }
     }
 
     @Override
@@ -121,8 +135,8 @@ public class AttachPhotoActivity extends ContactsActivity {
             intent.putExtra("crop", "true");
             intent.putExtra("aspectX", 1);
             intent.putExtra("aspectY", 1);
-            intent.putExtra("outputX", 96);
-            intent.putExtra("outputY", 96);
+            intent.putExtra("outputX", mPhotoDim);
+            intent.putExtra("outputY", mPhotoDim);
             intent.putExtra("return-data", true);
             startActivityForResult(intent, REQUEST_CROP_PHOTO);
 

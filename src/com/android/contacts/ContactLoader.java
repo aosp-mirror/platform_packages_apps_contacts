@@ -28,6 +28,7 @@ import android.content.Entity.NamedContentValues;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.AssetFileDescriptor;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
@@ -45,6 +46,8 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -673,6 +676,33 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
          * not found, returns null
          */
         private void loadPhotoBinaryData(Result contactData) {
+
+            // If we have a photo URI, try loading that first.
+            String photoUri = contactData.getPhotoUri();
+            if (photoUri != null) {
+                try {
+                    AssetFileDescriptor fd = getContext().getContentResolver()
+                           .openAssetFileDescriptor(Uri.parse(photoUri), "r");
+                    byte[] buffer = new byte[16 * 1024];
+                    FileInputStream fis = fd.createInputStream();
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    try {
+                        int size;
+                        while ((size = fis.read(buffer)) != -1) {
+                            baos.write(buffer, 0, size);
+                        }
+                        contactData.setPhotoBinaryData(baos.toByteArray());
+                    } finally {
+                        fis.close();
+                        fd.close();
+                    }
+                    return;
+                } catch (IOException ioe) {
+                    // Just fall back to the case below.
+                }
+            }
+
+            // If we couldn't load from a file, fall back to the data blob.
             final long photoId = contactData.getPhotoId();
             if (photoId <= 0) {
                 // No photo ID
