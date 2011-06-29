@@ -60,6 +60,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     private CharSequence mUnknownNameText;
     private int mDisplayNameColumnIndex;
     private int mAlternativeDisplayNameColumnIndex;
+    private boolean mHighlightSearchPrefix;
 
     public PhoneNumberListAdapter(Context context) {
         super(context);
@@ -157,6 +158,9 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         ContactListItemView view = (ContactListItemView)itemView;
 
+        view.setHighlightedPrefix(mHighlightSearchPrefix && isSearchMode() ?
+                getUpperCaseQueryString() : null);
+
         // Look at elements before and after this position, checking if contact IDs are same.
         // If they have one same contact ID, it means they can be grouped.
         //
@@ -244,5 +248,9 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
     protected void unbindPhoto(final ContactListItemView view) {
         view.removePhotoView(true, false);
+    }
+
+    public void setHighlightSearchPrefix(boolean highlight) {
+        mHighlightSearchPrefix = highlight;
     }
 }

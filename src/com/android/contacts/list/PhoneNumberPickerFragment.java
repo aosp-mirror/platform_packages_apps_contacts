@@ -111,4 +111,13 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     public void onPickerResult(Intent data) {
         mListener.onPickPhoneNumberAction(data.getData());
     }
+
+    public void setHighlightSearchPrefix(boolean highlight) {
+        if (!isLegacyCompatibilityMode()) {
+            PhoneNumberListAdapter adapter = (PhoneNumberListAdapter)getAdapter();
+            adapter.setHighlightSearchPrefix(highlight);
+        } else {
+            // Not supported.
+        }
+    }
 }

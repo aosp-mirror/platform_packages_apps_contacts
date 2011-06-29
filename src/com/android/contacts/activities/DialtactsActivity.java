@@ -96,24 +96,23 @@ public class DialtactsActivity extends Activity {
     private StrequentContactListFragment mStrequentFragment;
 
     /**
-     * The index of the tab that has last been manually selected (the user clicked on a tab).
-     * This value does not keep track of programmatically set Tabs (e.g. Call Log after a Call)
-     */
-    private int mLastManuallySelectedTab;
-
-    /**
      * Fragment for searching phone numbers. Unlike the other Fragments, this doesn't correspond
      * to tab but is shown by a search action.
      */
     private PhoneNumberPickerFragment mPhoneNumberPickerFragment;
-
-    private SearchView mSearchView;
-
     /**
      * True when this Activity is in its search UI (with a {@link SearchView} and
      * {@link PhoneNumberPickerFragment}).
      */
     private boolean mInSearchUi;
+
+    /**
+     * The index of the tab that has last been manually selected (the user clicked on a tab).
+     * This value does not keep track of programmatically set Tabs (e.g. Call Log after a Call)
+     */
+    private int mLastManuallySelectedTab;
+
+    private SearchView mSearchView;
 
     /**
      * Listener used when one of phone numbers in search UI is selected. This will initiate a
@@ -203,6 +202,7 @@ public class DialtactsActivity extends Activity {
                 .findFragmentById(R.id.phone_number_picker_fragment);
         mPhoneNumberPickerFragment.setOnPhoneNumberPickerActionListener(
                 mPhoneNumberPickerActionListener);
+        mPhoneNumberPickerFragment.setHighlightSearchPrefix(true);
 
         // Hide all tabs (the current tab will later be reshown once a tab is selected)
         final FragmentTransaction transaction = fragmentManager.beginTransaction();
