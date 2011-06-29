@@ -44,7 +44,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.provider.CallLog;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.Contacts;
@@ -319,7 +318,7 @@ public class CallLogFragment extends ListFragment
             values.put(Calls.CACHED_NUMBER_LABEL, ci.label);
 
             try {
-                getActivity().getContentResolver().update(Calls.CONTENT_URI, values,
+                getActivity().getContentResolver().update(Calls.CONTENT_URI_WITH_VOICEMAIL, values,
                         Calls.NUMBER + "='" + ciq.number + "'", null);
             } catch (SQLiteDiskIOException e) {
                 Log.w(TAG, "Exception while updating call info", e);
@@ -890,7 +889,7 @@ public class CallLogFragment extends ListFragment
 
         ContentValues values = new ContentValues(1);
         values.put(Calls.NEW, "0");
-        mQueryHandler.startUpdate(UPDATE_TOKEN, null, Calls.CONTENT_URI,
+        mQueryHandler.startUpdate(UPDATE_TOKEN, null, Calls.CONTENT_URI_WITH_VOICEMAIL,
                 values, where.toString(), null);
     }
 
@@ -899,7 +898,7 @@ public class CallLogFragment extends ListFragment
 
         // Cancel any pending queries
         mQueryHandler.cancelOperation(QUERY_TOKEN);
-        mQueryHandler.startQuery(QUERY_TOKEN, null, Calls.CONTENT_URI,
+        mQueryHandler.startQuery(QUERY_TOKEN, null, Calls.CONTENT_URI_WITH_VOICEMAIL,
                 CallLogQuery._PROJECTION, null, null, Calls.DEFAULT_SORT_ORDER);
     }
 
@@ -1038,7 +1037,7 @@ public class CallLogFragment extends ListFragment
                     sb.append(id);
                 }
 
-                getActivity().getContentResolver().delete(Calls.CONTENT_URI,
+                getActivity().getContentResolver().delete(Calls.CONTENT_URI_WITH_VOICEMAIL,
                         Calls._ID + " IN (" + sb + ")", null);
             }
         }
@@ -1131,7 +1130,7 @@ public class CallLogFragment extends ListFragment
             mAdapter.toggleGroup(position);
         } else {
             Intent intent = new Intent(getActivity(), CallDetailActivity.class);
-            intent.setData(ContentUris.withAppendedId(CallLog.Calls.CONTENT_URI, id));
+            intent.setData(ContentUris.withAppendedId(Calls.CONTENT_URI_WITH_VOICEMAIL, id));
             startActivity(intent);
         }
     }
