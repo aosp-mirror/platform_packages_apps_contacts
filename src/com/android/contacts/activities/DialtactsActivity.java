@@ -674,6 +674,8 @@ public class DialtactsActivity extends Activity {
             mSearchView.setOnQueryTextListener(mPhoneSearchQueryTextListener);
             mSearchView.setOnCloseListener(mPhoneSearchCloseListener);
             mSearchView.requestFocus();
+            // Show soft keyboard when SearchView has a focus. Need to delay the request in order
+            // to let InputMethodManager handle it correctly.
             mSearchView.addOnAttachStateChangeListener(new OnAttachStateChangeListener() {
                 @Override
                 public void onViewDetachedFromWindow(View v) {
