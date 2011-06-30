@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 <resources>
-    <dimen name="dialpad_digits_height">74dip</dimen>
+    <dimen name="dialpad_digits_height">80dip</dimen>
     <dimen name="dialpad_additional_buttons_height">58dip</dimen>
-    <dimen name="dialpad_button_height">58dip</dimen>
+    <dimen name="dialpad_button_height">70dip</dimen>
 </resources>
