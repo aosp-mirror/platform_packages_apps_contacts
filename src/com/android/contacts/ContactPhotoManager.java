@@ -627,6 +627,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                         ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT))
                         .appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY,
                                 String.valueOf(MAX_PHOTOS_TO_PRELOAD))
+                        .appendQueryParameter(ContactsContract.ALLOW_PROFILE, "1")
                         .build();
                 cursor = mResolver.query(uri, new String[] { Contacts.PHOTO_ID },
                         Contacts.PHOTO_ID + " NOT NULL AND " + Contacts.PHOTO_ID + "!=0",
@@ -683,7 +684,8 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
 
             Cursor cursor = null;
             try {
-                cursor = mResolver.query(Data.CONTENT_URI,
+                cursor = mResolver.query(Data.CONTENT_URI.buildUpon()
+                        .appendQueryParameter(ContactsContract.ALLOW_PROFILE, "1").build(),
                         COLUMNS,
                         mStringBuilder.toString(),
                         mPhotoIdsAsStrings.toArray(EMPTY_STRING_ARRAY),
