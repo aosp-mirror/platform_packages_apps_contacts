@@ -40,7 +40,7 @@ import java.util.ArrayList;
  * Also allows for a configurable number of columns and {@link DisplayType}
  */
 public class ContactTileAdapter extends BaseAdapter {
-    private static final String TAG = "ContactTileAdapter";
+    private static final String TAG = ContactTileAdapter.class.getSimpleName();
 
     /**
      * mContacts2 is only used if {@link DisplayType} is Strequent
@@ -292,7 +292,7 @@ public class ContactTileAdapter extends BaseAdapter {
         int columnCount = -1;
 
         switch (itemViewType) {
-            case ViewTypes.REGULAR:
+            case ViewTypes.SQUARE:
                 if (contactTileRowView == null) {
                     // Creating new row if needed
                     contactTileRowView = new ContactTileRow(mContext, layoutResId, true);
@@ -327,8 +327,8 @@ public class ContactTileAdapter extends BaseAdapter {
 
     private int getLayoutResourceId(int viewType) {
         switch (viewType) {
-            case ViewTypes.REGULAR:
-                return R.layout.contact_tile_regular;
+            case ViewTypes.SQUARE:
+                return R.layout.contact_tile_square;
             case ViewTypes.SINGLE_ROW:
                 return R.layout.contact_tile_single;
             default:
@@ -343,8 +343,8 @@ public class ContactTileAdapter extends BaseAdapter {
     /**
      * Returns view type based on {@link DisplayType}.
      * {@link DisplayType#STARRED_ONLY} and {@link DisplayType#GROUP_MEMBERS}
-     * are {@link ViewTypes#REGULAR}.
-     * {@link DisplayType#FREQUENT_ONLY} is {@link ViewTypes#SMALL}.
+     * are {@link ViewTypes#SQUARE}.
+     * {@link DisplayType#FREQUENT_ONLY} is {@link ViewTypes#SINGLE_ROW}.
      * {@link DisplayType#STREQUENT} mixes both {@link ViewTypes}
      * and also adds in {@link ViewTypes#DIVIDER}.
      */
@@ -353,7 +353,7 @@ public class ContactTileAdapter extends BaseAdapter {
         switch (mDisplayType) {
             case STREQUENT:
                 if (position < mDividerRowIndex) {
-                    return ViewTypes.REGULAR;
+                    return ViewTypes.SQUARE;
                 } else if (position == mDividerRowIndex) {
                     return ViewTypes.DIVIDER;
                 } else {
@@ -361,7 +361,7 @@ public class ContactTileAdapter extends BaseAdapter {
                 }
             case STARRED_ONLY:
             case GROUP_MEMBERS:
-                return ViewTypes.REGULAR;
+                return ViewTypes.SQUARE;
             case FREQUENT_ONLY:
                 return ViewTypes.SINGLE_ROW;
             default:
@@ -399,8 +399,11 @@ public class ContactTileAdapter extends BaseAdapter {
             ContactTileView contactTile;
 
             if (getChildCount() <= tileIndex) {
-                contactTile = (ContactTileView) inflate(mContext, mLayoutResId, null);
-                contactTile.setIsSquare(mIsContactTileSquare);
+                if (mIsContactTileSquare) {
+                    contactTile = (ContactTileSquareView) inflate(mContext, mLayoutResId, null);
+                } else {
+                    contactTile = (ContactTileView) inflate(mContext, mLayoutResId, null);
+                }
                 contactTile.setLayoutParams(new LinearLayout.LayoutParams(0,
                         LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f));
                 contactTile.setPhotoManager(mPhotoManager);
@@ -430,7 +433,7 @@ public class ContactTileAdapter extends BaseAdapter {
 
     private static class ViewTypes {
         public static final int COUNT = 3;
-        public static final int REGULAR = 0;
+        public static final int SQUARE = 0;
         public static final int DIVIDER = 1;
         public static final int SINGLE_ROW = 2;
     }
