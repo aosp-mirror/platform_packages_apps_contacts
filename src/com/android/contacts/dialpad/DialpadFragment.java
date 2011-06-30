@@ -1030,7 +1030,7 @@ public class DialpadFragment extends Fragment
      * @return true if the phone is "in use", meaning that at least one line
      *              is active (ie. off hook or ringing or dialing).
      */
-    private boolean phoneIsInUse() {
+    public static boolean phoneIsInUse() {
         boolean phoneInUse = false;
         try {
             ITelephony phone = ITelephony.Stub.asInterface(ServiceManager.checkService("phone"));

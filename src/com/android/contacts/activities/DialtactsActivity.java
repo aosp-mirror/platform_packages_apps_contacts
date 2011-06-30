@@ -361,7 +361,9 @@ public class DialtactsActivity extends Activity {
         // overwritten by one of the programmatic tab selections
         final int savedTabIndex = mLastManuallySelectedTab;
 
-        if (recentCallsRequest) {
+        if (DialpadFragment.phoneIsInUse()) {
+            getActionBar().selectTab(getActionBar().getTabAt(TAB_INDEX_DIALER));
+        } else if (recentCallsRequest) {
             getActionBar().selectTab(getActionBar().getTabAt(TAB_INDEX_CALL_LOG));
         } else {
             getActionBar().selectTab(getActionBar().getTabAt(mLastManuallySelectedTab));
@@ -508,10 +510,13 @@ public class DialtactsActivity extends Activity {
             ft.show(mFragment);
             ft.hide(mPhoneNumberPickerFragment);
 
-            // Remember this tab index. This function is also called, if the tab is set
-            // automatically in which case the setter (setCurrentTab) has to set this to its old
-            // value afterwards
-            mLastManuallySelectedTab = tab.getPosition();
+            // During the call, we don't remember the tab position.
+            if (!DialpadFragment.phoneIsInUse()) {
+                // Remember this tab index. This function is also called, if the tab is set
+                // automatically in which case the setter (setCurrentTab) has to set this to its old
+                // value afterwards
+                mLastManuallySelectedTab = tab.getPosition();
+            }
         }
 
         @Override
@@ -650,7 +655,9 @@ public class DialtactsActivity extends Activity {
         final ActionBar actionBar = getActionBar();
 
         final Tab tab = actionBar.getSelectedTab();
-        if (tab != null) {
+
+        // User can search during the call, but we don't want to remember the status.
+        if (tab != null && !DialpadFragment.phoneIsInUse()) {
             mLastManuallySelectedTab = tab.getPosition();
         }
 
