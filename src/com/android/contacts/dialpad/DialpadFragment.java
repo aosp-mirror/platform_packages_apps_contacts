@@ -190,12 +190,14 @@ public class DialpadFragment extends Fragment
             mDigits.getText().clear();
         }
 
-        if (!isDigitsEmpty()) {
+        // Previously we changed background color depending on its text status. Now we don't.
+        // TODO: remove the relevant codes entirely once we're sure we won't use them.
+        /*if (!isDigitsEmpty()) {
             mDigits.setBackgroundDrawable(mDigitsBackground);
         } else {
             mDigits.setCursorVisible(false);
             mDigits.setBackgroundDrawable(mDigitsEmptyBackground);
-        }
+        }*/
 
         updateDialAndDeleteButtonEnabledState();
     }

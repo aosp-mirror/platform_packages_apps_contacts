@@ -20,42 +20,42 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/dialpad_additional_buttons_height"
     android:layout_gravity="center_horizontal"
-    android:layout_marginTop="6dip"
+    android:layout_marginBottom="8dip"
     android:layout_weight="0.25"
     android:orientation="horizontal">
 
     <!-- Onscreen "Search button -->
     <ImageButton android:id="@+id/searchButton"
         android:layout_width="0px"
-        android:layout_weight="0.25"
+        android:layout_weight="0.30"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:state_enabled="false"
-        android:background="@drawable/btn_dial_voicemail"
+        android:background="@null"
         android:contentDescription="@string/description_voicemail_button"
-        android:src="@drawable/ic_dial_action_search" />
+        android:src="@drawable/ic_dial_action_search"/>
 
     <!-- Onscreen "Dial" button, diused on all platforms by
          default. Its usage can be disabled using resources (see
          config.xml.) -->
     <ImageButton android:id="@+id/dialButton"
         android:layout_width="0px"
-        android:layout_weight="0.50"
+        android:layout_weight="0.40"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:state_enabled="false"
-        android:background="@drawable/btn_dial_action"
+        android:background="@null"
         android:contentDescription="@string/description_dial_button"
         android:src="@drawable/ic_dial_action_call" />
 
     <!-- Onscreen "Backspace/Delete" button -->
     <ImageButton android:id="@+id/deleteButton"
         android:layout_width="0px"
-        android:layout_weight="0.25"
+        android:layout_weight="0.30"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:state_enabled="false"
-        android:background="@drawable/btn_dial_delete"
+        android:background="@null"
         android:contentDescription="@string/description_delete_button"
         android:src="@drawable/ic_dial_action_delete" />
 </LinearLayout>
