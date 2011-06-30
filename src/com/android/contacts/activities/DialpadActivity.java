@@ -30,7 +30,6 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.ViewConfiguration;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
@@ -60,33 +59,12 @@ public class DialpadActivity extends Activity {
 
         mFragment = (DialpadFragment) getFragmentManager().findFragmentById(
                 R.id.dialpad_fragment);
-
-        // Manually run the onRestoreInstanceState() sequence here, but only if
-        // our intent does *not* have the DialtactsActivity.EXTRA_IGNORE_STATE
-        // set (see the references to EXTRA_IGNORE_STATE in DialtactsActivity).
-        // TODO: Find a cleaner way of doing this.
-        if (!mFragment.resolveIntent() && (icicle != null)) {
-            super.onRestoreInstanceState(icicle);
-        }
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle icicle) {
-        // Do nothing, state is restored in onCreate() if needed
     }
 
     @Override
     protected void onNewIntent(Intent newIntent) {
         setIntent(newIntent);
-        mFragment.resolveIntent();
-    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-
-        // Pass this lifecycle event down to the fragment
-        mFragment.onPostCreate();
+        mFragment.resolveIntent(newIntent);
     }
 
     public DialpadFragment getFragment() {

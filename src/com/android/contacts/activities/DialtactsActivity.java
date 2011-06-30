@@ -21,12 +21,6 @@ import com.android.contacts.calllog.CallLogFragment;
 import com.android.contacts.dialpad.DialpadFragment;
 import com.android.contacts.interactions.ImportExportDialogFragment;
 import com.android.contacts.interactions.PhoneNumberInteraction;
-import com.android.contacts.list.ContactListFilter;
-import com.android.contacts.list.ContactsIntentResolver;
-import com.android.contacts.list.ContactsRequest;
-import com.android.contacts.list.DefaultContactBrowseListFragment;
-import com.android.contacts.list.DirectoryListLoader;
-import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnPhoneNumberPickerActionListener;
 import com.android.contacts.list.PhoneNumberPickerFragment;
 import com.android.contacts.list.StrequentContactListFragment;
@@ -53,6 +47,9 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents.UI;
 import android.provider.Settings;
+import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -75,13 +72,12 @@ import android.widget.SearchView.OnQueryTextListener;
 public class DialtactsActivity extends Activity {
     private static final String TAG = "DialtactsActivity";
 
+    /** Used both by {@link ActionBar} and {@link ViewPagerAdapter} */
     private static final int TAB_INDEX_DIALER = 0;
     private static final int TAB_INDEX_CALL_LOG = 1;
     private static final int TAB_INDEX_FAVORITES = 2;
 
     private static final int TAB_INDEX_COUNT = 3;
-
-    public static final String EXTRA_IGNORE_STATE = "ignore-state";
 
     /** Name of the dialtacts shared preferences */
     static final String PREFS_DIALTACTS = "dialtacts";
@@ -91,11 +87,62 @@ public class DialtactsActivity extends Activity {
     private static final String PREF_LAST_MANUALLY_SELECTED_TAB = "last_manually_selected_tab";
     private static final int PREF_LAST_MANUALLY_SELECTED_TAB_DEFAULT = TAB_INDEX_DIALER;
 
+    /**
+     * Listener interface for Fragments accommodated in {@link ViewPager} enabling them to know
+     * when it becomes visible or invisible inside the ViewPager.
+     */
+    public interface ViewPagerVisibilityListener {
+        public void onVisibilityChange(boolean visible);
+    }
+
+    public class ViewPagerAdapter extends FragmentPagerAdapter {
+        public ViewPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case TAB_INDEX_DIALER:
+                    return mDialpadFragment;
+                case TAB_INDEX_CALL_LOG:
+                    return mCallLogFragment;
+                case TAB_INDEX_FAVORITES:
+                    return mStrequentFragment;
+            }
+            throw new IllegalStateException("No fragment at position " + position);
+        }
+
+        @Override
+        public int getCount() {
+            return TAB_INDEX_COUNT;
+        }
+    }
+
+    private class PageChangeListener implements OnPageChangeListener {
+        @Override
+        public void onPageScrolled(
+                int position, float positionOffset, int positionOffsetPixels) {
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            final ActionBar actionBar = getActionBar();
+            actionBar.selectTab(actionBar.getTabAt(position));
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+        }
+    }
+
     private String mFilterText;
     private Uri mDialUri;
+
+    /** Enables horizontal swipe between Fragments. */
+    private ViewPager mViewPager;
     private DialpadFragment mDialpadFragment;
     private CallLogFragment mCallLogFragment;
-    private DefaultContactBrowseListFragment mContactsFragment;
     private StrequentContactListFragment mStrequentFragment;
 
     /**
@@ -186,32 +233,30 @@ public class DialtactsActivity extends Activity {
 
         setContentView(R.layout.dialtacts_activity);
 
-        final FragmentManager fragmentManager = getFragmentManager();
-        mDialpadFragment = (DialpadFragment) fragmentManager
-                .findFragmentById(R.id.dialpad_fragment);
+        // Instantiate Fragments which ViewPager will accommodate. At this point they aren't
+        // attached to any Activity, so no Views inside them will be ready yet.
+        mDialpadFragment = new DialpadFragment();
         mDialpadFragment.setListener(new DialpadFragment.Listener() {
             @Override
             public void onSearchButtonPressed() {
                 enterSearchUi();
             }
         });
-        mCallLogFragment = (CallLogFragment) fragmentManager
-                .findFragmentById(R.id.call_log_fragment);
-        mContactsFragment = (DefaultContactBrowseListFragment) fragmentManager
-                .findFragmentById(R.id.contacts_fragment);
-        mStrequentFragment = (StrequentContactListFragment) fragmentManager
-                .findFragmentById(R.id.favorites_fragment);
-        mPhoneNumberPickerFragment = (PhoneNumberPickerFragment) fragmentManager
+        mCallLogFragment = new CallLogFragment();
+        mStrequentFragment = new StrequentContactListFragment();
+
+        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager.setAdapter(new ViewPagerAdapter(getFragmentManager()));
+        mViewPager.setOnPageChangeListener(new PageChangeListener());
+
+        // This Fragment is _not_ maintained by ViewPager.
+        mPhoneNumberPickerFragment = (PhoneNumberPickerFragment) getFragmentManager()
                 .findFragmentById(R.id.phone_number_picker_fragment);
         mPhoneNumberPickerFragment.setOnPhoneNumberPickerActionListener(
                 mPhoneNumberPickerActionListener);
         mPhoneNumberPickerFragment.setHighlightSearchPrefix(true);
 
-        // Hide all tabs (the current tab will later be reshown once a tab is selected)
-        final FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.hide(mDialpadFragment);
-        transaction.hide(mCallLogFragment);
-        transaction.hide(mStrequentFragment);
+        final FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.hide(mPhoneNumberPickerFragment);
         transaction.commit();
 
@@ -272,7 +317,6 @@ public class DialtactsActivity extends Activity {
         tab.setTabListener(new TabChangeListener(mDialpadFragment));
         tab.setIcon(R.drawable.ic_tab_dialer);
         getActionBar().addTab(tab);
-        mDialpadFragment.resolveIntent();
     }
 
     private void setupCallLog() {
@@ -281,32 +325,6 @@ public class DialtactsActivity extends Activity {
         tab.setIcon(R.drawable.ic_tab_recent);
         tab.setTabListener(new TabChangeListener(mCallLogFragment));
         getActionBar().addTab(tab);
-    }
-
-    private void setupContacts() {
-        final Tab tab = getActionBar().newTab();
-        tab.setText("");  // R.string.contactsIconLabel
-        tab.setIcon(R.drawable.ic_tab_contacts);
-        tab.setTabListener(new TabChangeListener(mContactsFragment));
-        getActionBar().addTab(tab);
-
-        // TODO: We should not artificially create Intents and put them into the Fragment.
-        // It would be nicer to directly pass in the UI constant
-        Intent intent = new Intent(UI.LIST_ALL_CONTACTS_ACTION);
-        intent.setClass(this, PeopleActivity.class);
-
-        ContactsIntentResolver resolver = new ContactsIntentResolver(this);
-        ContactsRequest request = resolver.resolveIntent(intent);
-        final ContactListFilter filter = ContactListFilter.createFilterWithType(
-                ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
-        mContactsFragment.setFilter(filter, false);
-        mContactsFragment.setSearchMode(request.isSearchMode());
-        mContactsFragment.setQueryString(request.getQueryString(), false);
-        mContactsFragment.setContactsRequest(request);
-        mContactsFragment.setDirectorySearchMode(request.isDirectorySearchEnabled()
-                ? DirectoryListLoader.SEARCH_MODE_DEFAULT
-                : DirectoryListLoader.SEARCH_MODE_NONE);
-        mContactsFragment.setOnContactListActionListener(mListFragmentListener);
     }
 
     private void setupFavorites() {
@@ -356,28 +374,23 @@ public class DialtactsActivity extends Activity {
             return;
         }
 
-        // Tell the children activities that they should ignore any possible saved
-        // state and instead reload their state from the parent's intent
-        intent.putExtra(EXTRA_IGNORE_STATE, true);
-
         // Remember the old manually selected tab index so that it can be restored if it is
         // overwritten by one of the programmatic tab selections
         final int savedTabIndex = mLastManuallySelectedTab;
 
-        if (DialpadFragment.phoneIsInUse()) {
-            getActionBar().selectTab(getActionBar().getTabAt(TAB_INDEX_DIALER));
+        final int tabIndex;
+        if (DialpadFragment.phoneIsInUse() || isDialIntent(intent)) {
+            tabIndex = TAB_INDEX_DIALER;
         } else if (recentCallsRequest) {
-            getActionBar().selectTab(getActionBar().getTabAt(TAB_INDEX_CALL_LOG));
+            tabIndex = TAB_INDEX_CALL_LOG;
         } else {
-            getActionBar().selectTab(getActionBar().getTabAt(mLastManuallySelectedTab));
+            tabIndex = mLastManuallySelectedTab;
         }
+        mViewPager.setCurrentItem(tabIndex);
+        getActionBar().selectTab(getActionBar().getTabAt(tabIndex));
 
         // Restore to the previous manual selection
         mLastManuallySelectedTab = savedTabIndex;
-
-        // Tell the children activities that they should honor their saved states
-        // instead of the state from the parent's intent
-        intent.putExtra(EXTRA_IGNORE_STATE, false);
     }
 
     @Override
@@ -391,8 +404,9 @@ public class DialtactsActivity extends Activity {
         } else if (isDialIntent(newIntent)) {
             setupDialUri(newIntent);
         }
-        // Fill in a phone number again.
-        mDialpadFragment.resolveIntent();
+        if (mPhoneNumberPickerFragment.isVisible()) {
+            exitSearchUi();
+        }
     }
 
     /** Returns true if the given intent contains a phone number to populate the dialer with */
@@ -484,14 +498,6 @@ public class DialtactsActivity extends Activity {
         }
     }
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-
-        // Pass this lifecycle event down to the fragment
-        mDialpadFragment.onPostCreate();
-    }
-
     /**
      * Tab change listener that is instantiated once for each tab. Handles showing/hiding tabs
      * and remembers manual tab selections
@@ -505,12 +511,19 @@ public class DialtactsActivity extends Activity {
 
         @Override
         public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-            ft.hide(mFragment);
+            if (mFragment instanceof ViewPagerVisibilityListener) {
+                ((ViewPagerVisibilityListener) mFragment).onVisibilityChange(false);
+            }
         }
 
         @Override
         public void onTabSelected(Tab tab, FragmentTransaction ft) {
-            ft.show(mFragment);
+            if (mFragment instanceof ViewPagerVisibilityListener) {
+                ((ViewPagerVisibilityListener) mFragment).onVisibilityChange(true);
+            }
+            if (mViewPager.getCurrentItem() != tab.getPosition()) {
+                mViewPager.setCurrentItem(tab.getPosition(), false /* smoothScroll */);
+            }
             ft.hide(mPhoneNumberPickerFragment);
 
             // During the call, we don't remember the tab position.
@@ -526,56 +539,6 @@ public class DialtactsActivity extends Activity {
         public void onTabReselected(Tab tab, FragmentTransaction ft) {
         }
     }
-
-    private OnContactBrowserActionListener mListFragmentListener =
-            new OnContactBrowserActionListener() {
-        @Override
-        public void onViewContactAction(Uri contactLookupUri) {
-            startActivity(new Intent(Intent.ACTION_VIEW, contactLookupUri));
-        }
-
-        @Override
-        public void onSmsContactAction(Uri contactUri) {
-        }
-
-        @Override
-        public void onSelectionChange() {
-        }
-
-        @Override
-        public void onRemoveFromFavoritesAction(Uri contactUri) {
-        }
-
-        @Override
-        public void onInvalidSelection() {
-        }
-
-        @Override
-        public void onFinishAction() {
-        }
-
-        @Override
-        public void onEditContactAction(Uri contactLookupUri) {
-        }
-
-        @Override
-        public void onDeleteContactAction(Uri contactUri) {
-        }
-
-        @Override
-        public void onCreateNewContactAction() {
-        }
-
-        @Override
-        public void onCallContactAction(Uri contactUri) {
-            PhoneNumberInteraction.startInteractionForPhoneCall(
-                    DialtactsActivity.this, contactUri);
-        }
-
-        @Override
-        public void onAddToFavoritesAction(Uri contactUri) {
-        }
-    };
 
     private StrequentContactListFragment.Listener mStrequentListener =
             new StrequentContactListFragment.Listener() {
@@ -704,10 +667,8 @@ public class DialtactsActivity extends Activity {
         // Show the search fragment and hide everything else.
         final FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.show(mPhoneNumberPickerFragment);
-        transaction.hide(mDialpadFragment);
-        transaction.hide(mCallLogFragment);
-        transaction.hide(mStrequentFragment);
         transaction.commit();
+        mViewPager.setVisibility(View.GONE);
 
         mInSearchUi = true;
     }
@@ -729,6 +690,12 @@ public class DialtactsActivity extends Activity {
         // We want to hide SearchView and show Tabs. Also focus on previously selected one.
         actionBar.setDisplayShowCustomEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+        final FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.hide(mPhoneNumberPickerFragment);
+        transaction.commit();
+
+        mViewPager.setVisibility(View.VISIBLE);
 
         // Request to update option menu.
         invalidateOptionsMenu();

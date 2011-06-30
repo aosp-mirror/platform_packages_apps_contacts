@@ -4,9 +4,9 @@
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
-  
+
           http://www.apache.org/licenses/LICENSE-2.0
-  
+
      Unless required by applicable law or agreed to in writing, software
      distributed under the License is distributed on an "AS IS" BASIS,
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,26 +18,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Dialer --> -->
-    <fragment
-        class="com.android.contacts.dialpad.DialpadFragment"
-        android:id="@+id/dialpad_fragment"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <!-- Call Log -->
-    <fragment
-        class="com.android.contacts.calllog.CallLogFragment"
-        android:id="@+id/call_log_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <!-- Favorites -->
-    <fragment
-        android:id="@+id/favorites_fragment"
-        class="com.android.contacts.list.StrequentContactListFragment"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent" />
 
     <!-- For phone search UI -->
     <fragment
