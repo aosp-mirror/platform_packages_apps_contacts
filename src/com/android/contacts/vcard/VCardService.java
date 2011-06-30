@@ -232,46 +232,46 @@ public class VCardService extends Service {
     private synchronized void handleImportRequest(List<ImportRequest> requests) {
         if (DEBUG) {
             final ArrayList<String> uris = new ArrayList<String>();
-            final ArrayList<String> originalUris = new ArrayList<String>();
+            final ArrayList<String> displayNames = new ArrayList<String>();
             for (ImportRequest request : requests) {
                 uris.add(request.uri.toString());
-                originalUris.add(request.originalUri.toString());
+                displayNames.add(request.displayName);
             }
             Log.d(LOG_TAG,
-                    String.format("received multiple import request (uri: %s, originalUri: %s)",
-                            uris.toString(), originalUris.toString()));
+                    String.format("received multiple import request (uri: %s, displayName: %s)",
+                            uris.toString(), displayNames.toString()));
         }
         final int size = requests.size();
         for (int i = 0; i < size; i++) {
             ImportRequest request = requests.get(i);
 
             if (tryExecute(new ImportProcessor(this, request, mCurrentJobId))) {
-                final String displayName;
-                final String message;
-                final String lastPathSegment = request.originalUri.getLastPathSegment();
-                if ("file".equals(request.originalUri.getScheme()) &&
-                        lastPathSegment != null) {
-                    displayName = lastPathSegment;
-                    message = getString(R.string.vcard_import_will_start_message, displayName);
-                } else {
-                    displayName = getString(R.string.vcard_unknown_filename);
-                    message = getString(
-                            R.string.vcard_import_will_start_message_with_default_name);
-                }
+                if (!request.showImmediately) {
+                    // Show a notification about the status
+                    final String displayName;
+                    final String message;
+                    if (request.displayName != null) {
+                        displayName = request.displayName;
+                        message = getString(R.string.vcard_import_will_start_message, displayName);
+                    } else {
+                        displayName = getString(R.string.vcard_unknown_filename);
+                        message = getString(
+                                R.string.vcard_import_will_start_message_with_default_name);
+                    }
 
-                // We just want to show notification for the first vCard.
-                if (i == 0) {
-                    // TODO: Ideally we should detect the current status of import/export and show
-                    // "started" when we can import right now and show "will start" when we cannot.
-                    Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-                }
+                    // We just want to show notification for the first vCard.
+                    if (i == 0) {
+                        // TODO: Ideally we should detect the current status of import/export and
+                        // show "started" when we can import right now and show "will start" when
+                        // we cannot.
+                        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+                    }
 
-                final Notification notification =
-                        constructProgressNotification(
-                                this, TYPE_IMPORT, message, message, mCurrentJobId,
-                                displayName, -1, 0);
-                mNotificationManager.notify(VCardService.DEFAULT_NOTIFICATION_TAG, mCurrentJobId,
-                        notification);
+                    final Notification notification = constructProgressNotification(this,
+                            TYPE_IMPORT, message, message, mCurrentJobId, displayName, -1, 0);
+                    mNotificationManager.notify(VCardService.DEFAULT_NOTIFICATION_TAG,
+                            mCurrentJobId, notification);
+                }
                 mCurrentJobId++;
             } else {
                 // TODO: a little unkind to show Toast in this case, which is shown just a moment.

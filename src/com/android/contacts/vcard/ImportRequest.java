@@ -35,30 +35,42 @@ public class ImportRequest {
      * Can be null (typically when there's no Account available in the system).
      */
     public final Account account;
+
     /**
      * Uri to be imported. May have different content than originally given from users, so
      * when displaying user-friendly information (e.g. "importing xxx.vcf"), use
-     * {@link #originalUri} instead.
+     * {@link #displayName} instead.
+     *
+     * If this is null {@link #data} contains the byte stream of the vcard.
      */
     public final Uri uri;
 
     /**
-     * Original uri given from users.
-     * Useful when showing user-friendly information ("importing xxx.vcf"), as
-     * {@link #uri} may have different name than the original (like "import_tmp_1.vcf").
-     *
-     * This variable must not be used for doing actual processing like re-import, as the app
-     * may not have right permission to do so.
+     * Holds the byte stream of the vcard, if {@link #uri} is null.
      */
-    public final Uri originalUri;
+    public final byte[] data;
+
+    /**
+     * String to be displayed to the user to indicate the source of the VCARD.
+     */
+    public final String displayName;
+
+    /**
+     * Whether to show the imported vcard immediately after the import is done.
+     * If set to false, just a notification will be shown.
+     */
+    public final boolean showImmediately;
+
     /**
      * Can be {@link VCardSourceDetector#PARSE_TYPE_UNKNOWN}.
      */
     public final int estimatedVCardType;
+
     /**
      * Can be null, meaning no preferable charset is available.
      */
     public final String estimatedCharset;
+
     /**
      * Assumes that one Uri contains only one version, while there's a (tiny) possibility
      * we may have two types in one vCard.
@@ -88,15 +100,18 @@ public class ImportRequest {
      * and may become invalid after its close() request).
      */
     public final int entryCount;
+
     public ImportRequest(Account account,
-            Uri uri, Uri originalUri, int estimatedType, String estimatedCharset,
-            int vcardVersion, int entryCount) {
+            byte[] data, Uri uri, String displayName, int estimatedType, String estimatedCharset,
+            int vcardVersion, int entryCount, boolean showImmediately) {
         this.account = account;
+        this.data = data;
         this.uri = uri;
-        this.originalUri = originalUri;
+        this.displayName = displayName;
         this.estimatedVCardType = estimatedType;
         this.estimatedCharset = estimatedCharset;
         this.vcardVersion = vcardVersion;
         this.entryCount = entryCount;
+        this.showImmediately = showImmediately;
     }
 }

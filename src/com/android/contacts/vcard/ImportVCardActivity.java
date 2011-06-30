@@ -46,6 +46,9 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.res.Configuration;
 import android.net.Uri;
+import android.nfc.NdefMessage;
+import android.nfc.NdefRecord;
+import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -61,6 +64,7 @@ import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -68,6 +72,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
+import java.nio.charset.Charset;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -114,9 +119,6 @@ public class ImportVCardActivity extends ContactsActivity {
     private AccountSelectionUtil.AccountSelectedListener mAccountSelectionListener;
 
     private Account mAccount;
-
-    private String mAction;
-    private Uri mUri;
 
     private ProgressDialog mProgressDialogForScanVCard;
     private ProgressDialog mProgressDialogForCachingVCard;
@@ -229,15 +231,38 @@ public class ImportVCardActivity extends ContactsActivity {
         private PowerManager.WakeLock mWakeLock;
         private VCardParser mVCardParser;
         private final Uri[] mSourceUris;  // Given from a caller.
+        private final byte[] mSource;
+        private final String mDisplayName;
+        private final boolean mShowImmediately;
 
         public VCardCacheThread(final Uri[] sourceUris) {
             mSourceUris = sourceUris;
+            mSource = null;
             final Context context = ImportVCardActivity.this;
             final PowerManager powerManager =
                     (PowerManager)context.getSystemService(Context.POWER_SERVICE);
             mWakeLock = powerManager.newWakeLock(
                     PowerManager.SCREEN_DIM_WAKE_LOCK |
                     PowerManager.ON_AFTER_RELEASE, LOG_TAG);
+            mDisplayName = null;
+            // Showing immediately could make sense here if we restrict
+            // it to cases where we import a single vcard. For now disable
+            // this feature though.
+            mShowImmediately = false;
+        }
+
+        public VCardCacheThread(final byte[] data, String displayName,
+                final boolean showImmediately) {
+            mSource = data;
+            mSourceUris = null;
+            final Context context = ImportVCardActivity.this;
+            final PowerManager powerManager =
+                    (PowerManager)context.getSystemService(Context.POWER_SERVICE);
+            mWakeLock = powerManager.newWakeLock(
+                    PowerManager.SCREEN_DIM_WAKE_LOCK |
+                    PowerManager.ON_AFTER_RELEASE, LOG_TAG);
+            mDisplayName = displayName;
+            mShowImmediately = showImmediately;
         }
 
         @Override
@@ -274,47 +299,59 @@ public class ImportVCardActivity extends ContactsActivity {
                 // to local storage, but currently vCard code does not allow us to do so.
                 int cache_index = 0;
                 ArrayList<ImportRequest> requests = new ArrayList<ImportRequest>();
-                for (Uri sourceUri : mSourceUris) {
-                    String filename = null;
-                    // Note: caches are removed by VCardService.
-                    while (true) {
-                        filename = VCardService.CACHE_FILE_PREFIX + cache_index + ".vcf";
-                        final File file = context.getFileStreamPath(filename);
-                        if (!file.exists()) {
-                            break;
-                        } else {
-                            if (cache_index == Integer.MAX_VALUE) {
-                                throw new RuntimeException("Exceeded cache limit");
-                            }
-                            cache_index++;
-                        }
-                    }
-                    final Uri localDataUri = copyTo(sourceUri, filename);
-                    if (mCanceled) {
-                        Log.i(LOG_TAG, "vCard cache operation is canceled.");
-                        break;
-                    }
-                    if (localDataUri == null) {
-                        Log.w(LOG_TAG, "destUri is null");
-                        break;
-                    }
-                    final ImportRequest request;
+                if (mSource != null) {
                     try {
-                        request = constructImportRequest(localDataUri, sourceUri);
+                        requests.add(constructImportRequest(mSource, null, mDisplayName,
+                                mShowImmediately));
                     } catch (VCardException e) {
                         Log.e(LOG_TAG, "Maybe the file is in wrong format", e);
                         showFailureNotification(R.string.fail_reason_not_supported);
                         return;
-                    } catch (IOException e) {
-                        Log.e(LOG_TAG, "Unexpected IOException", e);
-                        showFailureNotification(R.string.fail_reason_io_error);
-                        return;
                     }
-                    if (mCanceled) {
-                        Log.i(LOG_TAG, "vCard cache operation is canceled.");
-                        return;
+                } else {
+                    for (Uri sourceUri : mSourceUris) {
+                        String filename = null;
+                        // Note: caches are removed by VCardService.
+                        while (true) {
+                            filename = VCardService.CACHE_FILE_PREFIX + cache_index + ".vcf";
+                            final File file = context.getFileStreamPath(filename);
+                            if (!file.exists()) {
+                                break;
+                            } else {
+                                if (cache_index == Integer.MAX_VALUE) {
+                                    throw new RuntimeException("Exceeded cache limit");
+                                }
+                                cache_index++;
+                            }
+                        }
+                        final Uri localDataUri = copyTo(sourceUri, filename);
+                        if (mCanceled) {
+                            Log.i(LOG_TAG, "vCard cache operation is canceled.");
+                            break;
+                        }
+                        if (localDataUri == null) {
+                            Log.w(LOG_TAG, "destUri is null");
+                            break;
+                        }
+                        final ImportRequest request;
+                        try {
+                            request = constructImportRequest(null, localDataUri,
+                                    sourceUri.getLastPathSegment(), mShowImmediately);
+                        } catch (VCardException e) {
+                            Log.e(LOG_TAG, "Maybe the file is in wrong format", e);
+                            showFailureNotification(R.string.fail_reason_not_supported);
+                            return;
+                        } catch (IOException e) {
+                            Log.e(LOG_TAG, "Unexpected IOException", e);
+                            showFailureNotification(R.string.fail_reason_io_error);
+                            return;
+                        }
+                        if (mCanceled) {
+                            Log.i(LOG_TAG, "vCard cache operation is canceled.");
+                            return;
+                        }
+                        requests.add(request);
                     }
-                    requests.add(request);
                 }
                 if (!requests.isEmpty()) {
                     mConnection.sendImportRequest(requests);
@@ -395,11 +432,12 @@ public class ImportVCardActivity extends ContactsActivity {
          * @arg localDataUri Uri actually used for the import. Should be stored in
          * app local storage, as we cannot guarantee other types of Uris can be read
          * multiple times. This variable populates {@link ImportRequest#uri}.
-         * @arg originalUri Uri requested to be imported. Used mainly for displaying
-         * information. This variable populates {@link ImportRequest#originalUri}.
+         * @arg displayName Used for displaying information to the user. This variable populates
+         * {@link ImportRequest#displayName}.
          */
-        private ImportRequest constructImportRequest(
-                final Uri localDataUri, final Uri originalUri)
+        private ImportRequest constructImportRequest(final byte[] data,
+                final Uri localDataUri, final String displayName,
+                final boolean showImmediately)
                 throws IOException, VCardException {
             final ContentResolver resolver = ImportVCardActivity.this.getContentResolver();
             VCardEntryCounter counter = null;
@@ -407,7 +445,12 @@ public class ImportVCardActivity extends ContactsActivity {
             int vcardVersion = VCARD_VERSION_V21;
             try {
                 boolean shouldUseV30 = false;
-                InputStream is = resolver.openInputStream(localDataUri);
+                InputStream is;
+                if (data != null) {
+                    is = new ByteArrayInputStream(data);
+                } else {
+                    is = resolver.openInputStream(localDataUri);
+                }
                 mVCardParser = new VCardParser_V21();
                 try {
                     counter = new VCardEntryCounter();
@@ -422,7 +465,11 @@ public class ImportVCardActivity extends ContactsActivity {
                     }
 
                     shouldUseV30 = true;
-                    is = resolver.openInputStream(localDataUri);
+                    if (data != null) {
+                        is = new ByteArrayInputStream(data);
+                    } else {
+                        is = resolver.openInputStream(localDataUri);
+                    }
                     mVCardParser = new VCardParser_V30();
                     try {
                         counter = new VCardEntryCounter();
@@ -449,10 +496,11 @@ public class ImportVCardActivity extends ContactsActivity {
                 // version before it
             }
             return new ImportRequest(mAccount,
-                    localDataUri, originalUri,
+                    data, localDataUri, displayName,
                     detector.getEstimatedType(),
                     detector.getEstimatedCharset(),
-                    vcardVersion, counter.getCount());
+                    vcardVersion, counter.getCount(),
+                    showImmediately);
         }
 
         public Uri[] getSourceUris() {
@@ -719,6 +767,17 @@ public class ImportVCardActivity extends ContactsActivity {
         });
     }
 
+    private void importVCard(final byte[] data, final String displayName,
+            final boolean showImmediately) {
+        runOnUiThread(new Runnable() {
+            public void run() {
+                mVCardCacheThread = new VCardCacheThread(data, displayName,
+                        showImmediately);
+                showDialog(R.id.dialog_cache_vcard);
+            }
+        });
+    }
+
     private Dialog getSelectImportTypeDialog() {
         final DialogInterface.OnClickListener listener = new ImportTypeSelectedListener();
         final AlertDialog.Builder builder = new AlertDialog.Builder(this)
@@ -784,8 +843,6 @@ public class ImportVCardActivity extends ContactsActivity {
         if (intent != null) {
             accountName = intent.getStringExtra(SelectAccountActivity.ACCOUNT_NAME);
             accountType = intent.getStringExtra(SelectAccountActivity.ACCOUNT_TYPE);
-            mAction = intent.getAction();
-            mUri = intent.getData();
         } else {
             Log.e(LOG_TAG, "intent does not exist");
         }
@@ -806,7 +863,7 @@ public class ImportVCardActivity extends ContactsActivity {
             }
         }
 
-        startImport(mAction, mUri);
+        startImport();
     }
 
     @Override
@@ -816,7 +873,7 @@ public class ImportVCardActivity extends ContactsActivity {
                 mAccount = new Account(
                         intent.getStringExtra(SelectAccountActivity.ACCOUNT_NAME),
                         intent.getStringExtra(SelectAccountActivity.ACCOUNT_TYPE));
-                startImport(mAction, mUri);
+                startImport();
             } else {
                 if (resultCode != RESULT_CANCELED) {
                     Log.w(LOG_TAG, "Result code was not OK nor CANCELED: " + resultCode);
@@ -826,13 +883,34 @@ public class ImportVCardActivity extends ContactsActivity {
         }
     }
 
-    private void startImport(String action, Uri uri) {
-        if (uri != null) {
-            Log.i(LOG_TAG, "Starting vCard import using Uri " + uri);
-            importVCard(uri);
+    private void startImport() {
+        Intent intent = getIntent();
+        if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(intent.getAction())) {
+            // Handle inbound NDEF
+            NdefMessage msg = (NdefMessage) intent.getParcelableArrayExtra(
+                    NfcAdapter.EXTRA_NDEF_MESSAGES)[0];
+            NdefRecord record = msg.getRecords()[0];
+            String type = new String(record.getType(), Charset.forName("UTF8"));
+            if (record.getTnf() != NdefRecord.TNF_MIME_MEDIA ||
+                    (!"text/x-vcard".equalsIgnoreCase(type) && !"text/vcard".equals(type))) {
+                Log.d(LOG_TAG, "Not a vcard");
+                showFailureNotification(R.string.fail_reason_not_supported);
+                finish();
+                return;
+            }
+            // For NFC imports, we always show the contact once import is
+            // complete.
+            importVCard(record.getPayload(), getString(R.string.nfc_vcard_file_name), true);
         } else {
-            Log.i(LOG_TAG, "Start vCard without Uri. The user will select vCard manually.");
-            doScanExternalStorageAndImportVCard();
+            // Handle inbound files
+            Uri uri = intent.getData();
+            if (uri != null) {
+                Log.i(LOG_TAG, "Starting vCard import using Uri " + uri);
+                importVCard(uri);
+            } else {
+                Log.i(LOG_TAG, "Start vCard without Uri. The user will select vCard manually.");
+                doScanExternalStorageAndImportVCard();
+            }
         }
     }
 
@@ -967,7 +1045,7 @@ public class ImportVCardActivity extends ContactsActivity {
         }
     }
 
-    private void showFailureNotification(int reasonId) {
+    /* package */ void showFailureNotification(int reasonId) {
         final NotificationManager notificationManager =
                 (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
         final Notification notification =

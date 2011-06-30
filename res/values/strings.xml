@@ -1659,4 +1659,7 @@
 
     <!-- Hint text in the group name box in the edit group view. [CHAR LIMIT=20]-->
     <string name="group_name_hint">Group\'s Name</string>
+
+    <!-- The "file name" displayed for vCards received directly via NFC [CHAR LIMIT=16] -->
+    <string name="nfc_vcard_file_name">Contact received over NFC</string>
 </resources>

@@ -38,6 +38,7 @@ import android.net.Uri;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -77,7 +78,7 @@ public class ImportProcessor extends ProcessorBase {
         mImportRequest = request;
         mJobId = jobId;
         mNotifier = new ImportProgressNotifier(service, mNotificationManager, jobId,
-                request.originalUri.getLastPathSegment());
+                request.displayName);
     }
 
     @Override
@@ -141,11 +142,36 @@ public class ImportProcessor extends ProcessorBase {
                 new VCardEntryConstructor(estimatedVCardType, account, estimatedCharset);
         final VCardEntryCommitter committer = new VCardEntryCommitter(mResolver);
         constructor.addEntryHandler(committer);
-        constructor.addEntryHandler(mNotifier);
+        if (!request.showImmediately) {
+            constructor.addEntryHandler(mNotifier);
+        }
 
-        final boolean successful =
-            readOneVCard(uri, estimatedVCardType, estimatedCharset,
-                    constructor, possibleVCardVersions);
+        InputStream is = null;
+        boolean successful = false;
+        try {
+            if (uri != null) {
+                Log.i(LOG_TAG, "start importing one vCard (Uri: " + uri + ")");
+                is = mResolver.openInputStream(uri);
+            } else if (request.data != null){
+                Log.i(LOG_TAG, "start importing one vCard (byte[])");
+                is = new ByteArrayInputStream(request.data);
+            }
+
+            if (is != null) {
+                successful = readOneVCard(is, estimatedVCardType, estimatedCharset, constructor,
+                        possibleVCardVersions);
+            }
+        } catch (IOException e) {
+            successful = false;
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (Exception e) {
+                    // ignore
+                }
+            }
+        }
 
         mService.handleFinishImportNotification(mJobId, successful);
 
@@ -177,7 +203,7 @@ public class ImportProcessor extends ProcessorBase {
 
     private void doCancelNotification() {
         final String description = mService.getString(R.string.importing_vcard_canceled_title,
-                mImportRequest.originalUri.getLastPathSegment());
+                mImportRequest.displayName);
         final Notification notification =
                 VCardService.constructCancelNotification(mService, description);
         mNotificationManager.notify(VCardService.DEFAULT_NOTIFICATION_TAG, mJobId, notification);
@@ -185,7 +211,7 @@ public class ImportProcessor extends ProcessorBase {
 
     private void doFinishNotification(final Uri createdUri) {
         final String description = mService.getString(R.string.importing_vcard_finished_title,
-                mImportRequest.originalUri.getLastPathSegment());
+                mImportRequest.displayName);
         final Intent intent;
         if (createdUri != null) {
             final long rawContactId = ContentUris.parseId(createdUri);
@@ -196,28 +222,30 @@ public class ImportProcessor extends ProcessorBase {
         } else {
             intent = null;
         }
-        final Notification notification =
-                   VCardService.constructFinishNotification(mService,
-                           description, null, intent);
-        mNotificationManager.notify(VCardService.DEFAULT_NOTIFICATION_TAG, mJobId, notification);
+        if (mImportRequest.showImmediately && (intent != null)) {
+            mNotificationManager.cancel(VCardService.DEFAULT_NOTIFICATION_TAG, mJobId);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mService.startActivity(intent);
+        } else {
+            final Notification notification = VCardService.constructFinishNotification(mService,
+                    description, null, intent);
+            mNotificationManager.notify(VCardService.DEFAULT_NOTIFICATION_TAG, mJobId,
+                    notification);
+        }
     }
 
-    private boolean readOneVCard(Uri uri, int vcardType, String charset,
+    private boolean readOneVCard(InputStream is, int vcardType, String charset,
             final VCardInterpreter interpreter,
             final int[] possibleVCardVersions) {
-        Log.i(LOG_TAG, "start importing one vCard (Uri: " + uri + ")");
         boolean successful = false;
         final int length = possibleVCardVersions.length;
         for (int i = 0; i < length; i++) {
-            InputStream is = null;
             final int vcardVersion = possibleVCardVersions[i];
             try {
                 if (i > 0 && (interpreter instanceof VCardEntryConstructor)) {
                     // Let the object clean up internal temporary objects,
                     ((VCardEntryConstructor) interpreter).clear();
                 }
-
-                is = mResolver.openInputStream(uri);
 
                 // We need synchronized block here,
                 // since we need to handle mCanceled and mVCardParser at once.
