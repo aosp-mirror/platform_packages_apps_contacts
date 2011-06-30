@@ -612,6 +612,16 @@
                     android:resource="@xml/social_widget_info" />
         </receiver>
 
+        <receiver android:name=".calllog.NewVoicemailReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.NEW_VOICEMAIL" />
+                <data
+                    android:scheme="content"
+                    android:host="com.android.voicemail"
+                />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".socialwidget.SocialWidgetConfigureActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >

@@ -1021,7 +1021,7 @@
     <!-- Button caption that allows the user to clear the defaults  (like primary email) of one
     contact. [CHAR LIMIT=15] -->
     <string name="quickcontact_clear_defaults_button">Clear</string>
-    
+
     <!-- The menu item to open the list of accounts -->
     <string name="menu_accounts">Accounts</string>
 
@@ -1427,7 +1427,7 @@
         contact aggregation suggestion in Contact editor. [CHAR LIMIT=128]-->
     <string name="aggregation_suggestion_edit_dialog_title">Edit selected contacts</string>
 
-    <!-- The message in a confirmation dialog shown when the user selects a 
+    <!-- The message in a confirmation dialog shown when the user selects a
         contact aggregation suggestion in Contact editor. [CHAR LIMIT=512]-->
     <string name="aggregation_suggestion_edit_dialog_message">Switch to editing
         the selected contact? Information you entered so far will be copied.</string>
@@ -1542,7 +1542,7 @@
     </plurals>
 
     <!-- Confirmation message of the dialog that allows deletion of a contact group  [CHAR LIMIT=256] -->
-    <string name="delete_group_dialog_message">Are you sure you want to delete the group 
+    <string name="delete_group_dialog_message">Are you sure you want to delete the group
       \'<xliff:g id="group_label" example="Friends">%1$s</xliff:g>\'?
       (Contacts themselves will not be deleted.)
     </string>
@@ -1558,7 +1558,7 @@
 
     <!-- Toast shown when text is copied to the clipboard [CHAR LIMIT=64] -->
     <string name="toast_text_copied">Text copied</string>
-    
+
     <!-- Title of the alert dialog when the user hits the Cancel button in the editor [CHAR LIMIT=64] -->
     <string name="cancel_confirmation_dialog_title">Discard changes</string>
 
@@ -1585,4 +1585,7 @@
 
     <!-- The title of the activity that edits an existing group [CHAR LIMIT=NONE] -->
     <string name="editGroup_title_edit">Edit group</string>
+
+    <!-- Title of the notification of new voicemail. -->
+    <string name="notification_voicemail_title">New voicemail</string>
 </resources>
