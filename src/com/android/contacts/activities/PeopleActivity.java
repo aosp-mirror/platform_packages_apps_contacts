@@ -350,7 +350,7 @@ public class PeopleActivity extends ContactsActivity
     private void setSelectedTab(TabState tab) {
         mSelectedTab = tab;
 
-        if (mFrequentFragment != null) {
+        if (mContentPaneDisplayed) {
             switch (mSelectedTab) {
                 case FAVORITES:
                     mFavoritesView.setVisibility(View.VISIBLE);
@@ -492,10 +492,13 @@ public class PeopleActivity extends ContactsActivity
     public void onAction(Action action) {
         switch (action) {
             case START_SEARCH_MODE:
+                // Checking if multi fragments are being displayed
+                if (mContentPaneDisplayed) {
+                    mFavoritesView.setVisibility(View.GONE);
+                    mBrowserView.setVisibility(View.VISIBLE);
+                    mDetailsView.setVisibility(View.VISIBLE);
+                }
                 // Bring the contact list fragment (and detail fragment if applicable) to the front
-                mFavoritesView.setVisibility(View.GONE);
-                mBrowserView.setVisibility(View.VISIBLE);
-                mDetailsView.setVisibility(View.VISIBLE);
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.show(mContactsFragment);
                 if (mContactDetailFragment != null) ft.show(mContactDetailFragment);
