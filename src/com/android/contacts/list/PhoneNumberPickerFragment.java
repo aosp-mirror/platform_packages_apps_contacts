@@ -21,6 +21,7 @@ import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedLi
 
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,8 @@ import android.view.ViewGroup;
  */
 public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactEntryListAdapter>
         implements OnShortcutIntentCreatedListener {
+    private static final String TAG = PhoneNumberPickerFragment.class.getSimpleName();
+
     private OnPhoneNumberPickerActionListener mListener;
     private String mShortcutAction;
 
@@ -58,12 +61,20 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     @Override
     protected void onItemClick(int position, long id) {
+        final Uri phoneUri;
         if (!isLegacyCompatibilityMode()) {
             PhoneNumberListAdapter adapter = (PhoneNumberListAdapter)getAdapter();
-            pickPhoneNumber(adapter.getDataUri(position));
+            phoneUri = adapter.getDataUri(position);
+
         } else {
             LegacyPhoneNumberListAdapter adapter = (LegacyPhoneNumberListAdapter)getAdapter();
-            pickPhoneNumber(adapter.getPhoneUri(position));
+            phoneUri = adapter.getPhoneUri(position);
+        }
+
+        if (phoneUri != null) {
+            pickPhoneNumber(phoneUri);
+        } else {
+            Log.w(TAG, "Item at " + position + " was clicked before adapter is ready. Ignoring");
         }
     }
 

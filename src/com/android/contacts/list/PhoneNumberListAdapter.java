@@ -27,6 +27,7 @@ import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -34,6 +35,7 @@ import android.view.ViewGroup;
  * A cursor adapter for the {@link Phone#CONTENT_TYPE} content type.
  */
 public class PhoneNumberListAdapter extends ContactEntryListAdapter {
+    private static final String TAG = PhoneNumberListAdapter.class.getSimpleName();
 
     protected static final String[] PHONES_PROJECTION = new String[] {
         Phone._ID,                          // 0
@@ -137,11 +139,18 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
     /**
      * Builds a {@link Data#CONTENT_URI} for the given cursor position.
+     *
+     * @return Uri for the data. may be null if the cursor is not ready.
      */
     public Uri getDataUri(int position) {
         Cursor cursor = ((Cursor)getItem(position));
-        long id = cursor.getLong(PHONE_ID_COLUMN_INDEX);
-        return ContentUris.withAppendedId(Data.CONTENT_URI, id);
+        if (cursor != null) {
+            long id = cursor.getLong(PHONE_ID_COLUMN_INDEX);
+            return ContentUris.withAppendedId(Data.CONTENT_URI, id);
+        } else {
+            Log.w(TAG, "Cursor was null in getDataUri() call. Returning null instead.");
+            return null;
+        }
     }
 
     @Override
