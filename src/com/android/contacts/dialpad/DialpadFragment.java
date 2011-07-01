@@ -95,7 +95,6 @@ public class DialpadFragment extends Fragment
 
     private EditText mDigits;
     private View mDelete;
-    private MenuItem mAddToContactMenuItem;
     private ToneGenerator mToneGenerator;
     private Object mToneGeneratorLock = new Object();
     private Drawable mDigitsBackground;
@@ -109,15 +108,6 @@ public class DialpadFragment extends Fragment
     private View mDialButton;
     private ListView mDialpadChooser;
     private DialpadChooserAdapter mDialpadChooserAdapter;
-
-    // Member variables for dialpad options
-    private MenuItem m2SecPauseMenuItem;
-    private MenuItem mWaitMenuItem;
-    private MenuItem mCallSettingsItem;
-    private static final int MENU_ADD_CONTACTS = 1;
-    private static final int MENU_2S_PAUSE = 2;
-    private static final int MENU_WAIT = 3;
-    private static final int MENU_CALL_SETTINGS = 4;
 
     private boolean mShowMenu;
 
@@ -513,15 +503,7 @@ public class DialpadFragment extends Fragment
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-
-        mAddToContactMenuItem = menu.add(0, MENU_ADD_CONTACTS, 0, R.string.recentCalls_addToContact)
-                .setIcon(android.R.drawable.ic_menu_add);
-        m2SecPauseMenuItem = menu.add(0, MENU_2S_PAUSE, 0, R.string.add_2sec_pause)
-                .setIcon(R.drawable.ic_menu_2sec_pause);
-        mWaitMenuItem = menu.add(0, MENU_WAIT, 0, R.string.add_wait)
-                .setIcon(R.drawable.ic_menu_wait);
-        // TODO: icon
-        mCallSettingsItem = menu.add(0, MENU_CALL_SETTINGS, 0, R.string.call_settings);
+        inflater.inflate(R.menu.dialpad_options, menu);
     }
 
     @Override
@@ -531,9 +513,14 @@ public class DialpadFragment extends Fragment
             return;
         }
 
+        final MenuItem addToContactMenuItem = menu.findItem(R.id.menu_add_contacts);
+        final MenuItem m2SecPauseMenuItem = menu.findItem(R.id.menu_2s_pause);
+        final MenuItem mWaitMenuItem = menu.findItem(R.id.menu_add_wait);
+        final MenuItem mCallSettingsItem = menu.findItem(R.id.menu_call_settings);
+
         if (!mShowMenu) {
             mCallSettingsItem.setVisible(false);
-            mAddToContactMenuItem.setVisible(false);
+            addToContactMenuItem.setVisible(false);
             m2SecPauseMenuItem.setVisible(false);
             mWaitMenuItem.setVisible(false);
             return;
@@ -548,7 +535,7 @@ public class DialpadFragment extends Fragment
         // seeing usual dialpads and has typed at least one digit.
         // We never show a menu if the "choose dialpad" UI is up.
         if (dialpadChooserVisible() || isDigitsEmpty()) {
-            mAddToContactMenuItem.setVisible(false);
+            addToContactMenuItem.setVisible(false);
             m2SecPauseMenuItem.setVisible(false);
             mWaitMenuItem.setVisible(false);
         } else {
@@ -558,8 +545,8 @@ public class DialpadFragment extends Fragment
             Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
             intent.putExtra(Insert.PHONE, digits);
             intent.setType(People.CONTENT_ITEM_TYPE);
-            mAddToContactMenuItem.setIntent(intent);
-            mAddToContactMenuItem.setVisible(true);
+            addToContactMenuItem.setIntent(intent);
+            addToContactMenuItem.setVisible(true);
 
             // Check out whether to show Pause & Wait option menu items
             int selectionStart;
@@ -1075,10 +1062,10 @@ public class DialpadFragment extends Fragment
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case MENU_2S_PAUSE:
+            case R.id.menu_2s_pause:
                 updateDialString(",");
                 return true;
-            case MENU_WAIT:
+            case R.id.menu_add_wait:
                 updateDialString(";");
                 return true;
         }
@@ -1234,7 +1221,7 @@ public class DialpadFragment extends Fragment
     }
 
     @Override
-    public void onVisibilityChange(boolean visible) {
+    public void onVisibilityChanged(boolean visible) {
         mShowMenu = visible;
     }
 }

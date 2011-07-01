@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 <resources>
-    <style name="DialtactsTheme" parent="android:Theme.Holo.Light">
+    <style name="DialtactsTheme" parent="android:Theme.Holo.Light.SplitActionBarWhenNarrow">
         <item name="android:windowContentOverlay">@null</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="section_header_background">@drawable/list_title_holo</item>

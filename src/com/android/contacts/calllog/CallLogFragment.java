@@ -144,7 +144,6 @@ public class CallLogFragment extends ListFragment
     private String mCurrentCountryIso;
     private boolean mScrollToTop;
 
-    private MenuItem mDeleteAllCallLogMenuItem;
     private boolean mShowMenu;
 
     public static final class ContactInfo {
@@ -905,14 +904,12 @@ public class CallLogFragment extends ListFragment
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        mDeleteAllCallLogMenuItem = menu.add(0, OptionsMenuItems.DELETE_ALL,
-                0, R.string.recentCalls_deleteAll)
-                .setIcon(android.R.drawable.ic_menu_close_clear_cancel);
+        inflater.inflate(R.menu.call_log_options, menu);
     }
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        mDeleteAllCallLogMenuItem.setVisible(mShowMenu);
+        menu.findItem(R.id.delete_all).setVisible(mShowMenu);
     }
 
     @Override
@@ -1146,7 +1143,7 @@ public class CallLogFragment extends ListFragment
     }
 
     @Override
-    public void onVisibilityChange(boolean visible) {
+    public void onVisibilityChanged(boolean visible) {
         mShowMenu = visible;
     }
 }
