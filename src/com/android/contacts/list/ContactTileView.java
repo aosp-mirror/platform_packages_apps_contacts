@@ -32,21 +32,12 @@ import android.widget.TextView;
  * A ContactTile displays the contact's picture overlayed with their name
  */
 public class ContactTileView extends FrameLayout {
-    private final static String TAG = "ContactTileView";
+    private final static String TAG = ContactTileView.class.getSimpleName();
 
-    /**
-     * This divides into the width to define the height when
-     * {link DisplayTypes@SINLGE_ROW} is true.
-     */
-    private final static int HEIGHT_RATIO = 5;
     private Uri mLookupUri;
     private ImageView mPhoto;
     private TextView mName;
     private ContactPhotoManager mPhotoManager = null;
-    /**
-     * Is set to true if the {@link ContactTileView} is a square.
-     */
-    private boolean mIsSquare;
 
     public ContactTileView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -59,18 +50,14 @@ public class ContactTileView extends FrameLayout {
         mPhoto = (ImageView) findViewById(R.id.contact_tile_image);
     }
 
-    public boolean isSquare() {
-        return mIsSquare;
-    }
-
-    public void setIsSquare(boolean isSquare) {
-        mIsSquare = isSquare;
-    }
-
     public void setPhotoManager(ContactPhotoManager photoManager) {
         mPhotoManager = photoManager;
     }
 
+    /**
+     * Populates the data members to be displayed from the
+     * fields in {@link ContactEntry}
+     */
     public void loadFromContact(ContactEntry entry) {
         if (entry != null) {
             mName.setText(entry.name);
@@ -90,15 +77,5 @@ public class ContactTileView extends FrameLayout {
 
     public Uri getLookupUri() {
         return mLookupUri;
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        // Getting how much space is currently available and telling our
-        // Children to split it.
-        int width = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
-        int childMeasureSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
-        measureChildren(childMeasureSpec, childMeasureSpec);
-        setMeasuredDimension(width, width / (mIsSquare ? 1 : HEIGHT_RATIO));
     }
 }
