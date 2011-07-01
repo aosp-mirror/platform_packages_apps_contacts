@@ -237,7 +237,7 @@ public class ExportProcessor extends ProcessorBase {
         final Notification notification =
                 VCardService.constructProgressNotification(mService, VCardService.TYPE_EXPORT,
                         description, tickerText, mJobId, displayName, totalCount, currentCount);
-        mNotificationManager.notify(mJobId, notification);
+        mNotificationManager.notify(VCardService.DEFAULT_NOTIFICATION_TAG, mJobId, notification);
     }
 
     private void doCancelNotification() {
@@ -246,7 +246,7 @@ public class ExportProcessor extends ProcessorBase {
                 mExportRequest.destUri.getLastPathSegment());
         final Notification notification =
                 VCardService.constructCancelNotification(mService, description);
-        mNotificationManager.notify(mJobId, notification);
+        mNotificationManager.notify(VCardService.DEFAULT_NOTIFICATION_TAG, mJobId, notification);
     }
 
     private void doFinishNotification(final String title, final String description) {
@@ -254,7 +254,7 @@ public class ExportProcessor extends ProcessorBase {
         final Intent intent = new Intent(mService, PeopleActivity.class);
         final Notification notification =
                 VCardService.constructFinishNotification(mService, title, description, intent);
-        mNotificationManager.notify(mJobId, notification);
+        mNotificationManager.notify(VCardService.DEFAULT_NOTIFICATION_TAG, mJobId, notification);
     }
 
     @Override

@@ -71,7 +71,7 @@ public class ImportProgressNotifier implements VCardEntryHandler {
         final Notification notification = VCardService.constructProgressNotification(
                 mContext.getApplicationContext(), VCardService.TYPE_IMPORT, description, tickerText,
                 mJobId, mDisplayName, mTotalCount, mCurrentCount);
-        mNotificationManager.notify(mJobId, notification);
+        mNotificationManager.notify(VCardService.DEFAULT_NOTIFICATION_TAG, mJobId, notification);
     }
 
     public synchronized void addTotalCount(int additionalCount) {

@@ -180,7 +180,7 @@ public class ImportProcessor extends ProcessorBase {
                 mImportRequest.originalUri.getLastPathSegment());
         final Notification notification =
                 VCardService.constructCancelNotification(mService, description);
-        mNotificationManager.notify(mJobId, notification);
+        mNotificationManager.notify(VCardService.DEFAULT_NOTIFICATION_TAG, mJobId, notification);
     }
 
     private void doFinishNotification(final Uri createdUri) {
@@ -199,7 +199,7 @@ public class ImportProcessor extends ProcessorBase {
         final Notification notification =
                    VCardService.constructFinishNotification(mService,
                            description, null, intent);
-        mNotificationManager.notify(mJobId, notification);
+        mNotificationManager.notify(VCardService.DEFAULT_NOTIFICATION_TAG, mJobId, notification);
     }
 
     private boolean readOneVCard(Uri uri, int vcardType, String charset,
