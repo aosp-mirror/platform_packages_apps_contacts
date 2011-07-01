@@ -107,7 +107,7 @@ public class ImportVCardActivity extends ContactsActivity {
     /**
      * Notification id used when error happened before sending an import request to VCardServer.
      */
-    private static final int DEFAULT_NOTIFICATION_ID = 1000;
+    private static final int FAILURE_NOTIFICATION_ID = 1;
 
     final static String CACHED_URIS = "cached_uris";
 
@@ -974,7 +974,8 @@ public class ImportVCardActivity extends ContactsActivity {
                 VCardService.constructImportFailureNotification(
                         ImportVCardActivity.this,
                         getString(reasonId));
-        notificationManager.notify(DEFAULT_NOTIFICATION_ID, notification);
+        notificationManager.notify(VCardService.FAILURE_NOTIFICATION_TAG, FAILURE_NOTIFICATION_ID,
+                notification);
         mHandler.post(new Runnable() {
             @Override
             public void run() {

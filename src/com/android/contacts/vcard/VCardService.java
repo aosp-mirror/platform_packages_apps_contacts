@@ -59,6 +59,17 @@ import java.util.concurrent.RejectedExecutionException;
 // works fine enough. Investigate the feasibility.
 public class VCardService extends Service {
     private final static String LOG_TAG = "VCardService";
+
+    /** The tag used by vCard-related notifications. */
+    /* package */ static final String DEFAULT_NOTIFICATION_TAG = "VCardServiceProgress";
+    /**
+     * The tag used by vCard-related failure notifications.
+     * <p>
+     * Use a different tag from {@link #DEFAULT_NOTIFICATION_TAG} so that failures do not get
+     * replaced by other notifications and vice-versa.
+     */
+    /* package */ static final String FAILURE_NOTIFICATION_TAG = "VCardServiceFailure";
+
     /* package */ final static boolean DEBUG = false;
 
     /* package */ static final int MSG_IMPORT_REQUEST = 1;
@@ -153,6 +164,7 @@ public class VCardService extends Service {
     /* ** vCard exporter params ** */
     // If true, VCardExporter is able to emits files longer than 8.3 format.
     private static final boolean ALLOW_LONG_FILE_NAME = false;
+
     private String mTargetDirectory;
     private String mFileNamePrefix;
     private String mFileNameSuffix;
@@ -258,7 +270,8 @@ public class VCardService extends Service {
                         constructProgressNotification(
                                 this, TYPE_IMPORT, message, message, mCurrentJobId,
                                 displayName, -1, 0);
-                mNotificationManager.notify(mCurrentJobId, notification);
+                mNotificationManager.notify(VCardService.DEFAULT_NOTIFICATION_TAG, mCurrentJobId,
+                        notification);
                 mCurrentJobId++;
             } else {
                 // TODO: a little unkind to show Toast in this case, which is shown just a moment.
@@ -292,7 +305,7 @@ public class VCardService extends Service {
             final Notification notification =
                     constructProgressNotification(this, TYPE_EXPORT, message, message,
                             mCurrentJobId, displayName, -1, 0);
-            mNotificationManager.notify(mCurrentJobId, notification);
+            mNotificationManager.notify(VCardService.DEFAULT_NOTIFICATION_TAG, mCurrentJobId, notification);
             mCurrentJobId++;
         } else {
             Toast.makeText(this, getString(R.string.vcard_export_request_rejected_message),
@@ -330,7 +343,7 @@ public class VCardService extends Service {
                     getString(R.string.importing_vcard_canceled_title, request.displayName) :
                             getString(R.string.exporting_vcard_canceled_title, request.displayName);
             final Notification notification = constructCancelNotification(this, description);
-            mNotificationManager.notify(jobId, notification);
+            mNotificationManager.notify(VCardService.DEFAULT_NOTIFICATION_TAG, jobId, notification);
             if (processor.getType() == TYPE_EXPORT) {
                 final String path =
                         ((ExportProcessor)processor).getRequest().destUri.getEncodedPath();
