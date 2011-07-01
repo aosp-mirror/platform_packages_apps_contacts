@@ -202,6 +202,11 @@ public class DialtactsActivity extends Activity {
                 public void onShortcutIntentCreated(Intent intent) {
                     Log.w(TAG, "Unsupported intent has come (" + intent + "). Ignoring.");
                 }
+
+                @Override
+                public void onHomeInActionBarSelected() {
+                    exitSearchUi();
+                }
     };
 
     /**
@@ -652,6 +657,8 @@ public class DialtactsActivity extends Activity {
 
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         // Show the search fragment and hide everything else.
         final FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -669,6 +676,13 @@ public class DialtactsActivity extends Activity {
         }
     }
 
+    private void hideInputMethod(View view) {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
     /**
      * Goes back to usual Phone UI with tags. Previously selected Tag and associated Fragment
      * should be automatically focused again.
@@ -678,6 +692,7 @@ public class DialtactsActivity extends Activity {
 
         // We want to hide SearchView and show Tabs. Also focus on previously selected one.
         actionBar.setDisplayShowCustomEnabled(false);
+        actionBar.setDisplayShowHomeEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         final FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -685,6 +700,8 @@ public class DialtactsActivity extends Activity {
         transaction.commit();
 
         mViewPager.setVisibility(View.VISIBLE);
+
+        hideInputMethod(getCurrentFocus());
 
         // Request to update option menu.
         invalidateOptionsMenu();

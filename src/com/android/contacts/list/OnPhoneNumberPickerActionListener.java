@@ -15,6 +15,7 @@
  */
 package com.android.contacts.list;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.net.Uri;
 
@@ -32,4 +33,9 @@ public interface OnPhoneNumberPickerActionListener  {
      * Returns the selected number as a shortcut intent.
      */
     void onShortcutIntentCreated(Intent intent);
+
+    /**
+     * Called when home menu in {@link ActionBar} is clicked by the user.
+     */
+    void onHomeInActionBarSelected();
 }

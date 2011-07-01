@@ -340,6 +340,10 @@ public class ContactSelectionActivity extends ContactsActivity
         public void onShortcutIntentCreated(Intent intent) {
             returnPickerResult(intent);
         }
+
+        public void onHomeInActionBarSelected() {
+            ContactSelectionActivity.this.onBackPressed();
+        }
     }
 
     private final class PostalAddressPickerActionListener implements

@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -49,6 +50,18 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     public void setOnPhoneNumberPickerActionListener(OnPhoneNumberPickerActionListener listener) {
         this.mListener = listener;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        final int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {  // See ActionBar#setDisplayHomeAsUpEnabled()
+            if (mListener != null) {
+                mListener.onHomeInActionBarSelected();
+            }
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
