@@ -189,6 +189,12 @@ public class GroupBrowseListFragment extends Fragment
                     ? false
                     : mGroupListCursor.getInt(GroupMetaDataLoader.FAVORITES) != 0;
 
+            // Don't show the "auto-added" (i.e. My Contacts) or "favorites" groups because
+            // they show up elsewhere in the app
+            if (defaultGroup || favorites) {
+                continue;
+            }
+
             GroupMetaData newGroup = new GroupMetaData(accountName, accountType, groupId, title,
                     defaultGroup, favorites);
 
