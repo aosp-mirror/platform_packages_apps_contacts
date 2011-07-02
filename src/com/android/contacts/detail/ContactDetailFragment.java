@@ -419,7 +419,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         Collapser.collapseList(mImEntries);
 
         // Make one aggregated list of all entries for display to the user.
-        flattenAllLists();
+        setupFlattenedList();
 
         if (mAdapter == null) {
             mAdapter = new ViewAdapter();
@@ -689,39 +689,110 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
      * Collapse all contact detail entries into one aggregated list with a {@link HeaderViewEntry}
      * at the top.
      */
-    private void flattenAllLists() {
+    private void setupFlattenedList() {
         // All contacts should have a header view (even if there is no data for the contact).
         mAllEntries.add(new HeaderViewEntry());
+
+        addPhoneticName();
 
         flattenList(mPhoneEntries);
         flattenList(mSmsEntries);
         flattenList(mEmailEntries);
         flattenList(mImEntries);
-        flattenList(mPostalEntries);
         flattenList(mNicknameEntries);
-        flattenList(mNoteEntries);
         flattenList(mWebsiteEntries);
+
+        addNetworks();
+
         flattenList(mSipEntries);
+        flattenList(mPostalEntries);
         flattenList(mEventEntries);
-        flattenList(mOtherEntries);
-        flattenList(mRelationEntries);
         flattenList(mGroupEntries);
+        flattenList(mRelationEntries);
+        flattenList(mNoteEntries);
+    }
+
+    /**
+     * Add phonetic name (if applicable) to the aggregated list of contact details. This has to be
+     * done manually because phonetic name doesn't have a mimetype or action intent.
+     */
+    private void addPhoneticName() {
+        String phoneticName = ContactDetailDisplayUtils.getPhoneticName(mContext, mContactData);
+        if (TextUtils.isEmpty(phoneticName)) {
+            return;
+        }
+
+        // Add a title
+        String phoneticNameKindTitle = mContext.getString(R.string.name_phonetic);
+        mAllEntries.add(new KindTitleViewEntry(phoneticNameKindTitle.toUpperCase()));
+
+        // Add the phonetic name
+        final DetailViewEntry entry = new DetailViewEntry();
+        entry.kind = phoneticNameKindTitle;
+        entry.data = phoneticName;
+        mAllEntries.add(entry);
+    }
+
+    /**
+     * Add attribution and other third-party entries (if applicable) under the "networks" section
+     * of the aggregated list of contact details. This has to be done manually because the
+     * attribution does not have a mimetype and the third-party entries don't have actually belong
+     * to the same {@link DataKind}.
+     */
+    private void addNetworks() {
+        String attribution = ContactDetailDisplayUtils.getAttribution(mContext, mContactData);
+        boolean hasAttribution = !TextUtils.isEmpty(attribution);
+        int otherEntriesSize = mOtherEntries.size();
+        if (!hasAttribution && otherEntriesSize == 0) {
+            return;
+        }
+
+        // Add a title
+        String networkKindTitle = mContext.getString(R.string.network);
+        mAllEntries.add(new KindTitleViewEntry(networkKindTitle.toUpperCase()));
+
+        // Add the attribution if applicable
+        if (hasAttribution) {
+            final DetailViewEntry entry = new DetailViewEntry();
+            entry.kind = networkKindTitle;
+            entry.data = attribution;
+            mAllEntries.add(entry);
+        }
+
+        // Add the other entries from third parties
+        for (int i = 0; i < otherEntriesSize; i++) {
+            // Add a divider above the entry. Don't add an entry above the first one if it's the
+            // first one in the DataKind.
+            if (i != 0 || (i == 0 && hasAttribution)) {
+                mAllEntries.add(new SeparatorViewEntry());
+            }
+            mAllEntries.add(mOtherEntries.get(i));
+        }
+
+        mOtherEntries.clear();
     }
 
     /**
      * Iterate through {@link DetailViewEntry} in the given list and add it to a list of all
-     * entries. Add a {@link SeparatorViewEntry} at the end if the length of the list was not 0.
-     * Clear the original list.
+     * entries. Add a {@link KindTitleViewEntry} at the start if the length of the list is not 0.
+     * Add {@link SeparatorViewEntry}s as dividers as appropriate. Clear the original list.
      */
     private void flattenList(ArrayList<DetailViewEntry> entries) {
         int count = entries.size();
 
-        for (int i = 0; i < count; i++) {
-            mAllEntries.add(entries.get(i));
+        // Add a title for this kind by extracting the kind from the first entry
+        if (count > 0) {
+            String kind = entries.get(0).kind;
+            mAllEntries.add(new KindTitleViewEntry(kind.toUpperCase()));
         }
 
-        if (count > 0) {
-            mAllEntries.add(new SeparatorViewEntry());
+        // Add all the data entries for this kind
+        for (int i = 0; i < count; i++) {
+            // For all entries except the first one, add a divider above the entry
+            if (i != 0) {
+                mAllEntries.add(new SeparatorViewEntry());
+            }
+            mAllEntries.add(entries.get(i));
         }
 
         // Clear old list because it's not needed anymore.
@@ -863,7 +934,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     /**
      * Header item in the {@link ViewAdapter} list of data.
      */
-    static class HeaderViewEntry extends ViewEntry {
+    private static class HeaderViewEntry extends ViewEntry {
 
         HeaderViewEntry() {
             super(ViewAdapter.VIEW_TYPE_HEADER_ENTRY);
@@ -875,10 +946,25 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
      * Separator between items of the same {@link DataKind} in the
      * {@link ViewAdapter} list of data.
      */
-    static class SeparatorViewEntry extends ViewEntry {
+    private static class SeparatorViewEntry extends ViewEntry {
 
         SeparatorViewEntry() {
             super(ViewAdapter.VIEW_TYPE_SEPARATOR_ENTRY);
+        }
+
+    }
+
+    /**
+     * Title entry for items of the same {@link DataKind} in the
+     * {@link ViewAdapter} list of data.
+     */
+    private static class KindTitleViewEntry extends ViewEntry {
+
+        public final String title;
+
+        KindTitleViewEntry(String titleText) {
+            super(ViewAdapter.VIEW_TYPE_KIND_TITLE_ENTRY);
+            title = titleText;
         }
 
     }
@@ -1055,8 +1141,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
         public static final int VIEW_TYPE_DETAIL_ENTRY = 0;
         public static final int VIEW_TYPE_HEADER_ENTRY = 1;
-        public static final int VIEW_TYPE_SEPARATOR_ENTRY = 2;
-        private static final int VIEW_TYPE_COUNT = 3;
+        public static final int VIEW_TYPE_KIND_TITLE_ENTRY = 2;
+        public static final int VIEW_TYPE_SEPARATOR_ENTRY = 3;
+        private static final int VIEW_TYPE_COUNT = 4;
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
@@ -1065,6 +1152,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     return getHeaderEntryView(convertView, parent);
                 case VIEW_TYPE_SEPARATOR_ENTRY:
                     return getSeparatorEntryView(convertView, parent);
+                case VIEW_TYPE_KIND_TITLE_ENTRY:
+                    return getKindTitleEntryView(position, convertView, parent);
                 case VIEW_TYPE_DETAIL_ENTRY:
                     return getDetailEntryView(position, convertView, parent);
                 default:
@@ -1132,7 +1221,18 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             if (convertView != null) {
                 return convertView;
             }
-            return mInflater.inflate(R.layout.contact_detail_separator_list_item, parent, false);
+            return mInflater.inflate(R.layout.contact_detail_separator_entry_view, parent, false);
+        }
+
+        private View getKindTitleEntryView(int position, View convertView, ViewGroup parent) {
+            final KindTitleViewEntry entry = (KindTitleViewEntry) getItem(position);
+
+            final View result = (convertView != null) ? convertView :
+                    mInflater.inflate(R.layout.contact_detail_kind_title_entry_view, parent, false);
+            final TextView titleTextView = (TextView) result.findViewById(R.id.kind);
+            titleTextView.setText(entry.title);
+
+            return result;
         }
 
         private View getDetailEntryView(int position, View convertView, ViewGroup parent) {
@@ -1161,36 +1261,21 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                         R.id.secondary_action_button_container);
                 viewCache.secondaryActionButtonContainer.setOnClickListener(
                         mSecondaryActionClickListener);
-                viewCache.secondaryActionDivider = v.findViewById(R.id.divider);
+                viewCache.secondaryActionDivider = v.findViewById(R.id.vertical_divider);
                 v.setTag(viewCache);
             }
 
-            final ViewEntry previousEntry = position == 0 ? null : getItem(position - 1);
-            final boolean isFirstOfItsKind = (previousEntry == null) ? true :
-                    (previousEntry.getViewType() != VIEW_TYPE_DETAIL_ENTRY);
-
-            // Bind the data to the view
-            bindView(v, entry, isFirstOfItsKind);
+            bindView(v, entry);
             return v;
         }
 
-        private void bindView(View view, DetailViewEntry entry, boolean isFirstOfItsKind) {
+        private void bindView(View view, DetailViewEntry entry) {
             final Resources resources = mContext.getResources();
             ViewCache views = (ViewCache) view.getTag();
-
-            if (isFirstOfItsKind) {
-                views.kind.setText(entry.kind != null ? entry.kind.toUpperCase() : "");
-                views.kind.setVisibility(View.VISIBLE);
-            } else {
-                views.kind.setVisibility(View.GONE);
-            }
 
             if (!TextUtils.isEmpty(entry.typeString)) {
                 views.type.setText(entry.typeString.toUpperCase());
                 views.type.setVisibility(View.VISIBLE);
-                if (isFirstOfItsKind) {
-                    views.kind.setVisibility(View.GONE);
-                }
             } else {
                 views.type.setVisibility(View.GONE);
             }

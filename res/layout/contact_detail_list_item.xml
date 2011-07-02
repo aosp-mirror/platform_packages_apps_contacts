@@ -22,6 +22,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="@dimen/detail_item_side_margin"
+    android:paddingRight="@dimen/detail_item_side_margin"
+    android:paddingTop="@dimen/detail_item_vertical_margin"
+    android:paddingBottom="@dimen/detail_item_vertical_margin"
     android:orientation="horizontal"
     android:gravity="center_vertical">
 
@@ -34,19 +37,20 @@
 
         <TextView
             android:id="@+id/kind"
-            style="@style/ContactDetailItemType" />
-
-        <TextView
-            android:id="@+id/type"
-            style="@style/ContactDetailItemType" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:paddingBottom="5dip"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/type"
+            style="@style/ContactDetailItemType" />
 
         <TextView
             android:id="@+id/footer"
@@ -55,6 +59,7 @@
             android:layout_gravity="center_vertical"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:visibility="gone" />
+
     </LinearLayout>
 
     <ImageView
@@ -66,7 +71,7 @@
         android:scaleType="centerInside" />
 
     <View
-        android:id="@+id/divider"
+        android:id="@+id/vertical_divider"
         android:layout_width="1px"
         android:layout_height="match_parent"
         android:layout_marginTop="15dip"

@@ -116,7 +116,10 @@
     <dimen name="detail_item_icon_margin">10dip</dimen>
 
     <!-- Left and right padding for a contact detail item -->
-    <dimen name="detail_item_side_margin">10dip</dimen>
+    <dimen name="detail_item_side_margin">16dip</dimen>
+
+    <!-- Top and bottom padding for a contact detail item -->
+    <dimen name="detail_item_vertical_margin">12dip</dimen>
 
     <!-- Minimum height of a row in the contact detail -->
     <dimen name="detail_min_line_item_height">48dip</dimen>

@@ -43,7 +43,9 @@
 
                 <TextView
                     android:id="@+id/kind"
-                    style="@style/ContactDetailItemType" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/type"
@@ -83,7 +85,7 @@
                 android:scaleType="centerInside" />
 
             <View
-                android:id="@+id/divider"
+                android:id="@+id/vertical_divider"
                 android:layout_width="1px"
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dip"

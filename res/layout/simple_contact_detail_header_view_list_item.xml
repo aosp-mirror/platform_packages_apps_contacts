@@ -14,17 +14,10 @@
      limitations under the License.
 -->
 
-<!--
-  This view temporarily holds the extra information that used to be in the
-  original contact detail header view, but now must move into the list because
-  of the new tab carousel. TODO: Integrate this better into the list as provided
-  by the mocks.
--->
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/photo"
@@ -32,18 +25,4 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/detail_tab_carousel_height" />
 
-    <TextView
-        android:id="@+id/phonetic_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dip"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
-        android:id="@+id/attribution"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dip"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-</LinearLayout>
+</FrameLayout>
