@@ -16,8 +16,9 @@
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/detail_tab_carousel_tab_width"
-    android:layout_height="@dimen/detail_tab_carousel_height"
+    android:layout_width="0dip"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
     android:background="@color/detail_tab_background">
 
     <!-- Transparent view to overlay on the contact's photo

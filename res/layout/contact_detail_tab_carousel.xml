@@ -14,16 +14,18 @@
      limitations under the License.
 -->
 
-<HorizontalScrollView
+<view
     xmlns:android="http://schemas.android.com/apk/res/android"
+    class="com.android.contacts.detail.ContactDetailTabCarousel"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:scrollbars="none">
+    android:layout_height="@dimen/detail_tab_carousel_height"
+    android:scrollbars="none"
+    android:fadingEdge="none">
 
     <LinearLayout
         android:id="@+id/tab_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/detail_tab_carousel_height"
         android:orientation="horizontal">
 
         <include
@@ -36,4 +38,4 @@
 
     </LinearLayout>
 
-</HorizontalScrollView>
+</view>

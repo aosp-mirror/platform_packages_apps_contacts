@@ -26,8 +26,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.android.contacts.detail.ContactDetailTabCarousel
+    <include
         android:id="@+id/tab_carousel"
+        layout="@layout/contact_detail_tab_carousel"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_width="match_parent"

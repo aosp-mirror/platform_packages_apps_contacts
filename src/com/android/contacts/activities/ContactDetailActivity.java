@@ -33,7 +33,6 @@ import com.android.contacts.util.PhoneCapabilityTester;
 
 import android.accounts.Account;
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -49,12 +48,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View.OnClickListener;
-import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
@@ -466,10 +465,10 @@ public class ContactDetailActivity extends ContactsActivity {
             if (mTabCarousel == null) {
                 return;
             }
-            // Only re-position the tab carousel vertically if the FIRST item is still visible on
-            // the screen, otherwise the carousel should be in the correct place (pinned at the
-            // top).
+            // If the FIRST item is not visible on the screen, then the carousel must be pinned
+            // at the top of the screen.
             if (firstVisibleItem != 0) {
+                mTabCarousel.setY(-mTabCarousel.getAllowedVerticalScrollLength());
                 return;
             }
             View topView = view.getChildAt(firstVisibleItem);
@@ -477,7 +476,7 @@ public class ContactDetailActivity extends ContactsActivity {
                 return;
             }
             int amtToScroll = Math.max((int) view.getChildAt(firstVisibleItem).getY(),
-                    -mTabCarousel.getAllowedVerticalScrollLength());
+                    - mTabCarousel.getAllowedVerticalScrollLength());
             mTabCarousel.setY(amtToScroll);
         }
 

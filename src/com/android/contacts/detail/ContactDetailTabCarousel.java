@@ -20,8 +20,8 @@ import com.android.contacts.ContactLoader;
 import com.android.contacts.R;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -32,18 +32,27 @@ import android.widget.TextView;
 /**
  * This is a horizontally scrolling carousel with 2 tabs: one to see info about the contact and
  * one to see updates from the contact.
- * TODO: Create custom views for the tabs so their width can be programatically set as 2/3 of the
- * screen width.
  */
 public class ContactDetailTabCarousel extends HorizontalScrollView implements OnTouchListener {
-    private static final String TAG = "ContactDetailTabCarousel";
+
+    private static final String TAG = ContactDetailTabCarousel.class.getSimpleName();
+
+    private static final int TAB_INDEX_ABOUT = 0;
+    private static final int TAB_INDEX_UPDATES = 1;
+    private static final int TAB_COUNT = 2;
+
+    private static final double TAB_WIDTH_SCREEN_PERCENTAGE = 0.75;
 
     private ImageView mPhotoView;
     private TextView mStatusView;
 
     private Listener mListener;
 
-    private View[] mTabs = new View[2];
+    private final View[] mTabs = new View[TAB_COUNT];
+
+    private int mTabWidth;
+    private int mTabHeight;
+    private int mTabDisplayLabelHeight;
 
     private int mAllowedHorizontalScrollLength = Integer.MIN_VALUE;
     private int mAllowedVerticalScrollLength = Integer.MIN_VALUE;
@@ -58,22 +67,78 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         public void onTabSelected(int position);
     }
 
-    public ContactDetailTabCarousel(Context context) {
-        this(context, null);
-    }
-
     public ContactDetailTabCarousel(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
-
-    public ContactDetailTabCarousel(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-
-        final LayoutInflater inflater =
-            (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.contact_detail_tab_carousel, this);
+        super(context, attrs);
 
         setOnTouchListener(this);
+
+        Resources resources = mContext.getResources();
+        mTabHeight = resources.getDimensionPixelSize(R.dimen.detail_tab_carousel_height);
+        mTabDisplayLabelHeight = resources.getDimensionPixelSize(
+                R.dimen.detail_tab_carousel_tab_label_height);
+        mAllowedVerticalScrollLength = mTabHeight - mTabDisplayLabelHeight;
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        View aboutView = findViewById(R.id.tab_about);
+        View updateView = findViewById(R.id.tab_update);
+
+        TextView aboutTab = (TextView) aboutView.findViewById(R.id.label);
+        aboutTab.setText(mContext.getString(R.string.contactDetailAbout));
+        aboutTab.setClickable(true);
+        aboutTab.setSelected(true);
+
+        TextView updatesTab = (TextView) updateView.findViewById(R.id.label);
+        updatesTab.setText(mContext.getString(R.string.contactDetailUpdates));
+        updatesTab.setClickable(true);
+
+        aboutTab.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onTabSelected(TAB_INDEX_ABOUT);
+            }
+        });
+        updatesTab.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onTabSelected(TAB_INDEX_ABOUT);
+            }
+        });
+
+        mTabs[TAB_INDEX_ABOUT] = aboutTab;
+        mTabs[TAB_INDEX_UPDATES] = updatesTab;
+
+        // Retrieve the photo view for the "about" tab
+        mPhotoView = (ImageView) aboutView.findViewById(R.id.photo);
+
+        // Retrieve the social update views for the "updates" tab
+        mStatusView = (TextView) updateView.findViewById(R.id.status);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        measureChildren(widthMeasureSpec);
+    }
+
+    private void measureChildren(int widthMeasureSpec) {
+        int screenWidth = MeasureSpec.getSize(widthMeasureSpec);
+        // Compute the width of a tab as a fraction of the screen width
+        mTabWidth = (int) (TAB_WIDTH_SCREEN_PERCENTAGE * screenWidth);
+
+        // Find the allowed scrolling length by subtracting the current visible screen width
+        // from the total length of the tabs.
+        mAllowedHorizontalScrollLength = mTabWidth * TAB_COUNT - screenWidth;
+
+        // Set the child {@link LinearLayout} to be TAB_COUNT * the computed tab width so that the
+        // {@link LinearLayout}'s children (which are the tabs) will evenly split that width.
+        if (getChildCount() > 0) {
+            View child = getChildAt(0);
+            child.measure(MeasureSpec.makeMeasureSpec(TAB_COUNT * mTabWidth, MeasureSpec.EXACTLY),
+                    MeasureSpec.makeMeasureSpec(mTabHeight, MeasureSpec.EXACTLY));
+        }
     }
 
     @Override
@@ -86,19 +151,6 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
      * Returns the number of pixels that this view can be scrolled horizontally.
      */
     public int getAllowedHorizontalScrollLength() {
-        // We can't compute this in the constructor because the view widths are 0, so do the
-        // calculation only when this getter method is called (all the views should be created
-        // by this time).
-        if (mAllowedHorizontalScrollLength == Integer.MIN_VALUE) {
-            // Find the total length of two tabs side-by-side
-            int totalLength = 0;
-            for (int i=0; i < mTabs.length; i++) {
-                totalLength += mTabs[i].getWidth();
-            }
-            // Find the allowed scrolling length by subtracting the current visible screen width
-            // from the total length of the tabs.
-            mAllowedHorizontalScrollLength = totalLength - getWidth();
-        }
         return mAllowedHorizontalScrollLength;
     }
 
@@ -107,16 +159,6 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
      * the tab labels to still show.
      */
     public int getAllowedVerticalScrollLength() {
-        if (mAllowedVerticalScrollLength == Integer.MIN_VALUE) {
-            // Find the total height of a tab
-            View aboutView = findViewById(R.id.tab_about);
-            int totalHeight = aboutView.getHeight();
-            // Find the height of a tab label
-            TextView aboutTab = (TextView) aboutView.findViewById(R.id.label);
-            int labelHeight = aboutTab.getHeight();
-            // Find the allowed scrolling length by subtracting the two values
-            mAllowedVerticalScrollLength = totalHeight - labelHeight;
-        }
         return mAllowedVerticalScrollLength;
     }
 
@@ -153,40 +195,6 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
             return;
         }
 
-        View aboutView = findViewById(R.id.tab_about);
-        View updateView = findViewById(R.id.tab_update);
-
-        TextView aboutTab = (TextView) aboutView.findViewById(R.id.label);
-        aboutTab.setText(mContext.getString(R.string.contactDetailAbout));
-        aboutTab.setClickable(true);
-        aboutTab.setSelected(true);
-
-        TextView updatesTab = (TextView) updateView.findViewById(R.id.label);
-        updatesTab.setText(mContext.getString(R.string.contactDetailUpdates));
-        updatesTab.setClickable(true);
-
-        aboutTab.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.onTabSelected(0);
-            }
-        });
-        updatesTab.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.onTabSelected(1);
-            }
-        });
-
-        mTabs[0] = aboutTab;
-        mTabs[1] = updatesTab;
-
-        // Retrieve the photo view for the "about" tab
-        mPhotoView = (ImageView) aboutView.findViewById(R.id.photo);
-
-        // Retrieve the social update view for the "updates" tab
-        mStatusView = (TextView) updateView.findViewById(R.id.status);
-
         ContactDetailDisplayUtils.setPhoto(mContext, contactData, mPhotoView);
         ContactDetailDisplayUtils.setSocialSnippet(mContext, contactData, mStatusView);
     }
@@ -203,10 +211,10 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 mListener.onTouchDown();
-                return true;
+                return false;
             case MotionEvent.ACTION_UP:
                 mListener.onTouchUp();
-                return true;
+                return false;
         }
         return super.onTouchEvent(event);
     }
