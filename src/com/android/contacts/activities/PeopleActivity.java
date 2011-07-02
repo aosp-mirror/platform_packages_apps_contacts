@@ -92,7 +92,10 @@ public class PeopleActivity extends ContactsActivity
 
     private static final int SUBACTIVITY_NEW_CONTACT = 2;
     private static final int SUBACTIVITY_EDIT_CONTACT = 3;
-    private static final int SUBACTIVITY_CUSTOMIZE_FILTER = 4;
+    private static final int SUBACTIVITY_NEW_GROUP = 4;
+    private static final int SUBACTIVITY_EDIT_GROUP = 5;
+    private static final int SUBACTIVITY_CUSTOMIZE_FILTER = 6;
+
     private static final int FAVORITES_COLUMN_COUNT = 4;
 
     private static final String KEY_SEARCH_MODE = "searchMode";
@@ -115,8 +118,10 @@ public class PeopleActivity extends ContactsActivity
     private boolean mContentPaneDisplayed;
 
     private ContactDetailFragment mContactDetailFragment;
-    private ContactDetailFragmentListener mContactDetailFragmentListener =
+    private final ContactDetailFragmentListener mContactDetailFragmentListener =
             new ContactDetailFragmentListener();
+    private final GroupDetailFragmentListener mGroupDetailFragmentListener =
+            new GroupDetailFragmentListener();
 
     private GroupDetailFragment mGroupDetailFragment;
 
@@ -184,6 +189,7 @@ public class PeopleActivity extends ContactsActivity
                     new ContactsUnavailableFragmentListener());
         } else if (fragment instanceof GroupDetailFragment) {
             mGroupDetailFragment = (GroupDetailFragment) fragment;
+            mGroupDetailFragment.setListener(mGroupDetailFragmentListener);
             mContentPaneDisplayed = true;
         } else if (fragment instanceof StrequentContactListFragment) {
             mFavoritesFragment = (StrequentContactListFragment) fragment;
@@ -811,6 +817,31 @@ public class PeopleActivity extends ContactsActivity
         }
     }
 
+    private class GroupDetailFragmentListener implements GroupDetailFragment.Listener {
+        @Override
+        public void onGroupSizeUpdated(String size) {
+            // Nothing needs to be done here because the size will be displayed in the detail
+            // fragment
+        }
+
+        @Override
+        public void onGroupTitleUpdated(String title) {
+            // Nothing needs to be done here because the title will be displayed in the detail
+            // fragment
+        }
+
+        @Override
+        public void onEditRequested(Uri groupUri) {
+            // TODO: Send off an intent with the groups URI, so we don't need to specify
+            // the editor activity class. Then it would be declared as:
+            // new Intent(Intent.ACTION_EDIT, groupUri), SUBACTIVITY_EDIT_GROUP);
+            final Intent intent = new Intent(PeopleActivity.this, GroupEditorActivity.class);
+            intent.setData(groupUri);
+            intent.setAction(Intent.ACTION_EDIT);
+            startActivityForResult(intent, SUBACTIVITY_EDIT_GROUP);
+        }
+    }
+
     public void startActivityAndForwardResult(final Intent intent) {
         intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
 
@@ -957,8 +988,12 @@ public class PeopleActivity extends ContactsActivity
                 return true;
             }
             case R.id.menu_add_group: {
-                // TODO: Hook up "new group" functionality
-                Toast.makeText(this, "NEW GROUP", Toast.LENGTH_SHORT).show();
+                // TODO: Send off an intent with the groups URI, so we don't need to specify
+                // the editor activity class. Then it would be declared as:
+                // new Intent(Intent.ACTION_INSERT, Groups.CONTENT_URI)
+                final Intent intent = new Intent(this, GroupEditorActivity.class);
+                intent.setAction(Intent.ACTION_INSERT);
+                startActivityForResult(intent, SUBACTIVITY_NEW_GROUP);
                 return true;
             }
             case R.id.menu_import_export: {
@@ -1003,6 +1038,15 @@ public class PeopleActivity extends ContactsActivity
                 if (resultCode == RESULT_OK && mContentPaneDisplayed) {
                     mRequest.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
                     mListFragment.reloadDataAndSetSelectedUri(data.getData());
+                }
+                break;
+            }
+
+            case SUBACTIVITY_NEW_GROUP:
+            case SUBACTIVITY_EDIT_GROUP: {
+                if (resultCode == RESULT_OK && mContentPaneDisplayed) {
+                    mRequest.setActionCode(ContactsRequest.ACTION_GROUP);
+                    mGroupsFragment.setSelectedUri(data.getData());
                 }
                 break;
             }

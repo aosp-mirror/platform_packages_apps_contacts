@@ -125,6 +125,8 @@ public class ContactEditorFragment extends Fragment implements
     /**
      * Modes that specify what the AsyncTask has to perform after saving
      */
+    // TODO: Move this into a common utils class or the save service because the contact and
+    // group editors need to use this interface definition
     public interface SaveMode {
         /**
          * Close the editor after saving
@@ -697,7 +699,7 @@ public class ContactEditorFragment extends Fragment implements
 
     @Override
     public void onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
-        inflater.inflate(R.menu.edit, menu);
+        inflater.inflate(R.menu.edit_contact, menu);
     }
 
     @Override

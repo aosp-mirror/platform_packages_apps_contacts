@@ -71,6 +71,24 @@ public class GroupBrowseListAdapter extends BaseAdapter {
         }
     }
 
+    public int getSelectedGroupPosition() {
+        if (mSelectedGroupUri == null) {
+            return -1;
+        }
+
+        int size = mGroupList.size();
+        for (int i = 0; i < size; i++) {
+            GroupListEntry group = mGroupList.get(i);
+            if (group.type == ViewType.ITEM) {
+                Uri uri = getGroupUriFromId(group.groupData.getGroupId());
+                if (mSelectedGroupUri.equals(uri)) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
     public void setSelectionVisible(boolean flag) {
         mSelectionVisible = flag;
     }
@@ -224,11 +242,15 @@ public class GroupBrowseListAdapter extends BaseAdapter {
         public void loadFromGroup(GroupMetaData group) {
             mLabel.setText(group.getTitle());
             mAccount.setText(group.getAccountName());
-            mUri = ContentUris.withAppendedId(Groups.CONTENT_URI, group.getGroupId());
+            mUri = getGroupUriFromId(group.getGroupId());
         }
 
         public Uri getUri() {
             return mUri;
         }
+    }
+
+    private static Uri getGroupUriFromId(long groupId) {
+        return ContentUris.withAppendedId(Groups.CONTENT_URI, groupId);
     }
 }

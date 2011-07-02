@@ -20,6 +20,7 @@ import com.android.contacts.GroupMetaData;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.group.GroupBrowseListAdapter.GroupListItem;
+import com.android.contacts.widget.AutoScrollListView;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -74,6 +75,8 @@ public class GroupBrowseListFragment extends Fragment
     private Context mContext;
     private Cursor mGroupListCursor;
 
+    private boolean mSelectionToScreenRequested;
+
     /**
      * Map of account name to a list of {@link GroupMetaData} objects
      * representing groups within that account.
@@ -83,11 +86,12 @@ public class GroupBrowseListFragment extends Fragment
     private Map<String, List<GroupMetaData>> mGroupMap = new HashMap<String, List<GroupMetaData>>();
 
     private View mRootView;
-    private ListView mListView;
+    private AutoScrollListView mListView;
     private View mEmptyView;
 
     private GroupBrowseListAdapter mAdapter;
     private boolean mSelectionVisible;
+    private Uri mSelectedGroupUri;
 
     private int mVerticalScrollbarPosition = View.SCROLLBAR_POSITION_RIGHT;
 
@@ -100,7 +104,7 @@ public class GroupBrowseListFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.group_browse_list_fragment, null);
-        mListView = (ListView) mRootView.findViewById(R.id.list);
+        mListView = (AutoScrollListView) mRootView.findViewById(R.id.list);
         mListView.setOnFocusChangeListener(this);
         mListView.setOnTouchListener(this);
         mEmptyView = mRootView.findViewById(R.id.empty);
@@ -211,6 +215,7 @@ public class GroupBrowseListFragment extends Fragment
 
         mAdapter = new GroupBrowseListAdapter(mContext, mGroupMap);
         mAdapter.setSelectionVisible(mSelectionVisible);
+        mAdapter.setSelectedGroup(mSelectedGroupUri);
 
         mListView.setAdapter(mAdapter);
         mListView.setEmptyView(mEmptyView);
@@ -221,6 +226,10 @@ public class GroupBrowseListFragment extends Fragment
                 viewGroup(groupListItem.getUri());
             }
         });
+
+        if (mSelectionToScreenRequested) {
+            requestSelectionToScreen();
+        }
     }
 
     public void setListener(OnGroupBrowserActionListener listener) {
@@ -232,6 +241,7 @@ public class GroupBrowseListFragment extends Fragment
     }
 
     private void setSelectedGroup(Uri groupUri) {
+        mSelectedGroupUri = groupUri;
         mAdapter.setSelectedGroup(groupUri);
         mListView.invalidateViews();
     }
@@ -239,6 +249,18 @@ public class GroupBrowseListFragment extends Fragment
     private void viewGroup(Uri groupUri) {
         setSelectedGroup(groupUri);
         if (mListener != null) mListener.onViewGroupAction(groupUri);
+    }
+
+    public void setSelectedUri(Uri groupUri) {
+        viewGroup(groupUri);
+        mSelectionToScreenRequested = true;
+    }
+
+    protected void requestSelectionToScreen() {
+        int selectedPosition = mAdapter.getSelectedGroupPosition();
+        if (selectedPosition != -1) {
+            mListView.requestPositionToScreen(selectedPosition, true /* smooth scroll requested */);
+        }
     }
 
     private void hideSoftKeyboard() {
