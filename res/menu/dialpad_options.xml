@@ -30,10 +30,4 @@
         android:icon="@drawable/ic_menu_wait"
         android:title="@string/add_wait"
         android:showAsAction="withText" />
-
-    <!-- TODO: need asset -->
-    <item
-        android:id="@+id/menu_call_settings"
-        android:title="@string/call_settings"
-        android:showAsAction="withText" />
 </menu>

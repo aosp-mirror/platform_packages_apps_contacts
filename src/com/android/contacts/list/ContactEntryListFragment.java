@@ -705,7 +705,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
         if (mListView instanceof ContactEntryListView) {
             ContactEntryListView listView = (ContactEntryListView)mListView;
-            listView.setHighlightNamesWhenScrolling(isNameHighlighingEnabled());
+            listView.setHighlightNamesWhenScrolling(isNameHighlightingEnabled());
         }
 
         return changed;
@@ -796,13 +796,17 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mAdapter.setPinnedPartitionHeadersEnabled(mSearchMode);
         mAdapter.setContactNameDisplayOrder(mDisplayOrder);
         mAdapter.setSortOrder(mSortOrder);
-        mAdapter.setNameHighlightingEnabled(isNameHighlighingEnabled());
+        mAdapter.setNameHighlightingEnabled(isNameHighlightingEnabled());
         mAdapter.setSectionHeaderDisplayEnabled(mSectionHeaderDisplayEnabled);
         mAdapter.setSelectionVisible(mSelectionVisible);
         mAdapter.setDirectoryResultLimit(mDirectoryResultLimit);
     }
 
-    protected boolean isNameHighlighingEnabled() {
+    protected boolean isNameHighlightingEnabled() {
+        if (mAdapter.isNameHighlightingEnabled()) {
+            return true;
+        }
+
         // When sort order and display order contradict each other, we want to
         // highlight the part of the name used for sorting.
         if (mSortOrder == ContactsContract.Preferences.SORT_ORDER_PRIMARY &&
