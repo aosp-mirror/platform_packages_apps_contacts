@@ -676,6 +676,7 @@ public class DialpadFragment extends Fragment
                 return;
             }
             case R.id.searchButton: {
+                mHaptic.vibrate();
                 if (mListener != null) {
                     mListener.onSearchButtonPressed();
                 }
