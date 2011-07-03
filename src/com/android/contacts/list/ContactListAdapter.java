@@ -298,18 +298,6 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         }
     }
 
-    protected void bindQuickContact(
-            final ContactListItemView view, int partitionIndex, Cursor cursor) {
-        long photoId = 0;
-        if (!cursor.isNull(CONTACT_PHOTO_ID_COLUMN_INDEX)) {
-            photoId = cursor.getLong(CONTACT_PHOTO_ID_COLUMN_INDEX);
-        }
-
-        QuickContactBadge quickContact = view.getQuickContact();
-        quickContact.assignContactUri(getContactUri(partitionIndex, cursor));
-        getPhotoLoader().loadPhoto(quickContact, photoId);
-    }
-
     protected void bindName(final ContactListItemView view, Cursor cursor) {
         view.showDisplayName(cursor, mDisplayNameColumnIndex, mAlternativeDisplayNameColumnIndex,
                 isNameHighlightingEnabled(), getContactNameDisplayOrder());

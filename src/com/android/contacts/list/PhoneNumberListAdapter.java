@@ -24,12 +24,14 @@ import android.net.Uri.Builder;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.ContactCounts;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.QuickContactBadge;
 
 /**
  * A cursor adapter for the {@link Phone#CONTENT_TYPE} content type.
@@ -45,8 +47,9 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         Phone.DISPLAY_NAME_PRIMARY,         // 4
         Phone.DISPLAY_NAME_ALTERNATIVE,     // 5
         Phone.CONTACT_ID,                   // 6
-        Phone.PHOTO_ID,                     // 7
-        Phone.PHONETIC_NAME,                // 8
+        Phone.LOOKUP_KEY,                   // 7
+        Phone.PHOTO_ID,                     // 8
+        Phone.PHONETIC_NAME,                // 9
     };
 
     protected static final int PHONE_ID_COLUMN_INDEX = 0;
@@ -56,8 +59,9 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     protected static final int PHONE_PRIMARY_DISPLAY_NAME_COLUMN_INDEX = 4;
     protected static final int PHONE_ALTERNATIVE_DISPLAY_NAME_COLUMN_INDEX = 5;
     protected static final int PHONE_CONTACT_ID_COLUMN_INDEX = 6;
-    protected static final int PHONE_PHOTO_ID_COLUMN_INDEX = 7;
-    protected static final int PHONE_PHONETIC_NAME_COLUMN_INDEX = 8;
+    protected static final int PHONE_LOOKUP_KEY_COLUMN_INDEX = 7;
+    protected static final int PHONE_PHOTO_ID_COLUMN_INDEX = 8;
+    protected static final int PHONE_PHONETIC_NAME_COLUMN_INDEX = 9;
 
     private CharSequence mUnknownNameText;
     private int mDisplayNameColumnIndex;
@@ -202,10 +206,16 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         bindSectionHeaderAndDivider(view, position);
         if (isFirstEntry) {
             bindName(view, cursor);
-            bindPhoto(view, cursor);
+            if (isQuickContactEnabled()) {
+                bindQuickContact(view, partition, cursor,
+                        PHONE_PHOTO_ID_COLUMN_INDEX, PHONE_LOOKUP_KEY_COLUMN_INDEX);
+            } else {
+                bindPhoto(view, cursor);
+            }
         } else {
             unbindName(view);
-            unbindPhoto(view);
+
+            view.removePhotoView(true, false);
         }
         bindPhoneNumber(view, cursor);
         view.setDividerVisible(showBottomDivider);
@@ -253,10 +263,6 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         }
 
         getPhotoLoader().loadPhoto(view.getPhotoView(), photoId);
-    }
-
-    protected void unbindPhoto(final ContactListItemView view) {
-        view.removePhotoView(true, false);
     }
 
     public void setHighlightSearchPrefix(boolean highlight) {

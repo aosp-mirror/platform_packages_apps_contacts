@@ -35,6 +35,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
 import java.util.HashSet;
@@ -616,5 +617,33 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         } else {
             return super.getItemPlacementInSection(position);
         }
+    }
+
+    // TODO: move sharable logic (bindXX() methods) to here with extra arguments
+
+    protected void bindQuickContact(final ContactListItemView view, int partitionIndex,
+            Cursor cursor, int photoIdColumn, int lookUpKeyColumn) {
+        long photoId = 0;
+        if (!cursor.isNull(photoIdColumn)) {
+            photoId = cursor.getLong(photoIdColumn);
+        }
+
+        QuickContactBadge quickContact = view.getQuickContact();
+        quickContact.assignContactUri(
+                getContactUri(partitionIndex, cursor, photoIdColumn, lookUpKeyColumn));
+        getPhotoLoader().loadPhoto(quickContact, photoId);
+    }
+
+    protected Uri getContactUri(int partitionIndex, Cursor cursor,
+            int photoIdColumn, int lookUpKeyColumn) {
+        long contactId = cursor.getLong(photoIdColumn);
+        String lookupKey = cursor.getString(lookUpKeyColumn);
+        Uri uri = Contacts.getLookupUri(contactId, lookupKey);
+        long directoryId = ((DirectoryPartition)getPartition(partitionIndex)).getDirectoryId();
+        if (directoryId != Directory.DEFAULT) {
+            uri = uri.buildUpon().appendQueryParameter(
+                    ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(directoryId)).build();
+        }
+        return uri;
     }
 }

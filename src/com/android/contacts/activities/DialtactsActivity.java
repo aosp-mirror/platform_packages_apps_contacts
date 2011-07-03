@@ -282,6 +282,7 @@ public class DialtactsActivity extends Activity {
         mSearchFragment.setOnPhoneNumberPickerActionListener(
                 mPhoneNumberPickerActionListener);
         mSearchFragment.setHighlightSearchPrefix(true);
+        mSearchFragment.setQuickContactEnabled(true);
 
         final FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.hide(mSearchFragment);
