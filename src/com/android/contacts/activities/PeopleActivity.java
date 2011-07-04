@@ -836,9 +836,6 @@ public class PeopleActivity extends ContactsActivity
 
         @Override
         public void onEditRequested(Uri groupUri) {
-            // TODO: Send off an intent with the groups URI, so we don't need to specify
-            // the editor activity class. Then it would be declared as:
-            // new Intent(Intent.ACTION_EDIT, groupUri), SUBACTIVITY_EDIT_GROUP);
             final Intent intent = new Intent(PeopleActivity.this, GroupEditorActivity.class);
             intent.setData(groupUri);
             intent.setAction(Intent.ACTION_EDIT);

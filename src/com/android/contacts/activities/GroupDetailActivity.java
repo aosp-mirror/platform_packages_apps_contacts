@@ -20,6 +20,7 @@ import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.group.GroupDetailFragment;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -59,7 +60,10 @@ public class GroupDetailActivity extends ContactsActivity {
 
         @Override
         public void onEditRequested(Uri groupUri) {
-            // TODO: Disabling editor activity for phone right now because it's not ready
+            final Intent intent = new Intent(GroupDetailActivity.this, GroupEditorActivity.class);
+            intent.setData(groupUri);
+            intent.setAction(Intent.ACTION_EDIT);
+            startActivity(intent);
         }
     };
 }

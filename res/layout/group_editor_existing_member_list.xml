@@ -14,28 +14,12 @@
      limitations under the License.
 -->
 
-<!-- Account info header for group editor -->
-<LinearLayout
+<!-- List of existing members for the group editor -->
+
+<ListView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:paddingLeft="10dip"
-    android:orientation="horizontal">
-
-    <TextView
-        android:id="@+id/account_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="?android:attr/textColorPrimary"
-        android:singleLine="true"
-        android:layout_gravity="center_vertical" />
-
-    <ImageView
-        android:id="@+id/account_icon"
-        android:layout_width="20dip"
-        android:layout_height="20dip"
-        android:layout_marginLeft="10dip"
-        android:layout_gravity="center_vertical"/>
-
-</LinearLayout>
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/group_editor_padding"
+    android:cacheColorHint="@android:color/transparent"
+    android:divider="@null" />

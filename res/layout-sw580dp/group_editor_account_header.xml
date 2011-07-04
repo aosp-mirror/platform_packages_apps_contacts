@@ -19,7 +19,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:paddingLeft="10dip"
+    android:layout_marginBottom="10dip"
     android:orientation="horizontal">
 
     <TextView
@@ -33,9 +33,21 @@
 
     <ImageView
         android:id="@+id/account_icon"
-        android:layout_width="20dip"
-        android:layout_height="20dip"
-        android:layout_marginLeft="10dip"
-        android:layout_gravity="center_vertical"/>
+        android:layout_width="30dip"
+        android:layout_height="30dip"
+        android:layout_marginLeft="7dip"
+        android:layout_marginRight="7dip"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:id="@+id/account_name"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="?android:attr/textColorPrimary"
+        android:layout_gravity="center_vertical"
+        android:gravity="right"
+        android:singleLine="true" />
 
 </LinearLayout>
