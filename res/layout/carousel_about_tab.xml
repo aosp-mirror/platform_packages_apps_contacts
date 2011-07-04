@@ -50,17 +50,4 @@
         android:textColor="@color/detail_header_view_text_color"
         style="@android:style/Widget.Holo.ActionBar.TabView" />
 
-    <CheckBox
-        android:id="@+id/star"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
-        android:layout_marginRight="10dip"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_gravity="center_vertical"
-        android:contentDescription="@string/description_star"
-        android:visibility="invisible"
-        style="?android:attr/starStyle"/>
-
 </RelativeLayout>

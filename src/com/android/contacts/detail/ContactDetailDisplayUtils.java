@@ -205,6 +205,16 @@ public class ContactDetailDisplayUtils {
     }
 
     /**
+     * Set the social snippet text. If there isn't one, then set the view to gone.
+     */
+    public static void setSocialSnippet(Context context, Result contactData, TextView statusView) {
+        if (statusView == null) {
+            return;
+        }
+        setDataOrHideIfNone(contactData.getSocialSnippet(), statusView);
+    }
+
+    /**
      * Set the social snippet text and date. If there isn't one, then set the view to gone.
      */
     public static void setSocialSnippetAndDate(Context context, Result contactData,

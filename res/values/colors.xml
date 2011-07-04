@@ -54,4 +54,7 @@
 
     <!-- Color of the background of the tabs on the contact detail page -->
     <color name="detail_tab_background">#DBDBDB</color>
+
+    <!-- Color of the text in the updates tab in the tab carousel on the contact detail page -->
+    <color name="detail_update_tab_text_color">#777777</color>
 </resources>

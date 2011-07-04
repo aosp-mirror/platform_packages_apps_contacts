@@ -17,18 +17,14 @@
 package com.android.contacts.detail;
 
 import com.android.contacts.ContactLoader;
-import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.widget.CheckBox;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -44,7 +40,6 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
 
     private ImageView mPhotoView;
     private TextView mStatusView;
-    private TextView mStatusDateView;
 
     private Listener mListener;
 
@@ -189,13 +184,11 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         // Retrieve the photo view for the "about" tab
         mPhotoView = (ImageView) aboutView.findViewById(R.id.photo);
 
-        // Retrieve the social update views for the "updates" tab
+        // Retrieve the social update view for the "updates" tab
         mStatusView = (TextView) updateView.findViewById(R.id.status);
-        mStatusDateView = (TextView) updateView.findViewById(R.id.status_date);
 
         ContactDetailDisplayUtils.setPhoto(mContext, contactData, mPhotoView);
-        ContactDetailDisplayUtils.setSocialSnippetAndDate(mContext, contactData, mStatusView,
-                mStatusDateView);
+        ContactDetailDisplayUtils.setSocialSnippet(mContext, contactData, mStatusView);
     }
 
     /**

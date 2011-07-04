@@ -16,20 +16,43 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/contact_detail_updates_fragment"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView android:id="@+id/emptyText"
+    <!--
+      TODO: Make this a list of social updates instead of just showing one update. Wait
+      until the social integration is done in the provider so that we know the
+      best way to setup the adapter.
+    -->
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/no_contact_details"
-        android:textSize="20sp"
-        android:textColor="?android:attr/textColorSecondary"
-        android:paddingLeft="10dip"
-        android:paddingRight="10dip"
+        android:layout_height="match_parent"
         android:paddingTop="@dimen/detail_tab_carousel_height"
-        android:layout_marginTop="10dip"/>
+        android:background="@color/background_primary">
+
+        <include
+            android:id="@+id/title"
+            layout="@layout/contact_detail_kind_title_entry_view"
+            android:paddingTop="@dimen/detail_item_vertical_margin" />
+
+        <TextView android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/detail_item_vertical_margin"
+            android:paddingLeft="@dimen/detail_item_side_margin"
+            android:paddingRight="@dimen/detail_item_side_margin"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        <TextView android:id="@+id/status_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/detail_item_side_margin"
+            android:paddingRight="@dimen/detail_item_side_margin"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?android:attr/textColorTertiary"/>
+
+    </LinearLayout>
 
     <View
         android:id="@+id/alpha_overlay"
