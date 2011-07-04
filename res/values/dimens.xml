@@ -101,10 +101,10 @@
     <dimen name="detail_fragment_carousel_fragment_width">420dip</dimen>
 
     <!-- Vertical margin of the text within the update tab in the tab carousel -->
-    <dimen name="detail_update_tab_vertical_margin">20dip</dimen>
+    <dimen name="detail_update_tab_vertical_margin">32dip</dimen>
 
     <!-- Left and right padding of the text within the update tab in the tab carousel -->
-    <dimen name="detail_update_tab_side_padding">10dip</dimen>
+    <dimen name="detail_update_tab_side_padding">24dip</dimen>
 
     <!-- Margin around the contact's photo on the contact card -->
     <dimen name="detail_contact_photo_margin">15dip</dimen>

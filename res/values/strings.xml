@@ -1265,6 +1265,9 @@
     <!-- Title for the list of all contact details that come from third-party sources (including a corporate directory) [CHAR LIMIT=20] -->
     <string name="network">Network</string>
 
+    <!-- Section title for the page containing the contact's social updates on the contact card [CHAR LIMIT=20]-->
+    <string name="recent_updates">Recent</string>
+
     <!-- String describing which account type a contact came from when editing it -->
     <string name="account_type_format"><xliff:g id="source" example="Gmail">%1$s</xliff:g> contact</string>
 
