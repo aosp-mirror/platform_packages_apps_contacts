@@ -45,6 +45,12 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
     private static final Drawable TEST_OUTGOING_DRAWABLE = new ColorDrawable(Color.BLUE);
     /** A drawable to be used for missed calls. */
     private static final Drawable TEST_MISSED_DRAWABLE = new ColorDrawable(Color.RED);
+    /** A drawable to be used for voicemails. */
+    private static final Drawable TEST_VOICEMAIL_DRAWABLE = new ColorDrawable(Color.RED);
+    /** A drawable to be used for the call action. */
+    private static final Drawable TEST_CALL_DRAWABLE = new ColorDrawable(Color.RED);
+    /** A drawable to be used for the play action. */
+    private static final Drawable TEST_PLAY_DRAWABLE = new ColorDrawable(Color.RED);
 
     /** The object under test. */
     private CallLogListItemHelper mHelper;
@@ -57,12 +63,13 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
         super.setUp();
         Context context = getContext();
         mHelper = new CallLogListItemHelper(context.getResources(), TEST_VOICEMAIL_NUMBER,
-                TEST_INCOMING_DRAWABLE, TEST_OUTGOING_DRAWABLE, TEST_MISSED_DRAWABLE);
+                TEST_INCOMING_DRAWABLE, TEST_OUTGOING_DRAWABLE, TEST_MISSED_DRAWABLE,
+                TEST_VOICEMAIL_DRAWABLE, TEST_CALL_DRAWABLE, TEST_PLAY_DRAWABLE);
         mViews = new CallLogListItemViews();
         // Only set the views that are needed in the tests.
         mViews.iconView = new ImageView(context);
         mViews.dateView = new TextView(context);
-        mViews.callView = new View(context);
+        mViews.callView = new ImageView(context);
         mViews.line1View = new TextView(context);
         mViews.labelView = new TextView(context);
         mViews.numberView = new TextView(context);

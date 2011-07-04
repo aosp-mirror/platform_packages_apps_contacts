@@ -16,7 +16,7 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:layout_height="?attr/call_log_list_item_height"
 >
 
     <include layout="@layout/call_log_action_call"/>

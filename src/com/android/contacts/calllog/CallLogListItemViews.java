@@ -16,7 +16,6 @@
 
 package com.android.contacts.calllog;
 
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
@@ -40,7 +39,7 @@ public final class CallLogListItemViews {
     /** The icon indicating the type of call. */
     public ImageView iconView;
     /** The icon used to place a call to the contact. Only present for non-group entries. */
-    public View callView;
+    public ImageView callView;
     /** The icon used to expand and collapse an entry. Only present for group entries. */
     public ImageView groupIndicator;
     /**

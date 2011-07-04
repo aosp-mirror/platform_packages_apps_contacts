@@ -64,6 +64,7 @@
         <!-- A list of recent calls -->
         <activity android:name=".activities.CallLogActivity"
             android:label="@string/recentCallsIconLabel"
+            android:theme="@style/DialtactsTheme"
         >
             <intent-filter>
                 <action android:name="com.android.phone.action.RECENT_CALLS" />

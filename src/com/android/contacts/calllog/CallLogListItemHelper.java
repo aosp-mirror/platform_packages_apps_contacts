@@ -43,6 +43,12 @@ import android.view.ViewGroup;
     private final Drawable mDrawableOutgoing;
     /** Icon for missed calls. */
     private final Drawable mDrawableMissed;
+    /** Icon for voicemails. */
+    private final Drawable mDrawableVoicemail;
+    /** Icon for the call action. */
+    private final Drawable mDrawableCall;
+    /** Icon for the play action. */
+    private final Drawable mDrawablePlay;
 
     /**
      * Creates a new helper instance.
@@ -54,12 +60,16 @@ import android.view.ViewGroup;
      * @param drawableMissed the icon drawn besides a missed call entry
      */
     public CallLogListItemHelper(Resources resources, String voicemailNumber,
-            Drawable drawableIncoming, Drawable drawableOutgoing, Drawable drawableMissed) {
+            Drawable drawableIncoming, Drawable drawableOutgoing, Drawable drawableMissed,
+            Drawable drawableVoicemail, Drawable drawableCall, Drawable drawablePlay) {
         mResources = resources;
         mVoiceMailNumber = voicemailNumber;
         mDrawableIncoming = drawableIncoming;
         mDrawableOutgoing = drawableOutgoing;
         mDrawableMissed = drawableMissed;
+        mDrawableVoicemail = drawableVoicemail;
+        mDrawableCall = drawableCall;
+        mDrawablePlay = drawablePlay;
     }
 
     /**
@@ -178,20 +188,48 @@ import android.view.ViewGroup;
      */
     public void setCallType(final CallLogListItemViews views, int type) {
         if (views.iconView != null) {
-            // Set the icon
+            // Set the call type icon.
+            Drawable drawable = null;
             switch (type) {
                 case Calls.INCOMING_TYPE:
-                    views.iconView.setImageDrawable(mDrawableIncoming);
+                    drawable = mDrawableIncoming;
                     break;
 
                 case Calls.OUTGOING_TYPE:
-                    views.iconView.setImageDrawable(mDrawableOutgoing);
+                    drawable = mDrawableOutgoing;
                     break;
 
                 case Calls.MISSED_TYPE:
-                    views.iconView.setImageDrawable(mDrawableMissed);
+                    drawable = mDrawableMissed;
                     break;
+
+                case Calls.VOICEMAIL_TYPE:
+                    drawable = mDrawableVoicemail;
+                    break;
+
+                default:
+                    throw new IllegalArgumentException("invalid call type: " + type);
             }
+            views.iconView.setImageDrawable(drawable);
+        }
+        if (views.callView != null) {
+            // Set the action icon.
+            Drawable drawable = null;
+            switch (type) {
+                case Calls.INCOMING_TYPE:
+                case Calls.OUTGOING_TYPE:
+                case Calls.MISSED_TYPE:
+                    drawable = mDrawableCall;
+                    break;
+
+                case Calls.VOICEMAIL_TYPE:
+                    drawable = mDrawablePlay;
+                    break;
+
+                default:
+                    throw new IllegalArgumentException("invalid call type: " + type);
+            }
+            views.callView.setImageDrawable(drawable);
         }
     }
 }

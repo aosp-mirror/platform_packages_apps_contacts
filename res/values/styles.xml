@@ -36,6 +36,10 @@
         <item name="list_item_header_text_color">?color/section_header_text_color</item>
         <item name="list_item_header_text_size">14sp</item>
         <item name="contact_filter_popup_width">320dip</item>
+        <!-- CallLogActivity -->
+        <item name="call_log_contact_photo_size">50dip</item>
+        <item name="call_log_contact_photo_margin">5dip</item>
+        <item name="call_log_list_item_height">60dip</item>
     </style>
 
     <style name="CallDetailActivityTheme" parent="android:Theme.Holo.Light">
@@ -54,6 +58,7 @@
         <item name="call_detail_action_icon_size">50dip</item>
         <item name="call_detail_secondary_background_color">#FFFFFF</item>
     </style>
+
     <style name="ContactDetailActivityTheme" parent="android:Theme.Holo.Light">
         <item name="android:windowContentOverlay">@null</item>
     </style>
@@ -136,6 +141,12 @@
         <attr name="call_detail_primary_text_color" format="color" />
         <attr name="call_detail_primary_background_color" format="color" />
         <attr name="call_detail_secondary_background_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="CallLogActivity">
+        <attr name="call_log_contact_photo_size" format="dimension" />
+        <attr name="call_log_contact_photo_margin" format="dimension" />
+        <attr name="call_log_list_item_height" format="dimension" />
     </declare-styleable>
 
     <style name="PeopleTheme" parent="android:Theme.Holo.Light">

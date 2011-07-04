@@ -2,9 +2,10 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
     <QuickContactBadge
         android:id="@+id/contact_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_width="?attr/call_log_contact_photo_size"
+        android:layout_height="?attr/call_log_contact_photo_size"
+        android:layout_margin="?attr/call_log_contact_photo_margin"
         android:layout_alignParentLeft="true"
+        android:layout_gravity="center_vertical"
     />
 </merge>

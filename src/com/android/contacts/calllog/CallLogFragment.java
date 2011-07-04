@@ -250,10 +250,17 @@ public class CallLogFragment extends ListFragment
                     R.drawable.ic_call_log_list_outgoing_call);
             Drawable drawableMissed = getResources().getDrawable(
                     R.drawable.ic_call_log_list_missed_call);
+            Drawable drawableVoicemail = getResources().getDrawable(
+                    R.drawable.ic_call_log_list_voicemail);
+            Drawable drawableCall = getResources().getDrawable(
+                    R.drawable.ic_call_log_list_action_call);
+            Drawable drawablePlay = getResources().getDrawable(
+                    R.drawable.ic_call_log_list_action_play);
 
             mContactPhotoManager = ContactPhotoManager.getInstance(getActivity());
             mCallLogViewsHelper = new CallLogListItemHelper(getResources(), mVoiceMailNumber,
-                    drawableIncoming, drawableOutgoing, drawableMissed);
+                    drawableIncoming, drawableOutgoing, drawableMissed, drawableVoicemail,
+                    drawableCall, drawablePlay);
         }
 
         /**
@@ -629,7 +636,7 @@ public class CallLogFragment extends ListFragment
             views.numberView = (TextView) view.findViewById(R.id.number);
             views.dateView = (TextView) view.findViewById(R.id.date);
             views.iconView = (ImageView) view.findViewById(R.id.call_type_icon);
-            views.callView = view.findViewById(R.id.call_icon);
+            views.callView = (ImageView) view.findViewById(R.id.call_icon);
             if (views.callView != null) {
                 views.callView.setOnClickListener(this);
             }

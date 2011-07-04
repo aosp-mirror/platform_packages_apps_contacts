@@ -82,7 +82,7 @@
                 android:layout_height="?attr/call_detail_action_icon_size"
                 android:layout_alignParentRight="true"
                 android:gravity="center_vertical"
-                android:src="@android:drawable/sym_action_call"
+                android:src="@drawable/ic_call_log_list_action_call"
                 android:scaleType="center"
             />
             <View
