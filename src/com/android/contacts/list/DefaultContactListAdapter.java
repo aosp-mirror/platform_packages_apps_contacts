@@ -225,7 +225,8 @@ public class DefaultContactListAdapter extends ContactListAdapter {
 
         if (isQuickContactEnabled()) {
             bindQuickContact(view, partition, cursor,
-                    CONTACT_PHOTO_ID_COLUMN_INDEX, CONTACT_LOOKUP_KEY_COLUMN_INDEX);
+                    CONTACT_PHOTO_ID_COLUMN_INDEX, CONTACT_ID_COLUMN_INDEX,
+                    CONTACT_LOOKUP_KEY_COLUMN_INDEX);
         } else {
             bindPhoto(view, partition, cursor);
         }

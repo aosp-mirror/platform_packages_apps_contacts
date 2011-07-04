@@ -24,14 +24,12 @@ import android.net.Uri.Builder;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.ContactCounts;
-import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.QuickContactBadge;
 
 /**
  * A cursor adapter for the {@link Phone#CONTENT_TYPE} content type.
@@ -208,7 +206,8 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             bindName(view, cursor);
             if (isQuickContactEnabled()) {
                 bindQuickContact(view, partition, cursor,
-                        PHONE_PHOTO_ID_COLUMN_INDEX, PHONE_LOOKUP_KEY_COLUMN_INDEX);
+                        PHONE_PHOTO_ID_COLUMN_INDEX, PHONE_CONTACT_ID_COLUMN_INDEX,
+                        PHONE_LOOKUP_KEY_COLUMN_INDEX);
             } else {
                 bindPhoto(view, cursor);
             }
