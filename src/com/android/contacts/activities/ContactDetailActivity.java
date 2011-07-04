@@ -150,7 +150,7 @@ public class ContactDetailActivity extends ContactsActivity {
             mDetailFragment = (ContactDetailFragment) fragment;
             mDetailFragment.setListener(mFragmentListener);
             mDetailFragment.setVerticalScrollListener(mVerticalScrollListener);
-            mDetailFragment.setData(mContactData);
+            mDetailFragment.setData(mLookupUri, mContactData);
             // If the contact has social updates, then the photo should be shown in the tab
             // carousel, so don't show the photo again in the scrolling list of contact details.
             // We also don't want to show the photo if there is a fragment carousel because then
@@ -158,7 +158,7 @@ public class ContactDetailActivity extends ContactsActivity {
             mDetailFragment.setShowPhotoInHeader(!mContactHasUpdates && mFragmentCarousel == null);
         } else if (fragment instanceof ContactDetailUpdatesFragment) {
             mUpdatesFragment = (ContactDetailUpdatesFragment) fragment;
-            mUpdatesFragment.setData(mContactData);
+            mUpdatesFragment.setData(mLookupUri, mContactData);
         } else if (fragment instanceof ContactLoaderFragment) {
             mLoaderFragment = (ContactLoaderFragment) fragment;
             mLoaderFragment.setListener(mLoaderFragmentListener);

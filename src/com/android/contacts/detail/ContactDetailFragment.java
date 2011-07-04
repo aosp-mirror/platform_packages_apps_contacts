@@ -375,7 +375,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         mContactPhotoDisplayedInHeader = showPhoto;
     }
 
-    public void setData(ContactLoader.Result result) {
+    public void setData(Uri lookupUri, ContactLoader.Result result) {
+        mLookupUri = lookupUri;
         mContactData = result;
         bindData();
     }

@@ -21,6 +21,7 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
 
 import android.app.Fragment;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,7 @@ public class ContactDetailUpdatesFragment extends Fragment
     private static final String TAG = "ContactDetailUpdatesFragment";
 
     private ContactLoader.Result mContactData;
+    private Uri mLookupUri;
 
     /**
      * This optional view adds an alpha layer over the entire fragment.
@@ -60,7 +62,8 @@ public class ContactDetailUpdatesFragment extends Fragment
         return rootView;
     }
 
-    public void setData(ContactLoader.Result result) {
+    public void setData(Uri lookupUri, ContactLoader.Result result) {
+        mLookupUri = lookupUri;
         mContactData = result;
         // TODO: Load up the "recent updates" section based on the result
     }
