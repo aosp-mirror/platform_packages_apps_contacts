@@ -66,6 +66,7 @@ import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
 import java.lang.ref.WeakReference;
@@ -116,7 +117,8 @@ public class CallLogFragment extends ListFragment
                 PhoneLookup.LABEL,
                 PhoneLookup.NUMBER,
                 PhoneLookup.NORMALIZED_NUMBER,
-                PhoneLookup.PHOTO_ID};
+                PhoneLookup.PHOTO_ID,
+                PhoneLookup.LOOKUP_KEY};
 
         public static final int PERSON_ID = 0;
         public static final int NAME = 1;
@@ -125,6 +127,7 @@ public class CallLogFragment extends ListFragment
         public static final int MATCHED_NUMBER = 4;
         public static final int NORMALIZED_NUMBER = 5;
         public static final int PHOTO_ID = 6;
+        public static final int LOOKUP_KEY = 7;
     }
 
     private static final class MenuItems {
@@ -155,6 +158,7 @@ public class CallLogFragment extends ListFragment
         public String formattedNumber;
         public String normalizedNumber;
         public long photoId;
+        public String lookupKey;
 
         public static ContactInfo EMPTY = new ContactInfo();
     }
@@ -166,6 +170,7 @@ public class CallLogFragment extends ListFragment
         public int numberType;
         public String numberLabel;
         public long photoId;
+        public String lookupKey;
     }
 
     /** Adapter class to fill in data for the Call Log */
@@ -308,7 +313,8 @@ public class CallLogFragment extends ListFragment
             if (TextUtils.equals(ciq.name, ci.name)
                     && TextUtils.equals(ciq.numberLabel, ci.label)
                     && ciq.numberType == ci.type
-                    && ciq.photoId == ci.photoId) {
+                    && ciq.photoId == ci.photoId
+                    && ciq.lookupKey == ci.lookupKey) {
                 return;
             }
             ContentValues values = new ContentValues(3);
@@ -329,7 +335,7 @@ public class CallLogFragment extends ListFragment
         }
 
         private void enqueueRequest(String number, int position,
-                String name, int numberType, String numberLabel, long photoId) {
+                String name, int numberType, String numberLabel, long photoId, String lookupKey) {
             CallerInfoQuery ciq = new CallerInfoQuery();
             ciq.number = number;
             ciq.position = position;
@@ -337,6 +343,7 @@ public class CallLogFragment extends ListFragment
             ciq.numberType = numberType;
             ciq.numberLabel = numberLabel;
             ciq.photoId = photoId;
+            ciq.lookupKey = lookupKey;
             synchronized (mRequests) {
                 mRequests.add(ciq);
                 mRequests.notifyAll();
@@ -414,6 +421,8 @@ public class CallLogFragment extends ListFragment
                             info.normalizedNumber = null;  // meaningless for SIP addresses
                             info.photoId = dataTableCursor.getLong(
                                     dataTableCursor.getColumnIndex(Data.PHOTO_ID));
+                            info.lookupKey = dataTableCursor.getString(
+                                    dataTableCursor.getColumnIndex(Data.LOOKUP_KEY));
 
                             infoUpdated = true;
                         }
@@ -439,6 +448,7 @@ public class CallLogFragment extends ListFragment
                             info.normalizedNumber = phonesCursor
                                     .getString(PhoneQuery.NORMALIZED_NUMBER);
                             info.photoId = phonesCursor.getLong(PhoneQuery.PHOTO_ID);
+                            info.lookupKey = phonesCursor.getString(PhoneQuery.LOOKUP_KEY);
 
                             infoUpdated = true;
                         }
@@ -625,7 +635,7 @@ public class CallLogFragment extends ListFragment
             }
             views.groupIndicator = (ImageView) view.findViewById(R.id.groupIndicator);
             views.groupSize = (TextView) view.findViewById(R.id.groupSize);
-            views.photoView = (ImageView) view.findViewById(R.id.contact_photo);
+            views.photoView = (QuickContactBadge) view.findViewById(R.id.contact_photo);
             view.setTag(views);
         }
 
@@ -654,7 +664,7 @@ public class CallLogFragment extends ListFragment
                 mContactInfoCache.put(number, info);
                 Log.d(TAG, "Contact info missing: " + number);
                 enqueueRequest(number, c.getPosition(),
-                        callerName, callerNumberType, callerNumberLabel, 0L);
+                        callerName, callerNumberType, callerNumberLabel, 0L, "");
             } else if (info != ContactInfo.EMPTY) { // Has been queried
                 // Check if any data is different from the data cached in the
                 // calls db. If so, queue the request so that we can update
@@ -665,7 +675,8 @@ public class CallLogFragment extends ListFragment
                     // Something is amiss, so sync up.
                     Log.w(TAG, "Contact info inconsistent: " + number);
                     enqueueRequest(number, c.getPosition(),
-                            callerName, callerNumberType, callerNumberLabel, info.photoId);
+                            callerName, callerNumberType, callerNumberLabel, info.photoId,
+                            info.lookupKey);
                 } else if (cachedInfo.isExpired()) {
                     Log.d(TAG, "Contact info expired: " + number);
                     // Put it back in the cache, therefore marking it as not expired, so that other
@@ -673,7 +684,7 @@ public class CallLogFragment extends ListFragment
                     mContactInfoCache.put(number, info);
                     // The contact info is no longer up to date, we should request it.
                     enqueueRequest(number, c.getPosition(), info.name, info.type, info.label,
-                            info.photoId);
+                            info.photoId, info.lookupKey);
                 }
 
                 // Format and cache phone number for found contact
@@ -684,10 +695,12 @@ public class CallLogFragment extends ListFragment
                 formattedNumber = info.formattedNumber;
             }
 
+            long contactId = info.personId;
             String name = info.name;
             int ntype = info.type;
             String label = info.label;
             long photoId = info.photoId;
+            String lookupKey = info.lookupKey;
             // If there's no name cached in our hashmap, but there's one in the
             // calls db, use the one in the calls db. Otherwise the name in our
             // hashmap is more recent, so it has precedence.
@@ -719,7 +732,7 @@ public class CallLogFragment extends ListFragment
                     System.currentTimeMillis());
             mCallLogViewsHelper.setCallType(views, c.getInt(CallLogQuery.CALL_TYPE));
             if (views.photoView != null) {
-                mContactPhotoManager.loadPhoto(views.photoView, photoId);
+                bindQuickContact(views.photoView, photoId, contactId, lookupKey);
             }
 
 
@@ -729,6 +742,16 @@ public class CallLogFragment extends ListFragment
                 mPreDrawListener = this;
                 view.getViewTreeObserver().addOnPreDrawListener(this);
             }
+        }
+
+        private void bindQuickContact(QuickContactBadge view, long photoId, long contactId,
+                String lookupKey) {
+            view.assignContactUri(getContactUri(contactId, lookupKey));
+            mContactPhotoManager.loadPhoto(view, photoId);
+        }
+
+        private Uri getContactUri(long contactId, String lookupKey) {
+            return Contacts.getLookupUri(contactId, lookupKey);
         }
     }
 

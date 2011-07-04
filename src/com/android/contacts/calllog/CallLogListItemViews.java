@@ -18,6 +18,7 @@ package com.android.contacts.calllog;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
 /**
@@ -47,6 +48,6 @@ public final class CallLogListItemViews {
      * entries.
      */
     public TextView groupSize;
-    /** The contact photo for the contact. Only present for group and stand alone entries. */
-    public ImageView photoView;
+    /** The quick contact badge for the contact. Only present for group and stand alone entries. */
+    public QuickContactBadge photoView;
 }
