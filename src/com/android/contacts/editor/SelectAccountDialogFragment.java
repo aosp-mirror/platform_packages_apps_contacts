@@ -37,7 +37,13 @@ import android.os.Bundle;
 public class SelectAccountDialogFragment extends DialogFragment {
     public static final String TAG = "SelectAccountDialogFragment";
 
+    private int mTitleResourceId = R.string.dialog_new_contact_account;
+
     public SelectAccountDialogFragment() {
+    }
+
+    public SelectAccountDialogFragment(int titleResourceId) {
+        mTitleResourceId = titleResourceId;
     }
 
     @Override
@@ -57,7 +63,7 @@ public class SelectAccountDialogFragment extends DialogFragment {
             }
         };
 
-        builder.setTitle(R.string.dialog_new_contact_account);
+        builder.setTitle(mTitleResourceId);
         builder.setSingleChoiceItems(accountAdapter, 0, clickListener);
         final AlertDialog result = builder.create();
         return result;

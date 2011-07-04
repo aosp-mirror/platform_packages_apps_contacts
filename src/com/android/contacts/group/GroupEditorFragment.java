@@ -24,6 +24,7 @@ import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.activities.GroupEditorActivity;
 import com.android.contacts.editor.ContactEditorFragment.SaveMode;
+import com.android.contacts.editor.SelectAccountDialogFragment;
 import com.android.contacts.group.SuggestedMemberListAdapter.SuggestedMember;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
@@ -54,6 +55,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
+import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 import android.util.Log;
@@ -79,7 +81,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // TODO: Use savedInstanceState
-public class GroupEditorFragment extends Fragment {
+public class GroupEditorFragment extends Fragment implements SelectAccountDialogFragment.Listener {
 
     private static final String TAG = "GroupEditorFragment";
 
@@ -162,6 +164,7 @@ public class GroupEditorFragment extends Fragment {
 
     private Context mContext;
     private String mAction;
+    private Bundle mIntentExtras;
     private Uri mGroupUri;
     private long mGroupId;
     private Listener mListener;
@@ -239,12 +242,27 @@ public class GroupEditorFragment extends Fragment {
             if (mListener != null) {
                 mListener.onTitleLoaded(R.string.editGroup_title_insert);
             }
-            setupAccountSwitcher();
+
+            final Account account = mIntentExtras == null ? null :
+                    (Account) mIntentExtras.getParcelable(Intents.Insert.ACCOUNT);
+
+            if (account != null) {
+                // Account specified in Intent
+                mAccountName = account.name;
+                mAccountType = account.type;
+                setupAccountHeader();
+            } else {
+                // No Account specified. Let the user choose from a disambiguation dialog.
+                selectAccountAndCreateGroup();
+            }
+
             mStatus = Status.EDITING;
+
             // The user wants to create a new group, temporarily hide the "add members" text view
             // TODO: Need to allow users to add members if it's a new group. Under the current
             // approach, we can't add members because it needs a group ID in order to save,
             // and we don't have a group ID for a new group until the whole group is saved.
+            // Take this out when batch add/remove members is working.
             mAutoCompleteTextView.setVisibility(View.GONE);
         } else {
             throw new IllegalArgumentException("Unknown Action String " + mAction +
@@ -259,41 +277,50 @@ public class GroupEditorFragment extends Fragment {
         }
     }
 
-    /**
-     * Sets up the account header for a new group by taking the first account.
-     */
-    private void setupAccountSwitcher() {
-        // TODO: Allow switching between valid accounts
-        final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(mContext);
-        final ArrayList<Account> accountsList = accountTypeManager.getAccounts(true);
-        if (accountsList.isEmpty()) {
-            return;
+    private void selectAccountAndCreateGroup() {
+        final ArrayList<Account> accounts =
+                AccountTypeManager.getInstance(mContext).getAccounts(true /* writeable */);
+        // No Accounts available
+        if (accounts.isEmpty()) {
+            throw new IllegalStateException("No accounts were found.");
         }
-        Account account = accountsList.get(0);
 
-        // Store account info for later
+        // In the common case of a single account being writable, auto-select
+        // it without showing a dialog.
+        if (accounts.size() == 1) {
+            mAccountName = accounts.get(0).name;
+            mAccountType = accounts.get(0).type;
+            setupAccountHeader();
+            return;  // Don't show a dialog.
+        }
+
+        final SelectAccountDialogFragment dialog = new SelectAccountDialogFragment(
+                R.string.dialog_new_group_account);
+        dialog.setTargetFragment(this, 0);
+        dialog.show(getFragmentManager(), SelectAccountDialogFragment.TAG);
+    }
+
+    @Override
+    public void onAccountChosen(int requestCode, Account account) {
         mAccountName = account.name;
         mAccountType = account.type;
+        setupAccountHeader();
+    }
 
-        // Display account name
-        if (!TextUtils.isEmpty(mAccountName)) {
-            mAccountNameTextView.setText(
-                    mContext.getString(R.string.from_account_format, mAccountName));
+    @Override
+    public void onAccountSelectorCancelled() {
+        if (mListener != null) {
+            // Exit the fragment because we cannot continue without selecting an account
+            mListener.onGroupNotFound();
         }
-        // Display account type
-        final AccountType type = accountTypeManager.getAccountType(mAccountType);
-        mAccountTypeTextView.setText(type.getDisplayLabel(mContext));
-
-        // Display account icon
-        mAccountIcon.setImageDrawable(type.getDisplayIcon(mContext));
     }
 
     /**
-     * Sets up the account header for an existing group.
+     * Sets up the account header.
      */
     private void setupAccountHeader() {
-        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
-        final AccountType accountType = accountTypes.getAccountType(mAccountType);
+        final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(mContext);
+        final AccountType accountType = accountTypeManager.getAccountType(mAccountType);
         CharSequence accountTypeDisplayLabel = accountType.getDisplayLabel(mContext);
         if (!TextUtils.isEmpty(mAccountName)) {
             mAccountNameTextView.setText(
@@ -303,10 +330,11 @@ public class GroupEditorFragment extends Fragment {
         mAccountIcon.setImageDrawable(accountType.getDisplayIcon(mContext));
     }
 
-    public void load(String action, Uri groupUri) {
+    public void load(String action, Uri groupUri, Bundle intentExtras) {
         mAction = action;
         mGroupUri = groupUri;
         mGroupId = (groupUri != null) ? ContentUris.parseId(mGroupUri) : 0;
+        mIntentExtras = intentExtras;
     }
 
     private void bindGroupMetaData(Cursor cursor) {

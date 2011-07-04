@@ -44,8 +44,10 @@ import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.list.ProviderStatusLoader;
 import com.android.contacts.list.ProviderStatusLoader.ProviderStatusListener;
 import com.android.contacts.list.StrequentContactListFragment;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.util.AccountSelectionUtil;
+import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.widget.ContextMenuAdapter;
 
@@ -65,6 +67,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.ProviderStatus;
 import android.provider.Settings;
 import android.util.Log;
@@ -73,7 +76,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListPopupWindow;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -146,6 +153,8 @@ public class PeopleActivity extends ContactsActivity
     private View mFavoritesView;
     private View mBrowserView;
     private View mDetailsView;
+
+    private View mAddGroupImageView;
 
     private enum TabState {
         FAVORITES, CONTACTS, GROUPS
@@ -888,6 +897,23 @@ public class PeopleActivity extends ContactsActivity
                 mActionBarAdapter.setSearchView(searchView);
             }
         }
+
+        // On narrow screens we specify a NEW group button in the {@link ActionBar}, so that
+        // it can be in the overflow menu. On wide screens, we use a custom view because we need
+        // its location for anchoring the account-selector popup.
+        final MenuItem addGroup = menu.findItem(R.id.menu_custom_add_group);
+        if (addGroup != null) {
+            mAddGroupImageView = getLayoutInflater().inflate(
+                    R.layout.add_group_menu_item, null, false);
+            View item = mAddGroupImageView.findViewById(R.id.menu_item);
+            item.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    createNewGroupWithAccountDisambiguation();
+                }
+            });
+            addGroup.setActionView(mAddGroupImageView);
+        }
         return true;
     }
 
@@ -924,9 +950,12 @@ public class PeopleActivity extends ContactsActivity
             return false;
         }
 
-        final MenuItem addContactMenu = menu.findItem(R.id.menu_add_contact);
-        final MenuItem addGroupMenu = menu.findItem(R.id.menu_add_group);
         final MenuItem searchMenu = menu.findItem(R.id.menu_search);
+        final MenuItem addContactMenu = menu.findItem(R.id.menu_add_contact);
+        MenuItem addGroupMenu = menu.findItem(R.id.menu_add_group);
+        if (addGroupMenu == null) {
+            addGroupMenu = menu.findItem(R.id.menu_custom_add_group);
+        }
 
         if (mActionBarAdapter.isSearchMode()) {
             addContactMenu.setVisible(false);
@@ -983,12 +1012,7 @@ public class PeopleActivity extends ContactsActivity
                 return true;
             }
             case R.id.menu_add_group: {
-                // TODO: Send off an intent with the groups URI, so we don't need to specify
-                // the editor activity class. Then it would be declared as:
-                // new Intent(Intent.ACTION_INSERT, Groups.CONTENT_URI)
-                final Intent intent = new Intent(this, GroupEditorActivity.class);
-                intent.setAction(Intent.ACTION_INSERT);
-                startActivityForResult(intent, SUBACTIVITY_NEW_GROUP);
+                createNewGroupWithAccountDisambiguation();
                 return true;
             }
             case R.id.menu_import_export: {
@@ -1006,6 +1030,39 @@ public class PeopleActivity extends ContactsActivity
             }
         }
         return false;
+    }
+
+    private void createNewGroupWithAccountDisambiguation() {
+        final ArrayList<Account> accounts =
+                AccountTypeManager.getInstance(this).getAccounts(true);
+        if (accounts.size() <= 1 || mAddGroupImageView == null) {
+            // No account to choose or no control to anchor the popup-menu to
+            // ==> just go straight to the editor which will disambig if necessary
+            final Intent intent = new Intent(this, GroupEditorActivity.class);
+            intent.setAction(Intent.ACTION_INSERT);
+            startActivityForResult(intent, SUBACTIVITY_NEW_GROUP);
+            return;
+        }
+
+        final ListPopupWindow popup = new ListPopupWindow(this, null);
+        popup.setWidth(getResources().getDimensionPixelSize(R.dimen.account_selector_popup_width));
+        popup.setAnchorView(mAddGroupImageView);
+        // Create a list adapter with all writeable accounts (assume that the writeable accounts all
+        // allow group creation).
+        final AccountsListAdapter adapter = new AccountsListAdapter(this, true);
+        popup.setAdapter(adapter);
+        popup.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                popup.dismiss();
+                final Intent intent = new Intent(PeopleActivity.this, GroupEditorActivity.class);
+                intent.setAction(Intent.ACTION_INSERT);
+                intent.putExtra(Intents.Insert.ACCOUNT, adapter.getItem(position));
+                startActivityForResult(intent, SUBACTIVITY_NEW_GROUP);
+            }
+        });
+        popup.setModal(true);
+        popup.show();
     }
 
     @Override

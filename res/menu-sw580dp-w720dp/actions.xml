@@ -26,9 +26,9 @@
         android:showAsAction="withText|always" />
 
     <item
-        android:id="@+id/menu_add_group"
+        android:id="@+id/menu_custom_add_group"
         android:icon="@drawable/ic_menu_display_all_holo_light"
-        android:title="@string/menu_new_contact_action_bar"
+        android:title="@string/menu_new_group_action_bar"
         android:showAsAction="withText|always" />
 
     <item

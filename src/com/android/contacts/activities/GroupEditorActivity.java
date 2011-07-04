@@ -68,7 +68,7 @@ public class GroupEditorActivity extends ContactsActivity
         mFragment.setListener(mFragmentListener);
         mFragment.setContentResolver(getContentResolver());
         Uri uri = Intent.ACTION_EDIT.equals(action) ? getIntent().getData() : null;
-        mFragment.load(action, uri);
+        mFragment.load(action, uri, getIntent().getExtras());
     }
 
     @Override

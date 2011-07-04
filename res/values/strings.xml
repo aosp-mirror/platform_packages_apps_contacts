@@ -144,6 +144,9 @@
     <!-- Menu item (in the action bar) that creates a new contacts [CHAR LIMIT=12] -->
     <string name="menu_new_contact_action_bar">New</string>
 
+    <!-- Menu item (in the action bar) that creates a new group [CHAR LIMIT=12] -->
+    <string name="menu_new_group_action_bar">New</string>
+
     <!-- Title of the confirmation dialog for separating contacts into multiple instances  -->
     <string name="splitConfirmation_title">Separate Contact</string>
 
@@ -1070,6 +1073,9 @@
     <string name="type_short_other">O</string>
 
     <string name="dialog_new_contact_account">Create contact under account</string>
+
+    <!-- Title for the disambiguation dialog that requests the user choose an account for the new group to be created under [CHAR LIMIT=NONE] -->
+    <string name="dialog_new_group_account">Create group under account</string>
 
     <string name="menu_sync_remove">Remove sync group</string>
     <string name="dialog_sync_add">Add sync group</string>
