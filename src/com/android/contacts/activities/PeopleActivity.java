@@ -16,10 +16,16 @@
 
 package com.android.contacts.activities;
 
+import com.android.contacts.ContactLoader;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.detail.ContactDetailFragment;
+import com.android.contacts.detail.ContactDetailLayoutController;
+import com.android.contacts.detail.ContactDetailTabCarousel;
+import com.android.contacts.detail.ContactDetailUpdatesFragment;
+import com.android.contacts.detail.ContactLoaderFragment;
+import com.android.contacts.detail.ContactLoaderFragment.ContactLoaderFragmentListener;
 import com.android.contacts.group.GroupBrowseListFragment;
 import com.android.contacts.group.GroupBrowseListFragment.OnGroupBrowserActionListener;
 import com.android.contacts.group.GroupDetailFragment;
@@ -64,11 +70,13 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.ProviderStatus;
 import android.provider.Settings;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -122,12 +130,17 @@ public class PeopleActivity extends ContactsActivity
     private boolean mContentPaneDisplayed;
 
     private ContactDetailFragment mContactDetailFragment;
+    private ContactDetailUpdatesFragment mContactDetailUpdatesFragment;
     private final ContactDetailFragmentListener mContactDetailFragmentListener =
             new ContactDetailFragmentListener();
-    private final GroupDetailFragmentListener mGroupDetailFragmentListener =
-            new GroupDetailFragmentListener();
+
+    private ContactLoaderFragment mContactDetailLoaderFragment;
+    private final ContactDetailLoaderFragmentListener mContactDetailLoaderFragmentListener =
+            new ContactDetailLoaderFragmentListener();
 
     private GroupDetailFragment mGroupDetailFragment;
+    private final GroupDetailFragmentListener mGroupDetailFragmentListener =
+            new GroupDetailFragmentListener();
 
     private StrequentContactListFragment.Listener mFavoritesFragmentListener =
             new StrequentContactListFragmentListener();
@@ -152,6 +165,10 @@ public class PeopleActivity extends ContactsActivity
     private View mDetailsView;
 
     private View mAddGroupImageView;
+
+    private ContactDetailLayoutController mContactDetailLayoutController;
+
+    private Handler mHandler = new Handler();
 
     private enum TabState {
         FAVORITES, CONTACTS, GROUPS
@@ -188,11 +205,17 @@ public class PeopleActivity extends ContactsActivity
             mContactDetailFragment = (ContactDetailFragment) fragment;
             mContactDetailFragment.setListener(mContactDetailFragmentListener);
             mContentPaneDisplayed = true;
+        } else if (fragment instanceof ContactDetailUpdatesFragment) {
+            mContactDetailUpdatesFragment = (ContactDetailUpdatesFragment) fragment;
         } else if (fragment instanceof ContactsUnavailableFragment) {
             mContactsUnavailableFragment = (ContactsUnavailableFragment)fragment;
             mContactsUnavailableFragment.setProviderStatusLoader(mProviderStatusLoader);
             mContactsUnavailableFragment.setOnContactsUnavailableActionListener(
                     new ContactsUnavailableFragmentListener());
+        } else if (fragment instanceof ContactLoaderFragment) {
+            mContactDetailLoaderFragment = (ContactLoaderFragment) fragment;
+            mContactDetailLoaderFragment.setListener(mContactDetailLoaderFragmentListener);
+            mContentPaneDisplayed = true;
         } else if (fragment instanceof GroupDetailFragment) {
             mGroupDetailFragment = (GroupDetailFragment) fragment;
             mGroupDetailFragment.setListener(mGroupDetailFragmentListener);
@@ -283,6 +306,13 @@ public class PeopleActivity extends ContactsActivity
         mActionBarAdapter.onCreate(savedState, mRequest, getActionBar(), !mContentPaneDisplayed);
         mActionBarAdapter.setContactListFilterController(mContactListFilterController);
 
+        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        ContactDetailTabCarousel tabCarousel = (ContactDetailTabCarousel)
+                findViewById(R.id.tab_carousel);
+        mContactDetailLayoutController = new ContactDetailLayoutController(
+                getFragmentManager(), viewPager, tabCarousel,
+                mContactDetailFragmentListener);
+
         if (createContentView) {
             actionBar.removeAllTabs();
             Tab favoritesTab = actionBar.newTab();
@@ -294,7 +324,7 @@ public class PeopleActivity extends ContactsActivity
             Tab peopleTab = actionBar.newTab();
             peopleTab.setText(getString(R.string.people));
             peopleTab.setTabListener(new TabChangeListener(mContactsFragment,
-                    mContactDetailFragment, TabState.CONTACTS));
+                    mContactDetailLoaderFragment, TabState.CONTACTS));
             actionBar.addTab(peopleTab);
 
             Tab groupsTab = actionBar.newTab();
@@ -487,7 +517,7 @@ public class PeopleActivity extends ContactsActivity
     }
 
     private void setupContactDetailFragment(final Uri contactLookupUri) {
-        mContactDetailFragment.loadUri(contactLookupUri);
+        mContactDetailLoaderFragment.loadUri(contactLookupUri);
         invalidateOptionsMenuIfNeeded();
     }
 
@@ -726,10 +756,33 @@ public class PeopleActivity extends ContactsActivity
         }
     }
 
-    private class ContactDetailFragmentListener implements ContactDetailFragment.Listener {
+    private class ContactDetailLoaderFragmentListener implements ContactLoaderFragmentListener {
         @Override
         public void onContactNotFound() {
             // Nothing needs to be done here
+        }
+
+        @Override
+        public void onDetailsLoaded(final ContactLoader.Result result) {
+            if (result == null) {
+                return;
+            }
+            // Since {@link FragmentTransaction}s cannot be done in the onLoadFinished() of the
+            // {@link LoaderCallbacks}, then post this {@link Runnable} to the {@link Handler}
+            // on the main thread to execute later.
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (!mContactDetailLayoutController.isInitialized()) {
+                        mContactDetailLayoutController.setContactDetailFragment(
+                                mContactDetailFragment);
+                        mContactDetailLayoutController.setContactDetailUpdatesFragment(
+                                mContactDetailUpdatesFragment);
+                        mContactDetailLayoutController.initialize();
+                    }
+                    mContactDetailLayoutController.setContactData(result);
+                }
+            });
         }
 
         @Override
@@ -739,17 +792,19 @@ public class PeopleActivity extends ContactsActivity
         }
 
         @Override
+        public void onDeleteRequested(Uri contactUri) {
+            ContactDeletionInteraction.start(PeopleActivity.this, contactUri, false);
+        }
+    }
+
+    public class ContactDetailFragmentListener implements ContactDetailFragment.Listener {
+        @Override
         public void onItemClicked(Intent intent) {
             try {
                 startActivity(intent);
             } catch (ActivityNotFoundException e) {
                 Log.e(TAG, "No activity found for intent: " + intent);
             }
-        }
-
-        @Override
-        public void onDeleteRequested(Uri contactUri) {
-            ContactDeletionInteraction.start(PeopleActivity.this, contactUri, false);
         }
 
         @Override
@@ -925,7 +980,8 @@ public class PeopleActivity extends ContactsActivity
             return true;
         }
 
-        if (mContactDetailFragment != null && mContactDetailFragment.isOptionsMenuChanged()) {
+        if (mContactDetailLoaderFragment != null &&
+                mContactDetailLoaderFragment.isOptionsMenuChanged()) {
             return true;
         }
 
@@ -1194,6 +1250,9 @@ public class PeopleActivity extends ContactsActivity
         if (mActionBarAdapter != null) {
             mActionBarAdapter.onSaveInstanceState(outState);
         }
+        if (mContactDetailLayoutController != null) {
+            mContactDetailLayoutController.onSaveInstanceState(outState);
+        }
     }
 
     @Override
@@ -1202,6 +1261,9 @@ public class PeopleActivity extends ContactsActivity
         mSearchMode = inState.getBoolean(KEY_SEARCH_MODE);
         if (mActionBarAdapter != null) {
             mActionBarAdapter.onRestoreInstanceState(inState);
+        }
+        if (mContactDetailLayoutController != null) {
+            mContactDetailLayoutController.onRestoreInstanceState(inState);
         }
     }
 

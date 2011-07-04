@@ -17,36 +17,74 @@
 package com.android.contacts.detail;
 
 import com.android.contacts.ContactLoader;
+import com.android.contacts.ContactOptionsActivity;
 import com.android.contacts.R;
+import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
+import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.internal.util.Objects;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.ActivityNotFoundException;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.Entity;
+import android.content.Intent;
 import android.content.Loader;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 /**
  * This is an invisible worker {@link Fragment} that loads the contact details for the contact card.
  * The data is then passed to the listener, who can then pass the data to other {@link View}s.
  */
-public class ContactLoaderFragment extends Fragment {
+public class ContactLoaderFragment extends Fragment implements FragmentKeyListener {
 
     private static final String TAG = ContactLoaderFragment.class.getSimpleName();
 
+    private boolean mOptionsMenuOptions;
+    private boolean mOptionsMenuEditable;
+    private boolean mOptionsMenuShareable;
+
     /**
      * This is a listener to the {@link ContactLoaderFragment} and will be notified when the
-     * contact details have finished loading.
+     * contact details have finished loading or if the user selects any menu options.
      */
     public static interface ContactLoaderFragmentListener {
+        /**
+         * Contact was not found, so somehow close this fragment. This is raised after a contact
+         * is removed via Menu/Delete
+         */
+        public void onContactNotFound();
+
+        /**
+         * Contact details have finished loading.
+         */
         public void onDetailsLoaded(ContactLoader.Result result);
+
+        /**
+         * User decided to go to Edit-Mode
+         */
+        public void onEditRequested(Uri lookupUri);
+
+        /**
+         * User decided to delete the contact
+         */
+        public void onDeleteRequested(Uri lookupUri);
+
     }
 
     private static final int LOADER_DETAILS = 1;
@@ -59,6 +97,8 @@ public class ContactLoaderFragment extends Fragment {
     private ContactLoaderFragmentListener mListener;
 
     private ContactLoader.Result mContactData;
+
+    private boolean mAllRestricted;
 
     public ContactLoaderFragment() {
     }
@@ -85,6 +125,7 @@ public class ContactLoaderFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
+        setHasOptionsMenu(true);
         // This is an empty view that is set to visibility gone.
         return inflater.inflate(R.layout.contact_detail_loader_fragment, container, false);
     }
@@ -148,8 +189,22 @@ public class ContactLoaderFragment extends Fragment {
                 mContactData = null;
             }
 
+            mAllRestricted = true;
+
+            for (Entity entity: mContactData.getEntities()) {
+                final ContentValues entValues = entity.getEntityValues();
+                // Mark when this contact has any unrestricted components
+                Integer restricted = entValues.getAsInteger(RawContacts.IS_RESTRICTED);
+                final boolean isRestricted = restricted != null && restricted != 0;
+                if (!isRestricted) mAllRestricted = false;
+            }
+
             if (mListener != null) {
-                mListener.onDetailsLoaded(mContactData);
+                if (mContactData == null) {
+                    mListener.onContactNotFound();
+                } else {
+                    mListener.onDetailsLoaded(mContactData);
+                }
             }
         }
 
@@ -160,4 +215,105 @@ public class ContactLoaderFragment extends Fragment {
             }
         }
     };
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
+        inflater.inflate(R.menu.view_contact, menu);
+    }
+
+    public boolean isOptionsMenuChanged() {
+        return mOptionsMenuOptions != isContactOptionsChangeEnabled()
+                || mOptionsMenuEditable != isContactEditable()
+                || mOptionsMenuShareable != isContactShareable();
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        mOptionsMenuOptions = isContactOptionsChangeEnabled();
+        mOptionsMenuEditable = isContactEditable();
+        mOptionsMenuShareable = isContactShareable();
+
+        // Options only shows telephony-related settings (ringtone, send to voicemail).
+        // ==> Hide if we don't have a telephone
+        final MenuItem optionsMenu = menu.findItem(R.id.menu_options);
+        optionsMenu.setVisible(mOptionsMenuOptions);
+
+        final MenuItem editMenu = menu.findItem(R.id.menu_edit);
+        editMenu.setVisible(mOptionsMenuEditable);
+
+        final MenuItem deleteMenu = menu.findItem(R.id.menu_delete);
+        deleteMenu.setVisible(mOptionsMenuEditable);
+
+        final MenuItem shareMenu = menu.findItem(R.id.menu_share);
+        shareMenu.setVisible(mOptionsMenuShareable);
+    }
+
+    public boolean isContactOptionsChangeEnabled() {
+        return mContactData != null && !mContactData.isDirectoryEntry()
+                && PhoneCapabilityTester.isPhone(mContext);
+    }
+
+    public boolean isContactEditable() {
+        return mContactData != null && !mContactData.isDirectoryEntry();
+    }
+
+    public boolean isContactShareable() {
+        return mContactData != null && !mContactData.isDirectoryEntry() && !mAllRestricted;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_edit: {
+                if (mListener != null) mListener.onEditRequested(mLookupUri);
+                break;
+            }
+            case R.id.menu_delete: {
+                if (mListener != null) mListener.onDeleteRequested(mLookupUri);
+                return true;
+            }
+            case R.id.menu_options: {
+                if (mContactData == null) return false;
+                final Intent intent = new Intent(mContext, ContactOptionsActivity.class);
+                intent.setData(mContactData.getLookupUri());
+                mContext.startActivity(intent);
+                return true;
+            }
+            case R.id.menu_share: {
+                if (mAllRestricted) return false;
+                if (mContactData == null) return false;
+
+                final String lookupKey = mContactData.getLookupKey();
+                final Uri shareUri = Uri.withAppendedPath(Contacts.CONTENT_VCARD_URI, lookupKey);
+
+                final Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType(Contacts.CONTENT_VCARD_TYPE);
+                intent.putExtra(Intent.EXTRA_STREAM, shareUri);
+
+                // Launch chooser to share contact via
+                final CharSequence chooseTitle = mContext.getText(R.string.share_via);
+                final Intent chooseIntent = Intent.createChooser(intent, chooseTitle);
+
+                try {
+                    mContext.startActivity(chooseIntent);
+                } catch (ActivityNotFoundException ex) {
+                    Toast.makeText(mContext, R.string.share_error, Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean handleKeyDown(int keyCode) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_DEL: {
+                if (mListener != null) mListener.onDeleteRequested(mLookupUri);
+                return true;
+            }
+        }
+        return false;
+    }
 }

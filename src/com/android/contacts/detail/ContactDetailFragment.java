@@ -19,7 +19,6 @@ package com.android.contacts.detail;
 import com.android.contacts.Collapser;
 import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.ContactLoader;
-import com.android.contacts.ContactOptionsActivity;
 import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsUtils;
@@ -41,13 +40,9 @@ import com.android.contacts.widget.TransitionAnimationView;
 import com.android.internal.telephony.ITelephony;
 
 import android.accounts.Account;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.LoaderManager;
-import android.app.LoaderManager.LoaderCallbacks;
 import android.app.SearchManager;
-import android.content.ActivityNotFoundException;
 import android.content.ClipboardManager;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -55,7 +50,6 @@ import android.content.Context;
 import android.content.Entity;
 import android.content.Entity.NamedContentValues;
 import android.content.Intent;
-import android.content.Loader;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.ParseException;
@@ -90,9 +84,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -137,16 +128,11 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     private Uri mPrimaryPhoneUri = null;
 
     private Button mCopyGalToLocalButton;
-    private boolean mAllRestricted;
     private final ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
     private int mNumPhoneNumbers = 0;
     private String mDefaultCountryIso;
     private boolean mContactDataDisplayed;
     private boolean mContactPhotoDisplayedInHeader = true;
-
-    private boolean mOptionsMenuOptions;
-    private boolean mOptionsMenuEditable;
-    private boolean mOptionsMenuShareable;
 
     /**
      * Device capability: Set during buildEntries and used in the long-press context menu
@@ -245,8 +231,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
         mView = inflater.inflate(R.layout.contact_detail_fragment, container, false);
 
-        setHasOptionsMenu(true);
-
         mInflater = inflater;
 
         mPhotoView = (ImageView) mView.findViewById(R.id.photo);
@@ -334,37 +318,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
     public Uri getUri() {
         return mLookupUri;
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        if (mLookupUri != null) {
-            Bundle args = new Bundle();
-            args.putParcelable(LOADER_ARG_CONTACT_URI, mLookupUri);
-            getLoaderManager().initLoader(LOADER_DETAILS, args, mDetailLoaderListener);
-        }
-    }
-
-    public void loadUri(Uri lookupUri) {
-        if ((lookupUri != null && lookupUri.equals(mLookupUri))
-                || (lookupUri == null && mLookupUri == null)) {
-            return;
-        }
-
-        mLookupUri = lookupUri;
-        mTransitionAnimationRequested = mContactDataDisplayed;
-        mContactDataDisplayed = true;
-        if (mLookupUri == null) {
-            getLoaderManager().destroyLoader(LOADER_DETAILS);
-            mContactData = null;
-            bindData();
-        } else if (getActivity() != null) {
-            Bundle args = new Bundle();
-            args.putParcelable(LOADER_ARG_CONTACT_URI, mLookupUri);
-            getLoaderManager().restartLoader(LOADER_DETAILS, args, mDetailLoaderListener);
-        }
     }
 
     /**
@@ -458,7 +411,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
         mRawContactIds.clear();
 
-        mAllRestricted = true;
         mPrimaryPhoneUri = null;
         mNumPhoneNumbers = 0;
 
@@ -476,11 +428,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             final ContentValues entValues = entity.getEntityValues();
             final String accountType = entValues.getAsString(RawContacts.ACCOUNT_TYPE);
             final long rawContactId = entValues.getAsLong(RawContacts._ID);
-
-            // Mark when this contact has any unrestricted components
-            Integer restricted = entValues.getAsInteger(RawContacts.IS_RESTRICTED);
-            final boolean isRestricted = restricted != null && restricted != 0;
-            if (!isRestricted) mAllRestricted = false;
 
             if (!mRawContactIds.contains(rawContactId)) {
                 mRawContactIds.add(rawContactId);
@@ -1392,95 +1339,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         }
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
-        inflater.inflate(R.menu.view_contact, menu);
-    }
-
-    public boolean isOptionsMenuChanged() {
-        return mOptionsMenuOptions != isContactOptionsChangeEnabled()
-                || mOptionsMenuEditable != isContactEditable()
-                || mOptionsMenuShareable != isContactShareable();
-    }
-
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        mOptionsMenuOptions = isContactOptionsChangeEnabled();
-        mOptionsMenuEditable = isContactEditable();
-        mOptionsMenuShareable = isContactShareable();
-
-        // Options only shows telephony-related settings (ringtone, send to voicemail).
-        // ==> Hide if we don't have a telephone
-        final MenuItem optionsMenu = menu.findItem(R.id.menu_options);
-        optionsMenu.setVisible(mOptionsMenuOptions);
-
-        final MenuItem editMenu = menu.findItem(R.id.menu_edit);
-        editMenu.setVisible(mOptionsMenuEditable);
-
-        final MenuItem deleteMenu = menu.findItem(R.id.menu_delete);
-        deleteMenu.setVisible(mOptionsMenuEditable);
-
-        final MenuItem shareMenu = menu.findItem(R.id.menu_share);
-        shareMenu.setVisible(mOptionsMenuShareable);
-    }
-
-    public boolean isContactOptionsChangeEnabled() {
-        return mContactData != null && !mContactData.isDirectoryEntry()
-                && PhoneCapabilityTester.isPhone(mContext);
-    }
-
-    public boolean isContactEditable() {
-        return mContactData != null && !mContactData.isDirectoryEntry();
-    }
-
-    public boolean isContactShareable() {
-        return mContactData != null && !mContactData.isDirectoryEntry() && !mAllRestricted;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_edit: {
-                if (mListener != null) mListener.onEditRequested(mLookupUri);
-                break;
-            }
-            case R.id.menu_delete: {
-                if (mListener != null) mListener.onDeleteRequested(mLookupUri);
-                return true;
-            }
-            case R.id.menu_options: {
-                if (mContactData == null) return false;
-                final Intent intent = new Intent(mContext, ContactOptionsActivity.class);
-                intent.setData(mContactData.getLookupUri());
-                mContext.startActivity(intent);
-                return true;
-            }
-            case R.id.menu_share: {
-                if (mAllRestricted) return false;
-                if (mContactData == null) return false;
-
-                final String lookupKey = mContactData.getLookupKey();
-                final Uri shareUri = Uri.withAppendedPath(Contacts.CONTENT_VCARD_URI, lookupKey);
-
-                final Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType(Contacts.CONTENT_VCARD_TYPE);
-                intent.putExtra(Intent.EXTRA_STREAM, shareUri);
-
-                // Launch chooser to share contact via
-                final CharSequence chooseTitle = mContext.getText(R.string.share_via);
-                final Intent chooseIntent = Intent.createChooser(intent, chooseTitle);
-
-                try {
-                    mContext.startActivity(chooseIntent);
-                } catch (ActivityNotFoundException ex) {
-                    Toast.makeText(mContext, R.string.share_error, Toast.LENGTH_SHORT).show();
-                }
-                return true;
-            }
-        }
-        return false;
-    }
-
     private void makePersonalCopy() {
         if (mListener == null) {
             return;
@@ -1588,74 +1446,16 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 }
                 return false;
             }
-
-            case KeyEvent.KEYCODE_DEL: {
-                if (mListener != null) mListener.onDeleteRequested(mLookupUri);
-                return true;
-            }
         }
 
         return false;
     }
 
-    /**
-     * The listener for the detail loader
-     */
-    private final LoaderManager.LoaderCallbacks<ContactLoader.Result> mDetailLoaderListener =
-            new LoaderCallbacks<ContactLoader.Result>() {
-        @Override
-        public Loader<ContactLoader.Result> onCreateLoader(int id, Bundle args) {
-            Uri lookupUri = args.getParcelable(LOADER_ARG_CONTACT_URI);
-            return new ContactLoader(mContext, lookupUri, true /* loadGroupMetaData */);
-        }
-
-        @Override
-        public void onLoadFinished(Loader<ContactLoader.Result> loader, ContactLoader.Result data) {
-            if (!mLookupUri.equals(data.getUri())) {
-                return;
-            }
-
-            if (data != ContactLoader.Result.NOT_FOUND && data != ContactLoader.Result.ERROR) {
-                mContactData = data;
-            } else {
-                Log.i(TAG, "No contact found: " + ((ContactLoader)loader).getLookupUri());
-                mContactData = null;
-            }
-
-            bindData();
-
-            if (mContactData == null && mListener != null) {
-                mListener.onContactNotFound();
-            }
-        }
-
-        public void onLoaderReset(Loader<ContactLoader.Result> loader) {
-            mContactData = null;
-            bindData();
-        }
-    };
-
     public static interface Listener {
-        /**
-         * Contact was not found, so somehow close this fragment. This is raised after a contact
-         * is removed via Menu/Delete
-         */
-        public void onContactNotFound();
-
-        /**
-         * User decided to go to Edit-Mode
-         */
-        public void onEditRequested(Uri lookupUri);
-
         /**
          * User clicked a single item (e.g. mail)
          */
         public void onItemClicked(Intent intent);
-
-        /**
-         * User decided to delete the contact
-         */
-        public void onDeleteRequested(Uri lookupUri);
 
         /**
          * User requested creation of a new contact with the specified values.

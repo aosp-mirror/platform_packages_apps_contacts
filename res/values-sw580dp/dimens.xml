@@ -32,5 +32,5 @@
     <dimen name="shortcut_icon_size">64dip</dimen>
     <dimen name="list_section_height">37dip</dimen>
     <dimen name="directory_header_height">56dip</dimen>
-    <dimen name="detail_tab_carousel_height">150dip</dimen>
+    <dimen name="detail_tab_carousel_height">256dip</dimen>
 </resources>

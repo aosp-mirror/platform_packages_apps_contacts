@@ -62,6 +62,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+// TODO: Use {@link ContactDetailLayoutController} so there isn't duplicated code
 public class ContactDetailActivity extends ContactsActivity {
     private static final String TAG = "ContactDetailActivity";
 
@@ -216,19 +217,24 @@ public class ContactDetailActivity extends ContactsActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // First check if the {@link ContactLoaderFragment} can handle the key
+        if (mLoaderFragment.handleKeyDown(keyCode)) return true;
+
+        // Otherwise find the correct fragment to handle the event
         FragmentKeyListener mCurrentFragment;
         switch (getCurrentPage()) {
             case 0:
-                mCurrentFragment = (FragmentKeyListener) mDetailFragment;
+                mCurrentFragment = mDetailFragment;
                 break;
             case 1:
-                mCurrentFragment = (FragmentKeyListener) mUpdatesFragment;
+                mCurrentFragment = mUpdatesFragment;
                 break;
             default:
                 throw new IllegalStateException("Invalid current item for ViewPager");
         }
         if (mCurrentFragment.handleKeyDown(keyCode)) return true;
 
+        // In the last case, give the key event to the superclass.
         return super.onKeyDown(keyCode, event);
     }
 
@@ -260,6 +266,11 @@ public class ContactDetailActivity extends ContactsActivity {
     private final ContactLoaderFragmentListener mLoaderFragmentListener =
             new ContactLoaderFragmentListener() {
         @Override
+        public void onContactNotFound() {
+            finish();
+        }
+
+        @Override
         public void onDetailsLoaded(final ContactLoader.Result result) {
             if (result == null) {
                 return;
@@ -282,6 +293,16 @@ public class ContactDetailActivity extends ContactsActivity {
                     }
                 }
             });
+        }
+
+        @Override
+        public void onEditRequested(Uri contactLookupUri) {
+            startActivity(new Intent(Intent.ACTION_EDIT, contactLookupUri));
+        }
+
+        @Override
+        public void onDeleteRequested(Uri contactUri) {
+            ContactDeletionInteraction.start(ContactDetailActivity.this, contactUri, true);
         }
     };
 
@@ -337,27 +358,12 @@ public class ContactDetailActivity extends ContactsActivity {
     private final ContactDetailFragment.Listener mFragmentListener =
             new ContactDetailFragment.Listener() {
         @Override
-        public void onContactNotFound() {
-            finish();
-        }
-
-        @Override
-        public void onEditRequested(Uri contactLookupUri) {
-            startActivity(new Intent(Intent.ACTION_EDIT, contactLookupUri));
-        }
-
-        @Override
         public void onItemClicked(Intent intent) {
             try {
                 startActivity(intent);
             } catch (ActivityNotFoundException e) {
                 Log.e(TAG, "No activity found for intent: " + intent);
             }
-        }
-
-        @Override
-        public void onDeleteRequested(Uri contactUri) {
-            ContactDeletionInteraction.start(ContactDetailActivity.this, contactUri, true);
         }
 
         @Override
