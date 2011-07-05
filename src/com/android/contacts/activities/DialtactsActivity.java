@@ -172,7 +172,7 @@ public class DialtactsActivity extends Activity {
     private CallLogFragment mCallLogFragment;
     private StrequentContactListFragment mStrequentFragment;
 
-    private TabListener mTabListener = new TabListener() {
+    private final TabListener mTabListener = new TabListener() {
         @Override
         public void onTabUnselected(Tab tab, FragmentTransaction ft) {
         }
