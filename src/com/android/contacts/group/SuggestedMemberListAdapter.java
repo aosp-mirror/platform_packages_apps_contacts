@@ -26,7 +26,6 @@ import android.graphics.BitmapFactory;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
-import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Contacts.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.RawContactsEntity;
@@ -80,6 +79,8 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
     private String mAccountType = "";
     private String mAccountName = "";
 
+    // TODO: Make this a Map for better performance when we check if a new contact is in the list
+    // or not
     private List<Long> mExistingMemberContactIds = new ArrayList<Long>();
 
     private static final int SUGGESTIONS_LIMIT = 5;
@@ -186,6 +187,7 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
             try {
                 cursor.moveToPosition(-1);
                 while (cursor.moveToNext() && suggestionsMap.keySet().size() < SUGGESTIONS_LIMIT) {
+                    long rawContactId = cursor.getLong(RAW_CONTACT_ID_COLUMN_INDEX);
                     long contactId = cursor.getLong(CONTACT_ID_COLUMN_INDEX);
                     // Filter out contacts that have already been added to this group
                     if (mExistingMemberContactIds.contains(contactId)) {
@@ -193,8 +195,8 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
                     }
                     // Otherwise, add the contact as a suggested new group member
                     String displayName = cursor.getString(DISPLAY_NAME_PRIMARY_COLUMN_INDEX);
-                    long rawContactId = cursor.getLong(RAW_CONTACT_ID_COLUMN_INDEX);
-                    suggestionsMap.put(rawContactId, new SuggestedMember(displayName, contactId));
+                    suggestionsMap.put(rawContactId, new SuggestedMember(rawContactId,
+                            displayName, contactId));
                 }
             } finally {
                 cursor.close();
@@ -285,14 +287,18 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
     /**
      * This represents a single contact that is a suggestion for the user to add to a group.
      */
+    // TODO: Merge this with the {@link GroupEditorFragment} Member class once we can find the
+    // lookup URI for this contact using the autocomplete filter queries
     public class SuggestedMember {
 
+        private long mRawContactId;
         private long mContactId;
         private String mDisplayName;
         private String mExtraInfo;
         private byte[] mPhoto;
 
-        public SuggestedMember(String displayName, long contactId) {
+        public SuggestedMember(long rawContactId, String displayName, long contactId) {
+            mRawContactId = rawContactId;
             mDisplayName = displayName;
             mContactId = contactId;
         }
@@ -303,6 +309,10 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
 
         public String getExtraInfo() {
             return mExtraInfo;
+        }
+
+        public long getRawContactId() {
+            return mRawContactId;
         }
 
         public long getContactId() {

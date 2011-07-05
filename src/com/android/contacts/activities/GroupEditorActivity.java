@@ -110,10 +110,6 @@ public class GroupEditorActivity extends ContactsActivity
             mFragment.onSaveCompleted(true,
                     intent.getIntExtra(GroupEditorFragment.SAVE_MODE_EXTRA_KEY, SaveMode.CLOSE),
                     intent.getData());
-        } else if (ACTION_ADD_MEMBER_COMPLETED.equals(action)) {
-            mFragment.finishAddMember(intent.getData());
-        } else if (ACTION_REMOVE_MEMBER_COMPLETED.equals(action)) {
-            mFragment.finishRemoveMember(intent.getData());
         }
     }
 
