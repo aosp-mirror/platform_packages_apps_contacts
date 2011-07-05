@@ -32,10 +32,28 @@ import android.view.View;
  * Helper class to fill in the views in {@link PhoneCallDetailsViews}.
  */
 public class PhoneCallDetailsHelper {
+    private final Resources mResources;
+    private final String mTypeIncomingText;
+    private final String mTypeOutgoingText;
+    private final String mTypeMissedText;
+
+    /**
+     * Creates a new instance of the helper.
+     * <p>
+     * Generally you should have a single instance of this helper in any context.
+     *
+     * @param resources used to look up strings
+     */
+    public PhoneCallDetailsHelper(Resources resources) {
+        mResources = resources;
+        mTypeIncomingText = mResources.getString(R.string.type_incoming);
+        mTypeOutgoingText = mResources.getString(R.string.type_outgoing);
+        mTypeMissedText = mResources.getString(R.string.type_missed);
+    }
+
     /**
      * Fills the call details views with content.
      *
-     * @param resources used to look up strings
      * @param date the date of the call, in milliseconds since the epoch
      * @param callType the type of call, as defined in the call log table
      * @param name the name of the contact, if available
@@ -43,21 +61,21 @@ public class PhoneCallDetailsHelper {
      * @param numberType the type of phone, e.g., {@link Phone#TYPE_HOME}, 0 if not available
      * @param numberLabel the custom label associated with the phone number in the contact
      */
-    public void setPhoneCallDetails(PhoneCallDetailsViews views, Resources resources, long date,
+    public void setPhoneCallDetails(PhoneCallDetailsViews views, long date,
             int callType, CharSequence name, CharSequence number, int numberType,
             CharSequence numberLabel) {
         CharSequence callTypeText = "";
         switch (callType) {
             case Calls.INCOMING_TYPE:
-                callTypeText = resources.getString(R.string.type_incoming);
+                callTypeText = mTypeIncomingText;
                 break;
 
             case Calls.OUTGOING_TYPE:
-                callTypeText = resources.getString(R.string.type_outgoing);
+                callTypeText = mTypeOutgoingText;
                 break;
 
             case Calls.MISSED_TYPE:
-                callTypeText = resources.getString(R.string.type_missed);
+                callTypeText = mTypeMissedText;
                 break;
         }
 
@@ -74,7 +92,7 @@ public class PhoneCallDetailsHelper {
         CharSequence numberFormattedLabel = null;
         // Only show a label if the number is shown and it is not a SIP address.
         if (!TextUtils.isEmpty(number) && !PhoneNumberUtils.isUriNumber(number.toString())) {
-            numberFormattedLabel = Phone.getTypeLabel(resources, numberType, numberLabel);
+            numberFormattedLabel = Phone.getTypeLabel(mResources, numberType, numberLabel);
         }
 
         CharSequence nameText;

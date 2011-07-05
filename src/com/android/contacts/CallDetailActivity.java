@@ -115,7 +115,7 @@ public class CallDetailActivity extends ListActivity implements
         mResources = getResources();
 
         mPhoneCallDetailsViews = new PhoneCallDetailsViews(getWindow().getDecorView());
-        mPhoneCallDetailsHelper = new PhoneCallDetailsHelper();
+        mPhoneCallDetailsHelper = new PhoneCallDetailsHelper(getResources());
         mCallActionView = findViewById(R.id.call);
         mContactPhotoView = (ImageView) findViewById(R.id.contact_photo);
         mContactBackgroundView = (ImageView) findViewById(R.id.contact_background);
@@ -257,8 +257,8 @@ public class CallDetailActivity extends ListActivity implements
                     ViewAdapter adapter = new ViewAdapter(this, actions);
                     setListAdapter(adapter);
                 }
-                mPhoneCallDetailsHelper.setPhoneCallDetails(mPhoneCallDetailsViews, getResources(),
-                        date, callType, nameText, numberText, numberType, numberLabel);
+                mPhoneCallDetailsHelper.setPhoneCallDetails(mPhoneCallDetailsViews, date, callType,
+                        nameText, numberText, numberType, numberLabel);
 
                 loadContactPhotos(photoId);
             } else {
