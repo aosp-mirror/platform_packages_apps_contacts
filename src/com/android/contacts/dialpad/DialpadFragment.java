@@ -76,7 +76,7 @@ public class DialpadFragment extends Fragment
         View.OnLongClickListener, View.OnKeyListener,
         AdapterView.OnItemClickListener, TextWatcher,
         ViewPagerVisibilityListener {
-    private static final String TAG = "DialpadFragment";
+    private static final String TAG = DialpadFragment.class.getSimpleName();
 
     private static final String EMPTY_NUMBER = "";
 
@@ -516,25 +516,11 @@ public class DialpadFragment extends Fragment
         final MenuItem addToContactMenuItem = menu.findItem(R.id.menu_add_contacts);
         final MenuItem m2SecPauseMenuItem = menu.findItem(R.id.menu_2s_pause);
         final MenuItem mWaitMenuItem = menu.findItem(R.id.menu_add_wait);
-        final MenuItem mCallSettingsItem = menu.findItem(R.id.menu_call_settings);
-
-        if (!mShowMenu) {
-            mCallSettingsItem.setVisible(false);
-            addToContactMenuItem.setVisible(false);
-            m2SecPauseMenuItem.setVisible(false);
-            mWaitMenuItem.setVisible(false);
-            return;
-        }
-
-        mCallSettingsItem.setVisible(true);
-        Intent settingsIntent = new Intent(Intent.ACTION_MAIN);
-        settingsIntent.setClassName("com.android.phone", "com.android.phone.CallFeaturesSetting");
-        mCallSettingsItem.setIntent(settingsIntent);
 
         // We show "add to contacts", "2sec pause", and "add wait" menus only when the user is
         // seeing usual dialpads and has typed at least one digit.
         // We never show a menu if the "choose dialpad" UI is up.
-        if (dialpadChooserVisible() || isDigitsEmpty()) {
+        if (!mShowMenu || dialpadChooserVisible() || isDigitsEmpty()) {
             addToContactMenuItem.setVisible(false);
             m2SecPauseMenuItem.setVisible(false);
             mWaitMenuItem.setVisible(false);
