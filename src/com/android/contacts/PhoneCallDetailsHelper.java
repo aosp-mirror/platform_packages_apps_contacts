@@ -17,6 +17,7 @@
 package com.android.contacts;
 
 import com.android.contacts.format.FormatUtils;
+import com.android.internal.telephony.CallerInfo;
 
 import android.content.res.Resources;
 import android.graphics.Typeface;
@@ -33,6 +34,7 @@ import android.view.View;
  */
 public class PhoneCallDetailsHelper {
     private final Resources mResources;
+    private final String mVoicemailNumber;
     private final String mTypeIncomingText;
     private final String mTypeOutgoingText;
     private final String mTypeMissedText;
@@ -44,8 +46,9 @@ public class PhoneCallDetailsHelper {
      *
      * @param resources used to look up strings
      */
-    public PhoneCallDetailsHelper(Resources resources) {
+    public PhoneCallDetailsHelper(Resources resources, String voicemailNumber) {
         mResources = resources;
+        mVoicemailNumber = voicemailNumber;
         mTypeIncomingText = mResources.getString(R.string.type_incoming);
         mTypeOutgoingText = mResources.getString(R.string.type_outgoing);
         mTypeMissedText = mResources.getString(R.string.type_missed);
@@ -98,11 +101,11 @@ public class PhoneCallDetailsHelper {
         CharSequence nameText;
         CharSequence numberText;
         if (TextUtils.isEmpty(name)) {
-            nameText = number;
+            nameText = getDisplayNumber(number);
             numberText = "";
         } else {
             nameText = name;
-            numberText = number;
+            numberText = getDisplayNumber(number);
             if (callType != 0 && numberFormattedLabel != null) {
                 numberText = FormatUtils.applyStyleToSpan(Typeface.BOLD,
                         numberFormattedLabel + " " + number, 0,
@@ -123,5 +126,24 @@ public class PhoneCallDetailsHelper {
         } else {
             views.mNumberView.setVisibility(View.GONE);
         }
+    }
+
+    private CharSequence getDisplayNumber(CharSequence number) {
+        if (TextUtils.isEmpty(number)) {
+            return "";
+        }
+        if (number.equals(CallerInfo.UNKNOWN_NUMBER)) {
+            return mResources.getString(R.string.unknown);
+        }
+        if (number.equals(CallerInfo.PRIVATE_NUMBER)) {
+            return mResources.getString(R.string.private_num);
+        }
+        if (number.equals(CallerInfo.PAYPHONE_NUMBER)) {
+            return mResources.getString(R.string.payphone);
+        }
+        if (PhoneNumberUtils.extractNetworkPortion(number.toString()).equals(mVoicemailNumber)) {
+            return mResources.getString(R.string.voicemail);
+        }
+        return number;
     }
 }

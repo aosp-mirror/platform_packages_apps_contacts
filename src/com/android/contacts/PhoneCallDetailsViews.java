@@ -27,14 +27,27 @@ public final class PhoneCallDetailsViews {
     public final TextView mCallTypeAndDateView;
     public final TextView mNumberView;
 
+    private PhoneCallDetailsViews(TextView nameView, TextView callTypeAndDateView,
+            TextView numberView) {
+        mNameView = nameView;
+        mCallTypeAndDateView = callTypeAndDateView;
+        mNumberView = numberView;
+    }
+
     /**
-     * Creates a new instance and caches its views.
-     *
-     * @param view the view which contains the elements to fill
+     * Create a new instance by extracting the elements from the given view.
+     * <p>
+     * The view should contain three text views with identifiers {@code R.id.name},
+     * {@code R.id.call_type}, and {@code R.id.number}.
      */
-    public PhoneCallDetailsViews(View view) {
-        mNameView = (TextView) view.findViewById(R.id.name);
-        mCallTypeAndDateView = (TextView) view.findViewById(R.id.call_type);
-        mNumberView = (TextView) view.findViewById(R.id.number);
+    public static PhoneCallDetailsViews fromView(View view) {
+        return new PhoneCallDetailsViews((TextView) view.findViewById(R.id.name),
+                (TextView) view.findViewById(R.id.call_type),
+                (TextView) view.findViewById(R.id.number));
+    }
+
+    public static PhoneCallDetailsViews createForTest(TextView nameView,
+            TextView callTypeAndDateView, TextView numberView) {
+        return new PhoneCallDetailsViews(nameView, callTypeAndDateView, numberView);
     }
 }

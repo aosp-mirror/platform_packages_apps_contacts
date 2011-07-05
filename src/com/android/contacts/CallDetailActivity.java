@@ -114,8 +114,8 @@ public class CallDetailActivity extends ListActivity implements
         mInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         mResources = getResources();
 
-        mPhoneCallDetailsViews = new PhoneCallDetailsViews(getWindow().getDecorView());
-        mPhoneCallDetailsHelper = new PhoneCallDetailsHelper(getResources());
+        mPhoneCallDetailsViews = PhoneCallDetailsViews.fromView(getWindow().getDecorView());
+        mPhoneCallDetailsHelper = new PhoneCallDetailsHelper(getResources(), getVoicemailNumber());
         mCallActionView = findViewById(R.id.call);
         mContactPhotoView = (ImageView) findViewById(R.id.contact_photo);
         mContactBackgroundView = (ImageView) findViewById(R.id.contact_background);
@@ -305,6 +305,12 @@ public class CallDetailActivity extends ListActivity implements
         seconds = elapsedSeconds;
 
         return getString(R.string.callDetailsDurationFormat, minutes, seconds);
+    }
+
+    private String getVoicemailNumber() {
+        TelephonyManager telephonyManager =
+                (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        return telephonyManager.getVoiceMailNumber();
     }
 
     static final class ViewEntry {
