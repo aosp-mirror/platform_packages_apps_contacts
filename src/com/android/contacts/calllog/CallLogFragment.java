@@ -176,11 +176,11 @@ public class CallLogFragment extends ListFragment
     /** Adapter class to fill in data for the Call Log */
     public final class CallLogAdapter extends GroupingListAdapter
             implements Runnable, ViewTreeObserver.OnPreDrawListener, View.OnClickListener {
-        ExpirableCache<String, ContactInfo> mContactInfoCache;
+        private ExpirableCache<String, ContactInfo> mContactInfoCache;
         private final LinkedList<CallerInfoQuery> mRequests;
         private volatile boolean mDone;
         private boolean mLoading = true;
-        ViewTreeObserver.OnPreDrawListener mPreDrawListener;
+        private ViewTreeObserver.OnPreDrawListener mPreDrawListener;
         private static final int REDRAW = 1;
         private static final int START_THREAD = 2;
         private boolean mFirst;
@@ -196,6 +196,9 @@ public class CallLogFragment extends ListFragment
         private CharArrayBuffer mBuffer2 = new CharArrayBuffer(128);
         /** Helper to set up contact photos. */
         private final ContactPhotoManager mContactPhotoManager;
+
+        /** Can be set to true by tests to disable processing of requests. */
+        private volatile boolean mRequestProcessingDisabled = false;
 
         @Override
         public void onClick(View view) {
@@ -231,7 +234,9 @@ public class CallLogFragment extends ListFragment
                         notifyDataSetChanged();
                         break;
                     case START_THREAD:
-                        startRequestProcessing();
+                        if (!mRequestProcessingDisabled) {
+                            startRequestProcessing();
+                        }
                         break;
                 }
             }
@@ -759,6 +764,16 @@ public class CallLogFragment extends ListFragment
 
         private Uri getContactUri(long contactId, String lookupKey) {
             return Contacts.getLookupUri(contactId, lookupKey);
+        }
+
+        /**
+         * Sets whether processing of requests for contact details should be enabled.
+         * <p>
+         * This method should be called in tests to disable such processing of requests when not
+         * needed.
+         */
+        public void disableRequestProcessingForTest() {
+            mRequestProcessingDisabled = true;
         }
     }
 
