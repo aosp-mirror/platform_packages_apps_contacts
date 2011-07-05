@@ -57,7 +57,8 @@ public class CallDetailActivity extends ListActivity implements
     private static final String TAG = "CallDetail";
 
     /** The views representing the details of a phone call. */
-    PhoneCallDetailsViews mPhoneCallDetailsViews;
+    private PhoneCallDetailsViews mPhoneCallDetailsViews;
+    private PhoneCallDetailsHelper mPhoneCallDetailsHelper;
     private TextView mCallTimeView;
     private TextView mCallDurationView;
     private View mCallActionView;
@@ -114,6 +115,7 @@ public class CallDetailActivity extends ListActivity implements
         mResources = getResources();
 
         mPhoneCallDetailsViews = new PhoneCallDetailsViews(getWindow().getDecorView());
+        mPhoneCallDetailsHelper = new PhoneCallDetailsHelper();
         mCallActionView = findViewById(R.id.call);
         mContactPhotoView = (ImageView) findViewById(R.id.contact_photo);
         mContactBackgroundView = (ImageView) findViewById(R.id.contact_background);
@@ -255,8 +257,8 @@ public class CallDetailActivity extends ListActivity implements
                     ViewAdapter adapter = new ViewAdapter(this, actions);
                     setListAdapter(adapter);
                 }
-                mPhoneCallDetailsViews.setPhoneCallDetails(getResources(), date, callType, nameText,
-                        numberText, numberType, numberLabel);
+                mPhoneCallDetailsHelper.setPhoneCallDetails(mPhoneCallDetailsViews, getResources(),
+                        date, callType, nameText, numberText, numberType, numberLabel);
 
                 loadContactPhotos(photoId);
             } else {
