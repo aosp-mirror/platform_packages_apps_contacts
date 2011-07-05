@@ -622,7 +622,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     // TODO: move sharable logic (bindXX() methods) to here with extra arguments
 
     protected void bindQuickContact(final ContactListItemView view, int partitionIndex,
-            Cursor cursor, int photoIdColumn, int lookUpKeyColumn) {
+            Cursor cursor, int photoIdColumn, int contactIdColumn, int lookUpKeyColumn) {
         long photoId = 0;
         if (!cursor.isNull(photoIdColumn)) {
             photoId = cursor.getLong(photoIdColumn);
@@ -630,13 +630,13 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
         QuickContactBadge quickContact = view.getQuickContact();
         quickContact.assignContactUri(
-                getContactUri(partitionIndex, cursor, photoIdColumn, lookUpKeyColumn));
+                getContactUri(partitionIndex, cursor, contactIdColumn, lookUpKeyColumn));
         getPhotoLoader().loadPhoto(quickContact, photoId);
     }
 
     protected Uri getContactUri(int partitionIndex, Cursor cursor,
-            int photoIdColumn, int lookUpKeyColumn) {
-        long contactId = cursor.getLong(photoIdColumn);
+            int contactIdColumn, int lookUpKeyColumn) {
+        long contactId = cursor.getLong(contactIdColumn);
         String lookupKey = cursor.getString(lookUpKeyColumn);
         Uri uri = Contacts.getLookupUri(contactId, lookupKey);
         long directoryId = ((DirectoryPartition)getPartition(partitionIndex)).getDirectoryId();
