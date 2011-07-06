@@ -20,9 +20,11 @@ import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.group.GroupDetailFragment;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 public class GroupDetailActivity extends ContactsActivity {
 
@@ -37,12 +39,15 @@ public class GroupDetailActivity extends ContactsActivity {
 
         setContentView(R.layout.group_detail_activity);
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-
         GroupDetailFragment fragment = (GroupDetailFragment) getFragmentManager().findFragmentById(
                 R.id.group_detail_fragment);
         fragment.setListener(mFragmentListener);
         fragment.loadGroup(getIntent().getData());
+
+        ActionBar actionBar =  getActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     private final GroupDetailFragment.Listener mFragmentListener =
@@ -66,4 +71,17 @@ public class GroupDetailActivity extends ContactsActivity {
             startActivity(intent);
         }
     };
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

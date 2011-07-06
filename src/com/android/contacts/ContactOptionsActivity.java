@@ -16,6 +16,7 @@
 
 package com.android.contacts;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -26,6 +27,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -74,6 +76,11 @@ public class ContactOptionsActivity extends Activity implements View.OnClickList
         sendToVoicemailLayout.setOnClickListener(this);
         label = (TextView)sendToVoicemailLayout.findViewById(R.id.label);
         label.setText(getString(R.string.actionIncomingCall));
+
+        ActionBar actionBar =  getActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         mSendToVoicemailCheckbox = (CheckBox)sendToVoicemailLayout.findViewById(R.id.checkbox);
     }
@@ -207,6 +214,19 @@ public class ContactOptionsActivity extends Activity implements View.OnClickList
         } else {
             ContactsSearchManager.startSearch(this, initialQuery);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 
