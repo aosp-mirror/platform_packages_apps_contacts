@@ -17,37 +17,42 @@
 package com.android.contacts;
 
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
  * Encapsulates the views that are used to display the details of a phone call in the call log.
  */
 public final class PhoneCallDetailsViews {
-    public final TextView mNameView;
-    public final TextView mCallTypeAndDateView;
-    public final TextView mNumberView;
+    public final TextView nameView;
+    public final LinearLayout callTypesLayout;
+    public final TextView dateView;
+    public final TextView numberView;
 
-    private PhoneCallDetailsViews(TextView nameView, TextView callTypeAndDateView,
-            TextView numberView) {
-        mNameView = nameView;
-        mCallTypeAndDateView = callTypeAndDateView;
-        mNumberView = numberView;
+    private PhoneCallDetailsViews(TextView nameView, LinearLayout callTypesLayout,
+            TextView dateView, TextView numberView) {
+        this.nameView = nameView;
+        this.callTypesLayout = callTypesLayout;
+        this.dateView = dateView;
+        this.numberView = numberView;
     }
 
     /**
      * Create a new instance by extracting the elements from the given view.
      * <p>
      * The view should contain three text views with identifiers {@code R.id.name},
-     * {@code R.id.call_type}, and {@code R.id.number}.
+     * {@code R.id.date}, and {@code R.id.number}, and a linear layout with identifier
+     * {@code R.id.call_types}.
      */
     public static PhoneCallDetailsViews fromView(View view) {
         return new PhoneCallDetailsViews((TextView) view.findViewById(R.id.name),
-                (TextView) view.findViewById(R.id.call_type),
+                (LinearLayout) view.findViewById(R.id.call_types),
+                (TextView) view.findViewById(R.id.date),
                 (TextView) view.findViewById(R.id.number));
     }
 
     public static PhoneCallDetailsViews createForTest(TextView nameView,
-            TextView callTypeAndDateView, TextView numberView) {
-        return new PhoneCallDetailsViews(nameView, callTypeAndDateView, numberView);
+            LinearLayout callTypesLayout, TextView dateView, TextView numberView) {
+        return new PhoneCallDetailsViews(nameView, callTypesLayout, dateView, numberView);
     }
 }

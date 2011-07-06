@@ -115,7 +115,12 @@ public class CallDetailActivity extends ListActivity implements
         mResources = getResources();
 
         mPhoneCallDetailsViews = PhoneCallDetailsViews.fromView(getWindow().getDecorView());
-        mPhoneCallDetailsHelper = new PhoneCallDetailsHelper(getResources(), getVoicemailNumber());
+        mPhoneCallDetailsHelper = new PhoneCallDetailsHelper(this, getResources(),
+                getVoicemailNumber(),
+                getResources().getDrawable(R.drawable.ic_call_log_list_incoming_call),
+                getResources().getDrawable(R.drawable.ic_call_log_list_outgoing_call),
+                getResources().getDrawable(R.drawable.ic_call_log_list_missed_call),
+                getResources().getDrawable(R.drawable.ic_call_log_list_voicemail));
         mCallActionView = findViewById(R.id.call);
         mContactPhotoView = (ImageView) findViewById(R.id.contact_photo);
         mContactBackgroundView = (ImageView) findViewById(R.id.contact_background);

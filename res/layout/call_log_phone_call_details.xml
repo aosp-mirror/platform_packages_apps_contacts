@@ -24,8 +24,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
     />
-    <TextView
-        android:id="@+id/call_type"
+    <LinearLayout
+        android:id="@+id/call_types"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -34,13 +34,23 @@
         android:layout_above="@id/number"
     />
     <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="?attr/call_detail_primary_text_color"
+        android:layout_toRightOf="@id/call_types"
+        android:layout_above="@id/number"
+        android:layout_marginLeft="?attr/call_detail_date_margin"
+    />
+    <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="?attr/call_detail_primary_text_color"
         android:layout_alignParentLeft="true"
-        android:layout_above="@id/call_type"
+        android:layout_above="@id/call_types"
         android:paddingBottom="2dp"
     />
 </merge>
