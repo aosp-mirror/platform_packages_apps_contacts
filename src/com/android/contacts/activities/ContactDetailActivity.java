@@ -141,6 +141,11 @@ public class ContactDetailActivity extends ContactsActivity {
             }
         }
 
+        ActionBar actionBar =  getActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
         Log.i(TAG, getIntent().getData().toString());
     }
 
@@ -497,5 +502,18 @@ public class ContactDetailActivity extends ContactsActivity {
          * otherwise.
          */
         public boolean handleKeyDown(int keyCode);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
