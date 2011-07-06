@@ -24,6 +24,7 @@ import com.android.contacts.activities.DialtactsActivity.ViewPagerVisibilityList
 import com.android.internal.telephony.ITelephony;
 import com.android.phone.CallLogAsync;
 import com.android.phone.HapticFeedback;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -37,6 +38,7 @@ import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
@@ -146,7 +148,34 @@ public class DialpadFragment extends Fragment
 
     private String mCurrentCountryIso;
 
-    PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
+    /**
+     * May be null for a moment and filled by AsyncTask. Must not be touched outside UI thread.
+     */
+    private PhoneNumberFormattingTextWatcher mTextWatcher;
+
+    /**
+     * Delays {@link PhoneNumberFormattingTextWatcher} creation as it may cause disk read operation.
+     */
+    private final AsyncTask<Void, Void, Void> mTextWatcherLoadAsyncTask =
+            new AsyncTask<Void, Void, Void>() {
+
+        private PhoneNumberFormattingTextWatcher mTemporaryWatcher;
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            mTemporaryWatcher = new PhoneNumberFormattingTextWatcher(mCurrentCountryIso);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            // Should be in UI thread.
+            mTextWatcher = mTemporaryWatcher;
+            mDigits.addTextChangedListener(mTextWatcher);
+        }
+    };
+
+    private final PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
             /**
              * Listen for phone state changes so that we can take down the
              * "dialpad chooser" if the phone becomes idle while the
@@ -228,7 +257,14 @@ public class DialpadFragment extends Fragment
         mDigits.setOnKeyListener(this);
         mDigits.addTextChangedListener(this);
 
-        maybeAddNumberFormatting();
+        if (mTextWatcher == null) {
+            if (mTextWatcherLoadAsyncTask.getStatus() == AsyncTask.Status.PENDING) {
+                // Start loading text watcher for phone number, which requires disk read.
+                mTextWatcherLoadAsyncTask.execute();
+            }
+        } else {
+            mDigits.addTextChangedListener(mTextWatcher);
+        }
 
         // Check for the presence of the keypad
         View oneButton = fragmentView.findViewById(R.id.one);
@@ -281,10 +317,6 @@ public class DialpadFragment extends Fragment
 
     public EditText getDigitsWidget() {
         return mDigits;
-    }
-
-    private void maybeAddNumberFormatting() {
-        mDigits.addTextChangedListener(new PhoneNumberFormattingTextWatcher(mCurrentCountryIso));
     }
 
     /**
