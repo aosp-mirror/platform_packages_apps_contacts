@@ -32,7 +32,7 @@
         android:layout_gravity="center_vertical"
         android:state_enabled="false"
         android:background="@null"
-        android:contentDescription="@string/description_voicemail_button"
+        android:contentDescription="@string/description_search_button"
         android:src="@drawable/ic_dial_action_search"/>
 
     <!-- Onscreen "Dial" button, diused on all platforms by
