@@ -24,7 +24,6 @@ import com.android.contacts.activities.DialtactsActivity.ViewPagerVisibilityList
 import com.android.internal.telephony.ITelephony;
 import com.android.phone.CallLogAsync;
 import com.android.phone.HapticFeedback;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -62,12 +61,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 /**
@@ -77,6 +78,7 @@ public class DialpadFragment extends Fragment
         implements View.OnClickListener,
         View.OnLongClickListener, View.OnKeyListener,
         AdapterView.OnItemClickListener, TextWatcher,
+        PopupMenu.OnMenuItemClickListener,
         ViewPagerVisibilityListener {
     private static final String TAG = DialpadFragment.class.getSimpleName();
 
@@ -111,7 +113,7 @@ public class DialpadFragment extends Fragment
     private ListView mDialpadChooser;
     private DialpadChooserAdapter mDialpadChooserAdapter;
 
-    private boolean mShowMenu;
+    private boolean mShowOptionsMenu;
 
     private boolean mHasVoicemail = false;
 
@@ -264,6 +266,16 @@ public class DialpadFragment extends Fragment
             }
         } else {
             mDigits.addTextChangedListener(mTextWatcher);
+        }
+
+        // Soft menu button should appear only when there's no hardware menu button.
+        final View overflowMenuButton = fragmentView.findViewById(R.id.overflow_menu);
+        if (overflowMenuButton != null) {
+            if (ViewConfiguration.get(getActivity()).hasPermanentMenuKey()) {
+                overflowMenuButton.setVisibility(View.GONE);
+            } else {
+                overflowMenuButton.setOnClickListener(this);
+            }
         }
 
         // Check for the presence of the keypad
@@ -535,35 +547,51 @@ public class DialpadFragment extends Fragment
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.dialpad_options, menu);
+
+        // If the hardware doesn't have a hardware menu key, we'll show soft menu button on the
+        // right side of digits EditText.
+        if (ViewConfiguration.get(getActivity()).hasPermanentMenuKey()) {
+            inflater.inflate(R.menu.dialpad_options, menu);
+        }
     }
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        if (mDialpadChooser == null || mDigits == null) {
-            // The layout itself isn't ready yet. Let's ignore this call.
-            return;
+        // Hardware menu key should be available and Views should already be ready.
+        if (ViewConfiguration.get(getActivity()).hasPermanentMenuKey() &&
+                mDialpadChooser != null && mDigits != null) {
+            if (mShowOptionsMenu) {
+                setupMenuItems(menu);
+            } else {
+                menu.findItem(R.id.menu_call_settings_dialpad).setVisible(false);
+                menu.findItem(R.id.menu_add_contacts).setVisible(false);
+                menu.findItem(R.id.menu_2s_pause).setVisible(false);
+                menu.findItem(R.id.menu_add_wait).setVisible(false);
+            }
         }
+    }
 
+    private void setupMenuItems(Menu menu) {
+        final MenuItem callSettingsMenuItem = menu.findItem(R.id.menu_call_settings_dialpad);
         final MenuItem addToContactMenuItem = menu.findItem(R.id.menu_add_contacts);
-        final MenuItem m2SecPauseMenuItem = menu.findItem(R.id.menu_2s_pause);
-        final MenuItem mWaitMenuItem = menu.findItem(R.id.menu_add_wait);
+        final MenuItem twoSecPauseMenuItem = menu.findItem(R.id.menu_2s_pause);
+        final MenuItem waitMenuItem = menu.findItem(R.id.menu_add_wait);
+
+        callSettingsMenuItem.setVisible(true);
+        callSettingsMenuItem.setIntent(DialtactsActivity.getCallSettingsIntent());
 
         // We show "add to contacts", "2sec pause", and "add wait" menus only when the user is
         // seeing usual dialpads and has typed at least one digit.
         // We never show a menu if the "choose dialpad" UI is up.
-        if (!mShowMenu || dialpadChooserVisible() || isDigitsEmpty()) {
+        if (dialpadChooserVisible() || isDigitsEmpty()) {
             addToContactMenuItem.setVisible(false);
-            m2SecPauseMenuItem.setVisible(false);
-            mWaitMenuItem.setVisible(false);
+            twoSecPauseMenuItem.setVisible(false);
+            waitMenuItem.setVisible(false);
         } else {
-            CharSequence digits = mDigits.getText();
+            final CharSequence digits = mDigits.getText();
 
             // Put the current digits string into an intent
-            Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-            intent.putExtra(Insert.PHONE, digits);
-            intent.setType(People.CONTENT_ITEM_TYPE);
-            addToContactMenuItem.setIntent(intent);
+            addToContactMenuItem.setIntent(getAddToContactIntent(digits));
             addToContactMenuItem.setVisible(true);
 
             // Check out whether to show Pause & Wait option menu items
@@ -584,23 +612,30 @@ public class DialpadFragment extends Fragment
 
                 if (selectionStart != 0) {
                     // Pause can be visible if cursor is not in the begining
-                    m2SecPauseMenuItem.setVisible(true);
+                    twoSecPauseMenuItem.setVisible(true);
 
                     // For Wait to be visible set of condition to meet
-                    mWaitMenuItem.setVisible(showWait(selectionStart,
-                                                      selectionEnd, strDigits));
+                    waitMenuItem.setVisible(showWait(selectionStart, selectionEnd, strDigits));
                 } else {
                     // cursor in the beginning both pause and wait to be invisible
-                    m2SecPauseMenuItem.setVisible(false);
-                    mWaitMenuItem.setVisible(false);
+                    twoSecPauseMenuItem.setVisible(false);
+                    waitMenuItem.setVisible(false);
                 }
             } else {
+                twoSecPauseMenuItem.setVisible(true);
+
                 // cursor is not selected so assume new digit is added to the end
                 int strLength = strDigits.length();
-                mWaitMenuItem.setVisible(showWait(strLength,
-                                                      strLength, strDigits));
+                waitMenuItem.setVisible(showWait(strLength, strLength, strDigits));
             }
         }
+    }
+
+    private static Intent getAddToContactIntent(CharSequence digits) {
+        final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+        intent.putExtra(Insert.PHONE, digits);
+        intent.setType(People.CONTENT_ITEM_TYPE);
+        return intent;
     }
 
     private void keyPressed(int keyCode) {
@@ -706,7 +741,26 @@ public class DialpadFragment extends Fragment
                 }
                 return;
             }
+            case R.id.overflow_menu: {
+                PopupMenu popup = constructPopupMenu(view);
+                if (popup != null) {
+                    popup.show();
+                }
+            }
         }
+    }
+
+    private PopupMenu constructPopupMenu(View anchorView) {
+        final Context context = getActivity();
+        if (context == null) {
+            return null;
+        }
+        final PopupMenu popupMenu = new PopupMenu(context, anchorView);
+        final Menu menu = popupMenu.getMenu();
+        popupMenu.inflate(R.menu.dialpad_options);
+        popupMenu.setOnMenuItemClickListener(this);
+        setupMenuItems(menu);
+        return popupMenu;
     }
 
     public boolean onLongClick(View view) {
@@ -1091,6 +1145,11 @@ public class DialpadFragment extends Fragment
         return false;
     }
 
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return onOptionsItemSelected(item);
+    }
+
     /**
      * Updates the dial string (mDigits) after inserting a Pause character (,)
      * or Wait character (;).
@@ -1163,7 +1222,7 @@ public class DialpadFragment extends Fragment
      * otherwise returns false. Assumes the passed string is non-empty
      * and the 0th index check is not required.
      */
-    private boolean showWait(int start, int end, String digits) {
+    private static boolean showWait(int start, int end, String digits) {
         if (start == end) {
             // visible false in this case
             if (start > digits.length()) return false;
@@ -1241,6 +1300,6 @@ public class DialpadFragment extends Fragment
 
     @Override
     public void onVisibilityChanged(boolean visible) {
-        mShowMenu = visible;
+        mShowOptionsMenu = visible;
     }
 }

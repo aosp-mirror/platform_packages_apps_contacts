@@ -21,6 +21,7 @@ import com.android.contacts.CallDetailActivity;
 import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
+import com.android.contacts.activities.DialtactsActivity;
 import com.android.contacts.activities.DialtactsActivity.ViewPagerVisibilityListener;
 import com.android.contacts.util.ExpirableCache;
 import com.android.internal.telephony.CallerInfo;
@@ -61,6 +62,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
@@ -147,7 +149,7 @@ public class CallLogFragment extends ListFragment
     private String mCurrentCountryIso;
     private boolean mScrollToTop;
 
-    private boolean mShowMenu;
+    private boolean mShowOptionsMenu;
 
     public static final class ContactInfo {
         public long personId;
@@ -981,7 +983,14 @@ public class CallLogFragment extends ListFragment
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.delete_all).setVisible(mShowMenu);
+        menu.findItem(R.id.delete_all).setVisible(mShowOptionsMenu);
+        final MenuItem callSettingsMenuItem = menu.findItem(R.id.menu_call_settings_call_log);
+        if (mShowOptionsMenu) {
+            callSettingsMenuItem.setVisible(true);
+            callSettingsMenuItem.setIntent(DialtactsActivity.getCallSettingsIntent());
+        } else {
+            callSettingsMenuItem.setVisible(false);
+        }
     }
 
     @Override
@@ -1216,6 +1225,6 @@ public class CallLogFragment extends ListFragment
 
     @Override
     public void onVisibilityChanged(boolean visible) {
-        mShowMenu = visible;
+        mShowOptionsMenu = visible;
     }
 }

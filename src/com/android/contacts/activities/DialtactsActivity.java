@@ -592,16 +592,6 @@ public class DialtactsActivity extends Activity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        final MenuItem callSettingsMenuItem = menu.findItem(R.id.menu_call_settings);
-        if (!mInSearchUi) {
-            callSettingsMenuItem.setVisible(!mInSearchUi);
-            Intent settingsIntent = new Intent(Intent.ACTION_MAIN);
-            settingsIntent.setClassName(PHONE_PACKAGE, CALL_SETTINGS_CLASS_NAME);
-            callSettingsMenuItem.setIntent(settingsIntent);
-        } else {
-            callSettingsMenuItem.setVisible(false);
-        }
-
         final MenuItem searchMenuItem = menu.findItem(R.id.search_on_action_bar);
         if (mInSearchUi || getActionBar().getSelectedTab().getPosition() == TAB_INDEX_DIALER) {
             searchMenuItem.setVisible(false);
@@ -752,5 +742,12 @@ public class DialtactsActivity extends Activity {
         if (fragment instanceof ViewPagerVisibilityListener) {
             ((ViewPagerVisibilityListener) fragment).onVisibilityChanged(visibility);
         }
+    }
+
+    /** Returns an Intent to launch Call Settings screen */
+    public static Intent getCallSettingsIntent() {
+        final Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setClassName(PHONE_PACKAGE, CALL_SETTINGS_CLASS_NAME);
+        return intent;
     }
 }

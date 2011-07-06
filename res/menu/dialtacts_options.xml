@@ -15,11 +15,6 @@
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/menu_call_settings"
-        android:title="@string/call_settings"
-        android:showAsAction="withText" />
-
-    <item
         android:id="@+id/search_on_action_bar"
         android:icon="@android:drawable/ic_menu_search"
         android:showAsAction="always" />
