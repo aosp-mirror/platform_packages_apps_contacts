@@ -315,6 +315,5 @@
         <item name="android:layout_weight">1</item>
         <item name="android:background">@null</item>
         <item name="android:soundEffectsEnabled">false</item>
-        <item name="android:contentDescription">@string/description_image_button_one</item>
     </style>
 </resources>
