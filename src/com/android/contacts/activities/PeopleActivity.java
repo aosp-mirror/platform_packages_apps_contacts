@@ -16,7 +16,6 @@
 
 package com.android.contacts.activities;
 
-import com.android.contacts.ContactLoader;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
@@ -102,8 +101,6 @@ public class PeopleActivity extends ContactsActivity
     private static final int SUBACTIVITY_NEW_GROUP = 4;
     private static final int SUBACTIVITY_EDIT_GROUP = 5;
     private static final int SUBACTIVITY_CUSTOMIZE_FILTER = 6;
-
-    private static final int FAVORITES_COLUMN_COUNT = 4;
 
     private static final String KEY_SEARCH_MODE = "searchMode";
 
@@ -203,7 +200,6 @@ public class PeopleActivity extends ContactsActivity
         } else if (fragment instanceof StrequentContactListFragment) {
             mFavoritesFragment = (StrequentContactListFragment) fragment;
             mFavoritesFragment.setListener(mFavoritesFragmentListener);
-            mFavoritesFragment.setColumnCount(FAVORITES_COLUMN_COUNT);
             mFavoritesFragment.setDisplayType(DisplayType.STARRED_ONLY);
         }
     }

@@ -26,6 +26,7 @@ import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Loader;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -44,7 +45,6 @@ public class StrequentContactListFragment extends Fragment {
     }
 
     private static int LOADER_STREQUENT = 1;
-    private static final int NUM_COLS = 2;
 
     private Listener mListener;
     private ContactTileAdapter mAdapter;
@@ -53,8 +53,12 @@ public class StrequentContactListFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+
+        Resources res = getResources();
+        int columnCount = res.getInteger(R.integer.contact_tile_column_count);
+
         mAdapter = new ContactTileAdapter(activity, mAdapterListener,
-                NUM_COLS, DisplayType.STREQUENT);
+                columnCount, DisplayType.STREQUENT);
         mAdapter.setPhotoLoader(ContactPhotoManager.getInstance(activity));
     }
 

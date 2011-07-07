@@ -31,6 +31,7 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -44,7 +45,6 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * Displays the details of a group and shows a list of actions possible for the group.
@@ -72,7 +72,6 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
 
     private static final int LOADER_METADATA = 0;
     private static final int LOADER_MEMBERS = 1;
-    private static final int NUM_COLS = 4;
 
     private Context mContext;
 
@@ -99,7 +98,11 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mContext = activity;
-        mAdapter = new ContactTileAdapter(activity, mContactTileListener, NUM_COLS,
+
+        Resources res = getResources();
+        int columnCount = res.getInteger(R.integer.contact_tile_column_count);
+
+        mAdapter = new ContactTileAdapter(activity, mContactTileListener, columnCount,
                 DisplayType.GROUP_MEMBERS);
         configurePhotoLoader();
     }
