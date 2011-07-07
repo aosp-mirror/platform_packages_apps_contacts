@@ -315,11 +315,17 @@
             android:label="@string/activity_title_settings"
             android:theme="@style/ContactsPreferencesTheme" />
 
+        <!-- Used to filter contacts list by account -->
+        <activity
+            android:name=".list.AccountFilterActivity"
+            android:label="@string/activity_title_contacts_filter"
+            android:theme="@style/ContactListFilterTheme" />
+
         <!-- Used to select display and sync groups -->
         <activity
             android:name=".list.CustomContactListFilterActivity"
             android:label="@string/custom_list_filter"
-            android:theme="@style/CustomContactListFilterTheme" />
+            android:theme="@style/ContactListFilterTheme" />
 
         <activity
             android:name=".activities.ShowOrCreateActivity"

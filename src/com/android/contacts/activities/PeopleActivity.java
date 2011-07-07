@@ -32,6 +32,7 @@ import com.android.contacts.group.GroupDetailFragment;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ImportExportDialogFragment;
 import com.android.contacts.interactions.PhoneNumberInteraction;
+import com.android.contacts.list.AccountFilterActivity;
 import com.android.contacts.list.ContactBrowseListContextMenuAdapter;
 import com.android.contacts.list.ContactBrowseListFragment;
 import com.android.contacts.list.ContactEntryListFragment;
@@ -108,7 +109,8 @@ public class PeopleActivity extends ContactsActivity
     private static final int SUBACTIVITY_EDIT_CONTACT = 3;
     private static final int SUBACTIVITY_NEW_GROUP = 4;
     private static final int SUBACTIVITY_EDIT_GROUP = 5;
-    private static final int SUBACTIVITY_CUSTOMIZE_FILTER = 6;
+    private static final int SUBACTIVITY_ACCOUNT_FILTER = 6;
+    private static final int SUBACTIVITY_CUSTOMIZE_FILTER = 7;
 
     private static final String KEY_SEARCH_MODE = "searchMode";
 
@@ -178,8 +180,6 @@ public class PeopleActivity extends ContactsActivity
 
     public PeopleActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
-        // TODO: Get rid of the ContactListFilterController class because there aren't any
-        // dropdown filters anymore. Just store the selected filter as a member variable.
         mContactListFilterController = new ContactListFilterController(this);
         mContactListFilterController.addListener(this);
         mProviderStatusLoader = new ProviderStatusLoader(this);
@@ -304,7 +304,6 @@ public class PeopleActivity extends ContactsActivity
         ActionBar actionBar = getActionBar();
         mActionBarAdapter = new ActionBarAdapter(this, this);
         mActionBarAdapter.onCreate(savedState, mRequest, getActionBar());
-        mActionBarAdapter.setContactListFilterController(mContactListFilterController);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         ContactDetailTabCarousel tabCarousel = (ContactDetailTabCarousel)
@@ -489,17 +488,6 @@ public class PeopleActivity extends ContactsActivity
     }
 
     @Override
-    public void onContactListFiltersLoaded() {
-        if (mListFragment == null || !mListFragment.isAdded()) {
-            return;
-        }
-
-        mListFragment.setFilter(mContactListFilterController.getFilter());
-
-        invalidateOptionsMenuIfNeeded();
-    }
-
-    @Override
     public void onContactListFilterChanged() {
         if (mListFragment == null || !mListFragment.isAdded()) {
             return;
@@ -508,12 +496,6 @@ public class PeopleActivity extends ContactsActivity
         mListFragment.setFilter(mContactListFilterController.getFilter());
 
         invalidateOptionsMenuIfNeeded();
-    }
-
-    @Override
-    public void onContactListFilterCustomizationRequest() {
-        startActivityForResult(new Intent(this, CustomContactListFilterActivity.class),
-                SUBACTIVITY_CUSTOMIZE_FILTER);
     }
 
     private void setupContactDetailFragment(final Uri contactLookupUri) {
@@ -593,7 +575,7 @@ public class PeopleActivity extends ContactsActivity
             mListFragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_NONE);
         }
 
-        if (mContactListFilterController.isLoaded()) {
+        if (mContactListFilterController.isInitialized()) {
             mListFragment.setFilter(mContactListFilterController.getFilter());
         }
     }
@@ -1035,8 +1017,8 @@ public class PeopleActivity extends ContactsActivity
                 return true;
             }
             case R.id.menu_contacts_filter: {
-                final Intent intent = new Intent(this, CustomContactListFilterActivity.class);
-                startActivityForResult(intent, SUBACTIVITY_CUSTOMIZE_FILTER);
+                final Intent intent = new Intent(this, AccountFilterActivity.class);
+                startActivityForResult(intent, SUBACTIVITY_ACCOUNT_FILTER);
                 return true;
             }
             case R.id.menu_search: {
@@ -1115,13 +1097,30 @@ public class PeopleActivity extends ContactsActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
+            case SUBACTIVITY_ACCOUNT_FILTER: {
+                if (resultCode == Activity.RESULT_OK) {
+                    ContactListFilter filter = (ContactListFilter) data.getParcelableExtra(
+                            AccountFilterActivity.KEY_EXTRA_CONTACT_LIST_FILTER);
+                    if (filter == null) {
+                        return;
+                    }
+                    // If this is a custom filter, launch the activity to customize the display list
+                    if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
+                        final Intent intent = new Intent(this,
+                                CustomContactListFilterActivity.class);
+                        startActivityForResult(intent, SUBACTIVITY_CUSTOMIZE_FILTER);
+                    } else {
+                        mContactListFilterController.setContactListFilter(filter, true);
+                    }
+                }
+                break;
+            }
             case SUBACTIVITY_CUSTOMIZE_FILTER: {
                 if (resultCode == Activity.RESULT_OK) {
                     mContactListFilterController.selectCustomFilter();
                 }
                 break;
             }
-
             case SUBACTIVITY_EDIT_CONTACT:
             case SUBACTIVITY_NEW_CONTACT: {
                 if (resultCode == RESULT_OK && mContentPaneDisplayed) {

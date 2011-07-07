@@ -34,6 +34,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     private View mCounterHeaderView;
     private View mSearchHeaderView;
+    private TextView mAccountFilterHeaderView;
 
     public DefaultContactBrowseListFragment() {
         setPhotoLoaderEnabled(true);
@@ -63,6 +64,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     protected void onCreateView(LayoutInflater inflater, ViewGroup container) {
         super.onCreateView(inflater, container);
 
+        mAccountFilterHeaderView = (TextView) getView().findViewById(R.id.account_filter_header);
+
         // Putting the header view inside a container will allow us to make
         // it invisible later. See checkHeaderViewVisibility()
         FrameLayout headerContainer = new FrameLayout(inflater.getContext());
@@ -88,6 +91,19 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         // Hide the search header by default. See showCount().
         if (mSearchHeaderView != null) {
             mSearchHeaderView.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setFilter(ContactListFilter filter) {
+        super.setFilter(filter);
+        if (filter != null && filter.filterType != ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS &&
+                filter.filterType != ContactListFilter.FILTER_TYPE_CUSTOM) {
+            mAccountFilterHeaderView.setText(getContext().getString(
+                    R.string.listAllContactsInAccount, filter.accountName));
+            mAccountFilterHeaderView.setVisibility(View.VISIBLE);
+        } else {
+            mAccountFilterHeaderView.setVisibility(View.GONE);
         }
     }
 

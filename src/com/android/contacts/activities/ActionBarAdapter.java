@@ -18,8 +18,6 @@ package com.android.contacts.activities;
 
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.Listener.Action;
-import com.android.contacts.list.ContactListFilterController;
-import com.android.contacts.list.ContactListFilterController.ContactListFilterListener;
 import com.android.contacts.list.ContactsRequest;
 
 import android.app.ActionBar;
@@ -36,8 +34,7 @@ import android.widget.SearchView.OnQueryTextListener;
 /**
  * Adapter for the action bar at the top of the Contacts activity.
  */
-public class ActionBarAdapter
-        implements OnQueryTextListener, OnCloseListener, ContactListFilterListener {
+public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
 
     public interface Listener {
         public enum Action {
@@ -61,7 +58,6 @@ public class ActionBarAdapter
     private final boolean mAlwaysShowSearchView;
 
     private Listener mListener;
-    private ContactListFilterController mFilterController;
 
     private ActionBar mActionBar;
 
@@ -106,11 +102,6 @@ public class ActionBarAdapter
 
     public void setListener(Listener listener) {
         mListener = listener;
-    }
-
-    public void setContactListFilterController(ContactListFilterController controller) {
-        mFilterController = controller;
-        mFilterController.addListener(this);
     }
 
     public boolean isSearchMode() {
@@ -208,20 +199,6 @@ public class ActionBarAdapter
         mSearchMode = savedState.getBoolean(EXTRA_KEY_SEARCH_MODE);
         mQueryString = savedState.getString(EXTRA_KEY_QUERY);
         mActionBar.setSelectedNavigationItem(savedState.getInt(EXTRA_KEY_SELECTED_TAB));
-    }
-
-    @Override
-    public void onContactListFiltersLoaded() {
-        update();
-    }
-
-    @Override
-    public void onContactListFilterChanged() {
-        update();
-    }
-
-    @Override
-    public void onContactListFilterCustomizationRequest() {
     }
 
     private void setFocusOnSearchView() {

@@ -60,10 +60,11 @@
         <item name="list_item_header_text_size">14sp</item>
     </style>
 
-    <style name="CustomContactListFilterTheme" parent="@android:Theme.Holo.Light.Dialog">
+    <style name="ContactListFilterTheme" parent="@android:Theme.Holo.Light.Dialog">
+        <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
 
-    <style name="CustomContactListFilterView" parent="CustomContactListFilterTheme">
+    <style name="CustomContactListFilterView" parent="ContactListFilterTheme">
         <item name="android:layout_width">400dip</item>
         <item name="android:layout_height">400dip</item>
     </style>

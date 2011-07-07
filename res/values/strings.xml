@@ -366,6 +366,9 @@
     <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when a group or account is selected  [CHAR LIMIT=64]-->
     <string name="listTotalAllContactsZeroGroup">No contacts in <xliff:g id="name" example="Friends">%s</xliff:g></string>
 
+    <!-- Displayed at the top of the contacts showing the account filter selected  [CHAR LIMIT=64] -->
+    <string name="listAllContactsInAccount">Contacts in <xliff:g id="name" example="abc@gmail.com">%s</xliff:g></string>
+
     <!-- Displayed at the top of the contacts showing the total number of contacts found when "Only contacts with phones" not selected -->
     <plurals name="listFoundAllContacts">
         <item quantity="one">1 found</item>
@@ -1489,6 +1492,9 @@
 
     <!-- Title of the settings activity [CHAR LIMIT=64] -->
     <string name="activity_title_settings">Settings</string>
+
+    <!-- Title of the activity that allows the uesr to filter the list of contacts displayed according to account [CHAR LIMIT=25] -->
+    <string name="activity_title_contacts_filter">Contacts to display</string>
 
     <!-- Menu item for the settings activity [CHAR LIMIT=64] -->
     <string name="menu_settings">Settings</string>
