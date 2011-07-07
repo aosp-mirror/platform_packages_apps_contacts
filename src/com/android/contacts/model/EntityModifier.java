@@ -75,6 +75,9 @@ import java.util.Set;
 public class EntityModifier {
     private static final String TAG = "EntityModifier";
 
+    /** Set to true in order to view logs on entity operations */
+    private static final boolean DEBUG = false;
+
     /**
      * For the given {@link EntityDelta}, determine if the given
      * {@link DataKind} could be inserted under specific
@@ -426,8 +429,9 @@ public class EntityModifier {
                 final boolean isGooglePhoto = isPhoto && isGoogleAccount;
 
                 if (EntityModifier.isEmpty(entry, kind) && !isGooglePhoto) {
-                    // TODO: remove this verbose logging
-                    Log.w(TAG, "Trimming: " + entry.toString());
+                    if (DEBUG) {
+                        Log.v(TAG, "Trimming: " + entry.toString());
+                    }
                     entry.markDeleted();
                 } else if (!entry.isFromTemplate()) {
                     hasValues = true;

@@ -61,6 +61,9 @@ import java.util.List;
 public class ContactSaveService extends IntentService {
     private static final String TAG = "ContactSaveService";
 
+    /** Set to true in order to view logs on content provider operations */
+    private static final boolean DEBUG = false;
+
     public static final String ACTION_NEW_RAW_CONTACT = "newRawContact";
 
     public static final String EXTRA_ACCOUNT_NAME = "accountName";
@@ -282,6 +285,13 @@ public class ContactSaveService extends IntentService {
             try {
                 // Build operations and try applying
                 final ArrayList<ContentProviderOperation> diff = state.buildDiff();
+                if (DEBUG) {
+                    Log.v(TAG, "Content Provider Operations:");
+                    for (ContentProviderOperation operation : diff) {
+                        Log.v(TAG, operation.toString());
+                    }
+                }
+
                 ContentProviderResult[] results = null;
                 if (!diff.isEmpty()) {
                     results = resolver.applyBatch(ContactsContract.AUTHORITY, diff);
