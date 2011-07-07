@@ -34,6 +34,12 @@
     <string name="viewContactDesription" msgid="214186610887547860">"Xem liên hệ"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Chỉnh sửa liên hệ"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Tạo liên hệ"</string>
+    <!-- no translation found for editGroupDescription (6321161304201540561) -->
+    <skip />
+    <!-- no translation found for insertGroupDescription (5658512271662210139) -->
+    <skip />
+    <string name="contactDetailAbout" msgid="5430408883907061400">"Giới thiệu"</string>
+    <string name="contactDetailUpdates" msgid="3780588624763446941">"Cập nhật"</string>
     <string name="searchHint" msgid="8482945356247760701">"Tìm kiếm trong danh bạ"</string>
     <string name="menu_search" msgid="9147752853603483719">"Tìm kiếm"</string>
     <string name="menu_newContact" msgid="1209922412763274638">"Liên hệ mới"</string>
@@ -47,11 +53,12 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Nhắn tin tới liên hệ"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Đặt làm email mặc định"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Tách"</string>
-    <!-- no translation found for menu_editGroup (8311763560942217614) -->
-    <skip />
+    <string name="menu_editGroup" msgid="8311763560942217614">"Chỉnh sửa nhóm"</string>
     <string name="menu_renameGroup" msgid="2798886925154156075">"Đổi tên nhóm"</string>
     <string name="menu_deleteGroup" msgid="644571524292675446">"Xóa nhóm"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Mới"</string>
+    <!-- no translation found for menu_new_group_action_bar (5055346725617932394) -->
+    <skip />
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Tách Liên hệ"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"Bạn có chắc chắn muốn tách liên hệ duy nhất này thành nhiều liên hệ: một liên hệ cho mỗi tập thông tin liên hệ đã được nhập vào liên hệ không?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Kết hợp"</string>
@@ -61,8 +68,8 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Liên hệ được đề xuất"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Tất cả liên hệ"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Danh bạ đã được kết hợp"</string>
-    <string name="menu_contactOptions" msgid="1957061455705020617">"Tuỳ chọn"</string>
-    <string name="contactOptionsTitle" msgid="8259347644090700915">"Tuỳ chọn"</string>
+    <string name="menu_contactOptions" msgid="1957061455705020617">"Tùy chọn"</string>
+    <string name="contactOptionsTitle" msgid="8259347644090700915">"Tùy chọn"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Xoá"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Bạn không thể xoá liên hệ khỏi tài khoản chỉ đọc nhưng bạn có thể ẩn liên hệ trong danh bạ của mình."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Liên hệ này chứa thông tin từ nhiều tài khoản. Thông tin từ các tài khoản ở chế độ chỉ đọc sẽ bị ẩn trong danh sách liên hệ của bạn, chứ không bị xoá."</string>
@@ -93,7 +100,7 @@
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Không có ảnh nào trong điện thoại."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Ảnh của liên hệ"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Tên nhãn tùy chỉnh"</string>
-    <string name="menu_displayGroup" msgid="5655505437727616553">"Tuỳ chọn hiển thị"</string>
+    <string name="menu_displayGroup" msgid="5655505437727616553">"Tùy chọn hiển thị"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Gửi cuộc gọi trực tiếp tới thư thoại"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Mặc định"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Xóa ảnh"</string>
@@ -111,9 +118,17 @@
     <item quantity="other" msgid="3816047547470490208">"<xliff:g id="COUNT_0">%1$d</xliff:g> liên hệ, <xliff:g id="COUNTWITHPHONES">%2$d</xliff:g> có số điện thoại"</item>
   </plurals>
     <string name="savingContact" msgid="4075751076741924939">"Đang lưu liên hệ…"</string>
-    <string name="savingDisplayGroups" msgid="2133152192716475939">"Đang lưu tuỳ chọn hiển thị…"</string>
+    <string name="savingDisplayGroups" msgid="2133152192716475939">"Đang lưu tùy chọn hiển thị…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Đã lưu liên hệ."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Lỗi, không thể lưu thay đổi liên hệ."</string>
+    <!-- no translation found for groupSavedToast (1168756874239833756) -->
+    <skip />
+    <!-- no translation found for groupSavedErrorToast (6434135707953150875) -->
+    <skip />
+    <!-- no translation found for groupMembershipChangeSavedToast (5323580174093150793) -->
+    <skip />
+    <!-- no translation found for contactAlreadyInGroup (6209708213229886092) -->
+    <skip />
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"1 liên hệ có số điện thoại"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> liên hệ có số điện thoại"</item>
@@ -287,6 +302,7 @@
     <string name="add_2sec_pause" msgid="9214012315201040129">"Thêm 2 giây dừng"</string>
     <string name="add_wait" msgid="3360818652790319634">"Thêm chờ"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"Sử dụng cuộc gọi"</string>
+    <string name="call_settings" msgid="5009897887137674341">"Cài đặt cuộc gọi"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Nhắn tin sử dụng"</string>
     <string name="make_primary" msgid="5829291915305113983">"Nhớ lựa chọn này"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Không tìm thấy ứng dụng nào để xử lý tác vụ này"</string>
@@ -316,6 +332,8 @@
     <string name="type_short_pager" msgid="2613818970827594238">"P"</string>
     <string name="type_short_other" msgid="5669407180177236769">"O"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Tạo liên hệ trong tài khoản"</string>
+    <!-- no translation found for dialog_new_group_account (2318032089273496830) -->
+    <skip />
     <string name="menu_sync_remove" msgid="3266725887008450161">"Xoá nhóm đồng bộ hoá"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Thêm nhóm đồng bộ hoá"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"Nhóm khác…"</string>
@@ -403,6 +421,10 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Tên đệm đúng phát âm"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Họ đúng phát âm"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Tên theo phiên âm"</string>
+    <!-- no translation found for network (5415816765302129264) -->
+    <skip />
+    <!-- no translation found for recent_updates (2062236709538790412) -->
+    <skip />
     <string name="account_type_format" msgid="718948015590343010">"Liên hệ <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -491,8 +513,10 @@
     <string name="create_group_item_label" msgid="5218022006186243310">"[Tạo nhóm mới]"</string>
     <string name="rename_group_dialog_title" msgid="3765299704290513289">"Đổi tên nhóm"</string>
     <string name="delete_group_dialog_title" msgid="7368429698398624427">"Xóa nhóm"</string>
-    <!-- no translation found for num_groups_in_account:one (2944819210288517794) -->
-    <!-- no translation found for num_groups_in_account:other (1276758425904917367) -->
+  <plurals name="num_groups_in_account">
+    <item quantity="one" msgid="2944819210288517794">"1 nhóm"</item>
+    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> nhóm"</item>
+  </plurals>
     <string name="delete_group_dialog_message" msgid="295063284548750881">"Bạn có chắc chắn muốn xóa nhóm \'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\'? (Danh bạ sẽ không bị xóa)."</string>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Vui lòng nhập tên liên hệ trước khi kết hợp với một địa chỉ liên hệ khác."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Địa chỉ liên hệ đã kết hợp"</string>
@@ -501,6 +525,13 @@
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Bạn muốn hủy thay đổi của mình?"</string>
     <string name="discard" msgid="1234315037371251414">"Hủy"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <!-- no translation found for profile_display_name (4179677761341328409) -->
+    <string name="profile_display_name" msgid="4179677761341328409">"Tiểu sử của tôi"</string>
+    <!-- no translation found for enter_contact_name (2930510479516059437) -->
+    <skip />
+    <!-- no translation found for editGroup_title_insert (7803743109105317959) -->
+    <skip />
+    <!-- no translation found for editGroup_title_edit (2173278908256913247) -->
+    <skip />
+    <!-- no translation found for notification_voicemail_title (1282651537781272548) -->
     <skip />
 </resources>

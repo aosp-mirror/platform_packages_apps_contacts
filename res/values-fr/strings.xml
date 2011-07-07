@@ -34,6 +34,12 @@
     <string name="viewContactDesription" msgid="214186610887547860">"Afficher le contact"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Modifier le contact"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Créer un contact"</string>
+    <!-- no translation found for editGroupDescription (6321161304201540561) -->
+    <skip />
+    <!-- no translation found for insertGroupDescription (5658512271662210139) -->
+    <skip />
+    <string name="contactDetailAbout" msgid="5430408883907061400">"À propos de"</string>
+    <string name="contactDetailUpdates" msgid="3780588624763446941">"Mises à jour"</string>
     <string name="searchHint" msgid="8482945356247760701">"Rech. des contacts"</string>
     <string name="menu_search" msgid="9147752853603483719">"Rechercher"</string>
     <string name="menu_newContact" msgid="1209922412763274638">"Nouveau contact"</string>
@@ -47,11 +53,12 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Envoyer un SMS au contact"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"E-mail par défaut"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Séparer"</string>
-    <!-- no translation found for menu_editGroup (8311763560942217614) -->
-    <skip />
+    <string name="menu_editGroup" msgid="8311763560942217614">"Modifier le groupe"</string>
     <string name="menu_renameGroup" msgid="2798886925154156075">"Renommer le groupe"</string>
     <string name="menu_deleteGroup" msgid="644571524292675446">"Supprimer le groupe"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Nouveau"</string>
+    <!-- no translation found for menu_new_group_action_bar (5055346725617932394) -->
+    <skip />
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Séparer le contact"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"Souhaitez-vous vraiment séparer ce contact en plusieurs instances : une pour chaque ensemble d\'informations associé à ce contact ?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Joindre"</string>
@@ -114,6 +121,14 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Enregistrement des options d\'affichage..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Contact enregistré."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Erreur : impossible d\'enregistrer les modifications du contact"</string>
+    <!-- no translation found for groupSavedToast (1168756874239833756) -->
+    <skip />
+    <!-- no translation found for groupSavedErrorToast (6434135707953150875) -->
+    <skip />
+    <!-- no translation found for groupMembershipChangeSavedToast (5323580174093150793) -->
+    <skip />
+    <!-- no translation found for contactAlreadyInGroup (6209708213229886092) -->
+    <skip />
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"1 contact avec numéro de téléphone"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> contacts avec des n° de téléphone"</item>
@@ -167,12 +182,12 @@
     <string name="simContacts_title" msgid="27341688347689769">"Contacts de carte SIM"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Vous n\'avez aucun contact à afficher. Si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes."</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Vous n\'avez aucun contact à afficher."</string>
-    <!-- syntax error in translation for noContactsHelpText (6450346791169710787) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:560 in java.io.StringReader@71f6f0bf)  -->
-    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:567 in java.io.StringReader@b37c60d)  -->
+    <!-- syntax error in translation for noContactsHelpText (6450346791169710787) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:560 in java.io.StringReader@1a0f73c1)  -->
+    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:567 in java.io.StringReader@6c789144)  -->
     <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", puis sur :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts vers la tablette ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier les paramètres de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SIM ou SD."\n</li></string>
     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier le paramètre de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SIM ou SD."\n</li></string>
-    <!-- syntax error in translation for noContactsNoSimHelpText (6031363021287849874) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:565 in java.io.StringReader@7aab853b)  -->
-    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:571 in java.io.StringReader@12b82368)  -->
+    <!-- syntax error in translation for noContactsNoSimHelpText (6031363021287849874) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:565 in java.io.StringReader@1d5ee671)  -->
+    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:571 in java.io.StringReader@416b13c7)  -->
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", puis sur :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts vers la tablette ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier les paramètres de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SD."\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier le paramètre de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SD."\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Vous ne disposez d\'aucun favoris."\n\n"Pour ajouter un contact à la liste de favoris :"\n\n"        "<li>"Appuyez sur l\'onglet "<b>"Contacts"</b>"."\n</li>" "\n<li>"Appuyez sur le contact à ajouter à vos favoris."\n</li>" "\n<li>"Appuyez sur l\'étoile en regard du nom du contact."\n</li></string>
@@ -287,6 +302,7 @@
     <string name="add_2sec_pause" msgid="9214012315201040129">"Ajouter une pause de 2 s"</string>
     <string name="add_wait" msgid="3360818652790319634">"Ajouter Attendre"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"Appeler via"</string>
+    <string name="call_settings" msgid="5009897887137674341">"Paramètres d\'appel"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Envoyer un SMS via"</string>
     <string name="make_primary" msgid="5829291915305113983">"Mémoriser ce choix"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Aucune application pour gérer cette action"</string>
@@ -316,6 +332,8 @@
     <string name="type_short_pager" msgid="2613818970827594238">"T"</string>
     <string name="type_short_other" msgid="5669407180177236769">"A"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Créer un contact sous le compte"</string>
+    <!-- no translation found for dialog_new_group_account (2318032089273496830) -->
+    <skip />
     <string name="menu_sync_remove" msgid="3266725887008450161">"Supprimer le groupe de synchronisation"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Ajouter groupe de synchronisation"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"Autres groupes..."</string>
@@ -403,6 +421,10 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Phonétique 2e prénom"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Phonétique du nom de famille"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Nom phonétique"</string>
+    <!-- no translation found for network (5415816765302129264) -->
+    <skip />
+    <!-- no translation found for recent_updates (2062236709538790412) -->
+    <skip />
     <string name="account_type_format" msgid="718948015590343010">"Contact <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -491,8 +513,10 @@
     <string name="create_group_item_label" msgid="5218022006186243310">"[Créer un groupe]"</string>
     <string name="rename_group_dialog_title" msgid="3765299704290513289">"Renommer le groupe"</string>
     <string name="delete_group_dialog_title" msgid="7368429698398624427">"Supprimer le groupe"</string>
-    <!-- no translation found for num_groups_in_account:one (2944819210288517794) -->
-    <!-- no translation found for num_groups_in_account:other (1276758425904917367) -->
+  <plurals name="num_groups_in_account">
+    <item quantity="one" msgid="2944819210288517794">"Un groupe"</item>
+    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> groupes"</item>
+  </plurals>
     <string name="delete_group_dialog_message" msgid="295063284548750881">"Voulez-vous vraiment supprimer le groupe \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" ? Vos contacts ne seront pas supprimés."</string>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Veuillez saisir le nom de ce contact avant de l\'associer à un autre."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Contact associé"</string>
@@ -501,6 +525,13 @@
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Voulez-vous vraiment supprimer vos modifications ?"</string>
     <string name="discard" msgid="1234315037371251414">"Supprimer"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g> "</string>
-    <!-- no translation found for profile_display_name (4179677761341328409) -->
+    <string name="profile_display_name" msgid="4179677761341328409">"Mon profil"</string>
+    <!-- no translation found for enter_contact_name (2930510479516059437) -->
+    <skip />
+    <!-- no translation found for editGroup_title_insert (7803743109105317959) -->
+    <skip />
+    <!-- no translation found for editGroup_title_edit (2173278908256913247) -->
+    <skip />
+    <!-- no translation found for notification_voicemail_title (1282651537781272548) -->
     <skip />
 </resources>

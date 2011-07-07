@@ -34,6 +34,12 @@
     <string name="viewContactDesription" msgid="214186610887547860">"Ver contacto"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Editar contacto"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Crear contacto"</string>
+    <!-- no translation found for editGroupDescription (6321161304201540561) -->
+    <skip />
+    <!-- no translation found for insertGroupDescription (5658512271662210139) -->
+    <skip />
+    <string name="contactDetailAbout" msgid="5430408883907061400">"Acerca de"</string>
+    <string name="contactDetailUpdates" msgid="3780588624763446941">"Actualizaciones"</string>
     <string name="searchHint" msgid="8482945356247760701">"Buscar contactos"</string>
     <string name="menu_search" msgid="9147752853603483719">"Buscar"</string>
     <string name="menu_newContact" msgid="1209922412763274638">"Nuevo contacto"</string>
@@ -47,11 +53,12 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Enviar texto al contacto"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Crear correo electrónico predeterminado"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Separar"</string>
-    <!-- no translation found for menu_editGroup (8311763560942217614) -->
-    <skip />
+    <string name="menu_editGroup" msgid="8311763560942217614">"Editar grupo"</string>
     <string name="menu_renameGroup" msgid="2798886925154156075">"Renombrar grupo"</string>
     <string name="menu_deleteGroup" msgid="644571524292675446">"Eliminar grupo"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Nuevo"</string>
+    <!-- no translation found for menu_new_group_action_bar (5055346725617932394) -->
+    <skip />
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Separar contacto"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"¿Estás seguro de que deseas separar este contacto individual en varios contactos: uno para cada grupo de información de contacto que se unió a él?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Agrupar"</string>
@@ -63,7 +70,7 @@
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Unión de contactos"</string>
     <string name="menu_contactOptions" msgid="1957061455705020617">"Opciones"</string>
     <string name="contactOptionsTitle" msgid="8259347644090700915">"Opciones"</string>
-    <string name="deleteConfirmation_title" msgid="6394309508930335204">"Suprimir"</string>
+    <string name="deleteConfirmation_title" msgid="6394309508930335204">"Eliminar"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"No puedes borrar contactos desde cuentas de solo lectura, pero puedes ocultar tus listas de contactos."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Este contacto contiene información de varias cuentas. La información de las cuentas de solo lectura se ocultará en tus listas de contactos, pero no se eliminará."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Eliminar este contacto suprimirá la información de mútliples cuentas."</string>
@@ -114,6 +121,14 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Guardando opciones de visualización..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Contacto guardado."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Error, no se han podido guardar las modificaciones de contacto."</string>
+    <!-- no translation found for groupSavedToast (1168756874239833756) -->
+    <skip />
+    <!-- no translation found for groupSavedErrorToast (6434135707953150875) -->
+    <skip />
+    <!-- no translation found for groupMembershipChangeSavedToast (5323580174093150793) -->
+    <skip />
+    <!-- no translation found for contactAlreadyInGroup (6209708213229886092) -->
+    <skip />
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"1 contacto con el número de teléfono"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> contactos con números de teléfono"</item>
@@ -287,6 +302,7 @@
     <string name="add_2sec_pause" msgid="9214012315201040129">"Agregar pausa de 2 segundos"</string>
     <string name="add_wait" msgid="3360818652790319634">"Agregar espera"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"Llamar con"</string>
+    <string name="call_settings" msgid="5009897887137674341">"Configuración de llamadas"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Texto con"</string>
     <string name="make_primary" msgid="5829291915305113983">"Recuerda esta opción"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"No se encontró una aplicación para manejar esta acción."</string>
@@ -316,12 +332,14 @@
     <string name="type_short_pager" msgid="2613818970827594238">"P"</string>
     <string name="type_short_other" msgid="5669407180177236769">"Oct."</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Crear contacto según la cuenta"</string>
+    <!-- no translation found for dialog_new_group_account (2318032089273496830) -->
+    <skip />
     <string name="menu_sync_remove" msgid="3266725887008450161">"Eliminar grupo de sincronización"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Agregar grupo de sincronización"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"Más grupos…"</string>
     <string name="display_ungrouped" msgid="4602580795576261158">"Todos los otros contactos"</string>
     <string name="display_all_contacts" msgid="6846131371214707956">"Todos los contactos"</string>
-    <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Al suprimir \"<xliff:g id="GROUP">%s</xliff:g>\" de sincronización también se suprimirá cualquier contacto no agrupado de la sincronización."</string>
+    <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Al eliminar \"<xliff:g id="GROUP">%s</xliff:g>\" de sincronización también se eliminará cualquier contacto no agrupado de la sincronización."</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Sólo en tablet, sin sincronizar"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"Sólo telefónicamente, no sincronizado"</string>
     <string name="call_custom" msgid="7756571794763171802">"Llamar a <xliff:g id="CUSTOM">%s</xliff:g>"</string>
@@ -403,6 +421,10 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Segundo nombre fonético"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Apellido fonético"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Nombre fonético"</string>
+    <!-- no translation found for network (5415816765302129264) -->
+    <skip />
+    <!-- no translation found for recent_updates (2062236709538790412) -->
+    <skip />
     <string name="account_type_format" msgid="718948015590343010">"Contacto de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -491,8 +513,10 @@
     <string name="create_group_item_label" msgid="5218022006186243310">"[Crear grupo nuevo]"</string>
     <string name="rename_group_dialog_title" msgid="3765299704290513289">"Renombrar grupo"</string>
     <string name="delete_group_dialog_title" msgid="7368429698398624427">"Eliminar grupo"</string>
-    <!-- no translation found for num_groups_in_account:one (2944819210288517794) -->
-    <!-- no translation found for num_groups_in_account:other (1276758425904917367) -->
+  <plurals name="num_groups_in_account">
+    <item quantity="one" msgid="2944819210288517794">"1 grupo"</item>
+    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> grupos"</item>
+  </plurals>
     <string name="delete_group_dialog_message" msgid="295063284548750881">"¿Estás seguro de que deseas eliminar el grupo \'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\'? (Los contactos no se eliminarán)."</string>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Ingresa el nombre de contacto antes de unirlo con otro contacto."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Contacto que se unió"</string>
@@ -501,6 +525,13 @@
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"¿Deseas descartar las modificaciones?"</string>
     <string name="discard" msgid="1234315037371251414">"Descartar"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g><xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <!-- no translation found for profile_display_name (4179677761341328409) -->
+    <string name="profile_display_name" msgid="4179677761341328409">"Mi perfil"</string>
+    <!-- no translation found for enter_contact_name (2930510479516059437) -->
+    <skip />
+    <!-- no translation found for editGroup_title_insert (7803743109105317959) -->
+    <skip />
+    <!-- no translation found for editGroup_title_edit (2173278908256913247) -->
+    <skip />
+    <!-- no translation found for notification_voicemail_title (1282651537781272548) -->
     <skip />
 </resources>
