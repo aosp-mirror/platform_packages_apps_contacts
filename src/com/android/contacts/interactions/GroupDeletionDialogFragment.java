@@ -33,8 +33,15 @@ public class GroupDeletionDialogFragment extends DialogFragment {
     private static final String ARG_GROUP_ID = "groupId";
     private static final String ARG_LABEL = "label";
 
-    public static void show(FragmentManager fragmentManager, long groupId, String label) {
-        GroupDeletionDialogFragment dialog = new GroupDeletionDialogFragment();
+    private boolean mEndActivity;
+
+    public GroupDeletionDialogFragment(boolean endActivity) {
+        mEndActivity = endActivity;
+    }
+
+    public static void show(FragmentManager fragmentManager, long groupId, String label,
+            boolean endActivity) {
+        GroupDeletionDialogFragment dialog = new GroupDeletionDialogFragment(endActivity);
         Bundle args = new Bundle();
         args.putLong(ARG_GROUP_ID, groupId);
         args.putString(ARG_LABEL, label);
@@ -69,5 +76,8 @@ public class GroupDeletionDialogFragment extends DialogFragment {
 
         getActivity().startService(ContactSaveService.createGroupDeletionIntent(
                 getActivity(), groupId));
+        if (mEndActivity) {
+            getActivity().finish();
+        }
     }
 }

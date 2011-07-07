@@ -43,6 +43,7 @@ public class GroupDetailActivity extends ContactsActivity {
                 R.id.group_detail_fragment);
         fragment.setListener(mFragmentListener);
         fragment.loadGroup(getIntent().getData());
+        fragment.closeActivityAfterDelete(true);
 
         ActionBar actionBar =  getActionBar();
         if (actionBar != null) {
