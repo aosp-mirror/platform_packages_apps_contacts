@@ -15,10 +15,10 @@
 -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true" 
+    <!-- <item android:state_pressed="true"
         android:drawable="@drawable/dial_num_3_blk" />
     <item android:state_focused="true"
-        android:drawable="@drawable/dial_num_3_blk" />
+        android:drawable="@drawable/dial_num_3_blk" /> -->
     <item
         android:drawable="@drawable/dial_num_3_wht" />
 </selector>

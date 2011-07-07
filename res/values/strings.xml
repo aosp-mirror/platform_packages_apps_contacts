@@ -691,6 +691,7 @@
     <!-- String describing the Search ImageButton
 
          Used by AccessibilityService to announce the purpose of the button.
+         [CHAR LIMIT=NONE]
     -->
     <string name="description_search_button">search</string>
 

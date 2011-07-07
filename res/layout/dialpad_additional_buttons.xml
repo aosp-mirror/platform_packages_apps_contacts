@@ -20,8 +20,10 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/dialpad_additional_buttons_height"
     android:layout_gravity="center_horizontal"
-    android:layout_marginBottom="8dip"
+    android:layout_marginTop="4dip"
+    android:layout_marginBottom="4dip"
     android:layout_weight="0.25"
+    android:background="@drawable/dialpad_background"
     android:orientation="horizontal">
 
     <!-- Onscreen "Search button -->
@@ -31,7 +33,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:state_enabled="false"
-        android:background="@null"
+        android:background="@drawable/btn_dial"
         android:contentDescription="@string/description_search_button"
         android:src="@drawable/ic_dial_action_search"/>
 
@@ -44,7 +46,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:state_enabled="false"
-        android:background="@null"
+        android:background="@drawable/btn_dial"
         android:contentDescription="@string/description_dial_button"
         android:src="@drawable/ic_dial_action_call" />
 
@@ -55,7 +57,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:state_enabled="false"
-        android:background="@null"
+        android:background="@drawable/btn_dial"
         android:contentDescription="@string/description_delete_button"
         android:src="@drawable/ic_dial_action_delete" />
 </LinearLayout>

@@ -21,12 +21,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
-    android:layout_marginTop="10dip"
+    android:layout_marginTop="4dip"
+    android:background="@drawable/dialpad_background"
     android:layout_weight="1">
 
     <TableRow>
         <ImageButton android:id="@+id/one" style="@style/DialtactsDialpadButtonStyle"
-            android:src="@drawable/dial_num_1_no_vm"
+            android:src="@drawable/dial_num_1"
             android:contentDescription="@string/description_image_button_one" />
         <ImageButton android:id="@+id/two" style="@style/DialtactsDialpadButtonStyle"
             android:src="@drawable/dial_num_2"

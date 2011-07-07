@@ -16,10 +16,9 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- <item android:state_pressed="true"
-        android:drawable="@drawable/dial_num_7_blk" />
+        android:drawable="@drawable/dial_num_1" />
     <item android:state_focused="true"
-        android:drawable="@drawable/dial_num_7_blk" /> -->
+        android:drawable="@drawable/dial_num_1" /> -->
     <item
-        android:drawable="@drawable/dial_num_7_wht" />
+        android:drawable="@drawable/dial_num_1_wht" />
 </selector>
-
