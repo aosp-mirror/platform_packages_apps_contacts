@@ -61,8 +61,8 @@ public class CallDetailActivity extends ListActivity implements
     private PhoneCallDetailsHelper mPhoneCallDetailsHelper;
     private TextView mCallTimeView;
     private TextView mCallDurationView;
-    private View mCallActionView;
-    private ImageView mContactPhotoView;
+    private View mHomeActionView;
+    private ImageView mMainActionView;
     private ImageView mContactBackgroundView;
 
     private String mNumber = null;
@@ -121,14 +121,22 @@ public class CallDetailActivity extends ListActivity implements
                 getResources().getDrawable(R.drawable.ic_call_log_list_outgoing_call),
                 getResources().getDrawable(R.drawable.ic_call_log_list_missed_call),
                 getResources().getDrawable(R.drawable.ic_call_log_list_voicemail));
-        mCallActionView = findViewById(R.id.call);
-        mContactPhotoView = (ImageView) findViewById(R.id.contact_photo);
+        mHomeActionView = findViewById(R.id.action_bar_home);
+        mMainActionView = (ImageView) findViewById(R.id.main_action);
         mContactBackgroundView = (ImageView) findViewById(R.id.contact_background);
         mCallTimeView = (TextView) findViewById(R.id.time);
         mCallDurationView = (TextView) findViewById(R.id.duration);
         mDefaultCountryIso = ContactsUtils.getCurrentCountryIso(this);
         mContactPhotoManager = ContactPhotoManager.getInstance(this);
         getListView().setOnItemClickListener(this);
+        mHomeActionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // We want this to start the call log if this activity was not started from the
+                // call log itself.
+                CallDetailActivity.this.finish();
+            }
+        });
     }
 
     @Override
@@ -198,7 +206,7 @@ public class CallDetailActivity extends ListActivity implements
                         mNumber.equals(CallerInfo.PRIVATE_NUMBER)) {
                     numberText = getString(mNumber.equals(CallerInfo.PRIVATE_NUMBER)
                             ? R.string.private_num : R.string.unknown);
-                    mCallActionView.setVisibility(View.GONE);
+                    mMainActionView.setVisibility(View.GONE);
                 } else {
                     // Perform a reverse-phonebook lookup to find the PERSON_ID
                     Uri personUri = null;
@@ -227,37 +235,41 @@ public class CallDetailActivity extends ListActivity implements
                     }
                     numberText = mNumber;
 
-                    mCallActionView.setVisibility(View.VISIBLE);
-                    mCallActionView.setOnClickListener(new View.OnClickListener() {
+                    // Let user view contact details if they exist, otherwise add option
+                    // to create new contact from this number.
+                    final Intent mainActionIntent;
+                    final int mainActionIcon;
+                    if (personUri != null) {
+                        mainActionIntent = new Intent(Intent.ACTION_VIEW, personUri);
+                        mainActionIcon = R.drawable.sym_action_view_contact;
+                    } else {
+                        mainActionIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+                        mainActionIntent.setType(Contacts.CONTENT_ITEM_TYPE);
+                        mainActionIntent.putExtra(Insert.PHONE, mNumber);
+                        mainActionIcon = R.drawable.sym_action_add;
+                    }
+
+                    mMainActionView.setVisibility(View.VISIBLE);
+                    mMainActionView.setImageResource(mainActionIcon);
+                    mMainActionView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent callIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                                    Uri.fromParts("tel", mNumber, null));
-                            startActivity(callIntent);
+                            startActivity(mainActionIntent);
                         }
                     });
 
                     // Build list of various available actions
                     List<ViewEntry> actions = new ArrayList<ViewEntry>();
 
+                    Intent callIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
+                            Uri.fromParts("tel", mNumber, null));
+                    actions.add(new ViewEntry(android.R.drawable.sym_action_call,
+                            getString(R.string.menu_callNumber, mNumber), callIntent));
+
                     Intent smsIntent = new Intent(Intent.ACTION_SENDTO,
                             Uri.fromParts("sms", mNumber, null));
                     actions.add(new ViewEntry(R.drawable.sym_action_sms,
                             getString(R.string.menu_sendTextMessage), smsIntent));
-
-                    // Let user view contact details if they exist, otherwise add option
-                    // to create new contact from this number.
-                    if (personUri != null) {
-                        Intent viewIntent = new Intent(Intent.ACTION_VIEW, personUri);
-                        actions.add(new ViewEntry(R.drawable.sym_action_view_contact,
-                                getString(R.string.menu_viewContact), viewIntent));
-                    } else {
-                        Intent createIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-                        createIntent.setType(Contacts.CONTENT_ITEM_TYPE);
-                        createIntent.putExtra(Insert.PHONE, mNumber);
-                        actions.add(new ViewEntry(R.drawable.sym_action_add,
-                                getString(R.string.recentCalls_addToContact), createIntent));
-                    }
 
                     ViewAdapter adapter = new ViewAdapter(this, actions);
                     setListAdapter(adapter);
@@ -282,21 +294,7 @@ public class CallDetailActivity extends ListActivity implements
 
     /** Load the contact photos and places them in the corresponding views. */
     private void loadContactPhotos(final long photoId) {
-        // There seem to be a limitation in the ContactPhotoManager that does not allow requesting
-        // two photos at once.
-        // TODO: Figure out the problem with ContactPhotoManager and remove this nonsense.
-        mContactPhotoView.post(new Runnable() {
-            @Override
-            public void run() {
-                mContactPhotoManager.loadPhoto(mContactPhotoView, photoId);
-                mContactPhotoView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mContactPhotoManager.loadPhoto(mContactBackgroundView, photoId);
-                    }
-                }, 100);
-            }
-        });
+        mContactPhotoManager.loadPhoto(mContactBackgroundView, photoId);
     }
 
     private String formatDuration(long elapsedSeconds) {

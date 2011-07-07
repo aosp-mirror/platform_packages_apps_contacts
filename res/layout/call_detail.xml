@@ -19,100 +19,91 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:gravity="top"
-    android:paddingTop="?attr/call_detail_top_gap"
-    android:background="?attr/call_detail_transparent_background"
 >
+    <LinearLayout
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/call_detail_action_bar_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:background="@drawable/call_log_action_bar_bg"
+    >
+        <ImageView
+            android:id="@+id/action_bar_home"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_call_log_home"
+        />
+    </LinearLayout>
     <ImageView
         android:id="@+id/contact_background"
         android:layout_width="match_parent"
         android:layout_height="?attr/call_detail_contact_background_height"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/action_bar"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
 
         android:background="@drawable/ic_contact_picture"
     />
-    <View
-        android:id="@+id/contact_background_overlay"
+    <ListView
+        android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="?attr/call_detail_contact_background_height"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contact_background"
         android:background="?attr/call_detail_primary_background_color"
-        android:alpha="?attr/call_detail_contact_background_overlay_alpha"
     />
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/call_detail_contact_background_overlay_height"
+        android:background="#3F000000"
+        android:layout_alignParentLeft="true"
+        android:layout_above="@android:id/list"
+    />
     <RelativeLayout
         android:id="@+id/photo_panel"
         android:layout_width="match_parent"
-        android:layout_height="?attr/call_detail_contact_background_height"
+        android:layout_height="?attr/call_detail_contact_background_overlay_height"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:paddingBottom="10dp"
+        android:layout_above="@android:id/list"
+        android:paddingLeft="5dip"
     >
-        <ImageView
-            android:id="@+id/contact_photo"
-            android:layout_width="?attr/call_detail_contact_photo_size"
-            android:layout_height="?attr/call_detail_contact_photo_size"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
-
-            android:background="@drawable/ic_contact_picture"
-        />
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@id/contact_photo"
-            android:layout_marginLeft="10dp"
         >
             <include layout="@layout/call_log_phone_call_details" />
         </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="?attr/call_detail_action_icon_size"
+        <ImageView
+            android:id="@+id/main_action"
+            android:layout_width="?attr/call_detail_action_icon_size"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:scaleType="center"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
-        >
-            <ImageView
-                android:id="@+id/call"
-                android:layout_width="?attr/call_detail_action_icon_size"
-                android:layout_height="?attr/call_detail_action_icon_size"
-                android:layout_alignParentRight="true"
-                android:gravity="center_vertical"
-                android:src="@drawable/ic_call_log_list_action_call"
-                android:scaleType="center"
-            />
-            <View
-                android:id="@+id/divider"
-                android:layout_width="1px"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dip"
-                android:layout_marginBottom="5dip"
-                android:layout_toLeftOf="@id/call"
-                android:layout_marginLeft="11dip"
-                android:background="#FFFFFF"
-            />
-        </RelativeLayout>
+        />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/call_panel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/photo_panel"
+        android:layout_below="@android:id/list"
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
         android:paddingLeft="80dp"
-        android:background="#FFFFFF"
+        android:background="?attr/call_detail_secondary_background_color"
     >
         <TextView
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:textColor="?attr/call_detail_secondary_text_color"
         />
         <TextView
             android:id="@+id/duration"
@@ -121,6 +112,7 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@id/time"
             android:layout_alignLeft="@id/time"
+            android:textColor="?attr/call_detail_secondary_text_color"
         />
         <ImageView
             android:id="@+id/delete"
@@ -133,11 +125,4 @@
             android:visibility="gone"
         />
     </RelativeLayout>
-    <ListView
-        android:id="@android:id/list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/call_panel"
-        android:background="?attr/call_detail_secondary_background_color"
-    />
 </RelativeLayout>
