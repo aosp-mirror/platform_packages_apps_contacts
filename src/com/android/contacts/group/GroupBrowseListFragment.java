@@ -33,6 +33,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Groups;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -77,6 +78,8 @@ public class GroupBrowseListFragment extends Fragment
 
     private boolean mSelectionToScreenRequested;
 
+    private static final String EXTRA_KEY_GROUP_URI = "groups.groupUri";
+
     /**
      * Map of account name to a list of {@link GroupMetaData} objects
      * representing groups within that account.
@@ -108,6 +111,13 @@ public class GroupBrowseListFragment extends Fragment
         mListView.setOnFocusChangeListener(this);
         mListView.setOnTouchListener(this);
         mEmptyView = mRootView.findViewById(R.id.empty);
+
+        if (savedInstanceState != null) {
+            String groupUriString = savedInstanceState.getString(EXTRA_KEY_GROUP_URI);
+            if (groupUriString != null) {
+                mSelectedGroupUri = Uri.parse(groupUriString);
+            }
+        }
         return mRootView;
     }
 
@@ -230,6 +240,10 @@ public class GroupBrowseListFragment extends Fragment
         if (mSelectionToScreenRequested) {
             requestSelectionToScreen();
         }
+
+        if (mSelectionVisible && mSelectedGroupUri != null) {
+            viewGroup(mSelectedGroupUri);
+        }
     }
 
     public void setListener(OnGroupBrowserActionListener listener) {
@@ -292,5 +306,16 @@ public class GroupBrowseListFragment extends Fragment
             hideSoftKeyboard();
         }
         return false;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (mSelectedGroupUri != null) {
+            String uriString = mSelectedGroupUri.toString();
+            if (!TextUtils.isEmpty(uriString)) {
+                outState.putString(EXTRA_KEY_GROUP_URI, uriString);
+            }
+        }
     }
 }

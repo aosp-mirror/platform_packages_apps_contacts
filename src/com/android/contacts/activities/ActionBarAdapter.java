@@ -49,6 +49,7 @@ public class ActionBarAdapter
 
     private static final String EXTRA_KEY_SEARCH_MODE = "navBar.searchMode";
     private static final String EXTRA_KEY_QUERY = "navBar.query";
+    private static final String EXTRA_KEY_SELECTED_TAB = "navBar.selectedTab";
 
     private boolean mSearchMode;
     private String mQueryString;
@@ -213,11 +214,13 @@ public class ActionBarAdapter
     public void onSaveInstanceState(Bundle outState) {
         outState.putBoolean(EXTRA_KEY_SEARCH_MODE, mSearchMode);
         outState.putString(EXTRA_KEY_QUERY, mQueryString);
+        outState.putInt(EXTRA_KEY_SELECTED_TAB, mActionBar.getSelectedNavigationIndex());
     }
 
     public void onRestoreInstanceState(Bundle savedState) {
         mSearchMode = savedState.getBoolean(EXTRA_KEY_SEARCH_MODE);
         mQueryString = savedState.getString(EXTRA_KEY_QUERY);
+        mActionBar.setSelectedNavigationItem(savedState.getInt(EXTRA_KEY_SELECTED_TAB));
     }
 
     @Override
