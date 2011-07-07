@@ -236,10 +236,12 @@ public class PeopleActivity extends ContactsActivity
         } else if (fragment instanceof GroupDetailFragment) {
             mGroupDetailFragment = (GroupDetailFragment) fragment;
             mGroupDetailFragment.setListener(mGroupDetailFragmentListener);
+            mGroupDetailFragment.setQuickContact(PhoneCapabilityTester.isUsingTwoPanes(this));
         } else if (fragment instanceof StrequentContactListFragment) {
             mFavoritesFragment = (StrequentContactListFragment) fragment;
             mFavoritesFragment.setListener(mFavoritesFragmentListener);
             mFavoritesFragment.setDisplayType(DisplayType.STARRED_ONLY);
+            mFavoritesFragment.setQuickContact(PhoneCapabilityTester.isUsingTwoPanes(this));
         }
     }
 
@@ -488,6 +490,10 @@ public class PeopleActivity extends ContactsActivity
                     filter = ContactListFilter.createFilterWithType(
                             ContactListFilter.FILTER_TYPE_STARRED);
                     break;
+                case ContactsRequest.ACTION_VIEW_CONTACT:
+                    if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
+                        getActionBar().setSelectedNavigationItem(TabState.ALL.ordinal());
+                    }
             }
 
             mSearchMode = mRequest.isSearchMode();

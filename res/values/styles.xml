@@ -328,4 +328,32 @@
         <item name="android:background">@drawable/btn_dial</item>
         <item name="android:soundEffectsEnabled">false</item>
     </style>
+
+    <style name="ContactTileStarred">
+        <item name="android:focusable">true</item>
+        <item name="android:padding">1px</item>
+        <item name="android:background">@drawable/list_selector</item>
+    </style>
+
+    <style name="ContactTileStarredText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dip</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">8dip</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+    </style>
+
+    <style name="ContactTileStarredTextBackground">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dip</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:alpha">0.5</item>
+        <item name="android:background">@android:color/black</item>
+    </style>
 </resources>

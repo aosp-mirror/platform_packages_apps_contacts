@@ -15,33 +15,27 @@
 -->
 <view
     xmlns:android="http://schemas.android.com/apk/res/android"
-    class="com.android.contacts.list.ContactTileView"
-    android:focusable="true"
-    android:background="@drawable/list_selector"
-    android:paddingRight="16dip"
-    android:paddingLeft="16dip" >
+    class="com.android.contacts.list.ContactTileStarredView"
+    style="@style/ContactTileStarred" >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <TextView
-            android:id="@+id/contact_tile_name"
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:textSize="18sp"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:paddingTop="24dip" />
-
-        <ImageView
-            android:id="@+id/contact_tile_image"
-            android:layout_width="64dip"
-            android:layout_height="64dip"
+        <QuickContactBadge
+            android:id="@+id/contact_tile_quick"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop" />
 
-    </LinearLayout>
+        <View
+            android:id="@+id/contact_tile_background"
+            style="@style/ContactTileStarredTextBackground" />
+
+        <TextView
+            android:id="@+id/contact_tile_name"
+            style="@style/ContactTileStarredText" />
+
+    </RelativeLayout>
 
 </view>

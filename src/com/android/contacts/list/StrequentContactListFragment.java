@@ -85,6 +85,10 @@ public class StrequentContactListFragment extends Fragment {
         mAdapter.setDisplayType(displayType);
     }
 
+    public void setQuickContact(boolean enableQuickContact) {
+        mAdapter.setQuickContact(enableQuickContact);
+    }
+
     /**
      * The listener for the strequent meta data loader.
      */

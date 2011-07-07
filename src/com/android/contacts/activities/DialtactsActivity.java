@@ -333,6 +333,7 @@ public class DialtactsActivity extends Activity {
             mCallLogFragment.onVisibilityChanged(currentPosition == TAB_INDEX_CALL_LOG);
         } else if (fragment instanceof StrequentContactListFragment) {
             mStrequentFragment = (StrequentContactListFragment) fragment;
+            mStrequentFragment.setQuickContact(false);
             mStrequentFragment.setListener(mStrequentListener);
         } else if (fragment instanceof PhoneNumberPickerFragment) {
             mSearchFragment = (PhoneNumberPickerFragment) fragment;

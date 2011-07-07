@@ -105,6 +105,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
 
         mAdapter = new ContactTileAdapter(activity, mContactTileListener, columnCount,
                 DisplayType.GROUP_MEMBERS);
+
         configurePhotoLoader();
     }
 
@@ -128,6 +129,10 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
     public void loadGroup(Uri groupUri) {
         mGroupUri= groupUri;
         startGroupMetadataLoader();
+    }
+
+    public void setQuickContact(boolean enableQuickContact) {
+        mAdapter.setQuickContact(enableQuickContact);
     }
 
     private void configureAdapter(long groupId) {

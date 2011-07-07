@@ -19,13 +19,13 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 /**
- * A ContactTileSquare displays the contact's picture overlayed with their name
+ * A {@link ContactTileStarredView} displays the contact's picture overlayed with their name
  * in a perfect square.
  */
-public class ContactTileSquareView extends ContactTileView {
-    private final static String TAG = ContactTileSquareView.class.getSimpleName();
+public class ContactTileStarredView extends ContactTileView {
+    private final static String TAG = ContactTileStarredView.class.getSimpleName();
 
-    public ContactTileSquareView(Context context, AttributeSet attrs) {
+    public ContactTileStarredView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

@@ -65,6 +65,7 @@ public class ContactTileAdapter extends BaseAdapter {
     private int mPhotoUriIndex;
     private int mNameIndex;
     private int mStarredIndex;
+    private boolean mIsQuickContact = false;
 
     /**
      * Configures the adapter to filter and display contacts using different view types.
@@ -72,27 +73,23 @@ public class ContactTileAdapter extends BaseAdapter {
      */
     public enum DisplayType {
         /**
-         * Displays a mixed view type where Starred Contacts
-         * are in a regular {@link ContactTileView} layout and
-         * frequent contacts are in a small {@link ContactTileView} layout.
+         * Displays a mixed view type of starred and frequent contacts
          */
         STREQUENT,
 
         /**
-         * Display only starred contacts in
-         * regular {@link ContactTileView} layout.
+         * Display only starred contacts
          */
         STARRED_ONLY,
 
         /**
-         * Display only most frequently contacted in a
-         * single {@link ContactTileView} layout.
+         * Display only most frequently contacted
          */
         FREQUENT_ONLY,
 
         /**
-         * Display all contacts from a group in the cursor in a
-         * regular {@link ContactTileView} layout. Use {@link GroupMemberLoader}
+         * Display all contacts from a group in the cursor
+         * Use {@link GroupMemberLoader}
          * when passing {@link Cursor} into loadFromCusor method.
          */
         GROUP_MEMBERS
@@ -118,6 +115,10 @@ public class ContactTileAdapter extends BaseAdapter {
 
     public void setDisplayType(DisplayType displayType) {
         mDisplayType = displayType;
+    }
+
+    public void setQuickContact(boolean enableQuickContact) {
+        mIsQuickContact = enableQuickContact;
     }
 
     /**
@@ -292,7 +293,7 @@ public class ContactTileAdapter extends BaseAdapter {
         int columnCount = -1;
 
         switch (itemViewType) {
-            case ViewTypes.SQUARE:
+            case ViewTypes.STARRED:
                 if (contactTileRowView == null) {
                     // Creating new row if needed
                     contactTileRowView = new ContactTileRow(mContext, layoutResId, true);
@@ -300,7 +301,7 @@ public class ContactTileAdapter extends BaseAdapter {
                 columnCount = mColumnCount;
                 break;
 
-            case ViewTypes.SINGLE_ROW:
+            case ViewTypes.FREQUENT:
                 if (contactTileRowView == null) {
                     // Creating new row if needed
                     contactTileRowView = new ContactTileRow(mContext, layoutResId, false);
@@ -327,10 +328,14 @@ public class ContactTileAdapter extends BaseAdapter {
 
     private int getLayoutResourceId(int viewType) {
         switch (viewType) {
-            case ViewTypes.SQUARE:
-                return R.layout.contact_tile_square;
-            case ViewTypes.SINGLE_ROW:
-                return R.layout.contact_tile_single;
+            case ViewTypes.STARRED:
+                if (mIsQuickContact) {
+                    return R.layout.contact_tile_starred_quick_contact;
+                } else {
+                    return R.layout.contact_tile_starred;
+                }
+            case ViewTypes.FREQUENT:
+                return R.layout.contact_tile_frequent;
             default:
                 throw new IllegalArgumentException("Received unrecognized viewType " + viewType);
         }
@@ -343,8 +348,8 @@ public class ContactTileAdapter extends BaseAdapter {
     /**
      * Returns view type based on {@link DisplayType}.
      * {@link DisplayType#STARRED_ONLY} and {@link DisplayType#GROUP_MEMBERS}
-     * are {@link ViewTypes#SQUARE}.
-     * {@link DisplayType#FREQUENT_ONLY} is {@link ViewTypes#SINGLE_ROW}.
+     * are {@link ViewTypes#STARRED}.
+     * {@link DisplayType#FREQUENT_ONLY} is {@link ViewTypes#FREQUENT}.
      * {@link DisplayType#STREQUENT} mixes both {@link ViewTypes}
      * and also adds in {@link ViewTypes#DIVIDER}.
      */
@@ -353,17 +358,17 @@ public class ContactTileAdapter extends BaseAdapter {
         switch (mDisplayType) {
             case STREQUENT:
                 if (position < mDividerRowIndex) {
-                    return ViewTypes.SQUARE;
+                    return ViewTypes.STARRED;
                 } else if (position == mDividerRowIndex) {
                     return ViewTypes.DIVIDER;
                 } else {
-                    return ViewTypes.SINGLE_ROW;
+                    return ViewTypes.FREQUENT;
                 }
             case STARRED_ONLY:
             case GROUP_MEMBERS:
-                return ViewTypes.SQUARE;
+                return ViewTypes.STARRED;
             case FREQUENT_ONLY:
-                return ViewTypes.SINGLE_ROW;
+                return ViewTypes.FREQUENT;
             default:
                 throw new IllegalStateException(
                         "Received unrecognized DisplayType " + mDisplayType);
@@ -400,7 +405,7 @@ public class ContactTileAdapter extends BaseAdapter {
 
             if (getChildCount() <= tileIndex) {
                 if (mIsContactTileSquare) {
-                    contactTile = (ContactTileSquareView) inflate(mContext, mLayoutResId, null);
+                    contactTile = (ContactTileStarredView) inflate(mContext, mLayoutResId, null);
                 } else {
                     contactTile = (ContactTileView) inflate(mContext, mLayoutResId, null);
                 }
@@ -433,9 +438,9 @@ public class ContactTileAdapter extends BaseAdapter {
 
     private static class ViewTypes {
         public static final int COUNT = 3;
-        public static final int SQUARE = 0;
+        public static final int STARRED = 0;
         public static final int DIVIDER = 1;
-        public static final int SINGLE_ROW = 2;
+        public static final int FREQUENT = 2;
     }
 
     public interface Listener {

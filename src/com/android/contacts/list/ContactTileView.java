@@ -26,6 +26,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
 /**
@@ -36,6 +37,7 @@ public class ContactTileView extends FrameLayout {
 
     private Uri mLookupUri;
     private ImageView mPhoto;
+    private QuickContactBadge mQuickContact;
     private TextView mName;
     private ContactPhotoManager mPhotoManager = null;
 
@@ -47,6 +49,8 @@ public class ContactTileView extends FrameLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
         mName = (TextView) findViewById(R.id.contact_tile_name);
+
+        mQuickContact = (QuickContactBadge) findViewById(R.id.contact_tile_quick);
         mPhoto = (ImageView) findViewById(R.id.contact_tile_image);
     }
 
@@ -62,11 +66,23 @@ public class ContactTileView extends FrameLayout {
         if (entry != null) {
             mName.setText(entry.name);
             mLookupUri = entry.lookupKey;
-            mPhoto.setImageBitmap(null);
+
+            if (mQuickContact != null) {
+                mQuickContact.assignContactUri(mLookupUri);
+                mQuickContact.setImageBitmap(null);
+            } else {
+                mPhoto.setImageBitmap(null);
+            }
+
             setVisibility(View.VISIBLE);
 
             if (mPhotoManager != null) {
-                mPhotoManager.loadPhoto(mPhoto, entry.photoUri);
+                if (mQuickContact != null){
+                    mPhotoManager.loadPhoto(mQuickContact, entry.photoUri);
+                } else {
+                    mPhotoManager.loadPhoto(mPhoto, entry.photoUri);
+                }
+
             } else {
                 Log.w(TAG, "contactPhotoManager not set");
             }
