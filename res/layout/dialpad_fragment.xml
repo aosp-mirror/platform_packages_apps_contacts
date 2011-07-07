@@ -19,8 +19,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/black"
->
+    android:layout_marginLeft="8dip"
+    android:layout_marginRight="8dip" >
 
     <!-- Text field above the keypad where the digits are displayed.
          It's type is set to NULL (to disable the IME keyboard) in the
@@ -31,15 +31,16 @@
     <EditText android:id="@+id/digits"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dialpad_digits_height"
-        android:layout_marginTop="10dip"
+        android:layout_marginTop="4dip"
         android:gravity="center"
         android:textAppearance="@style/DialtactsDigitsTextAppearance"
-        android:textColor="?android:attr/textColorPrimaryInverse" />
+        android:background="@drawable/dialpad_background"
+        android:textColor="?android:attr/textColorPrimary" />
 
     <!-- Keypad section -->
     <include layout="@layout/dialpad" />
 
-    <!-- Horizontal row of buttons (Voicemail + DialButton + Delete.) -->
+    <!-- Horizontal row of buttons (Search + DialButton + Delete.) -->
     <include layout="@layout/dialpad_additional_buttons" />
 
     <!-- "Dialpad chooser" UI, shown only when the user brings up the

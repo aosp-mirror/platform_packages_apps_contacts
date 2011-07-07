@@ -22,6 +22,7 @@
         android:drawable="@drawable/btn_dial_pressed" />
     <item android:state_focused="true"
         android:drawable="@drawable/btn_dial_selected" />
-    <item
-        android:drawable="@drawable/btn_dial_normal" />
+
+    <item android:state_focused="true"
+        android:drawable="@android:color/transparent" />
 </selector>
