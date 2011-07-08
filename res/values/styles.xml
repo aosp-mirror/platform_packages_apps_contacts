@@ -42,22 +42,20 @@
         <item name="call_log_list_item_height">60dip</item>
     </style>
 
-    <style name="CallDetailActivityTheme" parent="android:Theme.Holo.Light">
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowIsTranslucent">true</item>
+    <style name="CallDetailActivityTheme" parent="android:Theme.Holo">
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:gravity">top</item>
-        <item name="call_detail_top_gap">49dip</item>
         <item name="call_detail_transparent_background">#CC000000</item>
         <item name="call_detail_contact_background_height">150dip</item>
+        <item name="call_detail_contact_background_overlay_height">70dip</item>
+        <item name="call_detail_action_bar_height">60dip</item>
+        <item name="call_detail_action_icon_size">60dip</item>
         <item name="call_detail_contact_background_overlay_alpha">0.25</item>
-        <item name="call_detail_primary_background_color">#000000</item>
-        <item name="call_detail_contact_photo_size">60dip</item>
         <item name="call_detail_primary_text_color">#FFFFFF</item>
-        <item name="call_detail_action_icon_size">50dip</item>
-        <item name="call_detail_secondary_background_color">#FFFFFF</item>
         <item name="call_detail_date_margin">5dip</item>
+        <item name="call_detail_primary_background_color">#000000</item>
+        <item name="call_detail_secondary_text_color">#FFFFFF</item>
+        <item name="call_detail_secondary_background_color">#333333</item>
     </style>
 
     <style name="ContactDetailActivityTheme" parent="android:Theme.Holo.Light">
@@ -133,14 +131,16 @@
     </declare-styleable>
 
     <declare-styleable name="CallDetailActivity">
-        <attr name="call_detail_top_gap" format="dimension" />
         <attr name="call_detail_transparent_background" format="color" />
         <attr name="call_detail_contact_background_height" format="dimension" />
+        <attr name="call_detail_contact_background_overlay_height" format="dimension" />
         <attr name="call_detail_contact_background_overlay_alpha" format="float" />
         <attr name="call_detail_contact_photo_size" format="dimension" />
         <attr name="call_detail_action_icon_size" format="dimension" />
+        <attr name="call_detail_action_bar_height" format="dimension" />
         <attr name="call_detail_primary_text_color" format="color" />
         <attr name="call_detail_primary_background_color" format="color" />
+        <attr name="call_detail_secondary_text_color" format="color" />
         <attr name="call_detail_secondary_background_color" format="color" />
         <attr name="call_detail_date_margin" format="dimension" />
     </declare-styleable>
