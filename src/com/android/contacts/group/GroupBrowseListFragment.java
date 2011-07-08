@@ -32,6 +32,7 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.provider.ContactsContract.Groups;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -227,6 +228,7 @@ public class GroupBrowseListFragment extends Fragment
         mAdapter.setSelectionVisible(mSelectionVisible);
         mAdapter.setSelectedGroup(mSelectedGroupUri);
 
+        Parcelable listState = mListView.onSaveInstanceState();
         mListView.setAdapter(mAdapter);
         mListView.setEmptyView(mEmptyView);
         mListView.setOnItemClickListener(new OnItemClickListener() {
@@ -239,6 +241,9 @@ public class GroupBrowseListFragment extends Fragment
 
         if (mSelectionToScreenRequested) {
             requestSelectionToScreen();
+        } else {
+            // Restore the scroll position.
+            mListView.onRestoreInstanceState(listState);
         }
 
         if (mSelectionVisible && mSelectedGroupUri != null) {
