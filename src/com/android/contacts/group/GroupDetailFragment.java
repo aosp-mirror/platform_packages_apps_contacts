@@ -90,6 +90,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
     private String mGroupName;
 
     private boolean mOptionsMenuEditable;
+    private boolean mCloseActivityAfterDelete;
 
     public GroupDetailFragment() {
     }
@@ -190,11 +191,20 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
 
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-            bindGroupMetaData(data);
+            data.moveToPosition(-1);
+            if (data.moveToNext()) {
+                boolean deleted = data.getInt(GroupMetaDataLoader.DELETED) == 1;
+                if (!deleted) {
+                    bindGroupMetaData(data);
 
-            // Retrieve the list of members
-            configureAdapter(mGroupId);
-            startGroupMembersLoader();
+                    // Retrieve the list of members
+                    configureAdapter(mGroupId);
+                    startGroupMembersLoader();
+                    return;
+                }
+            }
+            updateSize(null);
+            updateTitle(null);
         }
 
         @Override
@@ -295,10 +305,15 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
                 break;
             }
             case R.id.menu_delete_group: {
-                GroupDeletionDialogFragment.show(getFragmentManager(), mGroupId, mGroupName);
+                GroupDeletionDialogFragment.show(getFragmentManager(), mGroupId, mGroupName,
+                        mCloseActivityAfterDelete);
                 return true;
             }
         }
         return false;
+    }
+
+    public void closeActivityAfterDelete(boolean closeActivity) {
+        mCloseActivityAfterDelete = closeActivity;
     }
 }

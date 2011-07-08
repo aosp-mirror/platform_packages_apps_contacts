@@ -196,6 +196,8 @@ public class GroupBrowseListFragment extends Fragment
             String accountType = mGroupListCursor.getString(GroupMetaDataLoader.ACCOUNT_TYPE);
             long groupId = mGroupListCursor.getLong(GroupMetaDataLoader.GROUP_ID);
             String title = mGroupListCursor.getString(GroupMetaDataLoader.TITLE);
+            boolean deleted =
+                    (mGroupListCursor.getInt(GroupMetaDataLoader.DELETED) == 1);
             boolean defaultGroup = mGroupListCursor.isNull(GroupMetaDataLoader.AUTO_ADD)
                     ? false
                     : mGroupListCursor.getInt(GroupMetaDataLoader.AUTO_ADD) != 0;
@@ -204,8 +206,8 @@ public class GroupBrowseListFragment extends Fragment
                     : mGroupListCursor.getInt(GroupMetaDataLoader.FAVORITES) != 0;
 
             // Don't show the "auto-added" (i.e. My Contacts) or "favorites" groups because
-            // they show up elsewhere in the app
-            if (defaultGroup || favorites) {
+            // they show up elsewhere in the app. Also skip groups that are marked as "deleted"
+            if (defaultGroup || favorites || deleted) {
                 continue;
             }
 
