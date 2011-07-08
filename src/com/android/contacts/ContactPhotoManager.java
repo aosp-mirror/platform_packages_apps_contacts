@@ -66,11 +66,12 @@ public abstract class ContactPhotoManager {
      * the available authenticators. This method can safely be called from the UI thread.
      */
     public static ContactPhotoManager getInstance(Context context) {
+        Context applicationContext = context.getApplicationContext();
         ContactPhotoManager service =
-                (ContactPhotoManager) context.getSystemService(CONTACT_PHOTO_SERVICE);
+                (ContactPhotoManager) applicationContext.getSystemService(CONTACT_PHOTO_SERVICE);
         if (service == null) {
-            service = createContactPhotoManager(context);
-            Log.e(TAG, "No contact photo service in context: " + context);
+            service = createContactPhotoManager(applicationContext);
+            Log.e(TAG, "No contact photo service in context: " + applicationContext);
         }
         return service;
     }
