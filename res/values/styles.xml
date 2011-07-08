@@ -33,7 +33,7 @@
         <item name="list_item_profile_photo_size">70dip</item>
         <item name="list_item_prefix_highlight_color">#729a27</item>
         <item name="list_item_header_text_indent">56dip</item>
-        <item name="list_item_header_text_color">?color/section_header_text_color</item>
+        <item name="list_item_header_text_color">#ffcccccc</item>
         <item name="list_item_header_text_size">14sp</item>
         <item name="contact_filter_popup_width">320dip</item>
         <!-- CallLogActivity -->
