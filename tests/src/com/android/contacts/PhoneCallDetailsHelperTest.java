@@ -167,16 +167,18 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
 
     /** Sets the phone call details with default values and the given number. */
     private void setPhoneCallDetailsWithNumber(String number) {
-        mHelper.setPhoneCallDetails(mViews, TEST_DATE, Calls.INCOMING_TYPE, "", number, 0, "");
+        mHelper.setPhoneCallDetails(mViews,
+                new PhoneCallDetails(number, Calls.INCOMING_TYPE, TEST_DATE));
     }
 
     /** Sets the phone call details with default values and the given date. */
     private void setPhoneCallDetailsWithDate(long date) {
-        mHelper.setPhoneCallDetails(mViews, date, Calls.INCOMING_TYPE, "", TEST_NUMBER, 0, "");
+        mHelper.setPhoneCallDetails(mViews,
+                new PhoneCallDetails(TEST_NUMBER, Calls.INCOMING_TYPE, date));
     }
 
     /** Sets the phone call details with default values and the given call type. */
     private void setPhoneCallDetailsWithCallType(int callType) {
-        mHelper.setPhoneCallDetails(mViews, TEST_DATE, callType, "", TEST_NUMBER, 0, "");
+        mHelper.setPhoneCallDetails(mViews, new PhoneCallDetails(TEST_NUMBER, callType, TEST_DATE));
     }
 }

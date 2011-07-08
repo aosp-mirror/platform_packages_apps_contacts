@@ -303,8 +303,9 @@ public class CallDetailActivity extends ListActivity implements
                     ViewAdapter adapter = new ViewAdapter(this, actions);
                     setListAdapter(adapter);
                 }
-                mPhoneCallDetailsHelper.setPhoneCallDetails(mPhoneCallDetailsViews, date, callType,
-                        nameText, numberText, numberType, numberLabel);
+                mPhoneCallDetailsHelper.setPhoneCallDetails(mPhoneCallDetailsViews,
+                        new PhoneCallDetails(numberText, callType, date, nameText, numberType,
+                                numberLabel));
 
                 loadContactPhotos(photoId);
             } else {

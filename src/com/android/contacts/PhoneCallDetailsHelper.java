@@ -69,21 +69,10 @@ public class PhoneCallDetailsHelper {
         mVoicemailDrawable = voicemailDrawable;
     }
 
-    /**
-     * Fills the call details views with content.
-     *
-     * @param date the date of the call, in milliseconds since the epoch
-     * @param callType the type of call, as defined in the call log table
-     * @param name the name of the contact, if available
-     * @param number the number of the other party involved in the call
-     * @param numberType the type of phone, e.g., {@link Phone#TYPE_HOME}, 0 if not available
-     * @param numberLabel the custom label associated with the phone number in the contact
-     */
-    public void setPhoneCallDetails(PhoneCallDetailsViews views, long date,
-            int callType, CharSequence name, CharSequence number, int numberType,
-            CharSequence numberLabel) {
+    /** Fills the call details views with content. */
+    public void setPhoneCallDetails(PhoneCallDetailsViews views, PhoneCallDetails details) {
         Drawable callTypeDrawable = null;
-        switch (callType) {
+        switch (details.callType) {
             case Calls.INCOMING_TYPE:
                 callTypeDrawable = mIncomingDrawable;
                 break;
@@ -101,26 +90,28 @@ public class PhoneCallDetailsHelper {
                 break;
         }
         CharSequence shortDateText =
-            DateUtils.getRelativeTimeSpanString(date,
+            DateUtils.getRelativeTimeSpanString(details.date,
                     getCurrentTimeMillis(),
                     DateUtils.MINUTE_IN_MILLIS,
                     DateUtils.FORMAT_ABBREV_RELATIVE);
 
         CharSequence numberFormattedLabel = null;
         // Only show a label if the number is shown and it is not a SIP address.
-        if (!TextUtils.isEmpty(number) && !PhoneNumberUtils.isUriNumber(number.toString())) {
-            numberFormattedLabel = Phone.getTypeLabel(mResources, numberType, numberLabel);
+        if (!TextUtils.isEmpty(details.number)
+                && !PhoneNumberUtils.isUriNumber(details.number.toString())) {
+            numberFormattedLabel = Phone.getTypeLabel(mResources, details.numberType,
+                    details.numberLabel);
         }
 
         final CharSequence nameText;
         final CharSequence numberText;
-        if (TextUtils.isEmpty(name)) {
-            nameText = getDisplayNumber(number);
+        if (TextUtils.isEmpty(details.name)) {
+            nameText = getDisplayNumber(details.number);
             numberText = "";
         } else {
-            nameText = name;
-            CharSequence displayNumber = getDisplayNumber(number);
-            if (callType != 0 && numberFormattedLabel != null) {
+            nameText = details.name;
+            CharSequence displayNumber = getDisplayNumber(details.number);
+            if (details.callType != 0 && numberFormattedLabel != null) {
                 numberText = FormatUtils.applyStyleToSpan(Typeface.BOLD,
                         numberFormattedLabel + " " + displayNumber, 0,
                         numberFormattedLabel.length(),
