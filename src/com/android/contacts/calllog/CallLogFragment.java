@@ -92,9 +92,6 @@ public class CallLogFragment extends ListFragment
                 Calls.DATE,
                 Calls.DURATION,
                 Calls.TYPE,
-                Calls.CACHED_NAME,
-                Calls.CACHED_NUMBER_TYPE,
-                Calls.CACHED_NUMBER_LABEL,
                 Calls.COUNTRY_ISO};
 
         public static final int ID = 0;
@@ -102,10 +99,7 @@ public class CallLogFragment extends ListFragment
         public static final int DATE = 2;
         public static final int DURATION = 3;
         public static final int CALL_TYPE = 4;
-        public static final int CALLER_NAME = 5;
-        public static final int CALLER_NUMBERTYPE = 6;
-        public static final int CALLER_NUMBERLABEL = 7;
-        public static final int COUNTRY_ISO = 8;
+        public static final int COUNTRY_ISO = 5;
     }
 
     /** The query to use for the phones table */
@@ -342,32 +336,6 @@ public class CallLogFragment extends ListFragment
             mContactInfoCache.expireAll();
         }
 
-        private void updateCallLog(CallerInfoQuery ciq, ContactInfo ci) {
-            // Check if they are different. If not, don't update.
-            if (TextUtils.equals(ciq.name, ci.name)
-                    && TextUtils.equals(ciq.numberLabel, ci.label)
-                    && ciq.numberType == ci.type
-                    && ciq.photoId == ci.photoId
-                    && ciq.lookupKey == ci.lookupKey) {
-                return;
-            }
-            ContentValues values = new ContentValues(3);
-            values.put(Calls.CACHED_NAME, ci.name);
-            values.put(Calls.CACHED_NUMBER_TYPE, ci.type);
-            values.put(Calls.CACHED_NUMBER_LABEL, ci.label);
-
-            try {
-                getActivity().getContentResolver().update(Calls.CONTENT_URI_WITH_VOICEMAIL, values,
-                        Calls.NUMBER + "='" + ciq.number + "'", null);
-            } catch (SQLiteDiskIOException e) {
-                Log.w(TAG, "Exception while updating call info", e);
-            } catch (SQLiteFullException e) {
-                Log.w(TAG, "Exception while updating call info", e);
-            } catch (SQLiteDatabaseCorruptException e) {
-                Log.w(TAG, "Exception while updating call info", e);
-            }
-        }
-
         private void enqueueRequest(String number, boolean immediate, int position,
                 String name, int numberType, String numberLabel, long photoId, String lookupKey) {
             CallerInfoQuery ciq = new CallerInfoQuery();
@@ -504,9 +472,6 @@ public class CallLogFragment extends ListFragment
                     // Inform list to update this item, if in view
                     needNotify = true;
                 }
-            }
-            if (info != null) {
-                updateCallLog(ciq, info);
             }
             return needNotify;
         }
@@ -672,9 +637,6 @@ public class CallLogFragment extends ListFragment
             long date = c.getLong(CallLogQuery.DATE);
             int callType = c.getInt(CallLogQuery.CALL_TYPE);
             final String formattedNumber;
-            String callerName = c.getString(CallLogQuery.CALLER_NAME);
-            int callerNumberType = c.getInt(CallLogQuery.CALLER_NUMBERTYPE);
-            String callerNumberLabel = c.getString(CallLogQuery.CALLER_NUMBERLABEL);
             String countryIso = c.getString(CallLogQuery.COUNTRY_ISO);
             // Store away the number so we can call it directly if you click on the call icon
             if (views.callView != null) {
@@ -694,22 +656,9 @@ public class CallLogFragment extends ListFragment
                 mContactInfoCache.put(number, info);
                 Log.d(TAG, "Contact info missing: " + number);
                 // Request the contact details immediately since they are currently missing.
-                enqueueRequest(number, true, c.getPosition(),
-                        callerName, callerNumberType, callerNumberLabel, 0L, "");
+                enqueueRequest(number, true, c.getPosition(), "", 0, "", 0L, "");
             } else if (info != ContactInfo.EMPTY) { // Has been queried
-                // Check if any data is different from the data cached in the
-                // calls db. If so, queue the request so that we can update
-                // the calls db.
-                if (!TextUtils.equals(info.name, callerName)
-                        || info.type != callerNumberType
-                        || !TextUtils.equals(info.label, callerNumberLabel)) {
-                    // Something is amiss, so sync up.
-                    Log.w(TAG, "Contact info inconsistent: " + number);
-                    // Request the contact details immediately since they are probably wrong.
-                    enqueueRequest(number, true, c.getPosition(),
-                            callerName, callerNumberType, callerNumberLabel, info.photoId,
-                            info.lookupKey);
-                } else if (cachedInfo.isExpired()) {
+                if (cachedInfo.isExpired()) {
                     Log.d(TAG, "Contact info expired: " + number);
                     // Put it back in the cache, therefore marking it as not expired, so that other
                     // entries with the same number will not re-request it.
@@ -737,15 +686,6 @@ public class CallLogFragment extends ListFragment
             String label = info.label;
             long photoId = info.photoId;
             String lookupKey = info.lookupKey;
-            // If there's no name cached in our hashmap, but there's one in the
-            // calls db, use the one in the calls db. Otherwise the name in our
-            // hashmap is more recent, so it has precedence.
-            if (TextUtils.isEmpty(name) && !TextUtils.isEmpty(callerName)) {
-                name = callerName;
-                ntype = callerNumberType;
-                label = callerNumberLabel;
-            }
-
             // Assumes the call back feature is on most of the
             // time. For private and unknown numbers: hide it.
             if (views.callView != null) {
@@ -791,6 +731,10 @@ public class CallLogFragment extends ListFragment
          */
         public void disableRequestProcessingForTest() {
             mRequestProcessingDisabled = true;
+        }
+
+        public void injectContactInfoForTest(String number, ContactInfo contactInfo) {
+            mContactInfoCache.put(number, contactInfo);
         }
     }
 

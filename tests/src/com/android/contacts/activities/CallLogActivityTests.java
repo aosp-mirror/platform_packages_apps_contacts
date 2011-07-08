@@ -18,6 +18,7 @@ package com.android.contacts.activities;
 
 import com.android.contacts.R;
 import com.android.contacts.calllog.CallLogFragment;
+import com.android.contacts.calllog.CallLogFragment.ContactInfo;
 import com.android.contacts.calllog.CallLogListItemViews;
 import com.android.internal.telephony.CallerInfo;
 
@@ -27,6 +28,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.telephony.PhoneNumberUtils;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.test.suitebuilder.annotation.MediumTest;
@@ -51,21 +53,27 @@ import java.util.Random;
 @LargeTest
 public class CallLogActivityTests
         extends ActivityInstrumentationTestCase2<CallLogActivity> {
-    static private final String TAG = "CallLogActivityTests";
-    static private final String[] CALL_LOG_PROJECTION = new String[] {
+    private static final String TAG = "CallLogActivityTests";
+
+    private static final String[] CALL_LOG_PROJECTION = new String[] {
             Calls._ID,
             Calls.NUMBER,
             Calls.DATE,
             Calls.DURATION,
             Calls.TYPE,
-            Calls.CACHED_NAME,
-            Calls.CACHED_NUMBER_TYPE,
-            Calls.CACHED_NUMBER_LABEL,
             Calls.COUNTRY_ISO,
     };
-    static private final int RAND_DURATION = -1;
-    static private final long NOW = -1L;
+    private static final int RAND_DURATION = -1;
+    private static final long NOW = -1L;
 
+    /** A test value for the person id of a contact. */
+    private static final long TEST_PERSON_ID = 1;
+    /** A test value for the photo id of a contact. */
+    private static final long TEST_PHOTO_ID = 2;
+    /** A test value for the lookup key for contacts. */
+    private static final String TEST_LOOKUP_KEY = "contact_id";
+    /** A test value for the country ISO of the phone number in the call log. */
+    private static final String TEST_COUNTRY_ISO = "US";
     /** A phone number to be used in tests. */
     private static final String TEST_NUMBER = "12125551000";
     /** The formatted version of {@link #TEST_NUMBER}. */
@@ -380,6 +388,32 @@ public class CallLogActivityTests
      */
     private void insertWithCachedValues(String number, long date, int duration, int type,
             String cachedName, int cachedNumberType, String cachedNumberLabel) {
+        insert(number, date, duration, type);
+        ContactInfo contactInfo = new ContactInfo();
+        contactInfo.personId = TEST_PERSON_ID;
+        contactInfo.name = cachedName;
+        contactInfo.type = cachedNumberType;
+        contactInfo.label = cachedNumberLabel;
+        String formattedNumber = PhoneNumberUtils.formatNumber(number, TEST_COUNTRY_ISO);
+        if (formattedNumber == null) {
+            formattedNumber = number;
+        }
+        contactInfo.formattedNumber = formattedNumber;
+        contactInfo.normalizedNumber = number;
+        contactInfo.photoId = TEST_PHOTO_ID;
+        contactInfo.lookupKey = TEST_LOOKUP_KEY;
+        mAdapter.injectContactInfoForTest(number, contactInfo);
+    }
+
+    /**
+     * Insert a new call entry in the test DB.
+     * @param number The phone number. For unknown and private numbers,
+     *               use CallerInfo.UNKNOWN_NUMBER or CallerInfo.PRIVATE_NUMBER.
+     * @param date In millisec since epoch. Use NOW to use the current time.
+     * @param duration In seconds of the call. Use RAND_DURATION to pick a random one.
+     * @param type Either Call.OUTGOING_TYPE or Call.INCOMING_TYPE or Call.MISSED_TYPE.
+     */
+    private void insert(String number, long date, int duration, int type) {
         MatrixCursor.RowBuilder row = mCursor.newRow();
         row.add(mIndex);
         mIndex ++;
@@ -397,22 +431,7 @@ public class CallLogActivityTests
             assertEquals(Calls.OUTGOING_TYPE, type);
         }
         row.add(type);  // type
-        row.add(cachedName);  // cached name
-        row.add(cachedNumberType);  // cached number type
-        row.add(cachedNumberLabel);  // cached number label
-        row.add("US");  // country ISO
-    }
-
-    /**
-     * Insert a new call entry in the test DB.
-     * @param number The phone number. For unknown and private numbers,
-     *               use CallerInfo.UNKNOWN_NUMBER or CallerInfo.PRIVATE_NUMBER.
-     * @param date In millisec since epoch. Use NOW to use the current time.
-     * @param duration In seconds of the call. Use RAND_DURATION to pick a random one.
-     * @param type Either Call.OUTGOING_TYPE or Call.INCOMING_TYPE or Call.MISSED_TYPE.
-     */
-    private void insert(String number, long date, int duration, int type) {
-        insertWithCachedValues(number, date, duration, type, "", Phone.TYPE_HOME, "");
+        row.add(TEST_COUNTRY_ISO);  // country ISO
     }
 
     /**
