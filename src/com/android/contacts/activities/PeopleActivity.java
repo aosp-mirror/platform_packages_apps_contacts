@@ -303,7 +303,7 @@ public class PeopleActivity extends ContactsActivity
         setTitle(mRequest.getActivityTitle());
         ActionBar actionBar = getActionBar();
         mActionBarAdapter = new ActionBarAdapter(this, this);
-        mActionBarAdapter.onCreate(savedState, mRequest, getActionBar(), !mContentPaneDisplayed);
+        mActionBarAdapter.onCreate(savedState, mRequest, getActionBar());
         mActionBarAdapter.setContactListFilterController(mContactListFilterController);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
@@ -935,16 +935,6 @@ public class PeopleActivity extends ContactsActivity
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.actions, menu);
-        MenuItem searchMenuItem = menu.findItem(R.id.menu_search);
-        if (searchMenuItem != null && searchMenuItem.getActionView() instanceof SearchView) {
-            SearchView searchView = (SearchView) searchMenuItem.getActionView();
-            searchView.setQueryHint(getString(R.string.hint_findContacts));
-            searchView.setIconifiedByDefault(false);
-
-            if (mActionBarAdapter != null) {
-                mActionBarAdapter.setSearchView(searchView);
-            }
-        }
 
         // On narrow screens we specify a NEW group button in the {@link ActionBar}, so that
         // it can be in the overflow menu. On wide screens, we use a custom view because we need
@@ -1009,10 +999,8 @@ public class PeopleActivity extends ContactsActivity
         if (mActionBarAdapter.isSearchMode()) {
             addContactMenu.setVisible(false);
             addGroupMenu.setVisible(false);
-            // If search is normally in the overflow menu, when we are in search
-            // mode, hide this option.
-            if (mActionBarAdapter.isSearchInOverflowMenu()) {
-                searchMenu.setVisible(false);
+            if (searchMenu != null) {
+                searchMenu.setVisible(false); // Don't show the search menu in search mode.
             }
         } else {
             switch (mSelectedTab) {

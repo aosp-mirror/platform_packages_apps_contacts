@@ -19,4 +19,5 @@
 
 <resources>
     <bool name="config_use_two_panes">true</bool>
+    <bool name="always_show_search_view">true</bool>
 </resources>

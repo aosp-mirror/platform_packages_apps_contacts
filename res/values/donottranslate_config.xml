@@ -103,4 +103,8 @@
     <!-- If true, Contacts uses two panes: List and Detail. If false, Details are
          shown in their own screens. This flag must be in sync with the layout definitions. -->
     <bool name="config_use_two_panes">false</bool>
+
+    <!-- If true, search view on action bar will always be visible.  If false, it'll only be
+         visible in search mode.  -->
+    <bool name="always_show_search_view">false</bool>
 </resources>

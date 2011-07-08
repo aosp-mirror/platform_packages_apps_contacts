@@ -58,27 +58,24 @@ public class ActionBarAdapter
     private SearchView mSearchView;
 
     private final Context mContext;
+    private final boolean mAlwaysShowSearchView;
 
     private Listener mListener;
     private ContactListFilterController mFilterController;
 
     private ActionBar mActionBar;
 
-    private View mCustomSearchView;
-    private LayoutParams mLayoutParams;
-    private boolean mIsSearchInOverflowMenu;
 
     public ActionBarAdapter(Context context, Listener listener) {
         mContext = context;
         mListener = listener;
         mSearchLabelText = mContext.getString(R.string.search_label);
+        mAlwaysShowSearchView = mContext.getResources().getBoolean(R.bool.always_show_search_view);
     }
 
-    public void onCreate(Bundle savedState, ContactsRequest request, ActionBar actionBar,
-            boolean searchInOverflowMenu) {
+    public void onCreate(Bundle savedState, ContactsRequest request, ActionBar actionBar) {
         mActionBar = actionBar;
         mQueryString = null;
-        mIsSearchInOverflowMenu = searchInOverflowMenu;
 
         if (savedState != null) {
             mSearchMode = savedState.getBoolean(EXTRA_KEY_SEARCH_MODE);
@@ -88,18 +85,23 @@ public class ActionBarAdapter
             mQueryString = request.getQueryString();
         }
 
-        if (mSearchView != null) {
-            mSearchView.setQuery(mQueryString, false);
+        // Set up search view.
+        View customSearchView = LayoutInflater.from(mContext).inflate(R.layout.custom_action_bar,
+                null);
+        int searchViewWidth = mContext.getResources().getDimensionPixelSize(
+                R.dimen.search_view_width);
+        if (searchViewWidth == 0) {
+            searchViewWidth = LayoutParams.MATCH_PARENT;
         }
-
-        update();
-    }
-
-    public void setSearchView(SearchView searchView) {
-        mSearchView = searchView;
+        LayoutParams layoutParams = new LayoutParams(searchViewWidth, LayoutParams.WRAP_CONTENT);
+        mSearchView = (SearchView) customSearchView.findViewById(R.id.search_view);
+        mSearchView.setQueryHint(mContext.getString(R.string.hint_findContacts));
         mSearchView.setOnQueryTextListener(this);
         mSearchView.setOnCloseListener(this);
         mSearchView.setQuery(mQueryString, false);
+        mActionBar.setCustomView(customSearchView, layoutParams);
+
+        update();
     }
 
     public void setListener(Listener listener) {
@@ -109,10 +111,6 @@ public class ActionBarAdapter
     public void setContactListFilterController(ContactListFilterController controller) {
         mFilterController = controller;
         mFilterController.addListener(this);
-    }
-
-    public boolean isSearchInOverflowMenu() {
-        return mIsSearchInOverflowMenu;
     }
 
     public boolean isSearchMode() {
@@ -127,7 +125,7 @@ public class ActionBarAdapter
                 return;
             }
             if (mSearchMode) {
-                mSearchView.requestFocus();
+                setFocusOnSearchView();
             } else {
                 mSearchView.setQuery(null, false);
             }
@@ -147,31 +145,20 @@ public class ActionBarAdapter
 
     public void update() {
         if (mSearchMode) {
-            // If the search icon was in the overflow menu, then inflate a custom view containing
-            // a search view for the action bar (and hide the tabs).
-            if (mIsSearchInOverflowMenu) {
-                if (mCustomSearchView == null) {
-                    mCustomSearchView = LayoutInflater.from(mContext).inflate(
-                            R.layout.custom_action_bar, null);
-                    mLayoutParams = new LayoutParams(LayoutParams.MATCH_PARENT,
-                            LayoutParams.WRAP_CONTENT);
-                    SearchView searchView = (SearchView) mCustomSearchView.
-                            findViewById(R.id.search_view);
-                    searchView.setQueryHint(mContext.getString(R.string.hint_findContacts));
-                    setSearchView(searchView);
-                }
-                mActionBar.setDisplayShowCustomEnabled(true);
-                mActionBar.setCustomView(mCustomSearchView, mLayoutParams);
-                mSearchView.requestFocus();
-            } else {
+            mActionBar.setDisplayShowCustomEnabled(true);
+            if (mAlwaysShowSearchView) {
+                // Tablet -- change the app title for the search mode
                 mActionBar.setTitle(mSearchLabelText);
+            } else {
+                // Phone -- search view gets focus
+                setFocusOnSearchView();
             }
             mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
             if (mListener != null) {
                 mListener.onAction(Action.START_SEARCH_MODE);
             }
         } else {
-            mActionBar.setDisplayShowCustomEnabled(false);
+            mActionBar.setDisplayShowCustomEnabled(mAlwaysShowSearchView);
             mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
             mActionBar.setTitle(null);
             if (mListener != null) {
@@ -235,5 +222,10 @@ public class ActionBarAdapter
 
     @Override
     public void onContactListFilterCustomizationRequest() {
+    }
+
+    private void setFocusOnSearchView() {
+        mSearchView.requestFocus();
+        mSearchView.setIconified(false); // Workaround for the "IME not popping up" issue.
     }
 }
