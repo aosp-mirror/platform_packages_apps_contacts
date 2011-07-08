@@ -19,8 +19,10 @@ package com.android.contacts;
 import com.android.contacts.format.FormatUtils;
 import com.android.internal.telephony.CallerInfo;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.PhoneNumberUtils;
@@ -28,16 +30,25 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.view.View;
+import android.widget.ImageView;
 
 /**
  * Helper class to fill in the views in {@link PhoneCallDetailsViews}.
  */
 public class PhoneCallDetailsHelper {
+    private final Context mContext;
     private final Resources mResources;
     private final String mVoicemailNumber;
-    private final String mTypeIncomingText;
-    private final String mTypeOutgoingText;
-    private final String mTypeMissedText;
+    /** Icon for incoming calls. */
+    private final Drawable mIncomingDrawable;
+    /** Icon for outgoing calls. */
+    private final Drawable mOutgoingDrawable;
+    /** Icon for missed calls. */
+    private final Drawable mMissedDrawable;
+    /** Icon for voicemails. */
+    private final Drawable mVoicemailDrawable;
+    /** The injected current time in milliseconds since the epoch. Used only by tests. */
+    private Long mCurrentTimeMillisForTest;
 
     /**
      * Creates a new instance of the helper.
@@ -46,12 +57,16 @@ public class PhoneCallDetailsHelper {
      *
      * @param resources used to look up strings
      */
-    public PhoneCallDetailsHelper(Resources resources, String voicemailNumber) {
+    public PhoneCallDetailsHelper(Context context, Resources resources, String voicemailNumber,
+            Drawable incomingDrawable, Drawable outgoingDrawable, Drawable missedDrawable,
+            Drawable voicemailDrawable) {
+        mContext = context;
         mResources = resources;
         mVoicemailNumber = voicemailNumber;
-        mTypeIncomingText = mResources.getString(R.string.type_incoming);
-        mTypeOutgoingText = mResources.getString(R.string.type_outgoing);
-        mTypeMissedText = mResources.getString(R.string.type_missed);
+        mIncomingDrawable = incomingDrawable;
+        mOutgoingDrawable = outgoingDrawable;
+        mMissedDrawable = missedDrawable;
+        mVoicemailDrawable = voicemailDrawable;
     }
 
     /**
@@ -67,30 +82,29 @@ public class PhoneCallDetailsHelper {
     public void setPhoneCallDetails(PhoneCallDetailsViews views, long date,
             int callType, CharSequence name, CharSequence number, int numberType,
             CharSequence numberLabel) {
-        CharSequence callTypeText = "";
+        Drawable callTypeDrawable = null;
         switch (callType) {
             case Calls.INCOMING_TYPE:
-                callTypeText = mTypeIncomingText;
+                callTypeDrawable = mIncomingDrawable;
                 break;
 
             case Calls.OUTGOING_TYPE:
-                callTypeText = mTypeOutgoingText;
+                callTypeDrawable = mOutgoingDrawable;
                 break;
 
             case Calls.MISSED_TYPE:
-                callTypeText = mTypeMissedText;
+                callTypeDrawable = mMissedDrawable;
+                break;
+
+            case Calls.VOICEMAIL_TYPE:
+                callTypeDrawable = mVoicemailDrawable;
                 break;
         }
-
         CharSequence shortDateText =
             DateUtils.getRelativeTimeSpanString(date,
-                    System.currentTimeMillis(),
+                    getCurrentTimeMillis(),
                     DateUtils.MINUTE_IN_MILLIS,
                     DateUtils.FORMAT_ABBREV_RELATIVE);
-
-        CharSequence callTypeAndDateText = FormatUtils.applyStyleToSpan(Typeface.BOLD,
-                callTypeText + " " + shortDateText, 0, callTypeText.length(),
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         CharSequence numberFormattedLabel = null;
         // Only show a label if the number is shown and it is not a SIP address.
@@ -114,17 +128,22 @@ public class PhoneCallDetailsHelper {
             }
         }
 
-        views.mCallTypeAndDateView.setText(callTypeAndDateText);
-        views.mCallTypeAndDateView.setVisibility(View.VISIBLE);
-        views.mNameView.setText(nameText);
-        views.mNameView.setVisibility(View.VISIBLE);
+        ImageView callTypeImage = new ImageView(mContext);
+        callTypeImage.setImageDrawable(callTypeDrawable);
+        views.callTypesLayout.removeAllViews();
+        views.callTypesLayout.addView(callTypeImage);
+
+        views.dateView.setText(shortDateText);
+        views.dateView.setVisibility(View.VISIBLE);
+        views.nameView.setText(nameText);
+        views.nameView.setVisibility(View.VISIBLE);
         // Do not show the number if it is not available. This happens if we have only the number,
         // in which case the number is shown in the name field instead.
         if (!TextUtils.isEmpty(numberText)) {
-            views.mNumberView.setText(numberText);
-            views.mNumberView.setVisibility(View.VISIBLE);
+            views.numberView.setText(numberText);
+            views.numberView.setVisibility(View.VISIBLE);
         } else {
-            views.mNumberView.setVisibility(View.GONE);
+            views.numberView.setVisibility(View.GONE);
         }
     }
 
@@ -145,5 +164,22 @@ public class PhoneCallDetailsHelper {
             return mResources.getString(R.string.voicemail);
         }
         return number;
+    }
+
+    public void setCurrentTimeForTest(long currentTimeMillis) {
+        mCurrentTimeMillisForTest = currentTimeMillis;
+    }
+
+    /**
+     * Returns the current time in milliseconds since the epoch.
+     * <p>
+     * It can be injected in tests using {@link #setCurrentTimeForTest(long)}.
+     */
+    private long getCurrentTimeMillis() {
+        if (mCurrentTimeMillisForTest == null) {
+            return System.currentTimeMillis();
+        } else {
+            return mCurrentTimeMillisForTest;
+        }
     }
 }
