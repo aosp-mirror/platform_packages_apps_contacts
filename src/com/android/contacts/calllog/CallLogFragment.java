@@ -176,8 +176,25 @@ public class CallLogFragment extends ListFragment
     /** Adapter class to fill in data for the Call Log */
     public final class CallLogAdapter extends GroupingListAdapter
             implements Runnable, ViewTreeObserver.OnPreDrawListener, View.OnClickListener {
+        /** The time in millis to delay starting the thread processing requests. */
+        private static final int START_PROCESSING_REQUESTS_DELAY_MILLIS = 1000;
+
+        /**
+         * A cache of the contact details for the phone numbers in the call log.
+         * <p>
+         * The content of the cache is expired (but not purged) whenever the application comes to
+         * the foreground.
+         */
         private ExpirableCache<String, ContactInfo> mContactInfoCache;
+
+        /**
+         * List of requests to update contact details.
+         * <p>
+         * The requests are added when displaying the contacts and are processed by a background
+         * thread.
+         */
         private final LinkedList<CallerInfoQuery> mRequests;
+
         private volatile boolean mDone;
         private boolean mLoading = true;
         private ViewTreeObserver.OnPreDrawListener mPreDrawListener;
@@ -220,7 +237,8 @@ public class CallLogFragment extends ListFragment
         @Override
         public boolean onPreDraw() {
             if (mFirst) {
-                mHandler.sendEmptyMessageDelayed(START_THREAD, 1000);
+                mHandler.sendEmptyMessageDelayed(START_THREAD,
+                        START_PROCESSING_REQUESTS_DELAY_MILLIS);
                 mFirst = false;
             }
             return true;
@@ -234,9 +252,7 @@ public class CallLogFragment extends ListFragment
                         notifyDataSetChanged();
                         break;
                     case START_THREAD:
-                        if (!mRequestProcessingDisabled) {
-                            startRequestProcessing();
-                        }
+                        startRequestProcessing();
                         break;
                 }
             }
@@ -296,6 +312,10 @@ public class CallLogFragment extends ListFragment
         }
 
         public void startRequestProcessing() {
+            if (mRequestProcessingDisabled) {
+                return;
+            }
+
             mDone = false;
             mCallerIdThread = new Thread(this);
             mCallerIdThread.setPriority(Thread.MIN_PRIORITY);
@@ -346,7 +366,7 @@ public class CallLogFragment extends ListFragment
             }
         }
 
-        private void enqueueRequest(String number, int position,
+        private void enqueueRequest(String number, boolean immediate, int position,
                 String name, int numberType, String numberLabel, long photoId, String lookupKey) {
             CallerInfoQuery ciq = new CallerInfoQuery();
             ciq.number = number;
@@ -359,6 +379,10 @@ public class CallLogFragment extends ListFragment
             synchronized (mRequests) {
                 mRequests.add(ciq);
                 mRequests.notifyAll();
+            }
+            if (mFirst && immediate) {
+                startRequestProcessing();
+                mFirst = false;
             }
         }
 
@@ -675,7 +699,8 @@ public class CallLogFragment extends ListFragment
                 info = ContactInfo.EMPTY;
                 mContactInfoCache.put(number, info);
                 Log.d(TAG, "Contact info missing: " + number);
-                enqueueRequest(number, c.getPosition(),
+                // Request the contact details immediately since they are currently missing.
+                enqueueRequest(number, true, c.getPosition(),
                         callerName, callerNumberType, callerNumberLabel, 0L, "");
             } else if (info != ContactInfo.EMPTY) { // Has been queried
                 // Check if any data is different from the data cached in the
@@ -686,7 +711,8 @@ public class CallLogFragment extends ListFragment
                         || !TextUtils.equals(info.label, callerNumberLabel)) {
                     // Something is amiss, so sync up.
                     Log.w(TAG, "Contact info inconsistent: " + number);
-                    enqueueRequest(number, c.getPosition(),
+                    // Request the contact details immediately since they are probably wrong.
+                    enqueueRequest(number, true, c.getPosition(),
                             callerName, callerNumberType, callerNumberLabel, info.photoId,
                             info.lookupKey);
                 } else if (cachedInfo.isExpired()) {
@@ -694,8 +720,9 @@ public class CallLogFragment extends ListFragment
                     // Put it back in the cache, therefore marking it as not expired, so that other
                     // entries with the same number will not re-request it.
                     mContactInfoCache.put(number, info);
-                    // The contact info is no longer up to date, we should request it.
-                    enqueueRequest(number, c.getPosition(), info.name, info.type, info.label,
+                    // The contact info is no longer up to date, we should request it. However, we
+                    // do not need to request them immediately.
+                    enqueueRequest(number, false, c.getPosition(), info.name, info.type, info.label,
                             info.photoId, info.lookupKey);
                 }
 

@@ -113,6 +113,7 @@ public class CallLogActivityTests
         // Do not process requests for details during tests. This would start a background thread,
         // which makes the tests flaky.
         mAdapter.disableRequestProcessingForTest();
+        mAdapter.stopRequestProcessing();
         mParentView = new FrameLayout(mActivity);
         mCursor = new MatrixCursor(CALL_LOG_PROJECTION);
         buildIconMap();
