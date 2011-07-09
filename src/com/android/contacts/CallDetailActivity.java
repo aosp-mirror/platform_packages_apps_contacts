@@ -214,6 +214,7 @@ public class CallDetailActivity extends ListActivity implements
                             Uri.encode(mNumber));
                     Cursor phonesCursor = resolver.query(
                             phoneUri, PHONES_PROJECTION, null, null, null);
+                    String candidateNumberText = mNumber;
                     try {
                         if (phonesCursor != null && phonesCursor.moveToFirst()) {
                             long personId = phonesCursor.getLong(COLUMN_INDEX_ID);
@@ -221,19 +222,20 @@ public class CallDetailActivity extends ListActivity implements
                                     Contacts.CONTENT_URI, personId);
                             nameText = phonesCursor.getString(COLUMN_INDEX_NAME);
                             photoId = phonesCursor.getLong(COLUMN_INDEX_PHOTO_ID);
-                            mNumber = PhoneNumberUtils.formatNumber(
+                            candidateNumberText = PhoneNumberUtils.formatNumber(
                                     phonesCursor.getString(COLUMN_INDEX_NUMBER),
                                     phonesCursor.getString(COLUMN_INDEX_NORMALIZED_NUMBER),
                                     countryIso);
                             numberType = phonesCursor.getInt(COLUMN_INDEX_TYPE);
                             numberLabel = phonesCursor.getString(COLUMN_INDEX_LABEL);
                         } else {
-                            mNumber = PhoneNumberUtils.formatNumber(mNumber, countryIso);
+                            candidateNumberText =
+                                    PhoneNumberUtils.formatNumber(mNumber, countryIso);
                         }
                     } finally {
-                      if (phonesCursor != null) phonesCursor.close();
+                        if (phonesCursor != null) phonesCursor.close();
+                        numberText = candidateNumberText;
                     }
-                    numberText = mNumber;
 
                     // Let user view contact details if they exist, otherwise add option
                     // to create new contact from this number.
