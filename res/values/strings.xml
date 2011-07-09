@@ -571,6 +571,9 @@
     <!-- Title for missed call details screen -->
     <string name="type_missed">Missed call</string>
 
+    <!-- Title for voicemail details screen -->
+    <string name="type_voicemail">Voicemail</string>
+
     <!-- Description for incoming calls going to voice mail vs. not -->
     <string name="actionIncomingCall">Incoming calls</string>
 
@@ -1601,4 +1604,7 @@
 
     <!-- Title of the notification of new voicemail. -->
     <string name="notification_voicemail_title">New voicemail</string>
+
+    <!-- The separator between the call type text and the date in the call log [CHAR LIMIT=3] -->
+    <string name="call_log_type_date_separator">/</string>
 </resources>

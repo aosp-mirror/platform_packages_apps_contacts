@@ -47,6 +47,14 @@ public class PhoneCallDetailsHelper {
     private final Drawable mMissedDrawable;
     /** Icon for voicemails. */
     private final Drawable mVoicemailDrawable;
+    /** Name used to identify incoming calls. */
+    private final String mIncomingName;
+    /** Name used to identify outgoing calls. */
+    private final String mOutgoingName;
+    /** Name used to identify missed calls. */
+    private final String mMissedName;
+    /** Name used to identify voicemail calls. */
+    private final String mVoicemailName;
     /** The injected current time in milliseconds since the epoch. Used only by tests. */
     private Long mCurrentTimeMillisForTest;
 
@@ -67,28 +75,76 @@ public class PhoneCallDetailsHelper {
         mOutgoingDrawable = outgoingDrawable;
         mMissedDrawable = missedDrawable;
         mVoicemailDrawable = voicemailDrawable;
+        // Cache these values so that we do not need to look them up each time.
+        mIncomingName = mResources.getString(R.string.type_incoming);
+        mOutgoingName = mResources.getString(R.string.type_outgoing);
+        mMissedName = mResources.getString(R.string.type_missed);
+        mVoicemailName = mResources.getString(R.string.type_voicemail);
     }
 
     /** Fills the call details views with content. */
-    public void setPhoneCallDetails(PhoneCallDetailsViews views, PhoneCallDetails details) {
-        Drawable callTypeDrawable = null;
-        switch (details.callType) {
-            case Calls.INCOMING_TYPE:
-                callTypeDrawable = mIncomingDrawable;
-                break;
+    public void setPhoneCallDetails(PhoneCallDetailsViews views, PhoneCallDetails details,
+            boolean useIcons) {
+        if (useIcons) {
+            final Drawable callTypeDrawable;
+            switch (details.callType) {
+                case Calls.INCOMING_TYPE:
+                    callTypeDrawable = mIncomingDrawable;
+                    break;
 
-            case Calls.OUTGOING_TYPE:
-                callTypeDrawable = mOutgoingDrawable;
-                break;
+                case Calls.OUTGOING_TYPE:
+                    callTypeDrawable = mOutgoingDrawable;
+                    break;
 
-            case Calls.MISSED_TYPE:
-                callTypeDrawable = mMissedDrawable;
-                break;
+                case Calls.MISSED_TYPE:
+                    callTypeDrawable = mMissedDrawable;
+                    break;
 
-            case Calls.VOICEMAIL_TYPE:
-                callTypeDrawable = mVoicemailDrawable;
-                break;
+                case Calls.VOICEMAIL_TYPE:
+                    callTypeDrawable = mVoicemailDrawable;
+                    break;
+
+                default:
+                    throw new IllegalArgumentException("invalid call type: " + details.callType);
+            }
+            ImageView callTypeImage = new ImageView(mContext);
+            callTypeImage.setImageDrawable(callTypeDrawable);
+            views.callTypeIcons.removeAllViews();
+            views.callTypeIcons.addView(callTypeImage);
+
+            views.callTypeIcons.setVisibility(View.VISIBLE);
+            views.callTypeText.setVisibility(View.GONE);
+            views.callTypeSeparator.setVisibility(View.GONE);
+        } else {
+            String callTypeName;
+            switch (details.callType) {
+                case Calls.INCOMING_TYPE:
+                    callTypeName = mIncomingName;
+                    break;
+
+                case Calls.OUTGOING_TYPE:
+                    callTypeName = mOutgoingName;
+                    break;
+
+                case Calls.MISSED_TYPE:
+                    callTypeName = mMissedName;
+                    break;
+
+                case Calls.VOICEMAIL_TYPE:
+                    callTypeName = mVoicemailName;
+                    break;
+
+                default:
+                    throw new IllegalArgumentException("invalid call type: " + details.callType);
+            }
+            views.callTypeText.setText(callTypeName);
+            views.callTypeIcons.removeAllViews();
+
+            views.callTypeText.setVisibility(View.VISIBLE);
+            views.callTypeSeparator.setVisibility(View.VISIBLE);
+            views.callTypeIcons.setVisibility(View.GONE);
         }
+
         CharSequence shortDateText =
             DateUtils.getRelativeTimeSpanString(details.date,
                     getCurrentTimeMillis(),
@@ -120,11 +176,6 @@ public class PhoneCallDetailsHelper {
                 numberText = displayNumber;
             }
         }
-
-        ImageView callTypeImage = new ImageView(mContext);
-        callTypeImage.setImageDrawable(callTypeDrawable);
-        views.callTypesLayout.removeAllViews();
-        views.callTypesLayout.addView(callTypeImage);
 
         views.dateView.setText(shortDateText);
         views.dateView.setVisibility(View.VISIBLE);

@@ -305,7 +305,7 @@ public class CallDetailActivity extends ListActivity implements
                 }
                 mPhoneCallDetailsHelper.setPhoneCallDetails(mPhoneCallDetailsViews,
                         new PhoneCallDetails(numberText, callType, date, nameText, numberType,
-                                numberLabel));
+                                numberLabel), false);
 
                 loadContactPhotos(photoId);
             } else {

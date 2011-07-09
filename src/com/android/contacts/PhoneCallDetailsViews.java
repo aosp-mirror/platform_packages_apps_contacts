@@ -25,14 +25,18 @@ import android.widget.TextView;
  */
 public final class PhoneCallDetailsViews {
     public final TextView nameView;
-    public final LinearLayout callTypesLayout;
+    public final LinearLayout callTypeIcons;
+    public final TextView callTypeText;
+    public final View callTypeSeparator;
     public final TextView dateView;
     public final TextView numberView;
 
-    private PhoneCallDetailsViews(TextView nameView, LinearLayout callTypesLayout,
-            TextView dateView, TextView numberView) {
+    private PhoneCallDetailsViews(TextView nameView, LinearLayout callTypeIcons,
+            TextView callTypeText, View callTypeSeparator, TextView dateView, TextView numberView) {
         this.nameView = nameView;
-        this.callTypesLayout = callTypesLayout;
+        this.callTypeIcons = callTypeIcons;
+        this.callTypeText = callTypeText;
+        this.callTypeSeparator = callTypeSeparator;
         this.dateView = dateView;
         this.numberView = numberView;
     }
@@ -46,13 +50,17 @@ public final class PhoneCallDetailsViews {
      */
     public static PhoneCallDetailsViews fromView(View view) {
         return new PhoneCallDetailsViews((TextView) view.findViewById(R.id.name),
-                (LinearLayout) view.findViewById(R.id.call_types),
+                (LinearLayout) view.findViewById(R.id.call_type_icons),
+                (TextView) view.findViewById(R.id.call_type_name),
+                view.findViewById(R.id.call_type_separator),
                 (TextView) view.findViewById(R.id.date),
                 (TextView) view.findViewById(R.id.number));
     }
 
     public static PhoneCallDetailsViews createForTest(TextView nameView,
-            LinearLayout callTypesLayout, TextView dateView, TextView numberView) {
-        return new PhoneCallDetailsViews(nameView, callTypesLayout, dateView, numberView);
+            LinearLayout callTypeIcons, TextView callTypeText, View callTypeSeparator,
+            TextView dateView, TextView numberView) {
+        return new PhoneCallDetailsViews(nameView, callTypeIcons, callTypeText, callTypeSeparator,
+                dateView, numberView);
     }
 }

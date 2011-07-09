@@ -25,6 +25,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.provider.CallLog.Calls;
 import android.test.AndroidTestCase;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -64,7 +65,8 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
                 TEST_VOICEMAIL_NUMBER, TEST_INCOMING_DRAWABLE, TEST_OUTGOING_DRAWABLE,
                 TEST_MISSED_DRAWABLE, TEST_VOICEMAIL_DRAWABLE);
         mViews = PhoneCallDetailsViews.createForTest(new TextView(context),
-                new LinearLayout(context), new TextView(context), new TextView(context));
+                new LinearLayout(context), new TextView(context), new View(context),
+                new TextView(context), new TextView(context));
     }
 
     @Override
@@ -126,18 +128,38 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         }
     }
 
-    public void testSetPhoneCallDetails_CallType() {
-        setPhoneCallDetailsWithCallType(Calls.INCOMING_TYPE);
+    public void testSetPhoneCallDetails_CallTypeIcons() {
+        setPhoneCallDetailsWithCallType(Calls.INCOMING_TYPE, true);
         assertCallTypeIconsEquals(TEST_INCOMING_DRAWABLE);
 
-        setPhoneCallDetailsWithCallType(Calls.OUTGOING_TYPE);
+        setPhoneCallDetailsWithCallType(Calls.OUTGOING_TYPE, true);
         assertCallTypeIconsEquals(TEST_OUTGOING_DRAWABLE);
 
-        setPhoneCallDetailsWithCallType(Calls.MISSED_TYPE);
+        setPhoneCallDetailsWithCallType(Calls.MISSED_TYPE, true);
         assertCallTypeIconsEquals(TEST_MISSED_DRAWABLE);
 
-        setPhoneCallDetailsWithCallType(Calls.VOICEMAIL_TYPE);
+        setPhoneCallDetailsWithCallType(Calls.VOICEMAIL_TYPE, true);
         assertCallTypeIconsEquals(TEST_VOICEMAIL_DRAWABLE);
+    }
+
+    public void testSetPhoneCallDetails_CallTypeText() {
+        LocaleTestUtils localeTestUtils = new LocaleTestUtils(getContext());
+        localeTestUtils.setLocale(Locale.US);
+        try {
+            setPhoneCallDetailsWithCallType(Calls.INCOMING_TYPE, false);
+            assertCallTypeTextEquals("Incoming call");
+
+            setPhoneCallDetailsWithCallType(Calls.OUTGOING_TYPE, false);
+            assertCallTypeTextEquals("Outgoing call");
+
+            setPhoneCallDetailsWithCallType(Calls.MISSED_TYPE, false);
+            assertCallTypeTextEquals("Missed call");
+
+            setPhoneCallDetailsWithCallType(Calls.VOICEMAIL_TYPE, false);
+            assertCallTypeTextEquals("Voicemail");
+        } finally {
+            localeTestUtils.restoreLocale();
+        }
     }
 
     /** Asserts that the name text field contains the value of the given string resource. */
@@ -155,30 +177,44 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         assertEquals(text, mViews.dateView.getText().toString());
     }
 
-    /** Asserts that the call type linear layout contains the images with the given drawables. */
+    /** Asserts that the call type contains the images with the given drawables. */
     private void assertCallTypeIconsEquals(Drawable... drawables) {
-        assertEquals(drawables.length, mViews.callTypesLayout.getChildCount());
+        assertEquals(drawables.length, mViews.callTypeIcons.getChildCount());
         for (int index = 0; index < drawables.length; ++index) {
             Drawable drawable = drawables[index];
-            ImageView imageView = (ImageView) mViews.callTypesLayout.getChildAt(index);
+            ImageView imageView = (ImageView) mViews.callTypeIcons.getChildAt(index);
             assertEquals(drawable, imageView.getDrawable());
         }
+        assertEquals(View.VISIBLE, mViews.callTypeIcons.getVisibility());
+        assertEquals(View.GONE, mViews.callTypeText.getVisibility());
+        assertEquals(View.GONE, mViews.callTypeSeparator.getVisibility());
+    }
+
+    /** Asserts that the call type contains the given text. */
+    private void assertCallTypeTextEquals(String text) {
+        assertEquals(text, mViews.callTypeText.getText().toString());
+        assertEquals(View.GONE, mViews.callTypeIcons.getVisibility());
+        assertEquals(View.VISIBLE, mViews.callTypeText.getVisibility());
+        assertEquals(View.VISIBLE, mViews.callTypeSeparator.getVisibility());
     }
 
     /** Sets the phone call details with default values and the given number. */
     private void setPhoneCallDetailsWithNumber(String number) {
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(number, Calls.INCOMING_TYPE, TEST_DATE));
+                new PhoneCallDetails(number, Calls.INCOMING_TYPE, TEST_DATE),
+                false);
     }
 
     /** Sets the phone call details with default values and the given date. */
     private void setPhoneCallDetailsWithDate(long date) {
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(TEST_NUMBER, Calls.INCOMING_TYPE, date));
+                new PhoneCallDetails(TEST_NUMBER, Calls.INCOMING_TYPE, date),
+                false);
     }
 
     /** Sets the phone call details with default values and the given call type. */
-    private void setPhoneCallDetailsWithCallType(int callType) {
-        mHelper.setPhoneCallDetails(mViews, new PhoneCallDetails(TEST_NUMBER, callType, TEST_DATE));
+    private void setPhoneCallDetailsWithCallType(int callType, boolean useIcons) {
+        mHelper.setPhoneCallDetails(mViews, new PhoneCallDetails(TEST_NUMBER, callType, TEST_DATE),
+                useIcons);
     }
 }
