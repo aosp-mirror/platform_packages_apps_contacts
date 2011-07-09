@@ -25,6 +25,8 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 public class PhoneCallDetails {
     /** The number of the other party involved in the call. */
     public final CharSequence number;
+    /** The formatted version of {@link #number}. */
+    public final CharSequence formattedNumber;
     /** The type of call, as defined in the call log table, e.g., {@link Calls#INCOMING_TYPE}. */
     public final int callType;
     /** The date of the call, in milliseconds since the epoch. */
@@ -37,14 +39,16 @@ public class PhoneCallDetails {
     public final CharSequence numberLabel;
 
     /** Create the details for a call with a number not associated with a contact. */
-    public PhoneCallDetails(CharSequence number, int callType, long date) {
-        this(number, callType, date, "", 0, "");
+    public PhoneCallDetails(CharSequence number, CharSequence formattedNumber, int callType,
+            long date) {
+        this(number, formattedNumber, callType, date, "", 0, "");
     }
 
     /** Create the details for a call with a number associated with a contact. */
-    public PhoneCallDetails(CharSequence number, int callType, long date, CharSequence name,
-            int numberType, CharSequence numberLabel) {
+    public PhoneCallDetails(CharSequence number, CharSequence formattedNumber, int callType,
+            long date, CharSequence name, int numberType, CharSequence numberLabel) {
         this.number = number;
+        this.formattedNumber = formattedNumber;
         this.callType = callType;
         this.date = date;
         this.name = name;

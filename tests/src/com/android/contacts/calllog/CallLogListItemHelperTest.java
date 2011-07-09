@@ -16,8 +16,9 @@
 
 package com.android.contacts.calllog;
 
-import com.android.contacts.R;
-import com.android.contacts.util.LocaleTestUtils;
+import com.android.contacts.PhoneCallDetails;
+import com.android.contacts.PhoneCallDetailsHelper;
+import com.android.contacts.PhoneCallDetailsViews;
 import com.android.internal.telephony.CallerInfo;
 
 import android.content.Context;
@@ -28,15 +29,20 @@ import android.provider.CallLog.Calls;
 import android.test.AndroidTestCase;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.QuickContactBadge;
 import android.widget.TextView;
-
-import java.util.GregorianCalendar;
-import java.util.Locale;
 
 /**
  * Unit tests for {@link CallLogListItemHelper}.
  */
 public class CallLogListItemHelperTest extends AndroidTestCase {
+    /** A test phone number for phone calls. */
+    private static final String TEST_NUMBER = "14125555555";
+    /** The formatted version of {@link #TEST_NUMBER}. */
+    private static final String TEST_FORMATTED_NUMBER = "1-412-255-5555";
+    /** A test date value for phone calls. */
+    private static final long TEST_DATE = 1300000000;
     /** A test voicemail number. */
     private static final String TEST_VOICEMAIL_NUMBER = "123";
     /** A drawable to be used for incoming calls. */
@@ -62,17 +68,15 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
     protected void setUp() throws Exception {
         super.setUp();
         Context context = getContext();
-        mHelper = new CallLogListItemHelper(context.getResources(), TEST_VOICEMAIL_NUMBER,
-                TEST_INCOMING_DRAWABLE, TEST_OUTGOING_DRAWABLE, TEST_MISSED_DRAWABLE,
-                TEST_VOICEMAIL_DRAWABLE, TEST_CALL_DRAWABLE, TEST_PLAY_DRAWABLE);
-        mViews = new CallLogListItemViews();
-        // Only set the views that are needed in the tests.
-        mViews.iconView = new ImageView(context);
-        mViews.dateView = new TextView(context);
-        mViews.callView = new ImageView(context);
-        mViews.line1View = new TextView(context);
-        mViews.labelView = new TextView(context);
-        mViews.numberView = new TextView(context);
+        PhoneCallDetailsHelper phoneCallDetailsHelper = new PhoneCallDetailsHelper(context,
+                context.getResources(), TEST_VOICEMAIL_NUMBER, TEST_INCOMING_DRAWABLE,
+                TEST_OUTGOING_DRAWABLE, TEST_MISSED_DRAWABLE, TEST_VOICEMAIL_DRAWABLE);
+        mHelper = new CallLogListItemHelper(phoneCallDetailsHelper, TEST_CALL_DRAWABLE,
+                TEST_PLAY_DRAWABLE);
+        mViews = CallLogListItemViews.createForTest(new QuickContactBadge(context),
+                new ImageView(context), PhoneCallDetailsViews.createForTest(new TextView(context),
+                        new LinearLayout(context), new TextView(context), new TextView(context),
+                        new TextView(context), new TextView(context)));
     }
 
     @Override
@@ -83,69 +87,48 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
     }
 
     public void testSetContactNumberOnly() {
-        mHelper.setContactNumberOnly(mViews, "12125551234", "1-212-555-1234");
-        assertEquals("1-212-555-1234", mViews.line1View.getText());
-        assertEquals(View.GONE, mViews.labelView.getVisibility());
-        assertEquals(View.GONE, mViews.numberView.getVisibility());
+        setPhoneCallDetailsWithNumber("12125551234", "1-212-555-1234");
         assertEquals(View.VISIBLE, mViews.callView.getVisibility());
+        assertEquals(TEST_CALL_DRAWABLE, mViews.callView.getDrawable());
     }
 
     public void testSetContactNumberOnly_Unknown() {
-        mHelper.setContactNumberOnly(mViews, CallerInfo.UNKNOWN_NUMBER, "");
-        assertEquals(getContext().getString(R.string.unknown), mViews.line1View.getText());
-        assertEquals(View.GONE, mViews.labelView.getVisibility());
-        assertEquals(View.GONE, mViews.numberView.getVisibility());
+        setPhoneCallDetailsWithNumber(CallerInfo.UNKNOWN_NUMBER, CallerInfo.UNKNOWN_NUMBER);
         assertEquals(View.INVISIBLE, mViews.callView.getVisibility());
     }
 
     public void testSetContactNumberOnly_Private() {
-        mHelper.setContactNumberOnly(mViews, CallerInfo.PRIVATE_NUMBER, "");
-        assertEquals(getContext().getString(R.string.private_num), mViews.line1View.getText());
-        assertEquals(View.GONE, mViews.labelView.getVisibility());
-        assertEquals(View.GONE, mViews.numberView.getVisibility());
+        setPhoneCallDetailsWithNumber(CallerInfo.PRIVATE_NUMBER, CallerInfo.PRIVATE_NUMBER);
         assertEquals(View.INVISIBLE, mViews.callView.getVisibility());
     }
 
     public void testSetContactNumberOnly_Payphone() {
-        mHelper.setContactNumberOnly(mViews, CallerInfo.PAYPHONE_NUMBER, "");
-        assertEquals(getContext().getString(R.string.payphone), mViews.line1View.getText());
-        assertEquals(View.GONE, mViews.labelView.getVisibility());
-        assertEquals(View.GONE, mViews.numberView.getVisibility());
+        setPhoneCallDetailsWithNumber(CallerInfo.PAYPHONE_NUMBER, CallerInfo.PAYPHONE_NUMBER);
         assertEquals(View.INVISIBLE, mViews.callView.getVisibility());
     }
 
-    public void testSetContactNumberOnly_Voicemail() {
-        mHelper.setContactNumberOnly(mViews, TEST_VOICEMAIL_NUMBER, "");
-        assertEquals(getContext().getString(R.string.voicemail), mViews.line1View.getText());
-        assertEquals(View.GONE, mViews.labelView.getVisibility());
-        assertEquals(View.GONE, mViews.numberView.getVisibility());
+    public void testSetContactNumberOnly_VoicemailNumber() {
+        setPhoneCallDetailsWithNumber(TEST_VOICEMAIL_NUMBER, TEST_VOICEMAIL_NUMBER);
         assertEquals(View.VISIBLE, mViews.callView.getVisibility());
+        assertEquals(TEST_CALL_DRAWABLE, mViews.callView.getDrawable());
     }
 
-    public void testSetDate() {
-        // This test requires the locale to be set to US.
-        LocaleTestUtils localeTestUtils = new LocaleTestUtils(getContext());
-        localeTestUtils.setLocale(Locale.US);
-        try {
-            mHelper.setDate(mViews,
-                    new GregorianCalendar(2011, 5, 1, 12, 0, 0).getTimeInMillis(),
-                    new GregorianCalendar(2011, 5, 1, 13, 0, 0).getTimeInMillis());
-            assertEquals("1 hour ago", mViews.dateView.getText());
-            mHelper.setDate(mViews,
-                    new GregorianCalendar(2010, 5, 1, 12, 0, 0).getTimeInMillis(),
-                    new GregorianCalendar(2011, 5, 1, 13, 0, 0).getTimeInMillis());
-            assertEquals("June 1, 2010", mViews.dateView.getText());
-        } finally {
-            localeTestUtils.restoreLocale();
-        }
+    public void testSetContactNumberOnly_Voicemail() {
+        setPhoneCallDetailsWithType(Calls.VOICEMAIL_TYPE);
+        assertEquals(View.VISIBLE, mViews.callView.getVisibility());
+        assertEquals(TEST_PLAY_DRAWABLE, mViews.callView.getDrawable());
     }
 
-    public void testSetCallType_Icon() {
-        mHelper.setCallType(mViews, Calls.INCOMING_TYPE);
-        assertEquals(TEST_INCOMING_DRAWABLE, mViews.iconView.getDrawable());
-        mHelper.setCallType(mViews, Calls.OUTGOING_TYPE);
-        assertEquals(TEST_OUTGOING_DRAWABLE, mViews.iconView.getDrawable());
-        mHelper.setCallType(mViews, Calls.MISSED_TYPE);
-        assertEquals(TEST_MISSED_DRAWABLE, mViews.iconView.getDrawable());
+    /** Sets the details of a phone call using the specified phone number. */
+    private void setPhoneCallDetailsWithNumber(String number, String formattedNumber) {
+        mHelper.setPhoneCallDetails(mViews,
+                new PhoneCallDetails(number, formattedNumber, Calls.INCOMING_TYPE, TEST_DATE),
+                true);
+    }
+
+    /** Sets the details of a phone call using the specified call type. */
+    private void setPhoneCallDetailsWithType(int type) {
+        mHelper.setPhoneCallDetails(mViews,
+                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, type, TEST_DATE), true);
     }
 }

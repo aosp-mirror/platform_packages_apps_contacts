@@ -52,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/contact_background"
-        android:background="?attr/call_detail_primary_background_color"
+        android:background="?attr/call_log_primary_background_color"
     />
     <LinearLayout
         android:layout_width="match_parent"
@@ -96,14 +96,14 @@
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
         android:paddingLeft="80dp"
-        android:background="?attr/call_detail_secondary_background_color"
+        android:background="?attr/call_log_secondary_background_color"
     >
         <TextView
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:textColor="?attr/call_detail_secondary_text_color"
+            android:textColor="?attr/call_log_secondary_text_color"
         />
         <TextView
             android:id="@+id/duration"
@@ -112,7 +112,7 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@id/time"
             android:layout_alignLeft="@id/time"
-            android:textColor="?attr/call_detail_secondary_text_color"
+            android:textColor="?attr/call_log_secondary_text_color"
         />
         <ImageView
             android:id="@+id/delete"

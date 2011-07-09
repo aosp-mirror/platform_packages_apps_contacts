@@ -42,7 +42,9 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     /** The date of the call log entry. */
     private static final long TEST_DATE = 1300000000;
     /** The number of the caller/callee in the log entry. */
-    private static final String TEST_NUMBER = "1-412-555-5555";
+    private static final String TEST_NUMBER = "14125555555";
+    /** The formatted version of {@link #TEST_NUMBER}. */
+    private static final String TEST_FORMATTED_NUMBER = "1-412-255-5555";
     /** A drawable to be used for incoming calls. */
     private static final Drawable TEST_INCOMING_DRAWABLE = new ColorDrawable(Color.BLACK);
     /** A drawable to be used for outgoing calls. */
@@ -77,27 +79,27 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     }
 
     public void testSetPhoneCallDetails_Unknown() {
-        setPhoneCallDetailsWithNumber(CallerInfo.UNKNOWN_NUMBER);
+        setPhoneCallDetailsWithNumber(CallerInfo.UNKNOWN_NUMBER, CallerInfo.UNKNOWN_NUMBER);
         assertNameEqualsResource(R.string.unknown);
     }
 
     public void testSetPhoneCallDetails_Private() {
-        setPhoneCallDetailsWithNumber(CallerInfo.PRIVATE_NUMBER);
+        setPhoneCallDetailsWithNumber(CallerInfo.PRIVATE_NUMBER, CallerInfo.PRIVATE_NUMBER);
         assertNameEqualsResource(R.string.private_num);
     }
 
     public void testSetPhoneCallDetails_Payphone() {
-        setPhoneCallDetailsWithNumber(CallerInfo.PAYPHONE_NUMBER);
+        setPhoneCallDetailsWithNumber(CallerInfo.PAYPHONE_NUMBER, CallerInfo.PAYPHONE_NUMBER);
         assertNameEqualsResource(R.string.payphone);
     }
 
     public void testSetPhoneCallDetails_Voicemail() {
-        setPhoneCallDetailsWithNumber(TEST_VOICEMAIL_NUMBER);
+        setPhoneCallDetailsWithNumber(TEST_VOICEMAIL_NUMBER, TEST_VOICEMAIL_NUMBER);
         assertNameEqualsResource(R.string.voicemail);
     }
 
     public void testSetPhoneCallDetails_Normal() {
-        setPhoneCallDetailsWithNumber("1-412-555-1212");
+        setPhoneCallDetailsWithNumber("14125551212", "1-412-555-1212");
         assertNameEquals("1-412-555-1212");
     }
 
@@ -199,22 +201,23 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     }
 
     /** Sets the phone call details with default values and the given number. */
-    private void setPhoneCallDetailsWithNumber(String number) {
+    private void setPhoneCallDetailsWithNumber(String number, String formattedNumber) {
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(number, Calls.INCOMING_TYPE, TEST_DATE),
+                new PhoneCallDetails(number, formattedNumber, Calls.INCOMING_TYPE, TEST_DATE),
                 false);
     }
 
     /** Sets the phone call details with default values and the given date. */
     private void setPhoneCallDetailsWithDate(long date) {
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(TEST_NUMBER, Calls.INCOMING_TYPE, date),
+                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, Calls.INCOMING_TYPE, date),
                 false);
     }
 
     /** Sets the phone call details with default values and the given call type. */
     private void setPhoneCallDetailsWithCallType(int callType, boolean useIcons) {
-        mHelper.setPhoneCallDetails(mViews, new PhoneCallDetails(TEST_NUMBER, callType, TEST_DATE),
+        mHelper.setPhoneCallDetails(mViews,
+                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, callType, TEST_DATE),
                 useIcons);
     }
 }

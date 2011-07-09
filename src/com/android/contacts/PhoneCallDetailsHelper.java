@@ -162,11 +162,11 @@ public class PhoneCallDetailsHelper {
         final CharSequence nameText;
         final CharSequence numberText;
         if (TextUtils.isEmpty(details.name)) {
-            nameText = getDisplayNumber(details.number);
+            nameText = getDisplayNumber(details.number, details.formattedNumber);
             numberText = "";
         } else {
             nameText = details.name;
-            CharSequence displayNumber = getDisplayNumber(details.number);
+            CharSequence displayNumber = getDisplayNumber(details.number, details.formattedNumber);
             if (details.callType != 0 && numberFormattedLabel != null) {
                 numberText = FormatUtils.applyStyleToSpan(Typeface.BOLD,
                         numberFormattedLabel + " " + displayNumber, 0,
@@ -191,7 +191,7 @@ public class PhoneCallDetailsHelper {
         }
     }
 
-    private CharSequence getDisplayNumber(CharSequence number) {
+    private CharSequence getDisplayNumber(CharSequence number, CharSequence formattedNumber) {
         if (TextUtils.isEmpty(number)) {
             return "";
         }
@@ -207,7 +207,11 @@ public class PhoneCallDetailsHelper {
         if (PhoneNumberUtils.extractNetworkPortion(number.toString()).equals(mVoicemailNumber)) {
             return mResources.getString(R.string.voicemail);
         }
-        return number;
+        if (TextUtils.isEmpty(formattedNumber)) {
+            return number;
+        } else {
+            return formattedNumber;
+        }
     }
 
     public void setCurrentTimeForTest(long currentTimeMillis) {

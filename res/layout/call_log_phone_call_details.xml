@@ -32,15 +32,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="?attr/call_detail_primary_text_color"
+            android:textColor="?attr/call_log_primary_text_color"
         />
         <TextView
             android:id="@+id/call_type_separator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="?attr/call_detail_date_margin"
+            android:layout_marginLeft="?attr/call_log_date_margin"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="?attr/call_detail_primary_text_color"
+            android:textColor="?attr/call_log_primary_text_color"
             android:text="@string/call_log_type_date_separator"
         />
     </LinearLayout>
@@ -49,9 +49,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="?attr/call_detail_primary_text_color"
+        android:textColor="?attr/call_log_primary_text_color"
         android:layout_toRightOf="@id/call_type"
-        android:layout_marginLeft="?attr/call_detail_date_margin"
+        android:layout_marginLeft="?attr/call_log_date_margin"
         android:layout_alignParentBottom="true"
     />
     <TextView
@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="?attr/call_detail_primary_text_color"
+        android:textColor="?attr/call_log_primary_text_color"
         android:layout_alignParentLeft="true"
         android:layout_above="@id/call_type"
     />
@@ -68,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="?attr/call_detail_primary_text_color"
+        android:textColor="?attr/call_log_primary_text_color"
         android:layout_alignParentLeft="true"
         android:layout_above="@id/number"
         android:paddingBottom="2dp"

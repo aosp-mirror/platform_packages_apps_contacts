@@ -67,9 +67,9 @@ public class CallLogActivityTests
     static private final long NOW = -1L;
 
     /** A phone number to be used in tests. */
-    private static final String TEST_PHONE_NUMBER = "12125551000";
-    /** The formatted version of {@link #TEST_PHONE_NUMBER}. */
-    private static final String TEST_FORMATTED_PHONE_NUMBER = "1 212-555-1000";
+    private static final String TEST_NUMBER = "12125551000";
+    /** The formatted version of {@link #TEST_NUMBER}. */
+    private static final String TEST_FORMATTED_NUMBER = "1 212-555-1000";
 
     // We get the call list activity and assign is a frame to build
     // its list.  mAdapter is an inner class of
@@ -185,28 +185,26 @@ public class CallLogActivityTests
     @MediumTest
     public void testBindView_NumberOnly() {
         mCursor.moveToFirst();
-        insert(TEST_PHONE_NUMBER, NOW, 0, Calls.INCOMING_TYPE);
+        insert(TEST_NUMBER, NOW, 0, Calls.INCOMING_TYPE);
         View view = mAdapter.newStandAloneView(getActivity(), mParentView);
         mAdapter.bindStandAloneView(view, getActivity(), mCursor);
 
         CallLogListItemViews views = (CallLogListItemViews) view.getTag();
-        assertNameIs(views, TEST_FORMATTED_PHONE_NUMBER);
-        assertNumberLabelIsGone(views);
-        assertNumberIsGone(views);
+        assertNameIs(views, TEST_FORMATTED_NUMBER);
+        assertNumberAndLabelAreGone(views);
     }
 
     @MediumTest
     public void testBindView_WithCachedName() {
         mCursor.moveToFirst();
-        insertWithCachedValues(TEST_PHONE_NUMBER, NOW, 0, Calls.INCOMING_TYPE,
+        insertWithCachedValues(TEST_NUMBER, NOW, 0, Calls.INCOMING_TYPE,
                 "John Doe", Phone.TYPE_HOME, "");
         View view = mAdapter.newStandAloneView(getActivity(), mParentView);
         mAdapter.bindStandAloneView(view, getActivity(), mCursor);
 
         CallLogListItemViews views = (CallLogListItemViews) view.getTag();
         assertNameIs(views, "John Doe");
-        assertNumberLabelIsVisible(views);
-        assertNumberIs(views, TEST_FORMATTED_PHONE_NUMBER);
+        assertNumberAndLabelAre(views, TEST_FORMATTED_NUMBER, getTypeLabel(Phone.TYPE_HOME));
     }
 
     @MediumTest
@@ -219,51 +217,47 @@ public class CallLogActivityTests
 
         CallLogListItemViews views = (CallLogListItemViews) view.getTag();
         assertNameIs(views, "John Doe");
-        assertNumberLabelIsInvisible(views);
-        assertNumberIs(views, "sip:johndoe@gmail.com");
+        assertNumberAndLabelAre(views, "sip:johndoe@gmail.com", null);
     }
 
     @MediumTest
     public void testBindView_HomeLabel() {
         mCursor.moveToFirst();
-        insertWithCachedValues(TEST_PHONE_NUMBER, NOW, 0, Calls.INCOMING_TYPE,
+        insertWithCachedValues(TEST_NUMBER, NOW, 0, Calls.INCOMING_TYPE,
                 "John Doe", Phone.TYPE_HOME, "");
         View view = mAdapter.newStandAloneView(getActivity(), mParentView);
         mAdapter.bindStandAloneView(view, getActivity(), mCursor);
 
         CallLogListItemViews views = (CallLogListItemViews) view.getTag();
         assertNameIs(views, "John Doe");
-        assertNumberLabelIs(views, getTypeLabel(Phone.TYPE_HOME));
-        assertNumberIsVisible(views);
+        assertNumberAndLabelAre(views, TEST_FORMATTED_NUMBER, getTypeLabel(Phone.TYPE_HOME));
     }
 
     @MediumTest
     public void testBindView_WorkLabel() {
         mCursor.moveToFirst();
-        insertWithCachedValues(TEST_PHONE_NUMBER, NOW, 0, Calls.INCOMING_TYPE,
+        insertWithCachedValues(TEST_NUMBER, NOW, 0, Calls.INCOMING_TYPE,
                 "John Doe", Phone.TYPE_WORK, "");
         View view = mAdapter.newStandAloneView(getActivity(), mParentView);
         mAdapter.bindStandAloneView(view, getActivity(), mCursor);
 
         CallLogListItemViews views = (CallLogListItemViews) view.getTag();
         assertNameIs(views, "John Doe");
-        assertNumberLabelIs(views, getTypeLabel(Phone.TYPE_WORK));
-        assertNumberIsVisible(views);
+        assertNumberAndLabelAre(views, TEST_FORMATTED_NUMBER, getTypeLabel(Phone.TYPE_WORK));
     }
 
     @MediumTest
     public void testBindView_CustomLabel() {
         mCursor.moveToFirst();
         String numberLabel = "My label";
-        insertWithCachedValues(TEST_PHONE_NUMBER, NOW, 0, Calls.INCOMING_TYPE,
+        insertWithCachedValues(TEST_NUMBER, NOW, 0, Calls.INCOMING_TYPE,
                 "John Doe", Phone.TYPE_CUSTOM, numberLabel);
         View view = mAdapter.newStandAloneView(getActivity(), mParentView);
         mAdapter.bindStandAloneView(view, getActivity(), mCursor);
 
         CallLogListItemViews views = (CallLogListItemViews) view.getTag();
         assertNameIs(views, "John Doe");
-        assertNumberLabelIs(views, numberLabel);
-        assertNumberIsVisible(views);
+        assertNumberAndLabelAre(views, TEST_FORMATTED_NUMBER, numberLabel);
     }
 
     /** Returns the label associated with a given phone type. */
@@ -274,27 +268,6 @@ public class CallLogActivityTests
     //
     // HELPERS to check conditions on the DB/views
     //
-    /**
-     * Check the date of the current list item.
-     * @param date That should be present in the call log list
-     *             item. Only NOW is supported.
-     */
-    private void checkDate(long date) {
-        if (NOW == date) {
-            assertEquals("0 mins ago", mItem.dateView.getText());
-        }
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Checks the right icon is used to represent the call type
-     * (missed, incoming, outgoing.) in the current item.
-     */
-    private void checkCallType(int type) {
-        Bitmap icon = ((BitmapDrawable) mItem.iconView.getDrawable()).getBitmap();
-        assertEquals(mCallTypeIcons.get(type), icon);
-    }
-
     /**
      * Go over all the views in the list and check that the Call
      * icon's visibility matches the nature of the number.
@@ -513,44 +486,25 @@ public class CallLogActivityTests
 
     /** Asserts that the name text view is shown and contains the given text. */
     private void assertNameIs(CallLogListItemViews views, String name) {
-        assertEquals(View.VISIBLE, views.line1View.getVisibility());
-        assertEquals(name, views.line1View.getText());
+        assertEquals(View.VISIBLE, views.phoneCallDetailsViews.nameView.getVisibility());
+        assertEquals(name, views.phoneCallDetailsViews.nameView.getText());
     }
 
-    /** Asserts that the number label text view is shown and contains the given text. */
-    private void assertNumberLabelIs(CallLogListItemViews views, CharSequence numberLabel) {
-        assertNumberLabelIsVisible(views);
-        assertEquals(numberLabel, views.labelView.getText());
+    /** Asserts that the number and label text view contains the given text. */
+    private void assertNumberAndLabelAre(CallLogListItemViews views, CharSequence number,
+            CharSequence numberLabel) {
+        assertEquals(View.VISIBLE, views.phoneCallDetailsViews.numberView.getVisibility());
+        final CharSequence expectedText;
+        if (numberLabel == null) {
+            expectedText = number;
+        } else {
+            expectedText = numberLabel + " " + number;
+        }
+        assertEquals(expectedText, views.phoneCallDetailsViews.numberView.getText().toString());
     }
 
-    /** Asserts that the number label text view is shown. */
-    private void assertNumberLabelIsVisible(CallLogListItemViews views) {
-        assertEquals(View.VISIBLE, views.labelView.getVisibility());
-    }
-
-    /** Asserts that the number label text view is invisible. */
-    private void assertNumberLabelIsInvisible(CallLogListItemViews views) {
-        assertEquals(View.INVISIBLE, views.labelView.getVisibility());
-    }
-
-    /** Asserts that the number label text view is gone. */
-    private void assertNumberLabelIsGone(CallLogListItemViews views) {
-        assertEquals(View.GONE, views.labelView.getVisibility());
-    }
-
-    /** Asserts that the number text view is shown and contains the given text. */
-    private void assertNumberIs(CallLogListItemViews views, String number) {
-        assertNumberIsVisible(views);
-        assertEquals(number, views.numberView.getText());
-    }
-
-    /** Asserts that the number text view is shown. */
-    private void assertNumberIsVisible(CallLogListItemViews views) {
-        assertEquals(View.VISIBLE, views.numberView.getVisibility());
-    }
-
-    /** Asserts that the number text view is gone. */
-    private void assertNumberIsGone(CallLogListItemViews views) {
-        assertEquals(View.GONE, views.numberView.getVisibility());
+    /** Asserts that the number and label text view is gone. */
+    private void assertNumberAndLabelAreGone(CallLogListItemViews views) {
+        assertEquals(View.GONE, views.phoneCallDetailsViews.numberView.getVisibility());
     }
 }

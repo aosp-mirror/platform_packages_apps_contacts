@@ -20,6 +20,8 @@ import com.android.common.widget.GroupingListAdapter;
 import com.android.contacts.CallDetailActivity;
 import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.ContactsUtils;
+import com.android.contacts.PhoneCallDetails;
+import com.android.contacts.PhoneCallDetailsHelper;
 import com.android.contacts.R;
 import com.android.contacts.activities.DialtactsActivity.ViewPagerVisibilityListener;
 import com.android.contacts.util.ExpirableCache;
@@ -64,10 +66,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.QuickContactBadge;
-import android.widget.TextView;
 
 import java.lang.ref.WeakReference;
 import java.util.LinkedList;
@@ -265,23 +265,25 @@ public class CallLogFragment extends ListFragment
             mRequests = new LinkedList<CallerInfoQuery>();
             mPreDrawListener = null;
 
-            Drawable drawableIncoming = getResources().getDrawable(
+            Drawable incomingDrawable = getResources().getDrawable(
                     R.drawable.ic_call_log_list_incoming_call);
-            Drawable drawableOutgoing = getResources().getDrawable(
+            Drawable outgoingDrawable = getResources().getDrawable(
                     R.drawable.ic_call_log_list_outgoing_call);
-            Drawable drawableMissed = getResources().getDrawable(
+            Drawable missedDrawable = getResources().getDrawable(
                     R.drawable.ic_call_log_list_missed_call);
-            Drawable drawableVoicemail = getResources().getDrawable(
+            Drawable voicemailDrawable = getResources().getDrawable(
                     R.drawable.ic_call_log_list_voicemail);
-            Drawable drawableCall = getResources().getDrawable(
+            Drawable callDrawable = getResources().getDrawable(
                     R.drawable.ic_call_log_list_action_call);
-            Drawable drawablePlay = getResources().getDrawable(
+            Drawable playDrawable = getResources().getDrawable(
                     R.drawable.ic_call_log_list_action_play);
 
             mContactPhotoManager = ContactPhotoManager.getInstance(getActivity());
-            mCallLogViewsHelper = new CallLogListItemHelper(getResources(), mVoiceMailNumber,
-                    drawableIncoming, drawableOutgoing, drawableMissed, drawableVoicemail,
-                    drawableCall, drawablePlay);
+            PhoneCallDetailsHelper phoneCallDetailsHelper = new PhoneCallDetailsHelper(
+                    getActivity(), getResources(), mVoiceMailNumber, incomingDrawable,
+                    outgoingDrawable, missedDrawable, voicemailDrawable);
+            mCallLogViewsHelper = new CallLogListItemHelper(phoneCallDetailsHelper, callDrawable,
+                    playDrawable);
         }
 
         /**
@@ -651,27 +653,15 @@ public class CallLogFragment extends ListFragment
             int groupIndicator = expanded
                     ? com.android.internal.R.drawable.expander_ic_maximized
                     : com.android.internal.R.drawable.expander_ic_minimized;
-            views.groupIndicator.setImageResource(groupIndicator);
-            views.groupSize.setText("(" + groupSize + ")");
             bindView(context, view, cursor);
         }
 
         private void findAndCacheViews(View view) {
-
-            // Get the views to bind to
-            CallLogListItemViews views = new CallLogListItemViews();
-            views.line1View = (TextView) view.findViewById(R.id.line1);
-            views.labelView = (TextView) view.findViewById(R.id.label);
-            views.numberView = (TextView) view.findViewById(R.id.number);
-            views.dateView = (TextView) view.findViewById(R.id.date);
-            views.iconView = (ImageView) view.findViewById(R.id.call_type_icon);
-            views.callView = (ImageView) view.findViewById(R.id.call_icon);
+            // Get the views to bind to.
+            CallLogListItemViews views = CallLogListItemViews.fromView(view);
             if (views.callView != null) {
                 views.callView.setOnClickListener(this);
             }
-            views.groupIndicator = (ImageView) view.findViewById(R.id.groupIndicator);
-            views.groupSize = (TextView) view.findViewById(R.id.groupSize);
-            views.photoView = (QuickContactBadge) view.findViewById(R.id.contact_photo);
             view.setTag(views);
         }
 
@@ -679,6 +669,8 @@ public class CallLogFragment extends ListFragment
             final CallLogListItemViews views = (CallLogListItemViews) view.getTag();
 
             String number = c.getString(CallLogQuery.NUMBER);
+            long date = c.getLong(CallLogQuery.DATE);
+            int callType = c.getInt(CallLogQuery.CALL_TYPE);
             final String formattedNumber;
             String callerName = c.getString(CallLogQuery.CALLER_NAME);
             int callerNumberType = c.getInt(CallLogQuery.CALLER_NUMBERTYPE);
@@ -760,18 +752,14 @@ public class CallLogFragment extends ListFragment
                 views.callView.setVisibility(View.VISIBLE);
             }
 
-            if (!TextUtils.isEmpty(name)) {
-                mCallLogViewsHelper.setContactNameLabelAndNumber(views, name, number, ntype, label,
-                        formattedNumber);
+            final PhoneCallDetails details;
+            if (TextUtils.isEmpty(name)) {
+                details = new PhoneCallDetails(number, formattedNumber, callType, date);
             } else {
-                // TODO: Do we need to format the number again? Is formattedNumber already storing
-                // this value?
-                mCallLogViewsHelper.setContactNumberOnly(views, number,
-                        formatPhoneNumber(number, null, countryIso));
+                details = new PhoneCallDetails(number, formattedNumber, callType, date, name,
+                        ntype, label);
             }
-            mCallLogViewsHelper.setDate(views, c.getLong(CallLogQuery.DATE),
-                    System.currentTimeMillis());
-            mCallLogViewsHelper.setCallType(views, c.getInt(CallLogQuery.CALL_TYPE));
+            mCallLogViewsHelper.setPhoneCallDetails(views, details , true);
             if (views.photoView != null) {
                 bindQuickContact(views.photoView, photoId, contactId, lookupKey);
             }

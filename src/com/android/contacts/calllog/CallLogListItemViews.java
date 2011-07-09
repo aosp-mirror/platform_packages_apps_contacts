@@ -16,37 +16,39 @@
 
 package com.android.contacts.calllog;
 
+import com.android.contacts.PhoneCallDetailsViews;
+import com.android.contacts.R;
+
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.QuickContactBadge;
-import android.widget.TextView;
 
 /**
  * Simple value object containing the various views within a call log entry.
  */
 public final class CallLogListItemViews {
-    /** The first line in the call log entry, containing either the name or the number. */
-    public TextView line1View;
-    /** The label associated with the phone number. */
-    public TextView labelView;
-    /**
-     * The number the call was from or to.
-     * <p>
-     * Only filled in if the number is not already in the first line, i.e., {@link #line1View}.
-     */
-    public TextView numberView;
-    /** The date of the call. */
-    public TextView dateView;
-    /** The icon indicating the type of call. */
-    public ImageView iconView;
-    /** The icon used to place a call to the contact. Only present for non-group entries. */
-    public ImageView callView;
-    /** The icon used to expand and collapse an entry. Only present for group entries. */
-    public ImageView groupIndicator;
-    /**
-     * The text view containing the number of items in the group. Only present for group
-     * entries.
-     */
-    public TextView groupSize;
     /** The quick contact badge for the contact. Only present for group and stand alone entries. */
-    public QuickContactBadge photoView;
+    public final QuickContactBadge photoView;
+    /** The main action button on the entry. */
+    public final ImageView callView;
+    /** The details of the phone call. */
+    public final PhoneCallDetailsViews phoneCallDetailsViews;
+
+    private CallLogListItemViews(QuickContactBadge photoView, ImageView callView,
+            PhoneCallDetailsViews phoneCallDetailsViews) {
+        this.photoView = photoView;
+        this.callView = callView;
+        this.phoneCallDetailsViews = phoneCallDetailsViews;
+    }
+
+    public static CallLogListItemViews fromView(View view) {
+        return new CallLogListItemViews((QuickContactBadge) view.findViewById(R.id.contact_photo),
+                (ImageView) view.findViewById(R.id.call_icon),
+                PhoneCallDetailsViews.fromView(view));
+    }
+
+    public static CallLogListItemViews createForTest(QuickContactBadge photoView,
+            ImageView callView, PhoneCallDetailsViews phoneCallDetailsViews) {
+        return new CallLogListItemViews(photoView, callView, phoneCallDetailsViews);
+    }
 }
