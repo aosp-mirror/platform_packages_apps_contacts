@@ -384,8 +384,8 @@
         <item quantity="other"><xliff:g id="count">%d</xliff:g> found</item>
     </plurals>
 
-    <!-- The description text for the contacts tab. Space is limited for this string, so the shorter the better -->
-    <string name="contactsIconLabel">Contacts</string>
+    <!-- The description text for the "all contacts" tab. Space is limited for this string, so the shorter the better -->
+    <string name="contactsAllLabel">All</string>
 
     <!-- The description text for the groups tab. Space is limited for this string, so the shorter the better -->
     <string name="contactsGroupsLabel">Groups</string>
