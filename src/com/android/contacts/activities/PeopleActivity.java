@@ -123,8 +123,6 @@ public class PeopleActivity extends ContactsActivity
 
     private boolean mSearchMode;
 
-    private ContactBrowseListFragment mListFragment;
-
     /**
      * Whether we have a right-side contact or group detail pane for displaying info on that
      * contact or group while browsing. Generally means "this is a tablet".
@@ -157,6 +155,9 @@ public class PeopleActivity extends ContactsActivity
 
     private boolean mOptionsMenuContactsAvailable;
 
+    /**
+     * Showing a list of Contacts. Also used for showing search results in search mode.
+     */
     private DefaultContactBrowseListFragment mAllFragment;
     private StrequentContactListFragment mFavoritesFragment;
     private StrequentContactListFragment mFrequentFragment;
@@ -170,7 +171,30 @@ public class PeopleActivity extends ContactsActivity
 
     private ContactDetailLayoutController mContactDetailLayoutController;
 
-    private Handler mHandler = new Handler();
+    private final Handler mHandler = new Handler();
+
+    /**
+     * TODO: Use ViewPager so that tabs can be swiped left and right. Figure out how to use the
+     * support library in our app.
+     */
+    private final TabListener mTabListener = new TabListener() {
+        @Override
+        public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+            hideFragmentOnTabUnselect((TabState) tab.getTag(), ft);
+        }
+
+        @Override
+        public void onTabSelected(Tab tab, FragmentTransaction ft) {
+            final TabState tabState = (TabState) tab.getTag();
+            setSelectedTab(tabState);
+            showFragmentOnTabSelect(tabState, ft);
+            invalidateOptionsMenu();
+        }
+
+        @Override
+        public void onTabReselected(Tab tab, FragmentTransaction ft) {
+        }
+    };
 
     private enum TabState {
         FAVORITES, ALL, GROUPS
@@ -191,12 +215,12 @@ public class PeopleActivity extends ContactsActivity
 
     @Override
     public void onAttachFragment(Fragment fragment) {
-        if (fragment instanceof ContactBrowseListFragment) {
-            mListFragment = (ContactBrowseListFragment)fragment;
-            mListFragment.setOnContactListActionListener(new ContactBrowserActionListener());
+        if (fragment instanceof DefaultContactBrowseListFragment) {
+            mAllFragment = (DefaultContactBrowseListFragment)fragment;
+            mAllFragment.setOnContactListActionListener(new ContactBrowserActionListener());
             if (!getWindow().hasFeature(Window.FEATURE_ACTION_BAR)) {
-                mListFragment.setContextMenuAdapter(
-                        new ContactBrowseListContextMenuAdapter(mListFragment));
+                mAllFragment.setContextMenuAdapter(
+                        new ContactBrowseListContextMenuAdapter(mAllFragment));
             }
         } else if (fragment instanceof GroupBrowseListFragment) {
             mGroupsFragment = (GroupBrowseListFragment) fragment;
@@ -315,21 +339,21 @@ public class PeopleActivity extends ContactsActivity
         if (createContentView) {
             actionBar.removeAllTabs();
             Tab favoritesTab = actionBar.newTab();
+            favoritesTab.setTag(TabState.FAVORITES);
             favoritesTab.setText(getString(R.string.contactsFavoritesLabel));
-            favoritesTab.setTabListener(new TabChangeListener(mFavoritesFragment,
-                    mFrequentFragment, TabState.FAVORITES));
+            favoritesTab.setTabListener(mTabListener);
             actionBar.addTab(favoritesTab);
 
             Tab allTab = actionBar.newTab();
+            allTab.setTag(TabState.ALL);
             allTab.setText(getString(R.string.contactsAllLabel));
-            allTab.setTabListener(new TabChangeListener(mAllFragment,
-                    mContactDetailLoaderFragment, TabState.ALL));
+            allTab.setTabListener(mTabListener);
             actionBar.addTab(allTab);
 
             Tab groupsTab = actionBar.newTab();
+            groupsTab.setTag(TabState.GROUPS);
             groupsTab.setText(getString(R.string.contactsGroupsLabel));
-            groupsTab.setTabListener(new TabChangeListener(mGroupsFragment,
-                    mGroupDetailFragment, TabState.GROUPS));
+            groupsTab.setTabListener(mTabListener);
             actionBar.addTab(groupsTab);
             actionBar.setDisplayShowTitleEnabled(true);
 
@@ -343,47 +367,61 @@ public class PeopleActivity extends ContactsActivity
         configureFragments(savedState == null);
     }
 
-    /**
-     * Tab change listener that is instantiated once for each tab. Handles showing/hiding fragments.
-     * TODO: Use ViewPager so that tabs can be swiped left and right. Figure out how to use the
-     * support library in our app.
-     */
-    private class TabChangeListener implements TabListener {
-        private final Fragment mBrowseListFragment;
-
-        /**
-         * Right pane fragment that is present on larger screen sizes (can be
-         * null for smaller screen sizes).
-         */
-        private final Fragment mDetailFragment;
-        private final TabState mTabState;
-
-        public TabChangeListener(Fragment listFragment, Fragment detailFragment, TabState state) {
-            mBrowseListFragment = listFragment;
-            mDetailFragment = detailFragment;
-            mTabState = state;
-        }
-
-        @Override
-        public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-            ft.hide(mBrowseListFragment);
-            if (mDetailFragment != null) {
-                ft.hide(mDetailFragment);
+    private void hideFragmentOnTabUnselect(TabState newTabState, FragmentTransaction ft) {
+        switch (newTabState) {
+            case FAVORITES: {
+                ft.hide(mFavoritesFragment);
+                if (mFrequentFragment != null) {
+                    ft.hide(mFrequentFragment);
+                }
+                break;
+            }
+            case ALL: {
+                ft.hide(mAllFragment);
+                if (mContactDetailFragment != null) {
+                    ft.hide(mContactDetailFragment);
+                }
+                break;
+            }
+            case GROUPS: {
+                ft.hide(mGroupsFragment);
+                if (mGroupDetailFragment != null) {
+                    ft.hide(mGroupDetailFragment);
+                }
+                break;
+            }
+            default: {
+                throw new IllegalStateException("Unexpected tab state: " + newTabState);
             }
         }
+    }
 
-        @Override
-        public void onTabSelected(Tab tab, FragmentTransaction ft) {
-            ft.show(mBrowseListFragment);
-            if (mDetailFragment != null) {
-                ft.show(mDetailFragment);
+    private void showFragmentOnTabSelect(TabState newTabState, FragmentTransaction ft) {
+        switch (newTabState) {
+            case FAVORITES: {
+                ft.show(mFavoritesFragment);
+                if (mFrequentFragment != null) {
+                    ft.show(mFrequentFragment);
+                }
+                break;
             }
-            setSelectedTab(mTabState);
-            invalidateOptionsMenu();
-        }
-
-        @Override
-        public void onTabReselected(Tab tab, FragmentTransaction ft) {
+            case ALL: {
+                ft.show(mAllFragment);
+                if (mContactDetailFragment != null) {
+                    ft.show(mContactDetailFragment);
+                }
+                break;
+            }
+            case GROUPS: {
+                ft.show(mGroupsFragment);
+                if (mGroupDetailFragment != null) {
+                    ft.show(mGroupDetailFragment);
+                }
+                break;
+            }
+            default: {
+                throw new IllegalStateException("Unexpected tab state: " + newTabState);
+            }
         }
     }
 
@@ -474,7 +512,7 @@ public class PeopleActivity extends ContactsActivity
                 mSearchMode = false;
             }
 
-            mListFragment.setContactsRequest(mRequest);
+            mAllFragment.setContactsRequest(mRequest);
             configureContactListFragmentForRequest();
 
         } else {
@@ -489,11 +527,11 @@ public class PeopleActivity extends ContactsActivity
 
     @Override
     public void onContactListFilterChanged() {
-        if (mListFragment == null || !mListFragment.isAdded()) {
+        if (mAllFragment == null || !mAllFragment.isAdded()) {
             return;
         }
 
-        mListFragment.setFilter(mContactListFilterController.getFilter());
+        mAllFragment.setFilter(mContactListFilterController.getFilter());
 
         invalidateOptionsMenuIfNeeded();
     }
@@ -557,39 +595,39 @@ public class PeopleActivity extends ContactsActivity
 
     private void loadSearch(String query) {
         configureFragments(false /* from request */);
-        mListFragment.setQueryString(query, true);
+        mAllFragment.setQueryString(query, true);
     }
 
     private void configureContactListFragmentForRequest() {
         Uri contactUri = mRequest.getContactUri();
         if (contactUri != null) {
-            mListFragment.setSelectedContactUri(contactUri);
+            mAllFragment.setSelectedContactUri(contactUri);
         }
 
-        mListFragment.setSearchMode(mRequest.isSearchMode());
-        mListFragment.setQueryString(mRequest.getQueryString(), false);
+        mAllFragment.setSearchMode(mRequest.isSearchMode());
+        mAllFragment.setQueryString(mRequest.getQueryString(), false);
 
         if (mRequest.isDirectorySearchEnabled()) {
-            mListFragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DEFAULT);
+            mAllFragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DEFAULT);
         } else {
-            mListFragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_NONE);
+            mAllFragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_NONE);
         }
 
         if (mContactListFilterController.isInitialized()) {
-            mListFragment.setFilter(mContactListFilterController.getFilter());
+            mAllFragment.setFilter(mContactListFilterController.getFilter());
         }
     }
 
     private void configureContactListFragment() {
-        mListFragment.setSearchMode(mSearchMode);
+        mAllFragment.setSearchMode(mSearchMode);
 
-        mListFragment.setVisibleScrollbarEnabled(!mSearchMode);
-        mListFragment.setVerticalScrollbarPosition(
+        mAllFragment.setVisibleScrollbarEnabled(!mSearchMode);
+        mAllFragment.setVerticalScrollbarPosition(
                 mContentPaneDisplayed
                         ? View.SCROLLBAR_POSITION_LEFT
                         : View.SCROLLBAR_POSITION_RIGHT);
-        mListFragment.setSelectionVisible(mContentPaneDisplayed);
-        mListFragment.setQuickContactEnabled(!mContentPaneDisplayed);
+        mAllFragment.setSelectionVisible(mContentPaneDisplayed);
+        mAllFragment.setQuickContactEnabled(!mContentPaneDisplayed);
     }
 
     private void configureGroupListFragment() {
@@ -621,12 +659,12 @@ public class PeopleActivity extends ContactsActivity
             if (mainView != null) {
                 mainView.setVisibility(View.VISIBLE);
             }
-            if (mListFragment != null) {
-                mListFragment.setEnabled(true);
+            if (mAllFragment != null) {
+                mAllFragment.setEnabled(true);
             }
         } else {
-            if (mListFragment != null) {
-                mListFragment.setEnabled(false);
+            if (mAllFragment != null) {
+                mAllFragment.setEnabled(false);
             }
             if (mContactsUnavailableFragment == null) {
                 mContactsUnavailableFragment = new ContactsUnavailableFragment();
@@ -653,7 +691,7 @@ public class PeopleActivity extends ContactsActivity
         @Override
         public void onSelectionChange() {
             if (mContentPaneDisplayed) {
-                setupContactDetailFragment(mListFragment.getSelectedContactUri());
+                setupContactDetailFragment(mAllFragment.getSelectedContactUri());
             }
         }
 
@@ -723,16 +761,16 @@ public class PeopleActivity extends ContactsActivity
         @Override
         public void onInvalidSelection() {
             ContactListFilter filter;
-            ContactListFilter currentFilter = mListFragment.getFilter();
+            ContactListFilter currentFilter = mAllFragment.getFilter();
             if (currentFilter != null
                     && currentFilter.filterType == ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
                 filter = ContactListFilter.createFilterWithType(
                         ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
-                mListFragment.setFilter(filter);
+                mAllFragment.setFilter(filter);
             } else {
                 filter = ContactListFilter.createFilterWithType(
                         ContactListFilter.FILTER_TYPE_SINGLE_CONTACT);
-                mListFragment.setFilter(filter, false);
+                mAllFragment.setFilter(filter, false);
             }
             mContactListFilterController.setContactListFilter(filter, true);
         }
@@ -948,7 +986,7 @@ public class PeopleActivity extends ContactsActivity
             return true;
         }
 
-        if (mListFragment != null && mListFragment.isOptionsMenuChanged()) {
+        if (mAllFragment != null && mAllFragment.isOptionsMenuChanged()) {
             return true;
         }
 
@@ -1087,8 +1125,8 @@ public class PeopleActivity extends ContactsActivity
     @Override
     public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
             boolean globalSearch) {
-        if (mListFragment != null && mListFragment.isAdded() && !globalSearch) {
-            mListFragment.startSearch(initialQuery);
+        if (mAllFragment != null && mAllFragment.isAdded() && !globalSearch) {
+            mAllFragment.startSearch(initialQuery);
         } else {
             super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
         }
@@ -1125,7 +1163,7 @@ public class PeopleActivity extends ContactsActivity
             case SUBACTIVITY_NEW_CONTACT: {
                 if (resultCode == RESULT_OK && mContentPaneDisplayed) {
                     mRequest.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
-                    mListFragment.reloadDataAndSetSelectedUri(data.getData());
+                    mAllFragment.reloadDataAndSetSelectedUri(data.getData());
                 }
                 break;
             }
@@ -1143,7 +1181,7 @@ public class PeopleActivity extends ContactsActivity
             // anymore
             case ContactEntryListFragment.ACTIVITY_REQUEST_CODE_PICKER:
                 if (resultCode == RESULT_OK) {
-                    mListFragment.onPickerResult(data);
+                    mAllFragment.onPickerResult(data);
                 }
 
 // TODO fix or remove multipicker code
@@ -1158,7 +1196,7 @@ public class PeopleActivity extends ContactsActivity
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        ContextMenuAdapter menuAdapter = mListFragment.getContextMenuAdapter();
+        ContextMenuAdapter menuAdapter = mAllFragment.getContextMenuAdapter();
         if (menuAdapter != null) {
             return menuAdapter.onContextItemSelected(item);
         }
@@ -1261,7 +1299,7 @@ public class PeopleActivity extends ContactsActivity
 
     // Visible for testing
     public ContactBrowseListFragment getListFragment() {
-        return mListFragment;
+        return mAllFragment;
     }
 
     // Visible for testing
