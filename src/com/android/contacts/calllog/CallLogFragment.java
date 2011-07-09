@@ -679,7 +679,7 @@ public class CallLogFragment extends ListFragment
             final CallLogListItemViews views = (CallLogListItemViews) view.getTag();
 
             String number = c.getString(CallLogQuery.NUMBER);
-            String formattedNumber = null;
+            final String formattedNumber;
             String callerName = c.getString(CallLogQuery.CALLER_NAME);
             int callerNumberType = c.getInt(CallLogQuery.CALLER_NUMBERTYPE);
             String callerNumberLabel = c.getString(CallLogQuery.CALLER_NUMBERLABEL);
@@ -697,6 +697,8 @@ public class CallLogFragment extends ListFragment
                 // Mark it as empty and queue up a request to find the name
                 // The db request should happen on a non-UI thread
                 info = ContactInfo.EMPTY;
+                // Format the cached call_log phone number
+                formattedNumber = formatPhoneNumber(number, null, countryIso);
                 mContactInfoCache.put(number, info);
                 Log.d(TAG, "Contact info missing: " + number);
                 // Request the contact details immediately since they are currently missing.
@@ -732,6 +734,9 @@ public class CallLogFragment extends ListFragment
                             formatPhoneNumber(info.number, info.normalizedNumber, countryIso);
                 }
                 formattedNumber = info.formattedNumber;
+            } else {
+                // Format the cached call_log phone number
+                formattedNumber = formatPhoneNumber(number, null, countryIso);
             }
 
             long contactId = info.personId;
@@ -747,9 +752,6 @@ public class CallLogFragment extends ListFragment
                 name = callerName;
                 ntype = callerNumberType;
                 label = callerNumberLabel;
-
-                // Format the cached call_log phone number
-                formattedNumber = formatPhoneNumber(number, null, countryIso);
             }
 
             // Assumes the call back feature is on most of the
