@@ -155,7 +155,7 @@ public class PeopleActivity extends ContactsActivity
 
     private boolean mOptionsMenuContactsAvailable;
 
-    private DefaultContactBrowseListFragment mContactsFragment;
+    private DefaultContactBrowseListFragment mAllFragment;
     private StrequentContactListFragment mFavoritesFragment;
     private StrequentContactListFragment mFrequentFragment;
     private GroupBrowseListFragment mGroupsFragment;
@@ -171,7 +171,7 @@ public class PeopleActivity extends ContactsActivity
     private Handler mHandler = new Handler();
 
     private enum TabState {
-        FAVORITES, CONTACTS, GROUPS
+        FAVORITES, ALL, GROUPS
     }
 
     private TabState mSelectedTab;
@@ -269,13 +269,13 @@ public class PeopleActivity extends ContactsActivity
                     .findFragmentById(R.id.favorites_fragment);
             mFrequentFragment = (StrequentContactListFragment) fragmentManager
                     .findFragmentById(R.id.frequent_fragment);
-            mContactsFragment = (DefaultContactBrowseListFragment) fragmentManager
-                    .findFragmentById(R.id.contacts_fragment);
+            mAllFragment = (DefaultContactBrowseListFragment) fragmentManager
+                    .findFragmentById(R.id.all_fragment);
             mGroupsFragment = (GroupBrowseListFragment) fragmentManager
                     .findFragmentById(R.id.groups_fragment);
             // Hide all tabs (the current tab will later be reshown once a tab is selected)
             final FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.hide(mContactsFragment);
+            transaction.hide(mAllFragment);
             transaction.hide(mGroupsFragment);
 
             if (mFrequentFragment != null) {
@@ -316,16 +316,16 @@ public class PeopleActivity extends ContactsActivity
         if (createContentView) {
             actionBar.removeAllTabs();
             Tab favoritesTab = actionBar.newTab();
-            favoritesTab.setText(getString(R.string.strequentList));
+            favoritesTab.setText(getString(R.string.contactsFavoritesLabel));
             favoritesTab.setTabListener(new TabChangeListener(mFavoritesFragment,
                     mFrequentFragment, TabState.FAVORITES));
             actionBar.addTab(favoritesTab);
 
-            Tab peopleTab = actionBar.newTab();
-            peopleTab.setText(getString(R.string.people));
-            peopleTab.setTabListener(new TabChangeListener(mContactsFragment,
-                    mContactDetailLoaderFragment, TabState.CONTACTS));
-            actionBar.addTab(peopleTab);
+            Tab allTab = actionBar.newTab();
+            allTab.setText(getString(R.string.contactsAllLabel));
+            allTab.setTabListener(new TabChangeListener(mAllFragment,
+                    mContactDetailLoaderFragment, TabState.ALL));
+            actionBar.addTab(allTab);
 
             Tab groupsTab = actionBar.newTab();
             groupsTab.setText(getString(R.string.contactsGroupsLabel));
@@ -399,7 +399,7 @@ public class PeopleActivity extends ContactsActivity
                     mDetailsView.setVisibility(View.GONE);
                     break;
                 case GROUPS:
-                case CONTACTS:
+                case ALL:
                     mFavoritesView.setVisibility(View.GONE);
                     mBrowserView.setVisibility(View.VISIBLE);
                     mDetailsView.setVisibility(View.VISIBLE);
@@ -541,7 +541,7 @@ public class PeopleActivity extends ContactsActivity
                 }
                 // Bring the contact list fragment (and detail fragment if applicable) to the front
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.show(mContactsFragment);
+                ft.show(mAllFragment);
                 if (mContactDetailFragment != null) ft.show(mContactDetailFragment);
                 ft.commit();
                 clearSearch();
@@ -553,9 +553,9 @@ public class PeopleActivity extends ContactsActivity
 
                 // If the last selected tab was not the "All contacts" tab, then hide these
                 // fragments because we need to show favorites or groups.
-                if (mSelectedTab != null && !mSelectedTab.equals(TabState.CONTACTS)) {
+                if (mSelectedTab != null && !mSelectedTab.equals(TabState.ALL)) {
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.hide(mContactsFragment);
+                    transaction.hide(mAllFragment);
                     if (mContactDetailFragment != null) transaction.hide(mContactDetailFragment);
                     transaction.commit();
                 }
@@ -1019,7 +1019,7 @@ public class PeopleActivity extends ContactsActivity
                 case FAVORITES:
                     // TODO: Fall through until we determine what the menu items should be for
                     // this tab
-                case CONTACTS:
+                case ALL:
                     addContactMenu.setVisible(true);
                     addGroupMenu.setVisible(false);
                     break;
