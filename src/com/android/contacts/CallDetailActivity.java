@@ -169,7 +169,7 @@ public class CallDetailActivity extends ListActivity implements
      *
      * @param callUri Uri into {@link CallLog.Calls}
      */
-    private void updateData(Uri callUri) {
+    private void updateData(final Uri callUri) {
         ContentResolver resolver = getContentResolver();
         Cursor callCursor = resolver.query(callUri, CALL_LOG_PROJECTION, null, null, null);
         try {
@@ -271,6 +271,18 @@ public class CallDetailActivity extends ListActivity implements
                     actions.add(new ViewEntry(R.drawable.sym_action_sms,
                             getString(R.string.menu_sendTextMessage), smsIntent));
 
+                    actions.add(new ViewEntry(android.R.drawable.ic_menu_close_clear_cancel,
+                            getString(R.string.recentCalls_removeFromRecentList),
+                            new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    long id = ContentUris.parseId(callUri);
+                                    getContentResolver().delete(Calls.CONTENT_URI_WITH_VOICEMAIL,
+                                            Calls._ID + " = ?", new String[]{Long.toString(id)});
+                                    finish();
+                                }
+                            }));
+
                     ViewAdapter adapter = new ViewAdapter(this, actions);
                     setListAdapter(adapter);
                 }
@@ -317,9 +329,11 @@ public class CallDetailActivity extends ListActivity implements
     }
 
     static final class ViewEntry {
-        public int icon = -1;
-        public String text = null;
-        public Intent intent = null;
+        public final int icon;
+        public final String text;
+        public final Intent intent;
+        public final View.OnClickListener action;
+
         public String label = null;
         public String number = null;
 
@@ -327,6 +341,14 @@ public class CallDetailActivity extends ListActivity implements
             this.icon = icon;
             this.text = text;
             this.intent = intent;
+            this.action = null;
+        }
+
+        public ViewEntry(int icon, String text, View.OnClickListener listener) {
+            this.icon = icon;
+            this.text = text;
+            this.intent = null;
+            this.action = listener;
         }
     }
 
@@ -404,6 +426,8 @@ public class CallDetailActivity extends ListActivity implements
             ViewEntry entry = (ViewEntry) view.getTag();
             if (entry.intent != null) {
                 startActivity(entry.intent);
+            } else if (entry.action != null) {
+                entry.action.onClick(view);
             }
         }
     }
