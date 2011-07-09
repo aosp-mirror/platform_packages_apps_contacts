@@ -110,6 +110,7 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_VIEW_ID_GENERATOR = "viewidgenerator";
     private static final String KEY_CURRENT_PHOTO_FILE = "currentphotofile";
     private static final String KEY_CONTACT_ID_FOR_JOIN = "contactidforjoin";
+    private static final String KEY_CONTACT_WRITABLE_FOR_JOIN = "contactwritableforjoin";
     private static final String KEY_SHOW_JOIN_SUGGESTIONS = "showJoinSuggestions";
     private static final String KEY_ENABLED = "enabled";
     private static final String KEY_STATUS = "status";
@@ -222,6 +223,7 @@ public class ContactEditorFragment extends Fragment implements
     private Listener mListener;
 
     private long mContactIdForJoin;
+    private boolean mContactWritableForJoin;
 
     private LinearLayout mContent;
     private EntityDeltaList mState;
@@ -274,9 +276,7 @@ public class ContactEditorFragment extends Fragment implements
 
         // If anything was left unsaved, save it now but keep the editor open.
         if (!getActivity().isChangingConfigurations() && mStatus == Status.EDITING) {
-            if (mStatus != SaveMode.JOIN) {
-                save(SaveMode.RELOAD);
-            }
+            save(SaveMode.RELOAD);
         }
     }
 
@@ -373,6 +373,7 @@ public class ContactEditorFragment extends Fragment implements
                 mCurrentPhotoFile = new File(fileName);
             }
             mContactIdForJoin = savedState.getLong(KEY_CONTACT_ID_FOR_JOIN);
+            mContactWritableForJoin = savedState.getBoolean(KEY_CONTACT_WRITABLE_FOR_JOIN);
             mAggregationSuggestionsRawContactId = savedState.getLong(KEY_SHOW_JOIN_SUGGESTIONS);
             mEnabled = savedState.getBoolean(KEY_ENABLED);
             mStatus = savedState.getInt(KEY_STATUS);
@@ -981,17 +982,17 @@ public class ContactEditorFragment extends Fragment implements
             case SaveMode.RELOAD:
             case SaveMode.JOIN:
                 if (success && contactLookupUri != null) {
+                    // If it was a JOIN, we are now ready to bring up the join activity.
+                    if (saveMode == SaveMode.JOIN) {
+                        showJoinAggregateActivity(contactLookupUri);
+                    }
+
                     // If this was in INSERT, we are changing into an EDIT now.
                     // If it already was an EDIT, we are changing to the new Uri now
                     mState = null;
                     load(Intent.ACTION_EDIT, contactLookupUri, null);
                     mStatus = Status.LOADING;
                     getLoaderManager().restartLoader(LOADER_DATA, null, mDataLoaderListener);
-
-                    // If it was a JOIN, we are now ready to bring up the join activity.
-                    if (saveMode == SaveMode.JOIN) {
-                        showJoinAggregateActivity(contactLookupUri);
-                    }
                 }
                 break;
 
@@ -1017,6 +1018,7 @@ public class ContactEditorFragment extends Fragment implements
         }
 
         mContactIdForJoin = ContentUris.parseId(contactLookupUri);
+        mContactWritableForJoin = isContactWritable();
         final Intent intent = new Intent(JoinContactActivity.JOIN_CONTACT);
         intent.putExtra(JoinContactActivity.EXTRA_TARGET_CONTACT_ID, mContactIdForJoin);
         startActivityForResult(intent, REQUEST_CODE_JOIN);
@@ -1027,7 +1029,7 @@ public class ContactEditorFragment extends Fragment implements
      */
     private void joinAggregate(final long contactId) {
         Intent intent = ContactSaveService.createJoinContactsIntent(mContext, mContactIdForJoin,
-                contactId, isContactWritable(),
+                contactId, mContactWritableForJoin,
                 ContactEditorActivity.class, ContactEditorActivity.ACTION_JOIN_COMPLETED);
         mContext.startService(intent);
     }
@@ -1460,6 +1462,7 @@ public class ContactEditorFragment extends Fragment implements
             outState.putString(KEY_CURRENT_PHOTO_FILE, mCurrentPhotoFile.toString());
         }
         outState.putLong(KEY_CONTACT_ID_FOR_JOIN, mContactIdForJoin);
+        outState.putBoolean(KEY_CONTACT_WRITABLE_FOR_JOIN, mContactWritableForJoin);
         outState.putLong(KEY_SHOW_JOIN_SUGGESTIONS, mAggregationSuggestionsRawContactId);
         outState.putBoolean(KEY_ENABLED, mEnabled);
         outState.putInt(KEY_STATUS, mStatus);
@@ -1586,6 +1589,7 @@ public class ContactEditorFragment extends Fragment implements
             Log.v(TAG, "Time needed for setting UI: " + (setDataEndTime-setDataStartTime));
         }
 
+        @Override
         public void onLoaderReset(Loader<ContactLoader.Result> loader) {
         }
     };
