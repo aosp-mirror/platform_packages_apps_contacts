@@ -261,15 +261,24 @@ public class CallDetailActivity extends ListActivity implements
                     // Build list of various available actions
                     List<ViewEntry> actions = new ArrayList<ViewEntry>();
 
-                    Intent callIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                            Uri.fromParts("tel", mNumber, null));
-                    actions.add(new ViewEntry(android.R.drawable.sym_action_call,
-                            getString(R.string.menu_callNumber, mNumber), callIntent));
+                    final boolean isSipNumber = PhoneNumberUtils.isUriNumber(mNumber);
+                    final Uri numberCallUri;
+                    if (isSipNumber) {
+                        numberCallUri = Uri.fromParts("sip", mNumber, null);
+                    } else {
+                        numberCallUri = Uri.fromParts("tel", mNumber, null);
+                    }
 
-                    Intent smsIntent = new Intent(Intent.ACTION_SENDTO,
-                            Uri.fromParts("sms", mNumber, null));
-                    actions.add(new ViewEntry(R.drawable.sym_action_sms,
-                            getString(R.string.menu_sendTextMessage), smsIntent));
+                    actions.add(new ViewEntry(android.R.drawable.sym_action_call,
+                            getString(R.string.menu_callNumber, mNumber),
+                            new Intent(Intent.ACTION_CALL_PRIVILEGED, numberCallUri)));
+
+                    if (!isSipNumber) {
+                        Intent smsIntent = new Intent(Intent.ACTION_SENDTO,
+                                Uri.fromParts("sms", mNumber, null));
+                        actions.add(new ViewEntry(R.drawable.sym_action_sms,
+                                getString(R.string.menu_sendTextMessage), smsIntent));
+                    }
 
                     actions.add(new ViewEntry(android.R.drawable.ic_menu_close_clear_cancel,
                             getString(R.string.recentCalls_removeFromRecentList),
@@ -282,6 +291,12 @@ public class CallDetailActivity extends ListActivity implements
                                     finish();
                                 }
                             }));
+
+                    if (!isSipNumber) {
+                        actions.add(new ViewEntry(android.R.drawable.sym_action_call,
+                                getString(R.string.recentCalls_editNumberBeforeCall),
+                                new Intent(Intent.ACTION_DIAL, numberCallUri)));
+                    }
 
                     ViewAdapter adapter = new ViewAdapter(this, actions);
                     setListAdapter(adapter);
