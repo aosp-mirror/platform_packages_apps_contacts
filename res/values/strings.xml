@@ -296,12 +296,6 @@
     <!-- The text displayed when the contacts list is empty while displaying only contacts that have phone numbers -->
     <string name="noContactsWithPhoneNumbers">No contacts with phone numbers.</string>
 
-    <!-- The title of the filter to only show contacts with phone numbers -->
-    <string name="showFilterPhones">Only contacts with phones</string>
-
-    <!-- The description of the filter to only show contacts with phone numbers -->
-    <string name="showFilterPhonesDescrip">Only display contacts that have phone numbers</string>
-
     <!-- The header over the list of all contacts groups -->
     <string name="headerContactGroups">Choose contacts to display</string>
 

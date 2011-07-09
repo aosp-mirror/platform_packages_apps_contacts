@@ -23,10 +23,8 @@ import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.GoogleAccountType;
-import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.LocalizedNameResolver;
-import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.WeakAsyncTask;
 import com.google.android.collect.Lists;
 
@@ -46,7 +44,6 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.OperationApplicationException;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -62,7 +59,6 @@ import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
 import android.widget.ExpandableListAdapter;
@@ -80,8 +76,7 @@ import java.util.Iterator;
  * select which ones they want to be visible.
  */
 public class CustomContactListFilterActivity extends ContactsActivity
-        implements AdapterView.OnItemClickListener, View.OnClickListener,
-        ExpandableListView.OnChildClickListener,
+        implements View.OnClickListener, ExpandableListView.OnChildClickListener,
         LoaderCallbacks<CustomContactListFilterActivity.AccountSet>
 {
     private static final String TAG = "CustomContactListFilterActivity";
@@ -92,11 +87,6 @@ public class CustomContactListFilterActivity extends ContactsActivity
     private DisplayAdapter mAdapter;
 
     private SharedPreferences mPrefs;
-
-    private CheckBox mDisplayPhones;
-
-    private View mHeaderPhones;
-    private View mHeaderSeparator;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -111,48 +101,12 @@ public class CustomContactListFilterActivity extends ContactsActivity
 
         final LayoutInflater inflater = getLayoutInflater();
 
-        createWithPhonesOnlyPreferenceView(inflater);
-        createDisplayGroupHeader(inflater);
-
-        if (mHeaderPhones != null) {
-            mList.addHeaderView(mHeaderPhones, null, true);
-            mList.addHeaderView(mHeaderSeparator, null, false);
-        }
-
         findViewById(R.id.btn_done).setOnClickListener(this);
         findViewById(R.id.btn_discard).setOnClickListener(this);
 
-        // Catch clicks on the header views
-        mList.setOnItemClickListener(this);
         mList.setOnCreateContextMenuListener(this);
 
         mList.setAdapter(mAdapter);
-    }
-
-    private void createWithPhonesOnlyPreferenceView(LayoutInflater inflater) {
-        boolean optionSelected = mPrefs.getBoolean(ContactsPreferences.PREF_DISPLAY_ONLY_PHONES,
-                ContactsPreferences.PREF_DISPLAY_ONLY_PHONES_DEFAULT);
-
-        if (!optionSelected && !PhoneCapabilityTester.isPhone(this)) {
-            return;
-        }
-
-        // Add the "Only contacts with phones" header modifier.
-        mHeaderPhones = inflater.inflate(R.layout.contact_list_filter_phones_only, mList, false);
-        mHeaderPhones.setId(R.id.header_phones);
-        mDisplayPhones = (CheckBox) mHeaderPhones.findViewById(android.R.id.checkbox);
-        mDisplayPhones.setChecked(optionSelected);
-        final TextView text1 = (TextView) mHeaderPhones.findViewById(android.R.id.text1);
-        text1.setText(R.string.showFilterPhones);
-        final TextView text2 = (TextView) mHeaderPhones.findViewById(android.R.id.text2);
-        text2.setText(R.string.showFilterPhonesDescrip);
-    }
-
-    private void createDisplayGroupHeader(LayoutInflater inflater) {
-        // Add the separator before showing the detailed group list.
-        mHeaderSeparator = inflater.inflate(R.layout.list_separator, mList, false);
-        final TextView text1 = (TextView) mHeaderSeparator;
-        text1.setText(R.string.headerContactGroups);
     }
 
     public static class CustomFilterConfigurationLoader extends AsyncTaskLoader<AccountSet> {
@@ -696,18 +650,6 @@ public class CustomContactListFilterActivity extends ContactsActivity
         }
     }
 
-    /**
-     * Handle any clicks on header views added to our {@link #mAdapter}, which
-     * are usually the global modifier checkboxes.
-     */
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.d(TAG, "OnItemClick, position=" + position + ", id=" + id);
-        if (view == mHeaderPhones) {
-            mDisplayPhones.toggle();
-            return;
-        }
-    }
-
     /** {@inheritDoc} */
     public void onClick(View view) {
         switch (view.getId()) {
@@ -720,21 +662,6 @@ public class CustomContactListFilterActivity extends ContactsActivity
                 break;
             }
         }
-    }
-
-    /**
-     * Assign a specific value to {@link ContactsPreferences#PREF_DISPLAY_ONLY_PHONES}, refreshing
-     * the visible list as needed.
-     */
-    protected void setDisplayOnlyPhones(boolean displayOnlyPhones) {
-        mDisplayPhones.setChecked(displayOnlyPhones);
-
-        Editor editor = mPrefs.edit();
-        editor.putBoolean(ContactsPreferences.PREF_DISPLAY_ONLY_PHONES, displayOnlyPhones);
-        editor.apply();
-
-        mAdapter.setChildDescripWithPhones(displayOnlyPhones);
-        mAdapter.notifyDataSetChanged();
     }
 
     /**
@@ -878,10 +805,6 @@ public class CustomContactListFilterActivity extends ContactsActivity
         if (mAdapter == null || mAdapter.mAccounts == null) {
             finish();
             return;
-        }
-
-        if (mDisplayPhones != null) {
-            setDisplayOnlyPhones(mDisplayPhones.isChecked());
         }
 
         setResult(RESULT_OK);
