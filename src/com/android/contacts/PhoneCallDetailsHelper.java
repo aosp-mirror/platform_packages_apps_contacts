@@ -112,19 +112,21 @@ public class PhoneCallDetailsHelper {
             numberFormattedLabel = Phone.getTypeLabel(mResources, numberType, numberLabel);
         }
 
-        CharSequence nameText;
-        CharSequence numberText;
+        final CharSequence nameText;
+        final CharSequence numberText;
         if (TextUtils.isEmpty(name)) {
             nameText = getDisplayNumber(number);
             numberText = "";
         } else {
             nameText = name;
-            numberText = getDisplayNumber(number);
+            CharSequence displayNumber = getDisplayNumber(number);
             if (callType != 0 && numberFormattedLabel != null) {
                 numberText = FormatUtils.applyStyleToSpan(Typeface.BOLD,
-                        numberFormattedLabel + " " + number, 0,
+                        numberFormattedLabel + " " + displayNumber, 0,
                         numberFormattedLabel.length(),
                         Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            } else {
+                numberText = displayNumber;
             }
         }
 
