@@ -55,6 +55,7 @@ import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.DialogManager;
+import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.widget.ContextMenuAdapter;
 
 import android.accounts.Account;
@@ -122,12 +123,6 @@ public class PeopleActivity extends ContactsActivity
     private ActionBarAdapter mActionBarAdapter;
 
     private boolean mSearchMode;
-
-    /**
-     * Whether we have a right-side contact or group detail pane for displaying info on that
-     * contact or group while browsing. Generally means "this is a tablet".
-     */
-    private boolean mContentPaneDisplayed;
 
     private ContactDetailFragment mContactDetailFragment;
     private ContactDetailUpdatesFragment mContactDetailUpdatesFragment;
@@ -228,7 +223,6 @@ public class PeopleActivity extends ContactsActivity
         } else if (fragment instanceof ContactDetailFragment) {
             mContactDetailFragment = (ContactDetailFragment) fragment;
             mContactDetailFragment.setListener(mContactDetailFragmentListener);
-            mContentPaneDisplayed = true;
         } else if (fragment instanceof ContactDetailUpdatesFragment) {
             mContactDetailUpdatesFragment = (ContactDetailUpdatesFragment) fragment;
         } else if (fragment instanceof ContactsUnavailableFragment) {
@@ -239,11 +233,9 @@ public class PeopleActivity extends ContactsActivity
         } else if (fragment instanceof ContactLoaderFragment) {
             mContactDetailLoaderFragment = (ContactLoaderFragment) fragment;
             mContactDetailLoaderFragment.setListener(mContactDetailLoaderFragmentListener);
-            mContentPaneDisplayed = true;
         } else if (fragment instanceof GroupDetailFragment) {
             mGroupDetailFragment = (GroupDetailFragment) fragment;
             mGroupDetailFragment.setListener(mGroupDetailFragmentListener);
-            mContentPaneDisplayed = true;
         } else if (fragment instanceof StrequentContactListFragment) {
             mFavoritesFragment = (StrequentContactListFragment) fragment;
             mFavoritesFragment.setListener(mFavoritesFragmentListener);
@@ -315,7 +307,7 @@ public class PeopleActivity extends ContactsActivity
         }
 
         if (mRequest.getActionCode() == ContactsRequest.ACTION_VIEW_CONTACT
-                && !mContentPaneDisplayed) {
+                && !PhoneCapabilityTester.isUsingTwoPanes(this)) {
             redirect = new Intent(this, ContactDetailActivity.class);
             redirect.setAction(Intent.ACTION_VIEW);
             redirect.setData(mRequest.getContactUri());
@@ -428,7 +420,7 @@ public class PeopleActivity extends ContactsActivity
     private void setSelectedTab(TabState tab) {
         mSelectedTab = tab;
 
-        if (mContentPaneDisplayed) {
+        if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
             switch (mSelectedTab) {
                 case FAVORITES:
                     mFavoritesView.setVisibility(View.VISIBLE);
@@ -554,7 +546,7 @@ public class PeopleActivity extends ContactsActivity
         switch (action) {
             case START_SEARCH_MODE:
                 // Checking if multi fragments are being displayed
-                if (mContentPaneDisplayed) {
+                if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
                     mFavoritesView.setVisibility(View.GONE);
                     mBrowserView.setVisibility(View.VISIBLE);
                     mDetailsView.setVisibility(View.VISIBLE);
@@ -621,21 +613,23 @@ public class PeopleActivity extends ContactsActivity
     private void configureContactListFragment() {
         mAllFragment.setSearchMode(mSearchMode);
 
+        final boolean useTwoPane = PhoneCapabilityTester.isUsingTwoPanes(this);
         mAllFragment.setVisibleScrollbarEnabled(!mSearchMode);
         mAllFragment.setVerticalScrollbarPosition(
-                mContentPaneDisplayed
+                useTwoPane
                         ? View.SCROLLBAR_POSITION_LEFT
                         : View.SCROLLBAR_POSITION_RIGHT);
-        mAllFragment.setSelectionVisible(mContentPaneDisplayed);
-        mAllFragment.setQuickContactEnabled(!mContentPaneDisplayed);
+        mAllFragment.setSelectionVisible(useTwoPane);
+        mAllFragment.setQuickContactEnabled(!useTwoPane);
     }
 
     private void configureGroupListFragment() {
+        final boolean useTwoPane = PhoneCapabilityTester.isUsingTwoPanes(this);
         mGroupsFragment.setVerticalScrollbarPosition(
-                mContentPaneDisplayed
+                useTwoPane
                         ? View.SCROLLBAR_POSITION_LEFT
                         : View.SCROLLBAR_POSITION_RIGHT);
-        mGroupsFragment.setSelectionVisible(mContentPaneDisplayed);
+        mGroupsFragment.setSelectionVisible(useTwoPane);
     }
 
     @Override
@@ -690,14 +684,14 @@ public class PeopleActivity extends ContactsActivity
 
         @Override
         public void onSelectionChange() {
-            if (mContentPaneDisplayed) {
+            if (PhoneCapabilityTester.isUsingTwoPanes(PeopleActivity.this)) {
                 setupContactDetailFragment(mAllFragment.getSelectedContactUri());
             }
         }
 
         @Override
         public void onViewContactAction(Uri contactLookupUri) {
-            if (mContentPaneDisplayed) {
+            if (PhoneCapabilityTester.isUsingTwoPanes(PeopleActivity.this)) {
                 setupContactDetailFragment(contactLookupUri);
             } else {
                 startActivity(new Intent(Intent.ACTION_VIEW, contactLookupUri));
@@ -870,7 +864,7 @@ public class PeopleActivity extends ContactsActivity
             implements StrequentContactListFragment.Listener {
         @Override
         public void onContactSelected(Uri contactUri) {
-            if (mContentPaneDisplayed) {
+            if (PhoneCapabilityTester.isUsingTwoPanes(PeopleActivity.this)) {
                 setupContactDetailFragment(contactUri);
             } else {
                 startActivity(new Intent(Intent.ACTION_VIEW, contactUri));
@@ -882,7 +876,7 @@ public class PeopleActivity extends ContactsActivity
 
         @Override
         public void onViewGroupAction(Uri groupUri) {
-            if (mContentPaneDisplayed) {
+            if (PhoneCapabilityTester.isUsingTwoPanes(PeopleActivity.this)) {
                 setupGroupDetailFragment(groupUri);
             } else {
                 Intent intent = new Intent(PeopleActivity.this, GroupDetailActivity.class);
@@ -1161,7 +1155,7 @@ public class PeopleActivity extends ContactsActivity
             }
             case SUBACTIVITY_EDIT_CONTACT:
             case SUBACTIVITY_NEW_CONTACT: {
-                if (resultCode == RESULT_OK && mContentPaneDisplayed) {
+                if (resultCode == RESULT_OK && PhoneCapabilityTester.isUsingTwoPanes(this)) {
                     mRequest.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
                     mAllFragment.reloadDataAndSetSelectedUri(data.getData());
                 }
@@ -1170,7 +1164,7 @@ public class PeopleActivity extends ContactsActivity
 
             case SUBACTIVITY_NEW_GROUP:
             case SUBACTIVITY_EDIT_GROUP: {
-                if (resultCode == RESULT_OK && mContentPaneDisplayed) {
+                if (resultCode == RESULT_OK && PhoneCapabilityTester.isUsingTwoPanes(this)) {
                     mRequest.setActionCode(ContactsRequest.ACTION_GROUP);
                     mGroupsFragment.setSelectedUri(data.getData());
                 }
