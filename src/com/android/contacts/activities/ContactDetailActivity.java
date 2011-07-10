@@ -323,27 +323,39 @@ public class ContactDetailActivity extends ContactsActivity {
             mContentView = (ViewGroup) mInflater.inflate(
                     R.layout.contact_detail_container_with_updates, mRootView, false);
             mRootView.addView(mContentView);
+
+            // Make sure all needed views are retrieved. Note that narrow width screens have a
+            // {@link ViewPager} and {@link ContactDetailTabCarousel}, while wide width screens have
+            // a {@link ContactDetailFragmentCarousel}.
+            mViewPager = (ViewPager) findViewById(R.id.pager);
+            if (mViewPager != null) {
+                mViewPager.removeAllViews();
+                mViewPager.setAdapter(new ViewPagerAdapter(getFragmentManager()));
+                mViewPager.setOnPageChangeListener(mOnPageChangeListener);
+            }
+
+            mTabCarousel = (ContactDetailTabCarousel) findViewById(R.id.tab_carousel);
+            if (mTabCarousel != null) {
+                mTabCarousel.setListener(mTabCarouselListener);
+            }
+
+            mFragmentCarousel = (ContactDetailFragmentCarousel)
+                    findViewById(R.id.fragment_carousel);
         }
 
-        // Narrow width screens have a {@link ViewPager} and {@link ContactDetailTabCarousel}
-        mViewPager = (ViewPager) findViewById(R.id.pager);
-        if (mViewPager != null) {
-            mViewPager.removeAllViews();
-            mViewPager.setAdapter(new ViewPagerAdapter(getFragmentManager()));
-            mViewPager.setOnPageChangeListener(mOnPageChangeListener);
-        }
-
-        mTabCarousel = (ContactDetailTabCarousel) findViewById(R.id.tab_carousel);
+        // Then reset the contact data to the appropriate views
         if (mTabCarousel != null) {
-            mTabCarousel.setListener(mTabCarouselListener);
             mTabCarousel.loadData(mContactData);
         }
-
-        // Otherwise, wide width screens have a {@link ContactDetailFragmentCarousel}
-        mFragmentCarousel = (ContactDetailFragmentCarousel) findViewById(R.id.fragment_carousel);
         if (mFragmentCarousel != null) {
             if (mDetailFragment != null) mFragmentCarousel.setAboutFragment(mDetailFragment);
             if (mUpdatesFragment != null) mFragmentCarousel.setUpdatesFragment(mUpdatesFragment);
+        }
+        if (mDetailFragment != null) {
+            mDetailFragment.setData(mLookupUri, mContactData);
+        }
+        if (mUpdatesFragment != null) {
+            mUpdatesFragment.setData(mLookupUri, mContactData);
         }
     }
 
@@ -352,6 +364,10 @@ public class ContactDetailActivity extends ContactsActivity {
             mContentView = (ViewGroup) mInflater.inflate(
                     R.layout.contact_detail_container_without_updates, mRootView, false);
             mRootView.addView(mContentView);
+        }
+        // Reset contact data
+        if (mDetailFragment != null) {
+            mDetailFragment.setData(mLookupUri, mContactData);
         }
     }
 
