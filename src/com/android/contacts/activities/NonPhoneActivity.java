@@ -82,8 +82,6 @@ public class NonPhoneActivity extends ContactsActivity {
                 final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
                 intent.setType(Contacts.CONTENT_ITEM_TYPE);
                 intent.putExtra(Insert.PHONE, getArgumentPhoneNumber());
-                intent.setFlags(
-                        Intent.FLAG_ACTIVITY_FORWARD_RESULT | Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
             }
             dismiss();

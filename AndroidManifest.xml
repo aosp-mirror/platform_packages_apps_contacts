@@ -493,6 +493,14 @@
             </intent-filter>
         </activity>
 
+        <!-- Confirm that a single detail will be added to an existing contact -->
+        <activity
+            android:name=".activities.ConfirmAddDetailActivity"
+            android:label="@string/activity_title_confirm_add_detail"
+            android:theme="@style/ConfirmAddDetailDialogTheme"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false"/>
+
         <!-- Create a new or edit an existing contact -->
         <activity
             android:name=".activities.ContactEditorActivity"

@@ -293,10 +293,14 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
         boolean isEmpty = isEmpty();
         if (mWasEmpty != isEmpty) {
             if (isEmpty) {
-                mListener.onRequest(EditorListener.FIELD_TURNED_EMPTY);
+                if (mListener != null) {
+                    mListener.onRequest(EditorListener.FIELD_TURNED_EMPTY);
+                }
                 if (mIsDeletable) mDeleteContainer.setVisibility(View.INVISIBLE);
             } else {
-                mListener.onRequest(EditorListener.FIELD_TURNED_NON_EMPTY);
+                if (mListener != null) {
+                    mListener.onRequest(EditorListener.FIELD_TURNED_NON_EMPTY);
+                }
                 if (mIsDeletable) mDeleteContainer.setVisibility(View.VISIBLE);
             }
             mWasEmpty = isEmpty;

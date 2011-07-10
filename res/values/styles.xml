@@ -205,10 +205,14 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
-    <style name="NonPhoneActivityTheme" parent="@android:Theme.Translucent">
+    <style name="NonPhoneActivityTheme" parent="@android:Theme.Translucent.NoTitleBar">
     </style>
 
-    <style name="NonPhoneDialogTheme" parent="@android:Theme.Dialog">
+    <style name="NonPhoneDialogTheme" parent="@android:Theme.Holo.Light.Dialog">
+    </style>
+
+    <style name="ConfirmAddDetailDialogTheme" parent="@android:style/Theme.Holo.Light.Dialog.MinWidth">
+        <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
 
     <style name="SectionDivider">
@@ -257,6 +261,16 @@
     <style name="FrequentFragmentStyle">
         <item name="android:layout_width">0dip</item>
         <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="ConfirmAddDetailViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ConfirmAddDetailHeaderViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">150dip</item>
     </style>
 
     <style name="DialtactsActionBarStyle" parent="android:Widget.Holo.ActionBar">

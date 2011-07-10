@@ -32,11 +32,13 @@ import com.android.contacts.list.PhoneNumberPickerFragment;
 import com.android.contacts.list.PostalAddressPickerFragment;
 import com.android.contacts.widget.ContextMenuAdapter;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Intents.Insert;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,6 +47,8 @@ import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
 
+import java.util.Set;
+
 /**
  * Displays a list of contacts (or phone numbers or postal addresses) for the
  * purposes of selecting one.
@@ -52,6 +56,8 @@ import android.widget.SearchView.OnQueryTextListener;
 public class ContactSelectionActivity extends ContactsActivity
         implements View.OnCreateContextMenuListener, OnQueryTextListener, OnClickListener {
     private static final String TAG = "ContactSelectionActivity";
+
+    private static final int SUBACTIVITY_ADD_TO_EXISTING_CONTACT = 0;
 
     private static final String KEY_ACTION_CODE = "actionCode";
     private static final int DEFAULT_DIRECTORY_RESULT_LIMIT = 20;
@@ -314,8 +320,22 @@ public class ContactSelectionActivity extends ContactsActivity
 
         @Override
         public void onEditContactAction(Uri contactLookupUri) {
-            Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
-            startActivityAndForwardResult(intent);
+            Bundle extras = getIntent().getExtras();
+            if (launchAddToContactDialog(extras)) {
+                // Show a confirmation dialog to add the value(s) to the existing contact.
+                Intent intent = new Intent(ContactSelectionActivity.this,
+                        ConfirmAddDetailActivity.class);
+                intent.setData(contactLookupUri);
+                if (extras != null) {
+                    intent.putExtras(extras);
+                }
+                // Wait for the activity result because we want to keep the picker open (in case the
+                // user cancels adding the info to a contact and wants to pick someone else).
+                startActivityForResult(intent, SUBACTIVITY_ADD_TO_EXISTING_CONTACT);
+            } else {
+                // Otherwise launch the full contact editor.
+                startActivityAndForwardResult(new Intent(Intent.ACTION_EDIT, contactLookupUri));
+            }
         }
 
         @Override
@@ -326,6 +346,33 @@ public class ContactSelectionActivity extends ContactsActivity
         @Override
         public void onShortcutIntentCreated(Intent intent) {
             returnPickerResult(intent);
+        }
+
+        /**
+         * Returns true if is a single email or single phone number provided in the {@link Intent}
+         * extras bundle so that a pop-up confirmation dialog can be used to add the data to
+         * a contact. Otherwise return false if there are other intent extras that require launching
+         * the full contact editor.
+         */
+        private boolean launchAddToContactDialog(Bundle extras) {
+            if (extras == null) {
+                return false;
+            }
+            Set<String> intentExtraKeys = extras.keySet();
+            int numIntentExtraKeys = intentExtraKeys.size();
+            if (numIntentExtraKeys == 2) {
+                boolean hasPhone = intentExtraKeys.contains(Insert.PHONE) &&
+                        intentExtraKeys.contains(Insert.PHONE_TYPE);
+                boolean hasEmail = intentExtraKeys.contains(Insert.EMAIL) &&
+                        intentExtraKeys.contains(Insert.EMAIL_TYPE);
+                return hasPhone || hasEmail;
+            } else if (numIntentExtraKeys == 1) {
+                return intentExtraKeys.contains(Insert.PHONE) ||
+                        intentExtraKeys.contains(Insert.EMAIL);
+            }
+            // Having 0 or more than 2 intent extra keys means that we should launch
+            // the full contact editor to properly handle the intent extras.
+            return false;
         }
     }
 
@@ -413,6 +460,19 @@ public class ContactSelectionActivity extends ContactsActivity
         if (v.getId() == R.id.cancel) {
             setResult(RESULT_CANCELED);
             finish();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == SUBACTIVITY_ADD_TO_EXISTING_CONTACT) {
+            if (resultCode == Activity.RESULT_OK) {
+                if (data != null) {
+                    startActivity(data);
+                }
+                finish();
+            }
         }
     }
 }
