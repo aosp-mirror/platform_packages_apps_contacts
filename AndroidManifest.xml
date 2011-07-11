@@ -298,6 +298,24 @@
             android:targetActivity=".activities.PeopleActivity"
         />
 
+        <!-- Backwards compatibility: "Contacts" from Honeycomb -->
+        <activity-alias android:name=".activities.ContactsFrontDoor"
+            android:targetActivity=".activities.PeopleActivity"
+            android:exported="true"
+        />
+
+        <!-- Backwards compatibility: "Contacts" from Gingerbread and earlier -->
+        <activity-alias android:name="DialtactsContactsEntryActivity"
+            android:targetActivity=".activities.PeopleActivity"
+            android:exported="true"
+        />
+
+        <!-- Backwards compatibility: "Phone" from Gingerbread and earlier -->
+        <activity-alias android:name="DialtactsActivity"
+            android:targetActivity=".activities.DialtactsActivity"
+            android:exported="true"
+        />
+
         <!-- An activity for joining contacts -->
         <activity android:name=".activities.JoinContactActivity"
             android:theme="@style/JoinContactActivityTheme"
