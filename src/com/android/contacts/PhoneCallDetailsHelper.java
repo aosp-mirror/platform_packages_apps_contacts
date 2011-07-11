@@ -86,58 +86,22 @@ public class PhoneCallDetailsHelper {
     public void setPhoneCallDetails(PhoneCallDetailsViews views, PhoneCallDetails details,
             boolean useIcons) {
         if (useIcons) {
-            final Drawable callTypeDrawable;
-            switch (details.callType) {
-                case Calls.INCOMING_TYPE:
-                    callTypeDrawable = mIncomingDrawable;
-                    break;
-
-                case Calls.OUTGOING_TYPE:
-                    callTypeDrawable = mOutgoingDrawable;
-                    break;
-
-                case Calls.MISSED_TYPE:
-                    callTypeDrawable = mMissedDrawable;
-                    break;
-
-                case Calls.VOICEMAIL_TYPE:
-                    callTypeDrawable = mVoicemailDrawable;
-                    break;
-
-                default:
-                    throw new IllegalArgumentException("invalid call type: " + details.callType);
-            }
-            ImageView callTypeImage = new ImageView(mContext);
-            callTypeImage.setImageDrawable(callTypeDrawable);
             views.callTypeIcons.removeAllViews();
-            views.callTypeIcons.addView(callTypeImage);
-
+            int count = details.callTypes.length;
+            for (int callType : details.callTypes) {
+                ImageView callTypeImage = new ImageView(mContext);
+                callTypeImage.setImageDrawable(getCallTypeDrawable(callType));
+                views.callTypeIcons.addView(callTypeImage);
+            }
             views.callTypeIcons.setVisibility(View.VISIBLE);
             views.callTypeText.setVisibility(View.GONE);
             views.callTypeSeparator.setVisibility(View.GONE);
         } else {
             String callTypeName;
-            switch (details.callType) {
-                case Calls.INCOMING_TYPE:
-                    callTypeName = mIncomingName;
-                    break;
-
-                case Calls.OUTGOING_TYPE:
-                    callTypeName = mOutgoingName;
-                    break;
-
-                case Calls.MISSED_TYPE:
-                    callTypeName = mMissedName;
-                    break;
-
-                case Calls.VOICEMAIL_TYPE:
-                    callTypeName = mVoicemailName;
-                    break;
-
-                default:
-                    throw new IllegalArgumentException("invalid call type: " + details.callType);
-            }
-            views.callTypeText.setText(callTypeName);
+            // Use the name of the first call type.
+            // TODO: We should update this to handle the text for multiple calls as well.
+            int callType = details.callTypes[0];
+            views.callTypeText.setText(getCallTypeText(callType));
             views.callTypeIcons.removeAllViews();
 
             views.callTypeText.setVisibility(View.VISIBLE);
@@ -167,7 +131,7 @@ public class PhoneCallDetailsHelper {
         } else {
             nameText = details.name;
             CharSequence displayNumber = getDisplayNumber(details.number, details.formattedNumber);
-            if (details.callType != 0 && numberFormattedLabel != null) {
+            if (numberFormattedLabel != null) {
                 numberText = FormatUtils.applyStyleToSpan(Typeface.BOLD,
                         numberFormattedLabel + " " + displayNumber, 0,
                         numberFormattedLabel.length(),
@@ -188,6 +152,46 @@ public class PhoneCallDetailsHelper {
             views.numberView.setVisibility(View.VISIBLE);
         } else {
             views.numberView.setVisibility(View.GONE);
+        }
+    }
+
+    /** Returns the text used to represent the given call type. */
+    private String getCallTypeText(int callType) {
+        switch (callType) {
+            case Calls.INCOMING_TYPE:
+                return mIncomingName;
+
+            case Calls.OUTGOING_TYPE:
+                return mOutgoingName;
+
+            case Calls.MISSED_TYPE:
+                return mMissedName;
+
+            case Calls.VOICEMAIL_TYPE:
+                return mVoicemailName;
+
+            default:
+                throw new IllegalArgumentException("invalid call type: " + callType);
+        }
+    }
+
+    /** Returns the drawable of the icon associated with the given call type. */
+    private Drawable getCallTypeDrawable(int callType) {
+        switch (callType) {
+            case Calls.INCOMING_TYPE:
+                return mIncomingDrawable;
+
+            case Calls.OUTGOING_TYPE:
+                return mOutgoingDrawable;
+
+            case Calls.MISSED_TYPE:
+                return mMissedDrawable;
+
+            case Calls.VOICEMAIL_TYPE:
+                return mVoicemailDrawable;
+
+            default:
+                throw new IllegalArgumentException("invalid call type: " + callType);
         }
     }
 

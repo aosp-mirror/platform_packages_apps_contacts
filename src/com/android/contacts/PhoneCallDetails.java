@@ -27,8 +27,12 @@ public class PhoneCallDetails {
     public final CharSequence number;
     /** The formatted version of {@link #number}. */
     public final CharSequence formattedNumber;
-    /** The type of call, as defined in the call log table, e.g., {@link Calls#INCOMING_TYPE}. */
-    public final int callType;
+    /**
+     * The type of calls, as defined in the call log table, e.g., {@link Calls#INCOMING_TYPE}.
+     * <p>
+     * There might be multiple types if this represents a set of entries grouped together.
+     */
+    public final int[] callTypes;
     /** The date of the call, in milliseconds since the epoch. */
     public final long date;
     /** The name of the contact, or the empty string. */
@@ -39,17 +43,17 @@ public class PhoneCallDetails {
     public final CharSequence numberLabel;
 
     /** Create the details for a call with a number not associated with a contact. */
-    public PhoneCallDetails(CharSequence number, CharSequence formattedNumber, int callType,
+    public PhoneCallDetails(CharSequence number, CharSequence formattedNumber, int[] callTypes,
             long date) {
-        this(number, formattedNumber, callType, date, "", 0, "");
+        this(number, formattedNumber, callTypes, date, "", 0, "");
     }
 
     /** Create the details for a call with a number associated with a contact. */
-    public PhoneCallDetails(CharSequence number, CharSequence formattedNumber, int callType,
+    public PhoneCallDetails(CharSequence number, CharSequence formattedNumber, int[] callTypes,
             long date, CharSequence name, int numberType, CharSequence numberLabel) {
         this.number = number;
         this.formattedNumber = formattedNumber;
-        this.callType = callType;
+        this.callTypes = callTypes;
         this.date = date;
         this.name = name;
         this.numberType = numberType;

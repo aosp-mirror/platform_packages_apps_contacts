@@ -61,8 +61,9 @@ import android.view.View;
             boolean useIcons) {
         mPhoneCallDetailsHelper.setPhoneCallDetails(views.phoneCallDetailsViews, details, useIcons);
         if (views.callView != null) {
+            // The type of icon, call or play, is determined by the first call in the group.
             views.callView.setImageDrawable(
-                    details.callType == Calls.VOICEMAIL_TYPE ? mPlayDrawable : mCallDrawable);
+                    details.callTypes[0] == Calls.VOICEMAIL_TYPE ? mPlayDrawable : mCallDrawable);
             views.callView.setVisibility(
                     canPlaceCallsTo(details.number) ? View.VISIBLE : View.INVISIBLE);
         }

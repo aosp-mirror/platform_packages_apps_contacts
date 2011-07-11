@@ -131,16 +131,16 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     }
 
     public void testSetPhoneCallDetails_CallTypeIcons() {
-        setPhoneCallDetailsWithCallType(Calls.INCOMING_TYPE, true);
+        setPhoneCallDetailsWithCallTypeIcons(Calls.INCOMING_TYPE);
         assertCallTypeIconsEquals(TEST_INCOMING_DRAWABLE);
 
-        setPhoneCallDetailsWithCallType(Calls.OUTGOING_TYPE, true);
+        setPhoneCallDetailsWithCallTypeIcons(Calls.OUTGOING_TYPE);
         assertCallTypeIconsEquals(TEST_OUTGOING_DRAWABLE);
 
-        setPhoneCallDetailsWithCallType(Calls.MISSED_TYPE, true);
+        setPhoneCallDetailsWithCallTypeIcons(Calls.MISSED_TYPE);
         assertCallTypeIconsEquals(TEST_MISSED_DRAWABLE);
 
-        setPhoneCallDetailsWithCallType(Calls.VOICEMAIL_TYPE, true);
+        setPhoneCallDetailsWithCallTypeIcons(Calls.VOICEMAIL_TYPE);
         assertCallTypeIconsEquals(TEST_VOICEMAIL_DRAWABLE);
     }
 
@@ -148,16 +148,16 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         LocaleTestUtils localeTestUtils = new LocaleTestUtils(getContext());
         localeTestUtils.setLocale(Locale.US);
         try {
-            setPhoneCallDetailsWithCallType(Calls.INCOMING_TYPE, false);
+            setPhoneCallDetailsWithCallTypeText(Calls.INCOMING_TYPE);
             assertCallTypeTextEquals("Incoming call");
 
-            setPhoneCallDetailsWithCallType(Calls.OUTGOING_TYPE, false);
+            setPhoneCallDetailsWithCallTypeText(Calls.OUTGOING_TYPE);
             assertCallTypeTextEquals("Outgoing call");
 
-            setPhoneCallDetailsWithCallType(Calls.MISSED_TYPE, false);
+            setPhoneCallDetailsWithCallTypeText(Calls.MISSED_TYPE);
             assertCallTypeTextEquals("Missed call");
 
-            setPhoneCallDetailsWithCallType(Calls.VOICEMAIL_TYPE, false);
+            setPhoneCallDetailsWithCallTypeText(Calls.VOICEMAIL_TYPE);
             assertCallTypeTextEquals("Voicemail");
         } finally {
             localeTestUtils.restoreLocale();
@@ -203,21 +203,32 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     /** Sets the phone call details with default values and the given number. */
     private void setPhoneCallDetailsWithNumber(String number, String formattedNumber) {
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(number, formattedNumber, Calls.INCOMING_TYPE, TEST_DATE),
+                new PhoneCallDetails(number, formattedNumber, new int[]{ Calls.INCOMING_TYPE },
+                        TEST_DATE),
                 false);
     }
 
     /** Sets the phone call details with default values and the given date. */
     private void setPhoneCallDetailsWithDate(long date) {
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, Calls.INCOMING_TYPE, date),
+                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER,
+                        new int[]{ Calls.INCOMING_TYPE }, date),
                 false);
     }
 
-    /** Sets the phone call details with default values and the given call type. */
-    private void setPhoneCallDetailsWithCallType(int callType, boolean useIcons) {
+    /** Sets the phone call details with default values and the given call types using icons. */
+    private void setPhoneCallDetailsWithCallTypeIcons(int... callTypes) {
+        setPhoneCallDetailsWithCallTypes(true, callTypes);
+    }
+
+    /** Sets the phone call details with default values and the given call types using text. */
+    private void setPhoneCallDetailsWithCallTypeText(int... callTypes) {
+        setPhoneCallDetailsWithCallTypes(false, callTypes);
+    }
+
+    private void setPhoneCallDetailsWithCallTypes(boolean useIcons, int... callTypes) {
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, callType, TEST_DATE),
+                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, callTypes, TEST_DATE),
                 useIcons);
     }
 }

@@ -635,12 +635,11 @@ public class CallLogFragment extends ListFragment
          * @param c the cursor pointing to the entry in the call log
          * @param count the number of entries in the current item, greater than 1 if it is a group
          */
-        public void bindView(View view, Cursor c, int count) {
+        private void bindView(View view, Cursor c, int count) {
             final CallLogListItemViews views = (CallLogListItemViews) view.getTag();
 
             String number = c.getString(CallLogQuery.NUMBER);
             long date = c.getLong(CallLogQuery.DATE);
-            int callType = c.getInt(CallLogQuery.CALL_TYPE);
             final String formattedNumber;
             String countryIso = c.getString(CallLogQuery.COUNTRY_ISO);
             // Store away the number so we can call it directly if you click on the call icon
@@ -697,11 +696,12 @@ public class CallLogFragment extends ListFragment
                 views.callView.setVisibility(View.VISIBLE);
             }
 
+            int[] callTypes = getCallTypes(c, count);
             final PhoneCallDetails details;
             if (TextUtils.isEmpty(name)) {
-                details = new PhoneCallDetails(number, formattedNumber, callType, date);
+                details = new PhoneCallDetails(number, formattedNumber, callTypes, date);
             } else {
-                details = new PhoneCallDetails(number, formattedNumber, callType, date, name,
+                details = new PhoneCallDetails(number, formattedNumber, callTypes, date, name,
                         ntype, label);
             }
             mCallLogViewsHelper.setPhoneCallDetails(views, details , true);
@@ -716,6 +716,24 @@ public class CallLogFragment extends ListFragment
                 mPreDrawListener = this;
                 view.getViewTreeObserver().addOnPreDrawListener(this);
             }
+        }
+
+        /**
+         * Returns the call types for the given number of items in the cursor.
+         * <p>
+         * It uses the next {@code count} rows in the cursor to extract the types.
+         * <p>
+         * It position in the cursor is unchanged by this function.
+         */
+        private int[] getCallTypes(Cursor cursor, int count) {
+            int position = cursor.getPosition();
+            int[] callTypes = new int[count];
+            for (int index = 0; index < count; ++index) {
+                callTypes[index] = cursor.getInt(CallLogQuery.CALL_TYPE);
+                cursor.moveToNext();
+            }
+            cursor.moveToPosition(position);
+            return callTypes;
         }
 
         private void bindQuickContact(QuickContactBadge view, long photoId, long contactId,
