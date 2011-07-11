@@ -581,7 +581,7 @@ public class CallLogFragment extends ListFragment
         @VisibleForTesting
         @Override
         public void bindStandAloneView(View view, Context context, Cursor cursor) {
-            bindView(context, view, cursor);
+            bindView(view, cursor, 1);
         }
 
         @VisibleForTesting
@@ -597,7 +597,7 @@ public class CallLogFragment extends ListFragment
         @VisibleForTesting
         @Override
         public void bindChildView(View view, Context context, Cursor cursor) {
-            bindView(context, view, cursor);
+            bindView(view, cursor, 1);
         }
 
         @VisibleForTesting
@@ -614,11 +614,7 @@ public class CallLogFragment extends ListFragment
         @Override
         public void bindGroupView(View view, Context context, Cursor cursor, int groupSize,
                 boolean expanded) {
-            final CallLogListItemViews views = (CallLogListItemViews) view.getTag();
-            int groupIndicator = expanded
-                    ? com.android.internal.R.drawable.expander_ic_maximized
-                    : com.android.internal.R.drawable.expander_ic_minimized;
-            bindView(context, view, cursor);
+            bindView(view, cursor, groupSize);
         }
 
         private void findAndCacheViews(View view) {
@@ -630,7 +626,14 @@ public class CallLogFragment extends ListFragment
             view.setTag(views);
         }
 
-        public void bindView(Context context, View view, Cursor c) {
+        /**
+         * Binds the views in the entry to the data in the call log.
+         *
+         * @param view the view corresponding to this entry
+         * @param c the cursor pointing to the entry in the call log
+         * @param count the number of entries in the current item, greater than 1 if it is a group
+         */
+        public void bindView(View view, Cursor c, int count) {
             final CallLogListItemViews views = (CallLogListItemViews) view.getTag();
 
             String number = c.getString(CallLogQuery.NUMBER);
