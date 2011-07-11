@@ -218,7 +218,7 @@ public class ContactDetailActivity extends ContactsActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // First check if the {@link ContactLoaderFragment} can handle the key
-        if (mLoaderFragment.handleKeyDown(keyCode)) return true;
+        if (mLoaderFragment != null && mLoaderFragment.handleKeyDown(keyCode)) return true;
 
         // Otherwise find the correct fragment to handle the event
         FragmentKeyListener mCurrentFragment;
@@ -232,7 +232,7 @@ public class ContactDetailActivity extends ContactsActivity {
             default:
                 throw new IllegalStateException("Invalid current item for ViewPager");
         }
-        if (mCurrentFragment.handleKeyDown(keyCode)) return true;
+        if (mCurrentFragment != null && mCurrentFragment.handleKeyDown(keyCode)) return true;
 
         // In the last case, give the key event to the superclass.
         return super.onKeyDown(keyCode, event);
