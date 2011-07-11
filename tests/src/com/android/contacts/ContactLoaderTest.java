@@ -279,8 +279,7 @@ public class ContactLoaderTest extends LoaderTestCase {
                         RawContacts.ACCOUNT_NAME, RawContacts.ACCOUNT_TYPE, RawContacts.DIRTY,
                         RawContacts.VERSION, RawContacts.SOURCE_ID, RawContacts.SYNC1,
                         RawContacts.SYNC2, RawContacts.SYNC3, RawContacts.SYNC4,
-                        RawContacts.DELETED, RawContacts.IS_RESTRICTED,
-                        RawContacts.NAME_VERIFIED,
+                        RawContacts.DELETED, RawContacts.NAME_VERIFIED,
 
                         Contacts.Entity.DATA_ID,
 

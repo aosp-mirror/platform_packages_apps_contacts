@@ -170,7 +170,6 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
         super.configureAdapter();
 
         ContactEntryListAdapter adapter = getAdapter();
-        adapter.setDataRestrictedByCallingPackage(true);
 
         // If "Create new contact" is shown, don't display the empty list UI
         adapter.setEmptyListEnabled(!isCreateContactEnabled());

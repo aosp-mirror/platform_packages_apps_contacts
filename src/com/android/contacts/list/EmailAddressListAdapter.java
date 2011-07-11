@@ -22,10 +22,9 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.net.Uri.Builder;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.CommonDataKinds.Email;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,7 +74,6 @@ public class EmailAddressListAdapter extends ContactEntryListAdapter {
         }
         builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
                 String.valueOf(directoryId));
-        applyDataRestriction(builder);
         loader.setUri(builder.build());
         loader.setProjection(EMAILS_PROJECTION);
 

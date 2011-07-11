@@ -413,7 +413,6 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 RawContacts.SYNC3,
                 RawContacts.SYNC4,
                 RawContacts.DELETED,
-                RawContacts.IS_RESTRICTED,
                 RawContacts.NAME_VERIFIED,
 
                 Contacts.Entity.DATA_ID,
@@ -481,46 +480,45 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         public final static int SYNC3 = 22;
         public final static int SYNC4 = 23;
         public final static int DELETED = 24;
-        public final static int IS_RESTRICTED = 25;
-        public final static int NAME_VERIFIED = 26;
+        public final static int NAME_VERIFIED = 25;
 
-        public final static int DATA_ID = 27;
-        public final static int DATA1 = 28;
-        public final static int DATA2 = 29;
-        public final static int DATA3 = 30;
-        public final static int DATA4 = 31;
-        public final static int DATA5 = 32;
-        public final static int DATA6 = 33;
-        public final static int DATA7 = 34;
-        public final static int DATA8 = 35;
-        public final static int DATA9 = 36;
-        public final static int DATA10 = 37;
-        public final static int DATA11 = 38;
-        public final static int DATA12 = 39;
-        public final static int DATA13 = 40;
-        public final static int DATA14 = 41;
-        public final static int DATA15 = 42;
-        public final static int DATA_SYNC1 = 43;
-        public final static int DATA_SYNC2 = 44;
-        public final static int DATA_SYNC3 = 45;
-        public final static int DATA_SYNC4 = 46;
-        public final static int DATA_VERSION = 47;
-        public final static int IS_PRIMARY = 48;
-        public final static int IS_SUPERPRIMARY = 49;
-        public final static int MIMETYPE = 50;
-        public final static int RES_PACKAGE = 51;
+        public final static int DATA_ID = 26;
+        public final static int DATA1 = 27;
+        public final static int DATA2 = 28;
+        public final static int DATA3 = 29;
+        public final static int DATA4 = 30;
+        public final static int DATA5 = 31;
+        public final static int DATA6 = 32;
+        public final static int DATA7 = 33;
+        public final static int DATA8 = 34;
+        public final static int DATA9 = 35;
+        public final static int DATA10 = 36;
+        public final static int DATA11 = 37;
+        public final static int DATA12 = 38;
+        public final static int DATA13 = 39;
+        public final static int DATA14 = 40;
+        public final static int DATA15 = 41;
+        public final static int DATA_SYNC1 = 42;
+        public final static int DATA_SYNC2 = 43;
+        public final static int DATA_SYNC3 = 44;
+        public final static int DATA_SYNC4 = 45;
+        public final static int DATA_VERSION = 46;
+        public final static int IS_PRIMARY = 47;
+        public final static int IS_SUPERPRIMARY = 48;
+        public final static int MIMETYPE = 49;
+        public final static int RES_PACKAGE = 50;
 
-        public final static int GROUP_SOURCE_ID = 52;
+        public final static int GROUP_SOURCE_ID = 51;
 
-        public final static int PRESENCE = 53;
-        public final static int CHAT_CAPABILITY = 54;
-        public final static int STATUS = 55;
-        public final static int STATUS_RES_PACKAGE = 56;
-        public final static int STATUS_ICON = 57;
-        public final static int STATUS_LABEL = 58;
-        public final static int STATUS_TIMESTAMP = 59;
+        public final static int PRESENCE = 52;
+        public final static int CHAT_CAPABILITY = 53;
+        public final static int STATUS = 54;
+        public final static int STATUS_RES_PACKAGE = 55;
+        public final static int STATUS_ICON = 56;
+        public final static int STATUS_LABEL = 57;
+        public final static int STATUS_TIMESTAMP = 58;
 
-        public final static int PHOTO_URI = 60;
+        public final static int PHOTO_URI = 59;
     }
 
     private static class DirectoryQuery {
@@ -764,7 +762,6 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             cursorColumnToContentValues(cursor, cv, ContactQuery.DELETED);
             cursorColumnToContentValues(cursor, cv, ContactQuery.CONTACT_ID);
             cursorColumnToContentValues(cursor, cv, ContactQuery.STARRED);
-            cursorColumnToContentValues(cursor, cv, ContactQuery.IS_RESTRICTED);
             cursorColumnToContentValues(cursor, cv, ContactQuery.NAME_VERIFIED);
 
             return cv;

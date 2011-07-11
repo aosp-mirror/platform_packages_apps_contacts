@@ -82,7 +82,6 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 }
                 builder.appendQueryParameter(SearchSnippetColumns.SNIPPET_ARGS_PARAM_KEY,
                         SNIPPET_ARGS);
-                applyDataRestriction(builder);
                 loader.setUri(builder.build());
                 loader.setProjection(FILTER_PROJECTION);
             }
@@ -129,7 +128,6 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                     ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT))
                     .build();
         }
-        uri = applyDataRestriction(uri);
 
         // Include the user's personal profile.
         if (shouldIncludeProfile()) {

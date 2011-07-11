@@ -20,7 +20,6 @@ import com.android.contacts.R;
 import com.android.contacts.widget.IndexerListAdapter;
 import com.android.contacts.widget.TextWithHighlightingFactory;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.database.Cursor;
@@ -61,7 +60,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     private int mDisplayOrder;
     private int mSortOrder;
     private boolean mNameHighlightingEnabled;
-    private boolean mDataRestrictedByCallingPackage;
 
     private boolean mDisplayPhotos;
     private boolean mQuickContactEnabled;
@@ -276,43 +274,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     public void setIncludeProfile(boolean includeProfile) {
         mIncludeProfile = includeProfile;
-    }
-
-    public boolean isDataRestrictedByCallingPackage() {
-        return mDataRestrictedByCallingPackage;
-    }
-
-    public void setDataRestrictedByCallingPackage(boolean flag) {
-        mDataRestrictedByCallingPackage = flag;
-    }
-
-    /**
-     * Adds a parameter to the URI that ensures that only unrestricted data
-     * is included in the list, if {@link #isDataRestrictedByCallingPackage()} is true.
-     */
-    protected Uri applyDataRestriction(Uri uri) {
-        if (!mDataRestrictedByCallingPackage) {
-            return uri;
-        }
-
-        return applyDataRestriction(uri.buildUpon()).build();
-    }
-
-    /**
-     * See {@link #applyDataRestriction(Uri)}.
-     */
-    protected Uri.Builder applyDataRestriction(Uri.Builder builder) {
-        if (!mDataRestrictedByCallingPackage) {
-            return builder;
-        }
-
-        String callingPackage = ((Activity)getContext()).getCallingPackage();
-        if (!TextUtils.isEmpty(callingPackage)) {
-            return builder.appendQueryParameter(
-                    ContactsContract.REQUESTING_PACKAGE_PARAM_KEY, callingPackage);
-        }
-
-        return builder;
     }
 
     public void configureDirectoryLoader(DirectoryListLoader loader) {

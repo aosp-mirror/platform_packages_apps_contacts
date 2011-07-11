@@ -82,8 +82,6 @@ public final class GroupMemberLoader extends CursorLoader {
         Uri uri = Data.CONTENT_URI;
         uri = uri.buildUpon().appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
                 String.valueOf(Directory.DEFAULT)).build();
-        // TODO: Bring back dataRestriction
-        // uri = applyDataRestriction(uri);
         return uri;
     }
 

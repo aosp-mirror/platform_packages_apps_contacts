@@ -98,8 +98,6 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
 
     private ContactLoader.Result mContactData;
 
-    private boolean mAllRestricted;
-
     public ContactLoaderFragment() {
     }
 
@@ -189,16 +187,6 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
                 mContactData = null;
             }
 
-            mAllRestricted = true;
-
-            for (Entity entity: mContactData.getEntities()) {
-                final ContentValues entValues = entity.getEntityValues();
-                // Mark when this contact has any unrestricted components
-                Integer restricted = entValues.getAsInteger(RawContacts.IS_RESTRICTED);
-                final boolean isRestricted = restricted != null && restricted != 0;
-                if (!isRestricted) mAllRestricted = false;
-            }
-
             if (mListener != null) {
                 if (mContactData == null) {
                     mListener.onContactNotFound();
@@ -208,6 +196,7 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
             }
         }
 
+        @Override
         public void onLoaderReset(Loader<ContactLoader.Result> loader) {
             mContactData = null;
             if (mListener != null) {
@@ -259,7 +248,7 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
     }
 
     public boolean isContactShareable() {
-        return mContactData != null && !mContactData.isDirectoryEntry() && !mAllRestricted;
+        return mContactData != null && !mContactData.isDirectoryEntry();
     }
 
     @Override
@@ -281,7 +270,6 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
                 return true;
             }
             case R.id.menu_share: {
-                if (mAllRestricted) return false;
                 if (mContactData == null) return false;
 
                 final String lookupKey = mContactData.getLookupKey();

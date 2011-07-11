@@ -90,7 +90,6 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
             builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
                     String.valueOf(directoryId));
-            applyDataRestriction(builder);
             uri = builder.build();
             // TODO a projection that includes the search snippet
             loader.setProjection(PHONES_PROJECTION);
@@ -101,7 +100,6 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             if (isSectionHeaderDisplayEnabled()) {
                 uri = buildSectionIndexerUri(uri);
             }
-            uri = applyDataRestriction(uri);
 
             loader.setProjection(PHONES_PROJECTION);
         }
