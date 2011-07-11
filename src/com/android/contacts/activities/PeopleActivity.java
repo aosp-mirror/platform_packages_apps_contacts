@@ -34,7 +34,6 @@ import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ImportExportDialogFragment;
 import com.android.contacts.interactions.PhoneNumberInteraction;
 import com.android.contacts.list.AccountFilterActivity;
-import com.android.contacts.list.ContactBrowseListContextMenuAdapter;
 import com.android.contacts.list.ContactBrowseListFragment;
 import com.android.contacts.list.ContactEntryListFragment;
 import com.android.contacts.list.ContactListFilter;
@@ -57,7 +56,6 @@ import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.PhoneCapabilityTester;
-import com.android.contacts.widget.ContextMenuAdapter;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -86,7 +84,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListPopupWindow;
@@ -300,10 +297,6 @@ public class PeopleActivity extends ContactsActivity
             mFavoritesFragment.setListener(mFavoritesFragmentListener);
 
             mAllFragment.setOnContactListActionListener(new ContactBrowserActionListener());
-            if (!getWindow().hasFeature(Window.FEATURE_ACTION_BAR)) {
-                mAllFragment.setContextMenuAdapter(
-                        new ContactBrowseListContextMenuAdapter(mAllFragment));
-            }
 
             mGroupsFragment.setListener(new GroupBrowserActionListener());
 
@@ -1329,16 +1322,6 @@ public class PeopleActivity extends ContactsActivity
 //                }
 //                break;
         }
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        ContextMenuAdapter menuAdapter = mAllFragment.getContextMenuAdapter();
-        if (menuAdapter != null) {
-            return menuAdapter.onContextItemSelected(item);
-        }
-
-        return super.onContextItemSelected(item);
     }
 
     @Override
