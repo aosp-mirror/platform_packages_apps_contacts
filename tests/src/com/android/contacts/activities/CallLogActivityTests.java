@@ -166,8 +166,7 @@ public class CallLogActivityTests
         insert(CallerInfo.PRIVATE_NUMBER, NOW, 0, Calls.INCOMING_TYPE);
         View view = mAdapter.newGroupView(getActivity(), mParentView);
         mAdapter.bindGroupView(view, getActivity(), mCursor, 3, false);
-        assertNull(view.findViewById(R.id.call_icon));
-        assertNotNull(view.findViewById(R.id.groupIndicator));
+        assertNotNull(view.findViewById(R.id.call_icon));
     }
 
     @MediumTest

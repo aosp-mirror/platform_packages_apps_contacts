@@ -18,7 +18,7 @@ package com.android.contacts;
 
 import com.android.contacts.calllog.CallDetailHistoryAdapter;
 import com.android.contacts.calllog.CallTypeHelper;
-import com.android.internal.telephony.CallerInfo;
+import com.android.contacts.calllog.PhoneNumberHelper;
 
 import android.app.ListActivity;
 import android.content.ContentResolver;
@@ -37,6 +37,7 @@ import android.provider.ContactsContract.PhoneLookup;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,14 +54,21 @@ import java.util.List;
 
 /**
  * Displays the details of a specific call log entry.
+ * <p>
+ * This activity can be either started with the URI of a single call log entry, or with the
+ * {@link #EXTRA_CALL_LOG_IDS} extra to specify a group of call log entries.
  */
 public class CallDetailActivity extends ListActivity implements
         AdapterView.OnItemClickListener {
     private static final String TAG = "CallDetail";
 
+    /** A long array extra containing ids of call log entries to display. */
+    public static final String EXTRA_CALL_LOG_IDS = "com.android.contacts.CALL_LOG_IDS";
+
     /** The views representing the details of a phone call. */
     private PhoneCallDetailsViews mPhoneCallDetailsViews;
     private CallTypeHelper mCallTypeHelper;
+    private PhoneNumberHelper mPhoneNumberHelper;
     private PhoneCallDetailsHelper mPhoneCallDetailsHelper;
     private View mHomeActionView;
     private ImageView mMainActionView;
@@ -120,8 +128,9 @@ public class CallDetailActivity extends ListActivity implements
                 getResources().getDrawable(R.drawable.ic_call_log_list_outgoing_call),
                 getResources().getDrawable(R.drawable.ic_call_log_list_missed_call),
                 getResources().getDrawable(R.drawable.ic_call_log_list_voicemail));
-        mPhoneCallDetailsHelper = new PhoneCallDetailsHelper(this, getResources(),
-                getVoicemailNumber(), mCallTypeHelper);
+        mPhoneNumberHelper = new PhoneNumberHelper(mResources, getVoicemailNumber());
+        mPhoneCallDetailsHelper = new PhoneCallDetailsHelper(this, mResources, mCallTypeHelper,
+                mPhoneNumberHelper);
         mHomeActionView = findViewById(R.id.action_bar_home);
         mMainActionView = (ImageView) findViewById(R.id.main_action);
         mContactBackgroundView = (ImageView) findViewById(R.id.contact_background);
@@ -141,7 +150,29 @@ public class CallDetailActivity extends ListActivity implements
     @Override
     public void onResume() {
         super.onResume();
-        updateData(getIntent().getData());
+        updateData(getCallLogEntryUris());
+    }
+
+    /**
+     * Returns the list of URIs to show.
+     * <p>
+     * There are two ways the URIs can be provided to the activity: as the data on the intent, or as
+     * a list of ids in the call log added as an extra on the URI.
+     * <p>
+     * If both are available, the data on the intent takes precedence.
+     */
+    private Uri[] getCallLogEntryUris() {
+        Uri uri = getIntent().getData();
+        if (uri != null) {
+            // If there is a data on the intent, it takes precedence over the extra.
+            return new Uri[]{ uri };
+        }
+        long[] ids = getIntent().getLongArrayExtra(EXTRA_CALL_LOG_IDS);
+        Uri[] uris = new Uri[ids.length];
+        for (int index = 0; index < ids.length; ++index) {
+            uris[index] = ContentUris.withAppendedId(Calls.CONTENT_URI_WITH_VOICEMAIL, ids[index]);
+        }
+        return uris;
     }
 
     @Override
@@ -166,146 +197,178 @@ public class CallDetailActivity extends ListActivity implements
     /**
      * Update user interface with details of given call.
      *
-     * @param callUri Uri into {@link CallLog.Calls}
+     * @param callUris URIs into {@link CallLog.Calls} of the calls to be displayed
      */
-    private void updateData(final Uri callUri) {
+    private void updateData(final Uri... callUris) {
+        // TODO: All phone calls correspond to the same person, so we can make a single lookup.
+        final int numCalls = callUris.length;
+        final PhoneCallDetails[] details = new PhoneCallDetails[numCalls];
+        try {
+            for (int index = 0; index < numCalls; ++index) {
+                details[index] = getPhoneCallDetailsForUri(callUris[index]);
+            }
+        } catch (IllegalArgumentException e) {
+            // Something went wrong reading in our primary data, so we're going to
+            // bail out and show error to users.
+            Log.w(TAG, "invalid URI starting call details", e);
+            Toast.makeText(this, R.string.toast_call_detail_error,
+                    Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
+        // We know that all calls are from the same number and the same contact, so pick the first.
+        mNumber = details[0].number.toString();
+        final long personId = details[0].personId;
+        final long photoId = details[0].photoId;
+
+        // Set the details header, based on the first phone call.
+        mPhoneCallDetailsHelper.setPhoneCallDetails(mPhoneCallDetailsViews,
+                details[0], false);
+
+        // Let user view contact details if they exist, otherwise add option to create new contact
+        // from this number.
+        final Intent mainActionIntent;
+        final int mainActionIcon;
+
+        if (details[0].personId != -1) {
+            Uri personUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, personId);
+            mainActionIntent = new Intent(Intent.ACTION_VIEW, personUri);
+            mainActionIcon = R.drawable.sym_action_view_contact;
+        } else {
+            mainActionIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+            mainActionIntent.setType(Contacts.CONTENT_ITEM_TYPE);
+            mainActionIntent.putExtra(Insert.PHONE, mNumber);
+            mainActionIcon = R.drawable.sym_action_add;
+        }
+
+        mMainActionView.setVisibility(View.VISIBLE);
+        mMainActionView.setImageResource(mainActionIcon);
+        mMainActionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(mainActionIntent);
+            }
+        });
+
+        // Build list of various available actions.
+        final List<ViewEntry> actions = new ArrayList<ViewEntry>();
+
+        final boolean isSipNumber = PhoneNumberUtils.isUriNumber(mNumber);
+        final Uri numberCallUri = mPhoneNumberHelper.getCallUri(mNumber);
+
+        // This action allows to call the number that places the call.
+        if (mPhoneNumberHelper.canPlaceCallsTo(mNumber)) {
+            actions.add(new ViewEntry(android.R.drawable.sym_action_call,
+                    getString(R.string.menu_callNumber, mNumber),
+                    new Intent(Intent.ACTION_CALL_PRIVILEGED, numberCallUri)));
+        }
+
+        if (!isSipNumber) {
+            // SMS is only available for PSTN numbers.
+            Intent smsIntent = new Intent(Intent.ACTION_SENDTO,
+                    Uri.fromParts("sms", mNumber, null));
+            actions.add(new ViewEntry(R.drawable.sym_action_sms,
+                    getString(R.string.menu_sendTextMessage), smsIntent));
+        }
+
+        // This action deletes all elements in the group from the call log.
+        actions.add(new ViewEntry(android.R.drawable.ic_menu_close_clear_cancel,
+                getString(R.string.recentCalls_removeFromRecentList),
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        StringBuilder callIds = new StringBuilder();
+                        for (Uri callUri : callUris) {
+                            if (callIds.length() != 0) {
+                                callIds.append(",");
+                            }
+                            callIds.append(ContentUris.parseId(callUri));
+                        }
+
+                        getContentResolver().delete(Calls.CONTENT_URI_WITH_VOICEMAIL,
+                                Calls._ID + " IN (" + callIds + ")", null);
+                        finish();
+                    }
+                }));
+
+        if (!isSipNumber) {
+            // "Edit the number before calling" is only available for PSTN numbers.
+            actions.add(new ViewEntry(android.R.drawable.sym_action_call,
+                    getString(R.string.recentCalls_editNumberBeforeCall),
+                    new Intent(Intent.ACTION_DIAL, numberCallUri)));
+        }
+
+        // Set the actions for this phone number.
+        setListAdapter(new ViewAdapter(this, actions));
+
+        ListView historyList = (ListView) findViewById(R.id.history);
+        historyList.setAdapter(
+                new CallDetailHistoryAdapter(this, mInflater, mCallTypeHelper, details));
+        loadContactPhotos(photoId);
+    }
+
+    /** Return the phone call details for a given call log URI. */
+    private PhoneCallDetails getPhoneCallDetailsForUri(Uri callUri) {
         ContentResolver resolver = getContentResolver();
         Cursor callCursor = resolver.query(callUri, CALL_LOG_PROJECTION, null, null, null);
         try {
-            if (callCursor != null && callCursor.moveToFirst()) {
-                // Read call log specifics
-                mNumber = callCursor.getString(NUMBER_COLUMN_INDEX);
-                long date = callCursor.getLong(DATE_COLUMN_INDEX);
-                long duration = callCursor.getLong(DURATION_COLUMN_INDEX);
-                int callType = callCursor.getInt(CALL_TYPE_COLUMN_INDEX);
-                String countryIso = callCursor.getString(COUNTRY_ISO_COLUMN_INDEX);
-                if (TextUtils.isEmpty(countryIso)) {
-                    countryIso = mDefaultCountryIso;
-                }
-
-                long photoId = 0L;
-                CharSequence nameText = "";
-                final CharSequence numberText;
-                int numberType = 0;
-                CharSequence numberLabel = "";
-                if (mNumber.equals(CallerInfo.UNKNOWN_NUMBER) ||
-                        mNumber.equals(CallerInfo.PRIVATE_NUMBER)) {
-                    numberText = getString(mNumber.equals(CallerInfo.PRIVATE_NUMBER)
-                            ? R.string.private_num : R.string.unknown);
-                    mMainActionView.setVisibility(View.GONE);
-                } else {
-                    // Perform a reverse-phonebook lookup to find the PERSON_ID
-                    Uri personUri = null;
-                    Uri phoneUri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI,
-                            Uri.encode(mNumber));
-                    Cursor phonesCursor = resolver.query(
-                            phoneUri, PHONES_PROJECTION, null, null, null);
-                    String candidateNumberText = mNumber;
-                    try {
-                        if (phonesCursor != null && phonesCursor.moveToFirst()) {
-                            long personId = phonesCursor.getLong(COLUMN_INDEX_ID);
-                            personUri = ContentUris.withAppendedId(
-                                    Contacts.CONTENT_URI, personId);
-                            nameText = phonesCursor.getString(COLUMN_INDEX_NAME);
-                            photoId = phonesCursor.getLong(COLUMN_INDEX_PHOTO_ID);
-                            candidateNumberText = PhoneNumberUtils.formatNumber(
-                                    phonesCursor.getString(COLUMN_INDEX_NUMBER),
-                                    phonesCursor.getString(COLUMN_INDEX_NORMALIZED_NUMBER),
-                                    countryIso);
-                            numberType = phonesCursor.getInt(COLUMN_INDEX_TYPE);
-                            numberLabel = phonesCursor.getString(COLUMN_INDEX_LABEL);
-                        } else {
-                            candidateNumberText =
-                                    PhoneNumberUtils.formatNumber(mNumber, countryIso);
-                        }
-                    } finally {
-                        if (phonesCursor != null) phonesCursor.close();
-                        numberText = candidateNumberText;
-                    }
-
-                    // Let user view contact details if they exist, otherwise add option
-                    // to create new contact from this number.
-                    final Intent mainActionIntent;
-                    final int mainActionIcon;
-                    if (personUri != null) {
-                        mainActionIntent = new Intent(Intent.ACTION_VIEW, personUri);
-                        mainActionIcon = R.drawable.sym_action_view_contact;
-                    } else {
-                        mainActionIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-                        mainActionIntent.setType(Contacts.CONTENT_ITEM_TYPE);
-                        mainActionIntent.putExtra(Insert.PHONE, mNumber);
-                        mainActionIcon = R.drawable.sym_action_add;
-                    }
-
-                    mMainActionView.setVisibility(View.VISIBLE);
-                    mMainActionView.setImageResource(mainActionIcon);
-                    mMainActionView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            startActivity(mainActionIntent);
-                        }
-                    });
-
-                    // Build list of various available actions
-                    List<ViewEntry> actions = new ArrayList<ViewEntry>();
-
-                    final boolean isSipNumber = PhoneNumberUtils.isUriNumber(mNumber);
-                    final Uri numberCallUri;
-                    if (isSipNumber) {
-                        numberCallUri = Uri.fromParts("sip", mNumber, null);
-                    } else {
-                        numberCallUri = Uri.fromParts("tel", mNumber, null);
-                    }
-
-                    actions.add(new ViewEntry(android.R.drawable.sym_action_call,
-                            getString(R.string.menu_callNumber, mNumber),
-                            new Intent(Intent.ACTION_CALL_PRIVILEGED, numberCallUri)));
-
-                    if (!isSipNumber) {
-                        Intent smsIntent = new Intent(Intent.ACTION_SENDTO,
-                                Uri.fromParts("sms", mNumber, null));
-                        actions.add(new ViewEntry(R.drawable.sym_action_sms,
-                                getString(R.string.menu_sendTextMessage), smsIntent));
-                    }
-
-                    actions.add(new ViewEntry(android.R.drawable.ic_menu_close_clear_cancel,
-                            getString(R.string.recentCalls_removeFromRecentList),
-                            new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    long id = ContentUris.parseId(callUri);
-                                    getContentResolver().delete(Calls.CONTENT_URI_WITH_VOICEMAIL,
-                                            Calls._ID + " = ?", new String[]{Long.toString(id)});
-                                    finish();
-                                }
-                            }));
-
-                    if (!isSipNumber) {
-                        actions.add(new ViewEntry(android.R.drawable.sym_action_call,
-                                getString(R.string.recentCalls_editNumberBeforeCall),
-                                new Intent(Intent.ACTION_DIAL, numberCallUri)));
-                    }
-
-                    ViewAdapter adapter = new ViewAdapter(this, actions);
-                    setListAdapter(adapter);
-                }
-                PhoneCallDetails details = new PhoneCallDetails(mNumber, numberText,
-                        new int[]{ callType }, duration, date, nameText, numberType, numberLabel);
-                mPhoneCallDetailsHelper.setPhoneCallDetails(mPhoneCallDetailsViews,
-                        details, false);
-                ListView historyList = (ListView) findViewById(R.id.history);
-                historyList.setAdapter(
-                        new CallDetailHistoryAdapter(this, mInflater, mCallTypeHelper,
-                                    new PhoneCallDetails[]{ details }));
-
-                loadContactPhotos(photoId);
-            } else {
-                // Something went wrong reading in our primary data, so we're going to
-                // bail out and show error to users.
-                Toast.makeText(this, R.string.toast_call_detail_error,
-                        Toast.LENGTH_SHORT).show();
-                finish();
+            if (callCursor == null || !callCursor.moveToFirst()) {
+                throw new IllegalArgumentException("Cannot find content: " + callUri);
             }
+
+            // Read call log specifics.
+            String number = callCursor.getString(NUMBER_COLUMN_INDEX);
+            long date = callCursor.getLong(DATE_COLUMN_INDEX);
+            long duration = callCursor.getLong(DURATION_COLUMN_INDEX);
+            int callType = callCursor.getInt(CALL_TYPE_COLUMN_INDEX);
+            String countryIso = callCursor.getString(COUNTRY_ISO_COLUMN_INDEX);
+            if (TextUtils.isEmpty(countryIso)) {
+                countryIso = mDefaultCountryIso;
+            }
+
+            // Formatted phone number.
+            final CharSequence numberText;
+            // Read contact specifics.
+            CharSequence nameText = "";
+            int numberType = 0;
+            CharSequence numberLabel = "";
+            long personId = -1L;
+            long photoId = 0L;
+            // If this is not a regular number, there is no point in looking it up in the contacts.
+            if (!mPhoneNumberHelper.canPlaceCallsTo(number)) {
+                numberText = mPhoneNumberHelper.getDisplayNumber(number, null);
+            } else {
+                // Perform a reverse-phonebook lookup to find the contact details.
+                Uri phoneUri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI,
+                        Uri.encode(number));
+                Cursor phonesCursor = resolver.query(phoneUri, PHONES_PROJECTION, null, null, null);
+                String candidateNumberText = number;
+                try {
+                    if (phonesCursor != null && phonesCursor.moveToFirst()) {
+                        personId = phonesCursor.getLong(COLUMN_INDEX_ID);
+                        nameText = phonesCursor.getString(COLUMN_INDEX_NAME);
+                        photoId = phonesCursor.getLong(COLUMN_INDEX_PHOTO_ID);
+                        candidateNumberText = PhoneNumberUtils.formatNumber(
+                                phonesCursor.getString(COLUMN_INDEX_NUMBER),
+                                phonesCursor.getString(COLUMN_INDEX_NORMALIZED_NUMBER),
+                                countryIso);
+                        numberType = phonesCursor.getInt(COLUMN_INDEX_TYPE);
+                        numberLabel = phonesCursor.getString(COLUMN_INDEX_LABEL);
+                    } else {
+                        // We could not find this contact in the contacts, just format the phone
+                        // number as best as we can. All the other fields will have their default
+                        // values.
+                        candidateNumberText =
+                                PhoneNumberUtils.formatNumber(number, countryIso);
+                    }
+                } finally {
+                    if (phonesCursor != null) phonesCursor.close();
+                    numberText = candidateNumberText;
+                }
+            }
+            return new PhoneCallDetails(number, numberText, new int[]{ callType }, date, duration,
+                    nameText, numberType, numberLabel, personId, photoId);
         } finally {
             if (callCursor != null) {
                 callCursor.close();

@@ -18,11 +18,9 @@ package com.android.contacts.calllog;
 
 import com.android.contacts.PhoneCallDetails;
 import com.android.contacts.PhoneCallDetailsHelper;
-import com.android.internal.telephony.CallerInfo;
 
 import android.graphics.drawable.Drawable;
 import android.provider.CallLog.Calls;
-import android.text.TextUtils;
 import android.view.View;
 
 /**
@@ -31,6 +29,8 @@ import android.view.View;
 /*package*/ class CallLogListItemHelper {
     /** Helper for populating the details of a phone call. */
     private final PhoneCallDetailsHelper mPhoneCallDetailsHelper;
+    /** Helper for handling phone numbers. */
+    private final PhoneNumberHelper mPhoneNumberHelper;
     /** Icon for the call action. */
     private final Drawable mCallDrawable;
     /** Icon for the play action. */
@@ -44,8 +44,9 @@ import android.view.View;
      * @param playDrawable used to render the play button, for playing a voicemail
      */
     public CallLogListItemHelper(PhoneCallDetailsHelper phoneCallDetailsHelper,
-            Drawable callDrawable, Drawable playDrawable) {
+            PhoneNumberHelper phoneNumberHelper, Drawable callDrawable, Drawable playDrawable) {
         mPhoneCallDetailsHelper = phoneCallDetailsHelper;
+        mPhoneNumberHelper= phoneNumberHelper;
         mCallDrawable = callDrawable;
         mPlayDrawable = playDrawable;
     }
@@ -65,15 +66,8 @@ import android.view.View;
             views.callView.setImageDrawable(
                     details.callTypes[0] == Calls.VOICEMAIL_TYPE ? mPlayDrawable : mCallDrawable);
             views.callView.setVisibility(
-                    canPlaceCallsTo(details.number) ? View.VISIBLE : View.INVISIBLE);
+                    mPhoneNumberHelper.canPlaceCallsTo(details.number)
+                            ? View.VISIBLE : View.INVISIBLE);
         }
-    }
-
-    /** Returns true if it is possible to place a call to the given number. */
-    public boolean canPlaceCallsTo(CharSequence number) {
-        return !(TextUtils.isEmpty(number)
-                || number.equals(CallerInfo.UNKNOWN_NUMBER)
-                || number.equals(CallerInfo.PRIVATE_NUMBER)
-                || number.equals(CallerInfo.PAYPHONE_NUMBER));
     }
 }

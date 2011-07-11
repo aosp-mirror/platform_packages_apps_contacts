@@ -18,8 +18,7 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/call_log_list_item_height"
 >
-
     <include layout="@layout/call_log_contact_photo"/>
-    <include layout="@layout/call_log_action_group"/>
+    <include layout="@layout/call_log_action_call"/>
     <include layout="@layout/call_log_list_item_layout" />
 </RelativeLayout>

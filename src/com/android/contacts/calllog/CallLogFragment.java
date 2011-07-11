@@ -81,9 +81,7 @@ public class CallLogFragment extends ListFragment
         implements View.OnCreateContextMenuListener, ViewPagerVisibilityListener {
     private static final String TAG = "CallLogFragment";
 
-    /**
-     * The size of the cache of contact info.
-     */
+    /** The size of the cache of contact info. */
     private static final int CONTACT_INFO_CACHE_SIZE = 100;
 
     /** The query for the call log table */
@@ -278,10 +276,12 @@ public class CallLogFragment extends ListFragment
             mContactPhotoManager = ContactPhotoManager.getInstance(getActivity());
             CallTypeHelper callTypeHelper = new CallTypeHelper(resources, incomingDrawable,
                     outgoingDrawable, missedDrawable, voicemailDrawable);
+            PhoneNumberHelper phoneNumberHelper =
+                    new PhoneNumberHelper(getResources(), mVoiceMailNumber);
             PhoneCallDetailsHelper phoneCallDetailsHelper = new PhoneCallDetailsHelper(
-                    getActivity(), resources, mVoiceMailNumber, callTypeHelper);
-            mCallLogViewsHelper = new CallLogListItemHelper(phoneCallDetailsHelper, callDrawable,
-                    playDrawable);
+                    getActivity(), resources, callTypeHelper, phoneNumberHelper );
+            mCallLogViewsHelper = new CallLogListItemHelper(phoneCallDetailsHelper,
+                    phoneNumberHelper, callDrawable, playDrawable);
         }
 
         /**
@@ -687,7 +687,7 @@ public class CallLogFragment extends ListFragment
                 formattedNumber = formatPhoneNumber(number, null, countryIso);
             }
 
-            long contactId = info.personId;
+            long personId = info.personId;
             String name = info.name;
             int ntype = info.type;
             String label = info.label;
@@ -705,11 +705,11 @@ public class CallLogFragment extends ListFragment
                 details = new PhoneCallDetails(number, formattedNumber, callTypes, date, duration);
             } else {
                 details = new PhoneCallDetails(number, formattedNumber, callTypes, date, duration,
-                        name, ntype, label);
+                        name, ntype, label, personId, photoId);
             }
             mCallLogViewsHelper.setPhoneCallDetails(views, details , true);
             if (views.photoView != null) {
-                bindQuickContact(views.photoView, photoId, contactId, lookupKey);
+                bindQuickContact(views.photoView, photoId, personId, lookupKey);
             }
 
 
@@ -1162,13 +1162,25 @@ public class CallLogFragment extends ListFragment
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
+        Intent intent = new Intent(getActivity(), CallDetailActivity.class);
         if (mAdapter.isGroupHeader(position)) {
-            mAdapter.toggleGroup(position);
+            int groupSize = mAdapter.getGroupSize(position);
+            long[] ids = new long[groupSize];
+            // Copy the ids of the rows in the group.
+            Cursor cursor = (Cursor) mAdapter.getItem(position);
+            // Restore the position in the cursor at the end.
+            int currentPosition = cursor.getPosition();
+            for (int index = 0; index < groupSize; ++index) {
+                ids[index] = cursor.getLong(CallLogQuery.ID);
+                cursor.moveToNext();
+            }
+            cursor.moveToPosition(currentPosition);
+            intent.putExtra(CallDetailActivity.EXTRA_CALL_LOG_IDS, ids);
         } else {
-            Intent intent = new Intent(getActivity(), CallDetailActivity.class);
+            // If there is a single item, use the direct URI for it.
             intent.setData(ContentUris.withAppendedId(Calls.CONTENT_URI_WITH_VOICEMAIL, id));
-            startActivity(intent);
         }
+        startActivity(intent);
     }
 
     @VisibleForTesting

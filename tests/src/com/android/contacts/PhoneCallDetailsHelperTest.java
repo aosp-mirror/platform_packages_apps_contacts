@@ -17,6 +17,7 @@
 package com.android.contacts;
 
 import com.android.contacts.calllog.CallTypeHelper;
+import com.android.contacts.calllog.PhoneNumberHelper;
 import com.android.contacts.util.LocaleTestUtils;
 import com.android.internal.telephony.CallerInfo;
 
@@ -70,8 +71,9 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         Resources resources = context.getResources();
         CallTypeHelper callTypeHelper = new CallTypeHelper(resources, TEST_INCOMING_DRAWABLE,
                 TEST_OUTGOING_DRAWABLE, TEST_MISSED_DRAWABLE, TEST_VOICEMAIL_DRAWABLE);
-        mHelper = new PhoneCallDetailsHelper(context, resources,
-                TEST_VOICEMAIL_NUMBER, callTypeHelper);
+        PhoneNumberHelper phoneNumberHelper =
+                new PhoneNumberHelper(resources, TEST_VOICEMAIL_NUMBER);
+        mHelper = new PhoneCallDetailsHelper(context, resources, callTypeHelper, phoneNumberHelper);
         mViews = PhoneCallDetailsViews.createForTest(new TextView(context),
                 new LinearLayout(context), new TextView(context), new View(context),
                 new TextView(context), new TextView(context));

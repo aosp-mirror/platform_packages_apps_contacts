@@ -17,8 +17,8 @@
 package com.android.contacts;
 
 import com.android.contacts.calllog.CallTypeHelper;
+import com.android.contacts.calllog.PhoneNumberHelper;
 import com.android.contacts.format.FormatUtils;
-import com.android.internal.telephony.CallerInfo;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -37,10 +37,11 @@ import android.widget.ImageView;
 public class PhoneCallDetailsHelper {
     private final Context mContext;
     private final Resources mResources;
-    private final String mVoicemailNumber;
     /** The injected current time in milliseconds since the epoch. Used only by tests. */
     private Long mCurrentTimeMillisForTest;
+    // Helper classes.
     private final CallTypeHelper mCallTypeHelper;
+    private final PhoneNumberHelper mPhoneNumberHelper;
 
     /**
      * Creates a new instance of the helper.
@@ -49,12 +50,12 @@ public class PhoneCallDetailsHelper {
      *
      * @param resources used to look up strings
      */
-    public PhoneCallDetailsHelper(Context context, Resources resources, String voicemailNumber,
-            CallTypeHelper callTypeHelper) {
+    public PhoneCallDetailsHelper(Context context, Resources resources,
+            CallTypeHelper callTypeHelper, PhoneNumberHelper phoneNumberHelper) {
         mContext = context;
         mResources = resources;
-        mVoicemailNumber = voicemailNumber;
         mCallTypeHelper = callTypeHelper;
+        mPhoneNumberHelper = phoneNumberHelper;
     }
 
     /** Fills the call details views with content. */
@@ -100,12 +101,13 @@ public class PhoneCallDetailsHelper {
 
         final CharSequence nameText;
         final CharSequence numberText;
+        final CharSequence displayNumber =
+            mPhoneNumberHelper.getDisplayNumber(details.number, details.formattedNumber);
         if (TextUtils.isEmpty(details.name)) {
-            nameText = getDisplayNumber(details.number, details.formattedNumber);
+            nameText = displayNumber;
             numberText = "";
         } else {
             nameText = details.name;
-            CharSequence displayNumber = getDisplayNumber(details.number, details.formattedNumber);
             if (numberFormattedLabel != null) {
                 numberText = FormatUtils.applyStyleToSpan(Typeface.BOLD,
                         numberFormattedLabel + " " + displayNumber, 0,
@@ -127,29 +129,6 @@ public class PhoneCallDetailsHelper {
             views.numberView.setVisibility(View.VISIBLE);
         } else {
             views.numberView.setVisibility(View.GONE);
-        }
-    }
-
-    private CharSequence getDisplayNumber(CharSequence number, CharSequence formattedNumber) {
-        if (TextUtils.isEmpty(number)) {
-            return "";
-        }
-        if (number.equals(CallerInfo.UNKNOWN_NUMBER)) {
-            return mResources.getString(R.string.unknown);
-        }
-        if (number.equals(CallerInfo.PRIVATE_NUMBER)) {
-            return mResources.getString(R.string.private_num);
-        }
-        if (number.equals(CallerInfo.PAYPHONE_NUMBER)) {
-            return mResources.getString(R.string.payphone);
-        }
-        if (PhoneNumberUtils.extractNetworkPortion(number.toString()).equals(mVoicemailNumber)) {
-            return mResources.getString(R.string.voicemail);
-        }
-        if (TextUtils.isEmpty(formattedNumber)) {
-            return number;
-        } else {
-            return formattedNumber;
         }
     }
 

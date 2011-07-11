@@ -75,10 +75,12 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
         CallTypeHelper callTypeHelper = new CallTypeHelper(resources,
                 TEST_INCOMING_DRAWABLE, TEST_OUTGOING_DRAWABLE, TEST_MISSED_DRAWABLE,
                 TEST_VOICEMAIL_DRAWABLE);
+        PhoneNumberHelper phoneNumberHelper =
+                new PhoneNumberHelper(resources, TEST_VOICEMAIL_NUMBER);
         PhoneCallDetailsHelper phoneCallDetailsHelper = new PhoneCallDetailsHelper(context,
-                resources, TEST_VOICEMAIL_NUMBER, callTypeHelper);
-        mHelper = new CallLogListItemHelper(phoneCallDetailsHelper, TEST_CALL_DRAWABLE,
-                TEST_PLAY_DRAWABLE);
+                resources, callTypeHelper, phoneNumberHelper);
+        mHelper = new CallLogListItemHelper(phoneCallDetailsHelper, phoneNumberHelper,
+                TEST_CALL_DRAWABLE, TEST_PLAY_DRAWABLE);
         mViews = CallLogListItemViews.createForTest(new QuickContactBadge(context),
                 new ImageView(context), PhoneCallDetailsViews.createForTest(new TextView(context),
                         new LinearLayout(context), new TextView(context), new TextView(context),

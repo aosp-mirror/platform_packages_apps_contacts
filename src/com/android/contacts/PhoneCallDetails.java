@@ -43,16 +43,21 @@ public class PhoneCallDetails {
     public final int numberType;
     /** The custom label associated with the phone number in the contact, or the empty string. */
     public final CharSequence numberLabel;
+    /** The id of the contact associated with this phone call. */
+    public final long personId;
+    /** The photo id of the contact associated with this phone call. */
+    public final long photoId;
 
     /** Create the details for a call with a number not associated with a contact. */
     public PhoneCallDetails(CharSequence number, CharSequence formattedNumber, int[] callTypes,
             long date, long duration) {
-        this(number, formattedNumber, callTypes, date, duration, "", 0, "");
+        this(number, formattedNumber, callTypes, date, duration, "", 0, "", -1L, 0L);
     }
 
     /** Create the details for a call with a number associated with a contact. */
     public PhoneCallDetails(CharSequence number, CharSequence formattedNumber, int[] callTypes,
-            long date, long duration, CharSequence name, int numberType, CharSequence numberLabel) {
+            long date, long duration, CharSequence name, int numberType, CharSequence numberLabel,
+            long personId, long photoId) {
         this.number = number;
         this.formattedNumber = formattedNumber;
         this.callTypes = callTypes;
@@ -61,5 +66,7 @@ public class PhoneCallDetails {
         this.name = name;
         this.numberType = numberType;
         this.numberLabel = numberLabel;
+        this.personId = personId;
+        this.photoId = photoId;
     }
 }
