@@ -19,4 +19,9 @@
         android:icon="@android:drawable/ic_menu_close_clear_cancel"
         android:title="@string/recentCalls_deleteAll"
         android:showAsAction="withText" />
+
+    <item
+        android:id="@+id/menu_call_settings_call_log"
+        android:title="@string/call_settings"
+        android:showAsAction="withText" />
 </menu>

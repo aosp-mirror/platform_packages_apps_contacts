@@ -22,20 +22,35 @@
     android:layout_marginLeft="8dip"
     android:layout_marginRight="8dip" >
 
-    <!-- Text field above the keypad where the digits are displayed.
-         It's type is set to NULL (to disable the IME keyboard) in the
-         java code.
-
-         Background drawable can be controlled programatically.
-    -->
-    <EditText android:id="@+id/digits"
+    <!-- Text field and possibly soft menu button above the keypad where
+         the digits are displayed. -->
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dialpad_digits_height"
         android:layout_marginTop="4dip"
         android:gravity="center"
-        android:textAppearance="@style/DialtactsDigitsTextAppearance"
-        android:background="@drawable/dialpad_background"
-        android:textColor="?android:attr/textColorPrimary" />
+        android:background="@drawable/dialpad_background" >
+
+        <!-- Type of this EditText is set to NULL (to disable the IME keyboard)
+             in the java code.
+
+             Background drawable can be controlled programatically. -->
+        <EditText android:id="@+id/digits"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/moreoverflow"
+            android:gravity="center"
+            android:textAppearance="@style/DialtactsDigitsTextAppearance"
+            android:textColor="?android:attr/textColorPrimary" />
+
+        <ImageButton android:id="@+id/overflow_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_menu_overflow" />
+
+    </RelativeLayout>
 
     <!-- Keypad section -->
     <include layout="@layout/dialpad" />
