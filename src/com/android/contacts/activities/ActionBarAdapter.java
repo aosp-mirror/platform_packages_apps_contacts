@@ -198,7 +198,10 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     public void onRestoreInstanceState(Bundle savedState) {
         mSearchMode = savedState.getBoolean(EXTRA_KEY_SEARCH_MODE);
         mQueryString = savedState.getString(EXTRA_KEY_QUERY);
-        mActionBar.setSelectedNavigationItem(savedState.getInt(EXTRA_KEY_SELECTED_TAB));
+        int selectedTab = savedState.getInt(EXTRA_KEY_SELECTED_TAB);
+        if (selectedTab >= 0) {
+            mActionBar.setSelectedNavigationItem(selectedTab);
+        }
     }
 
     private void setFocusOnSearchView() {
