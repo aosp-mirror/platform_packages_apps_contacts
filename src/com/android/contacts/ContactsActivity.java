@@ -19,10 +19,13 @@ package com.android.contacts;
 import com.android.contacts.test.InjectedServices;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 
 /**
  * A common superclass for Contacts activities that handles application-wide services.
@@ -85,5 +88,33 @@ public abstract class ContactsActivity extends Activity
     @Override
     public void onServiceCompleted(Intent callbackIntent) {
         onNewIntent(callbackIntent);
+    }
+
+    /**
+     * Convenient version of {@link FragmentManager#findFragmentById(int)}, which throws
+     * an exception if the fragment doesn't exist.
+     */
+    @SuppressWarnings("unchecked")
+    public <T extends Fragment> T getFragment(int id) {
+        T result = (T)getFragmentManager().findFragmentById(id);
+        if (result == null) {
+            throw new IllegalArgumentException("fragment 0x" + Integer.toHexString(id)
+                    + " doesn't exist");
+        }
+        return result;
+    }
+
+    /**
+     * Convenient version of {@link #findViewById(int)}, which throws
+     * an exception if the view doesn't exist.
+     */
+    @SuppressWarnings("unchecked")
+    public <T extends View> T getView(int id) {
+        T result = (T)findViewById(id);
+        if (result == null) {
+            throw new IllegalArgumentException("view 0x" + Integer.toHexString(id)
+                    + " doesn't exist");
+        }
+        return result;
     }
 }
