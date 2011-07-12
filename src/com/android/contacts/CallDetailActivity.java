@@ -226,6 +226,12 @@ public class CallDetailActivity extends ListActivity implements
         mPhoneCallDetailsHelper.setPhoneCallDetails(mPhoneCallDetailsViews,
                 details[0], false);
 
+        // Cache the details about the phone number.
+        final Uri numberCallUri = mPhoneNumberHelper.getCallUri(mNumber);
+        final boolean canPlaceCallsTo = mPhoneNumberHelper.canPlaceCallsTo(mNumber);
+        final boolean isVoicemailNumber = mPhoneNumberHelper.isVoicemailNumber(mNumber);
+        final boolean isSipNumber = mPhoneNumberHelper.isSipNumber(mNumber);
+
         // Let user view contact details if they exist, otherwise add option to create new contact
         // from this number.
         final Intent mainActionIntent;
@@ -235,6 +241,21 @@ public class CallDetailActivity extends ListActivity implements
             Uri personUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, personId);
             mainActionIntent = new Intent(Intent.ACTION_VIEW, personUri);
             mainActionIcon = R.drawable.sym_action_view_contact;
+        } else if (isVoicemailNumber) {
+            mainActionIntent = null;
+            mainActionIcon = 0;
+        } else if (isSipNumber) {
+            // TODO: This item is currently disabled for SIP addresses, because
+            // the Insert.PHONE extra only works correctly for PSTN numbers.
+            //
+            // To fix this for SIP addresses, we need to:
+            // - define ContactsContract.Intents.Insert.SIP_ADDRESS, and use it here if
+            //   the current number is a SIP address
+            // - update the contacts UI code to handle Insert.SIP_ADDRESS by
+            //   updating the SipAddress field
+            // and then we can remove the "!isSipNumber" check above.
+            mainActionIntent = null;
+            mainActionIcon = 0;
         } else {
             mainActionIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
             mainActionIntent.setType(Contacts.CONTENT_ITEM_TYPE);
@@ -242,30 +263,31 @@ public class CallDetailActivity extends ListActivity implements
             mainActionIcon = R.drawable.sym_action_add;
         }
 
-        mMainActionView.setVisibility(View.VISIBLE);
-        mMainActionView.setImageResource(mainActionIcon);
-        mMainActionView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(mainActionIntent);
-            }
-        });
+        if (mainActionIntent == null) {
+            mMainActionView.setVisibility(View.INVISIBLE);
+        } else {
+            mMainActionView.setVisibility(View.VISIBLE);
+            mMainActionView.setImageResource(mainActionIcon);
+            mMainActionView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(mainActionIntent);
+                }
+            });
+        }
 
         // Build list of various available actions.
         final List<ViewEntry> actions = new ArrayList<ViewEntry>();
 
-        final boolean isSipNumber = PhoneNumberUtils.isUriNumber(mNumber);
-        final Uri numberCallUri = mPhoneNumberHelper.getCallUri(mNumber);
-
         // This action allows to call the number that places the call.
-        if (mPhoneNumberHelper.canPlaceCallsTo(mNumber)) {
+        if (canPlaceCallsTo) {
             actions.add(new ViewEntry(android.R.drawable.sym_action_call,
                     getString(R.string.menu_callNumber, mNumber),
                     new Intent(Intent.ACTION_CALL_PRIVILEGED, numberCallUri)));
         }
 
-        if (!isSipNumber) {
-            // SMS is only available for PSTN numbers.
+        // This action allows to send an SMS to the number that placed the call.
+        if (mPhoneNumberHelper.canSendSmsTo(mNumber)) {
             Intent smsIntent = new Intent(Intent.ACTION_SENDTO,
                     Uri.fromParts("sms", mNumber, null));
             actions.add(new ViewEntry(R.drawable.sym_action_sms,
@@ -292,7 +314,7 @@ public class CallDetailActivity extends ListActivity implements
                     }
                 }));
 
-        if (!isSipNumber) {
+        if (canPlaceCallsTo && !isSipNumber && !isVoicemailNumber) {
             // "Edit the number before calling" is only available for PSTN numbers.
             actions.add(new ViewEntry(android.R.drawable.sym_action_call,
                     getString(R.string.recentCalls_editNumberBeforeCall),

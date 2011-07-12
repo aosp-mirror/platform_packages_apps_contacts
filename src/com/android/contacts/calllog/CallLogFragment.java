@@ -52,14 +52,11 @@ import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.Intents.Insert;
 import android.provider.ContactsContract.PhoneLookup;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -67,7 +64,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.QuickContactBadge;
 
@@ -77,8 +73,7 @@ import java.util.LinkedList;
 /**
  * Displays a list of call log entries.
  */
-public class CallLogFragment extends ListFragment
-        implements View.OnCreateContextMenuListener, ViewPagerVisibilityListener {
+public class CallLogFragment extends ListFragment implements ViewPagerVisibilityListener {
     private static final String TAG = "CallLogFragment";
 
     /** The size of the cache of contact info. */
@@ -122,10 +117,6 @@ public class CallLogFragment extends ListFragment
         public static final int NORMALIZED_NUMBER = 5;
         public static final int PHOTO_ID = 6;
         public static final int LOOKUP_KEY = 7;
-    }
-
-    private static final class MenuItems {
-        public static final int DELETE = 1;
     }
 
     private static final class OptionsMenuItems {
@@ -845,7 +836,6 @@ public class CallLogFragment extends ListFragment
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getListView().setOnCreateContextMenuListener(this);
         mAdapter = new CallLogAdapter();
         setListAdapter(mAdapter);
     }
@@ -952,88 +942,6 @@ public class CallLogFragment extends ListFragment
     }
 
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfoIn) {
-        AdapterView.AdapterContextMenuInfo menuInfo;
-        try {
-             menuInfo = (AdapterView.AdapterContextMenuInfo) menuInfoIn;
-        } catch (ClassCastException e) {
-            Log.e(TAG, "bad menuInfoIn", e);
-            return;
-        }
-
-        Cursor cursor = (Cursor) mAdapter.getItem(menuInfo.position);
-
-        String number = cursor.getString(CallLogQuery.NUMBER);
-        Uri numberUri = null;
-        boolean isVoicemail = false;
-        boolean isSipNumber = false;
-        if (number.equals(CallerInfo.UNKNOWN_NUMBER)) {
-            number = getString(R.string.unknown);
-        } else if (number.equals(CallerInfo.PRIVATE_NUMBER)) {
-            number = getString(R.string.private_num);
-        } else if (number.equals(CallerInfo.PAYPHONE_NUMBER)) {
-            number = getString(R.string.payphone);
-        } else if (PhoneNumberUtils.extractNetworkPortion(number).equals(mVoiceMailNumber)) {
-            number = getString(R.string.voicemail);
-            numberUri = Uri.parse("voicemail:x");
-            isVoicemail = true;
-        } else if (PhoneNumberUtils.isUriNumber(number)) {
-            numberUri = Uri.fromParts("sip", number, null);
-            isSipNumber = true;
-        } else {
-            numberUri = Uri.fromParts("tel", number, null);
-        }
-
-        ContactInfo info = mAdapter.getContactInfo(number);
-        boolean contactInfoPresent = (info != null && info != ContactInfo.EMPTY);
-        if (contactInfoPresent) {
-            menu.setHeaderTitle(info.name);
-        } else {
-            menu.setHeaderTitle(number);
-        }
-
-        if (numberUri != null) {
-            Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, numberUri);
-            menu.add(0, 0, 0, getResources().getString(R.string.recentCalls_callNumber, number))
-                    .setIntent(intent);
-        }
-
-        if (contactInfoPresent) {
-            menu.add(0, 0, 0, R.string.menu_viewContact)
-                    .setIntent(new Intent(Intent.ACTION_VIEW,
-                            ContentUris.withAppendedId(Contacts.CONTENT_URI, info.personId)));
-        }
-
-        if (numberUri != null && !isVoicemail && !isSipNumber) {
-            menu.add(0, 0, 0, R.string.recentCalls_editNumberBeforeCall)
-                    .setIntent(new Intent(Intent.ACTION_DIAL, numberUri));
-            menu.add(0, 0, 0, R.string.menu_sendTextMessage)
-                    .setIntent(new Intent(Intent.ACTION_SENDTO,
-                            Uri.fromParts("sms", number, null)));
-        }
-
-        // "Add to contacts" item, if this entry isn't already associated with a contact
-        if (!contactInfoPresent && numberUri != null && !isVoicemail && !isSipNumber) {
-            // TODO: This item is currently disabled for SIP addresses, because
-            // the Insert.PHONE extra only works correctly for PSTN numbers.
-            //
-            // To fix this for SIP addresses, we need to:
-            // - define ContactsContract.Intents.Insert.SIP_ADDRESS, and use it here if
-            //   the current number is a SIP address
-            // - update the contacts UI code to handle Insert.SIP_ADDRESS by
-            //   updating the SipAddress field
-            // and then we can remove the "!isSipNumber" check above.
-
-            Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-            intent.setType(Contacts.CONTENT_ITEM_TYPE);
-            intent.putExtra(Insert.PHONE, number);
-            menu.add(0, 0, 0, R.string.recentCalls_addToContact)
-                    .setIntent(intent);
-        }
-        menu.add(0, MenuItems.DELETE, 0, R.string.recentCalls_removeFromRecentList);
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case OptionsMenuItems.DELETE_ALL: {
@@ -1042,42 +950,6 @@ public class CallLogFragment extends ListFragment
             }
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        // Convert the menu info to the proper type
-        AdapterView.AdapterContextMenuInfo menuInfo;
-        try {
-             menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        } catch (ClassCastException e) {
-            Log.e(TAG, "bad menuInfoIn", e);
-            return false;
-        }
-
-        switch (item.getItemId()) {
-            case MenuItems.DELETE: {
-                Cursor cursor = (Cursor)mAdapter.getItem(menuInfo.position);
-                int groupSize = 1;
-                if (mAdapter.isGroupHeader(menuInfo.position)) {
-                    groupSize = mAdapter.getGroupSize(menuInfo.position);
-                }
-
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < groupSize; i++) {
-                    if (i != 0) {
-                        sb.append(",");
-                        cursor.moveToNext();
-                    }
-                    long id = cursor.getLong(CallLogQuery.ID);
-                    sb.append(id);
-                }
-
-                getActivity().getContentResolver().delete(Calls.CONTENT_URI_WITH_VOICEMAIL,
-                        Calls._ID + " IN (" + sb + ")", null);
-            }
-        }
-        return super.onContextItemSelected(item);
     }
 
     /*

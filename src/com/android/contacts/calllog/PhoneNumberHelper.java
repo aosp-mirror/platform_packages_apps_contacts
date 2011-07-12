@@ -44,6 +44,11 @@ public class PhoneNumberHelper {
                 || number.equals(CallerInfo.PAYPHONE_NUMBER));
     }
 
+    /** Returns true if it is possible to send an SMS to the given number. */
+    public boolean canSendSmsTo(CharSequence number) {
+        return canPlaceCallsTo(number) && !isVoicemailNumber(number) && !isSipNumber(number);
+    }
+
     /**
      * Returns the string to display for the given phone number.
      *
@@ -75,10 +80,22 @@ public class PhoneNumberHelper {
 
     /** Returns a URI that can be used to place a call to this number. */
     public Uri getCallUri(String number) {
-        if (PhoneNumberUtils.isUriNumber(number)) {
+        if (isVoicemailNumber(number)) {
+            return Uri.parse("voicemail:x");
+        }
+        if (isSipNumber(number)) {
              return Uri.fromParts("sip", number, null);
-         } else {
-             return Uri.fromParts("tel", number, null);
-         }
+        }
+         return Uri.fromParts("tel", number, null);
+     }
+
+    /** Returns true if the given number is the number of the configured voicemail. */
+    public boolean isVoicemailNumber(CharSequence number) {
+        return PhoneNumberUtils.extractNetworkPortion(number.toString()).equals(mVoicemailNumber);
+    }
+
+    /** Returns true if the given number is a SIP address. */
+    public boolean isSipNumber(CharSequence number) {
+        return PhoneNumberUtils.isUriNumber(number.toString());
     }
 }
