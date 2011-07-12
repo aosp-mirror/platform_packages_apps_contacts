@@ -841,6 +841,12 @@ public class PeopleActivity extends ContactsActivity
             intent.setAction(Intent.ACTION_EDIT);
             startActivityForResult(intent, SUBACTIVITY_EDIT_GROUP);
         }
+
+        @Override
+        public void onContactSelected(Uri contactUri) {
+            // Nothing needs to be done here because either quickcontact will be displayed
+            // or activity will take care of selection
+        }
     }
 
     public void startActivityAndForwardResult(final Intent intent) {

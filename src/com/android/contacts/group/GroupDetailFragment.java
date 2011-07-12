@@ -66,6 +66,11 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
          * User decided to go to Edit-Mode
          */
         public void onEditRequested(Uri groupUri);
+
+        /**
+         * Contact is selected and should launch details page
+         */
+        public void onContactSelected(Uri contactUri);
     }
 
     private static final String TAG = "GroupDetailFragment";
@@ -179,7 +184,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
 
         @Override
         public void onContactSelected(Uri contactUri) {
-            // TODO: Launch Quick Contact
+            mListener.onContactSelected(contactUri);
         }
     };
 

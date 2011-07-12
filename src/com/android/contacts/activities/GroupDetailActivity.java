@@ -71,6 +71,11 @@ public class GroupDetailActivity extends ContactsActivity {
             intent.setAction(Intent.ACTION_EDIT);
             startActivity(intent);
         }
+
+        @Override
+        public void onContactSelected(Uri contactUri) {
+            startActivity(new Intent(Intent.ACTION_VIEW, contactUri));
+        }
     };
 
     @Override
