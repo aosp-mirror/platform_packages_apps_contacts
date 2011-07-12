@@ -16,6 +16,8 @@
 
 package com.android.contacts;
 
+import com.android.contacts.calllog.CallDetailHistoryAdapter;
+import com.android.contacts.calllog.CallTypeHelper;
 import com.android.internal.telephony.CallerInfo;
 
 import android.app.ListActivity;
@@ -35,7 +37,6 @@ import android.provider.ContactsContract.PhoneLookup;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.text.format.DateUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +44,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,9 +60,8 @@ public class CallDetailActivity extends ListActivity implements
 
     /** The views representing the details of a phone call. */
     private PhoneCallDetailsViews mPhoneCallDetailsViews;
+    private CallTypeHelper mCallTypeHelper;
     private PhoneCallDetailsHelper mPhoneCallDetailsHelper;
-    private TextView mCallTimeView;
-    private TextView mCallDurationView;
     private View mHomeActionView;
     private ImageView mMainActionView;
     private ImageView mContactBackgroundView;
@@ -72,7 +73,6 @@ public class CallDetailActivity extends ListActivity implements
     /* package */ Resources mResources;
     /** Helper to load contact photos. */
     private ContactPhotoManager mContactPhotoManager;
-    /** Attached to the call action button in the UI. */
 
     static final String[] CALL_LOG_PROJECTION = new String[] {
         CallLog.Calls.DATE,
@@ -115,17 +115,16 @@ public class CallDetailActivity extends ListActivity implements
         mResources = getResources();
 
         mPhoneCallDetailsViews = PhoneCallDetailsViews.fromView(getWindow().getDecorView());
-        mPhoneCallDetailsHelper = new PhoneCallDetailsHelper(this, getResources(),
-                getVoicemailNumber(),
+        mCallTypeHelper = new CallTypeHelper(getResources(),
                 getResources().getDrawable(R.drawable.ic_call_log_list_incoming_call),
                 getResources().getDrawable(R.drawable.ic_call_log_list_outgoing_call),
                 getResources().getDrawable(R.drawable.ic_call_log_list_missed_call),
                 getResources().getDrawable(R.drawable.ic_call_log_list_voicemail));
+        mPhoneCallDetailsHelper = new PhoneCallDetailsHelper(this, getResources(),
+                getVoicemailNumber(), mCallTypeHelper);
         mHomeActionView = findViewById(R.id.action_bar_home);
         mMainActionView = (ImageView) findViewById(R.id.main_action);
         mContactBackgroundView = (ImageView) findViewById(R.id.contact_background);
-        mCallTimeView = (TextView) findViewById(R.id.time);
-        mCallDurationView = (TextView) findViewById(R.id.duration);
         mDefaultCountryIso = ContactsUtils.getCurrentCountryIso(this);
         mContactPhotoManager = ContactPhotoManager.getInstance(this);
         getListView().setOnItemClickListener(this);
@@ -182,19 +181,6 @@ public class CallDetailActivity extends ListActivity implements
                 String countryIso = callCursor.getString(COUNTRY_ISO_COLUMN_INDEX);
                 if (TextUtils.isEmpty(countryIso)) {
                     countryIso = mDefaultCountryIso;
-                }
-                // Pull out string in format [relative], [date]
-                CharSequence dateClause = DateUtils.formatDateRange(this, date, date,
-                        DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE |
-                        DateUtils.FORMAT_SHOW_WEEKDAY | DateUtils.FORMAT_SHOW_YEAR);
-                mCallTimeView.setText(dateClause);
-
-                // Set the duration
-                if (callType == Calls.MISSED_TYPE) {
-                    mCallDurationView.setVisibility(View.GONE);
-                } else {
-                    mCallDurationView.setVisibility(View.VISIBLE);
-                    mCallDurationView.setText(formatDuration(duration));
                 }
 
                 long photoId = 0L;
@@ -303,9 +289,14 @@ public class CallDetailActivity extends ListActivity implements
                     ViewAdapter adapter = new ViewAdapter(this, actions);
                     setListAdapter(adapter);
                 }
+                PhoneCallDetails details = new PhoneCallDetails(mNumber, numberText,
+                        new int[]{ callType }, duration, date, nameText, numberType, numberLabel);
                 mPhoneCallDetailsHelper.setPhoneCallDetails(mPhoneCallDetailsViews,
-                        new PhoneCallDetails(mNumber, numberText, new int[]{ callType }, date,
-                                nameText, numberType, numberLabel), false);
+                        details, false);
+                ListView historyList = (ListView) findViewById(R.id.history);
+                historyList.setAdapter(
+                        new CallDetailHistoryAdapter(this, mInflater, mCallTypeHelper,
+                                    new PhoneCallDetails[]{ details }));
 
                 loadContactPhotos(photoId);
             } else {
@@ -325,19 +316,6 @@ public class CallDetailActivity extends ListActivity implements
     /** Load the contact photos and places them in the corresponding views. */
     private void loadContactPhotos(final long photoId) {
         mContactPhotoManager.loadPhoto(mContactBackgroundView, photoId);
-    }
-
-    private String formatDuration(long elapsedSeconds) {
-        long minutes = 0;
-        long seconds = 0;
-
-        if (elapsedSeconds >= 60) {
-            minutes = elapsedSeconds / 60;
-            elapsedSeconds -= minutes * 60;
-        }
-        seconds = elapsedSeconds;
-
-        return getString(R.string.callDetailsDurationFormat, minutes, seconds);
     }
 
     private String getVoicemailNumber() {

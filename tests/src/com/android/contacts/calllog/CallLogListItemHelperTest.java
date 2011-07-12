@@ -22,6 +22,7 @@ import com.android.contacts.PhoneCallDetailsViews;
 import com.android.internal.telephony.CallerInfo;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -43,6 +44,8 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
     private static final String TEST_FORMATTED_NUMBER = "1-412-255-5555";
     /** A test date value for phone calls. */
     private static final long TEST_DATE = 1300000000;
+    /** A test duration value for phone calls. */
+    private static final long TEST_DURATION = 62300;
     /** A test voicemail number. */
     private static final String TEST_VOICEMAIL_NUMBER = "123";
     /** A drawable to be used for incoming calls. */
@@ -68,9 +71,12 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
     protected void setUp() throws Exception {
         super.setUp();
         Context context = getContext();
+        Resources resources = context.getResources();
+        CallTypeHelper callTypeHelper = new CallTypeHelper(resources,
+                TEST_INCOMING_DRAWABLE, TEST_OUTGOING_DRAWABLE, TEST_MISSED_DRAWABLE,
+                TEST_VOICEMAIL_DRAWABLE);
         PhoneCallDetailsHelper phoneCallDetailsHelper = new PhoneCallDetailsHelper(context,
-                context.getResources(), TEST_VOICEMAIL_NUMBER, TEST_INCOMING_DRAWABLE,
-                TEST_OUTGOING_DRAWABLE, TEST_MISSED_DRAWABLE, TEST_VOICEMAIL_DRAWABLE);
+                resources, TEST_VOICEMAIL_NUMBER, callTypeHelper);
         mHelper = new CallLogListItemHelper(phoneCallDetailsHelper, TEST_CALL_DRAWABLE,
                 TEST_PLAY_DRAWABLE);
         mViews = CallLogListItemViews.createForTest(new QuickContactBadge(context),
@@ -123,13 +129,15 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
     private void setPhoneCallDetailsWithNumber(String number, String formattedNumber) {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(number, formattedNumber, new int[]{ Calls.INCOMING_TYPE },
-                        TEST_DATE),
+                        TEST_DATE, TEST_DURATION),
                 true);
     }
 
     /** Sets the details of a phone call using the specified call type. */
     private void setPhoneCallDetailsWithTypes(int... types) {
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, types, TEST_DATE), true);
+                new PhoneCallDetails(
+                        TEST_NUMBER, TEST_FORMATTED_NUMBER, types, TEST_DATE, TEST_DURATION),
+                true);
     }
 }

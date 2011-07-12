@@ -16,10 +16,12 @@
 
 package com.android.contacts;
 
+import com.android.contacts.calllog.CallTypeHelper;
 import com.android.contacts.util.LocaleTestUtils;
 import com.android.internal.telephony.CallerInfo;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -41,6 +43,8 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     private static final String TEST_VOICEMAIL_NUMBER = "125";
     /** The date of the call log entry. */
     private static final long TEST_DATE = 1300000000;
+    /** A test duration value for phone calls. */
+    private static final long TEST_DURATION = 62300;
     /** The number of the caller/callee in the log entry. */
     private static final String TEST_NUMBER = "14125555555";
     /** The formatted version of {@link #TEST_NUMBER}. */
@@ -63,9 +67,11 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     protected void setUp() throws Exception {
         super.setUp();
         Context context = getContext();
-        mHelper = new PhoneCallDetailsHelper(context, context.getResources(),
-                TEST_VOICEMAIL_NUMBER, TEST_INCOMING_DRAWABLE, TEST_OUTGOING_DRAWABLE,
-                TEST_MISSED_DRAWABLE, TEST_VOICEMAIL_DRAWABLE);
+        Resources resources = context.getResources();
+        CallTypeHelper callTypeHelper = new CallTypeHelper(resources, TEST_INCOMING_DRAWABLE,
+                TEST_OUTGOING_DRAWABLE, TEST_MISSED_DRAWABLE, TEST_VOICEMAIL_DRAWABLE);
+        mHelper = new PhoneCallDetailsHelper(context, resources,
+                TEST_VOICEMAIL_NUMBER, callTypeHelper);
         mViews = PhoneCallDetailsViews.createForTest(new TextView(context),
                 new LinearLayout(context), new TextView(context), new View(context),
                 new TextView(context), new TextView(context));
@@ -204,7 +210,7 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     private void setPhoneCallDetailsWithNumber(String number, String formattedNumber) {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(number, formattedNumber, new int[]{ Calls.INCOMING_TYPE },
-                        TEST_DATE),
+                        TEST_DATE, TEST_DURATION),
                 false);
     }
 
@@ -212,7 +218,7 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     private void setPhoneCallDetailsWithDate(long date) {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER,
-                        new int[]{ Calls.INCOMING_TYPE }, date),
+                        new int[]{ Calls.INCOMING_TYPE }, date, TEST_DURATION),
                 false);
     }
 
@@ -228,7 +234,8 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
 
     private void setPhoneCallDetailsWithCallTypes(boolean useIcons, int... callTypes) {
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, callTypes, TEST_DATE),
+                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, callTypes, TEST_DATE,
+                        TEST_DURATION),
                 useIcons);
     }
 }
