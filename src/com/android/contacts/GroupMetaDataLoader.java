@@ -35,6 +35,8 @@ public final class GroupMetaDataLoader extends CursorLoader {
         Groups.FAVORITES,
         Groups.GROUP_IS_READ_ONLY,
         Groups.DELETED,
+        Groups.ACTION,
+        Groups.ACTION_URI,
     };
 
     public final static int ACCOUNT_NAME = 0;
@@ -45,6 +47,8 @@ public final class GroupMetaDataLoader extends CursorLoader {
     public final static int FAVORITES = 5;
     public final static int IS_READ_ONLY = 6;
     public final static int DELETED = 7;
+    public final static int ACTION = 8;
+    public final static int ACTION_URI = 9;
 
     public GroupMetaDataLoader(Context context, Uri groupUri) {
         super(context, ensureIsGroupUri(groupUri), COLUMNS, Groups.ACCOUNT_TYPE + " NOT NULL AND "

@@ -35,6 +35,7 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -243,6 +244,11 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
             mGroupId = cursor.getLong(GroupMetaDataLoader.GROUP_ID);
             mGroupName = cursor.getString(GroupMetaDataLoader.TITLE);
             updateTitle(mGroupName);
+
+            // TODO: Replace by real button
+            final String action = cursor.getString(GroupMetaDataLoader.ACTION);
+            final String actionUri = cursor.getString(GroupMetaDataLoader.ACTION_URI);
+            Log.d(TAG, "Group open action: " + action + ", uri: " + actionUri);
         }
     }
 
