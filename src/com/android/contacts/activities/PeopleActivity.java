@@ -90,7 +90,6 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListPopupWindow;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -210,38 +209,13 @@ public class PeopleActivity extends ContactsActivity
 
     @Override
     public void onAttachFragment(Fragment fragment) {
-        if (fragment instanceof DefaultContactBrowseListFragment) {
-            mAllFragment = (DefaultContactBrowseListFragment)fragment;
-            mAllFragment.setOnContactListActionListener(new ContactBrowserActionListener());
-            if (!getWindow().hasFeature(Window.FEATURE_ACTION_BAR)) {
-                mAllFragment.setContextMenuAdapter(
-                        new ContactBrowseListContextMenuAdapter(mAllFragment));
-            }
-        } else if (fragment instanceof GroupBrowseListFragment) {
-            mGroupsFragment = (GroupBrowseListFragment) fragment;
-            mGroupsFragment.setListener(new GroupBrowserActionListener());
-        } else if (fragment instanceof ContactDetailFragment) {
-            mContactDetailFragment = (ContactDetailFragment) fragment;
-            mContactDetailFragment.setListener(mContactDetailFragmentListener);
-        } else if (fragment instanceof ContactDetailUpdatesFragment) {
-            mContactDetailUpdatesFragment = (ContactDetailUpdatesFragment) fragment;
-        } else if (fragment instanceof ContactsUnavailableFragment) {
+        if (fragment instanceof ContactsUnavailableFragment) {
+            // This fragment is inflated dynamically, we'll initialize it here in onAttachFragment,
+            // as opposed to configureContentView().
             mContactsUnavailableFragment = (ContactsUnavailableFragment)fragment;
             mContactsUnavailableFragment.setProviderStatusLoader(mProviderStatusLoader);
             mContactsUnavailableFragment.setOnContactsUnavailableActionListener(
                     new ContactsUnavailableFragmentListener());
-        } else if (fragment instanceof ContactLoaderFragment) {
-            mContactDetailLoaderFragment = (ContactLoaderFragment) fragment;
-            mContactDetailLoaderFragment.setListener(mContactDetailLoaderFragmentListener);
-        } else if (fragment instanceof GroupDetailFragment) {
-            mGroupDetailFragment = (GroupDetailFragment) fragment;
-            mGroupDetailFragment.setListener(mGroupDetailFragmentListener);
-            mGroupDetailFragment.setQuickContact(PhoneCapabilityTester.isUsingTwoPanes(this));
-        } else if (fragment instanceof StrequentContactListFragment) {
-            mFavoritesFragment = (StrequentContactListFragment) fragment;
-            mFavoritesFragment.setListener(mFavoritesFragmentListener);
-            mFavoritesFragment.setDisplayType(DisplayType.STARRED_ONLY);
-            mFavoritesFragment.setQuickContact(PhoneCapabilityTester.isUsingTwoPanes(this));
         }
     }
 
@@ -275,39 +249,6 @@ public class PeopleActivity extends ContactsActivity
             return;
         }
 
-        if (createContentView) {
-            setContentView(R.layout.people_activity);
-
-            mFavoritesView = findViewById(R.id.favorites_view);
-            mDetailsView = findViewById(R.id.details_view);
-            mBrowserView = findViewById(R.id.browse_view);
-
-            final FragmentManager fragmentManager = getFragmentManager();
-            mFavoritesFragment = (StrequentContactListFragment) fragmentManager
-                    .findFragmentById(R.id.favorites_fragment);
-            mFrequentFragment = (StrequentContactListFragment) fragmentManager
-                    .findFragmentById(R.id.frequent_fragment);
-            mAllFragment = (DefaultContactBrowseListFragment) fragmentManager
-                    .findFragmentById(R.id.all_fragment);
-            mGroupsFragment = (GroupBrowseListFragment) fragmentManager
-                    .findFragmentById(R.id.groups_fragment);
-            // Hide all tabs (the current tab will later be reshown once a tab is selected)
-            final FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.hide(mAllFragment);
-            transaction.hide(mGroupsFragment);
-
-            if (mFrequentFragment != null) {
-                mFrequentFragment.setDisplayType(DisplayType.FREQUENT_ONLY);
-            }
-            if (mContactDetailFragment != null) {
-                transaction.hide(mContactDetailFragment);
-            }
-            if (mGroupDetailFragment != null) {
-                transaction.hide(mGroupDetailFragment);
-            }
-            transaction.commit();
-        }
-
         if (mRequest.getActionCode() == ContactsRequest.ACTION_VIEW_CONTACT
                 && !PhoneCapabilityTester.isUsingTwoPanes(this)) {
             redirect = new Intent(this, ContactDetailActivity.class);
@@ -316,6 +257,65 @@ public class PeopleActivity extends ContactsActivity
             startActivity(redirect);
             finish();
             return;
+        }
+
+        if (createContentView) {
+            setContentView(R.layout.people_activity);
+
+            final FragmentManager fragmentManager = getFragmentManager();
+
+            // Hide all tabs (the current tab will later be reshown once a tab is selected)
+            final FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+            // Common fragments that exist on both 1 and 2 panes.
+            mFavoritesFragment = getFragment(R.id.favorites_fragment);
+            mFavoritesFragment.setListener(mFavoritesFragmentListener);
+            mFavoritesFragment.setDisplayType(DisplayType.STARRED_ONLY);
+
+            mAllFragment = getFragment(R.id.all_fragment);
+            mAllFragment.setOnContactListActionListener(new ContactBrowserActionListener());
+            if (!getWindow().hasFeature(Window.FEATURE_ACTION_BAR)) {
+                mAllFragment.setContextMenuAdapter(
+                        new ContactBrowseListContextMenuAdapter(mAllFragment));
+            }
+
+            mGroupsFragment = getFragment(R.id.groups_fragment);
+            mGroupsFragment.setListener(new GroupBrowserActionListener());
+
+            transaction.hide(mAllFragment);
+            transaction.hide(mGroupsFragment);
+
+            if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
+                mFavoritesFragment.setQuickContact(true);
+
+                // Container views for fragments
+                mFavoritesView = getView(R.id.favorites_view);
+                mDetailsView = getView(R.id.details_view);
+                mBrowserView = getView(R.id.browse_view);
+
+                // 2-pane only fragments
+                mFrequentFragment = getFragment(R.id.frequent_fragment);
+                mFrequentFragment.setListener(mFavoritesFragmentListener);
+                mFrequentFragment.setDisplayType(DisplayType.FREQUENT_ONLY);
+                mFrequentFragment.setQuickContact(true);
+
+                mContactDetailFragment = getFragment(R.id.about_fragment);
+                mContactDetailFragment.setListener(mContactDetailFragmentListener);
+
+                mContactDetailUpdatesFragment = getFragment(R.id.updates_fragment);
+
+                mContactDetailLoaderFragment = getFragment(R.id.contact_detail_loader_fragment);
+                mContactDetailLoaderFragment.setListener(mContactDetailLoaderFragmentListener);
+
+                mGroupDetailFragment = getFragment(R.id.group_detail_fragment);
+                mGroupDetailFragment.setListener(mGroupDetailFragmentListener);
+                mGroupDetailFragment.setQuickContact(true);
+
+                transaction.hide(mContactDetailFragment);
+                transaction.hide(mGroupDetailFragment);
+            }
+            transaction.commit();
+            fragmentManager.executePendingTransactions();
         }
 
         setTitle(mRequest.getActivityTitle());
