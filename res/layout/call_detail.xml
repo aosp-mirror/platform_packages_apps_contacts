@@ -87,42 +87,12 @@
         android:layout_below="@id/contact_background"
         android:background="?attr/call_log_primary_background_color"
     />
-    <RelativeLayout
+    <ListView
         android:id="@+id/history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@android:id/list"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        android:paddingLeft="80dp"
         android:background="?attr/call_log_secondary_background_color"
-    >
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:textColor="?attr/call_log_secondary_text_color"
-        />
-        <TextView
-            android:id="@+id/duration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/time"
-            android:layout_alignLeft="@id/time"
-            android:textColor="?attr/call_log_secondary_text_color"
-        />
-        <ImageView
-            android:id="@+id/delete"
-            android:layout_width="?attr/call_detail_action_icon_size"
-            android:layout_height="?attr/call_detail_action_icon_size"
-            android:layout_alignParentRight="true"
-            android:scaleType="center"
-            android:gravity="center_vertical"
-            android:src="@android:drawable/sym_action_call"
-            android:visibility="gone"
-        />
-    </RelativeLayout>
+    />
 </RelativeLayout>

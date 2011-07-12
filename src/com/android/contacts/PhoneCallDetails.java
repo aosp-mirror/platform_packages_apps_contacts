@@ -35,6 +35,8 @@ public class PhoneCallDetails {
     public final int[] callTypes;
     /** The date of the call, in milliseconds since the epoch. */
     public final long date;
+    /** The duration of the call in milliseconds, or 0 for missed calls. */
+    public final long duration;
     /** The name of the contact, or the empty string. */
     public final CharSequence name;
     /** The type of phone, e.g., {@link Phone#TYPE_HOME}, 0 if not available. */
@@ -44,17 +46,18 @@ public class PhoneCallDetails {
 
     /** Create the details for a call with a number not associated with a contact. */
     public PhoneCallDetails(CharSequence number, CharSequence formattedNumber, int[] callTypes,
-            long date) {
-        this(number, formattedNumber, callTypes, date, "", 0, "");
+            long date, long duration) {
+        this(number, formattedNumber, callTypes, date, duration, "", 0, "");
     }
 
     /** Create the details for a call with a number associated with a contact. */
     public PhoneCallDetails(CharSequence number, CharSequence formattedNumber, int[] callTypes,
-            long date, CharSequence name, int numberType, CharSequence numberLabel) {
+            long date, long duration, CharSequence name, int numberType, CharSequence numberLabel) {
         this.number = number;
         this.formattedNumber = formattedNumber;
         this.callTypes = callTypes;
         this.date = date;
+        this.duration = duration;
         this.name = name;
         this.numberType = numberType;
         this.numberLabel = numberLabel;

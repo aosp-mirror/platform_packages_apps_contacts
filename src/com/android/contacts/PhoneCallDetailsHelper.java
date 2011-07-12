@@ -16,14 +16,13 @@
 
 package com.android.contacts;
 
+import com.android.contacts.calllog.CallTypeHelper;
 import com.android.contacts.format.FormatUtils;
 import com.android.internal.telephony.CallerInfo;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.PhoneNumberUtils;
 import android.text.Spanned;
@@ -39,24 +38,9 @@ public class PhoneCallDetailsHelper {
     private final Context mContext;
     private final Resources mResources;
     private final String mVoicemailNumber;
-    /** Icon for incoming calls. */
-    private final Drawable mIncomingDrawable;
-    /** Icon for outgoing calls. */
-    private final Drawable mOutgoingDrawable;
-    /** Icon for missed calls. */
-    private final Drawable mMissedDrawable;
-    /** Icon for voicemails. */
-    private final Drawable mVoicemailDrawable;
-    /** Name used to identify incoming calls. */
-    private final String mIncomingName;
-    /** Name used to identify outgoing calls. */
-    private final String mOutgoingName;
-    /** Name used to identify missed calls. */
-    private final String mMissedName;
-    /** Name used to identify voicemail calls. */
-    private final String mVoicemailName;
     /** The injected current time in milliseconds since the epoch. Used only by tests. */
     private Long mCurrentTimeMillisForTest;
+    private final CallTypeHelper mCallTypeHelper;
 
     /**
      * Creates a new instance of the helper.
@@ -66,20 +50,11 @@ public class PhoneCallDetailsHelper {
      * @param resources used to look up strings
      */
     public PhoneCallDetailsHelper(Context context, Resources resources, String voicemailNumber,
-            Drawable incomingDrawable, Drawable outgoingDrawable, Drawable missedDrawable,
-            Drawable voicemailDrawable) {
+            CallTypeHelper callTypeHelper) {
         mContext = context;
         mResources = resources;
         mVoicemailNumber = voicemailNumber;
-        mIncomingDrawable = incomingDrawable;
-        mOutgoingDrawable = outgoingDrawable;
-        mMissedDrawable = missedDrawable;
-        mVoicemailDrawable = voicemailDrawable;
-        // Cache these values so that we do not need to look them up each time.
-        mIncomingName = mResources.getString(R.string.type_incoming);
-        mOutgoingName = mResources.getString(R.string.type_outgoing);
-        mMissedName = mResources.getString(R.string.type_missed);
-        mVoicemailName = mResources.getString(R.string.type_voicemail);
+        mCallTypeHelper = callTypeHelper;
     }
 
     /** Fills the call details views with content. */
@@ -90,7 +65,7 @@ public class PhoneCallDetailsHelper {
             int count = details.callTypes.length;
             for (int callType : details.callTypes) {
                 ImageView callTypeImage = new ImageView(mContext);
-                callTypeImage.setImageDrawable(getCallTypeDrawable(callType));
+                callTypeImage.setImageDrawable(mCallTypeHelper.getCallTypeDrawable(callType));
                 views.callTypeIcons.addView(callTypeImage);
             }
             views.callTypeIcons.setVisibility(View.VISIBLE);
@@ -101,7 +76,7 @@ public class PhoneCallDetailsHelper {
             // Use the name of the first call type.
             // TODO: We should update this to handle the text for multiple calls as well.
             int callType = details.callTypes[0];
-            views.callTypeText.setText(getCallTypeText(callType));
+            views.callTypeText.setText(mCallTypeHelper.getCallTypeText(callType));
             views.callTypeIcons.removeAllViews();
 
             views.callTypeText.setVisibility(View.VISIBLE);
@@ -152,46 +127,6 @@ public class PhoneCallDetailsHelper {
             views.numberView.setVisibility(View.VISIBLE);
         } else {
             views.numberView.setVisibility(View.GONE);
-        }
-    }
-
-    /** Returns the text used to represent the given call type. */
-    private String getCallTypeText(int callType) {
-        switch (callType) {
-            case Calls.INCOMING_TYPE:
-                return mIncomingName;
-
-            case Calls.OUTGOING_TYPE:
-                return mOutgoingName;
-
-            case Calls.MISSED_TYPE:
-                return mMissedName;
-
-            case Calls.VOICEMAIL_TYPE:
-                return mVoicemailName;
-
-            default:
-                throw new IllegalArgumentException("invalid call type: " + callType);
-        }
-    }
-
-    /** Returns the drawable of the icon associated with the given call type. */
-    private Drawable getCallTypeDrawable(int callType) {
-        switch (callType) {
-            case Calls.INCOMING_TYPE:
-                return mIncomingDrawable;
-
-            case Calls.OUTGOING_TYPE:
-                return mOutgoingDrawable;
-
-            case Calls.MISSED_TYPE:
-                return mMissedDrawable;
-
-            case Calls.VOICEMAIL_TYPE:
-                return mVoicemailDrawable;
-
-            default:
-                throw new IllegalArgumentException("invalid call type: " + callType);
         }
     }
 

@@ -35,6 +35,7 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabaseCorruptException;
@@ -64,7 +65,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
@@ -261,23 +261,25 @@ public class CallLogFragment extends ListFragment
             mRequests = new LinkedList<CallerInfoQuery>();
             mPreDrawListener = null;
 
-            Drawable incomingDrawable = getResources().getDrawable(
+            Resources resources = getResources();
+            Drawable incomingDrawable = resources.getDrawable(
                     R.drawable.ic_call_log_list_incoming_call);
-            Drawable outgoingDrawable = getResources().getDrawable(
+            Drawable outgoingDrawable = resources.getDrawable(
                     R.drawable.ic_call_log_list_outgoing_call);
-            Drawable missedDrawable = getResources().getDrawable(
+            Drawable missedDrawable = resources.getDrawable(
                     R.drawable.ic_call_log_list_missed_call);
-            Drawable voicemailDrawable = getResources().getDrawable(
+            Drawable voicemailDrawable = resources.getDrawable(
                     R.drawable.ic_call_log_list_voicemail);
-            Drawable callDrawable = getResources().getDrawable(
+            Drawable callDrawable = resources.getDrawable(
                     R.drawable.ic_call_log_list_action_call);
-            Drawable playDrawable = getResources().getDrawable(
+            Drawable playDrawable = resources.getDrawable(
                     R.drawable.ic_call_log_list_action_play);
 
             mContactPhotoManager = ContactPhotoManager.getInstance(getActivity());
-            PhoneCallDetailsHelper phoneCallDetailsHelper = new PhoneCallDetailsHelper(
-                    getActivity(), getResources(), mVoiceMailNumber, incomingDrawable,
+            CallTypeHelper callTypeHelper = new CallTypeHelper(resources, incomingDrawable,
                     outgoingDrawable, missedDrawable, voicemailDrawable);
+            PhoneCallDetailsHelper phoneCallDetailsHelper = new PhoneCallDetailsHelper(
+                    getActivity(), resources, mVoiceMailNumber, callTypeHelper);
             mCallLogViewsHelper = new CallLogListItemHelper(phoneCallDetailsHelper, callDrawable,
                     playDrawable);
         }
@@ -640,6 +642,7 @@ public class CallLogFragment extends ListFragment
 
             String number = c.getString(CallLogQuery.NUMBER);
             long date = c.getLong(CallLogQuery.DATE);
+            long duration = c.getLong(CallLogQuery.DURATION);
             final String formattedNumber;
             String countryIso = c.getString(CallLogQuery.COUNTRY_ISO);
             // Store away the number so we can call it directly if you click on the call icon
@@ -699,10 +702,10 @@ public class CallLogFragment extends ListFragment
             int[] callTypes = getCallTypes(c, count);
             final PhoneCallDetails details;
             if (TextUtils.isEmpty(name)) {
-                details = new PhoneCallDetails(number, formattedNumber, callTypes, date);
+                details = new PhoneCallDetails(number, formattedNumber, callTypes, date, duration);
             } else {
-                details = new PhoneCallDetails(number, formattedNumber, callTypes, date, name,
-                        ntype, label);
+                details = new PhoneCallDetails(number, formattedNumber, callTypes, date, duration,
+                        name, ntype, label);
             }
             mCallLogViewsHelper.setPhoneCallDetails(views, details , true);
             if (views.photoView != null) {
