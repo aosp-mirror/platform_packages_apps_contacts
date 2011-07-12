@@ -312,7 +312,7 @@ public class ContactLoaderTest extends LoaderTestCase {
                         "mockAccountName", "mockAccountType", 0,
                         1, 0, "sync1",
                         "sync2", "sync3", "sync4",
-                        0, 0, 0,
+                        0, 0,
 
                         dataId,
 
