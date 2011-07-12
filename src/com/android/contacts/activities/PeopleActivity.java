@@ -20,6 +20,7 @@ import com.android.contacts.ContactLoader;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
+import com.android.contacts.activities.ActionBarAdapter.TabState;
 import com.android.contacts.detail.ContactDetailFragment;
 import com.android.contacts.detail.ContactDetailLayoutController;
 import com.android.contacts.detail.ContactDetailTabCarousel;
@@ -60,8 +61,6 @@ import com.android.contacts.widget.ContextMenuAdapter;
 
 import android.accounts.Account;
 import android.app.ActionBar;
-import android.app.ActionBar.Tab;
-import android.app.ActionBar.TabListener;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -69,7 +68,6 @@ import android.app.FragmentTransaction;
 import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -166,35 +164,6 @@ public class PeopleActivity extends ContactsActivity
     private ContactDetailLayoutController mContactDetailLayoutController;
 
     private final Handler mHandler = new Handler();
-
-    /**
-     * TODO: Use ViewPager so that tabs can be swiped left and right. Figure out how to use the
-     * support library in our app.
-     */
-    private final TabListener mTabListener = new TabListener() {
-        @Override
-        public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-            hideFragmentOnTabUnselect((TabState) tab.getTag(), ft);
-        }
-
-        @Override
-        public void onTabSelected(Tab tab, FragmentTransaction ft) {
-            final TabState tabState = (TabState) tab.getTag();
-            setSelectedTab(tabState);
-            showFragmentOnTabSelect(tabState, ft);
-            invalidateOptionsMenu();
-        }
-
-        @Override
-        public void onTabReselected(Tab tab, FragmentTransaction ft) {
-        }
-    };
-
-    private enum TabState {
-        FAVORITES, ALL, GROUPS
-    }
-
-    private TabState mSelectedTab;
 
     public PeopleActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
@@ -330,9 +299,11 @@ public class PeopleActivity extends ContactsActivity
         }
 
         setTitle(mRequest.getActivityTitle());
-        ActionBar actionBar = getActionBar();
-        mActionBarAdapter = new ActionBarAdapter(this, this);
-        mActionBarAdapter.onCreate(savedState, mRequest, getActionBar());
+        if (createContentView) {
+            mActionBarAdapter = new ActionBarAdapter(this, this, getActionBar());
+        }
+        mActionBarAdapter.initialize(savedState, mRequest);
+
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         ContactDetailTabCarousel tabCarousel = (ContactDetailTabCarousel)
@@ -342,120 +313,15 @@ public class PeopleActivity extends ContactsActivity
                 mContactDetailFragmentListener);
 
         if (createContentView) {
-            actionBar.removeAllTabs();
-            Tab favoritesTab = actionBar.newTab();
-            favoritesTab.setTag(TabState.FAVORITES);
-            favoritesTab.setText(getString(R.string.contactsFavoritesLabel));
-            favoritesTab.setTabListener(mTabListener);
-            actionBar.addTab(favoritesTab);
-
-            Tab allTab = actionBar.newTab();
-            allTab.setTag(TabState.ALL);
-            allTab.setText(getString(R.string.contactsAllLabel));
-            allTab.setTabListener(mTabListener);
-            actionBar.addTab(allTab);
-
-            Tab groupsTab = actionBar.newTab();
-            groupsTab.setTag(TabState.GROUPS);
-            groupsTab.setText(getString(R.string.contactsGroupsLabel));
-            groupsTab.setTabListener(mTabListener);
-            actionBar.addTab(groupsTab);
-            actionBar.setDisplayShowTitleEnabled(true);
-
-            TypedArray a = obtainStyledAttributes(null, R.styleable.ActionBarHomeIcon);
-            boolean showHomeIcon = a.getBoolean(R.styleable.ActionBarHomeIcon_show_home_icon, true);
-            actionBar.setDisplayShowHomeEnabled(showHomeIcon);
-
+            // TODO Is the createContentView test really necessary?
             invalidateOptionsMenuIfNeeded();
         }
 
         configureFragments(savedState == null);
     }
 
-    private void hideFragmentOnTabUnselect(TabState newTabState, FragmentTransaction ft) {
-        switch (newTabState) {
-            case FAVORITES: {
-                ft.hide(mFavoritesFragment);
-                if (mFrequentFragment != null) {
-                    ft.hide(mFrequentFragment);
-                }
-                break;
-            }
-            case ALL: {
-                ft.hide(mAllFragment);
-                if (mContactDetailFragment != null) {
-                    ft.hide(mContactDetailFragment);
-                }
-                break;
-            }
-            case GROUPS: {
-                ft.hide(mGroupsFragment);
-                if (mGroupDetailFragment != null) {
-                    ft.hide(mGroupDetailFragment);
-                }
-                break;
-            }
-            default: {
-                throw new IllegalStateException("Unexpected tab state: " + newTabState);
-            }
-        }
-    }
-
-    private void showFragmentOnTabSelect(TabState newTabState, FragmentTransaction ft) {
-        switch (newTabState) {
-            case FAVORITES: {
-                ft.show(mFavoritesFragment);
-                if (mFrequentFragment != null) {
-                    ft.show(mFrequentFragment);
-                }
-                break;
-            }
-            case ALL: {
-                ft.show(mAllFragment);
-                if (mContactDetailFragment != null) {
-                    ft.show(mContactDetailFragment);
-                }
-                break;
-            }
-            case GROUPS: {
-                ft.show(mGroupsFragment);
-                if (mGroupDetailFragment != null) {
-                    ft.show(mGroupDetailFragment);
-                }
-                break;
-            }
-            default: {
-                throw new IllegalStateException("Unexpected tab state: " + newTabState);
-            }
-        }
-    }
-
-    private void setSelectedTab(TabState tab) {
-        mSelectedTab = tab;
-
-        if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
-            switch (mSelectedTab) {
-                case FAVORITES:
-                    mFavoritesView.setVisibility(View.VISIBLE);
-                    mBrowserView.setVisibility(View.GONE);
-                    mDetailsView.setVisibility(View.GONE);
-                    break;
-                case GROUPS:
-                case ALL:
-                    mFavoritesView.setVisibility(View.GONE);
-                    mBrowserView.setVisibility(View.VISIBLE);
-                    mDetailsView.setVisibility(View.VISIBLE);
-                    break;
-            }
-        }
-    }
-
     @Override
     protected void onPause() {
-        if (mActionBarAdapter != null) {
-            mActionBarAdapter.setListener(null);
-        }
-
         mOptionsMenuContactsAvailable = false;
 
         mProviderStatus = -1;
@@ -466,17 +332,24 @@ public class PeopleActivity extends ContactsActivity
     @Override
     protected void onResume() {
         super.onResume();
-        if (mActionBarAdapter != null) {
-            mActionBarAdapter.setListener(this);
-        }
         mProviderStatusLoader.setProviderStatusListener(this);
         updateFragmentVisibility();
+
+        // Re-register the listener, which may have been cleared when onSaveInstanceState was
+        // called.  See also: onSaveInstanceState
+        mActionBarAdapter.setListener(this);
     }
 
     @Override
     protected void onStart() {
         mContactListFilterController.onStart();
         super.onStart();
+    }
+
+    @Override
+    protected void onDestroy() {
+        mActionBarAdapter.setListener(null);
+        super.onDestroy();
     }
 
     private void configureFragments(boolean fromRequest) {
@@ -503,7 +376,7 @@ public class PeopleActivity extends ContactsActivity
                     break;
                 case ContactsRequest.ACTION_VIEW_CONTACT:
                     if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
-                        getActionBar().setSelectedNavigationItem(TabState.ALL.ordinal());
+                        mActionBarAdapter.setCurrentTab(TabState.ALL);
                     }
             }
 
@@ -562,39 +435,84 @@ public class PeopleActivity extends ContactsActivity
     public void onAction(Action action) {
         switch (action) {
             case START_SEARCH_MODE:
-                // Checking if multi fragments are being displayed
-                if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
-                    mFavoritesView.setVisibility(View.GONE);
-                    mBrowserView.setVisibility(View.VISIBLE);
-                    mDetailsView.setVisibility(View.VISIBLE);
-                }
-                // Bring the contact list fragment (and detail fragment if applicable) to the front
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.show(mAllFragment);
-                if (mContactDetailFragment != null) ft.show(mContactDetailFragment);
-                ft.commit();
                 clearSearch();
+                updateFragmentsVisibility();
                 break;
             case STOP_SEARCH_MODE:
-                // Refresh the fragments because search mode was using them to display search
-                // results.
                 clearSearch();
-
-                // If the last selected tab was not the "All contacts" tab, then hide these
-                // fragments because we need to show favorites or groups.
-                if (mSelectedTab != null && !mSelectedTab.equals(TabState.ALL)) {
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.hide(mAllFragment);
-                    if (mContactDetailFragment != null) transaction.hide(mContactDetailFragment);
-                    transaction.commit();
-                }
-                if (mSelectedTab != null) setSelectedTab(mSelectedTab);
+                updateFragmentsVisibility();
                 break;
             case CHANGE_SEARCH_QUERY:
                 loadSearch(mActionBarAdapter.getQueryString());
                 break;
             default:
                 throw new IllegalStateException("Unkonwn ActionBarAdapter action: " + action);
+        }
+    }
+
+    @Override
+    public void onSelectedTabChanged() {
+        updateFragmentsVisibility();
+    }
+
+    /**
+     * Updates the fragment/view visibility according to the current mode, such as
+     * {@link ActionBarAdapter#isSearchMode()} and {@link ActionBarAdapter#getCurrentTab()}.
+     */
+    private void updateFragmentsVisibility() {
+        TabState tab = mActionBarAdapter.getCurrentTab();
+
+        // If in search mode, we use the all list + contact details to show the result.
+        if (mActionBarAdapter.isSearchMode()) {
+            tab = TabState.ALL;
+        }
+        if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
+            switch (tab) {
+                case FAVORITES:
+                    mFavoritesView.setVisibility(View.VISIBLE);
+                    mBrowserView.setVisibility(View.GONE);
+                    mDetailsView.setVisibility(View.GONE);
+                    break;
+                case GROUPS:
+                case ALL:
+                    mFavoritesView.setVisibility(View.GONE);
+                    mBrowserView.setVisibility(View.VISIBLE);
+                    mDetailsView.setVisibility(View.VISIBLE);
+                    break;
+            }
+        }
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+
+        switch (tab) {
+            case FAVORITES:
+                showFragment(ft, mFavoritesFragment);
+                showFragment(ft, mFrequentFragment);
+                hideFragment(ft, mAllFragment);
+                hideFragment(ft, mContactDetailFragment);
+                hideFragment(ft, mGroupsFragment);
+                hideFragment(ft, mGroupDetailFragment);
+                break;
+            case ALL:
+                hideFragment(ft, mFavoritesFragment);
+                hideFragment(ft, mFrequentFragment);
+                showFragment(ft, mAllFragment);
+                showFragment(ft, mContactDetailFragment);
+                hideFragment(ft, mGroupsFragment);
+                hideFragment(ft, mGroupDetailFragment);
+                break;
+            case GROUPS:
+                hideFragment(ft, mFavoritesFragment);
+                hideFragment(ft, mFrequentFragment);
+                hideFragment(ft, mAllFragment);
+                hideFragment(ft, mContactDetailFragment);
+                showFragment(ft, mGroupsFragment);
+                showFragment(ft, mGroupDetailFragment);
+                break;
+        }
+        if (!ft.isEmpty()) {
+            ft.commit();
+            fragmentManager.executePendingTransactions();
         }
     }
 
@@ -1034,7 +952,7 @@ public class PeopleActivity extends ContactsActivity
                 searchMenu.setVisible(false); // Don't show the search menu in search mode.
             }
         } else {
-            switch (mSelectedTab) {
+            switch (mActionBarAdapter.getCurrentTab()) {
                 case FAVORITES:
                     // TODO: Fall through until we determine what the menu items should be for
                     // this tab
@@ -1283,21 +1201,21 @@ public class PeopleActivity extends ContactsActivity
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(KEY_SEARCH_MODE, mSearchMode);
-        if (mActionBarAdapter != null) {
-            mActionBarAdapter.onSaveInstanceState(outState);
-        }
+        mActionBarAdapter.onSaveInstanceState(outState);
         if (mContactDetailLayoutController != null) {
             mContactDetailLayoutController.onSaveInstanceState(outState);
         }
+
+        // Clear the listener to make sure we don't get callbacks after onSaveInstanceState,
+        // in order to avoid doing fragment transactions after it.
+        // TODO Figure out a better way to deal with the issue.
+        mActionBarAdapter.setListener(null);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle inState) {
         super.onRestoreInstanceState(inState);
         mSearchMode = inState.getBoolean(KEY_SEARCH_MODE);
-        if (mActionBarAdapter != null) {
-            mActionBarAdapter.onRestoreInstanceState(inState);
-        }
         if (mContactDetailLayoutController != null) {
             mContactDetailLayoutController.onRestoreInstanceState(inState);
         }

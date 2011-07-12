@@ -22,7 +22,10 @@ import com.android.contacts.list.ContactsRequest;
 
 import android.app.ActionBar;
 import android.app.ActionBar.LayoutParams;
+import android.app.ActionBar.Tab;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -30,6 +33,7 @@ import android.view.View;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
 import android.widget.SearchView.OnQueryTextListener;
+import android.widget.TabHost.OnTabChangeListener;
 
 /**
  * Adapter for the action bar at the top of the Contacts activity.
@@ -42,6 +46,12 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         }
 
         void onAction(Action action);
+
+        /**
+         * Called when the user selects a tab.  The new tab can be obtained using
+         * {@link #getCurrentTab}.
+         */
+        void onSelectedTabChanged();
     }
 
     private static final String EXTRA_KEY_SEARCH_MODE = "navBar.searchMode";
@@ -59,27 +69,33 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
 
     private Listener mListener;
 
-    private ActionBar mActionBar;
+    private final ActionBar mActionBar;
+    private final MyTabListener mTabListener = new MyTabListener();
 
+    public enum TabState {
+        FAVORITES, ALL, GROUPS;
 
-    public ActionBarAdapter(Context context, Listener listener) {
-        mContext = context;
-        mListener = listener;
-        mSearchLabelText = mContext.getString(R.string.search_label);
-        mAlwaysShowSearchView = mContext.getResources().getBoolean(R.bool.always_show_search_view);
+        public static TabState fromInt(int value) {
+            switch (value) {
+                case 0:
+                    return FAVORITES;
+                case 1:
+                    return ALL;
+                case 2:
+                    return GROUPS;
+            }
+            throw new IllegalArgumentException("Invalid value: " + value);
+        }
     }
 
-    public void onCreate(Bundle savedState, ContactsRequest request, ActionBar actionBar) {
-        mActionBar = actionBar;
-        mQueryString = null;
+    private TabState mCurrentTab = TabState.FAVORITES;
 
-        if (savedState != null) {
-            mSearchMode = savedState.getBoolean(EXTRA_KEY_SEARCH_MODE);
-            mQueryString = savedState.getString(EXTRA_KEY_QUERY);
-        } else {
-            mSearchMode = request.isSearchMode();
-            mQueryString = request.getQueryString();
-        }
+    public ActionBarAdapter(Context context, Listener listener, ActionBar actionBar) {
+        mContext = context;
+        mListener = listener;
+        mActionBar = actionBar;
+        mSearchLabelText = mContext.getString(R.string.search_label);
+        mAlwaysShowSearchView = mContext.getResources().getBoolean(R.bool.always_show_search_view);
 
         // Set up search view.
         View customSearchView = LayoutInflater.from(mContext).inflate(R.layout.custom_action_bar,
@@ -97,11 +113,84 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         mSearchView.setQuery(mQueryString, false);
         mActionBar.setCustomView(customSearchView, layoutParams);
 
+        mActionBar.setDisplayShowTitleEnabled(true);
+
+        // TODO Just use a boolean resource instead of styles.
+        TypedArray array = mContext.obtainStyledAttributes(null, R.styleable.ActionBarHomeIcon);
+        boolean showHomeIcon = array.getBoolean(R.styleable.ActionBarHomeIcon_show_home_icon, true);
+        array.recycle();
+        mActionBar.setDisplayShowHomeEnabled(showHomeIcon);
+
+        addTab(TabState.FAVORITES, mContext.getString(R.string.contactsFavoritesLabel));
+        addTab(TabState.ALL, mContext.getString(R.string.contactsAllLabel));
+        addTab(TabState.GROUPS, mContext.getString(R.string.contactsGroupsLabel));
+    }
+
+    public void initialize(Bundle savedState, ContactsRequest request) {
+        if (savedState == null) {
+            mSearchMode = request.isSearchMode();
+            mQueryString = request.getQueryString();
+        } else {
+            mSearchMode = savedState.getBoolean(EXTRA_KEY_SEARCH_MODE);
+            mQueryString = savedState.getString(EXTRA_KEY_QUERY);
+
+            // Just set to the field here.  The listener will be notified by update().
+            mCurrentTab = TabState.fromInt(savedState.getInt(EXTRA_KEY_SELECTED_TAB));
+        }
         update();
     }
 
     public void setListener(Listener listener) {
         mListener = listener;
+    }
+
+    private void addTab(TabState tabState, String text) {
+        final Tab tab = mActionBar.newTab();
+        tab.setTag(tabState);
+        tab.setText(text);
+        tab.setTabListener(mTabListener);
+        mActionBar.addTab(tab);
+    }
+
+    private class MyTabListener implements ActionBar.TabListener {
+        /**
+         * If true, it won't call {@link #setCurrentTab} in {@link #onTabSelected}.
+         * This flag is used when we want to programmatically update the current tab without
+         * {@link #onTabSelected} getting called.
+         */
+        public boolean mIgnoreTabSelected;
+
+        @Override public void onTabReselected(Tab tab, FragmentTransaction ft) { }
+        @Override public void onTabUnselected(Tab tab, FragmentTransaction ft) { }
+
+        @Override public void onTabSelected(Tab tab, FragmentTransaction ft) {
+            if (!mIgnoreTabSelected) {
+                setCurrentTab((TabState)tab.getTag());
+            }
+        }
+    }
+
+    /**
+     * Change the current tab, and notify the listener.
+     */
+    public void setCurrentTab(TabState tab) {
+        if (tab == null) throw new NullPointerException();
+        if (tab == mCurrentTab) {
+            return;
+        }
+        mCurrentTab = tab;
+
+        int index = mCurrentTab.ordinal();
+        if ((mActionBar.getNavigationMode() == ActionBar.NAVIGATION_MODE_TABS)
+                && (index != mActionBar.getSelectedNavigationIndex())) {
+            mActionBar.setSelectedNavigationItem(index);
+        }
+
+        if (mListener != null) mListener.onSelectedTabChanged();
+    }
+
+    public TabState getCurrentTab() {
+        return mCurrentTab;
     }
 
     public boolean isSearchMode() {
@@ -134,7 +223,7 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         }
     }
 
-    public void update() {
+    private void update() {
         if (mSearchMode) {
             mActionBar.setDisplayShowCustomEnabled(true);
             if (mAlwaysShowSearchView) {
@@ -144,16 +233,32 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
                 // Phone -- search view gets focus
                 setFocusOnSearchView();
             }
-            mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+            if (mActionBar.getNavigationMode() != ActionBar.NAVIGATION_MODE_STANDARD) {
+                mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+            }
             if (mListener != null) {
                 mListener.onAction(Action.START_SEARCH_MODE);
             }
         } else {
             mActionBar.setDisplayShowCustomEnabled(mAlwaysShowSearchView);
-            mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+            if (mActionBar.getNavigationMode() != ActionBar.NAVIGATION_MODE_TABS) {
+                // setNavigationMode will trigger onTabSelected() with the tab which was previously
+                // selected.
+                // The issue is that when we're first switching to the tab navigation mode after
+                // screen orientation changes, onTabSelected() will get called with the first tab
+                // (i.e. favorite), which would results in mCurrentTab getting set to FAVORITES and
+                // we'd lose restored tab.
+                // So let's just disable the callback here temporarily.  We'll notify the listener
+                // after this anyway.
+                mTabListener.mIgnoreTabSelected = true;
+                mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+                mActionBar.setSelectedNavigationItem(mCurrentTab.ordinal());
+                mTabListener.mIgnoreTabSelected = false;
+            }
             mActionBar.setTitle(null);
             if (mListener != null) {
                 mListener.onAction(Action.STOP_SEARCH_MODE);
+                mListener.onSelectedTabChanged();
             }
         }
     }
@@ -192,16 +297,7 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     public void onSaveInstanceState(Bundle outState) {
         outState.putBoolean(EXTRA_KEY_SEARCH_MODE, mSearchMode);
         outState.putString(EXTRA_KEY_QUERY, mQueryString);
-        outState.putInt(EXTRA_KEY_SELECTED_TAB, mActionBar.getSelectedNavigationIndex());
-    }
-
-    public void onRestoreInstanceState(Bundle savedState) {
-        mSearchMode = savedState.getBoolean(EXTRA_KEY_SEARCH_MODE);
-        mQueryString = savedState.getString(EXTRA_KEY_QUERY);
-        int selectedTab = savedState.getInt(EXTRA_KEY_SELECTED_TAB);
-        if (selectedTab >= 0) {
-            mActionBar.setSelectedNavigationItem(selectedTab);
-        }
+        outState.putInt(EXTRA_KEY_SELECTED_TAB, mCurrentTab.ordinal());
     }
 
     private void setFocusOnSearchView() {
