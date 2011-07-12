@@ -363,26 +363,6 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         mGroupNameView.setFocusable(!mGroupNameIsReadOnly);
         setupAccountHeader();
 
-        // Setup the group member suggestion adapter
-        mAutoCompleteAdapter = new SuggestedMemberListAdapter(getActivity(),
-                android.R.layout.simple_dropdown_item_1line);
-        mAutoCompleteAdapter.setContentResolver(mContentResolver);
-        mAutoCompleteAdapter.setAccountType(mAccountType);
-        mAutoCompleteAdapter.setAccountName(mAccountName);
-        mAutoCompleteTextView.setAdapter(mAutoCompleteAdapter);
-        mAutoCompleteTextView.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SuggestedMember member = mAutoCompleteAdapter.getItem(position);
-                loadMemberToAddToGroup(String.valueOf(member.getContactId()));
-
-                // Update the autocomplete adapter so the contact doesn't get suggested again
-                mAutoCompleteAdapter.addNewMember(member.getContactId());
-
-                // Clear out the text field
-                mAutoCompleteTextView.setText("");
-            }
-        });
     }
 
     public void loadMemberToAddToGroup(String contactId) {
@@ -630,8 +610,33 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
             }
             // Update the list of displayed existing members
             mMemberListAdapter.updateExistingMembersList(listMembers);
+
+            // Setup the group member suggestion adapter
+            mAutoCompleteAdapter = new SuggestedMemberListAdapter(getActivity(),
+                    android.R.layout.simple_dropdown_item_1line);
+            mAutoCompleteAdapter.setContentResolver(mContentResolver);
+            mAutoCompleteAdapter.setAccountType(mAccountType);
+            mAutoCompleteAdapter.setAccountName(mAccountName);
+            mAutoCompleteTextView.setAdapter(mAutoCompleteAdapter);
+            mAutoCompleteTextView.setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    SuggestedMember member = mAutoCompleteAdapter.getItem(position);
+                    loadMemberToAddToGroup(String.valueOf(member.getContactId()));
+
+                    // Update the autocomplete adapter so the contact doesn't get suggested again
+                    mAutoCompleteAdapter.addNewMember(member.getContactId());
+
+                    // Clear out the text field
+                    mAutoCompleteTextView.setText("");
+                }
+            });
+
             // Update the autocomplete adapter
             mAutoCompleteAdapter.updateExistingMembersList(listContactIds);
+            // No more updates
+            // TODO: move to a runnable
+            getLoaderManager().destroyLoader(LOADER_EXISTING_MEMBERS);
         }
 
         @Override
