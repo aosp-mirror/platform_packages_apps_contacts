@@ -294,6 +294,7 @@ public class ContactTileAdapter extends BaseAdapter {
 
         switch (itemViewType) {
             case ViewTypes.STARRED:
+            case ViewTypes.STARRED_WITH_SECONDARY_ACTION:
                 if (contactTileRowView == null) {
                     // Creating new row if needed
                     contactTileRowView = new ContactTileRow(mContext, layoutResId, true);
@@ -336,6 +337,8 @@ public class ContactTileAdapter extends BaseAdapter {
                 }
             case ViewTypes.FREQUENT:
                 return R.layout.contact_tile_frequent;
+            case ViewTypes.STARRED_WITH_SECONDARY_ACTION:
+                return R.layout.contact_tile_starred_secondary_target;
             default:
                 throw new IllegalArgumentException("Received unrecognized viewType " + viewType);
         }
@@ -358,7 +361,7 @@ public class ContactTileAdapter extends BaseAdapter {
         switch (mDisplayType) {
             case STREQUENT:
                 if (position < mDividerRowIndex) {
-                    return ViewTypes.STARRED;
+                    return ViewTypes.STARRED_WITH_SECONDARY_ACTION;
                 } else if (position == mDividerRowIndex) {
                     return ViewTypes.DIVIDER;
                 } else {
@@ -405,7 +408,13 @@ public class ContactTileAdapter extends BaseAdapter {
 
             if (getChildCount() <= tileIndex) {
                 if (mIsContactTileSquare) {
-                    contactTile = (ContactTileStarredView) inflate(mContext, mLayoutResId, null);
+                    if (mDisplayType == DisplayType.STREQUENT) {
+                        contactTile = (ContactTileSecondaryTargetView)
+                                inflate(mContext, mLayoutResId, null);
+                    } else {
+                        contactTile =
+                                (ContactTileStarredView) inflate(mContext, mLayoutResId, null);
+                    }
                 } else {
                     contactTile = (ContactTileView) inflate(mContext, mLayoutResId, null);
                 }
@@ -437,10 +446,11 @@ public class ContactTileAdapter extends BaseAdapter {
     }
 
     private static class ViewTypes {
-        public static final int COUNT = 3;
+        public static final int COUNT = 4;
         public static final int STARRED = 0;
         public static final int DIVIDER = 1;
         public static final int FREQUENT = 2;
+        public static final int STARRED_WITH_SECONDARY_ACTION = 3;
     }
 
     public interface Listener {
