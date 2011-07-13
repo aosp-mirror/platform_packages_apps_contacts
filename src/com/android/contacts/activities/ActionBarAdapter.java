@@ -33,7 +33,6 @@ import android.view.View;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
 import android.widget.SearchView.OnQueryTextListener;
-import android.widget.TabHost.OnTabChangeListener;
 
 /**
  * Adapter for the action bar at the top of the Contacts activity.
@@ -174,6 +173,13 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
      * Change the current tab, and notify the listener.
      */
     public void setCurrentTab(TabState tab) {
+        setCurrentTab(tab, true);
+    }
+
+    /**
+     * Change the current tab
+     */
+    public void setCurrentTab(TabState tab, boolean notifyListener) {
         if (tab == null) throw new NullPointerException();
         if (tab == mCurrentTab) {
             return;
@@ -186,7 +192,7 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
             mActionBar.setSelectedNavigationItem(index);
         }
 
-        if (mListener != null) mListener.onSelectedTabChanged();
+        if (notifyListener && mListener != null) mListener.onSelectedTabChanged();
     }
 
     public TabState getCurrentTab() {
