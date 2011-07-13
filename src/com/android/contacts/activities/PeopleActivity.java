@@ -145,6 +145,10 @@ public class PeopleActivity extends ContactsActivity
     private int mProviderStatus = -1;
 
     private boolean mOptionsMenuContactsAvailable;
+    /** true if the search menu item exists */
+    private boolean mOptionsMenuSearchExists;
+    /** true if the search menu item is currently visible */
+    private boolean mOptionsMenuSearchVisible;
 
     /**
      * Showing a list of Contacts. Also used for showing search results in search mode.
@@ -479,10 +483,12 @@ public class PeopleActivity extends ContactsActivity
             case START_SEARCH_MODE:
                 clearSearch();
                 updateFragmentsVisibility();
+                invalidateOptionsMenuIfNeeded();
                 break;
             case STOP_SEARCH_MODE:
                 clearSearch();
                 updateFragmentsVisibility();
+                invalidateOptionsMenuIfNeeded();
                 break;
             case CHANGE_SEARCH_QUERY:
                 loadSearch(mActionBarAdapter.getQueryString());
@@ -1057,34 +1063,19 @@ public class PeopleActivity extends ContactsActivity
     }
 
     @Override
-    public boolean onCreatePanelMenu(int featureId, Menu menu) {
-        // No menu if contacts are unavailable
-        if (!areContactsAvailable()) {
-            return false;
-        }
-
-        return super.onCreatePanelMenu(featureId, menu);
-    }
-
-    @Override
-    public boolean onPreparePanel(int featureId, View view, Menu menu) {
-        // No menu if contacts are unavailable
-        if (!areContactsAvailable()) {
-            return false;
-        }
-
-        return super.onPreparePanel(featureId, view, menu);
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (!areContactsAvailable()) {
-            return false;
-        }
+//      STOPSHIP Un-comment it once b/5027071 is fixed.
+//        if (!areContactsAvailable()) {
+//            If contacts aren't available, hide all menu items.
+//            return false;
+//        }
         super.onCreateOptionsMenu(menu);
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.actions, menu);
+
+        mOptionsMenuSearchExists = menu.findItem(R.id.menu_search) != null;
+        mOptionsMenuSearchVisible = mOptionsMenuSearchExists;
 
         // On narrow screens we specify a NEW group button in the {@link ActionBar}, so that
         // it can be in the overflow menu. On wide screens, we use a custom view because we need
@@ -1116,6 +1107,10 @@ public class PeopleActivity extends ContactsActivity
             return true;
         }
 
+        if (mOptionsMenuSearchVisible != shouldMakeSearchMenuVisible()) {
+            return true;
+        }
+
         if (mAllFragment != null && mAllFragment.isOptionsMenuChanged()) {
             return true;
         }
@@ -1132,12 +1127,21 @@ public class PeopleActivity extends ContactsActivity
         return false;
     }
 
+    /** @return true if the search menu item should be visible */
+    private boolean shouldMakeSearchMenuVisible() {
+        return mOptionsMenuSearchExists && !mActionBarAdapter.isSearchMode();
+    }
+
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         mOptionsMenuContactsAvailable = areContactsAvailable();
         if (!mOptionsMenuContactsAvailable) {
+            // STOPSHIP Remove makeAllMenuItemsVisible()when STOPSHIP in onCreateOptionsMenu() is
+            // fixed.
+            makeAllMenuItemsVisible(menu, false);
             return false;
         }
+        makeAllMenuItemsVisible(menu, true);
 
         final MenuItem searchMenu = menu.findItem(R.id.menu_search);
         final MenuItem addContactMenu = menu.findItem(R.id.menu_add_contact);
@@ -1149,9 +1153,6 @@ public class PeopleActivity extends ContactsActivity
         if (mActionBarAdapter.isSearchMode()) {
             addContactMenu.setVisible(false);
             addGroupMenu.setVisible(false);
-            if (searchMenu != null) {
-                searchMenu.setVisible(false); // Don't show the search menu in search mode.
-            }
         } else {
             switch (mActionBarAdapter.getCurrentTab()) {
                 case FAVORITES:
@@ -1168,12 +1169,25 @@ public class PeopleActivity extends ContactsActivity
             }
         }
 
+        if (searchMenu != null) {
+            // Don't show the search menu in search mode.
+            mOptionsMenuSearchVisible = shouldMakeSearchMenuVisible();
+            searchMenu.setVisible(mOptionsMenuSearchVisible);
+        }
+
         MenuItem settings = menu.findItem(R.id.menu_settings);
         if (settings != null) {
             settings.setVisible(!ContactsPreferenceActivity.isEmpty(this));
         }
 
         return true;
+    }
+
+    private void makeAllMenuItemsVisible(Menu menu, boolean visible) {
+        final int itemCount = menu.size();
+        for (int i = 0; i < itemCount; i++) {
+            menu.getItem(i).setVisible(visible);
+        }
     }
 
     @Override
