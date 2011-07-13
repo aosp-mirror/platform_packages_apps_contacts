@@ -30,6 +30,8 @@ import android.widget.AdapterView;
 
 /**
  * A contextual menu adapter for the basic contact list.
+ *
+ * TODO Not used any more.  Remove it.
  */
 public class ContactBrowseListContextMenuAdapter implements ContextMenuAdapter {
 
