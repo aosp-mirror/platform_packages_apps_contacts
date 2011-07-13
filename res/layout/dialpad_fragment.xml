@@ -19,8 +19,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginLeft="8dip"
-    android:layout_marginRight="8dip" >
+    android:paddingLeft="4dip"
+    android:paddingRight="4dip">
 
     <!-- Text field and possibly soft menu button above the keypad where
          the digits are displayed. -->
@@ -28,8 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dialpad_digits_height"
         android:layout_marginTop="4dip"
-        android:gravity="center"
-        android:background="@drawable/dialpad_background" >
+        android:gravity="center" >
 
         <!-- Type of this EditText is set to NULL (to disable the IME keyboard)
              in the java code.
@@ -40,6 +39,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@+id/moreoverflow"
+            android:background="@drawable/dialpad_background"
             android:gravity="center"
             android:textAppearance="@style/DialtactsDigitsTextAppearance"
             android:textColor="?android:attr/textColorPrimary" />
