@@ -19,28 +19,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Favorites -->
-    <fragment
-        android:id="@+id/favorites_fragment"
-        class="com.android.contacts.list.StrequentContactListFragment"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent" />
+    <!--
+        ViewPager for swiping between tabs.  We put StrequentContactListFragment,
+        DefaultContactBrowseListFragment and GroupBrowseListFragment at runtime.
 
-    <!-- All -->
-    <fragment
-        android:id="@+id/all_fragment"
-        class="com.android.contacts.list.DefaultContactBrowseListFragment"
+        (Adding them directly as the children of this view is not recommended.  ViewPager should
+        be treated like a ListView, which doesn't expect children to be added from the layout.)
+    -->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/tab_pager"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-    />
-
-    <!-- Groups -->
-    <fragment
-        android:id="@+id/groups_fragment"
-        class="com.android.contacts.group.GroupBrowseListFragment"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-    />
+        />
 
     <FrameLayout
         android:id="@+id/contacts_unavailable_view"

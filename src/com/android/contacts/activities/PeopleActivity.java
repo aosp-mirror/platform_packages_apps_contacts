@@ -60,7 +60,6 @@ import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.widget.ContextMenuAdapter;
 
 import android.accounts.Account;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -71,11 +70,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.ProviderStatus;
 import android.provider.Settings;
+import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -160,6 +162,10 @@ public class PeopleActivity extends ContactsActivity
     private View mDetailsView;
 
     private View mAddGroupImageView;
+
+    /** ViewPager for swipe, used only on the phone (i.e. one-pane mode) */
+    private ViewPager mTabPager;
+    private TabPagerAdapter mTabPagerAdapter;
 
     private ContactDetailLayoutController mContactDetailLayoutController;
 
@@ -252,26 +258,63 @@ public class PeopleActivity extends ContactsActivity
             // Hide all tabs (the current tab will later be reshown once a tab is selected)
             final FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-            // Common fragments that exist on both 1 and 2 panes.
-            mFavoritesFragment = getFragment(R.id.favorites_fragment);
-            mFavoritesFragment.setListener(mFavoritesFragmentListener);
-            mFavoritesFragment.setDisplayType(DisplayType.STARRED_ONLY);
+            // Prepare the fragments which are used both on 1-pane and on 2-pane.
+            if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
+                mFavoritesFragment = getFragment(R.id.favorites_fragment);
+                mAllFragment = getFragment(R.id.all_fragment);
+                mGroupsFragment = getFragment(R.id.groups_fragment);
+            } else {
+                mTabPager = getView(R.id.tab_pager);
+                mTabPagerAdapter = new TabPagerAdapter();
+                mTabPager.setAdapter(mTabPagerAdapter);
+                mTabPager.setOnPageChangeListener(new TabPagerListener());
 
-            mAllFragment = getFragment(R.id.all_fragment);
+                final String FAVORITE_TAG = "tab-pager-favorite";
+                final String ALL_TAG = "tab-pager-all";
+                final String GROUPS_TAG = "tab-pager-groups";
+
+                // Create the fragments and add as children of the view pager.
+                // The pager adapter will only change the visibility; it'll never create/destroy
+                // fragments.
+                // However, if it's after screen rotation, the fragments have been re-created by
+                // the fragment manager, so first see if there're already the target fragments
+                // existing.
+                mFavoritesFragment = (StrequentContactListFragment)
+                        fragmentManager.findFragmentByTag(FAVORITE_TAG);
+                mAllFragment = (DefaultContactBrowseListFragment)
+                        fragmentManager.findFragmentByTag(ALL_TAG);
+                mGroupsFragment = (GroupBrowseListFragment)
+                        fragmentManager.findFragmentByTag(GROUPS_TAG);
+
+                if (mFavoritesFragment == null) {
+                    mFavoritesFragment = new StrequentContactListFragment();
+                    mAllFragment = new DefaultContactBrowseListFragment();
+                    mGroupsFragment = new GroupBrowseListFragment();
+
+                    transaction.add(R.id.tab_pager, mFavoritesFragment, FAVORITE_TAG);
+                    transaction.add(R.id.tab_pager, mAllFragment, ALL_TAG);
+                    transaction.add(R.id.tab_pager, mGroupsFragment, GROUPS_TAG);
+                }
+            }
+
+            mFavoritesFragment.setListener(mFavoritesFragmentListener);
+
             mAllFragment.setOnContactListActionListener(new ContactBrowserActionListener());
             if (!getWindow().hasFeature(Window.FEATURE_ACTION_BAR)) {
                 mAllFragment.setContextMenuAdapter(
                         new ContactBrowseListContextMenuAdapter(mAllFragment));
             }
 
-            mGroupsFragment = getFragment(R.id.groups_fragment);
             mGroupsFragment.setListener(new GroupBrowserActionListener());
 
+            // Hide all fragments for now.  We adjust visibility when we get onSelectedTabChanged()
+            // from ActionBarAdapter.
+            transaction.hide(mFavoritesFragment);
             transaction.hide(mAllFragment);
             transaction.hide(mGroupsFragment);
 
             if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
-                mFavoritesFragment.setQuickContact(true);
+                // Prepare 2-pane only fragments/views...
 
                 // Container views for fragments
                 mFavoritesView = getView(R.id.favorites_view);
@@ -296,6 +339,12 @@ public class PeopleActivity extends ContactsActivity
             }
             transaction.commit();
             fragmentManager.executePendingTransactions();
+
+            // These operations below are only okay if the fragment is already created.
+            // Because we create the fragment dynamically on 1-pane, this has to be done after
+            // the fragment transaction is executed.
+            mFavoritesFragment.setQuickContact(PhoneCapabilityTester.isUsingTwoPanes(this));
+            mFavoritesFragment.setDisplayType(DisplayType.STARRED_ONLY);
         }
 
         setTitle(mRequest.getActivityTitle());
@@ -462,24 +511,38 @@ public class PeopleActivity extends ContactsActivity
     private void updateFragmentsVisibility() {
         TabState tab = mActionBarAdapter.getCurrentTab();
 
+        // We use ViewPager on 1-pane.
+        if (!PhoneCapabilityTester.isUsingTwoPanes(this)) {
+            if (mActionBarAdapter.isSearchMode()) {
+                mTabPagerAdapter.setSearchMode(true);
+            } else {
+                mTabPagerAdapter.setSearchMode(false);
+                int tabIndex = tab.ordinal();
+                if (mTabPager.getCurrentItem() != tabIndex) {
+                    mTabPager.setCurrentItem(tab.ordinal(), false /* no smooth scroll */);
+                }
+            }
+            return;
+        }
+
+        // for the tablet...
+
         // If in search mode, we use the all list + contact details to show the result.
         if (mActionBarAdapter.isSearchMode()) {
             tab = TabState.ALL;
         }
-        if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
-            switch (tab) {
-                case FAVORITES:
-                    mFavoritesView.setVisibility(View.VISIBLE);
-                    mBrowserView.setVisibility(View.GONE);
-                    mDetailsView.setVisibility(View.GONE);
-                    break;
-                case GROUPS:
-                case ALL:
-                    mFavoritesView.setVisibility(View.GONE);
-                    mBrowserView.setVisibility(View.VISIBLE);
-                    mDetailsView.setVisibility(View.VISIBLE);
-                    break;
-            }
+        switch (tab) {
+            case FAVORITES:
+                mFavoritesView.setVisibility(View.VISIBLE);
+                mBrowserView.setVisibility(View.GONE);
+                mDetailsView.setVisibility(View.GONE);
+                break;
+            case GROUPS:
+            case ALL:
+                mFavoritesView.setVisibility(View.GONE);
+                mBrowserView.setVisibility(View.VISIBLE);
+                mDetailsView.setVisibility(View.VISIBLE);
+                break;
         }
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
@@ -513,6 +576,145 @@ public class PeopleActivity extends ContactsActivity
         if (!ft.isEmpty()) {
             ft.commit();
             fragmentManager.executePendingTransactions();
+        }
+    }
+
+    private class TabPagerListener implements ViewPager.OnPageChangeListener {
+        @Override
+        public void onPageScrollStateChanged(int state) {
+        }
+
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            // Make sure not in the search mode, in which case position != TabState.ordinal().
+            if (!mTabPagerAdapter.isSearchMode()) {
+                mActionBarAdapter.setCurrentTab(TabState.fromInt(position), false);
+            }
+        }
+    }
+
+    /**
+     * Adapter for the {@link ViewPager}.  Unlike {@link FragmentPagerAdapter},
+     * {@link #instantiateItem} returns existing fragments, and {@link #instantiateItem}/
+     * {@link #destroyItem} show/hide fragments instead of attaching/detaching.
+     *
+     * In search mode, we always show the "all" fragment, and disable the swipe.  We change the
+     * number of items to 1 to disable the swipe.
+     *
+     * TODO figure out a more straight way to disable swipe.
+     */
+    private class TabPagerAdapter extends PagerAdapter {
+        private final FragmentManager mFragmentManager;
+        private FragmentTransaction mCurTransaction = null;
+
+        private boolean mTabPagerAdapterSearchMode;
+
+        public TabPagerAdapter() {
+            mFragmentManager = getFragmentManager();
+        }
+
+        public boolean isSearchMode() {
+            return mTabPagerAdapterSearchMode;
+        }
+
+        public void setSearchMode(boolean searchMode) {
+            if (searchMode == mTabPagerAdapterSearchMode) {
+                return;
+            }
+            mTabPagerAdapterSearchMode = searchMode;
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public int getCount() {
+            return mTabPagerAdapterSearchMode ? 1 : TabState.values().length;
+        }
+
+        /** Gets called when the number of items changes. */
+        @Override
+        public int getItemPosition(Object object) {
+            if (mTabPagerAdapterSearchMode) {
+                if (object == mAllFragment) {
+                    return 0; // Only 1 page in search mode
+                }
+            } else {
+                if (object == mFavoritesFragment) {
+                    return TabState.FAVORITES.ordinal();
+                }
+                if (object == mAllFragment) {
+                    return TabState.ALL.ordinal();
+                }
+                if (object == mGroupsFragment) {
+                    return TabState.GROUPS.ordinal();
+                }
+            }
+            return POSITION_NONE;
+        }
+
+        @Override
+        public void startUpdate(View container) {
+        }
+
+        private Fragment getFragment(int position) {
+            if (mTabPagerAdapterSearchMode) {
+                if (position == 0) {
+                    return mAllFragment;
+                }
+            } else {
+                if (position == TabState.FAVORITES.ordinal()) {
+                    return mFavoritesFragment;
+                } else if (position == TabState.ALL.ordinal()) {
+                    return mAllFragment;
+                } else if (position == TabState.GROUPS.ordinal()) {
+                    return mGroupsFragment;
+                }
+            }
+            throw new IllegalArgumentException("position: " + position);
+        }
+
+        @Override
+        public Object instantiateItem(View container, int position) {
+            if (mCurTransaction == null) {
+                mCurTransaction = mFragmentManager.beginTransaction();
+            }
+            Fragment f = getFragment(position);
+            mCurTransaction.show(f);
+            return f;
+        }
+
+        @Override
+        public void destroyItem(View container, int position, Object object) {
+            if (mCurTransaction == null) {
+                mCurTransaction = mFragmentManager.beginTransaction();
+            }
+            mCurTransaction.hide((Fragment) object);
+        }
+
+        @Override
+        public void finishUpdate(View container) {
+            if (mCurTransaction != null) {
+                mCurTransaction.commit();
+                mCurTransaction = null;
+                mFragmentManager.executePendingTransactions();
+            }
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return ((Fragment) object).getView() == view;
+        }
+
+        @Override
+        public Parcelable saveState() {
+            return null;
+        }
+
+        @Override
+        public void restoreState(Parcelable state, ClassLoader loader) {
         }
     }
 
