@@ -145,10 +145,6 @@ public class PeopleActivity extends ContactsActivity
     private int mProviderStatus = -1;
 
     private boolean mOptionsMenuContactsAvailable;
-    /** true if the search menu item exists */
-    private boolean mOptionsMenuSearchExists;
-    /** true if the search menu item is currently visible */
-    private boolean mOptionsMenuSearchVisible;
 
     /**
      * Showing a list of Contacts. Also used for showing search results in search mode.
@@ -483,12 +479,12 @@ public class PeopleActivity extends ContactsActivity
             case START_SEARCH_MODE:
                 clearSearch();
                 updateFragmentsVisibility();
-                invalidateOptionsMenuIfNeeded();
+                invalidateOptionsMenu();
                 break;
             case STOP_SEARCH_MODE:
                 clearSearch();
                 updateFragmentsVisibility();
-                invalidateOptionsMenuIfNeeded();
+                invalidateOptionsMenu();
                 break;
             case CHANGE_SEARCH_QUERY:
                 loadSearch(mActionBarAdapter.getQueryString());
@@ -521,6 +517,7 @@ public class PeopleActivity extends ContactsActivity
                     mTabPager.setCurrentItem(tab.ordinal(), false /* no smooth scroll */);
                 }
             }
+            invalidateOptionsMenu();
             return;
         }
 
@@ -576,6 +573,7 @@ public class PeopleActivity extends ContactsActivity
             ft.commit();
             fragmentManager.executePendingTransactions();
         }
+        invalidateOptionsMenu();
     }
 
     private class TabPagerListener implements ViewPager.OnPageChangeListener {
@@ -592,6 +590,7 @@ public class PeopleActivity extends ContactsActivity
             // Make sure not in the search mode, in which case position != TabState.ordinal().
             if (!mTabPagerAdapter.isSearchMode()) {
                 mActionBarAdapter.setCurrentTab(TabState.fromInt(position), false);
+                invalidateOptionsMenu();
             }
         }
     }
@@ -1074,9 +1073,6 @@ public class PeopleActivity extends ContactsActivity
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.actions, menu);
 
-        mOptionsMenuSearchExists = menu.findItem(R.id.menu_search) != null;
-        mOptionsMenuSearchVisible = mOptionsMenuSearchExists;
-
         // On narrow screens we specify a NEW group button in the {@link ActionBar}, so that
         // it can be in the overflow menu. On wide screens, we use a custom view because we need
         // its location for anchoring the account-selector popup.
@@ -1107,10 +1103,6 @@ public class PeopleActivity extends ContactsActivity
             return true;
         }
 
-        if (mOptionsMenuSearchVisible != shouldMakeSearchMenuVisible()) {
-            return true;
-        }
-
         if (mAllFragment != null && mAllFragment.isOptionsMenuChanged()) {
             return true;
         }
@@ -1125,11 +1117,6 @@ public class PeopleActivity extends ContactsActivity
         }
 
         return false;
-    }
-
-    /** @return true if the search menu item should be visible */
-    private boolean shouldMakeSearchMenuVisible() {
-        return mOptionsMenuSearchExists && !mActionBarAdapter.isSearchMode();
     }
 
     @Override
@@ -1171,8 +1158,7 @@ public class PeopleActivity extends ContactsActivity
 
         if (searchMenu != null) {
             // Don't show the search menu in search mode.
-            mOptionsMenuSearchVisible = shouldMakeSearchMenuVisible();
-            searchMenu.setVisible(mOptionsMenuSearchVisible);
+            searchMenu.setVisible(!mActionBarAdapter.isSearchMode());
         }
 
         MenuItem settings = menu.findItem(R.id.menu_settings);
