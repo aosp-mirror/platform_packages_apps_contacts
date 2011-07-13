@@ -333,7 +333,7 @@ public class PeopleActivity extends ContactsActivity
     protected void onResume() {
         super.onResume();
         mProviderStatusLoader.setProviderStatusListener(this);
-        updateFragmentVisibility();
+        showContactsUnavailableFragmentIfNecessary();
 
         // Re-register the listener, which may have been cleared when onSaveInstanceState was
         // called.  See also: onSaveInstanceState
@@ -569,10 +569,10 @@ public class PeopleActivity extends ContactsActivity
 
     @Override
     public void onProviderStatusChange() {
-        updateFragmentVisibility();
+        showContactsUnavailableFragmentIfNecessary();
     }
 
-    private void updateFragmentVisibility() {
+    private void showContactsUnavailableFragmentIfNecessary() {
         int providerStatus = mProviderStatusLoader.getProviderStatus();
         if (providerStatus == mProviderStatus) {
             return;
