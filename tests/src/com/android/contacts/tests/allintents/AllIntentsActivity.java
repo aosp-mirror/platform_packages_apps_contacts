@@ -29,6 +29,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CallLog.Calls;
 import android.provider.Contacts.ContactMethods;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
@@ -55,6 +56,7 @@ import android.widget.Toast;
 public class AllIntentsActivity extends ListActivity
         implements SelectAccountDialogFragment.Listener {
 
+    /** The name of the package of the contacts application. */
     private static final String ANDROID_CONTACTS_PACKAGE = "com.android.contacts";
 
     private static final String CONTACT_LIST_ACTIVITY_CLASS_NAME =
@@ -116,7 +118,10 @@ public class AllIntentsActivity extends ListActivity
         CALL_BUTTON,
         DIAL_tel,
         VIEW_tel,
-        VIEW_calllog;
+        VIEW_calllog,
+        VIEW_calllog_entry,
+        LEGACY_CALL_DETAILS_ACTIVITY,
+        LEGACY_CALL_LOG_ACTIVITY;
 
         public static ContactsIntent get(int ordinal) {
             return values()[ordinal];
@@ -208,15 +213,13 @@ public class AllIntentsActivity extends ListActivity
             }
             case ACTION_CREATE_SHORTCUT_DIAL: {
                 Intent intent = new Intent(Intent.ACTION_CREATE_SHORTCUT);
-                intent.setComponent(
-                        new ComponentName(ANDROID_CONTACTS_PACKAGE, "alias.DialShortcut"));
+                bindIntentToClass(intent, "alias.DialShortcut");
                 startActivityForResult(intent, 0);
                 break;
             }
             case ACTION_CREATE_SHORTCUT_MESSAGE: {
                 Intent intent = new Intent(Intent.ACTION_CREATE_SHORTCUT);
-                intent.setComponent(
-                        new ComponentName(ANDROID_CONTACTS_PACKAGE, "alias.MessageShortcut"));
+                bindIntentToClass(intent, "alias.MessageShortcut");
                 startActivityForResult(intent, 0);
                 break;
             }
@@ -483,10 +486,55 @@ public class AllIntentsActivity extends ListActivity
                 startActivity(intent);
                 break;
             }
+            case VIEW_calllog_entry: {
+                Uri uri = getCallLogUri();
+                if (uri == null) {
+                    Toast.makeText(this, "Call log is empty", Toast.LENGTH_LONG).show();
+                    break;
+                }
+                final Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(uri);
+                startActivity(intent);
+                break;
+            }
+            case LEGACY_CALL_DETAILS_ACTIVITY: {
+                Uri uri = getCallLogUri();
+                if (uri == null) {
+                    Toast.makeText(this, "Call log is empty", Toast.LENGTH_LONG).show();
+                    break;
+                }
+                final Intent intent = new Intent("android.intent.action.VIEW");
+                intent.setData(uri);
+                bindIntentToClass(intent, "CallDetailActivity");
+                startActivity(intent);
+                break;
+            }
+            case LEGACY_CALL_LOG_ACTIVITY: {
+                startActivity(bindIntentToClass(new Intent(), "activities.CallLogActivity"));
+                break;
+            }
+
             default: {
                 Toast.makeText(this, "Sorry, we forgot to write this...", Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    /** Returns the URI of one of the items in the call log, or null if the call log is empty. */
+    private Uri getCallLogUri() {
+        Cursor cursor = getContentResolver().query(
+                Calls.CONTENT_URI, new String[]{ Calls._ID }, null, null,
+                Calls.DEFAULT_SORT_ORDER);
+        if (!cursor.moveToNext()) {
+            return null;
+        }
+        return ContentUris.withAppendedId(Calls.CONTENT_URI, cursor.getLong(0));
+    }
+
+    /** Creates an intent that is bound to a specific activity by name. */
+    private Intent bindIntentToClass(Intent intent, String activityClassName) {
+        intent.setComponent(new ComponentName(ANDROID_CONTACTS_PACKAGE, activityClassName));
+        return intent;
     }
 
     private Intent buildFilterIntent(int actionCode, boolean legacy) {
@@ -499,8 +547,7 @@ public class AllIntentsActivity extends ListActivity
     }
 
     private void startContactListActivity(Intent intent) {
-        intent.setComponent(
-                new ComponentName(ANDROID_CONTACTS_PACKAGE, CONTACT_LIST_ACTIVITY_CLASS_NAME));
+        bindIntentToClass(intent, CONTACT_LIST_ACTIVITY_CLASS_NAME);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

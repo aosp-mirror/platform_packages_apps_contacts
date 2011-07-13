@@ -82,6 +82,9 @@
         <item>DIAL tel</item>
         <item>VIEW tel</item>
         <item>VIEW calls (call-log after a phone call)</item>
+        <item>VIEW calls item</item>
+        <item>CallDetailActivity (legacy)</item>
+        <item>CallLogActivity (legacy)</item>
     </string-array>
 
     <string name="pinnedHeaderList">Pinned Headers</string>
