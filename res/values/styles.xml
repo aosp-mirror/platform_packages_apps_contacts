@@ -132,11 +132,6 @@
         <attr name="list_item_header_text_size" format="dimension" />
     </declare-styleable>
 
-    <!-- This style defines visibility of the action bar home icon -->
-    <declare-styleable name="ActionBarHomeIcon">
-        <attr name="show_home_icon" format="boolean"/>
-    </declare-styleable>
-
     <declare-styleable name="CallDetailActivity">
         <attr name="call_detail_transparent_background" format="color" />
         <attr name="call_detail_contact_background_height" format="dimension" />
@@ -183,7 +178,6 @@
         <item name="list_item_header_text_color">?color/section_header_text_color</item>
         <item name="list_item_header_text_size">14sp</item>
         <item name="contact_filter_popup_width">320dip</item>
-        <item name="show_home_icon">false</item>
     </style>
 
     <!-- TODO: Clean up this file so themes aren't copied. -->
