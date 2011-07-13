@@ -37,9 +37,9 @@
         <item name="list_item_header_text_size">14sp</item>
         <item name="contact_filter_popup_width">320dip</item>
         <!-- CallLogList -->
-        <item name="call_log_list_contact_photo_size">50dip</item>
+        <item name="call_log_list_contact_photo_size">60dip</item>
         <item name="call_log_list_contact_photo_margin">5dip</item>
-        <item name="call_log_list_item_height">60dip</item>
+        <item name="call_log_list_item_height">70dip</item>
         <!-- CallLog -->
         <item name="call_log_date_margin">5dip</item>
         <item name="call_log_primary_text_color">#FFFFFF</item>

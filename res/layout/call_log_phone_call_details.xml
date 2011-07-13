@@ -21,12 +21,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
     >
         <LinearLayout
             android:id="@+id/call_type_icons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="bottom"
         />
         <TextView
             android:id="@+id/call_type_name"
@@ -68,7 +68,7 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="?attr/call_log_primary_text_color"
         android:layout_alignParentLeft="true"
         android:layout_above="@id/number"
