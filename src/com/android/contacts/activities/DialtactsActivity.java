@@ -338,7 +338,6 @@ public class DialtactsActivity extends Activity {
         } else if (fragment instanceof PhoneNumberPickerFragment) {
             mSearchFragment = (PhoneNumberPickerFragment) fragment;
             mSearchFragment.setOnPhoneNumberPickerActionListener(mPhoneNumberPickerActionListener);
-            mSearchFragment.setNameHighlightingEnabled(true);
             mSearchFragment.setQuickContactEnabled(true);
             final FragmentTransaction transaction = getFragmentManager().beginTransaction();
             if (mInSearchUi) {
