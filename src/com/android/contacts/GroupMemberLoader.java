@@ -40,33 +40,35 @@ public final class GroupMemberLoader extends CursorLoader {
     private final String[] PROJECTION_DATA = new String[] {
         // TODO: Pull Projection_data out into util class
         Data.CONTACT_ID,                        // 0
-        Data.DISPLAY_NAME_PRIMARY,              // 1
-        Data.DISPLAY_NAME_ALTERNATIVE,          // 2
-        Data.SORT_KEY_PRIMARY,                  // 3
-        Data.STARRED,                           // 4
-        Data.CONTACT_PRESENCE,                  // 5
-        Data.CONTACT_CHAT_CAPABILITY,           // 6
-        Data.PHOTO_ID,                          // 7
-        Data.PHOTO_THUMBNAIL_URI,               // 8
-        Data.LOOKUP_KEY,                        // 9
-        Data.PHONETIC_NAME,                     // 10
-        Data.HAS_PHONE_NUMBER,                  // 11
+        Data.RAW_CONTACT_ID,                    // 1
+        Data.DISPLAY_NAME_PRIMARY,              // 2
+        Data.DISPLAY_NAME_ALTERNATIVE,          // 3
+        Data.SORT_KEY_PRIMARY,                  // 4
+        Data.STARRED,                           // 5
+        Data.CONTACT_PRESENCE,                  // 6
+        Data.CONTACT_CHAT_CAPABILITY,           // 7
+        Data.PHOTO_ID,                          // 8
+        Data.PHOTO_THUMBNAIL_URI,               // 9
+        Data.LOOKUP_KEY,                        // 10
+        Data.PHONETIC_NAME,                     // 11
+        Data.HAS_PHONE_NUMBER,                  // 12
     };
 
     private final long mGroupId;
 
     public static final int CONTACT_ID_COLUMN_INDEX = 0;
-    public static final int CONTACT_DISPLAY_NAME_PRIMARY_COLUMN_INDEX = 1;
-    public static final int CONTACT_DISPLAY_NAME_ALTERNATIVE_COLUMN_INDEX = 2;
-    public static final int CONTACT_SORT_KEY_PRIMARY_COLUMN_INDEX = 3;
-    public static final int CONTACT_STARRED_COLUMN_INDEX = 4;
-    public static final int CONTACT_PRESENCE_STATUS_COLUMN_INDEX = 5;
-    public static final int CONTACT_CHAT_CAPABILITY_COLUMN_INDEX = 6;
-    public static final int CONTACT_PHOTO_ID_COLUMN_INDEX = 7;
-    public static final int CONTACT_PHOTO_URI_COLUMN_INDEX = 8;
-    public static final int CONTACT_LOOKUP_KEY_COLUMN_INDEX = 9;
-    public static final int CONTACT_PHONETIC_NAME_COLUMN_INDEX = 10;
-    public static final int CONTACT_HAS_PHONE_COLUMN_INDEX = 11;
+    public static final int RAW_CONTACT_ID_COLUMN_INDEX = 1;
+    public static final int CONTACT_DISPLAY_NAME_PRIMARY_COLUMN_INDEX = 2;
+    public static final int CONTACT_DISPLAY_NAME_ALTERNATIVE_COLUMN_INDEX = 3;
+    public static final int CONTACT_SORT_KEY_PRIMARY_COLUMN_INDEX = 4;
+    public static final int CONTACT_STARRED_COLUMN_INDEX = 5;
+    public static final int CONTACT_PRESENCE_STATUS_COLUMN_INDEX = 6;
+    public static final int CONTACT_CHAT_CAPABILITY_COLUMN_INDEX = 7;
+    public static final int CONTACT_PHOTO_ID_COLUMN_INDEX = 8;
+    public static final int CONTACT_PHOTO_URI_COLUMN_INDEX = 9;
+    public static final int CONTACT_LOOKUP_KEY_COLUMN_INDEX = 10;
+    public static final int CONTACT_PHONETIC_NAME_COLUMN_INDEX = 11;
+    public static final int CONTACT_HAS_PHONE_COLUMN_INDEX = 12;
 
     public GroupMemberLoader(Context context, long groupId) {
         super(context);

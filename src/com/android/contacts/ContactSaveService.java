@@ -78,8 +78,11 @@ public class ContactSaveService extends IntentService {
     public static final String ACTION_CREATE_GROUP = "createGroup";
     public static final String ACTION_RENAME_GROUP = "renameGroup";
     public static final String ACTION_DELETE_GROUP = "deleteGroup";
+    public static final String ACTION_UPDATE_GROUP = "updateGroup";
     public static final String EXTRA_GROUP_ID = "groupId";
     public static final String EXTRA_GROUP_LABEL = "groupLabel";
+    public static final String EXTRA_RAW_CONTACTS_TO_ADD = "rawContactsToAdd";
+    public static final String EXTRA_RAW_CONTACTS_TO_REMOVE = "rawContactsToRemove";
 
     public static final String ACTION_SET_STARRED = "setStarred";
     public static final String ACTION_DELETE_CONTACT = "delete";
@@ -170,6 +173,8 @@ public class ContactSaveService extends IntentService {
             renameGroup(intent);
         } else if (ACTION_DELETE_GROUP.equals(action)) {
             deleteGroup(intent);
+        } else if (ACTION_UPDATE_GROUP.equals(action)) {
+            updateGroup(intent);
         } else if (ACTION_SET_STARRED.equals(action)) {
             setStarred(intent);
         } else if (ACTION_SET_SUPER_PRIMARY.equals(action)) {
@@ -468,6 +473,125 @@ public class ContactSaveService extends IntentService {
 
         getContentResolver().delete(
                 ContentUris.withAppendedId(Groups.CONTENT_URI, groupId), null, null);
+    }
+
+    /**
+     * Creates an intent that can be sent to this service to rename a group as
+     * well as add and remove members from the group.
+     *
+     * @param context of the application
+     * @param groupId of the group that should be modified
+     * @param newLabel is the updated name of the group (can be null if the name
+     *            should not be updated)
+     * @param rawContactsToAdd is an array of raw contact IDs for contacts that
+     *            should be added to the group
+     * @param rawContactsToRemove is an array of raw contact IDs for contacts
+     *            that should be removed from the group
+     * @param callbackActivity is the activity to send the callback intent to
+     * @param callbackAction is the intent action for the callback intent
+     */
+    public static Intent createGroupUpdateIntent(Context context, long groupId, String newLabel,
+            long[] rawContactsToAdd, long[] rawContactsToRemove,
+            Class<?> callbackActivity, String callbackAction) {
+        Intent serviceIntent = new Intent(context, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_UPDATE_GROUP);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_GROUP_ID, groupId);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_GROUP_LABEL, newLabel);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_RAW_CONTACTS_TO_ADD, rawContactsToAdd);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_RAW_CONTACTS_TO_REMOVE,
+                rawContactsToRemove);
+
+        // Callback intent will be invoked by the service once the group is updated
+        Intent callbackIntent = new Intent(context, callbackActivity);
+        callbackIntent.setAction(callbackAction);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
+
+        return serviceIntent;
+    }
+
+    private void updateGroup(Intent intent) {
+        long groupId = intent.getLongExtra(EXTRA_GROUP_ID, -1);
+        String label = intent.getStringExtra(EXTRA_GROUP_LABEL);
+        long[] rawContactsToAdd = intent.getLongArrayExtra(EXTRA_RAW_CONTACTS_TO_ADD);
+        long[] rawContactsToRemove = intent.getLongArrayExtra(EXTRA_RAW_CONTACTS_TO_REMOVE);
+
+        if (groupId == -1) {
+            Log.e(TAG, "Invalid arguments for updateGroup request");
+            return;
+        }
+
+        final ContentResolver resolver = getContentResolver();
+        final Uri groupUri = ContentUris.withAppendedId(Groups.CONTENT_URI, groupId);
+
+        // Update group name if necessary
+        if (label != null) {
+            ContentValues values = new ContentValues();
+            values.put(Groups.TITLE, label);
+            getContentResolver().update(groupUri, values, null, null);
+        }
+
+        // Add new group members
+        for (long rawContactId : rawContactsToAdd) {
+            try {
+                final ArrayList<ContentProviderOperation> rawContactOperations =
+                        new ArrayList<ContentProviderOperation>();
+
+                // Build an assert operation to ensure the contact is not already in the group
+                final ContentProviderOperation.Builder assertBuilder = ContentProviderOperation
+                        .newAssertQuery(Data.CONTENT_URI);
+                assertBuilder.withSelection(Data.RAW_CONTACT_ID + "=? AND " +
+                        Data.MIMETYPE + "=? AND " + GroupMembership.GROUP_ROW_ID + "=?",
+                        new String[] { String.valueOf(rawContactId),
+                        GroupMembership.CONTENT_ITEM_TYPE, String.valueOf(groupId)});
+                assertBuilder.withExpectedCount(0);
+                rawContactOperations.add(assertBuilder.build());
+
+                // Build an insert operation to add the contact to the group
+                final ContentProviderOperation.Builder insertBuilder = ContentProviderOperation
+                        .newInsert(Data.CONTENT_URI);
+                insertBuilder.withValue(Data.RAW_CONTACT_ID, rawContactId);
+                insertBuilder.withValue(Data.MIMETYPE, GroupMembership.CONTENT_ITEM_TYPE);
+                insertBuilder.withValue(GroupMembership.GROUP_ROW_ID, groupId);
+                rawContactOperations.add(insertBuilder.build());
+
+                if (DEBUG) {
+                    for (ContentProviderOperation operation : rawContactOperations) {
+                        Log.v(TAG, operation.toString());
+                    }
+                }
+
+                // Apply batch
+                ContentProviderResult[] results = null;
+                if (!rawContactOperations.isEmpty()) {
+                    results = resolver.applyBatch(ContactsContract.AUTHORITY, rawContactOperations);
+                }
+            } catch (RemoteException e) {
+                // Something went wrong, bail without success
+                Log.e(TAG, "Problem persisting user edits for raw contact ID " +
+                        String.valueOf(rawContactId), e);
+            } catch (OperationApplicationException e) {
+                // The assert could have failed because the contact is already in the group,
+                // just continue to the next contact
+                Log.w(TAG, "Assert failed in adding raw contact ID " +
+                        String.valueOf(rawContactId) + ". Already exists in group " +
+                        String.valueOf(groupId), e);
+            }
+        }
+
+        // Remove group members
+        for (long rawContactId : rawContactsToRemove) {
+            // Apply the delete operation on the data row for the given raw contact's
+            // membership in the given group. If no contact matches the provided selection, then
+            // nothing will be done. Just continue to the next contact.
+            getContentResolver().delete(Data.CONTENT_URI, Data.RAW_CONTACT_ID + "=? AND " +
+                    Data.MIMETYPE + "=? AND " + GroupMembership.GROUP_ROW_ID + "=?",
+                    new String[] { String.valueOf(rawContactId),
+                    GroupMembership.CONTENT_ITEM_TYPE, String.valueOf(groupId)});
+        }
+
+        Intent callbackIntent = intent.getParcelableExtra(EXTRA_CALLBACK_INTENT);
+        callbackIntent.setData(groupUri);
+        deliverCallback(callbackIntent);
     }
 
     /**

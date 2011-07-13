@@ -16,7 +16,6 @@
 
 package com.android.contacts.group;
 
-import com.android.contacts.ContactLoader;
 import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.GroupMemberLoader;
@@ -28,11 +27,6 @@ import com.android.contacts.editor.SelectAccountDialogFragment;
 import com.android.contacts.group.SuggestedMemberListAdapter.SuggestedMember;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.DataKind;
-import com.android.contacts.model.EntityDelta;
-import com.android.contacts.model.EntityDelta.ValuesDelta;
-import com.android.contacts.model.EntityDeltaList;
-import com.android.contacts.model.EntityModifier;
 import com.android.internal.util.Objects;
 
 import android.accounts.Account;
@@ -54,9 +48,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.Intents;
-import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -112,15 +104,11 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     private static final int LOADER_GROUP_METADATA = 1;
     private static final int LOADER_EXISTING_MEMBERS = 2;
     private static final int LOADER_NEW_GROUP_MEMBER = 3;
-    private static final int FULL_LOADER_NEW_GROUP_MEMBER = 4;
 
     public static final String SAVE_MODE_EXTRA_KEY = "saveMode";
 
+    private static final String MEMBER_RAW_CONTACT_ID_KEY = "rawContactId";
     private static final String MEMBER_LOOKUP_URI_KEY = "memberLookupUri";
-    private static final String MEMBER_ACTION_KEY = "memberAction";
-
-    private static final int ADD_MEMBER = 0;
-    private static final int REMOVE_MEMBER = 1;
 
     protected static final String[] PROJECTION_CONTACT = new String[] {
         Contacts._ID,                           // 0
@@ -189,10 +177,12 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     private MemberListAdapter mMemberListAdapter;
     private ContactPhotoManager mPhotoManager;
 
-    private Member mMemberToRemove;
-
     private ContentResolver mContentResolver;
     private SuggestedMemberListAdapter mAutoCompleteAdapter;
+
+    private List<Member> mListMembersToAdd = new ArrayList<Member>();
+    private List<Member> mListMembersToRemove = new ArrayList<Member>();
+    private List<Member> mListToDisplay = new ArrayList<Member>();
 
     public GroupEditorFragment() {
     }
@@ -236,8 +226,6 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
             }
             getLoaderManager().initLoader(LOADER_GROUP_METADATA, null,
                     mGroupMetaDataLoaderListener);
-            getLoaderManager().initLoader(LOADER_EXISTING_MEMBERS, null,
-                    mGroupMemberListLoaderListener);
         } else if (Intent.ACTION_INSERT.equals(mAction)) {
             if (mListener != null) {
                 mListener.onTitleLoaded(R.string.editGroup_title_insert);
@@ -362,35 +350,13 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         mGroupNameView.setText(mOriginalGroupName);
         mGroupNameView.setFocusable(!mGroupNameIsReadOnly);
         setupAccountHeader();
-
     }
 
-    public void loadMemberToAddToGroup(String contactId) {
+    public void loadMemberToAddToGroup(long rawContactId, String contactId) {
         Bundle args = new Bundle();
+        args.putLong(MEMBER_RAW_CONTACT_ID_KEY, rawContactId);
         args.putString(MEMBER_LOOKUP_URI_KEY, contactId);
-        args.putInt(MEMBER_ACTION_KEY, ADD_MEMBER);
         getLoaderManager().restartLoader(LOADER_NEW_GROUP_MEMBER, args, mContactLoaderListener);
-    }
-
-    private void loadMemberToRemoveFromGroup(String lookupUri) {
-        Bundle args = new Bundle();
-        args.putString(MEMBER_LOOKUP_URI_KEY, lookupUri);
-        args.putInt(MEMBER_ACTION_KEY, REMOVE_MEMBER);
-        getLoaderManager().restartLoader(FULL_LOADER_NEW_GROUP_MEMBER, args,
-                mDataLoaderListener);
-    }
-
-    public void finishAddMember(Uri lookupUri) {
-        Toast.makeText(mContext, mContext.getString(R.string.groupMembershipChangeSavedToast),
-                Toast.LENGTH_SHORT).show();
-        getLoaderManager().destroyLoader(FULL_LOADER_NEW_GROUP_MEMBER);
-    }
-
-    public void finishRemoveMember(Uri lookupUri) {
-        Toast.makeText(mContext, mContext.getString(R.string.groupMembershipChangeSavedToast),
-                Toast.LENGTH_SHORT).show();
-        getLoaderManager().destroyLoader(FULL_LOADER_NEW_GROUP_MEMBER);
-        mMemberListAdapter.removeMember(mMemberToRemove);
     }
 
     public void setListener(Listener value) {
@@ -472,12 +438,13 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
             getLoaderManager().destroyLoader(LOADER_EXISTING_MEMBERS);
         }
 
-        mStatus = Status.SAVING;
-
-        if (!hasChanges()) {
-            onSaveCompleted(false, saveMode, mGroupUri);
+        // If there are no changes, then go straight to onSaveCompleted()
+        if (!hasNameChange() && !hasMembershipChange()) {
+            onSaveCompleted(false, SaveMode.CLOSE, mGroupUri);
             return true;
         }
+
+        mStatus = Status.SAVING;
 
         Activity activity = getActivity();
         // If the activity is not there anymore, then we can't continue with the save process.
@@ -486,13 +453,29 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         }
         Intent saveIntent = null;
         if (mAction == Intent.ACTION_INSERT) {
+            // TODO: Perform similar work to add members at the same time as creating a new group
             saveIntent = ContactSaveService.createNewGroupIntent(activity,
                     new Account(mAccountName, mAccountType), mGroupNameView.getText().toString(),
                     activity.getClass(), GroupEditorActivity.ACTION_SAVE_COMPLETED);
         } else if (mAction == Intent.ACTION_EDIT) {
-            saveIntent = ContactSaveService.createGroupRenameIntent(activity, mGroupId,
-                    mGroupNameView.getText().toString(), activity.getClass(),
-                    GroupEditorActivity.ACTION_SAVE_COMPLETED);
+            // Create array of raw contact IDs for contacts to add to the group
+            int membersToAddCount = mListMembersToAdd.size();
+            long[] membersToAddArray = new long[membersToAddCount];
+            for (int i = 0; i < membersToAddCount; i++) {
+                membersToAddArray[i] = mListMembersToAdd.get(i).getRawContactId();
+            }
+
+            // Create array of raw contact IDs for contacts to add to the group
+            int membersToRemoveCount = mListMembersToRemove.size();
+            long[] membersToRemoveArray = new long[membersToRemoveCount];
+            for (int i = 0; i < membersToRemoveCount; i++) {
+                membersToRemoveArray[i] = mListMembersToRemove.get(i).getRawContactId();
+            }
+
+            // Create the update intent (which includes the updated group name if necessary)
+            saveIntent = ContactSaveService.createGroupUpdateIntent(activity, mGroupId,
+                    getUpdatedName(), membersToAddArray, membersToRemoveArray,
+                    activity.getClass(), GroupEditorActivity.ACTION_SAVE_COMPLETED);
         } else {
             throw new IllegalStateException("Invalid intent action type " + mAction);
         }
@@ -551,9 +534,62 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         return !TextUtils.isEmpty(mGroupNameView.getText());
     }
 
-    private boolean hasChanges() {
-        return mGroupNameView.getText() != null &&
-                !mGroupNameView.getText().toString().equals(mOriginalGroupName);
+    private boolean hasNameChange() {
+        return !mGroupNameView.getText().toString().equals(mOriginalGroupName);
+    }
+
+    private boolean hasMembershipChange() {
+        return mListMembersToAdd.size() > 0 || mListMembersToRemove.size() > 0;
+    }
+
+    /**
+     * Returns the group's new name or null if there is no change from the
+     * original name that was loaded for the group.
+     */
+    private String getUpdatedName() {
+        String groupNameFromTextView = mGroupNameView.getText().toString();
+        if (groupNameFromTextView.equals(mOriginalGroupName)) {
+            // No name change, so return null
+            return null;
+        }
+        return groupNameFromTextView;
+    }
+
+    private void addExistingMembers(List<Member> members, List<Long> listContactIds) {
+        mListToDisplay.addAll(members);
+        mMemberListAdapter.notifyDataSetChanged();
+
+        // Update the autocomplete adapter so these contacts don't get suggested
+        mAutoCompleteAdapter.updateExistingMembersList(listContactIds);
+    }
+
+    private void addMember(Member member) {
+        // Update the display list
+        mListMembersToAdd.add(member);
+        mListToDisplay.add(member);
+        mMemberListAdapter.notifyDataSetChanged();
+
+        // Update the autocomplete adapter so the contact doesn't get suggested again
+        mAutoCompleteAdapter.addNewMember(member.getContactId());
+    }
+
+    private void removeMember(Member member) {
+        // If the contact was just added during this session, remove it from the list of
+        // members to add
+        if (mListMembersToAdd.contains(member)) {
+            mListMembersToAdd.remove(member);
+        } else {
+            // Otherwise this contact was already part of the existing list of contacts,
+            // so we need to do a content provider deletion operation
+            mListMembersToRemove.add(member);
+        }
+        // In either case, update the UI so the contact is no longer in the list of
+        // members
+        mListToDisplay.remove(member);
+        mMemberListAdapter.notifyDataSetChanged();
+
+        // Update the autocomplete adapter so the contact can get suggested again
+        mAutoCompleteAdapter.removeMember(member.getContactId());
     }
 
     /**
@@ -571,6 +607,10 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
             mStatus = Status.EDITING;
             bindGroupMetaData(data);
+
+            // Load existing members
+            getLoaderManager().initLoader(LOADER_EXISTING_MEMBERS, null,
+                    mGroupMemberListLoaderListener);
         }
 
         @Override
@@ -590,28 +630,27 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
 
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-            List<Member> listMembers = new ArrayList<Member>();
             List<Long> listContactIds = new ArrayList<Long>();
+            List<Member> listExistingMembers = new ArrayList<Member>();
             try {
                 data.moveToPosition(-1);
                 while (data.moveToNext()) {
                     long contactId = data.getLong(GroupMemberLoader.CONTACT_ID_COLUMN_INDEX);
+                    long rawContactId = data.getLong(GroupMemberLoader.RAW_CONTACT_ID_COLUMN_INDEX);
                     String lookupKey = data.getString(
                             GroupMemberLoader.CONTACT_LOOKUP_KEY_COLUMN_INDEX);
                     String displayName = data.getString(
                             GroupMemberLoader.CONTACT_DISPLAY_NAME_PRIMARY_COLUMN_INDEX);
                     String photoUri = data.getString(
                             GroupMemberLoader.CONTACT_PHOTO_URI_COLUMN_INDEX);
-                    listMembers.add(new Member(lookupKey, contactId, displayName, photoUri));
+                    listExistingMembers.add(new Member(rawContactId, lookupKey, contactId,
+                            displayName, photoUri));
                     listContactIds.add(contactId);
                 }
             } finally {
                 data.close();
             }
-            // Update the list of displayed existing members
-            mMemberListAdapter.updateExistingMembersList(listMembers);
 
-            // Setup the group member suggestion adapter
             mAutoCompleteAdapter = new SuggestedMemberListAdapter(getActivity(),
                     android.R.layout.simple_dropdown_item_1line);
             mAutoCompleteAdapter.setContentResolver(mContentResolver);
@@ -622,7 +661,8 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     SuggestedMember member = mAutoCompleteAdapter.getItem(position);
-                    loadMemberToAddToGroup(String.valueOf(member.getContactId()));
+                    loadMemberToAddToGroup(member.getRawContactId(),
+                            String.valueOf(member.getContactId()));
 
                     // Update the autocomplete adapter so the contact doesn't get suggested again
                     mAutoCompleteAdapter.addNewMember(member.getContactId());
@@ -632,8 +672,9 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
                 }
             });
 
-            // Update the autocomplete adapter
-            mAutoCompleteAdapter.updateExistingMembersList(listContactIds);
+            // Update the display list
+            addExistingMembers(listExistingMembers, listContactIds);
+
             // No more updates
             // TODO: move to a runnable
             getLoaderManager().destroyLoader(LOADER_EXISTING_MEMBERS);
@@ -646,15 +687,17 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     /**
      * The listener to load a summary of details for a contact.
      */
+    // TODO: Remove this step because showing the aggregate contact can be confusing when the user
+    // just selected a raw contact
     private final LoaderManager.LoaderCallbacks<Cursor> mContactLoaderListener =
             new LoaderCallbacks<Cursor>() {
 
-        private int mMemberAction;
+        private long mRawContactId;
 
         @Override
         public CursorLoader onCreateLoader(int id, Bundle args) {
             String memberId = args.getString(MEMBER_LOOKUP_URI_KEY);
-            mMemberAction = args.getInt(MEMBER_ACTION_KEY);
+            mRawContactId = args.getLong(MEMBER_RAW_CONTACT_ID_KEY);
             return new CursorLoader(mContext, Uri.withAppendedPath(Contacts.CONTENT_URI, memberId),
                     PROJECTION_CONTACT, null, null, null);
         }
@@ -671,7 +714,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
                 String lookupKey = cursor.getString(CONTACT_LOOKUP_KEY_COLUMN_INDEX);
                 String photoUri = cursor.getString(CONTACT_PHOTO_URI_COLUMN_INDEX);
                 getLoaderManager().destroyLoader(LOADER_NEW_GROUP_MEMBER);
-                member = new Member(lookupKey, contactId, displayName, photoUri);
+                member = new Member(mRawContactId, lookupKey, contactId, displayName, photoUri);
             } finally {
                 cursor.close();
             }
@@ -680,26 +723,8 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
                 return;
             }
 
-            // Don't do anything if the adapter already contains this member
-            // TODO: Come up with a better way to check membership using a DB query
-            if (mMemberListAdapter.contains(member)) {
-                Toast.makeText(getActivity(), getActivity().getString(
-                        R.string.contactAlreadyInGroup), Toast.LENGTH_SHORT).show();
-                return;
-            }
-
             // Otherwise continue adding the member to list of members
-            mMemberListAdapter.addMember(member);
-
-            // Then start loading the full contact so that the change can be saved
-            // TODO: Combine these two loader steps into one. Either we get rid of the first loader
-            // (retrieving summary details) and just use the full contact loader, or find a way
-            // to save changes without loading the full contact
-            Bundle args = new Bundle();
-            args.putString(MEMBER_LOOKUP_URI_KEY, member.getLookupUri().toString());
-            args.putInt(MEMBER_ACTION_KEY, mMemberAction);
-            getLoaderManager().restartLoader(FULL_LOADER_NEW_GROUP_MEMBER, args,
-                    mDataLoaderListener);
+            addMember(member);
         }
 
         @Override
@@ -707,109 +732,31 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     };
 
     /**
-     * The listener for the loader that loads the full details of a contact so that when the data
-     * has arrived, the contact can be added or removed from the group.
-     */
-    private final LoaderManager.LoaderCallbacks<ContactLoader.Result> mDataLoaderListener =
-            new LoaderCallbacks<ContactLoader.Result>() {
-
-        private int mMemberAction;
-
-        @Override
-        public Loader<ContactLoader.Result> onCreateLoader(int id, Bundle args) {
-            mMemberAction = args.getInt(MEMBER_ACTION_KEY);
-            String memberLookupUri = args.getString(MEMBER_LOOKUP_URI_KEY);
-            return new ContactLoader(mContext, Uri.parse(memberLookupUri));
-        }
-
-        @Override
-        public void onLoadFinished(Loader<ContactLoader.Result> loader, ContactLoader.Result data) {
-            if (data == ContactLoader.Result.NOT_FOUND || data == ContactLoader.Result.ERROR) {
-                Log.i(TAG, "Contact was not found");
-                return;
-            }
-            saveChange(data, mMemberAction);
-        }
-
-        public void onLoaderReset(Loader<ContactLoader.Result> loader) {
-        }
-    };
-
-    private void saveChange(ContactLoader.Result data, int action) {
-        EntityDeltaList state = EntityDeltaList.fromIterator(data.getEntities().iterator());
-
-        // We need a raw contact to save this group membership change to, so find the first valid
-        // {@link EntityDelta}.
-        // TODO: Find a better way to do this. This will not work if the group is associated with
-        // the other
-        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
-        AccountType type = null;
-        EntityDelta entity = null;
-        int size = state.size();
-        for (int i = 0; i < size; i++) {
-            entity = state.get(i);
-            final ValuesDelta values = entity.getValues();
-            if (!values.isVisible()) continue;
-
-            final String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
-            final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
-            type = accountTypes.getAccountType(accountType);
-            // If the account name and type match this group's properties and the account type is
-            // not an external type, then use this raw contact
-            if (mAccountName.equals(accountName) && mAccountType.equals(accountType) &&
-                    !type.isExternal()) {
-                break;
-            }
-        }
-
-        Intent intent = null;
-        switch (action) {
-            case ADD_MEMBER:
-                DataKind groupMembershipKind = type.getKindForMimetype(
-                        GroupMembership.CONTENT_ITEM_TYPE);
-                ValuesDelta entry = EntityModifier.insertChild(entity, groupMembershipKind);
-                entry.put(GroupMembership.GROUP_ROW_ID, mGroupId);
-                // Form intent
-                intent = ContactSaveService.createSaveContactIntent(getActivity(), state,
-                        SAVE_MODE_EXTRA_KEY, SaveMode.CLOSE, getActivity().getClass(),
-                        GroupEditorActivity.ACTION_ADD_MEMBER_COMPLETED);
-                break;
-            case REMOVE_MEMBER:
-                // TODO: Check that the contact was in the group in the first place
-                ArrayList<ValuesDelta> entries = entity.getMimeEntries(
-                        GroupMembership.CONTENT_ITEM_TYPE);
-                if (entries != null) {
-                    for (ValuesDelta valuesDeltaEntry : entries) {
-                        if (!valuesDeltaEntry.isDelete()) {
-                            Long groupId = valuesDeltaEntry.getAsLong(GroupMembership.GROUP_ROW_ID);
-                            if (groupId == mGroupId) {
-                                valuesDeltaEntry.markDeleted();
-                            }
-                        }
-                    }
-                }
-                intent = ContactSaveService.createSaveContactIntent(getActivity(), state,
-                        SAVE_MODE_EXTRA_KEY, SaveMode.CLOSE, getActivity().getClass(),
-                        GroupEditorActivity.ACTION_REMOVE_MEMBER_COMPLETED);
-                break;
-            default:
-                throw new IllegalStateException("Invalid action for a group member " + action);
-        }
-        getActivity().startService(intent);
-    }
-
-    /**
      * This represents a single member of the current group.
      */
     public static class Member {
+        // TODO: Switch to just dealing with raw contact IDs everywhere if possible
+        private final long mRawContactId;
+        private final long mContactId;
         private final Uri mLookupUri;
         private final String mDisplayName;
         private final Uri mPhotoUri;
 
-        public Member(String lookupKey, long contactId, String displayName, String photoUri) {
+        public Member(long rawContactId, String lookupKey, long contactId, String displayName,
+                String photoUri) {
+            mRawContactId = rawContactId;
+            mContactId = contactId;
             mLookupUri = Contacts.getLookupUri(contactId, lookupKey);
             mDisplayName = displayName;
             mPhotoUri = (photoUri != null) ? Uri.parse(photoUri) : null;
+        }
+
+        public long getRawContactId() {
+            return mRawContactId;
+        }
+
+        public long getContactId() {
+            return mContactId;
         }
 
         public Uri getLookupUri() {
@@ -839,34 +786,6 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
      */
     private final class MemberListAdapter extends BaseAdapter {
 
-        private List<Member> mNewMembersList = new ArrayList<Member>();
-        private List<Member> mTotalList = new ArrayList<Member>();
-
-        public boolean contains(Member member) {
-            return mTotalList.contains(member);
-        }
-
-        public void addMember(Member member) {
-            mNewMembersList.add(member);
-            mTotalList.add(member);
-            notifyDataSetChanged();
-        }
-
-        public void removeMember(Member member) {
-            if (mNewMembersList.contains(member)) {
-                mNewMembersList.remove(member);
-            }
-            mTotalList.remove(member);
-            notifyDataSetChanged();
-        }
-
-        public void updateExistingMembersList(List<Member> existingMembers) {
-            mTotalList.clear();
-            mTotalList.addAll(mNewMembersList);
-            mTotalList.addAll(existingMembers);
-            notifyDataSetChanged();
-        }
-
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View result;
@@ -887,14 +806,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
             deleteButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    loadMemberToRemoveFromGroup(member.getLookupUri().toString());
-                    // TODO: This is a hack to save the reference to the member that should be
-                    // removed. This won't work if the user tries to remove multiple times in a row
-                    // and reference is outdated. We actually need a hash map of member URIs to the
-                    // actual Member object. Before dealing with hash map though, hopefully we can
-                    // figure out how to batch save membership changes, which would eliminate the
-                    // need for this variable.
-                    mMemberToRemove = member;
+                    removeMember(member);
                 }
             });
 
@@ -904,37 +816,17 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
 
         @Override
         public int getCount() {
-            return mTotalList.size();
+            return mListToDisplay.size();
         }
 
         @Override
         public Member getItem(int position) {
-            return mTotalList.get(position);
-        }
-
-        @Override
-        public int getItemViewType(int position) {
-            return 0;
-        }
-
-        @Override
-        public int getViewTypeCount() {
-            return 1;
+            return mListToDisplay.get(position);
         }
 
         @Override
         public long getItemId(int position) {
-            return -1;
-        }
-
-        @Override
-        public boolean areAllItemsEnabled() {
-            return false;
-        }
-
-        @Override
-        public boolean isEnabled(int position) {
-            return false;
+            return position;
         }
     }
 }
