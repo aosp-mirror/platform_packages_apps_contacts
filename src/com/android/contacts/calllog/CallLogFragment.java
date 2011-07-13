@@ -251,22 +251,17 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             mPreDrawListener = null;
 
             Resources resources = getResources();
-            Drawable incomingDrawable = resources.getDrawable(
-                    R.drawable.ic_call_log_list_incoming_call);
-            Drawable outgoingDrawable = resources.getDrawable(
-                    R.drawable.ic_call_log_list_outgoing_call);
-            Drawable missedDrawable = resources.getDrawable(
-                    R.drawable.ic_call_log_list_missed_call);
-            Drawable voicemailDrawable = resources.getDrawable(
-                    R.drawable.ic_call_log_list_voicemail);
+            CallTypeHelper callTypeHelper = new CallTypeHelper(resources,
+                    resources.getDrawable(R.drawable.ic_call_incoming_holo_dark),
+                    resources.getDrawable(R.drawable.ic_call_outgoing_holo_dark),
+                    resources.getDrawable(R.drawable.ic_call_missed_holo_dark),
+                    resources.getDrawable(R.drawable.ic_call_voicemail_holo_dark));
             Drawable callDrawable = resources.getDrawable(
                     R.drawable.ic_call_log_list_action_call);
             Drawable playDrawable = resources.getDrawable(
                     R.drawable.ic_call_log_list_action_play);
 
             mContactPhotoManager = ContactPhotoManager.getInstance(getActivity());
-            CallTypeHelper callTypeHelper = new CallTypeHelper(resources, incomingDrawable,
-                    outgoingDrawable, missedDrawable, voicemailDrawable);
             PhoneNumberHelper phoneNumberHelper =
                     new PhoneNumberHelper(getResources(), mVoiceMailNumber);
             PhoneCallDetailsHelper phoneCallDetailsHelper = new PhoneCallDetailsHelper(

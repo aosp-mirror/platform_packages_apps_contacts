@@ -320,9 +320,9 @@ public class CallLogActivityTests
     private void buildIconMap() {
         mCallTypeIcons = new HashMap<Integer, Bitmap>(3);
 
-        mCallTypeIcons.put(Calls.INCOMING_TYPE, getBitmap("ic_call_log_list_incoming_call"));
-        mCallTypeIcons.put(Calls.MISSED_TYPE, getBitmap("ic_call_log_list_missed_call"));
-        mCallTypeIcons.put(Calls.OUTGOING_TYPE, getBitmap("ic_call_log_list_outgoing_call"));
+        mCallTypeIcons.put(Calls.INCOMING_TYPE, getBitmap("ic_call_incoming_holo_dark"));
+        mCallTypeIcons.put(Calls.MISSED_TYPE, getBitmap("ic_call_missed_holo_dark"));
+        mCallTypeIcons.put(Calls.OUTGOING_TYPE, getBitmap("ic_call_outgoing_holo_dark"));
     }
 
     //
