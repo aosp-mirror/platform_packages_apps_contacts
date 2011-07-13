@@ -21,6 +21,7 @@ import com.android.contacts.test.InjectedServices;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -116,5 +117,13 @@ public abstract class ContactsActivity extends Activity
                     + " doesn't exist");
         }
         return result;
+    }
+
+    protected static void showFragment(FragmentTransaction ft, Fragment f) {
+        if ((f != null) && f.isHidden()) ft.show(f);
+    }
+
+    protected static void hideFragment(FragmentTransaction ft, Fragment f) {
+        if ((f != null) && !f.isHidden()) ft.hide(f);
     }
 }
