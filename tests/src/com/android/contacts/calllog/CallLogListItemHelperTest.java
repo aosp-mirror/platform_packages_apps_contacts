@@ -87,7 +87,8 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
         mViews = CallLogListItemViews.createForTest(new QuickContactBadge(context),
                 new ImageView(context), PhoneCallDetailsViews.createForTest(new TextView(context),
                         new LinearLayout(context), new TextView(context), new TextView(context),
-                        new TextView(context), new TextView(context)));
+                        new TextView(context), new TextView(context)),
+                new View(context), new View(context), new TextView(context));
     }
 
     @Override
@@ -135,7 +136,7 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(number, formattedNumber, new int[]{ Calls.INCOMING_TYPE },
                         TEST_DATE, TEST_DURATION),
-                true);
+                true, false);
     }
 
     /** Sets the details of a phone call using the specified call type. */
@@ -143,6 +144,6 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(
                         TEST_NUMBER, TEST_FORMATTED_NUMBER, types, TEST_DATE, TEST_DURATION),
-                true);
+                true, false);
     }
 }

@@ -16,6 +16,7 @@
 
 package com.android.contacts.calllog;
 
+import com.android.common.io.MoreCloseables;
 import com.android.common.widget.GroupingListAdapter;
 import com.android.contacts.CallDetailActivity;
 import com.android.contacts.ContactPhotoManager;
@@ -38,6 +39,8 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
+import android.database.MatrixCursor;
+import android.database.MergeCursor;
 import android.database.sqlite.SQLiteDatabaseCorruptException;
 import android.database.sqlite.SQLiteDiskIOException;
 import android.database.sqlite.SQLiteException;
@@ -70,6 +73,8 @@ import android.widget.QuickContactBadge;
 import java.lang.ref.WeakReference;
 import java.util.LinkedList;
 
+import javax.annotation.concurrent.GuardedBy;
+
 /**
  * Displays a list of call log entries.
  */
@@ -80,21 +85,39 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     private static final int CONTACT_INFO_CACHE_SIZE = 100;
 
     /** The query for the call log table */
-    private static final class CallLogQuery {
+    public static final class CallLogQuery {
         public static final String[] _PROJECTION = new String[] {
                 Calls._ID,
                 Calls.NUMBER,
                 Calls.DATE,
                 Calls.DURATION,
                 Calls.TYPE,
-                Calls.COUNTRY_ISO};
-
+                Calls.COUNTRY_ISO,
+        };
         public static final int ID = 0;
         public static final int NUMBER = 1;
         public static final int DATE = 2;
         public static final int DURATION = 3;
         public static final int CALL_TYPE = 4;
         public static final int COUNTRY_ISO = 5;
+
+        /**
+         * The name of the synthetic "section" column.
+         * <p>
+         * This column identifies whether a row is a header or an actual item, and whether it is
+         * part of the new or old calls.
+         */
+        public static final String SECTION_NAME = "section";
+        /** The index of the "section" column in the projection. */
+        public static final int SECTION = 6;
+        /** The value of the "section" column for the header of the new section. */
+        public static final int SECTION_NEW_HEADER = 0;
+        /** The value of the "section" column for the items of the new section. */
+        public static final int SECTION_NEW_ITEM = 1;
+        /** The value of the "section" column for the header of the old section. */
+        public static final int SECTION_OLD_HEADER = 2;
+        /** The value of the "section" column for the items of the old section. */
+        public static final int SECTION_OLD_ITEM = 3;
     }
 
     /** The query to use for the phones table */
@@ -122,9 +145,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     private static final class OptionsMenuItems {
         public static final int DELETE_ALL = 1;
     }
-
-    private static final int QUERY_TOKEN = 53;
-    private static final int UPDATE_TOKEN = 54;
 
     private CallLogAdapter mAdapter;
     private QueryHandler mQueryHandler;
@@ -499,7 +519,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
 
         @Override
         protected void addGroups(Cursor cursor) {
-
             int count = cursor.getCount();
             if (count == 0) {
                 return;
@@ -520,7 +539,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                 // Group adjacent calls with the same number. Make an exception
                 // for the latest item if it was a missed call.  We don't want
                 // a missed call to be hidden inside a group.
-                if (sameNumber && currentCallType != Calls.MISSED_TYPE) {
+                if (sameNumber && currentCallType != Calls.MISSED_TYPE
+                        && !isSectionHeader(cursor)) {
                     groupItemCount++;
                 } else {
                     if (groupItemCount > 1) {
@@ -547,6 +567,18 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             if (groupItemCount > 1) {
                 addGroup(count - groupItemCount, groupItemCount, false);
             }
+        }
+
+        private boolean isSectionHeader(Cursor cursor) {
+            int section = cursor.getInt(CallLogQuery.SECTION);
+            return section == CallLogQuery.SECTION_NEW_HEADER
+                    || section == CallLogQuery.SECTION_OLD_HEADER;
+        }
+
+        private boolean isNewSection(Cursor cursor) {
+            int section = cursor.getInt(CallLogQuery.SECTION);
+            return section == CallLogQuery.SECTION_NEW_ITEM
+                    || section == CallLogQuery.SECTION_NEW_HEADER;
         }
 
         protected boolean equalPhoneNumbers(CharArrayBuffer buffer1, CharArrayBuffer buffer2) {
@@ -625,12 +657,32 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
          */
         private void bindView(View view, Cursor c, int count) {
             final CallLogListItemViews views = (CallLogListItemViews) view.getTag();
+            final int section = c.getInt(CallLogQuery.SECTION);
 
-            String number = c.getString(CallLogQuery.NUMBER);
-            long date = c.getLong(CallLogQuery.DATE);
-            long duration = c.getLong(CallLogQuery.DURATION);
+            if (views.standAloneItemView != null) {
+                // This is stand-alone item: it might, however, be a header: check the value of the
+                // section column in the cursor.
+                if (section == CallLogQuery.SECTION_NEW_HEADER
+                        || section == CallLogQuery.SECTION_OLD_HEADER) {
+                    views.standAloneItemView.setVisibility(View.GONE);
+                    views.standAloneHeaderView.setVisibility(View.VISIBLE);
+                    views.standAloneHeaderTextView.setText(
+                            section == CallLogQuery.SECTION_NEW_HEADER
+                                    ? R.string.call_log_new_header
+                                    : R.string.call_log_old_header);
+                    // Nothing else to set up for a header.
+                    return;
+                }
+                // Default case: an item in the call log.
+                views.standAloneItemView.setVisibility(View.VISIBLE);
+                views.standAloneHeaderView.setVisibility(View.GONE);
+            }
+
+            final String number = c.getString(CallLogQuery.NUMBER);
+            final long date = c.getLong(CallLogQuery.DATE);
+            final long duration = c.getLong(CallLogQuery.DURATION);
             final String formattedNumber;
-            String countryIso = c.getString(CallLogQuery.COUNTRY_ISO);
+            final String countryIso = c.getString(CallLogQuery.COUNTRY_ISO);
             // Store away the number so we can call it directly if you click on the call icon
             if (views.callView != null) {
                 views.callView.setTag(number);
@@ -673,19 +725,19 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                 formattedNumber = formatPhoneNumber(number, null, countryIso);
             }
 
-            long personId = info.personId;
-            String name = info.name;
-            int ntype = info.type;
-            String label = info.label;
-            long photoId = info.photoId;
-            String lookupKey = info.lookupKey;
+            final long personId = info.personId;
+            final String name = info.name;
+            final int ntype = info.type;
+            final String label = info.label;
+            final long photoId = info.photoId;
+            final String lookupKey = info.lookupKey;
             // Assumes the call back feature is on most of the
             // time. For private and unknown numbers: hide it.
             if (views.callView != null) {
                 views.callView.setVisibility(View.VISIBLE);
             }
 
-            int[] callTypes = getCallTypes(c, count);
+            final int[] callTypes = getCallTypes(c, count);
             final PhoneCallDetails details;
             if (TextUtils.isEmpty(name)) {
                 details = new PhoneCallDetails(number, formattedNumber, callTypes, date, duration);
@@ -693,7 +745,13 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                 details = new PhoneCallDetails(number, formattedNumber, callTypes, date, duration,
                         name, ntype, label, personId, photoId);
             }
-            mCallLogViewsHelper.setPhoneCallDetails(views, details , true);
+
+            final boolean isNew = isNewSection(c);
+            // Use icons for old items, but text for new ones.
+            final boolean useIcons = !isNew;
+            // New items also use the highlighted version of the text.
+            final boolean isHighlighted = isNew;
+            mCallLogViewsHelper.setPhoneCallDetails(views, details, useIcons, isHighlighted);
             if (views.photoView != null) {
                 bindQuickContact(views.photoView, photoId, personId, lookupKey);
             }
@@ -750,8 +808,21 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         }
     }
 
+    /** Handles asynchronous queries to the call log. */
     private static final class QueryHandler extends AsyncQueryHandler {
+        /** The token for the query to fetch the new entries from the call log. */
+        private static final int QUERY_NEW_CALLS_TOKEN = 53;
+        /** The token for the query to fetch the old entries from the call log. */
+        private static final int QUERY_OLD_CALLS_TOKEN = 54;
+        /** The token for the query to mark all missed calls as old after seeing the call log. */
+        private static final int UPDATE_MISSED_CALLS_TOKEN = 55;
+
         private final WeakReference<CallLogFragment> mFragment;
+
+        /** The cursor containing the new calls, or null if they have not yet been fetched. */
+        @GuardedBy("this") private Cursor mNewCallsCursor;
+        /** The cursor containing the old calls, or null if they have not yet been fetched. */
+        @GuardedBy("this") private Cursor mOldCallsCursor;
 
         /**
          * Simple handler that wraps background calls to catch
@@ -788,14 +859,173 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             mFragment = new WeakReference<CallLogFragment>(fragment);
         }
 
+        /** Returns the list of columns for the headers. */
+        private String[] getHeaderColumns() {
+            int length = CallLogQuery._PROJECTION.length;
+            String[] columns = new String[length + 1];
+            System.arraycopy(CallLogQuery._PROJECTION, 0, columns, 0, length);
+            columns[length] = CallLogQuery.SECTION_NAME;
+            return columns;
+        }
+
+        /** Creates a cursor that contains a single row and maps the section to the given value. */
+        private Cursor createHeaderCursorFor(int section) {
+            MatrixCursor matrixCursor = new MatrixCursor(getHeaderColumns());
+            matrixCursor.addRow(new Object[]{ -1L, "", 0L, 0L, 0, "", section });
+            return matrixCursor;
+        }
+
+        /** Returns a cursor for the old calls header. */
+        private Cursor createOldCallsHeaderCursor() {
+            return createHeaderCursorFor(CallLogQuery.SECTION_OLD_HEADER);
+        }
+
+        /** Returns a cursor for the new calls header. */
+        private Cursor createNewCallsHeaderCursor() {
+            return createHeaderCursorFor(CallLogQuery.SECTION_NEW_HEADER);
+        }
+
+        /**
+         * Fetches the list of calls from the call log.
+         * <p>
+         * It will asynchronously update the content of the list view when the fetch completes.
+         */
+        public void fetchCalls() {
+            cancelFetch();
+            invalidate();
+            fetchNewCalls();
+            fetchOldCalls();
+        }
+
+        /** Fetches the list of new calls in the call log. */
+        private void fetchNewCalls() {
+            fetchCalls(QUERY_NEW_CALLS_TOKEN, true);
+        }
+
+        /** Fetch the list of old calls in the call log. */
+        private void fetchOldCalls() {
+            fetchCalls(QUERY_OLD_CALLS_TOKEN, false);
+        }
+
+        /** Fetches the list of calls in the call log, either the new one or the old ones. */
+        private void fetchCalls(int token, boolean isNew) {
+            String selection =
+                    String.format("%s = 1 AND (%s = ? OR %s = ?)",
+                            Calls.NEW, Calls.TYPE, Calls.TYPE);
+            String[] selectionArgs = new String[]{
+                    Integer.toString(Calls.MISSED_TYPE),
+                    Integer.toString(Calls.VOICEMAIL_TYPE),
+            };
+            if (!isNew) {
+                selection = String.format("NOT (%s)", selection);
+            }
+            startQuery(token, null, Calls.CONTENT_URI_WITH_VOICEMAIL,
+                    CallLogQuery._PROJECTION, selection, selectionArgs, Calls.DEFAULT_SORT_ORDER);
+        }
+
+        /** Cancel any pending fetch request. */
+        private void cancelFetch() {
+            cancelOperation(QUERY_NEW_CALLS_TOKEN);
+            cancelOperation(QUERY_OLD_CALLS_TOKEN);
+        }
+
+        /** Updates the missed calls to mark them as old. */
+        public void updateMissedCalls() {
+            // Mark all "new" missed calls as not new anymore
+            StringBuilder where = new StringBuilder();
+            where.append("type = ");
+            where.append(Calls.MISSED_TYPE);
+            where.append(" AND ");
+            where.append(Calls.NEW);
+            where.append(" = 1");
+
+            ContentValues values = new ContentValues(1);
+            values.put(Calls.NEW, "0");
+
+            startUpdate(UPDATE_MISSED_CALLS_TOKEN, null, Calls.CONTENT_URI_WITH_VOICEMAIL,
+                    values, where.toString(), null);
+        }
+
+        /**
+         * Invalidate the current list of calls.
+         * <p>
+         * This method is synchronized because it must close the cursors and reset them atomically.
+         */
+        private synchronized void invalidate() {
+            MoreCloseables.closeQuietly(mNewCallsCursor);
+            MoreCloseables.closeQuietly(mOldCallsCursor);
+            mNewCallsCursor = null;
+            mOldCallsCursor = null;
+        }
+
         @Override
-        protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
+        protected synchronized void onQueryComplete(int token, Object cookie, Cursor cursor) {
+            if (token == QUERY_NEW_CALLS_TOKEN) {
+                // Store the returned cursor.
+                mNewCallsCursor = new ExtendedCursor(
+                        cursor, CallLogQuery.SECTION_NAME, CallLogQuery.SECTION_NEW_ITEM);
+            } else if (token == QUERY_OLD_CALLS_TOKEN) {
+                // Store the returned cursor.
+                mOldCallsCursor = new ExtendedCursor(
+                        cursor, CallLogQuery.SECTION_NAME, CallLogQuery.SECTION_OLD_ITEM);
+            } else {
+                Log.w(TAG, "Unknown query completed: ignoring: " + token);
+                return;
+            }
+
+            if (mNewCallsCursor != null && mOldCallsCursor != null) {
+                updateAdapterData(createMergedCursor());
+            }
+        }
+
+        /** Creates the merged cursor representing the data to show in the call log. */
+        @GuardedBy("this")
+        private Cursor createMergedCursor() {
+            try {
+                final boolean noNewCalls = mNewCallsCursor.getCount() == 0;
+                final boolean noOldCalls = mOldCallsCursor.getCount() == 0;
+
+                if (noNewCalls && noOldCalls) {
+                    // Nothing in either cursors.
+                    MoreCloseables.closeQuietly(mNewCallsCursor);
+                    return mOldCallsCursor;
+                }
+
+                if (noNewCalls) {
+                    // Return only the old calls.
+                    MoreCloseables.closeQuietly(mNewCallsCursor);
+                    return new MergeCursor(
+                            new Cursor[]{ createOldCallsHeaderCursor(), mOldCallsCursor });
+                }
+
+                if (noOldCalls) {
+                    // Return only the new calls.
+                    MoreCloseables.closeQuietly(mOldCallsCursor);
+                    return new MergeCursor(
+                            new Cursor[]{ createNewCallsHeaderCursor(), mNewCallsCursor });
+                }
+
+                return new MergeCursor(new Cursor[]{
+                        createNewCallsHeaderCursor(), mNewCallsCursor,
+                        createOldCallsHeaderCursor(), mOldCallsCursor});
+            } finally {
+                // Any cursor still open is now owned, directly or indirectly, by the caller.
+                mNewCallsCursor = null;
+                mOldCallsCursor = null;
+            }
+        }
+
+        /**
+         * Updates the adapter in the call log fragment to show the new cursor data.
+         */
+        private void updateAdapterData(Cursor combinedCursor) {
             final CallLogFragment fragment = mFragment.get();
             if (fragment != null && fragment.getActivity() != null &&
                     !fragment.getActivity().isFinishing()) {
-                final CallLogFragment.CallLogAdapter callsAdapter = fragment.mAdapter;
+                Log.d(TAG, "updating adapter");
+                final CallLogAdapter callsAdapter = fragment.mAdapter;
                 callsAdapter.setLoading(false);
-                callsAdapter.changeCursor(cursor);
+                callsAdapter.changeCursor(combinedCursor);
                 if (fragment.mScrollToTop) {
                     final ListView listView = fragment.getListView();
                     if (listView.getFirstVisiblePosition() > 5) {
@@ -804,8 +1034,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                     listView.smoothScrollToPosition(0);
                     fragment.mScrollToTop = false;
                 }
-            } else {
-                cursor.close();
             }
         }
     }
@@ -898,24 +1126,12 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     }
 
     private void resetNewCallsFlag() {
-        // Mark all "new" missed calls as not new anymore
-        StringBuilder where = new StringBuilder("type=");
-        where.append(Calls.MISSED_TYPE);
-        where.append(" AND new=1");
-
-        ContentValues values = new ContentValues(1);
-        values.put(Calls.NEW, "0");
-        mQueryHandler.startUpdate(UPDATE_TOKEN, null, Calls.CONTENT_URI_WITH_VOICEMAIL,
-                values, where.toString(), null);
+        mQueryHandler.updateMissedCalls();
     }
 
     private void startQuery() {
         mAdapter.setLoading(true);
-
-        // Cancel any pending queries
-        mQueryHandler.cancelOperation(QUERY_TOKEN);
-        mQueryHandler.startQuery(QUERY_TOKEN, null, Calls.CONTENT_URI_WITH_VOICEMAIL,
-                CallLogQuery._PROJECTION, null, null, Calls.DEFAULT_SORT_ORDER);
+        mQueryHandler.fetchCalls();
     }
 
     @Override

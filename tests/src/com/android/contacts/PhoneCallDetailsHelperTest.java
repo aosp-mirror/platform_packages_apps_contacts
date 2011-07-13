@@ -213,7 +213,7 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(number, formattedNumber, new int[]{ Calls.INCOMING_TYPE },
                         TEST_DATE, TEST_DURATION),
-                false);
+                false, false);
     }
 
     /** Sets the phone call details with default values and the given date. */
@@ -221,7 +221,7 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER,
                         new int[]{ Calls.INCOMING_TYPE }, date, TEST_DURATION),
-                false);
+                false, false);
     }
 
     /** Sets the phone call details with default values and the given call types using icons. */
@@ -238,6 +238,6 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, callTypes, TEST_DATE,
                         TEST_DURATION),
-                useIcons);
+                useIcons, false);
     }
 }

@@ -57,4 +57,10 @@
 
     <!-- Color of the text in the updates tab in the tab carousel on the contact detail page -->
     <color name="detail_update_tab_text_color">#777777</color>
+
+    <!-- Color of the text describing an unconsumed missed call. -->
+    <color name="call_log_missed_call_highlight_color">#FF0000</color>
+
+    <!-- Color of the text describing an unconsumed voicemail. -->
+    <color name="call_log_voicemail_highlight_color">#0000FF</color>
 </resources>

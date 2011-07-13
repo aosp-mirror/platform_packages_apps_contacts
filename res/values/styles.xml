@@ -40,6 +40,8 @@
         <item name="call_log_list_contact_photo_size">60dip</item>
         <item name="call_log_list_contact_photo_margin">5dip</item>
         <item name="call_log_list_item_height">70dip</item>
+        <item name="call_log_list_header_text_color">#AAAAFF</item>
+        <item name="call_log_list_header_background">@drawable/call_log_action_bar_bg</item>
         <!-- CallLog -->
         <item name="call_log_date_margin">5dip</item>
         <item name="call_log_primary_text_color">#FFFFFF</item>
@@ -154,6 +156,8 @@
         <attr name="call_log_list_contact_photo_size" format="dimension" />
         <attr name="call_log_list_contact_photo_margin" format="dimension" />
         <attr name="call_log_list_item_height" format="dimension" />
+        <attr name="call_log_list_header_text_color" format="color" />
+        <attr name="call_log_list_header_background" format="reference" />
     </declare-styleable>
 
     <style name="PeopleTheme" parent="android:Theme.Holo.Light.SplitActionBarWhenNarrow">

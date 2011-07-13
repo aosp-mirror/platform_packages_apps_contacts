@@ -55,13 +55,14 @@ public class CallLogActivityTests
         extends ActivityInstrumentationTestCase2<CallLogActivity> {
     private static final String TAG = "CallLogActivityTests";
 
-    private static final String[] CALL_LOG_PROJECTION = new String[] {
+    private static final String[] EXTENDED_CALL_LOG_PROJECTION = new String[] {
             Calls._ID,
             Calls.NUMBER,
             Calls.DATE,
             Calls.DURATION,
             Calls.TYPE,
             Calls.COUNTRY_ISO,
+            CallLogFragment.CallLogQuery.SECTION_NAME,
     };
     private static final int RAND_DURATION = -1;
     private static final long NOW = -1L;
@@ -123,7 +124,7 @@ public class CallLogActivityTests
         mAdapter.disableRequestProcessingForTest();
         mAdapter.stopRequestProcessing();
         mParentView = new FrameLayout(mActivity);
-        mCursor = new MatrixCursor(CALL_LOG_PROJECTION);
+        mCursor = new MatrixCursor(EXTENDED_CALL_LOG_PROJECTION);
         buildIconMap();
     }
 
@@ -431,6 +432,7 @@ public class CallLogActivityTests
         }
         row.add(type);  // type
         row.add(TEST_COUNTRY_ISO);  // country ISO
+        row.add(CallLogFragment.CallLogQuery.SECTION_OLD_ITEM);  // section
     }
 
     /**
