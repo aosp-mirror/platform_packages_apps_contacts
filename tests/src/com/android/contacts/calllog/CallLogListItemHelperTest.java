@@ -19,6 +19,7 @@ package com.android.contacts.calllog;
 import com.android.contacts.PhoneCallDetails;
 import com.android.contacts.PhoneCallDetailsHelper;
 import com.android.contacts.PhoneCallDetailsViews;
+import com.android.contacts.R;
 import com.android.internal.telephony.CallerInfo;
 
 import android.content.Context;
@@ -73,8 +74,10 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
         Context context = getContext();
         Resources resources = context.getResources();
         CallTypeHelper callTypeHelper = new CallTypeHelper(resources,
-                TEST_INCOMING_DRAWABLE, TEST_OUTGOING_DRAWABLE, TEST_MISSED_DRAWABLE,
-                TEST_VOICEMAIL_DRAWABLE);
+                resources.getDrawable(R.drawable.ic_call_incoming_holo_dark),
+                resources.getDrawable(R.drawable.ic_call_outgoing_holo_dark),
+                resources.getDrawable(R.drawable.ic_call_missed_holo_dark),
+                resources.getDrawable(R.drawable.ic_call_voicemail_holo_dark));
         PhoneNumberHelper phoneNumberHelper =
                 new PhoneNumberHelper(resources, TEST_VOICEMAIL_NUMBER);
         PhoneCallDetailsHelper phoneCallDetailsHelper = new PhoneCallDetailsHelper(context,

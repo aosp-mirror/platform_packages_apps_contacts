@@ -26,6 +26,7 @@
             android:id="@+id/call_type_icons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="bottom"
         />
         <TextView
             android:id="@+id/call_type_name"
@@ -43,17 +44,17 @@
             android:textColor="?attr/call_log_primary_text_color"
             android:text="@string/call_log_type_date_separator"
         />
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?attr/call_log_primary_text_color"
+            android:layout_toRightOf="@id/call_type"
+            android:layout_marginLeft="?attr/call_log_date_margin"
+            android:layout_alignParentBottom="true"
+        />
     </LinearLayout>
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="?attr/call_log_primary_text_color"
-        android:layout_toRightOf="@id/call_type"
-        android:layout_marginLeft="?attr/call_log_date_margin"
-        android:layout_alignParentBottom="true"
-    />
     <TextView
         android:id="@+id/number"
         android:layout_width="wrap_content"
