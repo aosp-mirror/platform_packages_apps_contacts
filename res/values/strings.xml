@@ -1613,4 +1613,26 @@
 
     <!-- The header in the call log used to identify items that have been already consumed [CHAR LIMIT=10] -->
     <string name="call_log_old_header">Older</string>
+
+    <!--  Voicemail status message shown at the top of call log to notify the user that no new
+      voicemails are currently available. This can happen when both notification as well as data
+      connection to the voicemail server is lost. [CHAR LIMIT=64] -->
+    <string name="voicemail_status_voicemail_not_available">Cannot connect to voicemail server.</string>
+    <!--  Voicemail status message shown at the top of call log to notify the user that there is no
+      data connection to the voicemail server, but there are new voicemails waiting on the server.
+      [CHAR LIMIT=64] -->
+    <string name="voicemail_status_messages_waiting">Cannot connect to voicemail server. New voicemails waiting.</string>
+   <!--  Voicemail status message shown at the top of call log to invite the user to configure
+      visual voicemail. [CHAR LIMIT=64] -->
+    <string name="voicemail_status_configure_voicemail">Configure your voicemail.</string>
+   <!--  Voicemail status message shown at the top of call details screen to notify the user that
+      the audio of this voicemail is not available. [CHAR LIMIT=64] -->
+    <string name="voicemail_status_audio_not_available">Audio not available.</string>
+
+   <!--  User action prompt shown next to a voicemail status message to let the user configure
+   visual voicemail. [CHAR LIMIT=20] -->
+    <string name="voicemail_status_action_configure">Configure</string>
+   <!--  User action prompt shown next to a voicemail status message to let the user call voicemail
+   server directly to listen to the voicemails. [CHAR LIMIT=20] -->
+    <string name="voicemail_status_action_call_server">Call voicemail</string>
 </resources>
