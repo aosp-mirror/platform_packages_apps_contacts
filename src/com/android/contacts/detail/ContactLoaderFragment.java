@@ -28,15 +28,12 @@ import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ActivityNotFoundException;
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.Entity;
 import android.content.Intent;
 import android.content.Loader;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -124,7 +121,9 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
         setHasOptionsMenu(true);
-        // This is an empty view that is set to visibility gone.
+        // This is an invisible view.  This fragment is declared in a layout, so it can't be
+        // "viewless".  (i.e. can't return null here.)
+        // See also the comment in the layout file.
         return inflater.inflate(R.layout.contact_detail_loader_fragment, container, false);
     }
 
