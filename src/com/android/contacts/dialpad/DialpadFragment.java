@@ -824,7 +824,18 @@ public class DialpadFragment extends Fragment
                 startActivity(newFlashIntent());
             } else {
                 if (!TextUtils.isEmpty(mLastNumberDialed)) {
+                    // Recall the last number dialed.
                     mDigits.setText(mLastNumberDialed);
+
+                    // ...and move the cursor to the end of the digits string,
+                    // so you'll be able to delete digits using the Delete
+                    // button (just as if you had typed the number manually.)
+                    //
+                    // Note we use mDigits.getText().length() here, not
+                    // mLastNumberDialed.length(), since the EditText widget now
+                    // contains a *formatted* version of mLastNumberDialed (due to
+                    // mTextWatcher) and its length may have changed.
+                    mDigits.setSelection(mDigits.getText().length());
                 } else {
                     // There's no "last number dialed" or the
                     // background query is still running. There's
