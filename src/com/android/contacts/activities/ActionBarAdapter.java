@@ -234,8 +234,7 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     private void updateDisplayOptions() {
         // All the flags we may change in this method.
         final int MASK = ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_HOME
-                | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_DISABLE_HOME
-                | ActionBar.DISPLAY_SHOW_CUSTOM;
+                | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_CUSTOM;
 
         // The current flags set to the action bar.  (only the ones that we may change here)
         final int current = mActionBar.getDisplayOptions() & MASK;
@@ -250,12 +249,10 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
             newFlags |= ActionBar.DISPLAY_SHOW_HOME;
             newFlags |= ActionBar.DISPLAY_HOME_AS_UP;
             newFlags |= ActionBar.DISPLAY_SHOW_CUSTOM;
-        } else {
-            newFlags |= ActionBar.DISPLAY_DISABLE_HOME;
-            if (mAlwaysShowSearchView) {
-                newFlags |= ActionBar.DISPLAY_SHOW_CUSTOM;
-            }
+        } else if (mAlwaysShowSearchView) {
+            newFlags |= ActionBar.DISPLAY_SHOW_CUSTOM;
         }
+        mActionBar.setHomeButtonEnabled(mSearchMode);
 
         if (current != newFlags) {
             // Pass the mask here to preserve other flags that we're not interested here.
