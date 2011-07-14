@@ -71,6 +71,8 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     private final ActionBar mActionBar;
     private final MyTabListener mTabListener = new MyTabListener();
 
+    private boolean mShowHomeIcon;
+
     public enum TabState {
         FAVORITES, ALL, GROUPS;
 
@@ -96,6 +98,8 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         mSearchLabelText = mContext.getString(R.string.search_label);
         mAlwaysShowSearchView = mContext.getResources().getBoolean(R.bool.always_show_search_view);
 
+        mShowHomeIcon = mContext.getResources().getBoolean(R.bool.show_home_icon);
+
         // Set up search view.
         View customSearchView = LayoutInflater.from(mContext).inflate(R.layout.custom_action_bar,
                 null);
@@ -112,14 +116,7 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         mSearchView.setQuery(mQueryString, false);
         mActionBar.setCustomView(customSearchView, layoutParams);
 
-        mActionBar.setDisplayShowTitleEnabled(true);
-
-        // TODO Just use a boolean resource instead of styles.
-        TypedArray array = mContext.obtainStyledAttributes(null, R.styleable.ActionBarHomeIcon);
-        boolean showHomeIcon = array.getBoolean(R.styleable.ActionBarHomeIcon_show_home_icon, true);
-        array.recycle();
-        mActionBar.setDisplayShowHomeEnabled(showHomeIcon);
-
+        // Set up tabs
         addTab(TabState.FAVORITES, mContext.getString(R.string.contactsFavoritesLabel));
         addTab(TabState.ALL, mContext.getString(R.string.contactsAllLabel));
         addTab(TabState.GROUPS, mContext.getString(R.string.contactsGroupsLabel));
@@ -229,9 +226,45 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         }
     }
 
+    /** @return true if the "UP" icon is showing. */
+    public boolean isUpShowing() {
+        return mSearchMode; // Only shown on the search mode.
+    }
+
+    private void updateDisplayOptions() {
+        // All the flags we may change in this method.
+        final int MASK = ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_HOME
+                | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_DISABLE_HOME
+                | ActionBar.DISPLAY_SHOW_CUSTOM;
+
+        // The current flags set to the action bar.  (only the ones that we may change here)
+        final int current = mActionBar.getDisplayOptions() & MASK;
+
+        // Build the new flags...
+        int newFlags = 0;
+        newFlags |= ActionBar.DISPLAY_SHOW_TITLE;
+        if (mShowHomeIcon) {
+            newFlags |= ActionBar.DISPLAY_SHOW_HOME;
+        }
+        if (mSearchMode) {
+            newFlags |= ActionBar.DISPLAY_SHOW_HOME;
+            newFlags |= ActionBar.DISPLAY_HOME_AS_UP;
+            newFlags |= ActionBar.DISPLAY_SHOW_CUSTOM;
+        } else {
+            newFlags |= ActionBar.DISPLAY_DISABLE_HOME;
+            if (mAlwaysShowSearchView) {
+                newFlags |= ActionBar.DISPLAY_SHOW_CUSTOM;
+            }
+        }
+
+        if (current != newFlags) {
+            // Pass the mask here to preserve other flags that we're not interested here.
+            mActionBar.setDisplayOptions(newFlags, MASK);
+        }
+    }
+
     private void update() {
         if (mSearchMode) {
-            mActionBar.setDisplayShowCustomEnabled(true);
             if (mAlwaysShowSearchView) {
                 // Tablet -- change the app title for the search mode
                 mActionBar.setTitle(mSearchLabelText);
@@ -246,7 +279,6 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
                 mListener.onAction(Action.START_SEARCH_MODE);
             }
         } else {
-            mActionBar.setDisplayShowCustomEnabled(mAlwaysShowSearchView);
             if (mActionBar.getNavigationMode() != ActionBar.NAVIGATION_MODE_TABS) {
                 // setNavigationMode will trigger onTabSelected() with the tab which was previously
                 // selected.
@@ -267,6 +299,7 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
                 mListener.onSelectedTabChanged();
             }
         }
+        updateDisplayOptions();
     }
 
     @Override

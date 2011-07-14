@@ -1179,6 +1179,14 @@ public class PeopleActivity extends ContactsActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case android.R.id.home: {
+                // The home icon on the action bar is pressed
+                if (mActionBarAdapter.isUpShowing()) {
+                    // "UP" icon press -- should be treated as "back".
+                    onBackPressed();
+                }
+                return true;
+            }
             case R.id.menu_settings: {
                 final Intent intent = new Intent(this, ContactsPreferenceActivity.class);
                 startActivity(intent);

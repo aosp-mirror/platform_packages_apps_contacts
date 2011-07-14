@@ -107,4 +107,7 @@
     <!-- If true, search view on action bar will always be visible.  If false, it'll only be
          visible in search mode.  -->
     <bool name="always_show_search_view">false</bool>
+
+    <!-- If true, the "home" icon on the action bar will be shown. -->
+    <bool name="show_home_icon">false</bool>
 </resources>
