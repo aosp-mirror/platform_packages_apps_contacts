@@ -547,11 +547,14 @@ public class PeopleActivity extends ContactsActivity
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
 
+        // Note mContactDetailLoaderFragment is an invisible fragment, but we still have to show/
+        // hide it so its options menu will be shown/hidden.
         switch (tab) {
             case FAVORITES:
                 showFragment(ft, mFavoritesFragment);
                 showFragment(ft, mFrequentFragment);
                 hideFragment(ft, mAllFragment);
+                hideFragment(ft, mContactDetailLoaderFragment);
                 hideFragment(ft, mContactDetailFragment);
                 hideFragment(ft, mGroupsFragment);
                 hideFragment(ft, mGroupDetailFragment);
@@ -560,6 +563,7 @@ public class PeopleActivity extends ContactsActivity
                 hideFragment(ft, mFavoritesFragment);
                 hideFragment(ft, mFrequentFragment);
                 showFragment(ft, mAllFragment);
+                showFragment(ft, mContactDetailLoaderFragment);
                 showFragment(ft, mContactDetailFragment);
                 hideFragment(ft, mGroupsFragment);
                 hideFragment(ft, mGroupDetailFragment);
@@ -568,6 +572,7 @@ public class PeopleActivity extends ContactsActivity
                 hideFragment(ft, mFavoritesFragment);
                 hideFragment(ft, mFrequentFragment);
                 hideFragment(ft, mAllFragment);
+                hideFragment(ft, mContactDetailLoaderFragment);
                 hideFragment(ft, mContactDetailFragment);
                 showFragment(ft, mGroupsFragment);
                 showFragment(ft, mGroupDetailFragment);
