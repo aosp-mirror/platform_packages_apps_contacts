@@ -390,7 +390,11 @@ public class PeopleActivity extends ContactsActivity
 
     @Override
     protected void onDestroy() {
-        mActionBarAdapter.setListener(null);
+        // mActionBarAdapter will be null here when redirecting to another activity in
+        // configureContentView().
+        if (mActionBarAdapter != null) {
+            mActionBarAdapter.setListener(null);
+        }
         super.onDestroy();
     }
 
