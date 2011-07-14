@@ -16,9 +16,9 @@
 package com.android.contacts.list;
 
 import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.ContactTileLoaderFactory;
 import com.android.contacts.GroupMemberLoader;
 import com.android.contacts.R;
-import com.android.contacts.StrequentMetaDataLoader;
 
 import android.content.ContentUris;
 import android.content.Context;
@@ -35,37 +35,33 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Arranges contacts in {@link StrequentContactListFragment} (aka favorites) according to
+ * Arranges contacts in {@link ContactTileListFragment} (aka favorites) according to
  * provided {@link DisplayType}.
  * Also allows for a configurable number of columns and {@link DisplayType}
  */
 public class ContactTileAdapter extends BaseAdapter {
     private static final String TAG = ContactTileAdapter.class.getSimpleName();
 
-    /**
-     * mContacts2 is only used if {@link DisplayType} is Strequent
-     * All starred contacts are placed into mContacts2
-     */
-    private ArrayList<ContactEntry> mContacts2 = new ArrayList<ContactEntry>();
-
-    /**
-     * In {@link DisplayType#STREQUENT} only the frequently contacted
-     * contacts will be placed into mContacts.
-     * All other {@link DisplayType} will put all contacts into mContacts.
-     */
-    private ArrayList<ContactEntry> mContacts = new ArrayList<ContactEntry>();
     private DisplayType mDisplayType;
     private Listener mListener;
     private Context mContext;
-    private int mColumnCount;
-    private int mDividerRowIndex;
+    private Cursor mContactCursor = null;
     private ContactPhotoManager mPhotoManager;
+
+    /**
+     * Index of the first NON starred contact in the {@link Cursor}
+     * Only valid when {@link DisplayType#STREQUENT} is true
+     */
+    private int mDividerPosition;
+    private int mColumnCount;
     private int mIdIndex;
     private int mLookupIndex;
     private int mPhotoUriIndex;
     private int mNameIndex;
     private int mStarredIndex;
-    private boolean mIsQuickContact = false;
+
+    private boolean mIsQuickContactEnabled = false;
+    private boolean mIsSecondaryTargetEnabled = false;
 
     /**
      * Configures the adapter to filter and display contacts using different view types.
@@ -73,7 +69,7 @@ public class ContactTileAdapter extends BaseAdapter {
      */
     public enum DisplayType {
         /**
-         * Displays a mixed view type of starred and frequent contacts
+         * Displays a mixed view type of starred without secondary target and frequent contacts
          */
         STREQUENT,
 
@@ -117,8 +113,12 @@ public class ContactTileAdapter extends BaseAdapter {
         mDisplayType = displayType;
     }
 
-    public void setQuickContact(boolean enableQuickContact) {
-        mIsQuickContact = enableQuickContact;
+    public void enableQuickContact(boolean enableQuickContact) {
+        mIsQuickContactEnabled = enableQuickContact;
+    }
+
+    public void enableSecondaryTarget(boolean enableSecondaryTarget) {
+        mIsSecondaryTargetEnabled = enableSecondaryTarget;
     }
 
     /**
@@ -129,7 +129,7 @@ public class ContactTileAdapter extends BaseAdapter {
         /**
          * Need to check for {@link DisplayType#GROUP_MEMBERS} because
          * it has different projections than all other {@link DisplayType}s
-         * By using {@link GroupMemberLoader} and {@link StrequentMetaDataLoader}
+         * By using {@link GroupMemberLoader} and {@link ContactTileLoaderFactory}
          * the correct {@link Cursor}s will be given.
          */
         if (mDisplayType == DisplayType.GROUP_MEMBERS) {
@@ -139,89 +139,91 @@ public class ContactTileAdapter extends BaseAdapter {
             mNameIndex = GroupMemberLoader.CONTACT_DISPLAY_NAME_PRIMARY_COLUMN_INDEX;
             mStarredIndex = GroupMemberLoader.CONTACT_STARRED_COLUMN_INDEX;
         } else {
-            mIdIndex = StrequentMetaDataLoader.CONTACT_ID;
-            mLookupIndex = StrequentMetaDataLoader.LOOKUP_KEY;
-            mPhotoUriIndex = StrequentMetaDataLoader.PHOTO_URI;
-            mNameIndex = StrequentMetaDataLoader.DISPLAY_NAME;
-            mStarredIndex = StrequentMetaDataLoader.STARRED;
+            mIdIndex = ContactTileLoaderFactory.CONTACT_ID;
+            mLookupIndex = ContactTileLoaderFactory.LOOKUP_KEY;
+            mPhotoUriIndex = ContactTileLoaderFactory.PHOTO_URI;
+            mNameIndex = ContactTileLoaderFactory.DISPLAY_NAME;
+            mStarredIndex = ContactTileLoaderFactory.STARRED;
         }
     }
 
     /**
      * Creates {@link ContactTileView}s for each item in {@link Cursor}.
      * If {@link DisplayType} is {@link DisplayType#GROUP_MEMBERS} use {@link GroupMemberLoader}
-     * Else use {@link StrequentMetaDataLoader}
+     * Else use {@link ContactTileLoaderFactory}
      */
-    public void loadFromCursor(Cursor cursor) {
-        mContacts.clear();
-        mContacts2.clear();
+    public void setContactCursor(Cursor cursor) {
+        mContactCursor = cursor;
+        mDividerPosition = getDividerPosition(cursor);
+        notifyDataSetChanged();
+    }
 
+    /**
+     * Iterates over the {@link Cursor}
+     * Returns position of the first NON Starred Contact
+     * Returns -1 if not {@link DisplayType#STREQUENT}
+     */
+    private int getDividerPosition(Cursor cursor) {
+      if (cursor == null || cursor.isClosed() || mDisplayType != DisplayType.STREQUENT) {
+          return -1;
+      }
+      while (cursor.moveToNext()) {
+          if (cursor.getInt(mStarredIndex) == 0) {
+              return cursor.getPosition();
+          }
+      }
+      return -1;
+    }
+
+    private ContactEntry createContactEntryFromCursor(Cursor cursor, int position) {
         // If the loader was canceled we will be given a null cursor.
         // In that case, show an empty list of contacts.
-        if (cursor != null) {
-            while (cursor.moveToNext()) {
-                long id = cursor.getLong(mIdIndex);
-                String photoUri = cursor.getString(mPhotoUriIndex);
-                String lookupKey = cursor.getString(mLookupIndex);
-                boolean isStarred = (cursor.getInt(mStarredIndex) == 1);
+        if (cursor == null || cursor.isClosed() || cursor.getCount() <= position) return null;
 
-                ContactEntry contact = new ContactEntry();
-                contact.name = cursor.getString(mNameIndex);
-                contact.photoUri = (photoUri != null ? Uri.parse(photoUri) : null);
-                contact.lookupKey = ContentUris.withAppendedId(
-                        Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey), id);
+        cursor.moveToPosition(position);
+        long id = cursor.getLong(mIdIndex);
+        String photoUri = cursor.getString(mPhotoUriIndex);
+        String lookupKey = cursor.getString(mLookupIndex);
 
-                switch (mDisplayType) {
-                    case STREQUENT:
-                        (isStarred ? mContacts2 : mContacts).add(contact);
-                        break;
-                    case STARRED_ONLY:
-                        if (isStarred) {
-                            mContacts.add(contact);
-                        }
-                        break;
-                    case FREQUENT_ONLY:
-                        if (!isStarred) {
-                            mContacts.add(contact);
-                        }
-                        break;
-                    case GROUP_MEMBERS:
-                        mContacts.add(contact);
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Unrecognized displayType");
-                }
-            }
-        }
+        ContactEntry contact = new ContactEntry();
+        contact.name = cursor.getString(mNameIndex);
+        contact.photoUri = (photoUri != null ? Uri.parse(photoUri) : null);
+        contact.lookupKey = ContentUris.withAppendedId(
+                Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey), id);
 
-        mDividerRowIndex =
-                (mDisplayType == DisplayType.STREQUENT ? getNumRows(mContacts2.size()) : -1);
-        notifyDataSetChanged();
+        return contact;
     }
 
     @Override
     public int getCount() {
-        // Addin Containter (if any) that always has multi columns
-        int rowCount = getNumRows(mContacts2.size());
-
-        if (mDisplayType == DisplayType.FREQUENT_ONLY || mDisplayType == DisplayType.STREQUENT) {
-            // Adding Container that has single columns
-            rowCount += mContacts.size();
-        } else {
-            // Adding Containter that has multi columns
-            rowCount += getNumRows(mContacts.size());
+        if (mContactCursor == null || mContactCursor.getCount() == 0) {
+          return 0;
         }
-        // Adding Divider Row if Neccessary
-        if (mDisplayType == DisplayType.STREQUENT && mContacts.size() > 0) rowCount++;
 
-        return rowCount;
+        switch (mDisplayType) {
+            case STARRED_ONLY:
+            case GROUP_MEMBERS:
+                return getRowCount(mContactCursor.getCount());
+            case STREQUENT:
+                /*
+                 * Takes numbers of rows the Starred Contacts Occupy
+                 * Calculates the number of frequent contacts
+                 * Adds them together and an additional 1 for the divider
+                 */
+                return getRowCount(mDividerPosition) +
+                        mContactCursor.getCount() - mDividerPosition + 1;
+            case FREQUENT_ONLY:
+                return mContactCursor.getCount();
+            default:
+                throw new IllegalArgumentException("Unrecognized DisplayType " + mDisplayType);
+        }
     }
 
     /**
      * Returns the number of rows required to show the provided number of entries
      * with the current number of columns.
      */
-    private int getNumRows(int entryCount) {
+    private int getRowCount(int entryCount) {
         return entryCount == 0 ? 0 : ((entryCount - 1) / mColumnCount) + 1;
     }
 
@@ -231,30 +233,41 @@ public class ContactTileAdapter extends BaseAdapter {
      */
     @Override
     public ArrayList<ContactEntry> getItem(int position) {
-        if (position == mDividerRowIndex) return null;
-        ArrayList<ContactEntry> resultList = new ArrayList<ContactEntry>();
-
-        // Determining which Arraylist to use for display
+        ArrayList<ContactEntry> resultList = new ArrayList<ContactEntry>(mColumnCount);
         int contactIndex = position * mColumnCount;
-        ArrayList<ContactEntry> contactList;
-        if (contactIndex < mContacts2.size()) {
-            contactList = mContacts2;
-        } else {
-            if (mDisplayType == DisplayType.STREQUENT ||
-                    mDisplayType == DisplayType.FREQUENT_ONLY) {
-                resultList.add(mContacts.get(position - mDividerRowIndex - 1));
-                return resultList;
-            }
-            contactList = mContacts;
-        }
 
-        // Populating with the Contacts to appear at position
-        for (int columnCounter = 0; columnCounter < mColumnCount; columnCounter++) {
-            if (contactIndex >= contactList.size()) break;
-            resultList.add(contactList.get(contactIndex));
-            contactIndex++;
+        switch (mDisplayType) {
+            case FREQUENT_ONLY:
+                resultList.add(createContactEntryFromCursor(mContactCursor, position));
+                break;
+            case STARRED_ONLY:
+            case GROUP_MEMBERS:
+                for (int columnCounter = 0; columnCounter < mColumnCount; columnCounter++) {
+                    resultList.add(createContactEntryFromCursor(mContactCursor, contactIndex));
+                    contactIndex++;
+                }
+                break;
+            case STREQUENT:
+                if (position < getRowCount(mDividerPosition)) {
+                    for (int columnCounter = 0; columnCounter < mColumnCount &&
+                            contactIndex != mDividerPosition; columnCounter++) {
+                        resultList.add(createContactEntryFromCursor(mContactCursor, contactIndex));
+                        contactIndex++;
+                    }
+                } else {
+                    /*
+                     * Current position minus how many rows are before the divider and
+                     * Minus 1 for the divider itself provides the relative index of the frequent
+                     * contact being displayed. Then add the dividerPostion to give the offset
+                     * into the contacts cursor to get the absoulte index.
+                     */
+                    contactIndex = position - getRowCount(mDividerPosition) - 1 + mDividerPosition;
+                    resultList.add(createContactEntryFromCursor(mContactCursor, contactIndex));
+                }
+                break;
+            default:
+                throw new IllegalStateException("Unrecognized DisplayType " + mDisplayType);
         }
-
         return resultList;
     }
 
@@ -275,13 +288,12 @@ public class ContactTileAdapter extends BaseAdapter {
 
     @Override
     public boolean isEnabled(int position) {
-        return position != mDividerRowIndex;
+        return position != getRowCount(mDividerPosition);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         int itemViewType = getItemViewType(position);
-
         if (itemViewType == ViewTypes.DIVIDER) {
             // Checking For Divider First so not to cast convertView
             return convertView == null ? createDivider() : convertView;
@@ -289,29 +301,12 @@ public class ContactTileAdapter extends BaseAdapter {
 
         ContactTileRow contactTileRowView = (ContactTileRow) convertView;
         ArrayList<ContactEntry> contactList = getItem(position);
-        int layoutResId = getLayoutResourceId(itemViewType);
-        int columnCount = -1;
 
-        switch (itemViewType) {
-            case ViewTypes.STARRED:
-            case ViewTypes.STARRED_WITH_SECONDARY_ACTION:
-                if (contactTileRowView == null) {
-                    // Creating new row if needed
-                    contactTileRowView = new ContactTileRow(mContext, layoutResId, true);
-                }
-                columnCount = mColumnCount;
-                break;
-
-            case ViewTypes.FREQUENT:
-                if (contactTileRowView == null) {
-                    // Creating new row if needed
-                    contactTileRowView = new ContactTileRow(mContext, layoutResId, false);
-                }
-                columnCount = 1;
-                break;
+        if (contactTileRowView == null) {
+            // Creating new row if needed
+            contactTileRowView = new ContactTileRow(mContext, itemViewType);
         }
-
-        contactTileRowView.configureRow(contactList, columnCount);
+        contactTileRowView.configureRow(contactList);
         return contactTileRowView;
     }
 
@@ -330,17 +325,14 @@ public class ContactTileAdapter extends BaseAdapter {
     private int getLayoutResourceId(int viewType) {
         switch (viewType) {
             case ViewTypes.STARRED:
-                if (mIsQuickContact) {
-                    return R.layout.contact_tile_starred_quick_contact;
-                } else {
-                    return R.layout.contact_tile_starred;
-                }
+                return mIsQuickContactEnabled ?
+                        R.layout.contact_tile_starred_quick_contact : R.layout.contact_tile_starred;
             case ViewTypes.FREQUENT:
                 return R.layout.contact_tile_frequent;
             case ViewTypes.STARRED_WITH_SECONDARY_ACTION:
                 return R.layout.contact_tile_starred_secondary_target;
             default:
-                throw new IllegalArgumentException("Received unrecognized viewType " + viewType);
+                throw new IllegalArgumentException("Unrecognized viewType " + viewType);
         }
     }
     @Override
@@ -360,9 +352,10 @@ public class ContactTileAdapter extends BaseAdapter {
     public int getItemViewType(int position) {
         switch (mDisplayType) {
             case STREQUENT:
-                if (position < mDividerRowIndex) {
-                    return ViewTypes.STARRED_WITH_SECONDARY_ACTION;
-                } else if (position == mDividerRowIndex) {
+                if (position < getRowCount(mDividerPosition)) {
+                    return (mIsSecondaryTargetEnabled ?
+                            ViewTypes.STARRED_WITH_SECONDARY_ACTION : ViewTypes.STARRED);
+                } else if (position == getRowCount(mDividerPosition)) {
                     return ViewTypes.DIVIDER;
                 } else {
                     return ViewTypes.FREQUENT;
@@ -373,8 +366,7 @@ public class ContactTileAdapter extends BaseAdapter {
             case FREQUENT_ONLY:
                 return ViewTypes.FREQUENT;
             default:
-                throw new IllegalStateException(
-                        "Received unrecognized DisplayType " + mDisplayType);
+                throw new IllegalStateException("Unrecognized DisplayType " + mDisplayType);
         }
     }
 
@@ -382,19 +374,21 @@ public class ContactTileAdapter extends BaseAdapter {
      * Acts as a row item composed of {@link ContactTileView}
      */
     private class ContactTileRow extends LinearLayout implements OnClickListener {
+        private int mItemViewType;
         private int mLayoutResId;
-        private boolean mIsContactTileSquare;
 
-        public ContactTileRow(Context context, int layoutResId, boolean isSquare) {
+        public ContactTileRow(Context context, int itemViewType) {
             super(context);
-            mLayoutResId = layoutResId;
-            mIsContactTileSquare = isSquare;
+            mItemViewType = itemViewType;
+            mLayoutResId = getLayoutResourceId(mItemViewType);
         }
 
         /**
          * Configures the row to add {@link ContactEntry}s information to the views
          */
-        public void configureRow(ArrayList<ContactEntry> list, int columnCount) {
+        public void configureRow(ArrayList<ContactEntry> list) {
+            int columnCount = mItemViewType == ViewTypes.FREQUENT ? 1 : mColumnCount;
+
             // Adding tiles to row and filling in contact information
             for (int columnCounter = 0; columnCounter < columnCount; columnCounter++) {
                 ContactEntry entry =
@@ -404,19 +398,24 @@ public class ContactTileAdapter extends BaseAdapter {
             }
 
         private void addTileFromEntry(ContactEntry entry, int tileIndex) {
-            ContactTileView contactTile;
+            ContactTileView contactTile = null;
 
             if (getChildCount() <= tileIndex) {
-                if (mIsContactTileSquare) {
-                    if (mDisplayType == DisplayType.STREQUENT) {
+                switch (mItemViewType) {
+                    case ViewTypes.STARRED_WITH_SECONDARY_ACTION:
                         contactTile = (ContactTileSecondaryTargetView)
                                 inflate(mContext, mLayoutResId, null);
-                    } else {
+                        break;
+                    case ViewTypes.STARRED:
                         contactTile =
                                 (ContactTileStarredView) inflate(mContext, mLayoutResId, null);
-                    }
-                } else {
-                    contactTile = (ContactTileView) inflate(mContext, mLayoutResId, null);
+                        break;
+                    case ViewTypes.FREQUENT:
+                        contactTile = (ContactTileView) inflate(mContext, mLayoutResId, null);
+                        break;
+                    default:
+                        throw new IllegalStateException(
+                                "Unrecognized ViewType " + mItemViewType);
                 }
                 contactTile.setLayoutParams(new LinearLayout.LayoutParams(0,
                         LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f));

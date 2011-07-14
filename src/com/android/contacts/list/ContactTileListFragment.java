@@ -16,8 +16,8 @@
 package com.android.contacts.list;
 
 import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.ContactTileLoaderFactory;
 import com.android.contacts.R;
-import com.android.contacts.StrequentMetaDataLoader;
 import com.android.contacts.list.ContactTileAdapter.DisplayType;
 
 import android.app.Activity;
@@ -38,17 +38,19 @@ import android.widget.ListView;
 /**
  * Fragment containing a list of starred contacts followed by a list of frequently contacted.
  */
-public class StrequentContactListFragment extends Fragment {
+public class ContactTileListFragment extends Fragment {
+    private static final String TAG = ContactTileListFragment.class.getSimpleName();
 
     public interface Listener {
         public void onContactSelected(Uri contactUri);
     }
 
-    private static int LOADER_STREQUENT = 1;
+    private static int LOADER_CONTACTS = 1;
 
     private Listener mListener;
     private ContactTileAdapter mAdapter;
     private ListView mListView;
+    private DisplayType mDisplayType = DisplayType.STREQUENT;
 
     @Override
     public void onAttach(Activity activity) {
@@ -58,7 +60,7 @@ public class StrequentContactListFragment extends Fragment {
         int columnCount = res.getInteger(R.integer.contact_tile_column_count);
 
         mAdapter = new ContactTileAdapter(activity, mAdapterListener,
-                columnCount, DisplayType.STREQUENT);
+                columnCount, mDisplayType);
         mAdapter.setPhotoLoader(ContactPhotoManager.getInstance(activity));
     }
 
@@ -68,13 +70,15 @@ public class StrequentContactListFragment extends Fragment {
         View v = inflater.inflate(R.layout.contact_tile_list, container, false);
         mListView = (ListView) v.findViewById(R.id.contact_tile_list);
         mListView.setItemsCanFocus(true);
+        mListView.setAdapter(mAdapter);
         return v;
     }
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
-        getLoaderManager().restartLoader(LOADER_STREQUENT, null, mStrequentLoaderListener);
+        // TODO: Use initLoader?
+        getLoaderManager().restartLoader(LOADER_CONTACTS, null, mContactTileLoaderListener);
     }
 
     public void setColumnCount(int columnCount) {
@@ -82,34 +86,43 @@ public class StrequentContactListFragment extends Fragment {
     }
 
     public void setDisplayType(DisplayType displayType) {
-        mAdapter.setDisplayType(displayType);
+        mDisplayType = displayType;
+        mAdapter.setDisplayType(mDisplayType);
     }
 
-    public void setQuickContact(boolean enableQuickContact) {
-        mAdapter.setQuickContact(enableQuickContact);
+    public void enableQuickContact(boolean enableQuickContact) {
+        mAdapter.enableQuickContact(enableQuickContact);
     }
 
-    /**
-     * The listener for the strequent meta data loader.
-     */
-    private final LoaderManager.LoaderCallbacks<Cursor> mStrequentLoaderListener =
+    public void enableSecondaryTarget(boolean enableSecondaryTarget) {
+        mAdapter.enableSecondaryTarget(enableSecondaryTarget);
+    }
+
+    private final LoaderManager.LoaderCallbacks<Cursor> mContactTileLoaderListener =
             new LoaderCallbacks<Cursor>() {
 
         @Override
         public CursorLoader onCreateLoader(int id, Bundle args) {
-            return new StrequentMetaDataLoader(getActivity());
+            switch (mDisplayType) {
+              case STARRED_ONLY:
+                  return ContactTileLoaderFactory.createStarredLoader(getActivity());
+              case STREQUENT:
+                  return ContactTileLoaderFactory.createStrequentLoader(getActivity());
+              case FREQUENT_ONLY:
+                  return ContactTileLoaderFactory.createFrequentLoader(getActivity());
+              default:
+                  throw new IllegalStateException(
+                      "Unrecognized DisplayType " + mDisplayType);
+            }
         }
 
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-            mAdapter.loadFromCursor(data);
-            mListView.setAdapter(mAdapter);
+            mAdapter.setContactCursor(data);
         }
 
         @Override
-        public void onLoaderReset(Loader<Cursor> loader) {
-            mAdapter.loadFromCursor(null);
-        }
+        public void onLoaderReset(Loader<Cursor> loader) {}
     };
 
     public void setListener(Listener listener) {
