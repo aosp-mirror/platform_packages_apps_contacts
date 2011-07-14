@@ -122,11 +122,7 @@ public class ContactEditorActivity extends ContactsActivity
     @Override
     public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
             boolean globalSearch) {
-        if (globalSearch) {
-            super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
-        } else {
-            ContactsSearchManager.startSearch(this, initialQuery);
-        }
+        // Ignore search key press
     }
 
     @Override

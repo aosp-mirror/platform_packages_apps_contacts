@@ -90,4 +90,10 @@ public class GroupDetailActivity extends ContactsActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
+            boolean globalSearch) {
+        // Ignore search key press
+    }
 }
