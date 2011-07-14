@@ -371,19 +371,29 @@ public class ContactSaveService extends IntentService {
     }
 
     /**
-     * Creates an intent that can be sent to this service to create a new group.
+     * Creates an intent that can be sent to this service to create a new group as
+     * well as add new members at the same time.
+     *
+     * @param context of the application
+     * @param account in which the group should be created
+     * @param label is the name of the group (cannot be null)
+     * @param rawContactsToAdd is an array of raw contact IDs for contacts that
+     *            should be added to the group
+     * @param callbackActivity is the activity to send the callback intent to
+     * @param callbackAction is the intent action for the callback intent
      */
-    public static Intent createNewGroupIntent(Context context, Account account, String label,
-            Class<?> callbackActivity, String callbackAction) {
+    public static Intent createNewGroupIntent(Context context, Account account,
+            String label, long[] rawContactsToAdd, Class<?> callbackActivity,
+            String callbackAction) {
         Intent serviceIntent = new Intent(context, ContactSaveService.class);
         serviceIntent.setAction(ContactSaveService.ACTION_CREATE_GROUP);
         serviceIntent.putExtra(ContactSaveService.EXTRA_ACCOUNT_TYPE, account.type);
         serviceIntent.putExtra(ContactSaveService.EXTRA_ACCOUNT_NAME, account.name);
         serviceIntent.putExtra(ContactSaveService.EXTRA_GROUP_LABEL, label);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_RAW_CONTACTS_TO_ADD, rawContactsToAdd);
 
         // Callback intent will be invoked by the service once the new group is
-        // created.  The service will put a group membership row in the extras
-        // of the callback intent.
+        // created.
         Intent callbackIntent = new Intent(context, callbackActivity);
         callbackIntent.setAction(callbackAction);
         serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
@@ -392,28 +402,41 @@ public class ContactSaveService extends IntentService {
     }
 
     private void createGroup(Intent intent) {
-        String accountType = intent.getStringExtra(EXTRA_ACCOUNT_TYPE);
-        String accountName = intent.getStringExtra(EXTRA_ACCOUNT_NAME);
-        String label = intent.getStringExtra(EXTRA_GROUP_LABEL);
+        final String accountType = intent.getStringExtra(EXTRA_ACCOUNT_TYPE);
+        final String accountName = intent.getStringExtra(EXTRA_ACCOUNT_NAME);
+        final String label = intent.getStringExtra(EXTRA_GROUP_LABEL);
+        final long[] rawContactsToAdd = intent.getLongArrayExtra(EXTRA_RAW_CONTACTS_TO_ADD);
 
         ContentValues values = new ContentValues();
         values.put(Groups.ACCOUNT_TYPE, accountType);
         values.put(Groups.ACCOUNT_NAME, accountName);
         values.put(Groups.TITLE, label);
 
-        Uri groupUri = getContentResolver().insert(Groups.CONTENT_URI, values);
+        final ContentResolver resolver = getContentResolver();
+
+        // Create the new group
+        final Uri groupUri = resolver.insert(Groups.CONTENT_URI, values);
+
+        // If there's no URI, then the insertion failed. Abort early because group members can't be
+        // added if the group doesn't exist
         if (groupUri == null) {
+            Log.e(TAG, "Couldn't create group with label " + label);
             return;
         }
 
+        // Add new group members
+        addMembersToGroup(resolver, rawContactsToAdd, ContentUris.parseId(groupUri));
+
+        // TODO: Move this into the contact editor where it belongs. This needs to be integrated
+        // with the way other intent extras that are passed to the {@link ContactEditorActivity}.
         values.clear();
         values.put(Data.MIMETYPE, GroupMembership.CONTENT_ITEM_TYPE);
         values.put(GroupMembership.GROUP_ROW_ID, ContentUris.parseId(groupUri));
 
         Intent callbackIntent = intent.getParcelableExtra(EXTRA_CALLBACK_INTENT);
         callbackIntent.setData(groupUri);
+        // TODO: This can be taken out when the above TODO is addressed
         callbackIntent.putExtra(ContactsContract.Intents.Insert.DATA, Lists.newArrayList(values));
-
         deliverCallback(callbackIntent);
     }
 
@@ -527,10 +550,23 @@ public class ContactSaveService extends IntentService {
         if (label != null) {
             ContentValues values = new ContentValues();
             values.put(Groups.TITLE, label);
-            getContentResolver().update(groupUri, values, null, null);
+            resolver.update(groupUri, values, null, null);
         }
 
-        // Add new group members
+        // Add and remove members if necessary
+        addMembersToGroup(resolver, rawContactsToAdd, groupId);
+        removeMembersFromGroup(resolver, rawContactsToRemove, groupId);
+
+        Intent callbackIntent = intent.getParcelableExtra(EXTRA_CALLBACK_INTENT);
+        callbackIntent.setData(groupUri);
+        deliverCallback(callbackIntent);
+    }
+
+    private void addMembersToGroup(ContentResolver resolver, long[] rawContactsToAdd,
+            long groupId) {
+        if (rawContactsToAdd == null) {
+            return;
+        }
         for (long rawContactId : rawContactsToAdd) {
             try {
                 final ArrayList<ContentProviderOperation> rawContactOperations =
@@ -577,8 +613,13 @@ public class ContactSaveService extends IntentService {
                         String.valueOf(groupId), e);
             }
         }
+    }
 
-        // Remove group members
+    private void removeMembersFromGroup(ContentResolver resolver, long[] rawContactsToRemove,
+            long groupId) {
+        if (rawContactsToRemove == null) {
+            return;
+        }
         for (long rawContactId : rawContactsToRemove) {
             // Apply the delete operation on the data row for the given raw contact's
             // membership in the given group. If no contact matches the provided selection, then
@@ -588,10 +629,6 @@ public class ContactSaveService extends IntentService {
                     new String[] { String.valueOf(rawContactId),
                     GroupMembership.CONTENT_ITEM_TYPE, String.valueOf(groupId)});
         }
-
-        Intent callbackIntent = intent.getParcelableExtra(EXTRA_CALLBACK_INTENT);
-        callbackIntent.setData(groupUri);
-        deliverCallback(callbackIntent);
     }
 
     /**

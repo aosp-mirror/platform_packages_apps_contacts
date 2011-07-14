@@ -60,6 +60,7 @@ public class GroupCreationDialogFragment extends GroupNameDialogFragment {
         Activity activity = getActivity();
         activity.startService(ContactSaveService.createNewGroupIntent(activity,
                 new Account(accountName, accountType), groupLabel,
+                null /* no new members to add */,
                 activity.getClass(), Intent.ACTION_EDIT));
     }
 }

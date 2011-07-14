@@ -238,20 +238,11 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
                 // Account specified in Intent
                 mAccountName = account.name;
                 mAccountType = account.type;
-                setupAccountHeader();
+                setupEditorForAccount();
             } else {
                 // No Account specified. Let the user choose from a disambiguation dialog.
                 selectAccountAndCreateGroup();
             }
-
-            mStatus = Status.EDITING;
-
-            // The user wants to create a new group, temporarily hide the "add members" text view
-            // TODO: Need to allow users to add members if it's a new group. Under the current
-            // approach, we can't add members because it needs a group ID in order to save,
-            // and we don't have a group ID for a new group until the whole group is saved.
-            // Take this out when batch add/remove members is working.
-            mAutoCompleteTextView.setVisibility(View.GONE);
         } else {
             throw new IllegalArgumentException("Unknown Action String " + mAction +
                     ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
@@ -278,7 +269,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         if (accounts.size() == 1) {
             mAccountName = accounts.get(0).name;
             mAccountType = accounts.get(0).type;
-            setupAccountHeader();
+            setupEditorForAccount();
             return;  // Don't show a dialog.
         }
 
@@ -292,7 +283,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     public void onAccountChosen(int requestCode, Account account) {
         mAccountName = account.name;
         mAccountType = account.type;
-        setupAccountHeader();
+        setupEditorForAccount();
     }
 
     @Override
@@ -304,9 +295,10 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     }
 
     /**
-     * Sets up the account header.
+     * Sets up the editor based on the group's account name and type.
      */
-    private void setupAccountHeader() {
+    private void setupEditorForAccount() {
+        // Setup the account header
         final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(mContext);
         final AccountType accountType = accountTypeManager.getAccountType(mAccountType);
         CharSequence accountTypeDisplayLabel = accountType.getDisplayLabel(mContext);
@@ -316,6 +308,31 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         }
         mAccountTypeTextView.setText(accountTypeDisplayLabel);
         mAccountIcon.setImageDrawable(accountType.getDisplayIcon(mContext));
+
+        // Setup the autocomplete adapter (for contacts to suggest to add to the group) based on the
+        // account name and type
+        mAutoCompleteAdapter = new SuggestedMemberListAdapter(mContext,
+                android.R.layout.simple_dropdown_item_1line);
+        mAutoCompleteAdapter.setContentResolver(mContentResolver);
+        mAutoCompleteAdapter.setAccountType(mAccountType);
+        mAutoCompleteAdapter.setAccountName(mAccountName);
+        mAutoCompleteTextView.setAdapter(mAutoCompleteAdapter);
+        mAutoCompleteTextView.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                SuggestedMember member = mAutoCompleteAdapter.getItem(position);
+                loadMemberToAddToGroup(member.getRawContactId(),
+                        String.valueOf(member.getContactId()));
+
+                // Update the autocomplete adapter so the contact doesn't get suggested again
+                mAutoCompleteAdapter.addNewMember(member.getContactId());
+
+                // Clear out the text field
+                mAutoCompleteTextView.setText("");
+            }
+        });
+
+        mStatus = Status.EDITING;
     }
 
     public void load(String action, Uri groupUri, Bundle intentExtras) {
@@ -349,7 +366,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         // focus on the field).
         mGroupNameView.setText(mOriginalGroupName);
         mGroupNameView.setFocusable(!mGroupNameIsReadOnly);
-        setupAccountHeader();
+        setupEditorForAccount();
     }
 
     public void loadMemberToAddToGroup(long rawContactId, String contactId) {
@@ -380,8 +397,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     }
 
     private boolean revert() {
-        if (mGroupNameView.getText() != null &&
-                mGroupNameView.getText().toString().equals(mOriginalGroupName)) {
+        if (!hasNameChange() && !hasMembershipChange()) {
             doRevertAction();
         } else {
             CancelEditDialogFragment.show(this);
@@ -453,24 +469,20 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         }
         Intent saveIntent = null;
         if (mAction == Intent.ACTION_INSERT) {
-            // TODO: Perform similar work to add members at the same time as creating a new group
+            // Create array of raw contact IDs for contacts to add to the group
+            long[] membersToAddArray = convertToArray(mListMembersToAdd);
+
+            // Create the save intent to create the group and add members at the same time
             saveIntent = ContactSaveService.createNewGroupIntent(activity,
                     new Account(mAccountName, mAccountType), mGroupNameView.getText().toString(),
-                    activity.getClass(), GroupEditorActivity.ACTION_SAVE_COMPLETED);
+                    membersToAddArray, activity.getClass(),
+                    GroupEditorActivity.ACTION_SAVE_COMPLETED);
         } else if (mAction == Intent.ACTION_EDIT) {
             // Create array of raw contact IDs for contacts to add to the group
-            int membersToAddCount = mListMembersToAdd.size();
-            long[] membersToAddArray = new long[membersToAddCount];
-            for (int i = 0; i < membersToAddCount; i++) {
-                membersToAddArray[i] = mListMembersToAdd.get(i).getRawContactId();
-            }
+            long[] membersToAddArray = convertToArray(mListMembersToAdd);
 
             // Create array of raw contact IDs for contacts to add to the group
-            int membersToRemoveCount = mListMembersToRemove.size();
-            long[] membersToRemoveArray = new long[membersToRemoveCount];
-            for (int i = 0; i < membersToRemoveCount; i++) {
-                membersToRemoveArray[i] = mListMembersToRemove.get(i).getRawContactId();
-            }
+            long[] membersToRemoveArray = convertToArray(mListMembersToRemove);
 
             // Create the update intent (which includes the updated group name if necessary)
             saveIntent = ContactSaveService.createGroupUpdateIntent(activity, mGroupId,
@@ -555,6 +567,15 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         return groupNameFromTextView;
     }
 
+    private static long[] convertToArray(List<Member> listMembers) {
+        int size = listMembers.size();
+        long[] membersArray = new long[size];
+        for (int i = 0; i < size; i++) {
+            membersArray[i] = listMembers.get(i).getRawContactId();
+        }
+        return membersArray;
+    }
+
     private void addExistingMembers(List<Member> members, List<Long> listContactIds) {
         mListToDisplay.addAll(members);
         mMemberListAdapter.notifyDataSetChanged();
@@ -605,7 +626,6 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
 
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-            mStatus = Status.EDITING;
             bindGroupMetaData(data);
 
             // Load existing members
@@ -650,27 +670,6 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
             } finally {
                 data.close();
             }
-
-            mAutoCompleteAdapter = new SuggestedMemberListAdapter(getActivity(),
-                    android.R.layout.simple_dropdown_item_1line);
-            mAutoCompleteAdapter.setContentResolver(mContentResolver);
-            mAutoCompleteAdapter.setAccountType(mAccountType);
-            mAutoCompleteAdapter.setAccountName(mAccountName);
-            mAutoCompleteTextView.setAdapter(mAutoCompleteAdapter);
-            mAutoCompleteTextView.setOnItemClickListener(new OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    SuggestedMember member = mAutoCompleteAdapter.getItem(position);
-                    loadMemberToAddToGroup(member.getRawContactId(),
-                            String.valueOf(member.getContactId()));
-
-                    // Update the autocomplete adapter so the contact doesn't get suggested again
-                    mAutoCompleteAdapter.addNewMember(member.getContactId());
-
-                    // Clear out the text field
-                    mAutoCompleteTextView.setText("");
-                }
-            });
 
             // Update the display list
             addExistingMembers(listExistingMembers, listContactIds);
