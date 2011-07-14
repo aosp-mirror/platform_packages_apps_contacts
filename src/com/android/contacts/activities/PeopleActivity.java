@@ -581,8 +581,10 @@ public class PeopleActivity extends ContactsActivity
         if (!ft.isEmpty()) {
             ft.commit();
             fragmentManager.executePendingTransactions();
+            // When switching tabs, we need to invalidate options menu, but executing a
+            // fragment transaction does it implicitly.  We don't have to call invalidateOptionsMenu
+            // manually.
         }
-        invalidateOptionsMenu();
     }
 
     private class TabPagerListener implements ViewPager.OnPageChangeListener {
