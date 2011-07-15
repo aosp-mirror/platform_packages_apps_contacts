@@ -49,6 +49,10 @@
         <item name="call_log_primary_background_color">#000000</item>
         <item name="call_log_secondary_text_color">#FFFFFF</item>
         <item name="call_log_secondary_background_color">#333333</item>
+        <!-- VoicemailStatus -->
+        <item name="call_log_voicemail_status_height">40dip</item>
+        <item name="call_log_voicemail_status_background_color">#FFFFE0</item>
+        <item name="call_log_voicemail_status_text_color">#000000</item>
     </style>
 
     <style name="CallDetailActivityTheme" parent="android:Theme.Holo">
@@ -159,6 +163,12 @@
         <attr name="call_log_list_item_height" format="dimension" />
         <attr name="call_log_list_header_text_color" format="color" />
         <attr name="call_log_list_header_background" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="VoicemailStatus">
+        <attr name="call_log_voicemail_status_height" format="dimension" />
+        <attr name="call_log_voicemail_status_background_color" format="color" />
+        <attr name="call_log_voicemail_status_text_color" format="color" />
     </declare-styleable>
 
     <style name="PeopleTheme" parent="android:Theme.Holo.Light.SplitActionBarWhenNarrow">

@@ -28,7 +28,7 @@ import static android.provider.VoicemailContract.Status.NOTIFICATION_CHANNEL_STA
 import static android.provider.VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK;
 
 import com.android.contacts.R;
-import com.android.contacts.calllog.VoicemailStatusHelper.Message;
+import com.android.contacts.calllog.VoicemailStatusHelper.StatusMessage;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -50,7 +50,8 @@ public class VoicemailStatusHelperImplTest extends AndroidTestCase {
     private static final Uri TEST_SETTINGS_URI = Uri.parse("http://www.visual.voicemail.setup");
     private static final Uri TEST_VOICEMAIL_URI = Uri.parse("tel:901");
 
-    private static final int ACTION_MSG_CALL_VOICEMAIL = R.string.voicemail_status_action_call_server;
+    private static final int ACTION_MSG_CALL_VOICEMAIL =
+            R.string.voicemail_status_action_call_server;
     private static final int ACTION_MSG_CONFIGURE = R.string.voicemail_status_action_configure;
 
     private static final int STATUS_MSG_VOICEMAIL_NOT_AVAILABLE =
@@ -166,7 +167,7 @@ public class VoicemailStatusHelperImplTest extends AndroidTestCase {
         // package2 with  valuesNoNotificationNoDataChannel. Package2 should be above.
         updateEntryForPackage(TEST_PACKAGE_1, valuesNoNotificationGoodDataChannel);
         updateEntryForPackage(TEST_PACKAGE_2, valuesNoNotificationNoDataChannel);
-        List<Message> messages = mStatusHelper.getStatusMessages();
+        List<StatusMessage> messages = mStatusHelper.getStatusMessages();
         assertEquals(2, messages.size());
         assertEquals(TEST_PACKAGE_1, messages.get(1).sourcePackage);
         assertEquals(TEST_PACKAGE_2, messages.get(0).sourcePackage);
@@ -189,13 +190,13 @@ public class VoicemailStatusHelperImplTest extends AndroidTestCase {
 
     private void checkExpectedMessage(String sourcePackage, ContentValues values,
             int expectedStatusMsg, int expectedActionMsg, Uri expectedUri) {
-        List<Message> messages = mStatusHelper.getStatusMessages();
+        List<StatusMessage> messages = mStatusHelper.getStatusMessages();
         assertEquals(1, messages.size());
         checkMessageMatches(messages.get(0), sourcePackage, expectedStatusMsg, expectedActionMsg,
                 expectedUri);
     }
 
-    private void checkMessageMatches(Message message, String expectedSourcePackage,
+    private void checkMessageMatches(StatusMessage message, String expectedSourcePackage,
             int expectedStatusMsg, int expectedActionMsg, Uri expectedUri) {
         assertEquals(expectedSourcePackage, message.sourcePackage);
         assertEquals(expectedStatusMsg, message.statusMessageId);
@@ -209,7 +210,7 @@ public class VoicemailStatusHelperImplTest extends AndroidTestCase {
 
     private void checkNoMessages(String sourcePackage, ContentValues values) {
         assertEquals(1, updateEntryForPackage(sourcePackage, values));
-        List<Message> messages = mStatusHelper.getStatusMessages();
+        List<StatusMessage> messages = mStatusHelper.getStatusMessages();
         assertEquals(0, messages.size());
     }
 

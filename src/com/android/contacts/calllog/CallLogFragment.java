@@ -25,6 +25,7 @@ import com.android.contacts.PhoneCallDetailsHelper;
 import com.android.contacts.R;
 import com.android.contacts.activities.DialtactsActivity;
 import com.android.contacts.activities.DialtactsActivity.ViewPagerVisibilityListener;
+import com.android.contacts.calllog.VoicemailStatusHelper.StatusMessage;
 import com.android.contacts.util.ExpirableCache;
 import com.android.internal.telephony.CallerInfo;
 import com.google.common.annotations.VisibleForTesting;
@@ -59,8 +60,10 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ListView;
 import android.widget.QuickContactBadge;
+import android.widget.TextView;
 
 import java.util.LinkedList;
+import java.util.List;
 
 
 /**
@@ -141,6 +144,11 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     private boolean mScrollToTop;
 
     private boolean mShowOptionsMenu;
+
+    private VoicemailStatusHelper mVoicemailStatusHelper;
+    private View mStatusMessageView;
+    private TextView mStatusMessageText;
+    private TextView mStatusMessageAction;
 
     public static final class ContactInfo {
         public long personId;
@@ -829,7 +837,12 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
-        return inflater.inflate(R.layout.call_log_fragment, container, false);
+        View view = inflater.inflate(R.layout.call_log_fragment, container, false);
+        mVoicemailStatusHelper = new VoicemailStatusHelperImpl(getActivity().getContentResolver());
+        mStatusMessageView = view.findViewById(R.id.voicemail_status);
+        mStatusMessageText = (TextView) view.findViewById(R.id.voicemail_status_message);
+        mStatusMessageAction = (TextView) view.findViewById(R.id.voicemail_status_action);
+        return view;
     }
 
     @Override
@@ -855,10 +868,40 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
 
         startQuery();
         resetNewCallsFlag();
-
+        updateVoicemailStatusMessage();
         super.onResume();
 
         mAdapter.mPreDrawListener = null; // Let it restart the thread after next draw
+    }
+
+    private void updateVoicemailStatusMessage() {
+        // TODO: make call to mVoicemailStatusHelper asynchronously.
+        List<StatusMessage> messages = mVoicemailStatusHelper.getStatusMessages();
+        if (messages.size() == 0) {
+            mStatusMessageView.setVisibility(View.GONE);
+        } else {
+            mStatusMessageView.setVisibility(View.VISIBLE);
+            // TODO: Change the code to show all messages. For now just pick the first message.
+            final StatusMessage message = messages.get(0);
+            if (message.statusMessageId != -1) {
+                mStatusMessageText.setText(message.statusMessageId);
+            }
+            if (message.actionMessageId != -1) {
+                mStatusMessageAction.setText(message.actionMessageId);
+            }
+            if (message.actionUri != null) {
+                mStatusMessageAction.setClickable(true);
+                mStatusMessageAction.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getActivity().startActivity(
+                                new Intent(Intent.ACTION_VIEW, message.actionUri));
+                    }
+                });
+            } else {
+                mStatusMessageAction.setClickable(false);
+            }
+        }
     }
 
     @Override

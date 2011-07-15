@@ -30,7 +30,7 @@ import java.util.List;
  * this class to check if any message needs to be shown.
  */
 public interface VoicemailStatusHelper {
-    public class Message {
+    public class StatusMessage {
         /** Package of the source on behalf of which this message has to be shown.*/
         public final String sourcePackage;
         /** The string resource id of the status message that should be shown. */
@@ -39,7 +39,7 @@ public interface VoicemailStatusHelper {
         public final int actionMessageId;
         /** URI for the corrective action, where applicable. Null if no action URI is available. */
         public final Uri actionUri;
-        public Message(String sourcePackage, int statusMessageId, int actionMessageId,
+        public StatusMessage(String sourcePackage, int statusMessageId, int actionMessageId,
                 Uri actionUri) {
             this.sourcePackage = sourcePackage;
             this.statusMessageId = statusMessageId;
@@ -52,5 +52,5 @@ public interface VoicemailStatusHelper {
      * Returns a list of messages, in the order or priority that should be shown to the user. An
      * empty list is returned if no message needs to be shown.
      */
-    public List<Message> getStatusMessages();
+    public List<StatusMessage> getStatusMessages();
 }

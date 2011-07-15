@@ -14,21 +14,29 @@
      limitations under the License.
 -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
 >
-    <ListView android:id="@android:id/list"
+    <include layout="@layout/call_log_voicemail_status"/>
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbarStyle="outsideOverlay"
-    />
+        android:layout_height="wrap_content"
+    >
+        <ListView android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarStyle="outsideOverlay"
+        />
 
-    <TextView android:id="@android:id/empty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/recentCalls_empty"
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-    />
-</FrameLayout>
+        <TextView android:id="@android:id/empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/recentCalls_empty"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+        />
+    </FrameLayout>
+</LinearLayout>
+

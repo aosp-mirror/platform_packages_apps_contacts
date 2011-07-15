@@ -133,26 +133,26 @@ public class VoicemailStatusHelperImpl implements VoicemailStatusHelper {
         mContentResolver = contentResolver;
     }
 
-    /** A wrapper on {@link Message} which additionally stores the priority of the message. */
-    private static class MessageWrapper {
-        private final Message mMessage;
+    /** A wrapper on {@link StatusMessage} which additionally stores the priority of the message. */
+    private static class MessageStatusWithPriority {
+        private final StatusMessage mMessage;
         private final int mPriority;
 
-        public MessageWrapper(Message message, int priority) {
+        public MessageStatusWithPriority(StatusMessage message, int priority) {
             mMessage = message;
             mPriority = priority;
         }
     }
 
     @Override
-    public List<Message> getStatusMessages() {
+    public List<StatusMessage> getStatusMessages() {
         Cursor cursor = null;
         try {
             cursor = mContentResolver.query(Status.CONTENT_URI, PROJECTION, null, null, null);
-            List<MessageWrapper> messages =
-                    new ArrayList<VoicemailStatusHelperImpl.MessageWrapper>();
+            List<MessageStatusWithPriority> messages =
+                    new ArrayList<VoicemailStatusHelperImpl.MessageStatusWithPriority>();
             while(cursor.moveToNext()) {
-                MessageWrapper message = getMessageForStatusEntry(cursor);
+                MessageStatusWithPriority message = getMessageForStatusEntry(cursor);
                 if (message != null) {
                     messages.add(message);
                 }
@@ -164,16 +164,16 @@ public class VoicemailStatusHelperImpl implements VoicemailStatusHelper {
         }
     }
 
-    private List<Message> reorderMessages(List<MessageWrapper> messageWrappers) {
-        Collections.sort(messageWrappers, new Comparator<MessageWrapper>() {
+    private List<StatusMessage> reorderMessages(List<MessageStatusWithPriority> messageWrappers) {
+        Collections.sort(messageWrappers, new Comparator<MessageStatusWithPriority>() {
             @Override
-            public int compare(MessageWrapper msg1, MessageWrapper msg2) {
+            public int compare(MessageStatusWithPriority msg1, MessageStatusWithPriority msg2) {
                 return msg1.mPriority - msg2.mPriority;
             }
         });
-        List<Message> reorderMessages = new ArrayList<VoicemailStatusHelper.Message>();
+        List<StatusMessage> reorderMessages = new ArrayList<VoicemailStatusHelper.StatusMessage>();
         // Copy the ordered message objects into the final list.
-        for (MessageWrapper messageWrapper : messageWrappers) {
+        for (MessageStatusWithPriority messageWrapper : messageWrappers) {
             reorderMessages.add(messageWrapper.mMessage);
         }
         return reorderMessages;
@@ -182,7 +182,7 @@ public class VoicemailStatusHelperImpl implements VoicemailStatusHelper {
     /**
      * Returns the message for the status entry pointed to by the cursor.
      */
-    private MessageWrapper getMessageForStatusEntry(Cursor cursor) {
+    private MessageStatusWithPriority getMessageForStatusEntry(Cursor cursor) {
         final String sourcePackage = cursor.getString(SOURCE_PACKAGE_INDEX);
         if (sourcePackage == null) {
             return null;
@@ -203,8 +203,8 @@ public class VoicemailStatusHelperImpl implements VoicemailStatusHelper {
         } else if (action == Action.CONFIGURE_VOICEMAIL) {
             actionUri = Uri.parse(cursor.getString(SETTINGS_URI_INDEX));
         }
-        return new MessageWrapper(
-                new Message(sourcePackage, overallState.getMessageId(), action.getMessageId(),
+        return new MessageStatusWithPriority(
+                new StatusMessage(sourcePackage, overallState.getMessageId(), action.getMessageId(),
                         actionUri),
                 overallState.getPriority());
     }
