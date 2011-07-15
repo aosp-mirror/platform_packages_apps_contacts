@@ -141,9 +141,11 @@ import javax.annotation.concurrent.GuardedBy;
 
     /** Fetches the list of calls in the call log, either the new one or the old ones. */
     private void fetchCalls(int token, boolean isNew) {
+        // We need to check for NULL explicitly otherwise entries with where NEW is NULL will not
+        // match either the query or its negation.
         String selection =
-                String.format("%s = 1 AND (%s = ? OR %s = ?)",
-                        Calls.NEW, Calls.TYPE, Calls.TYPE);
+                String.format("%s IS NOT NULL AND %s = 1 AND (%s = ? OR %s = ?)",
+                        Calls.NEW, Calls.NEW, Calls.TYPE, Calls.TYPE);
         String[] selectionArgs = new String[]{
                 Integer.toString(Calls.MISSED_TYPE),
                 Integer.toString(Calls.VOICEMAIL_TYPE),
