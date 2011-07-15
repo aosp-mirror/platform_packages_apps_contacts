@@ -34,10 +34,8 @@
     <string name="viewContactDesription" msgid="214186610887547860">"查看联系人"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"编辑联系人"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"创建联系人"</string>
-    <!-- no translation found for editGroupDescription (6321161304201540561) -->
-    <skip />
-    <!-- no translation found for insertGroupDescription (5658512271662210139) -->
-    <skip />
+    <string name="editGroupDescription" msgid="6321161304201540561">"修改群组"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"创建群组"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"关于"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"最新动态"</string>
     <string name="searchHint" msgid="8482945356247760701">"搜索联系人"</string>
@@ -57,8 +55,7 @@
     <string name="menu_renameGroup" msgid="2798886925154156075">"重命名群组"</string>
     <string name="menu_deleteGroup" msgid="644571524292675446">"删除群组"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"新建"</string>
-    <!-- no translation found for menu_new_group_action_bar (5055346725617932394) -->
-    <skip />
+    <string name="menu_new_group_action_bar" msgid="5055346725617932394">"新建群组"</string>
     <string name="splitConfirmation_title" msgid="6716467920283502570">"拆分联系人"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"您确定要将此单一联系人拆分为多位联系人（即，其中包含的每条联系信息分别对应一位联系人）吗？"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"合并"</string>
@@ -108,8 +105,6 @@
     <string name="noGroups" msgid="8614664663561385253">"没有任何群组。"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"未找到匹配的联系人。"</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"没有联系人拥有电话号码。"</string>
-    <string name="showFilterPhones" msgid="4184858075465653970">"仅显示有电话号码的联系人"</string>
-    <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"仅显示有电话号码的联系人"</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"选择要显示的联系人"</string>
   <plurals name="groupDescrip">
     <item quantity="other" msgid="3507881585720628389">"<xliff:g id="COUNT">%0$d</xliff:g> 位联系人"</item>
@@ -121,14 +116,10 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"正在保存显示选项…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"此联系人已保存。"</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"发生错误，无法保存联系人更改。"</string>
-    <!-- no translation found for groupSavedToast (1168756874239833756) -->
-    <skip />
-    <!-- no translation found for groupSavedErrorToast (6434135707953150875) -->
-    <skip />
-    <!-- no translation found for groupMembershipChangeSavedToast (5323580174093150793) -->
-    <skip />
-    <!-- no translation found for contactAlreadyInGroup (6209708213229886092) -->
-    <skip />
+    <string name="groupSavedToast" msgid="1168756874239833756">"群组已保存。"</string>
+    <string name="groupSavedErrorToast" msgid="6434135707953150875">"出现错误，无法保存群组更改。"</string>
+    <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"更改已保存。"</string>
+    <string name="contactAlreadyInGroup" msgid="6209708213229886092">"该联系人已添加到该群组。"</string>
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"1 位联系人有电话号码"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> 位联系人有电话号码"</item>
@@ -142,6 +133,7 @@
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"未显示任何联系人"</string>
     <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"没有已加星标的联系人"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"“<xliff:g id="NAME">%s</xliff:g>”中没有联系人"</string>
+    <string name="listAllContactsInAccount" msgid="7496143179265311758">"<xliff:g id="NAME">%s</xliff:g> 帐户中的联系人"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"找到 1 个联系人"</item>
     <item quantity="other" msgid="3852668542926965042">"找到 <xliff:g id="COUNT">%d</xliff:g> 个联系人"</item>
@@ -152,7 +144,7 @@
     <item quantity="one" msgid="4826918429708286628">"找到 1 个联系人"</item>
     <item quantity="other" msgid="7988132539476575389">"找到 <xliff:g id="COUNT">%d</xliff:g> 个联系人"</item>
   </plurals>
-    <string name="contactsIconLabel" msgid="7666609097606552806">"通讯录"</string>
+    <string name="contactsAllLabel" msgid="6178225597569649305">"全部"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"群组"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"收藏"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"拨号"</string>
@@ -202,6 +194,7 @@
     <string name="type_incoming" msgid="6502076603836088532">"来电"</string>
     <string name="type_outgoing" msgid="343108709599392641">"外拨电话"</string>
     <string name="type_missed" msgid="2720502601640509542">"未接电话"</string>
+    <string name="type_voicemail" msgid="5153139450668549908">"语音信箱"</string>
     <string name="actionIncomingCall" msgid="6028930669817038600">"来电"</string>
     <string name="callBack" msgid="5498224409038809224">"回电"</string>
     <string name="callAgain" msgid="3197312117049874778">"重拨"</string>
@@ -223,6 +216,7 @@
     <string name="description_image_button_zero" msgid="4133108949401820710">"零"</string>
     <string name="description_image_button_pound" msgid="3039765597595889230">"英镑符号"</string>
     <string name="description_voicemail_button" msgid="3402506823655455591">"语音信箱"</string>
+    <string name="description_search_button" msgid="3660807558587384889">"搜索"</string>
     <string name="description_dial_button" msgid="1274091017188142646">"拨打"</string>
     <string name="description_delete_button" msgid="6263102114033407382">"退格"</string>
     <string name="description_digits_edittext" msgid="8760207516497016437">"要拨打的号码"</string>
@@ -332,8 +326,7 @@
     <string name="type_short_pager" msgid="2613818970827594238">"寻呼"</string>
     <string name="type_short_other" msgid="5669407180177236769">"其他"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"在帐户下创建联系人"</string>
-    <!-- no translation found for dialog_new_group_account (2318032089273496830) -->
-    <skip />
+    <string name="dialog_new_group_account" msgid="2318032089273496830">"要在哪个帐户下创建群组？"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"删除同步群组"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"添加同步群组"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"更多群组…"</string>
@@ -421,10 +414,8 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"中间名拼音"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"姓氏拼音"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"姓名拼音"</string>
-    <!-- no translation found for network (5415816765302129264) -->
-    <skip />
-    <!-- no translation found for recent_updates (2062236709538790412) -->
-    <skip />
+    <string name="network" msgid="5415816765302129264">"网络"</string>
+    <string name="recent_updates" msgid="2062236709538790412">"最新动态"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> 联系人"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -481,6 +472,8 @@
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"编辑所选联系人"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"要切换至编辑所选联系人吗？系统会复制您到目前为止输入的所有信息。"</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"复制到我的联系人"</string>
+    <!-- no translation found for add_to_my_contacts (1068274916793627723) -->
+    <skip />
     <string name="contact_directory_description" msgid="683398073603909119">"目录类型：<xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="search_label" msgid="6789295859496641042">"正在搜索所有联系人"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"目录"</string>
@@ -495,6 +488,8 @@
     <string name="list_filter_single" msgid="5871400283515893087">"联系人"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"定义自定义视图"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"设置"</string>
+    <!-- no translation found for activity_title_contacts_filter (8275542497615516969) -->
+    <skip />
     <string name="menu_settings" msgid="377929915873428211">"设置"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"显示选项"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>，<xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
@@ -526,12 +521,14 @@
     <string name="discard" msgid="1234315037371251414">"舍弃"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4179677761341328409">"我的个人资料"</string>
-    <!-- no translation found for enter_contact_name (2930510479516059437) -->
+    <string name="enter_contact_name" msgid="2930510479516059437">"请输入联系人姓名"</string>
+    <string name="editGroup_title_insert" msgid="7803743109105317959">"新建群组"</string>
+    <string name="editGroup_title_edit" msgid="2173278908256913247">"修改群组"</string>
+    <string name="notification_voicemail_title" msgid="1282651537781272548">"新语音邮件"</string>
+    <!-- no translation found for call_log_type_date_separator (8009466658324061546) -->
     <skip />
-    <!-- no translation found for editGroup_title_insert (7803743109105317959) -->
+    <!-- no translation found for call_log_new_header (846546437517724715) -->
     <skip />
-    <!-- no translation found for editGroup_title_edit (2173278908256913247) -->
-    <skip />
-    <!-- no translation found for notification_voicemail_title (1282651537781272548) -->
+    <!-- no translation found for call_log_old_header (6262205894314263629) -->
     <skip />
 </resources>

@@ -35,10 +35,8 @@
     <string name="viewContactDesription" msgid="214186610887547860">"Papar kenalan"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Edit kenalan"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Wujudkan kenalan"</string>
-    <!-- no translation found for editGroupDescription (6321161304201540561) -->
-    <skip />
-    <!-- no translation found for insertGroupDescription (5658512271662210139) -->
-    <skip />
+    <string name="editGroupDescription" msgid="6321161304201540561">"Edit kumpulan"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"Buat kumpulan"</string>
     <!-- no translation found for contactDetailAbout (5430408883907061400) -->
     <skip />
     <!-- no translation found for contactDetailUpdates (3780588624763446941) -->
@@ -61,8 +59,7 @@
     <string name="menu_renameGroup" msgid="2798886925154156075">"Namakan semula kumpulan"</string>
     <string name="menu_deleteGroup" msgid="644571524292675446">"Padam kumpulan"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Baru"</string>
-    <!-- no translation found for menu_new_group_action_bar (5055346725617932394) -->
-    <skip />
+    <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Baru"</string>
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Pisahkan Kenalan"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"Adakah anda pasti mahu mengasingkan kenalan tunggal ini kepada berbilang kenalan: bagi setiap set maklumat kenalan yang telah disertakan padanya?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Sertai"</string>
@@ -113,8 +110,6 @@
     <skip />
     <string name="noMatchingContacts" msgid="4266283206853990471">"Tiada kenalan yang sepadan ditemui."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Tiada kenalan dengan nombor telefon."</string>
-    <string name="showFilterPhones" msgid="4184858075465653970">"Hanya kenalan dengan telefon"</string>
-    <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"Paparkan kenalan yang mempunyai nombor telefon sahaja"</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Pilih kenalan untuk dipaparkan"</string>
   <plurals name="groupDescrip">
     <item quantity="other" msgid="3507881585720628389">"(<xliff:g id="COUNT">%0$d</xliff:g> kenalan)"</item>
@@ -126,14 +121,10 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Menyimpan pilihan paparan..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Kenalan disimpan."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Ralat, tidak boleh menyimpan perubahan kenalan."</string>
-    <!-- no translation found for groupSavedToast (1168756874239833756) -->
-    <skip />
-    <!-- no translation found for groupSavedErrorToast (6434135707953150875) -->
-    <skip />
-    <!-- no translation found for groupMembershipChangeSavedToast (5323580174093150793) -->
-    <skip />
-    <!-- no translation found for contactAlreadyInGroup (6209708213229886092) -->
-    <skip />
+    <string name="groupSavedToast" msgid="1168756874239833756">"Kumpulan sudah disimpan."</string>
+    <string name="groupSavedErrorToast" msgid="6434135707953150875">"Ralat, tidak boleh menyimpan perubahan kumpulan."</string>
+    <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"Perubahan telah disimpan."</string>
+    <string name="contactAlreadyInGroup" msgid="6209708213229886092">"Kenalan sudah pun ditambahkan pada kumpulan."</string>
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"1 kenalan dengan nombor telefon"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> kenalan dengan nombor telefon"</item>
@@ -147,6 +138,8 @@
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Tiada kenalan dapat dilihat"</string>
     <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Tiada kenalan berbintang"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Tiada kenalan dalam <xliff:g id="NAME">%s</xliff:g>"</string>
+    <!-- no translation found for listAllContactsInAccount (7496143179265311758) -->
+    <skip />
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 ditemui"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> ditemui"</item>
@@ -157,7 +150,8 @@
     <item quantity="one" msgid="4826918429708286628">"1 ditemui"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> ditemui"</item>
   </plurals>
-    <string name="contactsIconLabel" msgid="7666609097606552806">"Kenalan"</string>
+    <!-- no translation found for contactsAllLabel (6178225597569649305) -->
+    <skip />
     <!-- no translation found for contactsGroupsLabel (2841971472518003524) -->
     <skip />
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Kegemaran"</string>
@@ -208,6 +202,8 @@
     <string name="type_incoming" msgid="6502076603836088532">"Panggilan masuk"</string>
     <string name="type_outgoing" msgid="343108709599392641">"Panggilan keluar"</string>
     <string name="type_missed" msgid="2720502601640509542">"Panggilan tidak dijawab"</string>
+    <!-- no translation found for type_voicemail (5153139450668549908) -->
+    <skip />
     <string name="actionIncomingCall" msgid="6028930669817038600">"Panggilan masuk"</string>
     <string name="callBack" msgid="5498224409038809224">"Panggil balik"</string>
     <string name="callAgain" msgid="3197312117049874778">"Panggil semula"</string>
@@ -229,6 +225,8 @@
     <string name="description_image_button_zero" msgid="4133108949401820710">"sifar"</string>
     <string name="description_image_button_pound" msgid="3039765597595889230">"paun"</string>
     <string name="description_voicemail_button" msgid="3402506823655455591">"mel suara"</string>
+    <!-- no translation found for description_search_button (3660807558587384889) -->
+    <skip />
     <string name="description_dial_button" msgid="1274091017188142646">"dail"</string>
     <string name="description_delete_button" msgid="6263102114033407382">"undur ruang"</string>
     <string name="description_digits_edittext" msgid="8760207516497016437">"nombor untuk didail"</string>
@@ -340,8 +338,7 @@
     <string name="type_short_pager" msgid="2613818970827594238">"P"</string>
     <string name="type_short_other" msgid="5669407180177236769">"L"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Wujudkan kenalan di bawah akaun"</string>
-    <!-- no translation found for dialog_new_group_account (2318032089273496830) -->
-    <skip />
+    <string name="dialog_new_group_account" msgid="2318032089273496830">"Buat kumpulan di bawah akaun"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Alih keluar kumpulan penyegerakan"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Tambah kumpulan segerak"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"Lagi kumpulan..."</string>
@@ -429,10 +426,8 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Nama tengah fonetik"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Nama keluarga fonetik"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Nama fonetik"</string>
-    <!-- no translation found for network (5415816765302129264) -->
-    <skip />
-    <!-- no translation found for recent_updates (2062236709538790412) -->
-    <skip />
+    <string name="network" msgid="5415816765302129264">"Rangkaian"</string>
+    <string name="recent_updates" msgid="2062236709538790412">"Baru-baru ini"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kenalan"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -497,6 +492,8 @@
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Edit kenalan pilihan"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Bertukar kepada mengedit kenalan pilihan? Maklumat yang anda masukkan setakat ini akan disalin."</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"Salin ke kenalan saya"</string>
+    <!-- no translation found for add_to_my_contacts (1068274916793627723) -->
+    <skip />
     <string name="contact_directory_description" msgid="683398073603909119">"Direktori <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="search_label" msgid="6789295859496641042">"Mencari semua kenalan"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Direktori"</string>
@@ -511,6 +508,8 @@
     <string name="list_filter_single" msgid="5871400283515893087">"Kenalan"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Tentukan paparan peribadi"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Tetapan"</string>
+    <!-- no translation found for activity_title_contacts_filter (8275542497615516969) -->
+    <skip />
     <string name="menu_settings" msgid="377929915873428211">"Tetapan"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Pilihan paparan"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
@@ -542,12 +541,14 @@
     <skip />
     <!-- no translation found for profile_display_name (4179677761341328409) -->
     <skip />
-    <!-- no translation found for enter_contact_name (2930510479516059437) -->
+    <string name="enter_contact_name" msgid="2930510479516059437">"Masukkan nama kenalan"</string>
+    <string name="editGroup_title_insert" msgid="7803743109105317959">"Kumpulan baru"</string>
+    <string name="editGroup_title_edit" msgid="2173278908256913247">"Edit kumpulan"</string>
+    <string name="notification_voicemail_title" msgid="1282651537781272548">"Mel suara baru"</string>
+    <!-- no translation found for call_log_type_date_separator (8009466658324061546) -->
     <skip />
-    <!-- no translation found for editGroup_title_insert (7803743109105317959) -->
+    <!-- no translation found for call_log_new_header (846546437517724715) -->
     <skip />
-    <!-- no translation found for editGroup_title_edit (2173278908256913247) -->
-    <skip />
-    <!-- no translation found for notification_voicemail_title (1282651537781272548) -->
+    <!-- no translation found for call_log_old_header (6262205894314263629) -->
     <skip />
 </resources>

@@ -34,10 +34,8 @@
     <string name="viewContactDesription" msgid="214186610887547860">"Visualizza contatto"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Modifica contatto"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Crea contatto"</string>
-    <!-- no translation found for editGroupDescription (6321161304201540561) -->
-    <skip />
-    <!-- no translation found for insertGroupDescription (5658512271662210139) -->
-    <skip />
+    <string name="editGroupDescription" msgid="6321161304201540561">"Modifica gruppo"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"Crea gruppo"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Informazioni"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Aggiornamenti"</string>
     <string name="searchHint" msgid="8482945356247760701">"Cerca contatti"</string>
@@ -57,8 +55,7 @@
     <string name="menu_renameGroup" msgid="2798886925154156075">"Rinomina gruppo"</string>
     <string name="menu_deleteGroup" msgid="644571524292675446">"Elimina gruppo"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Nuovo"</string>
-    <!-- no translation found for menu_new_group_action_bar (5055346725617932394) -->
-    <skip />
+    <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Nuovo"</string>
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Separa contatto"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"Separare questo contatto singolo in più contatti, uno per ogni serie di informazioni di contatto unita in precedenza?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Unisci"</string>
@@ -108,8 +105,6 @@
     <string name="noGroups" msgid="8614664663561385253">"Nessun gruppo."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Nessun contatto corrispondente trovato."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Nessun contatto con numeri di telefono."</string>
-    <string name="showFilterPhones" msgid="4184858075465653970">"Solo contatti con numeri di tel."</string>
-    <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"Visualizza solo i contatti con numeri di telefono"</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Scegli i contatti da visualizzare"</string>
   <plurals name="groupDescrip">
     <item quantity="other" msgid="3507881585720628389">"<xliff:g id="COUNT">%0$d</xliff:g> contatti"</item>
@@ -121,14 +116,10 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Salvataggio opzioni di visualizzazione in corso..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Contatto salvato."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Errore, impossibile salvare le modifiche ai contatti."</string>
-    <!-- no translation found for groupSavedToast (1168756874239833756) -->
-    <skip />
-    <!-- no translation found for groupSavedErrorToast (6434135707953150875) -->
-    <skip />
-    <!-- no translation found for groupMembershipChangeSavedToast (5323580174093150793) -->
-    <skip />
-    <!-- no translation found for contactAlreadyInGroup (6209708213229886092) -->
-    <skip />
+    <string name="groupSavedToast" msgid="1168756874239833756">"Gruppo salvato."</string>
+    <string name="groupSavedErrorToast" msgid="6434135707953150875">"Errore, impossibile salvare le modifiche al gruppo."</string>
+    <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"La modifica è stata salvata."</string>
+    <string name="contactAlreadyInGroup" msgid="6209708213229886092">"Il contatto è già stato aggiunto al gruppo."</string>
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"1 contatto con numero di telefono"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> contatti con numeri di telefono"</item>
@@ -142,6 +133,7 @@
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Nessun contatto visibile"</string>
     <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Nessun contatto aggiunto a Speciali"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Nessun contatto in <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="listAllContactsInAccount" msgid="7496143179265311758">"Contatti in <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 trovato"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> trovati"</item>
@@ -152,7 +144,7 @@
     <item quantity="one" msgid="4826918429708286628">"1 trovato"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> trovati"</item>
   </plurals>
-    <string name="contactsIconLabel" msgid="7666609097606552806">"Contatti"</string>
+    <string name="contactsAllLabel" msgid="6178225597569649305">"Tutti"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Gruppi"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Preferiti"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Telefono"</string>
@@ -202,6 +194,7 @@
     <string name="type_incoming" msgid="6502076603836088532">"Chiamata ricevuta"</string>
     <string name="type_outgoing" msgid="343108709599392641">"Chiamata effettuata"</string>
     <string name="type_missed" msgid="2720502601640509542">"Chiamata persa"</string>
+    <string name="type_voicemail" msgid="5153139450668549908">"Segreteria"</string>
     <string name="actionIncomingCall" msgid="6028930669817038600">"Chiamate in arrivo"</string>
     <string name="callBack" msgid="5498224409038809224">"Richiama"</string>
     <string name="callAgain" msgid="3197312117049874778">"Richiama"</string>
@@ -223,6 +216,7 @@
     <string name="description_image_button_zero" msgid="4133108949401820710">"zero"</string>
     <string name="description_image_button_pound" msgid="3039765597595889230">"sterlina"</string>
     <string name="description_voicemail_button" msgid="3402506823655455591">"segreteria"</string>
+    <string name="description_search_button" msgid="3660807558587384889">"cerca"</string>
     <string name="description_dial_button" msgid="1274091017188142646">"componi"</string>
     <string name="description_delete_button" msgid="6263102114033407382">"backspace"</string>
     <string name="description_digits_edittext" msgid="8760207516497016437">"numero da comporre"</string>
@@ -332,8 +326,7 @@
     <string name="type_short_pager" msgid="2613818970827594238">"P"</string>
     <string name="type_short_other" msgid="5669407180177236769">"O"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Crea contatto sotto account"</string>
-    <!-- no translation found for dialog_new_group_account (2318032089273496830) -->
-    <skip />
+    <string name="dialog_new_group_account" msgid="2318032089273496830">"Crea un gruppo nell\'account"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Rimuovi gruppo sinc."</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Aggiungi gruppo sinc."</string>
     <string name="display_more_groups" msgid="2682547080423434170">"Altri gruppi..."</string>
@@ -421,10 +414,8 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Secondo nome fonetico"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Cognome fonetico"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Nome fonetico"</string>
-    <!-- no translation found for network (5415816765302129264) -->
-    <skip />
-    <!-- no translation found for recent_updates (2062236709538790412) -->
-    <skip />
+    <string name="network" msgid="5415816765302129264">"Rete"</string>
+    <string name="recent_updates" msgid="2062236709538790412">"Recenti"</string>
     <string name="account_type_format" msgid="718948015590343010">"Contatto da <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -481,6 +472,8 @@
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Modifica i contatti selezionati"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Passare alla modifica del contatto selezionato? Le informazioni inserite finora verranno copiate."</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"Copia nei miei contatti"</string>
+    <!-- no translation found for add_to_my_contacts (1068274916793627723) -->
+    <skip />
     <string name="contact_directory_description" msgid="683398073603909119">"Directory <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="search_label" msgid="6789295859496641042">"Ricerca di tutti i contatti"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Directory"</string>
@@ -495,6 +488,7 @@
     <string name="list_filter_single" msgid="5871400283515893087">"Contatto"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Definisci visualizzazione personalizzata"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Impostazioni"</string>
+    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Contatti da visualizzare"</string>
     <string name="menu_settings" msgid="377929915873428211">"Impostazioni"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Opzioni di visualizzazione"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
@@ -526,12 +520,14 @@
     <string name="discard" msgid="1234315037371251414">"Ignora"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g> "</string>
     <string name="profile_display_name" msgid="4179677761341328409">"Il mio profilo"</string>
-    <!-- no translation found for enter_contact_name (2930510479516059437) -->
+    <string name="enter_contact_name" msgid="2930510479516059437">"Inserisci il nome del contatto"</string>
+    <string name="editGroup_title_insert" msgid="7803743109105317959">"Nuovo gruppo"</string>
+    <string name="editGroup_title_edit" msgid="2173278908256913247">"Modifica gruppo"</string>
+    <string name="notification_voicemail_title" msgid="1282651537781272548">"Nuovo messaggio vocale"</string>
+    <!-- no translation found for call_log_type_date_separator (8009466658324061546) -->
     <skip />
-    <!-- no translation found for editGroup_title_insert (7803743109105317959) -->
+    <!-- no translation found for call_log_new_header (846546437517724715) -->
     <skip />
-    <!-- no translation found for editGroup_title_edit (2173278908256913247) -->
-    <skip />
-    <!-- no translation found for notification_voicemail_title (1282651537781272548) -->
+    <!-- no translation found for call_log_old_header (6262205894314263629) -->
     <skip />
 </resources>
