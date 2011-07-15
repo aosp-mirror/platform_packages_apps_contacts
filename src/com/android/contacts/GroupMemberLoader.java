@@ -68,9 +68,9 @@ public final class GroupMemberLoader extends CursorLoader {
     public static final int CONTACT_PHOTO_ID_COLUMN_INDEX = 8;
     public static final int CONTACT_PHOTO_URI_COLUMN_INDEX = 9;
     public static final int CONTACT_PHOTO_THUMBNAIL_URI_COLUMN_INDEX = 10;
-    public static final int CONTACT_LOOKUP_KEY_COLUMN_INDEX = 10;
-    public static final int CONTACT_PHONETIC_NAME_COLUMN_INDEX = 11;
-    public static final int CONTACT_HAS_PHONE_COLUMN_INDEX = 12;
+    public static final int CONTACT_LOOKUP_KEY_COLUMN_INDEX = 11;
+    public static final int CONTACT_PHONETIC_NAME_COLUMN_INDEX = 12;
+    public static final int CONTACT_HAS_PHONE_COLUMN_INDEX = 13;
 
     public GroupMemberLoader(Context context, long groupId) {
         super(context);
