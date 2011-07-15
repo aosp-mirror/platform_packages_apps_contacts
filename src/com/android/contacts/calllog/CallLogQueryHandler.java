@@ -214,23 +214,16 @@ import javax.annotation.concurrent.GuardedBy;
     @GuardedBy("this")
     private Cursor createMergedCursor() {
         try {
-            final boolean noNewCalls = mNewCallsCursor.getCount() == 0;
-            final boolean noOldCalls = mOldCallsCursor.getCount() == 0;
+            final boolean hasNewCalls = mNewCallsCursor.getCount() != 0;
+            final boolean hasOldCalls = mOldCallsCursor.getCount() != 0;
 
-            if (noNewCalls && noOldCalls) {
-                // Nothing in either cursors.
+            if (!hasNewCalls) {
+                // Return only the old calls, without the header.
                 MoreCloseables.closeQuietly(mNewCallsCursor);
                 return mOldCallsCursor;
             }
 
-            if (noNewCalls) {
-                // Return only the old calls.
-                MoreCloseables.closeQuietly(mNewCallsCursor);
-                return new MergeCursor(
-                        new Cursor[]{ createOldCallsHeaderCursor(), mOldCallsCursor });
-            }
-
-            if (noOldCalls) {
+            if (!hasOldCalls) {
                 // Return only the new calls.
                 MoreCloseables.closeQuietly(mOldCallsCursor);
                 return new MergeCursor(
