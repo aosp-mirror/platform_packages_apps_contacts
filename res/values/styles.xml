@@ -16,6 +16,7 @@
 <resources>
     <style name="DialtactsTheme" parent="android:Theme.Holo.SplitActionBarWhenNarrow">
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@android:color/black</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="section_header_background">@drawable/list_title_holo</item>
         <item name="list_section_header_height">32dip</item>
