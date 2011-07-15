@@ -106,6 +106,9 @@ public class EventFieldEditorView extends LabeledEditorView {
         String data = DateUtils.formatDate(getContext(), getEntry().getAsString(column));
         if (TextUtils.isEmpty(data)) {
             data = " ";
+            setDeleteButtonVisible(false);
+        } else {
+            setDeleteButtonVisible(true);
         }
         mDateView.setText(data);
     }

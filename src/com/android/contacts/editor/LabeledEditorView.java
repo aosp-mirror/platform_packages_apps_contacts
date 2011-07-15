@@ -73,6 +73,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
     private EntityDelta mState;
     private boolean mReadOnly;
     private boolean mWasEmpty = true;
+    private boolean mIsDeletable = true;
 
     private EditType mType;
 
@@ -185,12 +186,18 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
     /**
      * Creates or removes the remove button. Doesn't do anything if already correctly configured
      */
-    private void setupDeleteButton(boolean shouldExist) {
-        if (shouldExist) {
+    private void setupDeleteButton() {
+        if (mIsDeletable) {
             mDeleteContainer.setVisibility(View.VISIBLE);
             mDelete.setEnabled(!mReadOnly && isEnabled());
         } else {
             mDeleteContainer.setVisibility(View.GONE);
+        }
+    }
+
+    public void setDeleteButtonVisible(boolean visible) {
+        if (mIsDeletable) {
+            mDeleteContainer.setVisibility(visible ? View.VISIBLE : View.GONE);
         }
     }
 
@@ -207,7 +214,8 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
 
     @Override
     public void setDeletable(boolean deletable) {
-        setupDeleteButton(deletable);
+        mIsDeletable = deletable;
+        setupDeleteButton();
     }
 
     @Override
@@ -267,8 +275,10 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
         if (mWasEmpty != isEmpty) {
             if (isEmpty) {
                 mListener.onRequest(EditorListener.FIELD_TURNED_EMPTY);
+                if (mIsDeletable) mDeleteContainer.setVisibility(View.GONE);
             } else {
                 mListener.onRequest(EditorListener.FIELD_TURNED_NON_EMPTY);
+                if (mIsDeletable) mDeleteContainer.setVisibility(View.VISIBLE);
             }
             mWasEmpty = isEmpty;
         }

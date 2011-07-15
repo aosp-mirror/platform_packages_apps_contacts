@@ -194,9 +194,9 @@ public class KindSectionView extends LinearLayout implements EditorListener {
 
         if (view instanceof Editor) {
             Editor editor = (Editor) view;
+            editor.setDeletable(true);
             editor.setValues(mKind, entry, mState, mReadOnly, mViewIdGenerator);
             editor.setEditorListener(this);
-            editor.setDeletable(true);
         }
         mEditors.addView(view);
         return view;

@@ -50,6 +50,9 @@
     <!-- Left padding of a field in the Editor -->
     <dimen name="editor_field_left_padding">5dip</dimen>
 
+    <!-- Right padding of a field in the Editor -->
+    <dimen name="editor_field_right_padding">5dip</dimen>
+
     <!-- Top padding of a field in the Editor -->
     <dimen name="editor_field_top_padding">10dip</dimen>
 
