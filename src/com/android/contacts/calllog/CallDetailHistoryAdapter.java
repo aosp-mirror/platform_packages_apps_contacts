@@ -71,15 +71,12 @@ public class CallDetailHistoryAdapter extends BaseAdapter {
         PhoneCallDetails details = mPhoneCallDetails[position];
         ImageView callTypeIconView = (ImageView) convertView.findViewById(R.id.call_type_icon);
         TextView callTypeTextView = (TextView) convertView.findViewById(R.id.call_type_text);
-        TextView numberView = (TextView) convertView.findViewById(R.id.number);
         TextView dateView = (TextView) convertView.findViewById(R.id.date);
         TextView durationView = (TextView) convertView.findViewById(R.id.duration);
 
         int callType = details.callTypes[0];
         callTypeIconView.setImageDrawable(mCallTypeHelper.getCallTypeDrawable(callType));
         callTypeTextView.setText(mCallTypeHelper.getCallTypeText(callType));
-        // TODO: Add the label for this number as well.
-        numberView.setText(details.number);
         // Set the date.
         CharSequence dateValue = DateUtils.formatDateRange(mContext, details.date, details.date,
                 DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE |

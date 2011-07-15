@@ -39,19 +39,11 @@
         android:textColor="?attr/call_log_secondary_text_color"
     />
     <TextView
-        android:id="@+id/number"
+        android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/call_type_text"
         android:layout_alignLeft="@id/call_type_text"
-        android:textColor="?attr/call_log_secondary_text_color"
-    />
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/number"
-        android:layout_alignLeft="@id/number"
         android:textColor="?attr/call_log_secondary_text_color"
     />
     <TextView
