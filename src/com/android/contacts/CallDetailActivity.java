@@ -224,7 +224,7 @@ public class CallDetailActivity extends ListActivity implements
 
         // Set the details header, based on the first phone call.
         mPhoneCallDetailsHelper.setPhoneCallDetails(mPhoneCallDetailsViews,
-                details[0], false);
+                details[0], false, false);
 
         // Cache the details about the phone number.
         final Uri numberCallUri = mPhoneNumberHelper.getCallUri(mNumber);

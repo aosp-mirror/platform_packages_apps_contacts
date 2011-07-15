@@ -22,6 +22,7 @@ import com.android.contacts.R;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.QuickContactBadge;
+import android.widget.TextView;
 
 /**
  * Simple value object containing the various views within a call log entry.
@@ -33,22 +34,37 @@ public final class CallLogListItemViews {
     public final ImageView callView;
     /** The details of the phone call. */
     public final PhoneCallDetailsViews phoneCallDetailsViews;
+    /** The item view for a stand-alone row, or null for other types of rows. */
+    public final View standAloneItemView;
+    /** The header view for a stand-alone row, or null for other types of rows. */
+    public final View standAloneHeaderView;
+    /** The text of the header in a stand-alone row, or null for other types of rows. */
+    public final TextView standAloneHeaderTextView;
 
     private CallLogListItemViews(QuickContactBadge photoView, ImageView callView,
-            PhoneCallDetailsViews phoneCallDetailsViews) {
+            PhoneCallDetailsViews phoneCallDetailsViews, View standAloneItemView,
+            View standAloneHeaderView, TextView standAloneHeaderTextView) {
         this.photoView = photoView;
         this.callView = callView;
         this.phoneCallDetailsViews = phoneCallDetailsViews;
+        this.standAloneItemView = standAloneItemView;
+        this.standAloneHeaderView = standAloneHeaderView;
+        this.standAloneHeaderTextView = standAloneHeaderTextView;
     }
 
     public static CallLogListItemViews fromView(View view) {
         return new CallLogListItemViews((QuickContactBadge) view.findViewById(R.id.contact_photo),
                 (ImageView) view.findViewById(R.id.call_icon),
-                PhoneCallDetailsViews.fromView(view));
+                PhoneCallDetailsViews.fromView(view),
+                view.findViewById(R.id.call_log_item),
+                view.findViewById(R.id.call_log_header),
+                (TextView) view.findViewById(R.id.call_log_header_text));
     }
 
     public static CallLogListItemViews createForTest(QuickContactBadge photoView,
-            ImageView callView, PhoneCallDetailsViews phoneCallDetailsViews) {
-        return new CallLogListItemViews(photoView, callView, phoneCallDetailsViews);
+            ImageView callView, PhoneCallDetailsViews phoneCallDetailsViews,
+            View standAloneItemView, View standAloneHeaderView, TextView standAloneHeaderTextView) {
+        return new CallLogListItemViews(photoView, callView, phoneCallDetailsViews,
+                standAloneItemView, standAloneHeaderView, standAloneHeaderTextView);
     }
 }

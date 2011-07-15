@@ -57,10 +57,12 @@ import android.view.View;
      * @param views the views to populate
      * @param details the details of a phone call needed to fill in the data
      * @param useIcons whether to use icons to show the type of the call
+     * @param isHighlighted whether to use the highlight text for the call
      */
     public void setPhoneCallDetails(CallLogListItemViews views, PhoneCallDetails details,
-            boolean useIcons) {
-        mPhoneCallDetailsHelper.setPhoneCallDetails(views.phoneCallDetailsViews, details, useIcons);
+            boolean useIcons, boolean isHighlighted) {
+        mPhoneCallDetailsHelper.setPhoneCallDetails(views.phoneCallDetailsViews, details, useIcons,
+                isHighlighted);
         if (views.callView != null) {
             // The type of icon, call or play, is determined by the first call in the group.
             views.callView.setImageDrawable(

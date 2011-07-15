@@ -60,7 +60,7 @@ public class PhoneCallDetailsHelper {
 
     /** Fills the call details views with content. */
     public void setPhoneCallDetails(PhoneCallDetailsViews views, PhoneCallDetails details,
-            boolean useIcons) {
+            boolean useIcons, boolean isHighlighted) {
         if (useIcons) {
             views.callTypeIcons.removeAllViews();
             int count = details.callTypes.length;
@@ -77,7 +77,9 @@ public class PhoneCallDetailsHelper {
             // Use the name of the first call type.
             // TODO: We should update this to handle the text for multiple calls as well.
             int callType = details.callTypes[0];
-            views.callTypeText.setText(mCallTypeHelper.getCallTypeText(callType));
+            views.callTypeText.setText(
+                    isHighlighted ? mCallTypeHelper.getHighlightedCallTypeText(callType)
+                            : mCallTypeHelper.getCallTypeText(callType));
             views.callTypeIcons.removeAllViews();
 
             views.callTypeText.setVisibility(View.VISIBLE);

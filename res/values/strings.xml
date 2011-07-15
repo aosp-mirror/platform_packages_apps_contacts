@@ -1607,4 +1607,10 @@
 
     <!-- The separator between the call type text and the date in the call log [CHAR LIMIT=3] -->
     <string name="call_log_type_date_separator">/</string>
+
+    <!-- The header in the call log used to identify missed calls and voicemail that have not yet been consumed [CHAR LIMIT=10] -->
+    <string name="call_log_new_header">New</string>
+
+    <!-- The header in the call log used to identify items that have been already consumed [CHAR LIMIT=10] -->
+    <string name="call_log_old_header">Older</string>
 </resources>
