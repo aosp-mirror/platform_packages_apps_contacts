@@ -380,6 +380,9 @@ public class PeopleActivity extends ContactsActivity
         // Re-register the listener, which may have been cleared when onSaveInstanceState was
         // called.  See also: onSaveInstanceState
         mActionBarAdapter.setListener(this);
+        // Current tab may have changed since the last onSaveInstanceState().  Make sure
+        // the actual contents match the tab.
+        updateFragmentsVisibility();
     }
 
     @Override
