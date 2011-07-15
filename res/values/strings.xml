@@ -1445,8 +1445,14 @@
     <string name="aggregation_suggestion_edit_dialog_message">Switch to editing
         the selected contact? Information you entered so far will be copied.</string>
 
-    <!-- The menu item (or button) that creates a local copy of a corporate contact. [CHAR LIMIT=40]-->
+    <!-- The button that creates a local copy of a corporate contact. [CHAR LIMIT=40]-->
     <string name="menu_copyContact">Copy to my contacts</string>
+
+    <!-- The button that adds a contact to the predefined group "My Contacts" (as this is
+         mostly interesting for Google-contacts, this should have the same description as the
+         function of GMail/Contacts on the Web
+         [CHAR LIMIT=40] -->
+    <string name="add_to_my_contacts">Add to &quot;My Contacts&quot;</string>
 
     <!-- The description of the directory where the contact was found [CHAR LIMIT=100]-->
     <string name="contact_directory_description">Directory <xliff:g id="type" example="Corporate Directory">%1$s</xliff:g></string>
