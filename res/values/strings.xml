@@ -1641,4 +1641,7 @@
    <!--  User action prompt shown next to a voicemail status message to let the user call voicemail
    server directly to listen to the voicemails. [CHAR LIMIT=20] -->
     <string name="voicemail_status_action_call_server">Call voicemail</string>
+
+    <!-- The counter for calls in a group in the call log [CHAR LIMIT=5] -->
+    <string name="call_log_item_count">(%1$d)</string>
 </resources>

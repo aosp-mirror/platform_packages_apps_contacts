@@ -35,6 +35,9 @@ import android.widget.ImageView;
  * Helper class to fill in the views in {@link PhoneCallDetailsViews}.
  */
 public class PhoneCallDetailsHelper {
+    /** The maximum number of icons will be shown to represent the call types in a group. */
+    private static final int MAX_CALL_TYPE_ICONS = 3;
+
     private final Context mContext;
     private final Resources mResources;
     /** The injected current time in milliseconds since the epoch. Used only by tests. */
@@ -64,14 +67,22 @@ public class PhoneCallDetailsHelper {
         if (useIcons) {
             views.callTypeIcons.removeAllViews();
             int count = details.callTypes.length;
-            for (int callType : details.callTypes) {
+            for (int index = 0; index < count && index < MAX_CALL_TYPE_ICONS; ++index) {
+                int callType = details.callTypes[index];
                 ImageView callTypeImage = new ImageView(mContext);
                 callTypeImage.setImageDrawable(mCallTypeHelper.getCallTypeDrawable(callType));
                 views.callTypeIcons.addView(callTypeImage);
             }
             views.callTypeIcons.setVisibility(View.VISIBLE);
-            views.callTypeText.setVisibility(View.GONE);
-            views.callTypeSeparator.setVisibility(View.GONE);
+            if (count > MAX_CALL_TYPE_ICONS) {
+                views.callTypeText.setVisibility(View.VISIBLE);
+                views.callTypeSeparator.setVisibility(View.VISIBLE);
+                views.callTypeText.setText(
+                        mResources.getString(R.string.call_log_item_count, count));
+            } else {
+                views.callTypeText.setVisibility(View.GONE);
+                views.callTypeSeparator.setVisibility(View.GONE);
+            }
         } else {
             String callTypeName;
             // Use the name of the first call type.
