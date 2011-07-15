@@ -34,10 +34,8 @@
     <string name="viewContactDesription" msgid="214186610887547860">"檢視聯絡人"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"編輯聯絡人"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"建立聯絡人"</string>
-    <!-- no translation found for editGroupDescription (6321161304201540561) -->
-    <skip />
-    <!-- no translation found for insertGroupDescription (5658512271662210139) -->
-    <skip />
+    <string name="editGroupDescription" msgid="6321161304201540561">"編輯群組"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"建立群組"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"相關資訊"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"更新"</string>
     <string name="searchHint" msgid="8482945356247760701">"搜尋聯絡人"</string>
@@ -57,8 +55,7 @@
     <string name="menu_renameGroup" msgid="2798886925154156075">"重新命名群組"</string>
     <string name="menu_deleteGroup" msgid="644571524292675446">"刪除群組"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"新增"</string>
-    <!-- no translation found for menu_new_group_action_bar (5055346725617932394) -->
-    <skip />
+    <string name="menu_new_group_action_bar" msgid="5055346725617932394">"新群組"</string>
     <string name="splitConfirmation_title" msgid="6716467920283502570">"分割聯絡人"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"您確定要將這個聯絡人分割成多組聯絡資訊嗎 (個別分到相關的聯絡資訊分類)？"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"合併"</string>
@@ -108,8 +105,6 @@
     <string name="noGroups" msgid="8614664663561385253">"沒有群組。"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"找不到符合的聯絡人。"</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"沒有包含電話號碼的聯絡人資訊。"</string>
-    <string name="showFilterPhones" msgid="4184858075465653970">"僅顯示有電話號碼的聯絡人"</string>
-    <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"僅顯示有電話號碼的聯絡人"</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"選擇要顯示的聯絡人"</string>
   <plurals name="groupDescrip">
     <item quantity="other" msgid="3507881585720628389">"<xliff:g id="COUNT">%0$d</xliff:g> 位聯絡人"</item>
@@ -121,14 +116,10 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"正在儲存顯示選項..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"聯絡人已儲存。"</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"發生錯誤，無法儲存聯絡人變更。"</string>
-    <!-- no translation found for groupSavedToast (1168756874239833756) -->
-    <skip />
-    <!-- no translation found for groupSavedErrorToast (6434135707953150875) -->
-    <skip />
-    <!-- no translation found for groupMembershipChangeSavedToast (5323580174093150793) -->
-    <skip />
-    <!-- no translation found for contactAlreadyInGroup (6209708213229886092) -->
-    <skip />
+    <string name="groupSavedToast" msgid="1168756874239833756">"群組已儲存。"</string>
+    <string name="groupSavedErrorToast" msgid="6434135707953150875">"發生錯誤，無法儲存群組變更。"</string>
+    <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"變更已儲存。"</string>
+    <string name="contactAlreadyInGroup" msgid="6209708213229886092">"聯絡人已新增至群組。"</string>
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"1 位有電話號碼的聯絡人"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> 位有電話號碼的聯絡人"</item>
@@ -142,6 +133,7 @@
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"沒有可顯示的聯絡人"</string>
     <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"沒有已加星號的聯絡人"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"「<xliff:g id="NAME">%s</xliff:g>」中沒有聯絡人"</string>
+    <string name="listAllContactsInAccount" msgid="7496143179265311758">"<xliff:g id="NAME">%s</xliff:g> 中的聯絡人"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"找到 1 位聯絡人"</item>
     <item quantity="other" msgid="3852668542926965042">"找到 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人"</item>
@@ -152,7 +144,7 @@
     <item quantity="one" msgid="4826918429708286628">"找到 1 位聯絡人"</item>
     <item quantity="other" msgid="7988132539476575389">"找到 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人"</item>
   </plurals>
-    <string name="contactsIconLabel" msgid="7666609097606552806">"聯絡人"</string>
+    <string name="contactsAllLabel" msgid="6178225597569649305">"全部"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"群組"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"我的最愛"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"電話"</string>
@@ -163,7 +155,7 @@
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"傳送簡訊"</string>
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"撥電話給<xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"撥打電話前編輯號碼"</string>
-    <string name="recentCalls_addToContact" msgid="1429899535546487008">"新增至聯絡人"</string>
+    <string name="recentCalls_addToContact" msgid="1429899535546487008">"新增至通訊錄"</string>
     <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"從通話記錄中移除"</string>
     <string name="recentCalls_deleteAll" msgid="6352364392762163704">"清除通話記錄"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"無通話記錄。"</string>
@@ -202,6 +194,7 @@
     <string name="type_incoming" msgid="6502076603836088532">"來電"</string>
     <string name="type_outgoing" msgid="343108709599392641">"撥出電話"</string>
     <string name="type_missed" msgid="2720502601640509542">"未接來電"</string>
+    <string name="type_voicemail" msgid="5153139450668549908">"語音信箱"</string>
     <string name="actionIncomingCall" msgid="6028930669817038600">"來電"</string>
     <string name="callBack" msgid="5498224409038809224">"回播電話"</string>
     <string name="callAgain" msgid="3197312117049874778">"重撥"</string>
@@ -209,7 +202,7 @@
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> 分 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
     <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"常用聯絡人"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"新增聯絡人"</string>
-    <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"要將「<xliff:g id="EMAIL">%s</xliff:g>」新增為聯絡人嗎？"</string>
+    <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"要將「<xliff:g id="EMAIL">%s</xliff:g>」加到通訊錄嗎？"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"1"</string>
     <string name="description_image_button_two" msgid="5882638439003731308">"2"</string>
     <string name="description_image_button_three" msgid="8709731759376015180">"3"</string>
@@ -223,6 +216,7 @@
     <string name="description_image_button_zero" msgid="4133108949401820710">"0"</string>
     <string name="description_image_button_pound" msgid="3039765597595889230">"磅"</string>
     <string name="description_voicemail_button" msgid="3402506823655455591">"語音信箱"</string>
+    <string name="description_search_button" msgid="3660807558587384889">"搜尋"</string>
     <string name="description_dial_button" msgid="1274091017188142646">"撥號"</string>
     <string name="description_delete_button" msgid="6263102114033407382">"Backspace"</string>
     <string name="description_digits_edittext" msgid="8760207516497016437">"撥號號碼"</string>
@@ -332,8 +326,7 @@
     <string name="type_short_pager" msgid="2613818970827594238">"呼叫器"</string>
     <string name="type_short_other" msgid="5669407180177236769">"其他"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"在帳戶下建立聯絡人"</string>
-    <!-- no translation found for dialog_new_group_account (2318032089273496830) -->
-    <skip />
+    <string name="dialog_new_group_account" msgid="2318032089273496830">"在帳戶中建立群組"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"移除同步處理群組"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"新增同步處理群組"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"更多群組..."</string>
@@ -421,10 +414,8 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"中間名 (拼音)"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"姓氏 (拼音)"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"姓名拼音"</string>
-    <!-- no translation found for network (5415816765302129264) -->
-    <skip />
-    <!-- no translation found for recent_updates (2062236709538790412) -->
-    <skip />
+    <string name="network" msgid="5415816765302129264">"網路"</string>
+    <string name="recent_updates" msgid="2062236709538790412">"近期更新"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> 聯絡人"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -481,6 +472,8 @@
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"編輯所選聯絡人"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"要切換至編輯所選聯絡人嗎？系統會為您複製目前已輸入的資訊。"</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"複製到我的聯絡人"</string>
+    <!-- no translation found for add_to_my_contacts (1068274916793627723) -->
+    <skip />
     <string name="contact_directory_description" msgid="683398073603909119">"目錄：<xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="search_label" msgid="6789295859496641042">"正在搜尋所有聯絡人"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"目錄"</string>
@@ -495,6 +488,8 @@
     <string name="list_filter_single" msgid="5871400283515893087">"聯絡人"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"定義自訂檢視"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"設定"</string>
+    <!-- no translation found for activity_title_contacts_filter (8275542497615516969) -->
+    <skip />
     <string name="menu_settings" msgid="377929915873428211">"設定"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"顯示選項"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_1">%1$s</xliff:g> <xliff:g id="COMPANY_0">%2$s</xliff:g>"</string>
@@ -526,12 +521,14 @@
     <string name="discard" msgid="1234315037371251414">"捨棄"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4179677761341328409">"我的個人資料"</string>
-    <!-- no translation found for enter_contact_name (2930510479516059437) -->
+    <string name="enter_contact_name" msgid="2930510479516059437">"輸入聯絡人名稱"</string>
+    <string name="editGroup_title_insert" msgid="7803743109105317959">"新群組"</string>
+    <string name="editGroup_title_edit" msgid="2173278908256913247">"編輯群組"</string>
+    <string name="notification_voicemail_title" msgid="1282651537781272548">"新留言"</string>
+    <!-- no translation found for call_log_type_date_separator (8009466658324061546) -->
     <skip />
-    <!-- no translation found for editGroup_title_insert (7803743109105317959) -->
+    <!-- no translation found for call_log_new_header (846546437517724715) -->
     <skip />
-    <!-- no translation found for editGroup_title_edit (2173278908256913247) -->
-    <skip />
-    <!-- no translation found for notification_voicemail_title (1282651537781272548) -->
+    <!-- no translation found for call_log_old_header (6262205894314263629) -->
     <skip />
 </resources>

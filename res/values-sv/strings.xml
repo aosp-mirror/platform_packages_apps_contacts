@@ -34,10 +34,8 @@
     <string name="viewContactDesription" msgid="214186610887547860">"Visa kontakt"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Redigera kontakt"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Skapa kontakt"</string>
-    <!-- no translation found for editGroupDescription (6321161304201540561) -->
-    <skip />
-    <!-- no translation found for insertGroupDescription (5658512271662210139) -->
-    <skip />
+    <string name="editGroupDescription" msgid="6321161304201540561">"Redigera grupp"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"Skapa grupp"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Om"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Uppdat."</string>
     <string name="searchHint" msgid="8482945356247760701">"Sök efter kontakter"</string>
@@ -57,8 +55,7 @@
     <string name="menu_renameGroup" msgid="2798886925154156075">"Byt namn på grupp"</string>
     <string name="menu_deleteGroup" msgid="644571524292675446">"Ta bort grupp"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Ny"</string>
-    <!-- no translation found for menu_new_group_action_bar (5055346725617932394) -->
-    <skip />
+    <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Ny"</string>
     <string name="splitConfirmation_title" msgid="6716467920283502570">"Dela upp kontakt"</string>
     <string name="splitConfirmation" msgid="1150797297503944823">"Vill du dela upp den här kontakten i flera kontakter, en för varje uppsättning kontaktinformation som kombinerats i den?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Slå ihop"</string>
@@ -108,8 +105,6 @@
     <string name="noGroups" msgid="8614664663561385253">"Inga grupper."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Inga matchande kontakter hittades."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Inga kontakter med telefonnummer."</string>
-    <string name="showFilterPhones" msgid="4184858075465653970">"Bara kontakter med telefoner"</string>
-    <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"Visa bara kontakter med telefonnummer"</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Välj kontakter att visa"</string>
   <plurals name="groupDescrip">
     <item quantity="other" msgid="3507881585720628389">"<xliff:g id="COUNT">%0$d</xliff:g> kontakter"</item>
@@ -121,14 +116,10 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Sparar visningsalternativ ..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt sparad."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Fel: det går inte att spara kontakter."</string>
-    <!-- no translation found for groupSavedToast (1168756874239833756) -->
-    <skip />
-    <!-- no translation found for groupSavedErrorToast (6434135707953150875) -->
-    <skip />
-    <!-- no translation found for groupMembershipChangeSavedToast (5323580174093150793) -->
-    <skip />
-    <!-- no translation found for contactAlreadyInGroup (6209708213229886092) -->
-    <skip />
+    <string name="groupSavedToast" msgid="1168756874239833756">"Gruppen sparades."</string>
+    <string name="groupSavedErrorToast" msgid="6434135707953150875">"Fel: det gick inte att spara ändringen av gruppen."</string>
+    <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"Ändringen har sparats."</string>
+    <string name="contactAlreadyInGroup" msgid="6209708213229886092">"Kontakten har redan lagts i gruppen."</string>
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"en kontakt med telefonnummer"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> kontakter med telefonnummer"</item>
@@ -142,6 +133,7 @@
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Det finns inga synliga kontakter"</string>
     <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Inga stjärnmärkta kontakter"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Inga kontakter i <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="listAllContactsInAccount" msgid="7496143179265311758">"Kontakter i <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 hittades"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> hittades"</item>
@@ -152,7 +144,7 @@
     <item quantity="one" msgid="4826918429708286628">"1 hittades"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> hittades"</item>
   </plurals>
-    <string name="contactsIconLabel" msgid="7666609097606552806">"Kontakter"</string>
+    <string name="contactsAllLabel" msgid="6178225597569649305">"Alla"</string>
     <string name="contactsGroupsLabel" msgid="2841971472518003524">"Grupper"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoriter"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Telefon"</string>
@@ -202,6 +194,7 @@
     <string name="type_incoming" msgid="6502076603836088532">"Inkommande samtal"</string>
     <string name="type_outgoing" msgid="343108709599392641">"Utgående samtal"</string>
     <string name="type_missed" msgid="2720502601640509542">"Missat samtal"</string>
+    <string name="type_voicemail" msgid="5153139450668549908">"Röstmeddelande"</string>
     <string name="actionIncomingCall" msgid="6028930669817038600">"Inkommande samtal"</string>
     <string name="callBack" msgid="5498224409038809224">"Ring upp"</string>
     <string name="callAgain" msgid="3197312117049874778">"Ring igen"</string>
@@ -223,6 +216,7 @@
     <string name="description_image_button_zero" msgid="4133108949401820710">"noll"</string>
     <string name="description_image_button_pound" msgid="3039765597595889230">"pund"</string>
     <string name="description_voicemail_button" msgid="3402506823655455591">"röstbrevlåda"</string>
+    <string name="description_search_button" msgid="3660807558587384889">"sök"</string>
     <string name="description_dial_button" msgid="1274091017188142646">"ring"</string>
     <string name="description_delete_button" msgid="6263102114033407382">"backsteg"</string>
     <string name="description_digits_edittext" msgid="8760207516497016437">"nummer att ringa"</string>
@@ -332,8 +326,7 @@
     <string name="type_short_pager" msgid="2613818970827594238">"P"</string>
     <string name="type_short_other" msgid="5669407180177236769">"A"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Skapa kontakt under konto"</string>
-    <!-- no translation found for dialog_new_group_account (2318032089273496830) -->
-    <skip />
+    <string name="dialog_new_group_account" msgid="2318032089273496830">"Skapa grupp under konto"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Ta bort synkgrupp"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Lägg till synkgrupp"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"Fler grupper …"</string>
@@ -421,10 +414,8 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Fonetiskt mellannamn"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Fonetiskt efternamn"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Fonetiskt namn"</string>
-    <!-- no translation found for network (5415816765302129264) -->
-    <skip />
-    <!-- no translation found for recent_updates (2062236709538790412) -->
-    <skip />
+    <string name="network" msgid="5415816765302129264">"Nätverk"</string>
+    <string name="recent_updates" msgid="2062236709538790412">"Senaste"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>-kontakt"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -481,6 +472,8 @@
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Redigera valda kontakter"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Vill du fortsätta att redigera den markerade kontakten? Information som du har angett hittills kommer att kopieras."</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"Kopiera till mina kontakter"</string>
+    <!-- no translation found for add_to_my_contacts (1068274916793627723) -->
+    <skip />
     <string name="contact_directory_description" msgid="683398073603909119">"Katalog <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="search_label" msgid="6789295859496641042">"Söker bland alla kontakter"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Katalog"</string>
@@ -495,6 +488,8 @@
     <string name="list_filter_single" msgid="5871400283515893087">"Kontakt"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Definiera anpassad visning"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Inställningar"</string>
+    <!-- no translation found for activity_title_contacts_filter (8275542497615516969) -->
+    <skip />
     <string name="menu_settings" msgid="377929915873428211">"Inställningar"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Visa alternativ"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
@@ -526,12 +521,14 @@
     <string name="discard" msgid="1234315037371251414">"Ignorera"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4179677761341328409">"Min profil"</string>
-    <!-- no translation found for enter_contact_name (2930510479516059437) -->
+    <string name="enter_contact_name" msgid="2930510479516059437">"Ange kontaktens namn"</string>
+    <string name="editGroup_title_insert" msgid="7803743109105317959">"Ny grupp"</string>
+    <string name="editGroup_title_edit" msgid="2173278908256913247">"Redigera grupp"</string>
+    <string name="notification_voicemail_title" msgid="1282651537781272548">"Nytt meddelande i röstbrevlådan"</string>
+    <!-- no translation found for call_log_type_date_separator (8009466658324061546) -->
     <skip />
-    <!-- no translation found for editGroup_title_insert (7803743109105317959) -->
+    <!-- no translation found for call_log_new_header (846546437517724715) -->
     <skip />
-    <!-- no translation found for editGroup_title_edit (2173278908256913247) -->
-    <skip />
-    <!-- no translation found for notification_voicemail_title (1282651537781272548) -->
+    <!-- no translation found for call_log_old_header (6262205894314263629) -->
     <skip />
 </resources>
