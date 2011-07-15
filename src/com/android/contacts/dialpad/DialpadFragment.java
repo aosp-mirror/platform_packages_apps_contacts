@@ -101,8 +101,6 @@ public class DialpadFragment extends Fragment
     private View mDelete;
     private ToneGenerator mToneGenerator;
     private Object mToneGeneratorLock = new Object();
-    private Drawable mDigitsBackground;
-    private Drawable mDigitsEmptyBackground;
     private View mDialpad;
     private View mAdditionalButtonsRow;
 
@@ -216,14 +214,9 @@ public class DialpadFragment extends Fragment
             mDigits.getText().clear();
         }
 
-        // Previously we changed background color depending on its text status. Now we don't.
-        // TODO: remove the relevant codes entirely once we're sure we won't use them.
-        /*if (!isDigitsEmpty()) {
-            mDigits.setBackgroundDrawable(mDigitsBackground);
-        } else {
+        if (isDigitsEmpty()) {
             mDigits.setCursorVisible(false);
-            mDigits.setBackgroundDrawable(mDigitsEmptyBackground);
-        }*/
+        }
 
         updateDialAndDeleteButtonEnabledState();
     }
@@ -250,8 +243,6 @@ public class DialpadFragment extends Fragment
 
         // Load up the resources for the text field.
         Resources r = getResources();
-        mDigitsBackground = r.getDrawable(R.drawable.btn_dial_textfield_active);
-        mDigitsEmptyBackground = r.getDrawable(R.drawable.btn_dial_textfield);
 
         mDigits = (EditText) fragmentView.findViewById(R.id.digits);
         mDigits.setKeyListener(DialerKeyListener.getInstance());
