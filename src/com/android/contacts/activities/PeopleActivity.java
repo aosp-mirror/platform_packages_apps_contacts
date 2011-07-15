@@ -168,6 +168,20 @@ public class PeopleActivity extends ContactsActivity
 
     private final Handler mHandler = new Handler();
 
+    /**
+     * True if this activity instance is a re-created one.  i.e. set true after orientation change.
+     * This is set in {@link #onCreate} for later use in {@link #onStart}.
+     */
+    private boolean mIsRecreatedInstance;
+
+    /**
+     * If {@link #configureFragments(boolean)} is already called.  Used to avoid calling it twice
+     * in {@link #onStart}.
+     * (This initialization only needs to be done once in onStart() when the Activity was just
+     * created from scratch -- i.e. onCreate() was just called)
+     */
+    private boolean mFragmentInitialized;
+
     public PeopleActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
         mContactListFilterController = new ContactListFilterController(this);
@@ -183,7 +197,7 @@ public class PeopleActivity extends ContactsActivity
      * Initialize fragments that are (or may not be) in the layout.
      *
      * For the fragments that are in the layout, we initialize them in
-     * {@link #configureContentView(boolean, Bundle)} after inflating the layout.
+     * {@link #createViewsAndFragments(Bundle)} after inflating the layout.
      *
      * However, there are special fragments which may not be in the layout, so we have to do the
      * initialization here.
@@ -211,30 +225,50 @@ public class PeopleActivity extends ContactsActivity
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
 
-        configureContentView(true, savedState);
+        if (!processIntent()) {
+            finish();
+            return;
+        }
+
+        mIsRecreatedInstance = (savedState != null);
+        createViewsAndFragments(savedState);
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         setIntent(intent);
-        configureContentView(false, null);
+        if (!processIntent()) {
+            finish();
+            return;
+        }
+        mActionBarAdapter.initialize(null, mRequest);
+
+        // Re-configure fragments.
+        configureFragments(true /* from request */);
+        invalidateOptionsMenuIfNeeded();
     }
 
-    private void configureContentView(boolean createContentView, Bundle savedState) {
+    /**
+     * Resolve the intent and initialize {@link #mRequest}, and launch another activity if redirect
+     * is needed.
+     *
+     * @return {@code true} if {@link PeopleActivity} should continue running.  {@code false}
+     *         if it shouldn't, in which case the caller should finish() itself and shouldn't do
+     *         farther initialization.
+     */
+    private boolean processIntent() {
         // Extract relevant information from the intent
         mRequest = mIntentResolver.resolveIntent(getIntent());
         if (!mRequest.isValid()) {
             setResult(RESULT_CANCELED);
-            finish();
-            return;
+            return false;
         }
 
         Intent redirect = mRequest.getRedirectIntent();
         if (redirect != null) {
             // Need to start a different activity
             startActivity(redirect);
-            finish();
-            return;
+            return false;
         }
 
         if (mRequest.getActionCode() == ContactsRequest.ACTION_VIEW_CONTACT
@@ -243,123 +277,142 @@ public class PeopleActivity extends ContactsActivity
             redirect.setAction(Intent.ACTION_VIEW);
             redirect.setData(mRequest.getContactUri());
             startActivity(redirect);
-            finish();
-            return;
+            return false;
         }
-
-        if (createContentView) {
-            setContentView(R.layout.people_activity);
-
-            final FragmentManager fragmentManager = getFragmentManager();
-
-            // Hide all tabs (the current tab will later be reshown once a tab is selected)
-            final FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-            // Prepare the fragments which are used both on 1-pane and on 2-pane.
-            if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
-                mFavoritesFragment = getFragment(R.id.favorites_fragment);
-                mAllFragment = getFragment(R.id.all_fragment);
-                mGroupsFragment = getFragment(R.id.groups_fragment);
-            } else {
-                mTabPager = getView(R.id.tab_pager);
-                mTabPagerAdapter = new TabPagerAdapter();
-                mTabPager.setAdapter(mTabPagerAdapter);
-                mTabPager.setOnPageChangeListener(new TabPagerListener());
-
-                final String FAVORITE_TAG = "tab-pager-favorite";
-                final String ALL_TAG = "tab-pager-all";
-                final String GROUPS_TAG = "tab-pager-groups";
-
-                // Create the fragments and add as children of the view pager.
-                // The pager adapter will only change the visibility; it'll never create/destroy
-                // fragments.
-                // However, if it's after screen rotation, the fragments have been re-created by
-                // the fragment manager, so first see if there're already the target fragments
-                // existing.
-                mFavoritesFragment = (StrequentContactListFragment)
-                        fragmentManager.findFragmentByTag(FAVORITE_TAG);
-                mAllFragment = (DefaultContactBrowseListFragment)
-                        fragmentManager.findFragmentByTag(ALL_TAG);
-                mGroupsFragment = (GroupBrowseListFragment)
-                        fragmentManager.findFragmentByTag(GROUPS_TAG);
-
-                if (mFavoritesFragment == null) {
-                    mFavoritesFragment = new StrequentContactListFragment();
-                    mAllFragment = new DefaultContactBrowseListFragment();
-                    mGroupsFragment = new GroupBrowseListFragment();
-
-                    transaction.add(R.id.tab_pager, mFavoritesFragment, FAVORITE_TAG);
-                    transaction.add(R.id.tab_pager, mAllFragment, ALL_TAG);
-                    transaction.add(R.id.tab_pager, mGroupsFragment, GROUPS_TAG);
-                }
-            }
-
-            mFavoritesFragment.setListener(mFavoritesFragmentListener);
-
-            mAllFragment.setOnContactListActionListener(new ContactBrowserActionListener());
-
-            mGroupsFragment.setListener(new GroupBrowserActionListener());
-
-            // Hide all fragments for now.  We adjust visibility when we get onSelectedTabChanged()
-            // from ActionBarAdapter.
-            transaction.hide(mFavoritesFragment);
-            transaction.hide(mAllFragment);
-            transaction.hide(mGroupsFragment);
-
-            if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
-                // Prepare 2-pane only fragments/views...
-
-                // Container views for fragments
-                mFavoritesView = getView(R.id.favorites_view);
-                mDetailsView = getView(R.id.details_view);
-                mBrowserView = getView(R.id.browse_view);
-
-                // 2-pane only fragments
-                mFrequentFragment = getFragment(R.id.frequent_fragment);
-                mFrequentFragment.setListener(mFavoritesFragmentListener);
-                mFrequentFragment.setDisplayType(DisplayType.FREQUENT_ONLY);
-                mFrequentFragment.setQuickContact(true);
-
-                mContactDetailLoaderFragment = getFragment(R.id.contact_detail_loader_fragment);
-                mContactDetailLoaderFragment.setListener(mContactDetailLoaderFragmentListener);
-
-                mGroupDetailFragment = getFragment(R.id.group_detail_fragment);
-                mGroupDetailFragment.setListener(mGroupDetailFragmentListener);
-                mGroupDetailFragment.setQuickContact(true);
-
-                transaction.hide(mContactDetailFragment);
-                transaction.hide(mGroupDetailFragment);
-            }
-            transaction.commit();
-            fragmentManager.executePendingTransactions();
-
-            // These operations below are only okay if the fragment is already created.
-            // Because we create the fragment dynamically on 1-pane, this has to be done after
-            // the fragment transaction is executed.
-            mFavoritesFragment.setQuickContact(PhoneCapabilityTester.isUsingTwoPanes(this));
-            mFavoritesFragment.setDisplayType(DisplayType.STARRED_ONLY);
-        }
-
         setTitle(mRequest.getActivityTitle());
-        if (createContentView) {
-            mActionBarAdapter = new ActionBarAdapter(this, this, getActionBar());
+        return true;
+    }
+
+    private void createViewsAndFragments(Bundle savedState) {
+        setContentView(R.layout.people_activity);
+
+        final FragmentManager fragmentManager = getFragmentManager();
+
+        // Hide all tabs (the current tab will later be reshown once a tab is selected)
+        final FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        // Prepare the fragments which are used both on 1-pane and on 2-pane.
+        if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
+            mFavoritesFragment = getFragment(R.id.favorites_fragment);
+            mAllFragment = getFragment(R.id.all_fragment);
+            mGroupsFragment = getFragment(R.id.groups_fragment);
+        } else {
+            mTabPager = getView(R.id.tab_pager);
+            mTabPagerAdapter = new TabPagerAdapter();
+            mTabPager.setAdapter(mTabPagerAdapter);
+            mTabPager.setOnPageChangeListener(new TabPagerListener());
+
+            final String FAVORITE_TAG = "tab-pager-favorite";
+            final String ALL_TAG = "tab-pager-all";
+            final String GROUPS_TAG = "tab-pager-groups";
+
+            // Create the fragments and add as children of the view pager.
+            // The pager adapter will only change the visibility; it'll never create/destroy
+            // fragments.
+            // However, if it's after screen rotation, the fragments have been re-created by
+            // the fragment manager, so first see if there're already the target fragments
+            // existing.
+            mFavoritesFragment = (StrequentContactListFragment)
+                    fragmentManager.findFragmentByTag(FAVORITE_TAG);
+            mAllFragment = (DefaultContactBrowseListFragment)
+                    fragmentManager.findFragmentByTag(ALL_TAG);
+            mGroupsFragment = (GroupBrowseListFragment)
+                    fragmentManager.findFragmentByTag(GROUPS_TAG);
+
+            if (mFavoritesFragment == null) {
+                mFavoritesFragment = new StrequentContactListFragment();
+                mAllFragment = new DefaultContactBrowseListFragment();
+                mGroupsFragment = new GroupBrowseListFragment();
+
+                transaction.add(R.id.tab_pager, mFavoritesFragment, FAVORITE_TAG);
+                transaction.add(R.id.tab_pager, mAllFragment, ALL_TAG);
+                transaction.add(R.id.tab_pager, mGroupsFragment, GROUPS_TAG);
+            }
         }
+
+        mFavoritesFragment.setListener(mFavoritesFragmentListener);
+
+        mAllFragment.setOnContactListActionListener(new ContactBrowserActionListener());
+
+        mGroupsFragment.setListener(new GroupBrowserActionListener());
+
+        // Hide all fragments for now.  We adjust visibility when we get onSelectedTabChanged()
+        // from ActionBarAdapter.
+        transaction.hide(mFavoritesFragment);
+        transaction.hide(mAllFragment);
+        transaction.hide(mGroupsFragment);
+
+        if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
+            // Prepare 2-pane only fragments/views...
+
+            // Container views for fragments
+            mFavoritesView = getView(R.id.favorites_view);
+            mDetailsView = getView(R.id.details_view);
+            mBrowserView = getView(R.id.browse_view);
+
+            // 2-pane only fragments
+            mFrequentFragment = getFragment(R.id.frequent_fragment);
+            mFrequentFragment.setListener(mFavoritesFragmentListener);
+            mFrequentFragment.setDisplayType(DisplayType.FREQUENT_ONLY);
+            mFrequentFragment.setQuickContact(true);
+
+            mContactDetailLoaderFragment = getFragment(R.id.contact_detail_loader_fragment);
+            mContactDetailLoaderFragment.setListener(mContactDetailLoaderFragmentListener);
+
+            mGroupDetailFragment = getFragment(R.id.group_detail_fragment);
+            mGroupDetailFragment.setListener(mGroupDetailFragmentListener);
+            mGroupDetailFragment.setQuickContact(true);
+
+            transaction.hide(mContactDetailFragment);
+            transaction.hide(mGroupDetailFragment);
+
+            // Configure contact details
+            ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+            ContactDetailTabCarousel tabCarousel = (ContactDetailTabCarousel)
+                    findViewById(R.id.tab_carousel);
+            mContactDetailLayoutController = new ContactDetailLayoutController(
+                    getFragmentManager(), viewPager, tabCarousel,
+                    mContactDetailFragmentListener);
+        }
+        transaction.commit();
+        fragmentManager.executePendingTransactions();
+
+        // These operations below are only okay if the fragment is already created.
+        // Because we create the fragment dynamically on 1-pane, this has to be done after
+        // the fragment transaction is executed.
+        mFavoritesFragment.setQuickContact(PhoneCapabilityTester.isUsingTwoPanes(this));
+        mFavoritesFragment.setDisplayType(DisplayType.STARRED_ONLY);
+
+        // Configure action bar
+        mActionBarAdapter = new ActionBarAdapter(this, this, getActionBar());
         mActionBarAdapter.initialize(savedState, mRequest);
 
+        invalidateOptionsMenuIfNeeded();
+    }
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        ContactDetailTabCarousel tabCarousel = (ContactDetailTabCarousel)
-                findViewById(R.id.tab_carousel);
-        mContactDetailLayoutController = new ContactDetailLayoutController(
-                getFragmentManager(), viewPager, tabCarousel,
-                mContactDetailFragmentListener);
-
-        if (createContentView) {
-            // TODO Is the createContentView test really necessary?
-            invalidateOptionsMenuIfNeeded();
+    @Override
+    protected void onStart() {
+        if (!mFragmentInitialized) {
+            mFragmentInitialized = true;
+            /* Configure fragments if we haven't.
+             *
+             * Note it's a one-shot initialization, so we want to do this in {@link #onCreate}.
+             *
+             * However, because this method may indirectly touch views in fragments but fragments
+             * created in {@link #configureContentView} using a {@link FragmentTransaction} will NOT
+             * have views until {@link Activity#onCreate} finishes (they would if they were inflated
+             * from a layout), we need to do it here in {@link #onStart()}.
+             *
+             * (When {@link Fragment#onCreateView} is called is different in the former case and
+             * in the latter case, unfortunately.)
+             *
+             * Also, we skip most of the work in it if the activity is a re-created one.
+             * (so the argument.)
+             */
+            configureFragments(!mIsRecreatedInstance);
         }
-
-        configureFragments(savedState == null);
+        mContactListFilterController.onStart();
+        super.onStart();
     }
 
     @Override
@@ -383,12 +436,6 @@ public class PeopleActivity extends ContactsActivity
         // Current tab may have changed since the last onSaveInstanceState().  Make sure
         // the actual contents match the tab.
         updateFragmentsVisibility();
-    }
-
-    @Override
-    protected void onStart() {
-        mContactListFilterController.onStart();
-        super.onStart();
     }
 
     @Override
