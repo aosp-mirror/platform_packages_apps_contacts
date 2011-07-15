@@ -36,11 +36,15 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabaseCorruptException;
+import android.database.sqlite.SQLiteDiskIOException;
+import android.database.sqlite.SQLiteFullException;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.CallLog;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.Contacts;
@@ -72,8 +76,10 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     /** The size of the cache of contact info. */
     private static final int CONTACT_INFO_CACHE_SIZE = 100;
 
-    /** The query for the call log table */
+    /** The query for the call log table. */
     public static final class CallLogQuery {
+        // If you alter this, you must also alter the method that inserts a fake row to the headers
+        // in the CallLogQueryHandler class called createHeaderCursorFor().
         public static final String[] _PROJECTION = new String[] {
                 Calls._ID,
                 Calls.NUMBER,
@@ -81,13 +87,16 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                 Calls.DURATION,
                 Calls.TYPE,
                 Calls.COUNTRY_ISO,
+                Calls.VOICEMAIL_URI,
         };
+
         public static final int ID = 0;
         public static final int NUMBER = 1;
         public static final int DATE = 2;
         public static final int DURATION = 3;
         public static final int CALL_TYPE = 4;
         public static final int COUNTRY_ISO = 5;
+        public static final int VOICEMAIL_URI = 6;
 
         /**
          * The name of the synthetic "section" column.
@@ -97,7 +106,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
          */
         public static final String SECTION_NAME = "section";
         /** The index of the "section" column in the projection. */
-        public static final int SECTION = 6;
+        public static final int SECTION = 7;
         /** The value of the "section" column for the header of the new section. */
         public static final int SECTION_NEW_HEADER = 0;
         /** The value of the "section" column for the items of the new section. */
@@ -166,6 +175,49 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         public String lookupKey;
     }
 
+    /** Encapsulates the information needed to call a number from the call log. */
+    private static final class NumberAndType {
+        private final String mNumber;
+        private final long mRowId;
+        private final int mCallType;
+        private final String mVoicemailUri;
+
+        public NumberAndType(String number, long rowId, int callType, String voicemailUri) {
+            mNumber = number;
+            mRowId = rowId;
+            mCallType = callType;
+            mVoicemailUri = voicemailUri;
+        }
+
+        public Intent getIntent(Context context) {
+            switch (mCallType) {
+                case CallLog.Calls.VOICEMAIL_TYPE:
+                    Intent intent = new Intent(context, CallDetailActivity.class);
+                    intent.setData(ContentUris.withAppendedId(
+                            Calls.CONTENT_URI_WITH_VOICEMAIL, mRowId));
+                    intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_URI,
+                            Uri.parse(mVoicemailUri));
+                    intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_START_PLAYBACK, true);
+                    return intent;
+                case CallLog.Calls.INCOMING_TYPE:
+                case CallLog.Calls.OUTGOING_TYPE:
+                case CallLog.Calls.MISSED_TYPE:
+                default: {
+                    // Here, "number" can either be a PSTN phone number or a
+                    // SIP address.  So turn it into either a tel: URI or a
+                    // sip: URI, as appropriate.
+                    Uri uri;
+                    if (PhoneNumberUtils.isUriNumber(mNumber)) {
+                        uri = Uri.fromParts("sip", mNumber, null);
+                    } else {
+                        uri = Uri.fromParts("tel", mNumber, null);
+                    }
+                    return new Intent(Intent.ACTION_CALL_PRIVILEGED, uri);
+                }
+            }
+        }
+    }
+
     /** Adapter class to fill in data for the Call Log */
     public final class CallLogAdapter extends GroupingListAdapter
             implements Runnable, ViewTreeObserver.OnPreDrawListener, View.OnClickListener {
@@ -212,18 +264,9 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
 
         @Override
         public void onClick(View view) {
-            String number = (String) view.getTag();
-            if (!TextUtils.isEmpty(number)) {
-                // Here, "number" can either be a PSTN phone number or a
-                // SIP address.  So turn it into either a tel: URI or a
-                // sip: URI, as appropriate.
-                Uri callUri;
-                if (PhoneNumberUtils.isUriNumber(number)) {
-                    callUri = Uri.fromParts("sip", number, null);
-                } else {
-                    callUri = Uri.fromParts("tel", number, null);
-                }
-                startActivity(new Intent(Intent.ACTION_CALL_PRIVILEGED, callUri));
+            NumberAndType numberAndType = (NumberAndType) view.getTag();
+            if (numberAndType != null) {
+                startActivity(numberAndType.getIntent(CallLogFragment.this.getActivity()));
             }
         }
 
@@ -672,8 +715,11 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             final String formattedNumber;
             final String countryIso = c.getString(CallLogQuery.COUNTRY_ISO);
             // Store away the number so we can call it directly if you click on the call icon
-            if (views.callView != null) {
-                views.callView.setTag(number);
+            if (views.callView != null && !TextUtils.isEmpty(number)) {
+                int callType = c.getInt(CallLogQuery.CALL_TYPE);
+                String voicemailUri = c.getString(CallLogQuery.VOICEMAIL_URI);
+                long rowId = c.getLong(CallLogQuery.ID);
+                views.callView.setTag(new NumberAndType(number, rowId, callType, voicemailUri));
             }
 
             // Lookup contacts with this number
@@ -1022,22 +1068,25 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Intent intent = new Intent(getActivity(), CallDetailActivity.class);
+        Cursor cursor = (Cursor) mAdapter.getItem(position);
         if (mAdapter.isGroupHeader(position)) {
+            // We want to restore the position in the cursor at the end.
+            int currentPosition = cursor.getPosition();
             int groupSize = mAdapter.getGroupSize(position);
             long[] ids = new long[groupSize];
             // Copy the ids of the rows in the group.
-            Cursor cursor = (Cursor) mAdapter.getItem(position);
-            // Restore the position in the cursor at the end.
-            int currentPosition = cursor.getPosition();
             for (int index = 0; index < groupSize; ++index) {
                 ids[index] = cursor.getLong(CallLogQuery.ID);
                 cursor.moveToNext();
             }
-            cursor.moveToPosition(currentPosition);
             intent.putExtra(CallDetailActivity.EXTRA_CALL_LOG_IDS, ids);
+            cursor.moveToPosition(currentPosition);
         } else {
             // If there is a single item, use the direct URI for it.
             intent.setData(ContentUris.withAppendedId(Calls.CONTENT_URI_WITH_VOICEMAIL, id));
+            intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_URI,
+                    Uri.parse(cursor.getString(CallLogQuery.VOICEMAIL_URI)));
+            intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_START_PLAYBACK, false);
         }
         startActivity(intent);
     }

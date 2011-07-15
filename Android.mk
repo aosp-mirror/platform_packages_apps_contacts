@@ -11,7 +11,10 @@ LOCAL_STATIC_JAVA_LIBRARIES := \
     android-common \
     guava \
     android-support-v13 \
-    android-support-v4
+    android-support-v4 \
+    android-ex-variablespeed \
+
+LOCAL_REQUIRED_MODULES := libvariablespeed
 
 LOCAL_PACKAGE_NAME := Contacts
 LOCAL_CERTIFICATE := shared

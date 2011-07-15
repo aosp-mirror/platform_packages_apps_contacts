@@ -19,7 +19,9 @@ package com.android.contacts;
 import com.android.contacts.calllog.CallDetailHistoryAdapter;
 import com.android.contacts.calllog.CallTypeHelper;
 import com.android.contacts.calllog.PhoneNumberHelper;
+import com.android.contacts.voicemail.VoicemailPlaybackFragment;
 
+import android.app.FragmentManager;
 import android.app.ListActivity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -63,7 +65,11 @@ public class CallDetailActivity extends ListActivity implements
     private static final String TAG = "CallDetail";
 
     /** A long array extra containing ids of call log entries to display. */
-    public static final String EXTRA_CALL_LOG_IDS = "com.android.contacts.CALL_LOG_IDS";
+    public static final String EXTRA_CALL_LOG_IDS = "EXTRA_CALL_LOG_IDS";
+    /** If we are started with a voicemail, we'll find the uri to play with this extra. */
+    public static final String EXTRA_VOICEMAIL_URI = "EXTRA_VOICEMAIL_URI";
+    /** If we should immediately start playback of the voicemail, this extra will be set to true. */
+    public static final String EXTRA_VOICEMAIL_START_PLAYBACK = "EXTRA_VOICEMAIL_START_PLAYBACK";
 
     /** The views representing the details of a phone call. */
     private PhoneCallDetailsViews mPhoneCallDetailsViews;
@@ -151,6 +157,29 @@ public class CallDetailActivity extends ListActivity implements
     public void onResume() {
         super.onResume();
         updateData(getCallLogEntryUris());
+        optionallyHandleVoicemail();
+    }
+
+    /**
+     * Handle voicemail playback or hide voicemail ui.
+     * <p>
+     * If the Intent used to start this Activity contains the suitable extras, then start voicemail
+     * playback.  If it doesn't, then hide the voicemail ui.
+     */
+    private void optionallyHandleVoicemail() {
+        FragmentManager manager = getFragmentManager();
+        VoicemailPlaybackFragment fragment = (VoicemailPlaybackFragment) manager.findFragmentById(
+                R.id.voicemail_playback_fragment);
+        Uri voicemailUri = getIntent().getExtras().getParcelable(EXTRA_VOICEMAIL_URI);
+        if (voicemailUri == null) {
+            // No voicemail uri: hide the voicemail fragment.
+            manager.beginTransaction().hide(fragment).commit();
+        } else {
+            // A voicemail: extra tells us if we should start playback or not.
+            boolean startPlayback = getIntent().getExtras().getBoolean(
+                    EXTRA_VOICEMAIL_START_PLAYBACK, false);
+            fragment.setVoicemailUri(voicemailUri, startPlayback);
+        }
     }
 
     /**

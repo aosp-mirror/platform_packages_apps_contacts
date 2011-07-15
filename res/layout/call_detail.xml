@@ -44,9 +44,21 @@
         android:layout_below="@id/action_bar"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-
         android:background="@drawable/ic_contact_picture"
     />
+    <LinearLayout
+        android:id="@+id/voicemail_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contact_background"
+    >
+        <fragment
+            class="com.android.contacts.voicemail.VoicemailPlaybackFragment"
+            android:id="@+id/voicemail_playback_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+        />
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/call_detail_contact_background_overlay_height"
@@ -85,7 +97,7 @@
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/contact_background"
+        android:layout_below="@id/voicemail_container"
         android:background="?attr/call_log_primary_background_color"
     />
     <ListView
