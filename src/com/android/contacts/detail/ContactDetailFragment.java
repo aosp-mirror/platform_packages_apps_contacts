@@ -32,6 +32,10 @@ import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.EditType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.DataKind;
+import com.android.contacts.model.EntityDelta;
+import com.android.contacts.model.EntityDelta.ValuesDelta;
+import com.android.contacts.model.EntityDeltaList;
+import com.android.contacts.model.EntityModifier;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.DateUtils;
@@ -76,6 +80,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.DisplayNameSources;
+import android.provider.ContactsContract.Intents.UI;
 import android.provider.ContactsContract.PhoneLookup;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.StatusUpdates;
@@ -127,12 +132,17 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     private ViewAdapter mAdapter;
     private Uri mPrimaryPhoneUri = null;
 
-    private Button mCopyGalToLocalButton;
+    private Button mQuickFixButton;
+    private QuickFix mQuickFix;
     private final ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
     private int mNumPhoneNumbers = 0;
     private String mDefaultCountryIso;
     private boolean mContactDataDisplayed;
     private boolean mContactPhotoDisplayedInHeader = true;
+
+    private final QuickFix[] mPotentialQuickFixes = new QuickFix[] {
+            new MakeLocalCopyQuickFix(),
+            new AddToMyContactsQuickFix() };
 
     /**
      * Device capability: Set during buildEntries and used in the long-press context menu
@@ -247,11 +257,11 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         mAlphaLayer = mView.findViewById(R.id.alpha_overlay);
         mTouchInterceptLayer = mView.findViewById(R.id.touch_intercept_overlay);
 
-        mCopyGalToLocalButton = (Button) mView.findViewById(R.id.copyLocal);
-        mCopyGalToLocalButton.setOnClickListener(new OnClickListener() {
+        mQuickFixButton = (Button) mView.findViewById(R.id.contact_quick_fix);
+        mQuickFixButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                makePersonalCopy();
+                mQuickFix.execute();
             }
         });
 
@@ -382,20 +392,45 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         }
         mListView.setEmptyView(mEmptyView);
 
-        // Configure copy gal button
-        if (mContactData.isDirectoryEntry()) {
-            final int exportSupport = mContactData.getDirectoryExportSupport();
-            if (exportSupport == Directory.EXPORT_SUPPORT_ANY_ACCOUNT
-                    || exportSupport == Directory.EXPORT_SUPPORT_SAME_ACCOUNT_ONLY) {
-                mCopyGalToLocalButton.setVisibility(View.VISIBLE);
-            } else {
-                mCopyGalToLocalButton.setVisibility(View.GONE);
-            }
-        } else {
-            mCopyGalToLocalButton.setVisibility(View.GONE);
-        }
+        configureQuickFix();
 
         mView.setVisibility(View.VISIBLE);
+    }
+
+    /*
+     * Sets {@link #mQuickFix} to a useful action and configures the visibility of
+     * {@link #mQuickFixButton}
+     */
+    private void configureQuickFix() {
+        mQuickFix = null;
+
+        for (QuickFix fix : mPotentialQuickFixes) {
+            if (fix.isApplicable()) {
+                mQuickFix = fix;
+                break;
+            }
+        }
+
+        // Configure the button
+        if (mQuickFix == null) {
+            mQuickFixButton.setVisibility(View.GONE);
+        } else {
+            mQuickFixButton.setVisibility(View.VISIBLE);
+            mQuickFixButton.setText(mQuickFix.getTitle());
+        }
+    }
+
+    /** @return default group id or -1 if no group or several groups are marked as default */
+    private long getDefaultGroupId(List<GroupMetaData> groups) {
+        long defaultGroupId = -1;
+        for (GroupMetaData group : groups) {
+            if (group.isDefaultGroup()) {
+                // two default groups? return neither
+                if (defaultGroupId != -1) return -1;
+                defaultGroupId = group.getGroupId();
+            }
+        }
+        return defaultGroupId;
     }
 
     /**
@@ -1339,41 +1374,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         }
     }
 
-    private void makePersonalCopy() {
-        if (mListener == null) {
-            return;
-        }
-
-        int exportSupport = mContactData.getDirectoryExportSupport();
-        switch (exportSupport) {
-            case Directory.EXPORT_SUPPORT_SAME_ACCOUNT_ONLY: {
-                createCopy(new Account(mContactData.getDirectoryAccountName(),
-                                mContactData.getDirectoryAccountType()));
-                break;
-            }
-            case Directory.EXPORT_SUPPORT_ANY_ACCOUNT: {
-                final ArrayList<Account> accounts =
-                        AccountTypeManager.getInstance(mContext).getAccounts(true);
-                if (accounts.isEmpty()) {
-                    createCopy(null);
-                    return;  // Don't show a dialog.
-                }
-
-                // In the common case of a single writable account, auto-select
-                // it without showing a dialog.
-                if (accounts.size() == 1) {
-                    createCopy(accounts.get(0));
-                    return;  // Don't show a dialog.
-                }
-
-                final SelectAccountDialogFragment dialog = new SelectAccountDialogFragment();
-                dialog.setTargetFragment(this, 0);
-                dialog.show(getFragmentManager(), SelectAccountDialogFragment.TAG);
-                break;
-            }
-        }
-    }
-
     @Override
     public void onAccountSelectorCancelled() {
     }
@@ -1449,6 +1449,154 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         }
 
         return false;
+    }
+
+    /**
+     * Base class for QuickFixes. QuickFixes quickly fix issues with the Contact without
+     * requiring the user to go to the editor. Example: Add to My Contacts.
+     */
+    private static abstract class QuickFix {
+        public abstract boolean isApplicable();
+        public abstract String getTitle();
+        public abstract void execute();
+    }
+
+    private class AddToMyContactsQuickFix extends QuickFix {
+        @Override
+        public boolean isApplicable() {
+            // Only local contacts
+            if (mContactData == null || mContactData.isDirectoryEntry()) return false;
+
+            // Only if exactly one raw contact
+            if (mContactData.getEntities().size() != 1) return false;
+
+            // test if the default group is assigned
+            final List<GroupMetaData> groups = mContactData.getGroupMetaData();
+
+            // For accounts without group support, groups is null
+            if (groups == null) return false;
+
+            // remember the default group id. no default group? bail out early
+            final long defaultGroupId = getDefaultGroupId(groups);
+            if (defaultGroupId == -1) return false;
+
+            final Entity rawContactEntity = mContactData.getEntities().get(0);
+            final String accountType =
+                    rawContactEntity.getEntityValues().getAsString(RawContacts.ACCOUNT_TYPE);
+            final AccountTypeManager accountTypes =
+                    AccountTypeManager.getInstance(mContext);
+            final AccountType type = accountTypes.getAccountType(accountType);
+            // Offline or non-writeable account? Nothing to fix
+            if (type == null || type.readOnly) return false;
+
+            // Check whether the contact is in the default group
+            boolean isInDefaultGroup = false;
+            for (NamedContentValues subValue : rawContactEntity.getSubValues()) {
+                final String mimeType = subValue.values.getAsString(Data.MIMETYPE);
+
+                if (GroupMembership.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    final Long groupId =
+                            subValue.values.getAsLong(GroupMembership.GROUP_ROW_ID);
+                    if (groupId == defaultGroupId) {
+                        isInDefaultGroup = true;
+                        break;
+                    }
+                }
+            }
+
+            return !isInDefaultGroup;
+        }
+
+        @Override
+        public String getTitle() {
+            return getString(R.string.add_to_my_contacts);
+        }
+
+        @Override
+        public void execute() {
+            final long defaultGroupId = getDefaultGroupId(mContactData.getGroupMetaData());
+            // there should always be a default group (otherwise the button would be invisible),
+            // but let's be safe here
+            if (defaultGroupId == -1) return;
+
+            // add the group membership to the current state
+            final EntityDeltaList contactDeltaList = EntityDeltaList.fromIterator(
+                    mContactData.getEntities().iterator());
+            final EntityDelta rawContactEntityDelta = contactDeltaList.get(0);
+
+            final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
+            final ValuesDelta values = rawContactEntityDelta.getValues();
+            final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
+            final AccountType type = accountTypes.getAccountType(accountType);
+            final DataKind groupMembershipKind = type.getKindForMimetype(
+                    GroupMembership.CONTENT_ITEM_TYPE);
+            final ValuesDelta entry = EntityModifier.insertChild(rawContactEntityDelta,
+                    groupMembershipKind);
+            entry.put(GroupMembership.GROUP_ROW_ID, defaultGroupId);
+
+            // and fire off the intent. we don't need a callback, as the database listener
+            // should update the ui
+            final Intent intent = ContactSaveService.createSaveContactIntent(getActivity(),
+                    contactDeltaList, "", 0, getActivity().getClass(),
+                    UI.LIST_ALL_CONTACTS_ACTION);
+            getActivity().startService(intent);
+        }
+    }
+
+    private class MakeLocalCopyQuickFix extends QuickFix {
+        @Override
+        public boolean isApplicable() {
+            // Not a directory contact? Nothing to fix here
+            if (mContactData == null || !mContactData.isDirectoryEntry()) return false;
+
+            // No export support? Too bad
+            if (mContactData.getDirectoryExportSupport() == Directory.EXPORT_SUPPORT_NONE) {
+                return false;
+            }
+
+            return true;
+        }
+
+        @Override
+        public String getTitle() {
+            return getString(R.string.menu_copyContact);
+        }
+
+        @Override
+        public void execute() {
+            if (mListener == null) {
+                return;
+            }
+
+            int exportSupport = mContactData.getDirectoryExportSupport();
+            switch (exportSupport) {
+                case Directory.EXPORT_SUPPORT_SAME_ACCOUNT_ONLY: {
+                    createCopy(new Account(mContactData.getDirectoryAccountName(),
+                                    mContactData.getDirectoryAccountType()));
+                    break;
+                }
+                case Directory.EXPORT_SUPPORT_ANY_ACCOUNT: {
+                    final ArrayList<Account> accounts =
+                            AccountTypeManager.getInstance(mContext).getAccounts(true);
+                    if (accounts.isEmpty()) {
+                        createCopy(null);
+                        return;  // Don't show a dialog.
+                    }
+
+                    // In the common case of a single writable account, auto-select
+                    // it without showing a dialog.
+                    if (accounts.size() == 1) {
+                        createCopy(accounts.get(0));
+                        return;  // Don't show a dialog.
+                    }
+
+                    final SelectAccountDialogFragment dialog = new SelectAccountDialogFragment();
+                    dialog.setTargetFragment(ContactDetailFragment.this, 0);
+                    dialog.show(getFragmentManager(), SelectAccountDialogFragment.TAG);
+                    break;
+                }
+            }
+        }
     }
 
     public static interface Listener {
