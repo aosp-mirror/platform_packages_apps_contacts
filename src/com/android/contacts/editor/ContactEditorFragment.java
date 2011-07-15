@@ -596,6 +596,8 @@ public class ContactEditorFragment extends Fragment implements
                         AccountTypeManager.getInstance(mContext).getAccounts(true);
                 if (accounts.size() > 1) {
                     addAccountSwitcher(mState.get(0), editor);
+                } else {
+                    disableAccountSwitcher(editor);
                 }
             }
             editor.setEnabled(mEnabled);
@@ -699,6 +701,13 @@ public class ContactEditorFragment extends Fragment implements
                 popup.show();
             }
         });
+    }
+
+    private void disableAccountSwitcher(BaseRawContactEditorView editor) {
+        // Remove the pressed state from the account header because the user cannot switch accounts
+        // on an existing contact
+        final View accountView = editor.findViewById(R.id.account);
+        accountView.setBackgroundDrawable(null);
     }
 
     @Override

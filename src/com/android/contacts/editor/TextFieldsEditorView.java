@@ -60,7 +60,6 @@ public class TextFieldsEditorView extends LabeledEditorView {
     private ImageView mExpansionView;
     private boolean mHideOptional = true;
     private boolean mHasShortAndLongForms;
-    private int mEditorTextSize = 0;
 
     public TextFieldsEditorView(Context context) {
         super(context);
@@ -106,14 +105,6 @@ public class TextFieldsEditorView extends LabeledEditorView {
                 newFocusView.requestFocus();
             }
         });
-    }
-
-    /**
-     * Set the text size of the value of all fields in this class, which will override the default
-     * text appearance style for the associated {@link DataKind}.
-     */
-    public void setEditorTextSize(int textSize) {
-        mEditorTextSize = textSize;
     }
 
     @Override
@@ -182,9 +173,6 @@ public class TextFieldsEditorView extends LabeledEditorView {
             fieldView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
             fieldView.setTextAppearance(getContext(), kind.textAppearanceResourceId);
-            if (mEditorTextSize != 0) {
-                fieldView.setTextSize(mEditorTextSize);
-            }
             fieldView.setGravity(Gravity.TOP);
             mFieldEditTexts[index] = fieldView;
             fieldView.setId(vig.getId(state, kind, entry, index));

@@ -18,44 +18,29 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="?android:attr/listPreferredItemHeight"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/kind_header"
+    <View
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginLeft="14dip"
-        android:layout_marginTop="2dip"
-        android:layout_marginBottom="2dip"
-        android:layout_marginRight="?android:attr/scrollbarSize"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:focusable="true"
-        android:clickable="true">
+        android:background="@drawable/divider_horizontal_light" />
 
-        <TextView
-            android:id="@+id/kind_title"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/kind_title"
-            android:singleLine="true"
-            android:ellipsize="marquee"
-            android:fadingEdge="horizontal"
-            android:focusable="true" />
-
-    </LinearLayout>
+    <include
+        android:id="@+id/kind_title"
+        layout="@layout/edit_field_title" />
 
     <Button
+        style="?android:attr/spinnerStyle"
         android:id="@+id/group_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/editor_field_left_padding"
+        android:layout_marginRight="@dimen/editor_field_left_padding"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="left|center_vertical"
         android:ellipsize="end"
-        android:gravity="left"
+        android:focusable="true"
+        android:paddingLeft="@dimen/editor_field_left_padding"
     />
 
 </com.android.contacts.editor.GroupMembershipView>

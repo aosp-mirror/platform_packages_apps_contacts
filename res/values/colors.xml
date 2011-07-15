@@ -29,8 +29,6 @@
 
     <color name="translucent_search_background">#cc000000</color>
 
-    <color name="account_selection_background">#ff000000</color>
-
     <!-- Color used for the letter in the A-Z section header -->
     <color name="section_header_text_color">#ff999999</color>
 
