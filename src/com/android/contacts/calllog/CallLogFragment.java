@@ -147,7 +147,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     }
 
     private CallLogAdapter mAdapter;
-    private QueryHandler mQueryHandler;
+    private CallLogQueryHandler mCallLogQueryHandler;
     private String mVoiceMailNumber;
     private String mCurrentCountryIso;
     private boolean mScrollToTop;
@@ -809,7 +809,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     }
 
     /** Handles asynchronous queries to the call log. */
-    private static final class QueryHandler extends AsyncQueryHandler {
+    private static final class CallLogQueryHandler extends AsyncQueryHandler {
         /** The token for the query to fetch the new entries from the call log. */
         private static final int QUERY_NEW_CALLS_TOKEN = 53;
         /** The token for the query to fetch the old entries from the call log. */
@@ -854,7 +854,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             return new CatchingWorkerHandler(looper);
         }
 
-        public QueryHandler(CallLogFragment fragment) {
+        public CallLogQueryHandler(CallLogFragment fragment) {
             super(fragment.getActivity().getContentResolver());
             mFragment = new WeakReference<CallLogFragment>(fragment);
         }
@@ -1020,20 +1020,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
          */
         private void updateAdapterData(Cursor combinedCursor) {
             final CallLogFragment fragment = mFragment.get();
-            if (fragment != null && fragment.getActivity() != null &&
-                    !fragment.getActivity().isFinishing()) {
-                Log.d(TAG, "updating adapter");
-                final CallLogAdapter callsAdapter = fragment.mAdapter;
-                callsAdapter.setLoading(false);
-                callsAdapter.changeCursor(combinedCursor);
-                if (fragment.mScrollToTop) {
-                    final ListView listView = fragment.getListView();
-                    if (listView.getFirstVisiblePosition() > 5) {
-                        listView.setSelection(5);
-                    }
-                    listView.smoothScrollToPosition(0);
-                    fragment.mScrollToTop = false;
-                }
+            if (fragment != null) {
+                fragment.onCallsFetched(combinedCursor);
             }
         }
     }
@@ -1044,11 +1032,29 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
 
         mVoiceMailNumber = ((TelephonyManager) getActivity().getSystemService(
                 Context.TELEPHONY_SERVICE)).getVoiceMailNumber();
-        mQueryHandler = new QueryHandler(this);
+        mCallLogQueryHandler = new CallLogQueryHandler(this);
 
         mCurrentCountryIso = ContactsUtils.getCurrentCountryIso(getActivity());
 
         setHasOptionsMenu(true);
+    }
+
+    /** Called by the CallLogQueryHandler when the list of calls has been fetched or updated. */
+    public void onCallsFetched(Cursor cursor) {
+        if (getActivity() == null || getActivity().isFinishing()) {
+            return;
+        }
+        Log.d(TAG, "updating adapter");
+        mAdapter.setLoading(false);
+        mAdapter.changeCursor(cursor);
+        if (mScrollToTop) {
+            final ListView listView = getListView();
+            if (listView.getFirstVisiblePosition() > 5) {
+                listView.setSelection(5);
+            }
+            listView.smoothScrollToPosition(0);
+            mScrollToTop = false;
+        }
     }
 
     @Override
@@ -1126,12 +1132,12 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     }
 
     private void resetNewCallsFlag() {
-        mQueryHandler.updateMissedCalls();
+        mCallLogQueryHandler.updateMissedCalls();
     }
 
     private void startQuery() {
         mAdapter.setLoading(true);
-        mQueryHandler.fetchCalls();
+        mCallLogQueryHandler.fetchCalls();
     }
 
     @Override
