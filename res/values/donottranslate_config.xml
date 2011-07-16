@@ -110,4 +110,10 @@
 
     <!-- If true, the "home" icon on the action bar will be shown. -->
     <bool name="show_home_icon">false</bool>
+
+    <!--
+      If true, the "view updates from group" button in the action bar will be
+      shown. Otherwise it will be part of the content on the group detail page.
+    -->
+    <bool name="config_show_group_action_in_action_bar">false</bool>
 </resources>

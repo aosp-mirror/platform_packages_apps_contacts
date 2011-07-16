@@ -1614,6 +1614,9 @@
     <!-- The title of the activity that edits an existing group [CHAR LIMIT=NONE] -->
     <string name="editGroup_title_edit">Edit group</string>
 
+    <!-- Button to view the updates from the current group on the group detail page [CHAR LIMIT=20] -->
+    <string name="view_updates_from_group">View updates</string>
+
     <!-- Title of the notification of new voicemail. -->
     <string name="notification_voicemail_title">New voicemail</string>
 

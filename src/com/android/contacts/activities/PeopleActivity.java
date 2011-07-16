@@ -1108,6 +1108,13 @@ public class PeopleActivity extends ContactsActivity
         }
 
         @Override
+        public void onGroupSourceUpdated(
+                String accountTypeString, String groupSourceAction, String groupSourceUri) {
+            // Nothing needs to be done here because the group source will be displayed in the
+            // detail fragment
+        }
+
+        @Override
         public void onEditRequested(Uri groupUri) {
             final Intent intent = new Intent(PeopleActivity.this, GroupEditorActivity.class);
             intent.setData(groupUri);
