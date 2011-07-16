@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 <resources>
-    <dimen name="edit_photo_size">120dip</dimen>
+    <dimen name="edit_photo_size">90dip</dimen>
 
     <!-- The height of the ScrollingTabWidget -->
     <dimen name="tab_height">40dip</dimen>
@@ -25,6 +25,7 @@
 
     <dimen name="aggregation_suggestion_icon_size">40dip</dimen>
 
+    <dimen name="account_header_padding">10dip</dimen>
     <dimen name="account_selector_popup_width">400dip</dimen>
     <dimen name="account_selector_icon_size">30dip</dimen>
     <dimen name="account_selector_min_item_height">48dip</dimen>
@@ -42,9 +43,6 @@
     <dimen name="editor_round_button_padding_right">2dip</dimen>
     <dimen name="editor_round_button_padding_top">8dip</dimen>
     <dimen name="editor_round_button_padding_bottom">8dip</dimen>
-
-    <!-- Font size for the structured name in the contact detail page -->
-    <dimen name="editor_structured_name_text_size">25sp</dimen>
 
     <!-- Width of the Type-Label in the Editor -->
     <dimen name="editor_type_label_width">120dip</dimen>

@@ -178,31 +178,26 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
         final ArrayList<Account> accounts =
                 AccountTypeManager.getInstance(mContext).getAccounts(true);
-        if (accounts.size() > 1) {
-            // Fill in the account info
-            String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
-            CharSequence accountType = type.getDisplayLabel(mContext);
-            if (TextUtils.isEmpty(accountType)) {
-                accountType = mContext.getString(R.string.account_phone);
-            }
-            if (!TextUtils.isEmpty(accountName)) {
-                mAccountNameTextView.setText(
-                        mContext.getString(R.string.from_account_format, accountName));
-            }
-            mAccountTypeTextView.setText(
-                    mContext.getString(R.string.account_type_format, accountType));
-            mAccountIcon.setImageDrawable(type.getDisplayIcon(mContext));
-        } else {
-            mAccountContainer.setVisibility(View.GONE);
+
+        // Fill in the account info
+        String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
+        CharSequence accountType = type.getDisplayLabel(mContext);
+        if (TextUtils.isEmpty(accountType)) {
+            accountType = mContext.getString(R.string.account_phone);
         }
+        if (!TextUtils.isEmpty(accountName)) {
+            mAccountNameTextView.setText(
+                    mContext.getString(R.string.from_account_format, accountName));
+        }
+        mAccountTypeTextView.setText(
+                mContext.getString(R.string.account_type_format, accountType));
+        mAccountIcon.setImageDrawable(type.getDisplayIcon(mContext));
 
         // Show photo editor when supported
         EntityModifier.ensureKindExists(state, type, Photo.CONTENT_ITEM_TYPE);
         setHasPhotoEditor((type.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null));
         getPhotoEditor().setEnabled(isEnabled());
         mName.setEnabled(isEnabled());
-        mName.setEditorTextSize(mContext.getResources().getDimensionPixelSize(
-                R.dimen.editor_structured_name_text_size));
 
         mPhoneticName.setEnabled(isEnabled());
 
