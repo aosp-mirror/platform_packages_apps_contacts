@@ -19,6 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/contact_photo"
+        android:layout_toLeftOf="@id/divider"
         android:layout_alignParentTop="true"
     >
         <include layout="@layout/call_log_phone_call_details"/>

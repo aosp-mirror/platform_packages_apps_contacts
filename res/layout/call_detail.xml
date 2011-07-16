@@ -62,14 +62,6 @@
         android:layout_alignBottom="@id/contact_background"
         android:paddingLeft="5dip"
     >
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
-        >
-            <include layout="@layout/call_log_phone_call_details" />
-        </RelativeLayout>
         <ImageView
             android:id="@+id/main_action"
             android:layout_width="?attr/call_detail_action_icon_size"
@@ -79,6 +71,15 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
         />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/main_action"
+            android:layout_alignParentBottom="true"
+        >
+            <include layout="@layout/call_log_phone_call_details" />
+        </RelativeLayout>
     </RelativeLayout>
     <ListView
         android:id="@android:id/list"

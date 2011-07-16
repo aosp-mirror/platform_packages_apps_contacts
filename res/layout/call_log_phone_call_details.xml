@@ -36,6 +36,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="?attr/call_log_primary_text_color"
             android:layout_marginRight="?attr/call_log_date_margin"
+            android:singleLine="true"
         />
         <TextView
             android:id="@+id/call_type_separator"
@@ -45,6 +46,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="?attr/call_log_primary_text_color"
             android:text="@string/call_log_type_date_separator"
+            android:singleLine="true"
         />
         <TextView
             android:id="@+id/date"
@@ -54,6 +56,7 @@
             android:textColor="?attr/call_log_primary_text_color"
             android:layout_toRightOf="@id/call_type"
             android:layout_alignParentBottom="true"
+            android:singleLine="true"
         />
     </LinearLayout>
     <TextView
@@ -64,6 +67,7 @@
         android:textColor="?attr/call_log_primary_text_color"
         android:layout_alignParentLeft="true"
         android:layout_above="@id/call_type"
+        android:singleLine="true"
     />
     <TextView
         android:id="@+id/name"
@@ -74,5 +78,6 @@
         android:layout_alignParentLeft="true"
         android:layout_above="@id/number"
         android:paddingBottom="2dp"
+        android:singleLine="true"
     />
 </merge>
