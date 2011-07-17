@@ -1569,6 +1569,12 @@
       (Contacts themselves will not be deleted.)
     </string>
 
+    <!-- Subtitle of the group detail page that describes how many people are in the current group [CHAR LIMIT=30] -->
+    <plurals name="num_contacts_in_group">
+        <item quantity="one"><xliff:g id="count">%1$d</xliff:g> person from <xliff:g id="account_type">%2$s</xliff:g></item>
+        <item quantity="other"><xliff:g id="count">%1$d</xliff:g> people from <xliff:g id="account_type">%2$s</xliff:g></item>
+    </plurals>
+
     <!-- Toast displayed when the user creates a new contact and attempts to join it
       with another before entering any data  [CHAR LIMIT=256] -->
     <string name="toast_join_with_empty_contact">Please enter contact name before joining
