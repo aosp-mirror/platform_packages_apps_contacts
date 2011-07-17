@@ -272,8 +272,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                     resources.getDrawable(R.drawable.ic_call_outgoing_holo_dark),
                     resources.getDrawable(R.drawable.ic_call_missed_holo_dark),
                     resources.getDrawable(R.drawable.ic_call_voicemail_holo_dark));
-            Drawable callDrawable = resources.getDrawable(
-                    R.drawable.ic_call_log_list_action_call);
+            Drawable callDrawable = resources.getDrawable(R.drawable.ic_dial_action_call);
             Drawable playDrawable = resources.getDrawable(
                     R.drawable.ic_call_log_list_action_play);
 
