@@ -1617,6 +1617,13 @@
     <!-- Title of the notification of new voicemail. -->
     <string name="notification_voicemail_title">New voicemail</string>
 
+    <!-- Initial display for position of current playback, do not translate. -->
+    <string name="voicemail_initial_time">00:05</string>
+    <!-- This string is temporary whilst I wait for an art asset to use on the button. -->
+    <string name="voicemail_decrease_button">-</string>
+    <!-- This string is temporary whilst I wait for an art asset to use on the button. -->
+    <string name="voicemail_increase_button">+</string>
+
     <!-- The separator between the call type text and the date in the call log [CHAR LIMIT=3] -->
     <string name="call_log_type_date_separator">/</string>
 

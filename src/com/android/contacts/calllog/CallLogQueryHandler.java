@@ -103,7 +103,9 @@ import javax.annotation.concurrent.GuardedBy;
     /** Creates a cursor that contains a single row and maps the section to the given value. */
     private Cursor createHeaderCursorFor(int section) {
         MatrixCursor matrixCursor = new MatrixCursor(getHeaderColumns());
-        matrixCursor.addRow(new Object[]{ -1L, "", 0L, 0L, 0, "", section });
+        // The values in this row correspond to default values for _PROJECTION from CallLogQuery
+        // plus the section value.
+        matrixCursor.addRow(new Object[]{ -1L, "", 0L, 0L, 0, "", "", section });
         return matrixCursor;
     }
 
