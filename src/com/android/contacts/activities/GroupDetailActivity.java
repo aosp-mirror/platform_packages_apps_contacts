@@ -92,8 +92,7 @@ public class GroupDetailActivity extends ContactsActivity {
     }
 
     @Override
-    public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
-            boolean globalSearch) {
-        // Ignore search key press
+    public boolean onSearchRequested() {
+        return true; // Don't respond to the search key.
     }
 }
