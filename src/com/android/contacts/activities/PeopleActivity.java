@@ -120,8 +120,6 @@ public class PeopleActivity extends ContactsActivity
 
     private ActionBarAdapter mActionBarAdapter;
 
-    private boolean mSearchMode;
-
     private ContactDetailFragment mContactDetailFragment;
     private ContactDetailUpdatesFragment mContactDetailUpdatesFragment;
     private final ContactDetailFragmentListener mContactDetailFragmentListener =
@@ -137,8 +135,6 @@ public class PeopleActivity extends ContactsActivity
 
     private StrequentContactListFragment.Listener mFavoritesFragmentListener =
             new StrequentContactListFragmentListener();
-
-    private boolean mSearchInitiated;
 
     private ContactListFilterController mContactListFilterController;
 
@@ -470,6 +466,7 @@ public class PeopleActivity extends ContactsActivity
         if (fromRequest) {
             ContactListFilter filter = null;
             int actionCode = mRequest.getActionCode();
+            boolean searchMode = mRequest.isSearchMode();
             switch (actionCode) {
                 case ContactsRequest.ACTION_ALL_CONTACTS:
                     filter = ContactListFilter.createFilterWithType(
@@ -494,25 +491,17 @@ public class PeopleActivity extends ContactsActivity
                     }
             }
 
-            mSearchMode = mRequest.isSearchMode();
             if (filter != null) {
                 mContactListFilterController.setContactListFilter(filter, false);
-                mSearchMode = false;
-            } else if (mRequest.getActionCode() == ContactsRequest.ACTION_ALL_CONTACTS) {
-                mContactListFilterController.setContactListFilter(
-                        ContactListFilter.createFilterWithType(
-                        ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS), false);
+                searchMode = false;
             }
 
             if (mRequest.getContactUri() != null) {
-                mSearchMode = false;
+                searchMode = false;
             }
 
-            mAllFragment.setContactsRequest(mRequest);
+            mActionBarAdapter.setSearchMode(searchMode);
             configureContactListFragmentForRequest();
-
-        } else {
-            mSearchMode = mActionBarAdapter.isSearchMode();
         }
 
         configureContactListFragment();
@@ -805,13 +794,15 @@ public class PeopleActivity extends ContactsActivity
     }
 
     private void configureContactListFragmentForRequest() {
+        mAllFragment.setContactsRequest(mRequest);
+
         Uri contactUri = mRequest.getContactUri();
         if (contactUri != null) {
             mAllFragment.setSelectedContactUri(contactUri);
         }
 
-        mAllFragment.setSearchMode(mRequest.isSearchMode());
-        mAllFragment.setQueryString(mRequest.getQueryString(), false);
+        mAllFragment.setSearchMode(mActionBarAdapter.isSearchMode());
+        mAllFragment.setQueryString(mActionBarAdapter.getQueryString(), false);
 
         if (mRequest.isDirectorySearchEnabled()) {
             mAllFragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DEFAULT);
@@ -825,10 +816,11 @@ public class PeopleActivity extends ContactsActivity
     }
 
     private void configureContactListFragment() {
-        mAllFragment.setSearchMode(mSearchMode);
+        final boolean searchMode = mActionBarAdapter.isSearchMode();
+        mAllFragment.setSearchMode(searchMode);
 
         final boolean useTwoPane = PhoneCapabilityTester.isUsingTwoPanes(this);
-        mAllFragment.setVisibleScrollbarEnabled(!mSearchMode);
+        mAllFragment.setVisibleScrollbarEnabled(!searchMode);
         mAllFragment.setVerticalScrollbarPosition(
                 useTwoPane
                         ? View.SCROLLBAR_POSITION_LEFT
@@ -1340,13 +1332,9 @@ public class PeopleActivity extends ContactsActivity
     }
 
     @Override
-    public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
-            boolean globalSearch) {
-        if (mAllFragment != null && mAllFragment.isAdded() && !globalSearch) {
-            mAllFragment.startSearch(initialQuery);
-        } else {
-            super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
-        }
+    public boolean onSearchRequested() { // Search key pressed.
+        mActionBarAdapter.setSearchMode(true);
+        return true;
     }
 
     @Override
@@ -1437,12 +1425,6 @@ public class PeopleActivity extends ContactsActivity
                         mActionBarAdapter.setQueryString(query);
                         mActionBarAdapter.setSearchMode(true);
                         return true;
-                    } else if (!mRequest.isSearchMode()) {
-                        if (!mSearchInitiated) {
-                            mSearchInitiated = true;
-                            startSearch(query, false, null, false);
-                            return true;
-                        }
                     }
                 }
             }
@@ -1453,7 +1435,7 @@ public class PeopleActivity extends ContactsActivity
 
     @Override
     public void onBackPressed() {
-        if (mSearchMode && mActionBarAdapter != null) {
+        if (mActionBarAdapter.isSearchMode()) {
             mActionBarAdapter.setSearchMode(false);
         } else {
             super.onBackPressed();
@@ -1478,7 +1460,6 @@ public class PeopleActivity extends ContactsActivity
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean(KEY_SEARCH_MODE, mSearchMode);
         mActionBarAdapter.onSaveInstanceState(outState);
         if (mContactDetailLayoutController != null) {
             mContactDetailLayoutController.onSaveInstanceState(outState);
@@ -1493,7 +1474,6 @@ public class PeopleActivity extends ContactsActivity
     @Override
     protected void onRestoreInstanceState(Bundle inState) {
         super.onRestoreInstanceState(inState);
-        mSearchMode = inState.getBoolean(KEY_SEARCH_MODE);
         if (mContactDetailLayoutController != null) {
             mContactDetailLayoutController.onRestoreInstanceState(inState);
         }
