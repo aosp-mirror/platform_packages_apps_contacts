@@ -120,7 +120,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                 PhoneLookup.LABEL,
                 PhoneLookup.NUMBER,
                 PhoneLookup.NORMALIZED_NUMBER,
-                PhoneLookup.PHOTO_ID,
+                PhoneLookup.PHOTO_THUMBNAIL_URI,
                 PhoneLookup.LOOKUP_KEY};
 
         public static final int PERSON_ID = 0;
@@ -129,7 +129,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         public static final int LABEL = 3;
         public static final int MATCHED_NUMBER = 4;
         public static final int NORMALIZED_NUMBER = 5;
-        public static final int PHOTO_ID = 6;
+        public static final int THUMBNAIL_URI = 6;
         public static final int LOOKUP_KEY = 7;
     }
 
@@ -158,7 +158,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         public String number;
         public String formattedNumber;
         public String normalizedNumber;
-        public long photoId;
+        public Uri thumbnailUri;
         public String lookupKey;
 
         public static ContactInfo EMPTY = new ContactInfo();
@@ -170,7 +170,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         public String name;
         public int numberType;
         public String numberLabel;
-        public long photoId;
+        public Uri thumbnailUri;
         public String lookupKey;
     }
 
@@ -341,15 +341,15 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             mContactInfoCache.expireAll();
         }
 
-        private void enqueueRequest(String number, boolean immediate, int position,
-                String name, int numberType, String numberLabel, long photoId, String lookupKey) {
+        private void enqueueRequest(String number, boolean immediate, int position, String name,
+                int numberType, String numberLabel, Uri thumbnailUri, String lookupKey) {
             CallerInfoQuery ciq = new CallerInfoQuery();
             ciq.number = number;
             ciq.position = position;
             ciq.name = name;
             ciq.numberType = numberType;
             ciq.numberLabel = numberLabel;
-            ciq.photoId = photoId;
+            ciq.thumbnailUri = thumbnailUri;
             ciq.lookupKey = lookupKey;
             synchronized (mRequests) {
                 mRequests.add(ciq);
@@ -430,8 +430,11 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                             info.number = dataTableCursor.getString(
                                     dataTableCursor.getColumnIndex(Data.DATA1));
                             info.normalizedNumber = null;  // meaningless for SIP addresses
-                            info.photoId = dataTableCursor.getLong(
-                                    dataTableCursor.getColumnIndex(Data.PHOTO_ID));
+                            final String thumbnailUriString = dataTableCursor.getString(
+                                    dataTableCursor.getColumnIndex(Data.PHOTO_THUMBNAIL_URI));
+                            info.thumbnailUri = thumbnailUriString == null
+                                    ? null
+                                    : Uri.parse(thumbnailUriString);
                             info.lookupKey = dataTableCursor.getString(
                                     dataTableCursor.getColumnIndex(Data.LOOKUP_KEY));
 
@@ -458,7 +461,11 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                                     .getString(PhoneQuery.MATCHED_NUMBER);
                             info.normalizedNumber = phonesCursor
                                     .getString(PhoneQuery.NORMALIZED_NUMBER);
-                            info.photoId = phonesCursor.getLong(PhoneQuery.PHOTO_ID);
+                            final String thumbnailUriString = phonesCursor.getString(
+                                    PhoneQuery.THUMBNAIL_URI);
+                            info.thumbnailUri = thumbnailUriString == null
+                                    ? null
+                                    : Uri.parse(thumbnailUriString);
                             info.lookupKey = phonesCursor.getString(PhoneQuery.LOOKUP_KEY);
 
                             infoUpdated = true;
@@ -696,7 +703,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                 mContactInfoCache.put(number, info);
                 Log.d(TAG, "Contact info missing: " + number);
                 // Request the contact details immediately since they are currently missing.
-                enqueueRequest(number, true, c.getPosition(), "", 0, "", 0L, "");
+                enqueueRequest(number, true, c.getPosition(), "", 0, "", null, "");
             } else if (info != ContactInfo.EMPTY) { // Has been queried
                 if (cachedInfo.isExpired()) {
                     Log.d(TAG, "Contact info expired: " + number);
@@ -706,7 +713,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                     // The contact info is no longer up to date, we should request it. However, we
                     // do not need to request them immediately.
                     enqueueRequest(number, false, c.getPosition(), info.name, info.type, info.label,
-                            info.photoId, info.lookupKey);
+                            info.thumbnailUri, info.lookupKey);
                 }
 
                 // Format and cache phone number for found contact
@@ -724,7 +731,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             final String name = info.name;
             final int ntype = info.type;
             final String label = info.label;
-            final long photoId = info.photoId;
+            final Uri thumbnailUri = info.thumbnailUri;
             final String lookupKey = info.lookupKey;
             // Assumes the call back feature is on most of the
             // time. For private and unknown numbers: hide it.
@@ -738,7 +745,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                 details = new PhoneCallDetails(number, formattedNumber, callTypes, date, duration);
             } else {
                 details = new PhoneCallDetails(number, formattedNumber, callTypes, date, duration,
-                        name, ntype, label, personId, photoId);
+                        name, ntype, label, personId, thumbnailUri);
             }
 
             final boolean isNew = isNewSection(c);
@@ -748,7 +755,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             final boolean isHighlighted = isNew;
             mCallLogViewsHelper.setPhoneCallDetails(views, details, useIcons, isHighlighted);
             if (views.photoView != null) {
-                bindQuickContact(views.photoView, photoId, personId, lookupKey);
+                bindQuickContact(views.photoView, thumbnailUri, personId, lookupKey);
             }
 
 
@@ -778,10 +785,10 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             return callTypes;
         }
 
-        private void bindQuickContact(QuickContactBadge view, long photoId, long contactId,
+        private void bindQuickContact(QuickContactBadge view, Uri thumbnailUri, long contactId,
                 String lookupKey) {
             view.assignContactUri(getContactUri(contactId, lookupKey));
-            mContactPhotoManager.loadPhoto(view, photoId);
+            mContactPhotoManager.loadPhoto(view, thumbnailUri);
         }
 
         private Uri getContactUri(long contactId, String lookupKey) {

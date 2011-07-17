@@ -26,6 +26,7 @@ import android.content.res.Resources;
 import android.database.MatrixCursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.PhoneNumberUtils;
@@ -69,8 +70,8 @@ public class CallLogActivityTests
 
     /** A test value for the person id of a contact. */
     private static final long TEST_PERSON_ID = 1;
-    /** A test value for the photo id of a contact. */
-    private static final long TEST_PHOTO_ID = 2;
+    /** A test value for the photo uri of a contact. */
+    private static final Uri TEST_THUMBNAIL_URI = Uri.parse("something://picture/2");
     /** A test value for the lookup key for contacts. */
     private static final String TEST_LOOKUP_KEY = "contact_id";
     /** A test value for the country ISO of the phone number in the call log. */
@@ -398,7 +399,7 @@ public class CallLogActivityTests
         }
         contactInfo.formattedNumber = formattedNumber;
         contactInfo.normalizedNumber = number;
-        contactInfo.photoId = TEST_PHOTO_ID;
+        contactInfo.thumbnailUri = TEST_THUMBNAIL_URI;
         contactInfo.lookupKey = TEST_LOOKUP_KEY;
         mAdapter.injectContactInfoForTest(number, contactInfo);
     }
