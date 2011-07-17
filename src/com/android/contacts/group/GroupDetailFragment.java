@@ -23,6 +23,8 @@ import com.android.contacts.R;
 import com.android.contacts.interactions.GroupDeletionDialogFragment;
 import com.android.contacts.list.ContactTileAdapter;
 import com.android.contacts.list.ContactTileAdapter.DisplayType;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypeManager;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -90,10 +92,12 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
 
     private ContactTileAdapter mAdapter;
     private ContactPhotoManager mPhotoManager;
+    private AccountTypeManager mAccountTypeManager;
 
     private Uri mGroupUri;
     private long mGroupId;
     private String mGroupName;
+    private String mAccountTypeString;
 
     private boolean mOptionsMenuEditable;
     private boolean mCloseActivityAfterDelete;
@@ -105,6 +109,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mContext = activity;
+        mAccountTypeManager = AccountTypeManager.getInstance(mContext);
 
         Resources res = getResources();
         int columnCount = res.getInteger(R.integer.contact_tile_column_count);
@@ -214,7 +219,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
                     return;
                 }
             }
-            updateSize(null);
+            updateSize(-1);
             updateTitle(null);
         }
 
@@ -235,7 +240,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
 
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-            updateSize(Integer.toString(data.getCount()));
+            updateSize(data.getCount());
             mAdapter.loadFromCursor(data);
         }
 
@@ -246,6 +251,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
     private void bindGroupMetaData(Cursor cursor) {
         cursor.moveToPosition(-1);
         if (cursor.moveToNext()) {
+            mAccountTypeString = cursor.getString(GroupMetaDataLoader.ACCOUNT_TYPE);
             mGroupId = cursor.getLong(GroupMetaDataLoader.GROUP_ID);
             mGroupName = cursor.getString(GroupMetaDataLoader.TITLE);
             updateTitle(mGroupName);
@@ -265,11 +271,26 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         }
     }
 
-    private void updateSize(String size) {
-        if (mGroupSize != null) {
-            mGroupSize.setText(size);
+    /**
+     * Display the count of the number of group members.
+     * @param size of the group (can be -1 if no size could be determined)
+     */
+    private void updateSize(int size) {
+        String groupSizeString;
+        if (size == -1) {
+            groupSizeString = null;
         } else {
-            mListener.onGroupSizeUpdated(size);
+            String groupSizeTemplateString = getResources().getQuantityString(
+                    R.plurals.num_contacts_in_group, size);
+            AccountType accountType = mAccountTypeManager.getAccountType(mAccountTypeString);
+            groupSizeString = String.format(groupSizeTemplateString, size,
+                    accountType.getDisplayLabel(mContext));
+        }
+
+        if (mGroupSize != null) {
+            mGroupSize.setText(groupSizeString);
+        } else {
+            mListener.onGroupSizeUpdated(groupSizeString);
         }
     }
 
