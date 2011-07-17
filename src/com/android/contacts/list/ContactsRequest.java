@@ -89,6 +89,22 @@ public class ContactsRequest implements Parcelable {
     private boolean mDirectorySearchEnabled = true;
     private Uri mContactUri;
 
+    @Override
+    public String toString() {
+        return "{ContactsRequest:mValid=" + mValid
+                + " mActionCode=" + mActionCode
+                + " mRedirectIntent=" + mRedirectIntent
+                + " mTitle=" + mTitle
+                + " mSearchMode=" + mSearchMode
+                + " mQueryString=" + mQueryString
+                + " mIncludeProfile=" + mIncludeProfile
+                + " mGroupName=" + mGroupName
+                + " mLegacyCompatibilityMode=" + mLegacyCompatibilityMode
+                + " mDirectorySearchEnabled=" + mDirectorySearchEnabled
+                + " mContactUri=" + mContactUri
+                + "}";
+    }
+
     /**
      * Copies all fields.
      */

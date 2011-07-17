@@ -90,6 +90,7 @@ import android.widget.ListPopupWindow;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Displays a list to browse contacts. For xlarge screens, this also displays a detail-pane on
@@ -101,6 +102,7 @@ public class PeopleActivity extends ContactsActivity
         ContactListFilterController.ContactListFilterListener, ProviderStatusListener {
 
     private static final String TAG = "PeopleActivity";
+    private static final Boolean DEBUG = false; // DO NOT SUBMIT WITH TRUE
 
     private static final int SUBACTIVITY_NEW_CONTACT = 2;
     private static final int SUBACTIVITY_EDIT_CONTACT = 3;
@@ -182,11 +184,22 @@ public class PeopleActivity extends ContactsActivity
      */
     private boolean mFragmentInitialized;
 
+    /** Sequential ID assigned to each instance; used for logging */
+    private final int mInstanceId;
+    private static final AtomicInteger sNextInstanceId = new AtomicInteger();
+
     public PeopleActivity() {
+        mInstanceId = sNextInstanceId.getAndIncrement();
         mIntentResolver = new ContactsIntentResolver(this);
         mContactListFilterController = new ContactListFilterController(this);
         mContactListFilterController.addListener(this);
         mProviderStatusLoader = new ProviderStatusLoader(this);
+    }
+
+    @Override
+    public String toString() {
+        // Shown on logcat
+        return String.format("%s@%d", getClass().getSimpleName(), mInstanceId);
     }
 
     public boolean areContactsAvailable() {
@@ -225,7 +238,7 @@ public class PeopleActivity extends ContactsActivity
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
 
-        if (!processIntent()) {
+        if (!processIntent(false)) {
             finish();
             return;
         }
@@ -237,7 +250,7 @@ public class PeopleActivity extends ContactsActivity
     @Override
     protected void onNewIntent(Intent intent) {
         setIntent(intent);
-        if (!processIntent()) {
+        if (!processIntent(true)) {
             finish();
             return;
         }
@@ -252,13 +265,18 @@ public class PeopleActivity extends ContactsActivity
      * Resolve the intent and initialize {@link #mRequest}, and launch another activity if redirect
      * is needed.
      *
+     * @param forNewIntent set true if it's called from {@link #onNewIntent(Intent)}.
      * @return {@code true} if {@link PeopleActivity} should continue running.  {@code false}
      *         if it shouldn't, in which case the caller should finish() itself and shouldn't do
      *         farther initialization.
      */
-    private boolean processIntent() {
+    private boolean processIntent(boolean forNewIntent) {
         // Extract relevant information from the intent
         mRequest = mIntentResolver.resolveIntent(getIntent());
+        if (DEBUG) {
+            Log.d(TAG, this + " processIntent: forNewIntent=" + forNewIntent
+                    + " intent=" + getIntent() + " request=" + mRequest);
+        }
         if (!mRequest.isValid()) {
             setResult(RESULT_CANCELED);
             return false;
