@@ -16,6 +16,7 @@
 
 package com.android.contacts;
 
+import android.net.Uri;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 
@@ -45,19 +46,22 @@ public class PhoneCallDetails {
     public final CharSequence numberLabel;
     /** The id of the contact associated with this phone call. */
     public final long personId;
-    /** The photo id of the contact associated with this phone call. */
-    public final long photoId;
+    /**
+     * The photo uri of the picture of the contact that is associated with this phone call or
+     * null if there is none.
+     */
+    public final Uri photoUri;
 
     /** Create the details for a call with a number not associated with a contact. */
     public PhoneCallDetails(CharSequence number, CharSequence formattedNumber, int[] callTypes,
             long date, long duration) {
-        this(number, formattedNumber, callTypes, date, duration, "", 0, "", -1L, 0L);
+        this(number, formattedNumber, callTypes, date, duration, "", 0, "", -1L, null);
     }
 
     /** Create the details for a call with a number associated with a contact. */
     public PhoneCallDetails(CharSequence number, CharSequence formattedNumber, int[] callTypes,
             long date, long duration, CharSequence name, int numberType, CharSequence numberLabel,
-            long personId, long photoId) {
+            long personId, Uri photoUri) {
         this.number = number;
         this.formattedNumber = formattedNumber;
         this.callTypes = callTypes;
@@ -67,6 +71,6 @@ public class PhoneCallDetails {
         this.numberType = numberType;
         this.numberLabel = numberLabel;
         this.personId = personId;
-        this.photoId = photoId;
+        this.photoUri = photoUri;
     }
 }

@@ -103,7 +103,7 @@ public class CallDetailActivity extends ListActivity implements
         PhoneLookup.LABEL,
         PhoneLookup.NUMBER,
         PhoneLookup.NORMALIZED_NUMBER,
-        PhoneLookup.PHOTO_ID,
+        PhoneLookup.PHOTO_URI,
     };
     static final int COLUMN_INDEX_ID = 0;
     static final int COLUMN_INDEX_NAME = 1;
@@ -111,7 +111,7 @@ public class CallDetailActivity extends ListActivity implements
     static final int COLUMN_INDEX_LABEL = 3;
     static final int COLUMN_INDEX_NUMBER = 4;
     static final int COLUMN_INDEX_NORMALIZED_NUMBER = 5;
-    static final int COLUMN_INDEX_PHOTO_ID = 6;
+    static final int COLUMN_INDEX_PHOTO_URI = 6;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -220,7 +220,7 @@ public class CallDetailActivity extends ListActivity implements
         // We know that all calls are from the same number and the same contact, so pick the first.
         mNumber = details[0].number.toString();
         final long personId = details[0].personId;
-        final long photoId = details[0].photoId;
+        final Uri photoUri = details[0].photoUri;
 
         // Set the details header, based on the first phone call.
         mPhoneCallDetailsHelper.setPhoneCallDetails(mPhoneCallDetailsViews,
@@ -327,7 +327,7 @@ public class CallDetailActivity extends ListActivity implements
         ListView historyList = (ListView) findViewById(R.id.history);
         historyList.setAdapter(
                 new CallDetailHistoryAdapter(this, mInflater, mCallTypeHelper, details));
-        loadContactPhotos(photoId);
+        loadContactPhotos(photoUri);
     }
 
     /** Return the phone call details for a given call log URI. */
@@ -356,7 +356,7 @@ public class CallDetailActivity extends ListActivity implements
             int numberType = 0;
             CharSequence numberLabel = "";
             long personId = -1L;
-            long photoId = 0L;
+            Uri photoUri = null;
             // If this is not a regular number, there is no point in looking it up in the contacts.
             if (!mPhoneNumberHelper.canPlaceCallsTo(number)) {
                 numberText = mPhoneNumberHelper.getDisplayNumber(number, null);
@@ -370,7 +370,8 @@ public class CallDetailActivity extends ListActivity implements
                     if (phonesCursor != null && phonesCursor.moveToFirst()) {
                         personId = phonesCursor.getLong(COLUMN_INDEX_ID);
                         nameText = phonesCursor.getString(COLUMN_INDEX_NAME);
-                        photoId = phonesCursor.getLong(COLUMN_INDEX_PHOTO_ID);
+                        String photoUriString = phonesCursor.getString(COLUMN_INDEX_PHOTO_URI);
+                        photoUri = photoUriString == null ? null : Uri.parse(photoUriString);
                         candidateNumberText = PhoneNumberUtils.formatNumber(
                                 phonesCursor.getString(COLUMN_INDEX_NUMBER),
                                 phonesCursor.getString(COLUMN_INDEX_NORMALIZED_NUMBER),
@@ -390,7 +391,7 @@ public class CallDetailActivity extends ListActivity implements
                 }
             }
             return new PhoneCallDetails(number, numberText, new int[]{ callType }, date, duration,
-                    nameText, numberType, numberLabel, personId, photoId);
+                    nameText, numberType, numberLabel, personId, photoUri);
         } finally {
             if (callCursor != null) {
                 callCursor.close();
@@ -399,8 +400,8 @@ public class CallDetailActivity extends ListActivity implements
     }
 
     /** Load the contact photos and places them in the corresponding views. */
-    private void loadContactPhotos(final long photoId) {
-        mContactPhotoManager.loadPhoto(mContactBackgroundView, photoId);
+    private void loadContactPhotos(Uri photoUri) {
+        mContactPhotoManager.loadPhoto(mContactBackgroundView, photoUri);
     }
 
     private String getVoicemailNumber() {
