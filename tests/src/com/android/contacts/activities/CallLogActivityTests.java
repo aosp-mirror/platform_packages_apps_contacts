@@ -177,7 +177,6 @@ public class CallLogActivityTests
         View view = mAdapter.newStandAloneView(getActivity(), mParentView);
         mAdapter.bindStandAloneView(view, getActivity(), mCursor);
         assertNotNull(view.findViewById(R.id.call_icon));
-        assertNull(view.findViewById(R.id.groupIndicator));
     }
 
     @MediumTest
@@ -187,7 +186,6 @@ public class CallLogActivityTests
         View view = mAdapter.newChildView(getActivity(), mParentView);
         mAdapter.bindChildView(view, getActivity(), mCursor);
         assertNotNull(view.findViewById(R.id.call_icon));
-        assertNull(view.findViewById(R.id.groupIndicator));
     }
 
     @MediumTest
