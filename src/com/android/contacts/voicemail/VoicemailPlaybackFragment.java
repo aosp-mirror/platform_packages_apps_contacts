@@ -18,20 +18,16 @@ package com.android.contacts.voicemail;
 
 import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.android.contacts.CallDetailActivity;
 import com.android.contacts.R;
 import com.android.ex.variablespeed.MediaPlayerProxy;
 import com.android.ex.variablespeed.VariableSpeed;
@@ -63,8 +59,8 @@ public class VoicemailPlaybackFragment extends Fragment {
     private ImageButton mPlaybackSpeakerphone;
     private ImageButton mPlaybackTrashButton;
     private TextView mPlaybackPositionText;
-    private Button mRateDecreaseButton;
-    private Button mRateIncreaseButton;
+    private ImageButton mRateDecreaseButton;
+    private ImageButton mRateIncreaseButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,8 +72,8 @@ public class VoicemailPlaybackFragment extends Fragment {
         mPlaybackSpeakerphone = (ImageButton) view.findViewById(R.id.playback_speakerphone);
         mPlaybackTrashButton = (ImageButton) view.findViewById(R.id.playback_trash);
         mPlaybackPositionText = (TextView) view.findViewById(R.id.playback_position_text);
-        mRateDecreaseButton = (Button) view.findViewById(R.id.rate_decrease_button);
-        mRateIncreaseButton = (Button) view.findViewById(R.id.rate_increase_button);
+        mRateDecreaseButton = (ImageButton) view.findViewById(R.id.rate_decrease_button);
+        mRateIncreaseButton = (ImageButton) view.findViewById(R.id.rate_increase_button);
         return view;
     }
 
@@ -194,12 +190,12 @@ public class VoicemailPlaybackFragment extends Fragment {
 
         @Override
         public void playbackStarted() {
-            mStartStopButton.setImageResource(R.drawable.pause_button);
+            mStartStopButton.setImageResource(R.drawable.ic_hold_pause_holo_dark);
         }
 
         @Override
         public void playbackStopped() {
-            mStartStopButton.setImageResource(R.drawable.play_button);
+            mStartStopButton.setImageResource(R.drawable.ic_play_holo_dark);
         }
 
         @Override
@@ -237,9 +233,9 @@ public class VoicemailPlaybackFragment extends Fragment {
             getAudioManager().setMode(AudioManager.MODE_IN_CALL);
             getAudioManager().setSpeakerphoneOn(on);
             if (on) {
-                mPlaybackSpeakerphone.setImageResource(R.drawable.speakerphone_on_button);
+                mPlaybackSpeakerphone.setImageResource(R.drawable.ic_sound_holo_dark);
             } else {
-                mPlaybackSpeakerphone.setImageResource(R.drawable.speakerphone_off_button);
+                mPlaybackSpeakerphone.setImageResource(R.drawable.ic_sound_holo_dark);
             }
         }
     }

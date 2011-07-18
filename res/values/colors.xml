@@ -62,16 +62,15 @@
     <!-- Color of the text describing an unconsumed voicemail. -->
     <color name="call_log_voicemail_highlight_color">#33b5e5</color>
 
-    <!-- Palette section:
-         If you need a new color then add a new one and delete the ones that are no longer used. -->
-    <color name="lighter_grey">#cccccc</color>
-    <color name="seek_bar_blue">#32bdf1</color>
-    <color name="semi_transparent_grey">#cc696969</color>
+    <!-- Colour background for the voicemail playback ui. -->
+    <color name="voicemail_playback_ui_background">@color/@android:color/black</color>
 
-    <!-- This section defines the color used by different UI components and maps them to one of the
-    colors defined in the palette section above. -->
-    <color name="voicemail_playback_ui_background">@color/@android:color/white</color>
-    <color name="voicemail_playback_seek_bar_yet_to_play">@color/lighter_grey</color>
-    <color name="voicemail_playback_seek_bar_already_played">@color/seek_bar_blue</color>
-    <color name="voicemail_playback_ui_text">@color/semi_transparent_grey</color>
+    <!-- Colour of voicemail progress bar to the right of position indicator. -->
+    <color name="voicemail_playback_seek_bar_yet_to_play">#44ffffff</color>
+
+    <!-- Colour of voicemail progress bar to the left of position indicator. -->
+    <color name="voicemail_playback_seek_bar_already_played">#ccffffff</color>
+
+    <!-- Colour of text that appears on the voicemail ui. -->
+    <color name="voicemail_playback_ui_text">#cc696969</color>
 </resources>
