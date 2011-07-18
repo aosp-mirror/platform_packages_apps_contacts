@@ -20,7 +20,8 @@
     android:layout_alignParentLeft="true"
     android:layout_alignParentBottom="true"
     android:background="?attr/call_log_voicemail_status_background_color"
-    android:baselineAligned="false">
+    android:baselineAligned="false"
+    android:visibility="gone">
     <TextView
         android:id="@+id/voicemail_status_message"
         android:layout_width="wrap_content"

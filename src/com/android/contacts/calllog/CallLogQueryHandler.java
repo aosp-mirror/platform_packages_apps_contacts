@@ -32,6 +32,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.provider.CallLog.Calls;
+import android.provider.VoicemailContract.Status;
 import android.util.Log;
 
 import java.lang.ref.WeakReference;
@@ -48,6 +49,9 @@ import javax.annotation.concurrent.GuardedBy;
     private static final int QUERY_OLD_CALLS_TOKEN = 54;
     /** The token for the query to mark all missed calls as old after seeing the call log. */
     private static final int UPDATE_MISSED_CALLS_TOKEN = 55;
+
+    /** The token for the query to fetch voicemail status messages. */
+    private static final int QUERY_VOICEMAIL_STATUS_TOKEN = 56;
 
     private final WeakReference<CallLogFragment> mFragment;
 
@@ -131,6 +135,11 @@ import javax.annotation.concurrent.GuardedBy;
         fetchOldCalls();
     }
 
+    public void fetchVoicemailStatus() {
+        startQuery(QUERY_VOICEMAIL_STATUS_TOKEN, null, Status.CONTENT_URI,
+                VoicemailStatusHelperImpl.PROJECTION, null, null, null);
+    }
+
     /** Fetches the list of new calls in the call log. */
     private void fetchNewCalls() {
         fetchCalls(QUERY_NEW_CALLS_TOKEN, true);
@@ -204,6 +213,9 @@ import javax.annotation.concurrent.GuardedBy;
             // Store the returned cursor.
             mOldCallsCursor = new ExtendedCursor(
                     cursor, CallLogQuery.SECTION_NAME, CallLogQuery.SECTION_OLD_ITEM);
+        } else if (token == QUERY_VOICEMAIL_STATUS_TOKEN) {
+            updateVoicemailStatus(cursor);
+            return;
         } else {
             Log.w(TAG, "Unknown query completed: ignoring: " + token);
             return;
@@ -251,6 +263,13 @@ import javax.annotation.concurrent.GuardedBy;
         final CallLogFragment fragment = mFragment.get();
         if (fragment != null) {
             fragment.onCallsFetched(combinedCursor);
+        }
+    }
+
+    private void updateVoicemailStatus(Cursor statusCursor) {
+        final CallLogFragment fragment = mFragment.get();
+        if (fragment != null) {
+            fragment.onVoicemailStatusFetched(statusCursor);
         }
     }
 }
