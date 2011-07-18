@@ -419,7 +419,9 @@ public class CallDetailActivity extends ListActivity implements
                     numberText = candidateNumberText;
                 }
             }
-            return new PhoneCallDetails(number, numberText, new int[]{ callType }, date, duration,
+            return new PhoneCallDetails(number, numberText,
+                    mPhoneNumberHelper.parsePhoneNumber(number, countryIso),
+                    new int[]{ callType }, date, duration,
                     nameText, numberType, numberLabel, personId, photoUri);
         } finally {
             if (callCursor != null) {

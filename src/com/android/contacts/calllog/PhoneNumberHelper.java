@@ -18,6 +18,10 @@ package com.android.contacts.calllog;
 
 import com.android.contacts.R;
 import com.android.internal.telephony.CallerInfo;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
+import com.google.i18n.phonenumbers.geocoding.PhoneNumberOfflineGeocoder;
 
 import android.content.res.Resources;
 import android.net.Uri;
@@ -30,10 +34,14 @@ import android.text.TextUtils;
 public class PhoneNumberHelper {
     private final Resources mResources;
     private final String mVoicemailNumber;
+    private final PhoneNumberUtil mPhoneNumberUtil;
+    private final PhoneNumberOfflineGeocoder mPhoneNumberOfflineGeocoder;
 
     public PhoneNumberHelper(Resources resources, String voicemailNumber) {
         mResources = resources;
         mVoicemailNumber = voicemailNumber;
+        mPhoneNumberUtil = PhoneNumberUtil.getInstance();
+        mPhoneNumberOfflineGeocoder = PhoneNumberOfflineGeocoder.getInstance();
     }
 
     /** Returns true if it is possible to place a call to the given number. */
@@ -97,5 +105,27 @@ public class PhoneNumberHelper {
     /** Returns true if the given number is a SIP address. */
     public boolean isSipNumber(CharSequence number) {
         return PhoneNumberUtils.isUriNumber(number.toString());
+    }
+
+    /**
+     * Returns a structured phone number from the given text representation, or null if the number
+     * cannot be parsed.
+     */
+    public PhoneNumber parsePhoneNumber(String number, String countryIso) {
+        try {
+            return mPhoneNumberUtil.parse(number, countryIso);
+        } catch (NumberParseException e) {
+            return null;
+        }
+    }
+
+    /** Returns the geocode associated with a phone number or the empty string if not available. */
+    public String getGeocodeForNumber(PhoneNumber structuredPhoneNumber) {
+        if (structuredPhoneNumber != null) {
+            return mPhoneNumberOfflineGeocoder.getDescriptionForNumber(
+                    structuredPhoneNumber, mResources.getConfiguration().locale);
+        } else {
+            return "";
+        }
     }
 }

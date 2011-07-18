@@ -16,6 +16,8 @@
 
 package com.android.contacts;
 
+import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
+
 import android.net.Uri;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
@@ -28,6 +30,8 @@ public class PhoneCallDetails {
     public final CharSequence number;
     /** The formatted version of {@link #number}. */
     public final CharSequence formattedNumber;
+    /** The structured phone number corresponding to {@link #number}. */
+    public final PhoneNumber structuredPhoneNumber;
     /**
      * The type of calls, as defined in the call log table, e.g., {@link Calls#INCOMING_TYPE}.
      * <p>
@@ -53,17 +57,20 @@ public class PhoneCallDetails {
     public final Uri photoUri;
 
     /** Create the details for a call with a number not associated with a contact. */
-    public PhoneCallDetails(CharSequence number, CharSequence formattedNumber, int[] callTypes,
-            long date, long duration) {
-        this(number, formattedNumber, callTypes, date, duration, "", 0, "", -1L, null);
+    public PhoneCallDetails(CharSequence number, CharSequence formattedNumber,
+            PhoneNumber structuredPhoneNumber, int[] callTypes, long date, long duration) {
+        this(number, formattedNumber, structuredPhoneNumber, callTypes, date, duration,
+                "", 0, "", -1L, null);
     }
 
     /** Create the details for a call with a number associated with a contact. */
-    public PhoneCallDetails(CharSequence number, CharSequence formattedNumber, int[] callTypes,
-            long date, long duration, CharSequence name, int numberType, CharSequence numberLabel,
-            long personId, Uri photoUri) {
+    public PhoneCallDetails(CharSequence number, CharSequence formattedNumber,
+            PhoneNumber structuredPhoneNumber, int[] callTypes, long date, long duration,
+            CharSequence name, int numberType, CharSequence numberLabel, long personId,
+            Uri photoUri) {
         this.number = number;
         this.formattedNumber = formattedNumber;
+        this.structuredPhoneNumber = structuredPhoneNumber;
         this.callTypes = callTypes;
         this.date = date;
         this.duration = duration;

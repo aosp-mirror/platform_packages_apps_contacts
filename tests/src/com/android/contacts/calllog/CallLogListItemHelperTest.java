@@ -21,6 +21,7 @@ import com.android.contacts.PhoneCallDetailsHelper;
 import com.android.contacts.PhoneCallDetailsViews;
 import com.android.contacts.R;
 import com.android.internal.telephony.CallerInfo;
+import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -49,24 +50,19 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
     private static final long TEST_DURATION = 62300;
     /** A test voicemail number. */
     private static final String TEST_VOICEMAIL_NUMBER = "123";
-    /** A drawable to be used for incoming calls. */
-    private static final Drawable TEST_INCOMING_DRAWABLE = new ColorDrawable(Color.BLACK);
-    /** A drawable to be used for outgoing calls. */
-    private static final Drawable TEST_OUTGOING_DRAWABLE = new ColorDrawable(Color.BLUE);
-    /** A drawable to be used for missed calls. */
-    private static final Drawable TEST_MISSED_DRAWABLE = new ColorDrawable(Color.RED);
-    /** A drawable to be used for voicemails. */
-    private static final Drawable TEST_VOICEMAIL_DRAWABLE = new ColorDrawable(Color.RED);
     /** A drawable to be used for the call action. */
     private static final Drawable TEST_CALL_DRAWABLE = new ColorDrawable(Color.RED);
     /** A drawable to be used for the play action. */
     private static final Drawable TEST_PLAY_DRAWABLE = new ColorDrawable(Color.RED);
+    /** The country ISO name used in the tests. */
+    private static final String TEST_COUNTRY_ISO = "US";
 
     /** The object under test. */
     private CallLogListItemHelper mHelper;
 
     /** The views used in the tests. */
     private CallLogListItemViews mViews;
+    private PhoneNumberHelper mPhoneNumberHelper;
 
     @Override
     protected void setUp() throws Exception {
@@ -78,11 +74,10 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
                 resources.getDrawable(R.drawable.ic_call_outgoing_holo_dark),
                 resources.getDrawable(R.drawable.ic_call_missed_holo_dark),
                 resources.getDrawable(R.drawable.ic_call_voicemail_holo_dark));
-        PhoneNumberHelper phoneNumberHelper =
-                new PhoneNumberHelper(resources, TEST_VOICEMAIL_NUMBER);
+        mPhoneNumberHelper = new PhoneNumberHelper(resources, TEST_VOICEMAIL_NUMBER);
         PhoneCallDetailsHelper phoneCallDetailsHelper = new PhoneCallDetailsHelper(context,
-                resources, callTypeHelper, phoneNumberHelper);
-        mHelper = new CallLogListItemHelper(phoneCallDetailsHelper, phoneNumberHelper,
+                resources, callTypeHelper, mPhoneNumberHelper);
+        mHelper = new CallLogListItemHelper(phoneCallDetailsHelper, mPhoneNumberHelper,
                 TEST_CALL_DRAWABLE, TEST_PLAY_DRAWABLE);
         mViews = CallLogListItemViews.createForTest(new QuickContactBadge(context),
                 new ImageView(context), PhoneCallDetailsViews.createForTest(new TextView(context),
@@ -133,17 +128,21 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
 
     /** Sets the details of a phone call using the specified phone number. */
     private void setPhoneCallDetailsWithNumber(String number, String formattedNumber) {
+        PhoneNumber structuredPhoneNumber =
+                mPhoneNumberHelper.parsePhoneNumber(number, TEST_COUNTRY_ISO);
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(number, formattedNumber, new int[]{ Calls.INCOMING_TYPE },
-                        TEST_DATE, TEST_DURATION),
+                new PhoneCallDetails(number, formattedNumber, structuredPhoneNumber,
+                        new int[]{ Calls.INCOMING_TYPE }, TEST_DATE, TEST_DURATION),
                 true, false);
     }
 
     /** Sets the details of a phone call using the specified call type. */
     private void setPhoneCallDetailsWithTypes(int... types) {
+        PhoneNumber structuredPhoneNumber =
+                mPhoneNumberHelper.parsePhoneNumber(TEST_NUMBER, TEST_COUNTRY_ISO);
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(
-                        TEST_NUMBER, TEST_FORMATTED_NUMBER, types, TEST_DATE, TEST_DURATION),
+                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, structuredPhoneNumber,
+                        types, TEST_DATE, TEST_DURATION),
                 true, false);
     }
 }
