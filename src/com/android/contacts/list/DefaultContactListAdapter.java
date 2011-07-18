@@ -66,11 +66,15 @@ public class DefaultContactListAdapter extends ContactListAdapter {
             }
             query = query.trim();
             if (TextUtils.isEmpty(query)) {
-                // Regardless of the directory, we don't want anything returned,
-                // so let's just send a "nothing" query to the local directory.
-                loader.setUri(Contacts.CONTENT_URI);
-                loader.setProjection(PROJECTION_CONTACT);
-                loader.setSelection("0");
+                // Special case: if the query string is empty, show all contacts, regardless of the
+                // current filter.
+                // (We can't use the FILTER_URI for this, as the contacts provider would return
+                // an empty cursor if the query is empty.)
+                final ContactListFilter allFilter = ContactListFilter.createFilterWithType(
+                        ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
+                configureUri(loader, directoryId, allFilter);
+                configureProjection(loader, directoryId, allFilter);
+                configureSelection(loader, directoryId, allFilter);
             } else {
                 Builder builder = Contacts.CONTENT_FILTER_URI.buildUpon();
                 builder.appendPath(query);      // Builder will encode the query
@@ -244,5 +248,17 @@ public class DefaultContactListAdapter extends ContactListAdapter {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         return prefs.getBoolean(ContactsPreferences.PREF_DISPLAY_ONLY_PHONES,
                 ContactsPreferences.PREF_DISPLAY_ONLY_PHONES_DEFAULT);
+    }
+
+    @Override
+    public boolean isEmpty() {
+        // ContactEntryListAdapter.isEmpty() returns false when in the search mode && the query is
+        // empty.  Here, we want to return all contacts in this case, override it and make it
+        // always return false.  See the TODO there -- we may not need this method entirely.
+        if (isSearchMode()) {
+            return false;
+        } else {
+            return super.isEmpty();
+        }
     }
 }
