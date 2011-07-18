@@ -67,7 +67,6 @@ import android.widget.TextView;
 import java.util.LinkedList;
 import java.util.List;
 
-
 /**
  * Displays a list of call log entries.
  */
@@ -167,16 +166,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         public static ContactInfo EMPTY = new ContactInfo();
     }
 
-    public static final class CallerInfoQuery {
-        public String number;
-        public int position;
-        public String name;
-        public int numberType;
-        public String numberLabel;
-        public Uri thumbnailUri;
-        public String lookupKey;
-    }
-
     /** Encapsulates the information needed to call a number from the call log. */
     public static final class NumberAndType {
         private final String mNumber;
@@ -244,7 +233,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
          * The requests are added when displaying the contacts and are processed by a background
          * thread.
          */
-        private final LinkedList<CallerInfoQuery> mRequests;
+        private final LinkedList<String> mRequests;
 
         private volatile boolean mDone;
         private boolean mLoading = true;
@@ -306,7 +295,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             super(getActivity());
 
             mContactInfoCache = ExpirableCache.create(CONTACT_INFO_CACHE_SIZE);
-            mRequests = new LinkedList<CallerInfoQuery>();
+            mRequests = new LinkedList<String>();
             mPreDrawListener = null;
 
             Resources resources = getResources();
@@ -383,19 +372,12 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             mContactInfoCache.expireAll();
         }
 
-        private void enqueueRequest(String number, boolean immediate, int position, String name,
-                int numberType, String numberLabel, Uri thumbnailUri, String lookupKey) {
-            CallerInfoQuery ciq = new CallerInfoQuery();
-            ciq.number = number;
-            ciq.position = position;
-            ciq.name = name;
-            ciq.numberType = numberType;
-            ciq.numberLabel = numberLabel;
-            ciq.thumbnailUri = thumbnailUri;
-            ciq.lookupKey = lookupKey;
+        private void enqueueRequest(String number, boolean immediate) {
             synchronized (mRequests) {
-                mRequests.add(ciq);
-                mRequests.notifyAll();
+                if (!mRequests.contains(number)) {
+                    mRequests.add(number);
+                    mRequests.notifyAll();
+                }
             }
             if (mFirst && immediate) {
                 startRequestProcessing();
@@ -403,10 +385,10 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             }
         }
 
-        private boolean queryContactInfo(CallerInfoQuery ciq) {
+        private boolean queryContactInfo(String number) {
             // First check if there was a prior request for the same number
             // that was already satisfied
-            ContactInfo info = mContactInfoCache.get(ciq.number);
+            ContactInfo info = mContactInfoCache.get(number);
             boolean needNotify = false;
             if (info != null && info != ContactInfo.EMPTY) {
                 return true;
@@ -414,7 +396,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                 // Ok, do a fresh Contacts lookup for ciq.number.
                 boolean infoUpdated = false;
 
-                if (PhoneNumberUtils.isUriNumber(ciq.number)) {
+                if (PhoneNumberUtils.isUriNumber(number)) {
                     // This "number" is really a SIP address.
 
                     // TODO: This code is duplicated from the
@@ -437,7 +419,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                     String selection = "upper(" + Data.DATA1 + ")=?"
                             + " AND "
                             + Data.MIMETYPE + "='" + SipAddress.CONTENT_ITEM_TYPE + "'";
-                    String[] selectionArgs = new String[] { ciq.number.toUpperCase() };
+                    String[] selectionArgs = new String[] { number.toUpperCase() };
 
                     Cursor dataTableCursor =
                             getActivity().getContentResolver().query(
@@ -490,7 +472,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                     Cursor phonesCursor =
                             getActivity().getContentResolver().query(
                                 Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI,
-                                        Uri.encode(ciq.number)),
+                                        Uri.encode(number)),
                                         PhoneQuery._PROJECTION, null, null, null);
                     if (phonesCursor != null) {
                         if (phonesCursor.moveToFirst()) {
@@ -520,9 +502,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                     // New incoming phone number invalidates our formatted
                     // cache. Any cache fills happen only on the GUI thread.
                     info.formattedNumber = null;
-
-                    mContactInfoCache.put(ciq.number, info);
-
+                    mContactInfoCache.put(number, info);
                     // Inform list to update this item, if in view
                     needNotify = true;
                 }
@@ -538,10 +518,10 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         public void run() {
             boolean needNotify = false;
             while (!mDone) {
-                CallerInfoQuery ciq = null;
+                String number = null;
                 synchronized (mRequests) {
                     if (!mRequests.isEmpty()) {
-                        ciq = mRequests.removeFirst();
+                        number = mRequests.removeFirst();
                     } else {
                         if (needNotify) {
                             needNotify = false;
@@ -555,7 +535,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                         }
                     }
                 }
-                if (!mDone && ciq != null && queryContactInfo(ciq)) {
+                if (!mDone && number != null && queryContactInfo(number)) {
                     needNotify = true;
                 }
             }
@@ -725,36 +705,32 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                     mContactInfoCache.getCachedValue(number);
             ContactInfo info = cachedInfo == null ? null : cachedInfo.getValue();
             if (cachedInfo == null) {
-                // Mark it as empty and queue up a request to find the name
-                // The db request should happen on a non-UI thread
+                // Mark it as empty and queue up a request to find the name.
+                // The db request should happen on a non-UI thread.
                 info = ContactInfo.EMPTY;
-                // Format the cached call_log phone number
-                formattedNumber = formatPhoneNumber(number, null, countryIso);
                 mContactInfoCache.put(number, info);
-                Log.d(TAG, "Contact info missing: " + number);
                 // Request the contact details immediately since they are currently missing.
-                enqueueRequest(number, true, c.getPosition(), "", 0, "", null, "");
-            } else if (info != ContactInfo.EMPTY) { // Has been queried
+                enqueueRequest(number, true);
+                // Format the phone number in the call log as best as we can.
+                formattedNumber = formatPhoneNumber(number, null, countryIso);
+            } else {
                 if (cachedInfo.isExpired()) {
-                    Log.d(TAG, "Contact info expired: " + number);
-                    // Put it back in the cache, therefore marking it as not expired, so that other
-                    // entries with the same number will not re-request it.
-                    mContactInfoCache.put(number, info);
                     // The contact info is no longer up to date, we should request it. However, we
                     // do not need to request them immediately.
-                    enqueueRequest(number, false, c.getPosition(), info.name, info.type, info.label,
-                            info.thumbnailUri, info.lookupKey);
+                    enqueueRequest(number, false);
                 }
 
-                // Format and cache phone number for found contact
-                if (info.formattedNumber == null) {
-                    info.formattedNumber =
-                            formatPhoneNumber(info.number, info.normalizedNumber, countryIso);
+                if (info != ContactInfo.EMPTY) {
+                    // Format and cache phone number for found contact.
+                    if (info.formattedNumber == null) {
+                        info.formattedNumber =
+                                formatPhoneNumber(info.number, info.normalizedNumber, countryIso);
+                    }
+                    formattedNumber = info.formattedNumber;
+                } else {
+                    // Format the phone number in the call log as best as we can.
+                    formattedNumber = formatPhoneNumber(number, null, countryIso);
                 }
-                formattedNumber = info.formattedNumber;
-            } else {
-                // Format the cached call_log phone number
-                formattedNumber = formatPhoneNumber(number, null, countryIso);
             }
 
             final long personId = info.personId;
