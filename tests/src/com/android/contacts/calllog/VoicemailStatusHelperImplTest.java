@@ -32,6 +32,7 @@ import com.android.contacts.calllog.VoicemailStatusHelper.StatusMessage;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.net.Uri;
 import android.provider.VoicemailContract.Status;
 import android.test.AndroidTestCase;
@@ -71,7 +72,7 @@ public class VoicemailStatusHelperImplTest extends AndroidTestCase {
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        mStatusHelper = new VoicemailStatusHelperImpl(getContentResolver());
+        mStatusHelper = new VoicemailStatusHelperImpl();
     }
 
     @Override
@@ -87,14 +88,15 @@ public class VoicemailStatusHelperImplTest extends AndroidTestCase {
         super.tearDown();
     }
 
+
     public void testNoStatusEntries() {
-        assertEquals(0, mStatusHelper.getStatusMessages().size());
+        assertEquals(0, getStatusMessages().size());
     }
 
     public void testAllOK() {
         insertEntryForPackage(TEST_PACKAGE_1, getAllOkStatusValues());
         insertEntryForPackage(TEST_PACKAGE_2, getAllOkStatusValues());
-        assertEquals(0, mStatusHelper.getStatusMessages().size());
+        assertEquals(0, getStatusMessages().size());
     }
 
     public void testNotAllOKForOnePackage() {
@@ -167,7 +169,7 @@ public class VoicemailStatusHelperImplTest extends AndroidTestCase {
         // package2 with  valuesNoNotificationNoDataChannel. Package2 should be above.
         updateEntryForPackage(TEST_PACKAGE_1, valuesNoNotificationGoodDataChannel);
         updateEntryForPackage(TEST_PACKAGE_2, valuesNoNotificationNoDataChannel);
-        List<StatusMessage> messages = mStatusHelper.getStatusMessages();
+        List<StatusMessage> messages = getStatusMessages();
         assertEquals(2, messages.size());
         assertEquals(TEST_PACKAGE_1, messages.get(1).sourcePackage);
         assertEquals(TEST_PACKAGE_2, messages.get(0).sourcePackage);
@@ -175,7 +177,7 @@ public class VoicemailStatusHelperImplTest extends AndroidTestCase {
         // Now reverse the values - ordering should be reversed as well.
         updateEntryForPackage(TEST_PACKAGE_1, valuesNoNotificationNoDataChannel);
         updateEntryForPackage(TEST_PACKAGE_2, valuesNoNotificationGoodDataChannel);
-        messages = mStatusHelper.getStatusMessages();
+        messages = getStatusMessages();
         assertEquals(2, messages.size());
         assertEquals(TEST_PACKAGE_1, messages.get(0).sourcePackage);
         assertEquals(TEST_PACKAGE_2, messages.get(1).sourcePackage);
@@ -190,7 +192,7 @@ public class VoicemailStatusHelperImplTest extends AndroidTestCase {
 
     private void checkExpectedMessage(String sourcePackage, ContentValues values,
             int expectedStatusMsg, int expectedActionMsg, Uri expectedUri) {
-        List<StatusMessage> messages = mStatusHelper.getStatusMessages();
+        List<StatusMessage> messages = getStatusMessages();
         assertEquals(1, messages.size());
         checkMessageMatches(messages.get(0), sourcePackage, expectedStatusMsg, expectedActionMsg,
                 expectedUri);
@@ -210,7 +212,7 @@ public class VoicemailStatusHelperImplTest extends AndroidTestCase {
 
     private void checkNoMessages(String sourcePackage, ContentValues values) {
         assertEquals(1, updateEntryForPackage(sourcePackage, values));
-        List<StatusMessage> messages = mStatusHelper.getStatusMessages();
+        List<StatusMessage> messages = getStatusMessages();
         assertEquals(0, messages.size());
     }
 
@@ -239,6 +241,12 @@ public class VoicemailStatusHelperImplTest extends AndroidTestCase {
     private int updateEntryForPackage(String sourcePackage, ContentValues values) {
         return getContentResolver().update(
                 Status.buildSourceUri(sourcePackage), values, null, null);
+    }
+
+    private List<StatusMessage> getStatusMessages() {
+        Cursor cursor = getContentResolver().query(Status.CONTENT_URI,
+                VoicemailStatusHelperImpl.PROJECTION, null, null, null);
+        return mStatusHelper.getStatusMessages(cursor);
     }
 
     private ContentResolver getContentResolver() {

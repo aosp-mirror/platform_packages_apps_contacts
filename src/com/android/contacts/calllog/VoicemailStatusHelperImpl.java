@@ -27,7 +27,6 @@ import static android.provider.VoicemailContract.Status.NOTIFICATION_CHANNEL_STA
 import com.android.common.io.MoreCloseables;
 import com.android.contacts.R;
 
-import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.VoicemailContract.Status;
@@ -46,7 +45,8 @@ public class VoicemailStatusHelperImpl implements VoicemailStatusHelper {
     private static final int SETTINGS_URI_INDEX = 4;
     private static final int VOICEMAIL_ACCESS_URI_INDEX = 5;
     private static final int NUM_COLUMNS = 6;
-    private static final String[] PROJECTION = new String[NUM_COLUMNS];
+    /** Projection on the voicemail_status table used by this class. */
+    protected static final String[] PROJECTION = new String[NUM_COLUMNS];
     static {
         PROJECTION[SOURCE_PACKAGE_INDEX] = Status.SOURCE_PACKAGE;
         PROJECTION[CONFIGURATION_STATE_INDEX] = Status.CONFIGURATION_STATE;
@@ -127,12 +127,6 @@ public class VoicemailStatusHelperImpl implements VoicemailStatusHelper {
         }
     }
 
-    private final ContentResolver mContentResolver;
-
-    public VoicemailStatusHelperImpl(ContentResolver contentResolver) {
-        mContentResolver = contentResolver;
-    }
-
     /** A wrapper on {@link StatusMessage} which additionally stores the priority of the message. */
     private static class MessageStatusWithPriority {
         private final StatusMessage mMessage;
@@ -145,12 +139,10 @@ public class VoicemailStatusHelperImpl implements VoicemailStatusHelper {
     }
 
     @Override
-    public List<StatusMessage> getStatusMessages() {
-        Cursor cursor = null;
+    public List<StatusMessage> getStatusMessages(Cursor cursor) {
         try {
-            cursor = mContentResolver.query(Status.CONTENT_URI, PROJECTION, null, null, null);
             List<MessageStatusWithPriority> messages =
-                    new ArrayList<VoicemailStatusHelperImpl.MessageStatusWithPriority>();
+                new ArrayList<VoicemailStatusHelperImpl.MessageStatusWithPriority>();
             while(cursor.moveToNext()) {
                 MessageStatusWithPriority message = getMessageForStatusEntry(cursor);
                 if (message != null) {

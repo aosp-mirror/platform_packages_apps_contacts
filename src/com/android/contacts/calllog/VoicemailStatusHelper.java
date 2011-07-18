@@ -16,7 +16,9 @@
 
 package com.android.contacts.calllog;
 
+import android.database.Cursor;
 import android.net.Uri;
+import android.provider.VoicemailContract.Status;
 
 import java.util.List;
 
@@ -51,6 +53,10 @@ public interface VoicemailStatusHelper {
     /**
      * Returns a list of messages, in the order or priority that should be shown to the user. An
      * empty list is returned if no message needs to be shown.
+     * @param cursor The cursor pointing to the query on {@link Status#CONTENT_URI}. The projection
+     *      to be used is defined by the implementation class of this interface.
+     *      The class takes over the ownership of the cursor and closes it after processing the
+     *      request.
      */
-    public List<StatusMessage> getStatusMessages();
+    public List<StatusMessage> getStatusMessages(Cursor cursor);
 }

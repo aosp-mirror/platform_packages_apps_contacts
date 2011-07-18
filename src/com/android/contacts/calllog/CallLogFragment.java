@@ -334,7 +334,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         @Override
         protected void onContentChanged() {
             // Start async requery
-            startQuery();
+            startCallsQuery();
         }
 
         void setLoading(boolean loading) {
@@ -887,10 +887,20 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         }
     }
 
+    /**
+     * Called by {@link CallLogQueryHandler} after a successful query to voicemail status provider.
+     */
+    public void onVoicemailStatusFetched(Cursor statusCursor) {
+        if (getActivity() == null || getActivity().isFinishing()) {
+            return;
+        }
+        updateVoicemailStatusMessage(statusCursor);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
         View view = inflater.inflate(R.layout.call_log_fragment, container, false);
-        mVoicemailStatusHelper = new VoicemailStatusHelperImpl(getActivity().getContentResolver());
+        mVoicemailStatusHelper = new VoicemailStatusHelperImpl();
         mStatusMessageView = view.findViewById(R.id.voicemail_status);
         mStatusMessageText = (TextView) view.findViewById(R.id.voicemail_status_message);
         mStatusMessageAction = (TextView) view.findViewById(R.id.voicemail_status_action);
@@ -918,17 +928,16 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             mAdapter.invalidateCache();
         }
 
-        startQuery();
+        startCallsQuery();
         resetNewCallsFlag();
-        updateVoicemailStatusMessage();
+        startVoicemailStatusQuery();
         super.onResume();
 
         mAdapter.mPreDrawListener = null; // Let it restart the thread after next draw
     }
 
-    private void updateVoicemailStatusMessage() {
-        // TODO: make call to mVoicemailStatusHelper asynchronously.
-        List<StatusMessage> messages = mVoicemailStatusHelper.getStatusMessages();
+    private void updateVoicemailStatusMessage(Cursor statusCursor) {
+        List<StatusMessage> messages = mVoicemailStatusHelper.getStatusMessages(statusCursor);
         if (messages.size() == 0) {
             mStatusMessageView.setVisibility(View.GONE);
         } else {
@@ -1000,9 +1009,13 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         mCallLogQueryHandler.updateMissedCalls();
     }
 
-    private void startQuery() {
+    private void startCallsQuery() {
         mAdapter.setLoading(true);
         mCallLogQueryHandler.fetchCalls();
+    }
+
+    private void startVoicemailStatusQuery() {
+        mCallLogQueryHandler.fetchVoicemailStatus();
     }
 
     @Override
