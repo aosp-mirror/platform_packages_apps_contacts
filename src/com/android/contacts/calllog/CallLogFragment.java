@@ -653,7 +653,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         public View newChildView(Context context, ViewGroup parent) {
             LayoutInflater inflater =
                     (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.call_log_list_child_item, parent, false);
+            View view = inflater.inflate(R.layout.call_log_list_item, parent, false);
             findAndCacheViews(view);
             return view;
         }
@@ -669,7 +669,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         public View newGroupView(Context context, ViewGroup parent) {
             LayoutInflater inflater =
                     (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.call_log_list_group_item, parent, false);
+            View view = inflater.inflate(R.layout.call_log_list_item, parent, false);
             findAndCacheViews(view);
             return view;
         }
@@ -701,24 +701,21 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             final CallLogListItemViews views = (CallLogListItemViews) view.getTag();
             final int section = c.getInt(CallLogQuery.SECTION);
 
-            if (views.standAloneItemView != null) {
-                // This is stand-alone item: it might, however, be a header: check the value of the
-                // section column in the cursor.
-                if (section == CallLogQuery.SECTION_NEW_HEADER
-                        || section == CallLogQuery.SECTION_OLD_HEADER) {
-                    views.standAloneItemView.setVisibility(View.GONE);
-                    views.standAloneHeaderView.setVisibility(View.VISIBLE);
-                    views.standAloneHeaderTextView.setText(
-                            section == CallLogQuery.SECTION_NEW_HEADER
-                                    ? R.string.call_log_new_header
-                                    : R.string.call_log_old_header);
-                    // Nothing else to set up for a header.
-                    return;
-                }
-                // Default case: an item in the call log.
-                views.standAloneItemView.setVisibility(View.VISIBLE);
-                views.standAloneHeaderView.setVisibility(View.GONE);
+            // This might be a header: check the value of the section column in the cursor.
+            if (section == CallLogQuery.SECTION_NEW_HEADER
+                    || section == CallLogQuery.SECTION_OLD_HEADER) {
+                views.listItemView.setVisibility(View.GONE);
+                views.listHeaderView.setVisibility(View.VISIBLE);
+                views.listHeaderTextView.setText(
+                        section == CallLogQuery.SECTION_NEW_HEADER
+                                ? R.string.call_log_new_header
+                                : R.string.call_log_old_header);
+                // Nothing else to set up for a header.
+                return;
             }
+            // Default case: an item in the call log.
+            views.listItemView.setVisibility(View.VISIBLE);
+            views.listHeaderView.setVisibility(View.GONE);
 
             final String number = c.getString(CallLogQuery.NUMBER);
             final long date = c.getLong(CallLogQuery.DATE);

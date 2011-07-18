@@ -4,7 +4,6 @@
         android:id="@+id/contact_photo"
         android:layout_width="?attr/call_log_list_contact_photo_size"
         android:layout_height="?attr/call_log_list_contact_photo_size"
-        android:layout_margin="?attr/call_log_list_contact_photo_margin"
         android:layout_alignParentLeft="true"
         android:layout_gravity="center_vertical"
     />

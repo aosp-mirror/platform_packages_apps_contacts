@@ -35,21 +35,21 @@ public final class CallLogListItemViews {
     /** The details of the phone call. */
     public final PhoneCallDetailsViews phoneCallDetailsViews;
     /** The item view for a stand-alone row, or null for other types of rows. */
-    public final View standAloneItemView;
+    public final View listItemView;
     /** The header view for a stand-alone row, or null for other types of rows. */
-    public final View standAloneHeaderView;
+    public final View listHeaderView;
     /** The text of the header in a stand-alone row, or null for other types of rows. */
-    public final TextView standAloneHeaderTextView;
+    public final TextView listHeaderTextView;
 
     private CallLogListItemViews(QuickContactBadge photoView, ImageView callView,
-            PhoneCallDetailsViews phoneCallDetailsViews, View standAloneItemView,
-            View standAloneHeaderView, TextView standAloneHeaderTextView) {
+            PhoneCallDetailsViews phoneCallDetailsViews, View listItemView,
+            View listHeaderView, TextView listHeaderTextView) {
         this.photoView = photoView;
         this.callView = callView;
         this.phoneCallDetailsViews = phoneCallDetailsViews;
-        this.standAloneItemView = standAloneItemView;
-        this.standAloneHeaderView = standAloneHeaderView;
-        this.standAloneHeaderTextView = standAloneHeaderTextView;
+        this.listItemView = listItemView;
+        this.listHeaderView = listHeaderView;
+        this.listHeaderTextView = listHeaderTextView;
     }
 
     public static CallLogListItemViews fromView(View view) {

@@ -60,7 +60,7 @@
     <color name="call_log_missed_call_highlight_color">#FF0000</color>
 
     <!-- Color of the text describing an unconsumed voicemail. -->
-    <color name="call_log_voicemail_highlight_color">#0000FF</color>
+    <color name="call_log_voicemail_highlight_color">#33b5e5</color>
 
     <!-- Palette section:
          If you need a new color then add a new one and delete the ones that are no longer used. -->
