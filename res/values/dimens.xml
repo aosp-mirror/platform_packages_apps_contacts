@@ -155,6 +155,9 @@
     <!-- Height of list sections (A, B, C) that show the first character of the contacts -->
     <dimen name="list_section_height">25dip</dimen>
 
+    <!-- Border padding for the group list header for each account -->
+    <dimen name="group_list_header_padding">5dip</dimen>
+
     <!-- Border padding for the group detail fragment header -->
     <dimen name="group_detail_border_padding">20dip</dimen>
 

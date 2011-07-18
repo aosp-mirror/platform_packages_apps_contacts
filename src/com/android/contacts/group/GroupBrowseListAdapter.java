@@ -18,8 +18,10 @@ package com.android.contacts.group;
 
 import com.android.contacts.GroupMetaData;
 import com.android.contacts.R;
-import com.android.contacts.list.ContactListPinnedHeaderView;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypeManager;
 
+import android.accounts.Account;
 import android.content.ContentUris;
 import android.content.Context;
 import android.net.Uri;
@@ -41,8 +43,9 @@ import java.util.Map;
  */
 public class GroupBrowseListAdapter extends BaseAdapter {
 
-    private Context mContext;
-    private LayoutInflater mLayoutInflater;
+    private final Context mContext;
+    private final LayoutInflater mLayoutInflater;
+    private final AccountTypeManager mAccountTypeManager;
 
     private List<GroupListEntry> mGroupList = new ArrayList<GroupListEntry>();
     private boolean mSelectionVisible;
@@ -54,14 +57,16 @@ public class GroupBrowseListAdapter extends BaseAdapter {
 
     private static final int VIEW_TYPE_COUNT = ViewType.values().length;
 
-    public GroupBrowseListAdapter(Context context, Map<String, List<GroupMetaData>> groupMap) {
+    public GroupBrowseListAdapter(Context context, Map<Account, List<GroupMetaData>> groupMap) {
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
-        for (String accountName : groupMap.keySet()) {
-            List<GroupMetaData> groupsListForAccount = groupMap.get(accountName);
+        mAccountTypeManager = AccountTypeManager.getInstance(mContext);
 
-            // Add account name as header for section
-            mGroupList.add(GroupListEntry.createEntryForHeader(accountName,
+        for (Account account : groupMap.keySet()) {
+            List<GroupMetaData> groupsListForAccount = groupMap.get(account);
+
+            // Add account name, type, and # of groups as header for section
+            mGroupList.add(GroupListEntry.createEntryForHeader(account.name, account.type,
                     groupsListForAccount.size()));
 
             // Add groups within that account as subsequent list items.
@@ -151,15 +156,23 @@ public class GroupBrowseListAdapter extends BaseAdapter {
     }
 
     private View getHeaderView(GroupListEntry entry, View convertView, ViewGroup parent) {
-        ContactListPinnedHeaderView result = (ContactListPinnedHeaderView) (convertView == null ?
-                new ContactListPinnedHeaderView(mContext, null) :
+        View result = (convertView == null ?
+                mLayoutInflater.inflate(R.layout.group_list_header_item, parent, false) :
                 convertView);
+
+        TextView accountTypeTextView = (TextView) result.findViewById(R.id.account_type);
+        AccountType accountType = mAccountTypeManager.getAccountType(entry.accountType);
+        accountTypeTextView.setText(accountType.getDisplayLabel(mContext).toString().toUpperCase());
+
+        TextView accountNameTextView = (TextView) result.findViewById(R.id.account_name);
+        accountNameTextView.setText(entry.accountName);
+
         String groupCountString = mContext.getResources().getQuantityString(
                 R.plurals.num_groups_in_account, entry.count, entry.count);
-        // TODO: Format this correctly by using 2 TextViews when the
-        // ContactListPinnedHeaderView is refactored.
-        result.setSectionHeader(entry.title + " " + groupCountString);
-                        return result;
+        TextView groupCountTextView = (TextView) result.findViewById(R.id.group_count);
+        groupCountTextView.setText(groupCountString);
+
+        return result;
     }
 
     private View getGroupListItemView(GroupListEntry entry, View convertView, ViewGroup parent) {
@@ -179,7 +192,8 @@ public class GroupBrowseListAdapter extends BaseAdapter {
      */
     public static class GroupListEntry {
         public final ViewType type;
-        public final String title;
+        public final String accountType;
+        public final String accountName;
         public final int count;
         public final GroupMetaData groupData;
         /**
@@ -188,24 +202,27 @@ public class GroupBrowseListAdapter extends BaseAdapter {
          */
         public final long id;
 
-        private GroupListEntry(ViewType entryType, String headerTitle, int headerGroupCount,
-                GroupMetaData groupMetaData, long entryId) {
+        private GroupListEntry(ViewType entryType, String groupAccountName, String groupAccountType,
+                int headerGroupCount, GroupMetaData groupMetaData, long entryId) {
             type = entryType;
-            title = headerTitle;
+            accountName = groupAccountName;
+            accountType = groupAccountType;
             count = headerGroupCount;
             groupData = groupMetaData;
             id = entryId;
         }
 
-        public static GroupListEntry createEntryForHeader(String headerTitle, int groupCount) {
-            return new GroupListEntry(ViewType.HEADER, headerTitle, groupCount, null, -1);
+        public static GroupListEntry createEntryForHeader(String groupAccountName,
+                String groupAccountType, int groupCount) {
+            return new GroupListEntry(ViewType.HEADER, groupAccountName, groupAccountType,
+                    groupCount, null, -1);
         }
 
         public static GroupListEntry createEntryForGroup(GroupMetaData groupMetaData) {
             if (groupMetaData == null) {
                 throw new IllegalStateException("Cannot create list entry for a null group");
             }
-            return new GroupListEntry(ViewType.ITEM, null, 0, groupMetaData,
+            return new GroupListEntry(ViewType.ITEM, null, null, 0, groupMetaData,
                     groupMetaData.getGroupId());
         }
     }

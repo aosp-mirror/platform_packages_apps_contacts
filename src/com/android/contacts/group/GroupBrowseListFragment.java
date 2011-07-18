@@ -22,6 +22,7 @@ import com.android.contacts.R;
 import com.android.contacts.group.GroupBrowseListAdapter.GroupListItem;
 import com.android.contacts.widget.AutoScrollListView;
 
+import android.accounts.Account;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
@@ -82,12 +83,11 @@ public class GroupBrowseListFragment extends Fragment
     private static final String EXTRA_KEY_GROUP_URI = "groups.groupUri";
 
     /**
-     * Map of account name to a list of {@link GroupMetaData} objects
+     * Map of {@link Account} to a list of {@link GroupMetaData} objects
      * representing groups within that account.
-     * TODO: Change account name string into a wrapper object that has
-     * account name, type, and authority.
      */
-    private Map<String, List<GroupMetaData>> mGroupMap = new HashMap<String, List<GroupMetaData>>();
+    private final Map<Account, List<GroupMetaData>> mGroupMap =
+            new HashMap<Account, List<GroupMetaData>>();
 
     private View mRootView;
     private AutoScrollListView mListView;
@@ -214,14 +214,15 @@ public class GroupBrowseListFragment extends Fragment
 
             GroupMetaData newGroup = new GroupMetaData(accountName, accountType, groupId, title,
                     defaultGroup, favorites);
+            Account account = new Account(accountName, accountType);
 
-            if (mGroupMap.containsKey(accountName)) {
-                List<GroupMetaData> groups = mGroupMap.get(accountName);
+            if (mGroupMap.containsKey(account)) {
+                List<GroupMetaData> groups = mGroupMap.get(account);
                 groups.add(newGroup);
             } else {
                 List<GroupMetaData> groups = new ArrayList<GroupMetaData>();
                 groups.add(newGroup);
-                mGroupMap.put(accountName, groups);
+                mGroupMap.put(account, groups);
             }
 
         }
