@@ -49,7 +49,7 @@ import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.list.ProviderStatusLoader;
 import com.android.contacts.list.ProviderStatusLoader.ProviderStatusListener;
-import com.android.contacts.list.StrequentContactListFragment;
+import com.android.contacts.list.ContactTileListFragment;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.util.AccountSelectionUtil;
@@ -133,7 +133,7 @@ public class PeopleActivity extends ContactsActivity
     private final GroupDetailFragmentListener mGroupDetailFragmentListener =
             new GroupDetailFragmentListener();
 
-    private StrequentContactListFragment.Listener mFavoritesFragmentListener =
+    private ContactTileListFragment.Listener mFavoritesFragmentListener =
             new StrequentContactListFragmentListener();
 
     private ContactListFilterController mContactListFilterController;
@@ -148,8 +148,8 @@ public class PeopleActivity extends ContactsActivity
      * Showing a list of Contacts. Also used for showing search results in search mode.
      */
     private DefaultContactBrowseListFragment mAllFragment;
-    private StrequentContactListFragment mFavoritesFragment;
-    private StrequentContactListFragment mFrequentFragment;
+    private ContactTileListFragment mFavoritesFragment;
+    private ContactTileListFragment mFrequentFragment;
     private GroupBrowseListFragment mGroupsFragment;
 
     private View mFavoritesView;
@@ -326,7 +326,7 @@ public class PeopleActivity extends ContactsActivity
             // However, if it's after screen rotation, the fragments have been re-created by
             // the fragment manager, so first see if there're already the target fragments
             // existing.
-            mFavoritesFragment = (StrequentContactListFragment)
+            mFavoritesFragment = (ContactTileListFragment)
                     fragmentManager.findFragmentByTag(FAVORITE_TAG);
             mAllFragment = (DefaultContactBrowseListFragment)
                     fragmentManager.findFragmentByTag(ALL_TAG);
@@ -334,7 +334,7 @@ public class PeopleActivity extends ContactsActivity
                     fragmentManager.findFragmentByTag(GROUPS_TAG);
 
             if (mFavoritesFragment == null) {
-                mFavoritesFragment = new StrequentContactListFragment();
+                mFavoritesFragment = new ContactTileListFragment();
                 mAllFragment = new DefaultContactBrowseListFragment();
                 mGroupsFragment = new GroupBrowseListFragment();
 
@@ -359,6 +359,11 @@ public class PeopleActivity extends ContactsActivity
         if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
             // Prepare 2-pane only fragments/views...
 
+            // If setting 1-pane properties, make sure the fragment is created first
+            // by moving code after call to executePendingTransactions
+            mFavoritesFragment.setDisplayType(DisplayType.STARRED_ONLY);
+            mFavoritesFragment.enableQuickContact(true);
+
             // Container views for fragments
             mFavoritesView = getView(R.id.favorites_view);
             mDetailsView = getView(R.id.details_view);
@@ -368,7 +373,7 @@ public class PeopleActivity extends ContactsActivity
             mFrequentFragment = getFragment(R.id.frequent_fragment);
             mFrequentFragment.setListener(mFavoritesFragmentListener);
             mFrequentFragment.setDisplayType(DisplayType.FREQUENT_ONLY);
-            mFrequentFragment.setQuickContact(true);
+            mFrequentFragment.enableQuickContact(true);
 
             mContactDetailLoaderFragment = getFragment(R.id.contact_detail_loader_fragment);
             mContactDetailLoaderFragment.setListener(mContactDetailLoaderFragmentListener);
@@ -390,12 +395,6 @@ public class PeopleActivity extends ContactsActivity
         }
         transaction.commit();
         fragmentManager.executePendingTransactions();
-
-        // These operations below are only okay if the fragment is already created.
-        // Because we create the fragment dynamically on 1-pane, this has to be done after
-        // the fragment transaction is executed.
-        mFavoritesFragment.setQuickContact(PhoneCapabilityTester.isUsingTwoPanes(this));
-        mFavoritesFragment.setDisplayType(DisplayType.STARRED_ONLY);
 
         // Configure action bar
         mActionBarAdapter = new ActionBarAdapter(this, this, getActionBar());
@@ -1067,7 +1066,7 @@ public class PeopleActivity extends ContactsActivity
     }
 
     private final class StrequentContactListFragmentListener
-            implements StrequentContactListFragment.Listener {
+            implements ContactTileListFragment.Listener {
         @Override
         public void onContactSelected(Uri contactUri) {
             if (PhoneCapabilityTester.isUsingTwoPanes(PeopleActivity.this)) {

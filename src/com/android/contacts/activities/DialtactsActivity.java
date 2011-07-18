@@ -22,7 +22,7 @@ import com.android.contacts.dialpad.DialpadFragment;
 import com.android.contacts.interactions.PhoneNumberInteraction;
 import com.android.contacts.list.OnPhoneNumberPickerActionListener;
 import com.android.contacts.list.PhoneNumberPickerFragment;
-import com.android.contacts.list.StrequentContactListFragment;
+import com.android.contacts.list.ContactTileListFragment;
 import com.android.internal.telephony.ITelephony;
 
 import android.app.ActionBar;
@@ -109,7 +109,7 @@ public class DialtactsActivity extends Activity {
                 case TAB_INDEX_CALL_LOG:
                     return new CallLogFragment();
                 case TAB_INDEX_FAVORITES:
-                    return new StrequentContactListFragment();
+                    return new ContactTileListFragment();
             }
             throw new IllegalStateException("No fragment at position " + position);
         }
@@ -170,7 +170,7 @@ public class DialtactsActivity extends Activity {
     private final PageChangeListener mPageChangeListener = new PageChangeListener();
     private DialpadFragment mDialpadFragment;
     private CallLogFragment mCallLogFragment;
-    private StrequentContactListFragment mStrequentFragment;
+    private ContactTileListFragment mStrequentFragment;
 
     private final TabListener mTabListener = new TabListener() {
         @Override
@@ -331,9 +331,10 @@ public class DialtactsActivity extends Activity {
         } else if (fragment instanceof CallLogFragment) {
             mCallLogFragment = (CallLogFragment) fragment;
             mCallLogFragment.onVisibilityChanged(currentPosition == TAB_INDEX_CALL_LOG);
-        } else if (fragment instanceof StrequentContactListFragment) {
-            mStrequentFragment = (StrequentContactListFragment) fragment;
-            mStrequentFragment.setQuickContact(false);
+        } else if (fragment instanceof ContactTileListFragment) {
+            mStrequentFragment = (ContactTileListFragment) fragment;
+            mStrequentFragment.enableQuickContact(false);
+            mStrequentFragment.enableSecondaryTarget(true);
             mStrequentFragment.setListener(mStrequentListener);
         } else if (fragment instanceof PhoneNumberPickerFragment) {
             mSearchFragment = (PhoneNumberPickerFragment) fragment;
@@ -574,8 +575,8 @@ public class DialtactsActivity extends Activity {
         }
     };
 
-    private StrequentContactListFragment.Listener mStrequentListener =
-            new StrequentContactListFragment.Listener() {
+    private ContactTileListFragment.Listener mStrequentListener =
+            new ContactTileListFragment.Listener() {
         @Override
         public void onContactSelected(Uri contactUri) {
             PhoneNumberInteraction.startInteractionForPhoneCall(

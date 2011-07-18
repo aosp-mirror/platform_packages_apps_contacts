@@ -15,14 +15,16 @@
  */
 package com.android.contacts;
 
+import com.android.contacts.list.ContactTileView;
+
 import android.content.Context;
 import android.content.CursorLoader;
 import android.provider.ContactsContract.Contacts;
 
 /**
- * Strequent meta-data loader.  Loads all starred and frequent contacts from the database.
+ * Used to create {@link CursorLoader}s to load different groups of {@link ContactTileView}s
  */
-public final class StrequentMetaDataLoader extends CursorLoader {
+public final class ContactTileLoaderFactory {
 
     public final static int CONTACT_ID = 0;
     public final static int DISPLAY_NAME = 1;
@@ -38,7 +40,17 @@ public final class StrequentMetaDataLoader extends CursorLoader {
         Contacts.LOOKUP_KEY
     };
 
-    public StrequentMetaDataLoader(Context context) {
-        super(context, Contacts.CONTENT_STREQUENT_URI, COLUMNS, null, null, null);
+    public static CursorLoader createStrequentLoader(Context context) {
+        return new CursorLoader(context, Contacts.CONTENT_STREQUENT_URI, COLUMNS, null, null, null);
+    }
+
+    public static CursorLoader createStarredLoader(Context context) {
+        return new CursorLoader(context, Contacts.CONTENT_URI, COLUMNS,
+                Contacts.STARRED + "=?", new String[]{"1"}, Contacts.DISPLAY_NAME + " ASC");
+    }
+
+    public static CursorLoader createFrequentLoader(Context context) {
+        return new CursorLoader(context, Contacts.CONTENT_STREQUENT_URI, COLUMNS,
+                 Contacts.STARRED + "=?", new String[]{"0"}, null);
     }
 }

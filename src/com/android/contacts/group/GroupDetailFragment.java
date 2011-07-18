@@ -143,7 +143,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
     }
 
     public void setQuickContact(boolean enableQuickContact) {
-        mAdapter.setQuickContact(enableQuickContact);
+        mAdapter.enableQuickContact(enableQuickContact);
     }
 
     private void configureAdapter(long groupId) {
@@ -241,7 +241,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
             updateSize(data.getCount());
-            mAdapter.loadFromCursor(data);
+            mAdapter.setContactCursor(data);
         }
 
         @Override
