@@ -18,6 +18,7 @@ package com.android.contacts;
 
 import com.android.contacts.model.AccountTypeManager;
 import com.google.android.collect.Lists;
+import com.google.android.collect.Sets;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -42,8 +43,9 @@ import android.widget.ImageView;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.lang.ref.SoftReference;
-import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -439,8 +441,8 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
     /**
      * Populates an array of photo IDs that need to be loaded.
      */
-    private void obtainPhotoIdsAndUrisToLoad(ArrayList<Long> photoIds,
-            ArrayList<String> photoIdsAsStrings, ArrayList<Uri> uris) {
+    private void obtainPhotoIdsAndUrisToLoad(Set<Long> photoIds,
+            Set<String> photoIdsAsStrings, Set<Uri> uris) {
         photoIds.clear();
         photoIdsAsStrings.clear();
         uris.clear();
@@ -494,10 +496,10 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
 
         private final ContentResolver mResolver;
         private final StringBuilder mStringBuilder = new StringBuilder();
-        private final ArrayList<Long> mPhotoIds = Lists.newArrayList();
-        private final ArrayList<String> mPhotoIdsAsStrings = Lists.newArrayList();
-        private final ArrayList<Uri> mPhotoUris = Lists.newArrayList();
-        private ArrayList<Long> mPreloadPhotoIds = Lists.newArrayList();
+        private final Set<Long> mPhotoIds = Sets.newHashSet();
+        private final Set<String> mPhotoIdsAsStrings = Sets.newHashSet();
+        private final Set<Uri> mPhotoUris = Sets.newHashSet();
+        private final List<Long> mPreloadPhotoIds = Lists.newArrayList();
 
         private Handler mLoaderThreadHandler;
         private byte mBuffer[];
@@ -657,16 +659,15 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         }
 
         private void loadPhotosFromDatabase(boolean preloading) {
-            int count = mPhotoIds.size();
-            if (count == 0) {
+            if (mPhotoIds.isEmpty()) {
                 return;
             }
 
             // Remove loaded photos from the preload queue: we don't want
             // the preloading process to load them again.
             if (!preloading && mPreloadStatus == PRELOAD_STATUS_IN_PROGRESS) {
-                for (int i = 0; i < count; i++) {
-                    mPreloadPhotoIds.remove(mPhotoIds.get(i));
+                for (Long id : mPhotoIds) {
+                    mPreloadPhotoIds.remove(id);
                 }
                 if (mPreloadPhotoIds.isEmpty()) {
                     mPreloadStatus = PRELOAD_STATUS_DONE;
@@ -675,7 +676,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
 
             mStringBuilder.setLength(0);
             mStringBuilder.append(Photo._ID + " IN(");
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i < mPhotoIds.size(); i++) {
                 if (i != 0) {
                     mStringBuilder.append(',');
                 }
@@ -707,18 +708,15 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
             }
 
             // Remaining photos were not found in the database - mark the cache accordingly.
-            count = mPhotoIds.size();
-            for (int i = 0; i < count; i++) {
-                cacheBitmap(mPhotoIds.get(i), null, preloading);
+            for (Long id : mPhotoIds) {
+                cacheBitmap(id, null, preloading);
             }
 
             mMainThreadHandler.sendEmptyMessage(MESSAGE_PHOTOS_LOADED);
         }
 
         private void loadRemotePhotos() {
-            int count = mPhotoUris.size();
-            for (int i = 0; i < count; i++) {
-                Uri uri = mPhotoUris.get(i);
+            for (Uri uri : mPhotoUris) {
                 if (mBuffer == null) {
                     mBuffer = new byte[BUFFER_SIZE];
                 }
