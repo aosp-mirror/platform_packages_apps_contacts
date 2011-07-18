@@ -6,7 +6,7 @@
 >
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dip"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/voicemail_playback_ui_background"
     >
@@ -23,8 +23,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5px"
-                android:background="@color/voicemail_playback_ui_background"
-                android:src="@drawable/speakerphone_on_button"
+                android:layout_marginTop="4dip"
+                android:layout_marginLeft="4dip"
+                android:background="@drawable/dialpad_background"
+                android:src="@drawable/ic_sound_holo_dark"
                 android:layout_weight="1"
             />
             <ImageButton
@@ -32,8 +34,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5px"
-                android:background="@color/voicemail_playback_ui_background"
-                android:src="@drawable/pause_button"
+                android:layout_marginTop="4dip"
+                android:layout_marginLeft="4dip"
+                android:background="@drawable/dialpad_background"
+                android:src="@drawable/ic_hold_pause_holo_dark"
                 android:layout_weight="1"
             />
             <ImageButton
@@ -41,8 +45,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5px"
-                android:background="@color/voicemail_playback_ui_background"
-                android:src="@drawable/trash_button"
+                android:layout_marginTop="4dip"
+                android:layout_marginLeft="4dip"
+                android:layout_marginRight="4dip"
+                android:background="@drawable/dialpad_background"
+                android:src="@drawable/ic_trash_holo_dark"
                 android:layout_weight="1"
             />
         </LinearLayout>
@@ -53,13 +60,15 @@
             android:progressDrawable="@drawable/seekbar_drawable"
             android:thumb="@drawable/seek_bar_thumb"
             android:thumbOffset="0dip"
-            android:paddingLeft="30dip"
-            android:paddingRight="30dip"
+            android:background="@drawable/dialpad_background"
+            android:paddingLeft="35dip"
+            android:paddingRight="35dip"
             android:paddingTop="10dip"
-            android:paddingBottom="25dip"
-            android:progress="0"
+            android:paddingBottom="20dip"
+            android:layout_margin="4dip"
+            android:progress="20"
             android:max="50"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@id/buttons_linear_layout"
         />
         <TextView
             android:id="@+id/playback_position_text"
@@ -67,34 +76,28 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:paddingBottom="5dip"
-            android:layout_alignParentBottom="true"
+            android:layout_alignBottom="@id/playback_seek"
             android:layout_centerHorizontal="true"
         />
-        <Button
+        <ImageButton
             android:id="@+id/rate_decrease_button"
+            android:src="@drawable/ic_menu_remove_field_holo_light"
             android:layout_width="30dip"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:textColor="@color/voicemail_playback_ui_text"
-            android:textSize="20dip"
-            android:textStyle="bold"
             android:paddingTop="10dip"
             android:paddingBottom="15dip"
-            android:text="@string/voicemail_decrease_button"
             android:layout_alignLeft="@id/playback_seek"
             android:layout_alignBottom="@id/playback_seek"
         />
-        <Button
+        <ImageButton
             android:id="@+id/rate_increase_button"
+            android:src="@drawable/ic_menu_add_field_holo_light"
             android:layout_width="30dip"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:textColor="@color/voicemail_playback_ui_text"
-            android:textSize="20dip"
-            android:textStyle="bold"
             android:paddingTop="10dip"
             android:paddingBottom="15dip"
-            android:text="@string/voicemail_increase_button"
             android:layout_alignRight="@id/playback_seek"
             android:layout_alignBottom="@id/playback_seek"
         />

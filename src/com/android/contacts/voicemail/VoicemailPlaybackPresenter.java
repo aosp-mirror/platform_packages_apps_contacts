@@ -118,6 +118,7 @@ import javax.annotation.concurrent.ThreadSafe;
         mView.setRateDecreaseButtonListener(createRateDecreaseListener());
         mView.setRateIncreaseButtonListener(createRateIncreaseListener());
         mView.setClipPosition(0);
+        mView.playbackStopped();
         // TODO: Now I'm ignoring the bundle, when previously I was checking for contains against
         // the PAUSED_STATE_KEY, and CLIP_POSITION_KEY.
     }
