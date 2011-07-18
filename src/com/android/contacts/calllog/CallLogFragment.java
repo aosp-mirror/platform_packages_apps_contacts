@@ -139,10 +139,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         public static final int LOOKUP_KEY = 7;
     }
 
-    private static final class OptionsMenuItems {
-        public static final int DELETE_ALL = 1;
-    }
-
     private CallLogAdapter mAdapter;
     private CallLogQueryHandler mCallLogQueryHandler;
     private String mVoiceMailNumber;
@@ -1040,7 +1036,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case OptionsMenuItems.DELETE_ALL: {
+            case R.id.delete_all: {
                 ClearCallLogDialog.show(getFragmentManager());
                 return true;
             }
