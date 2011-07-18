@@ -909,18 +909,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
 
     @Override
     public void onResume() {
-        // Mark all entries in the contact info cache as out of date, so they will be looked up
-        // again once being shown.
-        if (mAdapter != null) {
-            mAdapter.invalidateCache();
-        }
-
-        startCallsQuery();
-        resetNewCallsFlag();
-        startVoicemailStatusQuery();
         super.onResume();
-
-        mAdapter.mPreDrawListener = null; // Let it restart the thread after next draw
+        refreshData();
     }
 
     private void updateVoicemailStatusMessage(Cursor statusCursor) {
@@ -1159,6 +1149,20 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     @Override
     public void onVisibilityChanged(boolean visible) {
         mShowOptionsMenu = visible;
+        if (visible && isResumed()) {
+            refreshData();
+        }
+    }
+
+    /** Requests updates to the data to be shown. */
+    private void refreshData() {
+        // Mark all entries in the contact info cache as out of date, so they will be looked up
+        // again once being shown.
+        mAdapter.invalidateCache();
+        startCallsQuery();
+        resetNewCallsFlag();
+        startVoicemailStatusQuery();
+        mAdapter.mPreDrawListener = null; // Let it restart the thread after next draw
     }
 
     private static boolean isSectionHeader(Cursor cursor) {
