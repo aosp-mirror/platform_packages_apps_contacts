@@ -285,8 +285,8 @@ public class CallLogActivityTests
             }
             mItem = (CallLogListItemViews) mList[i].getTag();
 
-            // callView tag is the phone number.
-            String number = (String) mItem.callView.getTag();
+            // callView tag contains the phone number wrapped in a NumberAndType instance.
+            String number = ((CallLogFragment.NumberAndType) mItem.callView.getTag()).getNumber();
 
             if (CallerInfo.PRIVATE_NUMBER.equals(number) ||
                 CallerInfo.UNKNOWN_NUMBER.equals(number)) {

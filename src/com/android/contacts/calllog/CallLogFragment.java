@@ -181,7 +181,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     }
 
     /** Encapsulates the information needed to call a number from the call log. */
-    private static final class NumberAndType {
+    public static final class NumberAndType {
         private final String mNumber;
         private final long mRowId;
         private final int mCallType;
@@ -192,6 +192,10 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             mRowId = rowId;
             mCallType = callType;
             mVoicemailUri = voicemailUri;
+        }
+
+        public String getNumber() {
+            return mNumber;
         }
 
         public Intent getIntent(Context context) {
