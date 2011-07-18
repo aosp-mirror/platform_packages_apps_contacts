@@ -63,7 +63,7 @@
     <color name="call_log_voicemail_highlight_color">#33b5e5</color>
 
     <!-- Colour background for the voicemail playback ui. -->
-    <color name="voicemail_playback_ui_background">@color/@android:color/black</color>
+    <color name="voicemail_playback_ui_background">@android:color/black</color>
 
     <!-- Colour of voicemail progress bar to the right of position indicator. -->
     <color name="voicemail_playback_seek_bar_yet_to_play">#44ffffff</color>
