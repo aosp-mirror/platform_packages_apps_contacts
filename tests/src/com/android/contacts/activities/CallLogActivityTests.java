@@ -54,8 +54,6 @@ import java.util.Random;
 @LargeTest
 public class CallLogActivityTests
         extends ActivityInstrumentationTestCase2<CallLogActivity> {
-    private static final String TAG = "CallLogActivityTests";
-
     private static final String[] EXTENDED_CALL_LOG_PROJECTION = new String[] {
             Calls._ID,
             Calls.NUMBER,
@@ -63,6 +61,7 @@ public class CallLogActivityTests
             Calls.DURATION,
             Calls.TYPE,
             Calls.COUNTRY_ISO,
+            Calls.VOICEMAIL_URI,
             CallLogFragment.CallLogQuery.SECTION_NAME,
     };
     private static final int RAND_DURATION = -1;
@@ -431,6 +430,7 @@ public class CallLogActivityTests
         }
         row.add(type);  // type
         row.add(TEST_COUNTRY_ISO);  // country ISO
+        row.add(null);  // voicemail_uri
         row.add(CallLogFragment.CallLogQuery.SECTION_OLD_ITEM);  // section
     }
 
