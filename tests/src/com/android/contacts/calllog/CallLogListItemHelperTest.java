@@ -25,9 +25,6 @@ import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.provider.CallLog.Calls;
 import android.test.AndroidTestCase;
 import android.view.View;
@@ -50,10 +47,6 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
     private static final long TEST_DURATION = 62300;
     /** A test voicemail number. */
     private static final String TEST_VOICEMAIL_NUMBER = "123";
-    /** A drawable to be used for the call action. */
-    private static final Drawable TEST_CALL_DRAWABLE = new ColorDrawable(Color.RED);
-    /** A drawable to be used for the play action. */
-    private static final Drawable TEST_PLAY_DRAWABLE = new ColorDrawable(Color.RED);
     /** The country ISO name used in the tests. */
     private static final String TEST_COUNTRY_ISO = "US";
 
@@ -77,10 +70,10 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
         mPhoneNumberHelper = new PhoneNumberHelper(resources, TEST_VOICEMAIL_NUMBER);
         PhoneCallDetailsHelper phoneCallDetailsHelper = new PhoneCallDetailsHelper(context,
                 resources, callTypeHelper, mPhoneNumberHelper);
-        mHelper = new CallLogListItemHelper(phoneCallDetailsHelper, mPhoneNumberHelper,
-                TEST_CALL_DRAWABLE, TEST_PLAY_DRAWABLE);
+        mHelper = new CallLogListItemHelper(phoneCallDetailsHelper, mPhoneNumberHelper);
         mViews = CallLogListItemViews.createForTest(new QuickContactBadge(context),
-                new ImageView(context), PhoneCallDetailsViews.createForTest(new TextView(context),
+                new ImageView(context), new ImageView(context),
+                PhoneCallDetailsViews.createForTest(new TextView(context),
                         new LinearLayout(context), new TextView(context), new TextView(context),
                         new TextView(context), new TextView(context)),
                 new View(context), new View(context), new TextView(context));
@@ -96,34 +89,37 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
     public void testSetPhoneCallDetails() {
         setPhoneCallDetailsWithNumber("12125551234", "1-212-555-1234");
         assertEquals(View.VISIBLE, mViews.callView.getVisibility());
-        assertEquals(TEST_CALL_DRAWABLE, mViews.callView.getDrawable());
+        assertEquals(View.GONE, mViews.playView.getVisibility());
     }
 
     public void testSetPhoneCallDetails_Unknown() {
         setPhoneCallDetailsWithNumber(CallerInfo.UNKNOWN_NUMBER, CallerInfo.UNKNOWN_NUMBER);
         assertEquals(View.INVISIBLE, mViews.callView.getVisibility());
+        assertEquals(View.GONE, mViews.playView.getVisibility());
     }
 
     public void testSetPhoneCallDetails_Private() {
         setPhoneCallDetailsWithNumber(CallerInfo.PRIVATE_NUMBER, CallerInfo.PRIVATE_NUMBER);
         assertEquals(View.INVISIBLE, mViews.callView.getVisibility());
+        assertEquals(View.GONE, mViews.playView.getVisibility());
     }
 
     public void testSetPhoneCallDetails_Payphone() {
         setPhoneCallDetailsWithNumber(CallerInfo.PAYPHONE_NUMBER, CallerInfo.PAYPHONE_NUMBER);
         assertEquals(View.INVISIBLE, mViews.callView.getVisibility());
+        assertEquals(View.GONE, mViews.playView.getVisibility());
     }
 
     public void testSetPhoneCallDetails_VoicemailNumber() {
         setPhoneCallDetailsWithNumber(TEST_VOICEMAIL_NUMBER, TEST_VOICEMAIL_NUMBER);
         assertEquals(View.VISIBLE, mViews.callView.getVisibility());
-        assertEquals(TEST_CALL_DRAWABLE, mViews.callView.getDrawable());
+        assertEquals(View.GONE, mViews.playView.getVisibility());
     }
 
     public void testSetPhoneCallDetails_Voicemail() {
         setPhoneCallDetailsWithTypes(Calls.VOICEMAIL_TYPE);
         assertEquals(View.VISIBLE, mViews.callView.getVisibility());
-        assertEquals(TEST_PLAY_DRAWABLE, mViews.callView.getDrawable());
+        assertEquals(View.VISIBLE, mViews.playView.getVisibility());
     }
 
     /** Sets the details of a phone call using the specified phone number. */

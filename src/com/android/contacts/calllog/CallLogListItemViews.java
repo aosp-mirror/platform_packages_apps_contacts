@@ -32,6 +32,8 @@ public final class CallLogListItemViews {
     public final QuickContactBadge photoView;
     /** The main action button on the entry. */
     public final ImageView callView;
+    /** The play action button used for voicemail. */
+    public final ImageView playView;
     /** The details of the phone call. */
     public final PhoneCallDetailsViews phoneCallDetailsViews;
     /** The item view for a stand-alone row, or null for other types of rows. */
@@ -42,10 +44,11 @@ public final class CallLogListItemViews {
     public final TextView listHeaderTextView;
 
     private CallLogListItemViews(QuickContactBadge photoView, ImageView callView,
-            PhoneCallDetailsViews phoneCallDetailsViews, View listItemView,
+            ImageView playView, PhoneCallDetailsViews phoneCallDetailsViews, View listItemView,
             View listHeaderView, TextView listHeaderTextView) {
         this.photoView = photoView;
         this.callView = callView;
+        this.playView = playView;
         this.phoneCallDetailsViews = phoneCallDetailsViews;
         this.listItemView = listItemView;
         this.listHeaderView = listHeaderView;
@@ -55,6 +58,7 @@ public final class CallLogListItemViews {
     public static CallLogListItemViews fromView(View view) {
         return new CallLogListItemViews((QuickContactBadge) view.findViewById(R.id.contact_photo),
                 (ImageView) view.findViewById(R.id.call_icon),
+                (ImageView) view.findViewById(R.id.play_icon),
                 PhoneCallDetailsViews.fromView(view),
                 view.findViewById(R.id.call_log_item),
                 view.findViewById(R.id.call_log_header),
@@ -62,9 +66,9 @@ public final class CallLogListItemViews {
     }
 
     public static CallLogListItemViews createForTest(QuickContactBadge photoView,
-            ImageView callView, PhoneCallDetailsViews phoneCallDetailsViews,
+            ImageView callView, ImageView playView, PhoneCallDetailsViews phoneCallDetailsViews,
             View standAloneItemView, View standAloneHeaderView, TextView standAloneHeaderTextView) {
-        return new CallLogListItemViews(photoView, callView, phoneCallDetailsViews,
+        return new CallLogListItemViews(photoView, callView, playView, phoneCallDetailsViews,
                 standAloneItemView, standAloneHeaderView, standAloneHeaderTextView);
     }
 }

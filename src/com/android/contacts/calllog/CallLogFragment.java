@@ -43,7 +43,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.CallLog;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.Contacts;
@@ -166,53 +165,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         public static ContactInfo EMPTY = new ContactInfo();
     }
 
-    /** Encapsulates the information needed to call a number from the call log. */
-    public static final class NumberAndType {
-        private final String mNumber;
-        private final long mRowId;
-        private final int mCallType;
-        private final String mVoicemailUri;
-
-        public NumberAndType(String number, long rowId, int callType, String voicemailUri) {
-            mNumber = number;
-            mRowId = rowId;
-            mCallType = callType;
-            mVoicemailUri = voicemailUri;
-        }
-
-        public String getNumber() {
-            return mNumber;
-        }
-
-        public Intent getIntent(Context context) {
-            switch (mCallType) {
-                case CallLog.Calls.VOICEMAIL_TYPE:
-                    Intent intent = new Intent(context, CallDetailActivity.class);
-                    intent.setData(ContentUris.withAppendedId(
-                            Calls.CONTENT_URI_WITH_VOICEMAIL, mRowId));
-                    intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_URI,
-                            Uri.parse(mVoicemailUri));
-                    intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_START_PLAYBACK, true);
-                    return intent;
-                case CallLog.Calls.INCOMING_TYPE:
-                case CallLog.Calls.OUTGOING_TYPE:
-                case CallLog.Calls.MISSED_TYPE:
-                default: {
-                    // Here, "number" can either be a PSTN phone number or a
-                    // SIP address.  So turn it into either a tel: URI or a
-                    // sip: URI, as appropriate.
-                    Uri uri;
-                    if (PhoneNumberUtils.isUriNumber(mNumber)) {
-                        uri = Uri.fromParts("sip", mNumber, null);
-                    } else {
-                        uri = Uri.fromParts("tel", mNumber, null);
-                    }
-                    return new Intent(Intent.ACTION_CALL_PRIVILEGED, uri);
-                }
-            }
-        }
-    }
-
     /** Adapter class to fill in data for the Call Log */
     public final class CallLogAdapter extends GroupingListAdapter
             implements Runnable, ViewTreeObserver.OnPreDrawListener, View.OnClickListener {
@@ -261,9 +213,9 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
 
         @Override
         public void onClick(View view) {
-            NumberAndType numberAndType = (NumberAndType) view.getTag();
-            if (numberAndType != null) {
-                startActivity(numberAndType.getIntent(CallLogFragment.this.getActivity()));
+            IntentProvider intentProvider = (IntentProvider) view.getTag();
+            if (intentProvider != null) {
+                startActivity(intentProvider.getIntent(CallLogFragment.this.getActivity()));
             }
         }
 
@@ -311,9 +263,9 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             mContactPhotoManager = ContactPhotoManager.getInstance(getActivity());
             mPhoneNumberHelper = new PhoneNumberHelper(getResources(), mVoiceMailNumber);
             PhoneCallDetailsHelper phoneCallDetailsHelper = new PhoneCallDetailsHelper(
-                    getActivity(), resources, callTypeHelper, mPhoneNumberHelper );
-            mCallLogViewsHelper = new CallLogListItemHelper(phoneCallDetailsHelper,
-                    mPhoneNumberHelper, callDrawable, playDrawable);
+                    getActivity(), resources, callTypeHelper, mPhoneNumberHelper);
+            mCallLogViewsHelper =
+                    new CallLogListItemHelper(phoneCallDetailsHelper, mPhoneNumberHelper);
         }
 
         /**
@@ -654,9 +606,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         private void findAndCacheViews(View view) {
             // Get the views to bind to.
             CallLogListItemViews views = CallLogListItemViews.fromView(view);
-            if (views.callView != null) {
-                views.callView.setOnClickListener(this);
-            }
+            views.callView.setOnClickListener(this);
+            views.playView.setOnClickListener(this);
             view.setTag(views);
         }
 
@@ -690,14 +641,25 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             final String number = c.getString(CallLogQuery.NUMBER);
             final long date = c.getLong(CallLogQuery.DATE);
             final long duration = c.getLong(CallLogQuery.DURATION);
+            final int callType = c.getInt(CallLogQuery.CALL_TYPE);
             final String formattedNumber;
             final String countryIso = c.getString(CallLogQuery.COUNTRY_ISO);
-            // Store away the number so we can call it directly if you click on the call icon
-            if (views.callView != null && !TextUtils.isEmpty(number)) {
-                int callType = c.getInt(CallLogQuery.CALL_TYPE);
+
+            // Store away the number so we can call it directly if you click on the call icon.
+            if (!TextUtils.isEmpty(number)) {
+                views.callView.setTag(IntentProvider.getReturnCallIntentProvider(number));
+            } else {
+                views.callView.setTag(null);
+            }
+
+            // Store away the voicemail information so we can play it directly.
+            if (callType == Calls.VOICEMAIL_TYPE) {
                 String voicemailUri = c.getString(CallLogQuery.VOICEMAIL_URI);
-                long rowId = c.getLong(CallLogQuery.ID);
-                views.callView.setTag(new NumberAndType(number, rowId, callType, voicemailUri));
+                final long rowId = c.getLong(CallLogQuery.ID);
+                views.playView.setTag(
+                        IntentProvider.getPlayVoicemailIntentProvider(rowId, voicemailUri));
+            } else {
+                views.playView.setTag(null);
             }
 
             // Lookup contacts with this number
@@ -739,12 +701,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             final String label = info.label;
             final Uri thumbnailUri = info.thumbnailUri;
             final String lookupKey = info.lookupKey;
-            // Assumes the call back feature is on most of the
-            // time. For private and unknown numbers: hide it.
-            if (views.callView != null) {
-                views.callView.setVisibility(View.VISIBLE);
-            }
-
             final int[] callTypes = getCallTypes(c, count);
             final PhoneCallDetails details;
             PhoneNumber structuredPhoneNumber =

@@ -18,6 +18,7 @@ package com.android.contacts.activities;
 
 import com.android.contacts.R;
 import com.android.contacts.calllog.CallLogFragment;
+import com.android.contacts.calllog.CallLogFragment.CallLogQuery;
 import com.android.contacts.calllog.CallLogFragment.ContactInfo;
 import com.android.contacts.calllog.CallLogListItemViews;
 import com.android.internal.telephony.CallerInfo;
@@ -283,10 +284,7 @@ public class CallLogActivityTests
                 break;
             }
             mItem = (CallLogListItemViews) mList[i].getTag();
-
-            // callView tag contains the phone number wrapped in a NumberAndType instance.
-            String number = ((CallLogFragment.NumberAndType) mItem.callView.getTag()).getNumber();
-
+            String number = getPhoneNumberForListEntry(i);
             if (CallerInfo.PRIVATE_NUMBER.equals(number) ||
                 CallerInfo.UNKNOWN_NUMBER.equals(number)) {
                 assertFalse(View.VISIBLE == mItem.callView.getVisibility());
@@ -343,6 +341,13 @@ public class CallLogActivityTests
             mCursor.moveToPrevious();
             i++;
         }
+    }
+
+    /** Returns the number associated with the given entry in {{@link #mList}. */
+    private String getPhoneNumberForListEntry(int index) {
+        // The entries are added backward, so count from the end of the cursor.
+        mCursor.moveToPosition(mCursor.getCount() - index - 1);
+        return mCursor.getString(CallLogQuery.NUMBER);
     }
 
     //

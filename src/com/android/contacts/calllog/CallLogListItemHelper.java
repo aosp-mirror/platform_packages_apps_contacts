@@ -19,7 +19,6 @@ package com.android.contacts.calllog;
 import com.android.contacts.PhoneCallDetails;
 import com.android.contacts.PhoneCallDetailsHelper;
 
-import android.graphics.drawable.Drawable;
 import android.provider.CallLog.Calls;
 import android.view.View;
 
@@ -31,24 +30,17 @@ import android.view.View;
     private final PhoneCallDetailsHelper mPhoneCallDetailsHelper;
     /** Helper for handling phone numbers. */
     private final PhoneNumberHelper mPhoneNumberHelper;
-    /** Icon for the call action. */
-    private final Drawable mCallDrawable;
-    /** Icon for the play action. */
-    private final Drawable mPlayDrawable;
 
     /**
      * Creates a new helper instance.
      *
      * @param phoneCallDetailsHelper used to set the details of a phone call
-     * @param callDrawable used to render the call button, for calling back a person
-     * @param playDrawable used to render the play button, for playing a voicemail
+     * @param phoneNumberHelper used to process phone number
      */
     public CallLogListItemHelper(PhoneCallDetailsHelper phoneCallDetailsHelper,
-            PhoneNumberHelper phoneNumberHelper, Drawable callDrawable, Drawable playDrawable) {
+            PhoneNumberHelper phoneNumberHelper) {
         mPhoneCallDetailsHelper = phoneCallDetailsHelper;
         mPhoneNumberHelper= phoneNumberHelper;
-        mCallDrawable = callDrawable;
-        mPlayDrawable = playDrawable;
     }
 
     /**
@@ -63,13 +55,10 @@ import android.view.View;
             boolean useIcons, boolean isHighlighted) {
         mPhoneCallDetailsHelper.setPhoneCallDetails(views.phoneCallDetailsViews, details, useIcons,
                 isHighlighted);
-        if (views.callView != null) {
-            // The type of icon, call or play, is determined by the first call in the group.
-            views.callView.setImageDrawable(
-                    details.callTypes[0] == Calls.VOICEMAIL_TYPE ? mPlayDrawable : mCallDrawable);
-            views.callView.setVisibility(
-                    mPhoneNumberHelper.canPlaceCallsTo(details.number)
-                            ? View.VISIBLE : View.INVISIBLE);
-        }
+        views.callView.setVisibility(
+                mPhoneNumberHelper.canPlaceCallsTo(details.number)
+                        ? View.VISIBLE : View.INVISIBLE);
+        views.playView.setVisibility(
+                details.callTypes[0] == Calls.VOICEMAIL_TYPE ? View.VISIBLE : View.GONE);
     }
 }
