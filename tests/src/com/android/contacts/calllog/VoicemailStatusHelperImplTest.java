@@ -55,6 +55,7 @@ public class VoicemailStatusHelperImplTest extends AndroidTestCase {
             R.string.voicemail_status_action_call_server;
     private static final int ACTION_MSG_CONFIGURE = R.string.voicemail_status_action_configure;
 
+    private static final int STATUS_MSG_NONE = -1;
     private static final int STATUS_MSG_VOICEMAIL_NOT_AVAILABLE =
             R.string.voicemail_status_voicemail_not_available;
     private static final int STATUS_MSG_AUDIO_NOT_AVAIALABLE =
@@ -104,12 +105,14 @@ public class VoicemailStatusHelperImplTest extends AndroidTestCase {
         insertEntryForPackage(TEST_PACKAGE_2, getAllOkStatusValues());
 
         ContentValues values = new ContentValues();
-        // No notification + good data channel - for now same as no connection.
+        // Good data channel + no notification
+        // action: call voicemail
+        // msg: voicemail not available in call log page & none in call details page.
         values.put(NOTIFICATION_CHANNEL_STATE, NOTIFICATION_CHANNEL_STATE_NO_CONNECTION);
         values.put(DATA_CHANNEL_STATE, DATA_CHANNEL_STATE_OK);
         updateEntryForPackage(TEST_PACKAGE_2, values);
         checkExpectedMessage(TEST_PACKAGE_2, values, STATUS_MSG_VOICEMAIL_NOT_AVAILABLE,
-                ACTION_MSG_CALL_VOICEMAIL);
+                STATUS_MSG_NONE, ACTION_MSG_CALL_VOICEMAIL);
 
         // Message waiting + good data channel - no action.
         values.put(NOTIFICATION_CHANNEL_STATE, NOTIFICATION_CHANNEL_STATE_MESSAGE_WAITING);
@@ -117,26 +120,32 @@ public class VoicemailStatusHelperImplTest extends AndroidTestCase {
         updateEntryForPackage(TEST_PACKAGE_2, values);
         checkNoMessages(TEST_PACKAGE_2, values);
 
-        // Notification OK + no data channel - call voicemail/no audio.
+        // No data channel + no notification
+        // action: call voicemail
+        // msg: voicemail not available in call log page & audio not available in call details page.
         values.put(NOTIFICATION_CHANNEL_STATE, NOTIFICATION_CHANNEL_STATE_OK);
         values.put(DATA_CHANNEL_STATE, DATA_CHANNEL_STATE_NO_CONNECTION);
         updateEntryForPackage(TEST_PACKAGE_2, values);
-        checkExpectedMessage(TEST_PACKAGE_2, values, STATUS_MSG_AUDIO_NOT_AVAIALABLE,
-                ACTION_MSG_CALL_VOICEMAIL);
+        checkExpectedMessage(TEST_PACKAGE_2, values, STATUS_MSG_VOICEMAIL_NOT_AVAILABLE,
+                STATUS_MSG_AUDIO_NOT_AVAIALABLE, ACTION_MSG_CALL_VOICEMAIL);
 
-        // No notification + no data channel - call voicemail/no connection.
+        // No data channel + Notification OK
+        // action: call voicemail
+        // msg: voicemail not available in call log page & audio not available in call details page.
         values.put(NOTIFICATION_CHANNEL_STATE, NOTIFICATION_CHANNEL_STATE_NO_CONNECTION);
         values.put(DATA_CHANNEL_STATE, DATA_CHANNEL_STATE_NO_CONNECTION);
         updateEntryForPackage(TEST_PACKAGE_2, values);
         checkExpectedMessage(TEST_PACKAGE_2, values, STATUS_MSG_VOICEMAIL_NOT_AVAILABLE,
-                ACTION_MSG_CALL_VOICEMAIL);
+                STATUS_MSG_AUDIO_NOT_AVAIALABLE, ACTION_MSG_CALL_VOICEMAIL);
 
-        // Message waiting + no data channel - call voicemail.
+        // No data channel + Notification OK
+        // action: call voicemail
+        // msg: message waiting in call log page & audio not available in call details page.
         values.put(NOTIFICATION_CHANNEL_STATE, NOTIFICATION_CHANNEL_STATE_MESSAGE_WAITING);
         values.put(DATA_CHANNEL_STATE, DATA_CHANNEL_STATE_NO_CONNECTION);
         updateEntryForPackage(TEST_PACKAGE_2, values);
         checkExpectedMessage(TEST_PACKAGE_2, values, STATUS_MSG_MESSAGE_WAITING,
-                ACTION_MSG_CALL_VOICEMAIL);
+                STATUS_MSG_AUDIO_NOT_AVAIALABLE, ACTION_MSG_CALL_VOICEMAIL);
 
         // Not configured. No user action, so no message.
         values.put(CONFIGURATION_STATE, CONFIGURATION_STATE_NOT_CONFIGURED);
@@ -147,7 +156,7 @@ public class VoicemailStatusHelperImplTest extends AndroidTestCase {
         values.put(CONFIGURATION_STATE, CONFIGURATION_STATE_CAN_BE_CONFIGURED);
         updateEntryForPackage(TEST_PACKAGE_2, values);
         checkExpectedMessage(TEST_PACKAGE_2, values, STATUS_MSG_INVITE_FOR_CONFIGURATION,
-                ACTION_MSG_CONFIGURE, TEST_SETTINGS_URI);
+                STATUS_MSG_NONE, ACTION_MSG_CONFIGURE, TEST_SETTINGS_URI);
     }
 
     // Test that priority of messages are handled well.
@@ -183,25 +192,28 @@ public class VoicemailStatusHelperImplTest extends AndroidTestCase {
         assertEquals(TEST_PACKAGE_2, messages.get(1).sourcePackage);
     }
 
-    /** Checks for the expected message with given values and actionUri as TEST_VOICEMAIL_URI. */
+    /** Checks that the expected source status message is returned by VoicemailStatusHelper. */
     private void checkExpectedMessage(String sourcePackage, ContentValues values,
-            int expectedStatusMsg, int expectedActionMsg) {
-        checkExpectedMessage(sourcePackage, values, expectedStatusMsg, expectedActionMsg,
-                TEST_VOICEMAIL_URI);
+            int expectedCallLogMsg, int expectedCallDetailsMsg, int expectedActionMsg,
+            Uri expectedUri) {
+        List<StatusMessage> messages = getStatusMessages();
+        assertEquals(1, messages.size());
+        checkMessageMatches(messages.get(0), sourcePackage, expectedCallLogMsg,
+                expectedCallDetailsMsg, expectedActionMsg, expectedUri);
     }
 
     private void checkExpectedMessage(String sourcePackage, ContentValues values,
-            int expectedStatusMsg, int expectedActionMsg, Uri expectedUri) {
-        List<StatusMessage> messages = getStatusMessages();
-        assertEquals(1, messages.size());
-        checkMessageMatches(messages.get(0), sourcePackage, expectedStatusMsg, expectedActionMsg,
-                expectedUri);
+            int expectedCallLogMsg, int expectedCallDetailsMessage, int expectedActionMsg) {
+        checkExpectedMessage(sourcePackage, values, expectedCallLogMsg, expectedCallDetailsMessage,
+                expectedActionMsg, TEST_VOICEMAIL_URI);
     }
 
     private void checkMessageMatches(StatusMessage message, String expectedSourcePackage,
-            int expectedStatusMsg, int expectedActionMsg, Uri expectedUri) {
+            int expectedCallLogMsg, int expectedCallDetailsMsg, int expectedActionMsg,
+            Uri expectedUri) {
         assertEquals(expectedSourcePackage, message.sourcePackage);
-        assertEquals(expectedStatusMsg, message.statusMessageId);
+        assertEquals(expectedCallLogMsg, message.callLogMessageId);
+        assertEquals(expectedCallDetailsMsg, message.callDetailsMessageId);
         assertEquals(expectedActionMsg, message.actionMessageId);
         if (expectedUri == null) {
             assertNull(message.actionUri);

@@ -941,8 +941,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             mStatusMessageView.setVisibility(View.VISIBLE);
             // TODO: Change the code to show all messages. For now just pick the first message.
             final StatusMessage message = messages.get(0);
-            if (message.statusMessageId != -1) {
-                mStatusMessageText.setText(message.statusMessageId);
+            if (message.showInCallLog()) {
+                mStatusMessageText.setText(message.callLogMessageId);
             }
             if (message.actionMessageId != -1) {
                 mStatusMessageAction.setText(message.actionMessageId);
