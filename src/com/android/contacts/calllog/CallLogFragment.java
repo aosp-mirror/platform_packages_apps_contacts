@@ -611,18 +611,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             }
         }
 
-        private boolean isSectionHeader(Cursor cursor) {
-            int section = cursor.getInt(CallLogQuery.SECTION);
-            return section == CallLogQuery.SECTION_NEW_HEADER
-                    || section == CallLogQuery.SECTION_OLD_HEADER;
-        }
-
-        private boolean isNewSection(Cursor cursor) {
-            int section = cursor.getInt(CallLogQuery.SECTION);
-            return section == CallLogQuery.SECTION_NEW_ITEM
-                    || section == CallLogQuery.SECTION_NEW_HEADER;
-        }
-
         protected boolean equalPhoneNumbers(CharArrayBuffer buffer1, CharArrayBuffer buffer2) {
 
             // TODO add PhoneNumberUtils.compare(CharSequence, CharSequence) to avoid
@@ -1128,6 +1116,10 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     public void onListItemClick(ListView l, View v, int position, long id) {
         Intent intent = new Intent(getActivity(), CallDetailActivity.class);
         Cursor cursor = (Cursor) mAdapter.getItem(position);
+        if (isSectionHeader(cursor)) {
+            // Do nothing when a header is clicked.
+            return;
+        }
         if (mAdapter.isGroupHeader(position)) {
             // We want to restore the position in the cursor at the end.
             int currentPosition = cursor.getPosition();
@@ -1165,5 +1157,17 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     @Override
     public void onVisibilityChanged(boolean visible) {
         mShowOptionsMenu = visible;
+    }
+
+    private static boolean isSectionHeader(Cursor cursor) {
+        int section = cursor.getInt(CallLogQuery.SECTION);
+        return section == CallLogQuery.SECTION_NEW_HEADER
+                || section == CallLogQuery.SECTION_OLD_HEADER;
+    }
+
+    private static boolean isNewSection(Cursor cursor) {
+        int section = cursor.getInt(CallLogQuery.SECTION);
+        return section == CallLogQuery.SECTION_NEW_ITEM
+                || section == CallLogQuery.SECTION_NEW_HEADER;
     }
 }
