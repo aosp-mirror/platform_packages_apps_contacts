@@ -129,7 +129,7 @@
                 <!-- Starred -->
                 <fragment
                     android:id="@+id/favorites_fragment"
-                    class="com.android.contacts.list.StrequentContactListFragment"
+                    class="com.android.contacts.list.ContactTileListFragment"
                     android:layout_height="match_parent"
                     android:layout_width="0dip"
                     android:layout_weight="2" />
@@ -137,7 +137,7 @@
                 <!-- Most Frequent -->
                 <fragment
                     android:id="@+id/frequent_fragment"
-                    class="com.android.contacts.list.StrequentContactListFragment"
+                    class="com.android.contacts.list.ContactTileListFragment"
                     android:layout_height="match_parent"
                     android:layout_width="0dip"
                     android:layout_weight="1" />
