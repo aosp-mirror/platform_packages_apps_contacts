@@ -37,9 +37,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabaseCorruptException;
-import android.database.sqlite.SQLiteDiskIOException;
-import android.database.sqlite.SQLiteFullException;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -1133,8 +1130,10 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         } else {
             // If there is a single item, use the direct URI for it.
             intent.setData(ContentUris.withAppendedId(Calls.CONTENT_URI_WITH_VOICEMAIL, id));
-            intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_URI,
-                    Uri.parse(cursor.getString(CallLogQuery.VOICEMAIL_URI)));
+            String voicemailUri = cursor.getString(CallLogQuery.VOICEMAIL_URI);
+            if (voicemailUri != null) {
+                intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_URI, Uri.parse(voicemailUri));
+            }
             intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_START_PLAYBACK, false);
         }
         startActivity(intent);
