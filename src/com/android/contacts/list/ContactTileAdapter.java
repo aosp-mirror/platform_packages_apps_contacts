@@ -164,15 +164,18 @@ public class ContactTileAdapter extends BaseAdapter {
      * Returns -1 if not {@link DisplayType#STREQUENT}
      */
     private int getDividerPosition(Cursor cursor) {
-      if (cursor == null || cursor.isClosed() || mDisplayType != DisplayType.STREQUENT) {
-          return -1;
-      }
-      while (cursor.moveToNext()) {
-          if (cursor.getInt(mStarredIndex) == 0) {
-              return cursor.getPosition();
-          }
-      }
-      return -1;
+        if (cursor == null || cursor.isClosed() || mDisplayType != DisplayType.STREQUENT) {
+            return -1;
+        }
+        while (cursor.moveToNext()) {
+            if (cursor.getInt(mStarredIndex) == 0) {
+                return cursor.getPosition();
+            }
+        }
+
+        // There are not NON Starred contacts in cursor
+        // Set divider positon to end and add 1 to make sure it doesn't get drawn
+        return cursor.getCount() + 1;
     }
 
     private ContactEntry createContactEntryFromCursor(Cursor cursor, int position) {
