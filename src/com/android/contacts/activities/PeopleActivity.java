@@ -539,7 +539,8 @@ public class PeopleActivity extends ContactsActivity
     public void onAction(Action action) {
         switch (action) {
             case START_SEARCH_MODE:
-                clearSearch();
+                // Tell the fragments that we're in the search mode
+                configureFragments(false /* from request */);
                 updateFragmentsVisibility();
                 invalidateOptionsMenu();
                 break;
