@@ -20,7 +20,6 @@ import com.android.contacts.calllog.CallTypeHelper;
 import com.android.contacts.calllog.PhoneNumberHelper;
 import com.android.contacts.util.LocaleTestUtils;
 import com.android.internal.telephony.CallerInfo;
-import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -231,20 +230,16 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
 
     /** Sets the phone call details with default values and the given number. */
     private void setPhoneCallDetailsWithNumber(String number, String formattedNumber) {
-        PhoneNumber structuredPhoneNumber =
-                mPhoneNumberHelper.parsePhoneNumber(number, TEST_COUNTRY_ISO);
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(number, formattedNumber, structuredPhoneNumber,
+                new PhoneCallDetails(number, formattedNumber, TEST_COUNTRY_ISO,
                         new int[]{ Calls.INCOMING_TYPE }, TEST_DATE, TEST_DURATION),
                 false, false);
     }
 
     /** Sets the phone call details with default values and the given date. */
     private void setPhoneCallDetailsWithDate(long date) {
-        PhoneNumber structuredPhoneNumber =
-                mPhoneNumberHelper.parsePhoneNumber(TEST_NUMBER, TEST_COUNTRY_ISO);
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, structuredPhoneNumber,
+                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
                         new int[]{ Calls.INCOMING_TYPE }, date, TEST_DURATION),
                 false, false);
     }
@@ -260,10 +255,8 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     }
 
     private void setPhoneCallDetailsWithCallTypes(boolean useIcons, int... callTypes) {
-        PhoneNumber structuredPhoneNumber =
-                mPhoneNumberHelper.parsePhoneNumber(TEST_NUMBER, TEST_COUNTRY_ISO);
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, structuredPhoneNumber,
+                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
                         callTypes, TEST_DATE, TEST_DURATION),
                 useIcons, false);
     }

@@ -29,7 +29,6 @@ import com.android.contacts.calllog.VoicemailStatusHelper.StatusMessage;
 import com.android.contacts.util.ExpirableCache;
 import com.android.internal.telephony.CallerInfo;
 import com.google.common.annotations.VisibleForTesting;
-import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
 import android.app.ListFragment;
 import android.content.ContentUris;
@@ -663,13 +662,11 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             final String lookupKey = info.lookupKey;
             final int[] callTypes = getCallTypes(c, count);
             final PhoneCallDetails details;
-            PhoneNumber structuredPhoneNumber =
-                    mPhoneNumberHelper.parsePhoneNumber(number, countryIso);
             if (TextUtils.isEmpty(name)) {
-                details = new PhoneCallDetails(number, formattedNumber, structuredPhoneNumber,
+                details = new PhoneCallDetails(number, formattedNumber, countryIso,
                         callTypes, date, duration);
             } else {
-                details = new PhoneCallDetails(number, formattedNumber, structuredPhoneNumber,
+                details = new PhoneCallDetails(number, formattedNumber, countryIso,
                         callTypes, date, duration, name, ntype, label, personId, thumbnailUri);
             }
 

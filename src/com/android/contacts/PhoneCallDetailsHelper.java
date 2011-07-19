@@ -118,7 +118,9 @@ public class PhoneCallDetailsHelper {
             mPhoneNumberHelper.getDisplayNumber(details.number, details.formattedNumber);
         if (TextUtils.isEmpty(details.name)) {
             nameText = displayNumber;
-            numberText = mPhoneNumberHelper.getGeocodeForNumber(details.structuredPhoneNumber);
+            numberText = mPhoneNumberHelper.getGeocodeForNumber(
+                    mPhoneNumberHelper.parsePhoneNumber(
+                            details.number.toString(), details.countryIso));
         } else {
             nameText = details.name;
             if (numberFormattedLabel != null) {
