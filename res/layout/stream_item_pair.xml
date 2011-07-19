@@ -14,27 +14,19 @@
      limitations under the License.
 -->
 
-<!--
-  Two-column layout for a contact with social updates. If the contact does not
-  have social updates, then the second fragment view will just be hidden.
--->
-
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="none"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content">
 
-    <fragment class="com.android.contacts.detail.ContactDetailFragment"
-        android:id="@+id/about_fragment"
+    <FrameLayout android:id="@+id/stream_pair_first"
         android:layout_width="0dip"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1" />
 
-    <fragment class="com.android.contacts.detail.ContactDetailUpdatesFragment"
-        android:id="@+id/updates_fragment"
-        android:layout_width="306dip"
-        android:layout_height="match_parent" />
-
+    <FrameLayout android:id="@+id/stream_pair_second"
+        android:paddingLeft="@dimen/detail_update_section_internal_padding"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 </LinearLayout>

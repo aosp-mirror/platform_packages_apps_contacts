@@ -18,10 +18,13 @@ package com.android.contacts.detail;
 
 import com.android.contacts.ContactLoader;
 import com.android.contacts.ContactLoader.Result;
+import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.R;
 import com.android.contacts.format.FormatUtils;
 import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.util.ContactBadgeUtil;
+import com.android.contacts.util.StreamItemEntry;
+import com.android.contacts.util.StreamItemPhotoEntry;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -30,18 +33,25 @@ import android.content.Entity.NamedContentValues;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.DisplayNameSources;
+import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.List;
 
 /**
  * This class contains utility methods to bind high-level contact details
@@ -207,23 +217,135 @@ public class ContactDetailDisplayUtils {
     /**
      * Set the social snippet text. If there isn't one, then set the view to gone.
      */
-    public static void setSocialSnippet(Context context, Result contactData, TextView statusView) {
+    public static void setSocialSnippet(Context context, Result contactData, TextView statusView,
+            ImageView statusPhotoView) {
         if (statusView == null) {
             return;
         }
-        setDataOrHideIfNone(contactData.getSocialSnippet(), statusView);
+
+        String snippet = null;
+        String photoUri = null;
+        if (!contactData.getStreamItems().isEmpty()) {
+            StreamItemEntry firstEntry = contactData.getStreamItems().get(0);
+            snippet = firstEntry.getText();
+            if (!firstEntry.getPhotos().isEmpty()) {
+                StreamItemPhotoEntry firstPhoto = firstEntry.getPhotos().get(0);
+                photoUri = firstPhoto.getPhotoUri();
+
+                // If displaying an image, hide the snippet text.
+                snippet = null;
+            }
+        }
+        setDataOrHideIfNone(snippet, statusView);
+        if (photoUri != null) {
+            ContactPhotoManager.getInstance(context).loadPhoto(
+                    statusPhotoView, Uri.parse(photoUri));
+            statusPhotoView.setVisibility(View.VISIBLE);
+        } else {
+            statusPhotoView.setVisibility(View.GONE);
+        }
     }
 
     /**
-     * Set the social snippet text and date. If there isn't one, then set the view to gone.
+     * Displays the social stream items under the given layout.
      */
-    public static void setSocialSnippetAndDate(Context context, Result contactData,
-            TextView statusView, TextView dateView) {
-        if (statusView == null || dateView == null) {
-            return;
+    public static void showSocialStreamItems(LayoutInflater inflater, Context context,
+            Result contactData, LinearLayout streamContainer) {
+        if (streamContainer != null) {
+            streamContainer.removeAllViews();
+            List<StreamItemEntry> streamItems = contactData.getStreamItems();
+            for (StreamItemEntry streamItem : streamItems) {
+                addStreamItemToContainer(inflater, context, streamItem, streamContainer);
+            }
         }
-        setDataOrHideIfNone(contactData.getSocialSnippet(), statusView);
-        setDataOrHideIfNone(ContactBadgeUtil.getSocialDate(contactData, context), dateView);
+    }
+
+    public static void addStreamItemToContainer(LayoutInflater inflater, Context context,
+            StreamItemEntry streamItem, LinearLayout streamContainer) {
+        View oneColumnView = inflater.inflate(R.layout.stream_item_one_column,
+                streamContainer, false);
+        ViewGroup contentBox = (ViewGroup) oneColumnView.findViewById(R.id.stream_item_content);
+        int internalPadding = context.getResources().getDimensionPixelSize(
+                R.dimen.detail_update_section_internal_padding);
+
+        // TODO: This is not the correct layout for a stream item with photos.  Photos should be
+        // displayed first, then the update text either to the right of the final image (if there
+        // are an odd number of images) or below the last row of images (if there are an even
+        // number of images).  Since this is designed as a two-column grid, we should also consider
+        // using a TableLayout instead of the series of nested LinearLayouts that we have now.
+        // See the Updates section of the Contacts Architecture document for details.
+
+        // If there are no photos, just display the text in a single column.
+        List<StreamItemPhotoEntry> photos = streamItem.getPhotos();
+        if (photos.isEmpty()) {
+            addStreamItemText(inflater, context, streamItem, contentBox);
+        } else {
+            // If the first photo is square or portrait mode, show the text alongside it.
+            boolean isFirstPhotoAlongsideText = false;
+            StreamItemPhotoEntry firstPhoto = photos.get(0);
+            isFirstPhotoAlongsideText = firstPhoto.getHeight() >= firstPhoto.getWidth();
+            if (isFirstPhotoAlongsideText) {
+                View twoColumnView = inflater.inflate(R.layout.stream_item_pair, contentBox, false);
+                addStreamItemPhoto(inflater, context, firstPhoto,
+                        (ViewGroup) twoColumnView.findViewById(R.id.stream_pair_first));
+                addStreamItemText(inflater, context, streamItem,
+                        (ViewGroup) twoColumnView.findViewById(R.id.stream_pair_second));
+                contentBox.addView(twoColumnView);
+            } else {
+                // Just add the stream item text at the top of the entry.
+                addStreamItemText(inflater, context, streamItem, contentBox);
+            }
+            for (int i = isFirstPhotoAlongsideText ? 1 : 0; i < photos.size(); i++) {
+                StreamItemPhotoEntry photo = photos.get(i);
+
+                // If the photo is landscape, show it at full-width.
+                if (photo.getWidth() > photo.getHeight()) {
+                    View photoView = addStreamItemPhoto(inflater, context, photo, contentBox);
+                    photoView.setPadding(0, internalPadding, 0, 0);
+                } else {
+                    // If this photo and the next are both square or portrait, show them as a pair.
+                    StreamItemPhotoEntry nextPhoto = i + 1 < photos.size()
+                            ? photos.get(i + 1) : null;
+                    if (nextPhoto != null && nextPhoto.getHeight() >= nextPhoto.getWidth()) {
+                        View twoColumnView = inflater.inflate(R.layout.stream_item_pair,
+                                contentBox, false);
+                        addStreamItemPhoto(inflater, context, photo,
+                                (ViewGroup) twoColumnView.findViewById(R.id.stream_pair_first));
+                        addStreamItemPhoto(inflater, context, nextPhoto,
+                                (ViewGroup) twoColumnView.findViewById(R.id.stream_pair_second));
+                        twoColumnView.setPadding(0, internalPadding, 0, 0);
+                        contentBox.addView(twoColumnView);
+                        i++;
+                    } else {
+                        View photoView = addStreamItemPhoto(inflater, context, photo, contentBox);
+                        photoView.setPadding(0, internalPadding, 0, 0);
+                    }
+                }
+            }
+        }
+
+        streamContainer.addView(oneColumnView);
+    }
+
+    private static View addStreamItemText(LayoutInflater inflater, Context context,
+            StreamItemEntry streamItem, ViewGroup parent) {
+        View textUpdate = inflater.inflate(R.layout.stream_item_text, parent, false);
+        TextView htmlView = (TextView) textUpdate.findViewById(R.id.stream_item_html);
+        TextView attributionView = (TextView) textUpdate.findViewById(
+                R.id.stream_item_attribution);
+        htmlView.setText(Html.fromHtml(streamItem.getText()));
+        attributionView.setText(ContactBadgeUtil.getSocialDate(streamItem, context));
+        parent.addView(textUpdate);
+        return textUpdate;
+    }
+
+    private static View addStreamItemPhoto(LayoutInflater inflater, Context context,
+            StreamItemPhotoEntry streamItemPhoto, ViewGroup parent) {
+        ImageView image = new ImageView(context);
+        ContactPhotoManager.getInstance(context).loadPhoto(
+                image, Uri.parse(streamItemPhoto.getPhotoUri()));
+        parent.addView(image);
+        return image;
     }
 
     /**

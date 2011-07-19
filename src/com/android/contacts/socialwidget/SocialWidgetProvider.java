@@ -20,6 +20,7 @@ import com.android.contacts.ContactLoader;
 import com.android.contacts.R;
 import com.android.contacts.util.ContactBadgeUtil;
 import com.android.contacts.util.DataStatus;
+import com.android.contacts.util.StreamItemEntry;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -44,6 +45,7 @@ import android.view.View;
 import android.widget.RemoteViews;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class SocialWidgetProvider extends AppWidgetProvider {
     private static final String TAG = "SocialWidgetProvider";
@@ -109,7 +111,7 @@ public class SocialWidgetProvider extends AppWidgetProvider {
             // Not yet set-up (this can happen while the Configuration activity is visible)
             return;
         }
-        final ContactLoader contactLoader = new ContactLoader(context, contactUri);
+        final ContactLoader contactLoader = new ContactLoader(context, contactUri, false, true);
         contactLoader.registerListener(0,
                 new ContactLoader.OnLoadCompleteListener<ContactLoader.Result>() {
                     @Override
@@ -140,8 +142,13 @@ public class SocialWidgetProvider extends AppWidgetProvider {
             setPhoto(views, photo != null
                     ? BitmapFactory.decodeByteArray(photo, 0, photo.length)
                             : ContactBadgeUtil.loadPlaceholderPhoto(context));
-            setStatusAttribution(views, ContactBadgeUtil.getSocialDate(
-                    contactData, context));
+
+            // TODO: Rotate between all the stream items?
+            StreamItemEntry streamItem = null;
+            if (!contactData.getStreamItems().isEmpty()) {
+                streamItem = contactData.getStreamItems().get(0);
+                setStatusAttribution(views, ContactBadgeUtil.getSocialDate(streamItem, context));
+            }
 
             // OnClick launch QuickContact
             final Intent intent = new Intent(QuickContact.ACTION_QUICK_CONTACT);
@@ -157,7 +164,7 @@ public class SocialWidgetProvider extends AppWidgetProvider {
             views.setOnClickPendingIntent(R.id.border, pendingIntent);
 
             setDisplayNameAndSnippet(context, views, contactData.getDisplayName(),
-                    contactData.getPhoneticName(), contactData.getStatuses(), pendingIntent);
+                    contactData.getPhoneticName(), contactData.getStreamItems(), pendingIntent);
         }
 
         // Configure UI
@@ -174,7 +181,7 @@ public class SocialWidgetProvider extends AppWidgetProvider {
      */
     private static void setDisplayNameAndSnippet(Context context, RemoteViews views,
             CharSequence displayName, CharSequence phoneticName,
-            HashMap<Long, DataStatus> statuses, PendingIntent defaultIntent) {
+            List<StreamItemEntry> streamItems, PendingIntent defaultIntent) {
         SpannableStringBuilder sb = new SpannableStringBuilder();
 
         CharSequence name = displayName;
@@ -190,27 +197,15 @@ public class SocialWidgetProvider extends AppWidgetProvider {
         sb.setSpan(sizeSpan, 0, name.length(), 0);
         sb.setSpan(styleSpan, 0, name.length(), 0);
 
-        long latestStatusId = 0;
-        DataStatus latestStatus = null;
-        if (statuses != null) {
-            for (HashMap.Entry<Long, DataStatus> entry : statuses.entrySet()) {
-                DataStatus status = entry.getValue();
-                if (!TextUtils.isEmpty(status.getStatus())
-                        && (latestStatus == null
-                                || latestStatus.getTimestamp() < status.getTimestamp())) {
-                    latestStatusId = entry.getKey();
-                    latestStatus = status;
-                }
-            }
-        }
-
-        if (latestStatus == null) {
+        if (streamItems.isEmpty()) {
             views.setTextViewText(R.id.name, sb);
             views.setViewVisibility(R.id.name, View.VISIBLE);
             views.setViewVisibility(R.id.name_and_snippet, View.GONE);
             views.setOnClickPendingIntent(R.id.widget_container, defaultIntent);
         } else {
-            CharSequence status = latestStatus.getStatus();
+            // TODO: Rotate between all the stream items?
+            StreamItemEntry streamItem = streamItems.get(0);
+            CharSequence status = streamItem.getText();
             if (status.length() <= SHORT_SNIPPET_LENGTH) {
                 sb.append("\n");
             } else {
@@ -220,11 +215,13 @@ public class SocialWidgetProvider extends AppWidgetProvider {
             views.setTextViewText(R.id.name_and_snippet, sb);
             views.setViewVisibility(R.id.name, View.GONE);
             views.setViewVisibility(R.id.name_and_snippet, View.VISIBLE);
-            final Intent intent = new Intent(Intent.ACTION_VIEW,
-                    ContentUris.withAppendedId(Data.CONTENT_URI, latestStatusId));
-
-            views.setOnClickPendingIntent(R.id.name_and_snippet_container,
-                    PendingIntent.getActivity(context, 0, intent, 0));
+            if (!TextUtils.isEmpty(streamItem.getAction())
+                    && !TextUtils.isEmpty(streamItem.getActionUri())) {
+                final Intent intent = new Intent(streamItem.getAction(),
+                        Uri.parse(streamItem.getActionUri()));
+                views.setOnClickPendingIntent(R.id.name_and_snippet_container,
+                        PendingIntent.getActivity(context, 0, intent, 0));
+            }
         }
     }
 

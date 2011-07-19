@@ -17,6 +17,8 @@
 package com.android.contacts;
 
 import com.android.contacts.util.DataStatus;
+import com.android.contacts.util.StreamItemEntry;
+import com.android.contacts.util.StreamItemPhotoEntry;
 import com.google.common.annotations.VisibleForTesting;
 
 import android.content.ContentResolver;
@@ -42,6 +44,8 @@ import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.StreamItems;
+import android.provider.ContactsContract.StreamItemPhotos;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -51,8 +55,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Loads a single Contact and all it constituent RawContacts.
@@ -62,6 +70,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
     private Uri mLookupUri;
     private boolean mLoadGroupMetaData;
+    private boolean mLoadStreamItems;
     private Result mContact;
     private ForceLoadContentObserver mObserver;
     private boolean mDestroyed;
@@ -102,11 +111,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         private final boolean mStarred;
         private final Integer mPresence;
         private final ArrayList<Entity> mEntities;
+        private ArrayList<StreamItemEntry> mStreamItems;
         private final HashMap<Long, DataStatus> mStatuses;
-        private final String mStatus;
-        private final Long mStatusTimestamp;
-        private final Integer mStatusLabel;
-        private final String mStatusResPackage;
 
         private String mDirectoryDisplayName;
         private String mDirectoryType;
@@ -130,6 +136,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mLookupKey = null;
             mId = -1;
             mEntities = null;
+            mStreamItems = new ArrayList<StreamItemEntry>();
             mStatuses = null;
             mNameRawContactId = -1;
             mDisplayNameSource = DisplayNameSources.UNDEFINED;
@@ -140,10 +147,6 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mPhoneticName = null;
             mStarred = false;
             mPresence = null;
-            mStatus = null;
-            mStatusTimestamp = null;
-            mStatusLabel = null;
-            mStatusResPackage = null;
         }
 
         /**
@@ -152,14 +155,14 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         private Result(Uri uri, Uri lookupUri, long directoryId, String lookupKey, long id,
                 long nameRawContactId, int displayNameSource, long photoId, String photoUri,
                 String displayName, String altDisplayName, String phoneticName, boolean starred,
-                Integer presence, String status, Long statusTimestamp, Integer statusLabel,
-                String statusResPackage) {
+                Integer presence) {
             mLookupUri = lookupUri;
             mUri = uri;
             mDirectoryId = directoryId;
             mLookupKey = lookupKey;
             mId = id;
             mEntities = new ArrayList<Entity>();
+            mStreamItems = new ArrayList<StreamItemEntry>();
             mStatuses = new HashMap<Long, DataStatus>();
             mNameRawContactId = nameRawContactId;
             mDisplayNameSource = displayNameSource;
@@ -170,10 +173,6 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mPhoneticName = phoneticName;
             mStarred = starred;
             mPresence = presence;
-            mStatus = status;
-            mStatusTimestamp = statusTimestamp;
-            mStatusLabel = statusLabel;
-            mStatusResPackage = statusResPackage;
         }
 
         private Result(Result from) {
@@ -192,11 +191,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mStarred = from.mStarred;
             mPresence = from.mPresence;
             mEntities = from.mEntities;
+            mStreamItems = from.mStreamItems;
             mStatuses = from.mStatuses;
-            mStatus = from.mStatus;
-            mStatusTimestamp = from.mStatusTimestamp;
-            mStatusLabel = from.mStatusLabel;
-            mStatusResPackage = from.mStatusResPackage;
 
             mDirectoryDisplayName = from.mDirectoryDisplayName;
             mDirectoryType = from.mDirectoryType;
@@ -283,24 +279,12 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             return mPresence;
         }
 
-        public String getSocialSnippet() {
-            return mStatus;
-        }
-
-        public Long getStatusTimestamp() {
-            return mStatusTimestamp;
-        }
-
-        public Integer getStatusLabel() {
-            return mStatusLabel;
-        }
-
-        public String getStatusResPackage() {
-            return mStatusResPackage;
-        }
-
         public ArrayList<Entity> getEntities() {
             return mEntities;
+        }
+
+        public ArrayList<StreamItemEntry> getStreamItems() {
+            return mStreamItems;
         }
 
         public HashMap<Long, DataStatus> getStatuses() {
@@ -387,8 +371,11 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         }
     }
 
+    /**
+     * Projection used for the query that loads all data for the entire contact (except for
+     * social stream items).
+     */
     private static class ContactQuery {
-        // Projection used for the query that loads all data for the entire contact.
         final static String[] COLUMNS = new String[] {
                 Contacts.NAME_RAW_CONTACT_ID,
                 Contacts.DISPLAY_NAME_SOURCE,
@@ -524,8 +511,10 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         public final static int PHOTO_URI = 59;
     }
 
+    /**
+     * Projection used for the query that loads all data for the entire contact.
+     */
     private static class DirectoryQuery {
-        // Projection used for the query that loads all data for the entire contact.
         final static String[] COLUMNS = new String[] {
             Directory.DISPLAY_NAME,
             Directory.PACKAGE_NAME,
@@ -574,6 +563,9 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                         loadDirectoryMetaData(result);
                     } else if (mLoadGroupMetaData) {
                         loadGroupMetaData(result);
+                    }
+                    if (mLoadStreamItems) {
+                        loadStreamItems(result);
                     }
                     loadPhotoBinaryData(result);
                 }
@@ -748,15 +740,6 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             final Integer presence = cursor.isNull(ContactQuery.CONTACT_PRESENCE)
                     ? null
                     : cursor.getInt(ContactQuery.CONTACT_PRESENCE);
-            final String status = cursor.getString(ContactQuery.CONTACT_STATUS);
-            final Long statusTimestamp = cursor.isNull(ContactQuery.CONTACT_STATUS_TIMESTAMP)
-                    ? null
-                    : cursor.getLong(ContactQuery.CONTACT_STATUS_TIMESTAMP);
-            final Integer statusLabel = cursor.isNull(ContactQuery.CONTACT_STATUS_LABEL)
-                    ? null
-                    : cursor.getInt(ContactQuery.CONTACT_STATUS_LABEL);
-            final String statusResPackage = cursor.getString(
-                    ContactQuery.CONTACT_STATUS_RES_PACKAGE);
 
             Uri lookupUri;
             if (directoryId == Directory.DEFAULT || directoryId == Directory.LOCAL_INVISIBLE) {
@@ -768,8 +751,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
             return new Result(contactUri, lookupUri, directoryId, lookupKey, contactId,
                     nameRawContactId, displayNameSource, photoId, photoUri, displayName,
-                    altDisplayName, phoneticName, starred, presence, status, statusTimestamp,
-                    statusLabel, statusResPackage);
+                    altDisplayName, phoneticName, starred, presence);
         }
 
         /**
@@ -937,6 +919,60 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             }
         }
 
+        /**
+         * Loads all stream items and stream item photos belonging to this contact.
+         */
+        private void loadStreamItems(Result result) {
+            Cursor cursor = getContext().getContentResolver().query(
+                    Contacts.CONTENT_LOOKUP_URI.buildUpon()
+                            .appendPath(result.getLookupKey())
+                            .appendPath(Contacts.StreamItems.CONTENT_DIRECTORY).build(),
+                    null, null, null, null);
+            Map<Long, StreamItemEntry> streamItemsById = new HashMap<Long, StreamItemEntry>();
+            ArrayList<StreamItemEntry> streamItems = new ArrayList<StreamItemEntry>();
+            try {
+                while (cursor.moveToNext()) {
+                    StreamItemEntry streamItem = new StreamItemEntry(cursor);
+                    streamItemsById.put(streamItem.getId(), streamItem);
+                    streamItems.add(streamItem);
+                }
+            } finally {
+                cursor.close();
+            }
+
+            // Now retrieve any photo records associated with the stream items.
+            String[] streamItemIdArr = new String[streamItems.size()];
+            StringBuilder streamItemPhotoSelection = new StringBuilder();
+            if (!streamItems.isEmpty()) {
+                streamItemPhotoSelection.append(StreamItemPhotos.STREAM_ITEM_ID + " IN (");
+                for (int i = 0; i < streamItems.size(); i++) {
+                    if (i > 0) {
+                        streamItemPhotoSelection.append(",");
+                    }
+                    streamItemPhotoSelection.append("?");
+                    streamItemIdArr[i] = String.valueOf(streamItems.get(i).getId());
+                }
+                streamItemPhotoSelection.append(")");
+                cursor = getContext().getContentResolver().query(StreamItems.CONTENT_PHOTO_URI,
+                        null, streamItemPhotoSelection.toString(), streamItemIdArr,
+                        StreamItemPhotos.STREAM_ITEM_ID);
+                try {
+                    while (cursor.moveToNext()) {
+                        long streamItemId = cursor.getLong(
+                                cursor.getColumnIndex(StreamItemPhotos.STREAM_ITEM_ID));
+                        StreamItemEntry streamItem = streamItemsById.get(streamItemId);
+                        streamItem.addPhoto(new StreamItemPhotoEntry(cursor));
+                    }
+                } finally {
+                    cursor.close();
+                }
+            }
+
+            // Set the sorted stream items on the result.
+            Collections.sort(streamItems);
+            result.mStreamItems.addAll(streamItems);
+        }
+
         @Override
         protected void onPostExecute(Result result) {
             unregisterObserver();
@@ -1022,13 +1058,15 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
     }
 
     public ContactLoader(Context context, Uri lookupUri) {
-        this(context, lookupUri, false);
+        this(context, lookupUri, false, false);
     }
 
-    public ContactLoader(Context context, Uri lookupUri, boolean loadGroupMetaData) {
+    public ContactLoader(Context context, Uri lookupUri, boolean loadGroupMetaData,
+            boolean loadStreamItems) {
         super(context);
         mLookupUri = lookupUri;
         mLoadGroupMetaData = loadGroupMetaData;
+        mLoadStreamItems = loadStreamItems;
     }
 
     public Uri getLookupUri() {

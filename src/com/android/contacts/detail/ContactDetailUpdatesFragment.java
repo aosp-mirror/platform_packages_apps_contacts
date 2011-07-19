@@ -27,6 +27,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class ContactDetailUpdatesFragment extends Fragment
@@ -37,8 +38,10 @@ public class ContactDetailUpdatesFragment extends Fragment
     private ContactLoader.Result mContactData;
     private Uri mLookupUri;
 
-    private TextView mStatusView;
-    private TextView mStatusDateView;
+    private LayoutInflater mInflater;
+
+    // The linear layout that contains all the stream items.
+    private LinearLayout mStreamContainer;
 
     /**
      * This optional view adds an alpha layer over the entire fragment.
@@ -57,22 +60,22 @@ public class ContactDetailUpdatesFragment extends Fragment
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
-        View rootView = inflater.inflate(R.layout.contact_detail_updates_fragment, container,
+        mInflater = inflater;
+        View rootView = mInflater.inflate(R.layout.contact_detail_updates_fragment, container,
                 false);
 
         TextView titleTextView = (TextView) rootView.findViewById(R.id.kind);
         titleTextView.setText(getString(R.string.recent_updates).toUpperCase());
 
-        mStatusView = (TextView) rootView.findViewById(R.id.status);
-        mStatusDateView = (TextView) rootView.findViewById(R.id.status_date);
+        mStreamContainer = (LinearLayout) rootView.findViewById(R.id.update_list);
 
         // It is possible that the contact data was set to the fragment when it was first attached
         // to the activity, but before this method was called because the fragment was not
         // visible on screen yet (i.e. using a {@link ViewPager}), so display the data if we already
         // have it.
         if (mContactData != null) {
-            ContactDetailDisplayUtils.setSocialSnippetAndDate(getActivity(), mContactData,
-                    mStatusView, mStatusDateView);
+            ContactDetailDisplayUtils.showSocialStreamItems(inflater, getActivity(), mContactData,
+                    mStreamContainer);
         }
 
         mAlphaLayer = rootView.findViewById(R.id.alpha_overlay);
@@ -87,8 +90,8 @@ public class ContactDetailUpdatesFragment extends Fragment
         }
         mLookupUri = lookupUri;
         mContactData = result;
-        ContactDetailDisplayUtils.setSocialSnippetAndDate(getActivity(), mContactData,
-                mStatusView, mStatusDateView);
+        ContactDetailDisplayUtils.showSocialStreamItems(mInflater, getActivity(), mContactData,
+                mStreamContainer);
     }
 
     @Override
