@@ -98,8 +98,10 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
     private long mGroupId;
     private String mGroupName;
     private String mAccountTypeString;
+    private boolean mIsReadOnly;
 
     private boolean mOptionsMenuEditable;
+    private boolean mOptionsMenuGroupPresent;
     private boolean mCloseActivityAfterDelete;
 
     public GroupDetailFragment() {
@@ -254,7 +256,10 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
             mAccountTypeString = cursor.getString(GroupMetaDataLoader.ACCOUNT_TYPE);
             mGroupId = cursor.getLong(GroupMetaDataLoader.GROUP_ID);
             mGroupName = cursor.getString(GroupMetaDataLoader.TITLE);
+            mIsReadOnly = cursor.getInt(GroupMetaDataLoader.IS_READ_ONLY) == 1;
             updateTitle(mGroupName);
+            // Must call invalidate so that the option menu will get updated
+            getActivity().invalidateOptionsMenu ();
 
             // TODO: Replace by real button
             final String action = cursor.getString(GroupMetaDataLoader.ACTION);
@@ -314,21 +319,27 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
     }
 
     public boolean isOptionsMenuChanged() {
-        return mOptionsMenuEditable != isGroupEditable();
+        return mOptionsMenuEditable != isGroupEditable() &&
+                mOptionsMenuGroupPresent != isGroupPresent();
     }
 
     public boolean isGroupEditable() {
-        // TODO: This should check the group_is_read_only flag. Modify GroupMetaDataLoader.
-        // Bug: 4601729.
+        return mGroupUri != null && !mIsReadOnly;
+    }
+
+    public boolean isGroupPresent() {
         return mGroupUri != null;
     }
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         mOptionsMenuEditable = isGroupEditable();
+        mOptionsMenuGroupPresent = isGroupPresent();
 
+        // Editing a group is always possible if a group is selected
+        // TODO: check for external group (member editable) buganizer #5049046
         final MenuItem editMenu = menu.findItem(R.id.menu_edit_group);
-        editMenu.setVisible(mOptionsMenuEditable);
+        editMenu.setVisible(mOptionsMenuGroupPresent);
 
         final MenuItem deleteMenu = menu.findItem(R.id.menu_delete_group);
         deleteMenu.setVisible(mOptionsMenuEditable);
