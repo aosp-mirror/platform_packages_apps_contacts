@@ -361,11 +361,6 @@ public class PeopleActivity extends ContactsActivity
         if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
             // Prepare 2-pane only fragments/views...
 
-            // If setting 1-pane properties, make sure the fragment is created first
-            // by moving code after call to executePendingTransactions
-            mFavoritesFragment.setDisplayType(DisplayType.STARRED_ONLY);
-            mFavoritesFragment.enableQuickContact(true);
-
             // Container views for fragments
             mFavoritesView = getView(R.id.favorites_view);
             mDetailsView = getView(R.id.details_view);
@@ -397,6 +392,14 @@ public class PeopleActivity extends ContactsActivity
         }
         transaction.commit();
         fragmentManager.executePendingTransactions();
+
+        // Setting Properties after fragment is created
+        if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
+            mFavoritesFragment.enableQuickContact(true);
+            mFavoritesFragment.setDisplayType(DisplayType.STARRED_ONLY);
+        } else {
+            mFavoritesFragment.setDisplayType(DisplayType.STREQUENT);
+        }
 
         // Configure action bar
         mActionBarAdapter = new ActionBarAdapter(this, this, getActionBar());

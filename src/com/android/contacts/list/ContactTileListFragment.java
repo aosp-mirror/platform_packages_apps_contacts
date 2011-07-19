@@ -50,7 +50,7 @@ public class ContactTileListFragment extends Fragment {
     private Listener mListener;
     private ContactTileAdapter mAdapter;
     private ListView mListView;
-    private DisplayType mDisplayType = DisplayType.STREQUENT;
+    private DisplayType mDisplayType = DisplayType.STREQUENT_PHONE_ONLY;
 
     @Override
     public void onAttach(Activity activity) {
@@ -94,10 +94,6 @@ public class ContactTileListFragment extends Fragment {
         mAdapter.enableQuickContact(enableQuickContact);
     }
 
-    public void enableSecondaryTarget(boolean enableSecondaryTarget) {
-        mAdapter.enableSecondaryTarget(enableSecondaryTarget);
-    }
-
     private final LoaderManager.LoaderCallbacks<Cursor> mContactTileLoaderListener =
             new LoaderCallbacks<Cursor>() {
 
@@ -108,6 +104,8 @@ public class ContactTileListFragment extends Fragment {
                   return ContactTileLoaderFactory.createStarredLoader(getActivity());
               case STREQUENT:
                   return ContactTileLoaderFactory.createStrequentLoader(getActivity());
+              case STREQUENT_PHONE_ONLY:
+                  return ContactTileLoaderFactory.createStrequentPhoneOnlyLoader(getActivity());
               case FREQUENT_ONLY:
                   return ContactTileLoaderFactory.createFrequentLoader(getActivity());
               default:
