@@ -334,7 +334,6 @@ public class DialtactsActivity extends Activity {
         } else if (fragment instanceof ContactTileListFragment) {
             mStrequentFragment = (ContactTileListFragment) fragment;
             mStrequentFragment.enableQuickContact(false);
-            mStrequentFragment.enableSecondaryTarget(true);
             mStrequentFragment.setListener(mStrequentListener);
         } else if (fragment instanceof PhoneNumberPickerFragment) {
             mSearchFragment = (PhoneNumberPickerFragment) fragment;

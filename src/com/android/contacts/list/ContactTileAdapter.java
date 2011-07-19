@@ -61,7 +61,6 @@ public class ContactTileAdapter extends BaseAdapter {
     private int mStarredIndex;
 
     private boolean mIsQuickContactEnabled = false;
-    private boolean mIsSecondaryTargetEnabled = false;
 
     /**
      * Configures the adapter to filter and display contacts using different view types.
@@ -69,9 +68,15 @@ public class ContactTileAdapter extends BaseAdapter {
      */
     public enum DisplayType {
         /**
-         * Displays a mixed view type of starred without secondary target and frequent contacts
+         * Displays a mixed view type of starred and frequent contacts
          */
         STREQUENT,
+
+        /**
+         * Displays a mixed view type of starred and frequent contacts based on phone data.
+         * Also includes secondary touch target.
+         */
+        STREQUENT_PHONE_ONLY,
 
         /**
          * Display only starred contacts
@@ -117,10 +122,6 @@ public class ContactTileAdapter extends BaseAdapter {
         mIsQuickContactEnabled = enableQuickContact;
     }
 
-    public void enableSecondaryTarget(boolean enableSecondaryTarget) {
-        mIsSecondaryTargetEnabled = enableSecondaryTarget;
-    }
-
     /**
      * Sets the column indices for expected {@link Cursor}
      * based on {@link DisplayType}.
@@ -161,10 +162,11 @@ public class ContactTileAdapter extends BaseAdapter {
     /**
      * Iterates over the {@link Cursor}
      * Returns position of the first NON Starred Contact
-     * Returns -1 if not {@link DisplayType#STREQUENT}
+     * Returns -1 if not {@link DisplayType#}
      */
     private int getDividerPosition(Cursor cursor) {
-        if (cursor == null || cursor.isClosed() || mDisplayType != DisplayType.STREQUENT) {
+        if (cursor == null || cursor.isClosed() || (mDisplayType != DisplayType.STREQUENT
+                && mDisplayType != DisplayType.STREQUENT_PHONE_ONLY)) {
             return -1;
         }
         while (cursor.moveToNext()) {
@@ -208,6 +210,7 @@ public class ContactTileAdapter extends BaseAdapter {
             case GROUP_MEMBERS:
                 return getRowCount(mContactCursor.getCount());
             case STREQUENT:
+            case STREQUENT_PHONE_ONLY:
                 /*
                  * Takes numbers of rows the Starred Contacts Occupy
                  * Calculates the number of frequent contacts
@@ -251,6 +254,7 @@ public class ContactTileAdapter extends BaseAdapter {
                 }
                 break;
             case STREQUENT:
+            case STREQUENT_PHONE_ONLY:
                 if (position < getRowCount(mDividerPosition)) {
                     for (int columnCounter = 0; columnCounter < mColumnCount &&
                             contactIndex != mDividerPosition; columnCounter++) {
@@ -286,7 +290,8 @@ public class ContactTileAdapter extends BaseAdapter {
 
     @Override
     public boolean areAllItemsEnabled() {
-        return mDisplayType != DisplayType.STREQUENT;
+        return (mDisplayType != DisplayType.STREQUENT &&
+                mDisplayType != DisplayType.STREQUENT_PHONE_ONLY);
     }
 
     @Override
@@ -340,7 +345,8 @@ public class ContactTileAdapter extends BaseAdapter {
     }
     @Override
     public int getViewTypeCount() {
-        return mDisplayType == DisplayType.STREQUENT ? ViewTypes.COUNT : 1;
+        return (mDisplayType == DisplayType.STREQUENT ||
+                mDisplayType == DisplayType.STREQUENT_PHONE_ONLY) ? ViewTypes.COUNT : 1;
     }
 
     /**
@@ -356,9 +362,16 @@ public class ContactTileAdapter extends BaseAdapter {
         switch (mDisplayType) {
             case STREQUENT:
                 if (position < getRowCount(mDividerPosition)) {
-                    return (mIsSecondaryTargetEnabled ?
-                            ViewTypes.STARRED_WITH_SECONDARY_ACTION : ViewTypes.STARRED);
+                    return ViewTypes.STARRED;
                 } else if (position == getRowCount(mDividerPosition)) {
+                    return ViewTypes.DIVIDER;
+                } else {
+                    return ViewTypes.FREQUENT;
+                }
+            case STREQUENT_PHONE_ONLY:
+                if (position < getRowCount(mDividerPosition)) {
+                    return ViewTypes.STARRED_WITH_SECONDARY_ACTION;
+                 } else if (position == getRowCount(mDividerPosition)) {
                     return ViewTypes.DIVIDER;
                 } else {
                     return ViewTypes.FREQUENT;

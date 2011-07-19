@@ -19,6 +19,8 @@ import com.android.contacts.list.ContactTileView;
 
 import android.content.Context;
 import android.content.CursorLoader;
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 
 /**
@@ -42,6 +44,13 @@ public final class ContactTileLoaderFactory {
 
     public static CursorLoader createStrequentLoader(Context context) {
         return new CursorLoader(context, Contacts.CONTENT_STREQUENT_URI, COLUMNS, null, null, null);
+    }
+
+    public static CursorLoader createStrequentPhoneOnlyLoader(Context context) {
+        Uri uri = Contacts.CONTENT_STREQUENT_URI.buildUpon()
+                .appendQueryParameter(ContactsContract.STREQUENT_PHONE_ONLY, "true").build();
+
+        return new CursorLoader(context, uri, COLUMNS, null, null, null);
     }
 
     public static CursorLoader createStarredLoader(Context context) {
