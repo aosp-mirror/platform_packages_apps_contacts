@@ -114,6 +114,13 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         /** The value of the "section" column for the items of the old section. */
         public static final int SECTION_OLD_ITEM = 3;
 
+        /** The call log projection including the section name. */
+        public static final String[] EXTENDED_PROJECTION;
+        static {
+            EXTENDED_PROJECTION = new String[_PROJECTION.length + 1];
+            System.arraycopy(_PROJECTION, 0, EXTENDED_PROJECTION, 0, _PROJECTION.length);
+            EXTENDED_PROJECTION[_PROJECTION.length] = SECTION_NAME;
+        }
 
         public static boolean isSectionHeader(Cursor cursor) {
             int section = cursor.getInt(CallLogQuery.SECTION);
@@ -177,9 +184,14 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         public static ContactInfo EMPTY = new ContactInfo();
     }
 
+    public interface GroupCreator {
+        public void addGroup(int cursorPosition, int size, boolean expanded);
+    }
+
     /** Adapter class to fill in data for the Call Log */
     public final class CallLogAdapter extends GroupingListAdapter
-            implements Runnable, ViewTreeObserver.OnPreDrawListener, View.OnClickListener {
+            implements Runnable, ViewTreeObserver.OnPreDrawListener, View.OnClickListener,
+            GroupCreator {
         /** The time in millis to delay starting the thread processing requests. */
         private static final int START_PROCESSING_REQUESTS_DELAY_MILLIS = 1000;
 
@@ -508,12 +520,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             mCallLogGroupBuilder.addGroups(cursor);
         }
 
-        /** Expands visibility to this package. */
-        @Override
-        protected void addGroup(int cursorPosition, int size, boolean expanded) {
-            super.addGroup(cursorPosition, size, expanded);
-        }
-
         @VisibleForTesting
         @Override
         public View newStandAloneView(Context context, ViewGroup parent) {
@@ -732,6 +738,11 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
 
         public void injectContactInfoForTest(String number, ContactInfo contactInfo) {
             mContactInfoCache.put(number, contactInfo);
+        }
+
+        @Override
+        public void addGroup(int cursorPosition, int size, boolean expanded) {
+            super.addGroup(cursorPosition, size, expanded);
         }
     }
 
