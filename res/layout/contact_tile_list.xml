@@ -14,9 +14,22 @@
      limitations under the License.
 -->
 
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/contact_tile_list"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:divider="@null"
-/>
+    android:layout_height="match_parent">
+
+    <ListView
+        android:id="@+id/contact_tile_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null" />
+
+    <TextView
+        android:id="@+id/contact_tile_list_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+</FrameLayout>

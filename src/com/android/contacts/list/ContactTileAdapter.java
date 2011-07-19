@@ -202,7 +202,7 @@ public class ContactTileAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         if (mContactCursor == null || mContactCursor.getCount() == 0) {
-          return 0;
+            return 0;
         }
 
         switch (mDisplayType) {
@@ -304,7 +304,7 @@ public class ContactTileAdapter extends BaseAdapter {
         int itemViewType = getItemViewType(position);
         if (itemViewType == ViewTypes.DIVIDER) {
             // Checking For Divider First so not to cast convertView
-            return convertView == null ? createDivider() : convertView;
+            return convertView == null ? getDivider() : convertView;
         }
 
         ContactTileRow contactTileRowView = (ContactTileRow) convertView;
@@ -322,7 +322,7 @@ public class ContactTileAdapter extends BaseAdapter {
      * Divider uses a list_seperator.xml along with text to denote
      * the most frequently contacted contacts.
      */
-    private View createDivider() {
+    private View getDivider() {
         View dividerView = View.inflate(mContext, R.layout.list_separator, null);
         dividerView.setFocusable(false);
         TextView text = (TextView) dividerView.findViewById(R.id.header_text);

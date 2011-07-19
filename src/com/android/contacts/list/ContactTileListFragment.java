@@ -34,6 +34,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 /**
  * Fragment containing a list of starred contacts followed by a list of frequently contacted.
@@ -49,8 +50,9 @@ public class ContactTileListFragment extends Fragment {
 
     private Listener mListener;
     private ContactTileAdapter mAdapter;
+    private DisplayType mDisplayType;
+    private TextView mEmptyView;
     private ListView mListView;
-    private DisplayType mDisplayType = DisplayType.STREQUENT_PHONE_ONLY;
 
     @Override
     public void onAttach(Activity activity) {
@@ -67,11 +69,15 @@ public class ContactTileListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.contact_tile_list, container, false);
-        mListView = (ListView) v.findViewById(R.id.contact_tile_list);
+        View listLayout = inflater.inflate(R.layout.contact_tile_list, container, false);
+
+        mEmptyView = (TextView) listLayout.findViewById(R.id.contact_tile_list_empty);
+        mListView = (ListView) listLayout.findViewById(R.id.contact_tile_list);
+
         mListView.setItemsCanFocus(true);
         mListView.setAdapter(mAdapter);
-        return v;
+
+        return listLayout;
     }
 
     @Override
@@ -117,11 +123,31 @@ public class ContactTileListFragment extends Fragment {
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
             mAdapter.setContactCursor(data);
+            mEmptyView.setText(getEmptyStateText());
+            mListView.setEmptyView(mEmptyView);
         }
 
         @Override
         public void onLoaderReset(Loader<Cursor> loader) {}
     };
+
+    private String getEmptyStateText() {
+        String emptyText;
+        switch (mDisplayType) {
+            case STREQUENT:
+            case STREQUENT_PHONE_ONLY:
+            case STARRED_ONLY:
+                emptyText = getString(R.string.listTotalAllContactsZeroStarred);
+                break;
+            case FREQUENT_ONLY:
+            case GROUP_MEMBERS:
+                emptyText = getString(R.string.noContacts);
+                break;
+            default:
+                throw new IllegalArgumentException("Unrecognized DisplayType " + mDisplayType);
+        }
+        return emptyText;
+    }
 
     public void setListener(Listener listener) {
         mListener = listener;
