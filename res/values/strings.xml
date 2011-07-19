@@ -1656,4 +1656,7 @@
 
     <!-- The counter for calls in a group in the call log [CHAR LIMIT=5] -->
     <string name="call_log_item_count">(%1$d)</string>
+
+    <!-- Hint text in the group name box in the edit group view. [CHAR LIMIT=20]-->
+    <string name="group_name_hint">Group\'s Name</string>
 </resources>
