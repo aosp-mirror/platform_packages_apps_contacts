@@ -36,7 +36,6 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.database.CharArrayBuffer;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -114,6 +113,19 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         public static final int SECTION_OLD_HEADER = 2;
         /** The value of the "section" column for the items of the old section. */
         public static final int SECTION_OLD_ITEM = 3;
+
+
+        public static boolean isSectionHeader(Cursor cursor) {
+            int section = cursor.getInt(CallLogQuery.SECTION);
+            return section == CallLogQuery.SECTION_NEW_HEADER
+                    || section == CallLogQuery.SECTION_OLD_HEADER;
+        }
+
+        public static boolean isNewSection(Cursor cursor) {
+            int section = cursor.getInt(CallLogQuery.SECTION);
+            return section == CallLogQuery.SECTION_NEW_ITEM
+                    || section == CallLogQuery.SECTION_NEW_HEADER;
+        }
     }
 
     /** The query to use for the phones table */
@@ -198,15 +210,12 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         /** Instance of helper class for managing views. */
         private final CallLogListItemHelper mCallLogViewsHelper;
 
-        /**
-         * Reusable char array buffers.
-         */
-        private CharArrayBuffer mBuffer1 = new CharArrayBuffer(128);
-        private CharArrayBuffer mBuffer2 = new CharArrayBuffer(128);
         /** Helper to set up contact photos. */
         private final ContactPhotoManager mContactPhotoManager;
         /** Helper to parse and process phone numbers. */
         private PhoneNumberHelper mPhoneNumberHelper;
+        /** Helper to group call log entries. */
+        private final CallLogGroupBuilder mCallLogGroupBuilder;
 
         /** Can be set to true by tests to disable processing of requests. */
         private volatile boolean mRequestProcessingDisabled = false;
@@ -266,6 +275,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                     getActivity(), resources, callTypeHelper, mPhoneNumberHelper);
             mCallLogViewsHelper =
                     new CallLogListItemHelper(phoneCallDetailsHelper, mPhoneNumberHelper);
+            mCallLogGroupBuilder = new CallLogGroupBuilder(this);
         }
 
         /**
@@ -495,64 +505,14 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
 
         @Override
         protected void addGroups(Cursor cursor) {
-            int count = cursor.getCount();
-            if (count == 0) {
-                return;
-            }
-
-            int groupItemCount = 1;
-
-            CharArrayBuffer currentValue = mBuffer1;
-            CharArrayBuffer value = mBuffer2;
-            cursor.moveToFirst();
-            cursor.copyStringToBuffer(CallLogQuery.NUMBER, currentValue);
-            int currentCallType = cursor.getInt(CallLogQuery.CALL_TYPE);
-            for (int i = 1; i < count; i++) {
-                cursor.moveToNext();
-                cursor.copyStringToBuffer(CallLogQuery.NUMBER, value);
-                boolean sameNumber = equalPhoneNumbers(value, currentValue);
-
-                // Group adjacent calls with the same number. Make an exception
-                // for the latest item if it was a missed call.  We don't want
-                // a missed call to be hidden inside a group.
-                if (sameNumber && currentCallType != Calls.MISSED_TYPE
-                        && !isSectionHeader(cursor)) {
-                    groupItemCount++;
-                } else {
-                    if (groupItemCount > 1) {
-                        addGroup(i - groupItemCount, groupItemCount, false);
-                    }
-
-                    groupItemCount = 1;
-
-                    // Swap buffers
-                    CharArrayBuffer temp = currentValue;
-                    currentValue = value;
-                    value = temp;
-
-                    // If we have just examined a row following a missed call, make
-                    // sure that it is grouped with subsequent calls from the same number
-                    // even if it was also missed.
-                    if (sameNumber && currentCallType == Calls.MISSED_TYPE) {
-                        currentCallType = 0;       // "not a missed call"
-                    } else {
-                        currentCallType = cursor.getInt(CallLogQuery.CALL_TYPE);
-                    }
-                }
-            }
-            if (groupItemCount > 1) {
-                addGroup(count - groupItemCount, groupItemCount, false);
-            }
+            mCallLogGroupBuilder.addGroups(cursor);
         }
 
-        protected boolean equalPhoneNumbers(CharArrayBuffer buffer1, CharArrayBuffer buffer2) {
-
-            // TODO add PhoneNumberUtils.compare(CharSequence, CharSequence) to avoid
-            // string allocation
-            return PhoneNumberUtils.compare(new String(buffer1.data, 0, buffer1.sizeCopied),
-                    new String(buffer2.data, 0, buffer2.sizeCopied));
+        /** Expands visibility to this package. */
+        @Override
+        protected void addGroup(int cursorPosition, int size, boolean expanded) {
+            super.addGroup(cursorPosition, size, expanded);
         }
-
 
         @VisibleForTesting
         @Override
@@ -713,7 +673,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                         callTypes, date, duration, name, ntype, label, personId, thumbnailUri);
             }
 
-            final boolean isNew = isNewSection(c);
+            final boolean isNew = CallLogQuery.isNewSection(c);
             // Use icons for old items, but text for new ones.
             final boolean useIcons = !isNew;
             // New items also use the highlighted version of the text.
@@ -1040,7 +1000,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     public void onListItemClick(ListView l, View v, int position, long id) {
         Intent intent = new Intent(getActivity(), CallDetailActivity.class);
         Cursor cursor = (Cursor) mAdapter.getItem(position);
-        if (isSectionHeader(cursor)) {
+        if (CallLogQuery.isSectionHeader(cursor)) {
             // Do nothing when a header is clicked.
             return;
         }
@@ -1095,17 +1055,5 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         resetNewCallsFlag();
         startVoicemailStatusQuery();
         mAdapter.mPreDrawListener = null; // Let it restart the thread after next draw
-    }
-
-    private static boolean isSectionHeader(Cursor cursor) {
-        int section = cursor.getInt(CallLogQuery.SECTION);
-        return section == CallLogQuery.SECTION_NEW_HEADER
-                || section == CallLogQuery.SECTION_OLD_HEADER;
-    }
-
-    private static boolean isNewSection(Cursor cursor) {
-        int section = cursor.getInt(CallLogQuery.SECTION);
-        return section == CallLogQuery.SECTION_NEW_ITEM
-                || section == CallLogQuery.SECTION_NEW_HEADER;
     }
 }
