@@ -48,6 +48,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:inputType="textCapWords"
+        android:hint="@string/group_name_hint"
         android:layout_marginBottom="@dimen/group_editor_padding"/>
 
     <include
