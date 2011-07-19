@@ -197,7 +197,6 @@ public class CallLogActivityTests
 
         CallLogListItemViews views = (CallLogListItemViews) view.getTag();
         assertNameIs(views, TEST_FORMATTED_NUMBER);
-        assertNumberAndLabelAreGone(views);
     }
 
     @MediumTest
@@ -520,10 +519,5 @@ public class CallLogActivityTests
             expectedText = numberLabel + " " + number;
         }
         assertEquals(expectedText, views.phoneCallDetailsViews.numberView.getText().toString());
-    }
-
-    /** Asserts that the number and label text view is gone. */
-    private void assertNumberAndLabelAreGone(CallLogListItemViews views) {
-        assertEquals(View.GONE, views.phoneCallDetailsViews.numberView.getVisibility());
     }
 }

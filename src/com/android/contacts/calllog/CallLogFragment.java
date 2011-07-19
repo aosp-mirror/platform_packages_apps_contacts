@@ -29,6 +29,7 @@ import com.android.contacts.calllog.VoicemailStatusHelper.StatusMessage;
 import com.android.contacts.util.ExpirableCache;
 import com.android.internal.telephony.CallerInfo;
 import com.google.common.annotations.VisibleForTesting;
+import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
 import android.app.ListFragment;
 import android.content.ContentUris;
@@ -263,6 +264,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         private CharArrayBuffer mBuffer2 = new CharArrayBuffer(128);
         /** Helper to set up contact photos. */
         private final ContactPhotoManager mContactPhotoManager;
+        /** Helper to parse and process phone numbers. */
+        private PhoneNumberHelper mPhoneNumberHelper;
 
         /** Can be set to true by tests to disable processing of requests. */
         private volatile boolean mRequestProcessingDisabled = false;
@@ -317,12 +320,11 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                     R.drawable.ic_call_log_list_action_play);
 
             mContactPhotoManager = ContactPhotoManager.getInstance(getActivity());
-            PhoneNumberHelper phoneNumberHelper =
-                    new PhoneNumberHelper(getResources(), mVoiceMailNumber);
+            mPhoneNumberHelper = new PhoneNumberHelper(getResources(), mVoiceMailNumber);
             PhoneCallDetailsHelper phoneCallDetailsHelper = new PhoneCallDetailsHelper(
-                    getActivity(), resources, callTypeHelper, phoneNumberHelper );
+                    getActivity(), resources, callTypeHelper, mPhoneNumberHelper );
             mCallLogViewsHelper = new CallLogListItemHelper(phoneCallDetailsHelper,
-                    phoneNumberHelper, callDrawable, playDrawable);
+                    mPhoneNumberHelper, callDrawable, playDrawable);
         }
 
         /**
@@ -769,11 +771,14 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
 
             final int[] callTypes = getCallTypes(c, count);
             final PhoneCallDetails details;
+            PhoneNumber structuredPhoneNumber =
+                    mPhoneNumberHelper.parsePhoneNumber(number, countryIso);
             if (TextUtils.isEmpty(name)) {
-                details = new PhoneCallDetails(number, formattedNumber, callTypes, date, duration);
+                details = new PhoneCallDetails(number, formattedNumber, structuredPhoneNumber,
+                        callTypes, date, duration);
             } else {
-                details = new PhoneCallDetails(number, formattedNumber, callTypes, date, duration,
-                        name, ntype, label, personId, thumbnailUri);
+                details = new PhoneCallDetails(number, formattedNumber, structuredPhoneNumber,
+                        callTypes, date, duration, name, ntype, label, personId, thumbnailUri);
             }
 
             final boolean isNew = isNewSection(c);

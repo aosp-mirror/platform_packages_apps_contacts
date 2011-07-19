@@ -20,6 +20,7 @@ import com.android.contacts.calllog.CallTypeHelper;
 import com.android.contacts.calllog.PhoneNumberHelper;
 import com.android.contacts.util.LocaleTestUtils;
 import com.android.internal.telephony.CallerInfo;
+import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -58,11 +59,14 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     private static final Drawable TEST_MISSED_DRAWABLE = new ColorDrawable(Color.RED);
     /** A drawable to be used for voicemails. */
     private static final Drawable TEST_VOICEMAIL_DRAWABLE = new ColorDrawable(Color.CYAN);
+    /** The country ISO name used in the tests. */
+    private static final String TEST_COUNTRY_ISO = "US";
 
     /** The object under test. */
     private PhoneCallDetailsHelper mHelper;
     /** The views to fill. */
     private PhoneCallDetailsViews mViews;
+    private PhoneNumberHelper mPhoneNumberHelper;
 
     @Override
     protected void setUp() throws Exception {
@@ -71,9 +75,9 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         Resources resources = context.getResources();
         CallTypeHelper callTypeHelper = new CallTypeHelper(resources, TEST_INCOMING_DRAWABLE,
                 TEST_OUTGOING_DRAWABLE, TEST_MISSED_DRAWABLE, TEST_VOICEMAIL_DRAWABLE);
-        PhoneNumberHelper phoneNumberHelper =
-                new PhoneNumberHelper(resources, TEST_VOICEMAIL_NUMBER);
-        mHelper = new PhoneCallDetailsHelper(context, resources, callTypeHelper, phoneNumberHelper);
+        mPhoneNumberHelper = new PhoneNumberHelper(resources, TEST_VOICEMAIL_NUMBER);
+        mHelper = new PhoneCallDetailsHelper(
+                context, resources, callTypeHelper, mPhoneNumberHelper);
         mViews = PhoneCallDetailsViews.createForTest(new TextView(context),
                 new LinearLayout(context), new TextView(context), new View(context),
                 new TextView(context), new TextView(context));
@@ -172,6 +176,18 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         }
     }
 
+    public void testSetPhoneCallDetails_Geocode() {
+        LocaleTestUtils localeTestUtils = new LocaleTestUtils(getContext());
+        localeTestUtils.setLocale(Locale.US);
+        try {
+            setPhoneCallDetailsWithNumber("+14125555555", "1-412-555-5555");
+            assertNameEquals("1-412-555-5555");  // The phone number is shown as the name.
+            assertNumberEquals("Pennsylvania");  // The geocode is shown as the number.
+        } finally {
+            localeTestUtils.restoreLocale();
+        }
+    }
+
     /** Asserts that the name text field contains the value of the given string resource. */
     private void assertNameEqualsResource(int resId) {
         assertNameEquals(getContext().getString(resId));
@@ -180,6 +196,11 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     /** Asserts that the name text field contains the given string value. */
     private void assertNameEquals(String text) {
         assertEquals(text, mViews.nameView.getText().toString());
+    }
+
+    /** Asserts that the number text field contains the given string value. */
+    private void assertNumberEquals(String text) {
+        assertEquals(text, mViews.numberView.getText().toString());
     }
 
     /** Asserts that the date text field contains the given string value. */
@@ -210,16 +231,20 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
 
     /** Sets the phone call details with default values and the given number. */
     private void setPhoneCallDetailsWithNumber(String number, String formattedNumber) {
+        PhoneNumber structuredPhoneNumber =
+                mPhoneNumberHelper.parsePhoneNumber(number, TEST_COUNTRY_ISO);
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(number, formattedNumber, new int[]{ Calls.INCOMING_TYPE },
-                        TEST_DATE, TEST_DURATION),
+                new PhoneCallDetails(number, formattedNumber, structuredPhoneNumber,
+                        new int[]{ Calls.INCOMING_TYPE }, TEST_DATE, TEST_DURATION),
                 false, false);
     }
 
     /** Sets the phone call details with default values and the given date. */
     private void setPhoneCallDetailsWithDate(long date) {
+        PhoneNumber structuredPhoneNumber =
+                mPhoneNumberHelper.parsePhoneNumber(TEST_NUMBER, TEST_COUNTRY_ISO);
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER,
+                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, structuredPhoneNumber,
                         new int[]{ Calls.INCOMING_TYPE }, date, TEST_DURATION),
                 false, false);
     }
@@ -235,9 +260,11 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     }
 
     private void setPhoneCallDetailsWithCallTypes(boolean useIcons, int... callTypes) {
+        PhoneNumber structuredPhoneNumber =
+                mPhoneNumberHelper.parsePhoneNumber(TEST_NUMBER, TEST_COUNTRY_ISO);
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, callTypes, TEST_DATE,
-                        TEST_DURATION),
+                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, structuredPhoneNumber,
+                        callTypes, TEST_DATE, TEST_DURATION),
                 useIcons, false);
     }
 }
