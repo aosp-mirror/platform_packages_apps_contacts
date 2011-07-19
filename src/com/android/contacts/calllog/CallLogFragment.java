@@ -30,6 +30,7 @@ import com.android.contacts.voicemail.VoicemailStatusHelper;
 import com.android.contacts.voicemail.VoicemailStatusHelperImpl;
 import com.android.contacts.voicemail.VoicemailStatusHelper.StatusMessage;
 import com.android.internal.telephony.CallerInfo;
+import com.android.internal.telephony.ITelephony;
 import com.google.common.annotations.VisibleForTesting;
 
 import android.app.ListFragment;
@@ -43,6 +44,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.RemoteException;
+import android.os.ServiceManager;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.Contacts;
@@ -1065,5 +1068,26 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         resetNewCallsFlag();
         startVoicemailStatusQuery();
         mAdapter.mPreDrawListener = null; // Let it restart the thread after next draw
+        // Clear notifications only when window gains focus.  This activity won't
+        // immediately receive focus if the keyguard screen is above it.
+        if (getActivity().hasWindowFocus()) {
+            removeMissedCallNotifications();
+        }
+    }
+
+    /** Removes the missed call notifications. */
+    private void removeMissedCallNotifications() {
+        try {
+            ITelephony telephony =
+                    ITelephony.Stub.asInterface(ServiceManager.getService("phone"));
+            if (telephony != null) {
+                telephony.cancelMissedCallsNotification();
+            } else {
+                Log.w(TAG, "Telephony service is null, can't call " +
+                        "cancelMissedCallsNotification");
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, "Failed to clear missed calls notification due to remote exception");
+        }
     }
 }

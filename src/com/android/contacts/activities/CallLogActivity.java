@@ -29,7 +29,6 @@ import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.ViewConfiguration;
 
@@ -58,28 +57,6 @@ public class CallLogActivity extends Activity {
     @VisibleForTesting
     /*package*/ CallLogFragment getFragment() {
         return mFragment;
-    }
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-
-        // Clear notifications only when window gains focus.  This activity won't
-        // immediately receive focus if the keyguard screen is above it.
-        if (hasFocus) {
-            try {
-                ITelephony telephony =
-                        ITelephony.Stub.asInterface(ServiceManager.getService("phone"));
-                if (telephony != null) {
-                    telephony.cancelMissedCallsNotification();
-                } else {
-                    Log.w(TAG, "Telephony service is null, can't call " +
-                            "cancelMissedCallsNotification");
-                }
-            } catch (RemoteException e) {
-                Log.e(TAG, "Failed to clear missed calls notification due to remote exception");
-            }
-        }
     }
 
     @Override
