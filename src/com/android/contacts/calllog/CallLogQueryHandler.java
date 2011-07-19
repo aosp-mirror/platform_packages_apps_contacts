@@ -95,18 +95,10 @@ import javax.annotation.concurrent.GuardedBy;
         mFragment = new WeakReference<CallLogFragment>(fragment);
     }
 
-    /** Returns the list of columns for the headers. */
-    private String[] getHeaderColumns() {
-        int length = CallLogQuery._PROJECTION.length;
-        String[] columns = new String[length + 1];
-        System.arraycopy(CallLogQuery._PROJECTION, 0, columns, 0, length);
-        columns[length] = CallLogQuery.SECTION_NAME;
-        return columns;
-    }
-
     /** Creates a cursor that contains a single row and maps the section to the given value. */
     private Cursor createHeaderCursorFor(int section) {
-        MatrixCursor matrixCursor = new MatrixCursor(getHeaderColumns());
+        MatrixCursor matrixCursor =
+                new MatrixCursor(CallLogFragment.CallLogQuery.EXTENDED_PROJECTION);
         // The values in this row correspond to default values for _PROJECTION from CallLogQuery
         // plus the section value.
         matrixCursor.addRow(new Object[]{ -1L, "", 0L, 0L, 0, "", "", section });

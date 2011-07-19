@@ -32,9 +32,9 @@ public class CallLogGroupBuilder {
     /** Reusable char array buffer. */
     private CharArrayBuffer mBuffer2 = new CharArrayBuffer(128);
 
-    private final CallLogFragment.CallLogAdapter mAdapter;
+    private final CallLogFragment.GroupCreator mAdapter;
 
-    public CallLogGroupBuilder(CallLogFragment.CallLogAdapter adapter) {
+    public CallLogGroupBuilder(CallLogFragment.GroupCreator adapter) {
         mAdapter = adapter;
     }
 
