@@ -141,9 +141,14 @@ public class ContactDetailActivity extends ContactsActivity {
             }
         }
 
-        ActionBar actionBar =  getActionBar();
+        // We want the UP affordance but no app icon.
+        // Setting HOME_AS_UP, SHOW_TITLE and clearing SHOW_HOME does the trick.
+        ActionBar actionBar = getActionBar();
         if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE,
+                    ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE
+                    | ActionBar.DISPLAY_SHOW_HOME);
+            actionBar.setTitle("");
         }
 
         Log.i(TAG, getIntent().getData().toString());
