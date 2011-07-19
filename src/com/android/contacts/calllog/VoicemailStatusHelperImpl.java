@@ -81,11 +81,14 @@ public class VoicemailStatusHelperImpl implements VoicemailStatusHelper {
         // TODO: Add separate string for call details and call log pages for the states that needs
         // to be shown in both.
         /** Both notification and data channel are not working. */
-        NO_CONNECTION(0, Action.CALL_VOICEMAIL, R.string.voicemail_status_voicemail_not_available),
+        NO_CONNECTION(0, Action.CALL_VOICEMAIL, R.string.voicemail_status_voicemail_not_available,
+                R.string.voicemail_status_audio_not_available),
         /** Notifications working, but data channel is not working. Audio cannot be downloaded. */
-        NO_DATA(1, Action.CALL_VOICEMAIL, R.string.voicemail_status_audio_not_available),
+        NO_DATA(1, Action.CALL_VOICEMAIL, R.string.voicemail_status_voicemail_not_available,
+                R.string.voicemail_status_audio_not_available),
         /** Messages are known to be waiting but data channel is not working. */
-        MESSAGE_WAITING(2, Action.CALL_VOICEMAIL, R.string.voicemail_status_messages_waiting),
+        MESSAGE_WAITING(2, Action.CALL_VOICEMAIL, R.string.voicemail_status_messages_waiting,
+                R.string.voicemail_status_audio_not_available),
         /** Notification channel not working, but data channel is. */
         NO_NOTIFICATIONS(3, Action.CALL_VOICEMAIL,
                 R.string.voicemail_status_voicemail_not_available),
@@ -106,12 +109,19 @@ public class VoicemailStatusHelperImpl implements VoicemailStatusHelper {
 
         private final int mPriority;
         private final Action mAction;
-        private final int mMessageId;
+        private final int mCallLogMessageId;
+        private final int mCallDetailsMessageId;
 
-        private OverallState(int priority, Action action, int messageId) {
+        private OverallState(int priority, Action action, int callLogMessageId) {
+            this(priority, action, callLogMessageId, -1);
+        }
+
+        private OverallState(int priority, Action action, int callLogMessageId,
+                int callDetailsMessageId) {
             mPriority = priority;
             mAction = action;
-            mMessageId = messageId;
+            mCallLogMessageId = callLogMessageId;
+            mCallDetailsMessageId = callDetailsMessageId;
         }
 
         public Action getAction() {
@@ -122,8 +132,12 @@ public class VoicemailStatusHelperImpl implements VoicemailStatusHelper {
             return mPriority;
         }
 
-        public int getMessageId() {
-            return mMessageId;
+        public int getCallLogMessageId() {
+            return mCallLogMessageId;
+        }
+
+        public int getCallDetailsMessageId() {
+            return mCallDetailsMessageId;
         }
     }
 
@@ -196,7 +210,8 @@ public class VoicemailStatusHelperImpl implements VoicemailStatusHelper {
             actionUri = Uri.parse(cursor.getString(SETTINGS_URI_INDEX));
         }
         return new MessageStatusWithPriority(
-                new StatusMessage(sourcePackage, overallState.getMessageId(), action.getMessageId(),
+                new StatusMessage(sourcePackage, overallState.getCallLogMessageId(),
+                        overallState.getCallDetailsMessageId(), action.getMessageId(),
                         actionUri),
                 overallState.getPriority());
     }

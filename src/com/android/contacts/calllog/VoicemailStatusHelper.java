@@ -35,18 +35,37 @@ public interface VoicemailStatusHelper {
     public class StatusMessage {
         /** Package of the source on behalf of which this message has to be shown.*/
         public final String sourcePackage;
-        /** The string resource id of the status message that should be shown. */
-        public final int statusMessageId;
+        /**
+         * The string resource id of the status message that should be shown in the call log
+         * page. Set to -1, if this message is not to be shown in call log.
+         */
+        public final int callLogMessageId;
+        /**
+         * The string resource id of the status message that should be shown in the call details
+         * page. Set to -1, if this message is not to be shown in call details page.
+         */
+        public final int callDetailsMessageId;
         /** The string resource id of the action message that should be shown. */
         public final int actionMessageId;
         /** URI for the corrective action, where applicable. Null if no action URI is available. */
         public final Uri actionUri;
-        public StatusMessage(String sourcePackage, int statusMessageId, int actionMessageId,
-                Uri actionUri) {
+        public StatusMessage(String sourcePackage, int callLogMessageId, int callDetailsMessageId,
+                int actionMessageId, Uri actionUri) {
             this.sourcePackage = sourcePackage;
-            this.statusMessageId = statusMessageId;
+            this.callLogMessageId = callLogMessageId;
+            this.callDetailsMessageId = callDetailsMessageId;
             this.actionMessageId = actionMessageId;
             this.actionUri = actionUri;
+        }
+
+        /** Whether this message should be shown in the call log page. */
+        public boolean showInCallLog() {
+            return callLogMessageId != -1;
+        }
+
+        /** Whether this message should be shown in the call details page. */
+        public boolean showInCallDetails() {
+            return callDetailsMessageId != -1;
         }
     }
 
