@@ -41,6 +41,8 @@
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="com.android.voicemail.permission.READ_WRITE_OWN_VOICEMAIL" />
     <uses-permission android:name="com.android.voicemail.permission.READ_WRITE_ALL_VOICEMAIL" />
+    <!-- allow broadcasting secret code intents that reboot the phone -->
+    <uses-permission android:name="android.permission.REBOOT" />
 
     <application
         android:name="com.android.contacts.ContactsApplication"
@@ -255,7 +257,7 @@
                 android:resource="@xml/searchable"
             />
         </activity>
-        
+
         <activity android:name=".activities.ContactSelectionActivity"
             android:label="@string/contactsList"
             android:theme="@style/ContactPickerTheme"
