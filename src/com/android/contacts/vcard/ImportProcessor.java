@@ -249,7 +249,7 @@ public class ImportProcessor extends ProcessorBase {
                 // ImportVCardActivity and ImportVCardService).
                 Log.e(LOG_TAG, "Nested Exception is found.");
             } catch (VCardNotSupportedException e) {
-                Log.e(LOG_TAG, e.getMessage());
+                Log.e(LOG_TAG, e.toString());
             } catch (VCardVersionException e) {
                 if (i == length - 1) {
                     Log.e(LOG_TAG, "Appropriate version for this vCard is not found.");
@@ -257,7 +257,7 @@ public class ImportProcessor extends ProcessorBase {
                     // We'll try the other (v30) version.
                 }
             } catch (VCardException e) {
-                Log.e(LOG_TAG, e.getMessage());
+                Log.e(LOG_TAG, e.toString());
             } finally {
                 if (is != null) {
                     try {
