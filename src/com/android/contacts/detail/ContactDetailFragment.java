@@ -106,7 +106,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ContactDetailFragment extends Fragment implements FragmentKeyListener, FragmentOverlay,
         OnItemClickListener, OnItemLongClickListener, SelectAccountDialogFragment.Listener {
@@ -131,6 +133,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     private ListView mListView;
     private ViewAdapter mAdapter;
     private Uri mPrimaryPhoneUri = null;
+    private ViewEntryDimensions mViewEntryDimensions;
 
     private Button mQuickFixButton;
     private QuickFix mQuickFix;
@@ -193,7 +196,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     private ArrayList<DetailViewEntry> mWebsiteEntries = new ArrayList<DetailViewEntry>();
     private ArrayList<DetailViewEntry> mSipEntries = new ArrayList<DetailViewEntry>();
     private ArrayList<DetailViewEntry> mEventEntries = new ArrayList<DetailViewEntry>();
-    private ArrayList<DetailViewEntry> mOtherEntries = new ArrayList<DetailViewEntry>();
+    private final Map<AccountType, List<DetailViewEntry>> mOtherEntriesMap =
+            new HashMap<AccountType, List<DetailViewEntry>>();
     private ArrayList<ViewEntry> mAllEntries = new ArrayList<ViewEntry>();
     private LayoutInflater mInflater;
 
@@ -235,6 +239,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         super.onAttach(activity);
         mContext = activity;
         mDefaultCountryIso = ContactsUtils.getCurrentCountryIso(mContext);
+        mViewEntryDimensions = new ViewEntryDimensions(mContext.getResources());
     }
 
     @Override
@@ -643,7 +648,17 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     }
 
                     if (hasSocial || hasData) {
-                        mOtherEntries.add(entry);
+                        // If the account type exists in the hash map, add it as another entry for
+                        // that account type
+                        if (mOtherEntriesMap.containsKey(type)) {
+                            List<DetailViewEntry> listEntries = mOtherEntriesMap.get(type);
+                            listEntries.add(entry);
+                        } else {
+                            // Otherwise create a new list with the entry and add it to the hash map
+                            List<DetailViewEntry> listEntries = new ArrayList<DetailViewEntry>();
+                            listEntries.add(entry);
+                            mOtherEntriesMap.put(type, listEntries);
+                        }
                     }
                 }
             }
@@ -724,8 +739,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     private void addNetworks() {
         String attribution = ContactDetailDisplayUtils.getAttribution(mContext, mContactData);
         boolean hasAttribution = !TextUtils.isEmpty(attribution);
-        int otherEntriesSize = mOtherEntries.size();
-        if (!hasAttribution && otherEntriesSize == 0) {
+        int networksCount = mOtherEntriesMap.keySet().size();
+        if (!hasAttribution && networksCount == 0) {
             return;
         }
 
@@ -739,19 +754,32 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             entry.kind = networkKindTitle;
             entry.data = attribution;
             mAllEntries.add(entry);
+
+            // Add a divider below the attribution if there are network details that will follow
+            if (networksCount > 0) {
+                mAllEntries.add(new SeparatorViewEntry());
+            }
         }
 
         // Add the other entries from third parties
-        for (int i = 0; i < otherEntriesSize; i++) {
-            // Add a divider above the entry. Don't add an entry above the first one if it's the
-            // first one in the DataKind.
-            if (i != 0 || (i == 0 && hasAttribution)) {
-                mAllEntries.add(new SeparatorViewEntry());
+        for (AccountType accountType : mOtherEntriesMap.keySet()) {
+
+            // Add a title for each third party app
+            mAllEntries.add(new NetworkTitleViewEntry(accountType));
+
+            for (DetailViewEntry detailEntry : mOtherEntriesMap.get(accountType)) {
+                // Add indented separator
+                SeparatorViewEntry separatorEntry = new SeparatorViewEntry();
+                separatorEntry.setIsInSubSection(true);
+                mAllEntries.add(separatorEntry);
+
+                // Add indented detail
+                detailEntry.setIsInSubSection(true);
+                mAllEntries.add(detailEntry);
             }
-            mAllEntries.add(mOtherEntries.get(i));
         }
 
-        mOtherEntries.clear();
+        mOtherEntriesMap.clear();
     }
 
     /**
@@ -930,10 +958,23 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
      */
     private static class SeparatorViewEntry extends ViewEntry {
 
+        /**
+         * Whether or not the entry is in a subsection (if true then the contents will be indented
+         * to the right)
+         */
+        private boolean mIsInSubSection = false;
+
         SeparatorViewEntry() {
             super(ViewAdapter.VIEW_TYPE_SEPARATOR_ENTRY);
         }
 
+        public void setIsInSubSection(boolean isInSubSection) {
+            mIsInSubSection = isInSubSection;
+        }
+
+        public boolean isInSubSection() {
+            return mIsInSubSection;
+        }
     }
 
     /**
@@ -942,13 +983,33 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
      */
     private static class KindTitleViewEntry extends ViewEntry {
 
-        public final String title;
+        private final String mTitle;
 
         KindTitleViewEntry(String titleText) {
             super(ViewAdapter.VIEW_TYPE_KIND_TITLE_ENTRY);
-            title = titleText;
+            mTitle = titleText;
         }
 
+        public String getTitle() {
+            return mTitle;
+        }
+    }
+
+    /**
+     * A title for a section of contact details from a single 3rd party network.
+     */
+    private static class NetworkTitleViewEntry extends ViewEntry {
+
+        private final AccountType mAccountType;
+
+        NetworkTitleViewEntry(AccountType type) {
+            super(ViewAdapter.VIEW_TYPE_NETWORK_TITLE_ENTRY);
+            mAccountType = type;
+        }
+
+        public AccountType getAccountType() {
+            return mAccountType;
+        }
     }
 
     /**
@@ -956,6 +1017,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
      * list of data.
      */
     static class DetailViewEntry extends ViewEntry implements Collapsible<DetailViewEntry> {
+        // TODO: Make getters/setters for these fields
         public int type = -1;
         public String kind;
         public String typeString;
@@ -978,6 +1040,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         public int chatCapability = 0;
 
         public CharSequence footerLine = null;
+
+        private boolean mIsInSubSection = false;
 
         DetailViewEntry() {
             super(ViewAdapter.VIEW_TYPE_DETAIL_ENTRY);
@@ -1050,6 +1114,14 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             return this;
         }
 
+        public void setIsInSubSection(boolean isInSubSection) {
+            mIsInSubSection = isInSubSection;
+        }
+
+        public boolean isInSubSection() {
+            return mIsInSubSection;
+        }
+
         @Override
         public boolean collapseWith(DetailViewEntry entry) {
             // assert equal collapse keys
@@ -1107,8 +1179,24 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         }
     }
 
-    /** Cache of the children views of a row */
-    private static class ViewCache {
+    /**
+     * Cache of the children views for a view that displays a {@link NetworkTitleViewEntry}
+     */
+    private static class NetworkTitleViewCache {
+        public final TextView name;
+        public final ImageView icon;
+
+        public NetworkTitleViewCache(View view) {
+            name = (TextView) view.findViewById(R.id.network_title);
+            icon = (ImageView) view.findViewById(R.id.network_icon);
+        }
+    }
+
+    /**
+     * Cache of the children views of a contact detail entry represented by a
+     * {@link DetailViewEntry}
+     */
+    private static class DetailViewCache {
         public TextView kind;
         public TextView type;
         public TextView data;
@@ -1117,6 +1205,21 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         public ImageView secondaryActionButton;
         public View secondaryActionButtonContainer;
         public View secondaryActionDivider;
+
+        public DetailViewCache(View view, OnClickListener secondaryActionClickListener) {
+            kind = (TextView) view.findViewById(R.id.kind);
+            type = (TextView) view.findViewById(R.id.type);
+            data = (TextView) view.findViewById(R.id.data);
+            footer = (TextView) view.findViewById(R.id.footer);
+            presenceIcon = (ImageView) view.findViewById(R.id.presence_icon);
+            secondaryActionButton = (ImageView) view.findViewById(
+                    R.id.secondary_action_button);
+            secondaryActionButtonContainer = view.findViewById(
+                    R.id.secondary_action_button_container);
+            secondaryActionButtonContainer.setOnClickListener(
+                    secondaryActionClickListener);
+            secondaryActionDivider = view.findViewById(R.id.vertical_divider);
+        }
     }
 
     private final class ViewAdapter extends BaseAdapter {
@@ -1124,8 +1227,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         public static final int VIEW_TYPE_DETAIL_ENTRY = 0;
         public static final int VIEW_TYPE_HEADER_ENTRY = 1;
         public static final int VIEW_TYPE_KIND_TITLE_ENTRY = 2;
-        public static final int VIEW_TYPE_SEPARATOR_ENTRY = 3;
-        private static final int VIEW_TYPE_COUNT = 4;
+        public static final int VIEW_TYPE_NETWORK_TITLE_ENTRY = 3;
+        public static final int VIEW_TYPE_SEPARATOR_ENTRY = 4;
+        private static final int VIEW_TYPE_COUNT = 5;
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
@@ -1133,11 +1237,13 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 case VIEW_TYPE_HEADER_ENTRY:
                     return getHeaderEntryView(convertView, parent);
                 case VIEW_TYPE_SEPARATOR_ENTRY:
-                    return getSeparatorEntryView(convertView, parent);
+                    return getSeparatorEntryView(position, convertView, parent);
                 case VIEW_TYPE_KIND_TITLE_ENTRY:
                     return getKindTitleEntryView(position, convertView, parent);
                 case VIEW_TYPE_DETAIL_ENTRY:
                     return getDetailEntryView(position, convertView, parent);
+                case VIEW_TYPE_NETWORK_TITLE_ENTRY:
+                    return getNetworkTitleEntryView(position, convertView, parent);
                 default:
                     throw new IllegalStateException("Invalid view type ID " +
                             getItemViewType(position));
@@ -1199,11 +1305,16 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             return mHeaderView;
         }
 
-        private View getSeparatorEntryView(View convertView, ViewGroup parent) {
-            if (convertView != null) {
-                return convertView;
-            }
-            return mInflater.inflate(R.layout.contact_detail_separator_entry_view, parent, false);
+        private View getSeparatorEntryView(int position, View convertView, ViewGroup parent) {
+            final SeparatorViewEntry entry = (SeparatorViewEntry) getItem(position);
+            final View result = (convertView != null) ? convertView :
+                    mInflater.inflate(R.layout.contact_detail_separator_entry_view, parent, false);
+
+            result.setPadding(entry.isInSubSection() ? mViewEntryDimensions.getWidePaddingLeft() :
+                    mViewEntryDimensions.getPaddingLeft(), 0,
+                    mViewEntryDimensions.getPaddingRight(), 0);
+
+            return result;
         }
 
         private View getKindTitleEntryView(int position, View convertView, ViewGroup parent) {
@@ -1212,7 +1323,28 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             final View result = (convertView != null) ? convertView :
                     mInflater.inflate(R.layout.contact_detail_kind_title_entry_view, parent, false);
             final TextView titleTextView = (TextView) result.findViewById(R.id.kind);
-            titleTextView.setText(entry.title);
+            titleTextView.setText(entry.getTitle());
+
+            return result;
+        }
+
+        private View getNetworkTitleEntryView(int position, View convertView, ViewGroup parent) {
+            final NetworkTitleViewEntry entry = (NetworkTitleViewEntry) getItem(position);
+            final View result;
+            final NetworkTitleViewCache viewCache;
+
+            if (convertView != null) {
+                result = convertView;
+                viewCache = (NetworkTitleViewCache) result.getTag();
+            } else {
+                result = mInflater.inflate(R.layout.contact_detail_network_title_entry_view,
+                        parent, false);
+                viewCache = new NetworkTitleViewCache(result);
+                result.setTag(viewCache);
+            }
+
+            viewCache.name.setText(entry.getAccountType().getDisplayLabel(mContext));
+            viewCache.icon.setImageDrawable(entry.getAccountType().getDisplayIcon(mContext));
 
             return result;
         }
@@ -1220,40 +1352,28 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         private View getDetailEntryView(int position, View convertView, ViewGroup parent) {
             final DetailViewEntry entry = (DetailViewEntry) getItem(position);
             final View v;
-            final ViewCache viewCache;
+            final DetailViewCache viewCache;
 
             // Check to see if we can reuse convertView
             if (convertView != null) {
                 v = convertView;
-                viewCache = (ViewCache) v.getTag();
+                viewCache = (DetailViewCache) v.getTag();
             } else {
                 // Create a new view if needed
                 v = mInflater.inflate(R.layout.contact_detail_list_item, parent, false);
 
                 // Cache the children
-                viewCache = new ViewCache();
-                viewCache.kind = (TextView) v.findViewById(R.id.kind);
-                viewCache.type = (TextView) v.findViewById(R.id.type);
-                viewCache.data = (TextView) v.findViewById(R.id.data);
-                viewCache.footer = (TextView) v.findViewById(R.id.footer);
-                viewCache.presenceIcon = (ImageView) v.findViewById(R.id.presence_icon);
-                viewCache.secondaryActionButton = (ImageView) v.findViewById(
-                        R.id.secondary_action_button);
-                viewCache.secondaryActionButtonContainer = v.findViewById(
-                        R.id.secondary_action_button_container);
-                viewCache.secondaryActionButtonContainer.setOnClickListener(
-                        mSecondaryActionClickListener);
-                viewCache.secondaryActionDivider = v.findViewById(R.id.vertical_divider);
+                viewCache = new DetailViewCache(v, mSecondaryActionClickListener);
                 v.setTag(viewCache);
             }
 
-            bindView(v, entry);
+            bindDetailView(v, entry);
             return v;
         }
 
-        private void bindView(View view, DetailViewEntry entry) {
+        private void bindDetailView(View view, DetailViewEntry entry) {
             final Resources resources = mContext.getResources();
-            ViewCache views = (ViewCache) view.getTag();
+            DetailViewCache views = (DetailViewCache) view.getTag();
 
             if (!TextUtils.isEmpty(entry.typeString)) {
                 views.type.setText(entry.typeString.toUpperCase());
@@ -1306,6 +1426,12 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 views.secondaryActionButtonContainer.setVisibility(View.GONE);
                 views.secondaryActionDivider.setVisibility(View.GONE);
             }
+
+            view.setPadding(entry.isInSubSection() ? mViewEntryDimensions.getWidePaddingLeft() :
+                    mViewEntryDimensions.getPaddingLeft(),
+                    mViewEntryDimensions.getPaddingTop(),
+                    mViewEntryDimensions.getPaddingRight(),
+                    mViewEntryDimensions.getPaddingBottom());
         }
 
         private void setMaxLines(TextView textView, int maxLines) {
@@ -1402,7 +1528,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         if (mListener == null) return false;
-        final ViewCache cache = (ViewCache) view.getTag();
+        final DetailViewCache cache = (DetailViewCache) view.getTag();
         if (cache == null) return false;
         CharSequence text = cache.data.getText();
         if (TextUtils.isEmpty(text)) return false;
@@ -1596,6 +1722,51 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     break;
                 }
             }
+        }
+    }
+
+    /**
+     * This class loads the correct padding values for a contact detail item so they can be applied
+     * dynamically. For example, this supports the case where some detail items can be indented and
+     * need extra padding.
+     */
+    private static class ViewEntryDimensions {
+
+        private final int mWidePaddingLeft;
+        private final int mPaddingLeft;
+        private final int mPaddingRight;
+        private final int mPaddingTop;
+        private final int mPaddingBottom;
+
+        public ViewEntryDimensions(Resources resources) {
+            mPaddingLeft = resources.getDimensionPixelSize(
+                    R.dimen.detail_item_side_margin);
+            mPaddingTop = resources.getDimensionPixelSize(
+                    R.dimen.detail_item_vertical_margin);
+            mWidePaddingLeft = 2 * mPaddingLeft +
+                    resources.getDimensionPixelSize(R.dimen.detail_network_icon_size);
+            mPaddingRight = mPaddingLeft;
+            mPaddingBottom = mPaddingTop;
+        }
+
+        public int getWidePaddingLeft() {
+            return mWidePaddingLeft;
+        }
+
+        public int getPaddingLeft() {
+            return mPaddingLeft;
+        }
+
+        public int getPaddingRight() {
+            return mPaddingRight;
+        }
+
+        public int getPaddingTop() {
+            return mPaddingTop;
+        }
+
+        public int getPaddingBottom() {
+            return mPaddingBottom;
         }
     }
 

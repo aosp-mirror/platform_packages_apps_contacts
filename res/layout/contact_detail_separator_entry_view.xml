@@ -16,9 +16,7 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/detail_item_side_margin"
-    android:paddingRight="@dimen/detail_item_side_margin">
+    android:layout_height="wrap_content">
 
     <View
       android:layout_width="match_parent"
