@@ -52,6 +52,7 @@ import com.android.contacts.list.ProviderStatusLoader.ProviderStatusListener;
 import com.android.contacts.list.StrequentContactListFragment;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.preference.ContactsPreferenceActivity;
+import com.android.contacts.preference.DisplayOptionsPreferenceFragment;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.DialogManager;
@@ -69,6 +70,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
+import android.preference.PreferenceActivity;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
@@ -1268,6 +1270,17 @@ public class PeopleActivity extends ContactsActivity
             }
             case R.id.menu_settings: {
                 final Intent intent = new Intent(this, ContactsPreferenceActivity.class);
+                // as there is only one section right now, make sure it is selected
+                // on small screens, this also hides the section selector
+                // Due to b/5045558, this code unfortunately only works properly on phones
+                boolean settingsAreMultiPane = getResources().getBoolean(
+                        com.android.internal.R.bool.preferences_prefer_dual_pane);
+                if (!settingsAreMultiPane) {
+                    intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT,
+                            DisplayOptionsPreferenceFragment.class.getName());
+                    intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT_TITLE,
+                            R.string.preference_displayOptions);
+                }
                 startActivity(intent);
                 return true;
             }
