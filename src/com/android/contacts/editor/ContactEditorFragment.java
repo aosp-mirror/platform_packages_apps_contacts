@@ -970,7 +970,6 @@ public class ContactEditorFragment extends Fragment implements
             case SaveMode.CLOSE:
             case SaveMode.HOME:
                 final Intent resultIntent;
-                final int resultCode;
                 if (success && contactLookupUri != null) {
                     final String requestAuthority =
                             mLookupUri == null ? null : mLookupUri.getAuthority();
@@ -978,6 +977,7 @@ public class ContactEditorFragment extends Fragment implements
                     final String legacyAuthority = "contacts";
 
                     resultIntent = new Intent();
+                    resultIntent.setAction(Intent.ACTION_VIEW);
                     if (legacyAuthority.equals(requestAuthority)) {
                         // Build legacy Uri when requested by caller
                         final long contactId = ContentUris.parseId(Contacts.lookupContact(
@@ -991,15 +991,12 @@ public class ContactEditorFragment extends Fragment implements
                         resultIntent.setData(contactLookupUri);
                     }
 
-                    resultCode = Activity.RESULT_OK;
                 } else {
-                    resultCode = Activity.RESULT_CANCELED;
                     resultIntent = null;
                 }
                 // It is already saved, so prevent that it is saved again
                 mStatus = Status.CLOSING;
-                if (mListener != null) mListener.onSaveFinished(resultCode, resultIntent,
-                        saveMode == SaveMode.HOME);
+                if (mListener != null) mListener.onSaveFinished(resultIntent);
                 break;
 
             case SaveMode.RELOAD:
@@ -1101,7 +1098,7 @@ public class ContactEditorFragment extends Fragment implements
         /**
          * Contact was saved and the Fragment can now be closed safely.
          */
-        void onSaveFinished(int resultCode, Intent resultIntent, boolean navigateHome);
+        void onSaveFinished(Intent resultIntent);
 
         /**
          * User decided to delete the contact.

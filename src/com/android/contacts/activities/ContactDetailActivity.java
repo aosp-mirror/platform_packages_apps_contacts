@@ -298,6 +298,7 @@ public class ContactDetailActivity extends ContactsActivity {
         @Override
         public void onEditRequested(Uri contactLookupUri) {
             startActivity(new Intent(Intent.ACTION_EDIT, contactLookupUri));
+            finish();
         }
 
         @Override

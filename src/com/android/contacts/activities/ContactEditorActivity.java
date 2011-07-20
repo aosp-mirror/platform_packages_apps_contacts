@@ -148,9 +148,11 @@ public class ContactEditorActivity extends ContactsActivity
         }
 
         @Override
-        public void onSaveFinished(int resultCode, Intent resultIntent, boolean navigateHome) {
-            setResult(resultCode, resultIntent);
-            if (navigateHome) {
+        public void onSaveFinished(Intent resultIntent) {
+            if (resultIntent != null) {
+                startActivity(resultIntent);
+            } else {
+                // Navigate home
                 Intent intent = new Intent(ContactEditorActivity.this, PeopleActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -165,7 +167,6 @@ public class ContactEditorActivity extends ContactsActivity
 
         @Override
         public void onContactNotFound() {
-            setResult(Activity.RESULT_CANCELED, null);
             finish();
         }
 

@@ -106,12 +106,10 @@ public class PeopleActivity extends ContactsActivity
     private static final String TAG = "PeopleActivity";
     private static final Boolean DEBUG = false; // DO NOT SUBMIT WITH TRUE
 
-    private static final int SUBACTIVITY_NEW_CONTACT = 2;
-    private static final int SUBACTIVITY_EDIT_CONTACT = 3;
-    private static final int SUBACTIVITY_NEW_GROUP = 4;
-    private static final int SUBACTIVITY_EDIT_GROUP = 5;
-    private static final int SUBACTIVITY_ACCOUNT_FILTER = 6;
-    private static final int SUBACTIVITY_CUSTOMIZE_FILTER = 7;
+    private static final int SUBACTIVITY_NEW_GROUP = 2;
+    private static final int SUBACTIVITY_EDIT_GROUP = 3;
+    private static final int SUBACTIVITY_ACCOUNT_FILTER = 4;
+    private static final int SUBACTIVITY_CUSTOMIZE_FILTER = 5;
 
     private static final String KEY_SEARCH_MODE = "searchMode";
 
@@ -926,7 +924,7 @@ public class PeopleActivity extends ContactsActivity
             if (extras != null) {
                 intent.putExtras(extras);
             }
-            startActivityForResult(intent, SUBACTIVITY_EDIT_CONTACT);
+            startActivity(intent);
         }
 
         @Override
@@ -1012,8 +1010,7 @@ public class PeopleActivity extends ContactsActivity
 
         @Override
         public void onEditRequested(Uri contactLookupUri) {
-            startActivityForResult(
-                    new Intent(Intent.ACTION_EDIT, contactLookupUri), SUBACTIVITY_EDIT_CONTACT);
+            startActivity(new Intent(Intent.ACTION_EDIT, contactLookupUri));
         }
 
         @Override
@@ -1297,7 +1294,7 @@ public class PeopleActivity extends ContactsActivity
             }
             case R.id.menu_add_contact: {
                 final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-                startActivityForResult(intent, SUBACTIVITY_NEW_CONTACT);
+                startActivity(intent);
                 return true;
             }
             case R.id.menu_add_group: {
@@ -1384,14 +1381,6 @@ public class PeopleActivity extends ContactsActivity
             case SUBACTIVITY_CUSTOMIZE_FILTER: {
                 if (resultCode == Activity.RESULT_OK) {
                     mContactListFilterController.selectCustomFilter();
-                }
-                break;
-            }
-            case SUBACTIVITY_EDIT_CONTACT:
-            case SUBACTIVITY_NEW_CONTACT: {
-                if (resultCode == RESULT_OK && PhoneCapabilityTester.isUsingTwoPanes(this)) {
-                    mRequest.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
-                    mAllFragment.reloadDataAndSetSelectedUri(data.getData());
                 }
                 break;
             }
