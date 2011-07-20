@@ -47,7 +47,7 @@ public class CallLogGroupBuilderTest extends AndroidTestCase {
         super.setUp();
         mFakeGroupCreator = new FakeGroupCreator();
         mBuilder = new CallLogGroupBuilder(mFakeGroupCreator);
-        mCursor = new MatrixCursor(CallLogFragment.CallLogQuery.EXTENDED_PROJECTION);
+        createCursor();
     }
 
     @Override
@@ -107,10 +107,111 @@ public class CallLogGroupBuilderTest extends AndroidTestCase {
         assertGroupIs(4, 2, false, mFakeGroupCreator.groups.get(1));
     }
 
+    public void testAddGroups_Voicemail() {
+        // Groups with one or more missed calls.
+        assertCallsAreGrouped(Calls.VOICEMAIL_TYPE, Calls.MISSED_TYPE);
+        assertCallsAreGrouped(Calls.VOICEMAIL_TYPE, Calls.MISSED_TYPE, Calls.MISSED_TYPE);
+        // Does not group with other types of calls, include voicemail themselves.
+        assertCallsAreNotGrouped(Calls.VOICEMAIL_TYPE, Calls.VOICEMAIL_TYPE);
+        assertCallsAreNotGrouped(Calls.VOICEMAIL_TYPE, Calls.INCOMING_TYPE);
+        assertCallsAreNotGrouped(Calls.VOICEMAIL_TYPE, Calls.OUTGOING_TYPE);
+    }
+
+    public void testAddGroups_Missed() {
+        // Groups with one or more missed calls.
+        assertCallsAreGrouped(Calls.MISSED_TYPE, Calls.MISSED_TYPE);
+        assertCallsAreGrouped(Calls.MISSED_TYPE, Calls.MISSED_TYPE, Calls.MISSED_TYPE);
+        // Does not group with other types of calls.
+        assertCallsAreNotGrouped(Calls.MISSED_TYPE, Calls.VOICEMAIL_TYPE);
+        assertCallsAreNotGrouped(Calls.MISSED_TYPE, Calls.INCOMING_TYPE);
+        assertCallsAreNotGrouped(Calls.MISSED_TYPE, Calls.OUTGOING_TYPE);
+    }
+
+    public void testAddGroups_Incoming() {
+        // Groups with one or more incoming or outgoing.
+        assertCallsAreGrouped(Calls.INCOMING_TYPE, Calls.INCOMING_TYPE);
+        assertCallsAreGrouped(Calls.INCOMING_TYPE, Calls.OUTGOING_TYPE);
+        assertCallsAreGrouped(Calls.INCOMING_TYPE, Calls.INCOMING_TYPE, Calls.OUTGOING_TYPE);
+        assertCallsAreGrouped(Calls.INCOMING_TYPE, Calls.OUTGOING_TYPE, Calls.INCOMING_TYPE);
+        // Does not group with voicemail and missed calls.
+        assertCallsAreNotGrouped(Calls.INCOMING_TYPE, Calls.VOICEMAIL_TYPE);
+        assertCallsAreNotGrouped(Calls.INCOMING_TYPE, Calls.MISSED_TYPE);
+    }
+
+    public void testAddGroups_Outgoing() {
+        // Groups with one or more incoming or outgoing.
+        assertCallsAreGrouped(Calls.OUTGOING_TYPE, Calls.INCOMING_TYPE);
+        assertCallsAreGrouped(Calls.OUTGOING_TYPE, Calls.OUTGOING_TYPE);
+        assertCallsAreGrouped(Calls.OUTGOING_TYPE, Calls.INCOMING_TYPE, Calls.OUTGOING_TYPE);
+        assertCallsAreGrouped(Calls.OUTGOING_TYPE, Calls.OUTGOING_TYPE, Calls.INCOMING_TYPE);
+        // Does not group with voicemail and missed calls.
+        assertCallsAreNotGrouped(Calls.INCOMING_TYPE, Calls.VOICEMAIL_TYPE);
+        assertCallsAreNotGrouped(Calls.INCOMING_TYPE, Calls.MISSED_TYPE);
+    }
+
+    public void testAddGroups_Mixed() {
+        addMultipleOldCallLogEntries(TEST_NUMBER1,
+                Calls.VOICEMAIL_TYPE,  // Stand-alone
+                Calls.INCOMING_TYPE,  // Group 1: 1-2
+                Calls.OUTGOING_TYPE,
+                Calls.MISSED_TYPE,  // Group 2: 3-4
+                Calls.MISSED_TYPE,
+                Calls.VOICEMAIL_TYPE,  // Stand-alone
+                Calls.INCOMING_TYPE,  // Stand-alone
+                Calls.VOICEMAIL_TYPE,  // Group 3: 7-9
+                Calls.MISSED_TYPE,
+                Calls.MISSED_TYPE,
+                Calls.OUTGOING_TYPE);  // Stand-alone
+        mBuilder.addGroups(mCursor);
+        assertEquals(3, mFakeGroupCreator.groups.size());
+        assertGroupIs(1, 2, false, mFakeGroupCreator.groups.get(0));
+        assertGroupIs(3, 2, false, mFakeGroupCreator.groups.get(1));
+        assertGroupIs(7, 3, false, mFakeGroupCreator.groups.get(2));
+    }
+
+    /** Creates (or recreates) the cursor used to store the call log content for the tests. */
+    private void createCursor() {
+        mCursor = new MatrixCursor(CallLogFragment.CallLogQuery.EXTENDED_PROJECTION);
+    }
+
+    /** Clears the content of the {@link FakeGroupCreator} used in the tests. */
+    private void clearFakeGroupCreator() {
+        mFakeGroupCreator.groups.clear();
+    }
+
+    /** Asserts that calls of the given types are grouped together into a single group. */
+    private void assertCallsAreGrouped(int... types) {
+        createCursor();
+        clearFakeGroupCreator();
+        addMultipleOldCallLogEntries(TEST_NUMBER1, types);
+        mBuilder.addGroups(mCursor);
+        assertEquals(1, mFakeGroupCreator.groups.size());
+        assertGroupIs(0, types.length, false, mFakeGroupCreator.groups.get(0));
+
+    }
+
+    /** Asserts that calls of the given types are not grouped together at all. */
+    private void assertCallsAreNotGrouped(int... types) {
+        createCursor();
+        clearFakeGroupCreator();
+        addMultipleOldCallLogEntries(TEST_NUMBER1, types);
+        mBuilder.addGroups(mCursor);
+        assertEquals(0, mFakeGroupCreator.groups.size());
+    }
+
+    /** Adds a set of calls with the given types, all from the same number, in the old section. */
+    private void addMultipleOldCallLogEntries(String number, int... types) {
+        for (int type : types) {
+            addOldCallLogEntry(number, type);
+        }
+    }
+
+    /** Adds a call with the given number and type to the old section of the call log. */
     private void addOldCallLogEntry(String number, int type) {
         addCallLogEntry(number, type, CallLogQuery.SECTION_OLD_ITEM);
     }
 
+    /** Adds a call with the given number and type to the new section of the call log. */
     private void addNewCallLogEntry(String number, int type) {
         addCallLogEntry(number, type, CallLogQuery.SECTION_NEW_ITEM);
     }
@@ -127,10 +228,12 @@ public class CallLogGroupBuilderTest extends AndroidTestCase {
         });
     }
 
+    /** Adds the old section header to the call log. */
     private void addOldCallLogHeader() {
         addCallLogHeader(CallLogQuery.SECTION_OLD_HEADER);
     }
 
+    /** Adds the new section header to the call log. */
     private void addNewCallLogHeader() {
         addCallLogHeader(CallLogQuery.SECTION_NEW_HEADER);
     }
@@ -152,9 +255,13 @@ public class CallLogGroupBuilderTest extends AndroidTestCase {
         assertEquals(expanded, group.expanded);
     }
 
+    /** Defines an added group. Used by the {@link FakeGroupCreator}. */
     private static class GroupSpec {
+        /** The starting position of the group. */
         public final int cursorPosition;
+        /** The number of elements in the group. */
         public final int size;
+        /** Whether the group should be initially expanded. */
         public final boolean expanded;
 
         public GroupSpec(int cursorPosition, int size, boolean expanded) {
@@ -164,8 +271,11 @@ public class CallLogGroupBuilderTest extends AndroidTestCase {
         }
     }
 
+    /** Fake implementation of a GroupCreator which stores the created groups in a member field. */
     private static class FakeGroupCreator implements CallLogFragment.GroupCreator {
+        /** The list of created groups. */
         public final List<GroupSpec> groups = newArrayList();
+
         @Override
         public void addGroup(int cursorPosition, int size, boolean expanded) {
             groups.add(new GroupSpec(cursorPosition, size, expanded));

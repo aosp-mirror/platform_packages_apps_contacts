@@ -16,6 +16,7 @@
 
 package com.android.contacts.calllog;
 
+import com.android.common.widget.GroupingListAdapter;
 import com.android.contacts.calllog.CallLogFragment.CallLogQuery;
 
 import android.database.CharArrayBuffer;
@@ -25,6 +26,8 @@ import android.telephony.PhoneNumberUtils;
 
 /**
  * Groups together calls in the call log.
+ * <p>
+ * This class is meant to be used in conjunction with {@link GroupingListAdapter}.
  */
 public class CallLogGroupBuilder {
     /** Reusable char array buffer. */
@@ -32,66 +35,95 @@ public class CallLogGroupBuilder {
     /** Reusable char array buffer. */
     private CharArrayBuffer mBuffer2 = new CharArrayBuffer(128);
 
-    private final CallLogFragment.GroupCreator mAdapter;
+    /** The object on which the groups are created. */
+    private final CallLogFragment.GroupCreator mGroupCreator;
 
-    public CallLogGroupBuilder(CallLogFragment.GroupCreator adapter) {
-        mAdapter = adapter;
+    public CallLogGroupBuilder(CallLogFragment.GroupCreator groupCreator) {
+        mGroupCreator = groupCreator;
     }
 
+    /**
+     * Finds all groups of adjacent entries in the call log which should be grouped together and
+     * calls {@link CallLogFragment.GroupCreator#addGroup(int, int, boolean)} on
+     * {@link #mGroupCreator} for each of them.
+     * <p>
+     * For entries that are not grouped with others, we do not need to create a group of size one.
+     * <p>
+     * It assumes that the cursor will not change during its execution.
+     *
+     * @see GroupingListAdapter#addGroups(Cursor)
+     */
     public void addGroups(Cursor cursor) {
-        int count = cursor.getCount();
+        final int count = cursor.getCount();
         if (count == 0) {
             return;
         }
 
-        int groupItemCount = 1;
-
-        CharArrayBuffer currentValue = mBuffer1;
-        CharArrayBuffer value = mBuffer2;
+        int currentGroupSize = 1;
+        // The number of the first entry in the group.
+        CharArrayBuffer firstNumber = mBuffer1;
+        // The number of the current row in the cursor.
+        CharArrayBuffer currentNumber = mBuffer2;
         cursor.moveToFirst();
-        cursor.copyStringToBuffer(CallLogQuery.NUMBER, currentValue);
-        int currentCallType = cursor.getInt(CallLogQuery.CALL_TYPE);
-        for (int i = 1; i < count; i++) {
-            cursor.moveToNext();
-            cursor.copyStringToBuffer(CallLogQuery.NUMBER, value);
-            boolean sameNumber = equalPhoneNumbers(value, currentValue);
+        cursor.copyStringToBuffer(CallLogQuery.NUMBER, firstNumber);
+        // This is the type of the first call in the group.
+        int firstCallType = cursor.getInt(CallLogQuery.CALL_TYPE);
+        while (cursor.moveToNext()) {
+            cursor.copyStringToBuffer(CallLogQuery.NUMBER, currentNumber);
+            final int callType = cursor.getInt(CallLogQuery.CALL_TYPE);
+            final boolean sameNumber = equalPhoneNumbers(firstNumber, currentNumber);
+            final boolean shouldGroup;
 
-            // Group adjacent calls with the same number. Make an exception
-            // for the latest item if it was a missed call.  We don't want
-            // a missed call to be hidden inside a group.
-            if (sameNumber && currentCallType != Calls.MISSED_TYPE
-                    && !CallLogFragment.CallLogQuery.isSectionHeader(cursor)) {
-                groupItemCount++;
+            if (CallLogFragment.CallLogQuery.isSectionHeader(cursor)) {
+                // Cannot group headers.
+                shouldGroup = false;
+            } else if (!sameNumber) {
+                // Should only group with calls from the same number.
+                shouldGroup = false;
+            } else if (firstCallType == Calls.VOICEMAIL_TYPE
+                    || firstCallType == Calls.MISSED_TYPE) {
+                // Voicemail and missed calls should only be grouped with subsequent missed calls.
+                shouldGroup = callType == Calls.MISSED_TYPE;
             } else {
-                if (groupItemCount > 1) {
-                    addGroup(i - groupItemCount, groupItemCount, false);
+                // Incoming and outgoing calls group together.
+                shouldGroup = callType == Calls.INCOMING_TYPE || callType == Calls.OUTGOING_TYPE;
+            }
+
+            if (shouldGroup) {
+                // Increment the size of the group to include the current call, but do not create
+                // the group until we find a call that does not match.
+                currentGroupSize++;
+            } else {
+                // Create a group for the previous set of calls, excluding the current one, but do
+                // not create a group for a single call.
+                if (currentGroupSize > 1) {
+                    addGroup(cursor.getPosition() - currentGroupSize, currentGroupSize);
                 }
-
-                groupItemCount = 1;
-
-                // Swap buffers
-                CharArrayBuffer temp = currentValue;
-                currentValue = value;
-                value = temp;
-
-                // If we have just examined a row following a missed call, make
-                // sure that it is grouped with subsequent calls from the same number
-                // even if it was also missed.
-                if (sameNumber && currentCallType == Calls.MISSED_TYPE) {
-                    currentCallType = 0;       // "not a missed call"
-                } else {
-                    currentCallType = cursor.getInt(CallLogQuery.CALL_TYPE);
-                }
+                // Start a new group; it will include at least the current call.
+                currentGroupSize = 1;
+                // The current entry is now the first in the group. For the CharArrayBuffers, we
+                // need to swap them.
+                firstCallType = callType;
+                CharArrayBuffer temp = firstNumber;  // Used to swap.
+                firstNumber = currentNumber;
+                currentNumber = temp;
             }
         }
-        if (groupItemCount > 1) {
-            addGroup(count - groupItemCount, groupItemCount, false);
+        // If the last set of calls at the end of the call log was itself a group, create it now.
+        if (currentGroupSize > 1) {
+            addGroup(count - currentGroupSize, currentGroupSize);
         }
     }
 
-    /** @see CallLogFragment.CallLogAdapter#addGroup(int, int, boolean) */
-    private void addGroup(int cursorPosition, int size, boolean expanded) {
-        mAdapter.addGroup(cursorPosition, size, expanded);
+    /**
+     * Creates a group of items in the cursor.
+     * <p>
+     * The group is always unexpanded.
+     *
+     * @see CallLogFragment.CallLogAdapter#addGroup(int, int, boolean)
+     */
+    private void addGroup(int cursorPosition, int size) {
+        mGroupCreator.addGroup(cursorPosition, size, false);
     }
 
     private boolean equalPhoneNumbers(CharArrayBuffer buffer1, CharArrayBuffer buffer2) {
