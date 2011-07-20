@@ -20,15 +20,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/title"
-        layout="@layout/edit_field_title" />
-
-    <include
-        android:id="@+id/spinner"
-        layout="@layout/edit_spinner"
-        android:visibility="gone" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,6 +32,11 @@
         <include
             android:id="@+id/editors"
             layout="@layout/edit_field_list" />
+
+        <include
+            android:id="@+id/spinner"
+            layout="@layout/edit_spinner"
+            android:visibility="gone" />
 
         <include
             android:id="@+id/expansion_view_container"

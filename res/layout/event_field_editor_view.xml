@@ -22,15 +22,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/title"
-        layout="@layout/edit_field_title" />
-
-    <include
-        android:id="@+id/spinner"
-        layout="@layout/edit_spinner"
-        android:visibility="gone" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,6 +34,11 @@
         <include
             android:id="@+id/date_view"
             layout="@layout/edit_date_picker" />
+
+        <include
+            android:id="@+id/spinner"
+            layout="@layout/edit_spinner"
+            android:visibility="gone" />
 
         <include
             android:id="@+id/delete_button_container"

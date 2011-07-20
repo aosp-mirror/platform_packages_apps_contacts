@@ -45,7 +45,7 @@
     <dimen name="editor_round_button_padding_bottom">8dip</dimen>
 
     <!-- Width of the Type-Label in the Editor -->
-    <dimen name="editor_type_label_width">120dip</dimen>
+    <dimen name="editor_type_label_width">100dip</dimen>
 
     <!-- Left padding of a field in the Editor -->
     <dimen name="editor_field_left_padding">5dip</dimen>

@@ -139,7 +139,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
         mFields = (ViewGroup)findViewById(R.id.sect_fields);
 
-        mAccountContainer = findViewById(R.id.account);
+        mAccountContainer = findViewById(R.id.anchor_for_account_switcher);
         mAccountIcon = (ImageView) findViewById(R.id.account_icon);
         mAccountTypeTextView = (TextView) findViewById(R.id.account_type);
         mAccountNameTextView = (TextView) findViewById(R.id.account_name);
@@ -151,6 +151,10 @@ public class RawContactEditorView extends BaseRawContactEditorView {
                 showAddInformationPopupWindow();
             }
         });
+    }
+
+    public void setAccountHeaderVisible(boolean visible) {
+        mAccountContainer.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
     /**
@@ -175,9 +179,6 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
         ValuesDelta values = state.getValues();
         mRawContactId = values.getAsLong(RawContacts._ID);
-
-        final ArrayList<Account> accounts =
-                AccountTypeManager.getInstance(mContext).getAccounts(true);
 
         // Fill in the account info
         String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
