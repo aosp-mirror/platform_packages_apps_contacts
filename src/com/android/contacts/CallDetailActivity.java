@@ -307,11 +307,16 @@ public class CallDetailActivity extends ListActivity implements
             // and then we can remove the "!isSipNumber" check above.
             mainActionIntent = null;
             mainActionIcon = 0;
-        } else {
+        } else if (canPlaceCallsTo) {
             mainActionIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
             mainActionIntent.setType(Contacts.CONTENT_ITEM_TYPE);
             mainActionIntent.putExtra(Insert.PHONE, mNumber);
             mainActionIcon = R.drawable.sym_action_add;
+        } else {
+            // If we cannot call the number, when we probably cannot add it as a contact either.
+            // This is usually the case of private, unknown, or payphone numbers.
+            mainActionIntent = null;
+            mainActionIcon = 0;
         }
 
         if (mainActionIntent == null) {
