@@ -111,7 +111,7 @@ public class PhoneNumberHelper {
      * Returns a structured phone number from the given text representation, or null if the number
      * cannot be parsed.
      */
-    public PhoneNumber parsePhoneNumber(String number, String countryIso) {
+    private PhoneNumber parsePhoneNumber(String number, String countryIso) {
         try {
             return mPhoneNumberUtil.parse(number, countryIso);
         } catch (NumberParseException e) {
@@ -120,7 +120,8 @@ public class PhoneNumberHelper {
     }
 
     /** Returns the geocode associated with a phone number or the empty string if not available. */
-    public String getGeocodeForNumber(PhoneNumber structuredPhoneNumber) {
+    public String getGeocodeForNumber(String number, String countryIso) {
+        PhoneNumber structuredPhoneNumber = parsePhoneNumber(number, countryIso);
         if (structuredPhoneNumber != null) {
             return mPhoneNumberOfflineGeocoder.getDescriptionForNumber(
                     structuredPhoneNumber, mResources.getConfiguration().locale);
