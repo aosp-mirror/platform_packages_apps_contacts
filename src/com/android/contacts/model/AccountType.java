@@ -18,6 +18,7 @@ package com.android.contacts.model;
 
 import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
+import com.google.common.annotations.VisibleForTesting;
 
 import android.accounts.Account;
 import android.content.ContentValues;
@@ -45,6 +46,8 @@ import java.util.HashMap;
  * In the future this may be inflated from XML defined by a data source.
  */
 public abstract class AccountType {
+    private static final String TAG = "AccountType";
+
     /**
      * The {@link RawContacts#ACCOUNT_TYPE} these constraints apply to.
      */
@@ -92,14 +95,51 @@ public abstract class AccountType {
         return null;
     }
 
+    /**
+     * Returns an optional custom invite contact activity. The activity class should reside
+     * in the sync adapter package as determined by {@link #resPackageName}.
+     */
+    public String getInviteContactActivityClassName() {
+        return null;
+    }
+
     public CharSequence getDisplayLabel(Context context) {
-        if (this.titleRes != -1 && this.summaryResPackageName != null) {
+        return getResourceText(context, summaryResPackageName, titleRes, accountType);
+    }
+
+    /**
+     * @return resource ID for the "invite contact" action label, or -1 if not defined.
+     */
+    protected int getInviteContactActionResId(Context conext) {
+        return -1;
+    }
+
+    /**
+     * Returns an optional custom label for the "invite contact" action, which will be shown on
+     * the contact card.  (If not defined, returns null.)
+     */
+    public CharSequence getInviteContactActionLabel(Context context) {
+        return getResourceText(context, summaryResPackageName, getInviteContactActionResId(context),
+                null);
+    }
+
+    /**
+     * Return a string resource loaded from the given package (or the current package
+     * if {@code packageName} is null), unless {@code resId} is -1, in which case it returns
+     * {@code defaultValue}.
+     *
+     * (The behavior is undefined if the resource or package doesn't exist.)
+     */
+    @VisibleForTesting
+    static CharSequence getResourceText(Context context, String packageName, int resId,
+            String defaultValue) {
+        if (resId != -1 && packageName != null) {
             final PackageManager pm = context.getPackageManager();
-            return pm.getText(this.summaryResPackageName, this.titleRes, null);
-        } else if (this.titleRes != -1) {
-            return context.getText(this.titleRes);
+            return pm.getText(packageName, resId, null);
+        } else if (resId != -1) {
+            return context.getText(resId);
         } else {
-            return this.accountType;
+            return defaultValue;
         }
     }
 
