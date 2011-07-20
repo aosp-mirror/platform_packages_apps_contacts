@@ -25,8 +25,10 @@ import android.app.ActionBar.LayoutParams;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +59,8 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     private static final String EXTRA_KEY_QUERY = "navBar.query";
     private static final String EXTRA_KEY_SELECTED_TAB = "navBar.selectedTab";
 
+    private static final String PERSISTENT_LAST_TAB = "actionBarAdapter.lastTab";
+
     private boolean mSearchMode;
     private String mQueryString;
 
@@ -64,6 +68,7 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     private SearchView mSearchView;
 
     private final Context mContext;
+    private final SharedPreferences mPrefs;
     private final boolean mAlwaysShowSearchView;
 
     private Listener mListener;
@@ -89,12 +94,14 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         }
     }
 
-    private TabState mCurrentTab = TabState.FAVORITES;
+    private static final TabState DEFAULT_TAB = TabState.ALL;
+    private TabState mCurrentTab = DEFAULT_TAB;
 
     public ActionBarAdapter(Context context, Listener listener, ActionBar actionBar) {
         mContext = context;
         mListener = listener;
         mActionBar = actionBar;
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         mSearchLabelText = mContext.getString(R.string.search_label);
         mAlwaysShowSearchView = mContext.getResources().getBoolean(R.bool.always_show_search_view);
 
@@ -126,6 +133,7 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         if (savedState == null) {
             mSearchMode = request.isSearchMode();
             mQueryString = request.getQueryString();
+            mCurrentTab = loadLastTabPreference();
         } else {
             mSearchMode = savedState.getBoolean(EXTRA_KEY_SEARCH_MODE);
             mQueryString = savedState.getString(EXTRA_KEY_QUERY);
@@ -190,6 +198,7 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         }
 
         if (notifyListener && mListener != null) mListener.onSelectedTabChanged();
+        saveLastTabPreference(mCurrentTab);
     }
 
     public TabState getCurrentTab() {
@@ -339,5 +348,18 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     private void setFocusOnSearchView() {
         mSearchView.requestFocus();
         mSearchView.setIconified(false); // Workaround for the "IME not popping up" issue.
+    }
+
+    private void saveLastTabPreference(TabState tab) {
+        mPrefs.edit().putInt(PERSISTENT_LAST_TAB, tab.ordinal()).apply();
+    }
+
+    private TabState loadLastTabPreference() {
+        try {
+            return TabState.fromInt(mPrefs.getInt(PERSISTENT_LAST_TAB, DEFAULT_TAB.ordinal()));
+        } catch (IllegalArgumentException e) {
+            // Preference is corrupt?
+            return DEFAULT_TAB;
+        }
     }
 }
