@@ -582,10 +582,12 @@ public class PeopleActivity extends ContactsActivity
             if (mActionBarAdapter.isSearchMode()) {
                 mTabPagerAdapter.setSearchMode(true);
             } else {
+                // No smooth scrolling if quitting from the search mode.
+                final boolean wasSearchMode = mTabPagerAdapter.isSearchMode();
                 mTabPagerAdapter.setSearchMode(false);
                 int tabIndex = tab.ordinal();
                 if (mTabPager.getCurrentItem() != tabIndex) {
-                    mTabPager.setCurrentItem(tab.ordinal(), false /* no smooth scroll */);
+                    mTabPager.setCurrentItem(tabIndex, !wasSearchMode);
                 }
             }
             invalidateOptionsMenu();
