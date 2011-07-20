@@ -202,6 +202,13 @@ public class PeopleActivity extends ContactsActivity
         return mProviderStatus == ProviderStatus.STATUS_NORMAL;
     }
 
+    private boolean areAccountsAvailable() {
+        final ArrayList<Account> accounts =
+            AccountTypeManager.getInstance(this).getAccounts(true /* writeable */);
+        return !accounts.isEmpty();
+    }
+
+
     /**
      * Initialize fragments that are (or may not be) in the layout.
      *
@@ -1230,8 +1237,13 @@ public class PeopleActivity extends ContactsActivity
                     addGroupMenu.setVisible(false);
                     break;
                 case GROUPS:
+                    // Do not display the "new group" button if no accounts are available
+                    if (areAccountsAvailable()) {
+                        addGroupMenu.setVisible(true);
+                    } else {
+                        addGroupMenu.setVisible(false);
+                    }
                     addContactMenu.setVisible(false);
-                    addGroupMenu.setVisible(true);
                     break;
             }
         }
