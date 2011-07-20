@@ -32,7 +32,7 @@ import android.widget.TextView;
  */
 public class DefaultContactBrowseListFragment extends ContactBrowseListFragment {
 
-    private View mCounterHeaderView;
+    private TextView mCounterHeaderView;
     private View mSearchHeaderView;
     private TextView mAccountFilterHeaderView;
 
@@ -69,8 +69,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         // Putting the header view inside a container will allow us to make
         // it invisible later. See checkHeaderViewVisibility()
         FrameLayout headerContainer = new FrameLayout(inflater.getContext());
-        mCounterHeaderView = inflater.inflate(R.layout.total_contacts, null, false);
-        headerContainer.addView(mCounterHeaderView);
+        mCounterHeaderView = (TextView) getView().findViewById(R.id.contacts_count);
         mSearchHeaderView = inflater.inflate(R.layout.search_header, null, false);
         headerContainer.addView(mSearchHeaderView);
         getListView().addHeaderView(headerContainer, null, false);
@@ -111,35 +110,34 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     protected void showCount(int partitionIndex, Cursor data) {
         if (!isSearchMode() && data != null) {
             int count = data.getCount();
-            TextView textView = (TextView) mCounterHeaderView.findViewById(R.id.totalContactsText);
             if (count != 0) {
                 String format = getResources().getQuantityText(
                         R.plurals.listTotalAllContacts, count).toString();
-                textView.setText(String.format(format, count));
+                mCounterHeaderView.setText(String.format(format, count));
             } else {
                 ContactListFilter filter = getFilter();
                 int filterType = filter != null ? filter.filterType
                         : ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS;
                 switch (filterType) {
                     case ContactListFilter.FILTER_TYPE_ACCOUNT:
-                        textView.setText(getString(
+                        mCounterHeaderView.setText(getString(
                                 R.string.listTotalAllContactsZeroGroup, filter.accountName));
                         break;
                     case ContactListFilter.FILTER_TYPE_GROUP:
-                        textView.setText(
+                        mCounterHeaderView.setText(
                                 getString(R.string.listTotalAllContactsZeroGroup, filter.title));
                         break;
                     case ContactListFilter.FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY:
-                        textView.setText(R.string.listTotalPhoneContactsZero);
+                        mCounterHeaderView.setText(R.string.listTotalPhoneContactsZero);
                         break;
                     case ContactListFilter.FILTER_TYPE_STARRED:
-                        textView.setText(R.string.listTotalAllContactsZeroStarred);
+                        mCounterHeaderView.setText(R.string.listTotalAllContactsZeroStarred);
                         break;
                     case ContactListFilter.FILTER_TYPE_CUSTOM:
-                        textView.setText(R.string.listTotalAllContactsZeroCustom);
+                        mCounterHeaderView.setText(R.string.listTotalAllContactsZeroCustom);
                         break;
                     default:
-                        textView.setText(R.string.listTotalAllContactsZero);
+                        mCounterHeaderView.setText(R.string.listTotalAllContactsZero);
                         break;
                 }
             }

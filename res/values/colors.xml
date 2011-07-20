@@ -66,7 +66,6 @@
     <color name="call_log_missed_call_highlight_color">#FF0000</color>
 
     <!-- Color of the text describing an unconsumed voicemail. -->
-
     <color name="call_log_voicemail_highlight_color">#33b5e5</color>
 
     <!-- Colour background for the voicemail playback ui. -->
@@ -83,4 +82,8 @@
 
     <!-- Color of the theme of the People app -->
     <color name="people_app_theme_color">#33B5E5</color>
+
+    <!-- Colors in the contact browser list -->
+    <color name="contact_browser_list_bk_color">#EEEEEE</color>
+    <color name="contact_count_text_color">#777777</color>
 </resources>

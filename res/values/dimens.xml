@@ -206,4 +206,9 @@
 
     <!-- Width of search view in action bar.  Use 0dip for MATCH_PARENT -->
     <dimen name="search_view_width">0dip</dimen>
+
+    <!-- contact browser list margins -->
+    <dimen name="contact_browser_list_left_margin">24dip</dimen>
+    <dimen name="contact_browser_list_top_margin">8dip</dimen>
+    <dimen name="contacts_count_right_margin">40dip</dimen>
 </resources>

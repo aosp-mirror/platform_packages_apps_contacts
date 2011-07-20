@@ -35,4 +35,6 @@
     <dimen name="detail_tab_carousel_height">256dip</dimen>
     <dimen name="detail_update_section_item_vertical_padding">32dip</dimen>
     <dimen name="search_view_width">400dip</dimen>
+    <dimen name="contact_browser_list_left_margin">0dip</dimen>
+    <dimen name="contacts_count_right_margin">24dip</dimen>
 </resources>

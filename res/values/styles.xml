@@ -21,21 +21,25 @@
         <item name="section_header_background">@drawable/list_title_holo</item>
         <item name="list_section_header_height">32dip</item>
         <item name="list_item_divider">@drawable/list_item_divider</item>
-        <item name="list_item_padding_top">4dip</item>
-        <item name="list_item_padding_right">11dip</item>
-        <item name="list_item_padding_bottom">4dip</item>
-        <item name="list_item_padding_left">4dip</item>
+        <item name="list_item_padding_top">0dip</item>
+        <item name="list_item_padding_right">0dip</item>
+        <item name="list_item_padding_bottom">0dip</item>
+        <item name="list_item_padding_left">24dip</item>
         <item name="list_item_gap_between_image_and_text">8dip</item>
         <item name="list_item_gap_between_label_and_data">5dip</item>
         <item name="list_item_call_button_padding">14dip</item>
         <item name="list_item_vertical_divider_margin">5dip</item>
-        <item name="list_item_presence_icon_margin">5dip</item>
+        <item name="list_item_presence_icon_margin">4dip</item>
+        <item name="list_item_presence_icon_size">16dip</item>
         <item name="list_item_photo_size">56dip</item>
         <item name="list_item_profile_photo_size">70dip</item>
         <item name="list_item_prefix_highlight_color">#729a27</item>
-        <item name="list_item_header_text_indent">56dip</item>
-        <item name="list_item_header_text_color">#ffcccccc</item>
-        <item name="list_item_header_text_size">14sp</item>
+        <item name="list_item_header_text_indent">4dip</item>
+        <item name="list_item_header_text_color">@color/people_app_theme_color</item>
+        <item name="list_item_header_text_size">12sp</item>
+        <item name="list_item_header_height">24dip</item>
+        <item name="list_item_header_underline_height">1px</item>
+        <item name="list_item_header_underline_color">@color/people_app_theme_color</item>
         <item name="contact_filter_popup_width">320dip</item>
         <!-- CallLogList -->
         <item name="call_log_list_contact_photo_size">64dip</item>
@@ -136,12 +140,16 @@
         <attr name="list_item_call_button_padding" format="dimension"/>
         <attr name="list_item_vertical_divider_margin" format="dimension"/>
         <attr name="list_item_presence_icon_margin" format="dimension"/>
+        <attr name="list_item_presence_icon_size" format="dimension"/>
         <attr name="list_item_photo_size" format="dimension"/>
         <attr name="list_item_profile_photo_size" format="dimension"/>
         <attr name="list_item_prefix_highlight_color" format="color"/>
         <attr name="list_item_header_text_indent" format="dimension" />
         <attr name="list_item_header_text_color" format="color" />
         <attr name="list_item_header_text_size" format="dimension" />
+        <attr name="list_item_header_height" format="dimension" />
+        <attr name="list_item_header_underline_height" format="dimension" />
+        <attr name="list_item_header_underline_color" format="color" />
     </declare-styleable>
 
     <declare-styleable name="CallDetailActivity">
@@ -179,23 +187,27 @@
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="section_header_background">@drawable/list_title_holo</item>
-        <item name="list_section_header_height">32dip</item>
+        <item name="list_section_header_height">24dip</item>
         <item name="list_item_divider">@drawable/list_item_divider</item>
-        <item name="list_item_padding_top">4dip</item>
-        <item name="list_item_padding_right">11dip</item>
-        <item name="list_item_padding_bottom">4dip</item>
-        <item name="list_item_padding_left">4dip</item>
+        <item name="list_item_padding_top">0dip</item>
+        <item name="list_item_padding_right">0dip</item>
+        <item name="list_item_padding_bottom">0dip</item>
+        <item name="list_item_padding_left">24dip</item>
         <item name="list_item_gap_between_image_and_text">8dip</item>
         <item name="list_item_gap_between_label_and_data">5dip</item>
         <item name="list_item_call_button_padding">14dip</item>
         <item name="list_item_vertical_divider_margin">5dip</item>
-        <item name="list_item_presence_icon_margin">5dip</item>
+        <item name="list_item_presence_icon_margin">4dip</item>
+        <item name="list_item_presence_icon_size">16dip</item>
         <item name="list_item_photo_size">56dip</item>
         <item name="list_item_profile_photo_size">70dip</item>
         <item name="list_item_prefix_highlight_color">#729a27</item>
-        <item name="list_item_header_text_indent">56dip</item>
-        <item name="list_item_header_text_color">?color/section_header_text_color</item>
-        <item name="list_item_header_text_size">14sp</item>
+        <item name="list_item_header_text_indent">4dip</item>
+        <item name="list_item_header_text_color">@color/people_app_theme_color</item>
+        <item name="list_item_header_text_size">12sp</item>
+        <item name="list_item_header_height">26dip</item>
+        <item name="list_item_header_underline_height">1px</item>
+        <item name="list_item_header_underline_color">@color/people_app_theme_color</item>
         <item name="contact_filter_popup_width">320dip</item>
     </style>
 

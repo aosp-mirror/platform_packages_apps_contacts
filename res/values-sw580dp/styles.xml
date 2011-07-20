@@ -22,7 +22,7 @@
         <item name="section_header_background">@drawable/list_title_holo</item>
         <item name="list_item_divider">?android:attr/listDivider</item>
         <item name="list_item_padding_top">0dip</item>
-        <item name="list_item_padding_right">20dip</item>
+        <item name="list_item_padding_right">24dip</item>
         <item name="list_item_padding_bottom">0dip</item>
         <item name="list_item_padding_left">0dip</item>
         <item name="list_item_gap_between_image_and_text">8dip</item>
@@ -33,9 +33,11 @@
         <item name="list_item_photo_size">64dip</item>
         <item name="list_item_profile_photo_size">80dip</item>
         <item name="list_item_prefix_highlight_color">#729a27</item>
-        <item name="list_item_header_text_indent">77dip</item>
-        <item name="list_item_header_text_color">?color/section_header_text_color</item>
+        <item name="list_item_header_text_indent">8dip</item>
         <item name="list_item_header_text_size">14sp</item>
+        <item name="list_item_header_text_color">@color/people_app_theme_color</item>
+        <item name="list_item_header_height">26dip</item>
+        <item name="list_item_header_underline_color">@color/people_app_theme_color</item>
         <item name="contact_filter_popup_width">320dip</item>
     </style>
 

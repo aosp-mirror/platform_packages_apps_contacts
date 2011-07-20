@@ -41,10 +41,14 @@ public class ContactListPinnedHeaderView extends ViewGroup {
     private final int mHeaderTextColor;
     private final int mHeaderTextIndent;
     private final int mHeaderTextSize;
+    private final int mHeaderUnderlineHeight;
+    private final int mHeaderUnderlineColor;
+    private final int mPaddingRight;
+    private final int mPaddingLeft;
 
-    private Drawable mHeaderBackgroundDrawable;
     private int mHeaderBackgroundHeight;
     private TextView mHeaderTextView;
+    private View mHeaderDivider;
 
     public ContactListPinnedHeaderView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -52,18 +56,24 @@ public class ContactListPinnedHeaderView extends ViewGroup {
 
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.ContactListItemView);
 
-        mHeaderBackgroundDrawable = a.getDrawable(
-                R.styleable.ContactListItemView_section_header_background);
         mHeaderTextIndent = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_header_text_indent, 0);
         mHeaderTextColor = a.getColor(
                 R.styleable.ContactListItemView_list_item_header_text_color, Color.BLACK);
         mHeaderTextSize = a.getDimensionPixelSize(
                 R.styleable.ContactListItemView_list_item_header_text_size, 12);
+        mHeaderUnderlineHeight = a.getDimensionPixelSize(
+                R.styleable.ContactListItemView_list_item_header_underline_height, 1);
+        mHeaderUnderlineColor = a.getColor(
+                R.styleable.ContactListItemView_list_item_header_underline_color, 0);
+        mHeaderBackgroundHeight = a.getDimensionPixelSize(
+                R.styleable.ContactListItemView_list_item_header_height, 30);
+        mPaddingLeft = a.getDimensionPixelOffset(
+                R.styleable.ContactListItemView_list_item_padding_left, 0);
+        mPaddingRight = a.getDimensionPixelOffset(
+                R.styleable.ContactListItemView_list_item_padding_right, 0);
 
         a.recycle();
-
-        mHeaderBackgroundHeight = mHeaderBackgroundDrawable.getIntrinsicHeight();
 
         mHeaderTextView = new TextView(mContext);
         mHeaderTextView.setTextColor(mHeaderTextColor);
@@ -71,6 +81,9 @@ public class ContactListPinnedHeaderView extends ViewGroup {
         mHeaderTextView.setTypeface(mHeaderTextView.getTypeface(), Typeface.BOLD);
         mHeaderTextView.setGravity(Gravity.CENTER_VERTICAL);
         addView(mHeaderTextView);
+        mHeaderDivider = new View(mContext);
+        mHeaderDivider.setBackgroundColor(mHeaderUnderlineColor);
+        addView(mHeaderDivider);
     }
 
     @Override
@@ -83,20 +96,21 @@ public class ContactListPinnedHeaderView extends ViewGroup {
                 MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
                 MeasureSpec.makeMeasureSpec(mHeaderBackgroundHeight, MeasureSpec.EXACTLY));
 
-        setMeasuredDimension(width, mHeaderBackgroundHeight);
+        setMeasuredDimension(width, mHeaderBackgroundHeight + mHeaderUnderlineHeight);
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        int width = right - left;
-        mHeaderBackgroundDrawable.setBounds(0, 0, width, mHeaderBackgroundHeight);
-        mHeaderTextView.layout(mHeaderTextIndent, 0, width, mHeaderBackgroundHeight);
-    }
+        int width = right - left - mPaddingRight;
 
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        mHeaderBackgroundDrawable.draw(canvas);
-        super.dispatchDraw(canvas);
+        mHeaderTextView.layout(mHeaderTextIndent + mPaddingLeft,
+                0,
+                width,
+                mHeaderBackgroundHeight);
+        mHeaderDivider.layout(mPaddingLeft,
+                mHeaderBackgroundHeight,
+                width,
+                mHeaderBackgroundHeight + mHeaderUnderlineHeight);
     }
 
     /**
@@ -106,8 +120,10 @@ public class ContactListPinnedHeaderView extends ViewGroup {
         if (!TextUtils.isEmpty(title)) {
             mHeaderTextView.setText(title);
             mHeaderTextView.setVisibility(View.VISIBLE);
+            mHeaderDivider.setVisibility(View.VISIBLE);
         } else {
             mHeaderTextView.setVisibility(View.GONE);
+            mHeaderDivider.setVisibility(View.GONE);
         }
     }
 
