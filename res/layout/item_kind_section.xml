@@ -23,10 +23,11 @@
     android:paddingBottom="@dimen/editor_field_bottom_padding"
     android:orientation="vertical">
 
-    <View
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/divider_horizontal_light" />
+        android:scaleType="fitXY"
+        android:src="@drawable/divider_horizontal_light" />
 
     <LinearLayout
         android:id="@+id/kind_editors"
