@@ -20,6 +20,9 @@ import com.android.contacts.calllog.CallDetailHistoryAdapter;
 import com.android.contacts.calllog.CallTypeHelper;
 import com.android.contacts.calllog.PhoneNumberHelper;
 import com.android.contacts.voicemail.VoicemailPlaybackFragment;
+import com.android.contacts.voicemail.VoicemailStatusHelper;
+import com.android.contacts.voicemail.VoicemailStatusHelper.StatusMessage;
+import com.android.contacts.voicemail.VoicemailStatusHelperImpl;
 
 import android.app.FragmentManager;
 import android.app.ListActivity;
@@ -87,6 +90,14 @@ public class CallDetailActivity extends ListActivity implements
     /* package */ Resources mResources;
     /** Helper to load contact photos. */
     private ContactPhotoManager mContactPhotoManager;
+    /** Helper to make async queries to content resolver. */
+    private CallDetailActivityQueryHandler mAsyncQueryHandler;
+    /** Helper to get voicemail status messages. */
+    private VoicemailStatusHelper mVoicemailStatusHelper;
+    // Views related to voicemail status message.
+    private View mStatusMessageView;
+    private TextView mStatusMessageText;
+    private TextView mStatusMessageAction;
 
     static final String[] CALL_LOG_PROJECTION = new String[] {
         CallLog.Calls.DATE,
@@ -137,6 +148,11 @@ public class CallDetailActivity extends ListActivity implements
         mPhoneNumberHelper = new PhoneNumberHelper(mResources, getVoicemailNumber());
         mPhoneCallDetailsHelper = new PhoneCallDetailsHelper(this, mResources, mCallTypeHelper,
                 mPhoneNumberHelper);
+        mVoicemailStatusHelper = new VoicemailStatusHelperImpl();
+        mAsyncQueryHandler = new CallDetailActivityQueryHandler(this);
+        mStatusMessageView = findViewById(R.id.voicemail_status);
+        mStatusMessageText = (TextView) findViewById(R.id.voicemail_status_message);
+        mStatusMessageAction = (TextView) findViewById(R.id.voicemail_status_action);
         mHomeActionView = findViewById(R.id.action_bar_home);
         mMainActionView = (ImageView) findViewById(R.id.main_action);
         mContactBackgroundView = (ImageView) findViewById(R.id.contact_background);
@@ -153,11 +169,18 @@ public class CallDetailActivity extends ListActivity implements
         });
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
         updateData(getCallLogEntryUris());
-        optionallyHandleVoicemail();
+        Uri voicemailUri = getIntent().getExtras().getParcelable(EXTRA_VOICEMAIL_URI);
+        optionallyHandleVoicemail(voicemailUri);
+        if (voicemailUri != null) {
+            mAsyncQueryHandler.startVoicemailStatusQuery(voicemailUri);
+        } else {
+            mStatusMessageView.setVisibility(View.GONE);
+        }
     }
 
     /**
@@ -166,11 +189,10 @@ public class CallDetailActivity extends ListActivity implements
      * If the Intent used to start this Activity contains the suitable extras, then start voicemail
      * playback.  If it doesn't, then hide the voicemail ui.
      */
-    private void optionallyHandleVoicemail() {
+    private void optionallyHandleVoicemail(Uri voicemailUri) {
         FragmentManager manager = getFragmentManager();
         VoicemailPlaybackFragment fragment = (VoicemailPlaybackFragment) manager.findFragmentById(
                 R.id.voicemail_playback_fragment);
-        Uri voicemailUri = getIntent().getExtras().getParcelable(EXTRA_VOICEMAIL_URI);
         if (voicemailUri == null) {
             // No voicemail uri: hide the voicemail fragment.
             manager.beginTransaction().hide(fragment).commit();
@@ -552,5 +574,49 @@ public class CallDetailActivity extends ListActivity implements
         } else {
             ContactsSearchManager.startSearch(this, initialQuery);
         }
+    }
+
+    protected void updateVoicemailStatusMessage(Cursor statusCursor) {
+        if (statusCursor == null) {
+            mStatusMessageView.setVisibility(View.GONE);
+            return;
+        }
+        final StatusMessage message = getStatusMessage(statusCursor);
+        if (message == null || !message.showInCallDetails()) {
+            mStatusMessageView.setVisibility(View.GONE);
+            return;
+        }
+
+        mStatusMessageView.setVisibility(View.VISIBLE);
+        mStatusMessageText.setText(message.callDetailsMessageId);
+        if (message.actionMessageId != -1) {
+            mStatusMessageAction.setText(message.actionMessageId);
+        }
+        if (message.actionUri != null) {
+            mStatusMessageAction.setClickable(true);
+            mStatusMessageAction.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, message.actionUri));
+                }
+            });
+        } else {
+            mStatusMessageAction.setClickable(false);
+        }
+    }
+
+    private StatusMessage getStatusMessage(Cursor statusCursor) {
+        List<StatusMessage> messages = mVoicemailStatusHelper.getStatusMessages(statusCursor);
+        Log.d(TAG, "Num status messages: " + messages.size());
+        if (messages.size() == 0) {
+            return null;
+        }
+        // There can only be a single status message per source package, so num of messages can
+        // at most be 1.
+        if (messages.size() > 1) {
+            Log.w(TAG, String.format("Expected 1, found (%d) num of status messages." +
+                    " Will use the first one.", messages.size()));
+        }
+        return messages.get(0);
     }
 }

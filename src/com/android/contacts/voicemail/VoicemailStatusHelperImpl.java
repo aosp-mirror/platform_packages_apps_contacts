@@ -14,7 +14,7 @@
  * limitations under the License
  */
 
-package com.android.contacts.calllog;
+package com.android.contacts.voicemail;
 
 import static android.provider.VoicemailContract.Status.CONFIGURATION_STATE_CAN_BE_CONFIGURED;
 import static android.provider.VoicemailContract.Status.CONFIGURATION_STATE_OK;
@@ -46,7 +46,7 @@ public class VoicemailStatusHelperImpl implements VoicemailStatusHelper {
     private static final int VOICEMAIL_ACCESS_URI_INDEX = 5;
     private static final int NUM_COLUMNS = 6;
     /** Projection on the voicemail_status table used by this class. */
-    protected static final String[] PROJECTION = new String[NUM_COLUMNS];
+    public static final String[] PROJECTION = new String[NUM_COLUMNS];
     static {
         PROJECTION[SOURCE_PACKAGE_INDEX] = Status.SOURCE_PACKAGE;
         PROJECTION[CONFIGURATION_STATE_INDEX] = Status.CONFIGURATION_STATE;

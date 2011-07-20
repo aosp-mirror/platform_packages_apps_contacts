@@ -14,7 +14,7 @@
  * limitations under the License
  */
 
-package com.android.contacts.calllog;
+package com.android.contacts.voicemail;
 
 import android.database.Cursor;
 import android.net.Uri;
