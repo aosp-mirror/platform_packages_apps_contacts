@@ -20,6 +20,7 @@ import com.android.contacts.R;
 import com.android.contacts.calllog.CallLogFragment;
 import com.android.contacts.dialpad.DialpadFragment;
 import com.android.contacts.interactions.PhoneNumberInteraction;
+import com.android.contacts.list.ContactTileAdapter.DisplayType;
 import com.android.contacts.list.OnPhoneNumberPickerActionListener;
 import com.android.contacts.list.PhoneNumberPickerFragment;
 import com.android.contacts.list.ContactTileListFragment;
@@ -335,6 +336,7 @@ public class DialtactsActivity extends Activity {
             mStrequentFragment = (ContactTileListFragment) fragment;
             mStrequentFragment.enableQuickContact(false);
             mStrequentFragment.setListener(mStrequentListener);
+            mStrequentFragment.setDisplayType(DisplayType.STREQUENT_PHONE_ONLY);
         } else if (fragment instanceof PhoneNumberPickerFragment) {
             mSearchFragment = (PhoneNumberPickerFragment) fragment;
             mSearchFragment.setOnPhoneNumberPickerActionListener(mPhoneNumberPickerActionListener);
