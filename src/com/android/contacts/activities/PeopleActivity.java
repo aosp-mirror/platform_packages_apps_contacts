@@ -1221,6 +1221,8 @@ public class PeopleActivity extends ContactsActivity
 
         final MenuItem searchMenu = menu.findItem(R.id.menu_search);
         final MenuItem addContactMenu = menu.findItem(R.id.menu_add_contact);
+        final MenuItem contactsFilterMenu = menu.findItem(R.id.menu_contacts_filter);
+
         MenuItem addGroupMenu = menu.findItem(R.id.menu_add_group);
         if (addGroupMenu == null) {
             addGroupMenu = menu.findItem(R.id.menu_custom_add_group);
@@ -1253,6 +1255,10 @@ public class PeopleActivity extends ContactsActivity
         if (searchMenu != null) {
             // Don't show the search menu in search mode.
             searchMenu.setVisible(!mActionBarAdapter.isSearchMode());
+        }
+
+        if (contactsFilterMenu != null) {
+            contactsFilterMenu.setVisible(!mActionBarAdapter.isSearchMode());
         }
 
         MenuItem settings = menu.findItem(R.id.menu_settings);
