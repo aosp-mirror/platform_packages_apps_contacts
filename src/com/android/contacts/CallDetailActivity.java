@@ -174,13 +174,7 @@ public class CallDetailActivity extends ListActivity implements
     public void onResume() {
         super.onResume();
         updateData(getCallLogEntryUris());
-        Uri voicemailUri = getIntent().getExtras().getParcelable(EXTRA_VOICEMAIL_URI);
-        optionallyHandleVoicemail(voicemailUri);
-        if (voicemailUri != null) {
-            mAsyncQueryHandler.startVoicemailStatusQuery(voicemailUri);
-        } else {
-            mStatusMessageView.setVisibility(View.GONE);
-        }
+        optionallyHandleVoicemail();
     }
 
     /**
@@ -189,18 +183,22 @@ public class CallDetailActivity extends ListActivity implements
      * If the Intent used to start this Activity contains the suitable extras, then start voicemail
      * playback.  If it doesn't, then hide the voicemail ui.
      */
-    private void optionallyHandleVoicemail(Uri voicemailUri) {
+    private void optionallyHandleVoicemail() {
+        Uri voicemailUri = getIntent().getParcelableExtra(EXTRA_VOICEMAIL_URI);
         FragmentManager manager = getFragmentManager();
         VoicemailPlaybackFragment fragment = (VoicemailPlaybackFragment) manager.findFragmentById(
                 R.id.voicemail_playback_fragment);
-        if (voicemailUri == null) {
-            // No voicemail uri: hide the voicemail fragment.
-            manager.beginTransaction().hide(fragment).commit();
-        } else {
-            // A voicemail: extra tells us if we should start playback or not.
-            boolean startPlayback = getIntent().getExtras().getBoolean(
+        if (voicemailUri != null) {
+            // Has voicemail uri: leave the fragment visible.  Optionally start the playback.
+            // Do a query to fetch the voicemail status messages.
+            boolean startPlayback = getIntent().getBooleanExtra(
                     EXTRA_VOICEMAIL_START_PLAYBACK, false);
             fragment.setVoicemailUri(voicemailUri, startPlayback);
+            mAsyncQueryHandler.startVoicemailStatusQuery(voicemailUri);
+        } else {
+            // No voicemail uri: hide the voicemail fragment and the status view.
+            manager.beginTransaction().hide(fragment).commit();
+            mStatusMessageView.setVisibility(View.GONE);
         }
     }
 

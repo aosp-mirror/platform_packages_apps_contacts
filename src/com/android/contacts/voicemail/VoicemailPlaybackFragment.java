@@ -16,21 +16,23 @@
 
 package com.android.contacts.voicemail;
 
+import com.android.contacts.R;
+import com.android.ex.variablespeed.MediaPlayerProxy;
+import com.android.ex.variablespeed.VariableSpeed;
+
 import android.app.Fragment;
 import android.content.Context;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
-import com.android.contacts.R;
-import com.android.ex.variablespeed.MediaPlayerProxy;
-import com.android.ex.variablespeed.VariableSpeed;
+import android.widget.Toast;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -50,6 +52,7 @@ import javax.annotation.concurrent.NotThreadSafe;
  */
 @NotThreadSafe
 public class VoicemailPlaybackFragment extends Fragment {
+    private static final String TAG = "VoicemailPlayback";
     private static final int NUMBER_OF_THREADS_IN_POOL = 2;
 
     private VoicemailPlaybackPresenter mPresenter;
@@ -217,10 +220,14 @@ public class VoicemailPlaybackFragment extends Fragment {
         }
 
         @Override
-        public void playbackError() {
+        public void playbackError(Exception e) {
+            mRateIncreaseButton.setEnabled(false);
+            mRateDecreaseButton.setEnabled(false);
             mStartStopButton.setEnabled(false);
             mPlaybackSeek.setProgress(0);
             mPlaybackSeek.setEnabled(false);
+            Toast.makeText(getActivity(), R.string.voicemail_playback_error, Toast.LENGTH_SHORT);
+            Log.e(TAG, "Could not play voicemail", e);
         }
 
         @Override

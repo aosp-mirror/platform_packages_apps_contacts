@@ -1623,6 +1623,9 @@
     <!-- Initial display for position of current playback, do not translate. -->
     <string name="voicemail_initial_time">00:05</string>
 
+    <!-- Message to show when there is an error playing back the voicemail. -->
+    <string name="voicemail_playback_error">Could not play voicemail</string>
+
     <!-- The separator between the call type text and the date in the call log [CHAR LIMIT=3] -->
     <string name="call_log_type_date_separator">/</string>
 
