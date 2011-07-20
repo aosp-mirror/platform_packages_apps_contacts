@@ -21,7 +21,6 @@ import com.android.contacts.PhoneCallDetailsHelper;
 import com.android.contacts.PhoneCallDetailsViews;
 import com.android.contacts.R;
 import com.android.internal.telephony.CallerInfo;
-import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -124,20 +123,16 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
 
     /** Sets the details of a phone call using the specified phone number. */
     private void setPhoneCallDetailsWithNumber(String number, String formattedNumber) {
-        PhoneNumber structuredPhoneNumber =
-                mPhoneNumberHelper.parsePhoneNumber(number, TEST_COUNTRY_ISO);
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(number, formattedNumber, structuredPhoneNumber,
+                new PhoneCallDetails(number, formattedNumber, TEST_COUNTRY_ISO,
                         new int[]{ Calls.INCOMING_TYPE }, TEST_DATE, TEST_DURATION),
                 true, false);
     }
 
     /** Sets the details of a phone call using the specified call type. */
     private void setPhoneCallDetailsWithTypes(int... types) {
-        PhoneNumber structuredPhoneNumber =
-                mPhoneNumberHelper.parsePhoneNumber(TEST_NUMBER, TEST_COUNTRY_ISO);
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, structuredPhoneNumber,
+                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
                         types, TEST_DATE, TEST_DURATION),
                 true, false);
     }
