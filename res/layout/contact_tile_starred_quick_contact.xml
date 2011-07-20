@@ -30,11 +30,36 @@
 
         <View
             android:id="@+id/contact_tile_background"
-            style="@style/ContactTileStarredTextBackground" />
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/contact_tile_shadowbox_height"
+            android:layout_alignParentBottom="true"
+            style="@style/ContactTileStarredShadowBox" />
+
+        <ImageView
+            android:id="@+id/contact_tile_presence"
+            android:layout_width="16dip"
+            android:layout_height="16dip"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="8dip"
+            android:layout_marginBottom="10dip" />
 
         <TextView
             android:id="@+id/contact_tile_name"
-            style="@style/ContactTileStarredText" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/contact_tile_presence"
+            android:layout_above="@id/contact_tile_presence"
+            android:textColor="@android:color/white"
+            stlye="@style/ContactTileStarredName" />
+
+        <TextView
+            android:id="@+id/contact_tile_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/contact_tile_presence"
+            android:layout_below="@id/contact_tile_name"
+            android:layout_marginLeft="4dip"
+            style="@style/ContactTileStatusText" />
 
     </RelativeLayout>
 

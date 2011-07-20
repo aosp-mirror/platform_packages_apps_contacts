@@ -21,27 +21,44 @@
     android:paddingRight="16dip"
     android:paddingLeft="16dip" >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
-
-        <TextView
-            android:id="@+id/contact_tile_name"
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:textSize="18sp"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:paddingTop="24dip" />
 
         <QuickContactBadge
             android:id="@+id/contact_tile_quick"
             android:layout_width="64dip"
             android:layout_height="64dip"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:layout_alignParentRight="true" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/contact_tile_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_toLeftOf="@id/contact_tile_quick" />
+
+        <ImageView
+            android:id="@+id/contact_tile_presence"
+            android:layout_width="16dip"
+            android:layout_height="16dip"
+            android:layout_below="@id/contact_tile_name"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:id="@+id/contact_tile_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="#cccccc"
+            android:layout_toRightOf="@id/contact_tile_presence"
+            android:layout_below="@id/contact_tile_name" />
+
+    </RelativeLayout>
 
 </view>

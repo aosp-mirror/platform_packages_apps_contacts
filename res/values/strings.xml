@@ -1650,4 +1650,14 @@
 
     <!-- Menu item used to show only voicemails in the call log. [CHAR LIMIT=30] -->
     <string name="menu_show_voicemails_only">Show voicemails only</string>
+
+    <!--  Used to display as default status when the contact is available for chat [CHAR LIMIT=19] -->
+    <string name="status_available">Available</string>
+
+    <!--  Used to display as default status when the contact is away or idle for chat [CHAR LIMIT=19] -->
+    <string name="status_away">Away</string>
+
+    <!--  Used to display as default status when the contact is busy or Do not disturb for chat [CHAR LIMIT=19] -->
+    <string name="status_busy">Busy</string>
+
 </resources>

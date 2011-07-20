@@ -20,6 +20,8 @@ import com.android.contacts.R;
 import com.android.contacts.list.ContactTileAdapter.ContactEntry;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -29,6 +31,9 @@ import android.widget.ImageView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
+import android.provider.ContactsContract.StatusUpdates;
+
+
 /**
  * A ContactTile displays the contact's picture overlayed with their name
  */
@@ -37,8 +42,10 @@ public class ContactTileView extends FrameLayout {
 
     private Uri mLookupUri;
     private ImageView mPhoto;
+    private ImageView mPresence;
     private QuickContactBadge mQuickContact;
     private TextView mName;
+    private TextView mStatus;
     private ContactPhotoManager mPhotoManager = null;
 
     public ContactTileView(Context context, AttributeSet attrs) {
@@ -53,6 +60,8 @@ public class ContactTileView extends FrameLayout {
 
         mQuickContact = (QuickContactBadge) findViewById(R.id.contact_tile_quick);
         mPhoto = (ImageView) findViewById(R.id.contact_tile_image);
+        mPresence = (ImageView) findViewById(R.id.contact_tile_presence);
+        mStatus = (TextView) findViewById(R.id.contact_tile_status);
     }
 
     public void setPhotoManager(ContactPhotoManager photoManager) {
@@ -67,6 +76,24 @@ public class ContactTileView extends FrameLayout {
         if (entry != null) {
             mName.setText(entry.name);
             mLookupUri = entry.lookupKey;
+
+            int presenceDrawableResId = (entry.presence == null ? 0 :
+                    StatusUpdates.getPresenceIconResourceId(entry.presence));
+
+            if (mPresence != null) {
+                mPresence.setBackgroundResource(presenceDrawableResId);
+            }
+
+            if (mStatus != null) {
+                String statusText;
+                if (entry.presence == null) {
+                    statusText = null;
+                } else {
+                    statusText =
+                          (entry.status == null ? getStatusString(entry.presence) : entry.status);
+                }
+                mStatus.setText(statusText);
+            }
 
             if (mQuickContact != null) {
                 mQuickContact.assignContactUri(mLookupUri);
@@ -89,6 +116,23 @@ public class ContactTileView extends FrameLayout {
             }
         } else {
             setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private String getStatusString(int presence) {
+        Resources resources = getResources();
+        switch (presence) {
+            case StatusUpdates.AVAILABLE:
+                return resources.getString(R.string.status_available);
+            case StatusUpdates.IDLE:
+            case StatusUpdates.AWAY:
+                return resources.getString(R.string.status_away);
+            case StatusUpdates.DO_NOT_DISTURB:
+                return resources.getString(R.string.status_busy);
+            case StatusUpdates.OFFLINE:
+            case StatusUpdates.INVISIBLE:
+            default:
+                return null;
         }
     }
 

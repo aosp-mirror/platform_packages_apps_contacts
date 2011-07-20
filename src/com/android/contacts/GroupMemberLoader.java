@@ -53,6 +53,7 @@ public final class GroupMemberLoader extends CursorLoader {
         Data.LOOKUP_KEY,                        // 11
         Data.PHONETIC_NAME,                     // 12
         Data.HAS_PHONE_NUMBER,                  // 13
+        Data.CONTACT_STATUS,                    // 14
     };
 
     private final long mGroupId;
@@ -71,6 +72,7 @@ public final class GroupMemberLoader extends CursorLoader {
     public static final int CONTACT_LOOKUP_KEY_COLUMN_INDEX = 11;
     public static final int CONTACT_PHONETIC_NAME_COLUMN_INDEX = 12;
     public static final int CONTACT_HAS_PHONE_COLUMN_INDEX = 13;
+    public static final int CONTACT_STATUS_COLUMN_INDEX = 14;
 
     public GroupMemberLoader(Context context, long groupId) {
         super(context);

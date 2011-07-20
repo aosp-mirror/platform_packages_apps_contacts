@@ -33,13 +33,17 @@ public final class ContactTileLoaderFactory {
     public final static int STARRED = 2;
     public final static int PHOTO_URI = 3;
     public final static int LOOKUP_KEY = 4;
+    public final static int CONTACT_PRESENCE = 5;
+    public final static int CONTACT_STATUS = 6;
 
     private static final String[] COLUMNS = new String[] {
         Contacts._ID,
         Contacts.DISPLAY_NAME,
         Contacts.STARRED,
         Contacts.PHOTO_URI,
-        Contacts.LOOKUP_KEY
+        Contacts.LOOKUP_KEY,
+        Contacts.CONTACT_PRESENCE,
+        Contacts.CONTACT_STATUS,
     };
 
     public static CursorLoader createStrequentLoader(Context context) {

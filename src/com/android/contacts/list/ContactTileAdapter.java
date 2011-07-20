@@ -59,6 +59,8 @@ public class ContactTileAdapter extends BaseAdapter {
     private int mPhotoUriIndex;
     private int mNameIndex;
     private int mStarredIndex;
+    private int mPresenceIndex;
+    private int mStatusIndex;
 
     private boolean mIsQuickContactEnabled = false;
 
@@ -139,12 +141,16 @@ public class ContactTileAdapter extends BaseAdapter {
             mPhotoUriIndex = GroupMemberLoader.CONTACT_PHOTO_URI_COLUMN_INDEX;
             mNameIndex = GroupMemberLoader.CONTACT_DISPLAY_NAME_PRIMARY_COLUMN_INDEX;
             mStarredIndex = GroupMemberLoader.CONTACT_STARRED_COLUMN_INDEX;
+            mPresenceIndex = GroupMemberLoader.CONTACT_PRESENCE_STATUS_COLUMN_INDEX;
+            mStatusIndex = GroupMemberLoader.CONTACT_STATUS_COLUMN_INDEX;
         } else {
             mIdIndex = ContactTileLoaderFactory.CONTACT_ID;
             mLookupIndex = ContactTileLoaderFactory.LOOKUP_KEY;
             mPhotoUriIndex = ContactTileLoaderFactory.PHOTO_URI;
             mNameIndex = ContactTileLoaderFactory.DISPLAY_NAME;
             mStarredIndex = ContactTileLoaderFactory.STARRED;
+            mPresenceIndex = ContactTileLoaderFactory.CONTACT_PRESENCE;
+            mStatusIndex = ContactTileLoaderFactory.CONTACT_STATUS;
         }
     }
 
@@ -192,9 +198,11 @@ public class ContactTileAdapter extends BaseAdapter {
 
         ContactEntry contact = new ContactEntry();
         contact.name = cursor.getString(mNameIndex);
+        contact.status = cursor.getString(mStatusIndex);
         contact.photoUri = (photoUri != null ? Uri.parse(photoUri) : null);
         contact.lookupKey = ContentUris.withAppendedId(
                 Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey), id);
+        contact.presence = cursor.isNull(mPresenceIndex) ? null : cursor.getInt(mPresenceIndex);
 
         return contact;
     }
@@ -455,9 +463,11 @@ public class ContactTileAdapter extends BaseAdapter {
      * Class to hold contact information
      */
     public static class ContactEntry {
-        public Uri photoUri;
         public String name;
+        public String status;
+        public Uri photoUri;
         public Uri lookupKey;
+        public Integer presence;
     }
 
     private static class ViewTypes {
