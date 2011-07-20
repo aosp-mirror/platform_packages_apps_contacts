@@ -13,41 +13,40 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/voicemail_status"
-    android:layout_width="match_parent"
-    android:layout_height="?attr/call_log_voicemail_status_height"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentBottom="true"
-    android:background="?attr/call_log_voicemail_status_background_color"
-    android:baselineAligned="false"
-    android:visibility="gone">
-    <TextView
-        android:id="@+id/voicemail_status_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="14dip"
-        android:paddingRight="14dip"
-        android:textColor="?attr/call_log_voicemail_status_text_color"
-        android:layout_gravity="left"
-        android:layout_weight="5"/>
-    <View android:id="@+id/divider"
-        android:layout_width="1px"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dip"
-        android:layout_marginBottom="5dip"
-        android:layout_marginLeft="11dip"
-        android:background="@drawable/divider_vertical_dark"/>
-    <TextView
-        android:id="@+id/voicemail_status_action"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:paddingLeft="14dip"
-        android:paddingRight="14dip"
-        android:textColor="?attr/call_log_voicemail_status_text_color"
-        android:gravity="right"
-        android:layout_alignParentRight="true"
-        android:clickable="true"
-    />
-</LinearLayout>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/call_log_voicemail_status_height"
+        android:background="?attr/call_log_voicemail_status_background_color">
+        <TextView
+            android:id="@+id/voicemail_status_message"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="14dip"
+            android:paddingRight="14dip"
+            android:textColor="?attr/call_log_voicemail_status_text_color"
+            android:layout_gravity="left"
+            android:layout_weight="5"
+        />
+        <View android:id="@+id/divider"
+            android:layout_width="1px"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            android:layout_marginBottom="5dip"
+            android:layout_marginLeft="11dip"
+            android:background="@drawable/divider_vertical_dark"
+        />
+        <TextView
+            android:id="@+id/voicemail_status_action"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:paddingLeft="14dip"
+            android:paddingRight="14dip"
+            android:textColor="?attr/call_log_voicemail_status_text_color"
+            android:gravity="right"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+        />
+    </LinearLayout>
+</merge>

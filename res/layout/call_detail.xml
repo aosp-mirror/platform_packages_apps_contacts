@@ -36,12 +36,24 @@
             android:src="@drawable/ic_call_log_home"
         />
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/voicemail_status"
+        android:layout_below="@id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:visibility="gone"
+    >
+        <include layout="@layout/call_log_voicemail_status"/>
+    </FrameLayout>
+
     <ImageView
         android:id="@+id/contact_background"
         android:layout_width="match_parent"
         android:layout_height="?attr/call_detail_contact_background_height"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/action_bar"
+        android:layout_below="@id/voicemail_status"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:background="@drawable/ic_contact_picture"
