@@ -27,6 +27,7 @@ import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockAccountTypeManager;
 import com.android.contacts.tests.mocks.MockContentProvider;
 import com.android.contacts.tests.mocks.MockContentProvider.Query;
+import com.android.contacts.util.IntegrationTestUtils;
 
 import android.content.ContentUris;
 import android.net.Uri;
@@ -65,6 +66,7 @@ public class ContactDeletionInteractionTest
     private ContactsMockContext mContext;
     private MockContentProvider mContactsProvider;
     private ContactDeletionInteraction mFragment;
+    private IntegrationTestUtils mUtils;
 
     public ContactDeletionInteractionTest() {
         super(FragmentTestActivity.class);
@@ -73,6 +75,10 @@ public class ContactDeletionInteractionTest
     @Override
     protected void setUp() throws Exception {
         super.setUp();
+        // This test requires that the screen be turned on.
+        mUtils = new IntegrationTestUtils(getInstrumentation());
+        mUtils.acquireScreenWakeLock(getInstrumentation().getTargetContext());
+
         mContext = new ContactsMockContext(getInstrumentation().getTargetContext());
         InjectedServices services = new InjectedServices();
         services.setContentResolver(mContext.getContentResolver());
@@ -94,6 +100,7 @@ public class ContactDeletionInteractionTest
     @Override
     protected void tearDown() throws Exception {
         ContactsApplication.injectServices(null);
+        mUtils.releaseScreenWakeLock();
         super.tearDown();
     }
 
