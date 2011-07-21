@@ -57,8 +57,8 @@ public class CallDetailActivityQueryHandler extends AsyncQueryHandler {
      * If the voicemail record does not have an audio yet then it fires the second query to get the
      * voicemail status of the associated source.
      */
-    public void startVoicemailStatusQuery(Uri voicemaiUri) {
-        startQuery(QUERY_VOICEMAIL_CONTENT_TOKEN, null, voicemaiUri, VOICEMAIL_CONTENT_PROJECTION,
+    public void startVoicemailStatusQuery(Uri voicemailUri) {
+        startQuery(QUERY_VOICEMAIL_CONTENT_TOKEN, null, voicemailUri, VOICEMAIL_CONTENT_PROJECTION,
                 null, null, null);
     }
 
@@ -67,11 +67,12 @@ public class CallDetailActivityQueryHandler extends AsyncQueryHandler {
         try {
             if (token == QUERY_VOICEMAIL_CONTENT_TOKEN) {
                 // Query voicemail status only if this voicemail record does not have audio.
-                if (cursor.moveToFirst() && hasNoAudio(cursor)) {
+                if (moveToFirst(cursor) && hasNoAudio(cursor)) {
                     startQuery(QUERY_VOICEMAIL_STATUS_TOKEN, null,
                             Status.buildSourceUri(getSourcePackage(cursor)),
                             VoicemailStatusHelperImpl.PROJECTION, null, null, null);
                 } else {
+                    // nothing to show in status
                     mCallDetailActivity.updateVoicemailStatusMessage(null);
                 }
             } else if (token == QUERY_VOICEMAIL_STATUS_TOKEN) {
@@ -82,6 +83,15 @@ public class CallDetailActivityQueryHandler extends AsyncQueryHandler {
         } finally {
             MoreCloseables.closeQuietly(cursor);
         }
+    }
+
+    /** Check that the cursor is non-null and can be moved to first. */
+    private boolean moveToFirst(Cursor cursor) {
+        if (cursor == null || !cursor.moveToFirst()) {
+            Log.e(TAG, "Cursor not valid, could not move to first");
+            return false;
+        }
+        return true;
     }
 
     private boolean hasNoAudio(Cursor voicemailCursor) {

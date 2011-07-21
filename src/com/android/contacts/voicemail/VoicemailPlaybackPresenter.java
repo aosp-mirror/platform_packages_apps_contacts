@@ -16,15 +16,15 @@
 
 package com.android.contacts.voicemail;
 
+import com.android.ex.variablespeed.MediaPlayerProxy;
+import com.android.ex.variablespeed.SingleThreadedMediaPlayerProxy;
+
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SeekBar;
-
-import com.android.ex.variablespeed.MediaPlayerProxy;
-import com.android.ex.variablespeed.SingleThreadedMediaPlayerProxy;
 
 import java.io.IOException;
 import java.util.concurrent.ScheduledExecutorService;
@@ -61,7 +61,7 @@ import javax.annotation.concurrent.ThreadSafe;
         int getDesiredClipPosition();
         void playbackStarted();
         void playbackStopped();
-        void playbackError();
+        void playbackError(Exception e);
         boolean isSpeakerPhoneOn();
         void setSpeakerPhoneOn(boolean on);
         void finish();
@@ -216,7 +216,7 @@ import javax.annotation.concurrent.ThreadSafe;
     }
 
     private void handleError(Exception e) {
-        mView.playbackError();
+        mView.playbackError(e);
         mPlayer.release();
         mPositionUpdater.stopUpdating();
     }
