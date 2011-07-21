@@ -20,6 +20,7 @@
         android:layout_height="?attr/call_log_list_contact_photo_size"
         android:layout_toRightOf="@id/contact_photo"
         android:layout_toLeftOf="@id/divider"
+        android:layout_alignWithParentIfMissing="true"
         android:layout_marginLeft="?attr/call_log_inner_margin"
     >
         <include layout="@layout/call_log_phone_call_details"/>

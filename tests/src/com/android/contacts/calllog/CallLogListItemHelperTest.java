@@ -71,7 +71,7 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
                 resources, callTypeHelper, mPhoneNumberHelper);
         mHelper = new CallLogListItemHelper(phoneCallDetailsHelper, mPhoneNumberHelper);
         mViews = CallLogListItemViews.createForTest(new QuickContactBadge(context),
-                new ImageView(context), new ImageView(context),
+                new ImageView(context), new ImageView(context), new View(context),
                 PhoneCallDetailsViews.createForTest(new TextView(context),
                         new LinearLayout(context), new TextView(context), new TextView(context),
                         new TextView(context), new TextView(context)),
@@ -93,20 +93,17 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
 
     public void testSetPhoneCallDetails_Unknown() {
         setPhoneCallDetailsWithNumber(CallerInfo.UNKNOWN_NUMBER, CallerInfo.UNKNOWN_NUMBER);
-        assertEquals(View.INVISIBLE, mViews.callView.getVisibility());
-        assertEquals(View.GONE, mViews.playView.getVisibility());
+        assertNoCallButton();
     }
 
     public void testSetPhoneCallDetails_Private() {
         setPhoneCallDetailsWithNumber(CallerInfo.PRIVATE_NUMBER, CallerInfo.PRIVATE_NUMBER);
-        assertEquals(View.INVISIBLE, mViews.callView.getVisibility());
-        assertEquals(View.GONE, mViews.playView.getVisibility());
+        assertNoCallButton();
     }
 
     public void testSetPhoneCallDetails_Payphone() {
         setPhoneCallDetailsWithNumber(CallerInfo.PAYPHONE_NUMBER, CallerInfo.PAYPHONE_NUMBER);
-        assertEquals(View.INVISIBLE, mViews.callView.getVisibility());
-        assertEquals(View.GONE, mViews.playView.getVisibility());
+        assertNoCallButton();
     }
 
     public void testSetPhoneCallDetails_VoicemailNumber() {
@@ -121,11 +118,37 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
         assertEquals(View.VISIBLE, mViews.playView.getVisibility());
     }
 
+    public void testSetPhoneCallDetails_VoicemailFromUnknown() {
+        setPhoneCallDetailsWithNumberAndType(CallerInfo.UNKNOWN_NUMBER, CallerInfo.UNKNOWN_NUMBER,
+                Calls.VOICEMAIL_TYPE);
+        assertEquals(View.VISIBLE, mViews.playView.getVisibility());
+        assertEmptyCallButton();
+    }
+
+    /** Asserts that the whole call area is gone. */
+    private void assertNoCallButton() {
+        assertEquals(View.GONE, mViews.callView.getVisibility());
+        assertEquals(View.GONE, mViews.playView.getVisibility());
+        assertEquals(View.GONE, mViews.dividerView.getVisibility());
+    }
+
+    /** Asserts that the call area is present but empty. */
+    private void assertEmptyCallButton() {
+        assertEquals(View.INVISIBLE, mViews.callView.getVisibility());
+        assertEquals(View.VISIBLE, mViews.dividerView.getVisibility());
+    }
+
     /** Sets the details of a phone call using the specified phone number. */
     private void setPhoneCallDetailsWithNumber(String number, String formattedNumber) {
+        setPhoneCallDetailsWithNumberAndType(number, formattedNumber, Calls.INCOMING_TYPE);
+    }
+
+    /** Sets the details of a phone call using the specified phone number. */
+    private void setPhoneCallDetailsWithNumberAndType(String number, String formattedNumber,
+            int callType) {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(number, formattedNumber, TEST_COUNTRY_ISO,
-                        new int[]{ Calls.INCOMING_TYPE }, TEST_DATE, TEST_DURATION),
+                        new int[]{ callType }, TEST_DATE, TEST_DURATION),
                 true, false);
     }
 

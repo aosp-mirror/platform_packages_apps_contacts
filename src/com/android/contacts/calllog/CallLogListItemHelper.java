@@ -55,10 +55,19 @@ import android.view.View;
             boolean useIcons, boolean isHighlighted) {
         mPhoneCallDetailsHelper.setPhoneCallDetails(views.phoneCallDetailsViews, details, useIcons,
                 isHighlighted);
-        views.callView.setVisibility(
-                mPhoneNumberHelper.canPlaceCallsTo(details.number)
-                        ? View.VISIBLE : View.INVISIBLE);
-        views.playView.setVisibility(
-                details.callTypes[0] == Calls.VOICEMAIL_TYPE ? View.VISIBLE : View.GONE);
+        boolean callVisible = mPhoneNumberHelper.canPlaceCallsTo(details.number);
+        boolean playVisible = details.callTypes[0] == Calls.VOICEMAIL_TYPE;
+
+        if (callVisible || playVisible) {
+            // At least one is visible. Keep the divider and the space for the call button.
+            views.callView.setVisibility(callVisible ? View.VISIBLE : View.INVISIBLE);
+            views.playView.setVisibility(playVisible ? View.VISIBLE : View.GONE);
+            views.dividerView.setVisibility(View.VISIBLE);
+        } else {
+            // Neither is visible, remove all of them entirely.
+            views.callView.setVisibility(View.GONE);
+            views.playView.setVisibility(View.GONE);
+            views.dividerView.setVisibility(View.GONE);
+        }
     }
 }
