@@ -571,8 +571,8 @@ public class ContactEditorFragment extends Fragment implements
         final LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
-        int size = mState.size();
-        for (int i = 0; i < size; i++) {
+        int numRawContacts = mState.size();
+        for (int i = 0; i < numRawContacts; i++) {
             // TODO ensure proper ordering of entities in the list
             final EntityDelta entity = mState.get(i);
             final ValuesDelta values = entity.getValues();
@@ -588,10 +588,16 @@ public class ContactEditorFragment extends Fragment implements
                         R.layout.external_raw_contact_editor_view, mContent, false);
                 ((ExternalRawContactEditorView) editor).setListener(this);
             } else {
-                editor = (BaseRawContactEditorView)
+                final RawContactEditorView rawContactEditor = (RawContactEditorView)
                         inflater.inflate(R.layout.raw_contact_editor_view, mContent, false);
+                // For existing contacts, only show the account header if there is more than 1 raw
+                // contact in the aggregate contact.
+                if (Intent.ACTION_EDIT.equals(mAction)) {
+                    rawContactEditor.setAccountHeaderVisible(numRawContacts > 1);
+                }
+                editor = rawContactEditor;
             }
-            if (Intent.ACTION_INSERT.equals(mAction) && size == 1) {
+            if (Intent.ACTION_INSERT.equals(mAction) && numRawContacts == 1) {
                 final ArrayList<Account> accounts =
                         AccountTypeManager.getInstance(mContext).getAccounts(true);
                 if (accounts.size() > 1) {
@@ -600,6 +606,7 @@ public class ContactEditorFragment extends Fragment implements
                     disableAccountSwitcher(editor);
                 }
             }
+
             editor.setEnabled(mEnabled);
 
             mContent.addView(editor);
@@ -708,6 +715,7 @@ public class ContactEditorFragment extends Fragment implements
         // on an existing contact
         final View accountView = editor.findViewById(R.id.account);
         accountView.setBackgroundDrawable(null);
+        accountView.setEnabled(false);
     }
 
     @Override

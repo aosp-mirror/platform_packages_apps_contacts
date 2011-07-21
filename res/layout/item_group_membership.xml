@@ -20,15 +20,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:src="@drawable/divider_horizontal_light" />
-
     <include
-        android:id="@+id/kind_title"
-        layout="@layout/edit_field_title" />
+        layout="@layout/edit_kind_title" />
 
     <Button
         style="?android:attr/spinnerStyle"
@@ -41,7 +34,6 @@
         android:gravity="left|center_vertical"
         android:ellipsize="end"
         android:focusable="true"
-        android:paddingLeft="@dimen/editor_field_left_padding"
-    />
+        android:paddingLeft="@dimen/editor_field_left_padding" />
 
 </com.android.contacts.editor.GroupMembershipView>

@@ -22,11 +22,9 @@
     android:layout_height="wrap_content"
     android:paddingBottom="@dimen/editor_field_bottom_padding"
     android:orientation="vertical">
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:src="@drawable/divider_horizontal_light" />
+
+    <include
+        layout="@layout/edit_kind_title" />
 
     <LinearLayout
         android:id="@+id/kind_editors"

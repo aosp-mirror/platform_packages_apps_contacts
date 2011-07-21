@@ -62,7 +62,6 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
     private static final int INPUT_TYPE_CUSTOM = EditorInfo.TYPE_CLASS_TEXT
             | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS;
 
-    private TextView mTitle;
     private Spinner mLabel;
     private EditTypeAdapter mEditTypeAdapter;
     private View mDeleteContainer;
@@ -124,8 +123,6 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
     @Override
     protected void onFinishInflate() {
 
-        mTitle = (TextView) findViewById(R.id.title);
-
         mLabel = (Spinner) findViewById(R.id.spinner);
         mLabel.setOnItemSelectedListener(mSpinnerListener);
 
@@ -165,26 +162,19 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
     }
 
     /**
-     * Creates or removes the type/label button. Doesn't do anything if already correctly configured
+     * Configures the visibility of the type label button and enables or disables it properly.
      */
     private void setupLabelButton(boolean shouldExist) {
-        if (mTitle == null) {
-            return;
-        }
         if (shouldExist) {
             mLabel.setEnabled(!mReadOnly && isEnabled());
             mLabel.setVisibility(View.VISIBLE);
-
-            // Since there's a spinner for this editor, use this as the title
-            // instead of the title TextView.
-            mTitle.setVisibility(View.GONE);
         } else {
             mLabel.setVisibility(View.GONE);
         }
     }
 
     /**
-     * Creates or removes the remove button. Doesn't do anything if already correctly configured
+     * Configures the visibility of the "delete" button and enables or disables it properly.
      */
     private void setupDeleteButton() {
         if (mIsDeletable) {
@@ -197,7 +187,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
 
     public void setDeleteButtonVisible(boolean visible) {
         if (mIsDeletable) {
-            mDeleteContainer.setVisibility(visible ? View.VISIBLE : View.GONE);
+            mDeleteContainer.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
         }
     }
 
@@ -275,7 +265,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
         if (mWasEmpty != isEmpty) {
             if (isEmpty) {
                 mListener.onRequest(EditorListener.FIELD_TURNED_EMPTY);
-                if (mIsDeletable) mDeleteContainer.setVisibility(View.GONE);
+                if (mIsDeletable) mDeleteContainer.setVisibility(View.INVISIBLE);
             } else {
                 mListener.onRequest(EditorListener.FIELD_TURNED_NON_EMPTY);
                 if (mIsDeletable) mDeleteContainer.setVisibility(View.VISIBLE);
@@ -317,18 +307,6 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
             return;
         }
         setVisibility(View.VISIBLE);
-
-        // TODO: handle resources from remote packages
-        String titleString = (kind.titleRes == -1 || kind.titleRes == 0)
-                ? ""
-                : getResources().getString(kind.titleRes);
-
-        // If there is a title field, then setup the title (although it may not be shown if there is
-        // a Spinner setup later). There are cases where a title may not be present (i.e. structured
-        // name).
-        if (mTitle != null) {
-            mTitle.setText(titleString.toUpperCase());
-        }
 
         // Display label selector if multiple types available
         final boolean hasTypes = EntityModifier.hasEditTypes(kind);
