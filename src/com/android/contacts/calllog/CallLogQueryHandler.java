@@ -50,7 +50,7 @@ import javax.annotation.concurrent.GuardedBy;
     /** The token for the query to fetch the old entries from the call log. */
     private static final int QUERY_OLD_CALLS_TOKEN = 54;
     /** The token for the query to mark all missed calls as old after seeing the call log. */
-    private static final int UPDATE_MISSED_CALLS_TOKEN = 55;
+    private static final int UPDATE_MARK_AS_OLD_TOKEN = 55;
 
     /** The token for the query to fetch voicemail status messages. */
     private static final int QUERY_VOICEMAIL_STATUS_TOKEN = 56;
@@ -149,11 +149,13 @@ import javax.annotation.concurrent.GuardedBy;
 
     /** Fetches the list of calls in the call log, either the new one or the old ones. */
     private void fetchCalls(int token, boolean isNew, boolean voicemailOnly) {
-        // We need to check for NULL explicitly otherwise entries with where NEW is NULL will not
-        // match either the query or its negation.
+        // We need to check for NULL explicitly otherwise entries with where NEW or READ are NULL
+        // may not match either the query or its negation.
         String selection =
-                String.format("%s IS NOT NULL AND %s = 1 AND (%s = ? OR %s = ?)",
-                        Calls.NEW, Calls.NEW, Calls.TYPE, Calls.TYPE);
+                String.format(
+                        "(%s IS NOT NULL AND %s = 1 AND (%s = ? OR %s = ?)) OR " +
+                        "(%s IS NOT NULL AND %s = 0)",
+                        Calls.NEW, Calls.NEW, Calls.TYPE, Calls.TYPE, Calls.IS_READ, Calls.IS_READ);
         final String[] selectionArgs;
         if (!isNew) {
             // Negate the query.
@@ -183,20 +185,17 @@ import javax.annotation.concurrent.GuardedBy;
         cancelOperation(QUERY_OLD_CALLS_TOKEN);
     }
 
-    /** Updates the missed calls to mark them as old. */
-    public void updateMissedCalls() {
-        // Mark all "new" missed calls as not new anymore
+    /** Updates all new calls to mark them as old. */
+    public void markNewCallsAsOld() {
+        // Mark all "new" calls as not new anymore.
         StringBuilder where = new StringBuilder();
-        where.append("type = ");
-        where.append(Calls.MISSED_TYPE);
-        where.append(" AND ");
         where.append(Calls.NEW);
         where.append(" = 1");
 
         ContentValues values = new ContentValues(1);
         values.put(Calls.NEW, "0");
 
-        startUpdate(UPDATE_MISSED_CALLS_TOKEN, null, Calls.CONTENT_URI_WITH_VOICEMAIL,
+        startUpdate(UPDATE_MARK_AS_OLD_TOKEN, null, Calls.CONTENT_URI_WITH_VOICEMAIL,
                 values, where.toString(), null);
     }
 
