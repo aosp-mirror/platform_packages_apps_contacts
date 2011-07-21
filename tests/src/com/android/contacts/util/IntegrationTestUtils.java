@@ -16,8 +16,16 @@
 
 package com.android.contacts.util;
 
+import static android.os.PowerManager.ACQUIRE_CAUSES_WAKEUP;
+import static android.os.PowerManager.FULL_WAKE_LOCK;
+import static android.os.PowerManager.ON_AFTER_RELEASE;
+
+import com.google.common.base.Preconditions;
+
 import android.app.Activity;
 import android.app.Instrumentation;
+import android.content.Context;
+import android.os.PowerManager;
 import android.view.View;
 
 import junit.framework.Assert;
@@ -26,9 +34,17 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
+import javax.annotation.concurrent.GuardedBy;
+import javax.annotation.concurrent.ThreadSafe;
+
 /** Some utility methods for making integration testing smoother. */
+@ThreadSafe
 public class IntegrationTestUtils {
+    private static final String TAG = "IntegrationTestUtils";
+
     private final Instrumentation mInstrumentation;
+    private final Object mLock = new Object();
+    @GuardedBy("mLock") private PowerManager.WakeLock mWakeLock;
 
     public IntegrationTestUtils(Instrumentation instrumentation) {
         mInstrumentation = instrumentation;
@@ -68,6 +84,38 @@ public class IntegrationTestUtils {
         } catch (ExecutionException e) {
             // Unwrap the cause of the exception and re-throw it.
             throw e.getCause();
+        }
+    }
+
+    /**
+     * Wake up the screen, useful in tests that want or need the screen to be on.
+     * <p>
+     * This is usually called from setUp() for tests that require it.  After calling this method,
+     * {@link #releaseScreenWakeLock()} must be called, this is usually done from tearDown().
+     */
+    public void acquireScreenWakeLock(Context context) {
+        synchronized (mLock) {
+            Preconditions.checkState(mWakeLock == null, "mWakeLock was already held");
+            mWakeLock = ((PowerManager) context.getSystemService(Context.POWER_SERVICE))
+                    .newWakeLock(ACQUIRE_CAUSES_WAKEUP | ON_AFTER_RELEASE | FULL_WAKE_LOCK, TAG);
+            mWakeLock.acquire();
+        }
+    }
+
+    /** Release the wake lock previously acquired with {@link #acquireScreenWakeLock(Context)}. */
+    public void releaseScreenWakeLock() {
+        synchronized (mLock) {
+            // We don't use Preconditions to force you to have acquired before release.
+            // This is because we don't want unnecessary exceptions in tearDown() since they'll
+            // typically mask the actual exception that happened during the test.
+            // The other reason is that this method is most likely to be called from tearDown(),
+            // which is invoked within a finally block, so it's not infrequently the case that
+            // the setUp() method fails before getting the lock, at which point we don't want
+            // to fail in tearDown().
+            if (mWakeLock != null) {
+                mWakeLock.release();
+                mWakeLock = null;
+            }
         }
     }
 }
