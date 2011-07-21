@@ -18,6 +18,7 @@ package com.android.contacts.model;
 
 import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
+import com.google.common.annotations.VisibleForTesting;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import android.accounts.Account;
@@ -39,13 +40,16 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.provider.ContactsContract;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -80,6 +84,12 @@ public abstract class AccountTypeManager {
     public abstract AccountType getAccountType(String accountType);
 
     /**
+     * @return Unmodifiable map from account type strings to {@link AccountType}s which support
+     * the "invite" feature and have one or more account.
+     */
+    public abstract Map<String, AccountType> getInvitableAccountTypes();
+
+    /**
      * Find the best {@link DataKind} matching the requested
      * {@link AccountType#accountType} and {@link DataKind#mimeType}. If no
      * direct match found, we try searching {@link FallbackAccountType}.
@@ -101,6 +111,8 @@ class AccountTypeManagerImpl extends AccountTypeManager
     private ArrayList<Account> mAccounts = Lists.newArrayList();
     private ArrayList<Account> mWritableAccounts = Lists.newArrayList();
     private HashMap<String, AccountType> mAccountTypes = Maps.newHashMap();
+    private Map<String, AccountType> mInvitableAccountTypes = Collections.unmodifiableMap(
+            new HashMap<String, AccountType>());
 
     private static final int MESSAGE_LOAD_DATA = 0;
     private static final int MESSAGE_PROCESS_BROADCAST_INTENT = 1;
@@ -308,6 +320,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
             mAccountTypes = accountTypes;
             mAccounts = allAccounts;
             mWritableAccounts = writableAccounts;
+            mInvitableAccountTypes = findInvitableAccountTypes(mContext, allAccounts, accountTypes);
         }
 
         Log.i(TAG, "Loaded meta-data for " + mAccountTypes.size() + " account types, "
@@ -380,5 +393,35 @@ class AccountTypeManagerImpl extends AccountTypeManager
             AccountType type = mAccountTypes.get(accountType);
             return type != null ? type : mFallbackAccountType;
         }
+    }
+
+    @Override
+    public Map<String, AccountType> getInvitableAccountTypes() {
+        return mInvitableAccountTypes;
+    }
+
+    /**
+     * Return all {@link AccountType}s with at least one account which supports "invite", i.e.
+     * its {@link AccountType#getInviteContactActivityClassName()} is not empty.
+     */
+    @VisibleForTesting
+    static Map<String, AccountType> findInvitableAccountTypes(Context context,
+            Collection<Account> accounts, Map<String, AccountType> accountTypes) {
+        HashMap<String, AccountType> result = Maps.newHashMap();
+        for (Account account : accounts) {
+            AccountType type = accountTypes.get(account.type);
+            if (type == null) continue; // just in case
+            if (result.containsKey(type.accountType)) continue;
+
+            if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "Type " + type.accountType
+                        + " inviteClass=" + type.getInviteContactActivityClassName()
+                        + " inviteAction=" + type.getInviteContactActionLabel(context));
+            }
+            if (!TextUtils.isEmpty(type.getInviteContactActivityClassName())) {
+                result.put(type.accountType, type);
+            }
+        }
+        return Collections.unmodifiableMap(result);
     }
 }

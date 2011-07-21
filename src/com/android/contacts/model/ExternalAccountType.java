@@ -16,16 +16,21 @@
 
 package com.android.contacts.model;
 
+import com.google.common.annotations.VisibleForTesting;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.content.pm.ServiceInfo;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Xml;
@@ -48,9 +53,14 @@ public class ExternalAccountType extends BaseAccountType {
 
     private static final String ATTR_EDIT_CONTACT_ACTIVITY = "editContactActivity";
     private static final String ATTR_CREATE_CONTACT_ACTIVITY = "createContactActivity";
+    private static final String ATTR_INVITE_CONTACT_ACTIVITY = "inviteContactActivity";
+    private static final String ATTR_INVITE_CONTACT_ACTION_LABEL = "inviteContactActionLabel";
 
     private String mEditContactActivityClassName;
     private String mCreateContactActivityClassName;
+    private String mInviteContactActivity;
+    private String mInviteActionLabelAttribute;
+    private int mInviteActionLabelResId;
 
     public ExternalAccountType(Context context, String resPackageName) {
         this.resPackageName = resPackageName;
@@ -70,6 +80,9 @@ public class ExternalAccountType extends BaseAccountType {
                 inflate(context, parser);
             }
         }
+
+        mInviteActionLabelResId = resolveExternalResId(context, mInviteActionLabelAttribute,
+                summaryResPackageName, ATTR_INVITE_CONTACT_ACTION_LABEL);
 
         // Bring in name and photo from fallback source, which are non-optional
         addDataKindStructuredName(context);
@@ -91,6 +104,16 @@ public class ExternalAccountType extends BaseAccountType {
     @Override
     public String getCreateContactActivityClassName() {
         return mCreateContactActivityClassName;
+    }
+
+    @Override
+    public String getInviteContactActivityClassName() {
+        return mInviteContactActivity;
+    }
+
+    @Override
+    protected int getInviteContactActionResId(Context context) {
+        return mInviteActionLabelResId;
     }
 
     /**
@@ -121,10 +144,18 @@ public class ExternalAccountType extends BaseAccountType {
             int attributeCount = parser.getAttributeCount();
             for (int i = 0; i < attributeCount; i++) {
                 String attr = parser.getAttributeName(i);
+                String value = parser.getAttributeValue(i);
+                if (Log.isLoggable(TAG, Log.DEBUG)) {
+                    Log.d(TAG, attr + "=" + value);
+                }
                 if (ATTR_EDIT_CONTACT_ACTIVITY.equals(attr)) {
-                    mEditContactActivityClassName = parser.getAttributeValue(i);
+                    mEditContactActivityClassName = value;
                 } else if (ATTR_CREATE_CONTACT_ACTIVITY.equals(attr)) {
-                    mCreateContactActivityClassName = parser.getAttributeValue(i);
+                    mCreateContactActivityClassName = value;
+                } else if (ATTR_INVITE_CONTACT_ACTIVITY.equals(attr)) {
+                    mInviteContactActivity = value;
+                } else if (ATTR_INVITE_CONTACT_ACTION_LABEL.equals(attr)) {
+                    mInviteActionLabelAttribute = value;
                 } else {
                     Log.e(TAG, "Unsupported attribute " + attr);
                 }
@@ -172,6 +203,7 @@ public class ExternalAccountType extends BaseAccountType {
                 }
 
                 addKind(kind);
+                a.recycle();
             }
         } catch (XmlPullParserException e) {
             throw new IllegalStateException("Problem reading XML", e);
@@ -188,5 +220,42 @@ public class ExternalAccountType extends BaseAccountType {
     @Override
     public int getSideBarColor(Context context) {
         return 0xff6d86b4;
+    }
+
+    /**
+     * Takes a string in the "@xxx/yyy" format and return the resource ID for the resource in
+     * the resource package.
+     *
+     * If the argument is in the invalid format or isn't a resource name, it returns -1.
+     *
+     * @param context context
+     * @param resourceName Resource name in the "@xxx/yyy" format, e.g. "@string/invite_lavbel"
+     * @param packageName name of the package containing the resource.
+     * @param xmlAttributeName attribute name which the resource came from.  Used for logging.
+     */
+    @VisibleForTesting
+    static int resolveExternalResId(Context context, String resourceName,
+            String packageName, String xmlAttributeName) {
+        if (TextUtils.isEmpty(resourceName)) {
+            return -1; // Empty text is okay.
+        }
+        if (resourceName.charAt(0) != '@') {
+            Log.e(TAG, xmlAttributeName + " must be a resource name beginnig with '@'");
+            return -1;
+        }
+        final String name = resourceName.substring(1);
+        final Resources res;
+        try {
+             res = context.getPackageManager().getResourcesForApplication(packageName);
+        } catch (NameNotFoundException e) {
+            Log.e(TAG, "Unable to load package " + packageName);
+            return -1;
+        }
+        final int resId = res.getIdentifier(name, null, packageName);
+        if (resId == 0) {
+            Log.e(TAG, "Unable to load " + resourceName + " from package " + packageName);
+            return -1;
+        }
+        return resId;
     }
 }

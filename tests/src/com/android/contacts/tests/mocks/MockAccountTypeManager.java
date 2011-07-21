@@ -17,11 +17,14 @@ package com.android.contacts.tests.mocks;
 
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
+import com.google.android.collect.Maps;
 
 import android.accounts.Account;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A mock {@link AccountTypeManager} class.
@@ -49,5 +52,10 @@ public class MockAccountTypeManager extends AccountTypeManager {
     @Override
     public ArrayList<Account> getAccounts(boolean writableOnly) {
         return new ArrayList<Account>(Arrays.asList(mAccounts));
+    }
+
+    @Override
+    public Map<String, AccountType> getInvitableAccountTypes() {
+        return Maps.newHashMap(); // Always returns empty
     }
 }
