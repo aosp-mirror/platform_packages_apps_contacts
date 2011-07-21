@@ -27,8 +27,8 @@ import com.android.contacts.activities.DialtactsActivity;
 import com.android.contacts.activities.DialtactsActivity.ViewPagerVisibilityListener;
 import com.android.contacts.util.ExpirableCache;
 import com.android.contacts.voicemail.VoicemailStatusHelper;
-import com.android.contacts.voicemail.VoicemailStatusHelperImpl;
 import com.android.contacts.voicemail.VoicemailStatusHelper.StatusMessage;
+import com.android.contacts.voicemail.VoicemailStatusHelperImpl;
 import com.android.internal.telephony.CallerInfo;
 import com.android.internal.telephony.ITelephony;
 import com.google.common.annotations.VisibleForTesting;
@@ -186,6 +186,42 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         public String lookupKey;
 
         public static ContactInfo EMPTY = new ContactInfo();
+
+        @Override
+        public int hashCode() {
+            // Uses only name and personId to determine hashcode.
+            // This should be sufficient to have a reasonable distribution of hash codes.
+            // Moreover, there should be no two people with the same personId.
+            final int prime = 31;
+            int result = 1;
+            result = prime * result + (int) (personId ^ (personId >>> 32));
+            result = prime * result + ((name == null) ? 0 : name.hashCode());
+            return result;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (obj == null) return false;
+            if (getClass() != obj.getClass()) return false;
+            ContactInfo other = (ContactInfo) obj;
+            if (personId != other.personId) return false;
+            if (!TextUtils.equals(name, other.name)) return false;
+            if (type != other.type) return false;
+            if (!TextUtils.equals(label, other.label)) return false;
+            if (!TextUtils.equals(number, other.number)) return false;
+            // Ignore formatted number.
+            if (!TextUtils.equals(normalizedNumber, other.normalizedNumber)) return false;
+            if (!uriEquals(thumbnailUri, other.thumbnailUri)) return false;
+            if (!TextUtils.equals(lookupKey, other.lookupKey)) return false;
+            return true;
+        }
+
+        private static boolean uriEquals(Uri thumbnailUri1, Uri thumbnailUri2) {
+            if (thumbnailUri1 == thumbnailUri2) return true;
+            if (thumbnailUri1 == null) return false;
+            return thumbnailUri1.equals(thumbnailUri2);
+        }
     }
 
     public interface GroupCreator {
@@ -363,129 +399,175 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             }
         }
 
-        private boolean queryContactInfo(String number) {
-            // First check if there was a prior request for the same number
-            // that was already satisfied
-            ContactInfo info = mContactInfoCache.get(number);
-            boolean needNotify = false;
-            if (info != null && info != ContactInfo.EMPTY) {
-                return true;
-            } else {
-                // Ok, do a fresh Contacts lookup for ciq.number.
-                boolean infoUpdated = false;
+        /**
+         * Determines the contact information for the given SIP address.
+         * <p>
+         * It returns the contact info if found.
+         * <p>
+         * If no contact corresponds to the given SIP address, returns {@link ContactInfo#EMPTY}.
+         * <p>
+         * If the lookup fails for some other reason, it returns null.
+         */
+        private ContactInfo queryContactInfoForSipAddress(String sipAddress) {
+            final ContactInfo info;
 
-                if (PhoneNumberUtils.isUriNumber(number)) {
-                    // This "number" is really a SIP address.
+            // TODO: This code is duplicated from the
+            // CallerInfoAsyncQuery class.  To avoid that, could the
+            // code here just use CallerInfoAsyncQuery, rather than
+            // manually running ContentResolver.query() itself?
 
-                    // TODO: This code is duplicated from the
-                    // CallerInfoAsyncQuery class.  To avoid that, could the
-                    // code here just use CallerInfoAsyncQuery, rather than
-                    // manually running ContentResolver.query() itself?
+            // We look up SIP addresses directly in the Data table:
+            Uri contactRef = Data.CONTENT_URI;
 
-                    // We look up SIP addresses directly in the Data table:
-                    Uri contactRef = Data.CONTENT_URI;
+            // Note Data.DATA1 and SipAddress.SIP_ADDRESS are equivalent.
+            //
+            // Also note we use "upper(data1)" in the WHERE clause, and
+            // uppercase the incoming SIP address, in order to do a
+            // case-insensitive match.
+            //
+            // TODO: May also need to normalize by adding "sip:" as a
+            // prefix, if we start storing SIP addresses that way in the
+            // database.
+            String selection = "upper(" + Data.DATA1 + ")=?"
+                    + " AND "
+                    + Data.MIMETYPE + "='" + SipAddress.CONTENT_ITEM_TYPE + "'";
+            String[] selectionArgs = new String[] { sipAddress.toUpperCase() };
 
+            Cursor dataTableCursor =
+                    getActivity().getContentResolver().query(
+                            contactRef,
+                            null,  // projection
+                            selection,  // selection
+                            selectionArgs,  // selectionArgs
+                            null);  // sortOrder
+
+            if (dataTableCursor != null) {
+                if (dataTableCursor.moveToFirst()) {
+                    info = new ContactInfo();
+
+                    // TODO: we could slightly speed this up using an
+                    // explicit projection (and thus not have to do
+                    // those getColumnIndex() calls) but the benefit is
+                    // very minimal.
+
+                    // Note the Data.CONTACT_ID column here is
+                    // equivalent to the PERSON_ID_COLUMN_INDEX column
+                    // we use with "phonesCursor" below.
+                    info.personId = dataTableCursor.getLong(
+                            dataTableCursor.getColumnIndex(Data.CONTACT_ID));
+                    info.name = dataTableCursor.getString(
+                            dataTableCursor.getColumnIndex(Data.DISPLAY_NAME));
+                    // "type" and "label" are currently unused for SIP addresses
+                    info.type = SipAddress.TYPE_OTHER;
+                    info.label = null;
+
+                    // And "number" is the SIP address.
                     // Note Data.DATA1 and SipAddress.SIP_ADDRESS are equivalent.
-                    //
-                    // Also note we use "upper(data1)" in the WHERE clause, and
-                    // uppercase the incoming SIP address, in order to do a
-                    // case-insensitive match.
-                    //
-                    // TODO: May also need to normalize by adding "sip:" as a
-                    // prefix, if we start storing SIP addresses that way in the
-                    // database.
-                    String selection = "upper(" + Data.DATA1 + ")=?"
-                            + " AND "
-                            + Data.MIMETYPE + "='" + SipAddress.CONTENT_ITEM_TYPE + "'";
-                    String[] selectionArgs = new String[] { number.toUpperCase() };
-
-                    Cursor dataTableCursor =
-                            getActivity().getContentResolver().query(
-                                    contactRef,
-                                    null,  // projection
-                                    selection,  // selection
-                                    selectionArgs,  // selectionArgs
-                                    null);  // sortOrder
-
-                    if (dataTableCursor != null) {
-                        if (dataTableCursor.moveToFirst()) {
-                            info = new ContactInfo();
-
-                            // TODO: we could slightly speed this up using an
-                            // explicit projection (and thus not have to do
-                            // those getColumnIndex() calls) but the benefit is
-                            // very minimal.
-
-                            // Note the Data.CONTACT_ID column here is
-                            // equivalent to the PERSON_ID_COLUMN_INDEX column
-                            // we use with "phonesCursor" below.
-                            info.personId = dataTableCursor.getLong(
-                                    dataTableCursor.getColumnIndex(Data.CONTACT_ID));
-                            info.name = dataTableCursor.getString(
-                                    dataTableCursor.getColumnIndex(Data.DISPLAY_NAME));
-                            // "type" and "label" are currently unused for SIP addresses
-                            info.type = SipAddress.TYPE_OTHER;
-                            info.label = null;
-
-                            // And "number" is the SIP address.
-                            // Note Data.DATA1 and SipAddress.SIP_ADDRESS are equivalent.
-                            info.number = dataTableCursor.getString(
-                                    dataTableCursor.getColumnIndex(Data.DATA1));
-                            info.normalizedNumber = null;  // meaningless for SIP addresses
-                            final String thumbnailUriString = dataTableCursor.getString(
-                                    dataTableCursor.getColumnIndex(Data.PHOTO_THUMBNAIL_URI));
-                            info.thumbnailUri = thumbnailUriString == null
-                                    ? null
-                                    : Uri.parse(thumbnailUriString);
-                            info.lookupKey = dataTableCursor.getString(
-                                    dataTableCursor.getColumnIndex(Data.LOOKUP_KEY));
-
-                            infoUpdated = true;
-                        }
-                        dataTableCursor.close();
-                    }
+                    info.number = dataTableCursor.getString(
+                            dataTableCursor.getColumnIndex(Data.DATA1));
+                    info.normalizedNumber = null;  // meaningless for SIP addresses
+                    final String thumbnailUriString = dataTableCursor.getString(
+                            dataTableCursor.getColumnIndex(Data.PHOTO_THUMBNAIL_URI));
+                    info.thumbnailUri = thumbnailUriString == null
+                            ? null
+                            : Uri.parse(thumbnailUriString);
+                    info.lookupKey = dataTableCursor.getString(
+                            dataTableCursor.getColumnIndex(Data.LOOKUP_KEY));
                 } else {
-                    // "number" is a regular phone number, so use the
-                    // PhoneLookup table:
-                    Cursor phonesCursor =
-                            getActivity().getContentResolver().query(
-                                Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI,
-                                        Uri.encode(number)),
-                                        PhoneQuery._PROJECTION, null, null, null);
-                    if (phonesCursor != null) {
-                        if (phonesCursor.moveToFirst()) {
-                            info = new ContactInfo();
-                            info.personId = phonesCursor.getLong(PhoneQuery.PERSON_ID);
-                            info.name = phonesCursor.getString(PhoneQuery.NAME);
-                            info.type = phonesCursor.getInt(PhoneQuery.PHONE_TYPE);
-                            info.label = phonesCursor.getString(PhoneQuery.LABEL);
-                            info.number = phonesCursor
-                                    .getString(PhoneQuery.MATCHED_NUMBER);
-                            info.normalizedNumber = phonesCursor
-                                    .getString(PhoneQuery.NORMALIZED_NUMBER);
-                            final String thumbnailUriString = phonesCursor.getString(
-                                    PhoneQuery.THUMBNAIL_URI);
-                            info.thumbnailUri = thumbnailUriString == null
-                                    ? null
-                                    : Uri.parse(thumbnailUriString);
-                            info.lookupKey = phonesCursor.getString(PhoneQuery.LOOKUP_KEY);
-
-                            infoUpdated = true;
-                        }
-                        phonesCursor.close();
-                    }
+                    info = ContactInfo.EMPTY;
                 }
-
-                if (infoUpdated) {
-                    // New incoming phone number invalidates our formatted
-                    // cache. Any cache fills happen only on the GUI thread.
-                    info.formattedNumber = null;
-                    mContactInfoCache.put(number, info);
-                    // Inform list to update this item, if in view
-                    needNotify = true;
-                }
+                dataTableCursor.close();
+            } else {
+                // Failed to fetch the data, ignore this request.
+                info = null;
             }
-            return needNotify;
+            return info;
+        }
+
+        /**
+         * Determines the contact information for the given phone number.
+         * <p>
+         * It returns the contact info if found.
+         * <p>
+         * If no contact corresponds to the given phone number, returns {@link ContactInfo#EMPTY}.
+         * <p>
+         * If the lookup fails for some other reason, it returns null.
+         */
+        private ContactInfo queryContactInfoForPhoneNumber(String number) {
+            final ContactInfo info;
+
+            // "number" is a regular phone number, so use the
+            // PhoneLookup table:
+            Cursor phonesCursor =
+                    getActivity().getContentResolver().query(
+                        Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI,
+                                Uri.encode(number)),
+                                PhoneQuery._PROJECTION, null, null, null);
+            if (phonesCursor != null) {
+                if (phonesCursor.moveToFirst()) {
+                    info = new ContactInfo();
+                    info.personId = phonesCursor.getLong(PhoneQuery.PERSON_ID);
+                    info.name = phonesCursor.getString(PhoneQuery.NAME);
+                    info.type = phonesCursor.getInt(PhoneQuery.PHONE_TYPE);
+                    info.label = phonesCursor.getString(PhoneQuery.LABEL);
+                    info.number = phonesCursor
+                            .getString(PhoneQuery.MATCHED_NUMBER);
+                    info.normalizedNumber = phonesCursor
+                            .getString(PhoneQuery.NORMALIZED_NUMBER);
+                    final String thumbnailUriString = phonesCursor.getString(
+                            PhoneQuery.THUMBNAIL_URI);
+                    info.thumbnailUri = thumbnailUriString == null
+                            ? null
+                            : Uri.parse(thumbnailUriString);
+                    info.lookupKey = phonesCursor.getString(PhoneQuery.LOOKUP_KEY);
+                } else {
+                    info = ContactInfo.EMPTY;
+                }
+                phonesCursor.close();
+            } else {
+                // Failed to fetch the data, ignore this request.
+                info = null;
+            }
+            return info;
+        }
+
+        /**
+         * Queries the appropriate content provider for the contact associated with the number.
+         * <p>
+         * The number might be either a SIP address or a phone number.
+         * <p>
+         * It returns true if it updated the content of the cache and we should therefore tell the
+         * view to update its content.
+         */
+        private boolean queryContactInfo(String number) {
+            final ContactInfo info;
+
+            // Determine the contact info.
+            if (PhoneNumberUtils.isUriNumber(number)) {
+                // This "number" is really a SIP address.
+                info = queryContactInfoForSipAddress(number);
+            } else {
+                info = queryContactInfoForPhoneNumber(number);
+            }
+
+            if (info == null) {
+                // The lookup failed, just return without requesting to update the view.
+                return false;
+            }
+
+            // Check the existing entry in the cache: only if it has changed we should update the
+            // view.
+            ContactInfo existingInfo = mContactInfoCache.getPossiblyExpired(number);
+            boolean updated = !info.equals(existingInfo);
+            if (updated) {
+                // The formattedNumber is computed by the UI thread when needed. Since we updated
+                // the details of the contact, set this value to null for now.
+                info.formattedNumber = null;
+            }
+            // Store the data in the cache so that the UI thread can use to display it. Store it
+            // even if it has not changed so that it is marked as not expired.
+            mContactInfoCache.put(number, info);
+            return updated;
         }
 
         /*
@@ -766,7 +848,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         if (getActivity() == null || getActivity().isFinishing()) {
             return;
         }
-        Log.d(TAG, "updating adapter");
         mAdapter.setLoading(false);
         mAdapter.changeCursor(cursor);
         if (mScrollToTop) {
