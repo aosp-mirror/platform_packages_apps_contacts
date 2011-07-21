@@ -20,17 +20,16 @@ import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.EditType;
-import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityModifier;
 
-import android.accounts.Account;
 import android.content.Context;
 import android.content.Entity;
 import android.database.Cursor;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
+import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts;
@@ -164,6 +163,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
      */
     @Override
     public void setState(EntityDelta state, AccountType type, ViewIdGenerator vig) {
+
         mState = state;
 
         // Remove any existing sections
@@ -174,8 +174,9 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
         setId(vig.getId(state, null, null, ViewIdGenerator.NO_VIEW_INDEX));
 
-        // Make sure we have StructuredName
+        // Make sure we have a StructuredName and Organization
         EntityModifier.ensureKindExists(state, type, StructuredName.CONTENT_ITEM_TYPE);
+        EntityModifier.ensureKindExists(state, type, Organization.CONTENT_ITEM_TYPE);
 
         ValuesDelta values = state.getValues();
         mRawContactId = values.getAsLong(RawContacts._ID);
@@ -237,6 +238,42 @@ public class RawContactEditorView extends BaseRawContactEditorView {
             } else if (GroupMembership.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 if (mGroupMembershipView != null) {
                     mGroupMembershipView.setState(state);
+                }
+            } else if (Organization.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                // Create the organization section
+                final KindSectionView section = (KindSectionView) mInflater.inflate(
+                        R.layout.item_kind_section, mFields, false);
+                section.setTitleVisible(false);
+                section.setEnabled(isEnabled());
+                section.setState(kind, state, false, vig);
+
+                // If there is organization info for the contact already, display it
+                if (!section.isEmpty()) {
+                    mFields.addView(section);
+                } else {
+                    // Otherwise provide the user with an "add organization" button that shows the
+                    // EditText fields only when clicked
+                    final View organizationView = mInflater.inflate(
+                            R.layout.organization_editor_view_switcher, mFields, false);
+                    final View addOrganizationButton = organizationView.findViewById(
+                            R.id.add_organization_button);
+                    final ViewGroup organizationSectionViewContainer =
+                            (ViewGroup) organizationView.findViewById(R.id.container);
+
+                    organizationSectionViewContainer.addView(section);
+
+                    // Setup the click listener for the "add organization" button
+                    addOrganizationButton.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // Once the user expands the organization field, the user cannot
+                            // collapse them again.
+                            addOrganizationButton.setVisibility(View.GONE);
+                            organizationSectionViewContainer.setVisibility(View.VISIBLE);
+                        }
+                    });
+
+                    mFields.addView(organizationView);
                 }
             } else {
                 // Otherwise use generic section-based editors
