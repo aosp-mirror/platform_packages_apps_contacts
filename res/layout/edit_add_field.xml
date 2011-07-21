@@ -14,8 +14,7 @@
      limitations under the License.
 -->
 <!-- Layout of "add field" row in contact editor -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="13dip"
@@ -23,17 +22,9 @@
     <TextView
         android:id="@+id/add_text"
         android:layout_gravity="center_vertical"
-        android:layout_width="0dip"
-        android:layout_weight="1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:duplicateParentState="true"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="?android:attr/textColorTertiary" />
-    <ImageView
-        android:id="@+id/add_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_menu_add_field_holo_light"
-        android:paddingLeft="@dimen/editor_round_button_padding_left"
-        android:paddingRight="@dimen/editor_round_button_padding_right"
-        android:contentDescription="@string/description_plus_button" />
-</LinearLayout>
+</FrameLayout>

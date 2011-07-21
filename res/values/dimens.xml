@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 <resources>
-    <dimen name="edit_photo_size">90dip</dimen>
+    <dimen name="edit_photo_size">42dip</dimen>
 
     <!-- The height of the ScrollingTabWidget -->
     <dimen name="tab_height">40dip</dimen>

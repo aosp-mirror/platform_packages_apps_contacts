@@ -65,7 +65,7 @@ public class ExchangeAccountType extends BaseAccountType {
     protected DataKind addDataKindStructuredName(Context context) {
         DataKind kind = addKind(new DataKind(StructuredName.CONTENT_ITEM_TYPE,
                 R.string.nameLabelsGroup, -1, -1, true,
-                R.layout.structured_name_editor_view, android.R.style.TextAppearance_Large, -1));
+                R.layout.structured_name_editor_view, android.R.style.TextAppearance_Medium, -1));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
 
@@ -95,7 +95,7 @@ public class ExchangeAccountType extends BaseAccountType {
     protected DataKind addDataKindDisplayName(Context context) {
         DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME,
                 R.string.nameLabelsGroup, -1, -1, true,
-                R.layout.text_fields_editor_view, android.R.style.TextAppearance_Large, -1));
+                R.layout.text_fields_editor_view, android.R.style.TextAppearance_Medium, -1));
 
         boolean displayOrderPrimary =
                 context.getResources().getBoolean(R.bool.config_editor_field_order_primary);

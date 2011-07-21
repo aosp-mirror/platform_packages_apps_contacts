@@ -100,7 +100,7 @@ public class BaseAccountType extends AccountType {
     protected DataKind addDataKindStructuredName(Context context) {
         DataKind kind = addKind(new DataKind(StructuredName.CONTENT_ITEM_TYPE,
                 R.string.nameLabelsGroup, -1, -1, true, R.layout.structured_name_editor_view,
-                android.R.style.TextAppearance_Large, -1));
+                android.R.style.TextAppearance_Medium, -1));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
 
@@ -130,7 +130,7 @@ public class BaseAccountType extends AccountType {
     protected DataKind addDataKindDisplayName(Context context) {
         DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME,
                 R.string.nameLabelsGroup, -1, -1, true, R.layout.text_fields_editor_view,
-                android.R.style.TextAppearance_Large, -1));
+                android.R.style.TextAppearance_Medium, -1));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
 
@@ -208,7 +208,7 @@ public class BaseAccountType extends AccountType {
     protected DataKind addDataKindPhone(Context context) {
         DataKind kind = addKind(new DataKind(Phone.CONTENT_ITEM_TYPE, R.string.phoneLabelsGroup,
                 android.R.drawable.sym_action_call, 10, true,
-                R.layout.text_fields_editor_view, android.R.style.TextAppearance_Large,
+                R.layout.text_fields_editor_view, android.R.style.TextAppearance_Medium,
                 R.string.add_phone));
         kind.iconAltRes = R.drawable.sym_action_sms;
         kind.actionHeader = new PhoneActionInflater();
@@ -286,7 +286,7 @@ public class BaseAccountType extends AccountType {
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(
                 new EditField(StructuredPostal.FORMATTED_ADDRESS, R.string.postal_address,
-                        FLAGS_POSTAL).setMinLines(3));
+                        FLAGS_POSTAL).setMinLines(1));
 
         return kind;
     }

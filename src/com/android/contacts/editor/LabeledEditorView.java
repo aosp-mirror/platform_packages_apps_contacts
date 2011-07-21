@@ -31,10 +31,12 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Entity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -491,6 +493,8 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
                 text = getContext().getString(type.labelRes);
             }
             textView.setText(text.toUpperCase());
+            textView.setGravity(Gravity.RIGHT);
+            textView.setTextColor(Color.GRAY);
             return view;
         }
     }
