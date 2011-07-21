@@ -126,6 +126,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
         private boolean mLoadingPhoto;
         private byte[] mPhotoBinaryData;
+        private boolean mSendToVoicemail;
+        private String mCustomRingtone;
 
         /**
          * Constructor for case "no contact found". This must only be used for the
@@ -150,6 +152,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mStarred = false;
             mPresence = null;
             mInvitableAccountTypes = null;
+            mSendToVoicemail = false;
+            mCustomRingtone = null;
         }
 
         /**
@@ -158,7 +162,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         private Result(Uri uri, Uri lookupUri, long directoryId, String lookupKey, long id,
                 long nameRawContactId, int displayNameSource, long photoId, String photoUri,
                 String displayName, String altDisplayName, String phoneticName, boolean starred,
-                Integer presence) {
+                Integer presence, boolean sendToVoicemail, String customRingtone) {
             mLookupUri = lookupUri;
             mUri = uri;
             mDirectoryId = directoryId;
@@ -177,6 +181,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mStarred = starred;
             mPresence = presence;
             mInvitableAccountTypes = Lists.newArrayList();
+            mSendToVoicemail = sendToVoicemail;
+            mCustomRingtone = customRingtone;
         }
 
         private Result(Result from) {
@@ -209,6 +215,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
             mLoadingPhoto = from.mLoadingPhoto;
             mPhotoBinaryData = from.mPhotoBinaryData;
+            mSendToVoicemail = from.mSendToVoicemail;
+            mCustomRingtone = from.mCustomRingtone;
         }
 
         /**
@@ -378,6 +386,14 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         public List<GroupMetaData> getGroupMetaData() {
             return mGroups;
         }
+
+        public boolean isSendToVoicemail() {
+            return mSendToVoicemail;
+        }
+
+        public String getCustomRingtone() {
+            return mCustomRingtone;
+        }
     }
 
     /**
@@ -451,6 +467,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 Data.STATUS_TIMESTAMP,
 
                 Contacts.PHOTO_URI,
+                Contacts.SEND_TO_VOICEMAIL,
+                Contacts.CUSTOM_RINGTONE,
         };
 
         public final static int NAME_RAW_CONTACT_ID = 0;
@@ -518,6 +536,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         public final static int STATUS_TIMESTAMP = 58;
 
         public final static int PHOTO_URI = 59;
+        public final static int SEND_TO_VOICEMAIL = 60;
+        public final static int CUSTOM_RINGTONE = 61;
     }
 
     /**
@@ -773,6 +793,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             final Integer presence = cursor.isNull(ContactQuery.CONTACT_PRESENCE)
                     ? null
                     : cursor.getInt(ContactQuery.CONTACT_PRESENCE);
+            final boolean sendToVoicemail = cursor.getInt(ContactQuery.SEND_TO_VOICEMAIL) == 1;
+            final String customRingtone = cursor.getString(ContactQuery.CUSTOM_RINGTONE);
 
             Uri lookupUri;
             if (directoryId == Directory.DEFAULT || directoryId == Directory.LOCAL_INVISIBLE) {
@@ -784,7 +806,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
             return new Result(contactUri, lookupUri, directoryId, lookupKey, contactId,
                     nameRawContactId, displayNameSource, photoId, photoUri, displayName,
-                    altDisplayName, phoneticName, starred, presence);
+                    altDisplayName, phoneticName, starred, presence, sendToVoicemail,
+                    customRingtone);
         }
 
         /**

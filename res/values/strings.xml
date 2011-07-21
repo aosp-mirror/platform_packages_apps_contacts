@@ -176,14 +176,17 @@
     <!-- Toast shown after two contacts have been joined by a user action -->
     <string name="contactsJoinedMessage">Contacts joined</string>
 
-    <!-- Menu item that opens the Options activity for a given contact -->
-    <string name="menu_contactOptions">Options</string>
-
     <!-- Title for the Options activity for a given contact -->
     <string name="contactOptionsTitle">Options</string>
 
     <!-- Confirmation dialog title after users selects to delete a contact. -->
     <string name="deleteConfirmation_title">Delete</string>
+
+    <!-- Menu item that opens the Options activity for a given contact [CHAR LIMIT=15] -->
+    <string name="menu_set_ring_tone">Set ringtone</string>
+
+    <!-- Menu item that opens the Options activity for a given contact [CHAR LIMIT=30] -->
+    <string name="menu_redirect_calls_to_vm">Redirect calls to voicemail</string>
 
     <!-- Warning dialog contents after users selects to delete a ReadOnly contact. -->
     <string name="readOnlyContactWarning">You cannot delete contacts from read-only accounts, but you can hide them in your contacts lists.</string>

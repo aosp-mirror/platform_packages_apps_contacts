@@ -1244,14 +1244,18 @@ public class PeopleActivity extends ContactsActivity
         if (mActionBarAdapter.isSearchMode()) {
             addContactMenu.setVisible(false);
             addGroupMenu.setVisible(false);
+            contactsFilterMenu.setVisible(false);
         } else {
             switch (mActionBarAdapter.getCurrentTab()) {
                 case FAVORITES:
-                    // TODO: Fall through until we determine what the menu items should be for
-                    // this tab
+                    addContactMenu.setVisible(false);
+                    addGroupMenu.setVisible(false);
+                    contactsFilterMenu.setVisible(false);
+                    break;
                 case ALL:
                     addContactMenu.setVisible(true);
                     addGroupMenu.setVisible(false);
+                    contactsFilterMenu.setVisible(true);
                     break;
                 case GROUPS:
                     // Do not display the "new group" button if no accounts are available
@@ -1261,6 +1265,7 @@ public class PeopleActivity extends ContactsActivity
                         addGroupMenu.setVisible(false);
                     }
                     addContactMenu.setVisible(false);
+                    contactsFilterMenu.setVisible(false);
                     break;
             }
         }
@@ -1270,9 +1275,6 @@ public class PeopleActivity extends ContactsActivity
             searchMenu.setVisible(!mActionBarAdapter.isSearchMode());
         }
 
-        if (contactsFilterMenu != null) {
-            contactsFilterMenu.setVisible(!mActionBarAdapter.isSearchMode());
-        }
 
         MenuItem settings = menu.findItem(R.id.menu_settings);
         if (settings != null) {
