@@ -121,41 +121,56 @@ import javax.annotation.concurrent.GuardedBy;
      * <p>
      * It will asynchronously update the content of the list view when the fetch completes.
      */
-    public void fetchCalls() {
+    public void fetchAllCalls() {
         cancelFetch();
         invalidate();
-        fetchNewCalls();
-        fetchOldCalls();
+        fetchCalls(QUERY_NEW_CALLS_TOKEN, true /*isNew*/, false /*voicemailOnly*/);
+        fetchCalls(QUERY_OLD_CALLS_TOKEN, false /*isNew*/, false /*voicemailOnly*/);
     }
+
+    /**
+     * Fetches the list of calls from the call log but include only the voicemail.
+     * <p>
+     * It will asynchronously update the content of the list view when the fetch completes.
+     */
+    public void fetchVoicemailOnly() {
+        cancelFetch();
+        invalidate();
+        fetchCalls(QUERY_NEW_CALLS_TOKEN, true /*isNew*/, true /*voicemailOnly*/);
+        fetchCalls(QUERY_OLD_CALLS_TOKEN, false /*isNew*/, true /*voicemailOnly*/);
+    }
+
 
     public void fetchVoicemailStatus() {
         startQuery(QUERY_VOICEMAIL_STATUS_TOKEN, null, Status.CONTENT_URI,
                 VoicemailStatusHelperImpl.PROJECTION, null, null, null);
     }
 
-    /** Fetches the list of new calls in the call log. */
-    private void fetchNewCalls() {
-        fetchCalls(QUERY_NEW_CALLS_TOKEN, true);
-    }
-
-    /** Fetch the list of old calls in the call log. */
-    private void fetchOldCalls() {
-        fetchCalls(QUERY_OLD_CALLS_TOKEN, false);
-    }
-
     /** Fetches the list of calls in the call log, either the new one or the old ones. */
-    private void fetchCalls(int token, boolean isNew) {
+    private void fetchCalls(int token, boolean isNew, boolean voicemailOnly) {
         // We need to check for NULL explicitly otherwise entries with where NEW is NULL will not
         // match either the query or its negation.
         String selection =
                 String.format("%s IS NOT NULL AND %s = 1 AND (%s = ? OR %s = ?)",
                         Calls.NEW, Calls.NEW, Calls.TYPE, Calls.TYPE);
-        String[] selectionArgs = new String[]{
-                Integer.toString(Calls.MISSED_TYPE),
-                Integer.toString(Calls.VOICEMAIL_TYPE),
-        };
+        final String[] selectionArgs;
         if (!isNew) {
+            // Negate the query.
             selection = String.format("NOT (%s)", selection);
+        }
+        if (voicemailOnly) {
+            // Add a clause to fetch only items of type voicemail.
+            selection = String.format("(%s) AND (%s = ?)", selection, Calls.TYPE);
+            selectionArgs = new String[]{
+                    Integer.toString(Calls.MISSED_TYPE),
+                    Integer.toString(Calls.VOICEMAIL_TYPE),
+                    Integer.toString(Calls.VOICEMAIL_TYPE),
+            };
+        } else {
+            selectionArgs = new String[]{
+                    Integer.toString(Calls.MISSED_TYPE),
+                    Integer.toString(Calls.VOICEMAIL_TYPE),
+            };
         }
         startQuery(token, null, Calls.CONTENT_URI_WITH_VOICEMAIL,
                 CallLogQuery._PROJECTION, selection, selectionArgs, Calls.DEFAULT_SORT_ORDER);

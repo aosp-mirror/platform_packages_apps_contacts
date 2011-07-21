@@ -974,7 +974,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
 
     private void startCallsQuery() {
         mAdapter.setLoading(true);
-        mCallLogQueryHandler.fetchCalls();
+        mCallLogQueryHandler.fetchAllCalls();
     }
 
     private void startVoicemailStatusQuery() {
@@ -990,6 +990,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         menu.findItem(R.id.delete_all).setVisible(mShowOptionsMenu);
+        menu.findItem(R.id.show_voicemails_only).setVisible(mShowOptionsMenu);
         final MenuItem callSettingsMenuItem = menu.findItem(R.id.menu_call_settings_call_log);
         if (mShowOptionsMenu) {
             callSettingsMenuItem.setVisible(true);
@@ -1006,8 +1007,15 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                 ClearCallLogDialog.show(getFragmentManager());
                 return true;
             }
+
+            case R.id.show_voicemails_only: {
+                mCallLogQueryHandler.fetchVoicemailOnly();
+                return true;
+            }
+
+            default:
+                throw new IllegalArgumentException("unknown menu item: " + item.getItemId());
         }
-        return super.onOptionsItemSelected(item);
     }
 
     /*
