@@ -161,7 +161,12 @@ public class ContactDetailLayoutController {
                 throw new IllegalStateException("Invalid LayoutMode " + mLayoutMode);
         }
 
-        ft.commit();
+        // If the activity has already saved its state, then allow this fragment
+        // transaction to be dropped because there's nothing else we can do to update the UI.
+        // The fact that the contact URI has already been saved by the activity means we can
+        // restore this later.
+        // TODO: Figure out if this is really the solution we want.
+        ft.commitAllowingStateLoss();
     }
 
     private void showContactWithoutUpdates() {
@@ -182,7 +187,12 @@ public class ContactDetailLayoutController {
                 throw new IllegalStateException("Invalid LayoutMode " + mLayoutMode);
         }
 
-        ft.commit();
+        // If the activity has already saved its state, then allow this fragment
+        // transaction to be dropped because there's nothing else we can do to update the UI.
+        // The fact that the contact URI has already been saved by the activity means we can
+        // restore this later.
+        // TODO: Figure out if this is really the solution we want.
+        ft.commitAllowingStateLoss();
     }
 
     public void onSaveInstanceState(Bundle outState) {
