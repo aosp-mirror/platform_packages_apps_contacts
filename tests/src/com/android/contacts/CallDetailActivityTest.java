@@ -17,6 +17,7 @@
 package com.android.contacts;
 
 import com.android.contacts.util.IntegrationTestUtils;
+import com.android.contacts.util.LocaleTestUtils;
 import com.google.common.base.Preconditions;
 
 import android.app.Activity;
@@ -28,6 +29,8 @@ import android.net.Uri;
 import android.provider.CallLog;
 import android.test.ActivityInstrumentationTestCase2;
 
+import java.util.Locale;
+
 /**
  * Unit tests for the {@link CallDetailActivity}.
  */
@@ -35,6 +38,7 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
     private static final String FAKE_VOICEMAIL_URI_STRING = "content://fake_uri";
     private Uri mUri;
     private IntegrationTestUtils mTestUtils;
+    private LocaleTestUtils mLocaleTestUtils;
 
     public CallDetailActivityTest() {
         super(CallDetailActivity.class);
@@ -47,10 +51,16 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
         // screenshots look weak.
         setActivityInitialTouchMode(true);
         mTestUtils = new IntegrationTestUtils(getInstrumentation());
+        // Some of the tests rely on the text that appears on screen - safest to force a
+        // specific locale.
+        mLocaleTestUtils = new LocaleTestUtils(getInstrumentation().getTargetContext());
+        mLocaleTestUtils.setLocale(Locale.US);
     }
 
     @Override
     protected void tearDown() throws Exception {
+        mLocaleTestUtils.restoreLocale();
+        mLocaleTestUtils = null;
         cleanUpUri();
         mTestUtils = null;
         super.tearDown();
@@ -61,7 +71,7 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
      * <p>
      * The repro steps for this crash were to open a voicemail that does not have an attachment,
      * then click the play button (which just reported an error), then after that try to adjust the
-     * rate.
+     * rate.  See http://b/5047879.
      */
     public void testClickIncreaseRateButtonWithInvalidVoicemailDoesNotCrash() throws Throwable {
         setActivityIntentForTestVoicemailEntry();
@@ -74,6 +84,28 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
     public void testCallLogUriWithMissingExtrasShouldNotCauseNPE() throws Exception {
         setActivityIntentForTestCallEntry();
         getActivity();
+    }
+
+    /**
+     * Test for bug where voicemails should not have remove-from-call-log entry.
+     * <p>
+     * See http://b/5054103.
+     */
+    public void testVoicemailDoesNotHaveRemoveFromCallLog() throws Throwable {
+        setActivityIntentForTestVoicemailEntry();
+        getActivity();
+        assertEquals(0, countTextViewsContaining("Remove from call log"));
+    }
+
+    /** Test to check that I haven't broken the remove-from-call-log entry from regular calls. */
+    public void testRegularCallDoesHaveRemoveFromCallLog() throws Throwable {
+        setActivityIntentForTestCallEntry();
+        getActivity();
+        assertEquals(1, countTextViewsContaining("Remove from call log"));
+    }
+
+    private int countTextViewsContaining(String text) throws Throwable {
+        return mTestUtils.getTextViewsWithString(getActivity(), text).size();
     }
 
     private void setActivityIntentForTestCallEntry() {
