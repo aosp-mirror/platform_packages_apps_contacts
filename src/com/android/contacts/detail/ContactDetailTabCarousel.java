@@ -45,6 +45,7 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
 
     private ImageView mPhotoView;
     private TextView mStatusView;
+    private ImageView mStatusPhotoView;
 
     private Listener mListener;
 
@@ -115,6 +116,7 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
 
         // Retrieve the social update views for the "updates" tab
         mStatusView = (TextView) updateView.findViewById(R.id.status);
+        mStatusPhotoView = (ImageView) updateView.findViewById(R.id.status_photo);
     }
 
     @Override
@@ -196,7 +198,8 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         }
 
         ContactDetailDisplayUtils.setPhoto(mContext, contactData, mPhotoView);
-        ContactDetailDisplayUtils.setSocialSnippet(mContext, contactData, mStatusView);
+        ContactDetailDisplayUtils.setSocialSnippet(mContext, contactData, mStatusView,
+                mStatusPhotoView);
     }
 
     /**

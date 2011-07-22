@@ -69,7 +69,7 @@
             ex:layout_narrowParentWidth="800dip"
             ex:layout_narrowMarginRight="0dip"
             ex:layout_wideParentWidth="1280dip"
-            ex:layout_wideMarginRight="48dip"
+            ex:layout_wideMarginRight="0dip"
             ex:clipMarginLeft="0dip"
             ex:clipMarginTop="3dip"
             ex:clipMarginRight="3dip"

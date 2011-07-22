@@ -18,6 +18,7 @@ package com.android.contacts.detail;
 
 import com.android.contacts.ContactLoader;
 import com.android.contacts.activities.PeopleActivity.ContactDetailFragmentListener;
+import com.android.contacts.util.StreamItemEntry;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -124,7 +125,7 @@ public class ContactDetailLayoutController {
 
     public void setContactData(ContactLoader.Result data) {
         mContactData = data;
-        if (mContactData.getSocialSnippet() != null) {
+        if (!data.getStreamItems().isEmpty()) {
             showContactWithUpdates();
         } else {
             showContactWithoutUpdates();

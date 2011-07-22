@@ -283,7 +283,7 @@ public class ContactDetailActivity extends ContactsActivity {
                 public void run() {
                     mContactData = result;
                     mLookupUri = result.getLookupUri();
-                    mContactHasUpdates = result.getSocialSnippet() != null;
+                    mContactHasUpdates = !result.getStreamItems().isEmpty();
                     invalidateOptionsMenu();
                     setupTitle();
                     if (mContactHasUpdates) {

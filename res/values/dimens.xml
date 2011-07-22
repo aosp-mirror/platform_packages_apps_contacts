@@ -104,6 +104,21 @@
     <!-- Left and right padding of the text within the update tab in the tab carousel -->
     <dimen name="detail_update_tab_side_padding">24dip</dimen>
 
+    <!-- Top padding of the update section in the contact detail card -->
+    <dimen name="detail_update_section_top_padding">8dip</dimen>
+
+    <!-- Left and right padding of the update section in the contact detail card -->
+    <dimen name="detail_update_section_side_padding">16dip</dimen>
+
+    <!-- Vertical padding above and below individual stream items -->
+    <dimen name="detail_update_section_item_vertical_padding">16dip</dimen>
+
+    <!-- Left-side padding for individual stream items -->
+    <dimen name="detail_update_section_item_left_padding">8dip</dimen>
+
+    <!-- Horizontal padding between content sections within a stream item -->
+    <dimen name="detail_update_section_internal_padding">16dip</dimen>
+
     <!-- Margin around the contact's photo on the contact card -->
     <dimen name="detail_contact_photo_margin">15dip</dimen>
 

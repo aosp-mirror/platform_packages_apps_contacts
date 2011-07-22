@@ -19,40 +19,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--
-      TODO: Make this a list of social updates instead of just showing one update. Wait
-      until the social integration is done in the provider so that we know the
-      best way to setup the adapter.
-    -->
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="@dimen/detail_tab_carousel_height"
-        android:background="@color/background_primary">
+        android:background="@color/background_social_updates">
 
-        <include
-            android:id="@+id/title"
-            layout="@layout/contact_detail_kind_title_entry_view"
-            android:paddingTop="@dimen/detail_item_vertical_margin" />
-
-        <TextView android:id="@+id/status"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/detail_item_vertical_margin"
-            android:paddingLeft="@dimen/detail_item_side_margin"
-            android:paddingRight="@dimen/detail_item_side_margin"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+            android:paddingTop="@dimen/detail_update_section_top_padding">
 
-        <TextView android:id="@+id/status_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/detail_item_side_margin"
-            android:paddingRight="@dimen/detail_item_side_margin"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="?android:attr/textColorTertiary"/>
+            <include
+                android:id="@+id/title"
+                layout="@layout/contact_detail_kind_title_entry_view" />
 
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/update_list"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/detail_update_section_side_padding"
+                android:paddingRight="@dimen/detail_update_section_side_padding" />
+        </LinearLayout>
+    </ScrollView>
 
     <View
         android:id="@+id/alpha_overlay"

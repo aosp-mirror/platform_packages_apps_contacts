@@ -37,17 +37,11 @@ public class ContactBadgeUtil {
     private static final String TAG = "ContactBadgeUtil";
 
     /**
-     * Returns the social snippet attribution, including the date
+     * Returns the social snippet attribution for the given stream item entry, including the date.
      */
-    public static CharSequence getSocialDate(ContactLoader.Result contactData,
-            Context context) {
-        if (TextUtils.isEmpty(contactData.getSocialSnippet())) {
-            return null;
-        }
-
+    public static CharSequence getSocialDate(StreamItemEntry streamItem, Context context) {
         final CharSequence timestampDisplayValue;
-
-        final Long statusTimestamp = contactData.getStatusTimestamp();
+        final Long statusTimestamp = streamItem.getTimestamp();
         if (statusTimestamp  != null) {
             // Set the date/time field by mixing relative and absolute
             // times.
@@ -63,8 +57,8 @@ public class ContactBadgeUtil {
 
         String labelDisplayValue = null;
 
-        final Integer statusLabel = contactData.getStatusLabel();
-        final String statusResPackage = contactData.getStatusResPackage();
+        final Integer statusLabel = streamItem.getLabelRes();
+        final String statusResPackage = streamItem.getResPackage();
         if (statusLabel  != null) {
             Resources resources;
             if (TextUtils.isEmpty(statusResPackage)) {

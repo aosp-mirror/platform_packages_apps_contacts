@@ -86,10 +86,10 @@
          creating a new group. This string represents the built in way to create the group. [CHAR LIMIT=NONE] -->
     <string name="insertGroupDescription">Create group</string>
 
-    <!-- The tab label for the contact detail activity that displays information about the contact [CHAR LIMIT=11] -->
+    <!-- The tab label for the contact detail activity that displays information about the contact [CHAR LIMIT=15] -->
     <string name="contactDetailAbout">About</string>
 
-    <!-- The tab label for the contact detail activity that displays information about the contact [CHAR LIMIT=11] -->
+    <!-- The tab label for the contact detail activity that displays information about the contact [CHAR LIMIT=15] -->
     <string name="contactDetailUpdates">Updates</string>
 
     <!-- Hint text in the search box when the user hits the Search key while in the contacts app -->

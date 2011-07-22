@@ -21,13 +21,22 @@
     android:layout_weight="1"
     android:background="@color/detail_tab_background">
 
-    <!-- Transparent view to overlay on the contact's photo
+    <ImageView android:id="@+id/status_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:visibility="gone" />
+
+
+    <!-- Transparent view to overlay on the update photo
     (to allow white text to appear over a white photo). -->
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/detail_tab_carousel_tab_label_height"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
+        android:layout_above="@id/status_photo"
         android:background="@android:color/black"
         android:alpha=".25"/>
 
@@ -37,6 +46,7 @@
         android:layout_height="@dimen/detail_tab_carousel_tab_label_height"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
+        android:layout_above="@id/status_photo"
         android:paddingLeft="@dimen/detail_item_side_margin"
         android:singleLine="true"
         android:gravity="left|center_vertical"

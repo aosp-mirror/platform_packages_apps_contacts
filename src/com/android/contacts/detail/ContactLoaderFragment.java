@@ -170,7 +170,8 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
         @Override
         public Loader<ContactLoader.Result> onCreateLoader(int id, Bundle args) {
             Uri lookupUri = args.getParcelable(LOADER_ARG_CONTACT_URI);
-            return new ContactLoader(mContext, lookupUri, true /* loadGroupMetaData */);
+            return new ContactLoader(mContext, lookupUri, true /* loadGroupMetaData */,
+                    true /* loadStreamItems */);
         }
 
         @Override
