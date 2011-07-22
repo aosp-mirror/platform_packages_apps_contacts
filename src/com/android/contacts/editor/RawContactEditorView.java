@@ -362,8 +362,13 @@ public class RawContactEditorView extends BaseRawContactEditorView {
             View child = mFields.getChildAt(i);
             if (child instanceof KindSectionView) {
                 final KindSectionView sectionView = (KindSectionView) child;
-                // not a list and already exists? ignore
+                // If the section is already visible (has 1 or more editors), then don't offer the
+                // option to add this type of field in the popup menu
+                if (sectionView.getEditorCount() > 0) {
+                    continue;
+                }
                 DataKind kind = sectionView.getKind();
+                // not a list and already exists? ignore
                 if (!kind.isList && sectionView.getEditorCount() != 0) {
                     continue;
                 }

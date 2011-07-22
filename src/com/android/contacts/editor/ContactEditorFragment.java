@@ -542,10 +542,8 @@ public class ContactEditorFragment extends Fragment implements
         // ensureKind will not add it, so it is safe to add e.g. Event)
         EntityModifier.ensureKindExists(insert, newAccountType, Phone.CONTENT_ITEM_TYPE);
         EntityModifier.ensureKindExists(insert, newAccountType, Email.CONTENT_ITEM_TYPE);
-        EntityModifier.ensureKindExists(insert, newAccountType, Note.CONTENT_ITEM_TYPE);
         EntityModifier.ensureKindExists(insert, newAccountType, Organization.CONTENT_ITEM_TYPE);
         EntityModifier.ensureKindExists(insert, newAccountType, Event.CONTENT_ITEM_TYPE);
-        EntityModifier.ensureKindExists(insert, newAccountType, Website.CONTENT_ITEM_TYPE);
         EntityModifier.ensureKindExists(insert, newAccountType, StructuredPostal.CONTENT_ITEM_TYPE);
 
         if (mState == null) {
