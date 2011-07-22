@@ -234,7 +234,6 @@ public class GroupBrowseListAdapter extends BaseAdapter {
     public static class GroupListItem extends LinearLayout {
 
         private TextView mLabel;
-        private TextView mAccount;
         private Uri mUri;
 
         public GroupListItem(Context context, AttributeSet attrs, int defStyle) {
@@ -253,12 +252,10 @@ public class GroupBrowseListAdapter extends BaseAdapter {
         protected void onFinishInflate() {
             super.onFinishInflate();
             mLabel = (TextView) findViewById(R.id.label);
-            mAccount = (TextView) findViewById(R.id.account);
         }
 
         public void loadFromGroup(GroupMetaData group) {
             mLabel.setText(group.getTitle());
-            mAccount.setText(group.getAccountName());
             mUri = getGroupUriFromId(group.getGroupId());
         }
 
