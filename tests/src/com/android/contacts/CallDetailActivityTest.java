@@ -18,6 +18,7 @@ package com.android.contacts;
 
 import com.android.contacts.util.IntegrationTestUtils;
 import com.android.contacts.util.LocaleTestUtils;
+import com.android.internal.view.menu.ContextMenuBuilder;
 import com.google.common.base.Preconditions;
 
 import android.app.Activity;
@@ -28,6 +29,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.provider.CallLog;
 import android.test.ActivityInstrumentationTestCase2;
+import android.view.Menu;
 
 import java.util.Locale;
 
@@ -93,19 +95,21 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
      */
     public void testVoicemailDoesNotHaveRemoveFromCallLog() throws Throwable {
         setActivityIntentForTestVoicemailEntry();
-        getActivity();
-        assertEquals(0, countTextViewsContaining("Remove from call log"));
+        CallDetailActivity activity = getActivity();
+        Menu menu = new ContextMenuBuilder(activity);
+        activity.onCreateOptionsMenu(menu);
+        activity.onPrepareOptionsMenu(menu);
+        assertFalse(menu.findItem(R.id.remove_from_call_log).isVisible());
     }
 
     /** Test to check that I haven't broken the remove-from-call-log entry from regular calls. */
     public void testRegularCallDoesHaveRemoveFromCallLog() throws Throwable {
         setActivityIntentForTestCallEntry();
-        getActivity();
-        assertEquals(1, countTextViewsContaining("Remove from call log"));
-    }
-
-    private int countTextViewsContaining(String text) throws Throwable {
-        return mTestUtils.getTextViewsWithString(getActivity(), text).size();
+        CallDetailActivity activity = getActivity();
+        Menu menu = new ContextMenuBuilder(activity);
+        activity.onCreateOptionsMenu(menu);
+        activity.onPrepareOptionsMenu(menu);
+        assertTrue(menu.findItem(R.id.remove_from_call_log).isVisible());
     }
 
     private void setActivityIntentForTestCallEntry() {

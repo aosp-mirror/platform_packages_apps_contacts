@@ -45,6 +45,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -98,6 +100,11 @@ public class CallDetailActivity extends ListActivity implements
     private View mStatusMessageView;
     private TextView mStatusMessageText;
     private TextView mStatusMessageAction;
+
+    /** Whether we should show "remove from call log" in the options menu. */
+    private boolean mHasRemoveFromCallLog;
+    /** Whether we should show "edit number before call" in the options menu. */
+    private boolean mHasEditNumberBeforeCall;
 
     static final String[] CALL_LOG_PROJECTION = new String[] {
         CallLog.Calls.DATE,
@@ -356,36 +363,16 @@ public class CallDetailActivity extends ListActivity implements
 
         // This action deletes all elements in the group from the call log.
         // We don't have this action for voicemails, because you can just use the trash button.
-        if (!hasVoicemail()) {
-            actions.add(new ViewEntry(android.R.drawable.ic_menu_close_clear_cancel,
-                    getString(R.string.recentCalls_removeFromRecentList),
-                    new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            StringBuilder callIds = new StringBuilder();
-                            for (Uri callUri : callUris) {
-                                if (callIds.length() != 0) {
-                                    callIds.append(",");
-                                }
-                                callIds.append(ContentUris.parseId(callUri));
-                            }
+        mHasRemoveFromCallLog = !hasVoicemail();
+        mHasEditNumberBeforeCall = canPlaceCallsTo && !isSipNumber && !isVoicemailNumber;
 
-                            getContentResolver().delete(Calls.CONTENT_URI_WITH_VOICEMAIL,
-                                    Calls._ID + " IN (" + callIds + ")", null);
-                            finish();
-                        }
-                    }));
+        if (actions.size() != 0) {
+            // Set the actions for this phone number.
+            setListAdapter(new ViewAdapter(this, actions));
+            getListView().setVisibility(View.VISIBLE);
+        } else {
+            getListView().setVisibility(View.GONE);
         }
-
-        if (canPlaceCallsTo && !isSipNumber && !isVoicemailNumber) {
-            // "Edit the number before calling" is only available for PSTN numbers.
-            actions.add(new ViewEntry(android.R.drawable.sym_action_call,
-                    getString(R.string.recentCalls_editNumberBeforeCall),
-                    new Intent(Intent.ACTION_DIAL, numberCallUri)));
-        }
-
-        // Set the actions for this phone number.
-        setListAdapter(new ViewAdapter(this, actions));
 
         ListView historyList = (ListView) findViewById(R.id.history);
         historyList.setAdapter(
@@ -630,5 +617,49 @@ public class CallDetailActivity extends ListActivity implements
                     " Will use the first one.", messages.size()));
         }
         return messages.get(0);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.call_details_options, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // This action deletes all elements in the group from the call log.
+        // We don't have this action for voicemails, because you can just use the trash button.
+        menu.findItem(R.id.remove_from_call_log).setVisible(mHasRemoveFromCallLog);
+        menu.findItem(R.id.edit_number_before_call).setVisible(mHasEditNumberBeforeCall);
+        return mHasRemoveFromCallLog || mHasEditNumberBeforeCall;
+    }
+
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.remove_from_call_log: {
+                StringBuilder callIds = new StringBuilder();
+                for (Uri callUri : getCallLogEntryUris()) {
+                    if (callIds.length() != 0) {
+                        callIds.append(",");
+                    }
+                    callIds.append(ContentUris.parseId(callUri));
+                }
+
+                getContentResolver().delete(Calls.CONTENT_URI_WITH_VOICEMAIL,
+                        Calls._ID + " IN (" + callIds + ")", null);
+                // Also close the activity.
+                finish();
+                return true;
+            }
+
+            case R.id.edit_number_before_call:
+                startActivity(
+                        new Intent(Intent.ACTION_DIAL, mPhoneNumberHelper.getCallUri(mNumber)));
+                return true;
+
+            default:
+                throw new IllegalArgumentException();
+        }
     }
 }
