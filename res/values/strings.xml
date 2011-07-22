@@ -1668,4 +1668,7 @@
 
     <!-- The "file name" displayed for vCards received directly via NFC [CHAR LIMIT=16] -->
     <string name="nfc_vcard_file_name">Contact received over NFC</string>
+
+    <!-- Menu item used to show only voicemails in the call log. [CHAR LIMIT=30] -->
+    <string name="menu_show_voicemails_only">Show voicemails only</string>
 </resources>

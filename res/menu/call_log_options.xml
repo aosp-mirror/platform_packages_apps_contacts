@@ -21,6 +21,11 @@
         android:showAsAction="withText" />
 
     <item
+        android:id="@+id/show_voicemails_only"
+        android:title="@string/menu_show_voicemails_only"
+        android:showAsAction="withText" />
+
+    <item
         android:id="@+id/menu_call_settings_call_log"
         android:title="@string/call_settings"
         android:showAsAction="withText" />
