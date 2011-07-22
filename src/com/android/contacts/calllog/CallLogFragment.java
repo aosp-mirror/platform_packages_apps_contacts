@@ -1012,7 +1012,10 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                 mCallLogQueryHandler.fetchVoicemailOnly();
                 return true;
             }
-
+            case R.id.menu_call_settings_call_log: {
+                // Intent is already set.
+                return false;
+            }
             default:
                 throw new IllegalArgumentException("unknown menu item: " + item.getItemId());
         }
