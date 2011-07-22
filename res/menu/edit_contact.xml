@@ -18,20 +18,7 @@
     <item
         android:id="@+id/menu_done"
         android:alphabeticShortcut="\n"
-        android:icon="@drawable/ic_menu_done_holo_light"
-        android:title="@string/menu_done"
-        android:showAsAction="always|withText" />
-
-    <item
-        android:id="@+id/menu_discard"
-        android:alphabeticShortcut="q"
-        android:title="@string/menu_doNotSave"
-        android:showAsAction="always|withText" />
-
-    <item
-        android:id="@+id/menu_delete"
-        android:icon="@drawable/ic_menu_trash_holo_light"
-        android:title="@string/menu_deleteContact" />
+        android:showAsAction="always" />
 
     <item
         android:id="@+id/menu_split"
@@ -42,4 +29,9 @@
         android:id="@+id/menu_join"
         android:icon="@drawable/ic_menu_merge_holo_light"
         android:title="@string/menu_joinAggregate" />
+
+    <item
+        android:id="@+id/menu_discard"
+        android:alphabeticShortcut="q"
+        android:title="@string/menu_discard" />
 </menu>

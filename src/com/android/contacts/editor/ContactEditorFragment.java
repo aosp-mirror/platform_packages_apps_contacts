@@ -725,6 +725,11 @@ public class ContactEditorFragment extends Fragment implements
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
+        // This supports the keyboard shortcut to save changes to a contact but shouldn't be visible
+        // because the custom action bar contains the "save" button now (not the overflow menu).
+        // TODO: Find a better way to handle shortcuts, i.e. onKeyDown()?
+        menu.findItem(R.id.menu_done).setVisible(false);
+
         menu.findItem(R.id.menu_split).setVisible(mState != null && mState.size() > 1);
         int size = menu.size();
         for (int i = 0; i < size; i++) {
@@ -739,31 +744,12 @@ public class ContactEditorFragment extends Fragment implements
                 return save(SaveMode.CLOSE);
             case R.id.menu_discard:
                 return revert();
-            case R.id.menu_delete:
-                return doDeleteAction();
             case R.id.menu_split:
                 return doSplitContactAction();
             case R.id.menu_join:
                 return doJoinContactAction();
         }
         return false;
-    }
-
-    /**
-     * Delete the entire contact currently being edited, which usually asks for
-     * user confirmation before continuing.
-     */
-    private boolean doDeleteAction() {
-        if (!hasValidState())
-            return false;
-
-        // TODO: Make sure Insert turns into Edit if/once it is autosaved
-        if (Intent.ACTION_INSERT.equals(mAction)) {
-            if (mListener != null) mListener.onReverted();
-        } else {
-            if (mListener != null) mListener.onDeleteRequested(mLookupUri);
-        }
-        return true;
     }
 
     private boolean doSplitContactAction() {
@@ -958,6 +944,10 @@ public class ContactEditorFragment extends Fragment implements
         if (mListener != null) mListener.onReverted();
     }
 
+    public void doSaveAction() {
+        save(SaveMode.CLOSE);
+    }
+
     public void onJoinCompleted(Uri uri) {
         onSaveCompleted(false, SaveMode.RELOAD, uri);
     }
@@ -1107,11 +1097,6 @@ public class ContactEditorFragment extends Fragment implements
          * Contact was saved and the Fragment can now be closed safely.
          */
         void onSaveFinished(Intent resultIntent);
-
-        /**
-         * User decided to delete the contact.
-         */
-        void onDeleteRequested(Uri lookupUri);
 
         /**
          * User switched to editing a different contact (a suggestion from the
