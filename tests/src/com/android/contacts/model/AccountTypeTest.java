@@ -17,9 +17,14 @@
 package com.android.contacts.model;
 
 import com.android.contacts.tests.R;
+import com.google.common.collect.Lists;
 
 import android.content.Context;
 import android.test.AndroidTestCase;
+import android.test.MoreAsserts;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Test case for {@link AccountType}.
@@ -86,5 +91,54 @@ public class AccountTypeTest extends AndroidTestCase {
 
         assertEquals(getTestContext().getString(externalResID),
                 accountType.getInviteContactActionLabel(c));
+    }
+
+    public void testDisplayLabelComparator() {
+        final AccountTypeForDisplayLabelTest EMPTY = new AccountTypeForDisplayLabelTest("");
+        final AccountTypeForDisplayLabelTest NULL = new AccountTypeForDisplayLabelTest(null);
+        final AccountTypeForDisplayLabelTest AA = new AccountTypeForDisplayLabelTest("aa");
+        final AccountTypeForDisplayLabelTest BBB = new AccountTypeForDisplayLabelTest("bbb");
+        final AccountTypeForDisplayLabelTest C = new AccountTypeForDisplayLabelTest("c");
+
+        assertTrue(compareDisplayLabel(AA, BBB) < 0);
+        assertTrue(compareDisplayLabel(BBB, C) < 0);
+        assertTrue(compareDisplayLabel(AA, C) < 0);
+        assertTrue(compareDisplayLabel(AA, AA) == 0);
+        assertTrue(compareDisplayLabel(BBB, AA) > 0);
+
+        assertTrue(compareDisplayLabel(EMPTY, AA) < 0);
+        assertTrue(compareDisplayLabel(EMPTY, NULL) == 0);
+    }
+
+    private int compareDisplayLabel(AccountType lhs, AccountType rhs) {
+        return new AccountType.DisplayLabelComparator(getContext()).compare(lhs, rhs);
+    }
+
+    private class AccountTypeForDisplayLabelTest extends AccountType {
+        private final String mDisplayLabel;
+
+        public AccountTypeForDisplayLabelTest(String displayLabel) {
+            mDisplayLabel = displayLabel;
+        }
+
+        @Override
+        public CharSequence getDisplayLabel(Context context) {
+            return mDisplayLabel;
+        }
+
+        @Override
+        public int getHeaderColor(Context context) {
+            return 0;
+        }
+
+        @Override
+        public int getSideBarColor(Context context) {
+            return 0;
+        }
+
+        @Override
+        public boolean isGroupMembershipEditable() {
+            return false;
+        }
     }
 }
