@@ -1381,29 +1381,8 @@
     <!-- The add field button shown in the editor under each editable Raw Contact [CHAR LIMIT=30] -->
     <string name="add_field">Add another field</string>
 
-    <!-- The editable field hint text to add a new phone number to a contact in the Raw Contact Editor [CHAR LIMIT=22] -->
-    <string name="add_phone">Add new phone number</string>
-
-    <!-- The editable field hint text to add a new email to a contact in the Raw Contact Editor [CHAR LIMIT=22] -->
-    <string name="add_email">Add new email</string>
-
-    <!-- The editable field hint text to add a new IM account to a contact in the Raw Contact Editor [CHAR LIMIT=22] -->
-    <string name="add_im">Add new IM account</string>
-
-    <!-- The editable field hint text to add a new postal address to a contact in the Raw Contact Editor [CHAR LIMIT=22] -->
-    <string name="add_address">Add new address</string>
-
-    <!-- The editable field hint text to add a new note to a contact in the Raw Contact Editor [CHAR LIMIT=22] -->
-    <string name="add_note">Add new note</string>
-
-    <!-- The editable field hint text to add a new website to a contact in the Raw Contact Editor [CHAR LIMIT=22] -->
-    <string name="add_website">Add new website</string>
-
-    <!-- The editable field hint text to add a new event to a contact in the Raw Contact Editor [CHAR LIMIT=22] -->
-    <string name="add_event">Add new event</string>
-
-    <!-- The editable field hint text to add a relationship field to a contact in the Raw Contact Editor [CHAR LIMIT=22] -->
-    <string name="add_relationship">Add new relationship</string>
+    <!-- The button to add another entry of a specific data type (i.e. email, phone, address) to a contact in the Raw Contact Editor [CHAR LIMIT=22] -->
+    <string name="add_new_entry_for_section">Add new</string>
 
     <!-- Attbution of a contact status update, when the time of update is unknown -->
     <string name="contact_status_update_attribution">via <xliff:g id="source" example="Google Talk">%1$s</xliff:g></string>
