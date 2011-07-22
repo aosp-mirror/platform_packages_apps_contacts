@@ -467,6 +467,7 @@
         <activity android:name="CallDetailActivity"
             android:label="@string/callDetailTitle"
             android:theme="@style/CallDetailActivityTheme"
+            android:screenOrientation="nosensor"
             android:taskAffinity="android.task.contacts.phone"
         >
             <intent-filter>
