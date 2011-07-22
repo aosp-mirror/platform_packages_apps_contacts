@@ -27,9 +27,13 @@ import android.app.Instrumentation;
 import android.content.Context;
 import android.os.PowerManager;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import junit.framework.Assert;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
@@ -117,5 +121,56 @@ public class IntegrationTestUtils {
                 mWakeLock = null;
             }
         }
+    }
+
+    /**
+     * Gets all {@link TextView} objects whose {@link TextView#getText()} contains the given text as
+     * a substring.
+     */
+    public List<TextView> getTextViewsWithString(final Activity activity, final String text)
+            throws Throwable {
+        return runOnUiThreadAndGetTheResult(new Callable<List<TextView>>() {
+            @Override
+            public List<TextView> call() throws Exception {
+                List<TextView> matchingViews = new ArrayList<TextView>();
+                for (TextView textView : getAllViews(TextView.class, getRootView(activity))) {
+                    if (textView.getText().toString().contains(text)) {
+                        matchingViews.add(textView);
+                    }
+                }
+                return matchingViews;
+            }
+        });
+    }
+
+    /** Find the root view for a given activity. */
+    public static View getRootView(Activity activity) {
+        return activity.findViewById(android.R.id.content).getRootView();
+    }
+
+    /**
+     * Gets a list of all views of a given type, rooted at the given parent.
+     * <p>
+     * This method will recurse down through all {@link ViewGroup} instances looking for
+     * {@link View} instances of the supplied class type. Specifically it will use the
+     * {@link Class#isAssignableFrom(Class)} method as the test for which views to add to the list,
+     * so if you provide {@code View.class} as your type, you will get every view. The parent itself
+     * will be included also, should it be of the right type.
+     * <p>
+     * This call manipulates the ui, and as such should only be called from the application's main
+     * thread.
+     */
+    private static <T extends View> List<T> getAllViews(final Class<T> clazz, final View parent) {
+        List<T> results = new ArrayList<T>();
+        if (parent.getClass().equals(clazz)) {
+            results.add(clazz.cast(parent));
+        }
+        if (parent instanceof ViewGroup) {
+            ViewGroup viewGroup = (ViewGroup) parent;
+            for (int i = 0; i < viewGroup.getChildCount(); ++i) {
+                results.addAll(getAllViews(clazz, viewGroup.getChildAt(i)));
+            }
+        }
+        return results;
     }
 }

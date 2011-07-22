@@ -169,7 +169,6 @@ public class CallDetailActivity extends ListActivity implements
         });
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
@@ -184,22 +183,29 @@ public class CallDetailActivity extends ListActivity implements
      * playback.  If it doesn't, then hide the voicemail ui.
      */
     private void optionallyHandleVoicemail() {
-        Uri voicemailUri = getIntent().getParcelableExtra(EXTRA_VOICEMAIL_URI);
-        FragmentManager manager = getFragmentManager();
-        VoicemailPlaybackFragment fragment = (VoicemailPlaybackFragment) manager.findFragmentById(
-                R.id.voicemail_playback_fragment);
-        if (voicemailUri != null) {
-            // Has voicemail uri: leave the fragment visible.  Optionally start the playback.
+        if (hasVoicemail()) {
+            // Has voicemail: leave the fragment visible.  Optionally start the playback.
             // Do a query to fetch the voicemail status messages.
             boolean startPlayback = getIntent().getBooleanExtra(
                     EXTRA_VOICEMAIL_START_PLAYBACK, false);
-            fragment.setVoicemailUri(voicemailUri, startPlayback);
+            Uri voicemailUri = getIntent().getParcelableExtra(EXTRA_VOICEMAIL_URI);
+            getVoicemailPlaybackFragment().setVoicemailUri(voicemailUri, startPlayback);
             mAsyncQueryHandler.startVoicemailStatusQuery(voicemailUri);
         } else {
             // No voicemail uri: hide the voicemail fragment and the status view.
-            manager.beginTransaction().hide(fragment).commit();
+            getFragmentManager().beginTransaction().hide(getVoicemailPlaybackFragment()).commit();
             mStatusMessageView.setVisibility(View.GONE);
         }
+    }
+
+    private boolean hasVoicemail() {
+        return getIntent().getParcelableExtra(EXTRA_VOICEMAIL_URI) != null;
+    }
+
+    private VoicemailPlaybackFragment getVoicemailPlaybackFragment() {
+        FragmentManager manager = getFragmentManager();
+        return (VoicemailPlaybackFragment) manager.findFragmentById(
+                R.id.voicemail_playback_fragment);
     }
 
     /**
@@ -349,24 +355,27 @@ public class CallDetailActivity extends ListActivity implements
         }
 
         // This action deletes all elements in the group from the call log.
-        actions.add(new ViewEntry(android.R.drawable.ic_menu_close_clear_cancel,
-                getString(R.string.recentCalls_removeFromRecentList),
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        StringBuilder callIds = new StringBuilder();
-                        for (Uri callUri : callUris) {
-                            if (callIds.length() != 0) {
-                                callIds.append(",");
+        // We don't have this action for voicemails, because you can just use the trash button.
+        if (!hasVoicemail()) {
+            actions.add(new ViewEntry(android.R.drawable.ic_menu_close_clear_cancel,
+                    getString(R.string.recentCalls_removeFromRecentList),
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            StringBuilder callIds = new StringBuilder();
+                            for (Uri callUri : callUris) {
+                                if (callIds.length() != 0) {
+                                    callIds.append(",");
+                                }
+                                callIds.append(ContentUris.parseId(callUri));
                             }
-                            callIds.append(ContentUris.parseId(callUri));
-                        }
 
-                        getContentResolver().delete(Calls.CONTENT_URI_WITH_VOICEMAIL,
-                                Calls._ID + " IN (" + callIds + ")", null);
-                        finish();
-                    }
-                }));
+                            getContentResolver().delete(Calls.CONTENT_URI_WITH_VOICEMAIL,
+                                    Calls._ID + " IN (" + callIds + ")", null);
+                            finish();
+                        }
+                    }));
+        }
 
         if (canPlaceCallsTo && !isSipNumber && !isVoicemailNumber) {
             // "Edit the number before calling" is only available for PSTN numbers.
