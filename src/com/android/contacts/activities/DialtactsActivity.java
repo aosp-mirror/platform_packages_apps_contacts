@@ -750,6 +750,7 @@ public class DialtactsActivity extends Activity {
     public static Intent getCallSettingsIntent() {
         final Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.setClassName(PHONE_PACKAGE, CALL_SETTINGS_CLASS_NAME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         return intent;
     }
 }
