@@ -83,7 +83,7 @@ public class PhotoActionPopup {
                         listener.onUseAsPrimaryChosen();
                         break;
                     case ChoiceListItem.ID_REMOVE:
-                        listener.onRemovePictureChose();
+                        listener.onRemovePictureChosen();
                         break;
                     case ChoiceListItem.ID_TAKE_PHOTO:
                         listener.onTakePhotoChosen();
@@ -131,7 +131,7 @@ public class PhotoActionPopup {
 
     public interface Listener {
         void onUseAsPrimaryChosen();
-        void onRemovePictureChose();
+        void onRemovePictureChosen();
         void onTakePhotoChosen();
         void onPickFromGalleryChosen();
     }

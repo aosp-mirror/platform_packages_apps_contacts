@@ -405,4 +405,14 @@ public class TextFieldsEditorView extends LabeledEditorView {
             }
         }
     }
+
+    @Override
+    public void clearAllFields() {
+        if (mFieldEditTexts != null) {
+            for (EditText fieldEditText : mFieldEditTexts) {
+                // Update UI (which will trigger a state change through the {@link TextWatcher})
+                fieldEditText.setText("");
+            }
+        }
+    }
 }
