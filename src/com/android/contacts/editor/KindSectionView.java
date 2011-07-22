@@ -155,6 +155,10 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         return mTitleString;
     }
 
+    public void setTitleVisible(boolean visible) {
+        findViewById(R.id.kind_title_layout).setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
     /**
      * Build editors for all current {@link #mState} rows.
      */
@@ -276,6 +280,19 @@ public class KindSectionView extends LinearLayout implements EditorListener {
      */
     private boolean hasEmptyEditor() {
         return getEmptyEditors().size() > 0;
+    }
+
+    /**
+     * Returns true if all editors are empty.
+     */
+    public boolean isEmpty() {
+        for (int i = 0; i < mEditors.getChildCount(); i++) {
+            View view = mEditors.getChildAt(i);
+            if (!((Editor) view).isEmpty()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void addItem() {

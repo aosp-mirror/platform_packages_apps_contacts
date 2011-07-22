@@ -24,6 +24,7 @@
     android:orientation="vertical">
 
     <include
+        android:id="@+id/kind_title_layout"
         layout="@layout/edit_kind_title" />
 
     <LinearLayout
