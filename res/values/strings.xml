@@ -200,8 +200,11 @@
     <!-- Menu item to indicate you are done editing a contact and want to save the changes you've made -->
     <string name="menu_done">Done</string>
 
-    <!-- Menu item to indicate you want to stop editing a contact and NOT save the changes you've made [CHAR LIMIT=12] -->
+    <!-- Menu item to indicate you want to stop editing a group and NOT save the changes you've made [CHAR LIMIT=12] -->
     <string name="menu_doNotSave">Cancel</string>
+
+    <!-- Menu item to indicate you want to stop editing a contact and NOT save the changes you've made [CHAR LIMIT=12] -->
+    <string name="menu_discard">Discard</string>
 
     <!-- The title of the activity that edits and existing contact -->
     <string name="editContact_title_edit">Edit contact</string>

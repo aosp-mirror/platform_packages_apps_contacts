@@ -31,6 +31,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -38,6 +39,7 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -76,11 +78,26 @@ public class ContactEditorActivity extends ContactsActivity
 
         setContentView(R.layout.contact_editor_activity);
 
-        // This Activity will always fall back to the "top" Contacts screen when touched on the
-        // app up icon, regardless of launch context.
         ActionBar actionBar = getActionBar();
         if (actionBar != null) {
-            actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP, ActionBar.DISPLAY_HOME_AS_UP);
+            // Inflate a custom action bar that contains the "done" button for saving changes
+            // to the contact
+            LayoutInflater inflater = (LayoutInflater) getSystemService
+                    (Context.LAYOUT_INFLATER_SERVICE);
+            View customActionBarView = inflater.inflate(R.layout.contact_editor_custom_action_bar,
+                    null);
+            View saveMenuItem = customActionBarView.findViewById(R.id.save_menu_item);
+            saveMenuItem.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mFragment.doSaveAction();
+                }
+            });
+            // Show the custom action bar but hide the home icon and title
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM,
+                    ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME |
+                    ActionBar.DISPLAY_SHOW_TITLE);
+            actionBar.setCustomView(customActionBarView);
         }
 
         mFragment = (ContactEditorFragment) getFragmentManager().findFragmentById(
@@ -129,17 +146,6 @@ public class ContactEditorActivity extends ContactsActivity
         mFragment.save(SaveMode.CLOSE);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home: {
-                mFragment.save(SaveMode.HOME);
-                return true;
-            }
-        }
-        return false;
-    }
-
     private final ContactEditorFragment.Listener mFragmentListener =
             new ContactEditorFragment.Listener() {
         @Override
@@ -173,11 +179,6 @@ public class ContactEditorActivity extends ContactsActivity
         @Override
         public void setTitleTo(int resourceId) {
             setTitle(resourceId);
-        }
-
-        @Override
-        public void onDeleteRequested(Uri contactUri) {
-            ContactDeletionInteraction.start(ContactEditorActivity.this, contactUri, true);
         }
 
         @Override
