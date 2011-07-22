@@ -16,6 +16,7 @@
 
 package com.android.contacts;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,15 +26,17 @@ import android.widget.TextView;
  */
 public final class PhoneCallDetailsViews {
     public final TextView nameView;
+    public final View callTypeView;
     public final LinearLayout callTypeIcons;
     public final TextView callTypeText;
     public final View callTypeSeparator;
     public final TextView dateView;
     public final TextView numberView;
 
-    private PhoneCallDetailsViews(TextView nameView, LinearLayout callTypeIcons,
+    private PhoneCallDetailsViews(TextView nameView, View callTypeView, LinearLayout callTypeIcons,
             TextView callTypeText, View callTypeSeparator, TextView dateView, TextView numberView) {
         this.nameView = nameView;
+        this.callTypeView = callTypeView;
         this.callTypeIcons = callTypeIcons;
         this.callTypeText = callTypeText;
         this.callTypeSeparator = callTypeSeparator;
@@ -50,6 +53,7 @@ public final class PhoneCallDetailsViews {
      */
     public static PhoneCallDetailsViews fromView(View view) {
         return new PhoneCallDetailsViews((TextView) view.findViewById(R.id.name),
+                view.findViewById(R.id.call_type),
                 (LinearLayout) view.findViewById(R.id.call_type_icons),
                 (TextView) view.findViewById(R.id.call_type_name),
                 view.findViewById(R.id.call_type_separator),
@@ -57,10 +61,14 @@ public final class PhoneCallDetailsViews {
                 (TextView) view.findViewById(R.id.number));
     }
 
-    public static PhoneCallDetailsViews createForTest(TextView nameView,
-            LinearLayout callTypeIcons, TextView callTypeText, View callTypeSeparator,
-            TextView dateView, TextView numberView) {
-        return new PhoneCallDetailsViews(nameView, callTypeIcons, callTypeText, callTypeSeparator,
-                dateView, numberView);
+    public static PhoneCallDetailsViews createForTest(Context context) {
+        return new PhoneCallDetailsViews(
+                new TextView(context),
+                new View(context),
+                new LinearLayout(context),
+                new TextView(context),
+                new View(context),
+                new TextView(context),
+                new TextView(context));
     }
 }

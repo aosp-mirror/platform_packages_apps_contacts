@@ -16,68 +16,73 @@
 
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
-        android:id="@+id/call_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
         android:gravity="center_vertical"
+        android:orientation="vertical"
     >
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/call_log_primary_text_color"
+            android:textSize="18sp"
+            android:singleLine="true"
+        />
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/call_log_secondary_text_color"
+            android:textSize="14sp"
+            android:singleLine="true"
+        />
         <LinearLayout
-            android:id="@+id/call_type_icons"
+            android:id="@+id/call_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="?attr/call_log_inner_margin"
-        />
-        <TextView
-            android:id="@+id/call_type_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="?attr/call_log_secondary_text_color"
-            android:textSize="14sp"
-            android:layout_marginRight="?attr/call_log_inner_margin"
-            android:singleLine="true"
-        />
-        <TextView
-            android:id="@+id/call_type_separator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="?attr/call_log_inner_margin"
-            android:textColor="?attr/call_log_secondary_text_color"
-            android:textSize="14sp"
-            android:text="@string/call_log_type_date_separator"
-            android:singleLine="true"
-        />
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="?attr/call_log_secondary_text_color"
-            android:textSize="14sp"
-            android:layout_toRightOf="@id/call_type"
-            android:layout_alignParentBottom="true"
-            android:singleLine="true"
-        />
+            android:orientation="horizontal"
+        >
+            <LinearLayout
+                android:id="@+id/call_type_icons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/call_log_icon_margin"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal"
+            />
+            <TextView
+                android:id="@+id/call_type_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/call_log_inner_margin"
+                android:layout_gravity="center_vertical"
+                android:textColor="?attr/call_log_secondary_text_color"
+                android:textSize="14sp"
+                android:singleLine="true"
+            />
+            <TextView
+                android:id="@+id/call_type_separator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/call_log_inner_margin"
+                android:layout_gravity="center_vertical"
+                android:textColor="?attr/call_log_secondary_text_color"
+                android:textSize="14sp"
+                android:text="@string/call_log_type_date_separator"
+                android:singleLine="true"
+            />
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="?attr/call_log_secondary_text_color"
+                android:textSize="14sp"
+                android:singleLine="true"
+            />
+        </LinearLayout>
     </LinearLayout>
-    <TextView
-        android:id="@+id/number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="?attr/call_log_secondary_text_color"
-        android:textSize="14sp"
-        android:layout_alignParentLeft="true"
-        android:layout_above="@id/call_type"
-        android:singleLine="true"
-    />
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="?attr/call_log_primary_text_color"
-        android:textSize="18sp"
-        android:layout_alignParentLeft="true"
-        android:layout_above="@id/number"
-        android:paddingBottom="2dp"
-        android:singleLine="true"
-    />
 </merge>

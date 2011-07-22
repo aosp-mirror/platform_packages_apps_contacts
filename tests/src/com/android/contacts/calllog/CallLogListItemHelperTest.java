@@ -18,19 +18,14 @@ package com.android.contacts.calllog;
 
 import com.android.contacts.PhoneCallDetails;
 import com.android.contacts.PhoneCallDetailsHelper;
-import com.android.contacts.PhoneCallDetailsViews;
-import com.android.contacts.R;
 import com.android.internal.telephony.CallerInfo;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.provider.CallLog.Calls;
 import android.test.AndroidTestCase;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.QuickContactBadge;
-import android.widget.TextView;
 
 /**
  * Unit tests for {@link CallLogListItemHelper}.
@@ -61,21 +56,14 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
         super.setUp();
         Context context = getContext();
         Resources resources = context.getResources();
-        CallTypeHelper callTypeHelper = new CallTypeHelper(resources,
-                resources.getDrawable(R.drawable.ic_call_incoming_holo_dark),
-                resources.getDrawable(R.drawable.ic_call_outgoing_holo_dark),
-                resources.getDrawable(R.drawable.ic_call_missed_holo_dark),
-                resources.getDrawable(R.drawable.ic_call_voicemail_holo_dark));
+        LayoutInflater layoutInflater =
+                (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        CallTypeHelper callTypeHelper = new CallTypeHelper(resources, layoutInflater);
         mPhoneNumberHelper = new PhoneNumberHelper(resources, TEST_VOICEMAIL_NUMBER);
-        PhoneCallDetailsHelper phoneCallDetailsHelper = new PhoneCallDetailsHelper(context,
+        PhoneCallDetailsHelper phoneCallDetailsHelper = new PhoneCallDetailsHelper(
                 resources, callTypeHelper, mPhoneNumberHelper);
         mHelper = new CallLogListItemHelper(phoneCallDetailsHelper, mPhoneNumberHelper);
-        mViews = CallLogListItemViews.createForTest(new QuickContactBadge(context),
-                new ImageView(context), new ImageView(context), new View(context),
-                PhoneCallDetailsViews.createForTest(new TextView(context),
-                        new LinearLayout(context), new TextView(context), new TextView(context),
-                        new TextView(context), new TextView(context)),
-                new View(context), new View(context), new TextView(context));
+        mViews = CallLogListItemViews.createForTest(context);
     }
 
     @Override
@@ -89,6 +77,7 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
         setPhoneCallDetailsWithNumber("12125551234", "1-212-555-1234");
         assertEquals(View.VISIBLE, mViews.callView.getVisibility());
         assertEquals(View.GONE, mViews.playView.getVisibility());
+        assertEquals(View.GONE, mViews.unheardView.getVisibility());
     }
 
     public void testSetPhoneCallDetails_Unknown() {
@@ -110,32 +99,37 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
         setPhoneCallDetailsWithNumber(TEST_VOICEMAIL_NUMBER, TEST_VOICEMAIL_NUMBER);
         assertEquals(View.VISIBLE, mViews.callView.getVisibility());
         assertEquals(View.GONE, mViews.playView.getVisibility());
+        assertEquals(View.GONE, mViews.unheardView.getVisibility());
     }
 
-    public void testSetPhoneCallDetails_Voicemail() {
+    public void testSetPhoneCallDetails_ReadVoicemail() {
         setPhoneCallDetailsWithTypes(Calls.VOICEMAIL_TYPE);
-        assertEquals(View.VISIBLE, mViews.callView.getVisibility());
+        assertEquals(View.GONE, mViews.callView.getVisibility());
         assertEquals(View.VISIBLE, mViews.playView.getVisibility());
+        assertEquals(View.GONE, mViews.unheardView.getVisibility());
+    }
+
+    public void testSetPhoneCallDetails_UnreadVoicemail() {
+        setUnreadPhoneCallDetailsWithTypes(Calls.VOICEMAIL_TYPE);
+        assertEquals(View.GONE, mViews.callView.getVisibility());
+        assertEquals(View.VISIBLE, mViews.playView.getVisibility());
+        assertEquals(View.VISIBLE, mViews.unheardView.getVisibility());
     }
 
     public void testSetPhoneCallDetails_VoicemailFromUnknown() {
         setPhoneCallDetailsWithNumberAndType(CallerInfo.UNKNOWN_NUMBER, CallerInfo.UNKNOWN_NUMBER,
                 Calls.VOICEMAIL_TYPE);
+        assertEquals(View.GONE, mViews.callView.getVisibility());
         assertEquals(View.VISIBLE, mViews.playView.getVisibility());
-        assertEmptyCallButton();
+        assertEquals(View.GONE, mViews.unheardView.getVisibility());
     }
 
     /** Asserts that the whole call area is gone. */
     private void assertNoCallButton() {
         assertEquals(View.GONE, mViews.callView.getVisibility());
         assertEquals(View.GONE, mViews.playView.getVisibility());
+        assertEquals(View.GONE, mViews.unheardView.getVisibility());
         assertEquals(View.GONE, mViews.dividerView.getVisibility());
-    }
-
-    /** Asserts that the call area is present but empty. */
-    private void assertEmptyCallButton() {
-        assertEquals(View.INVISIBLE, mViews.callView.getVisibility());
-        assertEquals(View.VISIBLE, mViews.dividerView.getVisibility());
     }
 
     /** Sets the details of a phone call using the specified phone number. */
@@ -158,5 +152,13 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
                 new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
                         types, TEST_DATE, TEST_DURATION),
                 true, false);
+    }
+
+    /** Sets the details of a phone call using the specified call type. */
+    private void setUnreadPhoneCallDetailsWithTypes(int... types) {
+        mHelper.setPhoneCallDetails(mViews,
+                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
+                        types, TEST_DATE, TEST_DURATION),
+                true, true);
     }
 }

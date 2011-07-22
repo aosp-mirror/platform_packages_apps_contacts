@@ -1660,4 +1660,56 @@
     <!--  Used to display as default status when the contact is busy or Do not disturb for chat [CHAR LIMIT=19] -->
     <string name="status_busy">Busy</string>
 
+    <!-- String describing the icon in the call log used to place a call.
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_call_log_call_button">Call number</string>
+
+    <!-- String describing the icon in the call log used to play a voicemail.
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_call_log_play_button">Play voicemail</string>
+
+    <!-- String describing the icon in the call log used to represent an incoming call.
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_call_log_incoming_call">Incoming call</string>
+
+    <!-- String describing the icon in the call log used to represent an outgoing call.
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+
+    <string name="description_call_log_outgoing_call">Outgoing call</string>
+
+    <!-- String describing the icon in the call log used to represent a missed call.
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+
+    <string name="description_call_log_missed_call">Missed call</string>
+
+    <!-- String describing the icon in the call log used to represent a voicemail left to the user.
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_call_log_voicemail">Voicemail</string>
+
+    <!-- String describing the icon in the call log used to represent an unheard voicemail left to
+         the user.
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_call_log_unheard_voicemail">Unheard voicemail</string>
+
 </resources>

@@ -26,7 +26,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 /**
@@ -69,13 +69,14 @@ public class CallDetailHistoryAdapter extends BaseAdapter {
         }
 
         PhoneCallDetails details = mPhoneCallDetails[position];
-        ImageView callTypeIconView = (ImageView) convertView.findViewById(R.id.call_type_icon);
+        FrameLayout callTypeIconView = (FrameLayout) convertView.findViewById(R.id.call_type_icon);
         TextView callTypeTextView = (TextView) convertView.findViewById(R.id.call_type_text);
         TextView dateView = (TextView) convertView.findViewById(R.id.date);
         TextView durationView = (TextView) convertView.findViewById(R.id.duration);
 
         int callType = details.callTypes[0];
-        callTypeIconView.setImageDrawable(mCallTypeHelper.getCallTypeDrawable(callType));
+        callTypeIconView.removeAllViews();
+        mCallTypeHelper.inflateCallTypeIcon(callType, callTypeIconView);
         callTypeTextView.setText(mCallTypeHelper.getCallTypeText(callType));
         // Set the date.
         CharSequence dateValue = DateUtils.formatDateRange(mContext, details.date, details.date,
