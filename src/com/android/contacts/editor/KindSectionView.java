@@ -46,7 +46,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     private TextView mTitle;
     private ViewGroup mEditors;
     private View mAddFieldFooter;
-    private TextView mAddFieldText;
     private String mTitleString;
 
     private DataKind mKind;
@@ -96,7 +95,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
 
         mTitle = (TextView) findViewById(R.id.kind_title);
         mEditors = (ViewGroup) findViewById(R.id.kind_editors);
-        mAddFieldText = (TextView) findViewById(R.id.add_text);
         mAddFieldFooter = findViewById(R.id.add_field_footer);
         mAddFieldFooter.setOnClickListener(new OnClickListener() {
             @Override
@@ -138,13 +136,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
                 ? ""
                 : getResources().getString(kind.titleRes);
         mTitle.setText(mTitleString.toUpperCase());
-
-        // Set "add field" footer message according to MIME type. Some MIME types
-        // can only have max 1 field, so the resource ID will be -1 if these sections
-        // should not have an "Add field" option.
-        if (kind.addNewFieldTextResourceId != -1) {
-            mAddFieldText.setText(getResources().getString(kind.addNewFieldTextResourceId));
-        }
 
         rebuildFromState();
         updateAddFooterVisible();

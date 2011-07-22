@@ -63,13 +63,6 @@ public class DataKind {
     public final int textAppearanceResourceId;
 
     /**
-     * String resource id for the "add field" footer. This is equal to -1 if it
-     * is not applicable to add a new field to this class (i.e. for a structured
-     * name because a user should only have one structured name).
-     */
-    public final int addNewFieldTextResourceId;
-
-    /**
      * If this is a date field, this specifies the format of the date when saving. The
      * date includes year, month and day. If this is not a date field or the date field is not
      * editable, this value should be ignored.
@@ -86,12 +79,10 @@ public class DataKind {
     public DataKind() {
         editorLayoutResourceId = R.layout.text_fields_editor_view;
         textAppearanceResourceId = android.R.style.TextAppearance_Medium;
-        addNewFieldTextResourceId = -1;
     }
 
     public DataKind(String mimeType, int titleRes, int iconRes, int weight, boolean editable,
-            int editorLayoutResourceId, int textAppearanceResourceId,
-            int addNewFieldTextResourceId) {
+            int editorLayoutResourceId, int textAppearanceResourceId) {
         this.mimeType = mimeType;
         this.titleRes = titleRes;
         this.iconRes = iconRes;
@@ -101,6 +92,5 @@ public class DataKind {
         this.typeOverallMax = -1;
         this.editorLayoutResourceId = editorLayoutResourceId;
         this.textAppearanceResourceId = textAppearanceResourceId;
-        this.addNewFieldTextResourceId = addNewFieldTextResourceId;
     }
 }
