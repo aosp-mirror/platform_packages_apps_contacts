@@ -1557,6 +1557,12 @@
         <item quantity="other"><xliff:g id="count">%1$d</xliff:g> people from <xliff:g id="account_type">%2$s</xliff:g></item>
     </plurals>
 
+    <!-- Subtitle of a group (in the group list) that describes how many people are in the current group [CHAR LIMIT=30] -->
+    <plurals name="group_list_num_contacts_in_group">
+        <item quantity="one"><xliff:g id="count">%1$d</xliff:g> person</item>
+        <item quantity="other"><xliff:g id="count">%1$d</xliff:g> people</item>
+    </plurals>
+
     <!-- Toast displayed when the user creates a new contact and attempts to join it
       with another before entering any data  [CHAR LIMIT=256] -->
     <string name="toast_join_with_empty_contact">Please enter contact name before joining

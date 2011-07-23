@@ -16,13 +16,11 @@
 
 package com.android.contacts.group;
 
-import com.android.contacts.GroupMetaData;
-import com.android.contacts.GroupMetaDataLoader;
+import com.android.contacts.GroupListLoader;
 import com.android.contacts.R;
-import com.android.contacts.group.GroupBrowseListAdapter.GroupListItem;
+import com.android.contacts.group.GroupBrowseListAdapter.GroupListItemViewCache;
 import com.android.contacts.widget.AutoScrollListView;
 
-import android.accounts.Account;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
@@ -34,7 +32,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.provider.ContactsContract.Groups;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -46,11 +43,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Fragment to display the list of groups.
@@ -82,13 +74,6 @@ public class GroupBrowseListFragment extends Fragment
 
     private static final String EXTRA_KEY_GROUP_URI = "groups.groupUri";
 
-    /**
-     * Map of {@link Account} to a list of {@link GroupMetaData} objects
-     * representing groups within that account.
-     */
-    private final Map<Account, List<GroupMetaData>> mGroupMap =
-            new HashMap<Account, List<GroupMetaData>>();
-
     private View mRootView;
     private AutoScrollListView mListView;
     private View mEmptyView;
@@ -108,10 +93,25 @@ public class GroupBrowseListFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.group_browse_list_fragment, null);
+        mEmptyView = mRootView.findViewById(R.id.empty);
+
+        mAdapter = new GroupBrowseListAdapter(mContext);
+        mAdapter.setSelectionVisible(mSelectionVisible);
+        mAdapter.setSelectedGroup(mSelectedGroupUri);
+
         mListView = (AutoScrollListView) mRootView.findViewById(R.id.list);
         mListView.setOnFocusChangeListener(this);
         mListView.setOnTouchListener(this);
-        mEmptyView = mRootView.findViewById(R.id.empty);
+        mListView.setAdapter(mAdapter);
+        mListView.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                GroupListItemViewCache groupListItem = (GroupListItemViewCache) view.getTag();
+                if (groupListItem != null) {
+                    viewGroup(groupListItem.getUri());
+                }
+            }
+        });
 
         if (savedInstanceState != null) {
             String groupUriString = savedInstanceState.getString(EXTRA_KEY_GROUP_URI);
@@ -173,7 +173,7 @@ public class GroupBrowseListFragment extends Fragment
 
         @Override
         public CursorLoader onCreateLoader(int id, Bundle args) {
-            return new GroupMetaDataLoader(mContext, Groups.CONTENT_URI);
+            return new GroupListLoader(mContext);
         }
 
         @Override
@@ -190,64 +190,16 @@ public class GroupBrowseListFragment extends Fragment
         if (mGroupListCursor == null) {
             return;
         }
-        mGroupMap.clear();
-        mGroupListCursor.moveToPosition(-1);
-        while (mGroupListCursor.moveToNext()) {
-            String accountName = mGroupListCursor.getString(GroupMetaDataLoader.ACCOUNT_NAME);
-            String accountType = mGroupListCursor.getString(GroupMetaDataLoader.ACCOUNT_TYPE);
-            long groupId = mGroupListCursor.getLong(GroupMetaDataLoader.GROUP_ID);
-            String title = mGroupListCursor.getString(GroupMetaDataLoader.TITLE);
-            boolean deleted =
-                    (mGroupListCursor.getInt(GroupMetaDataLoader.DELETED) == 1);
-            boolean defaultGroup = mGroupListCursor.isNull(GroupMetaDataLoader.AUTO_ADD)
-                    ? false
-                    : mGroupListCursor.getInt(GroupMetaDataLoader.AUTO_ADD) != 0;
-            boolean favorites = mGroupListCursor.isNull(GroupMetaDataLoader.FAVORITES)
-                    ? false
-                    : mGroupListCursor.getInt(GroupMetaDataLoader.FAVORITES) != 0;
-
-            // Don't show the "auto-added" (i.e. My Contacts) or "favorites" groups because
-            // they show up elsewhere in the app. Also skip groups that are marked as "deleted"
-            if (defaultGroup || favorites || deleted) {
-                continue;
-            }
-
-            GroupMetaData newGroup = new GroupMetaData(accountName, accountType, groupId, title,
-                    defaultGroup, favorites);
-            Account account = new Account(accountName, accountType);
-
-            if (mGroupMap.containsKey(account)) {
-                List<GroupMetaData> groups = mGroupMap.get(account);
-                groups.add(newGroup);
-            } else {
-                List<GroupMetaData> groups = new ArrayList<GroupMetaData>();
-                groups.add(newGroup);
-                mGroupMap.put(account, groups);
-            }
-
-        }
-
-        mAdapter = new GroupBrowseListAdapter(mContext, mGroupMap);
-        mAdapter.setSelectionVisible(mSelectionVisible);
-        mAdapter.setSelectedGroup(mSelectedGroupUri);
+        mAdapter.setCursor(mGroupListCursor);
 
         Parcelable listState = mListView.onSaveInstanceState();
-        mListView.setAdapter(mAdapter);
-        mListView.setEmptyView(mEmptyView);
-        mListView.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                GroupListItem groupListItem = (GroupListItem) view;
-                viewGroup(groupListItem.getUri());
-            }
-        });
-
         if (mSelectionToScreenRequested) {
             requestSelectionToScreen();
         } else {
             // Restore the scroll position.
             mListView.onRestoreInstanceState(listState);
         }
+        mListView.setEmptyView(mEmptyView);
 
         if (mSelectionVisible && mSelectedGroupUri != null) {
             viewGroup(mSelectedGroupUri);
@@ -260,6 +212,9 @@ public class GroupBrowseListFragment extends Fragment
 
     public void setSelectionVisible(boolean flag) {
         mSelectionVisible = flag;
+        if (mAdapter != null) {
+            mAdapter.setSelectionVisible(mSelectionVisible);
+        }
     }
 
     private void setSelectedGroup(Uri groupUri) {

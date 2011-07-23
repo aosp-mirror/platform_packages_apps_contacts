@@ -33,6 +33,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/people_app_theme_color"
             android:textStyle="bold"
+            android:textAllCaps="true"
             android:singleLine="true"/>
 
         <TextView
