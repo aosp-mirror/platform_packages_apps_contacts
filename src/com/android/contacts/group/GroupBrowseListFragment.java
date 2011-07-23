@@ -27,15 +27,19 @@ import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.provider.ContactsContract;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
@@ -61,6 +65,7 @@ public class GroupBrowseListFragment extends Fragment
          * @param groupUri for the group that the user wishes to view.
          */
         void onViewGroupAction(Uri groupUri);
+
     }
 
     private static final String TAG = "GroupBrowseListFragment";
@@ -77,6 +82,8 @@ public class GroupBrowseListFragment extends Fragment
     private View mRootView;
     private AutoScrollListView mListView;
     private View mEmptyView;
+    private View mAddAccountsView;
+    private View mAddAccountButton;
 
     private GroupBrowseListAdapter mAdapter;
     private boolean mSelectionVisible;
@@ -112,6 +119,21 @@ public class GroupBrowseListFragment extends Fragment
                 }
             }
         });
+
+        mEmptyView = mRootView.findViewById(R.id.empty);
+        mAddAccountsView = mRootView.findViewById(R.id.add_accounts);
+        mAddAccountButton = mRootView.findViewById(R.id.add_account_button);
+        mAddAccountButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Settings.ACTION_ADD_ACCOUNT);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                intent.putExtra(Settings.EXTRA_AUTHORITIES,
+                        new String[] { ContactsContract.AUTHORITY });
+                startActivity(intent);
+            }
+        });
+        setAddAccountsVisibility(false);
 
         if (savedInstanceState != null) {
             String groupUriString = savedInstanceState.getString(EXTRA_KEY_GROUP_URI);
@@ -279,6 +301,12 @@ public class GroupBrowseListFragment extends Fragment
             if (!TextUtils.isEmpty(uriString)) {
                 outState.putString(EXTRA_KEY_GROUP_URI, uriString);
             }
+        }
+    }
+
+    public void setAddAccountsVisibility(boolean visible) {
+        if (mAddAccountsView != null) {
+            mAddAccountsView.setVisibility(visible ? View.VISIBLE : View.GONE);
         }
     }
 }

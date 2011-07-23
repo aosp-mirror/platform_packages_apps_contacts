@@ -45,6 +45,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
     private Button mUninstallAppsButton;
     private Button mRetryUpgradeButton;
     private ProgressBar mProgress;
+    private int mNoContactsMsgResId = -1;
 
     private OnContactsUnavailableActionListener mListener;
 
@@ -81,8 +82,14 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
         int providerStatus = mProviderStatusLoader.getProviderStatus();
         switch (providerStatus) {
             case ProviderStatus.STATUS_NO_ACCOUNTS_NO_CONTACTS:
-                mMessageView.setGravity(Gravity.LEFT);
-                mMessageView.setVisibility(View.GONE);
+                if (mNoContactsMsgResId != -1) {
+                    mMessageView.setText(mNoContactsMsgResId);
+                    mMessageView.setGravity(Gravity.CENTER_HORIZONTAL);
+                    mMessageView.setVisibility(View.VISIBLE);
+                } else {
+                    mMessageView.setGravity(Gravity.LEFT);
+                    mMessageView.setVisibility(View.GONE);
+                }
                 mCreateContactButton.setVisibility(View.VISIBLE);
                 mAddAccountButton.setVisibility(View.VISIBLE);
                 mImportContactsButton.setVisibility(View.VISIBLE);
@@ -152,6 +159,21 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
             case R.id.import_failure_retry_button:
                 mProviderStatusLoader.retryUpgrade();
                 break;
+        }
+    }
+    /**
+     * Set the message to be shown if data is available for the selected tab
+     *
+     * @param resId - String resource ID of the message
+     */
+    public void setMessageText(int resId) {
+        mNoContactsMsgResId = resId;
+        if (mMessageView != null &&
+                mProviderStatusLoader.getProviderStatus() ==
+                    ProviderStatus.STATUS_NO_ACCOUNTS_NO_CONTACTS) {
+            mMessageView.setText(mNoContactsMsgResId);
+            mMessageView.setGravity(Gravity.CENTER_HORIZONTAL);
+            mMessageView.setVisibility(View.VISIBLE);
         }
     }
 }

@@ -287,11 +287,14 @@
     <!-- The menu item that allows you to remove a photo from a contact [CHAR LIMIT=50] -->
     <string name="removePhoto">Remove photo</string>
 
-    <!-- The text displayed when the contacts list is empty while displaying all contacts -->
-    <string name="noContacts">No contacts.</string>
+    <!-- The text displayed when the contacts list is empty while displaying all contacts [CHAR LIMIT=NONE] -->
+    <string name="noContacts">No contacts</string>
 
     <!-- The text displayed when the groups list is empty while displaying all groups [CHAR LIMIT=NONE] -->
-    <string name="noGroups">No groups.</string>
+    <string name="noGroups">No groups</string>
+
+    <!-- The text displayed when the groups list is empty and no accounts are set on the device while displaying all groups [CHAR LIMIT=NONE] -->
+    <string name="noAccounts">To create groups you need an account</string>
 
     <!-- The text displayed when the contacts list is empty while displaying results after searching contacts -->
     <string name="noMatchingContacts">No matching contacts found.</string>
@@ -358,7 +361,7 @@
     <string name="listTotalAllContactsZeroCustom">No visible contacts</string>
 
     <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when starred contact list is selected  [CHAR LIMIT=64]-->
-    <string name="listTotalAllContactsZeroStarred">No starred contacts</string>
+    <string name="listTotalAllContactsZeroStarred">No Favorites</string>
 
     <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when a group or account is selected  [CHAR LIMIT=64]-->
     <string name="listTotalAllContactsZeroGroup">No contacts in <xliff:g id="name" example="Friends">%s</xliff:g></string>

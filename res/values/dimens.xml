@@ -226,4 +226,10 @@
     <dimen name="call_detail_contact_background_overlay_height">42dip</dimen>
     <dimen name="call_detail_contact_name_margin">24dip</dimen>
     <dimen name="call_detail_action_bar_height">60dip</dimen>
+
+    <!-- Empty message margins -->
+    <dimen name="empty_message_top_margin">43dip</dimen>
+    <dimen name="no_accounts_message_margin">15dip</dimen>
+    <dimen name="add_account_button_left_margin">50dip</dimen>
+    <dimen name="add_account_button_right_margin">50dip</dimen>
 </resources>

@@ -611,6 +611,10 @@ public class PeopleActivity extends ContactsActivity
                 }
             }
             invalidateOptionsMenu();
+            showEmptyStateForTab(tab);
+            if (tab == TabState.GROUPS) {
+                mGroupsFragment.setAddAccountsVisibility(!areAccountsAvailable());
+            }
             return;
         }
 
@@ -627,6 +631,11 @@ public class PeopleActivity extends ContactsActivity
                 mDetailsView.setVisibility(View.GONE);
                 break;
             case GROUPS:
+                mFavoritesView.setVisibility(View.GONE);
+                mBrowserView.setVisibility(View.VISIBLE);
+                mDetailsView.setVisibility(View.VISIBLE);
+                mGroupsFragment.setAddAccountsVisibility(!areAccountsAvailable());
+                break;
             case ALL:
                 mFavoritesView.setVisibility(View.GONE);
                 mBrowserView.setVisibility(View.VISIBLE);
@@ -674,6 +683,24 @@ public class PeopleActivity extends ContactsActivity
             // fragment transaction does it implicitly.  We don't have to call invalidateOptionsMenu
             // manually.
         }
+        showEmptyStateForTab(tab);
+    }
+
+    private void showEmptyStateForTab(TabState tab) {
+        if (mContactsUnavailableFragment != null) {
+            switch (tab) {
+                case FAVORITES:
+                    mContactsUnavailableFragment.setMessageText(
+                            R.string.listTotalAllContactsZeroStarred);
+                    break;
+                case GROUPS:
+                    mContactsUnavailableFragment.setMessageText(R.string.noGroups);
+                    break;
+                case ALL:
+                    mContactsUnavailableFragment.setMessageText(R.string.noContacts);
+                    break;
+            }
+        }
     }
 
     private class TabPagerListener implements ViewPager.OnPageChangeListener {
@@ -689,7 +716,12 @@ public class PeopleActivity extends ContactsActivity
         public void onPageSelected(int position) {
             // Make sure not in the search mode, in which case position != TabState.ordinal().
             if (!mTabPagerAdapter.isSearchMode()) {
-                mActionBarAdapter.setCurrentTab(TabState.fromInt(position), false);
+                TabState selectedTab = TabState.fromInt(position);
+                mActionBarAdapter.setCurrentTab(selectedTab, false);
+                showEmptyStateForTab(selectedTab);
+                if (selectedTab == TabState.GROUPS) {
+                    mGroupsFragment.setAddAccountsVisibility(!areAccountsAvailable());
+                }
                 invalidateOptionsMenu();
             }
         }
@@ -912,6 +944,11 @@ public class PeopleActivity extends ContactsActivity
             contactsUnavailableView.setVisibility(View.VISIBLE);
             if (mainView != null) {
                 mainView.setVisibility(View.INVISIBLE);
+            }
+
+            TabState tab = mActionBarAdapter.getCurrentTab();
+            if (tab == TabState.GROUPS) {
+                mGroupsFragment.setAddAccountsVisibility(!areAccountsAvailable());
             }
         }
 
