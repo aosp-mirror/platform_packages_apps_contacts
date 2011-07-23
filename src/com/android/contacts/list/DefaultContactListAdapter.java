@@ -234,7 +234,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
         }
 
         bindName(view, cursor);
-        bindPresence(view, cursor);
+        bindPresenceAndStatusMessage(view, cursor);
 
         if (isSearchMode()) {
             bindSearchSnippet(view, cursor);

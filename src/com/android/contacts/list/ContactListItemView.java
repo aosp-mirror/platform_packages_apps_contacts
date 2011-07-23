@@ -17,6 +17,7 @@
 package com.android.contacts.list;
 
 import com.android.contacts.ContactPresenceIconUtil;
+import com.android.contacts.ContactStatusUtil;
 import com.android.contacts.R;
 import com.android.contacts.format.DisplayNameFormatter;
 import com.android.contacts.format.PrefixHighlighter;
@@ -916,7 +917,7 @@ public class ContactListItemView extends ViewGroup
             mStatusView.setSingleLine(true);
             mStatusView.setEllipsize(getTextEllipsis());
             mStatusView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
-            mStatusView.setText("Put Status here");   // Temporary
+            mStatusView.setTextColor(Color.GRAY);
             addView(mStatusView);
         }
         return mStatusView;
@@ -996,20 +997,33 @@ public class ContactListItemView extends ViewGroup
     }
 
     /**
-     * Sets the proper icon (star or presence or nothing)
+     * Sets the proper icon (star or presence or nothing) and/or status message.
      */
-    public void showPresence(Cursor cursor, int presenceColumnIndex, int capabilityColumnIndex) {
+    public void showPresenceAndStatusMessage(Cursor cursor, int presenceColumnIndex,
+            int capabilityColumnIndex, int contactStatusColumnIndex) {
         Drawable icon = null;
+        int presence = 0;
+        int chatCapability = 0;
         if (!cursor.isNull(presenceColumnIndex)) {
-            int status = cursor.getInt(presenceColumnIndex);
-            int chatCapability = 0;
+            presence = cursor.getInt(presenceColumnIndex);
             if (capabilityColumnIndex != 0 && !cursor.isNull(presenceColumnIndex)) {
                 chatCapability = cursor.getInt(capabilityColumnIndex);
             }
             icon = ContactPresenceIconUtil.getChatCapabilityIcon(
-                    getContext(), status, chatCapability);
+                    getContext(), presence, chatCapability);
         }
         setPresence(icon);
+
+        String statusMessage = null;
+        if (contactStatusColumnIndex != 0 && !cursor.isNull(contactStatusColumnIndex)) {
+            statusMessage = cursor.getString(contactStatusColumnIndex);
+        }
+        // If there is no status message from the contact, but there was a presence value, then use
+        // the default status message string
+        if (statusMessage == null && presence != 0) {
+            statusMessage = ContactStatusUtil.getStatusString(getContext(), presence);
+        }
+        setStatus(statusMessage);
     }
 
     /**

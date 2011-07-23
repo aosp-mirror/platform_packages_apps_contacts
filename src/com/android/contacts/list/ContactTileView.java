@@ -16,6 +16,7 @@
 package com.android.contacts.list;
 
 import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.ContactStatusUtil;
 import com.android.contacts.R;
 import com.android.contacts.list.ContactTileAdapter.ContactEntry;
 
@@ -90,7 +91,8 @@ public class ContactTileView extends FrameLayout {
                     statusText = null;
                 } else {
                     statusText =
-                          (entry.status == null ? getStatusString(entry.presence) : entry.status);
+                          (entry.status != null ? entry.status :
+                          ContactStatusUtil.getStatusString(mContext, entry.presence));
                 }
                 mStatus.setText(statusText);
             }
@@ -116,23 +118,6 @@ public class ContactTileView extends FrameLayout {
             }
         } else {
             setVisibility(View.INVISIBLE);
-        }
-    }
-
-    private String getStatusString(int presence) {
-        Resources resources = getResources();
-        switch (presence) {
-            case StatusUpdates.AVAILABLE:
-                return resources.getString(R.string.status_available);
-            case StatusUpdates.IDLE:
-            case StatusUpdates.AWAY:
-                return resources.getString(R.string.status_away);
-            case StatusUpdates.DO_NOT_DISTURB:
-                return resources.getString(R.string.status_busy);
-            case StatusUpdates.OFFLINE:
-            case StatusUpdates.INVISIBLE:
-            default:
-                return null;
         }
     }
 
