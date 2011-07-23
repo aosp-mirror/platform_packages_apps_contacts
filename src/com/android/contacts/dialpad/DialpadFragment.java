@@ -1143,8 +1143,9 @@ public class DialpadFragment extends Fragment
             case R.id.menu_add_wait:
                 updateDialString(";");
                 return true;
+            default:
+                return false;
         }
-        return false;
     }
 
     @Override
