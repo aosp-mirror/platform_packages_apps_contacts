@@ -666,9 +666,6 @@ public class ContactListItemView extends ViewGroup
         }
         if (mQuickContact == null) {
             mQuickContact = new QuickContactBadge(mContext, null, QUICK_CONTACT_BADGE_STYLE);
-            mQuickContact.setExcludeMimes(new String[] {
-                Contacts.CONTENT_ITEM_TYPE
-            });
             addView(mQuickContact);
             mPhotoViewWidthAndHeightAreReady = false;
         }
