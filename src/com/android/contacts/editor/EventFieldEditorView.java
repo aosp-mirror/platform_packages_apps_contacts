@@ -242,4 +242,14 @@ public class EventFieldEditorView extends LabeledEditorView {
     public static int getDefaultHourForBirthday() {
         return DEFAULT_HOUR;
     }
+
+    @Override
+    public void clearAllFields() {
+        // Update UI
+        mDateView.setText("");
+
+        // Update state
+        final String column = getKind().fieldList.get(0).column;
+        onFieldChanged(column, "");
+    }
 }

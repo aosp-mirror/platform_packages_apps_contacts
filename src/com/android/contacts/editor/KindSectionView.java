@@ -106,14 +106,19 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         });
     }
 
-    /** {@inheritDoc} */
     @Override
-    public void onDeleted(Editor editor) {
+    public void onDeleteRequested(Editor editor) {
+        // If there is only 1 editor in the section, then don't allow the user to delete it.
+        // Just clear the fields in the editor.
+        if (getEditorCount() == 1) {
+            editor.clearAllFields();
+        } else {
+            // Otherwise it's okay to delete this {@link Editor}
+            editor.deleteEditor();
+        }
         updateAddFooterVisible();
-        updateSectionVisible();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void onRequest(int request) {
         // If a field has become empty or non-empty, then check if another row

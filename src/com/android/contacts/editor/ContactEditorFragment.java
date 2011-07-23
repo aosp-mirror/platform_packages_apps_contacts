@@ -625,7 +625,7 @@ public class ContactEditorFragment extends Fragment implements
                     }
 
                     @Override
-                    public void onDeleted(Editor removedEditor) {
+                    public void onDeleteRequested(Editor removedEditor) {
                     }
                 };
 
@@ -1673,7 +1673,9 @@ public class ContactEditorFragment extends Fragment implements
         }
 
         @Override
-        public void onDeleted(Editor removedEditor) {
+        public void onDeleteRequested(Editor removedEditor) {
+            // The picture cannot be deleted, it can only be removed, which is handled by
+            // onRemovePictureChosen()
         }
 
         /**
@@ -1697,7 +1699,7 @@ public class ContactEditorFragment extends Fragment implements
          * User has chosen to remove a picture
          */
         @Override
-        public void onRemovePictureChose() {
+        public void onRemovePictureChosen() {
             mEditor.setPhotoBitmap(null);
         }
 

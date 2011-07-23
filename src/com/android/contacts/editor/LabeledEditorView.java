@@ -75,6 +75,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
     private boolean mReadOnly;
     private boolean mWasEmpty = true;
     private boolean mIsDeletable = true;
+    private boolean mIsAttachedToWindow;
 
     private EditType mType;
 
@@ -137,19 +138,45 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
                 new Handler().post(new Runnable() {
                     @Override
                     public void run() {
-                        // Keep around in model, but mark as deleted
-                        mEntry.markDeleted();
-
-                        ((ViewGroup) getParent()).removeView(LabeledEditorView.this);
-
+                        // Don't do anything if the view is no longer attached to the window
+                        // (This check is needed because when this {@link Runnable} is executed,
+                        // we can't guarantee the view is still valid.
+                        if (!mIsAttachedToWindow) {
+                            return;
+                        }
+                        // Send the delete request to the listener (which will in turn call
+                        // deleteEditor() on this view if the deletion is valid - i.e. this is not
+                        // the last {@link Editor} in the section).
                         if (mListener != null) {
-                            // Notify listener when present
-                            mListener.onDeleted(LabeledEditorView.this);
+                            mListener.onDeleteRequested(LabeledEditorView.this);
                         }
                     }
                 });
             }
         });
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        // Keep track of when the view is attached or detached from the window, so we know it's
+        // safe to remove views (in case the user requests to delete this editor).
+        mIsAttachedToWindow = true;
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        mIsAttachedToWindow = false;
+    }
+
+    @Override
+    public void deleteEditor() {
+        // Keep around in model, but mark as deleted
+        mEntry.markDeleted();
+
+        // Remove the view
+        ((ViewGroup) getParent()).removeView(LabeledEditorView.this);
     }
 
     public boolean isReadOnly() {

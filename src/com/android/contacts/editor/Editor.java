@@ -30,9 +30,9 @@ public interface Editor {
 
     public interface EditorListener {
         /**
-         * Called when the given {@link Editor} has been deleted.
+         * Called when the given {@link Editor} is requested to be deleted by the user.
          */
-        public void onDeleted(Editor editor);
+        public void onDeleteRequested(Editor editor);
 
         /**
          * Called when the given {@link Editor} has a request, for example it
@@ -75,4 +75,14 @@ public interface Editor {
      * allowing advanced editors to persist data in a specific way.
      */
     public void onFieldChanged(String column, String value);
+
+    /**
+     * Performs the delete operation for this {@link Editor}.
+     */
+    public void deleteEditor();
+
+    /**
+     * Clears all fields in this {@link Editor}.
+     */
+    public void clearAllFields();
 }
