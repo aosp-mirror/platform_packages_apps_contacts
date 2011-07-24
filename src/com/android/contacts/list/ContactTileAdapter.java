@@ -227,7 +227,8 @@ public class ContactTileAdapter extends BaseAdapter {
                 return getRowCount(mDividerPosition) +
                         mContactCursor.getCount() - mDividerPosition + 1;
             case FREQUENT_ONLY:
-                return mContactCursor.getCount();
+                // Number of contacts plus one for the header
+                return mContactCursor.getCount() + 1;
             default:
                 throw new IllegalArgumentException("Unrecognized DisplayType " + mDisplayType);
         }
@@ -388,7 +389,7 @@ public class ContactTileAdapter extends BaseAdapter {
             case GROUP_MEMBERS:
                 return ViewTypes.STARRED;
             case FREQUENT_ONLY:
-                return ViewTypes.FREQUENT;
+                return position == 0 ? ViewTypes.DIVIDER : ViewTypes.FREQUENT;
             default:
                 throw new IllegalStateException("Unrecognized DisplayType " + mDisplayType);
         }
