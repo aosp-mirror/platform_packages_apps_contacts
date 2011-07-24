@@ -20,15 +20,15 @@
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:background="?attr/call_log_secondary_background_color"
-    android:padding="5dip"
+    android:padding="@dimen/call_log_indent_margin"
 >
-    <ImageView
+    <FrameLayout
         android:id="@+id/call_type_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginRight="5dip"
+        android:layout_marginRight="@dimen/call_log_icon_margin"
     />
     <TextView
         android:id="@+id/call_type_text"

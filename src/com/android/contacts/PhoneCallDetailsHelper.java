@@ -20,7 +20,6 @@ import com.android.contacts.calllog.CallTypeHelper;
 import com.android.contacts.calllog.PhoneNumberHelper;
 import com.android.contacts.format.FormatUtils;
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
@@ -29,7 +28,6 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.view.View;
-import android.widget.ImageView;
 
 /**
  * Helper class to fill in the views in {@link PhoneCallDetailsViews}.
@@ -38,7 +36,6 @@ public class PhoneCallDetailsHelper {
     /** The maximum number of icons will be shown to represent the call types in a group. */
     private static final int MAX_CALL_TYPE_ICONS = 3;
 
-    private final Context mContext;
     private final Resources mResources;
     /** The injected current time in milliseconds since the epoch. Used only by tests. */
     private Long mCurrentTimeMillisForTest;
@@ -53,9 +50,8 @@ public class PhoneCallDetailsHelper {
      *
      * @param resources used to look up strings
      */
-    public PhoneCallDetailsHelper(Context context, Resources resources,
-            CallTypeHelper callTypeHelper, PhoneNumberHelper phoneNumberHelper) {
-        mContext = context;
+    public PhoneCallDetailsHelper(Resources resources, CallTypeHelper callTypeHelper,
+            PhoneNumberHelper phoneNumberHelper) {
         mResources = resources;
         mCallTypeHelper = callTypeHelper;
         mPhoneNumberHelper = phoneNumberHelper;
@@ -63,15 +59,12 @@ public class PhoneCallDetailsHelper {
 
     /** Fills the call details views with content. */
     public void setPhoneCallDetails(PhoneCallDetailsViews views, PhoneCallDetails details,
-            boolean useIcons, boolean isHighlighted) {
+            boolean useIcons, boolean isHighlighted, boolean nameOnly) {
         if (useIcons) {
             views.callTypeIcons.removeAllViews();
             int count = details.callTypes.length;
             for (int index = 0; index < count && index < MAX_CALL_TYPE_ICONS; ++index) {
-                int callType = details.callTypes[index];
-                ImageView callTypeImage = new ImageView(mContext);
-                callTypeImage.setImageDrawable(mCallTypeHelper.getCallTypeDrawable(callType));
-                views.callTypeIcons.addView(callTypeImage);
+                mCallTypeHelper.inflateCallTypeIcon(details.callTypes[index], views.callTypeIcons);
             }
             views.callTypeIcons.setVisibility(View.VISIBLE);
             if (count > MAX_CALL_TYPE_ICONS) {
@@ -144,6 +137,10 @@ public class PhoneCallDetailsHelper {
         } else {
             views.numberView.setVisibility(View.GONE);
         }
+
+        // Hide the rest if not visible.
+        views.callTypeView.setVisibility(nameOnly ? View.GONE : View.VISIBLE);
+        views.numberView.setVisibility(nameOnly ? View.GONE : View.VISIBLE);
     }
 
     public void setCurrentTimeForTest(long currentTimeMillis) {

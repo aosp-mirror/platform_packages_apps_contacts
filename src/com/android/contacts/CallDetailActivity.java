@@ -147,13 +147,9 @@ public class CallDetailActivity extends ListActivity implements
         mResources = getResources();
 
         mPhoneCallDetailsViews = PhoneCallDetailsViews.fromView(getWindow().getDecorView());
-        mCallTypeHelper = new CallTypeHelper(getResources(),
-                getResources().getDrawable(R.drawable.ic_call_incoming_holo_dark),
-                getResources().getDrawable(R.drawable.ic_call_outgoing_holo_dark),
-                getResources().getDrawable(R.drawable.ic_call_missed_holo_dark),
-                getResources().getDrawable(R.drawable.ic_call_voicemail_holo_dark));
+        mCallTypeHelper = new CallTypeHelper(getResources(), mInflater);
         mPhoneNumberHelper = new PhoneNumberHelper(mResources, getVoicemailNumber());
-        mPhoneCallDetailsHelper = new PhoneCallDetailsHelper(this, mResources, mCallTypeHelper,
+        mPhoneCallDetailsHelper = new PhoneCallDetailsHelper(mResources, mCallTypeHelper,
                 mPhoneNumberHelper);
         mVoicemailStatusHelper = new VoicemailStatusHelperImpl();
         mAsyncQueryHandler = new CallDetailActivityQueryHandler(this);
@@ -286,7 +282,7 @@ public class CallDetailActivity extends ListActivity implements
 
         // Set the details header, based on the first phone call.
         mPhoneCallDetailsHelper.setPhoneCallDetails(mPhoneCallDetailsViews,
-                details[0], false, false);
+                details[0], false, false, true);
 
         // Cache the details about the phone number.
         final Uri numberCallUri = mPhoneNumberHelper.getCallUri(mNumber);

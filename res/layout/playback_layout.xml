@@ -61,8 +61,8 @@
             android:thumb="@drawable/seek_bar_thumb"
             android:thumbOffset="0dip"
             android:background="@drawable/dialpad_background"
-            android:paddingLeft="35dip"
-            android:paddingRight="35dip"
+            android:paddingLeft="50dip"
+            android:paddingRight="50dip"
             android:paddingTop="10dip"
             android:paddingBottom="20dip"
             android:layout_margin="4dip"
@@ -81,7 +81,7 @@
         />
         <ImageButton
             android:id="@+id/rate_decrease_button"
-            android:src="@drawable/ic_menu_remove_field_holo_light"
+            android:src="@drawable/ic_minus_holo_dark"
             android:layout_width="30dip"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
@@ -92,7 +92,7 @@
         />
         <ImageButton
             android:id="@+id/rate_increase_button"
-            android:src="@drawable/ic_menu_add_field_holo_light"
+            android:src="@drawable/ic_plus_holo_dark"
             android:layout_width="30dip"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"

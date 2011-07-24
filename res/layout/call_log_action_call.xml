@@ -19,35 +19,48 @@
     <LinearLayout
         android:id="@+id/divider"
         android:layout_width="wrap_content"
-        android:layout_height="?attr/call_log_list_contact_photo_size"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
         android:orientation="horizontal"
     >
         <ImageView
-            android:id="@+id/play_icon"
+            android:id="@+id/unheard_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="?attr/call_log_inner_margin"
+            android:layout_marginLeft="@dimen/call_log_inner_margin"
             android:layout_gravity="center_vertical"
             android:scaleType="center"
             android:src="@drawable/ic_unheard_voicemail_holo_dark"
             android:visibility="gone"
+            android:contentDescription="@string/description_call_log_unheard_voicemail"
         />
         <View
             android:layout_width="1px"
-            android:layout_height="?attr/call_log_list_call_action_size"
+            android:layout_height="@dimen/call_log_call_action_size"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="?attr/call_log_inner_margin"
+            android:layout_marginLeft="@dimen/call_log_inner_margin"
             android:background="@drawable/ic_divider_dashed_holo_dark"
         />
         <ImageView
             android:id="@+id/call_icon"
-            android:layout_width="?attr/call_log_list_call_action_size"
-            android:layout_height="?attr/call_log_list_call_action_size"
-            android:layout_marginLeft="?attr/call_log_inner_margin"
+            android:layout_width="@dimen/call_log_call_action_size"
+            android:layout_height="@dimen/call_log_call_action_size"
+            android:layout_marginLeft="@dimen/call_log_inner_margin"
             android:layout_gravity="center_vertical"
             android:scaleType="center"
-            android:src="@drawable/ic_dial_action_call"
+            android:src="@drawable/ic_ab_dialer_holo_dark"
+            android:contentDescription="@string/description_call_log_call_button"
+        />
+        <ImageView
+            android:id="@+id/play_icon"
+            android:layout_width="@dimen/call_log_call_action_size"
+            android:layout_height="@dimen/call_log_call_action_size"
+            android:layout_marginLeft="@dimen/call_log_inner_margin"
+            android:layout_gravity="center_vertical"
+            android:scaleType="center"
+            android:src="@drawable/ic_play_holo_dark"
+            android:contentDescription="@string/description_call_log_play_button"
         />
     </LinearLayout>
 

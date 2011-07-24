@@ -312,11 +312,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             mPreDrawListener = null;
 
             Resources resources = getResources();
-            CallTypeHelper callTypeHelper = new CallTypeHelper(resources,
-                    resources.getDrawable(R.drawable.ic_call_incoming_holo_dark),
-                    resources.getDrawable(R.drawable.ic_call_outgoing_holo_dark),
-                    resources.getDrawable(R.drawable.ic_call_missed_holo_dark),
-                    resources.getDrawable(R.drawable.ic_call_voicemail_holo_dark));
+            LayoutInflater layoutInflater = getActivity().getLayoutInflater();
+            CallTypeHelper callTypeHelper = new CallTypeHelper(resources, layoutInflater);
             Drawable callDrawable = resources.getDrawable(R.drawable.ic_dial_action_call);
             Drawable playDrawable = resources.getDrawable(
                     R.drawable.ic_call_log_list_action_play);
@@ -324,7 +321,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             mContactPhotoManager = ContactPhotoManager.getInstance(getActivity());
             mPhoneNumberHelper = new PhoneNumberHelper(getResources(), mVoiceMailNumber);
             PhoneCallDetailsHelper phoneCallDetailsHelper = new PhoneCallDetailsHelper(
-                    getActivity(), resources, callTypeHelper, mPhoneNumberHelper);
+                    resources, callTypeHelper, mPhoneNumberHelper);
             mCallLogViewsHelper =
                     new CallLogListItemHelper(phoneCallDetailsHelper, mPhoneNumberHelper);
             mCallLogGroupBuilder = new CallLogGroupBuilder(this);
@@ -659,7 +656,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             // Get the views to bind to.
             CallLogListItemViews views = CallLogListItemViews.fromView(view);
             views.callView.setOnClickListener(this);
-            views.playView.setOnClickListener(this);
             view.setTag(views);
         }
 
@@ -697,21 +693,18 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             final String formattedNumber;
             final String countryIso = c.getString(CallLogQuery.COUNTRY_ISO);
 
-            // Store away the number so we can call it directly if you click on the call icon.
-            if (!TextUtils.isEmpty(number)) {
-                views.callView.setTag(IntentProvider.getReturnCallIntentProvider(number));
-            } else {
-                views.callView.setTag(null);
-            }
-
             // Store away the voicemail information so we can play it directly.
             if (callType == Calls.VOICEMAIL_TYPE) {
                 String voicemailUri = c.getString(CallLogQuery.VOICEMAIL_URI);
                 final long rowId = c.getLong(CallLogQuery.ID);
-                views.playView.setTag(
+                views.callView.setTag(
                         IntentProvider.getPlayVoicemailIntentProvider(rowId, voicemailUri));
+            } else if (!TextUtils.isEmpty(number)) {
+                // Store away the number so we can call it directly if you click on the call icon.
+                views.callView.setTag(IntentProvider.getReturnCallIntentProvider(number));
             } else {
-                views.playView.setTag(null);
+                // No action enabled.
+                views.callView.setTag(null);
             }
 
             // Lookup contacts with this number

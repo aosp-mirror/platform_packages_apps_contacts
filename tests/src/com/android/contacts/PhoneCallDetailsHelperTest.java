@@ -23,15 +23,10 @@ import com.android.internal.telephony.CallerInfo;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.provider.CallLog.Calls;
 import android.test.AndroidTestCase;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import java.util.GregorianCalendar;
 import java.util.Locale;
@@ -50,14 +45,6 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     private static final String TEST_NUMBER = "14125555555";
     /** The formatted version of {@link #TEST_NUMBER}. */
     private static final String TEST_FORMATTED_NUMBER = "1-412-255-5555";
-    /** A drawable to be used for incoming calls. */
-    private static final Drawable TEST_INCOMING_DRAWABLE = new ColorDrawable(Color.BLACK);
-    /** A drawable to be used for outgoing calls. */
-    private static final Drawable TEST_OUTGOING_DRAWABLE = new ColorDrawable(Color.BLUE);
-    /** A drawable to be used for missed calls. */
-    private static final Drawable TEST_MISSED_DRAWABLE = new ColorDrawable(Color.RED);
-    /** A drawable to be used for voicemails. */
-    private static final Drawable TEST_VOICEMAIL_DRAWABLE = new ColorDrawable(Color.CYAN);
     /** The country ISO name used in the tests. */
     private static final String TEST_COUNTRY_ISO = "US";
 
@@ -72,14 +59,12 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         super.setUp();
         Context context = getContext();
         Resources resources = context.getResources();
-        CallTypeHelper callTypeHelper = new CallTypeHelper(resources, TEST_INCOMING_DRAWABLE,
-                TEST_OUTGOING_DRAWABLE, TEST_MISSED_DRAWABLE, TEST_VOICEMAIL_DRAWABLE);
+        LayoutInflater layoutInflater =
+                (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        CallTypeHelper callTypeHelper = new CallTypeHelper(resources, layoutInflater);
         mPhoneNumberHelper = new PhoneNumberHelper(resources, TEST_VOICEMAIL_NUMBER);
-        mHelper = new PhoneCallDetailsHelper(
-                context, resources, callTypeHelper, mPhoneNumberHelper);
-        mViews = PhoneCallDetailsViews.createForTest(new TextView(context),
-                new LinearLayout(context), new TextView(context), new View(context),
-                new TextView(context), new TextView(context));
+        mHelper = new PhoneCallDetailsHelper(resources, callTypeHelper, mPhoneNumberHelper);
+        mViews = PhoneCallDetailsViews.createForTest(context);
     }
 
     @Override
@@ -143,16 +128,25 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
 
     public void testSetPhoneCallDetails_CallTypeIcons() {
         setPhoneCallDetailsWithCallTypeIcons(Calls.INCOMING_TYPE);
-        assertCallTypeIconsEquals(TEST_INCOMING_DRAWABLE);
+        assertCallTypeIconsEquals(R.id.call_log_incoming_call_icon);
 
         setPhoneCallDetailsWithCallTypeIcons(Calls.OUTGOING_TYPE);
-        assertCallTypeIconsEquals(TEST_OUTGOING_DRAWABLE);
+        assertCallTypeIconsEquals(R.id.call_log_outgoing_call_icon);
 
         setPhoneCallDetailsWithCallTypeIcons(Calls.MISSED_TYPE);
-        assertCallTypeIconsEquals(TEST_MISSED_DRAWABLE);
+        assertCallTypeIconsEquals(R.id.call_log_missed_call_icon);
 
         setPhoneCallDetailsWithCallTypeIcons(Calls.VOICEMAIL_TYPE);
-        assertCallTypeIconsEquals(TEST_VOICEMAIL_DRAWABLE);
+        assertCallTypeIconsEquals(R.id.call_log_voicemail_icon);
+    }
+
+    public void testSetPhoneCallDetails_MultipleCallTypeIcons() {
+        setPhoneCallDetailsWithCallTypeIcons(Calls.INCOMING_TYPE, Calls.OUTGOING_TYPE);
+        assertCallTypeIconsEquals(R.id.call_log_incoming_call_icon,
+                R.id.call_log_outgoing_call_icon);
+
+        setPhoneCallDetailsWithCallTypeIcons(Calls.MISSED_TYPE, Calls.MISSED_TYPE);
+        assertCallTypeIconsEquals(R.id.call_log_missed_call_icon, R.id.call_log_missed_call_icon);
     }
 
     public void testSetPhoneCallDetails_CallTypeText() {
@@ -187,6 +181,13 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         }
     }
 
+    public void testSetPhoneCallDetails_NameOnly() {
+        setPhoneCallDetailsNameOnly();
+        assertEquals(View.VISIBLE, mViews.nameView.getVisibility());
+        assertEquals(View.GONE, mViews.numberView.getVisibility());
+        assertEquals(View.GONE, mViews.callTypeView.getVisibility());
+    }
+
     /** Asserts that the name text field contains the value of the given string resource. */
     private void assertNameEqualsResource(int resId) {
         assertNameEquals(getContext().getString(resId));
@@ -208,12 +209,11 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     }
 
     /** Asserts that the call type contains the images with the given drawables. */
-    private void assertCallTypeIconsEquals(Drawable... drawables) {
-        assertEquals(drawables.length, mViews.callTypeIcons.getChildCount());
-        for (int index = 0; index < drawables.length; ++index) {
-            Drawable drawable = drawables[index];
-            ImageView imageView = (ImageView) mViews.callTypeIcons.getChildAt(index);
-            assertEquals(drawable, imageView.getDrawable());
+    private void assertCallTypeIconsEquals(int... ids) {
+        assertEquals(ids.length, mViews.callTypeIcons.getChildCount());
+        for (int index = 0; index < ids.length; ++index) {
+            int id = ids[index];
+            assertEquals(id, mViews.callTypeIcons.getChildAt(index).getId());
         }
         assertEquals(View.VISIBLE, mViews.callTypeIcons.getVisibility());
         assertEquals(View.GONE, mViews.callTypeText.getVisibility());
@@ -233,7 +233,7 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(number, formattedNumber, TEST_COUNTRY_ISO,
                         new int[]{ Calls.INCOMING_TYPE }, TEST_DATE, TEST_DURATION),
-                false, false);
+                false, false, false);
     }
 
     /** Sets the phone call details with default values and the given date. */
@@ -241,7 +241,7 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
                         new int[]{ Calls.INCOMING_TYPE }, date, TEST_DURATION),
-                false, false);
+                false, false, false);
     }
 
     /** Sets the phone call details with default values and the given call types using icons. */
@@ -258,6 +258,13 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
                         callTypes, TEST_DATE, TEST_DURATION),
-                useIcons, false);
+                useIcons, false, false);
+    }
+
+    private void setPhoneCallDetailsNameOnly() {
+        mHelper.setPhoneCallDetails(mViews,
+                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
+                        new int[]{ Calls.INCOMING_TYPE }, TEST_DATE, TEST_DURATION),
+                true, false, true);
     }
 }

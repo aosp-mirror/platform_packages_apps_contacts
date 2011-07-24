@@ -20,25 +20,21 @@ import com.android.contacts.R;
 
 import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.provider.CallLog.Calls;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 /**
  * Helper class to perform operations related to call types.
  */
 public class CallTypeHelper {
-    /** Icon for incoming calls. */
-    private final Drawable mIncomingDrawable;
-    /** Icon for outgoing calls. */
-    private final Drawable mOutgoingDrawable;
-    /** Icon for missed calls. */
-    private final Drawable mMissedDrawable;
-    /** Icon for voicemails. */
-    private final Drawable mVoicemailDrawable;
+    /** Used to create the views for the call types. */
+    private final LayoutInflater mLayoutInflater;
     /** Name used to identify incoming calls. */
     private final CharSequence mIncomingName;
     /** Name used to identify outgoing calls. */
@@ -52,12 +48,8 @@ public class CallTypeHelper {
     /** Name used to identify new voicemail calls. */
     private final CharSequence mNewVoicemailName;
 
-    public CallTypeHelper(Resources resources, Drawable incomingDrawable, Drawable outgoingDrawable,
-            Drawable missedDrawable, Drawable voicemailDrawable) {
-        mIncomingDrawable = incomingDrawable;
-        mOutgoingDrawable = outgoingDrawable;
-        mMissedDrawable = missedDrawable;
-        mVoicemailDrawable = voicemailDrawable;
+    public CallTypeHelper(Resources resources, LayoutInflater layoutInflater) {
+        mLayoutInflater = layoutInflater;
         // Cache these values so that we do not need to look them up each time.
         mIncomingName = resources.getString(R.string.type_incoming);
         mOutgoingName = resources.getString(R.string.type_outgoing);
@@ -111,20 +103,20 @@ public class CallTypeHelper {
         }
     }
 
-    /** Returns the drawable of the icon associated with the given call type. */
-    public Drawable getCallTypeDrawable(int callType) {
+    /** Returns a new view for the icon to be used to represent a given call type. */
+    public View inflateCallTypeIcon(int callType, ViewGroup root) {
         switch (callType) {
             case Calls.INCOMING_TYPE:
-                return mIncomingDrawable;
+                return mLayoutInflater.inflate(R.layout.call_log_incoming_call_icon, root);
 
             case Calls.OUTGOING_TYPE:
-                return mOutgoingDrawable;
+                return mLayoutInflater.inflate(R.layout.call_log_outgoing_call_icon, root);
 
             case Calls.MISSED_TYPE:
-                return mMissedDrawable;
+                return mLayoutInflater.inflate(R.layout.call_log_missed_call_icon, root);
 
             case Calls.VOICEMAIL_TYPE:
-                return mVoicemailDrawable;
+                return mLayoutInflater.inflate(R.layout.call_log_voicemail_icon, root);
 
             default:
                 throw new IllegalArgumentException("invalid call type: " + callType);

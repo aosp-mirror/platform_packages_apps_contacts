@@ -54,19 +54,27 @@ import android.view.View;
     public void setPhoneCallDetails(CallLogListItemViews views, PhoneCallDetails details,
             boolean useIcons, boolean isHighlighted) {
         mPhoneCallDetailsHelper.setPhoneCallDetails(views.phoneCallDetailsViews, details, useIcons,
-                isHighlighted);
-        boolean callVisible = mPhoneNumberHelper.canPlaceCallsTo(details.number);
-        boolean playVisible = details.callTypes[0] == Calls.VOICEMAIL_TYPE;
+                isHighlighted, false);
+        boolean canCall = mPhoneNumberHelper.canPlaceCallsTo(details.number);
+        boolean canPlay = details.callTypes[0] == Calls.VOICEMAIL_TYPE;
 
-        if (callVisible || playVisible) {
-            // At least one is visible. Keep the divider and the space for the call button.
-            views.callView.setVisibility(callVisible ? View.VISIBLE : View.INVISIBLE);
-            views.playView.setVisibility(playVisible ? View.VISIBLE : View.GONE);
+        if (canPlay) {
+            // Playback action takes preference.
+            views.callView.setVisibility(View.GONE);
+            views.playView.setVisibility(View.VISIBLE);
+            views.unheardView.setVisibility(isHighlighted ? View.VISIBLE : View.GONE);
+            views.dividerView.setVisibility(View.VISIBLE);
+        } else if (canCall) {
+            // Call is the main action.
+            views.callView.setVisibility(View.VISIBLE);
+            views.playView.setVisibility(View.GONE);
+            views.unheardView.setVisibility(View.GONE);
             views.dividerView.setVisibility(View.VISIBLE);
         } else {
-            // Neither is visible, remove all of them entirely.
+            // No action available.
             views.callView.setVisibility(View.GONE);
             views.playView.setVisibility(View.GONE);
+            views.unheardView.setVisibility(View.GONE);
             views.dividerView.setVisibility(View.GONE);
         }
     }
