@@ -72,6 +72,16 @@ public class IntegrationTestUtils {
         });
     }
 
+    /** Returns the result of running {@link TextView#getText()} on the ui thread. */
+    public CharSequence getText(final TextView view) throws Throwable {
+        return runOnUiThreadAndGetTheResult(new Callable<CharSequence>() {
+            @Override
+            public CharSequence call() {
+                return view.getText();
+            }
+        });
+    }
+
     // TODO: Move this class and the appropriate documentation into a test library, having checked
     // first to see if exactly this code already exists or not.
     /**

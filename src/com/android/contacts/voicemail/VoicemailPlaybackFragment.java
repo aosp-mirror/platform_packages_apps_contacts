@@ -37,7 +37,9 @@ import android.widget.Toast;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
+import javax.annotation.concurrent.GuardedBy;
 import javax.annotation.concurrent.NotThreadSafe;
 
 /**
@@ -64,6 +66,7 @@ public class VoicemailPlaybackFragment extends Fragment {
     private TextView mPlaybackPositionText;
     private ImageButton mRateDecreaseButton;
     private ImageButton mRateIncreaseButton;
+    private TextViewWithMessagesController mTextController;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,6 +80,7 @@ public class VoicemailPlaybackFragment extends Fragment {
         mPlaybackPositionText = (TextView) view.findViewById(R.id.playback_position_text);
         mRateDecreaseButton = (ImageButton) view.findViewById(R.id.rate_decrease_button);
         mRateIncreaseButton = (ImageButton) view.findViewById(R.id.rate_increase_button);
+        mTextController = new TextViewWithMessagesController(mPlaybackPositionText);
         return view;
     }
 
@@ -173,12 +177,9 @@ public class VoicemailPlaybackFragment extends Fragment {
         }
 
         @Override
-        public void setRateDisplay(float rate) {
-            // TODO: This isn't being done yet.  Old rate display code has been removed.
-            // Instead we're going to temporarily fade out the track position when you change
-            // rate, and display one of the words "slowest", "slower", "normal", "faster",
-            // "fastest" briefly when you change speed, before fading back in the time.
-            // At least, that's the current thinking.
+        public void setRateDisplay(float rate, int stringResourceId) {
+            mTextController.setTemporaryText(
+                    getActivity().getString(stringResourceId), 1, TimeUnit.SECONDS);
         }
 
         @Override
@@ -202,16 +203,15 @@ public class VoicemailPlaybackFragment extends Fragment {
         }
 
         @Override
-        public void setClipLength(int clipLengthInMillis) {
-            mPlaybackSeek.setMax(clipLengthInMillis);
-            // TODO: The old code used to set the static lenght-of-clip text field, but now
-            // the thinking is that we will only show this text whilst the recording is stopped.
-        }
-
-        @Override
-        public void setClipPosition(int clipPositionInMillis) {
-            mPlaybackSeek.setProgress(clipPositionInMillis);
-            mPlaybackPositionText.setText(formatAsMinutesAndSeconds(clipPositionInMillis));
+        public void setClipPosition(int clipPositionInMillis, int clipLengthInMillis) {
+            int seekBarPosition = Math.max(0, clipPositionInMillis);
+            int seekBarMax = Math.max(seekBarPosition, clipLengthInMillis);
+            if (mPlaybackSeek.getMax() != seekBarMax) {
+                mPlaybackSeek.setMax(seekBarMax);
+            }
+            mPlaybackSeek.setProgress(seekBarPosition);
+            mTextController.setPermanentText(
+                    formatAsMinutesAndSeconds(seekBarMax - seekBarPosition));
         }
 
         @Override
@@ -243,6 +243,63 @@ public class VoicemailPlaybackFragment extends Fragment {
                 mPlaybackSpeakerphone.setImageResource(R.drawable.ic_sound_holo_dark);
             } else {
                 mPlaybackSpeakerphone.setImageResource(R.drawable.ic_sound_holo_dark);
+            }
+        }
+    }
+
+    /**
+     * Controls a TextView with dynamically changing text.
+     * <p>
+     * There are two methods here of interest,
+     * {@link TextViewWithMessagesController#setPermanentText(String)} and
+     * {@link TextViewWithMessagesController#setTemporaryText(String, long, TimeUnit)}.  The
+     * former is used to set the text on the text view immediately, and is used in our case for
+     * the countdown of duration remaining during voicemail playback.  The second is used to
+     * temporarily replace this countdown with a message, in our case faster voicemail speed or
+     * slower voicemail speed, before returning to the countdown display.
+     * <p>
+     * All the methods on this class must be called from the ui thread.
+     */
+    private static final class TextViewWithMessagesController {
+        private final Object mLock = new Object();
+        private final TextView mTextView;
+        @GuardedBy("mLock") String mCurrentText = "";
+        @GuardedBy("mLock") Runnable mRunnable;
+
+        public TextViewWithMessagesController(TextView textView) {
+            mTextView = textView;
+        }
+
+        public void setPermanentText(String text) {
+            synchronized (mLock) {
+                mCurrentText = text;
+                // If there's currently a Runnable pending, then we don't alter the display
+                // text. The Runnable will use the most recent version of mCurrentText
+                // when it completes.
+                if (mRunnable == null) {
+                    mTextView.setText(text);
+                }
+            }
+        }
+
+        public void setTemporaryText(String text, long duration, TimeUnit units) {
+            synchronized (mLock) {
+                mTextView.setText(text);
+                mRunnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        synchronized (mLock) {
+                            // We check for (mRunnable == this) becuase if not true, then another
+                            // setTemporaryText call has taken place in the meantime, and this
+                            // one is now defunct and needs to take no action.
+                            if (mRunnable == this) {
+                                mRunnable = null;
+                                mTextView.setText(mCurrentText);
+                            }
+                        }
+                    }
+                };
+                mTextView.postDelayed(mRunnable, units.toMillis(duration));
             }
         }
     }

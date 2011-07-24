@@ -16,6 +16,7 @@
 
 package com.android.contacts.voicemail;
 
+import com.android.contacts.R;
 import com.android.ex.variablespeed.MediaPlayerProxy;
 import com.android.ex.variablespeed.SingleThreadedMediaPlayerProxy;
 
@@ -56,8 +57,7 @@ import javax.annotation.concurrent.ThreadSafe;
         void setPositionSeekListener(SeekBar.OnSeekBarChangeListener listener);
         void setSpeakerphoneListener(View.OnClickListener listener);
         void setDeleteButtonListener(View.OnClickListener listener);
-        void setClipLength(int clipLengthInMillis);
-        void setClipPosition(int clipPositionInMillis);
+        void setClipPosition(int clipPositionInMillis, int clipLengthInMillis);
         int getDesiredClipPosition();
         void playbackStarted();
         void playbackStopped();
@@ -65,7 +65,7 @@ import javax.annotation.concurrent.ThreadSafe;
         boolean isSpeakerPhoneOn();
         void setSpeakerPhoneOn(boolean on);
         void finish();
-        void setRateDisplay(float rate);
+        void setRateDisplay(float rate, int stringResourceId);
         void setRateIncreaseButtonListener(View.OnClickListener listener);
         void setRateDecreaseButtonListener(View.OnClickListener listener);
     }
@@ -89,9 +89,31 @@ import javax.annotation.concurrent.ThreadSafe;
     private static final float[] PRESET_RATES = new float[] {
         0.64f, 0.8f, 1.0f, 1.25f, 1.5625f
     };
+    /** The string resource ids corresponding to the names given to the above preset rates. */
+    private static final int[] PRESET_NAMES = new int[] {
+        R.string.voicemail_speed_slowest,
+        R.string.voicemail_speed_slower,
+        R.string.voicemail_speed_normal,
+        R.string.voicemail_speed_faster,
+        R.string.voicemail_speed_fastest,
+    };
+    /**
+     * Pointer into the {@link VoicemailPlaybackPresenter#PRESET_RATES} array.
+     * <p>
+     * This doesn't need to be synchronized, it's used only by the {@link RateChangeListener}
+     * which in turn is only executed on the ui thread.  This can't be encapsulated inside the
+     * rate change listener since multiple rate change listeners must share the same value.
+     */
+    private int mRateIndex = 2;
 
-    /** Index into {@link #PRESET_RATES} indicating the current playback speed. */
-    private final AtomicInteger mCurrentPlaybackRate = new AtomicInteger(2);
+    /**
+     * The most recently calculated duration.
+     * <p>
+     * We cache this in a field since we don't want to keep requesting it from the player, as
+     * this can easily lead to throwing {@link IllegalStateException} (any time the player is
+     * released, it's illegal to ask for the duration).
+     */
+    private final AtomicInteger mDuration = new AtomicInteger(0);
 
     private final PlaybackView mView;
     private final MediaPlayerProxy mPlayer;
@@ -117,7 +139,7 @@ import javax.annotation.concurrent.ThreadSafe;
         mView.setSpeakerPhoneOn(mView.isSpeakerPhoneOn());
         mView.setRateDecreaseButtonListener(createRateDecreaseListener());
         mView.setRateIncreaseButtonListener(createRateIncreaseListener());
-        mView.setClipPosition(0);
+        mView.setClipPosition(0, 0);
         mView.playbackStopped();
         // TODO: Now I'm ignoring the bundle, when previously I was checking for contains against
         // the PAUSED_STATE_KEY, and CLIP_POSITION_KEY.
@@ -131,6 +153,7 @@ import javax.annotation.concurrent.ThreadSafe;
     }
 
     public void onDestroy() {
+        mPositionUpdater.stopUpdating();
         mPlayer.release();
     }
 
@@ -174,6 +197,11 @@ import javax.annotation.concurrent.ThreadSafe;
         return new RateChangeListener(true);
     }
 
+    /**
+     * Listens to clicks on the rate increase and decrease buttons.
+     * <p>
+     * This class is not thread-safe, but all interactions with it will happen on the ui thread.
+     */
     private class RateChangeListener implements View.OnClickListener {
         private final boolean mIncrease;
 
@@ -183,19 +211,18 @@ import javax.annotation.concurrent.ThreadSafe;
 
         @Override
         public void onClick(View v) {
-            int adjustment = (mIncrease ? 1 : -1);
-            int andGet = mCurrentPlaybackRate.addAndGet(adjustment);
-            if (andGet < 0) {
-                // TODO: discussions with interaction design have suggested that we might make
-                // an audible tone play here to indicate that you've hit the end of the range?
-                // Let's firm up this decision.
-                mCurrentPlaybackRate.set(0);
-            } else if (andGet >= PRESET_RATES.length) {
-                mCurrentPlaybackRate.set(PRESET_RATES.length - 1);
-            } else {
-                changeRate(PRESET_RATES[andGet]);
-            }
+            // Adjust the current rate, then clamp it to the allowed values.
+            mRateIndex = clamp(mRateIndex + (mIncrease ? 1 : -1), 0, PRESET_RATES.length - 1);
+            // Whether or not we have actually changed the index, call changeRate().
+            // This will ensure that we show the "fastest" or "slowest" text on the ui to indicate
+            // to the user that it doesn't get any faster or slower.
+            changeRate(PRESET_RATES[mRateIndex], PRESET_NAMES[mRateIndex]);
         }
+    }
+
+    /** Clamp the input value to between min and max inclusive. */
+    private static int clamp(int input, int min, int max) {
+        return Math.max(Math.min(input, max), min);
     }
 
     private void resetPrepareStartPlaying(int clipPositionInMillis) {
@@ -203,13 +230,13 @@ import javax.annotation.concurrent.ThreadSafe;
             mPlayer.reset();
             mPlayer.setDataSource(mView.getDataSourceContext(), mVoicemailUri);
             mPlayer.prepare();
-            int clipLengthInMillis = mPlayer.getDuration();
-            mView.setClipLength(clipLengthInMillis);
-            int startPosition = Math.min(Math.max(clipPositionInMillis, 0), clipLengthInMillis);
+            mDuration.set(mPlayer.getDuration());
+            int startPosition = clamp(clipPositionInMillis, 0, mDuration.get());
+            mView.setClipPosition(startPosition, mDuration.get());
             mPlayer.seekTo(startPosition);
             mPlayer.start();
             mView.playbackStarted();
-            mPositionUpdater.startUpdating(startPosition, clipLengthInMillis);
+            mPositionUpdater.startUpdating(startPosition, mDuration.get());
         } catch (IOException e) {
             handleError(e);
         }
@@ -217,18 +244,18 @@ import javax.annotation.concurrent.ThreadSafe;
 
     private void handleError(Exception e) {
         mView.playbackError(e);
-        mPlayer.release();
         mPositionUpdater.stopUpdating();
+        mPlayer.release();
     }
 
     public void handleCompletion(MediaPlayer mediaPlayer) {
-        stopPlaybackAtPosition(0);
+        stopPlaybackAtPosition(0, mDuration.get());
     }
 
-    private void stopPlaybackAtPosition(int clipPosition) {
-        mView.playbackStopped();
+    private void stopPlaybackAtPosition(int clipPosition, int duration) {
         mPositionUpdater.stopUpdating();
-        mView.setClipPosition(clipPosition);
+        mView.playbackStopped();
+        mView.setClipPosition(clipPosition, duration);
         if (mPlayer.isPlaying()) {
             mPlayer.pause();
         }
@@ -241,7 +268,7 @@ import javax.annotation.concurrent.ThreadSafe;
         public void onStartTrackingTouch(SeekBar arg0) {
             if (mPlayer.isPlaying()) {
                 mShouldResumePlaybackAfterSeeking = true;
-                stopPlaybackAtPosition(mPlayer.getCurrentPosition());
+                stopPlaybackAtPosition(mPlayer.getCurrentPosition(), mDuration.get());
             } else {
                 mShouldResumePlaybackAfterSeeking = false;
             }
@@ -250,7 +277,7 @@ import javax.annotation.concurrent.ThreadSafe;
         @Override
         public void onStopTrackingTouch(SeekBar arg0) {
             if (mPlayer.isPlaying()) {
-                stopPlaybackAtPosition(mPlayer.getCurrentPosition());
+                stopPlaybackAtPosition(mPlayer.getCurrentPosition(), mDuration.get());
             }
             if (mShouldResumePlaybackAfterSeeking) {
                 resetPrepareStartPlaying(mView.getDesiredClipPosition());
@@ -259,13 +286,13 @@ import javax.annotation.concurrent.ThreadSafe;
 
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            mView.setClipPosition(seekBar.getProgress());
+            mView.setClipPosition(seekBar.getProgress(), seekBar.getMax());
         }
     }
 
-    private void changeRate(float rate) {
+    private void changeRate(float rate, int stringResourceId) {
         ((SingleThreadedMediaPlayerProxy) mPlayer).setVariableSpeed(rate);
-        mView.setRateDisplay(rate);
+        mView.setRateDisplay(rate, stringResourceId);
     }
 
     private class SpeakerphoneListener implements View.OnClickListener {
@@ -288,7 +315,7 @@ import javax.annotation.concurrent.ThreadSafe;
         @Override
         public void onClick(View arg0) {
             if (mPlayer.isPlaying()) {
-                stopPlaybackAtPosition(mPlayer.getCurrentPosition());
+                stopPlaybackAtPosition(mPlayer.getCurrentPosition(), mDuration.get());
             } else {
                 resetPrepareStartPlaying(mView.getDesiredClipPosition());
             }
@@ -304,6 +331,12 @@ import javax.annotation.concurrent.ThreadSafe;
         private final int mPeriodMillis;
         private final Object mLock = new Object();
         @GuardedBy("mLock") private ScheduledFuture<?> mScheduledFuture;
+        private final Runnable mSetClipPostitionRunnable = new Runnable() {
+            @Override
+            public void run() {
+                mView.setClipPosition(mPlayer.getCurrentPosition(), mDuration.get());
+            }
+        };
 
         public PositionUpdater(ScheduledExecutorService executorService, int periodMillis) {
             mExecutorService = executorService;
@@ -314,12 +347,7 @@ import javax.annotation.concurrent.ThreadSafe;
         public void run() {
             synchronized (mLock) {
                 if (mScheduledFuture != null) {
-                    mView.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            mView.setClipPosition(mPlayer.getCurrentPosition());
-                        }
-                    });
+                    mView.runOnUiThread(mSetClipPostitionRunnable);
                 }
             }
         }

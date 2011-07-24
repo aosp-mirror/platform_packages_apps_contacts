@@ -29,13 +29,17 @@ import android.content.Intent;
 import android.net.Uri;
 import android.provider.CallLog;
 import android.test.ActivityInstrumentationTestCase2;
+import android.test.suitebuilder.annotation.LargeTest;
 import android.view.Menu;
+import android.widget.TextView;
 
+import java.util.List;
 import java.util.Locale;
 
 /**
  * Unit tests for the {@link CallDetailActivity}.
  */
+@LargeTest
 public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<CallDetailActivity> {
     private static final String FAKE_VOICEMAIL_URI_STRING = "content://fake_uri";
     private Uri mUri;
@@ -110,6 +114,29 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
         activity.onCreateOptionsMenu(menu);
         activity.onPrepareOptionsMenu(menu);
         assertTrue(menu.findItem(R.id.remove_from_call_log).isVisible());
+    }
+
+    /**
+     * Test to show that we are correctly displaying playback rate on the ui.
+     * <p>
+     * See bug http://b/5044075.
+     */
+    public void testVoicemailPlaybackRateDisplayedOnUi() throws Throwable {
+        setActivityIntentForTestVoicemailEntry();
+        CallDetailActivity activity = getActivity();
+        // Find the TextView containing the duration.  It should be initially displaying "00:00".
+        List<TextView> views = mTestUtils.getTextViewsWithString(activity, "00:00");
+        assertEquals(1, views.size());
+        TextView timeDisplay = views.get(0);
+        // Hit the plus button.  At this point we should be displaying "fast speed".
+        mTestUtils.clickButton(activity, R.id.rate_increase_button);
+        assertEquals("fast speed", mTestUtils.getText(timeDisplay));
+        // Hit the minus button.  We should be back to "normal" speed.
+        mTestUtils.clickButton(activity, R.id.rate_decrease_button);
+        assertEquals("normal speed", mTestUtils.getText(timeDisplay));
+        // Wait for one and a half seconds.  The timer will be back.
+        Thread.sleep(1500);
+        assertEquals("00:00", mTestUtils.getText(timeDisplay));
     }
 
     private void setActivityIntentForTestCallEntry() {
