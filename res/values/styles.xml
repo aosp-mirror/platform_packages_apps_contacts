@@ -53,8 +53,7 @@
         <item name="call_log_voicemail_status_text_color">#000000</item>
     </style>
 
-    <style name="CallDetailActivityTheme" parent="android:Theme.Holo">
-        <item name="android:windowNoTitle">true</item>
+    <style name="CallDetailActivityTheme" parent="android:Theme.Holo.SplitActionBarWhenNarrow">
         <item name="android:gravity">top</item>
         <item name="call_detail_transparent_background">#CC000000</item>
         <item name="call_detail_contact_background_overlay_alpha">0.25</item>

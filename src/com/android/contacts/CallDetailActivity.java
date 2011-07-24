@@ -24,6 +24,7 @@ import com.android.contacts.voicemail.VoicemailStatusHelper;
 import com.android.contacts.voicemail.VoicemailStatusHelper.StatusMessage;
 import com.android.contacts.voicemail.VoicemailStatusHelperImpl;
 
+import android.app.ActionBar;
 import android.app.FragmentManager;
 import android.app.ListActivity;
 import android.content.ContentResolver;
@@ -81,7 +82,6 @@ public class CallDetailActivity extends ListActivity implements
     private CallTypeHelper mCallTypeHelper;
     private PhoneNumberHelper mPhoneNumberHelper;
     private PhoneCallDetailsHelper mPhoneCallDetailsHelper;
-    private View mHomeActionView;
     private ImageView mMainActionView;
     private ImageView mContactBackgroundView;
 
@@ -156,20 +156,12 @@ public class CallDetailActivity extends ListActivity implements
         mStatusMessageView = findViewById(R.id.voicemail_status);
         mStatusMessageText = (TextView) findViewById(R.id.voicemail_status_message);
         mStatusMessageAction = (TextView) findViewById(R.id.voicemail_status_action);
-        mHomeActionView = findViewById(R.id.action_bar_home);
         mMainActionView = (ImageView) findViewById(R.id.main_action);
         mContactBackgroundView = (ImageView) findViewById(R.id.contact_background);
         mDefaultCountryIso = ContactsUtils.getCurrentCountryIso(this);
         mContactPhotoManager = ContactPhotoManager.getInstance(this);
         getListView().setOnItemClickListener(this);
-        mHomeActionView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // We want this to start the call log if this activity was not started from the
-                // call log itself.
-                CallDetailActivity.this.finish();
-            }
-        });
+        configureActionBar();
     }
 
     @Override
@@ -654,8 +646,32 @@ public class CallDetailActivity extends ListActivity implements
                         new Intent(Intent.ACTION_DIAL, mPhoneNumberHelper.getCallUri(mNumber)));
                 return true;
 
+            case android.R.id.home: {
+                onHomeSelected();
+                return true;
+            }
+
             default:
                 throw new IllegalArgumentException();
         }
+    }
+
+    private void configureActionBar() {
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_HOME,
+                    ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE
+                    | ActionBar.DISPLAY_SHOW_HOME);
+            actionBar.setIcon(R.drawable.ic_ab_dialer_holo_dark);
+        }
+    }
+
+    /** Invoked when the user presses the home button in the action bar. */
+    private void onHomeSelected() {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Calls.CONTENT_URI);
+        // This will open the call log even if the detail view has been opened directly.
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 }
