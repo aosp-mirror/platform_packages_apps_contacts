@@ -33,6 +33,7 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.widget.EditText;
 
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -120,7 +121,7 @@ public abstract class AccountType {
      */
     public CharSequence getInviteContactActionLabel(Context context) {
         return getResourceText(context, summaryResPackageName, getInviteContactActionResId(context),
-                null);
+                "");
     }
 
     /**
@@ -341,5 +342,29 @@ public abstract class AccountType {
     public interface StringInflater {
         public CharSequence inflateUsing(Context context, Cursor cursor);
         public CharSequence inflateUsing(Context context, ContentValues values);
+    }
+
+    /**
+     * Compare two {@link AccountType} by their {@link AccountType#getDisplayLabel} with the
+     * current locale.
+     */
+    public static class DisplayLabelComparator implements Comparator<AccountType> {
+        private final Context mContext;
+        /** {@link Comparator} for the current locale. */
+        private final Collator mCollator = Collator.getInstance();
+
+        public DisplayLabelComparator(Context context) {
+            mContext = context;
+        }
+
+        private String getDisplayLabel(AccountType type) {
+            CharSequence label = type.getDisplayLabel(mContext);
+            return (label == null) ? "" : label.toString();
+        }
+
+        @Override
+        public int compare(AccountType lhs, AccountType rhs) {
+            return mCollator.compare(getDisplayLabel(lhs), getDisplayLabel(rhs));
+        }
     }
 }

@@ -16,9 +16,12 @@
 
 package com.android.contacts;
 
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.StreamItemEntry;
 import com.android.contacts.util.StreamItemPhotoEntry;
+import com.google.android.collect.Lists;
 import com.google.common.annotations.VisibleForTesting;
 
 import android.content.ContentResolver;
@@ -44,23 +47,20 @@ import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.RawContacts;
-import android.provider.ContactsContract.StreamItems;
 import android.provider.ContactsContract.StreamItemPhotos;
+import android.provider.ContactsContract.StreamItems;
 import android.text.TextUtils;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Loads a single Contact and all it constituent RawContacts.
@@ -71,6 +71,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
     private Uri mLookupUri;
     private boolean mLoadGroupMetaData;
     private boolean mLoadStreamItems;
+    private final boolean mLoadInvitableAccountTypes;
     private Result mContact;
     private ForceLoadContentObserver mObserver;
     private boolean mDestroyed;
@@ -113,6 +114,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         private final ArrayList<Entity> mEntities;
         private ArrayList<StreamItemEntry> mStreamItems;
         private final HashMap<Long, DataStatus> mStatuses;
+        private final ArrayList<String> mInvitableAccountTypes;
 
         private String mDirectoryDisplayName;
         private String mDirectoryType;
@@ -147,6 +149,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mPhoneticName = null;
             mStarred = false;
             mPresence = null;
+            mInvitableAccountTypes = null;
         }
 
         /**
@@ -173,6 +176,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mPhoneticName = phoneticName;
             mStarred = starred;
             mPresence = presence;
+            mInvitableAccountTypes = Lists.newArrayList();
         }
 
         private Result(Result from) {
@@ -193,6 +197,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mEntities = from.mEntities;
             mStreamItems = from.mStreamItems;
             mStatuses = from.mStatuses;
+            mInvitableAccountTypes = from.mInvitableAccountTypes;
 
             mDirectoryDisplayName = from.mDirectoryDisplayName;
             mDirectoryType = from.mDirectoryType;
@@ -277,6 +282,10 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
         public Integer getPresence() {
             return mPresence;
+        }
+
+        public ArrayList<String> getInvitableAccontTypes() {
+            return mInvitableAccountTypes;
         }
 
         public ArrayList<Entity> getEntities() {
@@ -568,6 +577,9 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                         loadStreamItems(result);
                     }
                     loadPhotoBinaryData(result);
+                    if (mLoadInvitableAccountTypes) {
+                        loadInvitableAccountTypes(result);
+                    }
                 }
                 return result;
             } catch (Exception e) {
@@ -716,6 +728,27 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                     }
                 }
             }
+        }
+
+        private void loadInvitableAccountTypes(Result contactData) {
+            Map<String, AccountType> allInvitables =
+                    AccountTypeManager.getInstance(getContext()).getInvitableAccountTypes();
+            if (allInvitables.isEmpty()) {
+                return;
+            }
+
+            HashMap<String, AccountType> result = new HashMap<String, AccountType>(allInvitables);
+
+            // Remove the ones that already has a raw contact in the current contact
+            for (Entity entity : contactData.getEntities()) {
+                final String type = entity.getEntityValues().getAsString(RawContacts.ACCOUNT_TYPE);
+                if (!TextUtils.isEmpty(type)) {
+                    result.remove(type);
+                }
+            }
+
+            // Set to mInvitableAccountTypes
+            contactData.mInvitableAccountTypes.addAll(result.keySet());
         }
 
         /**
@@ -1058,15 +1091,16 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
     }
 
     public ContactLoader(Context context, Uri lookupUri) {
-        this(context, lookupUri, false, false);
+        this(context, lookupUri, false, false, false);
     }
 
     public ContactLoader(Context context, Uri lookupUri, boolean loadGroupMetaData,
-            boolean loadStreamItems) {
+            boolean loadStreamItems, boolean loadInvitableAccountTypes) {
         super(context);
         mLookupUri = lookupUri;
         mLoadGroupMetaData = loadGroupMetaData;
         mLoadStreamItems = loadStreamItems;
+        mLoadInvitableAccountTypes = loadInvitableAccountTypes;
     }
 
     public Uri getLookupUri() {
