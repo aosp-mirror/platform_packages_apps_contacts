@@ -21,6 +21,7 @@ import com.android.contacts.calllog.CallLogFragment.CallLogQuery;
 import com.android.contacts.voicemail.VoicemailStatusHelperImpl;
 
 import android.content.AsyncQueryHandler;
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.MatrixCursor;
@@ -54,7 +55,7 @@ import javax.annotation.concurrent.GuardedBy;
     /** The token for the query to fetch voicemail status messages. */
     private static final int QUERY_VOICEMAIL_STATUS_TOKEN = 56;
 
-    private final WeakReference<CallLogFragment> mFragment;
+    private final WeakReference<Listener> mListener;
 
     /** The cursor containing the new calls, or null if they have not yet been fetched. */
     @GuardedBy("this") private Cursor mNewCallsCursor;
@@ -91,9 +92,9 @@ import javax.annotation.concurrent.GuardedBy;
         return new CatchingWorkerHandler(looper);
     }
 
-    public CallLogQueryHandler(CallLogFragment fragment) {
-        super(fragment.getActivity().getContentResolver());
-        mFragment = new WeakReference<CallLogFragment>(fragment);
+    public CallLogQueryHandler(ContentResolver contentResolver, Listener listener) {
+        super(contentResolver);
+        mListener = new WeakReference<Listener>(listener);
     }
 
     /** Creates a cursor that contains a single row and maps the section to the given value. */
@@ -268,16 +269,28 @@ import javax.annotation.concurrent.GuardedBy;
      * Updates the adapter in the call log fragment to show the new cursor data.
      */
     private void updateAdapterData(Cursor combinedCursor) {
-        final CallLogFragment fragment = mFragment.get();
-        if (fragment != null) {
-            fragment.onCallsFetched(combinedCursor);
+        final Listener listener = mListener.get();
+        if (listener != null) {
+            listener.onCallsFetched(combinedCursor);
         }
     }
 
     private void updateVoicemailStatus(Cursor statusCursor) {
-        final CallLogFragment fragment = mFragment.get();
-        if (fragment != null) {
-            fragment.onVoicemailStatusFetched(statusCursor);
+        final Listener listener = mListener.get();
+        if (listener != null) {
+            listener.onVoicemailStatusFetched(statusCursor);
         }
+    }
+
+    /** Listener to completion of various queries. */
+    public interface Listener {
+        /** Called when {@link CallLogQueryHandler#fetchVoicemailStatus()} completes. */
+        void onVoicemailStatusFetched(Cursor statusCursor);
+
+        /**
+         * Called when {@link CallLogQueryHandler#fetchAllCalls()} or
+         * {@link CallLogQueryHandler#fetchVoicemailOnly()} complete.
+         */
+        void onCallsFetched(Cursor combinedCursor);
     }
 }
