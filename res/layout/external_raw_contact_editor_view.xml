@@ -20,121 +20,116 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
->
+    android:paddingBottom="10dip">
 
     <!-- Left side color bar -->
     <ImageView
         android:id="@+id/color_bar"
         android:layout_width="4dip"
         android:layout_height="match_parent"
-        android:visibility="gone"
-    />
+        android:visibility="gone"/>
 
     <!-- The content -->
     <LinearLayout
         android:layout_width="0dip"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="vertical"
-    >
+        android:orientation="vertical">
 
         <!-- Account info header -->
-        <RelativeLayout android:id="@+id/header"
-            android:layout_height="64dip"
+        <ImageView android:id="@+id/header_color_bar"
             android:layout_width="match_parent"
-        >
-
-            <ImageView android:id="@+id/header_color_bar"
-                android:layout_width="match_parent"
-                android:layout_height="4dip"
-                android:layout_marginBottom="5dip"
-                android:background="@color/edit_divider"
-            />
-
-            <ImageView android:id="@+id/account_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="7dip"
-                android:layout_marginRight="7dip"
-                android:layout_centerVertical="true"
-                android:layout_below="@id/header_color_bar"
-            />
-
-            <TextView android:id="@+id/account_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/account_icon"
-                android:layout_alignTop="@id/account_icon"
-                android:layout_marginTop="-4dip"
-
-                android:textSize="24sp"
-                android:textColor="?android:attr/textColorPrimary"
-                android:singleLine="true"
-            />
-
-            <TextView android:id="@+id/account_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/account_icon"
-                android:layout_alignBottom="@+id/account_icon"
-                android:layout_marginBottom="2dip"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="?android:attr/textColorPrimary"
-                android:singleLine="true"
-            />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_alignParentBottom="true"
-
-                android:background="?android:attr/listDivider"
-            />
-
-        </RelativeLayout>
-
-        <FrameLayout
-            android:id="@+id/stub_photo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="12dip"
-            android:paddingTop="10dip">
-
-            <include
-                android:id="@+id/edit_photo"
-                layout="@layout/item_photo_editor" />
-
-        </FrameLayout>
-
-        <TextView android:id="@+id/read_only_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dip"
-            android:layout_marginBottom="6dip"
-            android:layout_marginLeft="10dip"
-
-            android:textAppearance="?android:attr/textAppearanceLarge"
-        />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="?android:attr/listDivider"
-        />
+            android:layout_height="4dip"
+            android:layout_marginBottom="5dip"
+            android:background="@color/edit_divider"/>
 
         <TextView
             android:id="@+id/read_only_warning"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="13dip"
-            android:layout_marginBottom="13dip"
-            android:layout_marginLeft="13dip"
-
+            android:paddingTop="10dip"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="?android:attr/textColorPrimary"
-            android:drawableLeft="?android:attr/alertDialogIcon"
-            android:drawablePadding="10dip"
-        />
+            android:textColor="?android:attr/textColorTertiary"/>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip">
+
+            <LinearLayout
+                android:id="@+id/account"
+                android:layout_height="wrap_content"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="?android:attr/selectableItemBackground">
+
+                <TextView
+                    android:id="@+id/account_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:singleLine="true" />
+
+                <TextView
+                     android:id="@+id/account_name"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textAppearance="?android:attr/textAppearanceSmall"
+                     android:textColor="?android:attr/textColorTertiary"
+                     android:singleLine="true" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <ImageView
+                     android:id="@+id/account_icon"
+                     android:layout_width="45dip"
+                     android:layout_height="45dip"
+                     android:layout_gravity="center_vertical" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:paddingTop="20dip"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip">
+
+            <TextView android:id="@+id/read_only_name"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="?android:attr/textColorTertiary"
+                android:textStyle="bold"/>
+
+            <FrameLayout
+                android:id="@+id/stub_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <include
+                    android:id="@+id/edit_photo"
+                    layout="@layout/item_photo_editor" />
+
+            </FrameLayout>
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/button_edit_externally"
@@ -143,20 +138,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="13dip"
             android:layout_marginBottom="13dip"
-            android:layout_marginLeft="13dip"
-        />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="?android:attr/listDivider"
-        />
+            android:layout_marginLeft="13dip"/>
 
         <LinearLayout android:id="@+id/sect_general"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-        />
+            android:orientation="vertical"/>
+
     </LinearLayout>
 
 </com.android.contacts.editor.ExternalRawContactEditorView>

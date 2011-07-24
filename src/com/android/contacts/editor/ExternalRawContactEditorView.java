@@ -164,7 +164,7 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
         mName.setText(primary.getAsString(StructuredName.DISPLAY_NAME));
 
         if (type.readOnly) {
-            mReadOnlyWarning.setText(mContext.getString(R.string.contact_read_only, accountType));
+            mReadOnlyWarning.setText(mContext.getString(R.string.contact_read_only));
             mReadOnlyWarning.setVisibility(View.VISIBLE);
             mEditExternallyButton.setVisibility(View.GONE);
         } else {
