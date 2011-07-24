@@ -730,6 +730,11 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             }
         }
 
+        /**
+         * Sets the "invitable" account types to {@link Result#mInvitableAccountTypes}.
+         *
+         * TODO Exclude the ones with no raw contacts in the database.
+         */
         private void loadInvitableAccountTypes(Result contactData) {
             Map<String, AccountType> allInvitables =
                     AccountTypeManager.getInstance(getContext()).getInvitableAccountTypes();
