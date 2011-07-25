@@ -69,6 +69,7 @@ public class AllIntentsActivity extends ListActivity
         LIST_STARRED_ACTION,
         LIST_FREQUENT_ACTION,
         LIST_STREQUENT_ACTION,
+        LIST_GROUP_ACTION,
         ACTION_PICK_CONTACT,
         ACTION_PICK_CONTACT_LEGACY,
         ACTION_PICK_PHONE,
@@ -142,7 +143,7 @@ public class AllIntentsActivity extends ListActivity
         switch (ContactsIntent.get(position)) {
             case LIST_DEFAULT: {
                 startContactListActivity(
-                        new Intent(Intent.ACTION_VIEW, Contacts.CONTENT_URI));
+                        new Intent(UI.LIST_DEFAULT, Contacts.CONTENT_URI));
                 break;
             }
             case LIST_ALL_CONTACTS_ACTION: {
@@ -168,6 +169,11 @@ public class AllIntentsActivity extends ListActivity
             case LIST_STREQUENT_ACTION: {
                 startContactListActivity(
                         new Intent(UI.LIST_STREQUENT_ACTION, Contacts.CONTENT_URI));
+                break;
+            }
+            case LIST_GROUP_ACTION: {
+                startContactListActivity(
+                        new Intent(UI.LIST_GROUP_ACTION, Contacts.CONTENT_URI));
                 break;
             }
             case ACTION_PICK_CONTACT: {

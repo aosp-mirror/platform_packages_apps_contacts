@@ -104,7 +104,6 @@ public class PeopleActivity extends ContactsActivity
         ContactListFilterController.ContactListFilterListener, ProviderStatusListener {
 
     private static final String TAG = "PeopleActivity";
-    private static final Boolean DEBUG = false; // DO NOT SUBMIT WITH TRUE
 
     private static final int SUBACTIVITY_NEW_GROUP = 2;
     private static final int SUBACTIVITY_EDIT_GROUP = 3;
@@ -284,7 +283,7 @@ public class PeopleActivity extends ContactsActivity
     private boolean processIntent(boolean forNewIntent) {
         // Extract relevant information from the intent
         mRequest = mIntentResolver.resolveIntent(getIntent());
-        if (DEBUG) {
+        if (Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, this + " processIntent: forNewIntent=" + forNewIntent
                     + " intent=" + getIntent() + " request=" + mRequest);
         }
@@ -485,14 +484,17 @@ public class PeopleActivity extends ContactsActivity
             ContactListFilter filter = null;
             int actionCode = mRequest.getActionCode();
             boolean searchMode = mRequest.isSearchMode();
+            TabState tabToOpen = null;
             switch (actionCode) {
                 case ContactsRequest.ACTION_ALL_CONTACTS:
                     filter = ContactListFilter.createFilterWithType(
                             ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
+                    tabToOpen = TabState.ALL;
                     break;
                 case ContactsRequest.ACTION_CONTACTS_WITH_PHONES:
                     filter = ContactListFilter.createFilterWithType(
                             ContactListFilter.FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY);
+                    tabToOpen = TabState.ALL;
                     break;
 
                 // TODO: handle FREQUENT and STREQUENT according to the spec
@@ -502,11 +504,20 @@ public class PeopleActivity extends ContactsActivity
                 case ContactsRequest.ACTION_STARRED:
                     filter = ContactListFilter.createFilterWithType(
                             ContactListFilter.FILTER_TYPE_STARRED);
+                    tabToOpen = TabState.FAVORITES;
                     break;
                 case ContactsRequest.ACTION_VIEW_CONTACT:
-                    if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
-                        mActionBarAdapter.setCurrentTab(TabState.ALL);
-                    }
+                    // We redirect this intent to the detail activity on 1-pane, so we don't get
+                    // here.  It's only for 2-pane.
+                    tabToOpen = TabState.ALL;
+                    break;
+                case ContactsRequest.ACTION_GROUP:
+                    tabToOpen = TabState.GROUPS;
+                    // TODO Select the specified group?  See the TODO in ContactsIntentResolver too.
+                    break;
+            }
+            if (tabToOpen != null) {
+                mActionBarAdapter.setCurrentTab(tabToOpen);
             }
 
             if (filter != null) {
