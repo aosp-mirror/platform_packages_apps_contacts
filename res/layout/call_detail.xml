@@ -20,29 +20,12 @@
     android:orientation="horizontal"
     android:gravity="top"
 >
-    <LinearLayout
-        android:id="@+id/action_bar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/call_detail_action_bar_height"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:orientation="horizontal"
-        android:background="@drawable/call_log_action_bar_bg"
-    >
-        <ImageView
-            android:id="@+id/action_bar_home"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_call_log_home"
-        />
-    </LinearLayout>
-
     <FrameLayout
         android:id="@+id/voicemail_status"
-        android:layout_below="@id/action_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:visibility="gone"
     >
         <include layout="@layout/call_log_voicemail_status"/>
