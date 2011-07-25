@@ -72,7 +72,8 @@ import java.util.List;
 /**
  * Displays a list of call log entries.
  */
-public class CallLogFragment extends ListFragment implements ViewPagerVisibilityListener {
+public class CallLogFragment extends ListFragment implements ViewPagerVisibilityListener,
+        CallLogQueryHandler.Listener {
     private static final String TAG = "CallLogFragment";
 
     /** The size of the cache of contact info. */
@@ -829,7 +830,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
 
         mVoiceMailNumber = ((TelephonyManager) getActivity().getSystemService(
                 Context.TELEPHONY_SERVICE)).getVoiceMailNumber();
-        mCallLogQueryHandler = new CallLogQueryHandler(this);
+        mCallLogQueryHandler = new CallLogQueryHandler(getActivity().getContentResolver(), this);
 
         mCurrentCountryIso = ContactsUtils.getCurrentCountryIso(getActivity());
 
@@ -837,6 +838,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     }
 
     /** Called by the CallLogQueryHandler when the list of calls has been fetched or updated. */
+    @Override
     public void onCallsFetched(Cursor cursor) {
         if (getActivity() == null || getActivity().isFinishing()) {
             return;
@@ -856,6 +858,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     /**
      * Called by {@link CallLogQueryHandler} after a successful query to voicemail status provider.
      */
+    @Override
     public void onVoicemailStatusFetched(Cursor statusCursor) {
         if (getActivity() == null || getActivity().isFinishing()) {
             return;
@@ -1092,12 +1095,12 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        Intent intent = new Intent(getActivity(), CallDetailActivity.class);
         Cursor cursor = (Cursor) mAdapter.getItem(position);
         if (CallLogQuery.isSectionHeader(cursor)) {
             // Do nothing when a header is clicked.
             return;
         }
+        Intent intent = new Intent(getActivity(), CallDetailActivity.class);
         if (mAdapter.isGroupHeader(position)) {
             // We want to restore the position in the cursor at the end.
             int currentPosition = cursor.getPosition();
