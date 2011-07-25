@@ -69,28 +69,23 @@ public class BaseAccountType extends AccountType {
     }
 
     protected EditType buildPhoneType(int type) {
-        return new EditType(type, Phone.getTypeLabelResource(type))
-                .setUnspecifiedType(type == Phone.TYPE_OTHER);
+        return new EditType(type, Phone.getTypeLabelResource(type));
     }
 
     protected EditType buildEmailType(int type) {
-        return new EditType(type, Email.getTypeLabelResource(type))
-                .setUnspecifiedType(type == Email.TYPE_OTHER);
+        return new EditType(type, Email.getTypeLabelResource(type));
     }
 
     protected EditType buildPostalType(int type) {
-        return new EditType(type, StructuredPostal.getTypeLabelResource(type))
-                .setUnspecifiedType(type == StructuredPostal.TYPE_OTHER);
+        return new EditType(type, StructuredPostal.getTypeLabelResource(type));
     }
 
     protected EditType buildImType(int type) {
-        return new EditType(type, Im.getProtocolLabelResource(type))
-                .setUnspecifiedType(type == Im.TYPE_OTHER);
+        return new EditType(type, Im.getProtocolLabelResource(type));
     }
 
     protected EditType buildEventType(int type, boolean yearOptional) {
-        return new EventEditType(type, Event.getTypeResource(type)).setYearOptional(yearOptional)
-                .setUnspecifiedType(type == Event.TYPE_OTHER);
+        return new EventEditType(type, Event.getTypeResource(type)).setYearOptional(yearOptional);
     }
 
     protected EditType buildRelationType(int type) {
