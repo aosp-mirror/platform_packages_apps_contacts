@@ -111,8 +111,13 @@ public class PhoneCallDetailsHelper {
             mPhoneNumberHelper.getDisplayNumber(details.number, details.formattedNumber);
         if (TextUtils.isEmpty(details.name)) {
             nameText = displayNumber;
-            numberText = mPhoneNumberHelper.getGeocodeForNumber(
+            String geocode = mPhoneNumberHelper.getGeocodeForNumber(
                     details.number.toString(), details.countryIso);
+            if (TextUtils.isEmpty(geocode)) {
+                numberText = mResources.getString(R.string.call_log_empty_gecode);
+            } else {
+                numberText = geocode;
+            }
         } else {
             nameText = details.name;
             if (numberFormattedLabel != null) {
