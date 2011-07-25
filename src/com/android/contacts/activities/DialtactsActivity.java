@@ -181,7 +181,7 @@ public class DialtactsActivity extends Activity {
         @Override
         public void onTabSelected(Tab tab, FragmentTransaction ft) {
             if (mViewPager.getCurrentItem() != tab.getPosition()) {
-                mViewPager.setCurrentItem(tab.getPosition(), false /* smoothScroll */);
+                mViewPager.setCurrentItem(tab.getPosition(), true);
             }
 
             // During the call, we don't remember the tab position.
