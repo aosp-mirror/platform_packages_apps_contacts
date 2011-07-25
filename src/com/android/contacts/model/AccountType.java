@@ -219,11 +219,6 @@ public abstract class AccountType {
         public int specificMax;
         public String customColumn;
 
-        /**
-         * True if this type may be shown as blank.
-         */
-        public boolean unspecifiedType;
-
         public EditType(int rawValue, int labelRes) {
             this.rawValue = rawValue;
             this.labelRes = labelRes;
@@ -242,11 +237,6 @@ public abstract class AccountType {
 
         public EditType setCustomColumn(String customColumn) {
             this.customColumn = customColumn;
-            return this;
-        }
-
-        public EditType setUnspecifiedType(boolean unspecifiedType) {
-            this.unspecifiedType = unspecifiedType;
             return this;
         }
 

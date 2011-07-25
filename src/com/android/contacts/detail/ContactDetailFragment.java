@@ -1073,14 +1073,12 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 entry.typeString = "";
                 for (EditType type : kind.typeList) {
                     if (type.rawValue == entry.type) {
-                        if (!type.unspecifiedType) {
-                            if (type.customColumn == null) {
-                                // Non-custom type. Get its description from the resource
-                                entry.typeString = context.getString(type.labelRes);
-                            } else {
-                                // Custom type. Read it from the database
-                                entry.typeString = values.getAsString(type.customColumn);
-                            }
+                        if (type.customColumn == null) {
+                            // Non-custom type. Get its description from the resource
+                            entry.typeString = context.getString(type.labelRes);
+                        } else {
+                            // Custom type. Read it from the database
+                            entry.typeString = values.getAsString(type.customColumn);
                         }
                         break;
                     }
