@@ -181,6 +181,18 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         }
     }
 
+    public void testSetPhoneCallDetails_NoGeocode() {
+        LocaleTestUtils localeTestUtils = new LocaleTestUtils(getContext());
+        localeTestUtils.setLocale(Locale.US);
+        try {
+            setPhoneCallDetailsWithNumber("+0", "+0");
+            assertNameEquals("+0");  // The phone number is shown as the name.
+            assertNumberEquals("-");  // The empty geocode is shown as the number.
+        } finally {
+            localeTestUtils.restoreLocale();
+        }
+    }
+
     public void testSetPhoneCallDetails_NameOnly() {
         setPhoneCallDetailsNameOnly();
         assertEquals(View.VISIBLE, mViews.nameView.getVisibility());

@@ -1729,4 +1729,7 @@
     -->
     <string name="description_call_log_unheard_voicemail">Unheard voicemail</string>
 
+    <!-- The string used to represent an unknown location for a phone number in the call log [CHAR LIMIT=3] -->
+    <string name="call_log_empty_gecode">-</string>
+
 </resources>
