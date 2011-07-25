@@ -1293,8 +1293,8 @@
     <!-- Checkbox asking the user if they want to display a particular photo for a contact -->
     <string name="use_photo_as_primary">Use this photo</string>
 
-    <!-- Text used to explain that a contact cannot be edited since the data is read only -->
-    <string name="contact_read_only"><xliff:g id="source" example="Gmail">%1$s</xliff:g> contact information is not editable on this device.</string>
+    <!-- Text used to explain that a contact cannot be edited since the data is read only [CHAR LIMIT=40] -->
+    <string name="contact_read_only">Not editable on this device</string>
 
     <!-- Text describing that a contact has no information available other than name and photo -->
     <string name="no_contact_details">No additional information for this contact</string>
