@@ -63,7 +63,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ListView;
-import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
 import java.util.LinkedList;
@@ -176,7 +175,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     private TextView mStatusMessageAction;
 
     public static final class ContactInfo {
-        public long personId;
+        public long personId = -1;
         public String name;
         public int type;
         public String label;
@@ -657,6 +656,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             // Get the views to bind to.
             CallLogListItemViews views = CallLogListItemViews.fromView(view);
             views.callView.setOnClickListener(this);
+            // Do nothing when a plain photo is clicked. Without this, the list item will fire.
+            views.plainPhotoView.setOnClickListener(null);
             view.setTag(views);
         }
 
@@ -763,10 +764,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             // New items also use the highlighted version of the text.
             final boolean isHighlighted = isNew;
             mCallLogViewsHelper.setPhoneCallDetails(views, details, useIcons, isHighlighted);
-            if (views.photoView != null) {
-                bindQuickContact(views.photoView, thumbnailUri, personId, lookupKey);
-            }
-
+            setPhoto(views, thumbnailUri, personId, lookupKey);
 
             // Listen for the first draw
             if (mPreDrawListener == null) {
@@ -794,14 +792,20 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             return callTypes;
         }
 
-        private void bindQuickContact(QuickContactBadge view, Uri thumbnailUri, long contactId,
+        private void setPhoto(CallLogListItemViews views, Uri thumbnailUri, long contactId,
                 String lookupKey) {
-            view.assignContactUri(getContactUri(contactId, lookupKey));
-            mContactPhotoManager.loadPhoto(view, thumbnailUri);
-        }
-
-        private Uri getContactUri(long contactId, String lookupKey) {
-            return Contacts.getLookupUri(contactId, lookupKey);
+            if (contactId == -1) {
+                // This does not correspond to a contact, do not use the QuickContactBadge.
+                mContactPhotoManager.loadPhoto(views.plainPhotoView, thumbnailUri);
+                views.plainPhotoView.setVisibility(View.VISIBLE);
+                views.quickContactView.setVisibility(View.GONE);
+            } else {
+                views.quickContactView.assignContactUri(
+                        Contacts.getLookupUri(contactId, lookupKey));
+                mContactPhotoManager.loadPhoto(views.quickContactView, thumbnailUri);
+                views.quickContactView.setVisibility(View.VISIBLE);
+                views.plainPhotoView.setVisibility(View.GONE);
+            }
         }
 
         /**

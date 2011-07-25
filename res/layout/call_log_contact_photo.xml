@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
-    <QuickContactBadge
+    <FrameLayout
         android:id="@+id/contact_photo"
         android:layout_width="@dimen/call_log_list_contact_photo_size"
         android:layout_height="@dimen/call_log_list_contact_photo_size"
         android:layout_alignParentLeft="true"
         android:layout_centerInParent="true"
-    />
+    >
+        <QuickContactBadge
+            android:id="@+id/quick_contact_photo"
+            android:layout_width="@dimen/call_log_list_contact_photo_size"
+            android:layout_height="@dimen/call_log_list_contact_photo_size"
+        />
+        <ImageView
+            android:id="@+id/plain_contact_photo"
+            android:layout_width="@dimen/call_log_list_contact_photo_size"
+            android:layout_height="@dimen/call_log_list_contact_photo_size"
+        />
+    </FrameLayout>
 </merge>
