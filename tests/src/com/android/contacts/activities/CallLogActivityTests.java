@@ -266,6 +266,31 @@ public class CallLogActivityTests
         assertNumberAndLabelAre(views, TEST_FORMATTED_NUMBER, numberLabel);
     }
 
+    @MediumTest
+    public void testBindView_WithQuickContactBadge() {
+        mCursor.moveToFirst();
+        insertWithCachedValues(TEST_NUMBER, NOW, 0, Calls.INCOMING_TYPE,
+                "John Doe", Phone.TYPE_HOME, "");
+        View view = mAdapter.newStandAloneView(getActivity(), mParentView);
+        mAdapter.bindStandAloneView(view, getActivity(), mCursor);
+
+        CallLogListItemViews views = (CallLogListItemViews) view.getTag();
+        assertEquals(View.VISIBLE, views.quickContactView.getVisibility());
+        assertEquals(View.GONE, views.plainPhotoView.getVisibility());
+    }
+
+    @MediumTest
+    public void testBindView_WithoutQuickContactBadge() {
+        mCursor.moveToFirst();
+        insert(TEST_NUMBER, NOW, 0, Calls.INCOMING_TYPE);
+        View view = mAdapter.newStandAloneView(getActivity(), mParentView);
+        mAdapter.bindStandAloneView(view, getActivity(), mCursor);
+
+        CallLogListItemViews views = (CallLogListItemViews) view.getTag();
+        assertEquals(View.GONE, views.quickContactView.getVisibility());
+        assertEquals(View.VISIBLE, views.plainPhotoView.getVisibility());
+    }
+
     /** Returns the label associated with a given phone type. */
     private CharSequence getTypeLabel(int phoneType) {
         return Phone.getTypeLabel(getActivity().getResources(), phoneType, "");
