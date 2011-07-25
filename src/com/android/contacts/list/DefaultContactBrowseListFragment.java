@@ -65,11 +65,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         super.onCreateView(inflater, container);
 
         mAccountFilterHeaderView = (TextView) getView().findViewById(R.id.account_filter_header);
+        mCounterHeaderView = (TextView) getView().findViewById(R.id.contacts_count);
 
         // Putting the header view inside a container will allow us to make
         // it invisible later. See checkHeaderViewVisibility()
         FrameLayout headerContainer = new FrameLayout(inflater.getContext());
-        mCounterHeaderView = (TextView) getView().findViewById(R.id.contacts_count);
         mSearchHeaderView = inflater.inflate(R.layout.search_header, null, false);
         headerContainer.addView(mSearchHeaderView);
         getListView().addHeaderView(headerContainer, null, false);
@@ -86,6 +86,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         if (mCounterHeaderView != null) {
             mCounterHeaderView.setVisibility(isSearchMode() ? View.GONE : View.VISIBLE);
         }
+        updateFilterHeaderView();
 
         // Hide the search header by default. See showCount().
         if (mSearchHeaderView != null) {
@@ -96,8 +97,13 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     @Override
     public void setFilter(ContactListFilter filter) {
         super.setFilter(filter);
+        updateFilterHeaderView();
+    }
+
+    private void updateFilterHeaderView() {
+        ContactListFilter filter = getFilter();
         if (filter != null && filter.filterType != ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS &&
-                filter.filterType != ContactListFilter.FILTER_TYPE_CUSTOM) {
+                !isSearchMode() && filter.filterType != ContactListFilter.FILTER_TYPE_CUSTOM) {
             mAccountFilterHeaderView.setText(getContext().getString(
                     R.string.listAllContactsInAccount, filter.accountName));
             mAccountFilterHeaderView.setVisibility(View.VISIBLE);
