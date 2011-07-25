@@ -144,7 +144,7 @@
     <dimen name="detail_network_icon_size">32dip</dimen>
 
     <!-- Font size for the display name in header of the contact detail page -->
-    <dimen name="detail_header_name_text_size">30sp</dimen>
+    <dimen name="detail_header_name_text_size">36sp</dimen>
 
     <!-- Padding to be used between a visible scrollbar and the contact list -->
     <dimen name="list_visible_scrollbar_padding">40dip</dimen>

@@ -129,7 +129,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
     private ContactLoader.Result mContactData;
     private ViewGroup mHeaderView;
-    private ImageView mPhotoView;
+    private ImageView mStaticPhotoView;
     private ListView mListView;
     private ViewAdapter mAdapter;
     private Uri mPrimaryPhoneUri = null;
@@ -140,8 +140,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     private final ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
     private int mNumPhoneNumbers = 0;
     private String mDefaultCountryIso;
-    private boolean mContactDataDisplayed;
-    private boolean mContactPhotoDisplayedInHeader = true;
+    private boolean mContactHasSocialUpdates;
+    private boolean mShowStaticPhoto = true;
 
     private final QuickFix[] mPotentialQuickFixes = new QuickFix[] {
             new MakeLocalCopyQuickFix(),
@@ -248,7 +248,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
         mInflater = inflater;
 
-        mPhotoView = (ImageView) mView.findViewById(R.id.photo);
+        mStaticPhotoView = (ImageView) mView.findViewById(R.id.photo);
 
         mListView = (ListView) mView.findViewById(android.R.id.list);
         mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
@@ -336,11 +336,11 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     }
 
     /**
-     * Sets whether or not the contact photo should be shown in the list of contact details in this
-     * {@link Fragment}.
+     * Sets whether the static contact photo (that is not in a scrolling region), should be shown
+     * or not.
      */
-    public void setShowPhotoInHeader(boolean showPhoto) {
-        mContactPhotoDisplayedInHeader = showPhoto;
+    public void setShowStaticPhoto(boolean showPhoto) {
+        mShowStaticPhoto = showPhoto;
     }
 
     public void setData(Uri lookupUri, ContactLoader.Result result) {
@@ -371,9 +371,21 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         // Clear old header
         mHeaderView = null;
 
+        // Figure out if the contact has social updates or not
+        mContactHasSocialUpdates = !mContactData.getStreamItems().isEmpty();
+
         // Setup the photo if applicable
-        if (mPhotoView != null) {
-            ContactDetailDisplayUtils.setPhoto(mContext, mContactData, mPhotoView);
+        if (mStaticPhotoView != null) {
+            // The presence of a static photo view is not sufficient to determine whether or not
+            // we should show the photo. Check the mShowStaticPhoto flag which can be set by an
+            // outside class depending on screen size, layout, and whether the contact has social
+            // updates or not.
+            if (mShowStaticPhoto) {
+                mStaticPhotoView.setVisibility(View.VISIBLE);
+                ContactDetailDisplayUtils.setPhoto(mContext, mContactData, mStaticPhotoView);
+            } else {
+                mStaticPhotoView.setVisibility(View.GONE);
+            }
         }
 
         // Build up the contact entries
@@ -1261,26 +1273,21 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 return mHeaderView;
             }
 
-            mHeaderView = (ViewGroup) inflate(
-                    R.layout.simple_contact_detail_header_view_list_item, parent, false);
+            int resourceId = mContactHasSocialUpdates ?
+                    R.layout.detail_header_contact_with_updates :
+                    R.layout.detail_header_contact_without_updates;
+            mHeaderView = (ViewGroup) inflate(resourceId, parent, false);
 
             TextView displayNameView = (TextView) mHeaderView.findViewById(R.id.name);
             TextView companyView = (TextView) mHeaderView.findViewById(R.id.company);
-            TextView phoneticNameView = (TextView) mHeaderView.findViewById(R.id.phonetic_name);
-            TextView attributionView = (TextView) mHeaderView.findViewById(R.id.attribution);
             ImageView photoView = (ImageView) mHeaderView.findViewById(R.id.photo);
 
             ContactDetailDisplayUtils.setDisplayName(mContext, mContactData, displayNameView);
             ContactDetailDisplayUtils.setCompanyName(mContext, mContactData, companyView);
-            ContactDetailDisplayUtils.setPhoneticName(mContext, mContactData, phoneticNameView);
-            ContactDetailDisplayUtils.setAttribution(mContext, mContactData, attributionView);
 
             // Set the photo if it should be displayed
-            if (mContactPhotoDisplayedInHeader) {
+            if (photoView != null) {
                 ContactDetailDisplayUtils.setPhoto(mContext, mContactData, photoView);
-            } else {
-                // Otherwise hide the view
-                photoView.setVisibility(View.INVISIBLE);
             }
 
             // Set the starred state if it should be displayed

@@ -137,7 +137,9 @@ public class ContactDetailLayoutController {
 
         switch (mLayoutMode) {
             case TWO_COLUMN: {
-                // Set the contact data
+                // Set the contact data (hide the static photo because the photo will already be in
+                // the header that scrolls with contact details).
+                mContactDetailFragment.setShowStaticPhoto(false);
                 mContactDetailFragment.setData(mContactData.getLookupUri(), mContactData);
                 mContactDetailUpdatesFragment.setData(mContactData.getLookupUri(), mContactData);
 
@@ -175,6 +177,7 @@ public class ContactDetailLayoutController {
 
         switch (mLayoutMode) {
             case TWO_COLUMN:
+                mContactDetailFragment.setShowStaticPhoto(true);
                 mContactDetailFragment.setData(mContactData.getLookupUri(), mContactData);
                 ft.hide(mContactDetailUpdatesFragment);
                 break;
@@ -227,7 +230,6 @@ public class ContactDetailLayoutController {
                     }
                     mPagerContactDetailFragment.setListener(mContactDetailFragmentListener);
                     mPagerContactDetailFragment.setVerticalScrollListener(mVerticalScrollListener);
-                    mPagerContactDetailFragment.setShowPhotoInHeader(false);
                     return mPagerContactDetailFragment;
                 case 1:
                     mPagerContactDetailUpdatesFragment = new ContactDetailUpdatesFragment();

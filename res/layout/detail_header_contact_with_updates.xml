@@ -14,15 +14,12 @@
      limitations under the License.
 -->
 
+<!--
+  This is a header entry in the contact details list for when the contact has social updates. The
+  entry maintains vertical padding to ensure that the first contact detail is visible (and below
+  the tab carousel). No information has to be displayed in this header.
+-->
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <ImageView
-        android:id="@+id/photo"
-        android:scaleType="centerCrop"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/detail_tab_carousel_height" />
-
-</FrameLayout>
+    android:layout_height="@dimen/detail_tab_carousel_height"/>
