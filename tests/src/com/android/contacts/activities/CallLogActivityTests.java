@@ -16,13 +16,18 @@
 
 package com.android.contacts.activities;
 
+import com.android.contacts.CallDetailActivity;
 import com.android.contacts.R;
 import com.android.contacts.calllog.CallLogFragment;
 import com.android.contacts.calllog.CallLogFragment.CallLogQuery;
 import com.android.contacts.calllog.CallLogFragment.ContactInfo;
 import com.android.contacts.calllog.CallLogListItemViews;
+import com.android.contacts.calllog.IntentProvider;
 import com.android.internal.telephony.CallerInfo;
 
+import android.content.ComponentName;
+import android.content.ContentUris;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.database.MatrixCursor;
 import android.graphics.Bitmap;
@@ -30,6 +35,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.VoicemailContract;
 import android.telephony.PhoneNumberUtils;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
@@ -291,6 +297,47 @@ public class CallLogActivityTests
         assertEquals(View.VISIBLE, views.plainPhotoView.getVisibility());
     }
 
+    @MediumTest
+    public void testBindView_CallButton() {
+        mCursor.moveToFirst();
+        insert(TEST_NUMBER, NOW, 0, Calls.INCOMING_TYPE);
+        View view = mAdapter.newStandAloneView(getActivity(), mParentView);
+        mAdapter.bindStandAloneView(view, getActivity(), mCursor);
+
+        CallLogListItemViews views = (CallLogListItemViews) view.getTag();
+        IntentProvider intentProvider = (IntentProvider) views.callView.getTag();
+        Intent intent = intentProvider.getIntent(mActivity);
+        // Starts a call.
+        assertEquals(Intent.ACTION_CALL_PRIVILEGED, intent.getAction());
+        // To the entry's number.
+        assertEquals(Uri.parse("tel:" + TEST_NUMBER), intent.getData());
+    }
+
+    @MediumTest
+    public void testBindView_PlayButton() {
+        mCursor.moveToFirst();
+        insertVoicemail(TEST_NUMBER, NOW, 0);
+        View view = mAdapter.newStandAloneView(getActivity(), mParentView);
+        mAdapter.bindStandAloneView(view, getActivity(), mCursor);
+
+        CallLogListItemViews views = (CallLogListItemViews) view.getTag();
+        IntentProvider intentProvider = (IntentProvider) views.playView.getTag();
+        Intent intent = intentProvider.getIntent(mActivity);
+        // Starts the call detail activity.
+        assertEquals(new ComponentName(mActivity, CallDetailActivity.class),
+                intent.getComponent());
+        // With the given entry.
+        assertEquals(ContentUris.withAppendedId(Calls.CONTENT_URI_WITH_VOICEMAIL, 1),
+                intent.getData());
+        // With the URI of the voicemail.
+        assertEquals(
+                ContentUris.withAppendedId(VoicemailContract.Voicemails.CONTENT_URI, 1),
+                intent.getParcelableExtra(CallDetailActivity.EXTRA_VOICEMAIL_URI));
+        // And starts playback.
+        assertTrue(
+                intent.getBooleanExtra(CallDetailActivity.EXTRA_VOICEMAIL_START_PLAYBACK, false));
+    }
+
     /** Returns the label associated with a given phone type. */
     private CharSequence getTypeLabel(int phoneType) {
         return Phone.getTypeLabel(getActivity().getResources(), phoneType, "");
@@ -464,6 +511,36 @@ public class CallLogActivityTests
     }
 
     /**
+     * Insert a new voicemail entry in the test DB.
+     * @param number The phone number. For unknown and private numbers,
+     *               use CallerInfo.UNKNOWN_NUMBER or CallerInfo.PRIVATE_NUMBER.
+     * @param date In millisec since epoch. Use NOW to use the current time.
+     * @param duration In seconds of the call. Use RAND_DURATION to pick a random one.
+     */
+    private void insertVoicemail(String number, long date, int duration) {
+        MatrixCursor.RowBuilder row = mCursor.newRow();
+        // Must have the same index as the row.
+        Uri voicemailUri =
+                ContentUris.withAppendedId(VoicemailContract.Voicemails.CONTENT_URI, mIndex);
+        row.add(mIndex);
+        mIndex ++;
+        row.add(number);
+        if (NOW == date) {
+            row.add(new Date().getTime());
+        } else {
+            row.add(date);
+        }
+        if (duration < 0) {
+            duration = mRnd.nextInt(10 * 60);  // 0 - 10 minutes random.
+        }
+        row.add(duration);  // duration
+        row.add(Calls.VOICEMAIL_TYPE);  // type
+        row.add(TEST_COUNTRY_ISO);  // country ISO
+        row.add(voicemailUri);  // voicemail_uri
+        row.add(CallLogFragment.CallLogQuery.SECTION_OLD_ITEM);  // section
+    }
+
+    /**
      * Insert a new private call entry in the test DB.
      * @param date In millisec since epoch. Use NOW to use the current time.
      * @param duration In seconds of the call. Use RAND_DURATION to pick a random one.
@@ -482,11 +559,11 @@ public class CallLogActivityTests
     }
 
     /**
-     * Insert a new voicemail call entry in the test DB.
+     * Insert a new call to voicemail entry in the test DB.
      * @param date In millisec since epoch. Use NOW to use the current time.
      * @param duration In seconds of the call. Use RAND_DURATION to pick a random one.
      */
-    private void insertVoicemail(long date, int duration) {
+    private void insertCalltoVoicemail(long date, int duration) {
         // mVoicemail may be null
         if (mVoicemail != null) {
             insert(mVoicemail, date, duration, Calls.OUTGOING_TYPE);
@@ -521,7 +598,7 @@ public class CallLogActivityTests
                 insertUnknown(NOW, RAND_DURATION);
                 privateOrUnknownOrVm[1] = true;
             } else if (2 == type) {
-                insertVoicemail(NOW, RAND_DURATION);
+                insertCalltoVoicemail(NOW, RAND_DURATION);
                 privateOrUnknownOrVm[2] = true;
             } else {
                 int inout = mRnd.nextBoolean() ? Calls.OUTGOING_TYPE :  Calls.INCOMING_TYPE;

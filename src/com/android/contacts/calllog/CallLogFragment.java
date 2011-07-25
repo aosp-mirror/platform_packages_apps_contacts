@@ -230,8 +230,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
 
     /** Adapter class to fill in data for the Call Log */
     public final class CallLogAdapter extends GroupingListAdapter
-            implements Runnable, ViewTreeObserver.OnPreDrawListener, View.OnClickListener,
-            GroupCreator {
+            implements Runnable, ViewTreeObserver.OnPreDrawListener, GroupCreator {
         /** The time in millis to delay starting the thread processing requests. */
         private static final int START_PROCESSING_REQUESTS_DELAY_MILLIS = 1000;
 
@@ -272,13 +271,15 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         /** Can be set to true by tests to disable processing of requests. */
         private volatile boolean mRequestProcessingDisabled = false;
 
-        @Override
-        public void onClick(View view) {
-            IntentProvider intentProvider = (IntentProvider) view.getTag();
-            if (intentProvider != null) {
-                startActivity(intentProvider.getIntent(CallLogFragment.this.getActivity()));
+        private final View.OnClickListener mCallPlayOnClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IntentProvider intentProvider = (IntentProvider) view.getTag();
+                if (intentProvider != null) {
+                    startActivity(intentProvider.getIntent(CallLogFragment.this.getActivity()));
+                }
             }
-        }
+        };
 
         @Override
         public boolean onPreDraw() {
@@ -655,7 +656,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         private void findAndCacheViews(View view) {
             // Get the views to bind to.
             CallLogListItemViews views = CallLogListItemViews.fromView(view);
-            views.callView.setOnClickListener(this);
+            views.callView.setOnClickListener(mCallPlayOnClickListener);
+            views.playView.setOnClickListener(mCallPlayOnClickListener);
             // Do nothing when a plain photo is clicked. Without this, the list item will fire.
             views.plainPhotoView.setOnClickListener(null);
             view.setTag(views);
@@ -699,14 +701,17 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             if (callType == Calls.VOICEMAIL_TYPE) {
                 String voicemailUri = c.getString(CallLogQuery.VOICEMAIL_URI);
                 final long rowId = c.getLong(CallLogQuery.ID);
-                views.callView.setTag(
+                views.playView.setTag(
                         IntentProvider.getPlayVoicemailIntentProvider(rowId, voicemailUri));
+                views.callView.setTag(null);
             } else if (!TextUtils.isEmpty(number)) {
                 // Store away the number so we can call it directly if you click on the call icon.
                 views.callView.setTag(IntentProvider.getReturnCallIntentProvider(number));
+                views.playView.setTag(null);
             } else {
                 // No action enabled.
                 views.callView.setTag(null);
+                views.playView.setTag(null);
             }
 
             // Lookup contacts with this number
