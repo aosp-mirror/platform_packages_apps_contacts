@@ -98,7 +98,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         /**
          * Contact was saved and the Fragment can now be closed safely.
          */
-        void onSaveFinished(int resultCode, Intent resultIntent, boolean navigateHome);
+        void onSaveFinished(int resultCode, Intent resultIntent);
     }
 
     private static final int LOADER_GROUP_METADATA = 1;
@@ -532,7 +532,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
                 // It is already saved, so prevent that it is saved again
                 mStatus = Status.CLOSING;
                 if (mListener != null) {
-                    mListener.onSaveFinished(resultCode, resultIntent, saveMode == SaveMode.HOME);
+                    mListener.onSaveFinished(resultCode, resultIntent);
                 }
                 break;
             case SaveMode.RELOAD:
