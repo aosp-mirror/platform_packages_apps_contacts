@@ -17,11 +17,14 @@ package com.android.contacts;
 
 import android.content.Context;
 import android.content.CursorLoader;
+import android.net.Uri;
 import android.provider.ContactsContract.Groups;
 
 /**
- * Group loader for the group list that includes details such as the number of contacts per group.
- * This group list excludes default, favorite, and deleted groups.
+ * Group loader for the group list that includes details such as the number of contacts per group
+ * and number of groups per account. This list is sorted by account type, account name, where the
+ * group names are in alphabetical order. Note that the list excludes default, favorite, and deleted
+ * groups.
  */
 public final class GroupListLoader extends CursorLoader {
 
@@ -33,6 +36,7 @@ public final class GroupListLoader extends CursorLoader {
         Groups.ACTION,
         Groups.ACTION_URI,
         Groups.SUMMARY_COUNT,
+        Groups.SUMMARY_GROUP_COUNT_PER_ACCOUNT,
     };
 
     public final static int ACCOUNT_NAME = 0;
@@ -42,11 +46,16 @@ public final class GroupListLoader extends CursorLoader {
     public final static int ACTION = 4;
     public final static int ACTION_URI = 5;
     public final static int MEMBER_COUNT = 6;
+    public final static int GROUP_COUNT_PER_ACCOUNT = 7;
+
+    private static final Uri GROUP_LIST_URI = Groups.CONTENT_SUMMARY_URI.buildUpon()
+            .appendQueryParameter(Groups.PARAM_RETURN_GROUP_COUNT_PER_ACCOUNT, "true").build();
 
     public GroupListLoader(Context context) {
-        super(context, Groups.CONTENT_SUMMARY_URI, COLUMNS, Groups.ACCOUNT_TYPE + " NOT NULL AND "
+        super(context, GROUP_LIST_URI, COLUMNS, Groups.ACCOUNT_TYPE + " NOT NULL AND "
                 + Groups.ACCOUNT_NAME + " NOT NULL AND " + Groups.AUTO_ADD + "=0 AND " +
                 Groups.FAVORITES + "=0 AND " + Groups.DELETED + "=0", null,
-                Groups.ACCOUNT_NAME + " ASC");
+                Groups.ACCOUNT_TYPE + ", " + Groups.ACCOUNT_NAME + ", " +
+                Groups.TITLE + " COLLATE LOCALIZED ASC");
     }
 }

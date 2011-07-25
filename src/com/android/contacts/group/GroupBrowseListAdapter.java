@@ -107,6 +107,7 @@ public class GroupBrowseListAdapter extends BaseAdapter {
         long groupId = mCursor.getLong(GroupListLoader.GROUP_ID);
         String title = mCursor.getString(GroupListLoader.TITLE);
         int memberCount = mCursor.getInt(GroupListLoader.MEMBER_COUNT);
+        int groupCountForThisAccount = mCursor.getInt(GroupListLoader.GROUP_COUNT_PER_ACCOUNT);
 
         // Figure out if this is the first group for this account name / account type pair by
         // checking the previous entry. This is to determine whether or not we need to display an
@@ -123,7 +124,7 @@ public class GroupBrowseListAdapter extends BaseAdapter {
         }
 
         return new GroupListItem(accountName, accountType, groupId, title, isFirstGroupInAccount,
-                memberCount);
+                memberCount, groupCountForThisAccount);
     }
 
     @Override
@@ -170,8 +171,9 @@ public class GroupBrowseListAdapter extends BaseAdapter {
         viewCache.accountType.setText(accountType.getDisplayLabel(mContext).toString());
         viewCache.accountName.setText(entry.getAccountName());
 
-        // TODO: Add in number of groups within this account name / type using this string:
-        // getQuantityString(R.plurals.num_groups_in_account, entry.count, entry.count);
+        int count = entry.getGroupCountForThisAccount();
+        viewCache.groupCountForAccount.setText(mContext.getResources().getQuantityString(
+                R.plurals.num_groups_in_account, count, count));
     }
 
     private static Uri getGroupUriFromId(long groupId) {
@@ -185,6 +187,7 @@ public class GroupBrowseListAdapter extends BaseAdapter {
     public static class GroupListItemViewCache {
         public final TextView accountType;
         public final TextView accountName;
+        public final TextView groupCountForAccount;
         public final TextView groupTitle;
         public final TextView groupMemberCount;
         public final View accountHeader;
@@ -194,6 +197,7 @@ public class GroupBrowseListAdapter extends BaseAdapter {
         public GroupListItemViewCache(View view) {
             accountType = (TextView) view.findViewById(R.id.account_type);
             accountName = (TextView) view.findViewById(R.id.account_name);
+            groupCountForAccount = (TextView) view.findViewById(R.id.group_count);
             groupTitle = (TextView) view.findViewById(R.id.label);
             groupMemberCount = (TextView) view.findViewById(R.id.count);
             accountHeader = view.findViewById(R.id.group_list_header);
