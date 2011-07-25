@@ -14,7 +14,9 @@
      limitations under the License.
 -->
 <resources>
-    <style name="DialtactsTheme" parent="android:Theme.Holo.SplitActionBarWhenNarrow">
+    <style name="DialtactsTheme"
+           parent="android:Theme.Holo.SolidActionBar.SplitActionBarWhenNarrow">
+        <item name="android:windowActionBarOverlay">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowBackground">@android:color/black</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
@@ -51,6 +53,8 @@
         <item name="call_log_voicemail_status_height">40dip</item>
         <item name="call_log_voicemail_status_background_color">#FFFFE0</item>
         <item name="call_log_voicemail_status_text_color">#000000</item>
+        <!-- Favorites -->
+        <item name="favorites_padding_bottom">?android:attr/actionBarSize</item>
     </style>
 
     <style name="CallDetailActivityTheme" parent="android:Theme.Holo.SplitActionBarWhenNarrow">
@@ -161,6 +165,10 @@
         <attr name="call_log_voicemail_status_text_color" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="Favorites">
+        <attr name="favorites_padding_bottom" format="dimension" />
+    </declare-styleable>
+
     <style name="PeopleTheme" parent="@android:style/Theme.Holo.Light.SolidActionBar.Inverse.SplitActionBarWhenNarrow">
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
@@ -188,6 +196,8 @@
         <item name="list_item_header_underline_height">1px</item>
         <item name="list_item_header_underline_color">@color/people_app_theme_color</item>
         <item name="contact_filter_popup_width">320dip</item>
+        <!-- Favorites -->
+        <item name="favorites_padding_bottom">0dip</item>
     </style>
 
     <style name="ContactsActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
