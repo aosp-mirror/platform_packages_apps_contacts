@@ -19,6 +19,7 @@ package com.android.contacts.list;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
+import com.android.contacts.activities.PeopleActivity;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 
@@ -167,6 +168,9 @@ public class AccountFilterActivity extends ContactsActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                Intent intent = new Intent(this, PeopleActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 finish();
                 return true;
             default:

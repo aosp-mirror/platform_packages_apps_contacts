@@ -16,6 +16,8 @@
 
 package com.android.contacts;
 
+import com.android.contacts.activities.PeopleActivity;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.ContentValues;
@@ -221,6 +223,9 @@ public class ContactOptionsActivity extends Activity implements View.OnClickList
 
         switch (item.getItemId()) {
             case android.R.id.home:
+                Intent intent = new Intent(this, PeopleActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 finish();
                 return true;
             default:
