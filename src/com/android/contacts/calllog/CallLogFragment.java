@@ -974,7 +974,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     }
 
     private void resetNewCallsFlag() {
-        mCallLogQueryHandler.updateMissedCalls();
+        mCallLogQueryHandler.markNewCallsAsOld();
     }
 
     private void startCallsQuery() {
