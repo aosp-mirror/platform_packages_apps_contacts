@@ -159,11 +159,11 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
 
     private Status mStatus;
 
-    private View mRootView;
+    private ViewGroup mRootView;
     private ListView mListView;
     private LayoutInflater mLayoutInflater;
 
-    private EditText mGroupNameView;
+    private TextView mGroupNameView;
     private ImageView mAccountIcon;
     private TextView mAccountTypeTextView;
     private TextView mAccountNameTextView;
@@ -190,20 +190,8 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
         setHasOptionsMenu(true);
-
         mLayoutInflater = inflater;
-        mRootView = inflater.inflate(R.layout.group_editor_fragment, container, false);
-
-        mGroupNameView = (EditText) mRootView.findViewById(R.id.group_name);
-        mAccountIcon = (ImageView) mRootView.findViewById(R.id.account_icon);
-        mAccountTypeTextView = (TextView) mRootView.findViewById(R.id.account_type);
-        mAccountNameTextView = (TextView) mRootView.findViewById(R.id.account_name);
-        mAutoCompleteTextView = (AutoCompleteTextView) mRootView.findViewById(
-                R.id.add_member_field);
-
-        mListView = (ListView) mRootView.findViewById(android.R.id.list);
-        mListView.setAdapter(mMemberListAdapter);
-
+        mRootView = (ViewGroup) inflater.inflate(R.layout.group_editor_fragment, container, false);
         return mRootView;
     }
 
@@ -298,9 +286,25 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
      * Sets up the editor based on the group's account name and type.
      */
     private void setupEditorForAccount() {
-        // Setup the account header
         final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(mContext);
         final AccountType accountType = accountTypeManager.getAccountType(mAccountType);
+        final boolean editable = accountType.isGroupMembershipEditable();
+        mMemberListAdapter.setIsGroupMembershipEditable(editable);
+
+        View editorView = mLayoutInflater.inflate(editable ?
+                R.layout.group_editor_view : R.layout.external_group_editor_view, mRootView, false);
+
+        mGroupNameView = (TextView) editorView.findViewById(R.id.group_name);
+        mAccountIcon = (ImageView) editorView.findViewById(R.id.account_icon);
+        mAccountTypeTextView = (TextView) editorView.findViewById(R.id.account_type);
+        mAccountNameTextView = (TextView) editorView.findViewById(R.id.account_name);
+        mAutoCompleteTextView = (AutoCompleteTextView) editorView.findViewById(
+                R.id.add_member_field);
+
+        mListView = (ListView) editorView.findViewById(android.R.id.list);
+        mListView.setAdapter(mMemberListAdapter);
+
+        // Setup the account header
         CharSequence accountTypeDisplayLabel = accountType.getDisplayLabel(mContext);
         if (!TextUtils.isEmpty(mAccountName)) {
             mAccountNameTextView.setText(
@@ -310,28 +314,32 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         mAccountIcon.setImageDrawable(accountType.getDisplayIcon(mContext));
 
         // Setup the autocomplete adapter (for contacts to suggest to add to the group) based on the
-        // account name and type
-        mAutoCompleteAdapter = new SuggestedMemberListAdapter(mContext,
-                android.R.layout.simple_dropdown_item_1line);
-        mAutoCompleteAdapter.setContentResolver(mContentResolver);
-        mAutoCompleteAdapter.setAccountType(mAccountType);
-        mAutoCompleteAdapter.setAccountName(mAccountName);
-        mAutoCompleteTextView.setAdapter(mAutoCompleteAdapter);
-        mAutoCompleteTextView.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SuggestedMember member = mAutoCompleteAdapter.getItem(position);
-                loadMemberToAddToGroup(member.getRawContactId(),
-                        String.valueOf(member.getContactId()));
+        // account name and type. For groups that cannot have membership edited, there will be no
+        // autocomplete text view.
+        if (mAutoCompleteTextView != null) {
+            mAutoCompleteAdapter = new SuggestedMemberListAdapter(mContext,
+                    android.R.layout.simple_dropdown_item_1line);
+            mAutoCompleteAdapter.setContentResolver(mContentResolver);
+            mAutoCompleteAdapter.setAccountType(mAccountType);
+            mAutoCompleteAdapter.setAccountName(mAccountName);
+            mAutoCompleteTextView.setAdapter(mAutoCompleteAdapter);
+            mAutoCompleteTextView.setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    SuggestedMember member = mAutoCompleteAdapter.getItem(position);
+                    loadMemberToAddToGroup(member.getRawContactId(),
+                            String.valueOf(member.getContactId()));
 
-                // Update the autocomplete adapter so the contact doesn't get suggested again
-                mAutoCompleteAdapter.addNewMember(member.getContactId());
+                    // Update the autocomplete adapter so the contact doesn't get suggested again
+                    mAutoCompleteAdapter.addNewMember(member.getContactId());
 
-                // Clear out the text field
-                mAutoCompleteTextView.setText("");
-            }
-        });
+                    // Clear out the text field
+                    mAutoCompleteTextView.setText("");
+                }
+            });
+        }
 
+        mRootView.addView(editorView);
         mStatus = Status.EDITING;
     }
 
@@ -362,11 +370,11 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         } finally {
             cursor.close();
         }
+        setupEditorForAccount();
         // Setup the group metadata display (If the group name is ready only, don't let the user
         // focus on the field).
         mGroupNameView.setText(mOriginalGroupName);
         mGroupNameView.setFocusable(!mGroupNameIsReadOnly);
-        setupEditorForAccount();
     }
 
     public void loadMemberToAddToGroup(long rawContactId, String contactId) {
@@ -580,8 +588,10 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         mListToDisplay.addAll(members);
         mMemberListAdapter.notifyDataSetChanged();
 
-        // Update the autocomplete adapter so these contacts don't get suggested
-        mAutoCompleteAdapter.updateExistingMembersList(listContactIds);
+        // Update the autocomplete adapter (if there is one) so these contacts don't get suggested
+        if (mAutoCompleteAdapter != null) {
+            mAutoCompleteAdapter.updateExistingMembersList(listContactIds);
+        }
     }
 
     private void addMember(Member member) {
@@ -785,11 +795,15 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
      */
     private final class MemberListAdapter extends BaseAdapter {
 
+        private boolean mIsGroupMembershipEditable = true;
+
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View result;
             if (convertView == null) {
-                result = mLayoutInflater.inflate(R.layout.group_member_item, parent, false);
+                result = mLayoutInflater.inflate(mIsGroupMembershipEditable ?
+                        R.layout.group_member_item : R.layout.external_group_member_item,
+                        parent, false);
             } else {
                 result = convertView;
             }
@@ -802,12 +816,14 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
             name.setText(member.getDisplayName());
 
             View deleteButton = result.findViewById(R.id.delete_button_container);
-            deleteButton.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    removeMember(member);
-                }
-            });
+            if (deleteButton != null) {
+                deleteButton.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        removeMember(member);
+                    }
+                });
+            }
 
             mPhotoManager.loadPhoto(badge, member.getPhotoUri());
             return result;
@@ -826,6 +842,10 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         @Override
         public long getItemId(int position) {
             return position;
+        }
+
+        public void setIsGroupMembershipEditable(boolean editable) {
+            mIsGroupMembershipEditable = editable;
         }
     }
 }
