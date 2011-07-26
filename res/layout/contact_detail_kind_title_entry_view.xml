@@ -28,12 +28,12 @@
     <TextView
         android:id="@+id/kind"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_height="24dip"
         android:textColor="@color/detail_kind_title_color"
         android:textStyle="bold"
         android:singleLine="true"
         android:ellipsize="end"
+        android:paddingLeft="8dip"
         android:paddingTop="5dip"
         android:paddingBottom="2dip" />
 

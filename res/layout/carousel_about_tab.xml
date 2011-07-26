@@ -44,11 +44,11 @@
         android:layout_height="@dimen/detail_tab_carousel_tab_label_height"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:paddingLeft="@dimen/detail_item_side_margin"
+        android:paddingLeft="@dimen/detail_tab_carousel_tab_label_indent"
         android:singleLine="true"
         android:gravity="left|center_vertical"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/detail_header_view_text_color"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/detail_tab_carousel_tab_label_color"
         style="@android:style/Widget.Holo.ActionBar.TabView" />
 
 </RelativeLayout>

@@ -16,7 +16,7 @@
 <resources>
     <color name="textColorIconOverlay">#fff</color>
     <color name="textColorIconOverlayShadow">#000</color>
-    
+
     <color name="quickcontact_disambig">#f2f2f2</color>
     <color name="quickcontact_disambig_divider">#afafaf</color>
 
@@ -86,4 +86,7 @@
     <!-- Colors in the contact browser list -->
     <color name="contact_browser_list_bk_color">#EEEEEE</color>
     <color name="contact_count_text_color">#777777</color>
+
+    <!-- Color of the text of the tab carousel in the contact details  -->
+    <color name="detail_tab_carousel_tab_label_color">#EEEEEE</color>
 </resources>
