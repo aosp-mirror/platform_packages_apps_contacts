@@ -22,14 +22,19 @@ import android.net.Uri;
  * Handles notifications for voicemails.
  */
 public interface VoicemailNotifier {
-      /**
-       * Notifies the user of a new voicemail.
-       *
-       * @param newVoicemailUri URI of the new voicemail record just inserted
-       * @throws IllegalArgumentException if the URI does not correspond to a voicemail
-       */
-      public void notifyNewVoicemail(Uri newVoicemailUri);
+    /**
+     * Notifies the user of a new voicemail.
+     *
+     * @param newVoicemailUri URI of the new voicemail record just inserted
+     */
+    public void notifyNewVoicemail(Uri newVoicemailUri);
 
-      /** Clears the new voicemail notification. */
-      public void clearNewVoicemailNotification();
+    /**
+     * Updates the notification and clears it if there are no new voicemails. Called when the phone
+     * just rebooted to put back notifications for anything the user has not acknowledged.
+     */
+    public void updateNotification();
+
+    /** Clears the new voicemail notification. */
+    public void clearNotification();
 }
