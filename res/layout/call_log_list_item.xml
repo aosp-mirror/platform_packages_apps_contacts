@@ -27,8 +27,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/call_log_outer_margin"
-        android:layout_marginRight="@dimen/call_log_outer_margin"
+        android:layout_marginLeft="@dimen/call_log_inner_margin"
+        android:layout_marginRight="@dimen/call_log_inner_margin"
         android:layout_marginTop="@dimen/call_log_inner_margin"
         android:layout_marginBottom="@dimen/call_log_inner_margin"
     >
