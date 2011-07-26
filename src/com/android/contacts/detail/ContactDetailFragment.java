@@ -100,6 +100,8 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListPopupWindow;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -752,7 +754,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         String attribution = ContactDetailDisplayUtils.getAttribution(mContext, mContactData);
         boolean hasAttribution = !TextUtils.isEmpty(attribution);
         int networksCount = mOtherEntriesMap.keySet().size();
-        if (!hasAttribution && networksCount == 0) {
+        int invitableCount = mContactData.getInvitableAccontTypes().size();
+        if (!hasAttribution && networksCount == 0 && invitableCount == 0) {
             return;
         }
 
@@ -777,7 +780,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         for (AccountType accountType : mOtherEntriesMap.keySet()) {
 
             // Add a title for each third party app
-            mAllEntries.add(new NetworkTitleViewEntry(accountType));
+            mAllEntries.add(NetworkTitleViewEntry.fromAccountType(mContext, accountType));
 
             for (DetailViewEntry detailEntry : mOtherEntriesMap.get(accountType)) {
                 // Add indented separator
@@ -792,6 +795,46 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         }
 
         mOtherEntriesMap.clear();
+
+        // Add the "More networks" button, which opens the invitable account type list popup.
+        if (invitableCount > 0) {
+            addMoreNetworks();
+        }
+    }
+
+    /**
+     * Add the "More networks" entry.  When clicked, show a popup containing a list of invitable
+     * account types.
+     */
+    private void addMoreNetworks() {
+        // First, prepare for the popup.
+
+        // Adapter for the list popup.
+        final InvitableAccountTypesAdapter popupAdapter = new InvitableAccountTypesAdapter(mContext,
+                mContactData);
+
+        // Listener called when a popup item is clicked.
+        final AdapterView.OnItemClickListener popupItemListener
+                = new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                    long id) {
+                if (mListener != null) {
+                    mListener.onItemClicked(popupAdapter.getIntent(mContext, position));
+                }
+            }
+        };
+
+        // Then create the click listener for the "More network" entry.  Open the popup.
+        View.OnClickListener onClickListener = new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showListPopup(v, popupAdapter, popupItemListener);
+            }
+        };
+
+        // Finally create the entry.
+        mAllEntries.add(NetworkTitleViewEntry.forMoreNetworks(mContext, onClickListener));
     }
 
     /**
@@ -927,6 +970,30 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     }
 
     /**
+     * Show a list popup.  Used for "popup-able" entry, such as "More networks".
+     */
+    private void showListPopup(View anchorView, ListAdapter adapter,
+            final AdapterView.OnItemClickListener onItemClickListener) {
+        final ListPopupWindow popup = new ListPopupWindow(mContext, null);
+        popup.setAnchorView(anchorView);
+        popup.setWidth(anchorView.getWidth());
+        popup.setAdapter(adapter);
+        popup.setModal(true);
+
+        // We need to wrap the passed onItemClickListener here, so that we can dismiss() the
+        // popup afterwards.  Otherwise we could directly use the passed listener.
+        popup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                    long id) {
+                onItemClickListener.onItemClick(parent, view, position, id);
+                popup.dismiss();
+            }
+        });
+        popup.show();
+    }
+
+    /**
      * Base class for an item in the {@link ViewAdapter} list of data, which is
      * supplied to the {@link ListView}.
      */
@@ -950,6 +1017,16 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
         boolean isEnabled(){
             return isEnabled;
+        }
+
+        /**
+         * Called when the entry is clicked.  Only {@link #isEnabled} entries can get clicked.
+         *
+         * @param clickedView  {@link View} that was clicked  (Used, for example, as the anchor view
+         *        for a popup.)
+         * @param fragmentListener  {@link Listener} set to {@link ContactDetailFragment}
+         */
+        public void click(View clickedView, Listener fragmentListener) {
         }
     }
 
@@ -1008,19 +1085,49 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     }
 
     /**
-     * A title for a section of contact details from a single 3rd party network.
+     * A title for a section of contact details from a single 3rd party network.  It's also
+     * used for the "More networks" entry, which has the same layout.
      */
     private static class NetworkTitleViewEntry extends ViewEntry {
+        private final Drawable mIcon;
+        private final CharSequence mLabel;
+        private final View.OnClickListener mOnClickListener;
 
-        private final AccountType mAccountType;
-
-        NetworkTitleViewEntry(AccountType type) {
+        private NetworkTitleViewEntry(Drawable icon, CharSequence label, View.OnClickListener
+                onClickListener) {
             super(ViewAdapter.VIEW_TYPE_NETWORK_TITLE_ENTRY);
-            mAccountType = type;
+            this.mIcon = icon;
+            this.mLabel = label;
+            this.mOnClickListener = onClickListener;
+            this.isEnabled = onClickListener != null;
         }
 
-        public AccountType getAccountType() {
-            return mAccountType;
+        public static NetworkTitleViewEntry fromAccountType(Context context, AccountType type) {
+            return new NetworkTitleViewEntry(
+                    type.getDisplayIcon(context), type.getDisplayLabel(context), null);
+        }
+
+        public static NetworkTitleViewEntry forMoreNetworks(Context context, View.OnClickListener
+                onClickListener) {
+            // TODO Icon is temporary.  Need proper one.
+            return new NetworkTitleViewEntry(
+                    context.getResources().getDrawable(R.drawable.ic_menu_add_field_holo_light),
+                    context.getString(R.string.more_networks_button),
+                    onClickListener);
+        }
+
+        @Override
+        public void click(View clickedView, Listener fragmentListener) {
+            if (mOnClickListener == null) return;
+            mOnClickListener.onClick(clickedView);
+        }
+
+        public Drawable getIcon() {
+            return mIcon;
+        }
+
+        public CharSequence getLabel() {
+            return mLabel;
         }
     }
 
@@ -1187,6 +1294,12 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
             return true;
         }
+
+        @Override
+        public void click(View clickedView, Listener fragmentListener) {
+            if (fragmentListener == null || intent == null) return;
+            fragmentListener.onItemClicked(intent);
+        }
     }
 
     /**
@@ -1348,8 +1461,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 result.setTag(viewCache);
             }
 
-            viewCache.name.setText(entry.getAccountType().getDisplayLabel(mContext));
-            viewCache.icon.setImageDrawable(entry.getAccountType().getDisplayIcon(mContext));
+            viewCache.name.setText(entry.getLabel());
+            viewCache.icon.setImageDrawable(entry.getIcon());
 
             return result;
         }
@@ -1524,10 +1637,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (mListener == null) return;
         final ViewEntry entry = mAdapter.getItem(position);
-        if (entry == null || !(entry instanceof DetailViewEntry)) return;
-        final Intent intent = ((DetailViewEntry) entry).intent;
-        if (intent == null) return;
-        mListener.onItemClicked(intent);
+        if (entry == null) return;
+        entry.click(view, mListener);
     }
 
     @Override
@@ -1788,5 +1899,85 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
          * @param account Account where the new contact should be created
          */
         public void onCreateRawContactRequested(ArrayList<ContentValues> values, Account account);
+    }
+
+    /**
+     * Adapter for the invitable account types; used for the invitable account type list popup.
+     */
+    private final static class InvitableAccountTypesAdapter extends BaseAdapter {
+        private final Context mContext;
+        private final LayoutInflater mInflater;
+        private final ContactLoader.Result mContactData;
+        private final ArrayList<AccountType> mAccountTypes;
+
+        public InvitableAccountTypesAdapter(Context context, ContactLoader.Result contactData) {
+            mContext = context;
+            mInflater = LayoutInflater.from(context);
+            mContactData = contactData;
+            final List<String> types = contactData.getInvitableAccontTypes();
+            mAccountTypes = new ArrayList<AccountType>(types.size());
+
+            AccountTypeManager manager = AccountTypeManager.getInstance(context);
+            for (int i = 0; i < types.size(); i++) {
+                mAccountTypes.add(manager.getAccountType(types.get(i)));
+            }
+
+            Collections.sort(mAccountTypes, new AccountType.DisplayLabelComparator(mContext));
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            final View resultView =
+                    (convertView != null) ? convertView
+                    : mInflater.inflate(R.layout.account_selector_list_item, parent, false);
+
+            final TextView text1 = (TextView)resultView.findViewById(android.R.id.text1);
+            final TextView text2 = (TextView)resultView.findViewById(android.R.id.text2);
+            final ImageView icon = (ImageView)resultView.findViewById(android.R.id.icon);
+
+            final AccountType accountType = mAccountTypes.get(position);
+
+            CharSequence action = accountType.getInviteContactActionLabel(mContext);
+            CharSequence label = accountType.getDisplayLabel(mContext);
+            if (TextUtils.isEmpty(action)) {
+                text1.setText(label);
+                text2.setVisibility(View.GONE);
+            } else {
+                text1.setText(action);
+                text2.setVisibility(View.VISIBLE);
+                text2.setText(label);
+            }
+            icon.setImageDrawable(accountType.getDisplayIcon(mContext));
+
+            return resultView;
+        }
+
+        public Intent getIntent(Context context, int position) {
+            final AccountType accountType = mAccountTypes.get(position);
+            Intent intent = new Intent();
+            intent.setClassName(accountType.resPackageName,
+                    accountType.getInviteContactActivityClassName());
+
+            intent.setAction(ContactsContract.Intents.INVITE_CONTACT);
+
+            // Data is the lookup URI.
+            intent.setData(mContactData.getLookupUri());
+            return intent;
+        }
+
+        @Override
+        public int getCount() {
+            return mAccountTypes.size();
+        }
+
+        @Override
+        public AccountType getItem(int position) {
+            return mAccountTypes.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
     }
 }

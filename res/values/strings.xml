@@ -1281,6 +1281,9 @@
     <!-- Title for the list of all contact details that come from third-party sources (including a corporate directory) [CHAR LIMIT=20] -->
     <string name="network">Network</string>
 
+    <!-- Label of the button to open the "more networks" popup where the user can invite a contact to other social networks or services [CHAR LIMIT=32] -->
+    <string name="more_networks_button">More networks</string>
+
     <!-- Section title for the page containing the contact's social updates on the contact card [CHAR LIMIT=20]-->
     <string name="recent_updates">Recent</string>
 

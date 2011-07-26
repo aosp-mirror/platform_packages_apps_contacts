@@ -22,6 +22,7 @@ import com.android.contacts.model.AccountTypeManager;
 
 import android.accounts.Account;
 import android.content.Context;
+import android.text.TextUtils.TruncateAt;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,9 +78,11 @@ public final class AccountsListAdapter extends BaseAdapter {
         final AccountType accountType = mAccountTypes.getAccountType(account.type);
 
         text1.setText(account.name);
-        if (text2 != null) {
-            text2.setText(accountType.getDisplayLabel(mContext));
-        }
+
+        // For email addresses, we don't want to truncate at end, which might cut off the domain
+        // name.
+        text1.setEllipsize(TruncateAt.MIDDLE);
+        text2.setText(accountType.getDisplayLabel(mContext));
         icon.setImageDrawable(accountType.getDisplayIcon(mContext));
 
         return resultView;
