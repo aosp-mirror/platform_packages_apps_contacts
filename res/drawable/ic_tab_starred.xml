@@ -15,7 +15,6 @@
 -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_selected="true" android:state_pressed="false" android:drawable="@drawable/ic_tab_selected_starred" />
-    <item android:drawable="@drawable/ic_tab_unselected_starred" />
+    <item android:drawable="@drawable/ic_ab_favourites_holo_dark" />
 </selector>
 
