@@ -63,7 +63,7 @@ public final class ContactTileLoaderFactory {
     }
 
     public static CursorLoader createFrequentLoader(Context context) {
-        return new CursorLoader(context, Contacts.CONTENT_STREQUENT_URI, COLUMNS,
+        return new CursorLoader(context, Contacts.CONTENT_FREQUENT_URI, COLUMNS,
                  Contacts.STARRED + "=?", new String[]{"0"}, null);
     }
 }
