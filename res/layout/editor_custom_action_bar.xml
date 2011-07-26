@@ -49,6 +49,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="20dip"
                 android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@android:color/white"
                 android:text="@string/menu_done"
                 style="@android:style/Widget.Holo.ActionBar.TabText" />
 
