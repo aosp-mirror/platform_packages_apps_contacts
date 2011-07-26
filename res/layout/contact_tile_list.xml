@@ -30,6 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+        android:layout_marginTop="@dimen/empty_message_top_margin"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
 
 </FrameLayout>
