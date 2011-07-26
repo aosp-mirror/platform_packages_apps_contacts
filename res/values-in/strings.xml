@@ -74,6 +74,8 @@
     <string name="deleteConfirmation" msgid="811706994761610640">"Kenalan ini akan dihapus."</string>
     <string name="menu_done" msgid="796017761764190697">"Selesai"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Batal"</string>
+    <!-- no translation found for menu_discard (6456087569315685632) -->
+    <skip />
     <string name="editContact_title_edit" msgid="7678695190666836093">"Edit data kenalan"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"Kenalan baru"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetik"</string>
@@ -420,7 +422,10 @@
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Gunakan foto ini"</string>
-    <string name="contact_read_only" msgid="1203216914575723978">"Informasi kenalan <xliff:g id="SOURCE">%1$s</xliff:g> tidak dapat diedit pada perangkat ini."</string>
+    <!-- unknown placeholder SOURCE in contact_read_only -->
+    <skip />
+    <!-- no translation found for contact_read_only (1969214537163492087) -->
+    <skip />
     <string name="no_contact_details" msgid="6754415338321837001">"Tidak ada informasi tambahan untuk kenalan ini"</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Sortir daftar menurut"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Nama depan"</string>
@@ -450,14 +455,8 @@
   </plurals>
     <string name="no_contacts_selected" msgid="5877803471037324613">"Tidak ada kenalan yang dipilih."</string>
     <string name="add_field" msgid="2384260056674995230">"Tambahkan bidang lain"</string>
-    <string name="add_phone" msgid="4421904942555210013">"Menambah no. tlp. baru"</string>
-    <string name="add_email" msgid="175079666329862215">"Menambah email baru"</string>
-    <string name="add_im" msgid="5158094627521120439">"Menambah akun IM baru"</string>
-    <string name="add_address" msgid="418292312672970688">"Menambah alamat baru"</string>
-    <string name="add_note" msgid="2753771325725383279">"Menambah catatan baru"</string>
-    <string name="add_website" msgid="4312391288948517344">"Menambah situs baru"</string>
-    <string name="add_event" msgid="7488781591843886426">"Menambah acara baru"</string>
-    <string name="add_relationship" msgid="3083762399737240006">"Menambah hubungan baru"</string>
+    <!-- no translation found for add_new_entry_for_section (5223080690667565044) -->
+    <skip />
     <string name="contact_status_update_attribution" msgid="752179367353018597">"melalui <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> melalui <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"favorit"</string>
@@ -488,9 +487,8 @@
     <string name="list_filter_single" msgid="5871400283515893087">"Kenalan"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Tentukan tampilan ubahsuaian"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Setelan"</string>
-    <!-- no translation found for activity_title_contacts_filter (8275542497615516969) -->
-    <skip />
-    <string name="menu_settings" msgid="377929915873428211">"Setelan"</string>
+    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kenalan untuk ditampilkan"</string>
+    <!-- outdated translation 377929915873428211 -->     <string name="menu_settings" msgid="1515262535785451190">"Setelan"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Opsi tampilan"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Temukan kenalan"</string>
@@ -513,6 +511,10 @@
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> grup"</item>
   </plurals>
     <string name="delete_group_dialog_message" msgid="295063284548750881">"Anda yakin ingin menghapus grup \'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\'? (Data kenalan tidak akan dihapus.)"</string>
+    <!-- no translation found for num_contacts_in_group:one (1352418549951013448) -->
+    <!-- no translation found for num_contacts_in_group:other (8146027769011086349) -->
+    <!-- no translation found for group_list_num_contacts_in_group:one (3323065321661972446) -->
+    <!-- no translation found for group_list_num_contacts_in_group:other (6251996206137048525) -->
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Masukkan nama kenalan sebelum bergabung dengan kenalan lain."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Kenalan yang bergabung"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Teks disalin"</string>
@@ -524,11 +526,65 @@
     <string name="enter_contact_name" msgid="2930510479516059437">"Masukkan nama kenalan"</string>
     <string name="editGroup_title_insert" msgid="7803743109105317959">"Grup baru"</string>
     <string name="editGroup_title_edit" msgid="2173278908256913247">"Edit grup"</string>
+    <!-- no translation found for view_updates_from_group (1782685984905600034) -->
+    <skip />
     <string name="notification_voicemail_title" msgid="1282651537781272548">"Kotak pesan baru"</string>
+    <!-- no translation found for voicemail_playback_error (5128928338910411763) -->
+    <skip />
     <!-- no translation found for call_log_type_date_separator (8009466658324061546) -->
     <skip />
     <!-- no translation found for call_log_new_header (846546437517724715) -->
     <skip />
     <!-- no translation found for call_log_old_header (6262205894314263629) -->
+    <skip />
+    <!-- no translation found for voicemail_status_voicemail_not_available (3164200979671881947) -->
+    <skip />
+    <!-- no translation found for voicemail_status_messages_waiting (2970301042310727909) -->
+    <skip />
+    <!-- no translation found for voicemail_status_configure_voicemail (3940240432123700974) -->
+    <skip />
+    <!-- no translation found for voicemail_status_audio_not_available (3369618334553341626) -->
+    <skip />
+    <!-- no translation found for voicemail_status_action_configure (7008713959076506385) -->
+    <skip />
+    <!-- no translation found for voicemail_status_action_call_server (1824816252288551794) -->
+    <skip />
+    <!-- no translation found for voicemail_speed_slowest (6047030504814773029) -->
+    <skip />
+    <!-- no translation found for voicemail_speed_slower (7890393922358642543) -->
+    <skip />
+    <!-- no translation found for voicemail_speed_normal (6030110237820243006) -->
+    <skip />
+    <!-- no translation found for voicemail_speed_faster (4161478290979905481) -->
+    <skip />
+    <!-- no translation found for voicemail_speed_fastest (3373646875150544205) -->
+    <skip />
+    <!-- no translation found for call_log_item_count (2623628374805503262) -->
+    <skip />
+    <!-- no translation found for group_name_hint (2659811836386413509) -->
+    <skip />
+    <!-- no translation found for nfc_vcard_file_name (2823095213265993609) -->
+    <skip />
+    <!-- no translation found for menu_show_voicemails_only (1898421289561435703) -->
+    <skip />
+    <!-- no translation found for status_available (5586870015822828392) -->
+    <skip />
+    <!-- no translation found for status_away (1838861100379804730) -->
+    <skip />
+    <!-- no translation found for status_busy (9147992455450257136) -->
+    <skip />
+    <!-- no translation found for description_call_log_call_button (8207201401459528442) -->
+    <skip />
+    <!-- no translation found for description_call_log_play_button (651182125650429846) -->
+    <skip />
+    <!-- no translation found for description_call_log_incoming_call (4485427487637250143) -->
+    <skip />
+    <!-- no translation found for description_call_log_outgoing_call (604831756853471658) -->
+    <skip />
+    <!-- no translation found for description_call_log_missed_call (2242805209983708825) -->
+    <skip />
+    <!-- no translation found for description_call_log_voicemail (4600798771975158948) -->
+    <skip />
+    <!-- no translation found for description_call_log_unheard_voicemail (118101684236996786) -->
     <skip />
 </resources>
