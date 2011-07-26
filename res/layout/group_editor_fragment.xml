@@ -14,49 +14,15 @@
      limitations under the License.
 -->
 
-<LinearLayout
+<!--
+  This is the container for either the group editor view for editable groups
+  or read-only groups.
+-->
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/background_primary"
-    android:paddingTop="@dimen/group_editor_padding"
-    android:paddingLeft="@dimen/group_editor_padding"
-    android:paddingRight="@dimen/group_editor_padding" >
-
-    <include
-        layout="@layout/group_editor_account_header"
-        android:id="@+id/account_header" />
-
-    <TextView
-        android:id="@+id/account_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/group_editor_padding"
-        android:paddingLeft="10dip"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="?android:attr/textColorPrimary"
-        android:singleLine="true" />
-
-    <include
-        layout="@layout/edit_divider"
-        android:id="@+id/divider"/>
-
-    <EditText
-        android:id="@+id/group_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:inputType="textCapWords"
-        android:hint="@string/group_name_hint"
-        android:layout_marginBottom="@dimen/group_editor_padding"/>
-
-    <include
-        layout="@layout/group_editor_autocomplete_view"
-        android:id="@+id/add_member_field"/>
-
-    <include
-        layout="@layout/group_editor_existing_member_list"
-        android:id="@android:id/list"/>
-
-</LinearLayout>
+    android:paddingTop="5dip"
+    android:paddingLeft="5dip"
+    android:paddingRight="5dip" />

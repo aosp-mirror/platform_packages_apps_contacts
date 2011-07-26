@@ -42,9 +42,4 @@
         android:layout_height="50dip"
         style="?android:attr/quickContactBadgeStyleWindowMedium" />
 
-    <include
-        android:id="@+id/delete_button_container"
-        layout="@layout/edit_delete_button"
-        android:gravity="center_vertical" />
-
 </LinearLayout>

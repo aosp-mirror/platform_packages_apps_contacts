@@ -188,9 +188,6 @@
     <!-- Height of the member list in the group editor -->
     <dimen name="group_editor_member_list_height">550dip</dimen>
 
-    <!-- Side padding of the header in the group editor -->
-    <dimen name="group_editor_padding">5dip</dimen>
-
     <!-- Height for directory headers in contact lists -->
     <dimen name="directory_header_height">28dip</dimen>
 

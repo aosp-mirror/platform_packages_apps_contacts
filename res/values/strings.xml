@@ -1299,6 +1299,9 @@
     <!-- Text describing that a contact has no information available other than name and photo -->
     <string name="no_contact_details">No additional information for this contact</string>
 
+    <!-- Text used to explain that a group cannot be edited since the data is read only [CHAR LIMIT=40] -->
+    <string name="group_read_only">Not editable on this device</string>
+
     <!-- Label of the "sort list by" display option -->
     <string name="display_options_sort_list_by">Sort list by</string>
 

@@ -17,34 +17,35 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:minHeight="58dip"
-    android:paddingLeft="10dip">
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/read_only_warning"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="0dip"
-        android:layout_weight="1"
-        android:layout_gravity="center_vertical"
-        android:gravity="center_vertical"
-        android:paddingRight="3dip"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:focusable="true" />
-
-    <QuickContactBadge
-        android:id="@+id/badge"
-        android:layout_marginLeft="5dip"
-        android:layout_marginRight="10dip"
-        android:layout_gravity="center_vertical"
-        android:layout_width="50dip"
-        android:layout_height="50dip"
-        style="?android:attr/quickContactBadgeStyleWindowMedium" />
+        android:paddingTop="10dip"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="?android:attr/textColorTertiary"
+        android:text="@string/group_read_only" />
 
     <include
-        android:id="@+id/delete_button_container"
-        layout="@layout/edit_delete_button"
-        android:gravity="center_vertical" />
+        android:id="@+id/account_header"
+        layout="@layout/editor_account_header"/>
+
+    <TextView
+        android:id="@+id/group_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="?android:attr/textColorTertiary"
+        android:textStyle="bold"
+        android:padding="10dip"/>
+
+    <include
+        layout="@layout/group_editor_existing_member_list"
+        android:id="@android:id/list"/>
 
 </LinearLayout>
