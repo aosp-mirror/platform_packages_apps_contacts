@@ -69,10 +69,12 @@
         <item name="call_log_voicemail_status_text_color">#000000</item>
     </style>
 
-    <style name="ContactDetailActivityTheme" parent="android:Theme.Holo.Light">
+    <style name="ContactDetailActivityTheme" parent="@android:style/Theme.Holo.Light.SolidActionBar.Inverse.SplitActionBarWhenNarrow">
+        <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
-    <style name="ContactEditorActivityTheme" parent="android:Theme.Holo.Light">
+    <style name="ContactEditorActivityTheme" parent="@android:style/Theme.Holo.Light.SolidActionBar.Inverse.SplitActionBarWhenNarrow">
+        <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
@@ -159,7 +161,8 @@
         <attr name="call_log_voicemail_status_text_color" format="color" />
     </declare-styleable>
 
-    <style name="PeopleTheme" parent="android:Theme.Holo.Light.SplitActionBarWhenNarrow">
+    <style name="PeopleTheme" parent="@android:style/Theme.Holo.Light.SolidActionBar.Inverse.SplitActionBarWhenNarrow">
+        <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="section_header_background">@drawable/list_title_holo</item>
@@ -187,8 +190,14 @@
         <item name="contact_filter_popup_width">320dip</item>
     </style>
 
+    <style name="ContactsActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/people_app_theme_color</item>
+        <item name="android:backgroundStacked">@color/people_app_theme_color</item>
+    </style>
+
     <!-- TODO: Clean up this file so themes aren't copied. -->
-    <style name="GroupDetailTheme" parent="android:Theme.Holo.Light">
+    <style name="GroupDetailTheme" parent="@android:style/Theme.Holo.Light.SolidActionBar.Inverse.SplitActionBarWhenNarrow">
+        <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="section_header_background">@drawable/list_title_holo</item>
