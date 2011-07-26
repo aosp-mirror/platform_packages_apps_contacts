@@ -647,13 +647,16 @@
                     android:resource="@xml/social_widget_info" />
         </receiver>
 
-        <receiver android:name=".calllog.NewVoicemailReceiver">
+        <receiver android:name=".calllog.CallLogReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.NEW_VOICEMAIL" />
                 <data
                     android:scheme="content"
                     android:host="com.android.voicemail"
                 />
+            </intent-filter>
+            <intent-filter android:priority="100">
+                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
 
@@ -664,5 +667,10 @@
                 <action android:name="android.intent.action.APPWIDGET_PICK" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".calllog.CallLogNotificationsService"
+            android:exported="false"
+        />
     </application>
 </manifest>

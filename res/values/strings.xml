@@ -1605,13 +1605,29 @@
     <!-- Button to view the updates from the current group on the group detail page [CHAR LIMIT=20] -->
     <string name="view_updates_from_group">View updates</string>
 
-    <!-- Title of the notification of new voicemail. -->
-    <string name="notification_voicemail_title">New voicemail</string>
+    <!-- Title of the notification of new voicemails. [CHAR LIMIT=30] -->
+    <plurals name="notification_voicemail_title">
+        <item quantity="one">Voicemail</item>
+        <item quantity="other"><xliff:g id="count">%1$d</xliff:g> Voicemails</item>
+    </plurals>
+
+    <!-- Used to build a list of names or phone numbers, to indicate the callers who left
+         voicemails.
+         The first argument may be one or more callers, the most recent ones.
+         The second argument is an additional callers.
+         This string is used to build a list of callers.
+
+         [CHAR LIMIT=10]
+     -->
+    <string name="notification_voicemail_callers_list"><xliff:g id="newer_callers">%1$s</xliff:g>, <xliff:g id="older_caller">%2$s</xliff:g></string>
+
+    <!-- Text used in the ticker to notify the user of the latest voicemail. [CHAR LIMIT=30] -->
+    <string name="notification_new_voicemail_ticker">New voicemail from <xliff:g id="caller">%1$s</xliff:g></string>
 
     <!-- Initial display for position of current playback, do not translate. -->
     <string name="voicemail_initial_time">00:05</string>
 
-    <!-- Message to show when there is an error playing back the voicemail. -->
+    <!-- Message to show when there is an error playing back the voicemail. [CHAR LIMIT=40] -->
     <string name="voicemail_playback_error">Could not play voicemail</string>
 
     <!-- The separator between the call type text and the date in the call log [CHAR LIMIT=3] -->
