@@ -18,7 +18,6 @@ package com.android.contacts.detail;
 
 import com.android.contacts.ContactLoader;
 import com.android.contacts.activities.PeopleActivity.ContactDetailFragmentListener;
-import com.android.contacts.util.StreamItemEntry;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -105,7 +104,7 @@ public class ContactDetailLayoutController {
                 FragmentTransaction ft = mFragmentManager.beginTransaction();
                 ft.remove(oldDetailFragment);
                 ft.remove(oldUpdatesFragment);
-                ft.commit();
+                ft.commitAllowingStateLoss();
             }
         }
         if (mViewPager != null) {
@@ -168,7 +167,6 @@ public class ContactDetailLayoutController {
         // transaction to be dropped because there's nothing else we can do to update the UI.
         // The fact that the contact URI has already been saved by the activity means we can
         // restore this later.
-        // TODO: Figure out if this is really the solution we want.
         ft.commitAllowingStateLoss();
     }
 
@@ -195,7 +193,6 @@ public class ContactDetailLayoutController {
         // transaction to be dropped because there's nothing else we can do to update the UI.
         // The fact that the contact URI has already been saved by the activity means we can
         // restore this later.
-        // TODO: Figure out if this is really the solution we want.
         ft.commitAllowingStateLoss();
     }
 

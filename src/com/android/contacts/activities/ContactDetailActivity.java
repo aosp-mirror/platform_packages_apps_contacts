@@ -276,6 +276,10 @@ public class ContactDetailActivity extends ContactsActivity {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
+                    // If the activity is destroyed (or will be destroyed soon), don't update the UI
+                    if (isFinishing()) {
+                        return;
+                    }
                     mContactData = result;
                     mLookupUri = result.getLookupUri();
                     mContactHasUpdates = !result.getStreamItems().isEmpty();
