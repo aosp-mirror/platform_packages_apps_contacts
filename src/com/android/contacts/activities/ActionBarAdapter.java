@@ -26,7 +26,6 @@ import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -64,12 +63,10 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     private boolean mSearchMode;
     private String mQueryString;
 
-    private String mSearchLabelText;
     private SearchView mSearchView;
 
     private final Context mContext;
     private final SharedPreferences mPrefs;
-    private final boolean mAlwaysShowSearchView;
 
     private Listener mListener;
 
@@ -102,8 +99,6 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         mListener = listener;
         mActionBar = actionBar;
         mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-        mSearchLabelText = mContext.getString(R.string.search_label);
-        mAlwaysShowSearchView = mContext.getResources().getBoolean(R.bool.always_show_search_view);
 
         mShowHomeIcon = mContext.getResources().getBoolean(R.bool.show_home_icon);
 
@@ -258,8 +253,6 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
             newFlags |= ActionBar.DISPLAY_SHOW_HOME;
             newFlags |= ActionBar.DISPLAY_HOME_AS_UP;
             newFlags |= ActionBar.DISPLAY_SHOW_CUSTOM;
-        } else if (mAlwaysShowSearchView) {
-            newFlags |= ActionBar.DISPLAY_SHOW_CUSTOM;
         }
         mActionBar.setHomeButtonEnabled(mSearchMode);
 
@@ -271,13 +264,7 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
 
     private void update() {
         if (mSearchMode) {
-            if (mAlwaysShowSearchView) {
-                // Tablet -- change the app title for the search mode
-                mActionBar.setTitle(mSearchLabelText);
-            } else {
-                // Phone -- search view gets focus
-                setFocusOnSearchView();
-            }
+            setFocusOnSearchView();
             if (mActionBar.getNavigationMode() != ActionBar.NAVIGATION_MODE_STANDARD) {
                 mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
             }

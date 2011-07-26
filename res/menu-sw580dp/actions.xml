@@ -15,6 +15,12 @@
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/menu_search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/menu_search"
+        android:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/menu_add_contact"
         android:icon="@drawable/ic_menu_add_contact_holo_light"
         android:title="@string/menu_new_contact_action_bar"
