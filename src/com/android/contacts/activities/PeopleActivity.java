@@ -179,14 +179,6 @@ public class PeopleActivity extends ContactsActivity
      */
     private boolean mFragmentInitialized;
 
-    /**
-     * Whether or not the activity is destroyed. This flag is needed to ensure that the
-     * {@link Handler} does not execute any {@link FragmentTransaction}s in {@link Runnable}s
-     * after the activity is destroyed.
-     * TODO: Figure out a way to get rid of the {@link Handler} or make the operation safe.
-     */
-    private boolean mIsActivityDestroyed = false;
-
     /** Sequential ID assigned to each instance; used for logging */
     private final int mInstanceId;
     private static final AtomicInteger sNextInstanceId = new AtomicInteger();
@@ -470,7 +462,6 @@ public class PeopleActivity extends ContactsActivity
 
     @Override
     protected void onDestroy() {
-        mIsActivityDestroyed = true;
         // mActionBarAdapter will be null here when redirecting to another activity in
         // configureContentView().
         if (mActionBarAdapter != null) {
@@ -1025,8 +1016,8 @@ public class PeopleActivity extends ContactsActivity
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    // Don't continue setting up the detail page if the activity is destroyed.
-                    if (mIsActivityDestroyed) {
+                    // If the activity is destroyed (or will be destroyed soon), don't update the UI
+                    if (isFinishing()) {
                         return;
                     }
                     if (!mContactDetailLayoutController.isInitialized()) {
