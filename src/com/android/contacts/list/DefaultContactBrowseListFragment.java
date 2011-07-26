@@ -102,6 +102,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     private void updateFilterHeaderView() {
         ContactListFilter filter = getFilter();
+        if (mAccountFilterHeaderView == null) {
+            return; // Before onCreateView -- just ignore it.
+        }
         if (filter != null && filter.filterType != ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS &&
                 !isSearchMode() && filter.filterType != ContactListFilter.FILTER_TYPE_CUSTOM) {
             mAccountFilterHeaderView.setText(getContext().getString(
