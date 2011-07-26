@@ -17,8 +17,9 @@
 package com.android.contacts.detail;
 
 import com.android.contacts.ContactLoader;
-import com.android.contacts.ContactOptionsActivity;
+import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
+import com.android.contacts.activities.ContactDetailActivity;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.internal.util.Objects;
@@ -28,9 +29,11 @@ import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ActivityNotFoundException;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
@@ -52,9 +55,15 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
 
     private static final String TAG = ContactLoaderFragment.class.getSimpleName();
 
+    /** The launch code when picking a ringtone */
+    private static final int REQUEST_CODE_PICK_RINGTONE = 1;
+
+
     private boolean mOptionsMenuOptions;
     private boolean mOptionsMenuEditable;
     private boolean mOptionsMenuShareable;
+    private boolean mSendToVoicemailState;
+    private String mCustomRingtone;
 
     /**
      * This is a listener to the {@link ContactLoaderFragment} and will be notified when the
@@ -194,6 +203,8 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
                     mListener.onDetailsLoaded(mContactData);
                 }
             }
+            // Make sure the options menu is setup correctly with the loaded data.
+            getActivity().invalidateOptionsMenu();
         }
 
         @Override
@@ -222,11 +233,22 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
         mOptionsMenuOptions = isContactOptionsChangeEnabled();
         mOptionsMenuEditable = isContactEditable();
         mOptionsMenuShareable = isContactShareable();
+        if (mContactData != null) {
+            mSendToVoicemailState = mContactData.isSendToVoicemail();
+            mCustomRingtone = mContactData.getCustomRingtone();
+        }
 
-        // Options only shows telephony-related settings (ringtone, send to voicemail).
-        // ==> Hide if we don't have a telephone
-        final MenuItem optionsMenu = menu.findItem(R.id.menu_options);
-        optionsMenu.setVisible(mOptionsMenuOptions);
+        // Hide telephony-related settings (ringtone, send to voicemail)
+        // if we don't have a telephone
+        final MenuItem optionsSendToVoicemail = menu.findItem(R.id.menu_send_to_voicemail);
+        if (optionsSendToVoicemail != null) {
+            optionsSendToVoicemail.setChecked(mSendToVoicemailState);
+            optionsSendToVoicemail.setVisible(mOptionsMenuOptions);
+        }
+        final MenuItem optionsRingtone = menu.findItem(R.id.menu_set_ringtone);
+        if (optionsRingtone != null) {
+            optionsRingtone.setVisible(mOptionsMenuOptions);
+        }
 
         final MenuItem editMenu = menu.findItem(R.id.menu_edit);
         editMenu.setVisible(mOptionsMenuEditable);
@@ -262,11 +284,9 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
                 if (mListener != null) mListener.onDeleteRequested(mLookupUri);
                 return true;
             }
-            case R.id.menu_options: {
+            case R.id.menu_set_ringtone: {
                 if (mContactData == null) return false;
-                final Intent intent = new Intent(mContext, ContactOptionsActivity.class);
-                intent.setData(mContactData.getLookupUri());
-                mContext.startActivity(intent);
+                doPickRingtone();
                 return true;
             }
             case R.id.menu_share: {
@@ -290,6 +310,15 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
                 }
                 return true;
             }
+            case R.id.menu_send_to_voicemail: {
+                // Update state and save
+                mSendToVoicemailState = !mSendToVoicemailState;
+                item.setChecked(mSendToVoicemailState);
+                Intent intent = ContactSaveService.createSetSendToVoicemail(
+                        mContext, mLookupUri, mSendToVoicemailState);
+                mContext.startService(intent);
+                return true;
+            }
         }
         return false;
     }
@@ -303,5 +332,56 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
             }
         }
         return false;
+    }
+
+    private void doPickRingtone() {
+
+        Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
+        // Allow user to pick 'Default'
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
+        // Show only ringtones
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_RINGTONE);
+        // Don't show 'Silent'
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false);
+
+        Uri ringtoneUri;
+        if (mCustomRingtone != null) {
+            ringtoneUri = Uri.parse(mCustomRingtone);
+        } else {
+            // Otherwise pick default ringtone Uri so that something is selected.
+            ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+        }
+
+        // Put checkmark next to the current ringtone for this contact
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, ringtoneUri);
+
+        // Launch!
+        startActivityForResult(intent, REQUEST_CODE_PICK_RINGTONE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+
+        switch (requestCode) {
+            case REQUEST_CODE_PICK_RINGTONE: {
+                Uri pickedUri = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
+                handleRingtonePicked(pickedUri);
+                break;
+            }
+        }
+    }
+
+    private void handleRingtonePicked(Uri pickedUri) {
+        if (pickedUri == null || RingtoneManager.isDefault(pickedUri)) {
+            mCustomRingtone = null;
+        } else {
+            mCustomRingtone = pickedUri.toString();
+        }
+        Intent intent = ContactSaveService.createSetRingtone(
+                mContext, mLookupUri, mCustomRingtone);
+        mContext.startService(intent);
     }
 }

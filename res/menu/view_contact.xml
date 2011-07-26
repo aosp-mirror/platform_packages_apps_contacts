@@ -28,12 +28,17 @@
         android:alphabeticShortcut="s" />
 
     <item
-        android:id="@+id/menu_options"
-        android:icon="@drawable/ic_menu_mark"
-        android:title="@string/menu_contactOptions" />
-
-    <item
         android:id="@+id/menu_delete"
         android:icon="@drawable/ic_menu_trash_holo_light"
         android:title="@string/menu_deleteContact" />
+
+    <item
+        android:id="@+id/menu_set_ringtone"
+        android:icon="@drawable/ic_menu_mark"
+        android:title="@string/menu_set_ring_tone" />
+
+    <item
+        android:id="@+id/menu_send_to_voicemail"
+        android:checkable="true"
+        android:title="@string/menu_redirect_calls_to_vm" />
 </menu>

@@ -98,6 +98,12 @@ public class ContactSaveService extends IntentService {
     public static final String EXTRA_CONTACT_ID2 = "contactId2";
     public static final String EXTRA_CONTACT_WRITABLE = "contactWritable";
 
+    public static final String ACTION_SET_SEND_TO_VOICEMAIL = "sendToVoicemail";
+    public static final String EXTRA_SEND_TO_VOICEMAIL_FLAG = "sendToVoicemailFlag";
+
+    public static final String ACTION_SET_RINGTONE = "setRingtone";
+    public static final String EXTRA_CUSTOM_RINGTONE = "customRingtone";
+
     private static final HashSet<String> ALLOWED_DATA_COLUMNS = Sets.newHashSet(
         Data.MIMETYPE,
         Data.IS_PRIMARY,
@@ -185,6 +191,10 @@ public class ContactSaveService extends IntentService {
             deleteContact(intent);
         } else if (ACTION_JOIN_CONTACTS.equals(action)) {
             joinContacts(intent);
+        } else if (ACTION_SET_SEND_TO_VOICEMAIL.equals(action)) {
+            setSendToVoicemail(intent);
+        } else if (ACTION_SET_RINGTONE.equals(action)) {
+            setRingtone(intent);
         }
     }
 
@@ -382,6 +392,7 @@ public class ContactSaveService extends IntentService {
      * @param callbackActivity is the activity to send the callback intent to
      * @param callbackAction is the intent action for the callback intent
      */
+
     public static Intent createNewGroupIntent(Context context, Account account,
             String label, long[] rawContactsToAdd, Class<?> callbackActivity,
             String callbackAction) {
@@ -653,6 +664,57 @@ public class ContactSaveService extends IntentService {
 
         final ContentValues values = new ContentValues(1);
         values.put(Contacts.STARRED, value);
+        getContentResolver().update(contactUri, values, null, null);
+    }
+
+    /**
+     * Creates an intent that can be sent to this service to set the redirect to voicemail.
+     */
+    public static Intent createSetSendToVoicemail(Context context, Uri contactUri,
+            boolean value) {
+        Intent serviceIntent = new Intent(context, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_SET_SEND_TO_VOICEMAIL);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_CONTACT_URI, contactUri);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_SEND_TO_VOICEMAIL_FLAG, value);
+
+        return serviceIntent;
+    }
+
+    private void setSendToVoicemail(Intent intent) {
+        Uri contactUri = intent.getParcelableExtra(EXTRA_CONTACT_URI);
+        boolean value = intent.getBooleanExtra(EXTRA_SEND_TO_VOICEMAIL_FLAG, false);
+        if (contactUri == null) {
+            Log.e(TAG, "Invalid arguments for setRedirectToVoicemail");
+            return;
+        }
+
+        final ContentValues values = new ContentValues(1);
+        values.put(Contacts.SEND_TO_VOICEMAIL, value);
+        getContentResolver().update(contactUri, values, null, null);
+    }
+
+    /**
+     * Creates an intent that can be sent to this service to save the contact's ringtone.
+     */
+    public static Intent createSetRingtone(Context context, Uri contactUri,
+            String value) {
+        Intent serviceIntent = new Intent(context, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_SET_RINGTONE);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_CONTACT_URI, contactUri);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_CUSTOM_RINGTONE, value);
+
+        return serviceIntent;
+    }
+
+    private void setRingtone(Intent intent) {
+        Uri contactUri = intent.getParcelableExtra(EXTRA_CONTACT_URI);
+        String value = intent.getStringExtra(EXTRA_CUSTOM_RINGTONE);
+        if (contactUri == null) {
+            Log.e(TAG, "Invalid arguments for setRingtone");
+            return;
+        }
+        ContentValues values = new ContentValues(1);
+        values.put(Contacts.CUSTOM_RINGTONE, value);
         getContentResolver().update(contactUri, values, null, null);
     }
 
