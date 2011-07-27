@@ -297,6 +297,9 @@ public class ContactLoaderTest extends LoaderTestCase {
                         Data.STATUS_LABEL, Data.STATUS_TIMESTAMP,
 
                         Contacts.PHOTO_URI,
+
+                        Contacts.SEND_TO_VOICEMAIL,
+                        Contacts.CUSTOM_RINGTONE,
                     })
                     .withSortOrder(Contacts.Entity.RAW_CONTACT_ID)
                     .returnRow(
@@ -330,7 +333,10 @@ public class ContactLoaderTest extends LoaderTestCase {
                         "Having dinner", "mockPkg3", 0,
                         20, 0,
 
-                        "content:some.photo.uri"
+                        "content:some.photo.uri",
+
+                        0,
+                        null
                     );
         }
 
