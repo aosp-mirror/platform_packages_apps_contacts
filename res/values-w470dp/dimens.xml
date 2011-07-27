@@ -15,4 +15,7 @@
 -->
 <resources>
     <dimen name="detail_tab_carousel_height">0dip</dimen>
+    <dimen name="quick_contact_top_position">-1px</dimen>
+    <dimen name="quick_contact_picture_width">174dip</dimen>
+    <dimen name="quick_contact_picture_height">-1px</dimen>
 </resources>

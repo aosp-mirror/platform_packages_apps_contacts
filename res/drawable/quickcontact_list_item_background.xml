@@ -13,9 +13,23 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+
+<!-- TODO These all have to be refined -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_first="true" android:drawable="@drawable/quickactions_arrowdown_right_holo_light" />
-    <item android:state_last="true" android:drawable="@drawable/quickactions_arrowup_right_holo_light" />
-    <!-- TODO: provide callout-less state -->
-    <item android:drawable="@drawable/quickactions_arrowup_right_holo_light" />
+    <item
+        android:state_window_focused="false"
+        android:drawable="@drawable/list_background_holo" />
+    <item
+        android:state_focused="true"
+        android:state_pressed="true"
+        android:drawable="@drawable/list_pressed_holo" />
+    <item
+        android:state_focused="false"
+        android:state_pressed="true"
+        android:drawable="@drawable/list_pressed_holo" />
+    <item
+        android:state_focused="true"
+        android:drawable="@drawable/list_focused_holo" />
+    <item
+        android:drawable="@color/people_app_theme_color" />
 </selector>

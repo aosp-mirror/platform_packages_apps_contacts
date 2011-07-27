@@ -1015,31 +1015,12 @@
     <!-- Message next to disamgiguation dialog check box -->
     <string name="make_primary">Remember this choice</string>
 
-    <!-- Shown as a toast when the user taps on a Fast-Track icon, and no application
+    <!-- Shown as a toast when the user taps on a QuickContact icon, and no application
          was found that could perform the selected action -->
     <string name="quickcontact_missing_app">No application found to handle this action</string>
 
-    <!-- Shown as the checkbox label that, when checked, will store remember the
-         selected choice and shortcut to it in the future.  For example, this would
-         make a selected phone number the default. -->
-    <string name="quickcontact_remember_choice">Remember this choice</string>
-
     <!-- Shown as the header name for a person when the name is missing or unknown. -->
     <string name="quickcontact_missing_name">Unknown</string>
-
-    <!-- Text that is shown in the Badge, when there is no data to display -->
-    <string name="quickcontact_no_data">No data</string>
-
-    <!-- Accessibility description for the button in QuickContacts that allows the user to clear
-    defaults of a contact (like primary email). [CHAR LIMIT=100] -->
-    <string name="quickcontact_clear_defaults_description">Clear defaults</string>
-
-    <!-- Caption that shows above the list of defaults (like primary email). [CHAR LIMIT=40] -->
-    <string name="quickcontact_clear_defaults_caption">Defaults set for this contact:</string>
-
-    <!-- Button caption that allows the user to clear the defaults  (like primary email) of one
-    contact. [CHAR LIMIT=15] -->
-    <string name="quickcontact_clear_defaults_button">Clear</string>
 
     <!-- The menu item to open the list of accounts -->
     <string name="menu_accounts">Accounts</string>

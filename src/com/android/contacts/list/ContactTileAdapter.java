@@ -316,11 +316,9 @@ public class ContactTileAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        /*
-         * As we show several selectable items for each ListView row,
-         * we can not determine a stable id. But as we don't rely on ListView's selection,
-         * this should not be a problem.
-         */
+        // As we show several selectable items for each ListView row,
+        // we can not determine a stable id. But as we don't rely on ListView's selection,
+        // this should not be a problem.
         return position;
     }
 

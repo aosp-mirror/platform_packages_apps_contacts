@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2011 The Android Open Source Project
+<!-- Copyright (C) 2009 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,9 +13,16 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_first="true" android:drawable="@drawable/quickactions_arrowdown_left_holo_light" />
-    <item android:state_last="true" android:drawable="@drawable/quickactions_arrowup_left_holo_light" />
-    <!-- TODO: provide callout-less state -->
-    <item android:drawable="@drawable/quickactions_arrowup_left_holo_light" />
-</selector>
+
+<com.android.contacts.quickcontact.CheckableImageView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="60dip"
+    android:layout_height="60dip"
+    android:paddingLeft="12dip"
+    android:paddingRight="12dip"
+    android:paddingTop="8dip"
+    android:paddingBottom="8dip"
+    android:scaleType="centerInside"
+    android:focusable="true"
+    android:clickable="true"
+    android:background="?android:attr/selectableItemBackground" />

@@ -100,8 +100,6 @@ public final class TypePrecedence {
     private static int[] getTypePrecedenceList(String mimetype) {
         if (mimetype.equals(Phone.CONTENT_ITEM_TYPE)) {
             return TYPE_PRECEDENCE_PHONES;
-        } else if (mimetype.equals(Constants.MIME_TYPE_SMS_ADDRESS)) {
-            return TYPE_PRECEDENCE_PHONES;
         } else if (mimetype.equals(Email.CONTENT_ITEM_TYPE)) {
             return TYPE_PRECEDENCE_EMAIL;
         } else if (mimetype.equals(StructuredPostal.CONTENT_ITEM_TYPE)) {

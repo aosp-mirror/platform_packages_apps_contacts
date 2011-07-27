@@ -17,8 +17,8 @@
     <color name="textColorIconOverlay">#fff</color>
     <color name="textColorIconOverlayShadow">#000</color>
 
-    <color name="quickcontact_disambig">#f2f2f2</color>
-    <color name="quickcontact_disambig_divider">#afafaf</color>
+    <color name="quickcontact_list_divider">#ff48bde8</color>
+    <color name="quickcontact_list_background">#ff33b5e6</color>
 
     <color name="edit_divider">#ff666666</color>
 

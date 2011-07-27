@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2010 The Android Open Source Project
+<!-- Copyright (C) 2011 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,15 +14,22 @@
      limitations under the License.
 -->
 
-<TextView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="12dip"
-    android:paddingRight="12dip"
-    android:scaleType="centerInside"
-    android:focusable="false"
-    android:clickable="false"
-    android:gravity="center_vertical"
-    android:textColor="@android:color/black"
-    android:text="@string/quickcontact_no_data" />
+    android:layout_height="wrap_content">
+    <!-- Line that looks like a list divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="@color/quickcontact_list_divider" />
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/quickcontact_list_divider"
+        android:dividerHeight="1dip"
+        android:background="@color/quickcontact_list_background"
+        android:cacheColorHint="@null" />
+</LinearLayout>

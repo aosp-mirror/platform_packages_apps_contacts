@@ -30,10 +30,17 @@
 
     <dimen name="photo_action_popup_width">400dip</dimen>
 
-    <!-- Width of the quick contact popup. This size is chosen so that the last icon is clipped
-    to indicate horizontal scrollability. Also, this size is the same as the widget to make them
-    aligned -->
-    <dimen name="quick_contact_width">352dip</dimen>
+    <!-- Top position of quick contact. If this is -1, the vertical position is determined
+    based on the source of the request -->
+    <dimen name="quick_contact_top_position">48dip</dimen>
+
+    <!-- Width of the picture in the QuickContact popup. This can be -1 for the full width
+    of the parent -->
+    <dimen name="quick_contact_picture_width">-1px</dimen>
+
+    <!-- Height of the picture in the QuickContact popup. This can be -1 for the full height
+    of the parent -->
+    <dimen name="quick_contact_picture_height">174dip</dimen>
 
     <!-- Padding of the rounded plus/minus/expand/collapse buttons in the editor  -->
     <dimen name="editor_round_button_padding_left">2dip</dimen>
