@@ -3,6 +3,7 @@ package com.android.contacts.quickcontact;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.model.DataKind;
+import com.android.contacts.model.AccountType.EditType;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.PhoneCapabilityTester;
 
@@ -34,11 +35,12 @@ public class DataAction implements Action {
     private final DataKind mKind;
     private final String mMimeType;
 
-    private CharSequence mHeader;
     private CharSequence mBody;
+    private CharSequence mSubtitle;
     private Intent mIntent;
+    private Intent mAlternateIntent;
+    private int mAlternateIconRes;
 
-    private boolean mAlternate;
     private Uri mDataUri;
     private long mDataId;
     private boolean mIsPrimary;
@@ -46,18 +48,33 @@ public class DataAction implements Action {
     /**
      * Create an action from common {@link Data} elements.
      */
-    public DataAction(Context context, String mimeType, DataKind kind,
-            long dataId, Cursor cursor) {
+    public DataAction(Context context, String mimeType, DataKind kind, long dataId, Cursor cursor) {
         mContext = context;
         mKind = kind;
         mMimeType = mimeType;
 
-        // Inflate strings from cursor
-        mAlternate = Constants.MIME_TYPE_SMS_ADDRESS.equals(mimeType);
-        if (mAlternate && mKind.actionAltHeader != null) {
-            mHeader = mKind.actionAltHeader.inflateUsing(context, cursor);
-        } else if (mKind.actionHeader != null) {
-            mHeader = mKind.actionHeader.inflateUsing(context, cursor);
+        // Determine type for subtitle
+        mSubtitle = "";
+        if (kind.typeColumn != null) {
+            final int typeColumnIndex = cursor.getColumnIndex(kind.typeColumn);
+            if (typeColumnIndex != -1) {
+                final int typeValue = cursor.getInt(typeColumnIndex);
+
+                // get type string
+                for (EditType type : kind.typeList) {
+                    if (type.rawValue == typeValue) {
+                        if (type.customColumn == null) {
+                            // Non-custom type. Get its description from the resource
+                            mSubtitle = context.getString(type.labelRes);
+                        } else {
+                            // Custom type. Read it from the database
+                            mSubtitle = cursor.getString(cursor.getColumnIndexOrThrow(
+                                    type.customColumn));
+                        }
+                        break;
+                    }
+                }
+            }
         }
 
         if (getAsInt(cursor, Data.IS_SUPER_PRIMARY) != 0) {
@@ -71,13 +88,30 @@ public class DataAction implements Action {
         mDataId = dataId;
         mDataUri = ContentUris.withAppendedId(Data.CONTENT_URI, dataId);
 
+        final boolean hasPhone = PhoneCapabilityTester.isPhone(mContext);
+        final boolean hasSms = PhoneCapabilityTester.isSmsIntentRegistered(mContext);
+
         // Handle well-known MIME-types with special care
         if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
             if (PhoneCapabilityTester.isPhone(mContext)) {
                 final String number = getAsString(cursor, Phone.NUMBER);
                 if (!TextUtils.isEmpty(number)) {
-                    final Uri callUri = Uri.fromParts(Constants.SCHEME_TEL, number, null);
-                    mIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED, callUri);
+
+                    final Intent phoneIntent = hasPhone ? new Intent(Intent.ACTION_CALL_PRIVILEGED,
+                            Uri.fromParts(Constants.SCHEME_TEL, number, null)) : null;
+                    final Intent smsIntent = hasSms ? new Intent(Intent.ACTION_SENDTO,
+                            Uri.fromParts(Constants.SCHEME_SMSTO, number, null)) : null;
+
+                    // Configure Icons and Intents. Notice actionIcon is already set to the phone
+                    if (hasPhone && hasSms) {
+                        mIntent = phoneIntent;
+                        mAlternateIntent = smsIntent;
+                        mAlternateIconRes = kind.iconAltResDark;
+                    } else if (hasPhone) {
+                        mIntent = phoneIntent;
+                    } else if (hasSms) {
+                        mIntent = smsIntent;
+                    }
                 }
             }
         } else if (SipAddress.CONTENT_ITEM_TYPE.equals(mimeType)) {
@@ -92,14 +126,6 @@ public class DataAction implements Action {
                     // regular phone numbers.)  That's because the phone
                     // app explicitly specifies an android:icon attribute
                     // for the SIP-related intent-filters in its manifest.
-                }
-            }
-        } else if (Constants.MIME_TYPE_SMS_ADDRESS.equals(mimeType)) {
-            if (PhoneCapabilityTester.isSmsIntentRegistered(mContext)) {
-                final String number = getAsString(cursor, Phone.NUMBER);
-                if (!TextUtils.isEmpty(number)) {
-                    final Uri smsUri = Uri.fromParts(Constants.SCHEME_SMSTO, number, null);
-                    mIntent = new Intent(Intent.ACTION_SENDTO, smsUri);
                 }
             }
         } else if (Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
@@ -127,7 +153,7 @@ public class DataAction implements Action {
                 if (isEmail) {
                     // Use Google Talk string when using Email, and clear data
                     // Uri so we don't try saving Email as primary.
-                    mHeader = context.getText(R.string.chat_gtalk);
+                    mSubtitle = context.getText(R.string.chat_gtalk);
                     mDataUri = null;
                 }
 
@@ -189,66 +215,59 @@ public class DataAction implements Action {
         return true;
     }
 
-    /** {@inheritDoc} */
     @Override
-    public CharSequence getHeader() {
-        return mHeader;
+    public CharSequence getSubtitle() {
+        return mSubtitle;
     }
 
-    /** {@inheritDoc} */
     @Override
     public CharSequence getBody() {
         return mBody;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String getMimeType() {
         return mMimeType;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Uri getDataUri() {
         return mDataUri;
     }
 
-    /** {@inheritDoc} */
     @Override
     public long getDataId() {
         return mDataId;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Boolean isPrimary() {
         return mIsPrimary;
     }
 
-    /** {@inheritDoc} */
     @Override
-    public Drawable getFallbackIcon() {
-        // Bail early if no valid resources
+    public Drawable getAlternateIcon() {
+        if (mAlternateIconRes == 0) return null;
+
         final String resPackageName = mKind.resPackageName;
-        if (resPackageName == null) return null;
+        if (resPackageName == null) {
+            return mContext.getResources().getDrawable(mAlternateIconRes);
+        }
 
         final PackageManager pm = mContext.getPackageManager();
-        if (mAlternate && mKind.iconAltRes != -1) {
-            return pm.getDrawable(resPackageName, mKind.iconAltRes, null);
-        } else if (mKind.iconRes != -1) {
-            return pm.getDrawable(resPackageName, mKind.iconRes, null);
-        } else {
-            return null;
-        }
+        return pm.getDrawable(resPackageName, mAlternateIconRes, null);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Intent getIntent() {
         return mIntent;
     }
 
-    /** {@inheritDoc} */
+    @Override
+    public Intent getAlternateIntent() {
+        return mAlternateIntent;
+    }
+
     @Override
     public boolean collapseWith(Action other) {
         if (!shouldCollapseWith(other)) {
@@ -257,7 +276,6 @@ public class DataAction implements Action {
         return true;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean shouldCollapseWith(Action t) {
         if (t == null) {
@@ -276,8 +294,7 @@ public class DataAction implements Action {
             return false;
         }
         if (!TextUtils.equals(mMimeType, other.mMimeType)
-                || !ContactsUtils.areIntentActionEqual(mIntent, other.mIntent)
-                ) {
+                || !ContactsUtils.areIntentActionEqual(mIntent, other.mIntent)) {
             return false;
         }
         return true;

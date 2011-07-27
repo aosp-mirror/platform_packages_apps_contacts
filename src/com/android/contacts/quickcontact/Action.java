@@ -27,20 +27,21 @@ import android.net.Uri;
  * string description and icon.
  */
 public interface Action extends Collapser.Collapsible<Action> {
-    public CharSequence getHeader();
     public CharSequence getBody();
+    public CharSequence getSubtitle();
 
     public String getMimeType();
-    public Drawable getFallbackIcon();
 
-    /**
-     * Build an {@link Intent} that will perform this action.
-     */
+    /** Returns an icon that can be clicked for the alternate action. */
+    public Drawable getAlternateIcon();
+
+    /** Build an {@link Intent} that will perform this action. */
     public Intent getIntent();
 
-    /**
-     * Checks if the contact data for this action is primary.
-     */
+    /** Build an {@link Intent} that will perform the alternate action. */
+    public Intent getAlternateIntent();
+
+    /** Checks if the contact data for this action is primary. */
     public Boolean isPrimary();
 
     /**

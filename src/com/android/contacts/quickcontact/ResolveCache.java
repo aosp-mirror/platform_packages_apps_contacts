@@ -134,7 +134,7 @@ public class ResolveCache {
 
     /**
      * Best {@link ResolveInfo} when multiple found. Ties are broken by
-     * selecting first from the {QuickContactWindow#sPreferResolve} list of
+     * selecting first from the {@link QuickContactActivity#sPreferResolve} list of
      * preferred packages, second by apps that live on the system partition,
      * otherwise the app from the top of the list. This is
      * <strong>only</strong> used for selecting a default icon for
@@ -182,10 +182,10 @@ public class ResolveCache {
      * for accessibility purposes.
      */
     public CharSequence getDescription(Action action) {
-        final CharSequence actionHeader = action.getHeader();
+        final CharSequence actionSubtitle = action.getSubtitle();
         final ResolveInfo info = getEntry(action).bestResolve;
-        if (!TextUtils.isEmpty(actionHeader)) {
-            return actionHeader;
+        if (!TextUtils.isEmpty(actionSubtitle)) {
+            return actionSubtitle;
         } else if (info != null) {
             return info.loadLabel(mPackageManager);
         } else {

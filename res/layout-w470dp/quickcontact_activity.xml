@@ -25,20 +25,20 @@
     <LinearLayout
         android:id="@android:id/content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="15dip"
-        android:paddingRight="15dip"
-        android:orientation="vertical">
+        android:layout_height="@dimen/quick_contact_picture_height"
+        android:padding="32dip"
+        android:orientation="horizontal">
         <include layout="@layout/quickcontact_photo_container" />
-        <View
-            android:id="@+id/line_before_track"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="2dip"
-            android:background="@color/quickcontact_list_background" />
-        <include layout="@layout/quickcontact_track" />
-        <android.support.v4.view.ViewPager
-            android:id="@+id/item_list_pager"
-            android:layout_width="match_parent"
-            android:layout_height="180dip" />
+            android:layout_height="@dimen/quick_contact_picture_height"
+            android:orientation="vertical">
+            <include layout="@layout/quickcontact_track" />
+            <android.support.v4.view.ViewPager
+                android:id="@+id/item_list_pager"
+                android:background="@color/quickcontact_list_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
     </LinearLayout>
 </view>
