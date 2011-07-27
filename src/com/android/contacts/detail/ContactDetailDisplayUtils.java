@@ -25,6 +25,7 @@ import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.util.ContactBadgeUtil;
 import com.android.contacts.util.StreamItemEntry;
 import com.android.contacts.util.StreamItemPhotoEntry;
+import com.google.common.annotations.VisibleForTesting;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -327,14 +328,22 @@ public class ContactDetailDisplayUtils {
         streamContainer.addView(oneColumnView);
     }
 
-    private static View addStreamItemText(LayoutInflater inflater, Context context,
+    @VisibleForTesting
+    static View addStreamItemText(LayoutInflater inflater, Context context,
             StreamItemEntry streamItem, ViewGroup parent) {
         View textUpdate = inflater.inflate(R.layout.stream_item_text, parent, false);
         TextView htmlView = (TextView) textUpdate.findViewById(R.id.stream_item_html);
         TextView attributionView = (TextView) textUpdate.findViewById(
                 R.id.stream_item_attribution);
+        TextView commentsView = (TextView) textUpdate.findViewById(R.id.stream_item_comments);
         htmlView.setText(Html.fromHtml(streamItem.getText()));
         attributionView.setText(ContactBadgeUtil.getSocialDate(streamItem, context));
+        if (streamItem.getComments() != null) {
+            commentsView.setText(Html.fromHtml(streamItem.getComments()));
+            commentsView.setVisibility(View.VISIBLE);
+        } else {
+            commentsView.setVisibility(View.GONE);
+        }
         parent.addView(textUpdate);
         return textUpdate;
     }

@@ -25,9 +25,22 @@
         android:textSize="16sp"
         android:textColor="@color/social_update_text_color" />
 
-    <TextView android:id="@+id/stream_item_attribution"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/social_update_attribution_color"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView android:id="@+id/stream_item_attribution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/social_update_attribution_color" />
+
+        <TextView android:id="@+id/stream_item_comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dip"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/social_update_comments_color" />
+    </LinearLayout>
+
 </LinearLayout>
