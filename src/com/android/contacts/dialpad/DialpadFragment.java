@@ -538,10 +538,8 @@ public class DialpadFragment extends Fragment
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-
-        // If the hardware doesn't have a hardware menu key, we'll show soft menu button on the
-        // right side of digits EditText.
-        if (ViewConfiguration.get(getActivity()).hasPermanentMenuKey()) {
+        if (mShowOptionsMenu && ViewConfiguration.get(getActivity()).hasPermanentMenuKey() &&
+                mDialpadChooser != null && mDigits != null) {
             inflater.inflate(R.menu.dialpad_options, menu);
         }
     }
@@ -549,16 +547,9 @@ public class DialpadFragment extends Fragment
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         // Hardware menu key should be available and Views should already be ready.
-        if (ViewConfiguration.get(getActivity()).hasPermanentMenuKey() &&
+        if (mShowOptionsMenu && ViewConfiguration.get(getActivity()).hasPermanentMenuKey() &&
                 mDialpadChooser != null && mDigits != null) {
-            if (mShowOptionsMenu) {
-                setupMenuItems(menu);
-            } else {
-                menu.findItem(R.id.menu_call_settings_dialpad).setVisible(false);
-                menu.findItem(R.id.menu_add_contacts).setVisible(false);
-                menu.findItem(R.id.menu_2s_pause).setVisible(false);
-                menu.findItem(R.id.menu_add_wait).setVisible(false);
-            }
+             setupMenuItems(menu);
         }
     }
 

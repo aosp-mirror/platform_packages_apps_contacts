@@ -122,7 +122,12 @@ public class DialtactsActivity extends Activity {
     }
 
     private class PageChangeListener implements OnPageChangeListener {
-        private int mPreviousPosition = -1;  // Invalid at first
+        private int mCurrentPosition = -1;
+        /**
+         * Used during page migration, to remember the next position {@link #onPageSelected(int)}
+         * specified.
+         */
+        private int mNextPosition = -1;
 
         @Override
         public void onPageScrolled(
@@ -132,34 +137,38 @@ public class DialtactsActivity extends Activity {
         @Override
         public void onPageSelected(int position) {
             final ActionBar actionBar = getActionBar();
-            if (mPreviousPosition == position) {
+            if (mCurrentPosition == position) {
                 Log.w(TAG, "Previous position and next position became same (" + position + ")");
             }
 
-            if (mPreviousPosition >= 0) {
-                sendFragmentVisibilityChange(mPreviousPosition, false);
-            }
-            sendFragmentVisibilityChange(position, true);
-
             actionBar.selectTab(actionBar.getTabAt(position));
-
-            // Activity#onPrepareOptionsMenu() may not be called when Fragment has it's own
-            // options menu. We force this Activity to call it to hide/show bottom bar. Also
-            // we don't want to do so when it is unnecessary (buttons may flicker).
-            if (mPreviousPosition == TAB_INDEX_DIALER || position == TAB_INDEX_DIALER) {
-                // Force this Activity to prepare Menu again.
-                invalidateOptionsMenu();
-            }
-
-            mPreviousPosition = position;
+            mNextPosition = position;
         }
 
         public void setCurrentPosition(int position) {
-            mPreviousPosition = position;
+            mCurrentPosition = position;
         }
 
         @Override
         public void onPageScrollStateChanged(int state) {
+            switch (state) {
+                case ViewPager.SCROLL_STATE_IDLE: {
+                    if (mCurrentPosition >= 0) {
+                        sendFragmentVisibilityChange(mCurrentPosition, false);
+                    }
+                    if (mNextPosition >= 0) {
+                        sendFragmentVisibilityChange(mNextPosition, true);
+                    }
+                    invalidateOptionsMenu();
+
+                    mCurrentPosition = mNextPosition;
+                    break;
+                }
+                case ViewPager.SCROLL_STATE_DRAGGING:
+                case ViewPager.SCROLL_STATE_SETTLING:
+                default:
+                    break;
+            }
         }
     }
 
