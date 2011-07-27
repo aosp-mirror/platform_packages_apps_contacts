@@ -31,6 +31,7 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
 import android.widget.SearchView.OnQueryTextListener;
@@ -112,6 +113,12 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         }
         LayoutParams layoutParams = new LayoutParams(searchViewWidth, LayoutParams.WRAP_CONTENT);
         mSearchView = (SearchView) customSearchView.findViewById(R.id.search_view);
+        // Since the {@link SearchView} in this app is "click-to-expand", set the below mode on the
+        // {@link SearchView} so that the magnifying glass icon appears inside the editable text
+        // field. (In the "click-to-expand" search pattern, the user must explicitly expand the
+        // search field and already knows a search is being conducted, so the icon is redundant
+        // and can go away once the user starts typing.)
+        mSearchView.setIconifiedByDefault(true);
         mSearchView.setQueryHint(mContext.getString(R.string.hint_findContacts));
         mSearchView.setOnQueryTextListener(this);
         mSearchView.setOnCloseListener(this);
@@ -265,6 +272,9 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     private void update() {
         if (mSearchMode) {
             setFocusOnSearchView();
+            // Since we have the {@link SearchView} in a custom action bar, we must manually handle
+            // expanding the {@link SearchView} when a search is initiated.
+            mSearchView.onActionViewExpanded();
             if (mActionBar.getNavigationMode() != ActionBar.NAVIGATION_MODE_STANDARD) {
                 mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
             }
@@ -287,6 +297,9 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
                 mTabListener.mIgnoreTabSelected = false;
             }
             mActionBar.setTitle(null);
+            // Since we have the {@link SearchView} in a custom action bar, we must manually handle
+            // collapsing the {@link SearchView} when search mode is exited.
+            mSearchView.onActionViewCollapsed();
             if (mListener != null) {
                 mListener.onAction(Action.STOP_SEARCH_MODE);
                 mListener.onSelectedTabChanged();
@@ -317,6 +330,16 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
 
     @Override
     public boolean onQueryTextSubmit(String query) {
+        // When the search is "committed" by the user, then hide the keyboard so the user can
+        // more easily browse the list of results.
+        if (mSearchView != null) {
+            InputMethodManager imm = (InputMethodManager) mContext.getSystemService(
+                    Context.INPUT_METHOD_SERVICE);
+            if (imm != null) {
+                imm.hideSoftInputFromWindow(mSearchView.getWindowToken(), 0);
+            }
+            mSearchView.clearFocus();
+        }
         return true;
     }
 

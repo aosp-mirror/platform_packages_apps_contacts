@@ -960,7 +960,15 @@ public class PeopleActivity extends ContactsActivity
             if (PhoneCapabilityTester.isUsingTwoPanes(PeopleActivity.this)) {
                 setupContactDetailFragment(contactLookupUri);
             } else {
-                startActivity(new Intent(Intent.ACTION_VIEW, contactLookupUri));
+                Intent intent = new Intent(Intent.ACTION_VIEW, contactLookupUri);
+                // In search mode, the "up" affordance in the contact detail page should return the
+                // user to the search results, so suppress the normal behavior which would re-launch
+                // {@link PeopleActivity} when the "up" affordance is clicked.
+                if (mActionBarAdapter.isSearchMode()) {
+                    intent.putExtra(ContactDetailActivity.INTENT_KEY_IGNORE_DEFAULT_UP_BEHAVIOR,
+                            true);
+                }
+                startActivity(intent);
             }
         }
 

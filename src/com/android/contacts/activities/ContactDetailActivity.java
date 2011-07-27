@@ -66,6 +66,13 @@ import java.util.ArrayList;
 public class ContactDetailActivity extends ContactsActivity {
     private static final String TAG = "ContactDetailActivity";
 
+    /**
+     * Intent key for a boolean that specifies whether the "up" afforance in this activity should
+     * behave as default (return user back to {@link PeopleActivity}) or whether the activity should
+     * instead be finished.
+     */
+    public static final String INTENT_KEY_IGNORE_DEFAULT_UP_BEHAVIOR = "ignoreDefaultUpBehavior";
+
     private static final String KEY_DETAIL_FRAGMENT_TAG = "detailFragTag";
     private static final String KEY_UPDATES_FRAGMENT_TAG = "updatesFragTag";
 
@@ -73,6 +80,7 @@ public class ContactDetailActivity extends ContactsActivity {
 
     private ContactLoader.Result mContactData;
     private Uri mLookupUri;
+    private boolean mIgnoreDefaultUpBehavior;
 
     private ContactLoaderFragment mLoaderFragment;
     private ContactDetailFragment mDetailFragment;
@@ -114,6 +122,9 @@ public class ContactDetailActivity extends ContactsActivity {
             finish();
             return;
         }
+
+        mIgnoreDefaultUpBehavior = getIntent().getBooleanExtra(
+                INTENT_KEY_IGNORE_DEFAULT_UP_BEHAVIOR, false);
 
         setContentView(R.layout.contact_detail_activity);
         mRootView = (ViewGroup) findViewById(R.id.contact_detail_view);
@@ -530,6 +541,10 @@ public class ContactDetailActivity extends ContactsActivity {
 
         switch (item.getItemId()) {
             case android.R.id.home:
+                if (mIgnoreDefaultUpBehavior) {
+                    finish();
+                    return true;
+                }
                 Intent intent = new Intent(this, PeopleActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
