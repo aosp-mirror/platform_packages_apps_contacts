@@ -16,9 +16,7 @@
 
 package com.android.contacts.calllog;
 
-import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.VoicemailContract;
@@ -33,29 +31,20 @@ import android.util.Log;
 public class CallLogReceiver extends BroadcastReceiver {
     private static final String TAG = "CallLogReceiver";
 
-    private VoicemailNotifier mNotifier;
-
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (mNotifier == null) {
-            mNotifier = getNotifier(context);
-        }
         if (VoicemailContract.ACTION_NEW_VOICEMAIL.equals(intent.getAction())) {
-            mNotifier.notifyNewVoicemail(intent.getData());
+            Intent serviceIntent = new Intent(context, CallLogNotificationsService.class);
+            serviceIntent.setAction(CallLogNotificationsService.ACTION_UPDATE_NOTIFICATIONS);
+            serviceIntent.putExtra(
+                    CallLogNotificationsService.EXTRA_NEW_VOICEMAIL_URI, intent.getData());
+            context.startService(serviceIntent);
         } else if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
-            mNotifier.updateNotification();
+            Intent serviceIntent = new Intent(context, CallLogNotificationsService.class);
+            serviceIntent.setAction(CallLogNotificationsService.ACTION_UPDATE_NOTIFICATIONS);
+            context.startService(serviceIntent);
         } else {
-            Log.d(TAG, "onReceive: could not handle: " + intent);
+            Log.w(TAG, "onReceive: could not handle: " + intent);
         }
-    }
-
-    private VoicemailNotifier getNotifier(Context context) {
-        NotificationManager notificationManager =
-                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        ContentResolver contentResolver = context.getContentResolver();
-        return new DefaultVoicemailNotifier(context, notificationManager,
-                DefaultVoicemailNotifier.createNewCallsQuery(contentResolver),
-                DefaultVoicemailNotifier.createNameLookupQuery(contentResolver),
-                DefaultVoicemailNotifier.createPhoneNumberHelper(context));
     }
 }

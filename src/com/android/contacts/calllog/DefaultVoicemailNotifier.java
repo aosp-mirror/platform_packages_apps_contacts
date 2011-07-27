@@ -51,13 +51,30 @@ public class DefaultVoicemailNotifier implements VoicemailNotifier {
     /** The identifier of the notification of new voicemails. */
     private static final int NOTIFICATION_ID = 1;
 
+    /** The singleton instance of {@link DefaultVoicemailNotifier}. */
+    private static DefaultVoicemailNotifier sInstance;
+
     private final Context mContext;
     private final NotificationManager mNotificationManager;
     private final NewCallsQuery mNewCallsQuery;
     private final NameLookupQuery mNameLookupQuery;
     private final PhoneNumberHelper mPhoneNumberHelper;
 
-    public DefaultVoicemailNotifier(Context context,
+    /** Returns the singleton instance of the {@link DefaultVoicemailNotifier}. */
+    public static synchronized DefaultVoicemailNotifier getInstance(Context context) {
+        if (sInstance == null) {
+            NotificationManager notificationManager =
+                    (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            ContentResolver contentResolver = context.getContentResolver();
+            sInstance = new DefaultVoicemailNotifier(context, notificationManager,
+                    createNewCallsQuery(contentResolver),
+                    createNameLookupQuery(contentResolver),
+                    createPhoneNumberHelper(context));
+        }
+        return sInstance;
+    }
+
+    private DefaultVoicemailNotifier(Context context,
             NotificationManager notificationManager, NewCallsQuery newCallsQuery,
             NameLookupQuery nameLookupQuery, PhoneNumberHelper phoneNumberHelper) {
         mContext = context;
@@ -67,20 +84,9 @@ public class DefaultVoicemailNotifier implements VoicemailNotifier {
         mPhoneNumberHelper = phoneNumberHelper;
     }
 
-    @Override
-    public void notifyNewVoicemail(Uri newVoicemailUri) {
-        Log.d(TAG, "notifyNewVoicemail: " + newVoicemailUri);
-        updateNotification(newVoicemailUri);
-    }
-
-    @Override
-    public void updateNotification() {
-        Log.d(TAG, "updateNotification");
-        updateNotification(null);
-    }
-
     /** Updates the notification and notifies of the call with the given URI. */
-    private void updateNotification(Uri newCallUri) {
+    @Override
+    public void updateNotification(Uri newCallUri) {
         // Lookup the list of new voicemails to include in the notification.
         // TODO: Move this into a service, to avoid holding the receiver up.
         final NewCall[] newCalls = mNewCallsQuery.query();
