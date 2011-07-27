@@ -61,9 +61,12 @@ public class GroupDetailActivity extends ContactsActivity {
         fragment.loadGroup(getIntent().getData());
         fragment.closeActivityAfterDelete(true);
 
-        ActionBar actionBar =  getActionBar();
+        // We want the UP affordance but no app icon.
+        ActionBar actionBar = getActionBar();
         if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE,
+                    ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE
+                    | ActionBar.DISPLAY_SHOW_HOME);
         }
     }
 

@@ -388,6 +388,10 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         mListener = value;
     }
 
+    public void doSaveAction() {
+        save(SaveMode.CLOSE);
+    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
         inflater.inflate(R.menu.edit_group, menu);
@@ -396,8 +400,6 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_done:
-                return save(SaveMode.CLOSE);
             case R.id.menu_discard:
                 return revert();
         }

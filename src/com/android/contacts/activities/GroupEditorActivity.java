@@ -17,7 +17,6 @@
 package com.android.contacts.activities;
 
 import com.android.contacts.ContactsActivity;
-import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.editor.ContactEditorFragment.SaveMode;
 import com.android.contacts.group.GroupEditorFragment;
@@ -26,11 +25,14 @@ import com.android.contacts.util.PhoneCapabilityTester;
 
 import android.app.ActionBar;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
 
 public class GroupEditorActivity extends ContactsActivity
         implements DialogManager.DialogShowingViewActivity {
@@ -57,11 +59,26 @@ public class GroupEditorActivity extends ContactsActivity
 
         setContentView(R.layout.group_editor_activity);
 
-        // This Activity will always fall back to the "top" Contacts screen when touched on the
-        // app up icon, regardless of launch context.
         ActionBar actionBar = getActionBar();
         if (actionBar != null) {
-            actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP, ActionBar.DISPLAY_HOME_AS_UP);
+            // Inflate a custom action bar that contains the "done" button for saving changes
+            // to the group
+            LayoutInflater inflater = (LayoutInflater) getSystemService
+                    (Context.LAYOUT_INFLATER_SERVICE);
+            View customActionBarView = inflater.inflate(R.layout.editor_custom_action_bar,
+                    null);
+            View saveMenuItem = customActionBarView.findViewById(R.id.save_menu_item);
+            saveMenuItem.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mFragment.doSaveAction();
+                }
+            });
+            // Show the custom action bar but hide the home icon and title
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM,
+                    ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME |
+                    ActionBar.DISPLAY_SHOW_TITLE);
+            actionBar.setCustomView(customActionBarView);
         }
 
         mFragment = (GroupEditorFragment) getFragmentManager().findFragmentById(
@@ -107,17 +124,6 @@ public class GroupEditorActivity extends ContactsActivity
                     intent.getIntExtra(GroupEditorFragment.SAVE_MODE_EXTRA_KEY, SaveMode.CLOSE),
                     intent.getData());
         }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home: {
-                mFragment.save(SaveMode.HOME);
-                return true;
-            }
-        }
-        return false;
     }
 
     private final GroupEditorFragment.Listener mFragmentListener =

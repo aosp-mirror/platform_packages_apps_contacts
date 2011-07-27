@@ -84,8 +84,7 @@ public class ContactEditorActivity extends ContactsActivity
             // to the contact
             LayoutInflater inflater = (LayoutInflater) getSystemService
                     (Context.LAYOUT_INFLATER_SERVICE);
-            View customActionBarView = inflater.inflate(R.layout.contact_editor_custom_action_bar,
-                    null);
+            View customActionBarView = inflater.inflate(R.layout.editor_custom_action_bar, null);
             View saveMenuItem = customActionBarView.findViewById(R.id.save_menu_item);
             saveMenuItem.setOnClickListener(new OnClickListener() {
                 @Override
