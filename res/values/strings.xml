@@ -1581,6 +1581,15 @@
     <!-- Joined contact indicator displayed in the contact detail [CHAR LIMIT=64] -->
     <string name="indicator_joined_contact">Joined contact</string>
 
+    <!-- Option displayed in context menu to copy long pressed item to clipboard [CHAR LIMIT=64] -->
+    <string name="copy_text">Copy to clipboard</string>
+
+    <!-- Option displayed in context menu to set long pressed item as default contact method [CHAR LIMIT=64] -->
+    <string name="set_default">Set default</string>
+
+    <!-- Option displayed in context menu to clear long pressed item as default contact method [CHAR LIMIT=64] -->
+    <string name="clear_default">Clear default</string>
+
     <!-- Toast shown when text is copied to the clipboard [CHAR LIMIT=64] -->
     <string name="toast_text_copied">Text copied</string>
 

@@ -47,6 +47,7 @@ import android.accounts.Account;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.SearchManager;
+import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -87,15 +88,18 @@ import android.provider.ContactsContract.StatusUpdates;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -113,11 +117,17 @@ import java.util.List;
 import java.util.Map;
 
 public class ContactDetailFragment extends Fragment implements FragmentKeyListener, FragmentOverlay,
-        OnItemClickListener, OnItemLongClickListener, SelectAccountDialogFragment.Listener {
+        OnItemClickListener, SelectAccountDialogFragment.Listener {
 
     private static final String TAG = "ContactDetailFragment";
 
     private static final int LOADER_DETAILS = 1;
+
+    private interface ContextMenuIds {
+        static final int COPY_TEXT = 0;
+        static final int CLEAR_DEFAULT = 1;
+        static final int SET_DEFAULT = 2;
+    }
 
     private static final String KEY_CONTACT_URI = "contactUri";
     private static final String LOADER_ARG_CONTACT_URI = "contactUri";
@@ -255,7 +265,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         mListView = (ListView) mView.findViewById(android.R.id.list);
         mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
         mListView.setOnItemClickListener(this);
-        mListView.setOnItemLongClickListener(this);
+        registerForContextMenu(mListView);
         mListView.setOnScrollListener(mVerticalScrollListener);
 
         // Don't set it to mListView yet.  We do so later when we bind the adapter.
@@ -1328,12 +1338,14 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         public ImageView secondaryActionButton;
         public View secondaryActionButtonContainer;
         public View secondaryActionDivider;
+        public View primaryIndicator;
 
         public DetailViewCache(View view, OnClickListener secondaryActionClickListener) {
             kind = (TextView) view.findViewById(R.id.kind);
             type = (TextView) view.findViewById(R.id.type);
             data = (TextView) view.findViewById(R.id.data);
             footer = (TextView) view.findViewById(R.id.footer);
+            primaryIndicator = view.findViewById(R.id.primary_indicator);
             presenceIcon = (ImageView) view.findViewById(R.id.presence_icon);
             secondaryActionButton = (ImageView) view.findViewById(
                     R.id.secondary_action_button);
@@ -1511,6 +1523,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 views.footer.setVisibility(View.GONE);
             }
 
+            // Set the default contact method
+            views.primaryIndicator.setVisibility(entry.isPrimary ? View.VISIBLE : View.GONE);
+
             // Set the presence icon
             final Drawable presenceIcon = ContactPresenceIconUtil.getPresenceIcon(
                     mContext, entry.presence);
@@ -1642,18 +1657,105 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     }
 
     @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        if (mListener == null) return false;
-        final DetailViewCache cache = (DetailViewCache) view.getTag();
-        if (cache == null) return false;
-        CharSequence text = cache.data.getText();
-        if (TextUtils.isEmpty(text)) return false;
+    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, view, menuInfo);
 
-        ClipboardManager cm = (ClipboardManager) getActivity().getSystemService(
+        AdapterView.AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
+        DetailViewEntry selectedEntry = (DetailViewEntry) mAllEntries.get(info.position);
+
+        menu.setHeaderTitle(selectedEntry.data);
+        menu.add(ContextMenu.NONE, ContextMenuIds.COPY_TEXT,
+                ContextMenu.NONE, getString(R.string.copy_text));
+
+        String selectedMimeType = selectedEntry.mimetype;
+
+        // Only allow primary support for Phone and Email content types
+        if (Phone.CONTENT_ITEM_TYPE.equals(selectedMimeType) ||
+                Email.CONTENT_ITEM_TYPE.equals(selectedMimeType)) {
+
+            // Used to determine if entry is the only mime type of its kind
+            boolean isUniqueMimeType = true;
+
+            // Checking for unique mime type
+            for (int positionCounter = 0; positionCounter < mAllEntries.size(); positionCounter++) {
+                final ViewEntry entry = mAllEntries.get(positionCounter);
+
+                // Ignoring cases where entry is not a detail entry
+                if (entry.getViewType() != ViewAdapter.VIEW_TYPE_DETAIL_ENTRY) continue;
+
+                final DetailViewEntry checkEntry = (DetailViewEntry) entry;
+                if (positionCounter != info.position &&
+                        checkEntry.mimetype.equalsIgnoreCase(selectedMimeType)) {
+                    isUniqueMimeType = false;
+                    break;
+                }
+            }
+
+            // Checking for previously set default
+            if (selectedEntry.isPrimary) {
+                menu.add(ContextMenu.NONE, ContextMenuIds.CLEAR_DEFAULT,
+                        ContextMenu.NONE, getString(R.string.clear_default));
+            } else if (!isUniqueMimeType) {
+                menu.add(ContextMenu.NONE, ContextMenuIds.SET_DEFAULT,
+                        ContextMenu.NONE, getString(R.string.set_default));
+            }
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo menuInfo;
+        try {
+            menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        } catch (ClassCastException e) {
+            Log.e(TAG, "bad menuInfo", e);
+            return false;
+        }
+
+        switch (item.getItemId()) {
+            case ContextMenuIds.COPY_TEXT:
+                copyToClipboard(menuInfo.position);
+                return true;
+            case ContextMenuIds.SET_DEFAULT:
+                setDefaultContactMethod(mListView.getItemIdAtPosition(menuInfo.position));
+                return true;
+            case ContextMenuIds.CLEAR_DEFAULT:
+                clearDefaultContactMethod(mListView.getItemIdAtPosition(menuInfo.position));
+                return true;
+            default:
+                throw new IllegalArgumentException("Unknown menu option " + item.getItemId());
+        }
+    }
+
+    private void setDefaultContactMethod(long id) {
+        Intent setIntent = ContactSaveService.createSetSuperPrimaryIntent(mContext, id);
+        mContext.startService(setIntent);
+    }
+
+    private void clearDefaultContactMethod(long id) {
+        Intent clearIntent = ContactSaveService.createClearPrimaryIntent(mContext, id);
+        mContext.startService(clearIntent);
+    }
+
+    private void copyToClipboard(int viewEntryPosition) {
+        // Getting the text to copied
+        DetailViewEntry detailViewEntry = (DetailViewEntry) mAllEntries.get(viewEntryPosition);
+        CharSequence textToCopy = detailViewEntry.data;
+
+        // Checking for empty string
+        if (TextUtils.isEmpty(textToCopy)) return;
+
+        // Adding item to clipboard
+        ClipboardManager clipboardManager = (ClipboardManager) getActivity().getSystemService(
                 Context.CLIPBOARD_SERVICE);
-        cm.setText(text);
-        Toast.makeText(getActivity(), R.string.toast_text_copied, Toast.LENGTH_SHORT).show();
-        return true;
+        String[] mimeTypes = new String[]{detailViewEntry.mimetype};
+        ClipData.Item clipDataItem = new ClipData.Item(textToCopy);
+        ClipData cd = new ClipData(detailViewEntry.typeString, mimeTypes, clipDataItem);
+        clipboardManager.setPrimaryClip(cd);
+
+        // Display Confirmation Toast
+        String toastText = getString(R.string.toast_text_copied);
+        Toast.makeText(getActivity(), toastText, Toast.LENGTH_SHORT).show();
     }
 
     @Override
