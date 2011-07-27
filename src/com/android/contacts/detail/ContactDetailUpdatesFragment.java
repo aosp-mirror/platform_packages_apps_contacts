@@ -31,7 +31,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class ContactDetailUpdatesFragment extends Fragment
-        implements FragmentKeyListener, FragmentOverlay {
+        implements FragmentKeyListener, ViewOverlay {
 
     private static final String TAG = "ContactDetailUpdatesFragment";
 

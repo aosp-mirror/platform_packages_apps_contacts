@@ -116,7 +116,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ContactDetailFragment extends Fragment implements FragmentKeyListener, FragmentOverlay,
+public class ContactDetailFragment extends Fragment implements FragmentKeyListener, ViewOverlay,
         OnItemClickListener, SelectAccountDialogFragment.Listener {
 
     private static final String TAG = "ContactDetailFragment";

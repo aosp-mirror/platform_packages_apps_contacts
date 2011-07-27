@@ -73,7 +73,7 @@
         <item name="call_log_voicemail_status_text_color">#000000</item>
     </style>
 
-    <style name="ContactDetailActivityTheme" parent="@android:style/Theme.Holo.Light.SolidActionBar.Inverse.SplitActionBarWhenNarrow">
+    <style name="ContactDetailActivityTheme" parent="@android:style/Theme.Holo.Light.SolidActionBar.Inverse">
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>

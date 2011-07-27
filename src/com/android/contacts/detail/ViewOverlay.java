@@ -19,12 +19,12 @@ package com.android.contacts.detail;
 import android.view.View.OnClickListener;
 
 /**
- * This is implemented by {@link Fragment}s that contain an alpha layer and touch interceptor layer.
+ * This is implemented by {@link View}s that contain an alpha layer and touch interceptor layer.
  * The alpha layer covers the entire fragment and has an alpha value which makes the fragment
  * contents appear "dimmed" out. The touch interceptor layer covers the entire fragment so that
- * when visible, it intercepts all touch events on the {@link Fragment}.
+ * when visible, it intercepts all touch events on the {@link View}.
  */
-public interface FragmentOverlay {
+public interface ViewOverlay {
 
     /**
      * Sets the alpha value on the alpha layer (if there is one).

@@ -14,8 +14,13 @@
      limitations under the License.
 -->
 
-<RelativeLayout
+<!--
+  TODO: Collapse carousel_about_tab with carousel_updates_tab into 1 XML that
+  handles all cases when updates fragment is more finalized.
+-->
+<view
     xmlns:android="http://schemas.android.com/apk/res/android"
+    class="com.android.contacts.detail.CarouselTab"
     android:layout_width="0dip"
     android:layout_height="match_parent"
     android:layout_weight="1"
@@ -68,4 +73,23 @@
         android:textStyle="bold"
         android:maxLines="3"/>
 
-</RelativeLayout>
+    <View
+        android:id="@+id/alpha_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/black"
+        android:alpha="0"
+        android:visibility="gone"/>
+
+    <View
+        android:id="@+id/touch_intercept_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="?android:attr/selectableItemBackground"
+        android:visibility="gone"/>
+
+</view>

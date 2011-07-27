@@ -46,8 +46,8 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
     private int mCurrentPage = ABOUT_PAGE;
     private int mLastScrollPosition;
 
-    private FragmentOverlay mAboutFragment;
-    private FragmentOverlay mUpdatesFragment;
+    private ViewOverlay mAboutFragment;
+    private ViewOverlay mUpdatesFragment;
 
     private static final float MAX_ALPHA = 0.5f;
 
@@ -69,7 +69,7 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
         setOnTouchListener(this);
     }
 
-    public void setAboutFragment(FragmentOverlay fragment) {
+    public void setAboutFragment(ViewOverlay fragment) {
         // TODO: We can't always assume the "about" page will be the current page.
         mAboutFragment = fragment;
         mAboutFragment.enableAlphaLayer();
@@ -77,7 +77,7 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
         mAboutFragment.disableTouchInterceptor();
     }
 
-    public void setUpdatesFragment(FragmentOverlay fragment) {
+    public void setUpdatesFragment(ViewOverlay fragment) {
         mUpdatesFragment = fragment;
         mUpdatesFragment.enableAlphaLayer();
         mUpdatesFragment.setAlphaLayerValue(MAX_ALPHA);

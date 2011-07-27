@@ -24,6 +24,7 @@ import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
@@ -49,14 +50,21 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
 
     private Listener mListener;
 
-    private final View[] mTabs = new View[TAB_COUNT];
+    private int mCurrentTab = TAB_INDEX_ABOUT;
+
+    private CarouselTab mAboutTab;
+    private CarouselTab mUpdatesTab;
 
     private int mTabWidth;
     private int mTabHeight;
     private int mTabDisplayLabelHeight;
 
+    private int mLastScrollPosition;
+
     private int mAllowedHorizontalScrollLength = Integer.MIN_VALUE;
     private int mAllowedVerticalScrollLength = Integer.MIN_VALUE;
+
+    private static final float MAX_ALPHA = 0.5f;
 
     /**
      * Interface for callbacks invoked when the user interacts with the carousel.
@@ -83,40 +91,28 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        View aboutView = findViewById(R.id.tab_about);
-        View updateView = findViewById(R.id.tab_update);
+        mAboutTab = (CarouselTab) findViewById(R.id.tab_about);
+        mAboutTab.setLabel(mContext.getString(R.string.contactDetailAbout));
 
-        TextView aboutTab = (TextView) aboutView.findViewById(R.id.label);
-        aboutTab.setText(mContext.getString(R.string.contactDetailAbout));
-        aboutTab.setClickable(true);
-        aboutTab.setSelected(true);
+        mUpdatesTab = (CarouselTab) findViewById(R.id.tab_update);
+        mUpdatesTab.setLabel(mContext.getString(R.string.contactDetailUpdates));
 
-        TextView updatesTab = (TextView) updateView.findViewById(R.id.label);
-        updatesTab.setText(mContext.getString(R.string.contactDetailUpdates));
-        updatesTab.setClickable(true);
+        // TODO: We can't always assume the "about" page will be the current page.
+        mAboutTab.showSelectedState();
+        mAboutTab.enableAlphaLayer();
+        mAboutTab.setAlphaLayerValue(0);
+        mAboutTab.enableTouchInterceptor(mAboutTabTouchInterceptListener);
 
-        aboutTab.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.onTabSelected(TAB_INDEX_ABOUT);
-            }
-        });
-        updatesTab.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.onTabSelected(TAB_INDEX_ABOUT);
-            }
-        });
-
-        mTabs[TAB_INDEX_ABOUT] = aboutTab;
-        mTabs[TAB_INDEX_UPDATES] = updatesTab;
+        mUpdatesTab.enableAlphaLayer();
+        mUpdatesTab.setAlphaLayerValue(MAX_ALPHA);
+        mUpdatesTab.enableTouchInterceptor(mUpdatesTabTouchInterceptListener);
 
         // Retrieve the photo view for the "about" tab
-        mPhotoView = (ImageView) aboutView.findViewById(R.id.photo);
+        mPhotoView = (ImageView) mAboutTab.findViewById(R.id.photo);
 
         // Retrieve the social update views for the "updates" tab
-        mStatusView = (TextView) updateView.findViewById(R.id.status);
-        mStatusPhotoView = (ImageView) updateView.findViewById(R.id.status_photo);
+        mStatusView = (TextView) mUpdatesTab.findViewById(R.id.status);
+        mStatusPhotoView = (ImageView) mUpdatesTab.findViewById(R.id.status_photo);
     }
 
     @Override
@@ -143,10 +139,33 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         }
     }
 
+    private final OnClickListener mAboutTabTouchInterceptListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mListener.onTabSelected(TAB_INDEX_ABOUT);
+        }
+    };
+
+    private final OnClickListener mUpdatesTabTouchInterceptListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mListener.onTabSelected(TAB_INDEX_UPDATES);
+        }
+    };
+
+    private void updateAlphaLayers() {
+        mAboutTab.setAlphaLayerValue(mLastScrollPosition * MAX_ALPHA /
+                mAllowedHorizontalScrollLength);
+        mUpdatesTab.setAlphaLayerValue(MAX_ALPHA - mLastScrollPosition * MAX_ALPHA /
+                mAllowedVerticalScrollLength);
+    }
+
     @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         super.onScrollChanged(l, t, oldl, oldt);
         mListener.onScrollChanged(l, t, oldl, oldt);
+        mLastScrollPosition = l;
+        updateAlphaLayers();
     }
 
     /**
@@ -168,24 +187,21 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
      * Updates the tab selection.
      */
     public void setCurrentTab(int position) {
-        if (position < 0 || position > mTabs.length) {
-            throw new IllegalStateException("Invalid position in array of tabs: " + position);
-        }
         // TODO: Handle device rotation (saving and restoring state of the selected tab)
         // This will take more work because there is no tab carousel in phone landscape
-        if (mTabs[position] == null) {
-            return;
+        switch (position) {
+            case TAB_INDEX_ABOUT:
+                mAboutTab.showSelectedState();
+                mUpdatesTab.showDeselectedState();
+                break;
+            case TAB_INDEX_UPDATES:
+                mUpdatesTab.showSelectedState();
+                mAboutTab.showDeselectedState();
+                break;
+            default:
+                throw new IllegalStateException("Invalid tab position " + position);
         }
-        mTabs[position].setSelected(true);
-        unselectAllOtherTabs(position);
-    }
-
-    private void unselectAllOtherTabs(int position) {
-        for (int i = 0; i < mTabs.length; i++) {
-            if (position != i) {
-                mTabs[i].setSelected(false);
-            }
-        }
+        mCurrentTab = position;
     }
 
     /**
@@ -197,6 +213,8 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
             return;
         }
 
+        // TODO: Move this into the {@link CarouselTab} class when the updates fragment code is more
+        // finalized
         ContactDetailDisplayUtils.setPhoto(mContext, contactData, mPhotoView);
         ContactDetailDisplayUtils.setSocialSnippet(mContext, contactData, mStatusView,
                 mStatusPhotoView);
