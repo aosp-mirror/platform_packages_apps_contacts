@@ -17,8 +17,8 @@ package com.android.contacts.interactions;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
+import com.android.contacts.model.AccountWithDataSet;
 
-import android.accounts.Account;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
@@ -31,13 +31,16 @@ import android.widget.EditText;
 public class GroupCreationDialogFragment extends GroupNameDialogFragment {
     private static final String ARG_ACCOUNT_TYPE = "accountType";
     private static final String ARG_ACCOUNT_NAME = "accountName";
+    private static final String ARG_DATA_SET = "dataSet";
 
     public static void show(
-            FragmentManager fragmentManager, String accountType, String accountName) {
+            FragmentManager fragmentManager, String accountType, String accountName,
+            String dataSet) {
         GroupCreationDialogFragment dialog = new GroupCreationDialogFragment();
         Bundle args = new Bundle();
         args.putString(ARG_ACCOUNT_TYPE, accountType);
         args.putString(ARG_ACCOUNT_NAME, accountName);
+        args.putString(ARG_DATA_SET, dataSet);
         dialog.setArguments(args);
         dialog.show(fragmentManager, "createGroup");
     }
@@ -56,10 +59,11 @@ public class GroupCreationDialogFragment extends GroupNameDialogFragment {
         Bundle arguments = getArguments();
         String accountType = arguments.getString(ARG_ACCOUNT_TYPE);
         String accountName = arguments.getString(ARG_ACCOUNT_NAME);
+        String dataSet = arguments.getString(ARG_DATA_SET);
 
         Activity activity = getActivity();
         activity.startService(ContactSaveService.createNewGroupIntent(activity,
-                new Account(accountName, accountType), groupLabel,
+                new AccountWithDataSet(accountName, accountType, dataSet), groupLabel,
                 null /* no new members to add */,
                 activity.getClass(), Intent.ACTION_EDIT));
     }

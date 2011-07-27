@@ -19,8 +19,8 @@ package com.android.contacts.util;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
 
-import android.accounts.Account;
 import android.content.Context;
 import android.text.TextUtils.TruncateAt;
 import android.view.LayoutInflater;
@@ -38,7 +38,7 @@ import java.util.List;
  */
 public final class AccountsListAdapter extends BaseAdapter {
     private final LayoutInflater mInflater;
-    private final List<Account> mAccounts;
+    private final List<AccountWithDataSet> mAccounts;
     private final AccountTypeManager mAccountTypes;
     private final Context mContext;
 
@@ -51,11 +51,11 @@ public final class AccountsListAdapter extends BaseAdapter {
      * first in the list. Can be null.
      */
     public AccountsListAdapter(Context context, boolean writableOnly,
-            Account currentAccount) {
+            AccountWithDataSet currentAccount) {
         mContext = context;
         mAccountTypes = AccountTypeManager.getInstance(context);
         // We don't want possible side-effect toward AccountTypeManager
-        mAccounts = new ArrayList<Account>(mAccountTypes.getAccounts(writableOnly));
+        mAccounts = new ArrayList<AccountWithDataSet>(mAccountTypes.getAccounts(writableOnly));
         if (currentAccount != null
                 && !mAccounts.isEmpty()
                 && !mAccounts.get(0).equals(currentAccount)
@@ -74,8 +74,8 @@ public final class AccountsListAdapter extends BaseAdapter {
         final TextView text2 = (TextView)resultView.findViewById(android.R.id.text2);
         final ImageView icon = (ImageView)resultView.findViewById(android.R.id.icon);
 
-        final Account account = mAccounts.get(position);
-        final AccountType accountType = mAccountTypes.getAccountType(account.type);
+        final AccountWithDataSet account = mAccounts.get(position);
+        final AccountType accountType = mAccountTypes.getAccountType(account.type, account.dataSet);
 
         text1.setText(account.name);
 
@@ -94,7 +94,7 @@ public final class AccountsListAdapter extends BaseAdapter {
     }
 
     @Override
-    public Account getItem(int position) {
+    public AccountWithDataSet getItem(int position) {
         return mAccounts.get(position);
     }
 

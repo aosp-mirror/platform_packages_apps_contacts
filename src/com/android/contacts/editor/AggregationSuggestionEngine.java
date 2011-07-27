@@ -58,10 +58,12 @@ public class AggregationSuggestionEngine extends HandlerThread {
         public long rawContactId;
         public String accountType;
         public String accountName;
+        public String dataSet;
 
         @Override
         public String toString() {
-            return "ID: " + rawContactId + " account: " + accountType + "/" + accountName;
+            return "ID: " + rawContactId + " account: " + accountType + "/" + accountName
+                    + " dataSet: " + dataSet;
         }
     }
 
@@ -277,6 +279,7 @@ public class AggregationSuggestionEngine extends HandlerThread {
             Photo.PHOTO,
             RawContacts.ACCOUNT_TYPE,
             RawContacts.ACCOUNT_NAME,
+            RawContacts.DATA_SET
         };
 
         public static final int ID = 0;
@@ -291,6 +294,7 @@ public class AggregationSuggestionEngine extends HandlerThread {
         public static final int PHOTO = 9;
         public static final int ACCOUNT_TYPE = 10;
         public static final int ACCOUNT_NAME = 11;
+        public static final int DATA_SET = 12;
     }
 
     private void loadAggregationSuggestions(Uri uri) {
@@ -390,6 +394,7 @@ public class AggregationSuggestionEngine extends HandlerThread {
                     rawContact.rawContactId = rawContactId;
                     rawContact.accountName = mDataCursor.getString(DataQuery.ACCOUNT_NAME);
                     rawContact.accountType = mDataCursor.getString(DataQuery.ACCOUNT_TYPE);
+                    rawContact.dataSet = mDataCursor.getString(DataQuery.DATA_SET);
                     suggestion.rawContacts.add(rawContact);
                 }
 

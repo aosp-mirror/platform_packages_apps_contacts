@@ -130,7 +130,8 @@ public class ContactDeletionInteractionTest
 
     private Query expectQuery() {
         return mContactsProvider.expectQuery(ENTITY_URI).withProjection(
-                Entity.RAW_CONTACT_ID, Entity.ACCOUNT_TYPE, Entity.CONTACT_ID, Entity.LOOKUP_KEY);
+                Entity.RAW_CONTACT_ID, Entity.ACCOUNT_TYPE, Entity.DATA_SET, Entity.CONTACT_ID,
+                Entity.LOOKUP_KEY);
     }
 
     private void assertWithMessageId(int messageId) {

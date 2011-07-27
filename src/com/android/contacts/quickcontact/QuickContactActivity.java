@@ -383,6 +383,7 @@ public class QuickContactActivity extends Activity {
 
             final long dataId = cursor.getLong(DataQuery._ID);
             final String accountType = cursor.getString(DataQuery.ACCOUNT_TYPE);
+            final String dataSet = cursor.getString(DataQuery.DATA_SET);
             final boolean isPrimary = cursor.getInt(DataQuery.IS_PRIMARY) != 0;
             final boolean isSuperPrimary = cursor.getInt(DataQuery.IS_SUPER_PRIMARY) != 0;
 
@@ -424,7 +425,7 @@ public class QuickContactActivity extends Activity {
                 continue;
             }
 
-            final DataKind kind = accountTypes.getKindOrFallback(accountType, mimeType);
+            final DataKind kind = accountTypes.getKindOrFallback(accountType, dataSet, mimeType);
 
             if (kind != null) {
                 // Build an action for this data entry, find a mapping to a UI
@@ -445,7 +446,7 @@ public class QuickContactActivity extends Activity {
             // Handle Email rows with presence data as Im entry
             final boolean hasPresence = !cursor.isNull(DataQuery.PRESENCE);
             if (hasPresence && Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                final DataKind imKind = accountTypes.getKindOrFallback(accountType,
+                final DataKind imKind = accountTypes.getKindOrFallback(accountType, dataSet,
                         Im.CONTENT_ITEM_TYPE);
                 if (imKind != null) {
                     final DataAction action = new DataAction(context, Im.CONTENT_ITEM_TYPE, imKind,
@@ -458,7 +459,7 @@ public class QuickContactActivity extends Activity {
             if (hasPresence && isIm) {
                 int chatCapability = cursor.getInt(DataQuery.CHAT_CAPABILITY);
                 if ((chatCapability & Im.CAPABILITY_HAS_CAMERA) != 0) {
-                    final DataKind imKind = accountTypes.getKindOrFallback(accountType,
+                    final DataKind imKind = accountTypes.getKindOrFallback(accountType, dataSet,
                             Im.CONTENT_ITEM_TYPE);
                     if (imKind != null) {
                         final DataAction chatAction = new DataAction(context,
@@ -674,6 +675,7 @@ public class QuickContactActivity extends Activity {
                 Data._ID,
 
                 RawContacts.ACCOUNT_TYPE,
+                RawContacts.DATA_SET,
                 Contacts.STARRED,
                 Contacts.DISPLAY_NAME,
                 Contacts.CONTACT_PRESENCE,
@@ -701,22 +703,23 @@ public class QuickContactActivity extends Activity {
         final int _ID = 0;
 
         final int ACCOUNT_TYPE = 1;
-        final int STARRED = 2;
-        final int DISPLAY_NAME = 3;
-        final int CONTACT_PRESENCE = 4;
-        final int CONTACT_CHAT_CAPABILITY = 5;
+        final int DATA_SET = 2;
+        final int STARRED = 3;
+        final int DISPLAY_NAME = 4;
+        final int CONTACT_PRESENCE = 5;
+        final int CONTACT_CHAT_CAPABILITY = 6;
 
-        final int STATUS = 6;
-        final int STATUS_RES_PACKAGE = 7;
-        final int STATUS_ICON = 8;
-        final int STATUS_LABEL = 9;
-        final int STATUS_TIMESTAMP = 10;
-        final int PRESENCE = 11;
-        final int CHAT_CAPABILITY = 12;
+        final int STATUS = 7;
+        final int STATUS_RES_PACKAGE = 8;
+        final int STATUS_ICON = 9;
+        final int STATUS_LABEL = 10;
+        final int STATUS_TIMESTAMP = 11;
+        final int PRESENCE = 12;
+        final int CHAT_CAPABILITY = 13;
 
-        final int RES_PACKAGE = 13;
-        final int MIMETYPE = 14;
-        final int IS_PRIMARY = 15;
-        final int IS_SUPER_PRIMARY = 16;
+        final int RES_PACKAGE = 14;
+        final int MIMETYPE = 15;
+        final int IS_PRIMARY = 16;
+        final int IS_SUPER_PRIMARY = 17;
     }
 }

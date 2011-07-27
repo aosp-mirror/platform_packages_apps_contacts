@@ -23,6 +23,7 @@ import com.android.contacts.model.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityModifier;
+import com.android.internal.util.Objects;
 
 import android.app.Activity;
 import android.content.Context;
@@ -84,6 +85,7 @@ public class GroupMembershipView extends LinearLayout
     private Cursor mGroupMetaData;
     private String mAccountName;
     private String mAccountType;
+    private String mDataSet;
     private TextView mGroupList;
     private ArrayAdapter<GroupSelectionItem> mAdapter;
     private long mDefaultGroupId;
@@ -125,6 +127,7 @@ public class GroupMembershipView extends LinearLayout
         ValuesDelta values = state.getValues();
         mAccountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
         mAccountName = values.getAsString(RawContacts.ACCOUNT_NAME);
+        mDataSet = values.getAsString(RawContacts.DATA_SET);
         mDefaultGroupVisibilityKnown = false;
         updateView();
     }
@@ -145,7 +148,9 @@ public class GroupMembershipView extends LinearLayout
         while (mGroupMetaData.moveToNext()) {
             String accountName = mGroupMetaData.getString(GroupMetaDataLoader.ACCOUNT_NAME);
             String accountType = mGroupMetaData.getString(GroupMetaDataLoader.ACCOUNT_TYPE);
-            if (accountName.equals(mAccountName) && accountType.equals(mAccountType)) {
+            String dataSet = mGroupMetaData.getString(GroupMetaDataLoader.DATA_SET);
+            if (accountName.equals(mAccountName) && accountType.equals(mAccountType)
+                    && Objects.equal(dataSet, mDataSet)) {
                 long groupId = mGroupMetaData.getLong(GroupMetaDataLoader.GROUP_ID);
                 if (!mGroupMetaData.isNull(GroupMetaDataLoader.FAVORITES)
                         && mGroupMetaData.getInt(GroupMetaDataLoader.FAVORITES) != 0) {
@@ -209,7 +214,9 @@ public class GroupMembershipView extends LinearLayout
         while (mGroupMetaData.moveToNext()) {
             String accountName = mGroupMetaData.getString(GroupMetaDataLoader.ACCOUNT_NAME);
             String accountType = mGroupMetaData.getString(GroupMetaDataLoader.ACCOUNT_TYPE);
-            if (accountName.equals(mAccountName) && accountType.equals(mAccountType)) {
+            String dataSet = mGroupMetaData.getString(GroupMetaDataLoader.DATA_SET);
+            if (accountName.equals(mAccountName) && accountType.equals(mAccountType)
+                    && Objects.equal(dataSet, mDataSet)) {
                 long groupId = mGroupMetaData.getLong(GroupMetaDataLoader.GROUP_ID);
                 if (groupId != mFavoritesGroupId
                         && (groupId != mDefaultGroupId || mDefaultGroupVisible)) {
@@ -328,6 +335,7 @@ public class GroupMembershipView extends LinearLayout
         }
 
         GroupCreationDialogFragment.show(
-                ((Activity) getContext()).getFragmentManager(), mAccountType, mAccountName);
+                ((Activity) getContext()).getFragmentManager(), mAccountType, mAccountName,
+                mDataSet);
     }
 }

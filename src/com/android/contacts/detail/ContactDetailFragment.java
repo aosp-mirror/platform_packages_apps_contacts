@@ -31,6 +31,7 @@ import com.android.contacts.editor.SelectAccountDialogFragment;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.EditType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.model.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
@@ -43,7 +44,6 @@ import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.widget.TransitionAnimationView;
 import com.android.internal.telephony.ITelephony;
 
-import android.accounts.Account;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.SearchManager;
@@ -491,12 +491,13 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         for (Entity entity: mContactData.getEntities()) {
             final ContentValues entValues = entity.getEntityValues();
             final String accountType = entValues.getAsString(RawContacts.ACCOUNT_TYPE);
+            final String dataSet = entValues.getAsString(RawContacts.DATA_SET);
             final long rawContactId = entValues.getAsLong(RawContacts._ID);
 
             if (!mRawContactIds.contains(rawContactId)) {
                 mRawContactIds.add(rawContactId);
             }
-            AccountType type = accountTypes.getAccountType(accountType);
+            AccountType type = accountTypes.getAccountType(accountType, dataSet);
             if (type == null || !type.readOnly) {
                 mWritableRawContactIds.add(rawContactId);
             }
@@ -518,7 +519,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 }
 
                 final DataKind kind = accountTypes.getKindOrFallback(
-                        accountType, mimeType);
+                        accountType, dataSet, mimeType);
                 if (kind == null) continue;
 
                 final DetailViewEntry entry = DetailViewEntry.fromValues(mContext, mimeType, kind,
@@ -574,7 +575,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     final DataStatus status = mContactData.getStatuses().get(entry.id);
                     if (status != null) {
                         final String imMime = Im.CONTENT_ITEM_TYPE;
-                        final DataKind imKind = accountTypes.getKindOrFallback(accountType,
+                        final DataKind imKind = accountTypes.getKindOrFallback(accountType, dataSet,
                                 imMime);
                         final DetailViewEntry imEntry = DetailViewEntry.fromValues(mContext, imMime,
                                 imKind, dataId, entryValues, mContactData.isDirectoryEntry(),
@@ -764,7 +765,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         String attribution = ContactDetailDisplayUtils.getAttribution(mContext, mContactData);
         boolean hasAttribution = !TextUtils.isEmpty(attribution);
         int networksCount = mOtherEntriesMap.keySet().size();
-        int invitableCount = mContactData.getInvitableAccontTypes().size();
+        int invitableCount = mContactData.getInvitableAccountTypes().size();
         if (!hasAttribution && networksCount == 0 && invitableCount == 0) {
             return;
         }
@@ -1638,11 +1639,11 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     }
 
     @Override
-    public void onAccountChosen(int requestCode, Account account) {
+    public void onAccountChosen(int requestCode, AccountWithDataSet account) {
         createCopy(account);
     }
 
-    private void createCopy(Account account) {
+    private void createCopy(AccountWithDataSet account) {
         if (mListener != null) {
             mListener.onCreateRawContactRequested(mContactData.getContentValues(), account);
         }
@@ -1825,11 +1826,12 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             if (defaultGroupId == -1) return false;
 
             final Entity rawContactEntity = mContactData.getEntities().get(0);
-            final String accountType =
-                    rawContactEntity.getEntityValues().getAsString(RawContacts.ACCOUNT_TYPE);
+            ContentValues rawValues = rawContactEntity.getEntityValues();
+            final String accountType = rawValues.getAsString(RawContacts.ACCOUNT_TYPE);
+            final String dataSet = rawValues.getAsString(RawContacts.DATA_SET);
             final AccountTypeManager accountTypes =
                     AccountTypeManager.getInstance(mContext);
-            final AccountType type = accountTypes.getAccountType(accountType);
+            final AccountType type = accountTypes.getAccountType(accountType, dataSet);
             // Offline or non-writeable account? Nothing to fix
             if (type == null || type.readOnly) return false;
 
@@ -1871,7 +1873,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
             final ValuesDelta values = rawContactEntityDelta.getValues();
             final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
-            final AccountType type = accountTypes.getAccountType(accountType);
+            final String dataSet = values.getAsString(RawContacts.DATA_SET);
+            final AccountType type = accountTypes.getAccountType(accountType, dataSet);
             final DataKind groupMembershipKind = type.getKindForMimetype(
                     GroupMembership.CONTENT_ITEM_TYPE);
             final ValuesDelta entry = EntityModifier.insertChild(rawContactEntityDelta,
@@ -1915,12 +1918,12 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             int exportSupport = mContactData.getDirectoryExportSupport();
             switch (exportSupport) {
                 case Directory.EXPORT_SUPPORT_SAME_ACCOUNT_ONLY: {
-                    createCopy(new Account(mContactData.getDirectoryAccountName(),
-                                    mContactData.getDirectoryAccountType()));
+                    createCopy(new AccountWithDataSet(mContactData.getDirectoryAccountName(),
+                                    mContactData.getDirectoryAccountType(), null));
                     break;
                 }
                 case Directory.EXPORT_SUPPORT_ANY_ACCOUNT: {
-                    final ArrayList<Account> accounts =
+                    final List<AccountWithDataSet> accounts =
                             AccountTypeManager.getInstance(mContext).getAccounts(true);
                     if (accounts.isEmpty()) {
                         createCopy(null);
@@ -1998,9 +2001,10 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
          * User requested creation of a new contact with the specified values.
          *
          * @param values ContentValues containing data rows for the new contact.
-         * @param account Account where the new contact should be created
+         * @param account Account where the new contact should be created.
          */
-        public void onCreateRawContactRequested(ArrayList<ContentValues> values, Account account);
+        public void onCreateRawContactRequested(ArrayList<ContentValues> values,
+                AccountWithDataSet account);
     }
 
     /**
@@ -2016,12 +2020,12 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             mContext = context;
             mInflater = LayoutInflater.from(context);
             mContactData = contactData;
-            final List<String> types = contactData.getInvitableAccontTypes();
+            final List<AccountType> types = contactData.getInvitableAccountTypes();
             mAccountTypes = new ArrayList<AccountType>(types.size());
 
             AccountTypeManager manager = AccountTypeManager.getInstance(context);
             for (int i = 0; i < types.size(); i++) {
-                mAccountTypes.add(manager.getAccountType(types.get(i)));
+                mAccountTypes.add(types.get(i));
             }
 
             Collections.sort(mAccountTypes, new AccountType.DisplayLabelComparator(mContext));

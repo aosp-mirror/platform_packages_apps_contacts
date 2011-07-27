@@ -27,6 +27,7 @@ import com.android.contacts.editor.SelectAccountDialogFragment;
 import com.android.contacts.group.SuggestedMemberListAdapter.SuggestedMember;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
 import com.android.internal.util.Objects;
 
 import android.accounts.Account;
@@ -172,6 +173,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     private boolean mGroupNameIsReadOnly;
     private String mAccountName;
     private String mAccountType;
+    private String mDataSet;
     private String mOriginalGroupName = "";
 
     private MemberListAdapter mMemberListAdapter;
@@ -221,11 +223,14 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
 
             final Account account = mIntentExtras == null ? null :
                     (Account) mIntentExtras.getParcelable(Intents.Insert.ACCOUNT);
+            final String dataSet = mIntentExtras == null ? null :
+                    mIntentExtras.getString(Intents.Insert.DATA_SET);
 
             if (account != null) {
-                // Account specified in Intent
+                // Account specified in Intent - no data set can be specified in this manner.
                 mAccountName = account.name;
                 mAccountType = account.type;
+                mDataSet = dataSet;
                 setupEditorForAccount();
             } else {
                 // No Account specified. Let the user choose from a disambiguation dialog.
@@ -245,7 +250,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     }
 
     private void selectAccountAndCreateGroup() {
-        final ArrayList<Account> accounts =
+        final List<AccountWithDataSet> accounts =
                 AccountTypeManager.getInstance(mContext).getAccounts(true /* writeable */);
         // No Accounts available
         if (accounts.isEmpty()) {
@@ -257,6 +262,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         if (accounts.size() == 1) {
             mAccountName = accounts.get(0).name;
             mAccountType = accounts.get(0).type;
+            mDataSet = accounts.get(0).dataSet;
             setupEditorForAccount();
             return;  // Don't show a dialog.
         }
@@ -268,9 +274,10 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     }
 
     @Override
-    public void onAccountChosen(int requestCode, Account account) {
+    public void onAccountChosen(int requestCode, AccountWithDataSet account) {
         mAccountName = account.name;
         mAccountType = account.type;
+        mDataSet = account.dataSet;
         setupEditorForAccount();
     }
 
@@ -287,7 +294,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
      */
     private void setupEditorForAccount() {
         final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(mContext);
-        final AccountType accountType = accountTypeManager.getAccountType(mAccountType);
+        final AccountType accountType = accountTypeManager.getAccountType(mAccountType, mDataSet);
         final boolean editable = accountType.isGroupMembershipEditable();
         mMemberListAdapter.setIsGroupMembershipEditable(editable);
 
@@ -478,16 +485,17 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
             return false;
         }
         Intent saveIntent = null;
-        if (mAction == Intent.ACTION_INSERT) {
+        if (Intent.ACTION_INSERT.equals(mAction)) {
             // Create array of raw contact IDs for contacts to add to the group
             long[] membersToAddArray = convertToArray(mListMembersToAdd);
 
             // Create the save intent to create the group and add members at the same time
             saveIntent = ContactSaveService.createNewGroupIntent(activity,
-                    new Account(mAccountName, mAccountType), mGroupNameView.getText().toString(),
+                    new AccountWithDataSet(mAccountName, mAccountType, mDataSet),
+                    mGroupNameView.getText().toString(),
                     membersToAddArray, activity.getClass(),
                     GroupEditorActivity.ACTION_SAVE_COMPLETED);
-        } else if (mAction == Intent.ACTION_EDIT) {
+        } else if (Intent.ACTION_EDIT.equals(mAction)) {
             // Create array of raw contact IDs for contacts to add to the group
             long[] membersToAddArray = convertToArray(mListMembersToAdd);
 

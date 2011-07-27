@@ -18,14 +18,13 @@ package com.android.contacts.editor;
 
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
-import com.android.contacts.editor.ExternalRawContactEditorView.Listener;
 import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.model.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityModifier;
 
-import android.accounts.Account;
 import android.content.ContentUris;
 import android.content.Context;
 import android.net.Uri;
@@ -66,12 +65,13 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
 
     private String mAccountName;
     private String mAccountType;
+    private String mDataSet;
     private long mRawContactId = -1;
 
     private Listener mListener;
 
     public interface Listener {
-        void onExternalEditorRequest(Account account, Uri uri);
+        void onExternalEditorRequest(AccountWithDataSet account, Uri uri);
     }
 
     public ExternalRawContactEditorView(Context context) {
@@ -127,6 +127,7 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
         ValuesDelta values = state.getValues();
         mAccountName = values.getAsString(RawContacts.ACCOUNT_NAME);
         mAccountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
+        mDataSet = values.getAsString(RawContacts.DATA_SET);
         CharSequence accountType = type.getDisplayLabel(mContext);
         if (TextUtils.isEmpty(accountType)) {
             accountType = mContext.getString(R.string.account_phone);
@@ -136,6 +137,9 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
                     mContext.getString(R.string.from_account_format, mAccountName));
         }
         mAccountTypeTextView.setText(mContext.getString(R.string.account_type_format, accountType));
+
+        // TODO: Expose data set in the UI somehow?
+
         mAccountIcon.setImageDrawable(type.getDisplayIcon(mContext));
 
         mRawContactId = values.getAsLong(RawContacts._ID);
@@ -221,7 +225,8 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
     public void onClick(View v) {
         if (v.getId() == R.id.button_edit_externally) {
             if (mListener != null) {
-                mListener.onExternalEditorRequest(new Account(mAccountName, mAccountType),
+                mListener.onExternalEditorRequest(
+                        new AccountWithDataSet(mAccountName, mAccountType, mDataSet),
                         ContentUris.withAppendedId(RawContacts.CONTENT_URI, mRawContactId));
             }
         }

@@ -19,6 +19,7 @@ package com.android.contacts.vcard;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.vcard.VCardEntryCounter;
 import com.android.vcard.VCardParser;
@@ -29,7 +30,6 @@ import com.android.vcard.exception.VCardException;
 import com.android.vcard.exception.VCardNestedException;
 import com.android.vcard.exception.VCardVersionException;
 
-import android.accounts.Account;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -118,7 +118,7 @@ public class ImportVCardActivity extends ContactsActivity {
 
     private AccountSelectionUtil.AccountSelectedListener mAccountSelectionListener;
 
-    private Account mAccount;
+    private AccountWithDataSet mAccount;
 
     private ProgressDialog mProgressDialogForScanVCard;
     private ProgressDialog mProgressDialogForCachingVCard;
@@ -839,19 +839,21 @@ public class ImportVCardActivity extends ContactsActivity {
 
         String accountName = null;
         String accountType = null;
+        String dataSet = null;
         final Intent intent = getIntent();
         if (intent != null) {
             accountName = intent.getStringExtra(SelectAccountActivity.ACCOUNT_NAME);
             accountType = intent.getStringExtra(SelectAccountActivity.ACCOUNT_TYPE);
+            dataSet = intent.getStringExtra(SelectAccountActivity.DATA_SET);
         } else {
             Log.e(LOG_TAG, "intent does not exist");
         }
 
         if (!TextUtils.isEmpty(accountName) && !TextUtils.isEmpty(accountType)) {
-            mAccount = new Account(accountName, accountType);
+            mAccount = new AccountWithDataSet(accountName, accountType, dataSet);
         } else {
             final AccountTypeManager accountTypes = AccountTypeManager.getInstance(this);
-            final List<Account> accountList = accountTypes.getAccounts(true);
+            final List<AccountWithDataSet> accountList = accountTypes.getAccounts(true);
             if (accountList.size() == 0) {
                 mAccount = null;
             } else if (accountList.size() == 1) {
@@ -870,9 +872,10 @@ public class ImportVCardActivity extends ContactsActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == SELECT_ACCOUNT) {
             if (resultCode == RESULT_OK) {
-                mAccount = new Account(
+                mAccount = new AccountWithDataSet(
                         intent.getStringExtra(SelectAccountActivity.ACCOUNT_NAME),
-                        intent.getStringExtra(SelectAccountActivity.ACCOUNT_TYPE));
+                        intent.getStringExtra(SelectAccountActivity.ACCOUNT_TYPE),
+                        intent.getStringExtra(SelectAccountActivity.DATA_SET));
                 startImport();
             } else {
                 if (resultCode != RESULT_CANCELED) {

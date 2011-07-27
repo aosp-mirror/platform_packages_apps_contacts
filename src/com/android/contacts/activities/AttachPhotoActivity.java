@@ -217,7 +217,8 @@ public class AttachPhotoActivity extends ContactsActivity {
         if (assertAccount) {
             // Make sure no pictures exist for Google, Exchange and unsynced phone accounts.
             operations.add(ContentProviderOperation.newAssertQuery(rawContactDataUri)
-                    .withSelection(Photo.MIMETYPE + "=? AND ("
+                    .withSelection(Photo.MIMETYPE + "=? AND "
+                            + RawContacts.DATA_SET + " IS NULL AND ("
                             + RawContacts.ACCOUNT_TYPE + " IN (?,?) OR "
                             + RawContacts.ACCOUNT_TYPE + " IS NULL)",
                             new String[] {Photo.CONTENT_ITEM_TYPE, GoogleAccountType.ACCOUNT_TYPE,

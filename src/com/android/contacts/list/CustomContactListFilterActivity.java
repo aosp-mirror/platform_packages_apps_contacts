@@ -21,6 +21,7 @@ import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.GoogleAccountType;
 import com.android.contacts.util.EmptyService;
@@ -28,7 +29,6 @@ import com.android.contacts.util.LocalizedNameResolver;
 import com.android.contacts.util.WeakAsyncTask;
 import com.google.android.collect.Lists;
 
-import android.accounts.Account;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -124,13 +124,14 @@ public class CustomContactListFilterActivity extends ContactsActivity
             final ContentResolver resolver = context.getContentResolver();
 
             final AccountSet accounts = new AccountSet();
-            for (Account account : accountTypes.getAccounts(false)) {
+            for (AccountWithDataSet account : accountTypes.getAccounts(false)) {
                 AccountDisplay accountDisplay =
-                        new AccountDisplay(resolver, account.name, account.type);
+                        new AccountDisplay(resolver, account.name, account.type, account.dataSet);
 
                 final Uri groupsUri = Groups.CONTENT_URI.buildUpon()
                         .appendQueryParameter(Groups.ACCOUNT_NAME, account.name)
-                        .appendQueryParameter(Groups.ACCOUNT_TYPE, account.type).build();
+                        .appendQueryParameter(Groups.ACCOUNT_TYPE, account.type)
+                        .appendQueryParameter(Groups.DATA_SET, account.dataSet).build();
                 EntityIterator iterator = ContactsContract.Groups.newEntityIterator(resolver.query(
                         groupsUri, null, null, null, null));
                 try {
@@ -417,12 +418,13 @@ public class CustomContactListFilterActivity extends ContactsActivity
     }
 
     /**
-     * {@link GroupDelta} details for a single {@link Account}, usually shown as
+     * {@link GroupDelta} details for a single {@link AccountWithDataSet}, usually shown as
      * children under a single expandable group.
      */
     protected static class AccountDisplay {
-        public String mName;
-        public String mType;
+        public final String mName;
+        public final String mType;
+        public final String mDataSet;
 
         public GroupDelta mUngrouped;
         public ArrayList<GroupDelta> mSyncedGroups = Lists.newArrayList();
@@ -430,11 +432,13 @@ public class CustomContactListFilterActivity extends ContactsActivity
 
         /**
          * Build an {@link AccountDisplay} covering all {@link Groups} under the
-         * given {@link Account}.
+         * given {@link AccountWithDataSet}.
          */
-        public AccountDisplay(ContentResolver resolver, String accountName, String accountType) {
+        public AccountDisplay(ContentResolver resolver, String accountName, String accountType,
+                String dataSet) {
             mName = accountName;
             mType = accountType;
+            mDataSet = dataSet;
         }
 
         /**
@@ -489,7 +493,7 @@ public class CustomContactListFilterActivity extends ContactsActivity
 
         /**
          * Build set of {@link ContentProviderOperation} to persist any user
-         * changes to {@link GroupDelta} rows under this {@link Account}.
+         * changes to {@link GroupDelta} rows under this {@link AccountWithDataSet}.
          */
         public void buildDiff(ArrayList<ContentProviderOperation> diff) {
             for (GroupDelta group : mSyncedGroups) {
@@ -505,7 +509,7 @@ public class CustomContactListFilterActivity extends ContactsActivity
 
     /**
      * {@link ExpandableListAdapter} that shows {@link GroupDelta} settings,
-     * grouped by {@link Account} type. Shows footer row when any groups are
+     * grouped by {@link AccountWithDataSet} type. Shows footer row when any groups are
      * unsynced, as determined through {@link AccountDisplay#mUnsyncedGroups}.
      */
     protected static class DisplayAdapter extends BaseExpandableListAdapter {
@@ -548,7 +552,8 @@ public class CustomContactListFilterActivity extends ContactsActivity
 
             final AccountDisplay account = (AccountDisplay)this.getGroup(groupPosition);
 
-            final AccountType accountType = mAccountTypes.getAccountType(account.mType);
+            final AccountType accountType = mAccountTypes.getAccountType(
+                    account.mType, account.mDataSet);
 
             text1.setText(account.mName);
             text1.setVisibility(account.mName == null ? View.GONE : View.VISIBLE);
@@ -693,7 +698,7 @@ public class CustomContactListFilterActivity extends ContactsActivity
 
     protected int getSyncMode(AccountDisplay account) {
         // TODO: read sync mode through <sync-adapter> definition
-        if (GoogleAccountType.ACCOUNT_TYPE.equals(account.mType)) {
+        if (GoogleAccountType.ACCOUNT_TYPE.equals(account.mType) && account.mDataSet == null) {
             return SYNC_MODE_EVERYTHING;
         } else {
             return SYNC_MODE_UNSUPPORTED;

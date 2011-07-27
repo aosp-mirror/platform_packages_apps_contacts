@@ -78,6 +78,7 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
 
     private String mAccountType = "";
     private String mAccountName = "";
+    private String mDataSet = "";
 
     // TODO: Make this a Map for better performance when we check if a new contact is in the list
     // or not
@@ -96,6 +97,10 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
 
     public void setAccountName(String accountName) {
         mAccountName = accountName;
+    }
+
+    public void setDataSet(String dataSet) {
+        mDataSet = dataSet;
     }
 
     public void setContentResolver(ContentResolver resolver) {
@@ -171,12 +176,25 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
             // First query for all the raw contacts that match the given search query
             // and have the same account name and type as specified in this adapter
             String searchQuery = prefix.toString() + "%";
+            String accountClause = RawContacts.ACCOUNT_NAME + "=? AND " +
+                    RawContacts.ACCOUNT_TYPE + "=?";
+            String[] args;
+            if (mDataSet == null) {
+                accountClause += " AND " + RawContacts.DATA_SET + " IS NULL";
+                args = new String[] {mAccountName, mAccountType, searchQuery, searchQuery};
+            } else {
+                accountClause += " AND " + RawContacts.DATA_SET + "=?";
+                args = new String[] {
+                        mAccountName, mAccountType, mDataSet, searchQuery, searchQuery
+                };
+            }
+
             Cursor cursor = mContentResolver.query(
                     RawContacts.CONTENT_URI, PROJECTION_FILTERED_MEMBERS,
-                    RawContacts.ACCOUNT_NAME + "=? AND " + RawContacts.ACCOUNT_TYPE + "=? AND (" +
+                    accountClause + " AND (" +
                     RawContacts.DISPLAY_NAME_PRIMARY + " LIKE ? OR " +
                     RawContacts.DISPLAY_NAME_ALTERNATIVE + " LIKE ? )",
-                    new String[] {mAccountName, mAccountType, searchQuery, searchQuery}, null);
+                    args, null);
 
             if (cursor == null) {
                 return results;

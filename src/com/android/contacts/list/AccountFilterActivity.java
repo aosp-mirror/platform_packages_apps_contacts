@@ -22,8 +22,8 @@ import com.android.contacts.R;
 import com.android.contacts.activities.PeopleActivity;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
 
-import android.accounts.Account;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
@@ -81,12 +81,12 @@ public class AccountFilterActivity extends ContactsActivity
     private void loadAccountFilters() {
         ArrayList<ContactListFilter> accountFilters = new ArrayList<ContactListFilter>();
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(this);
-        ArrayList<Account> accounts = accountTypes.getAccounts(false);
-        for (Account account : accounts) {
-            AccountType accountType = accountTypes.getAccountType(account.type);
+        List<AccountWithDataSet> accounts = accountTypes.getAccounts(false);
+        for (AccountWithDataSet account : accounts) {
+            AccountType accountType = accountTypes.getAccountType(account.type, account.dataSet);
             Drawable icon = accountType != null ? accountType.getDisplayIcon(this) : null;
             accountFilters.add(ContactListFilter.createAccountFilter(account.type, account.name,
-                    icon, account.name));
+                    account.dataSet, icon, account.name));
         }
         int count = accountFilters.size();
 

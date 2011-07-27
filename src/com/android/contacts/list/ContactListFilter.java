@@ -40,6 +40,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
     private static final String KEY_FILTER_TYPE = "filter.type";
     private static final String KEY_ACCOUNT_NAME = "filter.accountName";
     private static final String KEY_ACCOUNT_TYPE = "filter.accountType";
+    private static final String KEY_DATA_SET = "filter.dataSet";
     private static final String KEY_GROUP_ID = "filter.groupId";
     private static final String KEY_GROUP_SOURCE_ID = "filter.groupSourceId";
     private static final String KEY_GROUP_READ_ONLY = "filter.groupReadOnly";
@@ -48,6 +49,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
     public final int filterType;
     public final String accountType;
     public final String accountName;
+    public final String dataSet;
     public final Drawable icon;
     public long groupId;
     public String groupSourceId;
@@ -55,11 +57,13 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
     public final String title;
     private String mId;
 
-    public ContactListFilter(int filterType, String accountType, String accountName, Drawable icon,
-            long groupId, String groupSourceId, boolean groupReadOnly, String title) {
+    public ContactListFilter(int filterType, String accountType, String accountName, String dataSet,
+            Drawable icon, long groupId, String groupSourceId, boolean groupReadOnly,
+            String title) {
         this.filterType = filterType;
         this.accountType = accountType;
         this.accountName = accountName;
+        this.dataSet = dataSet;
         this.icon = icon;
         this.groupId = groupId;
         this.groupSourceId = groupSourceId;
@@ -68,24 +72,25 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
     }
 
     public static ContactListFilter createFilterWithType(int filterType) {
-        return new ContactListFilter(filterType, null, null, null, 0, null, false, null);
+        return new ContactListFilter(filterType, null, null, null, null, 0, null, false, null);
     }
 
     public static ContactListFilter createGroupFilter(long groupId) {
-        return new ContactListFilter(ContactListFilter.FILTER_TYPE_GROUP, null, null, null, groupId,
-                null, false, null);
+        return new ContactListFilter(ContactListFilter.FILTER_TYPE_GROUP, null, null, null, null,
+                groupId, null, false, null);
     }
 
     public static ContactListFilter createGroupFilter(String accountType, String accountName,
-            long groupId, String groupSourceId, boolean groupReadOnly, String title) {
+            String dataSet, long groupId, String groupSourceId, boolean groupReadOnly,
+            String title) {
         return new ContactListFilter(ContactListFilter.FILTER_TYPE_GROUP, accountType, accountName,
-                null, groupId, groupSourceId, groupReadOnly, title);
+                dataSet, null, groupId, groupSourceId, groupReadOnly, title);
     }
 
     public static ContactListFilter createAccountFilter(String accountType, String accountName,
-            Drawable icon, String title) {
+            String dataSet, Drawable icon, String title) {
         return new ContactListFilter(ContactListFilter.FILTER_TYPE_ACCOUNT, accountType,
-                accountName, icon, 0, null, false, title);
+                accountName, dataSet, icon, 0, null, false, title);
     }
 
     /**
@@ -111,10 +116,11 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
             case FILTER_TYPE_SINGLE_CONTACT:
                 return "single";
             case FILTER_TYPE_ACCOUNT:
-                return "account: " + accountType + " " + accountName;
+                return "account: " + accountType + (dataSet != null ? "/" + dataSet : "")
+                        + " " + accountName;
             case FILTER_TYPE_GROUP:
-                return "group: " + accountType + " " + accountName + " " + title + "(" + groupId
-                        + ")";
+                return "group: " + accountType + (dataSet != null ? "/" + dataSet : "")
+                        + " " + accountName + " " + title + "(" + groupId + ")";
         }
         return super.toString();
     }
@@ -147,6 +153,9 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
             code = code * 31 + accountType.hashCode();
             code = code * 31 + accountName.hashCode();
         }
+        if (dataSet != null) {
+            code = code * 31 + dataSet.hashCode();
+        }
         if (groupSourceId != null) {
             code = code * 31 + groupSourceId.hashCode();
         } else if (groupId != 0) {
@@ -168,7 +177,8 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
         ContactListFilter otherFilter = (ContactListFilter) other;
         if (filterType != otherFilter.filterType
                 || !TextUtils.equals(accountName, otherFilter.accountName)
-                || !TextUtils.equals(accountType, otherFilter.accountType)) {
+                || !TextUtils.equals(accountType, otherFilter.accountType)
+                || !TextUtils.equals(dataSet, otherFilter.dataSet)) {
             return false;
         }
 
@@ -184,6 +194,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
             .putInt(KEY_FILTER_TYPE, filter == null ? FILTER_TYPE_DEFAULT : filter.filterType)
             .putString(KEY_ACCOUNT_NAME, filter == null ? null : filter.accountName)
             .putString(KEY_ACCOUNT_TYPE, filter == null ? null : filter.accountType)
+            .putString(KEY_DATA_SET, filter == null ? null : filter.dataSet)
             .putLong(KEY_GROUP_ID, filter == null ? -1 : filter.groupId)
             .putString(KEY_GROUP_SOURCE_ID, filter == null ? null : filter.groupSourceId)
             .putBoolean(KEY_GROUP_READ_ONLY, filter == null ? false : filter.groupReadOnly)
@@ -199,11 +210,12 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
 
         String accountName = prefs.getString(KEY_ACCOUNT_NAME, null);
         String accountType = prefs.getString(KEY_ACCOUNT_TYPE, null);
+        String dataSet = prefs.getString(KEY_DATA_SET, null);
         long groupId = prefs.getLong(KEY_GROUP_ID, -1);
         String groupSourceId = prefs.getString(KEY_GROUP_SOURCE_ID, null);
         boolean groupReadOnly = prefs.getBoolean(KEY_GROUP_READ_ONLY, false);
         String title = prefs.getString(KEY_GROUP_TITLE, "group");
-        return new ContactListFilter(filterType, accountType, accountName, null, groupId,
+        return new ContactListFilter(filterType, accountType, accountName, dataSet, null, groupId,
                 groupSourceId, groupReadOnly, title);
     }
 
@@ -213,6 +225,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
         dest.writeInt(filterType);
         dest.writeString(accountName);
         dest.writeString(accountType);
+        dest.writeString(dataSet);
         dest.writeLong(groupId);
         dest.writeString(groupSourceId);
         dest.writeInt(groupReadOnly ? 1 : 0);
@@ -225,11 +238,12 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
             int filterType = source.readInt();
             String accountName = source.readString();
             String accountType = source.readString();
+            String dataSet = source.readString();
             long groupId = source.readLong();
             String groupSourceId = source.readString();
             boolean groupReadOnly = source.readInt() != 0;
-            return new ContactListFilter(filterType, accountType, accountName, null, groupId,
-                    groupSourceId, groupReadOnly, null);
+            return new ContactListFilter(filterType, accountType, accountName, dataSet, null,
+                    groupId, groupSourceId, groupReadOnly, null);
         }
 
         @Override
@@ -252,6 +266,9 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
             sb.append(filterType);
             if (accountType != null) {
                 sb.append('-').append(accountType);
+            }
+            if (dataSet != null) {
+                sb.append('/').append(dataSet);
             }
             if (accountName != null) {
                 sb.append('-').append(accountName.replace('-', '_'));

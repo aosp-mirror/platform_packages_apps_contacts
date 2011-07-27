@@ -17,18 +17,15 @@
 package com.android.contacts.activities;
 
 import com.android.contacts.ContactsActivity;
-import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.editor.ContactEditorFragment.SaveMode;
-import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.util.DialogManager;
 
-import android.accounts.Account;
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Context;
@@ -40,10 +37,8 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -198,10 +193,12 @@ public class ContactEditorActivity extends ContactsActivity
         }
 
         @Override
-        public void onCustomCreateContactActivityRequested(Account account, Bundle intentExtras) {
+        public void onCustomCreateContactActivityRequested(AccountWithDataSet account,
+                Bundle intentExtras) {
             final AccountTypeManager accountTypes =
                     AccountTypeManager.getInstance(ContactEditorActivity.this);
-            final AccountType accountType = accountTypes.getAccountType(account.type);
+            final AccountType accountType = accountTypes.getAccountType(
+                    account.type, account.dataSet);
 
             Intent intent = new Intent();
             intent.setClassName(accountType.resPackageName,
@@ -213,6 +210,7 @@ public class ContactEditorActivity extends ContactsActivity
             }
             intent.putExtra(RawContacts.ACCOUNT_NAME, account.name);
             intent.putExtra(RawContacts.ACCOUNT_TYPE, account.type);
+            intent.putExtra(RawContacts.DATA_SET, account.dataSet);
             intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
                     | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
             startActivity(intent);
@@ -220,11 +218,12 @@ public class ContactEditorActivity extends ContactsActivity
         }
 
         @Override
-        public void onCustomEditContactActivityRequested(Account account, Uri rawContactUri,
-                Bundle intentExtras, boolean redirect) {
+        public void onCustomEditContactActivityRequested(AccountWithDataSet account,
+                Uri rawContactUri, Bundle intentExtras, boolean redirect) {
             final AccountTypeManager accountTypes =
                     AccountTypeManager.getInstance(ContactEditorActivity.this);
-            final AccountType accountType = accountTypes.getAccountType(account.type);
+            final AccountType accountType = accountTypes.getAccountType(
+                    account.type, account.dataSet);
 
             Intent intent = new Intent();
             intent.setClassName(accountType.resPackageName,

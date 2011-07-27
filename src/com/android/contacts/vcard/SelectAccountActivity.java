@@ -18,9 +18,9 @@ package com.android.contacts.vcard;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.util.AccountSelectionUtil;
 
-import android.accounts.Account;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -34,6 +34,7 @@ public class SelectAccountActivity extends ContactsActivity {
 
     public static final String ACCOUNT_NAME = "account_name";
     public static final String ACCOUNT_TYPE = "account_type";
+    public static final String DATA_SET = "data_set";
 
     private class CancelListener
             implements DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
@@ -57,16 +58,17 @@ public class SelectAccountActivity extends ContactsActivity {
         // - no account -> use phone-local storage without asking the user
         final int resId = R.string.import_from_sdcard;
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(this);
-        final List<Account> accountList = accountTypes.getAccounts(true);
+        final List<AccountWithDataSet> accountList = accountTypes.getAccounts(true);
         if (accountList.size() == 0) {
             Log.w(LOG_TAG, "Account does not exist");
             finish();
             return;
         } else if (accountList.size() == 1) {
-            final Account account = accountList.get(0);
+            final AccountWithDataSet account = accountList.get(0);
             final Intent intent = new Intent();
             intent.putExtra(ACCOUNT_NAME, account.name);
             intent.putExtra(ACCOUNT_TYPE, account.type);
+            intent.putExtra(DATA_SET, account.dataSet);
             setResult(RESULT_OK, intent);
             finish();
             return;
@@ -81,10 +83,11 @@ public class SelectAccountActivity extends ContactsActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        final Account account = mAccountList.get(which);
+                        final AccountWithDataSet account = mAccountList.get(which);
                         final Intent intent = new Intent();
                         intent.putExtra(ACCOUNT_NAME, account.name);
                         intent.putExtra(ACCOUNT_TYPE, account.type);
+                        intent.putExtra(DATA_SET, account.dataSet);
                         setResult(RESULT_OK, intent);
                         finish();
                     }

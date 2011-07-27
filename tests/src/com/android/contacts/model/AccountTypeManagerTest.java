@@ -19,13 +19,12 @@ package com.android.contacts.model;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
 
-import android.accounts.Account;
 import android.content.Context;
 import android.test.AndroidTestCase;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -45,10 +44,10 @@ public class AccountTypeManagerTest extends AndroidTestCase {
         final AccountType typeD = new MockAccountType("typeD", "d");
 
         // Define users
-        final Account accountA1 = new Account("a1", typeA.accountType);
-        final Account accountC1 = new Account("c1", typeC.accountType);
-        final Account accountC2 = new Account("c2", typeC.accountType);
-        final Account accountD1 = new Account("d1", typeD.accountType);
+        final AccountWithDataSet accountA1 = new AccountWithDataSet("a1", typeA.accountType, null);
+        final AccountWithDataSet accountC1 = new AccountWithDataSet("c1", typeC.accountType, null);
+        final AccountWithDataSet accountC2 = new AccountWithDataSet("c2", typeC.accountType, null);
+        final AccountWithDataSet accountD1 = new AccountWithDataSet("d1", typeD.accountType, null);
 
         // empty - empty
         Map<String, AccountType> types = AccountTypeManagerImpl.findInvitableAccountTypes(c,
@@ -133,11 +132,11 @@ public class AccountTypeManagerTest extends AndroidTestCase {
     }
 
     /**
-     * Array of {@link Account} -> {@link Collection}
+     * Array of {@link AccountWithDataSet} -> {@link Collection}
      */
-    private static Collection<Account> buildAccounts(Account... accounts) {
-        final ArrayList<Account> result = Lists.newArrayList();
-        for (Account account : accounts) {
+    private static Collection<AccountWithDataSet> buildAccounts(AccountWithDataSet... accounts) {
+        final List<AccountWithDataSet> result = Lists.newArrayList();
+        for (AccountWithDataSet account : accounts) {
             result.add(account);
         }
         return result;
@@ -147,13 +146,13 @@ public class AccountTypeManagerTest extends AndroidTestCase {
      * Executes {@link AccountTypeManagerImpl#findInvitableAccountTypes} and verifies the
      * result.
      */
-    private void verifyAccountTypes(Collection<Account> accounts,
+    private void verifyAccountTypes(Collection<AccountWithDataSet> accounts,
             Map<String, AccountType> types, AccountType... expectedTypes) {
         Map<String, AccountType> result = AccountTypeManagerImpl.findInvitableAccountTypes(
                 getContext(), accounts, types);
         for (AccountType type : expectedTypes) {
-            if (!result.containsKey(type.accountType)) {
-                fail("Result doesn't contain type=" + type.accountType);
+            if (!result.containsKey(type.getAccountTypeAndDataSet())) {
+                fail("Result doesn't contain type=" + type.getAccountTypeAndDataSet());
             }
         }
     }

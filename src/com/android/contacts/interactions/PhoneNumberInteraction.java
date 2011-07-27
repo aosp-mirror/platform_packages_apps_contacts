@@ -85,6 +85,7 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
         long id;
         String phoneNumber;
         String accountType;
+        String dataSet;
         long type;
         String label;
 
@@ -92,6 +93,7 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
             dest.writeLong(id);
             dest.writeString(phoneNumber);
             dest.writeString(accountType);
+            dest.writeString(dataSet);
             dest.writeLong(type);
             dest.writeString(label);
         }
@@ -148,7 +150,8 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
             final View view = super.getView(position, convertView, parent);
 
             final PhoneItem item = getItem(position);
-            final AccountType accountType = mAccountTypeManager.getAccountType(item.accountType);
+            final AccountType accountType = mAccountTypeManager.getAccountType(
+                    item.accountType, item.dataSet);
             final TextView typeView = (TextView) view.findViewById(android.R.id.text1);
             final DataKind kind = accountType.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
             if (kind != null) {
@@ -237,6 +240,7 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
             Phone.NUMBER,
             Phone.IS_SUPER_PRIMARY,
             RawContacts.ACCOUNT_TYPE,
+            RawContacts.DATA_SET,
             Phone.TYPE,
             Phone.LABEL
     };
@@ -335,6 +339,7 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
                 item.phoneNumber = cursor.getString(cursor.getColumnIndex(Phone.NUMBER));
                 item.accountType =
                         cursor.getString(cursor.getColumnIndex(RawContacts.ACCOUNT_TYPE));
+                item.dataSet = cursor.getString(cursor.getColumnIndex(RawContacts.DATA_SET));
                 item.type = cursor.getInt(cursor.getColumnIndex(Phone.TYPE));
                 item.label = cursor.getString(cursor.getColumnIndex(Phone.LABEL));
 

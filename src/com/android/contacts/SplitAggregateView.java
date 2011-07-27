@@ -57,18 +57,20 @@ public class SplitAggregateView extends ListView {
 
     private interface SplitQuery {
         String[] COLUMNS = new String[] {
-                Data.MIMETYPE, RawContacts.ACCOUNT_TYPE, Data.RAW_CONTACT_ID, Data.IS_PRIMARY,
-                StructuredName.DISPLAY_NAME, Nickname.NAME, Email.DATA, Phone.NUMBER
+                Data.MIMETYPE, RawContacts.ACCOUNT_TYPE, RawContacts.DATA_SET, Data.RAW_CONTACT_ID,
+                Data.IS_PRIMARY, StructuredName.DISPLAY_NAME, Nickname.NAME, Email.DATA,
+                Phone.NUMBER
         };
 
         int MIMETYPE = 0;
         int ACCOUNT_TYPE = 1;
-        int RAW_CONTACT_ID = 2;
-        int IS_PRIMARY = 3;
-        int DISPLAY_NAME = 4;
-        int NICKNAME = 5;
-        int EMAIL = 6;
-        int PHONE = 7;
+        int DATA_SET = 2;
+        int RAW_CONTACT_ID = 3;
+        int IS_PRIMARY = 4;
+        int DISPLAY_NAME = 5;
+        int NICKNAME = 6;
+        int EMAIL = 7;
+        int PHONE = 8;
     }
 
     private final Uri mAggregateUri;
@@ -116,6 +118,7 @@ public class SplitAggregateView extends ListView {
     private static class RawContactInfo implements Comparable<RawContactInfo> {
         final long rawContactId;
         String accountType;
+        String dataSet;
         String name;
         String phone;
         String email;
@@ -165,6 +168,7 @@ public class SplitAggregateView extends ListView {
                     info = new RawContactInfo(rawContactId);
                     rawContactInfos.put(rawContactId, info);
                     info.accountType = cursor.getString(SplitQuery.ACCOUNT_TYPE);
+                    info.dataSet = cursor.getString(SplitQuery.DATA_SET);
                 }
 
                 String mimetype = cursor.getString(SplitQuery.MIMETYPE);
@@ -247,7 +251,7 @@ public class SplitAggregateView extends ListView {
             cache.additionalData.setText(info.getAdditionalData());
 
             Drawable icon = null;
-            AccountType accountType = mAccountTypes.getAccountType(info.accountType);
+            AccountType accountType = mAccountTypes.getAccountType(info.accountType, info.dataSet);
             if (accountType != null) {
                 icon = accountType.getDisplayIcon(getContext());
             }

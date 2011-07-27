@@ -39,6 +39,7 @@ public class GroupDetailActivity extends ContactsActivity {
     private boolean mShowGroupSourceInActionBar;
 
     private String mAccountTypeString;
+    private String mDataSet;
     private String mGroupSourceAction;
     private String mGroupSourceUri;
 
@@ -84,9 +85,10 @@ public class GroupDetailActivity extends ContactsActivity {
         }
 
         @Override
-        public void onGroupSourceUpdated(
-                String accountTypeString, String groupSourceAction, String groupSourceActionUri) {
+        public void onGroupSourceUpdated(String accountTypeString, String dataSet,
+                String groupSourceAction, String groupSourceActionUri) {
             mAccountTypeString = accountTypeString;
+            mDataSet = dataSet;
             mGroupSourceAction = groupSourceAction;
             mGroupSourceUri = groupSourceActionUri;
             invalidateOptionsMenu();
@@ -133,7 +135,7 @@ public class GroupDetailActivity extends ContactsActivity {
         }
         View groupSourceView = GroupDetailDisplayUtils.getNewGroupSourceView(this);
         GroupDetailDisplayUtils.bindGroupSourceView(this, groupSourceView,
-                mAccountTypeString);
+                mAccountTypeString, mDataSet);
         groupSourceView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -378,8 +378,10 @@ public class EntityModifier {
      */
     public static void trimEmpty(EntityDeltaList set, AccountTypeManager accountTypes) {
         for (EntityDelta state : set) {
-            final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final AccountType type = accountTypes.getAccountType(accountType);
+            ValuesDelta values = state.getValues();
+            final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
+            final String dataSet = values.getAsString(RawContacts.DATA_SET);
+            final AccountType type = accountTypes.getAccountType(accountType, dataSet);
             trimEmpty(state, type);
         }
     }
@@ -390,8 +392,10 @@ public class EntityModifier {
         }
 
         for (EntityDelta state : set) {
-            final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final AccountType type = accountTypes.getAccountType(accountType);
+            ValuesDelta values = state.getValues();
+            final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
+            final String dataSet = values.getAsString(RawContacts.DATA_SET);
+            final AccountType type = accountTypes.getAccountType(accountType, dataSet);
             if (hasChanges(state, type)) {
                 return true;
             }
@@ -678,8 +682,8 @@ public class EntityModifier {
 
             DataKind kind = accountType.getKindForMimetype(mimeType);
             if (kind == null) {
-                Log.e(TAG, "Mimetype not supported for account type " + accountType.accountType
-                        + ". Ignoring: " + values);
+                Log.e(TAG, "Mimetype not supported for account type "
+                        + accountType.getAccountTypeAndDataSet() + ". Ignoring: " + values);
                 continue;
             }
 

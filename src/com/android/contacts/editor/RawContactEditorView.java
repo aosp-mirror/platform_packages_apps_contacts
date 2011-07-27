@@ -24,6 +24,7 @@ import com.android.contacts.model.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityModifier;
+import com.android.internal.util.Objects;
 
 import android.content.Context;
 import android.content.Entity;
@@ -350,11 +351,14 @@ public class RawContactEditorView extends BaseRawContactEditorView {
     private long getDefaultGroupId() {
         String accountType = mState.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
         String accountName = mState.getValues().getAsString(RawContacts.ACCOUNT_NAME);
+        String accountDataSet = mState.getValues().getAsString(RawContacts.DATA_SET);
         mGroupMetaData.moveToPosition(-1);
         while (mGroupMetaData.moveToNext()) {
             String name = mGroupMetaData.getString(GroupMetaDataLoader.ACCOUNT_NAME);
             String type = mGroupMetaData.getString(GroupMetaDataLoader.ACCOUNT_TYPE);
-            if (name.equals(accountName) && type.equals(accountType)) {
+            String dataSet = mGroupMetaData.getString(GroupMetaDataLoader.DATA_SET);
+            if (name.equals(accountName) && type.equals(accountType)
+                    && Objects.equal(dataSet, accountDataSet)) {
                 long groupId = mGroupMetaData.getLong(GroupMetaDataLoader.GROUP_ID);
                 if (!mGroupMetaData.isNull(GroupMetaDataLoader.AUTO_ADD)
                             && mGroupMetaData.getInt(GroupMetaDataLoader.AUTO_ADD) != 0) {

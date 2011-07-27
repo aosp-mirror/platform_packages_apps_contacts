@@ -114,7 +114,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         private final ArrayList<Entity> mEntities;
         private ArrayList<StreamItemEntry> mStreamItems;
         private final HashMap<Long, DataStatus> mStatuses;
-        private final ArrayList<String> mInvitableAccountTypes;
+        private final ArrayList<AccountType> mInvitableAccountTypes;
 
         private String mDirectoryDisplayName;
         private String mDirectoryType;
@@ -292,7 +292,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             return mPresence;
         }
 
-        public ArrayList<String> getInvitableAccontTypes() {
+        public ArrayList<AccountType> getInvitableAccountTypes() {
             return mInvitableAccountTypes;
         }
 
@@ -420,6 +420,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
                 RawContacts.ACCOUNT_NAME,
                 RawContacts.ACCOUNT_TYPE,
+                RawContacts.DATA_SET,
+                RawContacts.ACCOUNT_TYPE_AND_DATA_SET,
                 RawContacts.DIRTY,
                 RawContacts.VERSION,
                 RawContacts.SOURCE_ID,
@@ -489,55 +491,57 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
         public final static int ACCOUNT_NAME = 15;
         public final static int ACCOUNT_TYPE = 16;
-        public final static int DIRTY = 17;
-        public final static int VERSION = 18;
-        public final static int SOURCE_ID = 19;
-        public final static int SYNC1 = 20;
-        public final static int SYNC2 = 21;
-        public final static int SYNC3 = 22;
-        public final static int SYNC4 = 23;
-        public final static int DELETED = 24;
-        public final static int NAME_VERIFIED = 25;
+        public final static int DATA_SET = 17;
+        public final static int ACCOUNT_TYPE_AND_DATA_SET = 18;
+        public final static int DIRTY = 19;
+        public final static int VERSION = 20;
+        public final static int SOURCE_ID = 21;
+        public final static int SYNC1 = 22;
+        public final static int SYNC2 = 23;
+        public final static int SYNC3 = 24;
+        public final static int SYNC4 = 25;
+        public final static int DELETED = 26;
+        public final static int NAME_VERIFIED = 27;
 
-        public final static int DATA_ID = 26;
-        public final static int DATA1 = 27;
-        public final static int DATA2 = 28;
-        public final static int DATA3 = 29;
-        public final static int DATA4 = 30;
-        public final static int DATA5 = 31;
-        public final static int DATA6 = 32;
-        public final static int DATA7 = 33;
-        public final static int DATA8 = 34;
-        public final static int DATA9 = 35;
-        public final static int DATA10 = 36;
-        public final static int DATA11 = 37;
-        public final static int DATA12 = 38;
-        public final static int DATA13 = 39;
-        public final static int DATA14 = 40;
-        public final static int DATA15 = 41;
-        public final static int DATA_SYNC1 = 42;
-        public final static int DATA_SYNC2 = 43;
-        public final static int DATA_SYNC3 = 44;
-        public final static int DATA_SYNC4 = 45;
-        public final static int DATA_VERSION = 46;
-        public final static int IS_PRIMARY = 47;
-        public final static int IS_SUPERPRIMARY = 48;
-        public final static int MIMETYPE = 49;
-        public final static int RES_PACKAGE = 50;
+        public final static int DATA_ID = 28;
+        public final static int DATA1 = 29;
+        public final static int DATA2 = 30;
+        public final static int DATA3 = 31;
+        public final static int DATA4 = 32;
+        public final static int DATA5 = 33;
+        public final static int DATA6 = 34;
+        public final static int DATA7 = 35;
+        public final static int DATA8 = 36;
+        public final static int DATA9 = 37;
+        public final static int DATA10 = 38;
+        public final static int DATA11 = 39;
+        public final static int DATA12 = 40;
+        public final static int DATA13 = 41;
+        public final static int DATA14 = 42;
+        public final static int DATA15 = 43;
+        public final static int DATA_SYNC1 = 44;
+        public final static int DATA_SYNC2 = 45;
+        public final static int DATA_SYNC3 = 46;
+        public final static int DATA_SYNC4 = 47;
+        public final static int DATA_VERSION = 48;
+        public final static int IS_PRIMARY = 49;
+        public final static int IS_SUPERPRIMARY = 50;
+        public final static int MIMETYPE = 51;
+        public final static int RES_PACKAGE = 52;
 
-        public final static int GROUP_SOURCE_ID = 51;
+        public final static int GROUP_SOURCE_ID = 53;
 
-        public final static int PRESENCE = 52;
-        public final static int CHAT_CAPABILITY = 53;
-        public final static int STATUS = 54;
-        public final static int STATUS_RES_PACKAGE = 55;
-        public final static int STATUS_ICON = 56;
-        public final static int STATUS_LABEL = 57;
-        public final static int STATUS_TIMESTAMP = 58;
+        public final static int PRESENCE = 54;
+        public final static int CHAT_CAPABILITY = 55;
+        public final static int STATUS = 56;
+        public final static int STATUS_RES_PACKAGE = 57;
+        public final static int STATUS_ICON = 58;
+        public final static int STATUS_LABEL = 59;
+        public final static int STATUS_TIMESTAMP = 60;
 
-        public final static int PHOTO_URI = 59;
-        public final static int SEND_TO_VOICEMAIL = 60;
-        public final static int CUSTOM_RINGTONE = 61;
+        public final static int PHOTO_URI = 61;
+        public final static int SEND_TO_VOICEMAIL = 62;
+        public final static int CUSTOM_RINGTONE = 63;
     }
 
     /**
@@ -565,6 +569,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         final static String[] COLUMNS = new String[] {
             Groups.ACCOUNT_NAME,
             Groups.ACCOUNT_TYPE,
+            Groups.DATA_SET,
+            Groups.ACCOUNT_TYPE_AND_DATA_SET,
             Groups._ID,
             Groups.TITLE,
             Groups.AUTO_ADD,
@@ -573,10 +579,12 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
         public final static int ACCOUNT_NAME = 0;
         public final static int ACCOUNT_TYPE = 1;
-        public final static int ID = 2;
-        public final static int TITLE = 3;
-        public final static int AUTO_ADD = 4;
-        public final static int FAVORITES = 5;
+        public final static int DATA_SET = 2;
+        public final static int ACCOUNT_TYPE_AND_DATA_SET = 3;
+        public final static int ID = 4;
+        public final static int TITLE = 5;
+        public final static int AUTO_ADD = 6;
+        public final static int FAVORITES = 7;
     }
 
     private final class LoadContactTask extends AsyncTask<Void, Void, Result> {
@@ -773,7 +781,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             }
 
             // Set to mInvitableAccountTypes
-            contactData.mInvitableAccountTypes.addAll(result.keySet());
+            contactData.mInvitableAccountTypes.addAll(result.values());
         }
 
         /**
@@ -825,6 +833,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
             cursorColumnToContentValues(cursor, cv, ContactQuery.ACCOUNT_NAME);
             cursorColumnToContentValues(cursor, cv, ContactQuery.ACCOUNT_TYPE);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.DATA_SET);
+            cursorColumnToContentValues(cursor, cv, ContactQuery.ACCOUNT_TYPE_AND_DATA_SET);
             cursorColumnToContentValues(cursor, cv, ContactQuery.DIRTY);
             cursorColumnToContentValues(cursor, cv, ContactQuery.VERSION);
             cursorColumnToContentValues(cursor, cv, ContactQuery.SOURCE_ID);
@@ -946,14 +956,23 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 ContentValues values = entity.getEntityValues();
                 String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
                 String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
+                String dataSet = values.getAsString(RawContacts.DATA_SET);
                 if (accountName != null && accountType != null) {
                     if (selection.length() != 0) {
                         selection.append(" OR ");
                     }
                     selection.append(
-                            "(" + Groups.ACCOUNT_NAME + "=? AND " + Groups.ACCOUNT_TYPE + "=?)");
+                            "(" + Groups.ACCOUNT_NAME + "=? AND " + Groups.ACCOUNT_TYPE + "=?");
                     selectionArgs.add(accountName);
                     selectionArgs.add(accountType);
+
+                    if (dataSet != null) {
+                        selection.append(" AND " + Groups.DATA_SET + "=?");
+                        selectionArgs.add(dataSet);
+                    } else {
+                        selection.append(" AND " + Groups.DATA_SET + " IS NULL");
+                    }
+                    selection.append(")");
                 }
             }
             Cursor cursor = getContext().getContentResolver().query(Groups.CONTENT_URI,
@@ -963,6 +982,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 while (cursor.moveToNext()) {
                     final String accountName = cursor.getString(GroupQuery.ACCOUNT_NAME);
                     final String accountType = cursor.getString(GroupQuery.ACCOUNT_TYPE);
+                    final String dataSet = cursor.getString(GroupQuery.DATA_SET);
                     final long groupId = cursor.getLong(GroupQuery.ID);
                     final String title = cursor.getString(GroupQuery.TITLE);
                     final boolean defaultGroup = cursor.isNull(GroupQuery.AUTO_ADD)
@@ -973,7 +993,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                             : cursor.getInt(GroupQuery.FAVORITES) != 0;
 
                     result.addGroupMetaData(new GroupMetaData(
-                            accountName, accountType, groupId, title, defaultGroup, favorites));
+                            accountName, accountType, dataSet, groupId, title, defaultGroup,
+                            favorites));
                 }
             } finally {
                 cursor.close();

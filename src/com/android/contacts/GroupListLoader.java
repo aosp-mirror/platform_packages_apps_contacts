@@ -31,6 +31,7 @@ public final class GroupListLoader extends CursorLoader {
     private final static String[] COLUMNS = new String[] {
         Groups.ACCOUNT_NAME,
         Groups.ACCOUNT_TYPE,
+        Groups.DATA_SET,
         Groups._ID,
         Groups.TITLE,
         Groups.ACTION,
@@ -41,12 +42,13 @@ public final class GroupListLoader extends CursorLoader {
 
     public final static int ACCOUNT_NAME = 0;
     public final static int ACCOUNT_TYPE = 1;
-    public final static int GROUP_ID = 2;
-    public final static int TITLE = 3;
-    public final static int ACTION = 4;
-    public final static int ACTION_URI = 5;
-    public final static int MEMBER_COUNT = 6;
-    public final static int GROUP_COUNT_PER_ACCOUNT = 7;
+    public final static int DATA_SET = 2;
+    public final static int GROUP_ID = 3;
+    public final static int TITLE = 4;
+    public final static int ACTION = 5;
+    public final static int ACTION_URI = 6;
+    public final static int MEMBER_COUNT = 7;
+    public final static int GROUP_COUNT_PER_ACCOUNT = 8;
 
     private static final Uri GROUP_LIST_URI = Groups.CONTENT_SUMMARY_URI.buildUpon()
             .appendQueryParameter(Groups.PARAM_RETURN_GROUP_COUNT_PER_ACCOUNT, "true").build();
@@ -55,7 +57,7 @@ public final class GroupListLoader extends CursorLoader {
         super(context, GROUP_LIST_URI, COLUMNS, Groups.ACCOUNT_TYPE + " NOT NULL AND "
                 + Groups.ACCOUNT_NAME + " NOT NULL AND " + Groups.AUTO_ADD + "=0 AND " +
                 Groups.FAVORITES + "=0 AND " + Groups.DELETED + "=0", null,
-                Groups.ACCOUNT_TYPE + ", " + Groups.ACCOUNT_NAME + ", " +
+                Groups.ACCOUNT_TYPE + ", " + Groups.ACCOUNT_NAME + ", " + Groups.DATA_SET + ", " +
                 Groups.TITLE + " COLLATE LOCALIZED ASC");
     }
 }

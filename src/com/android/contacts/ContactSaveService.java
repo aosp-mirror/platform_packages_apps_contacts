@@ -17,12 +17,12 @@
 package com.android.contacts;
 
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.model.EntityModifier;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Sets;
 
-import android.accounts.Account;
 import android.app.Activity;
 import android.app.IntentService;
 import android.content.ContentProviderOperation;
@@ -68,6 +68,7 @@ public class ContactSaveService extends IntentService {
 
     public static final String EXTRA_ACCOUNT_NAME = "accountName";
     public static final String EXTRA_ACCOUNT_TYPE = "accountType";
+    public static final String EXTRA_DATA_SET = "dataSet";
     public static final String EXTRA_CONTENT_VALUES = "contentValues";
     public static final String EXTRA_CALLBACK_INTENT = "callbackIntent";
 
@@ -203,14 +204,15 @@ public class ContactSaveService extends IntentService {
      * using data presented as a set of ContentValues.
      */
     public static Intent createNewRawContactIntent(Context context,
-            ArrayList<ContentValues> values, Account account, Class<?> callbackActivity,
-            String callbackAction) {
+            ArrayList<ContentValues> values, AccountWithDataSet account,
+            Class<?> callbackActivity, String callbackAction) {
         Intent serviceIntent = new Intent(
                 context, ContactSaveService.class);
         serviceIntent.setAction(ContactSaveService.ACTION_NEW_RAW_CONTACT);
         if (account != null) {
             serviceIntent.putExtra(ContactSaveService.EXTRA_ACCOUNT_NAME, account.name);
             serviceIntent.putExtra(ContactSaveService.EXTRA_ACCOUNT_TYPE, account.type);
+            serviceIntent.putExtra(ContactSaveService.EXTRA_DATA_SET, account.dataSet);
         }
         serviceIntent.putParcelableArrayListExtra(
                 ContactSaveService.EXTRA_CONTENT_VALUES, values);
@@ -227,6 +229,7 @@ public class ContactSaveService extends IntentService {
     private void createRawContact(Intent intent) {
         String accountName = intent.getStringExtra(EXTRA_ACCOUNT_NAME);
         String accountType = intent.getStringExtra(EXTRA_ACCOUNT_TYPE);
+        String dataSet = intent.getStringExtra(EXTRA_DATA_SET);
         List<ContentValues> valueList = intent.getParcelableArrayListExtra(EXTRA_CONTENT_VALUES);
         Intent callbackIntent = intent.getParcelableExtra(EXTRA_CALLBACK_INTENT);
 
@@ -234,6 +237,7 @@ public class ContactSaveService extends IntentService {
         operations.add(ContentProviderOperation.newInsert(RawContacts.CONTENT_URI)
                 .withValue(RawContacts.ACCOUNT_NAME, accountName)
                 .withValue(RawContacts.ACCOUNT_TYPE, accountType)
+                .withValue(RawContacts.DATA_SET, dataSet)
                 .build());
 
         int size = valueList.size();
@@ -392,14 +396,14 @@ public class ContactSaveService extends IntentService {
      * @param callbackActivity is the activity to send the callback intent to
      * @param callbackAction is the intent action for the callback intent
      */
-
-    public static Intent createNewGroupIntent(Context context, Account account,
+    public static Intent createNewGroupIntent(Context context, AccountWithDataSet account,
             String label, long[] rawContactsToAdd, Class<?> callbackActivity,
             String callbackAction) {
         Intent serviceIntent = new Intent(context, ContactSaveService.class);
         serviceIntent.setAction(ContactSaveService.ACTION_CREATE_GROUP);
         serviceIntent.putExtra(ContactSaveService.EXTRA_ACCOUNT_TYPE, account.type);
         serviceIntent.putExtra(ContactSaveService.EXTRA_ACCOUNT_NAME, account.name);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_DATA_SET, account.dataSet);
         serviceIntent.putExtra(ContactSaveService.EXTRA_GROUP_LABEL, label);
         serviceIntent.putExtra(ContactSaveService.EXTRA_RAW_CONTACTS_TO_ADD, rawContactsToAdd);
 
@@ -413,14 +417,16 @@ public class ContactSaveService extends IntentService {
     }
 
     private void createGroup(Intent intent) {
-        final String accountType = intent.getStringExtra(EXTRA_ACCOUNT_TYPE);
-        final String accountName = intent.getStringExtra(EXTRA_ACCOUNT_NAME);
-        final String label = intent.getStringExtra(EXTRA_GROUP_LABEL);
+        String accountType = intent.getStringExtra(EXTRA_ACCOUNT_TYPE);
+        String accountName = intent.getStringExtra(EXTRA_ACCOUNT_NAME);
+        String dataSet = intent.getStringExtra(EXTRA_DATA_SET);
+        String label = intent.getStringExtra(EXTRA_GROUP_LABEL);
         final long[] rawContactsToAdd = intent.getLongArrayExtra(EXTRA_RAW_CONTACTS_TO_ADD);
 
         ContentValues values = new ContentValues();
         values.put(Groups.ACCOUNT_TYPE, accountType);
         values.put(Groups.ACCOUNT_NAME, accountName);
+        values.put(Groups.DATA_SET, dataSet);
         values.put(Groups.TITLE, label);
 
         final ContentResolver resolver = getContentResolver();

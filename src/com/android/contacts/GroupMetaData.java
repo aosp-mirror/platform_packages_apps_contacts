@@ -22,15 +22,17 @@ package com.android.contacts;
 public final class GroupMetaData {
     private String mAccountName;
     private String mAccountType;
+    private String mDataSet;
     private long mGroupId;
     private String mTitle;
     private boolean mDefaultGroup;
     private boolean mFavorites;
 
-    public GroupMetaData(String accountName, String accountType, long groupId, String title,
-            boolean defaultGroup, boolean favorites) {
+    public GroupMetaData(String accountName, String accountType, String dataSet, long groupId,
+            String title, boolean defaultGroup, boolean favorites) {
         this.mAccountName = accountName;
         this.mAccountType = accountType;
+        this.mDataSet = dataSet;
         this.mGroupId = groupId;
         this.mTitle = title;
         this.mDefaultGroup = defaultGroup;
@@ -43,6 +45,10 @@ public final class GroupMetaData {
 
     public String getAccountType() {
         return mAccountType;
+    }
+
+    public String getDataSet() {
+        return mDataSet;
     }
 
     public long getGroupId() {

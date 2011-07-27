@@ -24,6 +24,7 @@ public class FallbackAccountType extends BaseAccountType {
 
     public FallbackAccountType(Context context) {
         this.accountType = null;
+        this.dataSet = null;
         this.titleRes = R.string.account_phone;
         this.iconRes = R.mipmap.ic_launcher_contacts;
 

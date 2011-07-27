@@ -20,6 +20,8 @@ import com.android.contacts.GroupListLoader;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
+import com.android.internal.util.Objects;
 
 import android.content.ContentUris;
 import android.content.Context;
@@ -104,6 +106,7 @@ public class GroupBrowseListAdapter extends BaseAdapter {
         }
         String accountName = mCursor.getString(GroupListLoader.ACCOUNT_NAME);
         String accountType = mCursor.getString(GroupListLoader.ACCOUNT_TYPE);
+        String dataSet = mCursor.getString(GroupListLoader.DATA_SET);
         long groupId = mCursor.getLong(GroupListLoader.GROUP_ID);
         String title = mCursor.getString(GroupListLoader.TITLE);
         int memberCount = mCursor.getInt(GroupListLoader.MEMBER_COUNT);
@@ -117,14 +120,17 @@ public class GroupBrowseListAdapter extends BaseAdapter {
         if (previousIndex >= 0 && mCursor.moveToPosition(previousIndex)) {
             String previousGroupAccountName = mCursor.getString(GroupListLoader.ACCOUNT_NAME);
             String previousGroupAccountType = mCursor.getString(GroupListLoader.ACCOUNT_TYPE);
+            String previousGroupDataSet = mCursor.getString(GroupListLoader.DATA_SET);
+
             if (accountName.equals(previousGroupAccountName) &&
-                    accountType.equals(previousGroupAccountType)) {
+                    accountType.equals(previousGroupAccountType) &&
+                    Objects.equal(dataSet, previousGroupDataSet)) {
                 isFirstGroupInAccount = false;
             }
         }
 
-        return new GroupListItem(accountName, accountType, groupId, title, isFirstGroupInAccount,
-                memberCount, groupCountForThisAccount);
+        return new GroupListItem(accountName, accountType, dataSet, groupId, title,
+                isFirstGroupInAccount, memberCount, groupCountForThisAccount);
     }
 
     @Override
@@ -167,7 +173,8 @@ public class GroupBrowseListAdapter extends BaseAdapter {
     }
 
     private void bindHeaderView(GroupListItem entry, GroupListItemViewCache viewCache) {
-        AccountType accountType = mAccountTypeManager.getAccountType(entry.getAccountType());
+        AccountType accountType = mAccountTypeManager.getAccountType(
+                entry.getAccountType(), entry.getDataSet());
         viewCache.accountType.setText(accountType.getDisplayLabel(mContext).toString());
         viewCache.accountName.setText(entry.getAccountName());
 

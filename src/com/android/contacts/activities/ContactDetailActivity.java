@@ -19,7 +19,6 @@ package com.android.contacts.activities;
 import com.android.contacts.ContactLoader;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
-import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.detail.ContactDetailDisplayUtils;
 import com.android.contacts.detail.ContactDetailFragment;
@@ -29,9 +28,9 @@ import com.android.contacts.detail.ContactDetailUpdatesFragment;
 import com.android.contacts.detail.ContactLoaderFragment;
 import com.android.contacts.detail.ContactLoaderFragment.ContactLoaderFragmentListener;
 import com.android.contacts.interactions.ContactDeletionInteraction;
+import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.util.PhoneCapabilityTester;
 
-import android.accounts.Account;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -384,7 +383,7 @@ public class ContactDetailActivity extends ContactsActivity {
 
         @Override
         public void onCreateRawContactRequested(
-                ArrayList<ContentValues> values, Account account) {
+                ArrayList<ContentValues> values, AccountWithDataSet account) {
             Toast.makeText(ContactDetailActivity.this, R.string.toast_making_personal_copy,
                     Toast.LENGTH_LONG).show();
             Intent serviceIntent = ContactSaveService.createNewRawContactIntent(

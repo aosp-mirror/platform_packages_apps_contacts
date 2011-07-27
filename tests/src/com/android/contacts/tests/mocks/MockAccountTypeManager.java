@@ -17,13 +17,11 @@ package com.android.contacts.tests.mocks;
 
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
 import com.google.android.collect.Maps;
 
-import android.accounts.Account;
-
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,15 +30,15 @@ import java.util.Map;
 public class MockAccountTypeManager extends AccountTypeManager {
 
     private final AccountType[] mTypes;
-    private Account[] mAccounts;
+    private AccountWithDataSet[] mAccounts;
 
-    public MockAccountTypeManager(AccountType[] types, Account[] accounts) {
+    public MockAccountTypeManager(AccountType[] types, AccountWithDataSet[] accounts) {
         this.mTypes = types;
         this.mAccounts = accounts;
     }
 
     @Override
-    public AccountType getAccountType(String accountType) {
+    public AccountType getAccountType(String accountType, String dataSet) {
         for (AccountType type : mTypes) {
             if (accountType.equals(type.accountType)) {
                 return type;
@@ -50,8 +48,8 @@ public class MockAccountTypeManager extends AccountTypeManager {
     }
 
     @Override
-    public ArrayList<Account> getAccounts(boolean writableOnly) {
-        return new ArrayList<Account>(Arrays.asList(mAccounts));
+    public List<AccountWithDataSet> getAccounts(boolean writableOnly) {
+        return Arrays.asList(mAccounts);
     }
 
     @Override

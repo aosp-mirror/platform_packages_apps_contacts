@@ -59,14 +59,16 @@ public class ContactDeletionInteraction extends Fragment
     private static final String[] ENTITY_PROJECTION = new String[] {
         Entity.RAW_CONTACT_ID, //0
         Entity.ACCOUNT_TYPE, //1
-        Entity.CONTACT_ID, // 2
-        Entity.LOOKUP_KEY, // 3
+        Entity.DATA_SET, // 2
+        Entity.CONTACT_ID, // 3
+        Entity.LOOKUP_KEY, // 4
     };
 
     private static final int COLUMN_INDEX_RAW_CONTACT_ID = 0;
     private static final int COLUMN_INDEX_ACCOUNT_TYPE = 1;
-    private static final int COLUMN_INDEX_CONTACT_ID = 2;
-    private static final int COLUMN_INDEX_LOOKUP_KEY = 3;
+    private static final int COLUMN_INDEX_DATA_SET = 2;
+    private static final int COLUMN_INDEX_CONTACT_ID = 3;
+    private static final int COLUMN_INDEX_LOOKUP_KEY = 4;
 
     private boolean mActive;
     private Uri mContactUri;
@@ -233,9 +235,10 @@ public class ContactDeletionInteraction extends Fragment
         while (cursor.moveToNext()) {
             final long rawContactId = cursor.getLong(COLUMN_INDEX_RAW_CONTACT_ID);
             final String accountType = cursor.getString(COLUMN_INDEX_ACCOUNT_TYPE);
+            final String dataSet = cursor.getString(COLUMN_INDEX_DATA_SET);
             contactId = cursor.getLong(COLUMN_INDEX_CONTACT_ID);
             lookupKey = cursor.getString(COLUMN_INDEX_LOOKUP_KEY);
-            AccountType type = accountTypes.getAccountType(accountType);
+            AccountType type = accountTypes.getAccountType(accountType, dataSet);
             boolean readonly = type != null && type.readOnly;
             if (readonly) {
                 readOnlyRawContacts.add(rawContactId);

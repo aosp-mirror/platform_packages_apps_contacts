@@ -28,6 +28,8 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Relation;
 import android.view.inputmethod.EditorInfo;
 
+import java.util.List;
+
 public class GoogleAccountType extends BaseAccountType {
     public static final String ACCOUNT_TYPE = "com.google";
     protected static final int FLAGS_RELATION = EditorInfo.TYPE_CLASS_TEXT
@@ -54,6 +56,12 @@ public class GoogleAccountType extends BaseAccountType {
         addDataKindGroupMembership(context);
         addDataKindRelation(context);
         addDataKindEvent(context);
+    }
+
+    @Override
+    public List<String> getExtensionPackageNames() {
+        // TODO: Return the Google+ package name once it has the XML for an ExternalAccountType.
+        return super.getExtensionPackageNames();
     }
 
     @Override

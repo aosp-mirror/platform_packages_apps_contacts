@@ -222,6 +222,7 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
                         Phone.NUMBER,
                         Phone.IS_SUPER_PRIMARY,
                         RawContacts.ACCOUNT_TYPE,
+                        RawContacts.DATA_SET,
                         Phone.TYPE,
                         Phone.LABEL)
                 .withSelection("mimetype='vnd.android.cursor.item/phone_v2' AND data1 NOT NULL");

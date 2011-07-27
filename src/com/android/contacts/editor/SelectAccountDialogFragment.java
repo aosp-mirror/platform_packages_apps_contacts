@@ -17,9 +17,9 @@
 package com.android.contacts.editor;
 
 import com.android.contacts.R;
+import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.util.AccountsListAdapter;
 
-import android.accounts.Account;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -80,10 +80,10 @@ public class SelectAccountDialogFragment extends DialogFragment {
     }
 
     /**
-     * Calls {@link Listener#onAccountChosen(int, Account)} if the target fragment is castable
-     * to {@link Listener}. Subclasses can also overide to directly perform an operation
+     * Calls {@link Listener#onAccountChosen(int, AccountWithDataSet)} if the target fragment is
+     * castable to {@link Listener}. Subclasses can also overide to directly perform an operation.
      */
-    protected void onAccountSelected(Account account) {
+    protected void onAccountSelected(AccountWithDataSet account) {
         final Fragment targetFragment = getTargetFragment();
         if (targetFragment != null && targetFragment instanceof Listener) {
             final Listener target = (Listener) targetFragment;
@@ -92,7 +92,7 @@ public class SelectAccountDialogFragment extends DialogFragment {
     }
 
     public interface Listener {
-        void onAccountChosen(int requestCode, Account account);
+        void onAccountChosen(int requestCode, AccountWithDataSet account);
         void onAccountSelectorCancelled();
     }
 }

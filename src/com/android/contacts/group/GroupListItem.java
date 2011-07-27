@@ -22,6 +22,7 @@ package com.android.contacts.group;
 public final class GroupListItem {
     private final String mAccountName;
     private final String mAccountType;
+    private final String mDataSet;
     private final long mGroupId;
     private final String mTitle;
     private final boolean mIsFirstGroupInAccount;
@@ -30,10 +31,12 @@ public final class GroupListItem {
     /** Number of groups in the account that this group belongs to */
     private final int mGroupCountForThisAccount;
 
-    public GroupListItem(String accountName, String accountType, long groupId, String title,
-            boolean isFirstGroupInAccount, int memberCount, int groupCountForThisAccount) {
+    public GroupListItem(String accountName, String accountType, String dataSet, long groupId,
+            String title, boolean isFirstGroupInAccount, int memberCount,
+            int groupCountForThisAccount) {
         mAccountName = accountName;
         mAccountType = accountType;
+        mDataSet = dataSet;
         mGroupId = groupId;
         mTitle = title;
         mIsFirstGroupInAccount = isFirstGroupInAccount;
@@ -47,6 +50,10 @@ public final class GroupListItem {
 
     public String getAccountType() {
         return mAccountType;
+    }
+
+    public String getDataSet() {
+        return mDataSet;
     }
 
     public long getGroupId() {

@@ -139,6 +139,7 @@ public class StreamItemPopulatorActivity extends Activity {
             long rawContactId = -1;
             String accountType = null;
             String accountName = null;
+            String dataSet = null;
 
             // Lookup the com.google raw contact for the contact.
             Cursor c = getContentResolver().query(RawContacts.CONTENT_URI,

@@ -36,6 +36,7 @@ import android.util.Log;
 import android.util.Xml;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -55,12 +56,24 @@ public class ExternalAccountType extends BaseAccountType {
     private static final String ATTR_CREATE_CONTACT_ACTIVITY = "createContactActivity";
     private static final String ATTR_INVITE_CONTACT_ACTIVITY = "inviteContactActivity";
     private static final String ATTR_INVITE_CONTACT_ACTION_LABEL = "inviteContactActionLabel";
+    private static final String ATTR_DATA_SET = "dataSet";
+    private static final String ATTR_EXTENSION_PACKAGE_NAMES = "extensionPackageNames";
+
+    // The following attributes should only be set in non-sync-adapter account types.  They allow
+    // for the account type and resource IDs to be specified without an associated authenticator.
+    private static final String ATTR_ACCOUNT_TYPE = "accountType";
+    private static final String ATTR_READ_ONLY = "readOnly";
+    private static final String ATTR_ACCOUNT_LABEL = "accountTypeLabel";
+    private static final String ATTR_ACCOUNT_ICON = "accountTypeIcon";
 
     private String mEditContactActivityClassName;
     private String mCreateContactActivityClassName;
     private String mInviteContactActivity;
     private String mInviteActionLabelAttribute;
+    private List<String> mExtensionPackageNames;
     private int mInviteActionLabelResId;
+    private String mAccountTypeLabelAttribute;
+    private String mAccountTypeIconAttribute;
 
     public ExternalAccountType(Context context, String resPackageName) {
         this.resPackageName = resPackageName;
@@ -81,8 +94,13 @@ public class ExternalAccountType extends BaseAccountType {
             }
         }
 
+        mExtensionPackageNames = new ArrayList<String>();
         mInviteActionLabelResId = resolveExternalResId(context, mInviteActionLabelAttribute,
                 summaryResPackageName, ATTR_INVITE_CONTACT_ACTION_LABEL);
+        titleRes = resolveExternalResId(context, mAccountTypeLabelAttribute,
+                this.resPackageName, ATTR_ACCOUNT_LABEL);
+        iconRes = resolveExternalResId(context, mAccountTypeIconAttribute,
+                this.resPackageName, ATTR_ACCOUNT_ICON);
 
         // Bring in name and photo from fallback source, which are non-optional
         addDataKindStructuredName(context);
@@ -114,6 +132,11 @@ public class ExternalAccountType extends BaseAccountType {
     @Override
     protected int getInviteContactActionResId(Context context) {
         return mInviteActionLabelResId;
+    }
+
+    @Override
+    public List<String> getExtensionPackageNames() {
+        return mExtensionPackageNames;
     }
 
     /**
@@ -156,6 +179,18 @@ public class ExternalAccountType extends BaseAccountType {
                     mInviteContactActivity = value;
                 } else if (ATTR_INVITE_CONTACT_ACTION_LABEL.equals(attr)) {
                     mInviteActionLabelAttribute = value;
+                } else if (ATTR_DATA_SET.equals(attr)) {
+                    dataSet = value;
+                } else if (ATTR_EXTENSION_PACKAGE_NAMES.equals(attr)) {
+                    mExtensionPackageNames.add(value);
+                } else if (ATTR_ACCOUNT_TYPE.equals(attr)) {
+                    accountType = value;
+                } else if (ATTR_READ_ONLY.equals(attr)) {
+                    readOnly = !"0".equals(value) && !"false".equals(value);
+                } else if (ATTR_ACCOUNT_LABEL.equals(attr)) {
+                    mAccountTypeLabelAttribute = value;
+                } else if (ATTR_ACCOUNT_ICON.equals(attr)) {
+                    mAccountTypeIconAttribute = value;
                 } else {
                     Log.e(TAG, "Unsupported attribute " + attr);
                 }

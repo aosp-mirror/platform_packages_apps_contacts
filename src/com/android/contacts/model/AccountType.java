@@ -38,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Internal structure that represents constraints and styles for a specific data
@@ -49,10 +50,17 @@ import java.util.HashMap;
 public abstract class AccountType {
     private static final String TAG = "AccountType";
 
+    private static final String ACCOUNT_TYPE_DATA_SET_DELIMITER = "/";
+
     /**
      * The {@link RawContacts#ACCOUNT_TYPE} these constraints apply to.
      */
     public String accountType = null;
+
+    /**
+     * The {@link RawContacts#DATA_SET} these constraints apply to.
+     */
+    public String dataSet = null;
 
     /**
      * Package that resources should be loaded from, either defined through an
@@ -113,6 +121,34 @@ public abstract class AccountType {
      */
     protected int getInviteContactActionResId(Context conext) {
         return -1;
+    }
+
+    /**
+     * Returns the account type with the data set (if any) appended after a delimiter.
+     * If the data set is null, this will simply return the account type.
+     */
+    public String getAccountTypeAndDataSet() {
+        return getAccountTypeAndDataSet(accountType, dataSet);
+    }
+
+    /**
+     * Utility method to concatenate the given account type with a data set with a delimiter.
+     * If the data set is null, this will simply return the account type.
+     */
+    public static String getAccountTypeAndDataSet(String accountType, String dataSet) {
+        return dataSet == null
+                ? accountType
+                : accountType + ACCOUNT_TYPE_DATA_SET_DELIMITER + dataSet;
+    }
+
+    /**
+     * Returns a list of additional package names that should be inspected as additional
+     * external account types.  This allows for a primary account type to indicate other packages
+     * that may not be sync adapters but which still provide contact data, perhaps under a
+     * separate data set within the account.
+     */
+    public List<String> getExtensionPackageNames() {
+        return new ArrayList<String>();
     }
 
     /**
@@ -186,7 +222,7 @@ public abstract class AccountType {
     /**
      * Find the {@link DataKind} for a specific MIME-type, if it's handled by
      * this data source. If you may need a fallback {@link DataKind}, use
-     * {@link AccountTypeManager#getKindOrFallback(String, String)}.
+     * {@link AccountTypeManager#getKindOrFallback(String, String, String)}.
      */
     public DataKind getKindForMimetype(String mimeType) {
         return this.mMimeKinds.get(mimeType);

@@ -16,8 +16,10 @@
 
 package com.android.contacts.model;
 
+import com.android.internal.util.Objects;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
+import com.google.android.collect.Sets;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
@@ -43,13 +45,14 @@ import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -79,9 +82,9 @@ public abstract class AccountTypeManager {
         return new AccountTypeManagerImpl(context);
     }
 
-    public abstract ArrayList<Account> getAccounts(boolean writableOnly);
+    public abstract List<AccountWithDataSet> getAccounts(boolean writableOnly);
 
-    public abstract AccountType getAccountType(String accountType);
+    public abstract AccountType getAccountType(String accountType, String dataSet);
 
     /**
      * @return Unmodifiable map from account type strings to {@link AccountType}s which support
@@ -91,11 +94,11 @@ public abstract class AccountTypeManager {
 
     /**
      * Find the best {@link DataKind} matching the requested
-     * {@link AccountType#accountType} and {@link DataKind#mimeType}. If no
-     * direct match found, we try searching {@link FallbackAccountType}.
+     * {@link AccountType#accountType}, {@link AccountType#dataSet}, and {@link DataKind#mimeType}.
+     * If no direct match found, we try searching {@link FallbackAccountType}.
      */
-    public DataKind getKindOrFallback(String accountType, String mimeType) {
-        final AccountType type = getAccountType(accountType);
+    public DataKind getKindOrFallback(String accountType, String dataSet, String mimeType) {
+        final AccountType type = getAccountType(accountType, dataSet);
         return type == null ? null : type.getKindForMimetype(mimeType);
     }
 }
@@ -108,9 +111,9 @@ class AccountTypeManagerImpl extends AccountTypeManager
 
     private AccountType mFallbackAccountType;
 
-    private ArrayList<Account> mAccounts = Lists.newArrayList();
-    private ArrayList<Account> mWritableAccounts = Lists.newArrayList();
-    private HashMap<String, AccountType> mAccountTypes = Maps.newHashMap();
+    private List<AccountWithDataSet> mAccounts = Lists.newArrayList();
+    private List<AccountWithDataSet> mWritableAccounts = Lists.newArrayList();
+    private Map<String, AccountType> mAccountTypesWithDataSets = Maps.newHashMap();
     private Map<String, AccountType> mInvitableAccountTypes = Collections.unmodifiableMap(
             new HashMap<String, AccountType>());
 
@@ -134,14 +137,41 @@ class AccountTypeManagerImpl extends AccountTypeManager
     private volatile CountDownLatch mInitializationLatch = new CountDownLatch(1);
 
     private static final Comparator<Account> ACCOUNT_COMPARATOR = new Comparator<Account>() {
-
         @Override
-        public int compare(Account account1, Account account2) {
-            int diff = account1.name.compareTo(account2.name);
-            if (diff != 0) {
-                return diff;
+        public int compare(Account a, Account b) {
+            String aDataSet = null;
+            String bDataSet = null;
+            if (a instanceof AccountWithDataSet) {
+                aDataSet = ((AccountWithDataSet) a).dataSet;
             }
-            return account1.type.compareTo(account2.type);
+            if (b instanceof AccountWithDataSet) {
+                bDataSet = ((AccountWithDataSet) b).dataSet;
+            }
+
+            if (Objects.equal(a.name, b.name) && Objects.equal(a.type, b.type)
+                    && Objects.equal(aDataSet, bDataSet)) {
+                return 0;
+            } else if (b.name == null || b.type == null) {
+                return -1;
+            } else if (a.name == null || a.type == null) {
+                return 1;
+            } else {
+                int diff = a.name.compareTo(b.name);
+                if (diff != 0) {
+                    return diff;
+                }
+                diff = a.type.compareTo(b.type);
+                if (diff != 0) {
+                    return diff;
+                }
+
+                // Accounts without data sets get sorted before those that have them.
+                if (aDataSet != null) {
+                    return bDataSet == null ? 1 : aDataSet.compareTo(bDataSet);
+                } else {
+                    return -1;
+                }
+            }
         }
     };
 
@@ -228,15 +258,23 @@ class AccountTypeManagerImpl extends AccountTypeManager
     }
 
     /**
-     * Loads account list and corresponding account types. Always called on a
-     * background thread.
+     * Loads account list and corresponding account types (potentially with data sets). Always
+     * called on a background thread.
      */
     protected void loadAccountsInBackground() {
         long startTime = SystemClock.currentThreadTimeMillis();
 
-        HashMap<String, AccountType> accountTypes = Maps.newHashMap();
-        ArrayList<Account> allAccounts = Lists.newArrayList();
-        ArrayList<Account> writableAccounts = Lists.newArrayList();
+        // Account types, keyed off the account type and data set concatenation.
+        Map<String, AccountType> accountTypesByTypeAndDataSet = Maps.newHashMap();
+
+        // The same AccountTypes, but keyed off {@link RawContacts#ACCOUNT_TYPE}.  Since there can
+        // be multiple account types (with different data sets) for the same type of account, each
+        // type string may have multiple AccountType entries.
+        Map<String, List<AccountType>> accountTypesByType = Maps.newHashMap();
+
+        List<AccountWithDataSet> allAccounts = Lists.newArrayList();
+        List<AccountWithDataSet> writableAccounts = Lists.newArrayList();
+        Set<String> extensionPackages = Sets.newHashSet();
 
         final AccountManager am = mAccountManager;
         final IContentService cs = ContentResolver.getContentService();
@@ -245,6 +283,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
             final SyncAdapterType[] syncs = cs.getSyncAdapterTypes();
             final AuthenticatorDescription[] auths = am.getAuthenticatorTypes();
 
+            // First process sync adapters to find any that provide contact data.
             for (SyncAdapterType sync : syncs) {
                 if (!ContactsContract.AUTHORITY.equals(sync.authority)) {
                     // Skip sync adapters that don't provide contact data.
@@ -277,31 +316,52 @@ class AccountTypeManagerImpl extends AccountTypeManager
                 accountType.titleRes = auth.labelId;
                 accountType.iconRes = auth.iconId;
 
-                accountTypes.put(accountType.accountType, accountType);
+                addAccountType(accountType, accountTypesByTypeAndDataSet, accountTypesByType);
+
+                // Check to see if the account type knows of any other non-sync-adapter packages
+                // that may provide other data sets of contact data.
+                extensionPackages.addAll(accountType.getExtensionPackageNames());
+            }
+
+            // If any extension packages were specified, process them as well.
+            if (!extensionPackages.isEmpty()) {
+                Log.d(TAG, "Registering " + extensionPackages.size() + " extension packages");
+                for (String extensionPackage : extensionPackages) {
+                    ExternalAccountType accountType =
+                            new ExternalAccountType(mContext, extensionPackage);
+                    Log.d(TAG, "Registering extension package account type="
+                            + accountType.accountType + ", dataSet=" + accountType.dataSet
+                            + ", packageName=" + extensionPackage);
+
+                    addAccountType(accountType, accountTypesByTypeAndDataSet, accountTypesByType);
+                }
             }
         } catch (RemoteException e) {
             Log.w(TAG, "Problem loading accounts: " + e.toString());
         }
 
+        // Map in accounts to associate the account names with each account type entry.
         Account[] accounts = mAccountManager.getAccounts();
         for (Account account : accounts) {
             boolean syncable = false;
             try {
-                int isSyncable = cs.getIsSyncable(account, ContactsContract.AUTHORITY);
-                if (isSyncable > 0) {
-                    syncable = true;
-                }
+                syncable = cs.getIsSyncable(account, ContactsContract.AUTHORITY) > 0;
             } catch (RemoteException e) {
                 Log.e(TAG, "Cannot obtain sync flag for account: " + account, e);
             }
 
             if (syncable) {
-                // Ensure we have details loaded for each account
-                final AccountType accountType = accountTypes.get(account.type);
-                if (accountType != null) {
-                    allAccounts.add(account);
-                    if (!accountType.readOnly) {
-                        writableAccounts.add(account);
+                List<AccountType> accountTypes = accountTypesByType.get(account.type);
+                if (accountTypes != null) {
+                    // Add an account-with-data-set entry for each account type that is
+                    // authenticated by this account.
+                    for (AccountType accountType : accountTypes) {
+                        AccountWithDataSet accountWithDataSet = new AccountWithDataSet(
+                                account.name, account.type, accountType.dataSet);
+                        allAccounts.add(accountWithDataSet);
+                        if (!accountType.readOnly) {
+                            writableAccounts.add(accountWithDataSet);
+                        }
                     }
                 }
             }
@@ -317,19 +377,33 @@ class AccountTypeManagerImpl extends AccountTypeManager
         long endTime = SystemClock.currentThreadTimeMillis();
 
         synchronized (this) {
-            mAccountTypes = accountTypes;
+            mAccountTypesWithDataSets = accountTypesByTypeAndDataSet;
             mAccounts = allAccounts;
             mWritableAccounts = writableAccounts;
-            mInvitableAccountTypes = findInvitableAccountTypes(mContext, allAccounts, accountTypes);
+            mInvitableAccountTypes = findInvitableAccountTypes(
+                    mContext, allAccounts, accountTypesByTypeAndDataSet);
         }
 
-        Log.i(TAG, "Loaded meta-data for " + mAccountTypes.size() + " account types, "
+        Log.i(TAG, "Loaded meta-data for " + mAccountTypesWithDataSets.size() + " account types, "
                 + mAccounts.size() + " accounts in " + (endTime - startTime) + "ms");
 
         if (mInitializationLatch != null) {
             mInitializationLatch.countDown();
             mInitializationLatch = null;
         }
+    }
+
+    // Bookkeeping method for tracking the known account types in the given maps.
+    private void addAccountType(AccountType accountType,
+            Map<String, AccountType> accountTypesByTypeAndDataSet,
+            Map<String, List<AccountType>> accountTypesByType) {
+        accountTypesByTypeAndDataSet.put(accountType.getAccountTypeAndDataSet(), accountType);
+        List<AccountType> accountsForType = accountTypesByType.get(accountType.accountType);
+        if (accountsForType == null) {
+            accountsForType = Lists.newArrayList();
+        }
+        accountsForType.add(accountType);
+        accountTypesByType.put(accountType.accountType, accountsForType);
     }
 
     /**
@@ -347,26 +421,27 @@ class AccountTypeManagerImpl extends AccountTypeManager
     }
 
     /**
-     * Return list of all known, writable {@link Account}'s.
+     * Return list of all known, writable {@link AccountWithDataSet}'s.
      */
     @Override
-    public ArrayList<Account> getAccounts(boolean writableOnly) {
+    public List<AccountWithDataSet> getAccounts(boolean writableOnly) {
         ensureAccountsLoaded();
         return writableOnly ? mWritableAccounts : mAccounts;
     }
 
     /**
      * Find the best {@link DataKind} matching the requested
-     * {@link AccountType#accountType} and {@link DataKind#mimeType}. If no
-     * direct match found, we try searching {@link FallbackAccountType}.
+     * {@link AccountType#accountType}, {@link AccountType#dataSet}, and {@link DataKind#mimeType}.
+     * If no direct match found, we try searching {@link FallbackAccountType}.
      */
     @Override
-    public DataKind getKindOrFallback(String accountType, String mimeType) {
+    public DataKind getKindOrFallback(String accountType, String dataSet, String mimeType) {
         ensureAccountsLoaded();
         DataKind kind = null;
 
         // Try finding account type and kind matching request
-        final AccountType type = mAccountTypes.get(accountType);
+        final AccountType type = mAccountTypesWithDataSets.get(
+                AccountType.getAccountTypeAndDataSet(accountType, dataSet));
         if (type != null) {
             kind = type.getKindForMimetype(mimeType);
         }
@@ -384,13 +459,14 @@ class AccountTypeManagerImpl extends AccountTypeManager
     }
 
     /**
-     * Return {@link AccountType} for the given account type.
+     * Return {@link AccountType} for the given account type and data set.
      */
     @Override
-    public AccountType getAccountType(String accountType) {
+    public AccountType getAccountType(String accountType, String dataSet) {
         ensureAccountsLoaded();
         synchronized (this) {
-            AccountType type = mAccountTypes.get(accountType);
+            AccountType type = mAccountTypesWithDataSets.get(
+                    AccountType.getAccountTypeAndDataSet(accountType, dataSet));
             return type != null ? type : mFallbackAccountType;
         }
     }
@@ -406,20 +482,23 @@ class AccountTypeManagerImpl extends AccountTypeManager
      */
     @VisibleForTesting
     static Map<String, AccountType> findInvitableAccountTypes(Context context,
-            Collection<Account> accounts, Map<String, AccountType> accountTypes) {
+            Collection<AccountWithDataSet> accounts,
+            Map<String, AccountType> accountTypesByTypeAndDataSet) {
         HashMap<String, AccountType> result = Maps.newHashMap();
-        for (Account account : accounts) {
-            AccountType type = accountTypes.get(account.type);
+        for (AccountWithDataSet account : accounts) {
+            String accountTypeWithDataSet = account.getAccountTypeWithDataSet();
+            AccountType type = accountTypesByTypeAndDataSet.get(
+                    account.getAccountTypeWithDataSet());
             if (type == null) continue; // just in case
-            if (result.containsKey(type.accountType)) continue;
+            if (result.containsKey(accountTypeWithDataSet)) continue;
 
             if (Log.isLoggable(TAG, Log.DEBUG)) {
-                Log.d(TAG, "Type " + type.accountType
+                Log.d(TAG, "Type " + accountTypeWithDataSet
                         + " inviteClass=" + type.getInviteContactActivityClassName()
                         + " inviteAction=" + type.getInviteContactActionLabel(context));
             }
             if (!TextUtils.isEmpty(type.getInviteContactActivityClassName())) {
-                result.put(type.accountType, type);
+                result.put(accountTypeWithDataSet, type);
             }
         }
         return Collections.unmodifiableMap(result);

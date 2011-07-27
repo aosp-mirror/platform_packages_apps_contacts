@@ -51,6 +51,7 @@ import com.android.contacts.list.ProviderStatusLoader;
 import com.android.contacts.list.ProviderStatusLoader.ProviderStatusListener;
 import com.android.contacts.list.ContactTileListFragment;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.preference.DisplayOptionsPreferenceFragment;
 import com.android.contacts.util.AccountSelectionUtil;
@@ -58,7 +59,6 @@ import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.PhoneCapabilityTester;
 
-import android.accounts.Account;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -92,6 +92,7 @@ import android.widget.ListPopupWindow;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -202,8 +203,8 @@ public class PeopleActivity extends ContactsActivity
     }
 
     private boolean areAccountsAvailable() {
-        final ArrayList<Account> accounts =
-            AccountTypeManager.getInstance(this).getAccounts(true /* writeable */);
+        final List<AccountWithDataSet> accounts =
+                AccountTypeManager.getInstance(this).getAccounts(true /* writeable */);
         return !accounts.isEmpty();
     }
 
@@ -1091,7 +1092,8 @@ public class PeopleActivity extends ContactsActivity
         }
 
         @Override
-        public void onCreateRawContactRequested(ArrayList<ContentValues> values, Account account) {
+        public void onCreateRawContactRequested(ArrayList<ContentValues> values,
+                AccountWithDataSet account) {
             Toast.makeText(PeopleActivity.this, R.string.toast_making_personal_copy,
                     Toast.LENGTH_LONG).show();
             Intent serviceIntent = ContactSaveService.createNewRawContactIntent(
@@ -1169,8 +1171,8 @@ public class PeopleActivity extends ContactsActivity
         }
 
         @Override
-        public void onGroupSourceUpdated(
-                String accountTypeString, String groupSourceAction, String groupSourceUri) {
+        public void onGroupSourceUpdated(String accountTypeString, String dataSet,
+                String groupSourceAction, String groupSourceUri) {
             // Nothing needs to be done here because the group source will be displayed in the
             // detail fragment
         }
@@ -1393,7 +1395,7 @@ public class PeopleActivity extends ContactsActivity
     }
 
     private void createNewGroupWithAccountDisambiguation() {
-        final ArrayList<Account> accounts =
+        final List<AccountWithDataSet> accounts =
                 AccountTypeManager.getInstance(this).getAccounts(true);
         if (accounts.size() <= 1 || mAddGroupImageView == null) {
             // No account to choose or no control to anchor the popup-menu to
@@ -1415,9 +1417,11 @@ public class PeopleActivity extends ContactsActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 popup.dismiss();
+                AccountWithDataSet account = adapter.getItem(position);
                 final Intent intent = new Intent(PeopleActivity.this, GroupEditorActivity.class);
                 intent.setAction(Intent.ACTION_INSERT);
-                intent.putExtra(Intents.Insert.ACCOUNT, adapter.getItem(position));
+                intent.putExtra(Intents.Insert.ACCOUNT, account);
+                intent.putExtra(Intents.Insert.DATA_SET, account.dataSet);
                 startActivityForResult(intent, SUBACTIVITY_NEW_GROUP);
             }
         });

@@ -37,14 +37,15 @@ public class GroupDetailDisplayUtils {
         return inflater.inflate(R.layout.group_source_button, null);
     }
 
-    public static void bindGroupSourceView(Context context, View view, String accountTypeString) {
+    public static void bindGroupSourceView(Context context, View view, String accountTypeString,
+            String dataSet) {
         ImageView accountIcon = (ImageView) view.findViewById(android.R.id.icon);
         if (accountIcon == null) {
             throw new IllegalStateException("Group source view must contain view with id"
                     + "android.R.id.icon");
         }
         AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(context);
-        AccountType accountType = accountTypeManager.getAccountType(accountTypeString);
+        AccountType accountType = accountTypeManager.getAccountType(accountTypeString, dataSet);
         accountIcon.setImageDrawable(accountType.getDisplayIcon(context));
     }
 }

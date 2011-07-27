@@ -70,8 +70,8 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         /**
          * The group source (intent action and action URI) has been determined.
          */
-        public void onGroupSourceUpdated(String accountTypeString, String groupSourceAction,
-                String groupSourceUri);
+        public void onGroupSourceUpdated(String accountTypeString, String dataSet,
+                String groupSourceAction, String groupSourceUri);
 
         /**
          * User decided to go to Edit-Mode
@@ -108,6 +108,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
     private long mGroupId;
     private String mGroupName;
     private String mAccountTypeString;
+    private String mDataSet;
     private boolean mIsReadOnly;
 
     private boolean mShowGroupActionInActionBar;
@@ -271,6 +272,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         cursor.moveToPosition(-1);
         if (cursor.moveToNext()) {
             mAccountTypeString = cursor.getString(GroupMetaDataLoader.ACCOUNT_TYPE);
+            mDataSet = cursor.getString(GroupMetaDataLoader.DATA_SET);
             mGroupId = cursor.getLong(GroupMetaDataLoader.GROUP_ID);
             mGroupName = cursor.getString(GroupMetaDataLoader.TITLE);
             mIsReadOnly = cursor.getInt(GroupMetaDataLoader.IS_READ_ONLY) == 1;
@@ -279,9 +281,10 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
             getActivity().invalidateOptionsMenu ();
 
             final String accountTypeString = cursor.getString(GroupMetaDataLoader.ACCOUNT_TYPE);
+            final String dataSet = cursor.getString(GroupMetaDataLoader.DATA_SET);
             final String groupSourceAction = cursor.getString(GroupMetaDataLoader.ACTION);
             final String groupSourceUri = cursor.getString(GroupMetaDataLoader.ACTION_URI);
-            updateGroupSouce(accountTypeString, groupSourceAction, groupSourceUri);
+            updateGroupSource(accountTypeString, dataSet, groupSourceAction, groupSourceUri);
         }
     }
 
@@ -304,7 +307,8 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         } else {
             String groupSizeTemplateString = getResources().getQuantityString(
                     R.plurals.num_contacts_in_group, size);
-            AccountType accountType = mAccountTypeManager.getAccountType(mAccountTypeString);
+            AccountType accountType = mAccountTypeManager.getAccountType(mAccountTypeString,
+                    mDataSet);
             groupSizeString = String.format(groupSizeTemplateString, size,
                     accountType.getDisplayLabel(mContext));
         }
@@ -323,14 +327,15 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
      * a button in a static header on the page, or as a header that scrolls with the
      * {@link ListView}.
      */
-    private void updateGroupSouce(final String accountTypeString, final String groupSourceAction,
-            final String groupSourceUri) {
+    private void updateGroupSource(final String accountTypeString, final String dataSet,
+            final String groupSourceAction, final String groupSourceUri) {
 
         // If the group action should be shown in the action bar, then pass the data to the
         // listener who will take care of setting up the view and click listener. There is nothing
         // else to be done by this {@link Fragment}.
         if (mShowGroupActionInActionBar) {
-            mListener.onGroupSourceUpdated(accountTypeString, groupSourceAction, groupSourceUri);
+            mListener.onGroupSourceUpdated(accountTypeString, dataSet, groupSourceAction,
+                    groupSourceUri);
             return;
         }
 
@@ -354,7 +359,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
             // Rebind the data since this action can change if the loader returns updated data
             mGroupSourceView.setVisibility(View.VISIBLE);
             GroupDetailDisplayUtils.bindGroupSourceView(mContext, mGroupSourceView,
-                    accountTypeString);
+                    accountTypeString, dataSet);
             mGroupSourceView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {

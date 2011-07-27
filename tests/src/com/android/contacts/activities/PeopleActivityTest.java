@@ -24,6 +24,7 @@ import com.android.contacts.interactions.TestLoaderManager;
 import com.android.contacts.list.ContactBrowseListFragment;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.model.BaseAccountType;
 import com.android.contacts.test.InjectedServices;
 import com.android.contacts.tests.mocks.ContactsMockContext;
@@ -34,7 +35,6 @@ import com.android.contacts.tests.mocks.MockContentProvider.Query;
 import com.android.contacts.tests.mocks.MockSharedPreferences;
 import com.android.contacts.util.PhoneCapabilityTester;
 
-import android.accounts.Account;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.Loader;
@@ -94,11 +94,11 @@ public class PeopleActivityTest
         AccountType accountType = new BaseAccountType();
         accountType.accountType = TEST_ACCOUNT_TYPE;
 
-        Account account = new Account(TEST_ACCOUNT, TEST_ACCOUNT_TYPE);
+        AccountWithDataSet account = new AccountWithDataSet(TEST_ACCOUNT, TEST_ACCOUNT_TYPE, null);
 
         services.setSystemService(AccountTypeManager.ACCOUNT_TYPE_SERVICE,
                 new MockAccountTypeManager(
-                        new AccountType[] { accountType }, new Account[] { account }));
+                        new AccountType[] { accountType }, new AccountWithDataSet[] { account }));
         ContactsApplication.injectServices(services);
     }
 

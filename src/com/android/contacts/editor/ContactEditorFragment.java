@@ -26,6 +26,7 @@ import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
 import com.android.contacts.editor.Editor.EditorListener;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityDeltaList;
@@ -316,11 +317,13 @@ public class ContactEditorFragment extends Fragment implements
                 if (mListener != null) mListener.setTitleTo(R.string.editContact_title_insert);
 
                 final Account account = mIntentExtras == null ? null :
-                    (Account) mIntentExtras.getParcelable(Intents.Insert.ACCOUNT);
+                        (Account) mIntentExtras.getParcelable(Intents.Insert.ACCOUNT);
+                final String dataSet = mIntentExtras == null ? null :
+                        mIntentExtras.getString(Intents.Insert.DATA_SET);
 
                 if (account != null) {
                     // Account specified in Intent
-                    createContact(account);
+                    createContact(new AccountWithDataSet(account.name, account.type, dataSet));
                 } else {
                     // No Account specified. Let the user choose
                     // Load Accounts async so that we can present them
@@ -396,12 +399,15 @@ public class ContactEditorFragment extends Fragment implements
             Entity entity = entities.get(0);
             ContentValues entityValues = entity.getEntityValues();
             String type = entityValues.getAsString(RawContacts.ACCOUNT_TYPE);
-            AccountType accountType = AccountTypeManager.getInstance(mContext).getAccountType(type);
+            String dataSet = entityValues.getAsString(RawContacts.DATA_SET);
+            AccountType accountType = AccountTypeManager.getInstance(mContext).getAccountType(
+                    type, dataSet);
             if (accountType.getEditContactActivityClassName() != null) {
                 if (mListener != null) {
                     String name = entityValues.getAsString(RawContacts.ACCOUNT_NAME);
                     long rawContactId = entityValues.getAsLong(RawContacts.Entity._ID);
-                    mListener.onCustomEditContactActivityRequested(new Account(name, type),
+                    mListener.onCustomEditContactActivityRequested(
+                            new AccountWithDataSet(name, type, dataSet),
                             ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId),
                             mIntentExtras, true);
                 }
@@ -413,7 +419,7 @@ public class ContactEditorFragment extends Fragment implements
     }
 
     @Override
-    public void onExternalEditorRequest(Account account, Uri uri) {
+    public void onExternalEditorRequest(AccountWithDataSet account, Uri uri) {
         mListener.onCustomEditContactActivityRequested(account, uri, null, false);
     }
 
@@ -440,7 +446,8 @@ public class ContactEditorFragment extends Fragment implements
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
         for (EntityDelta state : mState) {
             final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final AccountType type = accountTypes.getAccountType(accountType);
+            final String dataSet = state.getValues().getAsString(RawContacts.DATA_SET);
+            final AccountType type = accountTypes.getAccountType(accountType, dataSet);
             if (!type.readOnly) {
                 // Apply extras to the first writable raw contact only
                 EntityModifier.parseExtras(mContext, type, state, extras);
@@ -454,7 +461,7 @@ public class ContactEditorFragment extends Fragment implements
      * selected. If there's no available account, device-local contact should be created.
      */
     private void createContact() {
-        final ArrayList<Account> accounts =
+        final List<AccountWithDataSet> accounts =
                 AccountTypeManager.getInstance(mContext).getAccounts(true);
         // No Accounts available.  Create a phone-local contact.
         if (accounts.isEmpty()) {
@@ -473,10 +480,11 @@ public class ContactEditorFragment extends Fragment implements
      *
      * @param account may be null to signal a device-local contact should be created.
      */
-    private void createContact(Account account) {
+    private void createContact(AccountWithDataSet account) {
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
         final AccountType accountType =
-                accountTypes.getAccountType(account != null ? account.type : null);
+                accountTypes.getAccountType(account != null ? account.type : null,
+                        account != null ? account.dataSet : null);
 
         if (accountType.getCreateContactActivityClassName() != null) {
             if (mListener != null) {
@@ -491,15 +499,17 @@ public class ContactEditorFragment extends Fragment implements
      * Removes a current editor ({@link #mState}) and rebinds new editor for a new account.
      * Some of old data are reused with new restriction enforced by the new account.
      *
-     * @param oldState Old data being editted.
+     * @param oldState Old data being edited.
      * @param oldAccount Old account associated with oldState.
      * @param newAccount New account to be used.
      */
     private void rebindEditorsForNewContact(
-            EntityDelta oldState, Account oldAccount, Account newAccount) {
+            EntityDelta oldState, AccountWithDataSet oldAccount, AccountWithDataSet newAccount) {
         AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
-        AccountType oldAccountType = accountTypes.getAccountType(oldAccount.type);
-        AccountType newAccountType = accountTypes.getAccountType(newAccount.type);
+        AccountType oldAccountType = accountTypes.getAccountType(
+                oldAccount.type, oldAccount.dataSet);
+        AccountType newAccountType = accountTypes.getAccountType(
+                newAccount.type, newAccount.dataSet);
 
         if (newAccountType.getCreateContactActivityClassName() != null) {
             Log.w(TAG, "external activity called in rebind situation");
@@ -512,21 +522,24 @@ public class ContactEditorFragment extends Fragment implements
         }
     }
 
-    private void bindEditorsForNewContact(Account account, final AccountType accountType) {
+    private void bindEditorsForNewContact(AccountWithDataSet account,
+            final AccountType accountType) {
         bindEditorsForNewContact(account, accountType, null, null);
     }
 
-    private void bindEditorsForNewContact(Account newAccount, final AccountType newAccountType,
-            EntityDelta oldState, AccountType oldAccountType) {
+    private void bindEditorsForNewContact(AccountWithDataSet newAccount,
+            final AccountType newAccountType, EntityDelta oldState, AccountType oldAccountType) {
         mStatus = Status.EDITING;
 
         final ContentValues values = new ContentValues();
         if (newAccount != null) {
             values.put(RawContacts.ACCOUNT_NAME, newAccount.name);
             values.put(RawContacts.ACCOUNT_TYPE, newAccount.type);
+            values.put(RawContacts.DATA_SET, newAccount.dataSet);
         } else {
             values.putNull(RawContacts.ACCOUNT_NAME);
             values.putNull(RawContacts.ACCOUNT_TYPE);
+            values.putNull(RawContacts.DATA_SET);
         }
 
         EntityDelta insert = new EntityDelta(ValuesDelta.fromAfter(values));
@@ -577,7 +590,8 @@ public class ContactEditorFragment extends Fragment implements
             if (!values.isVisible()) continue;
 
             final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
-            final AccountType type = accountTypes.getAccountType(accountType);
+            final String dataSet = values.getAsString(RawContacts.DATA_SET);
+            final AccountType type = accountTypes.getAccountType(accountType, dataSet);
             final long rawContactId = values.getAsLong(RawContacts._ID);
 
             final BaseRawContactEditorView editor;
@@ -596,7 +610,7 @@ public class ContactEditorFragment extends Fragment implements
                 editor = rawContactEditor;
             }
             if (Intent.ACTION_INSERT.equals(mAction) && numRawContacts == 1) {
-                final ArrayList<Account> accounts =
+                final List<AccountWithDataSet> accounts =
                         AccountTypeManager.getInstance(mContext).getAccounts(true);
                 if (accounts.size() > 1) {
                     addAccountSwitcher(mState.get(0), editor);
@@ -676,9 +690,10 @@ public class ContactEditorFragment extends Fragment implements
     private void addAccountSwitcher(
             final EntityDelta currentState, BaseRawContactEditorView editor) {
         ValuesDelta values = currentState.getValues();
-        final Account currentAccount = new Account(
+        final AccountWithDataSet currentAccount = new AccountWithDataSet(
                 values.getAsString(RawContacts.ACCOUNT_NAME),
-                values.getAsString(RawContacts.ACCOUNT_TYPE));
+                values.getAsString(RawContacts.ACCOUNT_TYPE),
+                values.getAsString(RawContacts.DATA_SET));
         final View accountView = editor.findViewById(R.id.account);
         final View anchorView = editor.findViewById(R.id.anchor_for_account_switcher);
         accountView.setOnClickListener(new View.OnClickListener() {
@@ -697,7 +712,7 @@ public class ContactEditorFragment extends Fragment implements
                     public void onItemClick(AdapterView<?> parent, View view, int position,
                             long id) {
                         popup.dismiss();
-                        Account newAccount = adapter.getItem(position);
+                        AccountWithDataSet newAccount = adapter.getItem(position);
                         if (!newAccount.equals(currentAccount)) {
                             rebindEditorsForNewContact(currentState, currentAccount, newAccount);
                         }
@@ -1059,7 +1074,8 @@ public class ContactEditorFragment extends Fragment implements
         for (int i = 0; i < size; i++) {
             ValuesDelta values = mState.get(i).getValues();
             final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
-            final AccountType type = accountTypes.getAccountType(accountType);
+            final String dataSet = values.getAsString(RawContacts.DATA_SET);
+            final AccountType type = accountTypes.getAccountType(accountType, dataSet);
             if (!type.readOnly) {
                 return true;
             }
@@ -1107,7 +1123,8 @@ public class ContactEditorFragment extends Fragment implements
          * Contact is being created for an external account that provides its own
          * new contact activity.
          */
-        void onCustomCreateContactActivityRequested(Account account, Bundle intentExtras);
+        void onCustomCreateContactActivityRequested(AccountWithDataSet account,
+                Bundle intentExtras);
 
         /**
          * The edited raw contact belongs to an external account that provides
@@ -1116,7 +1133,7 @@ public class ContactEditorFragment extends Fragment implements
          * @param redirect indicates that the current editor should be closed
          *            before the custom editor is shown.
          */
-        void onCustomEditContactActivityRequested(Account account, Uri rawContactUri,
+        void onCustomEditContactActivityRequested(AccountWithDataSet account, Uri rawContactUri,
                 Bundle intentExtras, boolean redirect);
     }
 
@@ -1132,10 +1149,12 @@ public class ContactEditorFragment extends Fragment implements
             }
 
             final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
-            String accountType2 = one.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final AccountType type1 = accountTypes.getAccountType(accountType2);
-            accountType2 = two.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
-            final AccountType type2 = accountTypes.getAccountType(accountType2);
+            String accountType1 = one.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
+            String dataSet1 = one.getValues().getAsString(RawContacts.DATA_SET);
+            final AccountType type1 = accountTypes.getAccountType(accountType1, dataSet1);
+            String accountType2 = two.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
+            String dataSet2 = two.getValues().getAsString(RawContacts.DATA_SET);
+            final AccountType type2 = accountTypes.getAccountType(accountType2, dataSet2);
 
             // Check read-only
             if (type1.readOnly && !type2.readOnly) {
@@ -1164,6 +1183,16 @@ public class ContactEditorFragment extends Fragment implements
                 value = type1.accountType.compareTo(type2.accountType);
                 if (value != 0) {
                     return value;
+                } else {
+                    // Fall back to data set.
+                    if (type1.dataSet != null) {
+                        value = type1.dataSet.compareTo(type2.dataSet);
+                        if (value != 0) {
+                            return value;
+                        }
+                    } else if (type2.dataSet != null) {
+                        return 1;
+                    }
                 }
             }
 
