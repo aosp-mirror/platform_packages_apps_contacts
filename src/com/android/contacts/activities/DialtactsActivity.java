@@ -246,7 +246,11 @@ public class DialtactsActivity extends Activity {
             new OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
-                    // Ignore.
+                    View view = getCurrentFocus();
+                    if (view != null) {
+                        hideInputMethod(view);
+                        view.clearFocus();
+                    }
                     return true;
                 }
 
@@ -265,16 +269,12 @@ public class DialtactsActivity extends Activity {
      * the search UI and let users go back to usual Phone UI.
      *
      * This does _not_ handle back button.
-     *
-     * TODO: need "up" button instead of close button
      */
     private final OnCloseListener mPhoneSearchCloseListener =
             new OnCloseListener() {
                 @Override
                 public boolean onClose() {
-                    if (TextUtils.isEmpty(mSearchView.getQuery())) {
-                        exitSearchUi();
-                    } else {
+                    if (!TextUtils.isEmpty(mSearchView.getQuery())) {
                         mSearchView.setQuery(null, true);
                     }
                     return true;
@@ -636,13 +636,20 @@ public class DialtactsActivity extends Activity {
 
         // Instantiate or reset SearchView in ActionBar.
         if (mSearchView == null) {
-            // TODO: layout is not what we want. Need "up" button instead of "close" button, etc.
             final View searchViewLayout =
                     getLayoutInflater().inflate(R.layout.custom_action_bar, null);
             mSearchView = (SearchView) searchViewLayout.findViewById(R.id.search_view);
-            mSearchView.setQueryHint(getString(R.string.hint_findContacts));
             mSearchView.setOnQueryTextListener(mPhoneSearchQueryTextListener);
             mSearchView.setOnCloseListener(mPhoneSearchCloseListener);
+            // Since we're using a custom layout for showing SearchView instead of letting the
+            // search menu icon do that job, we need to manually configure the View so it looks
+            // "shown via search menu".
+            // - it should be iconified by default
+            // - it should not be iconified at this time
+            // See also comments for onActionViewExpanded()/onActionViewCollapsed()
+            mSearchView.setIconifiedByDefault(true);
+            mSearchView.setQueryHint(getString(R.string.hint_findContacts));
+            mSearchView.setIconified(false);
             mSearchView.requestFocus();
             // Show soft keyboard when SearchView has a focus. Need to delay the request in order
             // to let InputMethodManager handle it correctly.
@@ -681,6 +688,9 @@ public class DialtactsActivity extends Activity {
         transaction.commit();
         mViewPager.setVisibility(View.GONE);
 
+        // We need to call this and onActionViewCollapsed() manually, since we are using a custom
+        // layout instead of asking the search menu item to take care of SearchView.
+        mSearchView.onActionViewExpanded();
         mInSearchUi = true;
     }
 
@@ -723,6 +733,8 @@ public class DialtactsActivity extends Activity {
         // Request to update option menu.
         invalidateOptionsMenu();
 
+        // See comments in onActionViewExpanded()
+        mSearchView.onActionViewCollapsed();
         mInSearchUi = false;
     }
 
