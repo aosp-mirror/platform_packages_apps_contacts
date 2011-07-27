@@ -19,11 +19,16 @@ import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.ContactTileLoaderFactory;
 import com.android.contacts.GroupMemberLoader;
 import com.android.contacts.R;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.DataKind;
 
 import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -61,6 +66,13 @@ public class ContactTileAdapter extends BaseAdapter {
     private int mStarredIndex;
     private int mPresenceIndex;
     private int mStatusIndex;
+
+    /**
+     * Only valid when {@link DisplayType#STREQUENT_PHONE_ONLY} is true
+     */
+    private int mPhoneNumberIndex;
+    private int mPhoneNumberTypeIndex;
+    private int mPhoneNumberLabelIndex;
 
     private boolean mIsQuickContactEnabled = false;
 
@@ -151,6 +163,10 @@ public class ContactTileAdapter extends BaseAdapter {
             mStarredIndex = ContactTileLoaderFactory.STARRED;
             mPresenceIndex = ContactTileLoaderFactory.CONTACT_PRESENCE;
             mStatusIndex = ContactTileLoaderFactory.CONTACT_STATUS;
+
+            mPhoneNumberIndex = ContactTileLoaderFactory.PHONE_NUMBER;
+            mPhoneNumberTypeIndex = ContactTileLoaderFactory.PHONE_NUMBER_TYPE;
+            mPhoneNumberLabelIndex = ContactTileLoaderFactory.PHONE_NUMBER_LABEL;
         }
     }
 
@@ -168,7 +184,7 @@ public class ContactTileAdapter extends BaseAdapter {
     /**
      * Iterates over the {@link Cursor}
      * Returns position of the first NON Starred Contact
-     * Returns -1 if not {@link DisplayType#}
+     * Returns -1 if not {@link DisplayType#STREQUENT} or {@link DisplayType#STREQUENT_PHONE_ONLY}
      */
     private int getDividerPosition(Cursor cursor) {
         if (cursor == null || cursor.isClosed() || (mDisplayType != DisplayType.STREQUENT
@@ -203,6 +219,17 @@ public class ContactTileAdapter extends BaseAdapter {
         contact.lookupKey = ContentUris.withAppendedId(
                 Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey), id);
         contact.presence = cursor.isNull(mPresenceIndex) ? null : cursor.getInt(mPresenceIndex);
+
+        if (mDisplayType == DisplayType.STREQUENT_PHONE_ONLY) {
+            int phoneNumberType = cursor.getInt(mPhoneNumberTypeIndex);
+            String phoneNumberCustomLabel = cursor.getString(mPhoneNumberLabelIndex);
+            contact.phoneLabel = (String) Phone.getTypeLabel(mContext.getResources(),
+                    phoneNumberType, phoneNumberCustomLabel);
+            contact.phoneNumber = cursor.getString(mPhoneNumberIndex);
+        } else {
+            contact.status = cursor.getString(mStatusIndex);
+            contact.presence = cursor.isNull(mPresenceIndex) ? null : cursor.getInt(mPresenceIndex);
+        }
 
         return contact;
     }
@@ -345,7 +372,8 @@ public class ContactTileAdapter extends BaseAdapter {
                 return mIsQuickContactEnabled ?
                         R.layout.contact_tile_starred_quick_contact : R.layout.contact_tile_starred;
             case ViewTypes.FREQUENT:
-                return R.layout.contact_tile_frequent;
+                return mDisplayType == DisplayType.STREQUENT_PHONE_ONLY ?
+                        R.layout.contact_tile_frequent_phone : R.layout.contact_tile_frequent;
             case ViewTypes.STARRED_WITH_SECONDARY_ACTION:
                 return R.layout.contact_tile_starred_secondary_target;
             default:
@@ -466,6 +494,8 @@ public class ContactTileAdapter extends BaseAdapter {
     public static class ContactEntry {
         public String name;
         public String status;
+        public String phoneLabel;
+        public String phoneNumber;
         public Uri photoUri;
         public Uri lookupKey;
         public Integer presence;

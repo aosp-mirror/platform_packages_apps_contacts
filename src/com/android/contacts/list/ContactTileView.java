@@ -21,9 +21,8 @@ import com.android.contacts.R;
 import com.android.contacts.list.ContactTileAdapter.ContactEntry;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.provider.ContactsContract.StatusUpdates;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -31,9 +30,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
-
-import android.provider.ContactsContract.StatusUpdates;
-
 
 /**
  * A ContactTile displays the contact's picture overlayed with their name
@@ -47,6 +43,8 @@ public class ContactTileView extends FrameLayout {
     private QuickContactBadge mQuickContact;
     private TextView mName;
     private TextView mStatus;
+    private TextView mPhoneLabel;
+    private TextView mPhoneNumber;
     private ContactPhotoManager mPhotoManager = null;
 
     public ContactTileView(Context context, AttributeSet attrs) {
@@ -63,6 +61,8 @@ public class ContactTileView extends FrameLayout {
         mPhoto = (ImageView) findViewById(R.id.contact_tile_image);
         mPresence = (ImageView) findViewById(R.id.contact_tile_presence);
         mStatus = (TextView) findViewById(R.id.contact_tile_status);
+        mPhoneLabel = (TextView) findViewById(R.id.contact_tile_phone_type);
+        mPhoneNumber = (TextView) findViewById(R.id.contact_tile_phone_number);
     }
 
     public void setPhotoManager(ContactPhotoManager photoManager) {
@@ -95,6 +95,15 @@ public class ContactTileView extends FrameLayout {
                           ContactStatusUtil.getStatusString(mContext, entry.presence));
                 }
                 mStatus.setText(statusText);
+            }
+
+            if (mPhoneLabel != null) {
+                mPhoneLabel.setText(entry.phoneLabel);
+            }
+
+            if (mPhoneNumber != null) {
+                // TODO: Format number correctly
+                mPhoneNumber.setText(entry.phoneNumber);
             }
 
             if (mQuickContact != null) {

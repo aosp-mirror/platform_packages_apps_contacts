@@ -21,7 +21,9 @@ import android.content.Context;
 import android.content.CursorLoader;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Contacts.Data;
 
 /**
  * Used to create {@link CursorLoader}s to load different groups of {@link ContactTileView}s
@@ -36,14 +38,36 @@ public final class ContactTileLoaderFactory {
     public final static int CONTACT_PRESENCE = 5;
     public final static int CONTACT_STATUS = 6;
 
+    // Only used for StrequentPhoneOnlyLoader
+    public final static int PHONE_NUMBER = 5;
+    public final static int PHONE_NUMBER_TYPE = 6;
+    public final static int PHONE_NUMBER_LABEL = 7;
+
     private static final String[] COLUMNS = new String[] {
-        Contacts._ID,
-        Contacts.DISPLAY_NAME,
-        Contacts.STARRED,
-        Contacts.PHOTO_URI,
-        Contacts.LOOKUP_KEY,
-        Contacts.CONTACT_PRESENCE,
-        Contacts.CONTACT_STATUS,
+        Contacts._ID, // ..........................................0
+        Contacts.DISPLAY_NAME, // .................................1
+        Contacts.STARRED, // ......................................2
+        Contacts.PHOTO_URI, // ....................................3
+        Contacts.LOOKUP_KEY, // ...................................4
+        Contacts.CONTACT_PRESENCE, // .............................5
+        Contacts.CONTACT_STATUS, // ...............................6
+    };
+
+    /**
+     * Projection used for the {@link Contacts#CONTENT_STREQUENT_URI}
+     * query when {@link ContactsContract#STREQUENT_PHONE_ONLY} flag
+     * is set to true. The main difference is the lack of presence
+     * and status data and the addition of phone number and label.
+     */
+    private static final String[] COLUMNS_PHONE_ONLY = new String[] {
+        Contacts._ID, // ..........................................0
+        Contacts.DISPLAY_NAME, // .................................1
+        Contacts.STARRED, // ......................................2
+        Contacts.PHOTO_URI, // ....................................3
+        Contacts.LOOKUP_KEY, // ...................................4
+        Phone.NUMBER, // ..........................................5
+        Phone.TYPE, // ............................................6
+        Phone.LABEL // ............................................7
     };
 
     public static CursorLoader createStrequentLoader(Context context) {
@@ -54,7 +78,7 @@ public final class ContactTileLoaderFactory {
         Uri uri = Contacts.CONTENT_STREQUENT_URI.buildUpon()
                 .appendQueryParameter(ContactsContract.STREQUENT_PHONE_ONLY, "true").build();
 
-        return new CursorLoader(context, uri, COLUMNS, null, null, null);
+        return new CursorLoader(context, uri, COLUMNS_PHONE_ONLY, null, null, null);
     }
 
     public static CursorLoader createStarredLoader(Context context) {
