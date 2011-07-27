@@ -32,8 +32,9 @@
     <!-- Real list -->
     <LinearLayout
         android:orientation="horizontal"
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dip">
 
         <ImageView android:id="@+id/photo"
             android:scaleType="centerCrop"

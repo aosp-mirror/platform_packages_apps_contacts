@@ -14,15 +14,17 @@
      limitations under the License.
 -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/contact_detail"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0px"
+        android:layout_weight="1" >
 
         <ImageView android:id="@+id/photo"
             android:scaleType="centerCrop"
@@ -87,5 +89,5 @@
         android:layout_alignParentTop="true"
         android:background="@android:color/transparent"
         android:visibility="gone"/>
-</RelativeLayout>
+</LinearLayout>
 
