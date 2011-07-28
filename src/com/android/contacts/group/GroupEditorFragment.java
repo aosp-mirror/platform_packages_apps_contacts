@@ -562,11 +562,12 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     }
 
     private boolean hasValidGroupName() {
-        return !TextUtils.isEmpty(mGroupNameView.getText());
+        return mGroupNameView != null && !TextUtils.isEmpty(mGroupNameView.getText());
     }
 
     private boolean hasNameChange() {
-        return !mGroupNameView.getText().toString().equals(mOriginalGroupName);
+        return mGroupNameView != null &&
+                !mGroupNameView.getText().toString().equals(mOriginalGroupName);
     }
 
     private boolean hasMembershipChange() {
