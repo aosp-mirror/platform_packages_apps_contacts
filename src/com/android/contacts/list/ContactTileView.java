@@ -27,6 +27,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
@@ -46,6 +47,8 @@ public class ContactTileView extends FrameLayout {
     private TextView mPhoneLabel;
     private TextView mPhoneNumber;
     private ContactPhotoManager mPhotoManager = null;
+    private ImageButton mPushState;
+    private Listener mListener;
 
     public ContactTileView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -63,6 +66,22 @@ public class ContactTileView extends FrameLayout {
         mStatus = (TextView) findViewById(R.id.contact_tile_status);
         mPhoneLabel = (TextView) findViewById(R.id.contact_tile_phone_type);
         mPhoneNumber = (TextView) findViewById(R.id.contact_tile_phone_number);
+        mPushState = (ImageButton) findViewById(R.id.contact_tile_push_state);
+
+        OnClickListener listener = new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    mListener.onClick(ContactTileView.this);
+                }
+            }
+        };
+
+        if(mPushState != null) {
+            mPushState.setOnClickListener(listener);
+        } else {
+            setOnClickListener(listener);
+        }
     }
 
     public void setPhotoManager(ContactPhotoManager photoManager) {
@@ -130,7 +149,15 @@ public class ContactTileView extends FrameLayout {
         }
     }
 
+    public void setListener(Listener listener) {
+        mListener = listener;
+    }
+
     public Uri getLookupUri() {
         return mLookupUri;
+    }
+
+    public interface Listener {
+        void onClick(ContactTileView contactTileView);
     }
 }

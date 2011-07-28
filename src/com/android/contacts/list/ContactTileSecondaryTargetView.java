@@ -20,9 +20,7 @@ import com.android.contacts.R;
 import android.content.Context;
 import android.content.Intent;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 
 /**
@@ -30,8 +28,7 @@ import android.widget.ImageButton;
  * in a perfect square like the {@link ContactTileStarredView}. However it adds in an additional
  * touch target for a secondary action.
  */
-public class ContactTileSecondaryTargetView extends ContactTileStarredView
-        implements OnClickListener {
+public class ContactTileSecondaryTargetView extends ContactTileStarredView {
 
     private final static String TAG = ContactTileSecondaryTargetView.class.getSimpleName();
 
@@ -44,12 +41,13 @@ public class ContactTileSecondaryTargetView extends ContactTileStarredView
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mSecondaryButton = (ImageButton) findViewById(R.id.contact_tile_secondary_button);
-        mSecondaryButton.setOnClickListener(this);
-    }
 
-    @Override
-    public void onClick(View v) {
-        getContext().startActivity(new Intent(Intent.ACTION_VIEW, getLookupUri()));
+        mSecondaryButton = (ImageButton) findViewById(R.id.contact_tile_secondary_button);
+        mSecondaryButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getContext().startActivity(new Intent(Intent.ACTION_VIEW, getLookupUri()));
+            }
+        });
     }
 }
