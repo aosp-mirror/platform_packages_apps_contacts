@@ -110,7 +110,7 @@ public class QuickContactListFragment extends Fragment {
                 alternateActionButton.setImageDrawable(action.getAlternateIcon());
 
                 text1.setText(action.getBody());
-                text2.setText(action.getSubtitle().toString().toUpperCase());
+                text2.setText(action.getSubtitle());
 
                 resultView.setTag(action);
                 return resultView;
