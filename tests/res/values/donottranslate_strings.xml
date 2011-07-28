@@ -107,4 +107,9 @@
         <item>Two short sections with headers</item>
         <item>Five short sections with headers</item>
     </string-array>
+
+    <string name="attribution_google_plus">Google+</string>
+    <string name="attribution_google_talk">Google Talk</string>
+    <string name="attribution_flicker">Flicker</string>
+    <string name="attribution_twitter">Twitter</string>
 </resources>
