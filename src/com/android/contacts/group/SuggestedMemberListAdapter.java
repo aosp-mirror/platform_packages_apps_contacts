@@ -355,5 +355,10 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
         public void setPhotoByteArray(byte[] photo) {
             mPhoto = photo;
         }
+
+        @Override
+        public String toString() {
+            return getDisplayName();
+        }
     }
 }
