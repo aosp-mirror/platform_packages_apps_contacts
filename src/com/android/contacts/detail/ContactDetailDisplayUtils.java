@@ -99,6 +99,8 @@ public class ContactDetailDisplayUtils {
                     styledName = altDisplayName;
                 }
             }
+        } else {
+            styledName = context.getResources().getString(R.string.missing_name);
         }
         return styledName;
     }

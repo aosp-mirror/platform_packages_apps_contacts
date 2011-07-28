@@ -15,6 +15,8 @@
  */
 package com.android.contacts.list;
 
+import com.android.contacts.R;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -28,7 +30,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.QuickContactBadge;
 
 /**
  * A cursor adapter for the {@link ContactsContract.Contacts#CONTENT_TYPE} content type.
@@ -121,7 +122,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     public ContactListAdapter(Context context) {
         super(context);
 
-        mUnknownNameText = context.getText(android.R.string.unknownName);
+        mUnknownNameText = context.getText(R.string.missing_name);
         mViewTypeProfileEntry = getViewTypeCount() - 1;
     }
 

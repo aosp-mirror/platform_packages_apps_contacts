@@ -24,6 +24,7 @@ import com.android.contacts.model.DataKind;
 
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
@@ -50,6 +51,7 @@ public class ContactTileAdapter extends BaseAdapter {
     private DisplayType mDisplayType;
     private Listener mListener;
     private Context mContext;
+    private Resources mResources;
     private Cursor mContactCursor = null;
     private ContactPhotoManager mPhotoManager;
 
@@ -114,6 +116,7 @@ public class ContactTileAdapter extends BaseAdapter {
             DisplayType displayType) {
         mListener = listener;
         mContext = context;
+        mResources = context.getResources();
         mColumnCount = (displayType == DisplayType.FREQUENT_ONLY ? 1 : numCols);
         mDisplayType = displayType;
 
@@ -213,7 +216,8 @@ public class ContactTileAdapter extends BaseAdapter {
         String lookupKey = cursor.getString(mLookupIndex);
 
         ContactEntry contact = new ContactEntry();
-        contact.name = cursor.getString(mNameIndex);
+        String name = cursor.getString(mNameIndex);
+        contact.name = (name != null) ? name : mResources.getString(R.string.missing_name);
         contact.status = cursor.getString(mStatusIndex);
         contact.photoUri = (photoUri != null ? Uri.parse(photoUri) : null);
         contact.lookupKey = ContentUris.withAppendedId(
@@ -223,8 +227,8 @@ public class ContactTileAdapter extends BaseAdapter {
         if (mDisplayType == DisplayType.STREQUENT_PHONE_ONLY) {
             int phoneNumberType = cursor.getInt(mPhoneNumberTypeIndex);
             String phoneNumberCustomLabel = cursor.getString(mPhoneNumberLabelIndex);
-            contact.phoneLabel = (String) Phone.getTypeLabel(mContext.getResources(),
-                    phoneNumberType, phoneNumberCustomLabel);
+            contact.phoneLabel = (String) Phone.getTypeLabel(mResources, phoneNumberType,
+                    phoneNumberCustomLabel);
             contact.phoneNumber = cursor.getString(mPhoneNumberIndex);
         } else {
             contact.status = cursor.getString(mStatusIndex);

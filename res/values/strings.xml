@@ -1019,8 +1019,8 @@
          was found that could perform the selected action -->
     <string name="quickcontact_missing_app">No application found to handle this action</string>
 
-    <!-- Shown as the header name for a person when the name is missing or unknown. -->
-    <string name="quickcontact_missing_name">Unknown</string>
+    <!-- Shown as the display name for a person when the name is missing or unknown. [CHAR LIMIT=18]-->
+    <string name="missing_name">(no name)</string>
 
     <!-- The menu item to open the list of accounts -->
     <string name="menu_accounts">Accounts</string>

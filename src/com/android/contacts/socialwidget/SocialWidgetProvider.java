@@ -186,6 +186,10 @@ public class SocialWidgetProvider extends AppWidgetProvider {
         SpannableStringBuilder sb = new SpannableStringBuilder();
 
         CharSequence name = displayName;
+        // If there is no display name, use the default missing name string
+        if (TextUtils.isEmpty(name)) {
+            name = context.getString(R.string.missing_name);
+        }
         if (!TextUtils.isEmpty(phoneticName)) {
             name = context.getString(R.string.widget_name_and_phonetic,
                     name, phoneticName);

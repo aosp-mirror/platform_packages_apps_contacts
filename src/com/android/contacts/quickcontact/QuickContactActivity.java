@@ -228,7 +228,7 @@ public class QuickContactActivity extends Activity {
 
         // find and prepare correct header view
         mPhotoContainer = findViewById(R.id.photo_container);
-        setHeaderText(R.id.name, R.string.quickcontact_missing_name);
+        setHeaderNameText(R.id.name, R.string.missing_name);
         setHeaderText(R.id.status, null);
         setHeaderText(R.id.timestamp, null);
         setHeaderImage(R.id.presence, null);
@@ -317,12 +317,33 @@ public class QuickContactActivity extends Activity {
         }
     };
 
-    /** Assign this string to the view, if found in {@link #mPhotoContainer}. */
+    /** Assign this string to the view if it is not empty. */
+    private void setHeaderNameText(int id, int resId) {
+        setHeaderNameText(id, getText(resId));
+    }
+
+    /** Assign this string to the view if it is not empty. */
+    private void setHeaderNameText(int id, CharSequence value) {
+        final View view = mPhotoContainer.findViewById(id);
+        if (view instanceof TextView) {
+            if (!TextUtils.isEmpty(value)) {
+                ((TextView)view).setText(value);
+            }
+        }
+    }
+
+    /**
+     * Assign this string to the view (if found in {@link #mPhotoContainer}), or hiding this view
+     * if there is no string.
+     */
     private void setHeaderText(int id, int resId) {
         setHeaderText(id, getText(resId));
     }
 
-    /** Assign this string to the view, if found in {@link #mPhotoContainer}. */
+    /**
+     * Assign this string to the view (if found in {@link #mPhotoContainer}), or hiding this view
+     * if there is no string.
+     */
     private void setHeaderText(int id, CharSequence value) {
         final View view = mPhotoContainer.findViewById(id);
         if (view instanceof TextView) {
@@ -483,7 +504,7 @@ public class QuickContactActivity extends Activity {
             final Drawable statusIcon = ContactPresenceIconUtil.getChatCapabilityIcon(
                     context, presence, chatCapability);
 
-            setHeaderText(R.id.name, name);
+            setHeaderNameText(R.id.name, name);
             // TODO: Bring this back once we have a design
 //            setHeaderImage(R.id.presence, statusIcon);
         }
