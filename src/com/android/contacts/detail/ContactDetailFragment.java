@@ -117,7 +117,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ContactDetailFragment extends Fragment implements FragmentKeyListener, ViewOverlay,
-        OnItemClickListener, SelectAccountDialogFragment.Listener {
+        SelectAccountDialogFragment.Listener {
 
     private static final String TAG = "ContactDetailFragment";
 
@@ -264,8 +264,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
         mListView = (ListView) mView.findViewById(android.R.id.list);
         mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
-        mListView.setOnItemClickListener(this);
-        registerForContextMenu(mListView);
+        mListView.setItemsCanFocus(true);
         mListView.setOnScrollListener(mVerticalScrollListener);
 
         // Don't set it to mListView yet.  We do so later when we bind the adapter.
@@ -1331,29 +1330,37 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
      * {@link DetailViewEntry}
      */
     private static class DetailViewCache {
-        public TextView kind;
-        public TextView type;
-        public TextView data;
-        public TextView footer;
-        public ImageView presenceIcon;
-        public ImageView secondaryActionButton;
-        public View secondaryActionButtonContainer;
-        public View secondaryActionDivider;
-        public View primaryIndicator;
+        public final TextView kind;
+        public final TextView type;
+        public final TextView data;
+        public final TextView footer;
+        public final ImageView presenceIcon;
+        public final ImageView secondaryActionButton;
+        public final View primaryActionViewContainer;
+        public final View secondaryActionViewContainer;
+        public final View secondaryActionDivider;
+        public final View primaryIndicator;
 
-        public DetailViewCache(View view, OnClickListener secondaryActionClickListener) {
+        public DetailViewCache(View view,
+                OnClickListener primaryActionClickListener,
+                OnClickListener secondaryActionClickListener) {
             kind = (TextView) view.findViewById(R.id.kind);
             type = (TextView) view.findViewById(R.id.type);
             data = (TextView) view.findViewById(R.id.data);
             footer = (TextView) view.findViewById(R.id.footer);
             primaryIndicator = view.findViewById(R.id.primary_indicator);
             presenceIcon = (ImageView) view.findViewById(R.id.presence_icon);
+
+            primaryActionViewContainer = view.findViewById(R.id.primary_action_view_container);
+            primaryActionViewContainer.setOnClickListener(primaryActionClickListener);
+
+            secondaryActionViewContainer = view.findViewById(
+                    R.id.secondary_action_view_container);
+            secondaryActionViewContainer.setOnClickListener(
+                    secondaryActionClickListener);
             secondaryActionButton = (ImageView) view.findViewById(
                     R.id.secondary_action_button);
-            secondaryActionButtonContainer = view.findViewById(
-                    R.id.secondary_action_button_container);
-            secondaryActionButtonContainer.setOnClickListener(
-                    secondaryActionClickListener);
+
             secondaryActionDivider = view.findViewById(R.id.vertical_divider);
         }
     }
@@ -1494,15 +1501,16 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 v = mInflater.inflate(R.layout.contact_detail_list_item, parent, false);
 
                 // Cache the children
-                viewCache = new DetailViewCache(v, mSecondaryActionClickListener);
+                viewCache = new DetailViewCache(v,
+                        mPrimaryActionClickListener, mSecondaryActionClickListener);
                 v.setTag(viewCache);
             }
 
-            bindDetailView(v, entry);
+            bindDetailView(position, v, entry);
             return v;
         }
 
-        private void bindDetailView(View view, DetailViewEntry entry) {
+        private void bindDetailView(int position, View view, DetailViewEntry entry) {
             final Resources resources = mContext.getResources();
             DetailViewCache views = (DetailViewCache) view.getTag();
 
@@ -1538,6 +1546,12 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 presenceIconView.setVisibility(View.GONE);
             }
 
+            final PrimaryActionViewContainer primaryActionButtonContainer =
+                    (PrimaryActionViewContainer) views.primaryActionViewContainer;
+            primaryActionButtonContainer.setTag(entry);
+            primaryActionButtonContainer.setPosition(position);
+            registerForContextMenu(primaryActionButtonContainer);
+
             // Set the secondary action button
             final ImageView secondaryActionView = views.secondaryActionButton;
             Drawable secondaryActionIcon = null;
@@ -1551,20 +1565,30 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                         resources.getDrawable(R.drawable.sym_action_audiochat_holo_light);
             }
 
+            final View secondaryActionViewContainer = views.secondaryActionViewContainer;
             if (entry.secondaryIntent != null && secondaryActionIcon != null) {
                 secondaryActionView.setImageDrawable(secondaryActionIcon);
-                views.secondaryActionButtonContainer.setTag(entry);
-                views.secondaryActionButtonContainer.setVisibility(View.VISIBLE);
+                secondaryActionViewContainer.setTag(entry);
+                secondaryActionViewContainer.setVisibility(View.VISIBLE);
                 views.secondaryActionDivider.setVisibility(View.VISIBLE);
             } else {
-                views.secondaryActionButtonContainer.setVisibility(View.GONE);
+                secondaryActionViewContainer.setVisibility(View.GONE);
                 views.secondaryActionDivider.setVisibility(View.GONE);
             }
 
-            view.setPadding(entry.isInSubSection() ? mViewEntryDimensions.getWidePaddingLeft() :
-                    mViewEntryDimensions.getPaddingLeft(),
+            // Right padding should not have "pressed" effect.
+            view.setPadding(0, 0, mViewEntryDimensions.getPaddingRight(), 0);
+            // Top, left, and bottom paddings should have "pressed" effect.
+            primaryActionButtonContainer.setPadding(entry.isInSubSection() ?
+                    mViewEntryDimensions.getWidePaddingLeft() :
+                            mViewEntryDimensions.getPaddingLeft(),
                     mViewEntryDimensions.getPaddingTop(),
-                    mViewEntryDimensions.getPaddingRight(),
+                    0,
+                    mViewEntryDimensions.getPaddingBottom());
+            secondaryActionViewContainer.setPadding(
+                    secondaryActionViewContainer.getPaddingLeft(),
+                    mViewEntryDimensions.getPaddingTop(),
+                    secondaryActionViewContainer.getPaddingRight(),
                     mViewEntryDimensions.getPaddingBottom());
         }
 
@@ -1579,12 +1603,22 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             }
         }
 
-        private OnClickListener mSecondaryActionClickListener = new OnClickListener() {
+        private final OnClickListener mPrimaryActionClickListener = new OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 if (mListener == null) return;
-                if (v == null) return;
-                final ViewEntry entry = (ViewEntry) v.getTag();
+                final ViewEntry entry = (ViewEntry) view.getTag();
+                if (entry == null) return;
+                entry.click(view, mListener);
+            }
+        };
+
+        private final OnClickListener mSecondaryActionClickListener = new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mListener == null) return;
+                if (view == null) return;
+                final ViewEntry entry = (ViewEntry) view.getTag();
                 if (entry == null || !(entry instanceof DetailViewEntry)) return;
                 final DetailViewEntry detailViewEntry = (DetailViewEntry) entry;
                 final Intent intent = detailViewEntry.secondaryIntent;
@@ -1647,14 +1681,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         if (mListener != null) {
             mListener.onCreateRawContactRequested(mContactData.getContentValues(), account);
         }
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (mListener == null) return;
-        final ViewEntry entry = mAdapter.getItem(position);
-        if (entry == null) return;
-        entry.click(view, mListener);
     }
 
     @Override
