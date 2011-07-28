@@ -329,6 +329,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
             mAutoCompleteAdapter.setContentResolver(mContentResolver);
             mAutoCompleteAdapter.setAccountType(mAccountType);
             mAutoCompleteAdapter.setAccountName(mAccountName);
+            mAutoCompleteAdapter.setDataSet(mDataSet);
             mAutoCompleteTextView.setAdapter(mAutoCompleteAdapter);
             mAutoCompleteTextView.setOnItemClickListener(new OnItemClickListener() {
                 @Override

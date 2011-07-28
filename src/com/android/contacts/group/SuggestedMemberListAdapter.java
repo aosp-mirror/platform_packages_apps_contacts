@@ -76,9 +76,9 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
     private ContentResolver mContentResolver;
     private LayoutInflater mInflater;
 
-    private String mAccountType = "";
-    private String mAccountName = "";
-    private String mDataSet = "";
+    private String mAccountType;
+    private String mAccountName;
+    private String mDataSet;
 
     // TODO: Make this a Map for better performance when we check if a new contact is in the list
     // or not
