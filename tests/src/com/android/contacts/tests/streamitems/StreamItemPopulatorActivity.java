@@ -36,7 +36,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -76,6 +75,14 @@ public class StreamItemPopulatorActivity extends Activity {
             "the middle of nowhere"
     };
 
+    private String[] commentStrings = new String[]{
+            "3 retweets",
+            "5 shares",
+            "4 likes",
+            "4 +1s",
+            "<i>24567</i> <font color='blue' size='+1'><b>likes</b></font>"
+    };
+
     // Photos to randomly select from.
     private Integer[] imageIds = new Integer[]{
             R.drawable.android,
@@ -85,6 +92,14 @@ public class StreamItemPopulatorActivity extends Activity {
             R.drawable.sydney,
             R.drawable.wharf,
             R.drawable.whiskey
+    };
+
+    // Only some photos have actions.
+    private String[] imageStrings = new String[]{
+            "android",
+            "goldengate",
+            "iceland",
+            "japan",
     };
 
     // The contact ID that was picked.
@@ -227,26 +242,51 @@ public class StreamItemPopulatorActivity extends Activity {
     }
 
     private ContentValues buildStreamItemValues(String accountType, String accountName) {
+        boolean includeComments = randInt(100) < 30;
+        boolean includeAction = randInt(100) < 30;
         ContentValues values = new ContentValues();
+        String place = pickRandom(placeNames);
         values.put(StreamItems.TEXT,
-                String.format(pickRandom(snippetStrings), pickRandom(placeNames)));
-        values.put(StreamItems.COMMENTS, "");
+                String.format(pickRandom(snippetStrings) , place)
+                + (includeComments ? " [c]" : "")
+                + (includeAction ? " [a]" : ""));
+        if (includeComments) {
+            values.put(StreamItems.COMMENTS, pickRandom(commentStrings));
+        } else {
+            values.put(StreamItems.COMMENTS, "");
+        }
         // Set the timestamp to some point in the past.
         values.put(StreamItems.TIMESTAMP,
                 System.currentTimeMillis() - randInt(360000000));
         values.put(RawContacts.ACCOUNT_TYPE, accountType);
         values.put(RawContacts.ACCOUNT_NAME, accountName);
+        if (includeAction) {
+            values.put(StreamItems.ACTION, Intent.ACTION_VIEW);
+            values.put(StreamItems.ACTION_URI, getGoogleSearchUri(place));
+        }
         return values;
     }
 
     private ContentValues buildStreamItemPhotoValues(int index, String accountType,
             String accountName) {
+        Integer imageIndex = pickRandom(imageIds);
         ContentValues values = new ContentValues();
         values.put(StreamItemPhotos.SORT_INDEX, index);
-        values.put(StreamItemPhotos.PHOTO, loadPhotoFromResource(pickRandom(imageIds)));
+        values.put(StreamItemPhotos.PHOTO, loadPhotoFromResource(imageIndex));
         values.put(RawContacts.ACCOUNT_TYPE, accountType);
         values.put(RawContacts.ACCOUNT_NAME, accountName);
+        if (imageIndex < imageStrings.length) {
+            values.put(StreamItemPhotos.ACTION, Intent.ACTION_VIEW);
+            String queryTerm = imageStrings[imageIndex];
+            values.put(StreamItemPhotos.ACTION_URI, getGoogleSearchUri(queryTerm));
+
+        }
         return values;
+    }
+
+    /** Returns the URI of the Google search results page for the given query. */
+    private String getGoogleSearchUri(String query) {
+        return "http://www.google.com/search?q=" + query.replace(" ", "+");
     }
 
     private <T> T pickRandom(T[] from) {
