@@ -198,8 +198,8 @@ public class ContactTileAdapter extends BaseAdapter {
         }
 
         // There are not NON Starred contacts in cursor
-        // Set divider positon to end and add 1 to make sure it doesn't get drawn
-        return cursor.getCount() + 1;
+        // Set divider positon to end
+        return cursor.getCount();
     }
 
     private ContactEntry createContactEntryFromCursor(Cursor cursor, int position) {
@@ -246,15 +246,19 @@ public class ContactTileAdapter extends BaseAdapter {
                 return getRowCount(mContactCursor.getCount());
             case STREQUENT:
             case STREQUENT_PHONE_ONLY:
-                /*
-                 * Takes numbers of rows the Starred Contacts Occupy
-                 * Calculates the number of frequent contacts
-                 * Adds them together and an additional 1 for the divider
-                 */
-                return getRowCount(mDividerPosition) +
-                        mContactCursor.getCount() - mDividerPosition + 1;
+                // Takes numbers of rows the Starred Contacts Occupy
+                int starredRowCount = getRowCount(mDividerPosition);
+
+                // Calculates the number of frequent contacts
+                int frequentRowCount = mContactCursor.getCount() - mDividerPosition ;
+
+                // If there are any frequent contacts add one for the divider
+                frequentRowCount += frequentRowCount == 0 ? 0 : 1;
+
+                // Return the number of starred plus frequent rows
+                return starredRowCount + frequentRowCount;
             case FREQUENT_ONLY:
-                // Number of contacts plus one for the header
+                // Number of frequent contacts plus one for the header
                 return mContactCursor.getCount() + 1;
             default:
                 throw new IllegalArgumentException("Unrecognized DisplayType " + mDisplayType);
@@ -280,7 +284,8 @@ public class ContactTileAdapter extends BaseAdapter {
 
         switch (mDisplayType) {
             case FREQUENT_ONLY:
-                resultList.add(createContactEntryFromCursor(mContactCursor, position));
+                // Taking the current position and subtracting one because of the header
+                resultList.add(createContactEntryFromCursor(mContactCursor, position - 1));
                 break;
             case STARRED_ONLY:
             case GROUP_MEMBERS:
