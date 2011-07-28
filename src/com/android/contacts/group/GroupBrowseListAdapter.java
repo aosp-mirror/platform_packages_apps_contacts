@@ -56,6 +56,15 @@ public class GroupBrowseListAdapter extends BaseAdapter {
 
     public void setCursor(Cursor cursor) {
         mCursor = cursor;
+
+        // If there's no selected group already and the cursor is valid, then by default, select the
+        // first group
+        if (mSelectedGroupUri == null && cursor != null && cursor.getCount() > 0) {
+            GroupListItem firstItem = getItem(0);
+            long groupId = (firstItem == null) ? null : firstItem.getGroupId();
+            mSelectedGroupUri = getGroupUriFromId(groupId);
+        }
+
         notifyDataSetChanged();
     }
 
@@ -87,6 +96,10 @@ public class GroupBrowseListAdapter extends BaseAdapter {
 
     private boolean isSelectedGroup(Uri groupUri) {
         return mSelectedGroupUri != null && mSelectedGroupUri.equals(groupUri);
+    }
+
+    public Uri getSelectedGroup() {
+        return mSelectedGroupUri;
     }
 
     @Override
