@@ -105,26 +105,26 @@ public class ContactDeletionInteractionTest
     }
 
     public void testSingleWritableRawContact() {
-        expectQuery().returnRow(1, WRITABLE_ACCOUNT_TYPE, 13, "foo");
+        expectQuery().returnRow(1, WRITABLE_ACCOUNT_TYPE, null, 13, "foo");
         assertWithMessageId(R.string.deleteConfirmation);
     }
 
     public void testReadOnlyRawContacts() {
-        expectQuery().returnRow(1, READONLY_ACCOUNT_TYPE, 13, "foo");
+        expectQuery().returnRow(1, READONLY_ACCOUNT_TYPE, null, 13, "foo");
         assertWithMessageId(R.string.readOnlyContactWarning);
     }
 
     public void testMixOfWritableAndReadOnlyRawContacts() {
         expectQuery()
-                .returnRow(1, WRITABLE_ACCOUNT_TYPE, 13, "foo")
-                .returnRow(2, READONLY_ACCOUNT_TYPE, 13, "foo");
+                .returnRow(1, WRITABLE_ACCOUNT_TYPE, null, 13, "foo")
+                .returnRow(2, READONLY_ACCOUNT_TYPE, null, 13, "foo");
         assertWithMessageId(R.string.readOnlyContactDeleteConfirmation);
     }
 
     public void testMultipleWritableRawContacts() {
         expectQuery()
-                .returnRow(1, WRITABLE_ACCOUNT_TYPE, 13, "foo")
-                .returnRow(2, WRITABLE_ACCOUNT_TYPE, 13, "foo");
+                .returnRow(1, WRITABLE_ACCOUNT_TYPE, null, 13, "foo")
+                .returnRow(2, WRITABLE_ACCOUNT_TYPE, null, 13, "foo");
         assertWithMessageId(R.string.multipleContactDeleteConfirmation);
     }
 
