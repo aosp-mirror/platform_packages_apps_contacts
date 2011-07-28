@@ -120,8 +120,8 @@
     <!-- Vertical padding above and below individual stream items -->
     <dimen name="detail_update_section_item_vertical_padding">16dip</dimen>
 
-    <!-- Left-side padding for individual stream items -->
-    <dimen name="detail_update_section_item_left_padding">8dip</dimen>
+    <!-- Horizontal padding for individual stream items -->
+    <dimen name="detail_update_section_item_horizontal_padding">24dip</dimen>
 
     <!-- Horizontal padding between content sections within a stream item -->
     <dimen name="detail_update_section_internal_padding">16dip</dimen>
