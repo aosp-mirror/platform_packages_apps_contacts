@@ -89,7 +89,7 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
     public void testSendSmsWhenOnlyOneNumberAvailable() {
         Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, 13);
         expectQuery(contactUri)
-                .returnRow(1, "123", 0, null, Phone.TYPE_HOME, null);
+                .returnRow(1, "123", 0, null, null, Phone.TYPE_HOME, null);
 
         TestPhoneNumberInteraction interaction = new TestPhoneNumberInteraction(
                 mContext, InteractionType.SMS, null);
@@ -107,7 +107,7 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
     public void testSendSmsWhenDataIdIsProvided() {
         Uri dataUri = ContentUris.withAppendedId(Data.CONTENT_URI, 1);
         expectQuery(dataUri, true /* isDataUri */ )
-                .returnRow(1, "987", 0, null, Phone.TYPE_HOME, null);
+                .returnRow(1, "987", 0, null, null, Phone.TYPE_HOME, null);
 
         TestPhoneNumberInteraction interaction = new TestPhoneNumberInteraction(
                 mContext, InteractionType.SMS, null);
@@ -125,8 +125,8 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
     public void testSendSmsWhenThereIsPrimaryNumber() {
         Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, 13);
         expectQuery(contactUri)
-                .returnRow(1, "123", 0, null, Phone.TYPE_HOME, null)
-                .returnRow(2, "456", 1, null, Phone.TYPE_HOME, null);
+                .returnRow(1, "123", 0, null, null, Phone.TYPE_HOME, null)
+                .returnRow(2, "456", 1, null, null, Phone.TYPE_HOME, null);
 
         TestPhoneNumberInteraction interaction = new TestPhoneNumberInteraction(
                 mContext, InteractionType.SMS, null);
@@ -164,8 +164,8 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
     public void testCallNumberWhenThereAreDuplicates() {
         Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, 13);
         expectQuery(contactUri)
-                .returnRow(1, "123", 0, null, Phone.TYPE_HOME, null)
-                .returnRow(2, "123", 0, null, Phone.TYPE_WORK, null);
+                .returnRow(1, "123", 0, null, null, Phone.TYPE_HOME, null)
+                .returnRow(2, "123", 0, null, null, Phone.TYPE_WORK, null);
 
         TestPhoneNumberInteraction interaction = new TestPhoneNumberInteraction(
                 mContext, InteractionType.PHONE_CALL, null);
@@ -183,8 +183,8 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
     public void testShowDisambigDialogForCalling() {
         Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, 13);
         expectQuery(contactUri)
-                .returnRow(1, "123", 0, "account", Phone.TYPE_HOME, "label")
-                .returnRow(2, "456", 0, null, Phone.TYPE_WORK, null);
+                .returnRow(1, "123", 0, "account", null, Phone.TYPE_HOME, "label")
+                .returnRow(2, "456", 0, null, null, Phone.TYPE_WORK, null);
 
         TestPhoneNumberInteraction interaction = new TestPhoneNumberInteraction(
                 mContext, InteractionType.PHONE_CALL, null);
