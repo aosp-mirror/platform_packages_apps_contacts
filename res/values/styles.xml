@@ -15,8 +15,9 @@
 -->
 <resources>
     <style name="DialtactsTheme"
-           parent="android:Theme.Holo.SolidActionBar.SplitActionBarWhenNarrow">
+           parent="android:Theme.Holo.SplitActionBarWhenNarrow">
         <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:actionBarStyle">@style/DialtactsActionBarStyle</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowBackground">@android:color/black</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
@@ -294,4 +295,10 @@
         <item name="android:alpha">0.5</item>
         <item name="android:background">@android:color/black</item>
     </style>
+
+    <style name="DialtactsActionBarStyle" parent="android:Widget.Holo.ActionBar">
+        <item name="android:backgroundSplit">@drawable/ab_bottom_opaque_dark_holo</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_opaque_dark_holo</item>
+    </style>
+
 </resources>
