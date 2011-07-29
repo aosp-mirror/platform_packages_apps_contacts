@@ -22,11 +22,26 @@
 -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingTop="@dimen/detail_tab_carousel_height"
     android:layout_marginTop="20dip">
+
+    <!-- Add a first item that gives us enough space to show the carousel -->
+    <view
+        class="com.android.contacts.widget.ProportionalLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ex:ratio="0.5"
+        ex:direction="widthToHeight">
+
+        <!-- Put a dummy view here because the ProportionalLayout requires one -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </view>
 
     <TextView
         android:id="@+id/name"

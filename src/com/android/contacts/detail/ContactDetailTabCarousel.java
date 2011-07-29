@@ -55,8 +55,6 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
     private CarouselTab mAboutTab;
     private CarouselTab mUpdatesTab;
 
-    private int mTabWidth;
-    private int mTabHeight;
     private int mTabDisplayLabelHeight;
 
     private int mLastScrollPosition;
@@ -82,10 +80,8 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         setOnTouchListener(this);
 
         Resources resources = mContext.getResources();
-        mTabHeight = resources.getDimensionPixelSize(R.dimen.detail_tab_carousel_height);
         mTabDisplayLabelHeight = resources.getDimensionPixelSize(
                 R.dimen.detail_tab_carousel_tab_label_height);
-        mAllowedVerticalScrollLength = mTabHeight - mTabDisplayLabelHeight;
     }
 
     @Override
@@ -117,26 +113,27 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        measureChildren(widthMeasureSpec);
-    }
-
-    private void measureChildren(int widthMeasureSpec) {
         int screenWidth = MeasureSpec.getSize(widthMeasureSpec);
         // Compute the width of a tab as a fraction of the screen width
-        mTabWidth = (int) (TAB_WIDTH_SCREEN_PERCENTAGE * screenWidth);
+        int tabWidth = (int) (TAB_WIDTH_SCREEN_PERCENTAGE * screenWidth);
 
         // Find the allowed scrolling length by subtracting the current visible screen width
         // from the total length of the tabs.
-        mAllowedHorizontalScrollLength = mTabWidth * TAB_COUNT - screenWidth;
+        mAllowedHorizontalScrollLength = tabWidth * TAB_COUNT - screenWidth;
 
+        int tabHeight = screenWidth / 2;
         // Set the child {@link LinearLayout} to be TAB_COUNT * the computed tab width so that the
         // {@link LinearLayout}'s children (which are the tabs) will evenly split that width.
         if (getChildCount() > 0) {
             View child = getChildAt(0);
-            child.measure(MeasureSpec.makeMeasureSpec(TAB_COUNT * mTabWidth, MeasureSpec.EXACTLY),
-                    MeasureSpec.makeMeasureSpec(mTabHeight, MeasureSpec.EXACTLY));
+            child.measure(MeasureSpec.makeMeasureSpec(TAB_COUNT * tabWidth, MeasureSpec.EXACTLY),
+                    MeasureSpec.makeMeasureSpec(tabHeight, MeasureSpec.EXACTLY));
         }
+
+        mAllowedVerticalScrollLength = tabHeight - mTabDisplayLabelHeight;
+        setMeasuredDimension(
+                resolveSize(screenWidth, widthMeasureSpec),
+                resolveSize(tabHeight, heightMeasureSpec));
     }
 
     private final OnClickListener mAboutTabTouchInterceptListener = new OnClickListener() {

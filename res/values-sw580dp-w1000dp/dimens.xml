@@ -20,7 +20,6 @@
     <dimen name="action_bar_search_spacing">32dip</dimen>
     <dimen name="detail_header_view_margin">16dip</dimen>
     <dimen name="detail_header_attribution_height">56dip</dimen>
-    <dimen name="detail_tab_carousel_height">0dip</dimen>
     <dimen name="detail_update_section_top_padding">48dip</dimen>
     <dimen name="contact_browser_list_left_margin">0dip</dimen>
     <dimen name="contacts_count_right_margin">24dip</dimen>

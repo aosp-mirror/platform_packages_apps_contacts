@@ -19,7 +19,15 @@
   entry maintains vertical padding to ensure that the first contact detail is visible (and below
   the tab carousel). No information has to be displayed in this header.
 -->
-<FrameLayout
+<view
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
+    class="com.android.contacts.widget.ProportionalLayout"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/detail_tab_carousel_height"/>
+    android:layout_height="wrap_content"
+    ex:ratio="0.5"
+    ex:direction="widthToHeight">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</view>

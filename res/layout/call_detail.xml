@@ -15,6 +15,7 @@
 -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
@@ -31,21 +32,30 @@
         <include layout="@layout/call_log_voicemail_status"/>
     </FrameLayout>
 
-    <ImageView
-        android:id="@+id/contact_background"
+    <view
+        class="com.android.contacts.widget.ProportionalLayout"
+        android:id="@+id/contact_background_sizer"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/call_detail_contact_background_height"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@id/voicemail_status"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:background="@drawable/ic_contact_picture"
-    />
+        ex:ratio="0.5"
+        ex:direction="widthToHeight"
+    >
+        <ImageView
+            android:id="@+id/contact_background"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:background="@drawable/ic_contact_picture"
+        />
+    </view>
     <LinearLayout
         android:id="@+id/voicemail_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/contact_background"
+        android:layout_below="@id/contact_background_sizer"
     >
         <fragment
             class="com.android.contacts.voicemail.VoicemailPlaybackFragment"
@@ -59,14 +69,14 @@
         android:layout_height="@dimen/call_detail_contact_background_overlay_height"
         android:background="#3F000000"
         android:layout_alignParentLeft="true"
-        android:layout_alignBottom="@id/contact_background"
+        android:layout_alignBottom="@id/contact_background_sizer"
     />
     <RelativeLayout
         android:id="@+id/contact_text"
         android:layout_width="match_parent"
         android:layout_height="@dimen/call_detail_contact_background_overlay_height"
         android:layout_alignParentLeft="true"
-        android:layout_alignBottom="@id/contact_background"
+        android:layout_alignBottom="@id/contact_background_sizer"
         android:paddingLeft="@dimen/call_detail_contact_name_margin"
     >
         <ImageView

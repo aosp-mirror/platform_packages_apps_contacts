@@ -15,6 +15,7 @@
 -->
 <view
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
     class="com.android.contacts.quickcontact.FloatingChildLayout"
     android:id="@+id/floating_layout"
     android:layout_width="match_parent"
@@ -25,13 +26,20 @@
     <LinearLayout
         android:id="@android:id/content"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/quick_contact_picture_height"
+        android:layout_height="match_parent"
         android:padding="32dip"
         android:orientation="horizontal">
-        <include layout="@layout/quickcontact_photo_container" />
+        <view
+            class="com.android.contacts.widget.ProportionalLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            ex:ratio="1.0"
+            ex:direction="heightToWidth">
+            <include layout="@layout/quickcontact_photo_container" />
+        </view>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/quick_contact_picture_height"
+            android:layout_height="match_parent"
             android:orientation="vertical">
             <include layout="@layout/quickcontact_track" />
             <android.support.v4.view.ViewPager
