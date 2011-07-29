@@ -83,6 +83,17 @@ public class StreamItemPopulatorActivity extends Activity {
             "<i>24567</i> <font color='blue' size='+1'><b>likes</b></font>"
     };
 
+    private Integer[] labelIds = new Integer[] {
+            R.string.attribution_google_plus,
+            R.string.attribution_google_talk,
+            R.string.attribution_flicker,
+            R.string.attribution_twitter
+    };
+
+    public Integer[] iconIds = new Integer[] {
+            R.drawable.default_icon,
+    };
+
     // Photos to randomly select from.
     private Integer[] imageIds = new Integer[]{
             R.drawable.android,
@@ -242,6 +253,7 @@ public class StreamItemPopulatorActivity extends Activity {
     }
 
     private ContentValues buildStreamItemValues(String accountType, String accountName) {
+        boolean includeAttribution = randInt(100) < 70;
         boolean includeComments = randInt(100) < 30;
         boolean includeAction = randInt(100) < 30;
         ContentValues values = new ContentValues();
@@ -250,6 +262,14 @@ public class StreamItemPopulatorActivity extends Activity {
                 String.format(pickRandom(snippetStrings) , place)
                 + (includeComments ? " [c]" : "")
                 + (includeAction ? " [a]" : ""));
+        if (includeAttribution) {
+            values.put(StreamItems.RES_PACKAGE, "com.android.contacts.tests");
+            int sourceIndex = randInt(labelIds.length);
+            values.put(StreamItems.RES_LABEL, labelIds[sourceIndex]);
+            if (sourceIndex < iconIds.length) {
+                values.put(StreamItems.RES_ICON, iconIds[sourceIndex]);
+            }
+        }
         if (includeComments) {
             values.put(StreamItems.COMMENTS, pickRandom(commentStrings));
         } else {
