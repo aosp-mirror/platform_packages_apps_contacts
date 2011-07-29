@@ -251,23 +251,32 @@ public class ContactDetailDisplayUtils {
      * Displays the social stream items under the given layout.
      */
     public static void showSocialStreamItems(LayoutInflater inflater, Context context,
-            Result contactData, LinearLayout streamContainer) {
+            Result contactData, LinearLayout streamContainer, View.OnClickListener listener) {
         if (streamContainer != null) {
             streamContainer.removeAllViews();
             List<StreamItemEntry> streamItems = contactData.getStreamItems();
             for (StreamItemEntry streamItem : streamItems) {
-                addStreamItemToContainer(inflater, context, streamItem, streamContainer);
+                addStreamItemToContainer(inflater, context, streamItem, streamContainer, listener);
             }
         }
     }
 
-    public static void addStreamItemToContainer(LayoutInflater inflater, Context context,
-            StreamItemEntry streamItem, LinearLayout streamContainer) {
+    @VisibleForTesting
+    static void addStreamItemToContainer(LayoutInflater inflater, Context context,
+            StreamItemEntry streamItem, LinearLayout streamContainer,
+            View.OnClickListener listener) {
         View oneColumnView = inflater.inflate(R.layout.stream_item_one_column,
                 streamContainer, false);
         ViewGroup contentBox = (ViewGroup) oneColumnView.findViewById(R.id.stream_item_content);
         int internalPadding = context.getResources().getDimensionPixelSize(
                 R.dimen.detail_update_section_internal_padding);
+
+        // Add the listener only if there is an action and corresponding URI.
+        if (streamItem.getAction() != null && streamItem.getActionUri() != null) {
+            contentBox.setTag(streamItem);
+            contentBox.setOnClickListener(listener);
+            contentBox.setFocusable(true);
+        }
 
         // TODO: This is not the correct layout for a stream item with photos.  Photos should be
         // displayed first, then the update text either to the right of the final image (if there

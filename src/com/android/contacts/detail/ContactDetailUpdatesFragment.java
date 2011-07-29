@@ -19,10 +19,13 @@ package com.android.contacts.detail;
 import com.android.contacts.ContactLoader;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
+import com.android.contacts.util.StreamItemEntry;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -54,6 +57,28 @@ public class ContactDetailUpdatesFragment extends Fragment
      */
     private View mTouchInterceptLayer;
 
+    /**
+     * Listener on clicks on a stream item.
+     * <p>
+     * It assumes the view has a tag of type {@link StreamItemEntry} associated with it.
+     */
+    private View.OnClickListener mStreamItemClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            StreamItemEntry streamItemEntry = (StreamItemEntry) view.getTag();
+            Uri uri;
+            try {
+                uri = Uri.parse(streamItemEntry.getActionUri());
+            } catch (Throwable throwable) {
+                Log.e(TAG, "invalid URI for stream item #" + streamItemEntry.getId() + ": "
+                        + streamItemEntry.getActionUri());
+                return;
+            }
+            Intent streamItemIntent = new Intent(streamItemEntry.getAction(), uri);
+            startActivity(streamItemIntent);
+        }
+    };
+
     public ContactDetailUpdatesFragment() {
         // Explicit constructor for inflation
     }
@@ -75,7 +100,7 @@ public class ContactDetailUpdatesFragment extends Fragment
         // have it.
         if (mContactData != null) {
             ContactDetailDisplayUtils.showSocialStreamItems(inflater, getActivity(), mContactData,
-                    mStreamContainer);
+                    mStreamContainer, mStreamItemClickListener);
         }
 
         mAlphaLayer = rootView.findViewById(R.id.alpha_overlay);
@@ -91,7 +116,7 @@ public class ContactDetailUpdatesFragment extends Fragment
         mLookupUri = lookupUri;
         mContactData = result;
         ContactDetailDisplayUtils.showSocialStreamItems(mInflater, getActivity(), mContactData,
-                mStreamContainer);
+                mStreamContainer, mStreamItemClickListener);
     }
 
     @Override
