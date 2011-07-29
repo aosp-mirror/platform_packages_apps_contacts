@@ -58,6 +58,7 @@
     </style>
 
     <style name="CallDetailActivityTheme" parent="android:Theme.Holo.SplitActionBarWhenNarrow">
+        <item name="android:windowBackground">@android:color/black</item>
         <item name="android:gravity">top</item>
         <item name="call_detail_transparent_background">#CC000000</item>
         <item name="call_detail_contact_background_overlay_alpha">0.25</item>
