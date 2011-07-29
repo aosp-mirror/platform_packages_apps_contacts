@@ -34,14 +34,6 @@
     based on the source of the request -->
     <dimen name="quick_contact_top_position">48dip</dimen>
 
-    <!-- Width of the picture in the QuickContact popup. This can be -1 for the full width
-    of the parent -->
-    <dimen name="quick_contact_picture_width">-1px</dimen>
-
-    <!-- Height of the picture in the QuickContact popup. This can be -1 for the full height
-    of the parent -->
-    <dimen name="quick_contact_picture_height">174dip</dimen>
-
     <!-- Padding of the rounded plus/minus/expand/collapse buttons in the editor  -->
     <dimen name="editor_round_button_padding_left">2dip</dimen>
     <dimen name="editor_round_button_padding_right">2dip</dimen>
@@ -92,9 +84,6 @@
 
     <!-- Margin between the photo, the star, and text in the contact detail header view -->
     <dimen name="detail_header_view_margin">8dip</dimen>
-
-    <!-- Height of the tab carousel on the contact detail page -->
-    <dimen name="detail_tab_carousel_height">150dip</dimen>
 
     <!-- Height of the tab text label in the tab carousel on the contact detail page -->
     <dimen name="detail_tab_carousel_tab_label_height">48dip</dimen>

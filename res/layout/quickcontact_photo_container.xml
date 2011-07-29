@@ -17,13 +17,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <RelativeLayout
         android:id="@+id/photo_container"
-        android:layout_width="@dimen/quick_contact_picture_width"
-        android:layout_height="@dimen/quick_contact_picture_height"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="center_vertical">
         <ImageView
             android:id="@+id/photo"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop" />
         <View
             android:id="@+id/photo_text_bar"
@@ -68,7 +68,7 @@
             android:layout_marginTop="-3dip" />
         <TextView
             android:id="@+id/timestamp"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:ellipsize="end"

@@ -114,8 +114,8 @@ public class FloatingChildLayout extends FrameLayout {
         } else {
             // default is centered horizontally around target...
             final int childLeft = target.centerX() - (childWidth / 2);
-            // ... and vertically aligned at the top
-            final int childTop = target.top;
+            // ... and vertically aligned a bit below centered
+            final int childTop = target.centerY() - Math.round(childHeight * 0.35f);
 
             // when child is outside bounds, nudge back inside
             final int clampedChildLeft = clampDimension(childLeft, childWidth, getWidth());

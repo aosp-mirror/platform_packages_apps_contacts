@@ -31,21 +31,6 @@
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/detail_update_section_top_padding">
 
-            <!-- Add a first item that gives us enough space to show the carousel -->
-            <view
-                class="com.android.contacts.widget.ProportionalLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                ex:ratio="0.5"
-                ex:direction="widthToHeight">
-
-                <!-- Put a dummy view here because the ProportionalLayout requires one -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </view>
-
             <include
                 android:id="@+id/title"
                 layout="@layout/contact_detail_kind_title_entry_view" />
