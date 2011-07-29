@@ -64,7 +64,7 @@ public class DialpadActivity extends Activity {
     @Override
     protected void onNewIntent(Intent newIntent) {
         setIntent(newIntent);
-        mFragment.resolveIntent(newIntent);
+        mFragment.configureScreenFromIntent(newIntent);
     }
 
     public DialpadFragment getFragment() {

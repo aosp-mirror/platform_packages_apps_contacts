@@ -143,9 +143,6 @@ public class DialpadFragment extends Fragment
     static final String EXTRA_SEND_EMPTY_FLASH
             = "com.android.phone.extra.SEND_EMPTY_FLASH";
 
-    /** Indicates if we are opening this dialer to add a call from the InCallScreen. */
-    private boolean mIsAddCallMode;
-
     private String mCurrentCountryIso;
 
     /**
@@ -313,7 +310,7 @@ public class DialpadFragment extends Fragment
         mDialpadChooser = (ListView) fragmentView.findViewById(R.id.dialpadChooser);
         mDialpadChooser.setOnItemClickListener(this);
 
-        resolveIntent(getActivity().getIntent());
+        configureScreenFromIntent(getActivity().getIntent());
 
         return fragmentView;
     }
@@ -323,38 +320,18 @@ public class DialpadFragment extends Fragment
     }
 
     /**
-     * Handles the intent that launched us.
-     *
-     * We can be launched either with ACTION_DIAL or ACTION_VIEW (which
-     * may include a phone number to pre-load), or ACTION_MAIN (which just
-     * brings up a blank dialpad).
-     *
-     * @return true IFF the current intent has the DialtactsActivity.EXTRA_IGNORE_STATE
-     *    extra set to true, which indicates (to our container) that we should ignore
-     *    any possible saved state, and instead reset our state based on the parent's
-     *    intent.
+     * @return true when {@link #mDigits} is actually filled by the Intent.
      */
-    public boolean resolveIntent(Intent intent) {
-        boolean ignoreState = false;
-
-        // by default we are not adding a call.
-        mIsAddCallMode = false;
-
-        // By default we don't show the "dialpad chooser" UI.
-        boolean needToShowDialpadChooser = false;
-
-        // Resolve the intent
+    private boolean fillDigitsIfNecessary(Intent intent) {
         final String action = intent.getAction();
         if (Intent.ACTION_DIAL.equals(action) || Intent.ACTION_VIEW.equals(action)) {
-            // see if we are "adding a call" from the InCallScreen; false by default.
-            mIsAddCallMode = intent.getBooleanExtra(ADD_CALL_MODE_KEY, false);
-
             Uri uri = intent.getData();
             if (uri != null) {
                 if ("tel".equals(uri.getScheme())) {
                     // Put the requested number into the input area
                     String data = uri.getSchemeSpecificPart();
                     setFormattedDigits(data, null);
+                    return true;
                 } else {
                     String type = intent.getType();
                     if (People.CONTENT_ITEM_TYPE.equals(type)
@@ -364,22 +341,42 @@ public class DialpadFragment extends Fragment
                                 new String[] {PhonesColumns.NUMBER, PhonesColumns.NUMBER_KEY},
                                 null, null, null);
                         if (c != null) {
-                            if (c.moveToFirst()) {
-                                // Put the number into the input area
-                                setFormattedDigits(c.getString(0), c.getString(1));
+                            try {
+                                if (c.moveToFirst()) {
+                                    // Put the number into the input area
+                                    setFormattedDigits(c.getString(0), c.getString(1));
+                                    return true;
+                                }
+                            } finally {
+                                c.close();
                             }
-                            c.close();
                         }
                     }
                 }
-            } else {
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @see #showDialpadChooser(boolean)
+     */
+    private static boolean needToShowDialpadChooser(Intent intent, boolean isAddCallMode) {
+        final String action = intent.getAction();
+
+        boolean needToShowDialpadChooser = false;
+
+        if (Intent.ACTION_DIAL.equals(action) || Intent.ACTION_VIEW.equals(action)) {
+            Uri uri = intent.getData();
+            if (uri == null) {
                 // ACTION_DIAL or ACTION_VIEW with no data.
                 // This behaves basically like ACTION_MAIN: If there's
                 // already an active call, bring up an intermediate UI to
                 // make the user confirm what they really want to do.
                 // Be sure *not* to show the dialpad chooser if this is an
                 // explicit "Add call" action, though.
-                if (!mIsAddCallMode && phoneIsInUse()) {
+                if (!isAddCallMode && phoneIsInUse()) {
                     needToShowDialpadChooser = true;
                 }
             }
@@ -399,11 +396,34 @@ public class DialpadFragment extends Fragment
             }
         }
 
-        // Bring up the "dialpad chooser" IFF we need to make the user
-        // confirm which dialpad they really want.
-        showDialpadChooser(needToShowDialpadChooser);
+        return needToShowDialpadChooser;
+    }
 
-        return ignoreState;
+    private static boolean isAddCallMode(Intent intent) {
+        final String action = intent.getAction();
+        if (Intent.ACTION_DIAL.equals(action) || Intent.ACTION_VIEW.equals(action)) {
+            // see if we are "adding a call" from the InCallScreen; false by default.
+            return intent.getBooleanExtra(ADD_CALL_MODE_KEY, false);
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Checks the given Intent and changes dialpad's UI state. For example, if the Intent requires
+     * the screen to enter "Add Call" mode, this method will show correct UI for the mode.
+     */
+    public void configureScreenFromIntent(Intent intent) {
+        boolean needToShowDialpadChooser = false;
+
+        final boolean isAddCallMode = isAddCallMode(intent);
+        if (!isAddCallMode) {
+            final boolean digitsFilled = fillDigitsIfNecessary(intent);
+            if (!digitsFilled) {
+                needToShowDialpadChooser = needToShowDialpadChooser(intent, isAddCallMode);
+            }
+        }
+        showDialpadChooser(needToShowDialpadChooser);
     }
 
     private void setFormattedDigits(String data, String normalizedNumber) {
@@ -476,13 +496,10 @@ public class DialpadFragment extends Fragment
         }
 
         Activity parent = getActivity();
-        // See if we were invoked with a DIAL intent. If we were, fill in the appropriate
-        // digits in the dialer field.
         if (parent instanceof DialtactsActivity) {
-            Uri dialUri = ((DialtactsActivity) parent).getAndClearDialUri();
-            if (dialUri != null) {
-                resolveIntent(parent.getIntent());
-            }
+            // See if we were invoked with a DIAL intent. If we were, fill in the appropriate
+            // digits in the dialer field.
+            fillDigitsIfNecessary(parent.getIntent());
         }
 
         // While we're in the foreground, listen for phone state changes,
@@ -904,8 +921,8 @@ public class DialpadFragment extends Fragment
             // ListView.  We do this only once.
             if (mDialpadChooserAdapter == null) {
                 mDialpadChooserAdapter = new DialpadChooserAdapter(getActivity());
-                mDialpadChooser.setAdapter(mDialpadChooserAdapter);
             }
+            mDialpadChooser.setAdapter(mDialpadChooserAdapter);
         } else {
             // Log.i(TAG, "Displaying normal Dialer UI.");
             mDigits.setVisibility(View.VISIBLE);
