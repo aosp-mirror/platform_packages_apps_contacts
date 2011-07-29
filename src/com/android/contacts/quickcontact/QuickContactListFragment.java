@@ -50,7 +50,8 @@ public class QuickContactListFragment extends Fragment {
         mFragmentContainer = (LinearLayout) inflater.inflate(R.layout.quickcontact_list_fragment,
                 container, false);
         mListView = (ListView) mFragmentContainer.findViewById(R.id.list);
-        mListView.setOnItemClickListener(mItemClickListener);
+        mListView.setItemsCanFocus(true);
+
         mFragmentContainer.setOnClickListener(mOutsideClickListener);
         configureAdapter();
         return mFragmentContainer;
@@ -98,10 +99,14 @@ public class QuickContactListFragment extends Fragment {
                         android.R.id.text1);
                 final TextView text2 = (TextView) resultView.findViewById(
                         android.R.id.text2);
+                final View primaryActionContainer = resultView.findViewById(
+                        R.id.primary_action_view_container);
                 final ImageView alternateActionButton = (ImageView) resultView.findViewById(
                         R.id.secondary_action_button);
                 final View alternateActionDivider = resultView.findViewById(R.id.vertical_divider);
 
+                primaryActionContainer.setOnClickListener(mPrimaryActionClickListener);
+                primaryActionContainer.setTag(action);
                 alternateActionButton.setOnClickListener(mSecondaryActionClickListener);
                 alternateActionButton.setTag(action);
 
@@ -112,11 +117,19 @@ public class QuickContactListFragment extends Fragment {
                 text1.setText(action.getBody());
                 text2.setText(action.getSubtitle());
 
-                resultView.setTag(action);
                 return resultView;
             }
         });
     }
+
+    /** A data item (e.g. phone number) was clicked */
+    protected final OnClickListener mPrimaryActionClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            final Action action = (Action) v.getTag();
+            if (mListener != null) mListener.onItemClicked(action, false);
+        }
+    };
 
     /** A secondary action (SMS) was clicked */
     protected final OnClickListener mSecondaryActionClickListener = new OnClickListener() {
@@ -124,16 +137,6 @@ public class QuickContactListFragment extends Fragment {
         public void onClick(View v) {
             final Action action = (Action) v.getTag();
             if (mListener != null) mListener.onItemClicked(action, true);
-        }
-    };
-
-    /** A data item (e.g. phone number) was clicked */
-    private final AbsListView.OnItemClickListener mItemClickListener =
-            new AbsListView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            final Action action = (Action) view.getTag();
-            if (mListener != null) mListener.onItemClicked(action, false);
         }
     };
 

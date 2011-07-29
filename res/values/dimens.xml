@@ -133,14 +133,15 @@
     <!-- Minimum height of a row in the contact detail -->
     <dimen name="detail_min_line_item_height">48dip</dimen>
 
-    <!-- Width of a contact detail item type (i.e. Nickname or Website). -->
-    <dimen name="detail_item_type_width">164dip</dimen>
-
     <!-- Width of height of an icon from a third-party app in the networks section of the contact card. -->
     <dimen name="detail_network_icon_size">32dip</dimen>
 
     <!-- Font size for the display name in header of the contact detail page -->
     <dimen name="detail_header_name_text_size">36sp</dimen>
+
+    <!-- Vertical margin for vertical dividers existing between primary data
+         (phone number, email, etc.) and a secondary action button -->
+    <dimen name="detail_vertical_divider_vertical_margin">16dip</dimen>
 
     <!-- Padding to be used between a visible scrollbar and the contact list -->
     <dimen name="list_visible_scrollbar_padding">40dip</dimen>
