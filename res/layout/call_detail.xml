@@ -47,12 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/contact_background"
     >
-        <fragment
-            class="com.android.contacts.voicemail.VoicemailPlaybackFragment"
-            android:id="@+id/voicemail_playback_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-        />
+        <!-- The voicemail fragment will be put here. -->
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

@@ -119,13 +119,18 @@ import javax.annotation.concurrent.ThreadSafe;
     private final MediaPlayerProxy mPlayer;
     private final PositionUpdater mPositionUpdater;
 
-    /** Voicemail uri to play, will be set with a call to {@link #setVoicemailUri(Uri, boolean)}. */
-    private Uri mVoicemailUri;
+    /** Voicemail uri to play. */
+    private final Uri mVoicemailUri;
+    /** Start playing in onCreate iff this is true. */
+    private final boolean mStartPlayingImmediately;
 
     public VoicemailPlaybackPresenter(PlaybackView view, MediaPlayerProxy player,
-            ScheduledExecutorService executorService) {
+            Uri voicemailUri, ScheduledExecutorService executorService,
+            boolean startPlayingImmediately) {
         mView = view;
         mPlayer = player;
+        mVoicemailUri = voicemailUri;
+        mStartPlayingImmediately = startPlayingImmediately;
         mPositionUpdater = new PositionUpdater(executorService, SLIDER_UPDATE_PERIOD_MILLIS);
     }
 
@@ -141,6 +146,9 @@ import javax.annotation.concurrent.ThreadSafe;
         mView.setRateIncreaseButtonListener(createRateIncreaseListener());
         mView.setClipPosition(0, 0);
         mView.playbackStopped();
+        if (mStartPlayingImmediately) {
+            resetPrepareStartPlaying(0);
+        }
         // TODO: Now I'm ignoring the bundle, when previously I was checking for contains against
         // the PAUSED_STATE_KEY, and CLIP_POSITION_KEY.
     }
@@ -155,13 +163,6 @@ import javax.annotation.concurrent.ThreadSafe;
     public void onDestroy() {
         mPositionUpdater.stopUpdating();
         mPlayer.release();
-    }
-
-    public void setVoicemailUri(Uri voicemailUri, boolean startPlaying) {
-        mVoicemailUri = voicemailUri;
-        if (startPlaying) {
-            resetPrepareStartPlaying(0);
-        }
     }
 
     private class MediaPlayerErrorListener implements MediaPlayer.OnErrorListener {
@@ -334,7 +335,13 @@ import javax.annotation.concurrent.ThreadSafe;
         private final Runnable mSetClipPostitionRunnable = new Runnable() {
             @Override
             public void run() {
-                mView.setClipPosition(mPlayer.getCurrentPosition(), mDuration.get());
+                int currentPosition = 0;
+                synchronized (mLock) {
+                    if (mScheduledFuture != null) {
+                        currentPosition = mPlayer.getCurrentPosition();
+                    }
+                }
+                mView.setClipPosition(currentPosition, mDuration.get());
             }
         };
 
@@ -345,11 +352,7 @@ import javax.annotation.concurrent.ThreadSafe;
 
         @Override
         public void run() {
-            synchronized (mLock) {
-                if (mScheduledFuture != null) {
-                    mView.runOnUiThread(mSetClipPostitionRunnable);
-                }
-            }
+            mView.runOnUiThread(mSetClipPostitionRunnable);
         }
 
         public void startUpdating(int beginPosition, int endPosition) {
