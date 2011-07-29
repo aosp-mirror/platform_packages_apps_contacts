@@ -223,6 +223,7 @@ public class GroupBrowseListFragment extends Fragment
         }
         mListView.setEmptyView(mEmptyView);
 
+        mSelectedGroupUri = mAdapter.getSelectedGroup();
         if (mSelectionVisible && mSelectedGroupUri != null) {
             viewGroup(mSelectedGroupUri);
         }
