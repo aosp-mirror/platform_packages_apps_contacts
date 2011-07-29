@@ -481,11 +481,17 @@ public class DialtactsActivity extends Activity {
         final String action = newIntent.getAction();
         if (UI.FILTER_CONTACTS_ACTION.equals(action)) {
             setupFilterText(newIntent);
-        } else if (isDialIntent(newIntent)) {
-            setupDialUri(newIntent);
         }
         if (mInSearchUi || mSearchFragment.isVisible()) {
             exitSearchUi();
+        }
+
+        if (mViewPager.getCurrentItem() == TAB_INDEX_DIALER) {
+            if (mDialpadFragment != null) {
+                mDialpadFragment.configureScreenFromIntent(newIntent);
+            } else {
+                Log.e(TAG, "DialpadFragment isn't ready yet when the tab is already selected.");
+            }
         }
     }
 
@@ -533,33 +539,6 @@ public class DialtactsActivity extends Activity {
         if (filter != null && filter.length() > 0) {
             mFilterText = filter;
         }
-    }
-
-    /**
-     * Retrieves the uri stored in {@link #setupDialUri(Intent)}. This uri
-     * originally came from a dial intent received by this activity. The stored
-     * uri will then be cleared after after this method returns.
-     *
-     * @return The stored uri
-     */
-    public Uri getAndClearDialUri() {
-        Uri dialUri = mDialUri;
-        mDialUri = null;
-        return dialUri;
-    }
-
-    /**
-     * Stores the uri associated with a dial intent. This is so child activities can
-     * check if they are supposed to display new dial info.
-     *
-     * @param intent The intent received in {@link #onNewIntent(Intent)}
-     */
-    private void setupDialUri(Intent intent) {
-        // If the intent was relaunched from history, don't reapply the intent.
-        if ((intent.getFlags() & Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY) != 0) {
-            return;
-        }
-        mDialUri = intent.getData();
     }
 
     @Override
