@@ -134,6 +134,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     private boolean mForceLoad;
 
+    protected boolean mUserProfileExists;
+
     private static final int STATUS_NOT_LOADED = 0;
     private static final int STATUS_LOADING = 1;
     private static final int STATUS_LOADED = 2;
@@ -444,6 +446,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
 
         mAdapter.changeCursor(partitionIndex, data);
+        setProfileHeader();
         showCount(partitionIndex, data);
 
         if (!isLoading()) {
@@ -496,6 +499,14 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
      * implementation does nothing.
      */
     protected void showCount(int partitionIndex, Cursor data) {
+    }
+
+    /**
+     * Shows a view at the top of the list with a pseudo local profile prompting the user to add
+     * a local profile. Default implementation does nothing.
+     */
+    protected void setProfileHeader() {
+        mUserProfileExists = false;
     }
 
     /**
@@ -585,6 +596,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     public void setIncludeProfile(boolean flag) {
         mIncludeProfile = flag;
+        if(mAdapter != null) {
+            mAdapter.setIncludeProfile(flag);
+        }
     }
 
     public void setSearchMode(boolean flag) {

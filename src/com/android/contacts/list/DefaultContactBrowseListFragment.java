@@ -16,13 +16,18 @@
 package com.android.contacts.list;
 
 import com.android.contacts.R;
+import com.android.contacts.editor.ContactEditorFragment;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -36,6 +41,10 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private View mSearchHeaderView;
     private TextView mAccountFilterHeaderView;
     private View mAccountFilterHeaderContainer;
+    private View mProfileHeader;
+    private Button mProfileMessage;
+    private FrameLayout mMessageContainer;
+    private View mProfileTitle;
 
     public DefaultContactBrowseListFragment() {
         setPhotoLoaderEnabled(true);
@@ -69,6 +78,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         mAccountFilterHeaderContainer =
                 getView().findViewById(R.id.account_filter_header_container);
         mCounterHeaderView = (TextView) getView().findViewById(R.id.contacts_count);
+
+        // Create an empty user profile header and hide it for now (it will be visible if the
+        // contacts list will have no user profile).
+        addEmptyUserProfileHeader(inflater);
+        showEmptyUserProfile(false);
 
         // Putting the header view inside a container will allow us to make
         // it invisible later. See checkHeaderViewVisibility()
@@ -125,7 +139,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
             if (count != 0) {
                 String format = getResources().getQuantityText(
                         R.plurals.listTotalAllContacts, count).toString();
-                mCounterHeaderView.setText(String.format(format, count));
+                if (mUserProfileExists) {
+                    getAdapter().setContactsCount(String.format(format, count));
+                } else {
+                    mCounterHeaderView.setText(String.format(format, count));
+                }
             } else {
                 ContactListFilter filter = getFilter();
                 int filterType = filter != null ? filter.filterType
@@ -176,6 +194,56 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                 }
                 mSearchHeaderView.setVisibility(View.VISIBLE);
             }
+            showEmptyUserProfile(false);
         }
+    }
+
+    @Override
+    protected void setProfileHeader() {
+        mUserProfileExists = getAdapter().hasProfile();
+        showEmptyUserProfile(!mUserProfileExists && !isSearchMode());
+    }
+
+    private void showEmptyUserProfile(boolean show) {
+        // Changing visibility of just the mProfileHeader doesn't do anything unless
+        // you change visibility of its children, hence the call to mCounterHeaderView
+        // and mProfileTitle
+        mProfileHeader.setVisibility(show ? View.VISIBLE : View.GONE);
+        mCounterHeaderView.setVisibility(show ? View.VISIBLE : View.GONE);
+        mProfileTitle.setVisibility(show ? View.VISIBLE : View.GONE);
+        mMessageContainer.setVisibility(show ? View.VISIBLE : View.GONE);
+        mProfileMessage.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    /**
+     * This method creates a pseudo user profile contact. When the returned query doesn't have
+     * a profile, this methods creates 2 views that are inserted as headers to the listview:
+     * 1. A header view with the "ME" title and the contacts count.
+     * 2. A button that prompts the user to create a local profile
+     */
+    private void addEmptyUserProfileHeader(LayoutInflater inflater) {
+
+        ListView list = getListView();
+        // Put a header with the "ME" name and a view for the number of contacts
+        mProfileHeader = inflater.inflate(R.layout.user_profile_header, null, false);
+        mCounterHeaderView = (TextView) mProfileHeader.findViewById(R.id.contacts_count);
+        mProfileTitle = mProfileHeader.findViewById(R.id.profile_title);
+        list.addHeaderView(mProfileHeader, null, false);
+
+        // Add a selectable view with a message inviting the user to create a local profile
+        // The view is embedded in a frame view since you cannot change the visibility of a
+        // view in a ListView without having a parent view.
+        mMessageContainer = new FrameLayout(inflater.getContext());
+        mProfileMessage = (Button)inflater.inflate(R.layout.user_profile_button, null, false);
+        mMessageContainer.addView(mProfileMessage);
+        list.addHeaderView(mMessageContainer, null, true);
+
+        mProfileMessage.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+                intent.putExtra(ContactEditorFragment.INTENT_EXTRA_NEW_LOCAL_PROFILE, true);
+                startActivity(intent);
+            }
+        });
     }
 }

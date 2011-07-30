@@ -45,9 +45,11 @@ public class ContactListPinnedHeaderView extends ViewGroup {
     private final int mHeaderUnderlineColor;
     private final int mPaddingRight;
     private final int mPaddingLeft;
+    private final int mContactsCountTextColor;
 
     private int mHeaderBackgroundHeight;
     private TextView mHeaderTextView;
+    private TextView mCountTextView = null;
     private View mHeaderDivider;
 
     public ContactListPinnedHeaderView(Context context, AttributeSet attrs) {
@@ -72,6 +74,8 @@ public class ContactListPinnedHeaderView extends ViewGroup {
                 R.styleable.ContactListItemView_list_item_padding_left, 0);
         mPaddingRight = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_padding_right, 0);
+        mContactsCountTextColor = a.getColor(
+                R.styleable.ContactListItemView_list_item_contacts_count_text_color, Color.BLACK);
 
         a.recycle();
 
@@ -93,8 +97,13 @@ public class ContactListPinnedHeaderView extends ViewGroup {
         int width = resolveSize(0, widthMeasureSpec);
 
         mHeaderTextView.measure(
-                MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
+                MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST),
                 MeasureSpec.makeMeasureSpec(mHeaderBackgroundHeight, MeasureSpec.EXACTLY));
+        if (isViewMeasurable(mCountTextView)) {
+            mCountTextView.measure(
+                    MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST),
+                    MeasureSpec.makeMeasureSpec(mHeaderBackgroundHeight, MeasureSpec.EXACTLY));
+        }
 
         setMeasuredDimension(width, mHeaderBackgroundHeight + mHeaderUnderlineHeight);
     }
@@ -105,8 +114,16 @@ public class ContactListPinnedHeaderView extends ViewGroup {
 
         mHeaderTextView.layout(mHeaderTextIndent + mPaddingLeft,
                 0,
-                width,
+                mHeaderTextView.getMeasuredWidth() + mHeaderTextIndent + mPaddingLeft,
                 mHeaderBackgroundHeight);
+
+        if (isViewMeasurable(mCountTextView)) {
+            mCountTextView.layout(width - mPaddingRight - mCountTextView.getMeasuredWidth(),
+                    0,
+                    width,
+                    mHeaderBackgroundHeight);
+        }
+
         mHeaderDivider.layout(mPaddingLeft,
                 mHeaderBackgroundHeight,
                 width,
@@ -133,5 +150,24 @@ public class ContactListPinnedHeaderView extends ViewGroup {
         // itself, so there is no need to pass the layout request to the parent
         // view (ListView).
         forceLayout();
+    }
+
+    public void setCountView(String count) {
+        if (mCountTextView == null) {
+            mCountTextView = new TextView(mContext);
+            mCountTextView.setTextColor(mContactsCountTextColor);
+            mCountTextView.setTextSize(mHeaderTextSize);
+            addView(mCountTextView);
+        }
+        mCountTextView.setText(count);
+        if (count == null || count.isEmpty()) {
+            mCountTextView.setVisibility(View.GONE);
+        } else {
+            mCountTextView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private boolean isViewMeasurable(View view) {
+        return (view != null && view.getVisibility() == View.VISIBLE);
     }
 }

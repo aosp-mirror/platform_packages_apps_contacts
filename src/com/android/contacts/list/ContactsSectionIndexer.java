@@ -93,4 +93,10 @@ public class ContactsSectionIndexer implements SectionIndexer {
          */
         return index >= 0 ? index : -index - 2;
     }
+
+    public void setProfileHeader(String header) {
+        if (mSections != null && mSections.length > 0) {
+            mSections[0] = header;
+        }
+    }
 }

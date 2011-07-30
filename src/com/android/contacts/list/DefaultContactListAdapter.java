@@ -229,7 +229,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
             view.setActivated(isSelectedContact(partition, cursor));
         }
 
-        bindSectionHeaderAndDivider(view, position);
+        bindSectionHeaderAndDivider(view, position, cursor);
 
         if (isQuickContactEnabled()) {
             bindQuickContact(view, partition, cursor,

@@ -209,7 +209,7 @@ public class ContactDetailDisplayUtils {
      */
     public static void setStarred(Result contactData, CheckBox starredView) {
         // Check if the starred state should be visible
-        if (!contactData.isDirectoryEntry()) {
+        if (!contactData.isDirectoryEntry() && !contactData.isUserProfile()) {
             starredView.setVisibility(View.VISIBLE);
             starredView.setChecked(contactData.getStarred());
         } else {

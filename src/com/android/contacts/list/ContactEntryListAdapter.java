@@ -35,6 +35,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.QuickContactBadge;
+import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import java.util.HashSet;
@@ -63,7 +64,17 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     private boolean mDisplayPhotos;
     private boolean mQuickContactEnabled;
+
+    /**
+     * indicates if contact queries include profile
+     */
     private boolean mIncludeProfile;
+
+    /**
+     * indicates if query results includes a profile
+     */
+    private boolean mProfileExists;
+
     private ContactPhotoManager mPhotoLoader;
 
     private String mQueryString;
@@ -78,6 +89,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     private boolean mSelectionVisible;
 
     private ContactListFilter mFilter;
+    private String mContactsCount = "";
 
     public ContactEntryListAdapter(Context context) {
         super(context);
@@ -92,6 +104,20 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     @Override
     protected void setPinnedSectionTitle(View pinnedHeaderView, String title) {
         ((ContactListPinnedHeaderView)pinnedHeaderView).setSectionHeader(title);
+    }
+
+    protected void setPinnedHeaderContactsCount(View header) {
+        // Update the header with the contacts count only if a profile header exists
+        // otherwise, the contacts count are shown in the empty profile header view
+        if (mProfileExists) {
+            ((ContactListPinnedHeaderView)header).setCountView(mContactsCount);
+        } else {
+            clearPinnedHeaderContactsCount(header);
+        }
+    }
+
+    protected void clearPinnedHeaderContactsCount(View header) {
+        ((ContactListPinnedHeaderView)header).setCountView(null);
     }
 
     protected void addPartitions() {
@@ -276,6 +302,22 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     public void setIncludeProfile(boolean includeProfile) {
         mIncludeProfile = includeProfile;
+    }
+
+    public void setProfileExists(boolean exists) {
+        mProfileExists = exists;
+        // Stick the "ME" header for the profile
+        if (exists) {
+            SectionIndexer indexer = getIndexer();
+            if (indexer != null) {
+                ((ContactsSectionIndexer) indexer).setProfileHeader(
+                        getContext().getString(R.string.user_profile_contacts_list_header));
+            }
+        }
+    }
+
+    public boolean hasProfile() {
+        return mProfileExists;
     }
 
     public void configureDirectoryLoader(DirectoryListLoader loader) {
@@ -571,32 +613,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         mFilter = filter;
     }
 
-    @Override
-    public Placement getItemPlacementInSection(int position) {
-        // Special case code to prevent a section header from being displayed above the user's
-        // profile entry.
-        if (isUserProfile(position)) {
-            // The user profile entry shouldn't display a section header above; the header should be
-            // displayed on top of the item below.
-            Placement placement = new Placement();
-            placement.firstInSection = false;
-            placement.lastInSection = false;
-            placement.sectionHeader = null;
-            return placement;
-        } else if (position > 0 && isUserProfile(position - 1)) {
-            // If the item in the previous position is the user's profile, behave as if this entry
-            // is the first in the section.
-            Placement profilePlacement = super.getItemPlacementInSection(position - 1);
-            String profileHeader = profilePlacement.sectionHeader;
-            Placement placement = super.getItemPlacementInSection(position);
-            placement.firstInSection = true;
-            placement.sectionHeader = profileHeader;
-            return placement;
-        } else {
-            return super.getItemPlacementInSection(position);
-        }
-    }
-
     // TODO: move sharable logic (bindXX() methods) to here with extra arguments
 
     protected void bindQuickContact(final ContactListItemView view, int partitionIndex,
@@ -623,5 +639,13 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
                     ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(directoryId)).build();
         }
         return uri;
+    }
+
+    public void setContactsCount(String count) {
+        mContactsCount = count;
+    }
+
+    public String getContactsCount() {
+        return mContactsCount;
     }
 }

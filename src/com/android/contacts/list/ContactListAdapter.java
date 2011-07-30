@@ -113,14 +113,12 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     private String mSelectedContactLookupKey;
     private long mSelectedContactId;
 
-    // View types for entries in the list view.
-    private final int mViewTypeProfileEntry;
+    private ContactListFilter mFilter;
 
     public ContactListAdapter(Context context) {
         super(context);
 
         mUnknownNameText = context.getText(R.string.missing_name);
-        mViewTypeProfileEntry = getViewTypeCount() - 1;
     }
 
     public CharSequence getUnknownNameText() {
@@ -226,12 +224,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     @Override
     protected View newView(Context context, int partition, Cursor cursor, int position,
             ViewGroup parent) {
-        ContactListItemView view;
-        if (getItemViewType(position) == mViewTypeProfileEntry) {
-            view = new ContactListProfileItemView(context, null);
-        } else {
-            view = new ContactListItemView(context, null);
-        }
+        ContactListItemView view = new ContactListItemView(context, null);
         view.setUnknownNameText(mUnknownNameText);
         view.setTextWithHighlightingFactory(getTextWithHighlightingFactory());
         view.setQuickContactEnabled(isQuickContactEnabled());
@@ -239,32 +232,23 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         return view;
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return isUserProfile(position)
-                ? mViewTypeProfileEntry
-                : super.getItemViewType(position);
-    }
-
-    @Override
-    public int getItemViewTypeCount() {
-        return super.getItemViewTypeCount() + 1;
-    }
-
-    @Override
-    public int getViewTypeCount() {
-        // One extra view type - the user's profile entry view.
-        return super.getViewTypeCount() + 1;
-    }
-
-    protected void bindSectionHeaderAndDivider(ContactListItemView view, int position) {
+    protected void bindSectionHeaderAndDivider(ContactListItemView view, int position,
+            Cursor cursor) {
         if (isSectionHeaderDisplayEnabled()) {
             Placement placement = getItemPlacementInSection(position);
-            view.setSectionHeader(placement.firstInSection ? placement.sectionHeader : null);
+
+            // First position, set the contacts number string
+            if (position == 0 && cursor.getInt(CONTACT_IS_USER_PROFILE) == 1) {
+                view.setCountView(getContactsCount());
+            } else {
+                view.setCountView(null);
+            }
+            view.setSectionHeader(placement.sectionHeader);
             view.setDividerVisible(!placement.lastInSection);
         } else {
             view.setSectionHeader(null);
             view.setDividerVisible(true);
+            view.setCountView(null);
         }
     }
 
@@ -383,5 +367,16 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         }
 
         return null;
+    }
+
+    @Override
+    public void changeCursor(int partitionIndex, Cursor cursor) {
+        super.changeCursor(partitionIndex, cursor);
+
+        // Check if a profile exists
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            setProfileExists(cursor.getInt(CONTACT_IS_USER_PROFILE) == 1);
+        }
     }
 }
