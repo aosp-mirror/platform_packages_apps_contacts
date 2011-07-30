@@ -116,7 +116,7 @@
     <dimen name="detail_update_section_internal_padding">16dip</dimen>
 
     <!-- Margin around the contact's photo on the contact card -->
-    <dimen name="detail_contact_photo_margin">15dip</dimen>
+    <dimen name="detail_contact_photo_margin">16dip</dimen>
 
     <!-- Width and height of the contact photo on the contact detail page -->
     <dimen name="detail_contact_photo_size">256dip</dimen>

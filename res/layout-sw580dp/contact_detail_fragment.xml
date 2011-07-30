@@ -20,8 +20,7 @@
     android:id="@+id/contact_detail"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/panel_content">
+    android:layout_height="match_parent">
 
     <!-- Placeholder for empty list -->
     <include
@@ -30,23 +29,12 @@
         android:visibility="gone" />
 
     <!-- Real list -->
-    <com.android.contacts.widget.InterpolatingLayout
+    <ListView android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_weight="1">
-        <ListView android:id="@android:id/list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            ex:layout_wideParentWidth="800dip"
-            ex:layout_wideMarginLeft="64dip"
-            ex:layout_widePaddingRight="48dip"
-            ex:layout_narrowParentWidth="300dip"
-            ex:layout_narrowMarginLeft="5dip"
-            ex:layout_narrowPaddingRight="16dip"
-            android:cacheColorHint="#00000000"
-            android:divider="@null"
-        />
-    </com.android.contacts.widget.InterpolatingLayout>
+        android:layout_height="match_parent"
+        android:cacheColorHint="#00000000"
+        android:divider="@null"
+    />
 
     <!-- "QuickFix"- button (Copy to local contact, add to group) -->
     <Button
