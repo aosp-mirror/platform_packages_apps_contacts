@@ -19,20 +19,16 @@ import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.ContactTileLoaderFactory;
 import com.android.contacts.GroupMemberLoader;
 import com.android.contacts.R;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.DataKind;
+import com.android.contacts.list.ContactTileAdapter.DisplayType;
 
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
-import android.provider.ContactsContract;
-import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
@@ -430,10 +426,19 @@ public class ContactTileAdapter extends BaseAdapter {
         }
     }
 
+    private ContactTileView.Listener mContactTileListener = new ContactTileView.Listener() {
+        @Override
+        public void onClick(ContactTileView contactTileView) {
+            if (mListener != null) {
+                mListener.onContactSelected(contactTileView.getLookupUri());
+            }
+        }
+    };
+
     /**
      * Acts as a row item composed of {@link ContactTileView}
      */
-    private class ContactTileRow extends LinearLayout implements OnClickListener {
+    private class ContactTileRow extends LinearLayout {
         private int mItemViewType;
         private int mLayoutResId;
 
@@ -458,7 +463,7 @@ public class ContactTileAdapter extends BaseAdapter {
             }
 
         private void addTileFromEntry(ContactEntry entry, int tileIndex) {
-            ContactTileView contactTile = null;
+            final ContactTileView contactTile;
 
             if (getChildCount() <= tileIndex) {
                 switch (mItemViewType) {
@@ -480,18 +485,13 @@ public class ContactTileAdapter extends BaseAdapter {
                 contactTile.setLayoutParams(new LinearLayout.LayoutParams(0,
                         LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f));
                 contactTile.setPhotoManager(mPhotoManager);
-                contactTile.setOnClickListener(this);
+                contactTile.setListener(mContactTileListener);
                 addView(contactTile);
             } else {
                 contactTile = (ContactTileView) getChildAt(tileIndex);
             }
             contactTile.setClickable(entry != null);
             contactTile.loadFromContact(entry);
-        }
-
-        @Override
-        public void onClick(View v) {
-            mListener.onContactSelected(((ContactTileView) v).getLookupUri());
         }
     }
 
