@@ -58,7 +58,7 @@
         <item name="favorites_padding_bottom">?android:attr/actionBarSize</item>
     </style>
 
-    <style name="CallDetailActivityTheme" parent="android:Theme.Holo.SplitActionBarWhenNarrow">
+    <style name="CallDetailActivityTheme" parent="android:Theme.Holo">
         <item name="android:windowBackground">@android:color/black</item>
         <item name="android:gravity">top</item>
         <item name="call_detail_transparent_background">#CC000000</item>

@@ -2,6 +2,13 @@
   public <init>(...);
 }
 
+# Xml files containing onClick (menus and layouts) require that proguard not
+# remove their handlers.
+-keepclassmembers class * extends android.app.Activity {
+  public void *(android.view.View);
+  public void *(android.view.MenuItem);
+}
+
 # TODO: Instead of keeping the following two functions we could as well just remove them completely
 # as they are only used in test code
 

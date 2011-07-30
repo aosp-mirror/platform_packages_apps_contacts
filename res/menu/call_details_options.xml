@@ -15,15 +15,26 @@
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/remove_from_call_log"
+        android:id="@+id/menu_share_voicemail"
+        android:icon="@drawable/ic_share_holo_dark"
+        android:showAsAction="ifRoom"
+        android:onClick="onMenuShareVoicemail"
+    />
+    <item
+        android:id="@+id/menu_trash"
+        android:icon="@drawable/ic_trash_holo_dark"
+        android:showAsAction="ifRoom"
+        android:onClick="onMenuTrashVoicemail"
+    />
+    <item
+        android:id="@+id/menu_remove_from_call_log"
         android:icon="@android:drawable/ic_menu_close_clear_cancel"
         android:title="@string/recentCalls_removeFromRecentList"
-        android:showAsAction="withText"
+        android:onClick="onMenuRemoveFromCallLog"
     />
-
     <item
-        android:id="@+id/edit_number_before_call"
+        android:id="@+id/menu_edit_number_before_call"
         android:title="@string/recentCalls_editNumberBeforeCall"
-        android:showAsAction="withText"
+        android:onClick="onMenuEditNumberBeforeCall"
     />
 </menu>

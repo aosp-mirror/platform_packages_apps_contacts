@@ -100,8 +100,6 @@ public class CallDetailActivity extends ListActivity implements
     private TextView mStatusMessageText;
     private TextView mStatusMessageAction;
 
-    /** Whether we should show "remove from call log" in the options menu. */
-    private boolean mHasRemoveFromCallLog;
     /** Whether we should show "edit number before call" in the options menu. */
     private boolean mHasEditNumberBeforeCall;
 
@@ -348,9 +346,6 @@ public class CallDetailActivity extends ListActivity implements
                     getString(R.string.menu_sendTextMessage), smsIntent));
         }
 
-        // This action deletes all elements in the group from the call log.
-        // We don't have this action for voicemails, because you can just use the trash button.
-        mHasRemoveFromCallLog = !hasVoicemail();
         mHasEditNumberBeforeCall = canPlaceCallsTo && !isSipNumber && !isVoicemailNumber;
 
         if (actions.size() != 0) {
@@ -609,58 +604,65 @@ public class CallDetailActivity extends ListActivity implements
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.call_details_options, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         // This action deletes all elements in the group from the call log.
         // We don't have this action for voicemails, because you can just use the trash button.
-        menu.findItem(R.id.remove_from_call_log).setVisible(mHasRemoveFromCallLog);
-        menu.findItem(R.id.edit_number_before_call).setVisible(mHasEditNumberBeforeCall);
-        return mHasRemoveFromCallLog || mHasEditNumberBeforeCall;
+        menu.findItem(R.id.menu_remove_from_call_log).setVisible(!hasVoicemail());
+        menu.findItem(R.id.menu_edit_number_before_call).setVisible(mHasEditNumberBeforeCall);
+        menu.findItem(R.id.menu_trash).setVisible(hasVoicemail());
+        menu.findItem(R.id.menu_share_voicemail).setVisible(hasVoicemail());
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.remove_from_call_log: {
-                StringBuilder callIds = new StringBuilder();
-                for (Uri callUri : getCallLogEntryUris()) {
-                    if (callIds.length() != 0) {
-                        callIds.append(",");
-                    }
-                    callIds.append(ContentUris.parseId(callUri));
-                }
-
-                getContentResolver().delete(Calls.CONTENT_URI_WITH_VOICEMAIL,
-                        Calls._ID + " IN (" + callIds + ")", null);
-                // Also close the activity.
-                finish();
-                return true;
-            }
-
-            case R.id.edit_number_before_call:
-                startActivity(
-                        new Intent(Intent.ACTION_DIAL, mPhoneNumberHelper.getCallUri(mNumber)));
-                return true;
-
             case android.R.id.home: {
                 onHomeSelected();
                 return true;
             }
 
+            // All the options menu items are handled by onMenu... methods.
             default:
                 throw new IllegalArgumentException();
         }
     }
 
+    public void onMenuRemoveFromCallLog(MenuItem menuItem) {
+        StringBuilder callIds = new StringBuilder();
+        for (Uri callUri : getCallLogEntryUris()) {
+            if (callIds.length() != 0) {
+                callIds.append(",");
+            }
+            callIds.append(ContentUris.parseId(callUri));
+        }
+
+        getContentResolver().delete(Calls.CONTENT_URI_WITH_VOICEMAIL,
+                Calls._ID + " IN (" + callIds + ")", null);
+        // Also close the activity.
+        finish();
+    }
+
+    public void onMenuEditNumberBeforeCall(MenuItem menuItem) {
+        startActivity(new Intent(Intent.ACTION_DIAL, mPhoneNumberHelper.getCallUri(mNumber)));
+    }
+
+    public void onMenuShareVoicemail(MenuItem menuItem) {
+        Log.w(TAG, "onMenuShareVoicemail not yet implemented");
+    }
+
+    public void onMenuTrashVoicemail(MenuItem menuItem) {
+        Log.w(TAG, "onMenuTrashVoicemail not yet implemented");
+    }
+
     private void configureActionBar() {
         ActionBar actionBar = getActionBar();
         if (actionBar != null) {
-            actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_HOME,
-                    ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE
-                    | ActionBar.DISPLAY_SHOW_HOME);
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_HOME);
             actionBar.setIcon(R.drawable.ic_ab_dialer_holo_dark);
         }
     }
