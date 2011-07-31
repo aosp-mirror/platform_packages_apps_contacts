@@ -6,8 +6,8 @@
             android:shape="oval"
         >
             <size
-                android:width="15dip"
-                android:height="15dip"
+                android:width="16dip"
+                android:height="16dip"
             />
             <solid
                 android:color="@color/voicemail_playback_seek_bar_yet_to_play"
