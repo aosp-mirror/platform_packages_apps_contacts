@@ -236,7 +236,7 @@ public class ContactTileAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if (mContactCursor == null || mContactCursor.getCount() == 0) {
+        if (mContactCursor == null) {
             return 0;
         }
 
