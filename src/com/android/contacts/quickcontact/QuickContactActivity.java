@@ -68,6 +68,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -162,6 +163,10 @@ public class QuickContactActivity extends Activity {
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+
+        // Show QuickContact in front of soft input
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM,
+                WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
 
         setContentView(R.layout.quickcontact_activity);
 
