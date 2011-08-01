@@ -35,6 +35,9 @@ public class GoogleAccountType extends BaseAccountType {
     protected static final int FLAGS_RELATION = EditorInfo.TYPE_CLASS_TEXT
     | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS | EditorInfo.TYPE_TEXT_VARIATION_PERSON_NAME;
 
+    private static final List<String> mExtensionPackages =
+            Lists.newArrayList("com.google.android.apps.plus");
+
     public GoogleAccountType(Context context, String resPackageName) {
         this.accountType = ACCOUNT_TYPE;
         this.resPackageName = null;
@@ -60,8 +63,7 @@ public class GoogleAccountType extends BaseAccountType {
 
     @Override
     public List<String> getExtensionPackageNames() {
-        // TODO: Return the Google+ package name once it has the XML for an ExternalAccountType.
-        return super.getExtensionPackageNames();
+        return mExtensionPackages;
     }
 
     @Override
