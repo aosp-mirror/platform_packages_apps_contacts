@@ -25,7 +25,6 @@ import com.android.contacts.voicemail.VoicemailStatusHelper.StatusMessage;
 import com.android.contacts.voicemail.VoicemailStatusHelperImpl;
 
 import android.app.ActionBar;
-import android.app.FragmentManager;
 import android.app.ListActivity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -179,28 +178,28 @@ public class CallDetailActivity extends ListActivity implements
      */
     private void optionallyHandleVoicemail() {
         if (hasVoicemail()) {
-            // Has voicemail: leave the fragment visible.  Optionally start the playback.
+            // Has voicemail: add the voicemail fragment.  Add suitable arguments to set the uri
+            // to play and optionally start the playback.
             // Do a query to fetch the voicemail status messages.
-            boolean startPlayback = getIntent().getBooleanExtra(
-                    EXTRA_VOICEMAIL_START_PLAYBACK, false);
+            VoicemailPlaybackFragment playbackFragment = new VoicemailPlaybackFragment();
+            Bundle fragmentArguments = new Bundle();
             Uri voicemailUri = getIntent().getParcelableExtra(EXTRA_VOICEMAIL_URI);
-            getVoicemailPlaybackFragment().setVoicemailUri(voicemailUri, startPlayback);
+            fragmentArguments.putParcelable(EXTRA_VOICEMAIL_URI, voicemailUri);
+            if (getIntent().getBooleanExtra(EXTRA_VOICEMAIL_START_PLAYBACK, false)) {
+                fragmentArguments.putBoolean(EXTRA_VOICEMAIL_START_PLAYBACK, true);
+            }
+            playbackFragment.setArguments(fragmentArguments);
+            getFragmentManager().beginTransaction()
+                    .add(R.id.voicemail_container, playbackFragment).commit();
             mAsyncQueryHandler.startVoicemailStatusQuery(voicemailUri);
         } else {
-            // No voicemail uri: hide the voicemail fragment and the status view.
-            getFragmentManager().beginTransaction().hide(getVoicemailPlaybackFragment()).commit();
+            // No voicemail uri: hide the status view.
             mStatusMessageView.setVisibility(View.GONE);
         }
     }
 
     private boolean hasVoicemail() {
         return getIntent().getParcelableExtra(EXTRA_VOICEMAIL_URI) != null;
-    }
-
-    private VoicemailPlaybackFragment getVoicemailPlaybackFragment() {
-        FragmentManager manager = getFragmentManager();
-        return (VoicemailPlaybackFragment) manager.findFragmentById(
-                R.id.voicemail_playback_fragment);
     }
 
     /**

@@ -16,9 +16,13 @@
 
 package com.android.contacts.voicemail;
 
+import static com.android.contacts.CallDetailActivity.EXTRA_VOICEMAIL_START_PLAYBACK;
+import static com.android.contacts.CallDetailActivity.EXTRA_VOICEMAIL_URI;
+
 import com.android.contacts.R;
 import com.android.ex.variablespeed.MediaPlayerProxy;
 import com.android.ex.variablespeed.VariableSpeed;
+import com.google.common.base.Preconditions;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -71,7 +75,7 @@ public class VoicemailPlaybackFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.playback_layout, container);
+        View view = inflater.inflate(R.layout.playback_layout, null);
         mPlaybackSeek = (SeekBar) view.findViewById(R.id.playback_seek);
         mPlaybackSeek = (SeekBar) view.findViewById(R.id.playback_seek);
         mStartStopButton = (ImageButton) view.findViewById(R.id.playback_start_stop);
@@ -88,8 +92,14 @@ public class VoicemailPlaybackFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mScheduledExecutorService = createScheduledExecutorService();
+        Bundle arguments = getArguments();
+        Preconditions.checkNotNull(arguments, "fragment must be started with arguments");
+        Uri voicemailUri = arguments.getParcelable(EXTRA_VOICEMAIL_URI);
+        Preconditions.checkNotNull(voicemailUri, "fragment must contain EXTRA_VOICEMAIL_URI");
+        boolean startPlayback = arguments.getBoolean(EXTRA_VOICEMAIL_START_PLAYBACK, false);
         mPresenter = new VoicemailPlaybackPresenter(new PlaybackViewImpl(),
-                createMediaPlayer(mScheduledExecutorService), mScheduledExecutorService);
+                createMediaPlayer(mScheduledExecutorService), voicemailUri,
+                mScheduledExecutorService, startPlayback);
         mPresenter.onCreate(savedInstanceState);
     }
 
@@ -104,11 +114,6 @@ public class VoicemailPlaybackFragment extends Fragment {
         mPresenter.onDestroy();
         mScheduledExecutorService.shutdown();
         super.onDestroy();
-    }
-
-    /** Call this from the Activity containing this fragment to set the voicemail to play. */
-    public void setVoicemailUri(Uri voicemailUri, boolean startPlaying) {
-        mPresenter.setVoicemailUri(voicemailUri, startPlaying);
     }
 
     private MediaPlayerProxy createMediaPlayer(ExecutorService executorService) {
