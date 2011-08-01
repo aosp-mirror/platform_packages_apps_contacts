@@ -458,9 +458,9 @@ public class ContactTileAdapter extends BaseAdapter {
             for (int columnCounter = 0; columnCounter < columnCount; columnCounter++) {
                 ContactEntry entry =
                         columnCounter < list.size() ? list.get(columnCounter) : null;
-                        addTileFromEntry(entry, columnCounter);
-                }
+                addTileFromEntry(entry, columnCounter);
             }
+        }
 
         private void addTileFromEntry(ContactEntry entry, int tileIndex) {
             final ContactTileView contactTile;
