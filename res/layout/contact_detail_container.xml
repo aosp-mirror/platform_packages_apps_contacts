@@ -26,13 +26,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/background_primary"
+    android:padding="16dip">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:paddingTop="20dip"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -42,10 +43,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="20dip"
-        android:paddingLeft="10dip"
-        android:paddingRight="10dip"/>
+        android:layout_height="wrap_content"/>
 
     <fragment
         android:id="@+id/contact_detail_fragment"

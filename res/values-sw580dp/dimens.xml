@@ -22,7 +22,7 @@
     <dimen name="editor_round_button_padding_right">8dip</dimen>
     <dimen name="editor_field_top_padding">12dip</dimen>
     <dimen name="editor_field_bottom_padding">12dip</dimen>
-    <dimen name="detail_item_side_margin">19dip</dimen>
+    <dimen name="detail_item_side_margin">0dip</dimen>
     <dimen name="contact_name_text_size">26sp</dimen>
     <dimen name="action_bar_filter_min_width">120dip</dimen>
     <dimen name="action_bar_filter_max_width">120dip</dimen>

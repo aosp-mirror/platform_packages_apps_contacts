@@ -24,8 +24,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="20dip">
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/photo"
@@ -37,8 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingLeft="10dip"
-        android:paddingRight="10dip">
+        android:paddingLeft="16dip"
+        android:paddingRight="16dip">
 
         <TextView
             android:id="@+id/name"

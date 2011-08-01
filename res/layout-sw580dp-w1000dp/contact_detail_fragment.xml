@@ -21,7 +21,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/panel_content">
+    android:background="@color/background_primary"
+    android:padding="16dip">
 
     <!-- Placeholder for empty list -->
     <include
@@ -40,10 +41,7 @@
             android:scaleType="centerCrop"
             android:layout_width="@dimen/detail_contact_photo_size"
             android:layout_height="@dimen/detail_contact_photo_size"
-            android:layout_marginLeft="@dimen/detail_contact_photo_margin"
-            android:layout_marginRight="@dimen/detail_contact_photo_margin"
-            android:layout_marginTop="@dimen/detail_contact_photo_margin"
-            android:layout_marginBottom="@dimen/detail_contact_photo_margin"/>
+            android:layout_marginRight="@dimen/detail_contact_photo_margin"/>
 
         <ListView android:id="@android:id/list"
             android:layout_width="0dip"
