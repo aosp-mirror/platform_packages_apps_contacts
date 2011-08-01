@@ -23,6 +23,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
@@ -74,6 +75,7 @@ public class ExternalAccountType extends BaseAccountType {
     private int mInviteActionLabelResId;
     private String mAccountTypeLabelAttribute;
     private String mAccountTypeIconAttribute;
+    private boolean mInitSuccessful;
 
     public ExternalAccountType(Context context, String resPackageName) {
         this.resPackageName = resPackageName;
@@ -81,17 +83,18 @@ public class ExternalAccountType extends BaseAccountType {
 
         // Handle unknown sources by searching their package
         final PackageManager pm = context.getPackageManager();
-        final Intent syncAdapter = new Intent(ACTION_SYNC_ADAPTER);
-        final List<ResolveInfo> matches = pm.queryIntentServices(syncAdapter,
-                PackageManager.GET_META_DATA);
-        for (ResolveInfo info : matches) {
-            ServiceInfo serviceInfo = info.serviceInfo;
-            if (serviceInfo.packageName.equals(resPackageName)) {
+        try {
+            PackageInfo packageInfo = pm.getPackageInfo(resPackageName,
+                    PackageManager.GET_SERVICES|PackageManager.GET_META_DATA);
+            for (ServiceInfo serviceInfo : packageInfo.services) {
                 final XmlResourceParser parser = serviceInfo.loadXmlMetaData(pm,
                         METADATA_CONTACTS);
                 if (parser == null) continue;
                 inflate(context, parser);
             }
+        } catch (NameNotFoundException nnfe) {
+            // If the package name is not found, we can't initialize this account type.
+            return;
         }
 
         mExtensionPackageNames = new ArrayList<String>();
@@ -107,11 +110,22 @@ public class ExternalAccountType extends BaseAccountType {
         addDataKindDisplayName(context);
         addDataKindPhoneticName(context);
         addDataKindPhoto(context);
+
+        // If we reach this point, the account type has been successfully initialized.
+        mInitSuccessful = true;
     }
 
     @Override
     public boolean isExternal() {
         return true;
+    }
+
+    /**
+     * Whether this account type was able to be fully initialized.  This may be false if
+     * (for example) the package name associated with the account type could not be found.
+     */
+    public boolean isInitialized() {
+        return mInitSuccessful;
     }
 
     @Override
