@@ -1024,18 +1024,11 @@ public class PeopleActivity extends ContactsActivity
 
         @Override
         public void onInvalidSelection() {
-            ContactListFilter filter;
-            ContactListFilter currentFilter = mAllFragment.getFilter();
-            if (currentFilter != null
-                    && currentFilter.filterType == ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
-                filter = ContactListFilter.createFilterWithType(
-                        ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
-                mAllFragment.setFilter(filter);
-            } else {
-                filter = ContactListFilter.createFilterWithType(
-                        ContactListFilter.FILTER_TYPE_SINGLE_CONTACT);
-                mAllFragment.setFilter(filter, false);
-            }
+            Toast.makeText(PeopleActivity.this, R.string.toast_displaying_all_contacts,
+                    Toast.LENGTH_LONG).show();
+            ContactListFilter filter = ContactListFilter.createFilterWithType(
+                    ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
+            mAllFragment.setFilter(filter);
             mContactListFilterController.setContactListFilter(filter, true);
         }
     }
