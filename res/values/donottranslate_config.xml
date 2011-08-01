@@ -112,4 +112,12 @@
       shown. Otherwise it will be part of the content on the group detail page.
     -->
     <bool name="config_show_group_action_in_action_bar">false</bool>
+
+    <!-- Width of a tab in the tab carousel as a percentage of the current screen width on the
+         contact detail page -->
+    <item name="tab_width_screen_width_percentage" type="fraction">75%</item>
+
+    <!-- Height of the tab carousel as a percentage of the current screen width on the
+         contact detail page -->
+    <item name="tab_height_screen_width_percentage" type="fraction">50%</item>
 </resources>

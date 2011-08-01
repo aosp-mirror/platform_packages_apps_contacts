@@ -42,22 +42,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_above="@id/status_photo"
-        android:background="@android:color/black"
-        android:alpha=".25"/>
-
-    <TextView
-        android:id="@+id/label"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/detail_tab_carousel_tab_label_height"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_above="@id/status_photo"
-        android:paddingLeft="@dimen/detail_tab_carousel_tab_label_indent"
-        android:singleLine="true"
-        android:gravity="left|center_vertical"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/detail_tab_carousel_tab_label_color"
-        style="@android:style/Widget.Holo.ActionBar.TabView" />
+        android:background="#7F000000" />
 
     <TextView android:id="@+id/status"
         android:layout_width="wrap_content"
@@ -79,9 +64,24 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginBottom="@dimen/detail_tab_carousel_tab_label_height"
         android:background="@android:color/black"
         android:alpha="0"
         android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/detail_tab_carousel_tab_label_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_above="@id/status_photo"
+        android:paddingLeft="@dimen/detail_tab_carousel_tab_label_indent"
+        android:singleLine="true"
+        android:gravity="left|center_vertical"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/detail_tab_carousel_tab_label_color"
+        style="@android:style/Widget.Holo.ActionBar.TabView" />
 
     <View
         android:id="@+id/touch_intercept_overlay"

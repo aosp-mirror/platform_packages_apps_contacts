@@ -20,15 +20,42 @@
 -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/photo"
-        android:scaleType="centerCrop"
-        android:layout_width="@dimen/detail_contact_photo_size"
-        android:layout_height="@dimen/detail_contact_photo_size" />
+    <!-- Ensure that the contact photo for a contact WITHOUT social updates is the same width and
+    height as a contact WITH social updates (where the photo is 2/3 of the screen width). -->
+    <view
+        class="com.android.contacts.widget.ProportionalLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        ex:ratio="0.66"
+        ex:direction="widthToHeight">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/photo"
+                android:scaleType="centerCrop"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="2" />
+
+            <!-- Empty view to fill the rest of the LinearLayout, so that a weight on its sibling
+            ImageView will work.-->
+            <View
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </view>
 
     <TextView
         android:id="@+id/name"
