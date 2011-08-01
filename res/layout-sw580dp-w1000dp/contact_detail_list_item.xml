@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:paddingLeft="12dip"
+            android:paddingLeft="8dip"
             android:orientation="vertical">
 
             <TextView
@@ -56,6 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="?android:attr/textColorSecondary"
                 android:visibility="gone" />
 
         </LinearLayout>
@@ -68,37 +69,27 @@
             android:gravity="center"
             android:scaleType="centerInside" />
 
-        <FrameLayout
+        <TextView
+            android:id="@+id/kind"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/detail_min_line_item_height"
-            android:paddingLeft="@dimen/detail_item_side_margin"
-            android:paddingRight="@dimen/detail_item_side_margin">
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/kind"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone" />
+        <TextView
+            android:id="@+id/type"
+            style="@style/ContactDetailItemType"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingRight="16dip" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+        <View
+            android:id="@+id/primary_indicator"
+            android:layout_width="16dip"
+            android:layout_height="16dip"
+            android:visibility="gone"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/ic_menu_mark" />
 
-                <TextView
-                    android:id="@+id/type"
-                    style="@style/ContactDetailItemType" />
-
-                <View
-                    android:id="@+id/primary_indicator"
-                    android:layout_width="16dip"
-                    android:layout_height="16dip"
-                    android:visibility="gone"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/ic_menu_mark" />
-
-            </LinearLayout>
-        </FrameLayout>
     </com.android.contacts.detail.PrimaryActionViewContainer>
 
     <View

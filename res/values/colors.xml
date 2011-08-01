@@ -85,6 +85,12 @@
     <!-- Color of the theme of the People app -->
     <color name="people_app_theme_color">#33B5E5</color>
 
+    <!-- Primary text color in the People app -->
+    <color name="primary_text_color">#333333</color>
+
+    <!-- Secondary text color in the People app -->
+    <color name="secondary_text_color">#777777</color>
+
     <!-- Colors in the contact browser list -->
     <color name="contact_browser_list_bk_color">#EEEEEE</color>
     <color name="contact_count_text_color">#777777</color>
