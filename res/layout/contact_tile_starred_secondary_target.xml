@@ -61,14 +61,14 @@
         </FrameLayout>
 
         <View
-            android:id="@+id/vertical_divider"
+            android:id="@+id/secondary_vertical_divider"
             android:layout_width="1dip"
-            android:layout_height="24dip"
+            android:layout_height="32dip"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="12dip"
             android:layout_marginRight="44dip"
-            android:background="?android:attr/dividerVertical" />
+            android:layout_marginBottom="8dip"
+            android:background="@drawable/ic_divider_dashed_holo_dark" />
 
         <ImageButton
             android:id="@+id/contact_tile_push_state"
@@ -78,14 +78,28 @@
 
         <ImageButton
             android:id="@+id/contact_tile_secondary_button"
-            android:src="@drawable/ic_tab_unselected_contacts"
+            android:src="@drawable/ic_contacts_holo_dark"
             android:background="?android:attr/selectableItemBackground"
             android:layout_height="@dimen/contact_tile_shadowbox_height"
-            android:layout_width="32dip"
+            android:layout_width="48dip"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginLeft="8dip"
-            android:layout_marginRight="8dip" />
+            android:paddingRight="8dip"
+            android:paddingLeft="8dip" />
+
+        <View
+            android:id="@+id/contact_tile_vertical_divider"
+            android:layout_height="match_parent"
+            android:layout_width="2dip"
+            android:background="@color/phone_contact_tile_divider_color"
+            android:layout_alignParentRight="true" />
+
+        <View
+            android:id="@+id/contact_tile_horizontal_divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dip"
+            android:background="@color/phone_contact_tile_divider_color"
+            android:layout_alignParentBottom="true" />
 
     </RelativeLayout>
 

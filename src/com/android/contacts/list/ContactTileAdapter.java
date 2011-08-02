@@ -341,6 +341,7 @@ public class ContactTileAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         int itemViewType = getItemViewType(position);
+
         if (itemViewType == ViewTypes.DIVIDER) {
             // Checking For Divider First so not to cast convertView
             return convertView == null ? getDivider() : convertView;
@@ -353,7 +354,7 @@ public class ContactTileAdapter extends BaseAdapter {
             // Creating new row if needed
             contactTileRowView = new ContactTileRow(mContext, itemViewType);
         }
-        contactTileRowView.configureRow(contactList);
+        contactTileRowView.configureRow(contactList, position == getCount() - 1);
         return contactTileRowView;
     }
 
@@ -455,21 +456,21 @@ public class ContactTileAdapter extends BaseAdapter {
         /**
          * Configures the row to add {@link ContactEntry}s information to the views
          */
-        public void configureRow(ArrayList<ContactEntry> list) {
+        public void configureRow(ArrayList<ContactEntry> list, boolean isLastRow) {
             int columnCount = mItemViewType == ViewTypes.FREQUENT ? 1 : mColumnCount;
 
             // Adding tiles to row and filling in contact information
             for (int columnCounter = 0; columnCounter < columnCount; columnCounter++) {
                 ContactEntry entry =
                         columnCounter < list.size() ? list.get(columnCounter) : null;
-                addTileFromEntry(entry, columnCounter);
+                addTileFromEntry(entry, columnCounter, isLastRow);
             }
         }
 
-        private void addTileFromEntry(ContactEntry entry, int tileIndex) {
+        private void addTileFromEntry(ContactEntry entry, int childIndex, boolean isLastRow) {
             final ContactTileView contactTile;
 
-            if (getChildCount() <= tileIndex) {
+            if (getChildCount() <= childIndex) {
                 contactTile = (ContactTileView) inflate(mContext, mLayoutResId, null);
                 contactTile.setLayoutParams(new LinearLayout.LayoutParams(0,
                         LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f));
@@ -477,10 +478,15 @@ public class ContactTileAdapter extends BaseAdapter {
                 contactTile.setListener(mContactTileListener);
                 addView(contactTile);
             } else {
-                contactTile = (ContactTileView) getChildAt(tileIndex);
+                contactTile = (ContactTileView) getChildAt(childIndex);
             }
             contactTile.setClickable(entry != null);
             contactTile.loadFromContact(entry);
+
+            contactTile.setVerticalDividerVisibility(
+                    childIndex >= mColumnCount - 1 ? View.GONE : View.VISIBLE);
+            contactTile.setHorizontalDividerVisibility(
+                    isLastRow ? View.GONE : View.VISIBLE);
         }
     }
 

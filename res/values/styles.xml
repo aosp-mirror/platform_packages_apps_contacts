@@ -279,8 +279,6 @@
 
     <style name="ContactTileStarred">
         <item name="android:focusable">true</item>
-        <item name="android:padding">1px</item>
-        <item name="android:background">@drawable/list_selector</item>
     </style>
 
     <style name="ContactTileStarredName">

@@ -15,8 +15,30 @@
 -->
 
 <!-- Layout used for list separators. -->
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    style="?android:attr/listSeparatorTextViewStyle"
-    android:gravity="left|center_vertical"
-    android:id="@+id/header_text"
-/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:orientation="vertical"
+    android:layout_height="32dip"
+    android:divider="?android:attr/dividerVertical"
+    android:paddingLeft="16dip"
+    android:paddingRight="16dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dip"
+            android:paddingLeft="8dip"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/people_app_theme_color"
+            android:gravity="left|center_vertical"
+            android:id="@+id/header_text" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="@color/people_app_theme_color" />
+
+</LinearLayout>
