@@ -173,6 +173,9 @@
     <!-- Border padding for the group list header for each account -->
     <dimen name="group_list_header_padding">5dip</dimen>
 
+    <!-- Size of group list icons -->
+    <dimen name="group_list_icon_size">32dip</dimen>
+
     <!-- Border padding for the group detail fragment header -->
     <dimen name="group_detail_border_padding">20dip</dimen>
 

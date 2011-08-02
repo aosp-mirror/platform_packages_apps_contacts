@@ -19,6 +19,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:minHeight="@dimen/detail_min_line_item_height"
+    android:paddingRight="20dip"
     android:paddingBottom="10dip"
     style="@style/GroupBrowseListItem">
 
@@ -37,25 +39,76 @@
         layout="@layout/group_browse_list_account_header"
         android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/label"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:paddingLeft="10dip"
-        android:paddingRight="10dip"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:ellipsize="end"
-        android:singleLine="true" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/count"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:paddingLeft="10dip"
-        android:paddingRight="10dip"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="?android:attr/textColorTertiary"
-        android:ellipsize="end"
-        android:singleLine="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toLeftOf="@+id/icons"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true">
 
+            <TextView
+                android:id="@+id/label"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:ellipsize="end"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/count"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="?android:attr/textColorTertiary"
+                android:ellipsize="end"
+                android:singleLine="true" />
+
+        </LinearLayout>
+
+        <TableLayout
+            android:id="@+id/icons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+            <TableRow
+                android:layout_marginBottom="1dip">
+                <ImageView
+                    android:id="@+id/icon_1"
+                    android:layout_width="@dimen/group_list_icon_size"
+                    android:layout_height="@dimen/group_list_icon_size"
+                    android:layout_marginRight="1dip"
+                    android:src="@drawable/ic_contact_picture" />
+                <ImageView
+                    android:id="@+id/icon_2"
+                    android:layout_width="@dimen/group_list_icon_size"
+                    android:layout_height="@dimen/group_list_icon_size"
+                    android:src="@drawable/ic_contact_picture" />
+            </TableRow>
+            <TableRow>
+                <ImageView
+                    android:id="@+id/icon_3"
+                    android:layout_width="@dimen/group_list_icon_size"
+                    android:layout_height="@dimen/group_list_icon_size"
+                    android:layout_marginRight="1dip"
+                    android:src="@drawable/ic_contact_picture" />
+                <ImageView
+                    android:id="@+id/icon_4"
+                    android:layout_width="@dimen/group_list_icon_size"
+                    android:layout_height="@dimen/group_list_icon_size"
+                    android:src="@drawable/ic_contact_picture" />
+            </TableRow>
+
+        </TableLayout>
+    </RelativeLayout>
 </LinearLayout>
+

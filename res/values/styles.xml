@@ -248,7 +248,6 @@
     </style>
 
     <style name="GroupBrowseListItem">
-        <item name="android:paddingRight">20dip</item>
     </style>
 
     <style name="DialtactsDigitsTextAppearance">

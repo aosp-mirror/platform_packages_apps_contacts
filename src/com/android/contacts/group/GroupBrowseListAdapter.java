@@ -16,32 +16,158 @@
 
 package com.android.contacts.group;
 
+import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.GroupListLoader;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.AccountWithDataSet;
 import com.android.internal.util.Objects;
 
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
+import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Groups;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Adapter to populate the list of groups.
  */
 public class GroupBrowseListAdapter extends BaseAdapter {
 
+    private static final int MAX_ICONS_PER_GROUP_ROW = 4;
+
+    private static final String[] PROJECTION_GROUP_MEMBERSHIP_INFO = new String[] {
+        GroupMembership._ID,
+        GroupMembership.PHOTO_ID
+    };
+    private static final int GROUP_MEMBERSHIP_COLUMN_PHOTO_ID = 1;
+
+    /**
+     * Arguments for asynchronous photo ID loading. See {@link AsyncPhotoIdLoadTask}
+     */
+    private static class AsyncPhotoIdLoadArg {
+        public final View icons;
+        public final long groupId;
+        public final Map<Long, ArrayList<Long>> groupPhotoIdMap;
+        public final ContentResolver contentResolver;
+        public final ContactPhotoManager contactPhotoManager;
+
+        public AsyncPhotoIdLoadArg(
+                View icons, long groupId, Map<Long, ArrayList<Long>> groupPhotoIdMap,
+                ContentResolver contentResolver, ContactPhotoManager contactPhotoManager) {
+            this.icons = icons;
+            this.groupId = groupId;
+            this.groupPhotoIdMap = groupPhotoIdMap;
+            this.contentResolver = contentResolver;
+            this.contactPhotoManager = contactPhotoManager;
+        }
+    }
+
+    /**
+     * Loads photo IDs associated with a group ID supplied from {@link AsyncPhotoIdLoadArg#groupId},
+     * storing them in {@link GroupBrowseListAdapter#mGroupPhotoIdMap}.
+     *
+     * This AsyncTask also remembers a View which is associated with the group ID at the moment it
+     * is initiated (we use {@link View#setTag(Object) and View#getTag() to associate them}. If the
+     * View is still associated with the group ID after the asynchronous photo ID load, this class
+     * also asks {@link ContactPhotoManager} to load actual photo contents. Its parent (typically
+     * ListView) may reuse Views for different group IDs, so the photo content load often don't
+     * occur.
+     */
+    private static class AsyncPhotoIdLoadTask extends
+            AsyncTask<AsyncPhotoIdLoadArg, Void, ArrayList<Long>> {
+
+        private View mIcons;
+        private long mGroupId;
+        private Map<Long, ArrayList<Long>> mGroupPhotoIdMap;
+        private ContentResolver mContentResolver;
+        private ContactPhotoManager mContactPhotoManager;
+
+        @Override
+        protected ArrayList<Long> doInBackground(AsyncPhotoIdLoadArg... params) {
+            final AsyncPhotoIdLoadArg arg = params[0];
+            mIcons = arg.icons;
+            mGroupId = arg.groupId;
+            mGroupPhotoIdMap = arg.groupPhotoIdMap;
+            mContentResolver = arg.contentResolver;
+            mContactPhotoManager = arg.contactPhotoManager;
+
+            // Multiple requests for one group ID is possible. We just ignore duplicates,
+            // assuming query results won't change.
+            if (mGroupPhotoIdMap.containsKey(mGroupId)) {
+                return null;
+            }
+
+            final ArrayList<Long> photoIds = new ArrayList<Long>(MAX_ICONS_PER_GROUP_ROW);
+            Cursor cursor = null;
+            try {
+                cursor = mContentResolver.query(Data.CONTENT_URI,
+                        PROJECTION_GROUP_MEMBERSHIP_INFO,
+                        GroupMembership.MIMETYPE + "=? AND "
+                                + GroupMembership.PHOTO_ID + " IS NOT NULL AND "
+                                + GroupMembership.GROUP_ROW_ID + "=?",
+                        new String[] { GroupMembership.CONTENT_ITEM_TYPE,
+                                String.valueOf(mGroupId) }, null);
+                if (cursor != null) {
+                    int count = 0;
+                    while (cursor.moveToNext() && count < MAX_ICONS_PER_GROUP_ROW) {
+                        photoIds.add(cursor.getLong(GROUP_MEMBERSHIP_COLUMN_PHOTO_ID));
+                        count++;
+                    }
+                }
+            } finally {
+                if (cursor != null) {
+                    cursor.close();
+                }
+            }
+            return photoIds;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Long> photoIds) {
+            if (photoIds == null) {
+                return;
+            }
+
+            mGroupPhotoIdMap.put(mGroupId, photoIds);
+
+            final View icons = mIcons;
+            // If the original group ID, which was supplied when this AsyncTask was executed, is
+            // consistent with the ID inside mArgs, it means the View isn't reused by the
+            // other groups, and thus we can assume these Views are available for the group ID.
+            final Long currentGroupId = (Long) icons.getTag();
+            if (currentGroupId == mGroupId) {
+                final ImageView[] children = getIconViewsSordedByFillOrder(icons);
+                for (int i = 0; i < children.length; i++) {
+                    final long photoId = i < photoIds.size() ? photoIds.get(i) : 0;
+                    mContactPhotoManager.loadPhoto(children[i], photoId);
+                }
+            }
+        }
+    }
+
     private final Context mContext;
     private final LayoutInflater mLayoutInflater;
     private final AccountTypeManager mAccountTypeManager;
+
+    private final Map<Long, ArrayList<Long>> mGroupPhotoIdMap =
+            new ConcurrentHashMap<Long, ArrayList<Long>>();
+
+    private final ContactPhotoManager mContactPhotoManager;
 
     private Cursor mCursor;
 
@@ -52,6 +178,7 @@ public class GroupBrowseListAdapter extends BaseAdapter {
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
         mAccountTypeManager = AccountTypeManager.getInstance(mContext);
+        mContactPhotoManager = ContactPhotoManager.getInstance(mContext);
     }
 
     public void setCursor(Cursor cursor) {
@@ -179,6 +306,32 @@ public class GroupBrowseListAdapter extends BaseAdapter {
         viewCache.groupTitle.setText(entry.getTitle());
         viewCache.groupMemberCount.setText(memberCountString);
 
+        final View icons = result.findViewById(R.id.icons);
+        final ImageView[] children = getIconViewsSordedByFillOrder(icons);
+        final ArrayList<Long> photoIds = mGroupPhotoIdMap.get(entry.getGroupId());
+
+        // Let the icon holder remember its associated group ID.
+        // Each AsyncTask loading photo IDs will compare this ID with the AsyncTask's argument, and
+        // check if the bound View is reused by the other list items or not. If the View is reused,
+        // the group ID set here will be overridden by the new owner, thus ID inconsistency happens.
+        icons.setTag(entry.getGroupId());
+        if (photoIds != null) {
+            // Cache is available. Let the photo manager load those IDs.
+            for (int i = 0; i < children.length; i++) {
+                final long photoId = i < photoIds.size() ? photoIds.get(i) : 0;
+                mContactPhotoManager.loadPhoto(children[i], photoId);
+            }
+        } else {
+            // Cache is not available. Load photo IDs asynchronously.
+            for (ImageView child : children) {
+                mContactPhotoManager.loadPhoto(child, 0);
+            }
+            new AsyncPhotoIdLoadTask().execute(
+                    new AsyncPhotoIdLoadArg(icons, entry.getGroupId(),
+                            mGroupPhotoIdMap, mContext.getContentResolver(),
+                            mContactPhotoManager));
+        }
+
         if (mSelectionVisible) {
             result.setActivated(isSelectedGroup(groupUri));
         }
@@ -198,6 +351,19 @@ public class GroupBrowseListAdapter extends BaseAdapter {
 
     private static Uri getGroupUriFromId(long groupId) {
         return ContentUris.withAppendedId(Groups.CONTENT_URI, groupId);
+    }
+
+    /**
+     * Get ImageView objects inside the given View, sorted by the order photos should be filled.
+     */
+    private static ImageView[] getIconViewsSordedByFillOrder(View icons) {
+        final ImageView[] children = new ImageView[] {
+                (ImageView) icons.findViewById(R.id.icon_4),
+                (ImageView) icons.findViewById(R.id.icon_2),
+                (ImageView) icons.findViewById(R.id.icon_3),
+                (ImageView) icons.findViewById(R.id.icon_1)
+        };
+        return children;
     }
 
     /**
