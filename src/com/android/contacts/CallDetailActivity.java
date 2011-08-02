@@ -668,7 +668,6 @@ public class CallDetailActivity extends ListActivity implements
         ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_HOME);
-            actionBar.setIcon(R.drawable.ic_ab_dialer_holo_dark);
         }
     }
 
