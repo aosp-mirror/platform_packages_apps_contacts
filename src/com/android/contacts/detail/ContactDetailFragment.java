@@ -1990,7 +1990,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     R.dimen.detail_item_side_margin);
             mPaddingTop = resources.getDimensionPixelSize(
                     R.dimen.detail_item_vertical_margin);
-            mWidePaddingLeft = 2 * mPaddingLeft +
+            mWidePaddingLeft = mPaddingLeft +
+                    resources.getDimensionPixelSize(R.dimen.detail_item_icon_margin) +
                     resources.getDimensionPixelSize(R.dimen.detail_network_icon_size);
             mPaddingRight = mPaddingLeft;
             mPaddingBottom = mPaddingTop;

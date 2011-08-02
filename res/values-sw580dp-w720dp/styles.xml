@@ -16,6 +16,8 @@
 <resources>
     <style name="PeopleTheme" parent="@android:style/Theme.Holo.Light.SolidActionBar.Inverse.SplitActionBarWhenNarrow">
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
+        <item name="android:textColorPrimary">@color/primary_text_color</item>
+        <item name="android:textColorSecondary">@color/secondary_text_color</item>
         <item name="list_item_height">66dip</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="android:windowContentOverlay">@null</item>

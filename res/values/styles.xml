@@ -76,6 +76,8 @@
     <style name="ContactDetailActivityTheme" parent="@android:style/Theme.Holo.Light.SolidActionBar.Inverse">
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:textColorPrimary">@color/primary_text_color</item>
+        <item name="android:textColorSecondary">@color/secondary_text_color</item>
     </style>
     <style name="ContactEditorActivityTheme" parent="@android:style/Theme.Holo.Light.SolidActionBar.Inverse.SplitActionBarWhenNarrow">
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
@@ -117,6 +119,8 @@
 
     <style name="PeopleTheme" parent="@android:style/Theme.Holo.Light.SolidActionBar.Inverse.SplitActionBarWhenNarrow">
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
+        <item name="android:textColorPrimary">@color/primary_text_color</item>
+        <item name="android:textColorSecondary">@color/secondary_text_color</item>
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="section_header_background">@drawable/list_title_holo</item>
@@ -154,6 +158,8 @@
     <!-- TODO: Clean up this file so themes aren't copied. -->
     <style name="GroupDetailTheme" parent="@android:style/Theme.Holo.Light.SolidActionBar.Inverse.SplitActionBarWhenNarrow">
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
+        <item name="android:textColorPrimary">@color/primary_text_color</item>
+        <item name="android:textColorSecondary">@color/secondary_text_color</item>
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="section_header_background">@drawable/list_title_holo</item>
@@ -238,13 +244,11 @@
     </style>
 
     <style name="ContactDetailItemType">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
         <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
-        <item name="android:textColor">?android:attr/textColorTertiary</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">marquee</item>
-        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_gravity">center_vertical</item>
     </style>
 
     <style name="GroupBrowseListItem">

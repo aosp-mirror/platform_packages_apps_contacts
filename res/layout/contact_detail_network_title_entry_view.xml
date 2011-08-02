@@ -32,6 +32,8 @@
         android:id="@+id/network_icon"
         android:layout_width="@dimen/detail_network_icon_size"
         android:layout_height="@dimen/detail_network_icon_size"
+        android:layout_marginLeft="@dimen/detail_item_icon_margin"
+        android:layout_marginRight="@dimen/detail_item_icon_margin"
         android:layout_gravity="center_vertical"
         android:scaleType="centerInside" />
 
@@ -39,7 +41,6 @@
         android:id="@+id/network_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/detail_item_side_margin"
         android:layout_gravity="center_vertical"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
