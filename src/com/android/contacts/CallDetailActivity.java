@@ -51,6 +51,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -82,6 +83,7 @@ public class CallDetailActivity extends ListActivity implements
     private PhoneNumberHelper mPhoneNumberHelper;
     private PhoneCallDetailsHelper mPhoneCallDetailsHelper;
     private ImageView mMainActionView;
+    private ImageButton mMainActionPushLayerView;
     private ImageView mContactBackgroundView;
 
     private String mNumber = null;
@@ -156,6 +158,7 @@ public class CallDetailActivity extends ListActivity implements
         mStatusMessageText = (TextView) findViewById(R.id.voicemail_status_message);
         mStatusMessageAction = (TextView) findViewById(R.id.voicemail_status_action);
         mMainActionView = (ImageView) findViewById(R.id.main_action);
+        mMainActionPushLayerView = (ImageButton) findViewById(R.id.main_action_push_layer);
         mContactBackgroundView = (ImageView) findViewById(R.id.contact_background);
         mDefaultCountryIso = ContactsUtils.getCurrentCountryIso(this);
         mContactPhotoManager = ContactPhotoManager.getInstance(this);
@@ -289,7 +292,7 @@ public class CallDetailActivity extends ListActivity implements
         if (details[0].personId != -1) {
             Uri personUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, personId);
             mainActionIntent = new Intent(Intent.ACTION_VIEW, personUri);
-            mainActionIcon = R.drawable.sym_action_view_contact;
+            mainActionIcon = R.drawable.ic_contacts_holo_dark;
         } else if (isVoicemailNumber) {
             mainActionIntent = null;
             mainActionIcon = 0;
@@ -309,7 +312,7 @@ public class CallDetailActivity extends ListActivity implements
             mainActionIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
             mainActionIntent.setType(Contacts.CONTENT_ITEM_TYPE);
             mainActionIntent.putExtra(Insert.PHONE, mNumber);
-            mainActionIcon = R.drawable.sym_action_add;
+            mainActionIcon = R.drawable.ic_add_contact_holo_dark;
         } else {
             // If we cannot call the number, when we probably cannot add it as a contact either.
             // This is usually the case of private, unknown, or payphone numbers.
@@ -319,10 +322,12 @@ public class CallDetailActivity extends ListActivity implements
 
         if (mainActionIntent == null) {
             mMainActionView.setVisibility(View.INVISIBLE);
+            mMainActionPushLayerView.setVisibility(View.GONE);
         } else {
             mMainActionView.setVisibility(View.VISIBLE);
             mMainActionView.setImageResource(mainActionIcon);
-            mMainActionView.setOnClickListener(new View.OnClickListener() {
+            mMainActionPushLayerView.setVisibility(View.VISIBLE);
+            mMainActionPushLayerView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     startActivity(mainActionIntent);

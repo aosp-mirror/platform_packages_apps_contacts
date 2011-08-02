@@ -35,7 +35,7 @@
             android:background="#7F000000" />
         <ImageButton
             android:id="@+id/open_details_button"
-            android:src="@drawable/ic_fav_quickcontact_holo_dark"
+            android:src="@drawable/ic_contacts_holo_dark"
             android:background="?android:attr/selectableItemBackground"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
