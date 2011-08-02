@@ -466,22 +466,7 @@ public class ContactTileAdapter extends BaseAdapter {
             final ContactTileView contactTile;
 
             if (getChildCount() <= tileIndex) {
-                switch (mItemViewType) {
-                    case ViewTypes.STARRED_WITH_SECONDARY_ACTION:
-                        contactTile = (ContactTileSecondaryTargetView)
-                                inflate(mContext, mLayoutResId, null);
-                        break;
-                    case ViewTypes.STARRED:
-                        contactTile =
-                                (ContactTileStarredView) inflate(mContext, mLayoutResId, null);
-                        break;
-                    case ViewTypes.FREQUENT:
-                        contactTile = (ContactTileView) inflate(mContext, mLayoutResId, null);
-                        break;
-                    default:
-                        throw new IllegalStateException(
-                                "Unrecognized ViewType " + mItemViewType);
-                }
+                contactTile = (ContactTileView) inflate(mContext, mLayoutResId, null);
                 contactTile.setLayoutParams(new LinearLayout.LayoutParams(0,
                         LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f));
                 contactTile.setPhotoManager(mPhotoManager);
