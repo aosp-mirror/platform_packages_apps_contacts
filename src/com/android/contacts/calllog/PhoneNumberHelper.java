@@ -121,6 +121,9 @@ public class PhoneNumberHelper {
 
     /** Returns the geocode associated with a phone number or the empty string if not available. */
     public String getGeocodeForNumber(String number, String countryIso) {
+        if (!canGeocode(number)) {
+            return "";
+        }
         PhoneNumber structuredPhoneNumber = parsePhoneNumber(number, countryIso);
         if (structuredPhoneNumber != null) {
             return mPhoneNumberOfflineGeocoder.getDescriptionForNumber(
@@ -128,5 +131,10 @@ public class PhoneNumberHelper {
         } else {
             return "";
         }
+    }
+
+    /** Returns true if it is possible to compute a geocode for the given number. */
+    private boolean canGeocode(CharSequence number) {
+        return canPlaceCallsTo(number) && !isVoicemailNumber(number);
     }
 }
