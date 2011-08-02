@@ -202,7 +202,7 @@ public class SocialWidgetProvider extends AppWidgetProvider {
         sb.setSpan(sizeSpan, 0, name.length(), 0);
         sb.setSpan(styleSpan, 0, name.length(), 0);
 
-        if (streamItems.isEmpty()) {
+        if (streamItems == null || streamItems.isEmpty()) {
             views.setTextViewText(R.id.name, sb);
             views.setViewVisibility(R.id.name, View.VISIBLE);
             views.setViewVisibility(R.id.name_and_snippet, View.GONE);
