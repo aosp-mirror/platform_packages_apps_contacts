@@ -65,9 +65,12 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"مخاطبین پیشنهادی"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"همه مخاطبین"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"مخاطبین ملحق شده"</string>
-    <string name="menu_contactOptions" msgid="1957061455705020617">"گزینه ها"</string>
     <string name="contactOptionsTitle" msgid="8259347644090700915">"گزینه ها"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"حذف"</string>
+    <!-- no translation found for menu_set_ring_tone (8728345772068064946) -->
+    <skip />
+    <!-- no translation found for menu_redirect_calls_to_vm (3291482125835338104) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"شما نمی توانید مخاطبین را از حساب های فقط خواندنی حذف کنید اما می توانید آنها را در لیست های مخاطبین خود پنهان کنید."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"این مخاطب دارای اطلاعاتی از چند حساب است. اطلاعات حساب های فقط خواندنی در لیست های مخاطبین پنهان می شوند اما حذف نمی شوند."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"حذف این مخاطب اطلاعات را از حساب های متعدد حذف می کند."</string>
@@ -103,8 +106,10 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"ارسال تماس به صورت مستقیم به پست صوتی"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"پیش فرض"</string>
     <string name="removePhoto" msgid="4898105274130284565">"حذف عکس"</string>
-    <string name="noContacts" msgid="8579310973261953559">"مخاطبی موجود نیست."</string>
-    <string name="noGroups" msgid="8614664663561385253">"گروهی وجود ندارد."</string>
+    <!-- outdated translation 8579310973261953559 -->     <string name="noContacts" msgid="4955659076981974652">"مخاطبی موجود نیست."</string>
+    <!-- outdated translation 8614664663561385253 -->     <string name="noGroups" msgid="7315200974181864731">"گروهی وجود ندارد."</string>
+    <!-- no translation found for noAccounts (4742609114153797268) -->
+    <skip />
     <string name="noMatchingContacts" msgid="4266283206853990471">"مخاطب منطبقی یافت نشد."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"مخاطبی با شماره تلفن موجود نیست."</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"انتخاب مخاطبین برای نمایش"</string>
@@ -133,7 +138,7 @@
   </plurals>
     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"مخاطبی موجود نیست"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"مخاطب قابل رؤیتی موجود نیست"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"هیچ مخاطب ستاره داری موجود نیست"</string>
+    <!-- outdated translation 5391630590684099117 -->     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"هیچ مخاطب ستاره داری موجود نیست"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"هیچ مخاطبی در <xliff:g id="NAME">%s</xliff:g> موجود نیست"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"مخاطبین در <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
@@ -302,12 +307,8 @@
     <string name="sms_disambig_title" msgid="4675399294513152364">"ارسال متن با استفاده از"</string>
     <string name="make_primary" msgid="5829291915305113983">"این گزینه را به خاطر بسپار"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"برنامه ای برای انجام این عملکرد موجود نیست"</string>
-    <string name="quickcontact_remember_choice" msgid="5964536411579749424">"این گزینه را به خاطر بسپار"</string>
-    <string name="quickcontact_missing_name" msgid="5590266114306996632">"ناشناس"</string>
-    <string name="quickcontact_no_data" msgid="2098000859125253675">"داده ای موجود نیست"</string>
-    <string name="quickcontact_clear_defaults_description" msgid="3792792870662989100">"پاک کردن پیش فرض ها"</string>
-    <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"پیش فرض های تنظیم شده برای این مخاطب:"</string>
-    <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"پاک کردن"</string>
+    <!-- no translation found for missing_name (7930716592850443705) -->
+    <skip />
     <string name="menu_accounts" msgid="8499114602017077970">"حساب ها"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"مخاطبین جهت نمایش"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"وارد کردن/صادر کردن"</string>
@@ -417,6 +418,8 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"تلفظ آوایی نام خانوادگی"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"تلفظ نام"</string>
     <string name="network" msgid="5415816765302129264">"شبکه"</string>
+    <!-- no translation found for more_networks_button (8566780094016196438) -->
+    <skip />
     <string name="recent_updates" msgid="2062236709538790412">"اخیر"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> مخاطب"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
@@ -427,6 +430,8 @@
     <!-- no translation found for contact_read_only (1969214537163492087) -->
     <skip />
     <string name="no_contact_details" msgid="6754415338321837001">"اطلاعات دیگری برای این مخاطب موجود نیست"</string>
+    <!-- no translation found for group_read_only (7924922658394449477) -->
+    <skip />
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"مرتب سازی لیست بر اساس"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"نام"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"نام خانوادگی"</string>
@@ -473,7 +478,6 @@
     <string name="menu_copyContact" msgid="4401683725471696686">"کپی در مخاطبین من"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"افزودن به مخاطبین من"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"دایرکتوری <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="search_label" msgid="6789295859496641042">"جستجوی همه مخاطبین"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"دایرکتوری"</string>
     <string name="local_search_label" msgid="1686089693064201315">"مخاطبین"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"ایجاد یک کپی شخصی"</string>
@@ -516,6 +520,12 @@
     <!-- no translation found for group_list_num_contacts_in_group:other (6251996206137048525) -->
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"لطفاً قبل از پیوستن به مخاطب دیگری نام مخاطب را وارد کنید."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"مخاطب ملحق شده"</string>
+    <!-- no translation found for copy_text (3257145021583508761) -->
+    <skip />
+    <!-- no translation found for set_default (4417505153468300351) -->
+    <skip />
+    <!-- no translation found for clear_default (7193185801596678067) -->
+    <skip />
     <string name="toast_text_copied" msgid="5143776250008541719">"متن کپی شده"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"صرفنظر از تغییرات"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"آیا می خواهید از تغییرات خود صرفنظر کنید؟"</string>
@@ -527,7 +537,12 @@
     <string name="editGroup_title_edit" msgid="2173278908256913247">"ویرایش گروه"</string>
     <!-- no translation found for view_updates_from_group (1782685984905600034) -->
     <skip />
-    <string name="notification_voicemail_title" msgid="1282651537781272548">"پست صوتی جدید"</string>
+    <!-- no translation found for notification_voicemail_title:one (1746619685488504230) -->
+    <!-- no translation found for notification_voicemail_title:other (5513481419205061254) -->
+    <!-- no translation found for notification_voicemail_callers_list (1153954809339404149) -->
+    <skip />
+    <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
+    <skip />
     <!-- no translation found for voicemail_playback_error (5128928338910411763) -->
     <skip />
     <!-- no translation found for call_log_type_date_separator (8009466658324061546) -->
@@ -583,5 +598,7 @@
     <!-- no translation found for description_call_log_voicemail (4600798771975158948) -->
     <skip />
     <!-- no translation found for description_call_log_unheard_voicemail (118101684236996786) -->
+    <skip />
+    <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
     <skip />
 </resources>

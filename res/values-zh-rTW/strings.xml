@@ -65,9 +65,12 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"建議聯絡人"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"所有聯絡人"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"已合併聯絡人"</string>
-    <string name="menu_contactOptions" msgid="1957061455705020617">"選項"</string>
     <string name="contactOptionsTitle" msgid="8259347644090700915">"選項"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"刪除"</string>
+    <!-- no translation found for menu_set_ring_tone (8728345772068064946) -->
+    <skip />
+    <!-- no translation found for menu_redirect_calls_to_vm (3291482125835338104) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"您無法從唯讀帳戶中刪除聯絡人，但可在您的聯絡人清單中隱藏他們。"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"此聯絡人包含來自多個帳戶的資訊。您的聯絡人清單不會顯示唯讀帳戶的資訊 (這些資訊並不會被刪除)。"</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"刪除此聯絡人將會刪除多個帳戶的資訊。"</string>
@@ -103,8 +106,10 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"直接將來電轉到語音信箱"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"預設值"</string>
     <string name="removePhoto" msgid="4898105274130284565">"移除相片"</string>
-    <string name="noContacts" msgid="8579310973261953559">"沒有聯絡人。"</string>
-    <string name="noGroups" msgid="8614664663561385253">"沒有群組。"</string>
+    <!-- outdated translation 8579310973261953559 -->     <string name="noContacts" msgid="4955659076981974652">"沒有聯絡人。"</string>
+    <!-- outdated translation 8614664663561385253 -->     <string name="noGroups" msgid="7315200974181864731">"沒有群組。"</string>
+    <!-- no translation found for noAccounts (4742609114153797268) -->
+    <skip />
     <string name="noMatchingContacts" msgid="4266283206853990471">"找不到符合的聯絡人。"</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"沒有包含電話號碼的聯絡人資訊。"</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"選擇要顯示的聯絡人"</string>
@@ -133,7 +138,7 @@
   </plurals>
     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"沒有聯絡人"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"沒有可顯示的聯絡人"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"沒有已加星號的聯絡人"</string>
+    <!-- outdated translation 5391630590684099117 -->     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"沒有已加星號的聯絡人"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"「<xliff:g id="NAME">%s</xliff:g>」中沒有聯絡人"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"<xliff:g id="NAME">%s</xliff:g> 中的聯絡人"</string>
   <plurals name="listFoundAllContacts">
@@ -302,12 +307,8 @@
     <string name="sms_disambig_title" msgid="4675399294513152364">"簡訊使用："</string>
     <string name="make_primary" msgid="5829291915305113983">"記住這個選擇"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"找不到可以處理這個動作的應用程式"</string>
-    <string name="quickcontact_remember_choice" msgid="5964536411579749424">"記住這個選擇"</string>
-    <string name="quickcontact_missing_name" msgid="5590266114306996632">"不明"</string>
-    <string name="quickcontact_no_data" msgid="2098000859125253675">"無資料"</string>
-    <string name="quickcontact_clear_defaults_description" msgid="3792792870662989100">"清除預設值"</string>
-    <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"這位聯絡人的預設值："</string>
-    <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"清除"</string>
+    <!-- no translation found for missing_name (7930716592850443705) -->
+    <skip />
     <string name="menu_accounts" msgid="8499114602017077970">"帳戶"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"要顯示的聯絡人"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"匯入/匯出"</string>
@@ -417,6 +418,8 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"姓氏 (拼音)"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"姓名拼音"</string>
     <string name="network" msgid="5415816765302129264">"網路"</string>
+    <!-- no translation found for more_networks_button (8566780094016196438) -->
+    <skip />
     <string name="recent_updates" msgid="2062236709538790412">"近期更新"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> 聯絡人"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
@@ -427,6 +430,8 @@
     <!-- no translation found for contact_read_only (1969214537163492087) -->
     <skip />
     <string name="no_contact_details" msgid="6754415338321837001">"沒有此聯絡人的其他資訊"</string>
+    <!-- no translation found for group_read_only (7924922658394449477) -->
+    <skip />
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"清單排序依據"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"名字"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"姓氏"</string>
@@ -471,10 +476,8 @@
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"編輯所選聯絡人"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"要切換至編輯所選聯絡人嗎？系統會為您複製目前已輸入的資訊。"</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"複製到我的聯絡人"</string>
-    <!-- no translation found for add_to_my_contacts (1068274916793627723) -->
-    <skip />
+    <string name="add_to_my_contacts" msgid="1068274916793627723">"新增至我的聯絡人"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"目錄：<xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="search_label" msgid="6789295859496641042">"正在搜尋所有聯絡人"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"目錄"</string>
     <string name="local_search_label" msgid="1686089693064201315">"聯絡人"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"建立個人副本"</string>
@@ -517,6 +520,12 @@
     <!-- no translation found for group_list_num_contacts_in_group:other (6251996206137048525) -->
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"請先輸入聯絡人姓名，然後才能與其他聯絡人合併。"</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"已合併的聯絡人"</string>
+    <!-- no translation found for copy_text (3257145021583508761) -->
+    <skip />
+    <!-- no translation found for set_default (4417505153468300351) -->
+    <skip />
+    <!-- no translation found for clear_default (7193185801596678067) -->
+    <skip />
     <string name="toast_text_copied" msgid="5143776250008541719">"文字已複製"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"捨棄變更"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"您要捨棄變更嗎？"</string>
@@ -528,15 +537,17 @@
     <string name="editGroup_title_edit" msgid="2173278908256913247">"編輯群組"</string>
     <!-- no translation found for view_updates_from_group (1782685984905600034) -->
     <skip />
-    <string name="notification_voicemail_title" msgid="1282651537781272548">"新留言"</string>
+    <!-- no translation found for notification_voicemail_title:one (1746619685488504230) -->
+    <!-- no translation found for notification_voicemail_title:other (5513481419205061254) -->
+    <!-- no translation found for notification_voicemail_callers_list (1153954809339404149) -->
+    <skip />
+    <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
+    <skip />
     <!-- no translation found for voicemail_playback_error (5128928338910411763) -->
     <skip />
-    <!-- no translation found for call_log_type_date_separator (8009466658324061546) -->
-    <skip />
-    <!-- no translation found for call_log_new_header (846546437517724715) -->
-    <skip />
-    <!-- no translation found for call_log_old_header (6262205894314263629) -->
-    <skip />
+    <string name="call_log_type_date_separator" msgid="8009466658324061546">"/"</string>
+    <string name="call_log_new_header" msgid="846546437517724715">"最新"</string>
+    <string name="call_log_old_header" msgid="6262205894314263629">"較舊"</string>
     <!-- no translation found for voicemail_status_voicemail_not_available (3164200979671881947) -->
     <skip />
     <!-- no translation found for voicemail_status_messages_waiting (2970301042310727909) -->
@@ -586,5 +597,7 @@
     <!-- no translation found for description_call_log_voicemail (4600798771975158948) -->
     <skip />
     <!-- no translation found for description_call_log_unheard_voicemail (118101684236996786) -->
+    <skip />
+    <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
     <skip />
 </resources>

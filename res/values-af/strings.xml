@@ -88,9 +88,12 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Voorgestelde kontakte"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alle kontakte"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Kontakte saamgevoeg"</string>
-    <string name="menu_contactOptions" msgid="1957061455705020617">"Opsies"</string>
     <string name="contactOptionsTitle" msgid="8259347644090700915">"Opsies"</string>
     <!-- no translation found for deleteConfirmation_title (6394309508930335204) -->
+    <skip />
+    <!-- no translation found for menu_set_ring_tone (8728345772068064946) -->
+    <skip />
+    <!-- no translation found for menu_redirect_calls_to_vm (3291482125835338104) -->
     <skip />
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Jy kan nie kontakte uit leesalleen-rekeninge uitvee nie, maar jy kan hulle wel in jou kontaklyste versteek."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Hierdie kontak bevat inligting uit meerdere rekeninge. Inligting uit leesalleen-rekeninge sal in jou kontaklyste versteek word, nie verwyder word nie."</string>
@@ -139,9 +142,11 @@
     <!-- no translation found for default_ringtone (9099988849649827972) -->
     <skip />
     <string name="removePhoto" msgid="4898105274130284565">"Verwyder foto"</string>
-    <!-- no translation found for noContacts (8579310973261953559) -->
+    <!-- no translation found for noContacts (4955659076981974652) -->
     <skip />
-    <!-- no translation found for noGroups (8614664663561385253) -->
+    <!-- no translation found for noGroups (7315200974181864731) -->
+    <skip />
+    <!-- no translation found for noAccounts (4742609114153797268) -->
     <skip />
     <string name="noMatchingContacts" msgid="4266283206853990471">"Geen passende kontakte gevind nie."</string>
     <!-- no translation found for noContactsWithPhoneNumbers (1605457050218824269) -->
@@ -178,7 +183,7 @@
     <!-- outdated translation 6811347506748072822 -->     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Geen sigbare kontakte nie"</string>
     <!-- no translation found for listTotalAllContactsZeroCustom (4058252141420128998) -->
     <skip />
-    <!-- no translation found for listTotalAllContactsZeroStarred (5391630590684099117) -->
+    <!-- no translation found for listTotalAllContactsZeroStarred (1289318488170099285) -->
     <skip />
     <!-- no translation found for listTotalAllContactsZeroGroup (5448979458248027615) -->
     <skip />
@@ -371,12 +376,8 @@
     <string name="sms_disambig_title" msgid="4675399294513152364">"Teks met"</string>
     <string name="make_primary" msgid="5829291915305113983">"Onthou hierdie keuse"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Geen program gevind om hierdie handeling te hanteer nie"</string>
-    <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Onthou hierdie keuse"</string>
-    <string name="quickcontact_missing_name" msgid="5590266114306996632">"Onbekend"</string>
-    <string name="quickcontact_no_data" msgid="2098000859125253675">"Geen data nie"</string>
-    <string name="quickcontact_clear_defaults_description" msgid="3792792870662989100">"Vee verstek instellings uit"</string>
-    <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"Verstek stel vir hierdie kontak:"</string>
-    <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"Vee uit"</string>
+    <!-- no translation found for missing_name (7930716592850443705) -->
+    <skip />
     <string name="menu_accounts" msgid="8499114602017077970">"Rekeninge"</string>
     <!-- no translation found for menu_contacts_filter (2165153460860262501) -->
     <skip />
@@ -490,6 +491,8 @@
     <skip />
     <!-- no translation found for network (5415816765302129264) -->
     <skip />
+    <!-- no translation found for more_networks_button (8566780094016196438) -->
+    <skip />
     <!-- no translation found for recent_updates (2062236709538790412) -->
     <skip />
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kontak"</string>
@@ -501,6 +504,8 @@
     <!-- no translation found for contact_read_only (1969214537163492087) -->
     <skip />
     <string name="no_contact_details" msgid="6754415338321837001">"Geen bykomende inligting vir hierdie kontak nie"</string>
+    <!-- no translation found for group_read_only (7924922658394449477) -->
+    <skip />
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Rangskik lys volgens"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Voornaam"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Van"</string>
@@ -548,7 +553,6 @@
     <!-- no translation found for add_to_my_contacts (1068274916793627723) -->
     <skip />
     <string name="contact_directory_description" msgid="683398073603909119">"Gids <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="search_label" msgid="6789295859496641042">"Deursoek alle kontakte"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Gids"</string>
     <string name="local_search_label" msgid="1686089693064201315">"Kontakte"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"Skep \'n persoonlike kopie"</string>
@@ -590,6 +594,12 @@
     <!-- no translation found for group_list_num_contacts_in_group:other (6251996206137048525) -->
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Voer asseblief kontaknaam in voor jy dit by \'n ander kontak saamvoeg."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Kontak saamgevoeg"</string>
+    <!-- no translation found for copy_text (3257145021583508761) -->
+    <skip />
+    <!-- no translation found for set_default (4417505153468300351) -->
+    <skip />
+    <!-- no translation found for clear_default (7193185801596678067) -->
+    <skip />
     <string name="toast_text_copied" msgid="5143776250008541719">"Teks gekopieer"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Ontdoen wysigings"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Wil jy jou wysigings ontdoen?"</string>
@@ -606,7 +616,11 @@
     <skip />
     <!-- no translation found for view_updates_from_group (1782685984905600034) -->
     <skip />
-    <!-- no translation found for notification_voicemail_title (1282651537781272548) -->
+    <!-- no translation found for notification_voicemail_title:one (1746619685488504230) -->
+    <!-- no translation found for notification_voicemail_title:other (5513481419205061254) -->
+    <!-- no translation found for notification_voicemail_callers_list (1153954809339404149) -->
+    <skip />
+    <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
     <skip />
     <!-- no translation found for voicemail_playback_error (5128928338910411763) -->
     <skip />
@@ -665,5 +679,7 @@
     <!-- no translation found for description_call_log_voicemail (4600798771975158948) -->
     <skip />
     <!-- no translation found for description_call_log_unheard_voicemail (118101684236996786) -->
+    <skip />
+    <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
     <skip />
 </resources>

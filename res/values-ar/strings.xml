@@ -65,17 +65,19 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"جهات الاتصال المقترحة"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"جميع جهات الاتصال"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"جهات الاتصال المنضمة"</string>
-    <string name="menu_contactOptions" msgid="1957061455705020617">"الخيارات"</string>
     <string name="contactOptionsTitle" msgid="8259347644090700915">"الخيارات"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"حذف"</string>
+    <!-- no translation found for menu_set_ring_tone (8728345772068064946) -->
+    <skip />
+    <!-- no translation found for menu_redirect_calls_to_vm (3291482125835338104) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"لا يمكنك حذف جهات الاتصال من الحسابات للقراءة فقط، ولكن يمكنك إخفاؤها في قوائم جهات الاتصال."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"تحتوي جهة الاتصال هذه على معلومات من عدة حسابات. وسيتم إخفاء المعلومات من الحسابات التي للقراءة فقط في قوائم جهات الاتصال، وليس حذفها."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"سيؤدي حذف جهة الاتصال هذه إلى حذف المعلومات من عدة حسابات."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"سيتم حذف جهة الاتصال هذه."</string>
     <string name="menu_done" msgid="796017761764190697">"تم"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"إلغاء"</string>
-    <!-- no translation found for menu_discard (6456087569315685632) -->
-    <skip />
+    <string name="menu_discard" msgid="6456087569315685632">"تجاهل"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"تعديل جهة الاتصال"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"جهة اتصال جديدة"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"صوتيًا"</string>
@@ -103,8 +105,10 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"إرسال المكالمات إلى البريد الصوتي مباشرة"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"افتراضي"</string>
     <string name="removePhoto" msgid="4898105274130284565">"إزالة الصور"</string>
-    <string name="noContacts" msgid="8579310973261953559">"لا توجد جهات اتصال."</string>
-    <string name="noGroups" msgid="8614664663561385253">"لا توجد مجموعات."</string>
+    <!-- outdated translation 8579310973261953559 -->     <string name="noContacts" msgid="4955659076981974652">"لا توجد جهات اتصال."</string>
+    <!-- outdated translation 8614664663561385253 -->     <string name="noGroups" msgid="7315200974181864731">"لا توجد مجموعات."</string>
+    <!-- no translation found for noAccounts (4742609114153797268) -->
+    <skip />
     <string name="noMatchingContacts" msgid="4266283206853990471">"لم يتم العثور على أية جهات اتصال متطابقة."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"ليس هناك جهات اتصال تشتمل على أرقام هواتف."</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"اختيار جهات اتصال لعرضها"</string>
@@ -133,7 +137,7 @@
   </plurals>
     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"لا توجد جهات اتصال"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"ليس هناك جهات اتصال مرئية"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"ليس هناك أية جهات اتصال مميزة بنجمة"</string>
+    <!-- outdated translation 5391630590684099117 -->     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"ليس هناك أية جهات اتصال مميزة بنجمة"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"ليس هناك جهات اتصال في <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"جهات الاتصال في <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
@@ -302,12 +306,8 @@
     <string name="sms_disambig_title" msgid="4675399294513152364">"إرسال رسالة نصية قصيرة باستخدام"</string>
     <string name="make_primary" msgid="5829291915305113983">"تذكر هذا الاختيار"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"لم يتم العثور على تطبيق يمكنه مباشرة هذا الإجراء."</string>
-    <string name="quickcontact_remember_choice" msgid="5964536411579749424">"تذكر هذا الاختيار"</string>
-    <string name="quickcontact_missing_name" msgid="5590266114306996632">"غير معروف"</string>
-    <string name="quickcontact_no_data" msgid="2098000859125253675">"ليس هناك أي بيانات"</string>
-    <string name="quickcontact_clear_defaults_description" msgid="3792792870662989100">"محو الإعدادات الافتراضية"</string>
-    <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"الإعدادات الافتراضية لجهة الاتصال هذه:"</string>
-    <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"محو"</string>
+    <!-- no translation found for missing_name (7930716592850443705) -->
+    <skip />
     <string name="menu_accounts" msgid="8499114602017077970">"الحسابات"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"جهات الاتصال التي يتم عرضها"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"استيراد/تصدير"</string>
@@ -417,16 +417,17 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"اسم الأسرة الصوتي"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"الاسم"</string>
     <string name="network" msgid="5415816765302129264">"الشبكة"</string>
+    <!-- no translation found for more_networks_button (8566780094016196438) -->
+    <skip />
     <string name="recent_updates" msgid="2062236709538790412">"حديثة"</string>
     <string name="account_type_format" msgid="718948015590343010">"جهة اتصال <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"استخدام هذه الصورة"</string>
-    <!-- unknown placeholder SOURCE in contact_read_only -->
-    <skip />
-    <!-- no translation found for contact_read_only (1969214537163492087) -->
-    <skip />
+    <string name="contact_read_only" msgid="1969214537163492087">"غير قابلة للتعديل على هذا الجهاز"</string>
     <string name="no_contact_details" msgid="6754415338321837001">"ليس هناك معلومات إضافية لجهة الاتصال هذه"</string>
+    <!-- no translation found for group_read_only (7924922658394449477) -->
+    <skip />
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"تصنيف القائمة بحسب"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"الاسم الممنوح"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"اسم العائلة"</string>
@@ -455,8 +456,7 @@
   </plurals>
     <string name="no_contacts_selected" msgid="5877803471037324613">"لم يتم تحديد جهات اتصال."</string>
     <string name="add_field" msgid="2384260056674995230">"إضافة حقل آخر"</string>
-    <!-- no translation found for add_new_entry_for_section (5223080690667565044) -->
-    <skip />
+    <string name="add_new_entry_for_section" msgid="5223080690667565044">"إضافة جديد"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"عبر <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> عبر <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"مفضل"</string>
@@ -473,7 +473,6 @@
     <string name="menu_copyContact" msgid="4401683725471696686">"نسخ إلى جهات الاتصال الخاصة بي"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"إضافة إلى \"جهات الاتصال الخاصة بي\""</string>
     <string name="contact_directory_description" msgid="683398073603909119">"الدليل <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="search_label" msgid="6789295859496641042">"البحث في كل جهات الاتصال"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"الدليل"</string>
     <string name="local_search_label" msgid="1686089693064201315">"جهات الاتصال"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"جارٍ إنشاء نسخة شخصية"</string>
@@ -487,7 +486,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"تحديد عرض مخصص"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"الإعدادات"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"جهات الاتصال التي يتم عرضها"</string>
-    <!-- outdated translation 377929915873428211 -->     <string name="menu_settings" msgid="1515262535785451190">"الإعدادات"</string>
+    <string name="menu_settings" msgid="1515262535785451190">"خيارات العرض"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"خيارات العرض"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>، <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"البحث عن جهات اتصال"</string>
@@ -510,12 +509,22 @@
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> من المجموعات"</item>
   </plurals>
     <string name="delete_group_dialog_message" msgid="295063284548750881">"هل تريد بالتأكيد حذف المجموعة \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"؟ (لن يتم حذف جهات الاتصال نفسها)."</string>
-    <!-- no translation found for num_contacts_in_group:one (1352418549951013448) -->
-    <!-- no translation found for num_contacts_in_group:other (8146027769011086349) -->
-    <!-- no translation found for group_list_num_contacts_in_group:one (3323065321661972446) -->
-    <!-- no translation found for group_list_num_contacts_in_group:other (6251996206137048525) -->
+  <plurals name="num_contacts_in_group">
+    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> من الأشخاص من <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
+    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> من الأشخاص من <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
+  </plurals>
+  <plurals name="group_list_num_contacts_in_group">
+    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> من الأشخاص"</item>
+    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> من الأشخاص"</item>
+  </plurals>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"الرجاء إدخال اسم جهة الاتصال قبل الانضمام إلى جهة اتصال أخرى."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"جهة الاتصال منضمة"</string>
+    <!-- no translation found for copy_text (3257145021583508761) -->
+    <skip />
+    <!-- no translation found for set_default (4417505153468300351) -->
+    <skip />
+    <!-- no translation found for clear_default (7193185801596678067) -->
+    <skip />
     <string name="toast_text_copied" msgid="5143776250008541719">"تم نسخ النص"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"إلغاء التغييرات"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"هل تريد إلغاء تغييراتك؟"</string>
@@ -525,63 +534,43 @@
     <string name="enter_contact_name" msgid="2930510479516059437">"أدخل اسم جهة الاتصال"</string>
     <string name="editGroup_title_insert" msgid="7803743109105317959">"مجموعة جديدة"</string>
     <string name="editGroup_title_edit" msgid="2173278908256913247">"تعديل المجموعة"</string>
-    <!-- no translation found for view_updates_from_group (1782685984905600034) -->
+    <string name="view_updates_from_group" msgid="1782685984905600034">"عرض التحديثات"</string>
+    <!-- no translation found for notification_voicemail_title:one (1746619685488504230) -->
+    <!-- no translation found for notification_voicemail_title:other (5513481419205061254) -->
+    <!-- no translation found for notification_voicemail_callers_list (1153954809339404149) -->
     <skip />
-    <string name="notification_voicemail_title" msgid="1282651537781272548">"بريد صوتي جديد"</string>
-    <!-- no translation found for voicemail_playback_error (5128928338910411763) -->
+    <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
     <skip />
+    <string name="voicemail_playback_error" msgid="5128928338910411763">"تعذر تشغيل البريد الصوتي"</string>
     <!-- no translation found for call_log_type_date_separator (8009466658324061546) -->
     <skip />
     <string name="call_log_new_header" msgid="846546437517724715">"جديد"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"أقدم"</string>
-    <!-- no translation found for voicemail_status_voicemail_not_available (3164200979671881947) -->
-    <skip />
-    <!-- no translation found for voicemail_status_messages_waiting (2970301042310727909) -->
-    <skip />
-    <!-- no translation found for voicemail_status_configure_voicemail (3940240432123700974) -->
-    <skip />
-    <!-- no translation found for voicemail_status_audio_not_available (3369618334553341626) -->
-    <skip />
-    <!-- no translation found for voicemail_status_action_configure (7008713959076506385) -->
-    <skip />
-    <!-- no translation found for voicemail_status_action_call_server (1824816252288551794) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_slowest (6047030504814773029) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_slower (7890393922358642543) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_normal (6030110237820243006) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_faster (4161478290979905481) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_fastest (3373646875150544205) -->
-    <skip />
-    <!-- no translation found for call_log_item_count (2623628374805503262) -->
-    <skip />
-    <!-- no translation found for group_name_hint (2659811836386413509) -->
-    <skip />
-    <!-- no translation found for nfc_vcard_file_name (2823095213265993609) -->
-    <skip />
-    <!-- no translation found for menu_show_voicemails_only (1898421289561435703) -->
-    <skip />
-    <!-- no translation found for status_available (5586870015822828392) -->
-    <skip />
-    <!-- no translation found for status_away (1838861100379804730) -->
-    <skip />
-    <!-- no translation found for status_busy (9147992455450257136) -->
-    <skip />
-    <!-- no translation found for description_call_log_call_button (8207201401459528442) -->
-    <skip />
-    <!-- no translation found for description_call_log_play_button (651182125650429846) -->
-    <skip />
-    <!-- no translation found for description_call_log_incoming_call (4485427487637250143) -->
-    <skip />
-    <!-- no translation found for description_call_log_outgoing_call (604831756853471658) -->
-    <skip />
-    <!-- no translation found for description_call_log_missed_call (2242805209983708825) -->
-    <skip />
-    <!-- no translation found for description_call_log_voicemail (4600798771975158948) -->
-    <skip />
-    <!-- no translation found for description_call_log_unheard_voicemail (118101684236996786) -->
+    <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"لا يمكن الاتصال بخادم البريد الصوتي."</string>
+    <string name="voicemail_status_messages_waiting" msgid="2970301042310727909">"لا يمكن الاتصال بخادم البريد الصوتي. بريد صوتي جديد في انتظارك."</string>
+    <string name="voicemail_status_configure_voicemail" msgid="3940240432123700974">"ابدأ تهيئة بريدك الصوتي."</string>
+    <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"الصوت غير متاح."</string>
+    <string name="voicemail_status_action_configure" msgid="7008713959076506385">"تهيئة"</string>
+    <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"اتصال ببريد صوتي..."</string>
+    <string name="voicemail_speed_slowest" msgid="6047030504814773029">"أبطأ سرعة"</string>
+    <string name="voicemail_speed_slower" msgid="7890393922358642543">"سرعة بطيئة"</string>
+    <string name="voicemail_speed_normal" msgid="6030110237820243006">"سرعة عادية"</string>
+    <string name="voicemail_speed_faster" msgid="4161478290979905481">"سرعة عالية"</string>
+    <string name="voicemail_speed_fastest" msgid="3373646875150544205">"أعلى سرعة"</string>
+    <string name="call_log_item_count" msgid="2623628374805503262">"(%1$d)"</string>
+    <string name="group_name_hint" msgid="2659811836386413509">"اسم المجموعة"</string>
+    <string name="nfc_vcard_file_name" msgid="2823095213265993609">"استلام ج اتص.NFC"</string>
+    <string name="menu_show_voicemails_only" msgid="1898421289561435703">"إظهار رسائل البريد الصوتي فقط"</string>
+    <string name="status_available" msgid="5586870015822828392">"متاح"</string>
+    <string name="status_away" msgid="1838861100379804730">"بعيد"</string>
+    <string name="status_busy" msgid="9147992455450257136">"مشغول"</string>
+    <string name="description_call_log_call_button" msgid="8207201401459528442">"اتصال برقم"</string>
+    <string name="description_call_log_play_button" msgid="651182125650429846">"تشغيل البريد الصوتي"</string>
+    <string name="description_call_log_incoming_call" msgid="4485427487637250143">"مكالمة واردة"</string>
+    <string name="description_call_log_outgoing_call" msgid="604831756853471658">"مكالمة صادرة"</string>
+    <string name="description_call_log_missed_call" msgid="2242805209983708825">"مكالمة فائتة"</string>
+    <string name="description_call_log_voicemail" msgid="4600798771975158948">"البريد الصوتي"</string>
+    <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"البريد الصوتي غير المسموع"</string>
+    <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
     <skip />
 </resources>
