@@ -52,7 +52,6 @@ public class ContactTileView extends FrameLayout {
 
     public ContactTileView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setLayerType(View.LAYER_TYPE_HARDWARE, null);
     }
 
     @Override

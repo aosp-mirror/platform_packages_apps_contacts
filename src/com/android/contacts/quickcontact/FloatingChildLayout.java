@@ -158,7 +158,7 @@ public class FloatingChildLayout extends FrameLayout {
         final int scaleInterpolator = isExitAnimation ? android.R.interpolator.accelerate_quint
                 : android.R.interpolator.decelerate_quint;
         animator.setInterpolator(AnimationUtils.loadInterpolator(getContext(), scaleInterpolator));
-        final float scaleTarget = isExitAnimation ? 0.7f : 1.0f;
+        final float scaleTarget = isExitAnimation ? 0.5f : 1.0f;
         animator.scaleX(scaleTarget);
         animator.scaleY(scaleTarget);
         animator.alpha(isExitAnimation ? 0.0f : 1.0f);

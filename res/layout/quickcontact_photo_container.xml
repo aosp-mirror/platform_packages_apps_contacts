@@ -32,8 +32,7 @@
             android:layout_alignBottom="@id/photo"
             android:layout_alignLeft="@id/photo"
             android:layout_alignRight="@id/photo"
-            android:alpha="0.5"
-            android:background="@android:color/black" />
+            android:background="#7F000000" />
         <ImageButton
             android:id="@+id/open_details_button"
             android:src="@drawable/ic_fav_quickcontact_holo_dark"

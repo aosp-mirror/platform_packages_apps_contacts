@@ -97,11 +97,6 @@
         <attr name="list_item_header_underline_color" format="color" />
     </declare-styleable>
 
-    <declare-styleable name="CallDetailActivity">
-        <attr name="call_detail_transparent_background" format="color" />
-        <attr name="call_detail_contact_background_overlay_alpha" format="float" />
-    </declare-styleable>
-
     <declare-styleable name="CallLog">
         <attr name="call_log_primary_text_color" format="color" />
         <attr name="call_log_primary_background_color" format="color" />
