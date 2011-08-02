@@ -21,13 +21,23 @@
     android:scrollbars="none"
     android:orientation="horizontal">
 
-    <fragment class="com.android.contacts.detail.ContactDetailFragment"
-        android:id="@+id/about_fragment"
+    <!--
+      Container for the "About" page fragment on the contact card for a contact
+      with social updates. This view ID must match with a view ID in the layout
+      that is used after an orientation change.
+    -->
+    <FrameLayout
+        android:id="@+id/about_fragment_container"
         android:layout_width="@dimen/detail_fragment_carousel_fragment_width"
         android:layout_height="match_parent" />
 
-    <fragment class="com.android.contacts.detail.ContactDetailUpdatesFragment"
-        android:id="@+id/updates_fragment"
+    <!--
+      Container for the "Updates" page fragment on the contact card for a contact
+      with social updates. This view ID must match with a view ID in the layout
+      that is used after an orientation change.
+    -->
+    <FrameLayout
+        android:id="@+id/updates_fragment_container"
         android:layout_width="@dimen/detail_fragment_carousel_fragment_width"
         android:layout_height="match_parent" />
 

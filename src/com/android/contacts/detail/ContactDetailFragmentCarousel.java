@@ -19,6 +19,7 @@ package com.android.contacts.detail;
 import com.android.contacts.R;
 
 import android.content.Context;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -36,8 +37,21 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
 
     private static final String TAG = ContactDetailFragmentCarousel.class.getSimpleName();
 
+    /**
+     * Number of pixels that this view can be scrolled horizontally.
+     */
     private int mAllowedHorizontalScrollLength = Integer.MIN_VALUE;
+
+    /**
+     * Minimum X scroll position that must be surpassed (if the user is on the "about" page of the
+     * contact card), in order for this view to automatically snap to the "updates" page.
+     */
     private int mLowerThreshold = Integer.MIN_VALUE;
+
+    /**
+     * Maximum X scroll position (if the user is on the "updates" page of the contact card), below
+     * which this view will automatically snap to the "about" page.
+     */
     private int mUpperThreshold = Integer.MIN_VALUE;
 
     private static final int ABOUT_PAGE = 0;
@@ -50,6 +64,9 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
     private ViewOverlay mUpdatesFragment;
 
     private static final float MAX_ALPHA = 0.5f;
+
+    private final Handler mHandler = new Handler();
+    private boolean mAttachedToWindow;
 
     public ContactDetailFragmentCarousel(Context context) {
         this(context, null);
@@ -69,19 +86,52 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
         setOnTouchListener(this);
     }
 
-    public void setAboutFragment(ViewOverlay fragment) {
-        // TODO: We can't always assume the "about" page will be the current page.
-        mAboutFragment = fragment;
-        mAboutFragment.enableAlphaLayer();
-        mAboutFragment.setAlphaLayerValue(0);
-        mAboutFragment.disableTouchInterceptor();
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        // Take the width of this view as the width of the screen and compute necessary thresholds.
+        // Only do this computation 1x.
+        if (mAllowedHorizontalScrollLength == Integer.MIN_VALUE) {
+            int screenWidth = MeasureSpec.getSize(widthMeasureSpec);
+            int fragmentWidth = mContext.getResources().getDimensionPixelSize(
+                    R.dimen.detail_fragment_carousel_fragment_width);
+            mAllowedHorizontalScrollLength = (2 * fragmentWidth) - screenWidth;
+            mLowerThreshold = (screenWidth - fragmentWidth) / 2;
+            mUpperThreshold = mAllowedHorizontalScrollLength - mLowerThreshold;
+
+            // Snap to the current page now that the allowed horizontal scroll length has been
+            // computed.
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (mAttachedToWindow && mAboutFragment != null && mUpdatesFragment != null) {
+                        snapToEdge();
+                    }
+                }
+            });
+        }
     }
 
-    public void setUpdatesFragment(ViewOverlay fragment) {
-        mUpdatesFragment = fragment;
+    public void setCurrentPage(int pageIndex) {
+        if (mCurrentPage != pageIndex) {
+            mCurrentPage = pageIndex;
+            if (mAttachedToWindow && mAboutFragment != null && mUpdatesFragment != null) {
+                snapToEdge();
+            }
+        }
+    }
+
+    public void setFragments(ViewOverlay aboutFragment, ViewOverlay updatesFragment) {
+        mAboutFragment = aboutFragment;
+        mAboutFragment.enableAlphaLayer();
+        mAboutFragment.setAlphaLayerValue(mCurrentPage == ABOUT_PAGE ? 0 : MAX_ALPHA);
+
+        mUpdatesFragment = updatesFragment;
         mUpdatesFragment.enableAlphaLayer();
-        mUpdatesFragment.setAlphaLayerValue(MAX_ALPHA);
-        mUpdatesFragment.enableTouchInterceptor(mUpdatesFragTouchInterceptListener);
+        mUpdatesFragment.setAlphaLayerValue(mCurrentPage == UPDATES_PAGE ? 0 : MAX_ALPHA);
+
+        snapToEdge();
     }
 
     public int getCurrentPage() {
@@ -121,9 +171,9 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
 
     private void updateAlphaLayers() {
         mAboutFragment.setAlphaLayerValue(mLastScrollPosition * MAX_ALPHA /
-                getAllowedHorizontalScrollLength());
+                mAllowedHorizontalScrollLength);
         mUpdatesFragment.setAlphaLayerValue(MAX_ALPHA - mLastScrollPosition * MAX_ALPHA /
-                getAllowedHorizontalScrollLength());
+                mAllowedHorizontalScrollLength);
     }
 
     @Override
@@ -139,7 +189,7 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
                 smoothScrollTo(0, 0);
                 break;
             case UPDATES_PAGE:
-                smoothScrollTo(getAllowedHorizontalScrollLength(), 0);
+                smoothScrollTo(mAllowedHorizontalScrollLength, 0);
                 break;
         }
         updateTouchInterceptors();
@@ -154,57 +204,13 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
             case ABOUT_PAGE:
                 // If the user is on the "about" page, and the scroll position exceeds the lower
                 // threshold, then we should switch to the "updates" page.
-                return (mLastScrollPosition > getLowerThreshold()) ? UPDATES_PAGE : ABOUT_PAGE;
+                return (mLastScrollPosition > mLowerThreshold) ? UPDATES_PAGE : ABOUT_PAGE;
             case UPDATES_PAGE:
                 // If the user is on the "updates" page, and the scroll position goes below the
                 // upper threshold, then we should switch to the "about" page.
-                return (mLastScrollPosition < getUpperThreshold()) ? ABOUT_PAGE : UPDATES_PAGE;
+                return (mLastScrollPosition < mUpperThreshold) ? ABOUT_PAGE : UPDATES_PAGE;
         }
         throw new IllegalStateException("Invalid current page " + mCurrentPage);
-    }
-
-    /**
-     * Returns the number of pixels that this view can be scrolled horizontally.
-     */
-    private int getAllowedHorizontalScrollLength() {
-        if (mAllowedHorizontalScrollLength == Integer.MIN_VALUE) {
-            computeThresholds();
-        }
-        return mAllowedHorizontalScrollLength;
-    }
-
-    /**
-     * Returns the minimum X scroll position that must be surpassed (if the user is on the "about"
-     * page of the contact card), in order for this view to automatically snap to the "updates"
-     * page.
-     */
-    private int getLowerThreshold() {
-        if (mLowerThreshold == Integer.MIN_VALUE) {
-            computeThresholds();
-        }
-        return mLowerThreshold;
-    }
-
-    /**
-     * Returns the maximum X scroll position (if the user is on the "updates" page of the contact
-     * card), below which this view will automatically snap to the "about" page.
-     */
-    private int getUpperThreshold() {
-        if (mLowerThreshold == Integer.MIN_VALUE) {
-            computeThresholds();
-        }
-        return mUpperThreshold;
-    }
-
-    // TODO: Move this to a Fragment override method (i.e. onActivityCreated or some method where
-    // we can be sure the width of the views are non-zero) instead of doing it on the fly when the
-    // values are requested for the first time.
-    private void computeThresholds() {
-        int screenWidth = getWidth();
-        int fragmentWidth = findViewById(R.id.about_fragment).getWidth();
-        mAllowedHorizontalScrollLength = (2 * fragmentWidth) - screenWidth;
-        mLowerThreshold = (screenWidth - fragmentWidth) / 2;
-        mUpperThreshold = mAllowedHorizontalScrollLength - mLowerThreshold;
     }
 
     @Override
@@ -215,5 +221,17 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
             return true;
         }
         return false;
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        mAttachedToWindow = true;
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        mAttachedToWindow = false;
     }
 }

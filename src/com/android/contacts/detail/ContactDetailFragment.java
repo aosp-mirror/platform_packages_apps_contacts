@@ -61,6 +61,7 @@ import android.net.ParseException;
 import android.net.Uri;
 import android.net.WebAddress;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.provider.ContactsContract;
@@ -130,6 +131,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     }
 
     private static final String KEY_CONTACT_URI = "contactUri";
+    private static final String KEY_LIST_STATE = "liststate";
     private static final String LOADER_ARG_CONTACT_URI = "contactUri";
 
     private Context mContext;
@@ -193,6 +195,12 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     private View mTouchInterceptLayer;
 
     /**
+     * Saved state of the {@link ListView}. This must be saved and applied to the {@ListView} only
+     * when the adapter has been populated again.
+     */
+    private Parcelable mListState;
+
+    /**
      * A list of distinct contact IDs included in the current contact.
      */
     private ArrayList<Long> mRawContactIds = new ArrayList<Long>();
@@ -224,6 +232,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
             mLookupUri = savedInstanceState.getParcelable(KEY_CONTACT_URI);
+            mListState = savedInstanceState.getParcelable(KEY_LIST_STATE);
         }
         mNfcHandler = new NfcHandler(this);
     }
@@ -232,6 +241,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(KEY_CONTACT_URI, mLookupUri);
+        if (mListView != null) {
+            outState.putParcelable(KEY_LIST_STATE, mListView.onSaveInstanceState());
+        }
     }
 
     @Override
@@ -286,6 +298,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         if (mContactData != null) {
             bindData();
         }
+
         return mView;
     }
 
@@ -415,9 +428,16 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         if (mAdapter == null) {
             mAdapter = new ViewAdapter();
             mListView.setAdapter(mAdapter);
-        } else {
-            mAdapter.notifyDataSetChanged();
         }
+
+        // Restore {@link ListView} state if applicable because the adapter is now populated.
+        if (mListState != null) {
+            mListView.onRestoreInstanceState(mListState);
+            mListState = null;
+        }
+
+        mAdapter.notifyDataSetChanged();
+
         mListView.setEmptyView(mEmptyView);
 
         configureQuickFix();

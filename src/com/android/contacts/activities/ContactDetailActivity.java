@@ -25,6 +25,7 @@ import com.android.contacts.detail.ContactDetailFragment;
 import com.android.contacts.detail.ContactDetailFragmentCarousel;
 import com.android.contacts.detail.ContactDetailTabCarousel;
 import com.android.contacts.detail.ContactDetailUpdatesFragment;
+import com.android.contacts.detail.ContactDetailViewPagerAdapter;
 import com.android.contacts.detail.ContactLoaderFragment;
 import com.android.contacts.detail.ContactLoaderFragment.ContactLoaderFragmentListener;
 import com.android.contacts.interactions.ContactDeletionInteraction;
@@ -72,6 +73,8 @@ public class ContactDetailActivity extends ContactsActivity {
      */
     public static final String INTENT_KEY_IGNORE_DEFAULT_UP_BEHAVIOR = "ignoreDefaultUpBehavior";
 
+    private static final String KEY_CONTACT_HAS_UPDATES = "contactHasUpdates";
+    private static final String KEY_CURRENT_PAGE_INDEX = "currentPageIndex";
     private static final String KEY_DETAIL_FRAGMENT_TAG = "detailFragTag";
     private static final String KEY_UPDATES_FRAGMENT_TAG = "updatesFragTag";
 
@@ -89,6 +92,8 @@ public class ContactDetailActivity extends ContactsActivity {
     private ViewPager mViewPager;
 
     private ContactDetailFragmentCarousel mFragmentCarousel;
+
+    private boolean mFragmentsAddedToFragmentManager;
 
     private ViewGroup mRootView;
     private ViewGroup mContentView;
@@ -129,25 +134,37 @@ public class ContactDetailActivity extends ContactsActivity {
         mRootView = (ViewGroup) findViewById(R.id.contact_detail_view);
         mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        // Manually remove any {@link ViewPager} fragments if there was an orientation change
-        // because the {@link ViewPager} is not used in both orientations. (If we leave the
-        // fragments around, they'll be around in the {@link FragmentManager} but won't be visible
-        // on screen and the {@link ViewPager} won't ask to initialize them again).
+        FragmentManager fragmentManager = getFragmentManager();
+        mDetailFragment = (ContactDetailFragment)
+                fragmentManager.findFragmentByTag(
+                ContactDetailViewPagerAdapter.ABOUT_FRAGMENT_TAG);
+        mUpdatesFragment = (ContactDetailUpdatesFragment)
+                fragmentManager.findFragmentByTag(
+                ContactDetailViewPagerAdapter.UPDTES_FRAGMENT_TAG);
+
+        // If the fragment were found in the {@link FragmentManager} then we don't need to add
+        // it again.
+        if (mDetailFragment != null) {
+            mFragmentsAddedToFragmentManager = true;
+        } else {
+            // Otherwise, create the fragments dynamically and remember to add them to the
+            // {@link FragmentManager}.
+            mDetailFragment = new ContactDetailFragment();
+            mUpdatesFragment = new ContactDetailUpdatesFragment();
+            mFragmentsAddedToFragmentManager = false;
+        }
+
+        mDetailFragment.setListener(mFragmentListener);
+        mDetailFragment.setVerticalScrollListener(mVerticalScrollListener);
+        mDetailFragment.setData(mLookupUri, mContactData);
+        mUpdatesFragment.setData(mLookupUri, mContactData);
+
         if (savedState != null) {
-            String aboutFragmentTag = savedState.getString(KEY_DETAIL_FRAGMENT_TAG);
-            String updatesFragmentTag = savedState.getString(KEY_UPDATES_FRAGMENT_TAG);
-
-            FragmentManager fragmentManager = getFragmentManager();
-            mDetailFragment = (ContactDetailFragment) fragmentManager.findFragmentByTag(
-                    aboutFragmentTag);
-            mUpdatesFragment = (ContactDetailUpdatesFragment) fragmentManager.findFragmentByTag(
-                    updatesFragmentTag);
-
-            if (mDetailFragment != null && mUpdatesFragment != null) {
-                FragmentTransaction ft = fragmentManager.beginTransaction();
-                ft.remove(mDetailFragment);
-                ft.remove(mUpdatesFragment);
-                ft.commit();
+            mContactHasUpdates = savedState.getBoolean(KEY_CONTACT_HAS_UPDATES);
+            if (mContactHasUpdates) {
+                setupContactWithUpdates(savedState.getInt(KEY_CURRENT_PAGE_INDEX, 0));
+            } else {
+                setupContactWithoutUpdates();
             }
         }
 
@@ -166,16 +183,9 @@ public class ContactDetailActivity extends ContactsActivity {
 
     @Override
     public void onAttachFragment(Fragment fragment) {
-        if (fragment instanceof ContactDetailFragment) {
-            mDetailFragment = (ContactDetailFragment) fragment;
-            mDetailFragment.setListener(mFragmentListener);
-            mDetailFragment.setVerticalScrollListener(mVerticalScrollListener);
-            mDetailFragment.setData(mLookupUri, mContactData);
-        } else if (fragment instanceof ContactDetailUpdatesFragment) {
-            mUpdatesFragment = (ContactDetailUpdatesFragment) fragment;
-            mUpdatesFragment.setData(mLookupUri, mContactData);
-        } else if (fragment instanceof ContactLoaderFragment) {
+         if (fragment instanceof ContactLoaderFragment) {
             mLoaderFragment = (ContactLoaderFragment) fragment;
+            mLoaderFragment.setRetainInstance(true);
             mLoaderFragment.setListener(mLoaderFragmentListener);
             mLoaderFragment.loadUri(getIntent().getData());
         }
@@ -261,6 +271,8 @@ public class ContactDetailActivity extends ContactsActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putBoolean(KEY_CONTACT_HAS_UPDATES, mContactHasUpdates);
+        outState.putInt(KEY_CURRENT_PAGE_INDEX, getCurrentPage());
         if (mViewPager != null) {
             outState.putString(KEY_DETAIL_FRAGMENT_TAG, mDetailFragment.getTag());
             outState.putString(KEY_UPDATES_FRAGMENT_TAG, mUpdatesFragment.getTag());
@@ -296,7 +308,7 @@ public class ContactDetailActivity extends ContactsActivity {
                     invalidateOptionsMenu();
                     setupTitle();
                     if (mContactHasUpdates) {
-                        setupContactWithUpdates();
+                        setupContactWithUpdates(null /* Don't change the current page */);
                     } else {
                         setupContactWithoutUpdates();
                     }
@@ -328,7 +340,11 @@ public class ContactDetailActivity extends ContactsActivity {
         actionBar.setSubtitle(company);
     }
 
-    private void setupContactWithUpdates() {
+    /**
+     * Setup the layout for the contact with updates. Pass in the index of the current page to
+     * select or null if the current selection should be left as is.
+     */
+    private void setupContactWithUpdates(Integer currentPageIndex) {
         if (mContentView == null) {
             mContentView = (ViewGroup) mInflater.inflate(
                     R.layout.contact_detail_container_with_updates, mRootView, false);
@@ -337,29 +353,78 @@ public class ContactDetailActivity extends ContactsActivity {
             // Make sure all needed views are retrieved. Note that narrow width screens have a
             // {@link ViewPager} and {@link ContactDetailTabCarousel}, while wide width screens have
             // a {@link ContactDetailFragmentCarousel}.
-            mViewPager = (ViewPager) findViewById(R.id.pager);
-            if (mViewPager != null) {
-                mViewPager.removeAllViews();
-                mViewPager.setAdapter(new ViewPagerAdapter(getFragmentManager()));
-                mViewPager.setOnPageChangeListener(mOnPageChangeListener);
-            }
-
             mTabCarousel = (ContactDetailTabCarousel) findViewById(R.id.tab_carousel);
             if (mTabCarousel != null) {
                 mTabCarousel.setListener(mTabCarouselListener);
             }
 
+            mViewPager = (ViewPager) findViewById(R.id.pager);
+            if (mViewPager != null) {
+                // Inflate 2 view containers to pass in as children to the {@link ViewPager},
+                // which will in turn be the parents to the mDetailFragment and mUpdatesFragment
+                // since the fragments must have the same parent view IDs in both landscape and
+                // portrait layouts.
+                ViewGroup detailContainer = (ViewGroup) mInflater.inflate(
+                        R.layout.contact_detail_about_fragment_container, mViewPager, false);
+                ViewGroup updatesContainer = (ViewGroup) mInflater.inflate(
+                        R.layout.contact_detail_updates_fragment_container, mViewPager, false);
+
+                ContactDetailViewPagerAdapter adapter = new ContactDetailViewPagerAdapter();
+                adapter.setAboutFragmentView(detailContainer);
+                adapter.setUpdatesFragmentView(updatesContainer);
+
+                mViewPager.addView(detailContainer);
+                mViewPager.addView(updatesContainer);
+                mViewPager.setAdapter(adapter);
+                mViewPager.setOnPageChangeListener(mOnPageChangeListener);
+
+                if (!mFragmentsAddedToFragmentManager) {
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+                    transaction.add(R.id.about_fragment_container, mDetailFragment,
+                            ContactDetailViewPagerAdapter.ABOUT_FRAGMENT_TAG);
+                    transaction.add(R.id.updates_fragment_container, mUpdatesFragment,
+                            ContactDetailViewPagerAdapter.UPDTES_FRAGMENT_TAG);
+                    transaction.commit();
+                    fragmentManager.executePendingTransactions();
+                }
+
+                // Select page if applicable
+                if (currentPageIndex != null) {
+                    mViewPager.setCurrentItem(currentPageIndex);
+                }
+            }
+
             mFragmentCarousel = (ContactDetailFragmentCarousel)
                     findViewById(R.id.fragment_carousel);
+            // Add the fragments to the fragment containers in the carousel using a
+            // {@link FragmentTransaction} if they haven't already been added to the
+            // {@link FragmentManager}.
+            if (mFragmentCarousel != null) {
+                if (!mFragmentsAddedToFragmentManager) {
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+                    transaction.add(R.id.about_fragment_container, mDetailFragment,
+                            ContactDetailViewPagerAdapter.ABOUT_FRAGMENT_TAG);
+                    transaction.add(R.id.updates_fragment_container, mUpdatesFragment,
+                            ContactDetailViewPagerAdapter.UPDTES_FRAGMENT_TAG);
+                    transaction.commit();
+                    fragmentManager.executePendingTransactions();
+                }
+
+                // Select page if applicable
+                if (currentPageIndex != null) {
+                    mFragmentCarousel.setCurrentPage(currentPageIndex);
+                }
+            }
         }
 
         // Then reset the contact data to the appropriate views
         if (mTabCarousel != null) {
             mTabCarousel.loadData(mContactData);
         }
-        if (mFragmentCarousel != null) {
-            if (mDetailFragment != null) mFragmentCarousel.setAboutFragment(mDetailFragment);
-            if (mUpdatesFragment != null) mFragmentCarousel.setUpdatesFragment(mUpdatesFragment);
+        if (mFragmentCarousel != null && mDetailFragment != null && mUpdatesFragment != null) {
+            mFragmentCarousel.setFragments(mDetailFragment, mUpdatesFragment);
         }
         if (mDetailFragment != null) {
             mDetailFragment.setData(mLookupUri, mContactData);
@@ -374,6 +439,8 @@ public class ContactDetailActivity extends ContactsActivity {
             mContentView = (ViewGroup) mInflater.inflate(
                     R.layout.contact_detail_container_without_updates, mRootView, false);
             mRootView.addView(mContentView);
+            mDetailFragment = (ContactDetailFragment) getFragmentManager().findFragmentById(
+                    R.id.contact_detail_fragment);
         }
         // Reset contact data
         if (mDetailFragment != null) {
