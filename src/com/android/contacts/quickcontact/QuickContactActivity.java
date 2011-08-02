@@ -467,8 +467,6 @@ public class QuickContactActivity extends Activity {
                 }
             }
 
-            boolean isIm = Im.CONTENT_ITEM_TYPE.equals(mimeType);
-
             // Handle Email rows with presence data as Im entry
             final boolean hasPresence = !cursor.isNull(DataQuery.PRESENCE);
             if (hasPresence && Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
@@ -478,20 +476,6 @@ public class QuickContactActivity extends Activity {
                     final DataAction action = new DataAction(context, Im.CONTENT_ITEM_TYPE, imKind,
                             dataId, cursor);
                     considerAdd(action, cache);
-                    isIm = true;
-                }
-            }
-
-            if (hasPresence && isIm) {
-                int chatCapability = cursor.getInt(DataQuery.CHAT_CAPABILITY);
-                if ((chatCapability & Im.CAPABILITY_HAS_CAMERA) != 0) {
-                    final DataKind imKind = accountTypes.getKindOrFallback(accountType, dataSet,
-                            Im.CONTENT_ITEM_TYPE);
-                    if (imKind != null) {
-                        final DataAction chatAction = new DataAction(context,
-                                Constants.MIME_TYPE_VIDEO_CHAT, imKind, dataId, cursor);
-                        considerAdd(chatAction, cache);
-                    }
                 }
             }
         }
