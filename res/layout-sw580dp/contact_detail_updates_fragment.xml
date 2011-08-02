@@ -36,7 +36,7 @@
                 class="com.android.contacts.widget.ProportionalLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                ex:ratio="0.5"
+                ex:ratio="0.66"
                 ex:direction="widthToHeight">
 
                 <!-- Put a dummy view here because the ProportionalLayout requires one -->

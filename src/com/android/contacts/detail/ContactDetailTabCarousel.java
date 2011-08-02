@@ -42,7 +42,11 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
     private static final int TAB_INDEX_UPDATES = 1;
     private static final int TAB_COUNT = 2;
 
-    private static final double TAB_WIDTH_SCREEN_PERCENTAGE = 0.75;
+    /** Tab width as defined as a fraction of the screen width */
+    private float mTabWidthScreenWidthFraction;
+
+    /** Tab height as defined as a fraction of the screen width */
+    private float mTabHeightScreenWidthFraction;
 
     private ImageView mPhotoView;
     private TextView mStatusView;
@@ -82,6 +86,10 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         Resources resources = mContext.getResources();
         mTabDisplayLabelHeight = resources.getDimensionPixelSize(
                 R.dimen.detail_tab_carousel_tab_label_height);
+        mTabWidthScreenWidthFraction = resources.getFraction(
+                R.fraction.tab_width_screen_width_percentage, 1, 1);
+        mTabHeightScreenWidthFraction = resources.getFraction(
+                R.fraction.tab_height_screen_width_percentage, 1, 1);
     }
 
     @Override
@@ -115,13 +123,13 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int screenWidth = MeasureSpec.getSize(widthMeasureSpec);
         // Compute the width of a tab as a fraction of the screen width
-        int tabWidth = (int) (TAB_WIDTH_SCREEN_PERCENTAGE * screenWidth);
+        int tabWidth = (int) (mTabWidthScreenWidthFraction * screenWidth);
 
         // Find the allowed scrolling length by subtracting the current visible screen width
         // from the total length of the tabs.
         mAllowedHorizontalScrollLength = tabWidth * TAB_COUNT - screenWidth;
 
-        int tabHeight = screenWidth / 2;
+        int tabHeight = (int) (screenWidth * mTabHeightScreenWidthFraction);
         // Set the child {@link LinearLayout} to be TAB_COUNT * the computed tab width so that the
         // {@link LinearLayout}'s children (which are the tabs) will evenly split that width.
         if (getChildCount() > 0) {
