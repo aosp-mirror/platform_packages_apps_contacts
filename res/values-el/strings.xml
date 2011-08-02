@@ -65,17 +65,19 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Προτεινόμενες επαφές"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Όλες οι επαφές"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Οι επαφές συνδέθηκαν"</string>
-    <string name="menu_contactOptions" msgid="1957061455705020617">"Επιλογές"</string>
     <string name="contactOptionsTitle" msgid="8259347644090700915">"Επιλογές"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Διαγραφή"</string>
+    <!-- no translation found for menu_set_ring_tone (8728345772068064946) -->
+    <skip />
+    <!-- no translation found for menu_redirect_calls_to_vm (3291482125835338104) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Δεν μπορείτε να διαγράψετε επαφές από λογαριασμούς οι οποίοι είναι μόνο για ανάγνωση, αλλά μπορείτε να τις αποκρύψετε στις λίστες επαφών σας."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Αυτή η επαφή περιέχει πληροφορίες από πολλούς λογαριασμούς. Θα γίνει απόκρυψη και όχι διαγραφή των πληροφοριών που προέρχονται από λογαριασμούς μόνο για ανάγνωση στις λίστες επαφών σας."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Εάν διαγράψετε αυτήν την επαφή, θα γίνει διαγραφή των πληροφοριών από πολλούς λογαριασμούς."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Αυτή η επαφή θα διαγραφεί."</string>
     <string name="menu_done" msgid="796017761764190697">"Τέλος"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Ακύρωση"</string>
-    <!-- no translation found for menu_discard (6456087569315685632) -->
-    <skip />
+    <string name="menu_discard" msgid="6456087569315685632">"Απόρριψη"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"Επεξεργασία επαφής"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"Νέα επαφή"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Φωνητική"</string>
@@ -103,8 +105,10 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Αποστολή κλήσεων απευθείας στον αυτόματο τηλεφωνητή"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Προεπιλογή"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Κατάργηση εικόνας"</string>
-    <string name="noContacts" msgid="8579310973261953559">"Δεν υπάρχουν επαφές."</string>
-    <string name="noGroups" msgid="8614664663561385253">"Δεν υπάρχουν ομάδες."</string>
+    <!-- outdated translation 8579310973261953559 -->     <string name="noContacts" msgid="4955659076981974652">"Δεν υπάρχουν επαφές."</string>
+    <!-- outdated translation 8614664663561385253 -->     <string name="noGroups" msgid="7315200974181864731">"Δεν υπάρχουν ομάδες."</string>
+    <!-- no translation found for noAccounts (4742609114153797268) -->
+    <skip />
     <string name="noMatchingContacts" msgid="4266283206853990471">"Δεν βρέθηκαν επαφές που να αντιστοιχούν."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Δεν υπάρχουν επαφές με αριθμούς τηλεφώνου."</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Επιλογή επαφών προς προβολή"</string>
@@ -133,7 +137,7 @@
   </plurals>
     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Δεν υπάρχουν επαφές"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Δεν υπάρχουν ορατές επαφές"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Δεν υπάρχουν επαφές με αστέρι"</string>
+    <!-- outdated translation 5391630590684099117 -->     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Δεν υπάρχουν επαφές με αστέρι"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Δεν υπάρχουν επαφές στο <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Επαφές στο <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
@@ -302,12 +306,8 @@
     <string name="sms_disambig_title" msgid="4675399294513152364">"Αποστολή κειμένου με χρήση"</string>
     <string name="make_primary" msgid="5829291915305113983">"Διατήρηση αυτής της ρύθμισης"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Δεν βρέθηκε εφαρμογή για τη διαχείριση αυτής της ενέργειας"</string>
-    <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Διατήρηση αυτής της επιλογής"</string>
-    <string name="quickcontact_missing_name" msgid="5590266114306996632">"Άγνωστος"</string>
-    <string name="quickcontact_no_data" msgid="2098000859125253675">"Δεν υπάρχουν δεδομένα"</string>
-    <string name="quickcontact_clear_defaults_description" msgid="3792792870662989100">"Εκκαθάριση προεπιλογών"</string>
-    <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"Προεπιλογές για αυτήν την επαφή:"</string>
-    <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"Εκκαθάριση"</string>
+    <!-- no translation found for missing_name (7930716592850443705) -->
+    <skip />
     <string name="menu_accounts" msgid="8499114602017077970">"Λογαριασμοί"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Επαφές για εμφάνιση"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Εισαγωγή/Εξαγωγή"</string>
@@ -417,16 +417,17 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"Φωνητική γραφή επιθέτου"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Όνομα σε φωνητική γραφή"</string>
     <string name="network" msgid="5415816765302129264">"Δίκτυο"</string>
+    <!-- no translation found for more_networks_button (8566780094016196438) -->
+    <skip />
     <string name="recent_updates" msgid="2062236709538790412">"Πρόσφατα"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> επαφή"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Χρήση αυτής της φωτογραφίας"</string>
-    <!-- unknown placeholder SOURCE in contact_read_only -->
-    <skip />
-    <!-- no translation found for contact_read_only (1969214537163492087) -->
-    <skip />
+    <string name="contact_read_only" msgid="1969214537163492087">"Αδύνατη η επεξεργ.σε αυτή τη συσκευή"</string>
     <string name="no_contact_details" msgid="6754415338321837001">"Δεν υπάρχουν πρόσθετες πληροφορίες για αυτήν την επαφή"</string>
+    <!-- no translation found for group_read_only (7924922658394449477) -->
+    <skip />
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Ταξινόμηση λίστας κατά"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Όνομα"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Επίθετο"</string>
@@ -455,8 +456,7 @@
   </plurals>
     <string name="no_contacts_selected" msgid="5877803471037324613">"Δεν έχουν επιλεγεί επαφές."</string>
     <string name="add_field" msgid="2384260056674995230">"Προσθήκη άλλου πεδίου"</string>
-    <!-- no translation found for add_new_entry_for_section (5223080690667565044) -->
-    <skip />
+    <string name="add_new_entry_for_section" msgid="5223080690667565044">"Προσθήκη νέου"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"μέσω <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> μέσω <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"αγαπημένο"</string>
@@ -471,10 +471,8 @@
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Επεξεργασία επιλεγμένων επαφών"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Να γίνει μετάβαση σε επεξεργασία της επιλεγμένης επαφής; Θα γίνει αντιγραφή των στοιχείων που έχετε εισαγάγει μέχρι τώρα."</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"Αντιγραφή στις επαφές μου"</string>
-    <!-- no translation found for add_to_my_contacts (1068274916793627723) -->
-    <skip />
+    <string name="add_to_my_contacts" msgid="1068274916793627723">"Προσθήκη στις Επαφές μου"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Κατάλογος <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="search_label" msgid="6789295859496641042">"Αναζήτηση όλων των επαφών"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Κατάλογος"</string>
     <string name="local_search_label" msgid="1686089693064201315">"Επαφές"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"Δημιουργία προσωπικού αντιγράφου"</string>
@@ -488,7 +486,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Ορισμός προσαρμοσμένης προβολής"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Ρυθμίσεις"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Επαφές για προβολή"</string>
-    <!-- outdated translation 377929915873428211 -->     <string name="menu_settings" msgid="1515262535785451190">"Ρυθμίσεις"</string>
+    <string name="menu_settings" msgid="1515262535785451190">"Προβολή επιλογών"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Επιλογές προβολής"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Εύρεση επαφών"</string>
@@ -511,12 +509,22 @@
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> ομάδες"</item>
   </plurals>
     <string name="delete_group_dialog_message" msgid="295063284548750881">"Είστε βέβαιοι ότι θέλετε να διαγράψετε την ομάδα \'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\'; (Οι επαφές δεν θα διαγραφούν)."</string>
-    <!-- no translation found for num_contacts_in_group:one (1352418549951013448) -->
-    <!-- no translation found for num_contacts_in_group:other (8146027769011086349) -->
-    <!-- no translation found for group_list_num_contacts_in_group:one (3323065321661972446) -->
-    <!-- no translation found for group_list_num_contacts_in_group:other (6251996206137048525) -->
+  <plurals name="num_contacts_in_group">
+    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> άτομο από <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
+    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> άτομα από <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
+  </plurals>
+  <plurals name="group_list_num_contacts_in_group">
+    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> άτομα"</item>
+    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> άτομα"</item>
+  </plurals>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Προτού συνδεθείτε με κάποια άλλη επαφή, εισαγάγετε το όνομα της επαφής."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Συνδεδεμένη επαφή"</string>
+    <!-- no translation found for copy_text (3257145021583508761) -->
+    <skip />
+    <!-- no translation found for set_default (4417505153468300351) -->
+    <skip />
+    <!-- no translation found for clear_default (7193185801596678067) -->
+    <skip />
     <string name="toast_text_copied" msgid="5143776250008541719">"Το κείμενο αντιγράφηκε"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Απόρριψη αλλαγών"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Θέλετε να απορριφθούν οι αλλαγές σας;"</string>
@@ -526,65 +534,42 @@
     <string name="enter_contact_name" msgid="2930510479516059437">"Εισαγάγετε το όνομα της επαφής"</string>
     <string name="editGroup_title_insert" msgid="7803743109105317959">"Νέα ομάδα"</string>
     <string name="editGroup_title_edit" msgid="2173278908256913247">"Επεξεργασία ομάδας"</string>
-    <!-- no translation found for view_updates_from_group (1782685984905600034) -->
+    <string name="view_updates_from_group" msgid="1782685984905600034">"Προβολή ενημερώσεων"</string>
+    <!-- no translation found for notification_voicemail_title:one (1746619685488504230) -->
+    <!-- no translation found for notification_voicemail_title:other (5513481419205061254) -->
+    <!-- no translation found for notification_voicemail_callers_list (1153954809339404149) -->
     <skip />
-    <string name="notification_voicemail_title" msgid="1282651537781272548">"Νέο μήνυμα στον αυτόματο τηλεφωνητή"</string>
-    <!-- no translation found for voicemail_playback_error (5128928338910411763) -->
+    <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
     <skip />
-    <!-- no translation found for call_log_type_date_separator (8009466658324061546) -->
-    <skip />
-    <!-- no translation found for call_log_new_header (846546437517724715) -->
-    <skip />
-    <!-- no translation found for call_log_old_header (6262205894314263629) -->
-    <skip />
-    <!-- no translation found for voicemail_status_voicemail_not_available (3164200979671881947) -->
-    <skip />
-    <!-- no translation found for voicemail_status_messages_waiting (2970301042310727909) -->
-    <skip />
-    <!-- no translation found for voicemail_status_configure_voicemail (3940240432123700974) -->
-    <skip />
-    <!-- no translation found for voicemail_status_audio_not_available (3369618334553341626) -->
-    <skip />
-    <!-- no translation found for voicemail_status_action_configure (7008713959076506385) -->
-    <skip />
-    <!-- no translation found for voicemail_status_action_call_server (1824816252288551794) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_slowest (6047030504814773029) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_slower (7890393922358642543) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_normal (6030110237820243006) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_faster (4161478290979905481) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_fastest (3373646875150544205) -->
-    <skip />
-    <!-- no translation found for call_log_item_count (2623628374805503262) -->
-    <skip />
-    <!-- no translation found for group_name_hint (2659811836386413509) -->
-    <skip />
-    <!-- no translation found for nfc_vcard_file_name (2823095213265993609) -->
-    <skip />
-    <!-- no translation found for menu_show_voicemails_only (1898421289561435703) -->
-    <skip />
-    <!-- no translation found for status_available (5586870015822828392) -->
-    <skip />
-    <!-- no translation found for status_away (1838861100379804730) -->
-    <skip />
-    <!-- no translation found for status_busy (9147992455450257136) -->
-    <skip />
-    <!-- no translation found for description_call_log_call_button (8207201401459528442) -->
-    <skip />
-    <!-- no translation found for description_call_log_play_button (651182125650429846) -->
-    <skip />
-    <!-- no translation found for description_call_log_incoming_call (4485427487637250143) -->
-    <skip />
-    <!-- no translation found for description_call_log_outgoing_call (604831756853471658) -->
-    <skip />
-    <!-- no translation found for description_call_log_missed_call (2242805209983708825) -->
-    <skip />
-    <!-- no translation found for description_call_log_voicemail (4600798771975158948) -->
-    <skip />
-    <!-- no translation found for description_call_log_unheard_voicemail (118101684236996786) -->
+    <string name="voicemail_playback_error" msgid="5128928338910411763">"Δεν είναι δυνατή η αναπαραγωγή του μηνύματος αυτόματου τηλεφωνητή"</string>
+    <string name="call_log_type_date_separator" msgid="8009466658324061546">"/"</string>
+    <string name="call_log_new_header" msgid="846546437517724715">"Νέο"</string>
+    <string name="call_log_old_header" msgid="6262205894314263629">"Παλαιότερα"</string>
+    <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"Δεν είναι δυνατή η σύνδεση με το διακομιστή αυτόματου τηλεφωνητή"</string>
+    <string name="voicemail_status_messages_waiting" msgid="2970301042310727909">"Δεν είναι δυνατή η σύνδ.με διακομ.αυτόμ.τηλεφ. Υπάρχ.νέα μην."</string>
+    <string name="voicemail_status_configure_voicemail" msgid="3940240432123700974">"Διαμορφώστε τον αυτόματο τηλεφωνητή σας."</string>
+    <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Ο ήχος δεν είναι διαθέσιμος"</string>
+    <string name="voicemail_status_action_configure" msgid="7008713959076506385">"Διαμόρφωση"</string>
+    <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"Κλήση αυτόμ.τηλεφ."</string>
+    <string name="voicemail_speed_slowest" msgid="6047030504814773029">"μικρότερη ταχύτητα"</string>
+    <string name="voicemail_speed_slower" msgid="7890393922358642543">"μικρή ταχύτητα"</string>
+    <string name="voicemail_speed_normal" msgid="6030110237820243006">"κανονική ταχύτητα"</string>
+    <string name="voicemail_speed_faster" msgid="4161478290979905481">"μεγάλη ταχύτητα"</string>
+    <string name="voicemail_speed_fastest" msgid="3373646875150544205">"μέγιστη ταχύτητα"</string>
+    <string name="call_log_item_count" msgid="2623628374805503262">"(%1$d)"</string>
+    <string name="group_name_hint" msgid="2659811836386413509">"Όνομα ομάδας"</string>
+    <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Λήψ.επ.μέσω ΕΚΠ"</string>
+    <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Εμφ.μόνο μην.αυτόμ.τηλεφων."</string>
+    <string name="status_available" msgid="5586870015822828392">"Διαθέσιμος"</string>
+    <string name="status_away" msgid="1838861100379804730">"Δεν είμαι εδώ"</string>
+    <string name="status_busy" msgid="9147992455450257136">"Απασχολημένος"</string>
+    <string name="description_call_log_call_button" msgid="8207201401459528442">"Κλήση αριθμού"</string>
+    <string name="description_call_log_play_button" msgid="651182125650429846">"Αναπαραγωγή μηνύματος αυτόματου τηλεφωνητή"</string>
+    <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Εισερχόμενη κλήση"</string>
+    <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Εξερχόμενη κλήση"</string>
+    <string name="description_call_log_missed_call" msgid="2242805209983708825">"Αναπάντητη κλήση"</string>
+    <string name="description_call_log_voicemail" msgid="4600798771975158948">"Αυτόματος τηλεφωνητής"</string>
+    <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Μηνύματα αυτόματου τηλεφωνητή που δεν έχετε ακούσει"</string>
+    <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
     <skip />
 </resources>

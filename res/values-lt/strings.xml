@@ -65,9 +65,12 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Siūlomi adresatai"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Visi adresatai"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Sujungti adresatai"</string>
-    <string name="menu_contactOptions" msgid="1957061455705020617">"Parinktys"</string>
     <string name="contactOptionsTitle" msgid="8259347644090700915">"Parinktys"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Ištrinti"</string>
+    <!-- no translation found for menu_set_ring_tone (8728345772068064946) -->
+    <skip />
+    <!-- no translation found for menu_redirect_calls_to_vm (3291482125835338104) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Negalite ištrinti adresatų iš tik skaitomų paskyrų, bet galite paslėpti juos savo adresatų sąrašuose."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Šiam adresatui priskirta kelių paskyrų informacija. Tik skaitomų paskyrų informacija bus paslėpta adresatų sąrašuose; ji nebus ištrinta."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Ištrynus šią informaciją, bus ištrinta kelių paskyrų informacija."</string>
@@ -103,8 +106,10 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Skambinti tiesiogiai į balso paštą"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Numatytasis"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Pašalinti nuotrauką"</string>
-    <string name="noContacts" msgid="8579310973261953559">"Adresatų nėra."</string>
-    <string name="noGroups" msgid="8614664663561385253">"Nėra grupių."</string>
+    <!-- outdated translation 8579310973261953559 -->     <string name="noContacts" msgid="4955659076981974652">"Adresatų nėra."</string>
+    <!-- outdated translation 8614664663561385253 -->     <string name="noGroups" msgid="7315200974181864731">"Nėra grupių."</string>
+    <!-- no translation found for noAccounts (4742609114153797268) -->
+    <skip />
     <string name="noMatchingContacts" msgid="4266283206853990471">"Nerasta atitinkančių adresatų."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Nėra adresatų su telefono numeriais."</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Pasirinkti adresatus, kuriuos norima pateikti"</string>
@@ -133,7 +138,7 @@
   </plurals>
     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Kontaktų nėra"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Nėra matomų kontaktų"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Nėra žvaigždutėmis pažymėtų kontaktų"</string>
+    <!-- outdated translation 5391630590684099117 -->     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Nėra žvaigždutėmis pažymėtų kontaktų"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"„<xliff:g id="NAME">%s</xliff:g>“ kontaktų nėra"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"<xliff:g id="NAME">%s</xliff:g> kontaktai"</string>
   <plurals name="listFoundAllContacts">
@@ -302,12 +307,8 @@
     <string name="sms_disambig_title" msgid="4675399294513152364">"Siųsti pranešimą naudojant"</string>
     <string name="make_primary" msgid="5829291915305113983">"Atsiminti šį pasirinkimą"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Nerasta programa šiam veiksmui apdoroti"</string>
-    <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Atsiminti šį pasirinkimą"</string>
-    <string name="quickcontact_missing_name" msgid="5590266114306996632">"Nežinomas"</string>
-    <string name="quickcontact_no_data" msgid="2098000859125253675">"Duomenų nėra"</string>
-    <string name="quickcontact_clear_defaults_description" msgid="3792792870662989100">"Išvalyti numatytuosius nustatymus"</string>
-    <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"Šiam kontaktui nustatyti numatyt. nust.:"</string>
-    <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"Išvalyti"</string>
+    <!-- no translation found for missing_name (7930716592850443705) -->
+    <skip />
     <string name="menu_accounts" msgid="8499114602017077970">"Paskyros"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Pateiktini kontaktai"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Importuoti / eksportuoti"</string>
@@ -417,6 +418,8 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"Fonetinė pavardė"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Fonetinis vardas"</string>
     <string name="network" msgid="5415816765302129264">"Tinklas"</string>
+    <!-- no translation found for more_networks_button (8566780094016196438) -->
+    <skip />
     <string name="recent_updates" msgid="2062236709538790412">"Naujausia"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> adresatas"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
@@ -427,6 +430,8 @@
     <!-- no translation found for contact_read_only (1969214537163492087) -->
     <skip />
     <string name="no_contact_details" msgid="6754415338321837001">"Nėra papildomos informacijos apie šį adresatą"</string>
+    <!-- no translation found for group_read_only (7924922658394449477) -->
+    <skip />
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Rūšiuoti sąrašą pagal"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Suteiktas pavadinimas"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Pavardė"</string>
@@ -473,7 +478,6 @@
     <string name="menu_copyContact" msgid="4401683725471696686">"Kopijuoti į mano kontaktus"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Pridėti prie „Mano kontaktų“"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"„<xliff:g id="TYPE">%1$s</xliff:g>“ katalogas"</string>
-    <string name="search_label" msgid="6789295859496641042">"Ieškoma visų kontaktų"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Katalogas"</string>
     <string name="local_search_label" msgid="1686089693064201315">"Kontaktai"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"Kuriama asmeninė kopija"</string>
@@ -516,6 +520,12 @@
     <!-- no translation found for group_list_num_contacts_in_group:other (6251996206137048525) -->
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Prieš prisijungdami prie kito kontakto, įveskite kontakto vardą."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Prijungtas kontaktas"</string>
+    <!-- no translation found for copy_text (3257145021583508761) -->
+    <skip />
+    <!-- no translation found for set_default (4417505153468300351) -->
+    <skip />
+    <!-- no translation found for clear_default (7193185801596678067) -->
+    <skip />
     <string name="toast_text_copied" msgid="5143776250008541719">"Tekstas nukopijuotas"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Atmesti pakeitimus"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Ar tikrai norite atmesti pakeitimus?"</string>
@@ -527,12 +537,16 @@
     <string name="editGroup_title_edit" msgid="2173278908256913247">"Redaguoti grupę"</string>
     <!-- no translation found for view_updates_from_group (1782685984905600034) -->
     <skip />
-    <string name="notification_voicemail_title" msgid="1282651537781272548">"Naujas balso pašto pranešimas"</string>
+    <!-- no translation found for notification_voicemail_title:one (1746619685488504230) -->
+    <!-- no translation found for notification_voicemail_title:other (5513481419205061254) -->
+    <!-- no translation found for notification_voicemail_callers_list (1153954809339404149) -->
+    <skip />
+    <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
+    <skip />
     <!-- no translation found for voicemail_playback_error (5128928338910411763) -->
     <skip />
-    <!-- no translation found for call_log_type_date_separator (8009466658324061546) -->
-    <skip />
-    <string name="call_log_new_header" msgid="846546437517724715">"Nauja"</string>
+    <string name="call_log_type_date_separator" msgid="8009466658324061546">"/"</string>
+    <string name="call_log_new_header" msgid="846546437517724715">"Nauji"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Senesni"</string>
     <!-- no translation found for voicemail_status_voicemail_not_available (3164200979671881947) -->
     <skip />
@@ -583,5 +597,7 @@
     <!-- no translation found for description_call_log_voicemail (4600798771975158948) -->
     <skip />
     <!-- no translation found for description_call_log_unheard_voicemail (118101684236996786) -->
+    <skip />
+    <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
     <skip />
 </resources>

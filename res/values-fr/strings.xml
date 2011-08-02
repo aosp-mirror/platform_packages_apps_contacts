@@ -65,9 +65,12 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Contacts suggérés"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Tous les contacts"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Contacts joints"</string>
-    <string name="menu_contactOptions" msgid="1957061455705020617">"Options"</string>
     <string name="contactOptionsTitle" msgid="8259347644090700915">"Options"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Supprimer"</string>
+    <!-- no translation found for menu_set_ring_tone (8728345772068064946) -->
+    <skip />
+    <!-- no translation found for menu_redirect_calls_to_vm (3291482125835338104) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Impossible de supprimer des contacts des comptes en lecture seule, mais vous pouvez les masquer dans la liste des contacts."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Ce contact contient des informations provenant de plusieurs comptes. Vous pouvez masquer dans votre liste de contacts les informations des comptes en lecture seule, mais pas les supprimer."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"La suppression de ce contact entraînera celle d\'informations provenant de plusieurs comptes."</string>
@@ -103,8 +106,10 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Renvoyer les appels directement vers la messagerie vocale"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Par défaut"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Supprimer la photo"</string>
-    <string name="noContacts" msgid="8579310973261953559">"Aucun contact."</string>
-    <string name="noGroups" msgid="8614664663561385253">"Aucun groupe"</string>
+    <!-- outdated translation 8579310973261953559 -->     <string name="noContacts" msgid="4955659076981974652">"Aucun contact."</string>
+    <!-- outdated translation 8614664663561385253 -->     <string name="noGroups" msgid="7315200974181864731">"Aucun groupe"</string>
+    <!-- no translation found for noAccounts (4742609114153797268) -->
+    <skip />
     <string name="noMatchingContacts" msgid="4266283206853990471">"Aucun contact correspondant n\'a été trouvé."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Aucun contact disposant d\'un numéro téléphone."</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Choisir les contacts à afficher"</string>
@@ -133,7 +138,7 @@
   </plurals>
     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Aucun contact"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Aucun contact visible"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Aucun contact favori"</string>
+    <!-- outdated translation 5391630590684099117 -->     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Aucun contact favori"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Aucun contact dans <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Contacts dans <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
@@ -176,12 +181,12 @@
     <string name="simContacts_title" msgid="27341688347689769">"Contacts de carte SIM"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Vous n\'avez aucun contact à afficher. Si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes."</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Vous n\'avez aucun contact à afficher."</string>
-    <!-- syntax error in translation for noContactsHelpText (6450346791169710787) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:560 in java.io.StringReader@1a0f73c1)  -->
-    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:567 in java.io.StringReader@6c789144)  -->
+    <!-- syntax error in translation for noContactsHelpText (6450346791169710787) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:560 in java.io.StringReader@71f6f0bf)  -->
+    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:567 in java.io.StringReader@b37c60d)  -->
     <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", puis sur :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts vers la tablette ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier les paramètres de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SIM ou SD."\n</li></string>
     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier le paramètre de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SIM ou SD."\n</li></string>
-    <!-- syntax error in translation for noContactsNoSimHelpText (6031363021287849874) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:565 in java.io.StringReader@1d5ee671)  -->
-    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:571 in java.io.StringReader@416b13c7)  -->
+    <!-- syntax error in translation for noContactsNoSimHelpText (6031363021287849874) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:565 in java.io.StringReader@771c8a71)  -->
+    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /b read: font (position:END_TAG </font>@1:571 in java.io.StringReader@72c53dce)  -->
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", puis sur :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts vers la tablette ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier les paramètres de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SD."\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Vous n\'avez aucun contact à afficher (si vous venez d\'ajouter un compte, la synchronisation des contacts peut prendre quelques minutes)."\n\n"Pour ajouter des contacts, appuyez sur "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" et sélectionnez :"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" pour ajouter ou configurer un compte dont vous pourrez synchroniser les contacts sur le téléphone ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Options d\'affichage"</b></font>" pour modifier le paramètre de visibilité des contacts ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nouveau contact"</b></font>" pour créer un contact ;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Exporter"</b></font>" pour importer des contacts depuis votre carte SD."\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Vous ne disposez d\'aucun favoris."\n\n"Pour ajouter un contact à la liste de favoris :"\n\n"        "<li>"Appuyez sur l\'onglet "<b>"Contacts"</b>"."\n</li>" "\n<li>"Appuyez sur le contact à ajouter à vos favoris."\n</li>" "\n<li>"Appuyez sur l\'étoile en regard du nom du contact."\n</li></string>
@@ -302,12 +307,8 @@
     <string name="sms_disambig_title" msgid="4675399294513152364">"Envoyer un SMS via"</string>
     <string name="make_primary" msgid="5829291915305113983">"Mémoriser ce choix"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Aucune application pour gérer cette action"</string>
-    <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Mémoriser ce choix"</string>
-    <string name="quickcontact_missing_name" msgid="5590266114306996632">"Inconnu"</string>
-    <string name="quickcontact_no_data" msgid="2098000859125253675">"Aucune donnée"</string>
-    <string name="quickcontact_clear_defaults_description" msgid="3792792870662989100">"Effacer les valeurs par défaut"</string>
-    <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"Valeurs par défaut de ce contact :"</string>
-    <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"Effacer"</string>
+    <!-- no translation found for missing_name (7930716592850443705) -->
+    <skip />
     <string name="menu_accounts" msgid="8499114602017077970">"Comptes"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Contacts à afficher"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Importer/Exporter"</string>
@@ -417,6 +418,8 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"Phonétique du nom de famille"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Nom phonétique"</string>
     <string name="network" msgid="5415816765302129264">"Réseau"</string>
+    <!-- no translation found for more_networks_button (8566780094016196438) -->
+    <skip />
     <string name="recent_updates" msgid="2062236709538790412">"Mises à jour récentes"</string>
     <string name="account_type_format" msgid="718948015590343010">"Contact <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
@@ -427,6 +430,8 @@
     <!-- no translation found for contact_read_only (1969214537163492087) -->
     <skip />
     <string name="no_contact_details" msgid="6754415338321837001">"Aucune autre information pour ce contact"</string>
+    <!-- no translation found for group_read_only (7924922658394449477) -->
+    <skip />
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Trier la liste par"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Prénom"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Nom de famille"</string>
@@ -471,10 +476,8 @@
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Modifier les contacts sélectionnés"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Modifier le contact sélectionné ? Les informations saisies jusqu\'ici seront copiées."</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"Copier dans Mes contacts"</string>
-    <!-- no translation found for add_to_my_contacts (1068274916793627723) -->
-    <skip />
+    <string name="add_to_my_contacts" msgid="1068274916793627723">"Ajouter à \"Mes contacts\""</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Annuaire <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="search_label" msgid="6789295859496641042">"Recherche dans tous les contacts"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Annuaire"</string>
     <string name="local_search_label" msgid="1686089693064201315">"Contacts"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"Création d\'une copie personnelle"</string>
@@ -517,6 +520,12 @@
     <!-- no translation found for group_list_num_contacts_in_group:other (6251996206137048525) -->
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Veuillez saisir le nom de ce contact avant de l\'associer à un autre."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Contact associé"</string>
+    <!-- no translation found for copy_text (3257145021583508761) -->
+    <skip />
+    <!-- no translation found for set_default (4417505153468300351) -->
+    <skip />
+    <!-- no translation found for clear_default (7193185801596678067) -->
+    <skip />
     <string name="toast_text_copied" msgid="5143776250008541719">"Texte copié"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Supprimer les modifications"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Voulez-vous vraiment supprimer vos modifications ?"</string>
@@ -528,15 +537,18 @@
     <string name="editGroup_title_edit" msgid="2173278908256913247">"Modifier le groupe"</string>
     <!-- no translation found for view_updates_from_group (1782685984905600034) -->
     <skip />
-    <string name="notification_voicemail_title" msgid="1282651537781272548">"Nouveau message vocal"</string>
+    <!-- no translation found for notification_voicemail_title:one (1746619685488504230) -->
+    <!-- no translation found for notification_voicemail_title:other (5513481419205061254) -->
+    <!-- no translation found for notification_voicemail_callers_list (1153954809339404149) -->
+    <skip />
+    <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
+    <skip />
     <!-- no translation found for voicemail_playback_error (5128928338910411763) -->
     <skip />
     <!-- no translation found for call_log_type_date_separator (8009466658324061546) -->
     <skip />
-    <!-- no translation found for call_log_new_header (846546437517724715) -->
-    <skip />
-    <!-- no translation found for call_log_old_header (6262205894314263629) -->
-    <skip />
+    <string name="call_log_new_header" msgid="846546437517724715">"Nouveaux"</string>
+    <string name="call_log_old_header" msgid="6262205894314263629">"Anciens"</string>
     <!-- no translation found for voicemail_status_voicemail_not_available (3164200979671881947) -->
     <skip />
     <!-- no translation found for voicemail_status_messages_waiting (2970301042310727909) -->
@@ -586,5 +598,7 @@
     <!-- no translation found for description_call_log_voicemail (4600798771975158948) -->
     <skip />
     <!-- no translation found for description_call_log_unheard_voicemail (118101684236996786) -->
+    <skip />
+    <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
     <skip />
 </resources>

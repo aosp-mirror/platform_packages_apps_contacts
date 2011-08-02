@@ -76,9 +76,12 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Contacts proponids"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Tut ils contacts"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Contacts unids"</string>
-    <string name="menu_contactOptions" msgid="1957061455705020617">"Opziuns"</string>
     <string name="contactOptionsTitle" msgid="8259347644090700915">"Opziuns"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Stizzar"</string>
+    <!-- no translation found for menu_set_ring_tone (8728345772068064946) -->
+    <skip />
+    <!-- no translation found for menu_redirect_calls_to_vm (3291482125835338104) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"\"Impussibel da stizzar contacts da contos mo per lectura, ma Vus als pudais zuppentar en la glista da contacts.\""</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"\"Quest contact cuntegna infurmaziuns da plirs contos. Infurmaziuns da contos mo per lectura vegnan betg stizzadas, mabain zuppentadas en Vossas glistas da contacts.\""</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"\"Sche Vus stizzais quest contact, vegnan infurmaziuns en plirs contos stizzads.\""</string>
@@ -116,8 +119,10 @@
     <string name="default_ringtone" msgid="9099988849649827972">"Standard"</string>
     <!-- no translation found for removePhoto (4898105274130284565) -->
     <skip />
-    <string name="noContacts" msgid="8579310973261953559">"Nagins contacts"</string>
-    <!-- no translation found for noGroups (8614664663561385253) -->
+    <!-- outdated translation 8579310973261953559 -->     <string name="noContacts" msgid="4955659076981974652">"Nagins contacts"</string>
+    <!-- no translation found for noGroups (7315200974181864731) -->
+    <skip />
+    <!-- no translation found for noAccounts (4742609114153797268) -->
     <skip />
     <string name="noMatchingContacts" msgid="4266283206853990471">"Betg chattà in contact correspundent."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Nagin contact dispona d\'in numer da telefon."</string>
@@ -146,7 +151,7 @@
     <!-- outdated translation 6811347506748072822 -->     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Nagins contacts visibels"</string>
     <!-- no translation found for listTotalAllContactsZeroCustom (4058252141420128998) -->
     <skip />
-    <!-- no translation found for listTotalAllContactsZeroStarred (5391630590684099117) -->
+    <!-- no translation found for listTotalAllContactsZeroStarred (1289318488170099285) -->
     <skip />
     <!-- no translation found for listTotalAllContactsZeroGroup (5448979458248027615) -->
     <skip />
@@ -344,14 +349,7 @@
     <string name="sms_disambig_title" msgid="4675399294513152364">"Trametter in SMS sur"</string>
     <string name="make_primary" msgid="5829291915305113983">"Memorisar questa tscherna"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Betg chattà in\'applicaziun per elavurar questa acziun"</string>
-    <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Memorisar questa tscherna"</string>
-    <string name="quickcontact_missing_name" msgid="5590266114306996632">"Nunenconuschent"</string>
-    <string name="quickcontact_no_data" msgid="2098000859125253675">"Naginas datas"</string>
-    <!-- no translation found for quickcontact_clear_defaults_description (3792792870662989100) -->
-    <skip />
-    <!-- no translation found for quickcontact_clear_defaults_caption (4287306111861545753) -->
-    <skip />
-    <!-- no translation found for quickcontact_clear_defaults_button (8728754360205289059) -->
+    <!-- no translation found for missing_name (7930716592850443705) -->
     <skip />
     <string name="menu_accounts" msgid="8499114602017077970">"Contos"</string>
     <!-- no translation found for menu_contacts_filter (2165153460860262501) -->
@@ -468,6 +466,8 @@
     <skip />
     <!-- no translation found for network (5415816765302129264) -->
     <skip />
+    <!-- no translation found for more_networks_button (8566780094016196438) -->
+    <skip />
     <!-- no translation found for recent_updates (2062236709538790412) -->
     <skip />
     <string name="account_type_format" msgid="718948015590343010">"Contact <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
@@ -479,6 +479,8 @@
     <!-- no translation found for contact_read_only (1969214537163492087) -->
     <skip />
     <string name="no_contact_details" msgid="6754415338321837001">"Naginas infurmaziuns supplementaras per quest contact"</string>
+    <!-- no translation found for group_read_only (7924922658394449477) -->
+    <skip />
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Zavrar la glista tenor"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Prenum"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Num da famiglia"</string>
@@ -540,8 +542,6 @@
     <!-- no translation found for add_to_my_contacts (1068274916793627723) -->
     <skip />
     <!-- no translation found for contact_directory_description (683398073603909119) -->
-    <skip />
-    <!-- no translation found for search_label (6789295859496641042) -->
     <skip />
     <!-- no translation found for directory_search_label (1887759056597975053) -->
     <skip />
@@ -617,6 +617,12 @@
     <skip />
     <!-- no translation found for indicator_joined_contact (3321049349627022128) -->
     <skip />
+    <!-- no translation found for copy_text (3257145021583508761) -->
+    <skip />
+    <!-- no translation found for set_default (4417505153468300351) -->
+    <skip />
+    <!-- no translation found for clear_default (7193185801596678067) -->
+    <skip />
     <!-- no translation found for toast_text_copied (5143776250008541719) -->
     <skip />
     <!-- no translation found for cancel_confirmation_dialog_title (3950463632415908534) -->
@@ -637,7 +643,11 @@
     <skip />
     <!-- no translation found for view_updates_from_group (1782685984905600034) -->
     <skip />
-    <!-- no translation found for notification_voicemail_title (1282651537781272548) -->
+    <!-- no translation found for notification_voicemail_title:one (1746619685488504230) -->
+    <!-- no translation found for notification_voicemail_title:other (5513481419205061254) -->
+    <!-- no translation found for notification_voicemail_callers_list (1153954809339404149) -->
+    <skip />
+    <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
     <skip />
     <!-- no translation found for voicemail_playback_error (5128928338910411763) -->
     <skip />
@@ -696,5 +706,7 @@
     <!-- no translation found for description_call_log_voicemail (4600798771975158948) -->
     <skip />
     <!-- no translation found for description_call_log_unheard_voicemail (118101684236996786) -->
+    <skip />
+    <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
     <skip />
 </resources>

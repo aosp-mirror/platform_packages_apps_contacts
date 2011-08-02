@@ -65,17 +65,19 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"추천 연락처"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"모든 연락처"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"연락처 결합됨"</string>
-    <string name="menu_contactOptions" msgid="1957061455705020617">"옵션"</string>
     <string name="contactOptionsTitle" msgid="8259347644090700915">"옵션"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"삭제"</string>
+    <!-- no translation found for menu_set_ring_tone (8728345772068064946) -->
+    <skip />
+    <!-- no translation found for menu_redirect_calls_to_vm (3291482125835338104) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"읽기 전용 계정의 주소록은 삭제할 수 없지만 주소록 목록에서 숨길 수는 있습니다."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"연락처에 여러 계정의 정보가 들어 있습니다. 읽기 전용 계정의 정보는 주소록 목록에서 숨길 수 있지만 삭제할 수는 없습니다."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"이 연락처를 삭제하면 여러 계정의 정보가 삭제됩니다."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"이 연락처를 삭제합니다."</string>
     <string name="menu_done" msgid="796017761764190697">"완료"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"취소"</string>
-    <!-- no translation found for menu_discard (6456087569315685632) -->
-    <skip />
+    <string name="menu_discard" msgid="6456087569315685632">"취소"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"연락처 수정"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"새 연락처"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"소리나는 대로"</string>
@@ -103,8 +105,10 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"수신전화를 바로 음성사서함으로 보내기"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"기본값"</string>
     <string name="removePhoto" msgid="4898105274130284565">"사진 삭제"</string>
-    <string name="noContacts" msgid="8579310973261953559">"주소록이 없습니다."</string>
-    <string name="noGroups" msgid="8614664663561385253">"그룹 없음"</string>
+    <!-- outdated translation 8579310973261953559 -->     <string name="noContacts" msgid="4955659076981974652">"주소록이 없습니다."</string>
+    <!-- outdated translation 8614664663561385253 -->     <string name="noGroups" msgid="7315200974181864731">"그룹 없음"</string>
+    <!-- no translation found for noAccounts (4742609114153797268) -->
+    <skip />
     <string name="noMatchingContacts" msgid="4266283206853990471">"일치하는 연락처가 없습니다."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"전화번호가 포함된 주소록이 없습니다."</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"표시할 연락처 선택"</string>
@@ -133,7 +137,7 @@
   </plurals>
     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"주소록이 없습니다."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"표시할 수 있는 주소록이 없습니다."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"별표 주소록이 없습니다."</string>
+    <!-- outdated translation 5391630590684099117 -->     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"별표 주소록이 없습니다."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"<xliff:g id="NAME">%s</xliff:g>에 주소록이 없습니다."</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"<xliff:g id="NAME">%s</xliff:g>의 주소록"</string>
   <plurals name="listFoundAllContacts">
@@ -302,12 +306,8 @@
     <string name="sms_disambig_title" msgid="4675399294513152364">"다음을 사용하여 문자 보내기:"</string>
     <string name="make_primary" msgid="5829291915305113983">"이 선택사항 저장"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"이 작업을 처리하는 애플리케이션을 찾을 수 없습니다."</string>
-    <string name="quickcontact_remember_choice" msgid="5964536411579749424">"이 선택사항 저장"</string>
-    <string name="quickcontact_missing_name" msgid="5590266114306996632">"알 수 없음"</string>
-    <string name="quickcontact_no_data" msgid="2098000859125253675">"데이터가 없습니다."</string>
-    <string name="quickcontact_clear_defaults_description" msgid="3792792870662989100">"기본 설정 지우기"</string>
-    <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"연락처의 기본 설정:"</string>
-    <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"지우기"</string>
+    <!-- no translation found for missing_name (7930716592850443705) -->
+    <skip />
     <string name="menu_accounts" msgid="8499114602017077970">"계정"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"표시할 주소록"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"가져오기/내보내기"</string>
@@ -417,16 +417,17 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"성(소리나는 대로)"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"이름(소리나는 대로)"</string>
     <string name="network" msgid="5415816765302129264">"네트워크"</string>
+    <!-- no translation found for more_networks_button (8566780094016196438) -->
+    <skip />
     <string name="recent_updates" msgid="2062236709538790412">"최근 업데이트"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> 연락처"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"사진 사용"</string>
-    <!-- unknown placeholder SOURCE in contact_read_only -->
-    <skip />
-    <!-- no translation found for contact_read_only (1969214537163492087) -->
-    <skip />
+    <string name="contact_read_only" msgid="1969214537163492087">"이 기기에서 수정할 수 없음"</string>
     <string name="no_contact_details" msgid="6754415338321837001">"연락처에 대한 추가 정보가 없습니다."</string>
+    <!-- no translation found for group_read_only (7924922658394449477) -->
+    <skip />
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"목록 정렬 기준"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"이름"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"성"</string>
@@ -455,8 +456,7 @@
   </plurals>
     <string name="no_contacts_selected" msgid="5877803471037324613">"선택한 연락처가 없습니다."</string>
     <string name="add_field" msgid="2384260056674995230">"다른 입력란 추가"</string>
-    <!-- no translation found for add_new_entry_for_section (5223080690667565044) -->
-    <skip />
+    <string name="add_new_entry_for_section" msgid="5223080690667565044">"새로 추가"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"출처: <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g>(출처: <xliff:g id="SOURCE">%2$s</xliff:g>)"</string>
     <string name="description_star" msgid="2605854427360036550">"즐겨찾기"</string>
@@ -473,7 +473,6 @@
     <string name="menu_copyContact" msgid="4401683725471696686">"내 주소록에 복사"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"내 주소록에 추가"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"디렉토리 <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="search_label" msgid="6789295859496641042">"모든 주소록 검색"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"디렉토리"</string>
     <string name="local_search_label" msgid="1686089693064201315">"주소록"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"개인 사본 작성 중"</string>
@@ -487,7 +486,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"맞춤 보기 정의"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"설정"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"표시할 연락처"</string>
-    <!-- outdated translation 377929915873428211 -->     <string name="menu_settings" msgid="1515262535785451190">"설정"</string>
+    <string name="menu_settings" msgid="1515262535785451190">"옵션 표시"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"표시 옵션"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"연락처 찾기"</string>
@@ -510,12 +509,22 @@
     <item quantity="other" msgid="1276758425904917367">"그룹 <xliff:g id="COUNT">%0$d</xliff:g>개"</item>
   </plurals>
     <string name="delete_group_dialog_message" msgid="295063284548750881">"\'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\' 그룹을 삭제하시겠습니까? (연락처는 삭제되지 않음)"</string>
-    <!-- no translation found for num_contacts_in_group:one (1352418549951013448) -->
-    <!-- no translation found for num_contacts_in_group:other (8146027769011086349) -->
-    <!-- no translation found for group_list_num_contacts_in_group:one (3323065321661972446) -->
-    <!-- no translation found for group_list_num_contacts_in_group:other (6251996206137048525) -->
+  <plurals name="num_contacts_in_group">
+    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g> 소속(<xliff:g id="COUNT_0">%1$d</xliff:g>명)"</item>
+    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g> 소속(<xliff:g id="COUNT_0">%1$d</xliff:g>명)"</item>
+  </plurals>
+  <plurals name="group_list_num_contacts_in_group">
+    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g>명"</item>
+    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g>명"</item>
+  </plurals>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"다른 연락처와 통합하기 전에 통합할 연락처 이름을 입력하세요."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"통합된 연락처"</string>
+    <!-- no translation found for copy_text (3257145021583508761) -->
+    <skip />
+    <!-- no translation found for set_default (4417505153468300351) -->
+    <skip />
+    <!-- no translation found for clear_default (7193185801596678067) -->
+    <skip />
     <string name="toast_text_copied" msgid="5143776250008541719">"텍스트 복사됨"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"변경사항 취소"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"변경사항을 취소하시겠습니까?"</string>
@@ -525,63 +534,43 @@
     <string name="enter_contact_name" msgid="2930510479516059437">"연락처 이름 입력"</string>
     <string name="editGroup_title_insert" msgid="7803743109105317959">"새 그룹"</string>
     <string name="editGroup_title_edit" msgid="2173278908256913247">"그룹 수정"</string>
-    <!-- no translation found for view_updates_from_group (1782685984905600034) -->
+    <string name="view_updates_from_group" msgid="1782685984905600034">"업데이트 보기"</string>
+    <!-- no translation found for notification_voicemail_title:one (1746619685488504230) -->
+    <!-- no translation found for notification_voicemail_title:other (5513481419205061254) -->
+    <!-- no translation found for notification_voicemail_callers_list (1153954809339404149) -->
     <skip />
-    <string name="notification_voicemail_title" msgid="1282651537781272548">"새 음성사서함"</string>
-    <!-- no translation found for voicemail_playback_error (5128928338910411763) -->
+    <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
     <skip />
+    <string name="voicemail_playback_error" msgid="5128928338910411763">"음성사서함을 재생할 수 없습니다."</string>
     <!-- no translation found for call_log_type_date_separator (8009466658324061546) -->
     <skip />
     <string name="call_log_new_header" msgid="846546437517724715">"신규"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"이전"</string>
-    <!-- no translation found for voicemail_status_voicemail_not_available (3164200979671881947) -->
-    <skip />
-    <!-- no translation found for voicemail_status_messages_waiting (2970301042310727909) -->
-    <skip />
-    <!-- no translation found for voicemail_status_configure_voicemail (3940240432123700974) -->
-    <skip />
-    <!-- no translation found for voicemail_status_audio_not_available (3369618334553341626) -->
-    <skip />
-    <!-- no translation found for voicemail_status_action_configure (7008713959076506385) -->
-    <skip />
-    <!-- no translation found for voicemail_status_action_call_server (1824816252288551794) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_slowest (6047030504814773029) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_slower (7890393922358642543) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_normal (6030110237820243006) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_faster (4161478290979905481) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_fastest (3373646875150544205) -->
-    <skip />
-    <!-- no translation found for call_log_item_count (2623628374805503262) -->
-    <skip />
-    <!-- no translation found for group_name_hint (2659811836386413509) -->
-    <skip />
-    <!-- no translation found for nfc_vcard_file_name (2823095213265993609) -->
-    <skip />
-    <!-- no translation found for menu_show_voicemails_only (1898421289561435703) -->
-    <skip />
-    <!-- no translation found for status_available (5586870015822828392) -->
-    <skip />
-    <!-- no translation found for status_away (1838861100379804730) -->
-    <skip />
-    <!-- no translation found for status_busy (9147992455450257136) -->
-    <skip />
-    <!-- no translation found for description_call_log_call_button (8207201401459528442) -->
-    <skip />
-    <!-- no translation found for description_call_log_play_button (651182125650429846) -->
-    <skip />
-    <!-- no translation found for description_call_log_incoming_call (4485427487637250143) -->
-    <skip />
-    <!-- no translation found for description_call_log_outgoing_call (604831756853471658) -->
-    <skip />
-    <!-- no translation found for description_call_log_missed_call (2242805209983708825) -->
-    <skip />
-    <!-- no translation found for description_call_log_voicemail (4600798771975158948) -->
-    <skip />
-    <!-- no translation found for description_call_log_unheard_voicemail (118101684236996786) -->
+    <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"음성사서함 서버에 연결할 수 없습니다."</string>
+    <string name="voicemail_status_messages_waiting" msgid="2970301042310727909">"음성사서함 서버에 연결할 수 없습니다. 대기 중인 새 음성사서함이 있습니다."</string>
+    <string name="voicemail_status_configure_voicemail" msgid="3940240432123700974">"음성사서함을 설정합니다."</string>
+    <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"오디오를 사용할 수 없습니다."</string>
+    <string name="voicemail_status_action_configure" msgid="7008713959076506385">"설정"</string>
+    <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"음성사서함에 전화 걸기"</string>
+    <string name="voicemail_speed_slowest" msgid="6047030504814773029">"가장 느린 속도"</string>
+    <string name="voicemail_speed_slower" msgid="7890393922358642543">"느린 속도"</string>
+    <string name="voicemail_speed_normal" msgid="6030110237820243006">"보통 속도"</string>
+    <string name="voicemail_speed_faster" msgid="4161478290979905481">"빠른 속도"</string>
+    <string name="voicemail_speed_fastest" msgid="3373646875150544205">"가장 빠른 속도"</string>
+    <string name="call_log_item_count" msgid="2623628374805503262">"(%1$d)"</string>
+    <string name="group_name_hint" msgid="2659811836386413509">"그룹의 이름"</string>
+    <string name="nfc_vcard_file_name" msgid="2823095213265993609">"NFC를 통해 받은 연락처"</string>
+    <string name="menu_show_voicemails_only" msgid="1898421289561435703">"음성사서함만 표시"</string>
+    <string name="status_available" msgid="5586870015822828392">"대화 가능"</string>
+    <string name="status_away" msgid="1838861100379804730">"자리 비움"</string>
+    <string name="status_busy" msgid="9147992455450257136">"바쁨"</string>
+    <string name="description_call_log_call_button" msgid="8207201401459528442">"통화 번호"</string>
+    <string name="description_call_log_play_button" msgid="651182125650429846">"음성사서함 재생"</string>
+    <string name="description_call_log_incoming_call" msgid="4485427487637250143">"수신 전화"</string>
+    <string name="description_call_log_outgoing_call" msgid="604831756853471658">"발신 전화"</string>
+    <string name="description_call_log_missed_call" msgid="2242805209983708825">"부재중 전화"</string>
+    <string name="description_call_log_voicemail" msgid="4600798771975158948">"음성사서함"</string>
+    <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"듣지 않은 음성사서함"</string>
+    <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
     <skip />
 </resources>

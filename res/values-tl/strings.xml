@@ -65,17 +65,19 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Mga iminumungkahing contact"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Lahat ng mga contact"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Mga pinagsamang contact"</string>
-    <string name="menu_contactOptions" msgid="1957061455705020617">"Mga Pagpipilian"</string>
     <string name="contactOptionsTitle" msgid="8259347644090700915">"Mga Pagpipilian"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Tanggalin"</string>
+    <!-- no translation found for menu_set_ring_tone (8728345772068064946) -->
+    <skip />
+    <!-- no translation found for menu_redirect_calls_to_vm (3291482125835338104) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Hindi ka makakapagtanggal ng mga contact mula sa mga account na read-only, ngunit maitatago mo ang mga ito sa mga listahan ng iyong mga contact."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Naglalaman ang contact na ito ng impormasyon mula sa maramihang account. Itatago ang impormasyon mula sa mga account na read-only sa mga listahan ng iyong mga contact, hindi tatanggalin."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Tatanggalin ng pagtanggal sa account na ito ang impormasyon mula sa maramihang account."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Tatanggalin ang contact na ito."</string>
     <string name="menu_done" msgid="796017761764190697">"Tapos na"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Kanselahin"</string>
-    <!-- no translation found for menu_discard (6456087569315685632) -->
-    <skip />
+    <string name="menu_discard" msgid="6456087569315685632">"Itapon"</string>
     <string name="editContact_title_edit" msgid="7678695190666836093">"I-edit ang contact"</string>
     <string name="editContact_title_insert" msgid="9125600232291405757">"Bagong contact"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Phonetic"</string>
@@ -103,8 +105,10 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Ipadala ang mga tawag nang direkta sa voicemail"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Default"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Alisin ang larawan"</string>
-    <string name="noContacts" msgid="8579310973261953559">"Walang mga contact."</string>
-    <string name="noGroups" msgid="8614664663561385253">"Walang mga pangkat."</string>
+    <!-- outdated translation 8579310973261953559 -->     <string name="noContacts" msgid="4955659076981974652">"Walang mga contact."</string>
+    <!-- outdated translation 8614664663561385253 -->     <string name="noGroups" msgid="7315200974181864731">"Walang mga pangkat."</string>
+    <!-- no translation found for noAccounts (4742609114153797268) -->
+    <skip />
     <string name="noMatchingContacts" msgid="4266283206853990471">"Walang nakitang magkakatugmang mga contact."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Walang mga contact na may mga numero ng telepono."</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Pumili ng mga contact upang ipakita"</string>
@@ -133,7 +137,7 @@
   </plurals>
     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Walang mga contact"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Walang nakikitang mga contact"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Walang mga naka-star na contact"</string>
+    <!-- outdated translation 5391630590684099117 -->     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Walang mga naka-star na contact"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Walang mga contact sa <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Mga contact sa <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
@@ -302,12 +306,8 @@
     <string name="sms_disambig_title" msgid="4675399294513152364">"Paggamit ng teksto"</string>
     <string name="make_primary" msgid="5829291915305113983">"Tandaan ang pagpipiliang ito"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Walang nakitang application upang pangasiwaan ang pagkilos na ito"</string>
-    <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Tandaan ang pagpipiliang ito"</string>
-    <string name="quickcontact_missing_name" msgid="5590266114306996632">"Di-kilala"</string>
-    <string name="quickcontact_no_data" msgid="2098000859125253675">"Walang data"</string>
-    <string name="quickcontact_clear_defaults_description" msgid="3792792870662989100">"I-clear ang mga default"</string>
-    <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"Default na itinakda sa contact na ito."</string>
-    <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"I-clear"</string>
+    <!-- no translation found for missing_name (7930716592850443705) -->
+    <skip />
     <string name="menu_accounts" msgid="8499114602017077970">"Mga Account"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Mga contact na ipapakita"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Mag-import/Mag-export"</string>
@@ -417,16 +417,17 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"Phonetic na apelyido"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Phonetic na pangalan"</string>
     <string name="network" msgid="5415816765302129264">"Network"</string>
+    <!-- no translation found for more_networks_button (8566780094016196438) -->
+    <skip />
     <string name="recent_updates" msgid="2062236709538790412">"Kamakailan"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> contact"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Gamitin ang larawang ito"</string>
-    <!-- unknown placeholder SOURCE in contact_read_only -->
-    <skip />
-    <!-- no translation found for contact_read_only (1969214537163492087) -->
-    <skip />
+    <string name="contact_read_only" msgid="1969214537163492087">"Hindi ma-e-edit sa device na ito"</string>
     <string name="no_contact_details" msgid="6754415338321837001">"Walang karagdagang impormasyon para sa contact na ito"</string>
+    <!-- no translation found for group_read_only (7924922658394449477) -->
+    <skip />
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Pag-uri-uriin ang listahan ayon sa"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Pangalan"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Apelyido"</string>
@@ -455,8 +456,7 @@
   </plurals>
     <string name="no_contacts_selected" msgid="5877803471037324613">"Walang napiling contact."</string>
     <string name="add_field" msgid="2384260056674995230">"Magdagdag ng ibang field"</string>
-    <!-- no translation found for add_new_entry_for_section (5223080690667565044) -->
-    <skip />
+    <string name="add_new_entry_for_section" msgid="5223080690667565044">"Magdagdag ng bago"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"sa pamamagitan ng <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> sa pamamagitan ng <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"paborito"</string>
@@ -473,7 +473,6 @@
     <string name="menu_copyContact" msgid="4401683725471696686">"Kopyahin sa aking mga contact"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Idagdag sa Aking Mga Contact"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Direktoryo na <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="search_label" msgid="6789295859496641042">"Hinahanap ang lahat ng mga contact"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Direktoryo"</string>
     <string name="local_search_label" msgid="1686089693064201315">"Mga Contact"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"Lumilikha ng personal na kopya"</string>
@@ -487,7 +486,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Tukuyin ang custom na pagtingin"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Mga Setting"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Mga contact na ipapakita"</string>
-    <!-- outdated translation 377929915873428211 -->     <string name="menu_settings" msgid="1515262535785451190">"Mga Setting"</string>
+    <string name="menu_settings" msgid="1515262535785451190">"Mga Pagpipilian sa Pagpapakita"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Mga pagpipilian sa pagpapakita"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Maghanap ng mga contact"</string>
@@ -510,12 +509,22 @@
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> (na) pangkat"</item>
   </plurals>
     <string name="delete_group_dialog_message" msgid="295063284548750881">"Sigurado ka bang gusto mong tanggalin ang pangkat na \'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\'? (Hindi tatanggalin ang mga mismong contact.)"</string>
-    <!-- no translation found for num_contacts_in_group:one (1352418549951013448) -->
-    <!-- no translation found for num_contacts_in_group:other (8146027769011086349) -->
-    <!-- no translation found for group_list_num_contacts_in_group:one (3323065321661972446) -->
-    <!-- no translation found for group_list_num_contacts_in_group:other (6251996206137048525) -->
+  <plurals name="num_contacts_in_group">
+    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> (na) tao mula sa <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
+    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> (na) tao mula sa <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
+  </plurals>
+  <plurals name="group_list_num_contacts_in_group">
+    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> (na) tao"</item>
+    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> (na) tao"</item>
+  </plurals>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Mangyaring magpasok ng pangalan ng contact bago sumali sa ibang contact."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Sumaling contact"</string>
+    <!-- no translation found for copy_text (3257145021583508761) -->
+    <skip />
+    <!-- no translation found for set_default (4417505153468300351) -->
+    <skip />
+    <!-- no translation found for clear_default (7193185801596678067) -->
+    <skip />
     <string name="toast_text_copied" msgid="5143776250008541719">"Kinopya ang teksto"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Itapon ang mga pagbabago"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Nais mo ba talagang itapon ang iyong mga pagbabago?"</string>
@@ -525,63 +534,42 @@
     <string name="enter_contact_name" msgid="2930510479516059437">"Ilagay ang pangalan ng contact"</string>
     <string name="editGroup_title_insert" msgid="7803743109105317959">"Bagong pangkat"</string>
     <string name="editGroup_title_edit" msgid="2173278908256913247">"Mag-edit ng pangkat"</string>
-    <!-- no translation found for view_updates_from_group (1782685984905600034) -->
+    <string name="view_updates_from_group" msgid="1782685984905600034">"Tingnan ang mga update"</string>
+    <!-- no translation found for notification_voicemail_title:one (1746619685488504230) -->
+    <!-- no translation found for notification_voicemail_title:other (5513481419205061254) -->
+    <!-- no translation found for notification_voicemail_callers_list (1153954809339404149) -->
     <skip />
-    <string name="notification_voicemail_title" msgid="1282651537781272548">"Bagong voicemail"</string>
-    <!-- no translation found for voicemail_playback_error (5128928338910411763) -->
+    <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
     <skip />
-    <!-- no translation found for call_log_type_date_separator (8009466658324061546) -->
-    <skip />
+    <string name="voicemail_playback_error" msgid="5128928338910411763">"Hindi ma-play ang voicemail"</string>
+    <string name="call_log_type_date_separator" msgid="8009466658324061546">"/"</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Bago"</string>
-    <string name="call_log_old_header" msgid="6262205894314263629">"Mas luma"</string>
-    <!-- no translation found for voicemail_status_voicemail_not_available (3164200979671881947) -->
-    <skip />
-    <!-- no translation found for voicemail_status_messages_waiting (2970301042310727909) -->
-    <skip />
-    <!-- no translation found for voicemail_status_configure_voicemail (3940240432123700974) -->
-    <skip />
-    <!-- no translation found for voicemail_status_audio_not_available (3369618334553341626) -->
-    <skip />
-    <!-- no translation found for voicemail_status_action_configure (7008713959076506385) -->
-    <skip />
-    <!-- no translation found for voicemail_status_action_call_server (1824816252288551794) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_slowest (6047030504814773029) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_slower (7890393922358642543) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_normal (6030110237820243006) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_faster (4161478290979905481) -->
-    <skip />
-    <!-- no translation found for voicemail_speed_fastest (3373646875150544205) -->
-    <skip />
-    <!-- no translation found for call_log_item_count (2623628374805503262) -->
-    <skip />
-    <!-- no translation found for group_name_hint (2659811836386413509) -->
-    <skip />
-    <!-- no translation found for nfc_vcard_file_name (2823095213265993609) -->
-    <skip />
-    <!-- no translation found for menu_show_voicemails_only (1898421289561435703) -->
-    <skip />
-    <!-- no translation found for status_available (5586870015822828392) -->
-    <skip />
-    <!-- no translation found for status_away (1838861100379804730) -->
-    <skip />
-    <!-- no translation found for status_busy (9147992455450257136) -->
-    <skip />
-    <!-- no translation found for description_call_log_call_button (8207201401459528442) -->
-    <skip />
-    <!-- no translation found for description_call_log_play_button (651182125650429846) -->
-    <skip />
-    <!-- no translation found for description_call_log_incoming_call (4485427487637250143) -->
-    <skip />
-    <!-- no translation found for description_call_log_outgoing_call (604831756853471658) -->
-    <skip />
-    <!-- no translation found for description_call_log_missed_call (2242805209983708825) -->
-    <skip />
-    <!-- no translation found for description_call_log_voicemail (4600798771975158948) -->
-    <skip />
-    <!-- no translation found for description_call_log_unheard_voicemail (118101684236996786) -->
+    <string name="call_log_old_header" msgid="6262205894314263629">"Mas Luma"</string>
+    <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"Hindi makakonekta sa server ng voicemail."</string>
+    <string name="voicemail_status_messages_waiting" msgid="2970301042310727909">"Hindi makakonekta sa server ng voicemail. Naghihintay ang mga bagong voicemail."</string>
+    <string name="voicemail_status_configure_voicemail" msgid="3940240432123700974">"I-configure ang iyong voicemail."</string>
+    <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Hindi available ang audio."</string>
+    <string name="voicemail_status_action_configure" msgid="7008713959076506385">"I-configure"</string>
+    <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"Tawagan ang voicemail"</string>
+    <string name="voicemail_speed_slowest" msgid="6047030504814773029">"pinakamabagal na takbo"</string>
+    <string name="voicemail_speed_slower" msgid="7890393922358642543">"mabagal na takbo"</string>
+    <string name="voicemail_speed_normal" msgid="6030110237820243006">"normal na takbo"</string>
+    <string name="voicemail_speed_faster" msgid="4161478290979905481">"mabilis na takbo"</string>
+    <string name="voicemail_speed_fastest" msgid="3373646875150544205">"pinakamabilis na takbo"</string>
+    <string name="call_log_item_count" msgid="2623628374805503262">"(%1$d)"</string>
+    <string name="group_name_hint" msgid="2659811836386413509">"Pangalan ng Pangkat"</string>
+    <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Natanggap ang contact sa NFC"</string>
+    <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Ipakita ang mga voicemail lamang"</string>
+    <string name="status_available" msgid="5586870015822828392">"Available"</string>
+    <string name="status_away" msgid="1838861100379804730">"Wala"</string>
+    <string name="status_busy" msgid="9147992455450257136">"Abala"</string>
+    <string name="description_call_log_call_button" msgid="8207201401459528442">"Tawagan ang numero"</string>
+    <string name="description_call_log_play_button" msgid="651182125650429846">"I-play ang voicemail"</string>
+    <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Papasok na tawag"</string>
+    <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Papalabas na tawag"</string>
+    <string name="description_call_log_missed_call" msgid="2242805209983708825">"Hindi nasagot na tawag"</string>
+    <string name="description_call_log_voicemail" msgid="4600798771975158948">"Voicemail"</string>
+    <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Hindi pa naririnig na voicemail"</string>
+    <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
     <skip />
 </resources>

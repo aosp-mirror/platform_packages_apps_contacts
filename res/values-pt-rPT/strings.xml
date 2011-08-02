@@ -65,9 +65,12 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Contactos sugeridos"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Todos os contactos"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Contactos associados"</string>
-    <string name="menu_contactOptions" msgid="1957061455705020617">"Opções"</string>
     <string name="contactOptionsTitle" msgid="8259347644090700915">"Opções"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Eliminar"</string>
+    <!-- no translation found for menu_set_ring_tone (8728345772068064946) -->
+    <skip />
+    <!-- no translation found for menu_redirect_calls_to_vm (3291482125835338104) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Não pode eliminar contactos de contas só de leitura, mas pode ocultá-los nas suas listas de contactos."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Este contacto contém informações de várias contas. As informações de contas só de leitura serão ocultadas nas suas listas de contactos, mas não eliminadas."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"A eliminação deste contacto eliminará informações de várias contas."</string>
@@ -103,8 +106,10 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Enviar as chamadas directamente para o correio de voz"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Predefinido"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Remover fotografia"</string>
-    <string name="noContacts" msgid="8579310973261953559">"Sem contactos."</string>
-    <string name="noGroups" msgid="8614664663561385253">"Nenhum grupo."</string>
+    <!-- outdated translation 8579310973261953559 -->     <string name="noContacts" msgid="4955659076981974652">"Sem contactos."</string>
+    <!-- outdated translation 8614664663561385253 -->     <string name="noGroups" msgid="7315200974181864731">"Nenhum grupo."</string>
+    <!-- no translation found for noAccounts (4742609114153797268) -->
+    <skip />
     <string name="noMatchingContacts" msgid="4266283206853990471">"Não foram encontrados contactos correspondentes."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Sem contactos com números de telefone."</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Escolher contactos a apresentar"</string>
@@ -133,7 +138,7 @@
   </plurals>
     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Sem contactos"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Sem contactos visíveis"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="5391630590684099117">"Sem contactos marcados com uma estrela"</string>
+    <!-- outdated translation 5391630590684099117 -->     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Sem contactos marcados com uma estrela"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Sem contactos em <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Contactos em <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
@@ -302,12 +307,8 @@
     <string name="sms_disambig_title" msgid="4675399294513152364">"Enviar SMS utilizando"</string>
     <string name="make_primary" msgid="5829291915305113983">"Memorizar esta escolha"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Não foram encontradas aplicações para executar esta acção"</string>
-    <string name="quickcontact_remember_choice" msgid="5964536411579749424">"Memorizar esta escolha"</string>
-    <string name="quickcontact_missing_name" msgid="5590266114306996632">"Desconhecido"</string>
-    <string name="quickcontact_no_data" msgid="2098000859125253675">"Sem dados"</string>
-    <string name="quickcontact_clear_defaults_description" msgid="3792792870662989100">"Limpar predefinições"</string>
-    <string name="quickcontact_clear_defaults_caption" msgid="4287306111861545753">"Conjunto predefinições p/ este contacto:"</string>
-    <string name="quickcontact_clear_defaults_button" msgid="8728754360205289059">"Limpar"</string>
+    <!-- no translation found for missing_name (7930716592850443705) -->
+    <skip />
     <string name="menu_accounts" msgid="8499114602017077970">"Contas"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Contactos a apresentar"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Importar/Exportar"</string>
@@ -417,6 +418,8 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"Fonética do segundo apelido"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Nome fonético"</string>
     <string name="network" msgid="5415816765302129264">"Rede"</string>
+    <!-- no translation found for more_networks_button (8566780094016196438) -->
+    <skip />
     <string name="recent_updates" msgid="2062236709538790412">"Recentes"</string>
     <string name="account_type_format" msgid="718948015590343010">"Contacto de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
@@ -427,6 +430,8 @@
     <!-- no translation found for contact_read_only (1969214537163492087) -->
     <skip />
     <string name="no_contact_details" msgid="6754415338321837001">"Não há informações adicionais para este contacto"</string>
+    <!-- no translation found for group_read_only (7924922658394449477) -->
+    <skip />
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Ordenar lista por"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Nome próprio"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Apelido"</string>
@@ -473,7 +478,6 @@
     <string name="menu_copyContact" msgid="4401683725471696686">"Copiar para os meus contactos"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Adicionar aos Meus Contactos"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Directório <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="search_label" msgid="6789295859496641042">"A pesquisar todos os contactos"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Directório"</string>
     <string name="local_search_label" msgid="1686089693064201315">"Contactos"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"A criar uma cópia pessoal"</string>
@@ -516,6 +520,12 @@
     <!-- no translation found for group_list_num_contacts_in_group:other (6251996206137048525) -->
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Introduza o nome do contacto antes de juntar a outro contacto."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Contacto associado"</string>
+    <!-- no translation found for copy_text (3257145021583508761) -->
+    <skip />
+    <!-- no translation found for set_default (4417505153468300351) -->
+    <skip />
+    <!-- no translation found for clear_default (7193185801596678067) -->
+    <skip />
     <string name="toast_text_copied" msgid="5143776250008541719">"Texto copiado"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Rejeitar alterações"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Pretende rejeitar as alterações?"</string>
@@ -527,13 +537,17 @@
     <string name="editGroup_title_edit" msgid="2173278908256913247">"Editar grupo"</string>
     <!-- no translation found for view_updates_from_group (1782685984905600034) -->
     <skip />
-    <string name="notification_voicemail_title" msgid="1282651537781272548">"Novo correio de voz"</string>
+    <!-- no translation found for notification_voicemail_title:one (1746619685488504230) -->
+    <!-- no translation found for notification_voicemail_title:other (5513481419205061254) -->
+    <!-- no translation found for notification_voicemail_callers_list (1153954809339404149) -->
+    <skip />
+    <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
+    <skip />
     <!-- no translation found for voicemail_playback_error (5128928338910411763) -->
     <skip />
-    <!-- no translation found for call_log_type_date_separator (8009466658324061546) -->
-    <skip />
-    <string name="call_log_new_header" msgid="846546437517724715">"Novos"</string>
-    <string name="call_log_old_header" msgid="6262205894314263629">"+ Antigos"</string>
+    <string name="call_log_type_date_separator" msgid="8009466658324061546">"/"</string>
+    <string name="call_log_new_header" msgid="846546437517724715">"Novo"</string>
+    <string name="call_log_old_header" msgid="6262205894314263629">"+ antigo"</string>
     <!-- no translation found for voicemail_status_voicemail_not_available (3164200979671881947) -->
     <skip />
     <!-- no translation found for voicemail_status_messages_waiting (2970301042310727909) -->
@@ -583,5 +597,7 @@
     <!-- no translation found for description_call_log_voicemail (4600798771975158948) -->
     <skip />
     <!-- no translation found for description_call_log_unheard_voicemail (118101684236996786) -->
+    <skip />
+    <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
     <skip />
 </resources>
