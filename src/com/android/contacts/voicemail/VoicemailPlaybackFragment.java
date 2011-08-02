@@ -66,7 +66,6 @@ public class VoicemailPlaybackFragment extends Fragment {
     private SeekBar mPlaybackSeek;
     private ImageButton mStartStopButton;
     private ImageButton mPlaybackSpeakerphone;
-    private ImageButton mPlaybackTrashButton;
     private TextView mPlaybackPositionText;
     private ImageButton mRateDecreaseButton;
     private ImageButton mRateIncreaseButton;
@@ -80,7 +79,6 @@ public class VoicemailPlaybackFragment extends Fragment {
         mPlaybackSeek = (SeekBar) view.findViewById(R.id.playback_seek);
         mStartStopButton = (ImageButton) view.findViewById(R.id.playback_start_stop);
         mPlaybackSpeakerphone = (ImageButton) view.findViewById(R.id.playback_speakerphone);
-        mPlaybackTrashButton = (ImageButton) view.findViewById(R.id.playback_trash);
         mPlaybackPositionText = (TextView) view.findViewById(R.id.playback_position_text);
         mRateDecreaseButton = (ImageButton) view.findViewById(R.id.rate_decrease_button);
         mRateIncreaseButton = (ImageButton) view.findViewById(R.id.rate_increase_button);
@@ -185,11 +183,6 @@ public class VoicemailPlaybackFragment extends Fragment {
         public void setRateDisplay(float rate, int stringResourceId) {
             mTextController.setTemporaryText(
                     getActivity().getString(stringResourceId), 1, TimeUnit.SECONDS);
-        }
-
-        @Override
-        public void setDeleteButtonListener(View.OnClickListener listener) {
-            mPlaybackTrashButton.setOnClickListener(listener);
         }
 
         @Override

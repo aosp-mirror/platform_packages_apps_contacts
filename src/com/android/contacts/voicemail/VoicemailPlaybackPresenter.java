@@ -56,7 +56,6 @@ import javax.annotation.concurrent.ThreadSafe;
         void setStartStopListener(View.OnClickListener listener);
         void setPositionSeekListener(SeekBar.OnSeekBarChangeListener listener);
         void setSpeakerphoneListener(View.OnClickListener listener);
-        void setDeleteButtonListener(View.OnClickListener listener);
         void setClipPosition(int clipPositionInMillis, int clipLengthInMillis);
         int getDesiredClipPosition();
         void playbackStarted();
@@ -138,7 +137,6 @@ import javax.annotation.concurrent.ThreadSafe;
         mView.setPositionSeekListener(new PlaybackPositionListener());
         mView.setStartStopListener(new StartStopButtonListener());
         mView.setSpeakerphoneListener(new SpeakerphoneListener());
-        mView.setDeleteButtonListener(new DeleteButtonListener());
         mPlayer.setOnErrorListener(new MediaPlayerErrorListener());
         mPlayer.setOnCompletionListener(new MediaPlayerCompletionListener());
         mView.setSpeakerPhoneOn(mView.isSpeakerPhoneOn());
@@ -300,15 +298,6 @@ import javax.annotation.concurrent.ThreadSafe;
         @Override
         public void onClick(View v) {
             mView.setSpeakerPhoneOn(!mView.isSpeakerPhoneOn());
-        }
-    }
-
-    private class DeleteButtonListener implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            // TODO: Temporarily removed this whilst the team discuss the merits of porting
-            // the VoicemailHelper class across vs just hard-coding the delete via cursor.
-            mView.finish();
         }
     }
 

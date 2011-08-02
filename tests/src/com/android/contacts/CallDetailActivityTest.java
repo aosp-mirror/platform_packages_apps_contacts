@@ -103,7 +103,7 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
         Menu menu = new ContextMenuBuilder(activity);
         activity.onCreateOptionsMenu(menu);
         activity.onPrepareOptionsMenu(menu);
-        assertFalse(menu.findItem(R.id.remove_from_call_log).isVisible());
+        assertFalse(menu.findItem(R.id.menu_remove_from_call_log).isVisible());
     }
 
     /** Test to check that I haven't broken the remove-from-call-log entry from regular calls. */
@@ -113,7 +113,7 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
         Menu menu = new ContextMenuBuilder(activity);
         activity.onCreateOptionsMenu(menu);
         activity.onPrepareOptionsMenu(menu);
-        assertTrue(menu.findItem(R.id.remove_from_call_log).isVisible());
+        assertTrue(menu.findItem(R.id.menu_remove_from_call_log).isVisible());
     }
 
     /**

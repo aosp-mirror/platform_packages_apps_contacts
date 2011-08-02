@@ -40,18 +40,6 @@
                 android:src="@drawable/ic_hold_pause_holo_dark"
                 android:layout_weight="1"
             />
-            <ImageButton
-                android:id="@+id/playback_trash"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5px"
-                android:layout_marginTop="4dip"
-                android:layout_marginLeft="4dip"
-                android:layout_marginRight="4dip"
-                android:background="@drawable/dialpad_background"
-                android:src="@drawable/ic_trash_holo_dark"
-                android:layout_weight="1"
-            />
         </LinearLayout>
         <SeekBar
             android:id="@+id/playback_seek"
