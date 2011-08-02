@@ -22,7 +22,8 @@
     android:background="?attr/call_log_secondary_background_color"
     android:padding="@dimen/call_log_indent_margin"
 >
-    <FrameLayout
+    <view
+        class="com.android.contacts.calllog.CallTypeIconsView"
         android:id="@+id/call_type_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

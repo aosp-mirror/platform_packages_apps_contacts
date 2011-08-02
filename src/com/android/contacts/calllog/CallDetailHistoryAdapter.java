@@ -64,19 +64,20 @@ public class CallDetailHistoryAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Make sure we have a valid convertView to start with
-        if (convertView == null) {
-            convertView = mLayoutInflater.inflate(R.layout.call_detail_history_item, parent, false);
-        }
+        final View result  = convertView == null
+                ? mLayoutInflater.inflate(R.layout.call_detail_history_item, parent, false)
+                : convertView;
 
         PhoneCallDetails details = mPhoneCallDetails[position];
-        FrameLayout callTypeIconView = (FrameLayout) convertView.findViewById(R.id.call_type_icon);
-        TextView callTypeTextView = (TextView) convertView.findViewById(R.id.call_type_text);
-        TextView dateView = (TextView) convertView.findViewById(R.id.date);
-        TextView durationView = (TextView) convertView.findViewById(R.id.duration);
+        CallTypeIconsView callTypeIconView =
+                (CallTypeIconsView) result.findViewById(R.id.call_type_icon);
+        TextView callTypeTextView = (TextView) result.findViewById(R.id.call_type_text);
+        TextView dateView = (TextView) result.findViewById(R.id.date);
+        TextView durationView = (TextView) result.findViewById(R.id.duration);
 
         int callType = details.callTypes[0];
-        callTypeIconView.removeAllViews();
-        mCallTypeHelper.inflateCallTypeIcon(callType, callTypeIconView);
+        callTypeIconView.clear();
+        callTypeIconView.add(callType);
         callTypeTextView.setText(mCallTypeHelper.getCallTypeText(callType));
         // Set the date.
         CharSequence dateValue = DateUtils.formatDateRange(mContext, details.date, details.date,
@@ -91,7 +92,7 @@ public class CallDetailHistoryAdapter extends BaseAdapter {
             durationView.setText(formatDuration(details.duration));
         }
 
-        return convertView;
+        return result;
     }
 
     private String formatDuration(long elapsedSeconds) {

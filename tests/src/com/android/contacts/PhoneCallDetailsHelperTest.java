@@ -25,7 +25,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.provider.CallLog.Calls;
 import android.test.AndroidTestCase;
-import android.view.LayoutInflater;
 import android.view.View;
 
 import java.util.GregorianCalendar;
@@ -59,9 +58,7 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         super.setUp();
         Context context = getContext();
         Resources resources = context.getResources();
-        LayoutInflater layoutInflater =
-                (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        CallTypeHelper callTypeHelper = new CallTypeHelper(resources, layoutInflater);
+        CallTypeHelper callTypeHelper = new CallTypeHelper(resources);
         mPhoneNumberHelper = new PhoneNumberHelper(resources, TEST_VOICEMAIL_NUMBER);
         mHelper = new PhoneCallDetailsHelper(resources, callTypeHelper, mPhoneNumberHelper);
         mViews = PhoneCallDetailsViews.createForTest(context);
@@ -128,25 +125,30 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
 
     public void testSetPhoneCallDetails_CallTypeIcons() {
         setPhoneCallDetailsWithCallTypeIcons(Calls.INCOMING_TYPE);
-        assertCallTypeIconsEquals(R.id.call_log_incoming_call_icon);
+        assertCallTypeIconsEquals(Calls.INCOMING_TYPE);
 
         setPhoneCallDetailsWithCallTypeIcons(Calls.OUTGOING_TYPE);
-        assertCallTypeIconsEquals(R.id.call_log_outgoing_call_icon);
+        assertCallTypeIconsEquals(Calls.OUTGOING_TYPE);
 
         setPhoneCallDetailsWithCallTypeIcons(Calls.MISSED_TYPE);
-        assertCallTypeIconsEquals(R.id.call_log_missed_call_icon);
+        assertCallTypeIconsEquals(Calls.MISSED_TYPE);
 
         setPhoneCallDetailsWithCallTypeIcons(Calls.VOICEMAIL_TYPE);
-        assertCallTypeIconsEquals(R.id.call_log_voicemail_icon);
+        assertCallTypeIconsEquals(Calls.VOICEMAIL_TYPE);
     }
 
     public void testSetPhoneCallDetails_MultipleCallTypeIcons() {
         setPhoneCallDetailsWithCallTypeIcons(Calls.INCOMING_TYPE, Calls.OUTGOING_TYPE);
-        assertCallTypeIconsEquals(R.id.call_log_incoming_call_icon,
-                R.id.call_log_outgoing_call_icon);
+        assertCallTypeIconsEquals(Calls.INCOMING_TYPE, Calls.OUTGOING_TYPE);
 
         setPhoneCallDetailsWithCallTypeIcons(Calls.MISSED_TYPE, Calls.MISSED_TYPE);
-        assertCallTypeIconsEquals(R.id.call_log_missed_call_icon, R.id.call_log_missed_call_icon);
+        assertCallTypeIconsEquals(Calls.MISSED_TYPE, Calls.MISSED_TYPE);
+    }
+
+    public void testSetPhoneCallDetails_MultipleCallTypeIconsLastOneDropped() {
+        setPhoneCallDetailsWithCallTypeIcons(Calls.MISSED_TYPE, Calls.MISSED_TYPE,
+                Calls.INCOMING_TYPE, Calls.OUTGOING_TYPE);
+        assertCallTypeIconsEquals(Calls.MISSED_TYPE, Calls.MISSED_TYPE, Calls.INCOMING_TYPE);
     }
 
     public void testSetPhoneCallDetails_CallTypeText() {
@@ -222,10 +224,10 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
 
     /** Asserts that the call type contains the images with the given drawables. */
     private void assertCallTypeIconsEquals(int... ids) {
-        assertEquals(ids.length, mViews.callTypeIcons.getChildCount());
+        assertEquals(ids.length, mViews.callTypeIcons.getCount());
         for (int index = 0; index < ids.length; ++index) {
             int id = ids[index];
-            assertEquals(id, mViews.callTypeIcons.getChildAt(index).getId());
+            assertEquals(id, mViews.callTypeIcons.getCallType(index));
         }
         assertEquals(View.VISIBLE, mViews.callTypeIcons.getVisibility());
         assertEquals(View.GONE, mViews.callTypeText.getVisibility());

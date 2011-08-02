@@ -313,11 +313,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             mPreDrawListener = null;
 
             Resources resources = getResources();
-            LayoutInflater layoutInflater = getActivity().getLayoutInflater();
-            CallTypeHelper callTypeHelper = new CallTypeHelper(resources, layoutInflater);
-            Drawable callDrawable = resources.getDrawable(R.drawable.ic_dial_action_call);
-            Drawable playDrawable = resources.getDrawable(
-                    R.drawable.ic_call_log_list_action_play);
+            CallTypeHelper callTypeHelper = new CallTypeHelper(resources);
 
             mContactPhotoManager = ContactPhotoManager.getInstance(getActivity());
             mPhoneNumberHelper = new PhoneNumberHelper(getResources(), mVoiceMailNumber);

@@ -16,9 +16,10 @@
 
 package com.android.contacts;
 
+import com.android.contacts.calllog.CallTypeIconsView;
+
 import android.content.Context;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
@@ -27,14 +28,15 @@ import android.widget.TextView;
 public final class PhoneCallDetailsViews {
     public final TextView nameView;
     public final View callTypeView;
-    public final LinearLayout callTypeIcons;
+    public final CallTypeIconsView callTypeIcons;
     public final TextView callTypeText;
     public final View callTypeSeparator;
     public final TextView dateView;
     public final TextView numberView;
 
-    private PhoneCallDetailsViews(TextView nameView, View callTypeView, LinearLayout callTypeIcons,
-            TextView callTypeText, View callTypeSeparator, TextView dateView, TextView numberView) {
+    private PhoneCallDetailsViews(TextView nameView, View callTypeView,
+            CallTypeIconsView callTypeIcons, TextView callTypeText, View callTypeSeparator,
+            TextView dateView, TextView numberView) {
         this.nameView = nameView;
         this.callTypeView = callTypeView;
         this.callTypeIcons = callTypeIcons;
@@ -54,7 +56,7 @@ public final class PhoneCallDetailsViews {
     public static PhoneCallDetailsViews fromView(View view) {
         return new PhoneCallDetailsViews((TextView) view.findViewById(R.id.name),
                 view.findViewById(R.id.call_type),
-                (LinearLayout) view.findViewById(R.id.call_type_icons),
+                (CallTypeIconsView) view.findViewById(R.id.call_type_icons),
                 (TextView) view.findViewById(R.id.call_type_name),
                 view.findViewById(R.id.call_type_separator),
                 (TextView) view.findViewById(R.id.date),
@@ -65,7 +67,7 @@ public final class PhoneCallDetailsViews {
         return new PhoneCallDetailsViews(
                 new TextView(context),
                 new View(context),
-                new LinearLayout(context),
+                new CallTypeIconsView(context),
                 new TextView(context),
                 new View(context),
                 new TextView(context),

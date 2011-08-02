@@ -61,10 +61,10 @@ public class PhoneCallDetailsHelper {
     public void setPhoneCallDetails(PhoneCallDetailsViews views, PhoneCallDetails details,
             boolean useIcons, boolean isHighlighted, boolean nameOnly) {
         if (useIcons) {
-            views.callTypeIcons.removeAllViews();
+            views.callTypeIcons.clear();
             int count = details.callTypes.length;
             for (int index = 0; index < count && index < MAX_CALL_TYPE_ICONS; ++index) {
-                mCallTypeHelper.inflateCallTypeIcon(details.callTypes[index], views.callTypeIcons);
+                views.callTypeIcons.add(details.callTypes[index]);
             }
             views.callTypeIcons.setVisibility(View.VISIBLE);
             if (count > MAX_CALL_TYPE_ICONS) {
@@ -77,14 +77,13 @@ public class PhoneCallDetailsHelper {
                 views.callTypeSeparator.setVisibility(View.GONE);
             }
         } else {
-            String callTypeName;
             // Use the name of the first call type.
             // TODO: We should update this to handle the text for multiple calls as well.
             int callType = details.callTypes[0];
             views.callTypeText.setText(
                     isHighlighted ? mCallTypeHelper.getHighlightedCallTypeText(callType)
                             : mCallTypeHelper.getCallTypeText(callType));
-            views.callTypeIcons.removeAllViews();
+            views.callTypeIcons.clear();
 
             views.callTypeText.setVisibility(View.VISIBLE);
             views.callTypeSeparator.setVisibility(View.VISIBLE);

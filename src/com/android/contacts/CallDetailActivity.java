@@ -148,7 +148,7 @@ public class CallDetailActivity extends ListActivity implements
         mResources = getResources();
 
         mPhoneCallDetailsViews = PhoneCallDetailsViews.fromView(getWindow().getDecorView());
-        mCallTypeHelper = new CallTypeHelper(getResources(), mInflater);
+        mCallTypeHelper = new CallTypeHelper(getResources());
         mPhoneNumberHelper = new PhoneNumberHelper(mResources, getVoicemailNumber());
         mPhoneCallDetailsHelper = new PhoneCallDetailsHelper(mResources, mCallTypeHelper,
                 mPhoneNumberHelper);

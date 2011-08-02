@@ -24,7 +24,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.provider.CallLog.Calls;
 import android.test.AndroidTestCase;
-import android.view.LayoutInflater;
 import android.view.View;
 
 /**
@@ -56,9 +55,7 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
         super.setUp();
         Context context = getContext();
         Resources resources = context.getResources();
-        LayoutInflater layoutInflater =
-                (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        CallTypeHelper callTypeHelper = new CallTypeHelper(resources, layoutInflater);
+        CallTypeHelper callTypeHelper = new CallTypeHelper(resources);
         mPhoneNumberHelper = new PhoneNumberHelper(resources, TEST_VOICEMAIL_NUMBER);
         PhoneCallDetailsHelper phoneCallDetailsHelper = new PhoneCallDetailsHelper(
                 resources, callTypeHelper, mPhoneNumberHelper);
