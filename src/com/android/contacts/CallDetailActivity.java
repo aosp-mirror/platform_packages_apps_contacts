@@ -184,15 +184,14 @@ public class CallDetailActivity extends ListActivity implements
             // Do a query to fetch the voicemail status messages.
             VoicemailPlaybackFragment playbackFragment = new VoicemailPlaybackFragment();
             Bundle fragmentArguments = new Bundle();
-            Uri voicemailUri = getIntent().getParcelableExtra(EXTRA_VOICEMAIL_URI);
-            fragmentArguments.putParcelable(EXTRA_VOICEMAIL_URI, voicemailUri);
+            fragmentArguments.putParcelable(EXTRA_VOICEMAIL_URI, getVoicemailUri());
             if (getIntent().getBooleanExtra(EXTRA_VOICEMAIL_START_PLAYBACK, false)) {
                 fragmentArguments.putBoolean(EXTRA_VOICEMAIL_START_PLAYBACK, true);
             }
             playbackFragment.setArguments(fragmentArguments);
             getFragmentManager().beginTransaction()
                     .add(R.id.voicemail_container, playbackFragment).commit();
-            mAsyncQueryHandler.startVoicemailStatusQuery(voicemailUri);
+            mAsyncQueryHandler.startVoicemailStatusQuery(getVoicemailUri());
         } else {
             // No voicemail uri: hide the status view.
             mStatusMessageView.setVisibility(View.GONE);
@@ -200,7 +199,11 @@ public class CallDetailActivity extends ListActivity implements
     }
 
     private boolean hasVoicemail() {
-        return getIntent().getParcelableExtra(EXTRA_VOICEMAIL_URI) != null;
+        return getVoicemailUri() != null;
+    }
+
+    private Uri getVoicemailUri() {
+        return getIntent().getParcelableExtra(EXTRA_VOICEMAIL_URI);
     }
 
     /**
@@ -661,7 +664,8 @@ public class CallDetailActivity extends ListActivity implements
     }
 
     public void onMenuTrashVoicemail(MenuItem menuItem) {
-        Log.w(TAG, "onMenuTrashVoicemail not yet implemented");
+        getContentResolver().delete(getVoicemailUri(), null, null);
+        finish();
     }
 
     private void configureActionBar() {
