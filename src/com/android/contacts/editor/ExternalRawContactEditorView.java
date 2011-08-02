@@ -43,6 +43,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -55,10 +56,10 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
 
     private View mPhotoStub;
     private TextView mName;
-    private TextView mReadOnlyWarning;
     private Button mEditExternallyButton;
     private ViewGroup mGeneral;
 
+    private View mAccountContainer;
     private ImageView mAccountIcon;
     private TextView mAccountTypeTextView;
     private TextView mAccountNameTextView;
@@ -97,11 +98,11 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
         mPhotoStub = findViewById(R.id.stub_photo);
 
         mName = (TextView) findViewById(R.id.read_only_name);
-        mReadOnlyWarning = (TextView) findViewById(R.id.read_only_warning);
         mEditExternallyButton = (Button) findViewById(R.id.button_edit_externally);
         mEditExternallyButton.setOnClickListener(this);
         mGeneral = (ViewGroup)findViewById(R.id.sect_general);
 
+        mAccountContainer = findViewById(R.id.account_container);
         mAccountIcon = (ImageView) findViewById(R.id.account_icon);
         mAccountTypeTextView = (TextView) findViewById(R.id.account_type);
         mAccountNameTextView = (TextView) findViewById(R.id.account_name);
@@ -168,11 +169,17 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
         mName.setText(primary.getAsString(StructuredName.DISPLAY_NAME));
 
         if (type.readOnly) {
-            mReadOnlyWarning.setText(mContext.getString(R.string.contact_read_only));
-            mReadOnlyWarning.setVisibility(View.VISIBLE);
+            mAccountContainer.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(mContext, mContext.getString(R.string.contact_read_only),
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
             mEditExternallyButton.setVisibility(View.GONE);
         } else {
-            mReadOnlyWarning.setVisibility(View.GONE);
+            mAccountContainer.setBackgroundDrawable(null);
+            mAccountContainer.setEnabled(false);
             mEditExternallyButton.setVisibility(View.VISIBLE);
         }
 
@@ -183,7 +190,7 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
                 View field = mInflater.inflate(
                         R.layout.item_read_only_field, mGeneral, false);
                 TextView v;
-                v = (TextView) field.findViewById(R.id.label);
+                v = (TextView) field.findViewById(R.id.kind_title);
                 v.setText(mContext.getText(R.string.phoneLabelsGroup));
                 v = (TextView) field.findViewById(R.id.data);
                 v.setText(PhoneNumberUtils.formatNumber(phone.getAsString(Phone.NUMBER),
@@ -200,7 +207,7 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
                 View field = mInflater.inflate(
                         R.layout.item_read_only_field, mGeneral, false);
                 TextView v;
-                v = (TextView) field.findViewById(R.id.label);
+                v = (TextView) field.findViewById(R.id.kind_title);
                 v.setText(mContext.getText(R.string.emailLabelsGroup));
                 v = (TextView) field.findViewById(R.id.data);
                 v.setText(email.getAsString(Email.DATA));

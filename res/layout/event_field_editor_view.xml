@@ -35,10 +35,14 @@
             android:id="@+id/date_view"
             layout="@layout/edit_date_picker" />
 
-        <include
+        <Spinner
             android:id="@+id/spinner"
-            layout="@layout/edit_spinner"
-            android:visibility="gone" />
+            android:layout_width="@dimen/editor_type_label_width"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dip"
+            android:paddingRight="20dip"
+            android:layout_gravity="bottom"
+            android:visibility="gone"/>
 
         <include
             android:id="@+id/delete_button_container"

@@ -21,14 +21,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/anchor_for_account_switcher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <include
-            layout="@layout/raw_contact_editor_header"
-            android:id="@+id/header" />
-    </FrameLayout>
+    <include
+        layout="@layout/editor_account_header" />
 
     <LinearLayout
         android:id="@+id/body"
@@ -124,8 +118,8 @@
         <com.android.contacts.widget.InterpolatingLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:layout_marginBottom="42dip">
+            android:layout_marginTop="16dip"
+            android:layout_marginBottom="32dip">
             <Button
                 android:id="@+id/button_add_field"
                 android:text="@string/add_field"

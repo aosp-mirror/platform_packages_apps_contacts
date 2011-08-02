@@ -27,6 +27,8 @@ import com.android.internal.util.Objects;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.RawContacts;
@@ -95,12 +97,25 @@ public class GroupMembershipView extends LinearLayout
     private boolean mDefaultGroupVisibilityKnown;
     private boolean mDefaultGroupVisible;
 
+    private String mNoGroupString;
+    private int mPrimaryTextColor;
+    private int mSecondaryTextColor;
+
     public GroupMembershipView(Context context) {
         super(context);
     }
 
     public GroupMembershipView(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        Resources resources = mContext.getResources();
+        mPrimaryTextColor = resources.getColor(R.color.primary_text_color);
+        mSecondaryTextColor = resources.getColor(R.color.secondary_text_color);
+        mNoGroupString = mContext.getString(R.string.add_new_entry_for_section);
     }
 
     @Override
@@ -187,9 +202,11 @@ public class GroupMembershipView extends LinearLayout
 
         mGroupList.setEnabled(isEnabled());
         if (sb.length() == 0) {
-            mGroupList.setText(" ");
+            mGroupList.setText(mNoGroupString);
+            mGroupList.setTextColor(mSecondaryTextColor);
         } else {
             mGroupList.setText(sb);
+            mGroupList.setTextColor(mPrimaryTextColor);
         }
         setVisibility(VISIBLE);
 

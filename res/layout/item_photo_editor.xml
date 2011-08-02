@@ -36,6 +36,6 @@
         android:clickable="true"
         android:focusable="true"
         android:contentDescription="@string/description_contact_photo"
-        android:background="@drawable/change_photo_box_holo_light"
+        android:background="?android:attr/selectableItemBackground"
     />
 </view>

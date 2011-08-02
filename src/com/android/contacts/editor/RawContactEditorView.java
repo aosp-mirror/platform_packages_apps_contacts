@@ -70,7 +70,6 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
     private ViewGroup mFields;
 
-    private View mAccountContainer;
     private ImageView mAccountIcon;
     private TextView mAccountTypeTextView;
     private TextView mAccountNameTextView;
@@ -139,7 +138,6 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
         mFields = (ViewGroup)findViewById(R.id.sect_fields);
 
-        mAccountContainer = findViewById(R.id.anchor_for_account_switcher);
         mAccountIcon = (ImageView) findViewById(R.id.account_icon);
         mAccountTypeTextView = (TextView) findViewById(R.id.account_type);
         mAccountNameTextView = (TextView) findViewById(R.id.account_name);
@@ -151,10 +149,6 @@ public class RawContactEditorView extends BaseRawContactEditorView {
                 showAddInformationPopupWindow();
             }
         });
-    }
-
-    public void setAccountHeaderVisible(boolean visible) {
-        mAccountContainer.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
     /**

@@ -600,14 +600,8 @@ public class ContactEditorFragment extends Fragment implements
                         R.layout.external_raw_contact_editor_view, mContent, false);
                 ((ExternalRawContactEditorView) editor).setListener(this);
             } else {
-                final RawContactEditorView rawContactEditor = (RawContactEditorView)
-                        inflater.inflate(R.layout.raw_contact_editor_view, mContent, false);
-                // For existing contacts, only show the account header if there is more than 1 raw
-                // contact in the aggregate contact.
-                if (Intent.ACTION_EDIT.equals(mAction)) {
-                    rawContactEditor.setAccountHeaderVisible(numRawContacts > 1);
-                }
-                editor = rawContactEditor;
+                editor = (RawContactEditorView) inflater.inflate(R.layout.raw_contact_editor_view,
+                        mContent, false);
             }
             if (Intent.ACTION_INSERT.equals(mAction) && numRawContacts == 1) {
                 final List<AccountWithDataSet> accounts =
@@ -695,7 +689,7 @@ public class ContactEditorFragment extends Fragment implements
                 values.getAsString(RawContacts.ACCOUNT_TYPE),
                 values.getAsString(RawContacts.DATA_SET));
         final View accountView = editor.findViewById(R.id.account);
-        final View anchorView = editor.findViewById(R.id.anchor_for_account_switcher);
+        final View anchorView = editor.findViewById(R.id.account_container);
         accountView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

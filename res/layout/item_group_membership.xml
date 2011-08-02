@@ -34,6 +34,6 @@
         android:gravity="left|center_vertical"
         android:ellipsize="end"
         android:focusable="true"
-        android:paddingLeft="@dimen/editor_field_left_padding" />
+        android:paddingLeft="16dip" />
 
 </com.android.contacts.editor.GroupMembershipView>

@@ -1292,8 +1292,8 @@
     <!-- Checkbox asking the user if they want to display a particular photo for a contact -->
     <string name="use_photo_as_primary">Use this photo</string>
 
-    <!-- Text used to explain that a contact cannot be edited since the data is read only [CHAR LIMIT=40] -->
-    <string name="contact_read_only">Not editable on this device</string>
+    <!-- Text used to explain that a contact cannot be edited from the People application since the data is read only [CHAR LIMIT=40] -->
+    <string name="contact_read_only">Not editable from this application</string>
 
     <!-- Text describing that a contact has no information available other than name and photo -->
     <string name="no_contact_details">No additional information for this contact</string>
@@ -1385,6 +1385,9 @@
 
     <!-- The button to add another entry of a specific data type (i.e. email, phone, address) to a contact in the Raw Contact Editor [CHAR LIMIT=22] -->
     <string name="add_new_entry_for_section">Add new</string>
+
+    <!-- The button to add an organization field to a contact in the Raw Contact Editor [CHAR LIMIT=22] -->
+    <string name="add_organization">Add organization</string>
 
     <!-- Attbution of a contact status update, when the time of update is unknown -->
     <string name="contact_status_update_attribution">via <xliff:g id="source" example="Google Talk">%1$s</xliff:g></string>

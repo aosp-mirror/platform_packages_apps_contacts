@@ -389,7 +389,7 @@
         <!-- Create a new or edit an existing group -->
         <activity
             android:name=".activities.GroupEditorActivity"
-            android:theme="@style/ContactEditorActivityTheme"
+            android:theme="@style/EditorActivityTheme"
             android:windowSoftInputMode="adjustResize" />
 
         <!-- Used to show QuickContact window over a translucent activity, which is a
@@ -503,7 +503,7 @@
         <!-- Create a new or edit an existing contact -->
         <activity
             android:name=".activities.ContactEditorActivity"
-            android:theme="@style/ContactEditorActivityTheme"
+            android:theme="@style/EditorActivityTheme"
             android:uiOptions="splitActionBarWhenNarrow"
             android:windowSoftInputMode="adjustResize">
 
