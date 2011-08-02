@@ -14,60 +14,41 @@
      limitations under the License.
 -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="@dimen/call_log_inner_margin"
 >
     <!--
-        We have a nested FrameLayout because the margin attributes out the outer
-        layout are not used when this layout is inflated within a list.
+        This layout may represent either a call log item or one of the
+        headers in the call log.
 
-        TODO: Can we find a way to avoid the extra layer?
-     -->
-    <FrameLayout
+        The former will make the @id/call_log_item visible and the
+        @id/call_log_header gone.
+
+        The latter will make the @id/call_log_header visible and the
+        @id/call_log_item gone
+    -->
+
+    <RelativeLayout
+        android:id="@+id/call_log_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+    >
+        <include layout="@layout/call_log_contact_photo"/>
+        <include layout="@layout/call_log_action_call"/>
+        <include layout="@layout/call_log_list_item_layout"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/call_log_header_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/call_log_inner_margin"
-        android:layout_marginRight="@dimen/call_log_inner_margin"
-        android:layout_marginTop="@dimen/call_log_inner_margin"
-        android:layout_marginBottom="@dimen/call_log_inner_margin"
-    >
-        <!--
-            This layout may represent either a call log item or one of the
-            headers in the call log.
-
-            The former will make the @id/call_log_item visible and the
-            @id/call_log_header gone.
-
-            The latter will make the @id/call_log_header visible and the
-            @id/call_log_item gone
-        -->
-
-        <RelativeLayout
-            android:id="@+id/call_log_item"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-        >
-            <include layout="@layout/call_log_contact_photo"/>
-            <include layout="@layout/call_log_action_call"/>
-            <include layout="@layout/call_log_list_item_layout"/>
-        </RelativeLayout>
-
-        <LinearLayout
-            android:id="@+id/call_log_header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-        >
-            <TextView
-                android:id="@+id/call_log_header_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/call_log_inner_margin"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="?attr/call_log_header_color"
-            />
-        </LinearLayout>
-    </FrameLayout>
-</LinearLayout>
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="?attr/call_log_header_color"
+    />
+</FrameLayout>

@@ -45,14 +45,12 @@ public final class CallLogListItemViews {
     public final PhoneCallDetailsViews phoneCallDetailsViews;
     /** The item view for a stand-alone row, or null for other types of rows. */
     public final View listItemView;
-    /** The header view for a stand-alone row, or null for other types of rows. */
-    public final View listHeaderView;
     /** The text of the header in a stand-alone row, or null for other types of rows. */
     public final TextView listHeaderTextView;
 
     private CallLogListItemViews(QuickContactBadge quickContactView, ImageView photoView,
             View callView, View playView, View unheardView, View dividerView,
-            PhoneCallDetailsViews phoneCallDetailsViews, View listItemView, View listHeaderView,
+            PhoneCallDetailsViews phoneCallDetailsViews, View listItemView,
             TextView listHeaderTextView) {
         this.quickContactView = quickContactView;
         this.plainPhotoView = photoView;
@@ -62,7 +60,6 @@ public final class CallLogListItemViews {
         this.dividerView = dividerView;
         this.phoneCallDetailsViews = phoneCallDetailsViews;
         this.listItemView = listItemView;
-        this.listHeaderView = listHeaderView;
         this.listHeaderTextView = listHeaderTextView;
     }
 
@@ -76,7 +73,6 @@ public final class CallLogListItemViews {
                 view.findViewById(R.id.divider),
                 PhoneCallDetailsViews.fromView(view),
                 view.findViewById(R.id.call_log_item),
-                view.findViewById(R.id.call_log_header),
                 (TextView) view.findViewById(R.id.call_log_header_text));
     }
 
@@ -89,7 +85,6 @@ public final class CallLogListItemViews {
                 new View(context),
                 new View(context),
                 PhoneCallDetailsViews.createForTest(context),
-                new View(context),
                 new View(context),
                 new TextView(context));
     }
