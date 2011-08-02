@@ -77,11 +77,10 @@ public class CallDetailActivity extends ListActivity implements
     /** If we should immediately start playback of the voicemail, this extra will be set to true. */
     public static final String EXTRA_VOICEMAIL_START_PLAYBACK = "EXTRA_VOICEMAIL_START_PLAYBACK";
 
-    /** The views representing the details of a phone call. */
-    private PhoneCallDetailsViews mPhoneCallDetailsViews;
     private CallTypeHelper mCallTypeHelper;
     private PhoneNumberHelper mPhoneNumberHelper;
     private PhoneCallDetailsHelper mPhoneCallDetailsHelper;
+    private TextView mHeaderTextView;
     private ImageView mMainActionView;
     private ImageButton mMainActionPushLayerView;
     private ImageView mContactBackgroundView;
@@ -145,13 +144,13 @@ public class CallDetailActivity extends ListActivity implements
         mInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         mResources = getResources();
 
-        mPhoneCallDetailsViews = PhoneCallDetailsViews.fromView(getWindow().getDecorView());
         mCallTypeHelper = new CallTypeHelper(getResources());
         mPhoneNumberHelper = new PhoneNumberHelper(mResources, getVoicemailNumber());
         mPhoneCallDetailsHelper = new PhoneCallDetailsHelper(mResources, mCallTypeHelper,
                 mPhoneNumberHelper);
         mVoicemailStatusHelper = new VoicemailStatusHelperImpl();
         mAsyncQueryHandler = new CallDetailActivityQueryHandler(this);
+        mHeaderTextView = (TextView) findViewById(R.id.header_text);
         mStatusMessageView = findViewById(R.id.voicemail_status);
         mStatusMessageText = (TextView) findViewById(R.id.voicemail_status_message);
         mStatusMessageAction = (TextView) findViewById(R.id.voicemail_status_action);
@@ -276,8 +275,7 @@ public class CallDetailActivity extends ListActivity implements
         final Uri photoUri = details[0].photoUri;
 
         // Set the details header, based on the first phone call.
-        mPhoneCallDetailsHelper.setPhoneCallDetails(mPhoneCallDetailsViews,
-                details[0], false, false, true);
+        mPhoneCallDetailsHelper.setPhoneCallName(mHeaderTextView, details[0]);
 
         // Cache the details about the phone number.
         final Uri numberCallUri = mPhoneNumberHelper.getCallUri(mNumber);

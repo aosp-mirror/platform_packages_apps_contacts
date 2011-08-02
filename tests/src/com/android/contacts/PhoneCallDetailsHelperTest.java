@@ -26,6 +26,7 @@ import android.content.res.Resources;
 import android.provider.CallLog.Calls;
 import android.test.AndroidTestCase;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.GregorianCalendar;
 import java.util.Locale;
@@ -51,6 +52,7 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     private PhoneCallDetailsHelper mHelper;
     /** The views to fill. */
     private PhoneCallDetailsViews mViews;
+    private TextView mNameView;
     private PhoneNumberHelper mPhoneNumberHelper;
 
     @Override
@@ -62,6 +64,7 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         mPhoneNumberHelper = new PhoneNumberHelper(resources, TEST_VOICEMAIL_NUMBER);
         mHelper = new PhoneCallDetailsHelper(resources, callTypeHelper, mPhoneNumberHelper);
         mViews = PhoneCallDetailsViews.createForTest(context);
+        mNameView = new TextView(context);
     }
 
     @Override
@@ -197,12 +200,17 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         }
     }
 
-    public void testSetPhoneCallDetails_NameOnly() {
-        setPhoneCallDetailsNameOnly();
-        assertEquals(View.VISIBLE, mViews.nameView.getVisibility());
-        assertEquals(View.GONE, mViews.numberView.getVisibility());
-        assertEquals(View.GONE, mViews.callTypeView.getVisibility());
-    }
+    public void testSetPhoneName_NumberOnly() {
+      setPhoneCallNameWithNumberOnly();
+      assertEquals(View.VISIBLE, mNameView.getVisibility());
+      assertEquals(TEST_FORMATTED_NUMBER, mNameView.getText().toString());
+  }
+
+    public void testSetPhoneName() {
+      setPhoneCallName("John Doe");
+      assertEquals(View.VISIBLE, mNameView.getVisibility());
+      assertEquals("John Doe", mNameView.getText().toString());
+  }
 
     /** Asserts that the name text field contains the value of the given string resource. */
     private void assertNameEqualsResource(int resId) {
@@ -265,7 +273,7 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(number, formattedNumber, TEST_COUNTRY_ISO,
                         new int[]{ Calls.INCOMING_TYPE }, TEST_DATE, TEST_DURATION),
-                false, false, false);
+                false, false);
     }
 
     /** Sets the phone call details with default values and the given date. */
@@ -273,7 +281,7 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
                         new int[]{ Calls.INCOMING_TYPE }, date, TEST_DURATION),
-                false, false, false);
+                false, false);
     }
 
     /** Sets the phone call details with default values and the given call types using icons. */
@@ -290,13 +298,19 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
                         callTypes, TEST_DATE, TEST_DURATION),
-                useIcons, false, false);
+                useIcons, false);
     }
 
-    private void setPhoneCallDetailsNameOnly() {
-        mHelper.setPhoneCallDetails(mViews,
+    private void setPhoneCallNameWithNumberOnly() {
+        mHelper.setPhoneCallName(mNameView,
                 new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
-                        new int[]{ Calls.INCOMING_TYPE }, TEST_DATE, TEST_DURATION),
-                true, false, true);
+                        new int[]{ Calls.INCOMING_TYPE }, TEST_DATE, TEST_DURATION));
+    }
+
+    private void setPhoneCallName(String name) {
+        mHelper.setPhoneCallName(mNameView,
+                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
+                        new int[]{ Calls.INCOMING_TYPE }, TEST_DATE, TEST_DURATION,
+                        name, 0, "", 1, null));
     }
 }

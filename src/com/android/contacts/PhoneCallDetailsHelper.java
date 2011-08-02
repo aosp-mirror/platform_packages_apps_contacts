@@ -28,6 +28,7 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.view.View;
+import android.widget.TextView;
 
 /**
  * Helper class to fill in the views in {@link PhoneCallDetailsViews}.
@@ -59,7 +60,7 @@ public class PhoneCallDetailsHelper {
 
     /** Fills the call details views with content. */
     public void setPhoneCallDetails(PhoneCallDetailsViews views, PhoneCallDetails details,
-            boolean useIcons, boolean isHighlighted, boolean nameOnly) {
+            boolean useIcons, boolean isHighlighted) {
         if (useIcons) {
             views.callTypeIcons.clear();
             int count = details.callTypes.length;
@@ -130,21 +131,22 @@ public class PhoneCallDetailsHelper {
         }
 
         views.dateView.setText(shortDateText);
-        views.dateView.setVisibility(View.VISIBLE);
         views.nameView.setText(nameText);
-        views.nameView.setVisibility(View.VISIBLE);
-        // Do not show the number if it is not available. This happens if we have only the number,
-        // in which case the number is shown in the name field instead.
-        if (!TextUtils.isEmpty(numberText)) {
-            views.numberView.setText(numberText);
-            views.numberView.setVisibility(View.VISIBLE);
+        views.numberView.setText(numberText);
+    }
+
+    /** Sets the name in the text view for the given phone call. */
+    public void setPhoneCallName(TextView nameView, PhoneCallDetails details) {
+        final CharSequence nameText;
+        final CharSequence displayNumber =
+            mPhoneNumberHelper.getDisplayNumber(details.number, details.formattedNumber);
+        if (TextUtils.isEmpty(details.name)) {
+            nameText = displayNumber;
         } else {
-            views.numberView.setVisibility(View.GONE);
+            nameText = details.name;
         }
 
-        // Hide the rest if not visible.
-        views.callTypeView.setVisibility(nameOnly ? View.GONE : View.VISIBLE);
-        views.numberView.setVisibility(nameOnly ? View.GONE : View.VISIBLE);
+        nameView.setText(nameText);
     }
 
     public void setCurrentTimeForTest(long currentTimeMillis) {
