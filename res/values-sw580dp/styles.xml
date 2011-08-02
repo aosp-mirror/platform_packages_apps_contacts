@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 <resources>
-    <style name="PeopleTheme" parent="@android:style/Theme.Holo.Light.SolidActionBar.Inverse.SplitActionBarWhenNarrow">
+    <style name="PeopleTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
         <item name="android:textColorPrimary">@color/primary_text_color</item>
         <item name="android:textColorSecondary">@color/secondary_text_color</item>

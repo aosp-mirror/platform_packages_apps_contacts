@@ -68,6 +68,7 @@
         <activity android:name=".activities.CallLogActivity"
             android:label="@string/recentCallsIconLabel"
             android:theme="@style/DialtactsTheme"
+            android:uiOptions="splitActionBarWhenNarrow"
         >
             <intent-filter>
                 <action android:name="com.android.phone.action.RECENT_CALLS" />
@@ -131,6 +132,7 @@
         <activity android:name=".activities.DialtactsActivity"
             android:label="@string/launcherDialer"
             android:theme="@style/DialtactsTheme"
+            android:uiOptions="splitActionBarWhenNarrow"
             android:launchMode="singleTask"
             android:clearTaskOnLaunch="true"
             android:icon="@mipmap/ic_launcher_phone"
@@ -185,6 +187,7 @@
         <activity android:name=".activities.PeopleActivity"
             android:label="@string/people"
             android:theme="@style/PeopleTheme"
+            android:uiOptions="splitActionBarWhenNarrow"
             android:clearTaskOnLaunch="true"
             android:launchMode="singleTop"
         >
@@ -365,6 +368,7 @@
         <activity android:name=".activities.GroupBrowserActivity"
             android:label="@string/contactsGroupsLabel"
             android:theme="@style/PeopleTheme"
+            android:uiOptions="splitActionBarWhenNarrow"
             android:launchMode="singleTop"
             android:clearTaskOnLaunch="true">
             <!-- TODO: Remove this temporary intent action name when the fragmentization
@@ -379,7 +383,8 @@
         <!-- Views the details of a single group -->
         <activity android:name=".activities.GroupDetailActivity"
             android:label=""
-            android:theme="@style/GroupDetailTheme" />
+            android:theme="@style/GroupDetailTheme"
+            android:uiOptions="splitActionBarWhenNarrow"/>
 
         <!-- Create a new or edit an existing group -->
         <activity
@@ -467,6 +472,7 @@
         <activity android:name="CallDetailActivity"
             android:label="@string/callDetailTitle"
             android:theme="@style/CallDetailActivityTheme"
+            android:uiOptions="splitActionBarWhenNarrow"
             android:screenOrientation="nosensor"
             android:icon="@mipmap/ic_launcher_phone"
             android:taskAffinity="android.task.contacts.phone"
@@ -498,6 +504,7 @@
         <activity
             android:name=".activities.ContactEditorActivity"
             android:theme="@style/ContactEditorActivityTheme"
+            android:uiOptions="splitActionBarWhenNarrow"
             android:windowSoftInputMode="adjustResize">
 
             <intent-filter android:label="@string/editContactDescription">
