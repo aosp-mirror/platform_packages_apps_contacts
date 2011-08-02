@@ -28,17 +28,20 @@ import android.app.ActionBar;
 import android.app.ListActivity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.CallLog;
 import android.provider.CallLog.Calls;
 import android.provider.Contacts.Intents.Insert;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.PhoneLookup;
+import android.provider.VoicemailContract.Voicemails;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -192,6 +195,7 @@ public class CallDetailActivity extends ListActivity implements
             getFragmentManager().beginTransaction()
                     .add(R.id.voicemail_container, playbackFragment).commit();
             mAsyncQueryHandler.startVoicemailStatusQuery(getVoicemailUri());
+            markVoicemailAsRead(getVoicemailUri());
         } else {
             // No voicemail uri: hide the status view.
             mStatusMessageView.setVisibility(View.GONE);
@@ -204,6 +208,18 @@ public class CallDetailActivity extends ListActivity implements
 
     private Uri getVoicemailUri() {
         return getIntent().getParcelableExtra(EXTRA_VOICEMAIL_URI);
+    }
+
+    private void markVoicemailAsRead(final Uri voicemailUri) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                ContentValues values = new ContentValues();
+                values.put(Voicemails.IS_READ, true);
+                getContentResolver().update(voicemailUri, values, null, null);
+                return null;
+            }
+        }.execute();
     }
 
     /**
