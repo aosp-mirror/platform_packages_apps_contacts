@@ -655,20 +655,21 @@ public class CallDetailActivity extends ListActivity implements
     }
 
     public void onMenuRemoveFromCallLog(MenuItem menuItem) {
-        StringBuilder callIds = new StringBuilder();
+        final StringBuilder callIds = new StringBuilder();
         for (Uri callUri : getCallLogEntryUris()) {
             if (callIds.length() != 0) {
                 callIds.append(",");
             }
             callIds.append(ContentUris.parseId(callUri));
         }
-
-        getContentResolver().delete(Calls.CONTENT_URI_WITH_VOICEMAIL,
-                Calls._ID + " IN (" + callIds + ")", null);
-        // Also close the activity.
-        finish();
+        runInBackgroundThenFinishActivity(new Runnable() {
+            @Override
+            public void run() {
+                getContentResolver().delete(Calls.CONTENT_URI_WITH_VOICEMAIL,
+                        Calls._ID + " IN (" + callIds + ")", null);
+            }
+        });
     }
-
     public void onMenuEditNumberBeforeCall(MenuItem menuItem) {
         startActivity(new Intent(Intent.ACTION_DIAL, mPhoneNumberHelper.getCallUri(mNumber)));
     }
@@ -678,8 +679,30 @@ public class CallDetailActivity extends ListActivity implements
     }
 
     public void onMenuTrashVoicemail(MenuItem menuItem) {
-        getContentResolver().delete(getVoicemailUri(), null, null);
-        finish();
+        final Uri voicemailUri = getVoicemailUri();
+        runInBackgroundThenFinishActivity(new Runnable() {
+            @Override
+            public void run() {
+                getContentResolver().delete(voicemailUri, null, null);
+            }
+        });
+    }
+
+    /**
+     * Run a task in the background, and then finish this activity when the task is done.
+     */
+    private void runInBackgroundThenFinishActivity(final Runnable runnable) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                runnable.run();
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Void result) {
+                finish();
+            }
+        }.execute();
     }
 
     private void configureActionBar() {
