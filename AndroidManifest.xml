@@ -399,6 +399,7 @@
             android:theme="@style/Theme.QuickContact"
             android:launchMode="singleTop"
             android:excludeFromRecents="true"
+            android:noHistory="true"
             android:taskAffinity="android.task.quickcontact"
             android:windowSoftInputMode="stateUnchanged">
 
