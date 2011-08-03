@@ -18,12 +18,14 @@
         android:id="@+id/menu_share_voicemail"
         android:icon="@drawable/ic_share_holo_dark"
         android:showAsAction="ifRoom"
+        android:title="@string/recentCalls_shareVoicemail"
         android:onClick="onMenuShareVoicemail"
     />
     <item
         android:id="@+id/menu_trash"
         android:icon="@drawable/ic_trash_holo_dark"
         android:showAsAction="ifRoom"
+        android:title="@string/recentCalls_trashVoicemail"
         android:onClick="onMenuTrashVoicemail"
     />
     <item
