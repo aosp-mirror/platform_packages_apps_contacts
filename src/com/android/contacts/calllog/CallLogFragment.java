@@ -39,7 +39,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -760,11 +759,9 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             }
 
             final boolean isNew = CallLogQuery.isNewSection(c);
-            // Use icons for old items, but text for new ones.
-            final boolean useIcons = !isNew;
             // New items also use the highlighted version of the text.
             final boolean isHighlighted = isNew;
-            mCallLogViewsHelper.setPhoneCallDetails(views, details, useIcons, isHighlighted);
+            mCallLogViewsHelper.setPhoneCallDetails(views, details, isHighlighted);
             setPhoto(views, thumbnailUri, personId, lookupKey);
 
             // Listen for the first draw

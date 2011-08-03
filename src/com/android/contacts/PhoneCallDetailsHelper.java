@@ -24,9 +24,12 @@ import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.PhoneNumberUtils;
+import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.view.View;
 import android.widget.TextView;
 
@@ -60,42 +63,35 @@ public class PhoneCallDetailsHelper {
 
     /** Fills the call details views with content. */
     public void setPhoneCallDetails(PhoneCallDetailsViews views, PhoneCallDetails details,
-            boolean useIcons, boolean isHighlighted) {
-        if (useIcons) {
-            views.callTypeIcons.clear();
-            int count = details.callTypes.length;
-            for (int index = 0; index < count && index < MAX_CALL_TYPE_ICONS; ++index) {
-                views.callTypeIcons.add(details.callTypes[index]);
-            }
-            views.callTypeIcons.setVisibility(View.VISIBLE);
-            if (count > MAX_CALL_TYPE_ICONS) {
-                views.callTypeText.setVisibility(View.VISIBLE);
-                views.callTypeSeparator.setVisibility(View.VISIBLE);
-                views.callTypeText.setText(
-                        mResources.getString(R.string.call_log_item_count, count));
-            } else {
-                views.callTypeText.setVisibility(View.GONE);
-                views.callTypeSeparator.setVisibility(View.GONE);
-            }
-        } else {
-            // Use the name of the first call type.
-            // TODO: We should update this to handle the text for multiple calls as well.
-            int callType = details.callTypes[0];
-            views.callTypeText.setText(
-                    isHighlighted ? mCallTypeHelper.getHighlightedCallTypeText(callType)
-                            : mCallTypeHelper.getCallTypeText(callType));
-            views.callTypeIcons.clear();
-
-            views.callTypeText.setVisibility(View.VISIBLE);
-            views.callTypeSeparator.setVisibility(View.VISIBLE);
-            views.callTypeIcons.setVisibility(View.GONE);
+            boolean isHighlighted) {
+        // Display up to a given number of icons.
+        views.callTypeIcons.clear();
+        int count = details.callTypes.length;
+        for (int index = 0; index < count && index < MAX_CALL_TYPE_ICONS; ++index) {
+            views.callTypeIcons.add(details.callTypes[index]);
         }
+        views.callTypeIcons.setVisibility(View.VISIBLE);
 
-        CharSequence shortDateText =
+        // Show the total call count only if there are more than the maximum number of icons.
+        final Integer callCount;
+        if (count > MAX_CALL_TYPE_ICONS) {
+            callCount = count;
+        } else {
+            callCount = null;
+        }
+        // The color to highlight the count and date in, if any. This is based on the first call.
+        Integer highlightColor =
+                isHighlighted ? mCallTypeHelper.getHighlightedColor(details.callTypes[0]) : null;
+
+        // The date of this call, relative to the current time.
+        CharSequence dateText =
             DateUtils.getRelativeTimeSpanString(details.date,
                     getCurrentTimeMillis(),
                     DateUtils.MINUTE_IN_MILLIS,
                     DateUtils.FORMAT_ABBREV_RELATIVE);
+
+        // Set the call count and date.
+        setCallCountAndDate(views, callCount, dateText, highlightColor);
 
         CharSequence numberFormattedLabel = null;
         // Only show a label if the number is shown and it is not a SIP address.
@@ -130,7 +126,6 @@ public class PhoneCallDetailsHelper {
             }
         }
 
-        views.dateView.setText(shortDateText);
         views.nameView.setText(nameText);
         views.numberView.setText(numberText);
     }
@@ -164,5 +159,37 @@ public class PhoneCallDetailsHelper {
         } else {
             return mCurrentTimeMillisForTest;
         }
+    }
+
+    /** Sets the call count and date. */
+    private void setCallCountAndDate(PhoneCallDetailsViews views, Integer callCount,
+            CharSequence dateText, Integer highlightColor) {
+        // Combine the count (if present) and the date.
+        final CharSequence text;
+        if (callCount != null) {
+            text = mResources.getString(
+                    R.string.call_log_item_count_and_date, callCount.intValue(), dateText);
+        } else {
+            text = dateText;
+        }
+
+        // Apply the highlight color if present.
+        final CharSequence formattedText;
+        if (highlightColor != null) {
+            formattedText = addBoldAndColor(text, highlightColor);
+        } else {
+            formattedText = text;
+        }
+
+        views.callTypeAndDate.setText(formattedText);
+    }
+
+    /** Creates a SpannableString for the given text which is bold and in the given color. */
+    private CharSequence addBoldAndColor(CharSequence text, int color) {
+        int flags = Spanned.SPAN_INCLUSIVE_INCLUSIVE;
+        SpannableString result = new SpannableString(text);
+        result.setSpan(new StyleSpan(Typeface.BOLD), 0, text.length(), flags);
+        result.setSpan(new ForegroundColorSpan(color), 0, text.length(), flags);
+        return result;
     }
 }

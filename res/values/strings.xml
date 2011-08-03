@@ -1635,9 +1635,6 @@
     <!-- Message to show when there is an error playing back the voicemail. [CHAR LIMIT=40] -->
     <string name="voicemail_playback_error">Could not play voicemail</string>
 
-    <!-- The separator between the call type text and the date in the call log [CHAR LIMIT=3] -->
-    <string name="call_log_type_date_separator">/</string>
-
     <!-- The header in the call log used to identify missed calls and voicemail that have not yet been consumed [CHAR LIMIT=10] -->
     <string name="call_log_new_header">New</string>
 
@@ -1677,8 +1674,8 @@
     <!--  Fastest voicemail playback speed. [CHAR LIMIT=30] -->
     <string name="voicemail_speed_fastest">fastest speed</string>
 
-    <!-- The counter for calls in a group in the call log [CHAR LIMIT=5] -->
-    <string name="call_log_item_count">(%1$d)</string>
+    <!-- The counter for calls in a group and the date of the latest call as shown in the call log [CHAR LIMIT=15] -->
+    <string name="call_log_item_count_and_date">(<xliff:g id="count">%1$d</xliff:g>) <xliff:g id="date">%2$s</xliff:g></string>
 
     <!-- Hint text in the group name box in the edit group view. [CHAR LIMIT=20]-->
     <string name="group_name_hint">Group\'s Name</string>

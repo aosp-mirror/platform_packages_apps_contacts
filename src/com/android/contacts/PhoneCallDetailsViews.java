@@ -29,20 +29,15 @@ public final class PhoneCallDetailsViews {
     public final TextView nameView;
     public final View callTypeView;
     public final CallTypeIconsView callTypeIcons;
-    public final TextView callTypeText;
-    public final View callTypeSeparator;
-    public final TextView dateView;
+    public final TextView callTypeAndDate;
     public final TextView numberView;
 
     private PhoneCallDetailsViews(TextView nameView, View callTypeView,
-            CallTypeIconsView callTypeIcons, TextView callTypeText, View callTypeSeparator,
-            TextView dateView, TextView numberView) {
+            CallTypeIconsView callTypeIcons, TextView callTypeAndDate, TextView numberView) {
         this.nameView = nameView;
         this.callTypeView = callTypeView;
         this.callTypeIcons = callTypeIcons;
-        this.callTypeText = callTypeText;
-        this.callTypeSeparator = callTypeSeparator;
-        this.dateView = dateView;
+        this.callTypeAndDate = callTypeAndDate;
         this.numberView = numberView;
     }
 
@@ -57,9 +52,7 @@ public final class PhoneCallDetailsViews {
         return new PhoneCallDetailsViews((TextView) view.findViewById(R.id.name),
                 view.findViewById(R.id.call_type),
                 (CallTypeIconsView) view.findViewById(R.id.call_type_icons),
-                (TextView) view.findViewById(R.id.call_type_name),
-                view.findViewById(R.id.call_type_separator),
-                (TextView) view.findViewById(R.id.date),
+                (TextView) view.findViewById(R.id.call_count_and_date),
                 (TextView) view.findViewById(R.id.number));
     }
 
@@ -68,8 +61,6 @@ public final class PhoneCallDetailsViews {
                 new TextView(context),
                 new View(context),
                 new CallTypeIconsView(context),
-                new TextView(context),
-                new View(context),
                 new TextView(context),
                 new TextView(context));
     }

@@ -19,12 +19,7 @@ package com.android.contacts.calllog;
 import com.android.contacts.R;
 
 import android.content.res.Resources;
-import android.graphics.Typeface;
 import android.provider.CallLog.Calls;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.StyleSpan;
 
 /**
  * Helper class to perform operations related to call types.
@@ -38,10 +33,10 @@ public class CallTypeHelper {
     private final CharSequence mMissedName;
     /** Name used to identify voicemail calls. */
     private final CharSequence mVoicemailName;
-    /** Name used to identify new missed calls. */
-    private final CharSequence mNewMissedName;
-    /** Name used to identify new voicemail calls. */
-    private final CharSequence mNewVoicemailName;
+    /** Color used to identify new missed calls. */
+    private final int mNewMissedColor;
+    /** Color used to identify new voicemail calls. */
+    private final int mNewVoicemailColor;
 
     public CallTypeHelper(Resources resources) {
         // Cache these values so that we do not need to look them up each time.
@@ -49,10 +44,8 @@ public class CallTypeHelper {
         mOutgoingName = resources.getString(R.string.type_outgoing);
         mMissedName = resources.getString(R.string.type_missed);
         mVoicemailName = resources.getString(R.string.type_voicemail);
-        mNewMissedName = addBoldAndColor(mMissedName,
-                resources.getColor(R.color.call_log_missed_call_highlight_color));
-        mNewVoicemailName = addBoldAndColor(mVoicemailName,
-                resources.getColor(R.color.call_log_voicemail_highlight_color));
+        mNewMissedColor = resources.getColor(R.color.call_log_missed_call_highlight_color);
+        mNewVoicemailColor = resources.getColor(R.color.call_log_voicemail_highlight_color);
     }
 
     /** Returns the text used to represent the given call type. */
@@ -75,34 +68,25 @@ public class CallTypeHelper {
         }
     }
 
-    /** Returns the text used to represent the given call type. */
-    public CharSequence getHighlightedCallTypeText(int callType) {
+    /** Returns the color used to highlight the given call type, null if not highlight is needed. */
+    public Integer getHighlightedColor(int callType) {
         switch (callType) {
             case Calls.INCOMING_TYPE:
                 // New incoming calls are not highlighted.
-                return mIncomingName;
+                return null;
 
             case Calls.OUTGOING_TYPE:
                 // New outgoing calls are not highlighted.
-                return mOutgoingName;
+                return null;
 
             case Calls.MISSED_TYPE:
-                return mNewMissedName;
+                return mNewMissedColor;
 
             case Calls.VOICEMAIL_TYPE:
-                return mNewVoicemailName;
+                return mNewVoicemailColor;
 
             default:
                 throw new IllegalArgumentException("invalid call type: " + callType);
         }
-    }
-
-    /** Creates a SpannableString for the given text which is bold and in the given color. */
-    private CharSequence addBoldAndColor(CharSequence text, int color) {
-        int flags = Spanned.SPAN_INCLUSIVE_INCLUSIVE;
-        SpannableString result = new SpannableString(text);
-        result.setSpan(new StyleSpan(Typeface.BOLD), 0, text.length(), flags);
-        result.setSpan(new ForegroundColorSpan(color), 0, text.length(), flags);
-        return result;
     }
 }

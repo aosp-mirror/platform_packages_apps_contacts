@@ -48,12 +48,11 @@ import android.view.View;
      *
      * @param views the views to populate
      * @param details the details of a phone call needed to fill in the data
-     * @param useIcons whether to use icons to show the type of the call
      * @param isHighlighted whether to use the highlight text for the call
      */
     public void setPhoneCallDetails(CallLogListItemViews views, PhoneCallDetails details,
-            boolean useIcons, boolean isHighlighted) {
-        mPhoneCallDetailsHelper.setPhoneCallDetails(views.phoneCallDetailsViews, details, useIcons,
+            boolean isHighlighted) {
+        mPhoneCallDetailsHelper.setPhoneCallDetails(views.phoneCallDetailsViews, details,
                 isHighlighted);
         boolean canCall = mPhoneNumberHelper.canPlaceCallsTo(details.number);
         boolean canPlay = details.callTypes[0] == Calls.VOICEMAIL_TYPE;

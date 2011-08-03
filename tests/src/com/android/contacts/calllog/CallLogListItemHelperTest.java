@@ -140,7 +140,7 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(number, formattedNumber, TEST_COUNTRY_ISO,
                         new int[]{ callType }, TEST_DATE, TEST_DURATION),
-                true, false);
+                false);
     }
 
     /** Sets the details of a phone call using the specified call type. */
@@ -148,7 +148,7 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
                         types, TEST_DATE, TEST_DURATION),
-                true, false);
+                false);
     }
 
     /** Sets the details of a phone call using the specified call type. */
@@ -156,6 +156,6 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
                         types, TEST_DATE, TEST_DURATION),
-                true, true);
+                true);
     }
 }
