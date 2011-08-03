@@ -426,6 +426,12 @@
     <!-- Menu item used to remove all calls from the call log -->
     <string name="recentCalls_deleteAll">Clear call log</string>
 
+    <!-- Menu item used to delete a voicemail. [CHAR LIMIT=30] -->
+    <string name="recentCalls_trashVoicemail">Delete voicemail</string>
+
+    <!-- Menu item used to share a voicemail. [CHAR LIMIT=30] -->
+    <string name="recentCalls_shareVoicemail">Share voicemail</string>
+
     <!-- Text displayed when the call log is empty -->
     <string name="recentCalls_empty">Call log is empty.</string>
 
