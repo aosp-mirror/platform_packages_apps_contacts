@@ -101,17 +101,77 @@
                 android:contentDescription="@string/description_call_log_play_button"
             />
         </LinearLayout>
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/quick_contact_photo"
             android:layout_toLeftOf="@id/divider"
-            android:layout_centerInParent="true"
-            android:layout_alignWithParentIfMissing="true"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/call_log_inner_margin"
+            android:orientation="vertical"
         >
-            <include layout="@layout/call_log_phone_call_details"/>
-        </RelativeLayout>
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/call_log_primary_text_color"
+                android:textSize="18sp"
+                android:singleLine="true"
+            />
+            <TextView
+                android:id="@+id/number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/call_log_secondary_text_color"
+                android:textSize="14sp"
+                android:singleLine="true"
+            />
+            <LinearLayout
+                android:id="@+id/call_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+            >
+                <view
+                    class="com.android.contacts.calllog.CallTypeIconsView"
+                    android:id="@+id/call_type_icons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/call_log_icon_margin"
+                    android:layout_gravity="center_vertical"
+                />
+                <TextView
+                    android:id="@+id/call_type_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/call_log_inner_margin"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="?attr/call_log_secondary_text_color"
+                    android:textSize="14sp"
+                    android:singleLine="true"
+                />
+                <TextView
+                    android:id="@+id/call_type_separator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/call_log_inner_margin"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="?attr/call_log_secondary_text_color"
+                    android:textSize="14sp"
+                    android:text="@string/call_log_type_date_separator"
+                    android:singleLine="true"
+                />
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="?attr/call_log_secondary_text_color"
+                    android:textSize="14sp"
+                    android:singleLine="true"
+                />
+            </LinearLayout>
+        </LinearLayout>
     </RelativeLayout>
 
     <TextView
