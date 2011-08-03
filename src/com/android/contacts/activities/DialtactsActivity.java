@@ -703,16 +703,16 @@ public class DialtactsActivity extends Activity {
     private void exitSearchUi() {
         final ActionBar actionBar = getActionBar();
 
+        final FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.hide(mSearchFragment);
+        transaction.commit();
+
         // We want to hide SearchView and show Tabs. Also focus on previously selected one.
         actionBar.setDisplayShowCustomEnabled(false);
         actionBar.setDisplayShowHomeEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         sendFragmentVisibilityChange(mViewPager.getCurrentItem(), true);
-
-        final FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.hide(mSearchFragment);
-        transaction.commit();
 
         mViewPager.setVisibility(View.VISIBLE);
 
