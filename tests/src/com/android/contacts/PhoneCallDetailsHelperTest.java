@@ -148,7 +148,9 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     public void testSetPhoneCallDetails_MultipleCallTypeIconsLastOneDropped() {
         setPhoneCallDetailsWithCallTypeIcons(Calls.MISSED_TYPE, Calls.MISSED_TYPE,
                 Calls.INCOMING_TYPE, Calls.OUTGOING_TYPE);
-        assertCallTypeIconsEquals(Calls.MISSED_TYPE, Calls.MISSED_TYPE, Calls.INCOMING_TYPE);
+        assertCallTypeIconsEqualsPlusOverflow(
+            getContext().getString(R.string.call_log_item_count, 4),
+            Calls.MISSED_TYPE, Calls.MISSED_TYPE, Calls.INCOMING_TYPE);
     }
 
     public void testSetPhoneCallDetails_CallTypeText() {
@@ -232,6 +234,22 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         assertEquals(View.VISIBLE, mViews.callTypeIcons.getVisibility());
         assertEquals(View.GONE, mViews.callTypeText.getVisibility());
         assertEquals(View.GONE, mViews.callTypeSeparator.getVisibility());
+    }
+
+    /**
+     * Asserts that the call type contains the images with the given drawables and shows the given
+     * text next to the icons.
+     */
+    private void assertCallTypeIconsEqualsPlusOverflow(String overflowText, int... ids) {
+        assertEquals(ids.length, mViews.callTypeIcons.getCount());
+        for (int index = 0; index < ids.length; ++index) {
+            int id = ids[index];
+            assertEquals(id, mViews.callTypeIcons.getCallType(index));
+        }
+        assertEquals(View.VISIBLE, mViews.callTypeIcons.getVisibility());
+        assertEquals(View.VISIBLE, mViews.callTypeText.getVisibility());
+        assertEquals(overflowText, mViews.callTypeText.getText().toString());
+        assertEquals(View.VISIBLE, mViews.callTypeSeparator.getVisibility());
     }
 
     /** Asserts that the call type contains the given text. */
