@@ -179,6 +179,7 @@ public class TransitionAnimationView extends FrameLayout implements AnimatorList
                     paint);
             canvas.clipRect(mClipRect);
             view.draw(canvas);
+            canvas.setBitmap(null);
             mPreviousStateView.setVisibility(View.VISIBLE);
 
             mEnterAnimation.setTarget(view);
