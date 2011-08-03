@@ -72,7 +72,6 @@ public class CancelActivity extends Activity implements ServiceConnection {
     private int mJobId;
     private String mDisplayName;
     private int mType;
-    private Messenger mMessenger;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -121,29 +120,21 @@ public class CancelActivity extends Activity implements ServiceConnection {
     }
 
     @Override
-    public void onServiceConnected(ComponentName name, IBinder service) {
-        mMessenger = new Messenger(service);
+    public void onServiceConnected(ComponentName name, IBinder binder) {
+        VCardService service = ((VCardService.MyBinder) binder).getService();
 
-        boolean callFinish = false;
         try {
             final CancelRequest request = new CancelRequest(mJobId, mDisplayName);
-            mMessenger.send(Message.obtain(null, VCardService.MSG_CANCEL_REQUEST, request));
-            callFinish = true;
-        } catch (RemoteException e) {
-            Log.e(LOG_TAG, "RemoteException is thrown when trying to send request");
-            showDialog(R.id.dialog_cancel_failed);
-            // finish() should be called from the Dialog
+            service.handleCancelRequest(request, null);
         } finally {
             unbindService(this);
         }
 
-        if (callFinish) {
-            finish();
-        }
+        finish();
     }
 
     @Override
     public void onServiceDisconnected(ComponentName name) {
-        mMessenger = null;
+        // do nothing
     }
 }

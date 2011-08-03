@@ -128,6 +128,7 @@ public class ImportVCardActivity extends ContactsActivity {
 
     private VCardCacheThread mVCardCacheThread;
     private ImportRequestConnection mConnection;
+    /* package */ VCardImportExportListener mListener;
 
     private String mErrorMessage;
 
@@ -188,23 +189,16 @@ public class ImportVCardActivity extends ContactsActivity {
     private CancelListener mCancelListener = new CancelListener();
 
     private class ImportRequestConnection implements ServiceConnection {
-        private Messenger mMessenger;
+        private VCardService mService;
 
         public void sendImportRequest(final List<ImportRequest> requests) {
             Log.i(LOG_TAG, "Send an import request");
-            try {
-                mMessenger.send(Message.obtain(null,
-                        VCardService.MSG_IMPORT_REQUEST,
-                        requests));
-            } catch (RemoteException e) {
-                Log.e(LOG_TAG, "RemoteException is thrown when trying to send request");
-                runOnUiThread(new DialogDisplayer(getString(R.string.fail_reason_unknown)));
-            }
+            mService.handleImportRequest(requests, mListener);
         }
 
         @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            mMessenger = new Messenger(service);
+        public void onServiceConnected(ComponentName name, IBinder binder) {
+            mService = ((VCardService.MyBinder) binder).getService();
             Log.i(LOG_TAG,
                     String.format("Connected to VCardService. Kick a vCard cache thread (uri: %s)",
                             Arrays.toString(mVCardCacheThread.getSourceUris())));
@@ -233,7 +227,6 @@ public class ImportVCardActivity extends ContactsActivity {
         private final Uri[] mSourceUris;  // Given from a caller.
         private final byte[] mSource;
         private final String mDisplayName;
-        private final boolean mShowImmediately;
 
         public VCardCacheThread(final Uri[] sourceUris) {
             mSourceUris = sourceUris;
@@ -245,24 +238,6 @@ public class ImportVCardActivity extends ContactsActivity {
                     PowerManager.SCREEN_DIM_WAKE_LOCK |
                     PowerManager.ON_AFTER_RELEASE, LOG_TAG);
             mDisplayName = null;
-            // Showing immediately could make sense here if we restrict
-            // it to cases where we import a single vcard. For now disable
-            // this feature though.
-            mShowImmediately = false;
-        }
-
-        public VCardCacheThread(final byte[] data, String displayName,
-                final boolean showImmediately) {
-            mSource = data;
-            mSourceUris = null;
-            final Context context = ImportVCardActivity.this;
-            final PowerManager powerManager =
-                    (PowerManager)context.getSystemService(Context.POWER_SERVICE);
-            mWakeLock = powerManager.newWakeLock(
-                    PowerManager.SCREEN_DIM_WAKE_LOCK |
-                    PowerManager.ON_AFTER_RELEASE, LOG_TAG);
-            mDisplayName = displayName;
-            mShowImmediately = showImmediately;
         }
 
         @Override
@@ -301,8 +276,7 @@ public class ImportVCardActivity extends ContactsActivity {
                 ArrayList<ImportRequest> requests = new ArrayList<ImportRequest>();
                 if (mSource != null) {
                     try {
-                        requests.add(constructImportRequest(mSource, null, mDisplayName,
-                                mShowImmediately));
+                        requests.add(constructImportRequest(mSource, null, mDisplayName));
                     } catch (VCardException e) {
                         Log.e(LOG_TAG, "Maybe the file is in wrong format", e);
                         showFailureNotification(R.string.fail_reason_not_supported);
@@ -336,7 +310,7 @@ public class ImportVCardActivity extends ContactsActivity {
                         final ImportRequest request;
                         try {
                             request = constructImportRequest(null, localDataUri,
-                                    sourceUri.getLastPathSegment(), mShowImmediately);
+                                    sourceUri.getLastPathSegment());
                         } catch (VCardException e) {
                             Log.e(LOG_TAG, "Maybe the file is in wrong format", e);
                             showFailureNotification(R.string.fail_reason_not_supported);
@@ -436,8 +410,7 @@ public class ImportVCardActivity extends ContactsActivity {
          * {@link ImportRequest#displayName}.
          */
         private ImportRequest constructImportRequest(final byte[] data,
-                final Uri localDataUri, final String displayName,
-                final boolean showImmediately)
+                final Uri localDataUri, final String displayName)
                 throws IOException, VCardException {
             final ContentResolver resolver = ImportVCardActivity.this.getContentResolver();
             VCardEntryCounter counter = null;
@@ -499,8 +472,7 @@ public class ImportVCardActivity extends ContactsActivity {
                     data, localDataUri, displayName,
                     detector.getEstimatedType(),
                     detector.getEstimatedCharset(),
-                    vcardVersion, counter.getCount(),
-                    showImmediately);
+                    vcardVersion, counter.getCount());
         }
 
         public Uri[] getSourceUris() {
@@ -760,19 +732,10 @@ public class ImportVCardActivity extends ContactsActivity {
 
     private void importVCard(final Uri[] uris) {
         runOnUiThread(new Runnable() {
+            @Override
             public void run() {
                 mVCardCacheThread = new VCardCacheThread(uris);
-                showDialog(R.id.dialog_cache_vcard);
-            }
-        });
-    }
-
-    private void importVCard(final byte[] data, final String displayName,
-            final boolean showImmediately) {
-        runOnUiThread(new Runnable() {
-            public void run() {
-                mVCardCacheThread = new VCardCacheThread(data, displayName,
-                        showImmediately);
+                mListener = new NotificationImportExportListener(ImportVCardActivity.this);
                 showDialog(R.id.dialog_cache_vcard);
             }
         });
@@ -888,32 +851,14 @@ public class ImportVCardActivity extends ContactsActivity {
 
     private void startImport() {
         Intent intent = getIntent();
-        if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(intent.getAction())) {
-            // Handle inbound NDEF
-            NdefMessage msg = (NdefMessage) intent.getParcelableArrayExtra(
-                    NfcAdapter.EXTRA_NDEF_MESSAGES)[0];
-            NdefRecord record = msg.getRecords()[0];
-            String type = new String(record.getType(), Charset.forName("UTF8"));
-            if (record.getTnf() != NdefRecord.TNF_MIME_MEDIA ||
-                    (!"text/x-vcard".equalsIgnoreCase(type) && !"text/vcard".equals(type))) {
-                Log.d(LOG_TAG, "Not a vcard");
-                showFailureNotification(R.string.fail_reason_not_supported);
-                finish();
-                return;
-            }
-            // For NFC imports, we always show the contact once import is
-            // complete.
-            importVCard(record.getPayload(), getString(R.string.nfc_vcard_file_name), true);
+        // Handle inbound files
+        Uri uri = intent.getData();
+        if (uri != null) {
+            Log.i(LOG_TAG, "Starting vCard import using Uri " + uri);
+            importVCard(uri);
         } else {
-            // Handle inbound files
-            Uri uri = intent.getData();
-            if (uri != null) {
-                Log.i(LOG_TAG, "Starting vCard import using Uri " + uri);
-                importVCard(uri);
-            } else {
-                Log.i(LOG_TAG, "Start vCard without Uri. The user will select vCard manually.");
-                doScanExternalStorageAndImportVCard();
-            }
+            Log.i(LOG_TAG, "Start vCard without Uri. The user will select vCard manually.");
+            doScanExternalStorageAndImportVCard();
         }
     }
 
@@ -975,13 +920,7 @@ public class ImportVCardActivity extends ContactsActivity {
                     mProgressDialogForCachingVCard.setMessage(message);
                     mProgressDialogForCachingVCard.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                     mProgressDialogForCachingVCard.setOnCancelListener(mVCardCacheThread);
-                    mConnection = new ImportRequestConnection();
-
-                    Log.i(LOG_TAG, "Bind to VCardService.");
-                    // We don't want the service finishes itself just after this connection.
-                    startService(new Intent(this, VCardService.class));
-                    bindService(new Intent(this, VCardService.class),
-                            mConnection, Context.BIND_AUTO_CREATE);
+                    startVCardService();
                 }
                 return mProgressDialogForCachingVCard;
             }
@@ -1013,6 +952,17 @@ public class ImportVCardActivity extends ContactsActivity {
         }
 
         return super.onCreateDialog(resId, bundle);
+    }
+
+    /* package */ void startVCardService() {
+        mConnection = new ImportRequestConnection();
+
+        Log.i(LOG_TAG, "Bind to VCardService.");
+        // We don't want the service finishes itself just after this connection.
+        Intent intent = new Intent(this, VCardService.class);
+        startService(intent);
+        bindService(new Intent(this, VCardService.class),
+                mConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
@@ -1052,11 +1002,11 @@ public class ImportVCardActivity extends ContactsActivity {
         final NotificationManager notificationManager =
                 (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
         final Notification notification =
-                VCardService.constructImportFailureNotification(
+                NotificationImportExportListener.constructImportFailureNotification(
                         ImportVCardActivity.this,
                         getString(reasonId));
-        notificationManager.notify(VCardService.FAILURE_NOTIFICATION_TAG, FAILURE_NOTIFICATION_ID,
-                notification);
+        notificationManager.notify(NotificationImportExportListener.FAILURE_NOTIFICATION_TAG,
+                FAILURE_NOTIFICATION_ID, notification);
         mHandler.post(new Runnable() {
             @Override
             public void run() {

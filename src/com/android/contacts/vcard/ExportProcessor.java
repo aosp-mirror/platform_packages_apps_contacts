@@ -235,9 +235,11 @@ public class ExportProcessor extends ProcessorBase {
         final String tickerText =
                 mService.getString(R.string.exporting_contact_list_title);
         final Notification notification =
-                VCardService.constructProgressNotification(mService, VCardService.TYPE_EXPORT,
-                        description, tickerText, mJobId, displayName, totalCount, currentCount);
-        mNotificationManager.notify(VCardService.DEFAULT_NOTIFICATION_TAG, mJobId, notification);
+                NotificationImportExportListener.constructProgressNotification(mService,
+                        VCardService.TYPE_EXPORT, description, tickerText, mJobId, displayName,
+                        totalCount, currentCount);
+        mNotificationManager.notify(NotificationImportExportListener.DEFAULT_NOTIFICATION_TAG,
+                mJobId, notification);
     }
 
     private void doCancelNotification() {
@@ -245,16 +247,19 @@ public class ExportProcessor extends ProcessorBase {
         final String description = mService.getString(R.string.exporting_vcard_canceled_title,
                 mExportRequest.destUri.getLastPathSegment());
         final Notification notification =
-                VCardService.constructCancelNotification(mService, description);
-        mNotificationManager.notify(VCardService.DEFAULT_NOTIFICATION_TAG, mJobId, notification);
+                NotificationImportExportListener.constructCancelNotification(mService, description);
+        mNotificationManager.notify(NotificationImportExportListener.DEFAULT_NOTIFICATION_TAG,
+                mJobId, notification);
     }
 
     private void doFinishNotification(final String title, final String description) {
         if (DEBUG) Log.d(LOG_TAG, "send finish notification: " + title + ", " + description);
         final Intent intent = new Intent(mService, PeopleActivity.class);
         final Notification notification =
-                VCardService.constructFinishNotification(mService, title, description, intent);
-        mNotificationManager.notify(VCardService.DEFAULT_NOTIFICATION_TAG, mJobId, notification);
+                NotificationImportExportListener.constructFinishNotification(mService, title,
+                        description, intent);
+        mNotificationManager.notify(NotificationImportExportListener.DEFAULT_NOTIFICATION_TAG,
+                mJobId, notification);
     }
 
     @Override

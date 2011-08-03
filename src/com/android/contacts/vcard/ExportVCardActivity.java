@@ -110,7 +110,7 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
      */
     private volatile boolean mProcessOngoing = true;
 
-    private Messenger mOutgoingMessenger;
+    private VCardService mService;
     private final Messenger mIncomingMessenger = new Messenger(new IncomingHandler());
 
     // Used temporarily when asking users to confirm the file name
@@ -138,10 +138,8 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
                 }
                 final ExportRequest request = new ExportRequest(mDestinationUri);
                 // The connection object will call finish().
-                if (trySend(Message.obtain(null, VCardService.MSG_EXPORT_REQUEST, request))) {
-                    Log.i(LOG_TAG, "Successfully sent export request. Finish itself");
-                    unbindAndFinish();
-                }
+                mService.handleExportRequest(request, new NotificationImportExportListener(
+                        ExportVCardActivity.this));
             }
         }
     }
@@ -160,14 +158,16 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
             return;
         }
 
-        if (startService(new Intent(this, VCardService.class)) == null) {
+        Intent intent = new Intent(this, VCardService.class);
+
+        if (startService(intent) == null) {
             Log.e(LOG_TAG, "Failed to start vCard service");
             mErrorReason = getString(R.string.fail_reason_unknown);
             showDialog(R.id.dialog_fail_to_export_with_reason);
             return;
         }
 
-        if (!bindService(new Intent(this, VCardService.class), this, Context.BIND_AUTO_CREATE)) {
+        if (!bindService(intent, this, Context.BIND_AUTO_CREATE)) {
             Log.e(LOG_TAG, "Failed to connect to vCard service.");
             mErrorReason = getString(R.string.fail_reason_unknown);
             showDialog(R.id.dialog_fail_to_export_with_reason);
@@ -176,14 +176,11 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
     }
 
     @Override
-    public synchronized void onServiceConnected(ComponentName name, IBinder service) {
+    public synchronized void onServiceConnected(ComponentName name, IBinder binder) {
         if (DEBUG) Log.d(LOG_TAG, "connected to service, requesting a destination file name");
         mConnected = true;
-        mOutgoingMessenger = new Messenger(service);
-        final Message message =
-                Message.obtain(null, VCardService.MSG_REQUEST_AVAILABLE_EXPORT_DESTINATION);
-        message.replyTo = mIncomingMessenger;
-        trySend(message);
+        mService = ((VCardService.MyBinder) binder).getService();
+        mService.handleRequestAvailableExportDestination(mIncomingMessenger);
         // Wait until MSG_SET_AVAILABLE_EXPORT_DESTINATION message is available.
     }
 
@@ -191,7 +188,7 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
     @Override
     public synchronized void onServiceDisconnected(ComponentName name) {
         if (DEBUG) Log.d(LOG_TAG, "onServiceDisconnected()");
-        mOutgoingMessenger = null;
+        mService = null;
         mConnected = false;
         if (mProcessOngoing) {
             // Unexpected disconnect event.
@@ -264,19 +261,6 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
 
         if (!isFinishing()) {
             unbindAndFinish();
-        }
-    }
-
-    private boolean trySend(Message message) {
-        try {
-            mOutgoingMessenger.send(message);
-            return true;
-        } catch (RemoteException e) {
-            Log.e(LOG_TAG, "RemoteException is thrown when trying to send request");
-            unbindService(this);
-            mErrorReason = getString(R.string.fail_reason_unknown);
-            showDialog(R.id.dialog_fail_to_export_with_reason);
-            return false;
         }
     }
 
