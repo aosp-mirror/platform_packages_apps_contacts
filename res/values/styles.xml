@@ -15,7 +15,7 @@
 -->
 <resources>
     <style name="DialtactsTheme"
-           parent="android:Theme.Holo.SplitActionBarWhenNarrow">
+           parent="android:Theme.Holo">
         <item name="android:windowActionBarOverlay">true</item>
         <item name="android:actionBarStyle">@style/DialtactsActionBarStyle</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -73,13 +73,13 @@
         <item name="call_log_voicemail_status_text_color">#000000</item>
     </style>
 
-    <style name="ContactDetailActivityTheme" parent="@android:style/Theme.Holo.Light.SolidActionBar.Inverse">
+    <style name="ContactDetailActivityTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:textColorPrimary">@color/primary_text_color</item>
         <item name="android:textColorSecondary">@color/secondary_text_color</item>
     </style>
-    <style name="ContactEditorActivityTheme" parent="@android:style/Theme.Holo.Light.SolidActionBar.Inverse.SplitActionBarWhenNarrow">
+    <style name="ContactEditorActivityTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
@@ -117,7 +117,7 @@
         <item name="android:windowExitAnimation">@anim/dummy_animation</item>
     </style>
 
-    <style name="PeopleTheme" parent="@android:style/Theme.Holo.Light.SolidActionBar.Inverse.SplitActionBarWhenNarrow">
+    <style name="PeopleTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
         <item name="android:textColorPrimary">@color/primary_text_color</item>
         <item name="android:textColorSecondary">@color/secondary_text_color</item>
@@ -156,7 +156,7 @@
     </style>
 
     <!-- TODO: Clean up this file so themes aren't copied. -->
-    <style name="GroupDetailTheme" parent="@android:style/Theme.Holo.Light.SolidActionBar.Inverse.SplitActionBarWhenNarrow">
+    <style name="GroupDetailTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
         <item name="android:textColorPrimary">@color/primary_text_color</item>
         <item name="android:textColorSecondary">@color/secondary_text_color</item>
