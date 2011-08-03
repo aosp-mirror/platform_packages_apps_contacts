@@ -77,7 +77,8 @@
         android:layout_alignTop="@id/photo_text_bar"
         android:layout_marginRight="@dimen/call_log_outer_margin"
     />
-    <RelativeLayout
+    <TextView
+        android:id="@+id/header_text"
         android:layout_width="wrap_content"
         android:layout_height="0dip"
         android:layout_alignLeft="@id/photo_text_bar"
@@ -86,9 +87,10 @@
         android:layout_alignBottom="@id/photo_text_bar"
         android:layout_marginRight="@dimen/call_log_inner_margin"
         android:layout_marginLeft="@dimen/call_detail_contact_name_margin"
-    >
-        <include layout="@layout/call_log_phone_call_details" />
-    </RelativeLayout>
+        android:textColor="?attr/call_log_primary_text_color"
+        android:textSize="18sp"
+        android:singleLine="true"
+    />
     <ImageButton
         android:id="@+id/main_action_push_layer"
         android:layout_width="match_parent"
