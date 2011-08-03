@@ -297,6 +297,7 @@ public class ShortcutIntentBuilder {
 
         overlay.setBounds(dst);
         overlay.draw(canvas);
+        canvas.setBitmap(null);
 
         return icon;
     }
@@ -372,6 +373,8 @@ public class ShortcutIntentBuilder {
                     iconWidth, ((int) (19 * scaleDensity)));
             canvas.drawBitmap(phoneIcon, src, dst, photoPaint);
         }
+
+        canvas.setBitmap(null);
 
         return icon;
     }
