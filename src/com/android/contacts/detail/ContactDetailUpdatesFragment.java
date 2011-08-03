@@ -21,7 +21,7 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
 import com.android.contacts.util.StreamItemEntry;
 
-import android.app.Fragment;
+import android.app.ListFragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -30,10 +30,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.TextView;
 
-public class ContactDetailUpdatesFragment extends Fragment
+public class ContactDetailUpdatesFragment extends ListFragment
         implements FragmentKeyListener, ViewOverlay {
 
     private static final String TAG = "ContactDetailUpdatesFragment";
@@ -42,9 +42,7 @@ public class ContactDetailUpdatesFragment extends Fragment
     private Uri mLookupUri;
 
     private LayoutInflater mInflater;
-
-    // The linear layout that contains all the stream items.
-    private LinearLayout mStreamContainer;
+    private StreamItemAdapter mStreamItemAdapter;
 
     /**
      * This optional view adds an alpha layer over the entire fragment.
@@ -57,12 +55,14 @@ public class ContactDetailUpdatesFragment extends Fragment
      */
     private View mTouchInterceptLayer;
 
+    private OnScrollListener mVerticalScrollListener;
+
     /**
      * Listener on clicks on a stream item.
      * <p>
      * It assumes the view has a tag of type {@link StreamItemEntry} associated with it.
      */
-    private View.OnClickListener mStreamItemClickListener = new OnClickListener() {
+    private View.OnClickListener mStreamItemClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             StreamItemEntry streamItemEntry = (StreamItemEntry) view.getTag();
@@ -90,17 +90,8 @@ public class ContactDetailUpdatesFragment extends Fragment
                 false);
 
         TextView titleTextView = (TextView) rootView.findViewById(R.id.kind);
-        titleTextView.setText(getString(R.string.recent_updates).toUpperCase());
-
-        mStreamContainer = (LinearLayout) rootView.findViewById(R.id.update_list);
-
-        // It is possible that the contact data was set to the fragment when it was first attached
-        // to the activity, but before this method was called because the fragment was not
-        // visible on screen yet (i.e. using a {@link ViewPager}), so display the data if we already
-        // have it.
-        if (mContactData != null) {
-            ContactDetailDisplayUtils.showSocialStreamItems(inflater, getActivity(), mContactData,
-                    mStreamContainer, mStreamItemClickListener);
+        if (titleTextView != null) {
+            titleTextView.setText(getString(R.string.recent_updates).toUpperCase());
         }
 
         mAlphaLayer = rootView.findViewById(R.id.alpha_overlay);
@@ -109,14 +100,29 @@ public class ContactDetailUpdatesFragment extends Fragment
         return rootView;
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mStreamItemAdapter = new StreamItemAdapter(getActivity(), mStreamItemClickListener);
+        setListAdapter(mStreamItemAdapter);
+        getListView().setOnScrollListener(mVerticalScrollListener);
+
+        // It is possible that the contact data was set to the fragment when it was first attached
+        // to the activity, but before this method was called because the fragment was not
+        // visible on screen yet (i.e. using a {@link ViewPager}), so display the data if we already
+        // have it.
+        if (mContactData != null) {
+            mStreamItemAdapter.setStreamItems(mContactData.getStreamItems());
+        }
+    }
+
     public void setData(Uri lookupUri, ContactLoader.Result result) {
         if (result == null) {
             return;
         }
         mLookupUri = lookupUri;
         mContactData = result;
-        ContactDetailDisplayUtils.showSocialStreamItems(mInflater, getActivity(), mContactData,
-                mStreamContainer, mStreamItemClickListener);
+        mStreamItemAdapter.setStreamItems(mContactData.getStreamItems());
     }
 
     @Override
@@ -152,4 +158,9 @@ public class ContactDetailUpdatesFragment extends Fragment
     public boolean handleKeyDown(int keyCode) {
         return false;
     }
+
+    public void setVerticalScrollListener(OnScrollListener listener) {
+        mVerticalScrollListener = listener;
+    }
+
 }

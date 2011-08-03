@@ -154,6 +154,7 @@ public class ContactDetailActivity extends ContactsActivity {
 
         mDetailFragment.setListener(mFragmentListener);
         mDetailFragment.setVerticalScrollListener(mVerticalScrollListener);
+        mUpdatesFragment.setVerticalScrollListener(mVerticalScrollListener);
         mDetailFragment.setData(mLookupUri, mContactData);
         mUpdatesFragment.setData(mLookupUri, mContactData);
 

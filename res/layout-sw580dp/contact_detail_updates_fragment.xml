@@ -14,52 +14,18 @@
      limitations under the License.
 -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
     android:id="@+id/contact_detail_updates_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
+    <ListView android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background_social_updates">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/detail_update_section_top_padding">
-
-            <!-- Add a first item that gives us enough space to show the carousel -->
-            <view
-                class="com.android.contacts.widget.ProportionalLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                ex:ratio="0.66"
-                ex:direction="widthToHeight">
-
-                <!-- Put a dummy view here because the ProportionalLayout requires one -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </view>
-
-            <include
-                android:id="@+id/title"
-                layout="@layout/contact_detail_kind_title_entry_view" />
-
-            <LinearLayout
-                android:id="@+id/update_list"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/detail_update_section_side_padding"
-                android:paddingRight="@dimen/detail_update_section_side_padding" />
-        </LinearLayout>
-
-    </ScrollView>
+        android:background="@color/background_social_updates"
+        android:divider="@null"/>
 
     <View
         android:id="@+id/alpha_overlay"

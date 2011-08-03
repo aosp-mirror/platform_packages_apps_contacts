@@ -116,6 +116,7 @@ public class ContactDetailLayoutController {
 
         mDetailFragment.setListener(mContactDetailFragmentListener);
         mDetailFragment.setVerticalScrollListener(mVerticalScrollListener);
+        mUpdatesFragment.setVerticalScrollListener(mVerticalScrollListener);
 
         switch (mLayoutMode) {
             case VIEW_PAGER_AND_CAROUSEL: {
