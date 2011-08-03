@@ -309,6 +309,10 @@ class AccountTypeManagerImpl extends AccountTypeManager
                     Log.d(TAG, "Registering external account type=" + type
                             + ", packageName=" + auth.packageName);
                     accountType = new ExternalAccountType(mContext, auth.packageName);
+                    if (!((ExternalAccountType) accountType).isInitialized()) {
+                        // Skip external account types that couldn't be initialized.
+                        continue;
+                    }
                     accountType.readOnly = !sync.supportsUploading();
                 }
 
@@ -329,6 +333,10 @@ class AccountTypeManagerImpl extends AccountTypeManager
                 for (String extensionPackage : extensionPackages) {
                     ExternalAccountType accountType =
                             new ExternalAccountType(mContext, extensionPackage);
+                    if (!accountType.isInitialized()) {
+                        // Skip external account types that couldn't be initialized.
+                        continue;
+                    }
                     Log.d(TAG, "Registering extension package account type="
                             + accountType.accountType + ", dataSet=" + accountType.dataSet
                             + ", packageName=" + extensionPackage);
