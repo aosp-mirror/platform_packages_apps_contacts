@@ -79,10 +79,6 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
-    <style name="CallDetailActivityTheme" parent="@android:Theme.Dialog">
-        <item name="android:windowContentOverlay">@null</item>
-    </style>
-
     <style name="ContactDetailActivityTheme" parent="@android:Theme.Dialog">
         <item name="android:windowContentOverlay">@null</item>
     </style>
