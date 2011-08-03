@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -37,9 +37,81 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
     >
-        <include layout="@layout/call_log_contact_photo"/>
-        <include layout="@layout/call_log_action_call"/>
-        <include layout="@layout/call_log_list_item_layout"/>
+        <!-- Only one of the next two is visible at one time. The other one is set to INVISIBLE -->
+        <QuickContactBadge
+            android:id="@+id/quick_contact_photo"
+            android:layout_width="@dimen/call_log_list_contact_photo_size"
+            android:layout_height="@dimen/call_log_list_contact_photo_size"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/call_log_inner_margin"
+        />
+        <ImageView
+            android:id="@+id/plain_contact_photo"
+            android:layout_width="@dimen/call_log_list_contact_photo_size"
+            android:layout_height="@dimen/call_log_list_contact_photo_size"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/call_log_inner_margin"
+        />
+        <LinearLayout
+            android:id="@+id/divider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+        >
+            <ImageView
+                android:id="@+id/unheard_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/call_log_inner_margin"
+                android:layout_gravity="center_vertical"
+                android:scaleType="center"
+                android:src="@drawable/ic_unheard_voicemail_holo_dark"
+                android:visibility="gone"
+                android:contentDescription="@string/description_call_log_unheard_voicemail"
+            />
+            <View
+                android:layout_width="1px"
+                android:layout_height="@dimen/call_log_call_action_size"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/call_log_inner_margin"
+                android:background="@drawable/ic_divider_dashed_holo_dark"
+            />
+            <ImageView
+                android:id="@+id/call_icon"
+                android:layout_width="@dimen/call_log_call_action_width"
+                android:layout_height="@dimen/call_log_call_action_height"
+                android:layout_gravity="center_vertical"
+                android:scaleType="center"
+                android:src="@drawable/ic_ab_dialer_holo_dark"
+                android:background="@drawable/list_selector"
+                android:contentDescription="@string/description_call_log_call_button"
+            />
+            <ImageView
+                android:id="@+id/play_icon"
+                android:layout_width="@dimen/call_log_call_action_width"
+                android:layout_height="@dimen/call_log_call_action_height"
+                android:layout_gravity="center_vertical"
+                android:scaleType="center"
+                android:src="@drawable/ic_play_holo_dark"
+                android:background="@drawable/list_selector"
+                android:contentDescription="@string/description_call_log_play_button"
+            />
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/quick_contact_photo"
+            android:layout_toLeftOf="@id/divider"
+            android:layout_centerInParent="true"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_marginLeft="@dimen/call_log_inner_margin"
+        >
+            <include layout="@layout/call_log_phone_call_details"/>
+        </RelativeLayout>
     </RelativeLayout>
 
     <TextView
@@ -51,4 +123,4 @@
         android:textStyle="bold"
         android:textColor="?attr/call_log_header_color"
     />
-</FrameLayout>
+</LinearLayout>
