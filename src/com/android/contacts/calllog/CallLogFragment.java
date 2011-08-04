@@ -163,7 +163,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     private CallLogAdapter mAdapter;
     private CallLogQueryHandler mCallLogQueryHandler;
     private String mVoiceMailNumber;
-    private String mCurrentCountryIso;
     private boolean mScrollToTop;
 
     private boolean mShowOptionsMenu;
@@ -228,10 +227,14 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     }
 
     /** Adapter class to fill in data for the Call Log */
-    public final class CallLogAdapter extends GroupingListAdapter
+    public static final class CallLogAdapter extends GroupingListAdapter
             implements Runnable, ViewTreeObserver.OnPreDrawListener, GroupCreator {
         /** The time in millis to delay starting the thread processing requests. */
         private static final int START_PROCESSING_REQUESTS_DELAY_MILLIS = 1000;
+
+        private final Context mContext;
+        private final String mCurrentCountryIso;
+        private final CallLogQueryHandler mCallLogQueryHandler;
 
         /**
          * A cache of the contact details for the phone numbers in the call log.
@@ -275,7 +278,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             public void onClick(View view) {
                 IntentProvider intentProvider = (IntentProvider) view.getTag();
                 if (intentProvider != null) {
-                    startActivity(intentProvider.getIntent(CallLogFragment.this.getActivity()));
+                    mContext.startActivity(intentProvider.getIntent(mContext));
                 }
             }
         };
@@ -304,18 +307,23 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             }
         };
 
-        public CallLogAdapter() {
-            super(getActivity());
+        public CallLogAdapter(Context context, CallLogQueryHandler callLogQueryHandler,
+                String currentCountryIso, String voicemailNumber) {
+            super(context);
+
+            mContext = context;
+            mCurrentCountryIso = currentCountryIso;
+            mCallLogQueryHandler = callLogQueryHandler;
 
             mContactInfoCache = ExpirableCache.create(CONTACT_INFO_CACHE_SIZE);
             mRequests = new LinkedList<String>();
             mPreDrawListener = null;
 
-            Resources resources = getResources();
+            Resources resources = mContext.getResources();
             CallTypeHelper callTypeHelper = new CallTypeHelper(resources);
 
-            mContactPhotoManager = ContactPhotoManager.getInstance(getActivity());
-            mPhoneNumberHelper = new PhoneNumberHelper(getResources(), mVoiceMailNumber);
+            mContactPhotoManager = ContactPhotoManager.getInstance(mContext);
+            mPhoneNumberHelper = new PhoneNumberHelper(resources, voicemailNumber);
             PhoneCallDetailsHelper phoneCallDetailsHelper = new PhoneCallDetailsHelper(
                     resources, callTypeHelper, mPhoneNumberHelper);
             mCallLogViewsHelper =
@@ -329,7 +337,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         @Override
         protected void onContentChanged() {
             // Start async requery
-            startCallsQuery();
+            setLoading(true);
+            mCallLogQueryHandler.fetchAllCalls();
         }
 
         void setLoading(boolean loading) {
@@ -427,7 +436,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             String[] selectionArgs = new String[] { sipAddress.toUpperCase() };
 
             Cursor dataTableCursor =
-                    getActivity().getContentResolver().query(
+                    mContext.getContentResolver().query(
                             contactRef,
                             null,  // projection
                             selection,  // selection
@@ -492,7 +501,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             // "number" is a regular phone number, so use the
             // PhoneLookup table:
             Cursor phonesCursor =
-                    getActivity().getContentResolver().query(
+                    mContext.getContentResolver().query(
                         Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI,
                                 Uri.encode(number)),
                                 PhoneQuery._PROJECTION, null, null, null);
@@ -824,6 +833,32 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         public void addGroup(int cursorPosition, int size, boolean expanded) {
             super.addGroup(cursorPosition, size, expanded);
         }
+
+        /**
+         * Format the given phone number
+         *
+         * @param number the number to be formatted.
+         * @param normalizedNumber the normalized number of the given number.
+         * @param countryIso the ISO 3166-1 two letters country code, the country's
+         *        convention will be used to format the number if the normalized
+         *        phone is null.
+         *
+         * @return the formatted number, or the given number if it was formatted.
+         */
+        private String formatPhoneNumber(String number, String normalizedNumber,
+                String countryIso) {
+            if (TextUtils.isEmpty(number)) {
+                return "";
+            }
+            // If "number" is really a SIP address, don't try to do any formatting at all.
+            if (PhoneNumberUtils.isUriNumber(number)) {
+                return number;
+            }
+            if (TextUtils.isEmpty(countryIso)) {
+                countryIso = mCurrentCountryIso;
+            }
+            return PhoneNumberUtils.formatNumber(number, normalizedNumber, countryIso);
+        }
     }
 
     @Override
@@ -833,8 +868,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         mVoiceMailNumber = ((TelephonyManager) getActivity().getSystemService(
                 Context.TELEPHONY_SERVICE)).getVoiceMailNumber();
         mCallLogQueryHandler = new CallLogQueryHandler(getActivity().getContentResolver(), this);
-
-        mCurrentCountryIso = ContactsUtils.getCurrentCountryIso(getActivity());
 
         setHasOptionsMenu(true);
     }
@@ -881,7 +914,9 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mAdapter = new CallLogAdapter();
+        String currentCountryIso = ContactsUtils.getCurrentCountryIso(getActivity());
+        mAdapter = new CallLogAdapter(getActivity(), mCallLogQueryHandler, currentCountryIso,
+                getVoiceMailNumber());
         setListAdapter(mAdapter);
     }
 
@@ -939,31 +974,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         super.onDestroy();
         mAdapter.stopRequestProcessing();
         mAdapter.changeCursor(null);
-    }
-
-    /**
-     * Format the given phone number
-     *
-     * @param number the number to be formatted.
-     * @param normalizedNumber the normalized number of the given number.
-     * @param countryIso the ISO 3166-1 two letters country code, the country's
-     *        convention will be used to format the number if the normalized
-     *        phone is null.
-     *
-     * @return the formatted number, or the given number if it was formatted.
-     */
-    private String formatPhoneNumber(String number, String normalizedNumber, String countryIso) {
-        if (TextUtils.isEmpty(number)) {
-            return "";
-        }
-        // If "number" is really a SIP address, don't try to do any formatting at all.
-        if (PhoneNumberUtils.isUriNumber(number)) {
-            return number;
-        }
-        if (TextUtils.isEmpty(countryIso)) {
-            countryIso = mCurrentCountryIso;
-        }
-        return PhoneNumberUtils.formatNumber(number, normalizedNumber, countryIso);
     }
 
     private void resetNewCallsFlag() {
