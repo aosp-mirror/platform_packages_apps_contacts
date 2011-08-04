@@ -29,10 +29,12 @@ public class ContactDetailViewPagerAdapter extends PagerAdapter {
     public static final String ABOUT_FRAGMENT_TAG = "view-pager-about-fragment";
     public static final String UPDTES_FRAGMENT_TAG = "view-pager-updates-fragment";
 
-    private static final int FRAGMENT_COUNT = 2;
-
     private static final int INDEX_ABOUT_FRAGMENT = 0;
     private static final int INDEX_UPDATES_FRAGMENT = 1;
+
+    private static final int MAX_FRAGMENT_VIEW_COUNT = 2;
+
+    private int mFragmentViewCount = MAX_FRAGMENT_VIEW_COUNT;
 
     private ViewGroup mAboutFragmentView;
     private ViewGroup mUpdatesFragmentView;
@@ -48,9 +50,18 @@ public class ContactDetailViewPagerAdapter extends PagerAdapter {
         mUpdatesFragmentView = view;
     }
 
+    public void setFragmentViewCount(int viewCount) {
+        if (viewCount < 0 || viewCount > MAX_FRAGMENT_VIEW_COUNT) {
+            throw new IllegalStateException("The view count in the ViewPager adapter must not be"
+                    + "less than 0 or exceed " + MAX_FRAGMENT_VIEW_COUNT);
+        }
+        mFragmentViewCount = viewCount;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
-        return FRAGMENT_COUNT;
+        return mFragmentViewCount;
     }
 
     /** Gets called when the number of items changes. */

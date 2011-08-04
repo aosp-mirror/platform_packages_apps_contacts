@@ -17,16 +17,18 @@
 package com.android.contacts.detail;
 
 import com.android.contacts.ContactLoader;
+import com.android.contacts.R;
 import com.android.contacts.activities.PeopleActivity.ContactDetailFragmentListener;
 
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.os.Bundle;
-import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 
@@ -37,94 +39,145 @@ public class ContactDetailLayoutController {
 
     public static final int FRAGMENT_COUNT = 2;
 
-    private static final String KEY_DETAIL_FRAGMENT_TAG = "detailFragTag";
-    private static final String KEY_UPDATES_FRAGMENT_TAG = "updatesFragTag";
-
-    private String mDetailFragmentTag;
-    private String mUpdatesFragmentTag;
+    private static final String KEY_CONTACT_HAS_UPDATES = "contactHasUpdates";
 
     private enum LayoutMode {
         TWO_COLUMN, VIEW_PAGER_AND_CAROUSEL,
     }
 
+    private final LayoutInflater mLayoutInflater;
     private final FragmentManager mFragmentManager;
 
-    private ContactDetailFragment mContactDetailFragment;
-    private ContactDetailUpdatesFragment mContactDetailUpdatesFragment;
+    private ContactDetailFragment mDetailFragment;
+    private ContactDetailUpdatesFragment mUpdatesFragment;
+
+    private View mDetailFragmentView;
+    private View mUpdatesFragmentView;
 
     private final ViewPager mViewPager;
     private final ContactDetailTabCarousel mTabCarousel;
-    private ContactDetailFragment mPagerContactDetailFragment;
-    private ContactDetailUpdatesFragment mPagerContactDetailUpdatesFragment;
+    private ContactDetailViewPagerAdapter mViewPagerAdapter;
 
     private ContactDetailFragmentListener mContactDetailFragmentListener;
 
     private ContactLoader.Result mContactData;
 
-    private boolean mIsInitialized;
+    private boolean mContactHasUpdates;
 
     private LayoutMode mLayoutMode;
 
-    public ContactDetailLayoutController(FragmentManager fragmentManager, ViewPager viewPager,
-            ContactDetailTabCarousel tabCarousel, ContactDetailFragmentListener
+    public ContactDetailLayoutController(Context context, Bundle savedState,
+            FragmentManager fragmentManager, View viewContainer, ContactDetailFragmentListener
             contactDetailFragmentListener) {
+
         if (fragmentManager == null) {
             throw new IllegalStateException("Cannot initialize a ContactDetailLayoutController "
                     + "without a non-null FragmentManager");
         }
 
+        mLayoutInflater = (LayoutInflater) context.getSystemService(
+                Context.LAYOUT_INFLATER_SERVICE);
         mFragmentManager = fragmentManager;
-        mViewPager = viewPager;
-        mTabCarousel = tabCarousel;
         mContactDetailFragmentListener = contactDetailFragmentListener;
 
-        // Determine the layout based on whether the {@link ViewPager} is null or not. If the
+        // Retrieve views in case this is view pager and carousel mode
+        mViewPager = (ViewPager) viewContainer.findViewById(R.id.pager);
+        mTabCarousel = (ContactDetailTabCarousel) viewContainer.findViewById(R.id.tab_carousel);
+
+        // Retrieve views in case this is 2-column layout mode
+        mDetailFragmentView = viewContainer.findViewById(R.id.about_fragment_container);
+        mUpdatesFragmentView = viewContainer.findViewById(R.id.updates_fragment_container);
+
+        // Determine the layout mode based on whether the {@link ViewPager} is null or not. If the
         // {@link ViewPager} is null, then this is a wide screen and the content can be displayed
         // in 2 columns side by side. If the {@link ViewPager} is non-null, then this is a narrow
         // screen and the user will need to swipe to see all the data.
         mLayoutMode = (mViewPager == null) ? LayoutMode.TWO_COLUMN :
                 LayoutMode.VIEW_PAGER_AND_CAROUSEL;
 
+        initialize(savedState);
     }
 
-    public boolean isInitialized() {
-        return mIsInitialized;
-    }
+    private void initialize(Bundle savedState) {
+        boolean fragmentsAddedToFragmentManager = true;
+        mDetailFragment = (ContactDetailFragment) mFragmentManager.findFragmentByTag(
+                ContactDetailViewPagerAdapter.ABOUT_FRAGMENT_TAG);
+        mUpdatesFragment = (ContactDetailUpdatesFragment) mFragmentManager.findFragmentByTag(
+                ContactDetailViewPagerAdapter.UPDTES_FRAGMENT_TAG);
 
-    public void initialize() {
-        mIsInitialized = true;
-        if (mDetailFragmentTag != null || mUpdatesFragmentTag != null) {
-            // Manually remove any {@link ViewPager} fragments if there was an orientation change
-            ContactDetailFragment oldDetailFragment = (ContactDetailFragment) mFragmentManager.
-                    findFragmentByTag(mDetailFragmentTag);
-            ContactDetailUpdatesFragment oldUpdatesFragment = (ContactDetailUpdatesFragment)
-                    mFragmentManager.findFragmentByTag(mUpdatesFragmentTag);
+        // If the detail fragment was found in the {@link FragmentManager} then we don't need to add
+        // it again. Otherwise, create the fragments dynamically and remember to add them to the
+        // {@link FragmentManager}.
+        if (mDetailFragment == null) {
+            mDetailFragment = new ContactDetailFragment();
+            mUpdatesFragment = new ContactDetailUpdatesFragment();
+            fragmentsAddedToFragmentManager = false;
+        }
 
-            if (oldDetailFragment != null && oldUpdatesFragment != null) {
-                FragmentTransaction ft = mFragmentManager.beginTransaction();
-                ft.remove(oldDetailFragment);
-                ft.remove(oldUpdatesFragment);
-                ft.commitAllowingStateLoss();
+        mDetailFragment.setListener(mContactDetailFragmentListener);
+        mDetailFragment.setVerticalScrollListener(mVerticalScrollListener);
+
+        switch (mLayoutMode) {
+            case VIEW_PAGER_AND_CAROUSEL: {
+                mTabCarousel.setListener(mTabCarouselListener);
+                // Inflate 2 view containers to pass in as children to the {@link ViewPager},
+                // which will in turn be the parents to the mDetailFragment and mUpdatesFragment
+                // since the fragments must have the same parent view IDs in both landscape and
+                // portrait layouts.
+                ViewGroup detailContainer = (ViewGroup) mLayoutInflater.inflate(
+                        R.layout.contact_detail_about_fragment_container, mViewPager, false);
+                ViewGroup updatesContainer = (ViewGroup) mLayoutInflater.inflate(
+                        R.layout.contact_detail_updates_fragment_container, mViewPager, false);
+
+                mViewPagerAdapter = new ContactDetailViewPagerAdapter();
+                mViewPagerAdapter.setAboutFragmentView(detailContainer);
+                mViewPagerAdapter.setUpdatesFragmentView(updatesContainer);
+
+                mViewPager.addView(detailContainer);
+                mViewPager.addView(updatesContainer);
+                mViewPager.setAdapter(mViewPagerAdapter);
+                mViewPager.setOnPageChangeListener(mOnPageChangeListener);
+
+                FragmentTransaction transaction = mFragmentManager.beginTransaction();
+                if (!fragmentsAddedToFragmentManager) {
+                    transaction.add(R.id.about_fragment_container, mDetailFragment,
+                            ContactDetailViewPagerAdapter.ABOUT_FRAGMENT_TAG);
+                    transaction.add(R.id.updates_fragment_container, mUpdatesFragment,
+                            ContactDetailViewPagerAdapter.UPDTES_FRAGMENT_TAG);
+                } else {
+                    transaction.show(mDetailFragment);
+                    transaction.show(mUpdatesFragment);
+                }
+                transaction.commit();
+                mFragmentManager.executePendingTransactions();
+                break;
+            }
+            case TWO_COLUMN: {
+                if (!fragmentsAddedToFragmentManager) {
+                    FragmentTransaction transaction = mFragmentManager.beginTransaction();
+                    transaction.add(R.id.about_fragment_container, mDetailFragment,
+                            ContactDetailViewPagerAdapter.ABOUT_FRAGMENT_TAG);
+                    transaction.add(R.id.updates_fragment_container, mUpdatesFragment,
+                            ContactDetailViewPagerAdapter.UPDTES_FRAGMENT_TAG);
+                    transaction.commit();
+                    mFragmentManager.executePendingTransactions();
+                }
             }
         }
-        if (mViewPager != null) {
-            mViewPager.setAdapter(new ViewPagerAdapter(mFragmentManager));
-            mViewPager.setOnPageChangeListener(mOnPageChangeListener);
-            mTabCarousel.setListener(mTabCarouselListener);
+
+        if (savedState != null) {
+            if (savedState.getBoolean(KEY_CONTACT_HAS_UPDATES)) {
+                showContactWithUpdates();
+            } else {
+                showContactWithoutUpdates();
+            }
         }
-    }
-
-    public void setContactDetailFragment(ContactDetailFragment contactDetailFragment) {
-        mContactDetailFragment = contactDetailFragment;
-    }
-
-    public void setContactDetailUpdatesFragment(ContactDetailUpdatesFragment updatesFragment) {
-        mContactDetailUpdatesFragment = updatesFragment;
     }
 
     public void setContactData(ContactLoader.Result data) {
         mContactData = data;
-        if (!data.getStreamItems().isEmpty()) {
+        mContactHasUpdates = !data.getStreamItems().isEmpty();
+        if (mContactHasUpdates) {
             showContactWithUpdates();
         } else {
             showContactWithoutUpdates();
@@ -132,117 +185,59 @@ public class ContactDetailLayoutController {
     }
 
     private void showContactWithUpdates() {
-        FragmentTransaction ft = mFragmentManager.beginTransaction();
-
         switch (mLayoutMode) {
             case TWO_COLUMN: {
                 // Set the contact data (hide the static photo because the photo will already be in
                 // the header that scrolls with contact details).
-                mContactDetailFragment.setShowStaticPhoto(false);
-                mContactDetailFragment.setData(mContactData.getLookupUri(), mContactData);
-                mContactDetailUpdatesFragment.setData(mContactData.getLookupUri(), mContactData);
-
-                // Update fragment visibility
-                ft.show(mContactDetailUpdatesFragment);
+                mDetailFragment.setShowStaticPhoto(false);
+                // Show the updates fragment
+                mUpdatesFragmentView.setVisibility(View.VISIBLE);
                 break;
             }
             case VIEW_PAGER_AND_CAROUSEL: {
-                // Set the contact data
+                // Update and show the tab carousel
                 mTabCarousel.loadData(mContactData);
-                mPagerContactDetailFragment.setData(mContactData.getLookupUri(), mContactData);
-                mPagerContactDetailUpdatesFragment.setData(mContactData.getLookupUri(),
-                        mContactData);
-
-                // Update fragment and view visibility
-                mViewPager.setVisibility(View.VISIBLE);
                 mTabCarousel.setVisibility(View.VISIBLE);
-                ft.hide(mContactDetailFragment);
+                // Update ViewPager so that it has the max # of tabs (to show updates)
+                mViewPagerAdapter.setFragmentViewCount(FRAGMENT_COUNT);
                 break;
             }
             default:
                 throw new IllegalStateException("Invalid LayoutMode " + mLayoutMode);
         }
 
-        // If the activity has already saved its state, then allow this fragment
-        // transaction to be dropped because there's nothing else we can do to update the UI.
-        // The fact that the contact URI has already been saved by the activity means we can
-        // restore this later.
-        ft.commitAllowingStateLoss();
+        if (mContactData != null) {
+            mDetailFragment.setData(mContactData.getLookupUri(), mContactData);
+            mUpdatesFragment.setData(mContactData.getLookupUri(), mContactData);
+        }
     }
 
     private void showContactWithoutUpdates() {
-        FragmentTransaction ft = mFragmentManager.beginTransaction();
-
         switch (mLayoutMode) {
             case TWO_COLUMN:
-                mContactDetailFragment.setShowStaticPhoto(true);
-                mContactDetailFragment.setData(mContactData.getLookupUri(), mContactData);
-                ft.hide(mContactDetailUpdatesFragment);
+                // Show the static photo which is next to the list of scrolling contact details
+                mDetailFragment.setShowStaticPhoto(true);
+                // Hide the updates fragment
+                mUpdatesFragmentView.setVisibility(View.GONE);
                 break;
             case VIEW_PAGER_AND_CAROUSEL:
-                mContactDetailFragment.setData(mContactData.getLookupUri(), mContactData);
-                ft.show(mContactDetailFragment);
-                mViewPager.setVisibility(View.GONE);
+                // Hide the tab carousel
                 mTabCarousel.setVisibility(View.GONE);
+                // Update ViewPager so that it only has 1 tab and switch to the first indexed tab
+                mViewPagerAdapter.setFragmentViewCount(1);
+                mViewPager.setCurrentItem(0);
                 break;
             default:
                 throw new IllegalStateException("Invalid LayoutMode " + mLayoutMode);
         }
 
-        // If the activity has already saved its state, then allow this fragment
-        // transaction to be dropped because there's nothing else we can do to update the UI.
-        // The fact that the contact URI has already been saved by the activity means we can
-        // restore this later.
-        ft.commitAllowingStateLoss();
+        if (mContactData != null) {
+            mDetailFragment.setData(mContactData.getLookupUri(), mContactData);
+        }
     }
 
     public void onSaveInstanceState(Bundle outState) {
-        if (mPagerContactDetailFragment != null) {
-            outState.putString(KEY_DETAIL_FRAGMENT_TAG,
-                    mPagerContactDetailFragment.getTag());
-            outState.putString(KEY_UPDATES_FRAGMENT_TAG,
-                    mPagerContactDetailUpdatesFragment.getTag());
-        }
-    }
-
-    public void onRestoreInstanceState(Bundle savedState) {
-        mDetailFragmentTag = savedState.getString(KEY_DETAIL_FRAGMENT_TAG);
-        mUpdatesFragmentTag = savedState.getString(KEY_UPDATES_FRAGMENT_TAG);
-    }
-
-    public class ViewPagerAdapter extends FragmentPagerAdapter{
-
-        public ViewPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    mPagerContactDetailFragment = new ContactDetailFragment();
-                    if (mContactData != null) {
-                        mPagerContactDetailFragment.setData(mContactData.getLookupUri(),
-                                mContactData);
-                    }
-                    mPagerContactDetailFragment.setListener(mContactDetailFragmentListener);
-                    mPagerContactDetailFragment.setVerticalScrollListener(mVerticalScrollListener);
-                    return mPagerContactDetailFragment;
-                case 1:
-                    mPagerContactDetailUpdatesFragment = new ContactDetailUpdatesFragment();
-                    if (mContactData != null) {
-                        mPagerContactDetailUpdatesFragment.setData(mContactData.getLookupUri(),
-                                mContactData);
-                    }
-                    return mPagerContactDetailUpdatesFragment;
-            }
-            throw new IllegalStateException("No fragment at position " + position);
-        }
-
-        @Override
-        public int getCount() {
-            return FRAGMENT_COUNT;
-        }
+        outState.putBoolean(KEY_CONTACT_HAS_UPDATES, mContactHasUpdates);
     }
 
     private OnPageChangeListener mOnPageChangeListener = new OnPageChangeListener() {

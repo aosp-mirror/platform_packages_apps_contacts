@@ -43,12 +43,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <fragment
-        android:id="@+id/contact_detail_fragment"
-        class="com.android.contacts.detail.ContactDetailFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
 
 </RelativeLayout>
