@@ -40,11 +40,6 @@
             android:background="@drawable/list_background_holo"
             android:visibility="gone">
 
-            <View
-                style="@style/SectionDivider"
-                android:layout_marginLeft="40dip"
-                android:layout_marginTop="24dip" />
-
             <!-- All -->
             <fragment
                 android:id="@+id/all_fragment"

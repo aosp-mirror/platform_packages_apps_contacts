@@ -22,14 +22,20 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.net.Uri.Builder;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.ContactCounts;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
+import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A cursor adapter for the {@link Phone#CONTENT_TYPE} content type.
@@ -79,6 +85,20 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     public void configureLoader(CursorLoader loader, long directoryId) {
         Uri uri;
 
+        if (directoryId != Directory.DEFAULT) {
+            Log.w(TAG, "PhoneNumberListAdapter is not ready for non-default directory ID ("
+                    + "directoryId: " + directoryId + ")");
+        }
+
+        final ContactListFilter filter = getFilter();
+        if (filter != null &&
+                (filter.filterType != ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS &&
+                filter.filterType != ContactListFilter.FILTER_TYPE_ACCOUNT &&
+                filter.filterType != ContactListFilter.FILTER_TYPE_CUSTOM)) {
+            throw new IllegalArgumentException("Unexpected filter type came " +
+                    "(type: " + filter.filterType + ", toString: " + filter + ")");
+        }
+
         if (isSearchMode()) {
             String query = getQueryString();
             Builder builder = Phone.CONTENT_FILTER_URI.buildUpon();
@@ -102,6 +122,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             }
 
             loader.setProjection(PHONES_PROJECTION);
+            configureSelection(loader, directoryId, filter);
         }
 
         loader.setUri(uri);
@@ -112,6 +133,59 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         } else {
             loader.setSortOrder(Phone.SORT_KEY_ALTERNATIVE);
         }
+    }
+
+    private void configureSelection(
+            CursorLoader loader, long directoryId, ContactListFilter filter) {
+        if (filter == null || directoryId != Directory.DEFAULT) {
+            return;
+        }
+
+        final StringBuilder selection = new StringBuilder();
+        final List<String> selectionArgs = new ArrayList<String>();
+
+        switch (filter.filterType) {
+            case ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS: {
+                break;
+            }
+            case ContactListFilter.FILTER_TYPE_CUSTOM: {
+                selection.append(Contacts.IN_VISIBLE_GROUP + "=1");
+                selection.append(" AND " + Contacts.HAS_PHONE_NUMBER + "=1");
+                break;
+            }
+            case ContactListFilter.FILTER_TYPE_ACCOUNT: {
+                selection.append("(");
+
+                selection.append(RawContacts.ACCOUNT_TYPE + "=?"
+                        + " AND " + RawContacts.ACCOUNT_NAME + "=?");
+                selectionArgs.add(filter.accountType);
+                selectionArgs.add(filter.accountName);
+                if (filter.dataSet != null) {
+                    selection.append(" AND " + RawContacts.DATA_SET + "=?");
+                    selectionArgs.add(filter.dataSet);
+                } else {
+                    selection.append(" AND " + RawContacts.DATA_SET + " IS NULL");
+                }
+                selection.append(")");
+                break;
+            }
+            case ContactListFilter.FILTER_TYPE_GROUP: {
+                selection.append(Data.MIMETYPE + "=?"
+                        + " AND " + GroupMembership.GROUP_ROW_ID + "=?");
+                selectionArgs.add(GroupMembership.CONTENT_ITEM_TYPE);
+                selectionArgs.add(String.valueOf(filter.groupId));
+                break;
+            }
+
+            case ContactListFilter.FILTER_TYPE_SINGLE_CONTACT:
+            case ContactListFilter.FILTER_TYPE_STARRED:
+            case ContactListFilter.FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY:
+            default:
+                throw new IllegalArgumentException("Unexpected filter type came " +
+                        "(type: " + filter.filterType + ", toString: " + filter + ")");
+        }
+        loader.setSelection(selection.toString());
+        loader.setSelectionArgs(selectionArgs.toArray(new String[0]));
     }
 
     protected static Uri buildSectionIndexerUri(Uri uri) {

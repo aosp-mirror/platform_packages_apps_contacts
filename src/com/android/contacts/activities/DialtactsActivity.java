@@ -20,10 +20,14 @@ import com.android.contacts.R;
 import com.android.contacts.calllog.CallLogFragment;
 import com.android.contacts.dialpad.DialpadFragment;
 import com.android.contacts.interactions.PhoneNumberInteraction;
+import com.android.contacts.list.AccountFilterActivity;
+import com.android.contacts.list.ContactListFilter;
+import com.android.contacts.list.ContactListFilterController;
+import com.android.contacts.list.ContactListFilterController.ContactListFilterListener;
 import com.android.contacts.list.ContactTileAdapter.DisplayType;
+import com.android.contacts.list.ContactTileListFragment;
 import com.android.contacts.list.OnPhoneNumberPickerActionListener;
 import com.android.contacts.list.PhoneNumberPickerFragment;
-import com.android.contacts.list.ContactTileListFragment;
 import com.android.internal.telephony.ITelephony;
 
 import android.app.ActionBar;
@@ -80,6 +84,8 @@ public class DialtactsActivity extends Activity {
     private static final int TAB_INDEX_FAVORITES = 2;
 
     private static final int TAB_INDEX_COUNT = 3;
+
+    private static final int SUBACTIVITY_ACCOUNT_FILTER = 0;
 
     /** Name of the dialtacts shared preferences */
     static final String PREFS_DIALTACTS = "dialtacts";
@@ -225,6 +231,28 @@ public class DialtactsActivity extends Activity {
      */
     private int mLastManuallySelectedFragment;
 
+    private ContactListFilterController mContactListFilterController;
+    private OnMenuItemClickListener mFilterOptionsMenuItemClickListener =
+            new OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            final Intent intent =
+                    new Intent(DialtactsActivity.this, AccountFilterActivity.class);
+            ContactListFilter filter = mContactListFilterController.getFilter();
+            startActivityForResult(intent, SUBACTIVITY_ACCOUNT_FILTER);
+            return true;
+        }
+    };
+
+    private OnMenuItemClickListener mSearchMenuItemClickListener =
+            new OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            enterSearchUi();
+            return true;
+        }
+    };
+
     /**
      * Listener used when one of phone numbers in search UI is selected. This will initiate a
      * phone call using the phone number.
@@ -298,6 +326,20 @@ public class DialtactsActivity extends Activity {
         fixIntent(intent);
 
         setContentView(R.layout.dialtacts_activity);
+
+        mContactListFilterController = new ContactListFilterController(this);
+        mContactListFilterController.addListener(new ContactListFilterListener() {
+            @Override
+            public void onContactListFilterChanged() {
+                if (mSearchFragment == null || !mSearchFragment.isAdded()) {
+                    Log.w(TAG, "Search Fragment isn't available when ContactListFilter is changed");
+                    return;
+                }
+                mSearchFragment .setFilter(mContactListFilterController.getFilter());
+
+                invalidateOptionsMenu();
+            }
+        });
 
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(new ViewPagerAdapter(getFragmentManager()));
@@ -583,17 +625,20 @@ public class DialtactsActivity extends Activity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         final MenuItem searchMenuItem = menu.findItem(R.id.search_on_action_bar);
-        if (mInSearchUi || getActionBar().getSelectedTab().getPosition() == TAB_INDEX_DIALER) {
+        final MenuItem filterOptionMenuItem = menu.findItem(R.id.filter_option);
+        Tab tab = getActionBar().getSelectedTab();
+        if (mInSearchUi) {
             searchMenuItem.setVisible(false);
+            filterOptionMenuItem.setVisible(true);
+            filterOptionMenuItem.setOnMenuItemClickListener(
+                    mFilterOptionsMenuItemClickListener);
+        } else if (tab == null || tab.getPosition() == TAB_INDEX_DIALER) {
+            searchMenuItem.setVisible(false);
+            filterOptionMenuItem.setVisible(false);
         } else {
+            filterOptionMenuItem.setVisible(false);
             searchMenuItem.setVisible(true);
-            searchMenuItem.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    enterSearchUi();
-                    return true;
-                }
-            });
+            searchMenuItem.setOnMenuItemClickListener(mSearchMenuItemClickListener);
         }
 
         return true;
@@ -752,5 +797,27 @@ public class DialtactsActivity extends Activity {
         intent.setClassName(PHONE_PACKAGE, CALL_SETTINGS_CLASS_NAME);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         return intent;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+        switch (requestCode) {
+            case SUBACTIVITY_ACCOUNT_FILTER: {
+                ContactListFilter filter = (ContactListFilter) data.getParcelableExtra(
+                        AccountFilterActivity.KEY_EXTRA_CONTACT_LIST_FILTER);
+                if (filter == null) {
+                    return;
+                }
+                if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
+                    mContactListFilterController.selectCustomFilter();
+                } else {
+                    mContactListFilterController.setContactListFilter(filter, true);
+                }
+            }
+            break;
+        }
     }
 }

@@ -19,7 +19,6 @@ package com.android.contacts.list;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
-import com.android.contacts.activities.PeopleActivity;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
@@ -35,7 +34,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
@@ -51,6 +49,8 @@ public class AccountFilterActivity extends ContactsActivity
 
     private static final String TAG = AccountFilterActivity.class.getSimpleName();
 
+    private static final int SUBACTIVITY_CUSTOMIZE_FILTER = 0;
+
     public static final String KEY_EXTRA_CONTACT_LIST_FILTER = "contactListFilter";
 
     private ListView mListView;
@@ -63,14 +63,9 @@ public class AccountFilterActivity extends ContactsActivity
         setContentView(R.layout.contact_list_filter);
 
         mListView = (ListView) findViewById(com.android.internal.R.id.list);
-        mListView.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                finishAndSetResult(mFilters.get(position));
-            }
-        });
+        mListView.setOnItemClickListener(this);
 
-        ActionBar actionBar =  getActionBar();
+        ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
@@ -104,15 +99,38 @@ public class AccountFilterActivity extends ContactsActivity
         mListView.setAdapter(new FilterListAdapter(this));
     }
 
+    @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        finishAndSetResult(mFilters.get(position));
+        ContactListFilter filter = mFilters.get(position);
+        if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
+            final Intent intent = new Intent(this,
+                    CustomContactListFilterActivity.class);
+            startActivityForResult(intent, SUBACTIVITY_CUSTOMIZE_FILTER);
+        } else {
+            final Intent intent = new Intent();
+            intent.putExtra(KEY_EXTRA_CONTACT_LIST_FILTER, filter);
+            setResult(Activity.RESULT_OK, intent);
+            finish();
+        }
     }
 
-    private void finishAndSetResult(ContactListFilter filter) {
-        final Intent intent = new Intent();
-        intent.putExtra(KEY_EXTRA_CONTACT_LIST_FILTER, filter);
-        setResult(Activity.RESULT_OK, intent);
-        finish();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+
+        switch (requestCode) {
+            case SUBACTIVITY_CUSTOMIZE_FILTER: {
+                final Intent intent = new Intent();
+                ContactListFilter filter = ContactListFilter.createFilterWithType(
+                        ContactListFilter.FILTER_TYPE_CUSTOM);
+                intent.putExtra(KEY_EXTRA_CONTACT_LIST_FILTER, filter);
+                setResult(Activity.RESULT_OK, intent);
+                finish();
+                break;
+            }
+        }
     }
 
     @Override
@@ -154,7 +172,7 @@ public class AccountFilterActivity extends ContactsActivity
                 view = (ContactListFilterView) convertView;
             } else {
                 view = (ContactListFilterView) mLayoutInflater.inflate(
-                        R.layout.filter_spinner_item, parent, false);
+                        R.layout.contact_list_filter_item, parent, false);
             }
             view.setSingleAccount(mFilters.size() == 1);
             ContactListFilter filter = mFilters.get(position);
@@ -168,10 +186,10 @@ public class AccountFilterActivity extends ContactsActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent intent = new Intent(this, PeopleActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
+                // We have two logical "up" Activities: People and Phone.
+                // Instead of having one static "up" direction, behave like back as an
+                // exceptional case.
+                onBackPressed();
                 return true;
             default:
                 break;

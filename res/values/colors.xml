@@ -90,6 +90,7 @@
 
     <!-- Secondary text color in the People app -->
     <color name="secondary_text_color">#777777</color>
+    <color name="dialtacts_secondary_text_color">#888888</color>
 
     <!-- Colors in the contact browser list -->
     <color name="contact_browser_list_bk_color">#EEEEEE</color>

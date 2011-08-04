@@ -17,18 +17,17 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="28dip"
-    android:background="@drawable/infobar_dark">
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/contact_filter_header_min_height"
+    android:background="@android:color/transparent">
     <TextView
         android:id="@+id/totalContactsText"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="8dip"
-        android:textColor="#ffbfbfbf"
-        android:textSize="14sp"
-        android:textStyle="normal" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="?android:attr/textColorSecondary" />
 
     <ProgressBar
         android:id="@+id/progress"
@@ -37,7 +36,6 @@
         android:layout_toRightOf="@id/totalContactsText"
         style="?android:attr/progressBarStyleSmall"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="10dip" />
+        android:layout_centerVertical="true" />
 
 </RelativeLayout>

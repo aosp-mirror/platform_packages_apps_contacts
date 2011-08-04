@@ -21,6 +21,4 @@
     <dimen name="editor_title_label_width">150dip</dimen>
     <dimen name="editor_interpolator_narrow_width">800dip</dimen>
     <dimen name="editor_name_text_field_right_margin">10dip</dimen>
-    <dimen name="contact_browser_list_left_margin">0dip</dimen>
-    <dimen name="contacts_count_right_margin">24dip</dimen>
 </resources>

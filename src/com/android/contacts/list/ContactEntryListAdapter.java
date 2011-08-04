@@ -77,6 +77,8 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     private boolean mSelectionVisible;
 
+    private ContactListFilter mFilter;
+
     public ContactEntryListAdapter(Context context) {
         super(context);
         addPartitions();
@@ -556,6 +558,17 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
             return ((DirectoryPartition) partition).isPhotoSupported();
         }
         return true;
+    }
+
+    /**
+     * Returns the currently selected filter.
+     */
+    public ContactListFilter getFilter() {
+        return mFilter;
+    }
+
+    public void setFilter(ContactListFilter filter) {
+        mFilter = filter;
     }
 
     @Override

@@ -113,11 +113,8 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     private String mSelectedContactLookupKey;
     private long mSelectedContactId;
 
-    private ContactListFilter mFilter;
-
     // View types for entries in the list view.
     private final int mViewTypeProfileEntry;
-
 
     public ContactListAdapter(Context context) {
         super(context);
@@ -128,17 +125,6 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
 
     public CharSequence getUnknownNameText() {
         return mUnknownNameText;
-    }
-
-    /**
-     * Returns the currently selected filter.
-     */
-    public ContactListFilter getFilter() {
-        return mFilter;
-    }
-
-    public void setFilter(ContactListFilter filter) {
-        mFilter = filter;
     }
 
     public long getSelectedContactDirectoryId() {

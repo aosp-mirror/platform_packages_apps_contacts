@@ -19,14 +19,19 @@ import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.TextView;
 
 /**
  * Fragment containing a phone number list for picking.
@@ -37,6 +42,14 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     private OnPhoneNumberPickerActionListener mListener;
     private String mShortcutAction;
+
+    private SharedPreferences mPrefs;
+    private ContactListFilter mFilter;
+
+    private TextView mAccountFilterHeaderView;
+    private View mAccountFilterHeaderContainer;
+
+    private static final String KEY_FILTER = "filter";
 
     /**
      * Used to remember the result of {@link #setNameHighlightingEnabled(boolean)} when it is called
@@ -61,6 +74,66 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     public void setOnPhoneNumberPickerActionListener(OnPhoneNumberPickerActionListener listener) {
         this.mListener = listener;
+    }
+
+    @Override
+    protected void onCreateView(LayoutInflater inflater, ViewGroup container) {
+        super.onCreateView(inflater, container);
+
+        mAccountFilterHeaderView = (TextView) getView().findViewById(R.id.account_filter_header);
+        mAccountFilterHeaderContainer =
+                getView().findViewById(R.id.account_filter_header_container);
+        updateFilterHeaderView();
+    }
+
+    @Override
+    public void setSearchMode(boolean flag) {
+        super.setSearchMode(flag);
+        updateFilterHeaderView();
+    }
+
+    private void updateFilterHeaderView() {
+        if (mAccountFilterHeaderView != null) {
+            ContactListFilter filter = getFilter();
+            if (filter != null
+                    && !isSearchMode()
+                    && filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
+                mAccountFilterHeaderContainer.setVisibility(View.VISIBLE);
+                mAccountFilterHeaderView.setText(getContext().getString(
+                        R.string.listAllContactsInAccount, filter.accountName));
+            } else {
+                mAccountFilterHeaderContainer.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mPrefs = null;
+    }
+
+    @Override
+    public void restoreSavedState(Bundle savedState) {
+        super.restoreSavedState(savedState);
+
+        if (savedState == null) {
+            return;
+        }
+
+        mFilter = savedState.getParcelable(KEY_FILTER);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(KEY_FILTER, mFilter);
     }
 
     @Override
@@ -122,6 +195,20 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     }
 
     @Override
+    protected void configureAdapter() {
+        super.configureAdapter();
+
+        ContactEntryListAdapter adapter = getAdapter();
+        if (adapter == null) {
+            return;
+        }
+
+        if (!isSearchMode() && mFilter != null) {
+            adapter.setFilter(mFilter);
+        }
+    }
+
+    @Override
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
         return inflater.inflate(R.layout.contacts_list_content, null);
     }
@@ -170,5 +257,25 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
             // We don't want to remember the choice if the adapter is already available.
             mDelayedNameHighlightingEnabled = null;
         }
+    }
+
+    public ContactListFilter getFilter() {
+        return mFilter;
+    }
+
+    public void setFilter(ContactListFilter filter) {
+        if ((mFilter == null && filter == null) ||
+                (mFilter != null && mFilter.equals(filter))) {
+            return;
+        }
+
+        mFilter = filter;
+        if (mPrefs != null) {
+            // Save the preference now.
+            ContactListFilter.storeToPreferences(mPrefs, mFilter);
+        }
+
+        reloadData();
+        updateFilterHeaderView();
     }
 }

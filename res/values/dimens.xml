@@ -143,7 +143,7 @@
     <dimen name="detail_vertical_divider_vertical_margin">16dip</dimen>
 
     <!-- Padding to be used between a visible scrollbar and the contact list -->
-    <dimen name="list_visible_scrollbar_padding">40dip</dimen>
+    <dimen name="list_visible_scrollbar_padding">32dip</dimen>
 
     <!-- Font size used for the contact name in the widget -->
     <dimen name="widget_text_size_name">14sp</dimen>
@@ -187,9 +187,6 @@
     <!-- Height of the member list in the group editor -->
     <dimen name="group_editor_member_list_height">550dip</dimen>
 
-    <!-- Height for directory headers in contact lists -->
-    <dimen name="directory_header_height">28dip</dimen>
-
     <!-- Height of edit text in dialpad fragment -->
     <dimen name="dialpad_digits_height">67dip</dimen>
     <dimen name="dialpad_digits_text_size">33sp</dimen>
@@ -204,8 +201,12 @@
     <dimen name="search_view_width">0dip</dimen>
 
     <!-- contact browser list margins -->
-    <dimen name="contact_browser_list_left_margin">24dip</dimen>
-    <dimen name="contact_browser_list_top_margin">8dip</dimen>
+    <dimen name="contact_browser_list_header_left_margin">16dip</dimen>
+    <dimen name="contact_browser_list_header_right_margin">@dimen/list_visible_scrollbar_padding</dimen>
+    <dimen name="contact_browser_list_left_margin">16dip</dimen>
+    <dimen name="contact_browser_list_right_margin">0dip</dimen>
+
+    <dimen name="contact_browser_list_top_margin">0dip</dimen>
     <dimen name="contacts_count_right_margin">40dip</dimen>
 
     <!--  ContactTile Layouts -->
@@ -229,4 +230,14 @@
     <dimen name="no_accounts_message_margin">15dip</dimen>
     <dimen name="add_account_button_left_margin">50dip</dimen>
     <dimen name="add_account_button_right_margin">50dip</dimen>
+
+    <!-- For contact filter setting screens -->
+    <dimen name="contact_filter_left_margin">16dip</dimen>
+    <dimen name="contact_filter_right_margin">16dip</dimen>
+    <dimen name="contact_filter_item_min_height">48dip</dimen>
+    <dimen name="contact_filter_icon_size">32dip</dimen>
+    <dimen name="contact_filter_header_min_height">24dip</dimen>
+
+    <!-- Height for directory headers in contact lists -->
+    <dimen name="directory_header_height">24dip</dimen>
 </resources>

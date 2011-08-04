@@ -35,6 +35,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private TextView mCounterHeaderView;
     private View mSearchHeaderView;
     private TextView mAccountFilterHeaderView;
+    private View mAccountFilterHeaderContainer;
 
     public DefaultContactBrowseListFragment() {
         setPhotoLoaderEnabled(true);
@@ -65,6 +66,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         super.onCreateView(inflater, container);
 
         mAccountFilterHeaderView = (TextView) getView().findViewById(R.id.account_filter_header);
+        mAccountFilterHeaderContainer =
+                getView().findViewById(R.id.account_filter_header_container);
         mCounterHeaderView = (TextView) getView().findViewById(R.id.contacts_count);
 
         // Putting the header view inside a container will allow us to make
@@ -107,11 +110,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         }
         if (filter != null && filter.filterType != ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS &&
                 !isSearchMode() && filter.filterType != ContactListFilter.FILTER_TYPE_CUSTOM) {
+            mAccountFilterHeaderContainer.setVisibility(View.VISIBLE);
             mAccountFilterHeaderView.setText(getContext().getString(
                     R.string.listAllContactsInAccount, filter.accountName));
-            mAccountFilterHeaderView.setVisibility(View.VISIBLE);
         } else {
-            mAccountFilterHeaderView.setVisibility(View.GONE);
+            mAccountFilterHeaderContainer.setVisibility(View.GONE);
         }
     }
 

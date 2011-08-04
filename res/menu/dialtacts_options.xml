@@ -18,4 +18,9 @@
         android:id="@+id/search_on_action_bar"
         android:icon="@android:drawable/ic_menu_search"
         android:showAsAction="always" />
+
+    <item
+        android:id="@+id/filter_option"
+        android:title="@string/menu_contacts_filter"
+        android:showAsAction="withText" />
 </menu>

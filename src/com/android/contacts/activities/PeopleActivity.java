@@ -42,7 +42,6 @@ import com.android.contacts.list.ContactTileAdapter.DisplayType;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.ContactsUnavailableFragment;
-import com.android.contacts.list.CustomContactListFilterActivity;
 import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.list.DirectoryListLoader;
 import com.android.contacts.list.OnContactBrowserActionListener;
@@ -109,7 +108,6 @@ public class PeopleActivity extends ContactsActivity
     private static final int SUBACTIVITY_NEW_GROUP = 2;
     private static final int SUBACTIVITY_EDIT_GROUP = 3;
     private static final int SUBACTIVITY_ACCOUNT_FILTER = 4;
-    private static final int SUBACTIVITY_CUSTOMIZE_FILTER = 5;
 
     private static final String KEY_SEARCH_MODE = "searchMode";
 
@@ -1443,20 +1441,11 @@ public class PeopleActivity extends ContactsActivity
                     if (filter == null) {
                         return;
                     }
-                    // If this is a custom filter, launch the activity to customize the display list
                     if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
-                        final Intent intent = new Intent(this,
-                                CustomContactListFilterActivity.class);
-                        startActivityForResult(intent, SUBACTIVITY_CUSTOMIZE_FILTER);
+                        mContactListFilterController.selectCustomFilter();
                     } else {
                         mContactListFilterController.setContactListFilter(filter, true);
                     }
-                }
-                break;
-            }
-            case SUBACTIVITY_CUSTOMIZE_FILTER: {
-                if (resultCode == Activity.RESULT_OK) {
-                    mContactListFilterController.selectCustomFilter();
                 }
                 break;
             }

@@ -25,7 +25,9 @@
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:layout_marginLeft="@dimen/contact_filter_left_margin"
+        android:layout_marginRight="@dimen/contact_filter_right_margin" />
 
     <View
         android:layout_width="match_parent"

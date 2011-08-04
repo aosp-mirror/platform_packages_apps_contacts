@@ -14,10 +14,14 @@
      limitations under the License.
 -->
 
+<!-- android:paddingTop is used instead of android:layout_marginTop. It looks
+     android:layout_marginTop is ignored when used with <fragment></fragment>, which
+     only happens in Tablet UI since we rely on ViewPager in Phone UI.
+     Instead, android:layout_marginTop inside <fragment /> is effective. -->
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/pinned_header_list_layout"
-    android:layout_marginTop="@dimen/contact_browser_list_top_margin"
+    android:paddingTop="@dimen/contact_browser_list_top_margin"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
     <LinearLayout
@@ -25,24 +29,38 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/account_filter_header"
+        <!-- Shown only when an Account filter is set. -->
+        <LinearLayout
+            android:id="@+id/account_filter_header_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:padding="5dip"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@android:color/white"
-            android:background="@android:color/black"
-            android:visibility="gone" />
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/contact_browser_list_header_left_margin"
+            android:layout_marginRight="@dimen/contact_browser_list_header_right_margin"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/account_filter_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/contact_filter_header_min_height"
+                android:layout_marginLeft="8dip"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:gravity="left"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="?android:attr/textColorSecondary" />
+            <View
+                android:id="@+id/account_filter_header_bottom_divider"
+                style="@style/SectionDivider" />
+        </LinearLayout>
 
         <view
             class="com.android.contacts.list.ContactEntryListView"
             android:id="@android:id/list"
             android:layout_width="match_parent"
             android:layout_height="0dip"
+            android:layout_marginLeft="@dimen/contact_browser_list_left_margin"
+            android:layout_marginRight="@dimen/contact_browser_list_right_margin"
             android:fastScrollEnabled="true"
             android:layout_weight="1" />
 
@@ -61,7 +79,7 @@
         android:ellipsize="end"
         android:gravity="right"
         android:layout_gravity="top|right"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/contact_count_text_color"
         android:background="@color/contact_browser_list_bk_color" />
 </FrameLayout>

@@ -29,6 +29,7 @@ import com.android.contacts.util.LocalizedNameResolver;
 import com.android.contacts.util.WeakAsyncTask;
 import com.google.android.collect.Lists;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -107,6 +108,12 @@ public class CustomContactListFilterActivity extends ContactsActivity
         mList.setOnCreateContextMenuListener(this);
 
         mList.setAdapter(mAdapter);
+
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            // android.R.id.home will be triggered in onOptionsItemSelected()
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     public static class CustomFilterConfigurationLoader extends AsyncTaskLoader<AccountSet> {
@@ -801,12 +808,6 @@ public class CustomContactListFilterActivity extends ContactsActivity
         }
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void onBackPressed() {
-        doSaveAction();
-    }
-
     @SuppressWarnings("unchecked")
     private void doSaveAction() {
         if (mAdapter == null || mAdapter.mAccounts == null) {
@@ -896,5 +897,19 @@ public class CustomContactListFilterActivity extends ContactsActivity
         } else {
             ContactsSearchManager.startSearch(this, initialQuery);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // Pretend cancel.
+                setResult(Activity.RESULT_CANCELED);
+                finish();
+                return true;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
