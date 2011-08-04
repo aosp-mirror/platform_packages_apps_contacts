@@ -128,12 +128,14 @@ public class CustomContactListFilterActivity extends ContactsActivity
                 AccountDisplay accountDisplay =
                         new AccountDisplay(resolver, account.name, account.type, account.dataSet);
 
-                final Uri groupsUri = Groups.CONTENT_URI.buildUpon()
+                final Uri.Builder groupsUri = Groups.CONTENT_URI.buildUpon()
                         .appendQueryParameter(Groups.ACCOUNT_NAME, account.name)
-                        .appendQueryParameter(Groups.ACCOUNT_TYPE, account.type)
-                        .appendQueryParameter(Groups.DATA_SET, account.dataSet).build();
+                        .appendQueryParameter(Groups.ACCOUNT_TYPE, account.type);
+                if (account.dataSet != null) {
+                    groupsUri.appendQueryParameter(Groups.DATA_SET, account.dataSet).build();
+                }
                 EntityIterator iterator = ContactsContract.Groups.newEntityIterator(resolver.query(
-                        groupsUri, null, null, null, null));
+                        groupsUri.build(), null, null, null, null));
                 try {
                     boolean hasGroups = false;
 
