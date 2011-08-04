@@ -223,6 +223,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
     private boolean mTransitionAnimationRequested;
 
+    private boolean mIsUniqueNumber;
+    private boolean mIsUniqueEmail;
+
     public ContactDetailFragment() {
         // Explicit constructor for inflation
     }
@@ -421,6 +424,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         Collapser.collapseList(mEmailEntries);
         Collapser.collapseList(mPostalEntries);
         Collapser.collapseList(mImEntries);
+
+        mIsUniqueNumber = mPhoneEntries.size() == 1;
+        mIsUniqueEmail = mEmailEntries.size() == 1;
 
         // Make one aggregated list of all entries for display to the user.
         setupFlattenedList();
@@ -1716,36 +1722,23 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
         String selectedMimeType = selectedEntry.mimetype;
 
+        // Defaults to true will only enable the detail to be copied to the clipboard.
+        boolean isUniqueMimeType = true;
+
         // Only allow primary support for Phone and Email content types
-        if (Phone.CONTENT_ITEM_TYPE.equals(selectedMimeType) ||
-                Email.CONTENT_ITEM_TYPE.equals(selectedMimeType)) {
+        if (Phone.CONTENT_ITEM_TYPE.equals(selectedMimeType)) {
+            isUniqueMimeType = mIsUniqueNumber;
+        } else if (Email.CONTENT_ITEM_TYPE.equals(selectedMimeType)) {
+            isUniqueMimeType = mIsUniqueEmail;
+        }
 
-            // Used to determine if entry is the only mime type of its kind
-            boolean isUniqueMimeType = true;
-
-            // Checking for unique mime type
-            for (int positionCounter = 0; positionCounter < mAllEntries.size(); positionCounter++) {
-                final ViewEntry entry = mAllEntries.get(positionCounter);
-
-                // Ignoring cases where entry is not a detail entry
-                if (entry.getViewType() != ViewAdapter.VIEW_TYPE_DETAIL_ENTRY) continue;
-
-                final DetailViewEntry checkEntry = (DetailViewEntry) entry;
-                if (positionCounter != info.position &&
-                        checkEntry.mimetype.equalsIgnoreCase(selectedMimeType)) {
-                    isUniqueMimeType = false;
-                    break;
-                }
-            }
-
-            // Checking for previously set default
-            if (selectedEntry.isPrimary) {
-                menu.add(ContextMenu.NONE, ContextMenuIds.CLEAR_DEFAULT,
-                        ContextMenu.NONE, getString(R.string.clear_default));
-            } else if (!isUniqueMimeType) {
-                menu.add(ContextMenu.NONE, ContextMenuIds.SET_DEFAULT,
-                        ContextMenu.NONE, getString(R.string.set_default));
-            }
+        // Checking for previously set default
+        if (selectedEntry.isPrimary) {
+            menu.add(ContextMenu.NONE, ContextMenuIds.CLEAR_DEFAULT,
+                    ContextMenu.NONE, getString(R.string.clear_default));
+        } else if (!isUniqueMimeType) {
+            menu.add(ContextMenu.NONE, ContextMenuIds.SET_DEFAULT,
+                    ContextMenu.NONE, getString(R.string.set_default));
         }
     }
 
