@@ -473,7 +473,6 @@
         <activity android:name="CallDetailActivity"
             android:label="@string/callDetailTitle"
             android:theme="@style/CallDetailActivityTheme"
-            android:uiOptions="splitActionBarWhenNarrow"
             android:screenOrientation="nosensor"
             android:icon="@mipmap/ic_launcher_phone"
             android:taskAffinity="android.task.contacts.phone"
