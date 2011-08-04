@@ -75,8 +75,6 @@ public class ContactDetailActivity extends ContactsActivity {
 
     private static final String KEY_CONTACT_HAS_UPDATES = "contactHasUpdates";
     private static final String KEY_CURRENT_PAGE_INDEX = "currentPageIndex";
-    private static final String KEY_DETAIL_FRAGMENT_TAG = "detailFragTag";
-    private static final String KEY_UPDATES_FRAGMENT_TAG = "updatesFragTag";
 
     public static final int FRAGMENT_COUNT = 2;
 
@@ -273,11 +271,6 @@ public class ContactDetailActivity extends ContactsActivity {
         super.onSaveInstanceState(outState);
         outState.putBoolean(KEY_CONTACT_HAS_UPDATES, mContactHasUpdates);
         outState.putInt(KEY_CURRENT_PAGE_INDEX, getCurrentPage());
-        if (mViewPager != null) {
-            outState.putString(KEY_DETAIL_FRAGMENT_TAG, mDetailFragment.getTag());
-            outState.putString(KEY_UPDATES_FRAGMENT_TAG, mUpdatesFragment.getTag());
-            return;
-        }
     }
 
     private final ContactLoaderFragmentListener mLoaderFragmentListener =

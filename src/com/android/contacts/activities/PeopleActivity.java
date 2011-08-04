@@ -122,8 +122,6 @@ public class PeopleActivity extends ContactsActivity
 
     private ContactDetailFragment mContactDetailFragment;
     private ContactDetailUpdatesFragment mContactDetailUpdatesFragment;
-    private final ContactDetailFragmentListener mContactDetailFragmentListener =
-            new ContactDetailFragmentListener();
 
     private ContactLoaderFragment mContactDetailLoaderFragment;
     private final ContactDetailLoaderFragmentListener mContactDetailLoaderFragmentListener =
@@ -226,7 +224,6 @@ public class PeopleActivity extends ContactsActivity
     public void onAttachFragment(Fragment fragment) {
         if (fragment instanceof ContactDetailFragment) {
             mContactDetailFragment = (ContactDetailFragment) fragment;
-            mContactDetailFragment.setListener(mContactDetailFragmentListener);
         } else if (fragment instanceof ContactDetailUpdatesFragment) {
             mContactDetailUpdatesFragment = (ContactDetailUpdatesFragment) fragment;
         } else if (fragment instanceof ContactsUnavailableFragment) {
@@ -379,21 +376,21 @@ public class PeopleActivity extends ContactsActivity
 
             mContactDetailLoaderFragment = getFragment(R.id.contact_detail_loader_fragment);
             mContactDetailLoaderFragment.setListener(mContactDetailLoaderFragmentListener);
+            mContactDetailLoaderFragment.setRetainInstance(true);
 
             mGroupDetailFragment = getFragment(R.id.group_detail_fragment);
             mGroupDetailFragment.setListener(mGroupDetailFragmentListener);
             mGroupDetailFragment.setQuickContact(true);
 
-            transaction.hide(mContactDetailFragment);
+            if (mContactDetailFragment != null) {
+                transaction.hide(mContactDetailFragment);
+            }
             transaction.hide(mGroupDetailFragment);
 
             // Configure contact details
-            ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-            ContactDetailTabCarousel tabCarousel = (ContactDetailTabCarousel)
-                    findViewById(R.id.tab_carousel);
-            mContactDetailLayoutController = new ContactDetailLayoutController(
-                    getFragmentManager(), viewPager, tabCarousel,
-                    mContactDetailFragmentListener);
+            mContactDetailLayoutController = new ContactDetailLayoutController(this, savedState,
+                    getFragmentManager(), findViewById(R.id.contact_detail_container),
+                    new ContactDetailFragmentListener());
         }
         transaction.commit();
         fragmentManager.executePendingTransactions();
@@ -1066,13 +1063,6 @@ public class PeopleActivity extends ContactsActivity
                     if (isFinishing()) {
                         return;
                     }
-                    if (!mContactDetailLayoutController.isInitialized()) {
-                        mContactDetailLayoutController.setContactDetailFragment(
-                                mContactDetailFragment);
-                        mContactDetailLayoutController.setContactDetailUpdatesFragment(
-                                mContactDetailUpdatesFragment);
-                        mContactDetailLayoutController.initialize();
-                    }
                     mContactDetailLayoutController.setContactData(result);
                 }
             });
@@ -1567,14 +1557,6 @@ public class PeopleActivity extends ContactsActivity
         // in order to avoid doing fragment transactions after it.
         // TODO Figure out a better way to deal with the issue.
         mActionBarAdapter.setListener(null);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle inState) {
-        super.onRestoreInstanceState(inState);
-        if (mContactDetailLayoutController != null) {
-            mContactDetailLayoutController.onRestoreInstanceState(inState);
-        }
     }
 
     @Override

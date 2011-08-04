@@ -83,6 +83,7 @@
 
             <!-- This layout includes all possible views needed for a contact detail page -->
             <include
+                android:id="@+id/contact_detail_container"
                 layout="@layout/contact_detail_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>

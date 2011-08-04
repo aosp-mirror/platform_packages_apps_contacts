@@ -66,7 +66,6 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
     private static final float MAX_ALPHA = 0.5f;
 
     private final Handler mHandler = new Handler();
-    private boolean mAttachedToWindow;
 
     public ContactDetailFragmentCarousel(Context context) {
         this(context, null);
@@ -105,7 +104,8 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    if (mAttachedToWindow && mAboutFragment != null && mUpdatesFragment != null) {
+                    if (isAttachedToWindow() && mAboutFragment != null &&
+                            mUpdatesFragment != null) {
                         snapToEdge();
                     }
                 }
@@ -116,7 +116,7 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
     public void setCurrentPage(int pageIndex) {
         if (mCurrentPage != pageIndex) {
             mCurrentPage = pageIndex;
-            if (mAttachedToWindow && mAboutFragment != null && mUpdatesFragment != null) {
+            if (isAttachedToWindow() && mAboutFragment != null && mUpdatesFragment != null) {
                 snapToEdge();
             }
         }
@@ -223,15 +223,7 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
         return false;
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        mAttachedToWindow = true;
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        mAttachedToWindow = false;
+    private boolean isAttachedToWindow() {
+        return getWindowToken() != null;
     }
 }

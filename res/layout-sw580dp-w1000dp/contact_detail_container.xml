@@ -16,7 +16,7 @@
 
 <!--
   Two-column layout for a contact with social updates. If the contact does not
-  have social updates, then the second fragment view will just be hidden.
+  have social updates, then the second fragment container will just be hidden.
 -->
 
 <LinearLayout
@@ -26,14 +26,24 @@
     android:scrollbars="none"
     android:orientation="horizontal">
 
-    <fragment class="com.android.contacts.detail.ContactDetailFragment"
-        android:id="@+id/about_fragment"
+    <!--
+      Container for the "About" fragment on the contact card for a contact
+      with social updates. This view ID must match with a view ID in the layout
+      that is used after an orientation change.
+    -->
+    <FrameLayout
+        android:id="@+id/about_fragment_container"
         android:layout_width="0dip"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
-    <fragment class="com.android.contacts.detail.ContactDetailUpdatesFragment"
-        android:id="@+id/updates_fragment"
+    <!--
+      Container for the "Updates" fragment on the contact card for a contact
+      with social updates. This view ID must match with a view ID in the layout
+      that is used after an orientation change.
+    -->
+    <FrameLayout
+        android:id="@+id/updates_fragment_container"
         android:layout_width="306dip"
         android:layout_height="match_parent" />
 
