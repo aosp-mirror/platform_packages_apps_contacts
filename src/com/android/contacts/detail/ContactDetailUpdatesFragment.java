@@ -66,16 +66,31 @@ public class ContactDetailUpdatesFragment extends ListFragment
         @Override
         public void onClick(View view) {
             StreamItemEntry streamItemEntry = (StreamItemEntry) view.getTag();
-            Uri uri;
-            try {
-                uri = Uri.parse(streamItemEntry.getActionUri());
-            } catch (Throwable throwable) {
-                Log.e(TAG, "invalid URI for stream item #" + streamItemEntry.getId() + ": "
-                        + streamItemEntry.getActionUri());
+            if (streamItemEntry == null) {
+                // Ignore if this item does not have a stream item associated with it.
                 return;
             }
-            Intent streamItemIntent = new Intent(streamItemEntry.getAction(), uri);
-            startActivity(streamItemIntent);
+            String actionUri = streamItemEntry.getActionUri();
+            if (actionUri == null) {
+                // Ignore if this item does not have a URI.
+                return;
+            }
+            // Parse the URI.
+            Uri uri;
+            try {
+                uri = Uri.parse(actionUri);
+            } catch (Throwable throwable) {
+                // This may fail if the URI is invalid: instead of failing, just ignore it.
+                Log.e(TAG, "invalid URI for stream item #" + streamItemEntry.getId() + ": "
+                        + actionUri);
+                return;
+            }
+            String action = streamItemEntry.getAction();
+            if (action == null) {
+                // Ignore if this item does not have an action.
+                return;
+            }
+            startActivity(new Intent(action, uri));
         }
     };
 

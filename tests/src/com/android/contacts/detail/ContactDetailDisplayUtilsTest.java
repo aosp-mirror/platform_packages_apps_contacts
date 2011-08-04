@@ -18,6 +18,7 @@ package com.android.contacts.detail;
 
 import com.android.contacts.R;
 import com.android.contacts.util.StreamItemEntry;
+import com.android.contacts.util.StreamItemEntryBuilder;
 
 import android.content.Context;
 import android.test.AndroidTestCase;
@@ -27,7 +28,6 @@ import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
@@ -37,14 +37,11 @@ import android.widget.TextView;
 public class ContactDetailDisplayUtilsTest extends AndroidTestCase {
     private static final String TEST_STREAM_ITEM_TEXT = "text";
 
-    private LinearLayout mParent;
     private LayoutInflater mLayoutInflater;
-    private FakeOnClickListener mListener = new FakeOnClickListener();
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        mParent = new LinearLayout(getContext());
         mLayoutInflater =
                 (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -70,81 +67,6 @@ public class ContactDetailDisplayUtilsTest extends AndroidTestCase {
         StreamItemEntry streamItem = getTestBuilder().setComment(null).build();
         View streamItemView = addStreamItemText(streamItem);
         assertGone(streamItemView, R.id.stream_item_comments);
-    }
-
-    public void testAddStreamItemToContainer_NoAction() {
-        StreamItemEntry streamItem = getTestBuilder()
-                .setAction(null)
-                .setActionUri(null)
-                .build();
-        addStreamItemToContainer(streamItem, mListener);
-        assertStreamItemNotClickable();
-    }
-
-    public void testAddStreamItemToContainer_WithActionButNoActionUri() {
-        StreamItemEntry streamItem = getTestBuilder()
-                .setAction("action")
-                .setActionUri(null)
-                .build();
-        addStreamItemToContainer(streamItem, mListener);
-        assertStreamItemNotClickable();
-    }
-
-    public void testAddStreamItemToContainer_WithActionUriButNoAction() {
-        StreamItemEntry streamItem = getTestBuilder()
-                .setAction(null)
-                .setActionUri("http://www.google.com")
-                .build();
-        addStreamItemToContainer(streamItem, mListener);
-        assertStreamItemNotClickable();
-    }
-
-    public void testAddStreamItemToContainer_WithActionAndActionUri() {
-        StreamItemEntry streamItem = getTestBuilder()
-                .setAction("action")
-                .setActionUri("http://www.google.com")
-                .build();
-        addStreamItemToContainer(streamItem, mListener);
-        assertStreamItemClickable();
-        assertStreamItemHasOnClickListener();
-        assertStreamItemHasTag(streamItem);
-    }
-
-    /** Checks that the stream item view is clickable. */
-    private void assertStreamItemClickable() {
-        View streamItemView = mParent.findViewById(R.id.stream_item_content);
-        assertNotNull("should have a stream item", streamItemView);
-        assertTrue("should be clickable", streamItemView.isClickable());
-        assertTrue("should be focusable", streamItemView.isFocusable());
-    }
-
-    /** Asserts that there is a stream item but it is not clickable. */
-    private void assertStreamItemNotClickable() {
-        View streamItemView = mParent.findViewById(R.id.stream_item_content);
-        assertNotNull("should have a stream item", streamItemView);
-        assertFalse("should not be clickable", streamItemView.isClickable());
-        assertFalse("should not be focusable", streamItemView.isFocusable());
-    }
-
-    /** Checks that the stream item view has a click listener. */
-    private void assertStreamItemHasOnClickListener() {
-        // Check that the on-click listener is invoked when clicked.
-        View streamItemView = mParent.findViewById(R.id.stream_item_content);
-        assertFalse("listener should have not been invoked yet", mListener.clicked);
-        streamItemView.performClick();
-        assertTrue("listener should have been invoked", mListener.clicked);
-    }
-
-    /** Checks that the stream item view has the given stream item as its tag. */
-    private void assertStreamItemHasTag(StreamItemEntry streamItem) {
-        // The view's tag should point to the stream item entry for this view.
-        View streamItemView = mParent.findViewById(R.id.stream_item_content);
-        Object tag = streamItemView.getTag();
-        assertNotNull("should have a tag", tag);
-        assertTrue("should be a StreamItemEntry", tag instanceof StreamItemEntry);
-        StreamItemEntry streamItemTag = (StreamItemEntry) tag;
-        // The streamItem itself should be in the tag.
-        assertSame(streamItem, streamItemTag);
     }
 
     /** Checks that the given id corresponds to a visible text view with the expected text. */
@@ -187,70 +109,7 @@ public class ContactDetailDisplayUtilsTest extends AndroidTestCase {
      */
     private View addStreamItemText(StreamItemEntry streamItem) {
         return ContactDetailDisplayUtils.addStreamItemText(
-                mLayoutInflater, getContext(), streamItem, mParent);
-    }
-
-    /**
-     * Calls {@link ContactDetailDisplayUtils#addStreamItemToContainer(LayoutInflater,
-     * Context,StreamItemEntry, LinearLayout, android.view.View.OnClickListener)} with the default
-     * parameters and the given stream item and listener.
-     */
-    private void addStreamItemToContainer(StreamItemEntry streamItem,
-            View.OnClickListener listener) {
-        ContactDetailDisplayUtils.addStreamItemToContainer(mLayoutInflater, getContext(),
-                streamItem, mParent, listener);
-    }
-
-    /**
-     * Simple fake implementation of {@link View.OnClickListener} which sets a member variable to
-     * true when clicked.
-     */
-    private final class FakeOnClickListener implements View.OnClickListener {
-        public boolean clicked = false;
-
-        @Override
-        public void onClick(View view) {
-            clicked = true;
-        }
-    }
-
-    private static class StreamItemEntryBuilder {
-        private long mId;
-        private String mText;
-        private String mComment;
-        private long mTimestamp;
-        private String mAction;
-        private String mActionUri;
-        private String mResPackage;
-        private int mIconRes;
-        private int mLabelRes;
-
-        public StreamItemEntryBuilder() {}
-
-        public StreamItemEntryBuilder setText(String text) {
-            mText = text;
-            return this;
-        }
-
-        public StreamItemEntryBuilder setComment(String comment) {
-            mComment = comment;
-            return this;
-        }
-
-        public StreamItemEntryBuilder setAction(String action) {
-            mAction = action;
-            return this;
-        }
-
-        public StreamItemEntryBuilder setActionUri(String actionUri) {
-            mActionUri = actionUri;
-            return this;
-        }
-
-        public StreamItemEntry build() {
-            return new StreamItemEntry(mId, mText, mComment, mTimestamp, mAction, mActionUri,
-                    mResPackage, mIconRes, mLabelRes);
-        }
+                mLayoutInflater, getContext(), streamItem, null);
     }
 
     private StreamItemEntryBuilder getTestBuilder() {
