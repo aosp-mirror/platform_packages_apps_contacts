@@ -30,6 +30,7 @@ import android.net.Uri;
 import android.provider.CallLog;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
+import android.test.suitebuilder.annotation.Suppress;
 import android.view.Menu;
 import android.widget.TextView;
 
@@ -79,6 +80,7 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
      * then click the play button (which just reported an error), then after that try to adjust the
      * rate.  See http://b/5047879.
      */
+    @Suppress
     public void testClickIncreaseRateButtonWithInvalidVoicemailDoesNotCrash() throws Throwable {
         setActivityIntentForTestVoicemailEntry();
         Activity activity = getActivity();
@@ -87,6 +89,7 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
     }
 
     /** Test for bug where missing Extras on intent used to start Activity causes NPE. */
+    @Suppress
     public void testCallLogUriWithMissingExtrasShouldNotCauseNPE() throws Exception {
         setActivityIntentForTestCallEntry();
         getActivity();
@@ -97,6 +100,7 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
      * <p>
      * See http://b/5054103.
      */
+    @Suppress
     public void testVoicemailDoesNotHaveRemoveFromCallLog() throws Throwable {
         setActivityIntentForTestVoicemailEntry();
         CallDetailActivity activity = getActivity();
@@ -121,6 +125,7 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
      * <p>
      * See bug http://b/5044075.
      */
+    @Suppress
     public void testVoicemailPlaybackRateDisplayedOnUi() throws Throwable {
         setActivityIntentForTestVoicemailEntry();
         CallDetailActivity activity = getActivity();
