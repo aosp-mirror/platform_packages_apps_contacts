@@ -365,8 +365,12 @@ public class ContactTileAdapter extends BaseAdapter {
         View dividerView = View.inflate(mContext, R.layout.list_separator, null);
         dividerView.setFocusable(false);
         TextView text = (TextView) dividerView.findViewById(R.id.header_text);
-        text.setText(mContext.getString(R.string.favoritesFrquentSeparator));
-        return dividerView;
+
+        text.setText(mDisplayType == DisplayType.STREQUENT_PHONE_ONLY ?
+                mContext.getString(R.string.favoritesFrequentCalled) :
+                mContext.getString(R.string.favoritesFrequentContacted));
+
+       return dividerView;
     }
 
     private int getLayoutResourceId(int viewType) {

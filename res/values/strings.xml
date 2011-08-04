@@ -604,8 +604,11 @@
     <!-- A nicely formatted call duration displayed when viewing call details. For example "42 mins 28 secs" -->
     <string name="callDetailsDurationFormat"><xliff:g id="minutes" example="42">%s</xliff:g> mins <xliff:g id="seconds" example="28">%s</xliff:g> secs</string>
 
-    <!-- A list separator for the Favorites tab indicating that items below it are frequently contacted contacts rather than starred contacts -->
-    <string name="favoritesFrquentSeparator">Frequently contacted</string>
+    <!-- The text displayed on the divider for the Favorites tab in People app indicating that items below it are frequently contacted [CHAR LIMIT = 39] -->
+    <string name="favoritesFrequentContacted">Frequently contacted</string>
+
+    <!-- The text displayed on the divider for the Favorites tab in Phone app indicating that items below it are frequently called as opposed to starred contacts [CHAR LIMIT = 39] -->
+    <string name="favoritesFrequentCalled">Frequently called</string>
 
     <!-- Dialog title when prompting before creating a contact -->
     <string name="add_contact_dlg_title">Add contact</string>
