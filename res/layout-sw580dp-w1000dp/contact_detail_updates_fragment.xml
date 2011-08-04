@@ -14,51 +14,22 @@
      limitations under the License.
 -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
     android:id="@+id/contact_detail_updates_fragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dip">
 
-    <ScrollView
+    <include
+        android:id="@+id/title"
+        layout="@layout/contact_detail_kind_title_entry_view" />
+
+    <ListView android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background_social_updates">
+        android:layout_height="wrap_content"
+        android:background="@color/background_social_updates"
+        android:divider="@null"/>
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/detail_update_section_top_padding">
-
-            <include
-                android:id="@+id/title"
-                layout="@layout/contact_detail_kind_title_entry_view" />
-
-            <LinearLayout
-                android:id="@+id/update_list"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/detail_update_section_side_padding"
-                android:paddingRight="@dimen/detail_update_section_side_padding" />
-        </LinearLayout>
-
-    </ScrollView>
-
-    <View
-        android:id="@+id/alpha_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/black"
-        android:alpha=".50"
-        android:visibility="gone"/>
-
-    <View
-        android:id="@+id/touch_intercept_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent"
-        android:visibility="gone"/>
-
-</FrameLayout>
+</LinearLayout>

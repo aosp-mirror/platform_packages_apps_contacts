@@ -263,8 +263,7 @@ public class ContactDetailDisplayUtils {
         }
     }
 
-    @VisibleForTesting
-    static void addStreamItemToContainer(LayoutInflater inflater, Context context,
+    public static View addStreamItemToContainer(LayoutInflater inflater, Context context,
             StreamItemEntry streamItem, LinearLayout streamContainer,
             View.OnClickListener listener) {
         View oneColumnView = inflater.inflate(R.layout.stream_item_one_column,
@@ -336,7 +335,11 @@ public class ContactDetailDisplayUtils {
             }
         }
 
-        streamContainer.addView(oneColumnView);
+        if (streamContainer != null) {
+            streamContainer.addView(oneColumnView);
+        }
+
+        return oneColumnView;
     }
 
     @VisibleForTesting
