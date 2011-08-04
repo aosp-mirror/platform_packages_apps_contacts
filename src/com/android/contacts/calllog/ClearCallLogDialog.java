@@ -52,7 +52,7 @@ public class ClearCallLogDialog extends DialogFragment {
                 final AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
                     @Override
                     protected Void doInBackground(Void... params) {
-                        resolver.delete(Calls.CONTENT_URI_WITH_VOICEMAIL, null, null);
+                        resolver.delete(Calls.CONTENT_URI, null, null);
                         return null;
                     }
                     @Override
