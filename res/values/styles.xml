@@ -79,9 +79,12 @@
         <item name="android:textColorPrimary">@color/primary_text_color</item>
         <item name="android:textColorSecondary">@color/secondary_text_color</item>
     </style>
-    <style name="ContactEditorActivityTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+
+    <style name="EditorActivityTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:textColorPrimary">@color/primary_text_color</item>
+        <item name="android:textColorSecondary">@color/secondary_text_color</item>
     </style>
 
     <style name="BackgroundOnly">

@@ -16,9 +16,8 @@
 
 <com.android.contacts.editor.StructuredNameEditorView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="0dip"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_weight="1"
     android:orientation="vertical">
 
     <include
@@ -29,7 +28,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:orientation="horizontal"
         android:focusable="true"
         android:clickable="true">

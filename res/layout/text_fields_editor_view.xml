@@ -34,13 +34,13 @@
             layout="@layout/edit_field_list" />
 
         <include
-            android:id="@+id/spinner"
-            layout="@layout/edit_spinner"
+            android:id="@+id/expansion_view_container"
+            layout="@layout/edit_expansion_view"
             android:visibility="gone" />
 
         <include
-            android:id="@+id/expansion_view_container"
-            layout="@layout/edit_expansion_view"
+            android:id="@+id/spinner"
+            layout="@layout/edit_spinner"
             android:visibility="gone" />
 
         <include

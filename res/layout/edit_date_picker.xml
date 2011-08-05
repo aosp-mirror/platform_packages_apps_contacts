@@ -19,10 +19,11 @@
 <Button
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/date_view"
+    style="?android:attr/spinnerStyle"
     android:layout_width="0dip"
     android:layout_height="wrap_content"
     android:layout_weight="1"
     android:layout_marginLeft="@dimen/editor_field_left_padding"
     android:layout_marginRight="@dimen/editor_field_right_padding"
     android:textAppearance="?android:attr/textAppearanceMedium"
-    style="@android:style/Widget.Holo.Light.Spinner" />
+    android:paddingLeft="16dip" />

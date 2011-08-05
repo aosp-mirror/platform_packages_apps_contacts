@@ -22,8 +22,7 @@
     android:orientation="vertical">
 
     <include
-        layout="@layout/raw_contact_editor_header"
-        android:id="@+id/header" />
+        layout="@layout/editor_account_header" />
 
     <LinearLayout
         android:id="@+id/body"

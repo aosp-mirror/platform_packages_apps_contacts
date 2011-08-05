@@ -29,6 +29,8 @@ import com.android.contacts.util.DateUtils;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -49,6 +51,13 @@ public class EventFieldEditorView extends LabeledEditorView {
      */
     private final static int DEFAULT_HOUR = 8;
 
+    /**
+     * Default string to show when there is no date selected yet.
+     */
+    private String mNoDateString;
+    private int mPrimaryTextColor;
+    private int mSecondaryTextColor;
+
     private Button mDateView;
 
     public EventFieldEditorView(Context context) {
@@ -67,6 +76,11 @@ public class EventFieldEditorView extends LabeledEditorView {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+
+        Resources resources = mContext.getResources();
+        mPrimaryTextColor = resources.getColor(R.color.primary_text_color);
+        mSecondaryTextColor = resources.getColor(R.color.secondary_text_color);
+        mNoDateString = mContext.getString(R.string.add_new_entry_for_section);
 
         mDateView = (Button) findViewById(R.id.date_view);
         mDateView.setOnClickListener(new OnClickListener() {
@@ -105,12 +119,14 @@ public class EventFieldEditorView extends LabeledEditorView {
         final String column = editField.column;
         String data = DateUtils.formatDate(getContext(), getEntry().getAsString(column));
         if (TextUtils.isEmpty(data)) {
-            data = " ";
+            mDateView.setText(mNoDateString);
+            mDateView.setTextColor(mSecondaryTextColor);
             setDeleteButtonVisible(false);
         } else {
+            mDateView.setText(data);
+            mDateView.setTextColor(mPrimaryTextColor);
             setDeleteButtonVisible(true);
         }
-        mDateView.setText(data);
     }
 
     @Override
@@ -246,7 +262,8 @@ public class EventFieldEditorView extends LabeledEditorView {
     @Override
     public void clearAllFields() {
         // Update UI
-        mDateView.setText("");
+        mDateView.setText(mNoDateString);
+        mDateView.setTextColor(mSecondaryTextColor);
 
         // Update state
         final String column = getKind().fieldList.get(0).column;

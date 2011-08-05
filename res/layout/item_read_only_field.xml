@@ -16,37 +16,20 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    android:orientation="vertical"
->
-
-    <TextView android:id="@+id/label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dip"
-        android:layout_marginTop="2dip"
-
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:singleLine="true"
-    />
+    <include
+        android:id="@+id/kind_title_layout"
+        layout="@layout/edit_kind_title" />
 
     <TextView android:id="@+id/data"
         android:layout_width="wrap_content"
         android:layout_height="0px"
         android:layout_weight="1"
-        android:layout_marginLeft="10dip"
-        android:layout_marginBottom="4dip"
-
+        android:layout_marginLeft="16dip"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:singleLine="true"
-    />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-
-        android:background="?android:attr/listDivider"
-    />
+        android:textColor="?android:attr/textColorSecondary"
+        android:singleLine="true"/>
 
 </LinearLayout>

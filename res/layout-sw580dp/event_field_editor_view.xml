@@ -39,7 +39,6 @@
         <include
             android:id="@+id/spinner"
             layout="@layout/edit_spinner"
-            android:paddingTop="15dip"
             android:visibility="gone" />
 
         <include

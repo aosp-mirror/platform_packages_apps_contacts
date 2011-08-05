@@ -465,10 +465,12 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
     private class EditTypeAdapter extends ArrayAdapter<EditType> {
         private final LayoutInflater mInflater;
         private boolean mHasCustomSelection;
+        private int mTextColor;
 
         public EditTypeAdapter(Context context) {
             super(context, 0);
             mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            mTextColor = context.getResources().getColor(R.color.secondary_text_color);
 
             if (mType != null && mType.customColumn != null) {
 
@@ -501,16 +503,17 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
 
         private View createViewFromResource(int position, View convertView, ViewGroup parent,
                 int resource) {
-            View view;
             TextView textView;
 
             if (convertView == null) {
-                view = mInflater.inflate(resource, parent, false);
+                textView = (TextView) mInflater.inflate(resource, parent, false);
+                textView.setAllCaps(true);
+                textView.setGravity(Gravity.RIGHT);
+                textView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
+                textView.setTextColor(mTextColor);
             } else {
-                view = convertView;
+                textView = (TextView) convertView;
             }
-
-            textView = (TextView) view;
 
             EditType type = getItem(position);
             String text;
@@ -519,10 +522,8 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
             } else {
                 text = getContext().getString(type.labelRes);
             }
-            textView.setText(text.toUpperCase());
-            textView.setGravity(Gravity.RIGHT);
-            textView.setTextColor(Color.GRAY);
-            return view;
+            textView.setText(text);
+            return textView;
         }
     }
 }

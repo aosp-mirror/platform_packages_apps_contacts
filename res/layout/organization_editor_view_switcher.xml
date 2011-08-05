@@ -23,19 +23,22 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/editor_field_left_padding"
-    android:paddingRight="@dimen/editor_field_right_padding"
+    android:minHeight="48dip"
     android:background="?android:attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/add_organization_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/editor_field_left_padding"
+        android:paddingLeft="16dip"
+        android:paddingRight="16dip"
+        android:layout_gravity="center_vertical"
+        android:duplicateParentState="true"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/organizationLabelsGroup"
-        android:duplicateParentState="true"/>
+        android:textColor="?android:attr/textColorSecondary"
+        android:text="@string/add_organization"/>
 
+    <!-- This is later populated with the actual editable text fields for "organization" -->
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"

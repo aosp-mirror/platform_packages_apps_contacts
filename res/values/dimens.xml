@@ -25,7 +25,6 @@
 
     <dimen name="aggregation_suggestion_icon_size">40dip</dimen>
 
-    <dimen name="account_header_padding">10dip</dimen>
     <dimen name="account_selector_popup_width">400dip</dimen>
 
     <dimen name="photo_action_popup_width">400dip</dimen>
@@ -37,17 +36,17 @@
     <!-- Padding of the rounded plus/minus/expand/collapse buttons in the editor  -->
     <dimen name="editor_round_button_padding_left">2dip</dimen>
     <dimen name="editor_round_button_padding_right">2dip</dimen>
-    <dimen name="editor_round_button_padding_top">8dip</dimen>
-    <dimen name="editor_round_button_padding_bottom">8dip</dimen>
+    <dimen name="editor_round_button_padding_top">4dip</dimen>
+    <dimen name="editor_round_button_padding_bottom">4dip</dimen>
 
     <!-- Width of the Type-Label in the Editor -->
     <dimen name="editor_type_label_width">100dip</dimen>
 
     <!-- Left padding of a field in the Editor -->
-    <dimen name="editor_field_left_padding">5dip</dimen>
+    <dimen name="editor_field_left_padding">4dip</dimen>
 
     <!-- Right padding of a field in the Editor -->
-    <dimen name="editor_field_right_padding">5dip</dimen>
+    <dimen name="editor_field_right_padding">4dip</dimen>
 
     <!-- Top padding of a field in the Editor -->
     <dimen name="editor_field_top_padding">10dip</dimen>
