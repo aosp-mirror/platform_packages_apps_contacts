@@ -28,6 +28,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.CallLog;
+import android.provider.VoicemailContract.Voicemails;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.test.suitebuilder.annotation.Suppress;
@@ -42,7 +43,8 @@ import java.util.Locale;
  */
 @LargeTest
 public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<CallDetailActivity> {
-    private static final String FAKE_VOICEMAIL_URI_STRING = "content://fake_uri";
+    private static final String FAKE_VOICEMAIL_URI_STRING = ContentUris.withAppendedId(
+            Voicemails.CONTENT_URI, Integer.MAX_VALUE).toString();
     private Uri mUri;
     private IntegrationTestUtils mTestUtils;
     private LocaleTestUtils mLocaleTestUtils;
@@ -80,7 +82,6 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
      * then click the play button (which just reported an error), then after that try to adjust the
      * rate.  See http://b/5047879.
      */
-    @Suppress
     public void testClickIncreaseRateButtonWithInvalidVoicemailDoesNotCrash() throws Throwable {
         setActivityIntentForTestVoicemailEntry();
         Activity activity = getActivity();
@@ -89,7 +90,6 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
     }
 
     /** Test for bug where missing Extras on intent used to start Activity causes NPE. */
-    @Suppress
     public void testCallLogUriWithMissingExtrasShouldNotCauseNPE() throws Exception {
         setActivityIntentForTestCallEntry();
         getActivity();
@@ -100,7 +100,6 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
      * <p>
      * See http://b/5054103.
      */
-    @Suppress
     public void testVoicemailDoesNotHaveRemoveFromCallLog() throws Throwable {
         setActivityIntentForTestVoicemailEntry();
         CallDetailActivity activity = getActivity();
