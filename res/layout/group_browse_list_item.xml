@@ -86,26 +86,22 @@
                     android:id="@+id/icon_1"
                     android:layout_width="@dimen/group_list_icon_size"
                     android:layout_height="@dimen/group_list_icon_size"
-                    android:layout_marginRight="1dip"
-                    android:src="@drawable/ic_contact_picture" />
+                    android:layout_marginRight="1dip" />
                 <ImageView
                     android:id="@+id/icon_2"
                     android:layout_width="@dimen/group_list_icon_size"
-                    android:layout_height="@dimen/group_list_icon_size"
-                    android:src="@drawable/ic_contact_picture" />
+                    android:layout_height="@dimen/group_list_icon_size" />
             </TableRow>
             <TableRow>
                 <ImageView
                     android:id="@+id/icon_3"
                     android:layout_width="@dimen/group_list_icon_size"
                     android:layout_height="@dimen/group_list_icon_size"
-                    android:layout_marginRight="1dip"
-                    android:src="@drawable/ic_contact_picture" />
+                    android:layout_marginRight="1dip" />
                 <ImageView
                     android:id="@+id/icon_4"
                     android:layout_width="@dimen/group_list_icon_size"
-                    android:layout_height="@dimen/group_list_icon_size"
-                    android:src="@drawable/ic_contact_picture" />
+                    android:layout_height="@dimen/group_list_icon_size" />
             </TableRow>
 
         </TableLayout>

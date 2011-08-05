@@ -97,6 +97,12 @@ public abstract class ContactPhotoManager {
     public abstract void loadPhoto(ImageView view, Uri photoUri);
 
     /**
+     * Remove photo from the supplied image view. This also cancels current pending load request
+     * inside this photo manager.
+     */
+    public abstract void removePhoto(ImageView view);
+
+    /**
      * Temporarily stops loading photos from the database.
      */
     public abstract void pause();
@@ -258,6 +264,12 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                 requestLoading();
             }
         }
+    }
+
+    @Override
+    public void removePhoto(ImageView view) {
+        view.setImageDrawable(null);
+        mPendingRequests.remove(view);
     }
 
     @Override
