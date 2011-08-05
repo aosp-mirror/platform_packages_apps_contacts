@@ -60,7 +60,6 @@ import java.util.List;
  * {@link ContactLoader.Result} data object to appropriate {@link View}s.
  */
 public class ContactDetailDisplayUtils {
-
     private static final int PHOTO_FADE_IN_ANIMATION_DURATION_MILLIS = 100;
 
     private ContactDetailDisplayUtils() {
@@ -252,83 +251,68 @@ public class ContactDetailDisplayUtils {
     /** Creates the view that represents a stream item. */
     public static View createStreamItemView(LayoutInflater inflater, Context context,
             StreamItemEntry streamItem, LinearLayout parent) {
-        View oneColumnView = inflater.inflate(R.layout.stream_item_one_column,
-                parent, false);
-        ViewGroup contentBox = (ViewGroup) oneColumnView.findViewById(R.id.stream_item_content);
-        int internalPadding = context.getResources().getDimensionPixelSize(
-                R.dimen.detail_update_section_internal_padding);
+        View container = inflater.inflate(R.layout.stream_item_container, parent, false);
+        ViewGroup contentTable = (ViewGroup) container.findViewById(R.id.stream_item_content);
 
-        // TODO: This is not the correct layout for a stream item with photos.  Photos should be
-        // displayed first, then the update text either to the right of the final image (if there
-        // are an odd number of images) or below the last row of images (if there are an even
-        // number of images).  Since this is designed as a two-column grid, we should also consider
-        // using a TableLayout instead of the series of nested LinearLayouts that we have now.
-        // See the Updates section of the Contacts Architecture document for details.
-
-        // If there are no photos, just display the text in a single column.
+        ContactPhotoManager contactPhotoManager = ContactPhotoManager.getInstance(context);
         List<StreamItemPhotoEntry> photos = streamItem.getPhotos();
-        if (photos.isEmpty()) {
-            addStreamItemText(inflater, context, streamItem, contentBox);
-        } else {
-            // If the first photo is square or portrait mode, show the text alongside it.
-            boolean isFirstPhotoAlongsideText = false;
-            StreamItemPhotoEntry firstPhoto = photos.get(0);
-            isFirstPhotoAlongsideText = firstPhoto.getHeight() >= firstPhoto.getWidth();
-            if (isFirstPhotoAlongsideText) {
-                View twoColumnView = inflater.inflate(R.layout.stream_item_pair, contentBox, false);
-                addStreamItemPhoto(inflater, context, firstPhoto,
-                        (ViewGroup) twoColumnView.findViewById(R.id.stream_pair_first));
-                addStreamItemText(inflater, context, streamItem,
-                        (ViewGroup) twoColumnView.findViewById(R.id.stream_pair_second));
-                contentBox.addView(twoColumnView);
-            } else {
-                // Just add the stream item text at the top of the entry.
-                addStreamItemText(inflater, context, streamItem, contentBox);
-            }
-            for (int i = isFirstPhotoAlongsideText ? 1 : 0; i < photos.size(); i++) {
-                StreamItemPhotoEntry photo = photos.get(i);
+        final int photoCount = photos.size();
 
-                // If the photo is landscape, show it at full-width.
-                if (photo.getWidth() > photo.getHeight()) {
-                    View photoView = addStreamItemPhoto(inflater, context, photo, contentBox);
-                    photoView.setPadding(0, internalPadding, 0, 0);
-                } else {
-                    // If this photo and the next are both square or portrait, show them as a pair.
-                    StreamItemPhotoEntry nextPhoto = i + 1 < photos.size()
-                            ? photos.get(i + 1) : null;
-                    if (nextPhoto != null && nextPhoto.getHeight() >= nextPhoto.getWidth()) {
-                        View twoColumnView = inflater.inflate(R.layout.stream_item_pair,
-                                contentBox, false);
-                        addStreamItemPhoto(inflater, context, photo,
-                                (ViewGroup) twoColumnView.findViewById(R.id.stream_pair_first));
-                        addStreamItemPhoto(inflater, context, nextPhoto,
-                                (ViewGroup) twoColumnView.findViewById(R.id.stream_pair_second));
-                        twoColumnView.setPadding(0, internalPadding, 0, 0);
-                        contentBox.addView(twoColumnView);
-                        i++;
-                    } else {
-                        View photoView = addStreamItemPhoto(inflater, context, photo, contentBox);
-                        photoView.setPadding(0, internalPadding, 0, 0);
-                    }
-                }
+        // Process the photos, two at a time.
+        for (int index = 0; index < photoCount; index += 2) {
+            final StreamItemPhotoEntry firstPhoto = photos.get(index);
+            if (index + 1 < photoCount) {
+                // Put in two photos, side by side.
+                final StreamItemPhotoEntry secondPhoto = photos.get(index + 1);
+
+                View photoContainer = inflater.inflate(R.layout.stream_item_row_two_images,
+                        contentTable, false);
+                loadPhoto(contactPhotoManager, firstPhoto, photoContainer,
+                        R.id.stream_item_first_image);
+                loadPhoto(contactPhotoManager, secondPhoto, photoContainer,
+                        R.id.stream_item_second_image);
+                contentTable.addView(photoContainer);
+            } else {
+                // Put in a single photo with text on the side.
+                View photoContainer = inflater.inflate(
+                        R.layout.stream_item_row_image_and_text, contentTable, false);
+                loadPhoto(contactPhotoManager, firstPhoto, photoContainer,
+                        R.id.stream_item_first_image);
+                addStreamItemText(context, streamItem,
+                        photoContainer.findViewById(R.id.stream_item_second_text));
+                contentTable.addView(photoContainer);
             }
+        }
+
+        if (photoCount % 2 == 0) {
+            // Even number of photos, add the text below them. Otherwise, it should have been
+            // already added next to the last photo.
+            View textContainer = inflater.inflate(R.layout.stream_item_row_text_only, contentTable,
+                    false);
+            addStreamItemText(context, streamItem, textContainer);
+            contentTable.addView(textContainer);
         }
 
         if (parent != null) {
-            parent.addView(oneColumnView);
+            parent.addView(container);
         }
 
-        return oneColumnView;
+        return container;
+    }
+
+    /** Loads a photo into an image view. The image view is identifiedc by the given id. */
+    private static void loadPhoto(ContactPhotoManager contactPhotoManager,
+            final StreamItemPhotoEntry firstPhoto, View photoContainer, int imageViewId) {
+        ImageView firstImageView = (ImageView) photoContainer.findViewById(imageViewId);
+        contactPhotoManager.loadPhoto(firstImageView, Uri.parse(firstPhoto.getPhotoUri()));
     }
 
     @VisibleForTesting
-    static View addStreamItemText(LayoutInflater inflater, Context context,
-            StreamItemEntry streamItem, ViewGroup parent) {
-        View textUpdate = inflater.inflate(R.layout.stream_item_text, parent, false);
-        TextView htmlView = (TextView) textUpdate.findViewById(R.id.stream_item_html);
-        TextView attributionView = (TextView) textUpdate.findViewById(
+    static View addStreamItemText(Context context, StreamItemEntry streamItem, View rootView) {
+        TextView htmlView = (TextView) rootView.findViewById(R.id.stream_item_html);
+        TextView attributionView = (TextView) rootView.findViewById(
                 R.id.stream_item_attribution);
-        TextView commentsView = (TextView) textUpdate.findViewById(R.id.stream_item_comments);
+        TextView commentsView = (TextView) rootView.findViewById(R.id.stream_item_comments);
         htmlView.setText(Html.fromHtml(streamItem.getText()));
         attributionView.setText(ContactBadgeUtil.getSocialDate(streamItem, context));
         if (streamItem.getComments() != null) {
@@ -337,19 +321,7 @@ public class ContactDetailDisplayUtils {
         } else {
             commentsView.setVisibility(View.GONE);
         }
-        if (parent != null) {
-            parent.addView(textUpdate);
-        }
-        return textUpdate;
-    }
-
-    private static View addStreamItemPhoto(LayoutInflater inflater, Context context,
-            StreamItemPhotoEntry streamItemPhoto, ViewGroup parent) {
-        ImageView image = new ImageView(context);
-        ContactPhotoManager.getInstance(context).loadPhoto(
-                image, Uri.parse(streamItemPhoto.getPhotoUri()));
-        parent.addView(image);
-        return image;
+        return rootView;
     }
 
     /**

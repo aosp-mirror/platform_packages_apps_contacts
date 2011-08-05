@@ -27,7 +27,6 @@ import android.text.Html;
 import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 /**
@@ -105,11 +104,11 @@ public class ContactDetailDisplayUtilsTest extends AndroidTestCase {
 
     /**
      * Calls {@link ContactDetailDisplayUtils#addStreamItemText(LayoutInflater, Context,
-     * StreamItemEntry, ViewGroup)} with the default parameters and the given stream item.
+     * StreamItemEntry, View)} with the default parameters and the given stream item.
      */
     private View addStreamItemText(StreamItemEntry streamItem) {
-        return ContactDetailDisplayUtils.addStreamItemText(
-                mLayoutInflater, getContext(), streamItem, null);
+        return ContactDetailDisplayUtils.addStreamItemText(getContext(), streamItem,
+                mLayoutInflater.inflate(R.layout.stream_item_row_text_only, null));
     }
 
     private StreamItemEntryBuilder getTestBuilder() {
