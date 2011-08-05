@@ -19,6 +19,8 @@ package com.android.contacts.voicemail;
 import static android.util.MathUtils.constrain;
 
 import com.android.contacts.R;
+import com.android.contacts.util.BackgroundTask;
+import com.android.contacts.util.BackgroundTaskService;
 import com.android.ex.variablespeed.MediaPlayerProxy;
 import com.android.ex.variablespeed.SingleThreadedMediaPlayerProxy;
 
@@ -58,6 +60,7 @@ import javax.annotation.concurrent.ThreadSafe;
         void setStartStopListener(View.OnClickListener listener);
         void setPositionSeekListener(SeekBar.OnSeekBarChangeListener listener);
         void setSpeakerphoneListener(View.OnClickListener listener);
+        void setIsBuffering();
         void setClipPosition(int clipPositionInMillis, int clipLengthInMillis);
         int getDesiredClipPosition();
         void playbackStarted();
@@ -124,18 +127,48 @@ import javax.annotation.concurrent.ThreadSafe;
     private final Uri mVoicemailUri;
     /** Start playing in onCreate iff this is true. */
     private final boolean mStartPlayingImmediately;
+    /** Used to run background tasks that need to interact with the ui. */
+    private final BackgroundTaskService mBackgroundTaskService;
 
     public VoicemailPlaybackPresenter(PlaybackView view, MediaPlayerProxy player,
             Uri voicemailUri, ScheduledExecutorService executorService,
-            boolean startPlayingImmediately) {
+            boolean startPlayingImmediately, BackgroundTaskService backgroundTaskService) {
         mView = view;
         mPlayer = player;
         mVoicemailUri = voicemailUri;
         mStartPlayingImmediately = startPlayingImmediately;
+        mBackgroundTaskService = backgroundTaskService;
         mPositionUpdater = new PositionUpdater(executorService, SLIDER_UPDATE_PERIOD_MILLIS);
     }
 
     public void onCreate(Bundle bundle) {
+        mView.setIsBuffering();
+        mBackgroundTaskService.submit(new BackgroundTask() {
+            private Exception mException;
+
+            @Override
+            public void doInBackground() {
+                try {
+                    mPlayer.reset();
+                    mPlayer.setDataSource(mView.getDataSourceContext(), mVoicemailUri);
+                    mPlayer.prepare();
+                } catch (IOException e) {
+                    mException = e;
+                }
+            }
+
+            @Override
+            public void onPostExecute() {
+                if (mException == null) {
+                    postSuccessfulPrepareActions();
+                } else {
+                    mView.playbackError(mException);
+                }
+            }
+        });
+    }
+
+    private void postSuccessfulPrepareActions() {
         mView.setPositionSeekListener(new PlaybackPositionListener());
         mView.setStartStopListener(new StartStopButtonListener());
         mView.setSpeakerphoneListener(new SpeakerphoneListener());
@@ -144,7 +177,7 @@ import javax.annotation.concurrent.ThreadSafe;
         mView.setSpeakerPhoneOn(mView.isSpeakerPhoneOn());
         mView.setRateDecreaseButtonListener(createRateDecreaseListener());
         mView.setRateIncreaseButtonListener(createRateIncreaseListener());
-        mView.setClipPosition(0, 0);
+        mView.setClipPosition(0, mPlayer.getDuration());
         mView.playbackStopped();
         if (mStartPlayingImmediately) {
             resetPrepareStartPlaying(0);

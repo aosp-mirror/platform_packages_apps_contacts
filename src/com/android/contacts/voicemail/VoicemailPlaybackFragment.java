@@ -20,6 +20,7 @@ import static com.android.contacts.CallDetailActivity.EXTRA_VOICEMAIL_START_PLAY
 import static com.android.contacts.CallDetailActivity.EXTRA_VOICEMAIL_URI;
 
 import com.android.contacts.R;
+import com.android.contacts.util.BackgroundTaskService;
 import com.android.ex.variablespeed.MediaPlayerProxy;
 import com.android.ex.variablespeed.VariableSpeed;
 import com.google.common.base.Preconditions;
@@ -36,7 +37,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -97,8 +97,13 @@ public class VoicemailPlaybackFragment extends Fragment {
         boolean startPlayback = arguments.getBoolean(EXTRA_VOICEMAIL_START_PLAYBACK, false);
         mPresenter = new VoicemailPlaybackPresenter(new PlaybackViewImpl(),
                 createMediaPlayer(mScheduledExecutorService), voicemailUri,
-                mScheduledExecutorService, startPlayback);
+                mScheduledExecutorService, startPlayback, getBackgroundTaskService());
         mPresenter.onCreate(savedInstanceState);
+    }
+
+    private BackgroundTaskService getBackgroundTaskService() {
+        return (BackgroundTaskService) getActivity().getApplicationContext().getSystemService(
+                BackgroundTaskService.BACKGROUND_TASK_SERVICE);
     }
 
     @Override
@@ -213,6 +218,11 @@ public class VoicemailPlaybackFragment extends Fragment {
         }
 
         @Override
+        public void setIsBuffering() {
+          mTextController.setPermanentText(getString(R.string.voicemail_buffering));
+        }
+
+        @Override
         public int getDesiredClipPosition() {
             return mPlaybackSeek.getProgress();
         }
@@ -224,7 +234,7 @@ public class VoicemailPlaybackFragment extends Fragment {
             mStartStopButton.setEnabled(false);
             mPlaybackSeek.setProgress(0);
             mPlaybackSeek.setEnabled(false);
-            Toast.makeText(getActivity(), R.string.voicemail_playback_error, Toast.LENGTH_SHORT);
+            mTextController.setPermanentText(getString(R.string.voicemail_playback_error));
             Log.e(TAG, "Could not play voicemail", e);
         }
 
