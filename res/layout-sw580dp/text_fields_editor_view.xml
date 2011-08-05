@@ -18,7 +18,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:layout_marginTop="-4dip"
     android:orientation="vertical">
 
     <LinearLayout
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:gravity="top"
+        android:gravity="center_vertical"
         android:focusable="true"
         android:clickable="true">
 
@@ -35,14 +35,13 @@
             layout="@layout/edit_field_list" />
 
         <include
-            android:id="@+id/spinner"
-            layout="@layout/edit_spinner"
-            android:paddingTop="15dip"
+            android:id="@+id/expansion_view_container"
+            layout="@layout/edit_expansion_view"
             android:visibility="gone" />
 
         <include
-            android:id="@+id/expansion_view_container"
-            layout="@layout/edit_expansion_view"
+            android:id="@+id/spinner"
+            layout="@layout/edit_spinner"
             android:visibility="gone" />
 
         <include

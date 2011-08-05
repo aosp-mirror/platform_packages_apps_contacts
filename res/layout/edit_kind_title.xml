@@ -24,14 +24,15 @@
     android:minHeight="24dip"
     android:paddingLeft="8dip"
     android:paddingRight="8dip"
+    android:paddingBottom="4dip"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/kind_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="8dip"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:paddingLeft="@dimen/editor_kind_title_left_padding"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/people_app_theme_color"
         android:textStyle="bold"
         android:textAllCaps="true"

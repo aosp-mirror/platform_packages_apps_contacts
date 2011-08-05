@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2007 The Android Open Source Project
+<!-- Copyright (C) 2011 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,23 +14,35 @@
      limitations under the License.
 -->
 
-<com.android.contacts.widget.InterpolatingLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/panel_message">
+    android:fillViewport="true">
 
     <LinearLayout
-        android:id="@+id/editors"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        ex:layout_wideParentWidth="800dip"
-        ex:layout_wideMarginLeft="128dip"
-        ex:layout_wideMarginRight="128dip"
-        ex:layout_narrowParentWidth="600dip"
-        ex:layout_narrowMarginLeft="50dip"
-        ex:layout_narrowMarginRight="50dip"/>
+        android:orientation="horizontal">
 
-</com.android.contacts.widget.InterpolatingLayout>
+        <!-- Empty view to represent the left margin -->
+        <View
+            android:layout_height="match_parent"
+            android:layout_width="0dip"
+            android:layout_weight="2" />
+
+        <fragment class="com.android.contacts.editor.ContactEditorFragment"
+            android:id="@+id/contact_editor_fragment"
+            android:layout_width="0dip"
+            android:layout_weight="6"
+            android:layout_height="match_parent"/>
+
+        <!-- Empty view to represent the right margin -->
+        <View
+            android:layout_height="match_parent"
+            android:layout_width="0dip"
+            android:layout_weight="2" />
+
+    </LinearLayout>
+
+</ScrollView>

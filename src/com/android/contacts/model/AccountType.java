@@ -31,6 +31,7 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
 import java.text.Collator;
@@ -356,6 +357,10 @@ public abstract class AccountType {
         public EditField setIsFullName(boolean isFullName) {
             this.isFullName = isFullName;
             return this;
+        }
+
+        public boolean isMultiLine() {
+            return (inputType & EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE) != 0;
         }
     }
 
