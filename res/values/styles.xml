@@ -151,8 +151,8 @@
     </style>
 
     <style name="ContactsActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@color/people_app_theme_color</item>
-        <item name="android:backgroundStacked">@color/people_app_theme_color</item>
+        <item name="android:background">@drawable/ab_solid_custom_blue_inverse_holo</item>
+        <item name="android:backgroundStacked">@drawable/ab_solid_custom_blue_inverse_holo</item>
     </style>
 
     <!-- TODO: Clean up this file so themes aren't copied. -->

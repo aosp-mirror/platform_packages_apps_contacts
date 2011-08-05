@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="8dip"
-            android:src="@drawable/ic_menu_display_all_holo_light"
+            android:src="@drawable/ic_menu_add_group_holo_dark"
             android:description="@string/menu_new_group_action_bar" />
 
         <TextView
@@ -44,6 +44,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/menu_new_group_action_bar" />
+            android:text="@string/menu_new_group_action_bar"
+            android:textColor="@color/action_bar_button_text_color"
+            style="@android:style/Widget.Holo.ActionBar.TabText" />
+
     </LinearLayout>
+
 </LinearLayout>

@@ -97,4 +97,7 @@
 
     <!-- Color of the text of the tab carousel in the contact details  -->
     <color name="detail_tab_carousel_tab_label_color">#EEEEEE</color>
+
+    <!-- Color of the text for buttons in the action bar  -->
+    <color name="action_bar_button_text_color">#FFFFFF</color>
 </resources>
