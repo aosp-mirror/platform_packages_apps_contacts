@@ -37,6 +37,11 @@ public class MockContactPhotoManager extends ContactPhotoManager {
     }
 
     @Override
+    public void removePhoto(ImageView view) {
+        view.setImageDrawable(null);
+    }
+
+    @Override
     public void pause() {
     }
 

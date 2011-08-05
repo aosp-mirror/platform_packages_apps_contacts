@@ -153,8 +153,11 @@ public class GroupBrowseListAdapter extends BaseAdapter {
             if (currentGroupId == mGroupId) {
                 final ImageView[] children = getIconViewsSordedByFillOrder(icons);
                 for (int i = 0; i < children.length; i++) {
-                    final long photoId = i < photoIds.size() ? photoIds.get(i) : 0;
-                    mContactPhotoManager.loadPhoto(children[i], photoId);
+                    if (i < photoIds.size()) {
+                        mContactPhotoManager.loadPhoto(children[i], photoIds.get(i));
+                    } else {
+                        mContactPhotoManager.removePhoto(children[i]);
+                    }
                 }
             }
         }
@@ -318,13 +321,16 @@ public class GroupBrowseListAdapter extends BaseAdapter {
         if (photoIds != null) {
             // Cache is available. Let the photo manager load those IDs.
             for (int i = 0; i < children.length; i++) {
-                final long photoId = i < photoIds.size() ? photoIds.get(i) : 0;
-                mContactPhotoManager.loadPhoto(children[i], photoId);
+                if (i < photoIds.size()) {
+                    mContactPhotoManager.loadPhoto(children[i], photoIds.get(i));
+                } else {
+                    mContactPhotoManager.removePhoto(children[i]);
+                }
             }
         } else {
             // Cache is not available. Load photo IDs asynchronously.
             for (ImageView child : children) {
-                mContactPhotoManager.loadPhoto(child, 0);
+                mContactPhotoManager.removePhoto(child);
             }
             new AsyncPhotoIdLoadTask().execute(
                     new AsyncPhotoIdLoadArg(icons, entry.getGroupId(),
