@@ -16,6 +16,8 @@
 
 package com.android.contacts.voicemail;
 
+import static android.util.MathUtils.constrain;
+
 import com.android.contacts.R;
 import com.android.ex.variablespeed.MediaPlayerProxy;
 import com.android.ex.variablespeed.SingleThreadedMediaPlayerProxy;
@@ -211,17 +213,12 @@ import javax.annotation.concurrent.ThreadSafe;
         @Override
         public void onClick(View v) {
             // Adjust the current rate, then clamp it to the allowed values.
-            mRateIndex = clamp(mRateIndex + (mIncrease ? 1 : -1), 0, PRESET_RATES.length - 1);
+            mRateIndex = constrain(mRateIndex + (mIncrease ? 1 : -1), 0, PRESET_RATES.length - 1);
             // Whether or not we have actually changed the index, call changeRate().
             // This will ensure that we show the "fastest" or "slowest" text on the ui to indicate
             // to the user that it doesn't get any faster or slower.
             changeRate(PRESET_RATES[mRateIndex], PRESET_NAMES[mRateIndex]);
         }
-    }
-
-    /** Clamp the input value to between min and max inclusive. */
-    private static int clamp(int input, int min, int max) {
-        return Math.max(Math.min(input, max), min);
     }
 
     private void resetPrepareStartPlaying(int clipPositionInMillis) {
@@ -230,7 +227,7 @@ import javax.annotation.concurrent.ThreadSafe;
             mPlayer.setDataSource(mView.getDataSourceContext(), mVoicemailUri);
             mPlayer.prepare();
             mDuration.set(mPlayer.getDuration());
-            int startPosition = clamp(clipPositionInMillis, 0, mDuration.get());
+            int startPosition = constrain(clipPositionInMillis, 0, mDuration.get());
             mView.setClipPosition(startPosition, mDuration.get());
             mPlayer.seekTo(startPosition);
             mPlayer.start();

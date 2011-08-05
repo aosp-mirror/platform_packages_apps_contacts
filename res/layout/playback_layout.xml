@@ -77,6 +77,16 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dip"
             />
+            <TextView
+                android:id="@+id/playback_speed_text"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="14sp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dip"
+                android:alpha="0"
+            />
             <ImageButton
                 android:id="@+id/rate_decrease_button"
                 android:src="@drawable/ic_minus_holo_dark"
