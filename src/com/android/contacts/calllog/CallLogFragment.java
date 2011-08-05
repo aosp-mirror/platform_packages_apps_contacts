@@ -868,7 +868,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         mVoiceMailNumber = ((TelephonyManager) getActivity().getSystemService(
                 Context.TELEPHONY_SERVICE)).getVoiceMailNumber();
         mCallLogQueryHandler = new CallLogQueryHandler(getActivity().getContentResolver(), this);
-
         setHasOptionsMenu(true);
     }
 
@@ -964,9 +963,19 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     @Override
     public void onPause() {
         super.onPause();
-
         // Kill the requests thread
         mAdapter.stopRequestProcessing();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        resetNewCallsFlag();
+        // Clear notifications only when window gains focus.  This activity won't
+        // immediately receive focus if the keyguard screen is above it.
+        if (getActivity().hasWindowFocus()) {
+            removeMissedCallNotifications();
+        }
     }
 
     @Override
@@ -1158,7 +1167,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         // again once being shown.
         mAdapter.invalidateCache();
         startCallsQuery();
-        resetNewCallsFlag();
         startVoicemailStatusQuery();
         mAdapter.mPreDrawListener = null; // Let it restart the thread after next draw
         // Clear notifications only when window gains focus.  This activity won't

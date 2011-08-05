@@ -19,7 +19,9 @@ package com.android.contacts.calllog;
 import com.android.common.io.MoreCloseables;
 
 import android.database.AbstractCursor;
+import android.database.ContentObserver;
 import android.database.Cursor;
+import android.database.DataSetObserver;
 
 /**
  * Wraps a cursor to add an additional column with the same value for all rows.
@@ -128,5 +130,25 @@ public class ExtendedCursor extends AbstractCursor {
     public void close() {
         MoreCloseables.closeQuietly(mCursor);
         super.close();
+    }
+
+    @Override
+    public void registerContentObserver(ContentObserver observer) {
+        mCursor.registerContentObserver(observer);
+    }
+
+    @Override
+    public void unregisterContentObserver(ContentObserver observer) {
+        mCursor.unregisterContentObserver(observer);
+    }
+
+    @Override
+    public void registerDataSetObserver(DataSetObserver observer) {
+        mCursor.registerDataSetObserver(observer);
+    }
+
+    @Override
+    public void unregisterDataSetObserver(DataSetObserver observer) {
+        mCursor.unregisterDataSetObserver(observer);
     }
 }
