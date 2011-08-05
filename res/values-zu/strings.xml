@@ -221,6 +221,10 @@
     <skip />
     <!-- no translation found for recentCalls_deleteAll (6352364392762163704) -->
     <skip />
+    <!-- no translation found for recentCalls_trashVoicemail (7604696960787435655) -->
+    <skip />
+    <!-- no translation found for recentCalls_shareVoicemail (1416112847592942840) -->
+    <skip />
     <!-- no translation found for recentCalls_empty (247053222448663107) -->
     <skip />
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Sula ifayela lokungena"</string>
@@ -273,7 +277,10 @@
     <string name="callAgain" msgid="3197312117049874778">"Shayela futhi"</string>
     <string name="returnCall" msgid="8171961914203617813">"Buyisela ikholi"</string>
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> amaminithi <xliff:g id="SECONDS">%s</xliff:g> amasekhondi"</string>
-    <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"Abathintwa njalo"</string>
+    <!-- no translation found for favoritesFrequentContacted (6184232487472425690) -->
+    <skip />
+    <!-- no translation found for favoritesFrequentCalled (6128306889600696124) -->
+    <skip />
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Faka othintana naye"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Faka  \"<xliff:g id="EMAIL">%s</xliff:g>\"  kothintana nabo?"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"kunye"</string>
@@ -624,8 +631,6 @@
     <skip />
     <!-- no translation found for voicemail_playback_error (5128928338910411763) -->
     <skip />
-    <!-- no translation found for call_log_type_date_separator (8009466658324061546) -->
-    <skip />
     <!-- no translation found for call_log_new_header (846546437517724715) -->
     <skip />
     <!-- no translation found for call_log_old_header (6262205894314263629) -->
@@ -652,7 +657,7 @@
     <skip />
     <!-- no translation found for voicemail_speed_fastest (3373646875150544205) -->
     <skip />
-    <!-- no translation found for call_log_item_count (2623628374805503262) -->
+    <!-- no translation found for call_log_item_count_and_date (7641933305703520787) -->
     <skip />
     <!-- no translation found for group_name_hint (2659811836386413509) -->
     <skip />

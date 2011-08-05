@@ -164,6 +164,10 @@
     <string name="recentCalls_addToContact" msgid="1429899535546487008">"Lisää yhteystietoihin"</string>
     <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Poista puhelulokista"</string>
     <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Tyhjennä puheluloki"</string>
+    <!-- no translation found for recentCalls_trashVoicemail (7604696960787435655) -->
+    <skip />
+    <!-- no translation found for recentCalls_shareVoicemail (1416112847592942840) -->
+    <skip />
     <string name="recentCalls_empty" msgid="247053222448663107">"Puheluloki on tyhjä."</string>
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Tyhjennä puheluloki"</string>
     <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Haluatko varmasti tyhjentää puhelulokin?"</string>
@@ -206,7 +210,10 @@
     <string name="callAgain" msgid="3197312117049874778">"Soita uudelleen"</string>
     <string name="returnCall" msgid="8171961914203617813">"Soita takaisin"</string>
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> s"</string>
-    <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"Usein käytetyt"</string>
+    <!-- no translation found for favoritesFrequentContacted (6184232487472425690) -->
+    <skip />
+    <!-- no translation found for favoritesFrequentCalled (6128306889600696124) -->
+    <skip />
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Lisää yhteystieto"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Lisätäänkö <xliff:g id="EMAIL">%s</xliff:g> yhteystietoihin?"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"yksi"</string>
@@ -542,8 +549,6 @@
     <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
     <skip />
     <string name="voicemail_playback_error" msgid="5128928338910411763">"Vastaajaviestin toisto ei onnistu"</string>
-    <!-- no translation found for call_log_type_date_separator (8009466658324061546) -->
-    <skip />
     <string name="call_log_new_header" msgid="846546437517724715">"Uusi"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Vanhempi"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"Ei voi yhdistää vastaajan palvelimeen."</string>
@@ -557,7 +562,8 @@
     <string name="voicemail_speed_normal" msgid="6030110237820243006">"Normaali"</string>
     <string name="voicemail_speed_faster" msgid="4161478290979905481">"nopea"</string>
     <string name="voicemail_speed_fastest" msgid="3373646875150544205">"nopein"</string>
-    <string name="call_log_item_count" msgid="2623628374805503262">"(%1$d)"</string>
+    <!-- no translation found for call_log_item_count_and_date (7641933305703520787) -->
+    <skip />
     <string name="group_name_hint" msgid="2659811836386413509">"Ryhmän nimi"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Kontakti saatu NFC:n kautta"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Näytä vain vastaajaviestit"</string>
@@ -568,7 +574,7 @@
     <string name="description_call_log_play_button" msgid="651182125650429846">"Toista vastaajaviesti"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Saapuva puhelu"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Lähtevä puhelu"</string>
-    <string name="description_call_log_missed_call" msgid="2242805209983708825">"Vastaamatta jäänyt puhelu"</string>
+    <string name="description_call_log_missed_call" msgid="2242805209983708825">"Vastaamaton puhelu"</string>
     <string name="description_call_log_voicemail" msgid="4600798771975158948">"Vastaaja"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Kuuntelematon vastaajaviesti"</string>
     <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
