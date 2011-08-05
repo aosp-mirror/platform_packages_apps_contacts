@@ -66,7 +66,6 @@ public class VoicemailPlaybackFragment extends Fragment {
     private SeekBar mPlaybackSeek;
     private ImageButton mStartStopButton;
     private ImageButton mPlaybackSpeakerphone;
-    private TextView mPlaybackPositionText;
     private ImageButton mRateDecreaseButton;
     private ImageButton mRateIncreaseButton;
     private TextViewWithMessagesController mTextController;
@@ -79,10 +78,11 @@ public class VoicemailPlaybackFragment extends Fragment {
         mPlaybackSeek = (SeekBar) view.findViewById(R.id.playback_seek);
         mStartStopButton = (ImageButton) view.findViewById(R.id.playback_start_stop);
         mPlaybackSpeakerphone = (ImageButton) view.findViewById(R.id.playback_speakerphone);
-        mPlaybackPositionText = (TextView) view.findViewById(R.id.playback_position_text);
         mRateDecreaseButton = (ImageButton) view.findViewById(R.id.rate_decrease_button);
         mRateIncreaseButton = (ImageButton) view.findViewById(R.id.rate_increase_button);
-        mTextController = new TextViewWithMessagesController(mPlaybackPositionText);
+        mTextController = new TextViewWithMessagesController(
+                (TextView) view.findViewById(R.id.playback_position_text),
+                (TextView) view.findViewById(R.id.playback_speed_text));
         return view;
     }
 
@@ -259,30 +259,30 @@ public class VoicemailPlaybackFragment extends Fragment {
      * All the methods on this class must be called from the ui thread.
      */
     private static final class TextViewWithMessagesController {
+        private static final float VISIBLE = 1;
+        private static final float INVISIBLE = 0;
+        private static final long SHORT_ANIMATION_MS = 200;
+        private static final long LONG_ANIMATION_MS = 400;
         private final Object mLock = new Object();
-        private final TextView mTextView;
-        @GuardedBy("mLock") String mCurrentText = "";
-        @GuardedBy("mLock") Runnable mRunnable;
+        private final TextView mPermanentTextView;
+        private final TextView mTemporaryTextView;
+        @GuardedBy("mLock") private Runnable mRunnable;
 
-        public TextViewWithMessagesController(TextView textView) {
-            mTextView = textView;
+        public TextViewWithMessagesController(TextView permanentTextView,
+                TextView temporaryTextView) {
+            mPermanentTextView = permanentTextView;
+            mTemporaryTextView = temporaryTextView;
         }
 
         public void setPermanentText(String text) {
-            synchronized (mLock) {
-                mCurrentText = text;
-                // If there's currently a Runnable pending, then we don't alter the display
-                // text. The Runnable will use the most recent version of mCurrentText
-                // when it completes.
-                if (mRunnable == null) {
-                    mTextView.setText(text);
-                }
-            }
+            mPermanentTextView.setText(text);
         }
 
         public void setTemporaryText(String text, long duration, TimeUnit units) {
             synchronized (mLock) {
-                mTextView.setText(text);
+                mTemporaryTextView.setText(text);
+                mTemporaryTextView.animate().alpha(VISIBLE).setDuration(SHORT_ANIMATION_MS);
+                mPermanentTextView.animate().alpha(INVISIBLE).setDuration(SHORT_ANIMATION_MS);
                 mRunnable = new Runnable() {
                     @Override
                     public void run() {
@@ -292,12 +292,15 @@ public class VoicemailPlaybackFragment extends Fragment {
                             // one is now defunct and needs to take no action.
                             if (mRunnable == this) {
                                 mRunnable = null;
-                                mTextView.setText(mCurrentText);
+                                mTemporaryTextView.animate()
+                                        .alpha(INVISIBLE).setDuration(LONG_ANIMATION_MS);
+                                mPermanentTextView.animate()
+                                        .alpha(VISIBLE).setDuration(LONG_ANIMATION_MS);
                             }
                         }
                     }
                 };
-                mTextView.postDelayed(mRunnable, units.toMillis(duration));
+                mTemporaryTextView.postDelayed(mRunnable, units.toMillis(duration));
             }
         }
     }
