@@ -16,15 +16,16 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.contacts"
-    android:sharedUserId="android.uid.shared"
-    android:sharedUserLabel="@string/sharedUserLabel"
->
+    android:sharedUserId="android.uid.shared">
 
     <original-package android:name="com.android.contacts" />
 
     <uses-permission android:name="android.permission.CALL_PRIVILEGED" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.WRITE_PROFILE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -48,7 +49,6 @@
         android:name="com.android.contacts.ContactsApplication"
         android:label="@string/contactsList"
         android:icon="@mipmap/ic_launcher_contacts"
-        android:process="android.process.acore"
         android:taskAffinity="android.task.contacts"
         android:hardwareAccelerated="true"
     >
