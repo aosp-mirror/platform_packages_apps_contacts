@@ -14,8 +14,9 @@
      limitations under the License.
 -->
 
-<LinearLayout
+<view
     xmlns:android="http://schemas.android.com/apk/res/android"
+    class="com.android.contacts.calllog.CallLogListItemView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/call_log_inner_margin"
@@ -162,4 +163,4 @@
         android:textStyle="bold"
         android:textColor="?attr/call_log_header_color"
     />
-</LinearLayout>
+</view>
