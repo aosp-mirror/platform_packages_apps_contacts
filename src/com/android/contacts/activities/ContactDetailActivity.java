@@ -433,6 +433,7 @@ public class ContactDetailActivity extends ContactsActivity {
             mRootView.addView(mContentView);
             mDetailFragment = (ContactDetailFragment) getFragmentManager().findFragmentById(
                     R.id.contact_detail_fragment);
+            mDetailFragment.setListener(mFragmentListener);
         }
         // Reset contact data
         if (mDetailFragment != null) {
