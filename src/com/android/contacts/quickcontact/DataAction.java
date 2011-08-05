@@ -2,8 +2,9 @@ package com.android.contacts.quickcontact;
 
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
-import com.android.contacts.model.DataKind;
 import com.android.contacts.model.AccountType.EditType;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.DataKind;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.PhoneCapabilityTester;
 
@@ -15,12 +16,12 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.net.WebAddress;
-import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.Website;
+import android.provider.ContactsContract.Data;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -142,13 +143,12 @@ public class DataAction implements Action {
                 mIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(webAddress.toString()));
             }
 
-        } else if (Im.CONTENT_ITEM_TYPE.equals(mimeType)
-                || Constants.MIME_TYPE_VIDEO_CHAT.equals(mimeType)) {
+        } else if (Im.CONTENT_ITEM_TYPE.equals(mimeType)) {
             final boolean isEmail = Email.CONTENT_ITEM_TYPE.equals(
                     getAsString(cursor, Data.MIMETYPE));
             if (isEmail || isProtocolValid(cursor)) {
                 final int protocol = isEmail ? Im.PROTOCOL_GOOGLE_TALK :
-                    getAsInt(cursor, Im.PROTOCOL);
+                        getAsInt(cursor, Im.PROTOCOL);
 
                 if (isEmail) {
                     // Use Google Talk string when using Email, and clear data
@@ -165,17 +165,29 @@ public class DataAction implements Action {
                     host = ContactsUtils.lookupProviderNameFromId(protocol);
                 }
 
-                if (Constants.MIME_TYPE_VIDEO_CHAT.equals(mimeType)) {
-                    if (!TextUtils.isEmpty(data)) {
-                        mIntent = new Intent(Intent.ACTION_SENDTO);
-                        mIntent.setDataAndType(Uri.parse("xmpp:" + data + "?call"),
-                                Constants.MIME_TYPE_VIDEO_CHAT);
-                    }
-                } else if (!TextUtils.isEmpty(host) && !TextUtils.isEmpty(data)) {
+                if (!TextUtils.isEmpty(host) && !TextUtils.isEmpty(data)) {
                     final String authority = host.toLowerCase();
                     final Uri imUri = new Uri.Builder().scheme(Constants.SCHEME_IMTO).authority(
                             authority).appendPath(data).build();
                     mIntent = new Intent(Intent.ACTION_SENDTO, imUri);
+
+                    // If the address is also available for a video chat, we'll show the capability
+                    // as a secondary action.
+                    final int chatCapability = getAsInt(cursor, Data.CHAT_CAPABILITY);
+                    final boolean isVideoChatCapable =
+                            (chatCapability & Im.CAPABILITY_HAS_CAMERA) != 0;
+                    final boolean isAudioChatCapable =
+                            (chatCapability & Im.CAPABILITY_HAS_VOICE) != 0;
+                    if (isVideoChatCapable || isAudioChatCapable) {
+                        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(
+                                context.getApplicationContext());
+                        mAlternateIntent = new Intent(
+                                Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?call"));
+                        // Use Holo dark theme since the background is darker than usual.
+                        mAlternateIconRes = (isVideoChatCapable
+                                ? R.drawable.sym_action_videochat_holo_dark
+                                : R.drawable.sym_action_audiochat_holo_dark);
+                    }
                 }
             }
         }
