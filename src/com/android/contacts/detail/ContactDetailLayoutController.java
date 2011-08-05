@@ -29,8 +29,6 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AbsListView.OnScrollListener;
 
 /**
  * Determines the layout of the contact card.
@@ -115,8 +113,6 @@ public class ContactDetailLayoutController {
         }
 
         mDetailFragment.setListener(mContactDetailFragmentListener);
-        mDetailFragment.setVerticalScrollListener(mVerticalScrollListener);
-        mUpdatesFragment.setVerticalScrollListener(mVerticalScrollListener);
 
         switch (mLayoutMode) {
             case VIEW_PAGER_AND_CAROUSEL: {
@@ -151,6 +147,7 @@ public class ContactDetailLayoutController {
                 }
                 transaction.commit();
                 mFragmentManager.executePendingTransactions();
+                TabCarouselScrollManager.bind(mTabCarousel, mDetailFragment, mUpdatesFragment);
                 break;
             }
             case TWO_COLUMN: {
@@ -305,33 +302,5 @@ public class ContactDetailLayoutController {
             // The user selected a tab, so update the {@link ViewPager}
             mViewPager.setCurrentItem(position);
         }
-    };
-
-    private OnScrollListener mVerticalScrollListener = new OnScrollListener() {
-
-        @Override
-        public void onScroll(
-                AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-            if (mTabCarousel == null) {
-                return;
-            }
-            // If the FIRST item is not visible on the screen, then the carousel must be pinned
-            // at the top of the screen.
-            if (firstVisibleItem != 0) {
-                mTabCarousel.setY(-mTabCarousel.getAllowedVerticalScrollLength());
-                return;
-            }
-            View topView = view.getChildAt(firstVisibleItem);
-            if (topView == null) {
-                return;
-            }
-            int amtToScroll = Math.max((int) view.getChildAt(firstVisibleItem).getY(),
-                    -mTabCarousel.getAllowedVerticalScrollLength());
-            mTabCarousel.setY(amtToScroll);
-        }
-
-        @Override
-        public void onScrollStateChanged(AbsListView view, int scrollState) {}
-
     };
 }

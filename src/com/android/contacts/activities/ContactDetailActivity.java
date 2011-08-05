@@ -28,6 +28,7 @@ import com.android.contacts.detail.ContactDetailUpdatesFragment;
 import com.android.contacts.detail.ContactDetailViewPagerAdapter;
 import com.android.contacts.detail.ContactLoaderFragment;
 import com.android.contacts.detail.ContactLoaderFragment.ContactLoaderFragmentListener;
+import com.android.contacts.detail.TabCarouselScrollManager;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.util.PhoneCapabilityTester;
@@ -55,8 +56,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AbsListView.OnScrollListener;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
@@ -153,8 +152,7 @@ public class ContactDetailActivity extends ContactsActivity {
         }
 
         mDetailFragment.setListener(mFragmentListener);
-        mDetailFragment.setVerticalScrollListener(mVerticalScrollListener);
-        mUpdatesFragment.setVerticalScrollListener(mVerticalScrollListener);
+        TabCarouselScrollManager.bind(mTabCarousel, mDetailFragment, mUpdatesFragment);
         mDetailFragment.setData(mLookupUri, mContactData);
         mUpdatesFragment.setData(mLookupUri, mContactData);
 
@@ -553,34 +551,6 @@ public class ContactDetailActivity extends ContactsActivity {
             // The user selected a tab, so update the {@link ViewPager}
             mViewPager.setCurrentItem(position);
         }
-    };
-
-    private OnScrollListener mVerticalScrollListener = new OnScrollListener() {
-
-        @Override
-        public void onScroll(
-                AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-            if (mTabCarousel == null) {
-                return;
-            }
-            // If the FIRST item is not visible on the screen, then the carousel must be pinned
-            // at the top of the screen.
-            if (firstVisibleItem != 0) {
-                mTabCarousel.setY(-mTabCarousel.getAllowedVerticalScrollLength());
-                return;
-            }
-            View topView = view.getChildAt(firstVisibleItem);
-            if (topView == null) {
-                return;
-            }
-            int amtToScroll = Math.max((int) view.getChildAt(firstVisibleItem).getY(),
-                    - mTabCarousel.getAllowedVerticalScrollLength());
-            mTabCarousel.setY(amtToScroll);
-        }
-
-        @Override
-        public void onScrollStateChanged(AbsListView view, int scrollState) {}
-
     };
 
     /**
