@@ -74,8 +74,19 @@ public class StreamItemAdapter extends BaseAdapter {
         if (position == 0) {
             return mInflater.inflate(R.layout.updates_header_contact, null);
         }
-        return ContactDetailDisplayUtils.addStreamItemToContainer(
-                mInflater, mContext, (StreamItemEntry) getItem(position), null, mListener);
+        StreamItemEntry streamItem = (StreamItemEntry) getItem(position);
+        View view = ContactDetailDisplayUtils.createStreamItemView(
+                mInflater, mContext, streamItem, null);
+        if (streamItem.getAction() != null && streamItem.getActionUri() != null) {
+            view.setTag(streamItem);
+            view.setFocusable(true);
+            view.setOnClickListener(mListener);
+        } else {
+            view.setTag(null);
+            view.setFocusable(false);
+            view.setOnClickListener(null);
+        }
+        return view;
     }
 
     @Override
