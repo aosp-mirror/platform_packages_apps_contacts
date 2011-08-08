@@ -18,11 +18,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/dialpadAdditionalButtons"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dialpad_additional_buttons_height"
+    android:layout_height="0px"
+    android:layout_weight="0.150"
     android:layout_gravity="center_horizontal"
-    android:layout_marginTop="4dip"
-    android:layout_marginBottom="4dip"
-    android:layout_weight="0.25"
+    android:layout_marginTop="@dimen/dialpad_vertical_margin"
     android:background="@drawable/dialpad_background"
     android:orientation="horizontal">
 

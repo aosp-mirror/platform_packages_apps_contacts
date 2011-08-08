@@ -19,15 +19,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="4dip"
-    android:paddingRight="4dip">
+    android:paddingLeft="@dimen/dialpad_horizontal_margin"
+    android:paddingRight="@dimen/dialpad_horizontal_margin">
 
     <!-- Text field and possibly soft menu button above the keypad where
          the digits are displayed. -->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dialpad_digits_height"
-        android:layout_marginTop="4dip"
+        android:layout_height="0px"
+        android:layout_weight="0.200"
+        android:layout_marginTop="@dimen/dialpad_vertical_margin"
         android:gravity="center" >
 
         <!-- Type of this EditText is set to NULL (to disable the IME keyboard)
@@ -45,10 +46,11 @@
             android:textColor="?android:attr/textColorPrimary" />
 
         <ImageButton android:id="@+id/overflow_menu"
-            android:layout_width="wrap_content"
+            android:layout_width="48dip"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:src="@drawable/ic_menu_overflow" />
+            android:src="@drawable/ic_menu_overflow"
+            android:background="@android:color/transparent"/>
 
     </RelativeLayout>
 

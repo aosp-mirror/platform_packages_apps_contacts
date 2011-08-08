@@ -194,14 +194,15 @@
     <dimen name="group_editor_member_list_height">550dip</dimen>
 
     <!-- Height of edit text in dialpad fragment -->
-    <dimen name="dialpad_digits_height">67dip</dimen>
-    <dimen name="dialpad_digits_text_size">33sp</dimen>
-    <dimen name="dialpad_additional_buttons_height">50dip</dimen>
-    <dimen name="dialpad_button_height">50dip</dimen>
+    <dimen name="dialpad_horizontal_margin">4dip</dimen>
+    <dimen name="dialpad_vertical_margin">2dip</dimen>
+    <dimen name="dialpad_digits_text_size">35sp</dimen>
+
     <!-- Just used in landscape mode -->
-    <dimen name="dialpad_digits_margin_top">1dip</dimen>
-    <!-- Just used in landscape mode -->
-    <dimen name="dialpad_digits_margin_bottom">50dip</dimen>
+    <dimen name="dialpad_button_height">0px</dimen>
+    <dimen name="dialpad_digits_height">0px</dimen>
+    <dimen name="dialpad_digits_margin_top">0px</dimen>
+    <dimen name="dialpad_digits_margin_bottom">0px</dimen>
 
     <!-- Width of search view in action bar.  Use 0dip for MATCH_PARENT -->
     <dimen name="search_view_width">0dip</dimen>

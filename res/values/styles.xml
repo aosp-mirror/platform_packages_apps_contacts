@@ -280,7 +280,7 @@
 
     <style name="DialtactsDialpadButtonStyle">
         <item name="android:layout_width">0dip</item>
-        <item name="android:layout_height">@dimen/dialpad_button_height</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
         <item name="android:background">@drawable/btn_dial</item>
         <item name="android:soundEffectsEnabled">false</item>
