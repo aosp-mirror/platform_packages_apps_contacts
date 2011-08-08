@@ -21,7 +21,6 @@ import com.android.contacts.R;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
@@ -31,8 +30,6 @@ import android.widget.TextView;
 public final class CallLogListItemViews {
     /** The quick contact badge for the contact. */
     public final QuickContactBadge quickContactView;
-    /** The photo view without quick contact badge. */
-    public final ImageView plainPhotoView;
     /** The main action button on the entry. */
     public final View callView;
     /** The play action button used for voicemail. */
@@ -48,12 +45,11 @@ public final class CallLogListItemViews {
     /** The text of the header in a stand-alone row, or null for other types of rows. */
     public final TextView listHeaderTextView;
 
-    private CallLogListItemViews(QuickContactBadge quickContactView, ImageView photoView,
+    private CallLogListItemViews(QuickContactBadge quickContactView,
             View callView, View playView, View unheardView, View dividerView,
             PhoneCallDetailsViews phoneCallDetailsViews, View listItemView,
             TextView listHeaderTextView) {
         this.quickContactView = quickContactView;
-        this.plainPhotoView = photoView;
         this.callView = callView;
         this.playView = playView;
         this.unheardView = unheardView;
@@ -66,7 +62,6 @@ public final class CallLogListItemViews {
     public static CallLogListItemViews fromView(View view) {
         return new CallLogListItemViews(
                 (QuickContactBadge) view.findViewById(R.id.quick_contact_photo),
-                (ImageView) view.findViewById(R.id.plain_contact_photo),
                 view.findViewById(R.id.call_icon),
                 view.findViewById(R.id.play_icon),
                 view.findViewById(R.id.unheard_icon),
@@ -79,7 +74,6 @@ public final class CallLogListItemViews {
     public static CallLogListItemViews createForTest(Context context) {
         return new CallLogListItemViews(
                 new QuickContactBadge(context),
-                new ImageView(context),
                 new View(context),
                 new View(context),
                 new View(context),

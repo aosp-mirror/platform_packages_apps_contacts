@@ -662,8 +662,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             CallLogListItemViews views = CallLogListItemViews.fromView(view);
             views.callView.setOnClickListener(mCallPlayOnClickListener);
             views.playView.setOnClickListener(mCallPlayOnClickListener);
-            // Do nothing when a plain photo is clicked. Without this, the list item will fire.
-            views.plainPhotoView.setOnClickListener(null);
             view.setTag(views);
         }
 
@@ -801,18 +799,9 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
 
         private void setPhoto(CallLogListItemViews views, Uri thumbnailUri, long contactId,
                 String lookupKey) {
-            if (contactId == -1) {
-                // This does not correspond to a contact, do not use the QuickContactBadge.
-                mContactPhotoManager.loadPhoto(views.plainPhotoView, thumbnailUri);
-                views.plainPhotoView.setVisibility(View.VISIBLE);
-                views.quickContactView.setVisibility(View.INVISIBLE);
-            } else {
-                views.quickContactView.assignContactUri(
-                        Contacts.getLookupUri(contactId, lookupKey));
-                mContactPhotoManager.loadPhoto(views.quickContactView, thumbnailUri);
-                views.quickContactView.setVisibility(View.VISIBLE);
-                views.plainPhotoView.setVisibility(View.INVISIBLE);
-            }
+            views.quickContactView.assignContactUri(contactId == -1 ? null :
+                    Contacts.getLookupUri(contactId, lookupKey));
+            mContactPhotoManager.loadPhoto(views.quickContactView, thumbnailUri);
         }
 
         /**
