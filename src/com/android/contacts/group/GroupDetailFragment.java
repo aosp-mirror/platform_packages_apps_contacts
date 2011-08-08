@@ -405,8 +405,8 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        mOptionsMenuEditable = isGroupEditable();
-        mOptionsMenuGroupPresent = isGroupPresent();
+        mOptionsMenuEditable = isGroupEditable() && isVisible();
+        mOptionsMenuGroupPresent = isGroupPresent() && isVisible();
 
         // Editing a group is always possible if a group is selected
         // TODO: check for external group (member editable) buganizer #5049046
