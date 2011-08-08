@@ -48,6 +48,8 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
 import android.text.TextUtils;
@@ -63,7 +65,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.BaseAdapter;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.QuickContactBadge;
@@ -73,12 +74,23 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: Use savedInstanceState
 public class GroupEditorFragment extends Fragment implements SelectAccountDialogFragment.Listener {
-
     private static final String TAG = "GroupEditorFragment";
 
     private static final String LEGACY_CONTACTS_AUTHORITY = "contacts";
+
+    private static final String KEY_ACTION = "action";
+    private static final String KEY_GROUP_URI = "groupUri";
+    private static final String KEY_GROUP_ID = "groupId";
+    private static final String KEY_STATUS = "status";
+    private static final String KEY_ACCOUNT_NAME = "accountName";
+    private static final String KEY_ACCOUNT_TYPE = "accountType";
+    private static final String KEY_DATA_SET = "dataSet";
+    private static final String KEY_GROUP_NAME_IS_READ_ONLY = "groupNameIsReadOnly";
+    private static final String KEY_ORIGINAL_GROUP_NAME = "originalGroupName";
+    private static final String KEY_MEMBERS_TO_ADD = "membersToAdd";
+    private static final String KEY_MEMBERS_TO_REMOVE = "membersToRemove";
+    private static final String KEY_MEMBERS_TO_DISPLAY = "membersToDisplay";
 
     public static interface Listener {
         /**
@@ -93,6 +105,8 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
 
         /**
          * Title has been determined.
+         *
+         * TODO Remove this.  No longer needed with the latest visual spec.
          */
         void onTitleLoaded(int resourceId);
 
@@ -145,7 +159,8 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
      * Modes that specify the status of the editor
      */
     public enum Status {
-        LOADING,    // Loader is fetching the data
+        SELECTING_ACCOUNT, // Account select dialog is showing
+        LOADING,    // Loader is fetching the group metadata
         EDITING,    // Not currently busy. We are waiting forthe user to enter data.
         SAVING,     // Data is currently being saved
         CLOSING     // Prevents any more saves
@@ -170,10 +185,11 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     private TextView mAccountNameTextView;
     private AutoCompleteTextView mAutoCompleteTextView;
 
-    private boolean mGroupNameIsReadOnly;
     private String mAccountName;
     private String mAccountType;
     private String mDataSet;
+
+    private boolean mGroupNameIsReadOnly;
     private String mOriginalGroupName = "";
 
     private MemberListAdapter mMemberListAdapter;
@@ -182,9 +198,9 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     private ContentResolver mContentResolver;
     private SuggestedMemberListAdapter mAutoCompleteAdapter;
 
-    private List<Member> mListMembersToAdd = new ArrayList<Member>();
-    private List<Member> mListMembersToRemove = new ArrayList<Member>();
-    private List<Member> mListToDisplay = new ArrayList<Member>();
+    private final List<Member> mListMembersToAdd = new ArrayList<Member>();
+    private final List<Member> mListMembersToRemove = new ArrayList<Member>();
+    private final List<Member> mListToDisplay = new ArrayList<Member>();
 
     public GroupEditorFragment() {
     }
@@ -209,18 +225,19 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        // Edit an existing group
-        if (Intent.ACTION_EDIT.equals(mAction)) {
-            if (mListener != null) {
-                mListener.onTitleLoaded(R.string.editGroup_title_edit);
+        if (savedInstanceState != null) {
+            // Just restore from the saved state.  No loading.
+            onRestoreInstanceState(savedInstanceState);
+            if (mStatus == Status.SELECTING_ACCOUNT) {
+                // Account select dialog is showing.  Don't setup the editor yet.
+            } else if (mStatus == Status.LOADING) {
+                startGroupMetaDataLoader();
+            } else {
+                setupEditorForAccount();
             }
-            getLoaderManager().initLoader(LOADER_GROUP_METADATA, null,
-                    mGroupMetaDataLoaderListener);
+        } else if (Intent.ACTION_EDIT.equals(mAction)) {
+            startGroupMetaDataLoader();
         } else if (Intent.ACTION_INSERT.equals(mAction)) {
-            if (mListener != null) {
-                mListener.onTitleLoaded(R.string.editGroup_title_insert);
-            }
-
             final Account account = mIntentExtras == null ? null :
                     (Account) mIntentExtras.getParcelable(Intents.Insert.ACCOUNT);
             final String dataSet = mIntentExtras == null ? null :
@@ -240,6 +257,58 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
             throw new IllegalArgumentException("Unknown Action String " + mAction +
                     ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
         }
+
+        // Let the activity update the title.
+        if (mListener != null) {
+            mListener.onTitleLoaded(Intent.ACTION_EDIT.equals(mAction)
+                    ? R.string.editGroup_title_edit
+                    : R.string.editGroup_title_insert);
+        }
+    }
+
+    private void startGroupMetaDataLoader() {
+        mStatus = Status.LOADING;
+        getLoaderManager().initLoader(LOADER_GROUP_METADATA, null,
+                mGroupMetaDataLoaderListener);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(KEY_ACTION, mAction);
+        outState.putParcelable(KEY_GROUP_URI, mGroupUri);
+        outState.putLong(KEY_GROUP_ID, mGroupId);
+
+        outState.putSerializable(KEY_STATUS, mStatus);
+        outState.putString(KEY_ACCOUNT_NAME, mAccountName);
+        outState.putString(KEY_ACCOUNT_TYPE, mAccountType);
+        outState.putString(KEY_DATA_SET, mDataSet);
+
+        outState.putBoolean(KEY_GROUP_NAME_IS_READ_ONLY, mGroupNameIsReadOnly);
+        outState.putString(KEY_ORIGINAL_GROUP_NAME, mOriginalGroupName);
+
+        outState.putParcelableArray(KEY_MEMBERS_TO_ADD, Member.toArray(mListMembersToAdd));
+        outState.putParcelableArray(KEY_MEMBERS_TO_REMOVE, Member.toArray(mListMembersToRemove));
+        outState.putParcelableArray(KEY_MEMBERS_TO_DISPLAY, Member.toArray(mListToDisplay));
+    }
+
+    private void onRestoreInstanceState(Bundle state) {
+        mAction = state.getString(KEY_ACTION);
+        mGroupUri = state.getParcelable(KEY_GROUP_URI);
+        mGroupId = state.getLong(KEY_GROUP_ID);
+
+        mStatus = (Status) state.getSerializable(KEY_STATUS);
+        mAccountName = state.getString(KEY_ACCOUNT_NAME);
+        mAccountType = state.getString(KEY_ACCOUNT_TYPE);
+        mDataSet = state.getString(KEY_DATA_SET);
+
+        mGroupNameIsReadOnly = state.getBoolean(KEY_GROUP_NAME_IS_READ_ONLY);
+        mOriginalGroupName = state.getString(KEY_ORIGINAL_GROUP_NAME);
+
+        Member.toList((Member[]) state.getParcelableArray(KEY_MEMBERS_TO_ADD), mListMembersToAdd);
+        Member.toList((Member[]) state.getParcelableArray(KEY_MEMBERS_TO_REMOVE),
+                mListMembersToRemove);
+        Member.toList((Member[]) state.getParcelableArray(KEY_MEMBERS_TO_DISPLAY), mListToDisplay);
     }
 
     public void setContentResolver(ContentResolver resolver) {
@@ -267,6 +336,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
             return;  // Don't show a dialog.
         }
 
+        mStatus = Status.SELECTING_ACCOUNT;
         final SelectAccountDialogFragment dialog = new SelectAccountDialogFragment(
                 R.string.dialog_new_group_account);
         dialog.setTargetFragment(this, 0);
@@ -345,7 +415,13 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
                     mAutoCompleteTextView.setText("");
                 }
             });
+            // Update the exempt list.  (mListToDisplay might have been restored from the saved
+            // state.)
+            mAutoCompleteAdapter.updateExistingMembersList(mListToDisplay);
         }
+
+        // If the group name is ready only, don't let the user focus on the field.
+        mGroupNameView.setFocusable(!mGroupNameIsReadOnly);
 
         mRootView.addView(editorView);
         mStatus = Status.EDITING;
@@ -359,30 +435,21 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     }
 
     private void bindGroupMetaData(Cursor cursor) {
-        if (cursor.getCount() == 0) {
-            if (mListener != null) {
-                mListener.onGroupNotFound();
-            }
-        }
-        try {
-            cursor.moveToFirst();
-            mOriginalGroupName = cursor.getString(GroupMetaDataLoader.TITLE);
-            mAccountName = cursor.getString(GroupMetaDataLoader.ACCOUNT_NAME);
-            mAccountType = cursor.getString(GroupMetaDataLoader.ACCOUNT_TYPE);
-            mGroupNameIsReadOnly = (cursor.getInt(GroupMetaDataLoader.IS_READ_ONLY) == 1);
-        } catch (Exception e) {
+        if (!cursor.moveToFirst()) {
             Log.i(TAG, "Group not found with URI: " + mGroupUri + " Closing activity now.");
             if (mListener != null) {
                 mListener.onGroupNotFound();
             }
-        } finally {
-            cursor.close();
+            return;
         }
+        mOriginalGroupName = cursor.getString(GroupMetaDataLoader.TITLE);
+        mAccountName = cursor.getString(GroupMetaDataLoader.ACCOUNT_NAME);
+        mAccountType = cursor.getString(GroupMetaDataLoader.ACCOUNT_TYPE);
+        mGroupNameIsReadOnly = (cursor.getInt(GroupMetaDataLoader.IS_READ_ONLY) == 1);
         setupEditorForAccount();
-        // Setup the group metadata display (If the group name is ready only, don't let the user
-        // focus on the field).
+
+        // Setup the group metadata display
         mGroupNameView.setText(mOriginalGroupName);
-        mGroupNameView.setFocusable(!mGroupNameIsReadOnly);
     }
 
     public void loadMemberToAddToGroup(long rawContactId, String contactId) {
@@ -596,13 +663,13 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         return membersArray;
     }
 
-    private void addExistingMembers(List<Member> members, List<Long> listContactIds) {
+    private void addExistingMembers(List<Member> members) {
         mListToDisplay.addAll(members);
         mMemberListAdapter.notifyDataSetChanged();
 
         // Update the autocomplete adapter (if there is one) so these contacts don't get suggested
         if (mAutoCompleteAdapter != null) {
-            mAutoCompleteAdapter.updateExistingMembersList(listContactIds);
+            mAutoCompleteAdapter.updateExistingMembersList(members);
         }
     }
 
@@ -672,29 +739,23 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
 
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-            List<Long> listContactIds = new ArrayList<Long>();
             List<Member> listExistingMembers = new ArrayList<Member>();
-            try {
-                data.moveToPosition(-1);
-                while (data.moveToNext()) {
-                    long contactId = data.getLong(GroupMemberLoader.CONTACT_ID_COLUMN_INDEX);
-                    long rawContactId = data.getLong(GroupMemberLoader.RAW_CONTACT_ID_COLUMN_INDEX);
-                    String lookupKey = data.getString(
-                            GroupMemberLoader.CONTACT_LOOKUP_KEY_COLUMN_INDEX);
-                    String displayName = data.getString(
-                            GroupMemberLoader.CONTACT_DISPLAY_NAME_PRIMARY_COLUMN_INDEX);
-                    String photoUri = data.getString(
-                            GroupMemberLoader.CONTACT_PHOTO_URI_COLUMN_INDEX);
-                    listExistingMembers.add(new Member(rawContactId, lookupKey, contactId,
-                            displayName, photoUri));
-                    listContactIds.add(contactId);
-                }
-            } finally {
-                data.close();
+            data.moveToPosition(-1);
+            while (data.moveToNext()) {
+                long contactId = data.getLong(GroupMemberLoader.CONTACT_ID_COLUMN_INDEX);
+                long rawContactId = data.getLong(GroupMemberLoader.RAW_CONTACT_ID_COLUMN_INDEX);
+                String lookupKey = data.getString(
+                        GroupMemberLoader.CONTACT_LOOKUP_KEY_COLUMN_INDEX);
+                String displayName = data.getString(
+                        GroupMemberLoader.CONTACT_DISPLAY_NAME_PRIMARY_COLUMN_INDEX);
+                String photoUri = data.getString(
+                        GroupMemberLoader.CONTACT_PHOTO_URI_COLUMN_INDEX);
+                listExistingMembers.add(new Member(rawContactId, lookupKey, contactId,
+                        displayName, photoUri));
             }
 
             // Update the display list
-            addExistingMembers(listExistingMembers, listContactIds);
+            addExistingMembers(listExistingMembers);
 
             // No more updates
             // TODO: move to a runnable
@@ -725,26 +786,17 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
 
         @Override
         public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-            // Retrieve the contact data fields that will be sufficient to update the adapter with
-            // a new entry for this contact
-            Member member = null;
-            try {
-                cursor.moveToFirst();
-                long contactId = cursor.getLong(CONTACT_ID_COLUMN_INDEX);
-                String displayName = cursor.getString(CONTACT_DISPLAY_NAME_PRIMARY_COLUMN_INDEX);
-                String lookupKey = cursor.getString(CONTACT_LOOKUP_KEY_COLUMN_INDEX);
-                String photoUri = cursor.getString(CONTACT_PHOTO_URI_COLUMN_INDEX);
-                getLoaderManager().destroyLoader(LOADER_NEW_GROUP_MEMBER);
-                member = new Member(mRawContactId, lookupKey, contactId, displayName, photoUri);
-            } finally {
-                cursor.close();
-            }
-
-            if (member == null) {
+            if (!cursor.moveToFirst()) {
                 return;
             }
-
-            // Otherwise continue adding the member to list of members
+            // Retrieve the contact data fields that will be sufficient to update the adapter with
+            // a new entry for this contact
+            long contactId = cursor.getLong(CONTACT_ID_COLUMN_INDEX);
+            String displayName = cursor.getString(CONTACT_DISPLAY_NAME_PRIMARY_COLUMN_INDEX);
+            String lookupKey = cursor.getString(CONTACT_LOOKUP_KEY_COLUMN_INDEX);
+            String photoUri = cursor.getString(CONTACT_PHOTO_URI_COLUMN_INDEX);
+            getLoaderManager().destroyLoader(LOADER_NEW_GROUP_MEMBER);
+            Member member = new Member(mRawContactId, lookupKey, contactId, displayName, photoUri);
             addMember(member);
         }
 
@@ -755,7 +807,9 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     /**
      * This represents a single member of the current group.
      */
-    public static class Member {
+    public static class Member implements Parcelable {
+        private static final Member[] EMPTY_ARRAY = new Member[0];
+
         // TODO: Switch to just dealing with raw contact IDs everywhere if possible
         private final long mRawContactId;
         private final long mContactId;
@@ -799,6 +853,55 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
                 return otherMember != null && Objects.equal(mLookupUri, otherMember.getLookupUri());
             }
             return false;
+        }
+
+        // Parcelable
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeLong(mRawContactId);
+            dest.writeLong(mContactId);
+            dest.writeParcelable(mLookupUri, flags);
+            dest.writeString(mDisplayName);
+            dest.writeParcelable(mPhotoUri, flags);
+        }
+
+        private Member(Parcel in) {
+            mRawContactId = in.readLong();
+            mContactId = in.readLong();
+            mLookupUri = in.readParcelable(getClass().getClassLoader());
+            mDisplayName = in.readString();
+            mPhotoUri = in.readParcelable(getClass().getClassLoader());
+        }
+
+        public static final Parcelable.Creator<Member> CREATOR = new Parcelable.Creator<Member>() {
+            public Member createFromParcel(Parcel in) {
+                return new Member(in);
+            }
+
+            public Member[] newArray(int size) {
+                return new Member[size];
+            }
+        };
+
+        /** Convert to an array */
+        public static Member[] toArray(List<Member> list) {
+            return list.toArray(EMPTY_ARRAY);
+        }
+
+        /**
+         * Convert to a list.  Instead of creating a new one, this method clears the passed list
+         * and adds elements to it.
+         */
+        public static void toList(Member[] array, List<Member> list) {
+            list.clear();
+            for (Member member : array) {
+                list.add(member);
+            }
         }
     }
 
