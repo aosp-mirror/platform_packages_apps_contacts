@@ -18,28 +18,40 @@
             android:orientation="horizontal"
             android:layout_alignParentTop="true"
         >
-            <ImageButton
-                android:id="@+id/playback_start_stop"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="58dip"
                 android:layout_marginRight="2dip"
                 android:background="@drawable/dialpad_background"
-                android:src="@drawable/ic_hold_pause_holo_dark"
                 android:layout_weight="1"
-            />
-            <ImageButton
-                android:id="@+id/playback_speakerphone"
-                android:layout_width="wrap_content"
+            >
+                <ImageButton
+                    android:id="@+id/playback_start_stop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/btn_dial"
+                    android:src="@drawable/ic_hold_pause_holo_dark"
+                />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="58dip"
                 android:layout_marginLeft="2dip"
                 android:background="@drawable/dialpad_background"
-                android:src="@drawable/ic_sound_holo_dark"
                 android:layout_weight="1"
-            />
+            >
+                <ImageButton
+                    android:id="@+id/playback_speakerphone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/btn_dial"
+                    android:src="@drawable/ic_sound_holo_dark"
+                />
+            </LinearLayout>
         </LinearLayout>
         <RelativeLayout
             android:id="@+id/seek_container"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="80dip"
             android:background="@drawable/dialpad_background"
             android:layout_below="@id/buttons_linear_layout"
@@ -52,7 +64,7 @@
                  difference is currently 10dip. -->
             <SeekBar
                 android:id="@+id/playback_seek"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:progressDrawable="@drawable/seekbar_drawable"
                 android:thumb="@drawable/seek_bar_thumb"
@@ -90,26 +102,22 @@
             <ImageButton
                 android:id="@+id/rate_decrease_button"
                 android:src="@drawable/ic_minus_holo_dark"
-                android:layout_width="wrap_content"
+                android:layout_width="64dip"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:paddingLeft="16dip"
-                android:paddingRight="16dip"
-                android:paddingBottom="16dip"
-                android:paddingTop="26dip"
+                android:background="@drawable/btn_dial"
+                android:paddingBottom="19dip"
+                android:paddingTop="29dip"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
             />
             <ImageButton
                 android:id="@+id/rate_increase_button"
                 android:src="@drawable/ic_plus_holo_dark"
-                android:layout_width="wrap_content"
+                android:layout_width="64dip"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:paddingLeft="16dip"
-                android:paddingRight="16dip"
-                android:paddingBottom="16dip"
-                android:paddingTop="26dip"
+                android:background="@drawable/btn_dial"
+                android:paddingBottom="19dip"
+                android:paddingTop="29dip"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
             />
