@@ -21,8 +21,6 @@
     <dimen name="contact_shortcut_frame_width">50dip</dimen>
     <dimen name="contact_shortcut_frame_height">56dip</dimen>
 
-    <dimen name="aggregation_suggestion_icon_size">40dip</dimen>
-
     <dimen name="account_selector_popup_width">400dip</dimen>
 
     <dimen name="photo_action_popup_width">400dip</dimen>
@@ -249,4 +247,5 @@
 
     <!-- Height for directory headers in contact lists -->
     <dimen name="directory_header_height">24dip</dimen>
+
 </resources>

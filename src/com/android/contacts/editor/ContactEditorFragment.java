@@ -83,6 +83,8 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.view.ViewStub;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
 import android.widget.Toast;
@@ -207,17 +209,6 @@ public class ContactEditorFragment extends Fragment implements
 
     private Cursor mGroupMetaData;
 
-    /**
-     * A delay in milliseconds used for bringing aggregation suggestions to
-     * the visible part of the screen. The reason this has to be done after
-     * a delay is a race condition with the soft keyboard.  The keyboard
-     * may expand to display its own autocomplete suggestions, which will
-     * reduce the visible area of the screen.  We will yield to the keyboard
-     * hoping that the delay is sufficient.  If not - part of the
-     * suggestion will be hidden, which is not fatal.
-     */
-    private static final int AGGREGATION_SUGGESTION_SCROLL_DELAY = 200;
-
     private File mCurrentPhotoFile;
 
     // Height/width (in pixels) to request for the photo - queried from the provider.
@@ -244,6 +235,62 @@ public class ContactEditorFragment extends Fragment implements
     private AggregationSuggestionEngine mAggregationSuggestionEngine;
     private long mAggregationSuggestionsRawContactId;
     private View mAggregationSuggestionView;
+
+    private ListPopupWindow mAggregationSuggestionPopup;
+
+    private static final class AggregationSuggestionAdapter extends BaseAdapter {
+        private final Activity mActivity;
+        private final boolean mSetNewContact;
+        private final AggregationSuggestionView.Listener mListener;
+        private final List<Suggestion> mSuggestions;
+
+        public AggregationSuggestionAdapter(Activity activity, boolean setNewContact,
+                AggregationSuggestionView.Listener listener, List<Suggestion> suggestions) {
+            mActivity = activity;
+            mSetNewContact = setNewContact;
+            mListener = listener;
+            mSuggestions = suggestions;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            Suggestion suggestion = (Suggestion) getItem(position);
+            LayoutInflater inflater = mActivity.getLayoutInflater();
+            AggregationSuggestionView suggestionView =
+                    (AggregationSuggestionView) inflater.inflate(
+                            R.layout.aggregation_suggestions_item, null);
+            suggestionView.setNewContact(mSetNewContact);
+            suggestionView.setListener(mListener);
+            suggestionView.bindSuggestion(suggestion);
+            return suggestionView;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return mSuggestions.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mSuggestions.size();
+        }
+    }
+
+    private OnItemClickListener mAggregationSuggestionItemClickListener =
+            new OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            final AggregationSuggestionView suggestionView = (AggregationSuggestionView) view;
+            suggestionView.handleItemClickEvent();
+            mAggregationSuggestionPopup.dismiss();
+            mAggregationSuggestionPopup = null;
+        }
+    };
 
     private boolean mAutoAddToDefaultGroup;
 
@@ -1276,76 +1323,28 @@ public class ContactEditorFragment extends Fragment implements
             return;
         }
 
-        RawContactEditorView rawContactView =
+        if (mAggregationSuggestionPopup != null && mAggregationSuggestionPopup.isShowing()) {
+            mAggregationSuggestionPopup.dismiss();
+        }
+
+        if (mAggregationSuggestionEngine.getSuggestedContactCount() == 0) {
+            return;
+        }
+
+        final RawContactEditorView rawContactView =
                 (RawContactEditorView)getRawContactEditorView(mAggregationSuggestionsRawContactId);
-        if (rawContactView == null) {
-            return;
-        }
-
-        ViewStub stub = (ViewStub)rawContactView.findViewById(R.id.aggregation_suggestion_stub);
-        if (stub != null) {
-            stub.inflate();
-        }
-
-        // Only request the view on screen when it is first displayed
-        boolean requestOnScreen = mAggregationSuggestionView == null;
-        mAggregationSuggestionView = rawContactView.findViewById(R.id.aggregation_suggestion);
-
-        int count = mAggregationSuggestionEngine.getSuggestedContactCount();
-        if (count == 0) {
-            mAggregationSuggestionView.setVisibility(View.GONE);
-            return;
-        }
-
-        List<Suggestion> suggestions = mAggregationSuggestionEngine.getSuggestions();
-
-        LinearLayout itemList = (LinearLayout) mAggregationSuggestionView.findViewById(
-                R.id.aggregation_suggestions);
-        itemList.removeAllViews();
-
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-
-        for (Suggestion suggestion : suggestions) {
-            AggregationSuggestionView suggestionView =
-                    (AggregationSuggestionView) inflater.inflate(
-                            R.layout.aggregation_suggestions_item, null);
-            suggestionView.setLayoutParams(
-                    new LinearLayout.LayoutParams(
-                            LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-            suggestionView.setNewContact(mState.size() == 1 && mState.get(0).isContactInsert());
-            suggestionView.setListener(this);
-            suggestionView.bindSuggestion(suggestion);
-            itemList.addView(suggestionView);
-        }
-
-        adjustAggregationSuggestionViewLayout(rawContactView);
-        setAggregationSuggestionViewEnabled(mEnabled);
-        mAggregationSuggestionView.setVisibility(View.VISIBLE);
-
-        if (requestOnScreen) {
-            mContent.postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                    requestAggregationSuggestionOnScreen(mAggregationSuggestionView);
-                }
-            }, AGGREGATION_SUGGESTION_SCROLL_DELAY);
-        }
-    }
-
-    /**
-     * Adjusts the layout of the aggregation suggestion view so that it is placed directly
-     * underneath and have the same width as the last text editor of the contact name editor.
-     */
-    private void adjustAggregationSuggestionViewLayout(RawContactEditorView rawContactView) {
-        TextFieldsEditorView nameEditor = rawContactView.getNameEditor();
-        Rect rect = new Rect();
-        nameEditor.acquireEditorBounds(rect);
-        MarginLayoutParams layoutParams =
-                (MarginLayoutParams) mAggregationSuggestionView.getLayoutParams();
-        layoutParams.leftMargin = rect.left;
-        layoutParams.width = rect.width();
-        mAggregationSuggestionView.setLayoutParams(layoutParams);
+        final View anchorView = rawContactView.findViewById(R.id.anchor_view);
+        mAggregationSuggestionPopup = new ListPopupWindow(mContext, null);
+        mAggregationSuggestionPopup.setAnchorView(anchorView);
+        mAggregationSuggestionPopup.setWidth(anchorView.getWidth());
+        mAggregationSuggestionPopup.setInputMethodMode(ListPopupWindow.INPUT_METHOD_NOT_NEEDED);
+        mAggregationSuggestionPopup.setModal(true);
+        mAggregationSuggestionPopup.setAdapter(
+                new AggregationSuggestionAdapter(getActivity(),
+                        mState.size() == 1 && mState.get(0).isContactInsert(),
+                        this, mAggregationSuggestionEngine.getSuggestions()));
+        mAggregationSuggestionPopup.setOnItemClickListener(mAggregationSuggestionItemClickListener);
+        mAggregationSuggestionPopup.show();
     }
 
     @Override
@@ -1450,20 +1449,6 @@ public class ContactEditorFragment extends Fragment implements
             mListener.onEditOtherContactRequested(
                     contactUri, mState.get(0).getContentValues());
         }
-    }
-
-    /**
-     * Scrolls the editor if necessary to reveal the aggregation suggestion that is
-     * shown below the name editor. Makes sure that the currently focused field
-     * remains visible.
-     */
-    private void requestAggregationSuggestionOnScreen(final View view) {
-        Rect rect = getRelativeBounds(mContent, view);
-        View focused = mContent.findFocus();
-        if (focused != null) {
-            rect.union(getRelativeBounds(mContent, focused));
-        }
-        mContent.requestRectangleOnScreen(rect);
     }
 
     public void setAggregationSuggestionViewEnabled(boolean enabled) {
