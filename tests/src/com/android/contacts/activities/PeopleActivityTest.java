@@ -102,6 +102,12 @@ public class PeopleActivityTest
         ContactsApplication.injectServices(services);
     }
 
+    @Override
+    protected void tearDown() throws Exception {
+        ContactsApplication.injectServices(null);
+        super.tearDown();
+    }
+
     public void testSingleAccountNoGroups() {
         // This two-pane UI test only makes sense if we run with two panes.
         // Let's ignore this in the single pane case

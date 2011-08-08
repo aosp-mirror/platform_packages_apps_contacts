@@ -1635,7 +1635,10 @@
     <string name="voicemail_initial_time">00:05</string>
 
     <!-- Message to show when there is an error playing back the voicemail. [CHAR LIMIT=40] -->
-    <string name="voicemail_playback_error">Could not play voicemail</string>
+    <string name="voicemail_playback_error">failed to play voicemail</string>
+
+    <!-- Message to display before we have prepared the media player, i.e. before we know duration. [CHAR LIMIT=40] -->
+    <string name="voicemail_buffering">buffering...</string>
 
     <!-- The header in the call log used to identify missed calls and voicemail that have not yet been consumed [CHAR LIMIT=10] -->
     <string name="call_log_new_header">New</string>

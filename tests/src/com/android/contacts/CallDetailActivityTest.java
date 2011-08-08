@@ -16,10 +16,14 @@
 
 package com.android.contacts;
 
+import com.android.contacts.test.InjectedServices;
+import com.android.contacts.util.BackgroundTaskService;
 import com.android.contacts.util.IntegrationTestUtils;
 import com.android.contacts.util.LocaleTestUtils;
+import com.android.contacts.util.FakeBackgroundTaskService;
 import com.android.internal.view.menu.ContextMenuBuilder;
 import com.google.common.base.Preconditions;
+import com.google.common.util.concurrent.Executors;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -48,6 +52,7 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
     private Uri mUri;
     private IntegrationTestUtils mTestUtils;
     private LocaleTestUtils mLocaleTestUtils;
+    private FakeBackgroundTaskService mMockBackgroundTaskService;
 
     public CallDetailActivityTest() {
         super(CallDetailActivity.class);
@@ -56,6 +61,11 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
     @Override
     protected void setUp() throws Exception {
         super.setUp();
+        InjectedServices injectedServices = new InjectedServices();
+        mMockBackgroundTaskService = new FakeBackgroundTaskService();
+        injectedServices.setSystemService(BackgroundTaskService.BACKGROUND_TASK_SERVICE,
+                mMockBackgroundTaskService);
+        ContactsApplication.injectServices(injectedServices);
         // I don't like the default of focus-mode for tests, the green focus border makes the
         // screenshots look weak.
         setActivityInitialTouchMode(true);
@@ -72,7 +82,45 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
         mLocaleTestUtils = null;
         cleanUpUri();
         mTestUtils = null;
+        ContactsApplication.injectServices(null);
         super.tearDown();
+    }
+
+    public void testInitialActivityStartsWithBuffering() throws Throwable {
+        setActivityIntentForTestVoicemailEntry();
+        CallDetailActivity activity = getActivity();
+        // When the activity first starts, we will show "buffering..." on the screen.
+        // The duration should not be visible.
+        assertHasOneTextViewContaining(activity, "buffering...");
+        assertZeroTextViewsContaining(activity, "00:00");
+    }
+
+    public void testInvalidVoicemailShowsErrorMessage() throws Throwable {
+        setActivityIntentForTestVoicemailEntry();
+        CallDetailActivity activity = getActivity();
+        // If we run all the background tasks, one of them should have prepared the media player.
+        // Preparing the media player will have thrown an IOException since the file doesn't exist.
+        // This should have put a failed to play message on screen, buffering is gone.
+        runAllBackgroundTasks();
+        assertHasOneTextViewContaining(activity, "failed to play voicemail");
+        assertZeroTextViewsContaining(activity, "buffering...");
+    }
+
+    public void testOnResumeDoesNotCreateManyFragments() throws Throwable {
+        // There was a bug where every time the activity was resumed, a new fragment was created.
+        // Before the fix, this was failing reproducibly with at least 3 "buffering..." views.
+        setActivityIntentForTestVoicemailEntry();
+        final CallDetailActivity activity = getActivity();
+        getInstrumentation().runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                getInstrumentation().callActivityOnPause(activity);
+                getInstrumentation().callActivityOnResume(activity);
+                getInstrumentation().callActivityOnPause(activity);
+                getInstrumentation().callActivityOnResume(activity);
+            }
+        });
+        assertHasOneTextViewContaining(activity, "buffering...");
     }
 
     /**
@@ -182,5 +230,25 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
 
     private ContentResolver getContentResolver() {
         return getInstrumentation().getTargetContext().getContentResolver();
+    }
+
+    private TextView assertHasOneTextViewContaining(Activity activity, String text)
+            throws Throwable {
+        List<TextView> views = mTestUtils.getTextViewsWithString(activity, text);
+        assertEquals("There should have been one TextView with text '" + text + "' but found "
+                + views, 1, views.size());
+        return views.get(0);
+    }
+
+    private void assertZeroTextViewsContaining(Activity activity, String text) throws Throwable {
+        List<TextView> views = mTestUtils.getTextViewsWithString(activity, text);
+        assertEquals("There should have been no TextViews with text '" + text + "' but found "
+                + views, 0,  views.size());
+    }
+
+    private void runAllBackgroundTasks() {
+        mMockBackgroundTaskService.runAllBackgroundTasks(
+                Executors.sameThreadExecutor(),
+                FakeBackgroundTaskService.createMainSyncExecutor(getInstrumentation()));
     }
 }

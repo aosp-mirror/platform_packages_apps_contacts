@@ -19,6 +19,9 @@ package com.android.contacts;
 import com.android.contacts.calllog.CallDetailHistoryAdapter;
 import com.android.contacts.calllog.CallTypeHelper;
 import com.android.contacts.calllog.PhoneNumberHelper;
+import com.android.contacts.util.AbstractBackgroundTask;
+import com.android.contacts.util.BackgroundTask;
+import com.android.contacts.util.BackgroundTaskService;
 import com.android.contacts.voicemail.VoicemailPlaybackFragment;
 import com.android.contacts.voicemail.VoicemailStatusHelper;
 import com.android.contacts.voicemail.VoicemailStatusHelper.StatusMessage;
@@ -34,7 +37,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.CallLog;
 import android.provider.CallLog.Calls;
@@ -87,6 +89,7 @@ public class CallDetailActivity extends ListActivity implements
     private ImageView mMainActionView;
     private ImageButton mMainActionPushLayerView;
     private ImageView mContactBackgroundView;
+    private BackgroundTaskService mBackgroundTaskService;
 
     private String mNumber = null;
     private String mDefaultCountryIso;
@@ -144,6 +147,8 @@ public class CallDetailActivity extends ListActivity implements
 
         setContentView(R.layout.call_detail);
 
+        mBackgroundTaskService = (BackgroundTaskService) getApplicationContext().getSystemService(
+                BackgroundTaskService.BACKGROUND_TASK_SERVICE);
         mInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         mResources = getResources();
 
@@ -164,13 +169,13 @@ public class CallDetailActivity extends ListActivity implements
         mContactPhotoManager = ContactPhotoManager.getInstance(this);
         getListView().setOnItemClickListener(this);
         configureActionBar();
+        optionallyHandleVoicemail();
     }
 
     @Override
     public void onResume() {
         super.onResume();
         updateData(getCallLogEntryUris());
-        optionallyHandleVoicemail();
     }
 
     /**
@@ -210,15 +215,14 @@ public class CallDetailActivity extends ListActivity implements
     }
 
     private void markVoicemailAsRead(final Uri voicemailUri) {
-        new AsyncTask<Void, Void, Void>() {
+        mBackgroundTaskService.submit(new AbstractBackgroundTask() {
             @Override
-            protected Void doInBackground(Void... params) {
+            public void doInBackground() {
                 ContentValues values = new ContentValues();
                 values.put(Voicemails.IS_READ, true);
                 getContentResolver().update(voicemailUri, values, null, null);
-                return null;
             }
-        }.execute();
+        });
     }
 
     /**
@@ -662,11 +666,15 @@ public class CallDetailActivity extends ListActivity implements
             }
             callIds.append(ContentUris.parseId(callUri));
         }
-        runInBackgroundThenFinishActivity(new Runnable() {
+        mBackgroundTaskService.submit(new BackgroundTask() {
             @Override
-            public void run() {
+            public void doInBackground() {
                 getContentResolver().delete(Calls.CONTENT_URI_WITH_VOICEMAIL,
                         Calls._ID + " IN (" + callIds + ")", null);
+            }
+            @Override
+            public void onPostExecute() {
+                finish();
             }
         });
     }
@@ -680,29 +688,16 @@ public class CallDetailActivity extends ListActivity implements
 
     public void onMenuTrashVoicemail(MenuItem menuItem) {
         final Uri voicemailUri = getVoicemailUri();
-        runInBackgroundThenFinishActivity(new Runnable() {
+        mBackgroundTaskService.submit(new BackgroundTask() {
             @Override
-            public void run() {
+            public void doInBackground() {
                 getContentResolver().delete(voicemailUri, null, null);
             }
-        });
-    }
-
-    /**
-     * Run a task in the background, and then finish this activity when the task is done.
-     */
-    private void runInBackgroundThenFinishActivity(final Runnable runnable) {
-        new AsyncTask<Void, Void, Void>() {
             @Override
-            protected Void doInBackground(Void... params) {
-                runnable.run();
-                return null;
-            }
-            @Override
-            protected void onPostExecute(Void result) {
+            public void onPostExecute() {
                 finish();
             }
-        }.execute();
+        });
     }
 
     private void configureActionBar() {
