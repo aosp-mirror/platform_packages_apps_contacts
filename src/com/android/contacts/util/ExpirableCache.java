@@ -16,6 +16,8 @@
 
 package com.android.contacts.util;
 
+import com.android.contacts.test.NeededForTesting;
+
 import android.util.LruCache;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -198,6 +200,7 @@ public class ExpirableCache<K, V> {
      *
      * @param key the key to look up
      */
+    @NeededForTesting
     public V get(K key) {
         CachedValue<V> cachedValue = getCachedValue(key);
         return cachedValue == null || cachedValue.isExpired() ? null : cachedValue.getValue();
