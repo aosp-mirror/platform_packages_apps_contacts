@@ -115,6 +115,7 @@ public class ContactListItemView extends ViewGroup
     private TextView mDataView;
     private TextView mSnippetView;
     private TextView mStatusView;
+    private TextView mCountView;
     private ImageView mPresenceIcon;
 
     private char[] mHighlightedPrefix;
@@ -346,6 +347,11 @@ public class ContactListItemView extends ViewGroup
             mHeaderTextView.measure(
                     MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(mHeaderBackgroundHeight, MeasureSpec.EXACTLY));
+            if (mCountView != null) {
+                mCountView.measure(
+                        MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST),
+                        MeasureSpec.makeMeasureSpec(mHeaderBackgroundHeight, MeasureSpec.EXACTLY));
+            }
             mHeaderBackgroundHeight = Math.max(mHeaderBackgroundHeight,
                     mHeaderTextView.getMeasuredHeight());
             height += (mHeaderBackgroundHeight + mHeaderUnderlineHeight);
@@ -370,6 +376,12 @@ public class ContactListItemView extends ViewGroup
                     0,
                     width - mPaddingRight,
                     mHeaderBackgroundHeight);
+            if (mCountView != null) {
+                mCountView.layout(width - mPaddingRight - mCountView.getMeasuredWidth(),
+                        0,
+                        width - mPaddingRight,
+                        mHeaderBackgroundHeight);
+            }
             mHeaderDivider.layout(leftBound,
                     mHeaderBackgroundHeight,
                     width - mPaddingRight,
@@ -918,6 +930,36 @@ public class ContactListItemView extends ViewGroup
             addView(mStatusView);
         }
         return mStatusView;
+    }
+
+    /**
+     * Returns the text view for the contacts count, creating it if necessary.
+     */
+    public TextView getCountView() {
+        if (mCountView == null) {
+            mCountView = new TextView(mContext);
+            mCountView.setSingleLine(true);
+            mCountView.setEllipsize(getTextEllipsis());
+            mCountView.setTextAppearance(mContext, android.R.style.TextAppearance_Medium);
+            mCountView.setTextColor(R.color.contact_count_text_color);
+            addView(mCountView);
+        }
+        return mCountView;
+    }
+
+    /**
+     * Adds or updates a text view for the contacts count.
+     */
+    public void setCountView(CharSequence text) {
+        if (TextUtils.isEmpty(text)) {
+            if (mCountView != null) {
+                mCountView.setVisibility(View.GONE);
+            }
+        } else {
+            getCountView();
+            mCountView.setText(text);
+            mCountView.setVisibility(VISIBLE);
+        }
     }
 
     /**

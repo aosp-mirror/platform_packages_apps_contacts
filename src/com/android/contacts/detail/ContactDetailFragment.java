@@ -1851,6 +1851,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             // Only local contacts
             if (mContactData == null || mContactData.isDirectoryEntry()) return false;
 
+            // User profile cannot be added to contacts
+            if (mContactData.isUserProfile()) return false;
+
             // Only if exactly one raw contact
             if (mContactData.getEntities().size() != 1) return false;
 
@@ -1923,7 +1926,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             // and fire off the intent. we don't need a callback, as the database listener
             // should update the ui
             final Intent intent = ContactSaveService.createSaveContactIntent(getActivity(),
-                    contactDeltaList, "", 0, getActivity().getClass(),
+                    contactDeltaList, "", 0, false, getActivity().getClass(),
                     UI.LIST_ALL_CONTACTS_ACTION);
             getActivity().startService(intent);
         }

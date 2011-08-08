@@ -46,6 +46,7 @@ import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Groups;
+import android.provider.ContactsContract.Profile;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 import android.widget.Toast;
@@ -75,6 +76,7 @@ public class ContactSaveService extends IntentService {
     public static final String ACTION_SAVE_CONTACT = "saveContact";
     public static final String EXTRA_CONTACT_STATE = "state";
     public static final String EXTRA_SAVE_MODE = "saveMode";
+    public static final String EXTRA_SAVE_IS_PROFILE = "saveIsProfile";
 
     public static final String ACTION_CREATE_GROUP = "createGroup";
     public static final String ACTION_RENAME_GROUP = "renameGroup";
@@ -269,12 +271,13 @@ public class ContactSaveService extends IntentService {
      * using data presented as a set of ContentValues.
      */
     public static Intent createSaveContactIntent(Context context, EntityDeltaList state,
-            String saveModeExtraKey, int saveMode, Class<?> callbackActivity,
+            String saveModeExtraKey, int saveMode, boolean isProfile, Class<?> callbackActivity,
             String callbackAction) {
         Intent serviceIntent = new Intent(
                 context, ContactSaveService.class);
         serviceIntent.setAction(ContactSaveService.ACTION_SAVE_CONTACT);
         serviceIntent.putExtra(EXTRA_CONTACT_STATE, (Parcelable) state);
+        serviceIntent.putExtra(EXTRA_SAVE_IS_PROFILE, isProfile);
 
         // Callback intent will be invoked by the service once the contact is
         // saved.  The service will put the URI of the new contact as "data" on
@@ -289,6 +292,7 @@ public class ContactSaveService extends IntentService {
     private void saveContact(Intent intent) {
         EntityDeltaList state = intent.getParcelableExtra(EXTRA_CONTACT_STATE);
         Intent callbackIntent = intent.getParcelableExtra(EXTRA_CALLBACK_INTENT);
+        boolean isProfile = intent.getBooleanExtra(EXTRA_SAVE_IS_PROFILE, false);
 
         // Trim any empty fields, and RawContacts, before persisting
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(this);
@@ -321,7 +325,8 @@ public class ContactSaveService extends IntentService {
                     throw new IllegalStateException("Could not determine RawContact ID after save");
                 }
                 final Uri rawContactUri = ContentUris.withAppendedId(
-                        RawContacts.CONTENT_URI, rawContactId);
+                        isProfile ? Profile.CONTENT_RAW_CONTACTS_URI : RawContacts.CONTENT_URI,
+                                rawContactId);
                 lookupUri = RawContacts.getContactLookupUri(resolver, rawContactUri);
                 Log.v(TAG, "Saved contact. New URI: " + lookupUri);
                 break;

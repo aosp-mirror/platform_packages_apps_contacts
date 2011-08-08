@@ -1598,7 +1598,7 @@
 
     <!-- Text displayed in place of the display name for the contact that represents the user's
       personal profile entry [CHAR LIMIT=64] -->
-    <string name="profile_display_name">My profile</string>
+    <string name="profile_display_name">Set up my profile</string>
 
     <!-- Label to instruct the user to type in a contact's name to add the contact as a member of the current group. [CHAR LIMIT=64] -->
     <string name="enter_contact_name">Enter contact\'s name</string>
@@ -1755,4 +1755,6 @@
     <!-- The string used to represent an unknown location for a phone number in the call log [CHAR LIMIT=3] -->
     <string name="call_log_empty_gecode">-</string>
 
+    <!-- String describing the text on the header of the profile contact in the contacts list [CHAR LIMIT=20] -->
+    <string name="user_profile_contacts_list_header">ME</string>
 </resources>

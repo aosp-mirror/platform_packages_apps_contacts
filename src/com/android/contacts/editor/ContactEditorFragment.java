@@ -116,6 +116,8 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_SHOW_JOIN_SUGGESTIONS = "showJoinSuggestions";
     private static final String KEY_ENABLED = "enabled";
     private static final String KEY_STATUS = "status";
+    private static final String KEY_NEW_LOCAL_PROFILE = "newLocalProfile";
+    private static final String KEY_IS_USER_PROFILE = "isUserProfile";
 
     public static final String SAVE_MODE_EXTRA_KEY = "saveMode";
 
@@ -124,6 +126,8 @@ public class ContactEditorFragment extends Fragment implements
      * to the default group (e.g. "My Contacts").
      */
     public static final String INTENT_EXTRA_ADD_TO_DEFAULT_DIRECTORY = "addToDefaultDirectory";
+
+    public static final String INTENT_EXTRA_NEW_LOCAL_PROFILE = "newLocalProfile";
 
     /**
      * Modes that specify what the AsyncTask has to perform after saving
@@ -245,6 +249,8 @@ public class ContactEditorFragment extends Fragment implements
 
     private boolean mEnabled = true;
     private boolean mRequestFocus;
+    private boolean mNewLocalProfile = false;
+    private boolean mIsUserProfile = false;
 
     public ContactEditorFragment() {
     }
@@ -348,6 +354,8 @@ public class ContactEditorFragment extends Fragment implements
         mIntentExtras = intentExtras;
         mAutoAddToDefaultGroup = mIntentExtras != null
                 && mIntentExtras.containsKey(INTENT_EXTRA_ADD_TO_DEFAULT_DIRECTORY);
+        mNewLocalProfile = mIntentExtras != null
+            && mIntentExtras.getBoolean(INTENT_EXTRA_NEW_LOCAL_PROFILE);
     }
 
     public void setListener(Listener value) {
@@ -383,6 +391,8 @@ public class ContactEditorFragment extends Fragment implements
             mAggregationSuggestionsRawContactId = savedState.getLong(KEY_SHOW_JOIN_SUGGESTIONS);
             mEnabled = savedState.getBoolean(KEY_ENABLED);
             mStatus = savedState.getInt(KEY_STATUS);
+            mNewLocalProfile = savedState.getBoolean(KEY_NEW_LOCAL_PROFILE);
+            mIsUserProfile = savedState.getBoolean(KEY_IS_USER_PROFILE);
         }
     }
 
@@ -430,6 +440,13 @@ public class ContactEditorFragment extends Fragment implements
         setIntentExtras(mIntentExtras);
         mIntentExtras = null;
 
+        // For user profile, change the contacts query URI
+        mIsUserProfile = data.isUserProfile();
+        if (mIsUserProfile) {
+            for (EntityDelta state : mState) {
+                state.setProfileQueryUri();
+            }
+        }
         mRequestFocus = true;
 
         bindEditors();
@@ -463,8 +480,8 @@ public class ContactEditorFragment extends Fragment implements
     private void createContact() {
         final List<AccountWithDataSet> accounts =
                 AccountTypeManager.getInstance(mContext).getAccounts(true);
-        // No Accounts available.  Create a phone-local contact.
-        if (accounts.isEmpty()) {
+        // No Accounts available or creating a local profile.  Create a phone-local contact.
+        if (accounts.isEmpty() || mNewLocalProfile) {
             createContact(null);
             return;  // Don't show a dialog.
         }
@@ -559,6 +576,11 @@ public class ContactEditorFragment extends Fragment implements
         EntityModifier.ensureKindExists(insert, newAccountType, Event.CONTENT_ITEM_TYPE);
         EntityModifier.ensureKindExists(insert, newAccountType, StructuredPostal.CONTENT_ITEM_TYPE);
 
+        // Set the correct URI for saving the contact as a profile
+        if (mNewLocalProfile) {
+            insert.setProfileQueryUri();
+        }
+
         if (mState == null) {
             // Create state if none exists yet
             mState = EntityDeltaList.fromSingle(insert);
@@ -606,7 +628,7 @@ public class ContactEditorFragment extends Fragment implements
             if (Intent.ACTION_INSERT.equals(mAction) && numRawContacts == 1) {
                 final List<AccountWithDataSet> accounts =
                         AccountTypeManager.getInstance(mContext).getAccounts(true);
-                if (accounts.size() > 1) {
+                if (accounts.size() > 1 && !mNewLocalProfile) {
                     addAccountSwitcher(mState.get(0), editor);
                 } else {
                     disableAccountSwitcher(editor);
@@ -901,8 +923,8 @@ public class ContactEditorFragment extends Fragment implements
         setEnabled(false);
 
         Intent intent = ContactSaveService.createSaveContactIntent(getActivity(), mState,
-                SAVE_MODE_EXTRA_KEY, saveMode, getActivity().getClass(),
-                ContactEditorActivity.ACTION_SAVE_COMPLETED);
+                SAVE_MODE_EXTRA_KEY, saveMode, mNewLocalProfile || mIsUserProfile,
+                getActivity().getClass(), ContactEditorActivity.ACTION_SAVE_COMPLETED);
         getActivity().startService(intent);
         return true;
     }
@@ -1499,6 +1521,8 @@ public class ContactEditorFragment extends Fragment implements
         outState.putBoolean(KEY_CONTACT_WRITABLE_FOR_JOIN, mContactWritableForJoin);
         outState.putLong(KEY_SHOW_JOIN_SUGGESTIONS, mAggregationSuggestionsRawContactId);
         outState.putBoolean(KEY_ENABLED, mEnabled);
+        outState.putBoolean(KEY_NEW_LOCAL_PROFILE, mNewLocalProfile);
+        outState.putBoolean(KEY_IS_USER_PROFILE, mIsUserProfile);
         outState.putInt(KEY_STATUS, mStatus);
         super.onSaveInstanceState(outState);
     }

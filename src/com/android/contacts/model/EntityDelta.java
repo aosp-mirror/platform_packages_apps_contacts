@@ -31,6 +31,7 @@ import android.os.Parcelable;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.Profile;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 
@@ -64,6 +65,12 @@ public class EntityDelta implements Parcelable {
      * Direct values from {@link Entity#getEntityValues()}.
      */
     private ValuesDelta mValues;
+
+    /**
+     * URI used for contacts queries, by default it is set to query raw contacts.
+     * It can be set to query the profile's raw contact(s).
+     */
+    private Uri mContactsQueryUri = RawContacts.CONTENT_URI;
 
     /**
      * Internal map of children values from {@link Entity#getSubValues()}, which
@@ -367,7 +374,7 @@ public class EntityDelta implements Parcelable {
             if (beforeId == null || beforeVersion == null) return;
 
             final ContentProviderOperation.Builder builder = ContentProviderOperation
-                    .newAssertQuery(RawContacts.CONTENT_URI);
+                    .newAssertQuery(mContactsQueryUri);
             builder.withSelection(RawContacts._ID + "=" + beforeId, null);
             builder.withValue(RawContacts.VERSION, beforeVersion);
             buildInto.add(builder.build());
@@ -398,7 +405,7 @@ public class EntityDelta implements Parcelable {
         }
 
         // Build possible operation at Contact level
-        builder = mValues.buildDiff(RawContacts.CONTENT_URI);
+        builder = mValues.buildDiff(mContactsQueryUri);
         possibleAdd(buildInto, builder);
 
         // Build operations for all children
@@ -435,7 +442,7 @@ public class EntityDelta implements Parcelable {
             buildInto.add(builder.build());
         } else if (isContactInsert) {
             // Restore aggregation mode as last operation
-            builder = ContentProviderOperation.newUpdate(RawContacts.CONTENT_URI);
+            builder = ContentProviderOperation.newUpdate(mContactsQueryUri);
             builder.withValue(RawContacts.AGGREGATION_MODE, RawContacts.AGGREGATION_MODE_DEFAULT);
             builder.withSelection(RawContacts._ID + "=?", new String[1]);
             builder.withSelectionBackReference(0, firstIndex);
@@ -448,7 +455,7 @@ public class EntityDelta implements Parcelable {
      * {@link RawContacts#AGGREGATION_MODE} to the given value.
      */
     protected Builder buildSetAggregationMode(Long beforeId, int mode) {
-        Builder builder = ContentProviderOperation.newUpdate(RawContacts.CONTENT_URI);
+        Builder builder = ContentProviderOperation.newUpdate(mContactsQueryUri);
         builder.withValue(RawContacts.AGGREGATION_MODE, mode);
         builder.withSelection(RawContacts._ID + "=" + beforeId, null);
         return builder;
@@ -465,6 +472,7 @@ public class EntityDelta implements Parcelable {
         final int size = this.getEntryCount(false);
         dest.writeInt(size);
         dest.writeParcelable(mValues, flags);
+        dest.writeParcelable(mContactsQueryUri, flags);
         for (ArrayList<ValuesDelta> mimeEntries : mEntries.values()) {
             for (ValuesDelta child : mimeEntries) {
                 dest.writeParcelable(child, flags);
@@ -476,10 +484,18 @@ public class EntityDelta implements Parcelable {
         final ClassLoader loader = getClass().getClassLoader();
         final int size = source.readInt();
         mValues = source.<ValuesDelta> readParcelable(loader);
+        mContactsQueryUri = source.<Uri> readParcelable(loader);
         for (int i = 0; i < size; i++) {
             final ValuesDelta child = source.<ValuesDelta> readParcelable(loader);
             this.addEntry(child);
         }
+    }
+
+    /**
+     * Used to set the query URI to the profile URI to store profiles.
+     */
+    public void setProfileQueryUri() {
+        mContactsQueryUri = Profile.CONTENT_RAW_CONTACTS_URI;
     }
 
     public static final Parcelable.Creator<EntityDelta> CREATOR = new Parcelable.Creator<EntityDelta>() {
