@@ -107,7 +107,10 @@ public class GroupEditorActivity extends ContactsActivity
 
     @Override
     public void onBackPressed() {
-        mFragment.save(SaveMode.CLOSE);
+        // If the change could not be saved, then revert to the default "back" button behavior.
+        if (!mFragment.save(SaveMode.CLOSE)) {
+            super.onBackPressed();
+        }
     }
 
     @Override
