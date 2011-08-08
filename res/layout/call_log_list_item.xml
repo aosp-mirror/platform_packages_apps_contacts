@@ -46,14 +46,6 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/call_log_inner_margin"
         />
-        <ImageView
-            android:id="@+id/plain_contact_photo"
-            android:layout_width="@dimen/call_log_list_contact_photo_size"
-            android:layout_height="@dimen/call_log_list_contact_photo_size"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/call_log_inner_margin"
-        />
         <LinearLayout
             android:id="@+id/divider"
             android:layout_width="wrap_content"

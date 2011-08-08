@@ -281,8 +281,7 @@ public class CallLogActivityTests
         mAdapter.bindStandAloneView(view, getActivity(), mCursor);
 
         CallLogListItemViews views = (CallLogListItemViews) view.getTag();
-        assertEquals(View.VISIBLE, views.quickContactView.getVisibility());
-        assertEquals(View.INVISIBLE, views.plainPhotoView.getVisibility());
+        assertTrue(views.quickContactView.isEnabled());
     }
 
     @MediumTest
@@ -293,8 +292,7 @@ public class CallLogActivityTests
         mAdapter.bindStandAloneView(view, getActivity(), mCursor);
 
         CallLogListItemViews views = (CallLogListItemViews) view.getTag();
-        assertEquals(View.INVISIBLE, views.quickContactView.getVisibility());
-        assertEquals(View.VISIBLE, views.plainPhotoView.getVisibility());
+        assertFalse(views.quickContactView.isEnabled());
     }
 
     @MediumTest
