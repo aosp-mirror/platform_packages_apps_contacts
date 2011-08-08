@@ -27,21 +27,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/group_detail_vertical_padding"
+        android:paddingTop="12dip"
+        android:paddingBottom="12dip"
         android:orientation="horizontal" >
 
         <LinearLayout
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingLeft="@dimen/group_detail_border_padding"
             android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/group_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/group_detail_border_padding"
-                android:paddingTop="@dimen/group_detail_vertical_padding"
+                android:paddingLeft="8dip"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textStyle="bold" />
 
@@ -49,7 +50,7 @@
                 android:id="@+id/group_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/group_detail_border_padding"
+                android:paddingLeft="8dip"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="?android:attr/textColorSecondary" />
 
@@ -67,10 +68,9 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dip"
-        android:background="?android:attr/listDivider"
-        android:layout_marginBottom="@dimen/group_detail_vertical_padding"
-        android:layout_marginLeft="@dimen/group_detail_divider_margin"
-        android:layout_marginRight="@dimen/group_detail_divider_margin" />
+        android:background="@color/people_app_theme_color"
+        android:layout_marginLeft="@dimen/group_detail_border_padding"
+        android:layout_marginRight="@dimen/group_detail_border_padding" />
 
     <!-- List of group members -->
     <ListView android:id="@android:id/list"

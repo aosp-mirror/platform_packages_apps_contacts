@@ -35,7 +35,14 @@
         android:id="@+id/about_fragment_container"
         android:layout_width="0dip"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="3" />
+
+    <!-- Vertical divider -->
+    <View
+        android:layout_width="2dip"
+        android:layout_height="match_parent"
+        android:background="?android:attr/listDivider"
+        />
 
     <!--
       Container for the "Updates" fragment on the contact card for a contact
@@ -44,7 +51,8 @@
     -->
     <FrameLayout
         android:id="@+id/updates_fragment_container"
-        android:layout_width="306dip"
+        android:layout_width="0dip"
+        android:layout_weight="2"
         android:layout_height="match_parent" />
 
 </LinearLayout>

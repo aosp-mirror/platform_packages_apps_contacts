@@ -28,10 +28,18 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
+        <!-- "About" tab -->
         <include
             android:id="@+id/tab_about"
             layout="@layout/carousel_about_tab" />
 
+        <!-- Vertical divider -->
+        <View
+            android:layout_width="2dip"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"/>
+
+        <!-- "Updates" tab -->
         <include
             android:id="@+id/tab_update"
             layout="@layout/carousel_updates_tab" />

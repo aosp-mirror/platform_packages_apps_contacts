@@ -301,6 +301,16 @@
         <item name="android:background">#7F000000</item>
     </style>
 
+    <style name="FavoritesFragmentStyle">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="FrequentFragmentStyle">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
     <style name="DialtactsActionBarStyle" parent="android:Widget.Holo.ActionBar">
         <item name="android:backgroundSplit">@drawable/ab_bottom_opaque_dark_holo</item>
         <item name="android:backgroundStacked">@drawable/ab_stacked_opaque_dark_holo</item>
