@@ -21,7 +21,6 @@ import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.DataKind;
-import com.android.contacts.util.Constants;
 import com.android.contacts.util.ContactBadgeUtil;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
@@ -83,10 +82,6 @@ import java.util.List;
 import java.util.Set;
 
 // TODO: Save selected tab index during rotation
-// TODO: Handle GTalk Audio/Videochat secondary actions
-// TODO: Don't do a query in QuickContactBadge
-// TODO: Fix bug when QuickContact is dismissed using HOME or task switching
-//        (it will relaunch with the previous contact)
 
 // Missing assets and specs:
 //   Pushed states for list items
