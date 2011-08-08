@@ -183,6 +183,10 @@
     <string name="recentCalls_addToContact" msgid="1429899535546487008">"Agiuntar als contacts"</string>
     <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Allontanar da la glista da cloms"</string>
     <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Stizzar la glista da cloms"</string>
+    <!-- no translation found for recentCalls_trashVoicemail (7604696960787435655) -->
+    <skip />
+    <!-- no translation found for recentCalls_shareVoicemail (1416112847592942840) -->
+    <skip />
     <string name="recentCalls_empty" msgid="247053222448663107">"La glista da cloms e vida"</string>
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Stizzar il protocol da cloms"</string>
     <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Vulais Vus propi stizzar il protocol da cloms?"</string>
@@ -227,7 +231,10 @@
     <string name="callAgain" msgid="3197312117049874778">"Telefonar anc ina giada"</string>
     <string name="returnCall" msgid="8171961914203617813">"Telefonar enavos"</string>
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> sec"</string>
-    <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"Contactà savens"</string>
+    <!-- no translation found for favoritesFrequentContacted (6184232487472425690) -->
+    <skip />
+    <!-- no translation found for favoritesFrequentCalled (6128306889600696124) -->
+    <skip />
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Agiuntar in contact"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Agiuntar «<xliff:g id="EMAIL">%s</xliff:g>» als contacts?"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"in"</string>
@@ -650,8 +657,6 @@
     <skip />
     <!-- no translation found for voicemail_playback_error (5128928338910411763) -->
     <skip />
-    <!-- no translation found for call_log_type_date_separator (8009466658324061546) -->
-    <skip />
     <!-- no translation found for call_log_new_header (846546437517724715) -->
     <skip />
     <!-- no translation found for call_log_old_header (6262205894314263629) -->
@@ -678,7 +683,7 @@
     <skip />
     <!-- no translation found for voicemail_speed_fastest (3373646875150544205) -->
     <skip />
-    <!-- no translation found for call_log_item_count (2623628374805503262) -->
+    <!-- no translation found for call_log_item_count_and_date (7641933305703520787) -->
     <skip />
     <!-- no translation found for group_name_hint (2659811836386413509) -->
     <skip />

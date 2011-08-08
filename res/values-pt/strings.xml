@@ -163,6 +163,10 @@
     <string name="recentCalls_addToContact" msgid="1429899535546487008">"Adicionar aos contatos"</string>
     <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Remover do registro de chamadas"</string>
     <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Limpar registro de chamadas"</string>
+    <!-- no translation found for recentCalls_trashVoicemail (7604696960787435655) -->
+    <skip />
+    <!-- no translation found for recentCalls_shareVoicemail (1416112847592942840) -->
+    <skip />
     <string name="recentCalls_empty" msgid="247053222448663107">"O registro de chamadas está vazio."</string>
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Limpar registro de chamadas"</string>
     <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Tem certeza de que deseja limpar o registro de chamadas?"</string>
@@ -205,7 +209,10 @@
     <string name="callAgain" msgid="3197312117049874778">"Chamar novamente"</string>
     <string name="returnCall" msgid="8171961914203617813">"Retornar chamada"</string>
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> min. <xliff:g id="SECONDS">%s</xliff:g> s"</string>
-    <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"Chamados frequentemente"</string>
+    <!-- no translation found for favoritesFrequentContacted (6184232487472425690) -->
+    <skip />
+    <!-- no translation found for favoritesFrequentCalled (6128306889600696124) -->
+    <skip />
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Adicionar contato"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Adicionar \"<xliff:g id="EMAIL">%s</xliff:g>\" aos contatos?"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"um"</string>
@@ -541,7 +548,6 @@
     <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
     <skip />
     <string name="voicemail_playback_error" msgid="5128928338910411763">"Não foi possível reproduzir a mensagem de voz"</string>
-    <string name="call_log_type_date_separator" msgid="8009466658324061546">"/"</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Novas"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Antigas"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"Não é possível conectar ao servidor de correio de voz."</string>
@@ -555,7 +561,8 @@
     <string name="voicemail_speed_normal" msgid="6030110237820243006">"velocidade normal"</string>
     <string name="voicemail_speed_faster" msgid="4161478290979905481">"velocidade rápida"</string>
     <string name="voicemail_speed_fastest" msgid="3373646875150544205">"velocidade mais rápida"</string>
-    <string name="call_log_item_count" msgid="2623628374805503262">"(%1$d)"</string>
+    <!-- no translation found for call_log_item_count_and_date (7641933305703520787) -->
+    <skip />
     <string name="group_name_hint" msgid="2659811836386413509">"Nome do grupo"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Contato via NFC"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Exibir apenas mensagens de voz"</string>

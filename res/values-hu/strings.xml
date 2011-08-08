@@ -163,6 +163,10 @@
     <string name="recentCalls_addToContact" msgid="1429899535546487008">"Hozzáadás a névjegyekhez"</string>
     <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Eltávolítás a híváslistából"</string>
     <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Híváslista törlése"</string>
+    <!-- no translation found for recentCalls_trashVoicemail (7604696960787435655) -->
+    <skip />
+    <!-- no translation found for recentCalls_shareVoicemail (1416112847592942840) -->
+    <skip />
     <string name="recentCalls_empty" msgid="247053222448663107">"A híváslista üres."</string>
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Híváslista törlése"</string>
     <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Biztosan törli a híváslistát?"</string>
@@ -205,7 +209,10 @@
     <string name="callAgain" msgid="3197312117049874778">"Hívásismétlés"</string>
     <string name="returnCall" msgid="8171961914203617813">"Visszahívás"</string>
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> perc <xliff:g id="SECONDS">%s</xliff:g> másodperc"</string>
-    <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"Gyakran keresett"</string>
+    <!-- no translation found for favoritesFrequentContacted (6184232487472425690) -->
+    <skip />
+    <!-- no translation found for favoritesFrequentCalled (6128306889600696124) -->
+    <skip />
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Névjegy hozzáadása"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Hozzáadja a(z) \"<xliff:g id="EMAIL">%s</xliff:g>\"címet a Címtárhoz?"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"egy"</string>
@@ -533,7 +540,7 @@
     <string name="enter_contact_name" msgid="2930510479516059437">"Adja meg a kapcsolattartó nevét"</string>
     <string name="editGroup_title_insert" msgid="7803743109105317959">"Új csoport"</string>
     <string name="editGroup_title_edit" msgid="2173278908256913247">"Csoport szerkesztése"</string>
-    <string name="view_updates_from_group" msgid="1782685984905600034">"Frissítések megtek."</string>
+    <string name="view_updates_from_group" msgid="1782685984905600034">"Frissítések"</string>
     <!-- no translation found for notification_voicemail_title:one (1746619685488504230) -->
     <!-- no translation found for notification_voicemail_title:other (5513481419205061254) -->
     <!-- no translation found for notification_voicemail_callers_list (1153954809339404149) -->
@@ -541,7 +548,6 @@
     <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
     <skip />
     <string name="voicemail_playback_error" msgid="5128928338910411763">"Nem lehet lejátszani a hangpostát"</string>
-    <string name="call_log_type_date_separator" msgid="8009466658324061546">"/"</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Új"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Régebbi"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"Nem lehet csatlakozni a hangpostaszerverhez."</string>
@@ -555,10 +561,11 @@
     <string name="voicemail_speed_normal" msgid="6030110237820243006">"normál sebesség"</string>
     <string name="voicemail_speed_faster" msgid="4161478290979905481">"gyors"</string>
     <string name="voicemail_speed_fastest" msgid="3373646875150544205">"leggyorsabb"</string>
-    <string name="call_log_item_count" msgid="2623628374805503262">"(%1$d)"</string>
+    <!-- no translation found for call_log_item_count_and_date (7641933305703520787) -->
+    <skip />
     <string name="group_name_hint" msgid="2659811836386413509">"Csoport neve"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"NFC-n kapott névjegy"</string>
-    <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Csak a hangüzenetek megjel."</string>
+    <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Csak a hangüzenetek"</string>
     <string name="status_available" msgid="5586870015822828392">"Elérhető"</string>
     <string name="status_away" msgid="1838861100379804730">"Nincs a gépnél"</string>
     <string name="status_busy" msgid="9147992455450257136">"Elfoglalt"</string>
