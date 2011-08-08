@@ -104,6 +104,10 @@ public class DialtactsActivity extends Activity {
     }
 
     public class ViewPagerAdapter extends FragmentPagerAdapter {
+        private DialpadFragment mDialpadFragment;
+        private CallLogFragment mCallLogFragment;
+        private ContactTileListFragment mContactTileListFragment;
+
         public ViewPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -112,11 +116,20 @@ public class DialtactsActivity extends Activity {
         public Fragment getItem(int position) {
             switch (position) {
                 case TAB_INDEX_DIALER:
-                    return new DialpadFragment();
+                    if (mDialpadFragment == null) {
+                        mDialpadFragment = new DialpadFragment();
+                    }
+                    return mDialpadFragment;
                 case TAB_INDEX_CALL_LOG:
-                    return new CallLogFragment();
+                    if (mCallLogFragment == null) {
+                        mCallLogFragment = new CallLogFragment();
+                    }
+                    return mCallLogFragment;
                 case TAB_INDEX_FAVORITES:
-                    return new ContactTileListFragment();
+                    if (mContactTileListFragment == null) {
+                        mContactTileListFragment = new ContactTileListFragment();
+                    }
+                    return mContactTileListFragment;
             }
             throw new IllegalStateException("No fragment at position " + position);
         }
