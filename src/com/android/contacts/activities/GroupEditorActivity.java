@@ -85,8 +85,13 @@ public class GroupEditorActivity extends ContactsActivity
                 R.id.group_editor_fragment);
         mFragment.setListener(mFragmentListener);
         mFragment.setContentResolver(getContentResolver());
-        Uri uri = Intent.ACTION_EDIT.equals(action) ? getIntent().getData() : null;
-        mFragment.load(action, uri, getIntent().getExtras());
+
+        // NOTE The fragment will restore its state by itself after orientation changes, so
+        // we need to do this only for a new instance.
+        if (savedState == null) {
+            Uri uri = Intent.ACTION_EDIT.equals(action) ? getIntent().getData() : null;
+            mFragment.load(action, uri, getIntent().getExtras());
+        }
     }
 
     @Override

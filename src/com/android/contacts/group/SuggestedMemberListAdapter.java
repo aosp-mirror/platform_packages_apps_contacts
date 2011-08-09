@@ -82,7 +82,7 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
 
     // TODO: Make this a Map for better performance when we check if a new contact is in the list
     // or not
-    private List<Long> mExistingMemberContactIds = new ArrayList<Long>();
+    private final List<Long> mExistingMemberContactIds = new ArrayList<Long>();
 
     private static final int SUGGESTIONS_LIMIT = 5;
 
@@ -107,8 +107,11 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
         mContentResolver = resolver;
     }
 
-    public void updateExistingMembersList(List<Long> listContactIds) {
-        mExistingMemberContactIds = listContactIds;
+    public void updateExistingMembersList(List<GroupEditorFragment.Member> list) {
+        mExistingMemberContactIds.clear();
+        for (GroupEditorFragment.Member member : list) {
+            mExistingMemberContactIds.add(member.getContactId());
+        }
     }
 
     public void addNewMember(long contactId) {
