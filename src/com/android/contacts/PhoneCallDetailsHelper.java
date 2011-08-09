@@ -107,12 +107,10 @@ public class PhoneCallDetailsHelper {
             mPhoneNumberHelper.getDisplayNumber(details.number, details.formattedNumber);
         if (TextUtils.isEmpty(details.name)) {
             nameText = displayNumber;
-            String geocode = mPhoneNumberHelper.getGeocodeForNumber(
-                    details.number.toString(), details.countryIso);
-            if (TextUtils.isEmpty(geocode)) {
+            if (TextUtils.isEmpty(details.geocode)) {
                 numberText = mResources.getString(R.string.call_log_empty_gecode);
             } else {
-                numberText = geocode;
+                numberText = details.geocode;
             }
         } else {
             nameText = details.name;

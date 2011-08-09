@@ -30,6 +30,8 @@ public class PhoneCallDetails {
     public final CharSequence formattedNumber;
     /** The country corresponding with the phone number. */
     public final String countryIso;
+    /** The geocoded location for the phone number. */
+    public final String geocode;
     /**
      * The type of calls, as defined in the call log table, e.g., {@link Calls#INCOMING_TYPE}.
      * <p>
@@ -56,18 +58,20 @@ public class PhoneCallDetails {
 
     /** Create the details for a call with a number not associated with a contact. */
     public PhoneCallDetails(CharSequence number, CharSequence formattedNumber,
-            String countryIso, int[] callTypes, long date, long duration) {
-        this(number, formattedNumber, countryIso, callTypes, date, duration, "", 0, "", -1L, null);
+            String countryIso, String geocode, int[] callTypes, long date, long duration) {
+        this(number, formattedNumber, countryIso, geocode, callTypes, date, duration, "", 0, "",
+                -1L, null);
     }
 
     /** Create the details for a call with a number associated with a contact. */
     public PhoneCallDetails(CharSequence number, CharSequence formattedNumber,
-            String countryIso, int[] callTypes, long date, long duration,
+            String countryIso, String geocode, int[] callTypes, long date, long duration,
             CharSequence name, int numberType, CharSequence numberLabel, long personId,
             Uri photoUri) {
         this.number = number;
         this.formattedNumber = formattedNumber;
         this.countryIso = countryIso;
+        this.geocode = geocode;
         this.callTypes = callTypes;
         this.date = date;
         this.duration = duration;

@@ -50,6 +50,8 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     private static final String TEST_FORMATTED_NUMBER = "1-412-255-5555";
     /** The country ISO name used in the tests. */
     private static final String TEST_COUNTRY_ISO = "US";
+    /** The geocoded location used in the tests. */
+    private static final String TEST_GEOCODE = "United States";
 
     /** The object under test. */
     private PhoneCallDetailsHelper mHelper;
@@ -268,7 +270,7 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     /** Sets the phone call details with default values and the given number. */
     private void setPhoneCallDetailsWithNumber(String number, String formattedNumber) {
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(number, formattedNumber, TEST_COUNTRY_ISO,
+                new PhoneCallDetails(number, formattedNumber, TEST_COUNTRY_ISO, TEST_GEOCODE,
                         new int[]{ Calls.VOICEMAIL_TYPE }, TEST_DATE, TEST_DURATION),
                 true);
     }
@@ -277,7 +279,7 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     private void setPhoneCallDetailsWithDate(long date) {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
-                        new int[]{ Calls.INCOMING_TYPE }, date, TEST_DURATION),
+                        TEST_GEOCODE, new int[]{ Calls.INCOMING_TYPE }, date, TEST_DURATION),
                 false);
     }
 
@@ -285,20 +287,20 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     private void setPhoneCallDetailsWithCallTypeIcons(int... callTypes) {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
-                        callTypes, TEST_DATE, TEST_DURATION),
+                        TEST_GEOCODE, callTypes, TEST_DATE, TEST_DURATION),
                 false);
     }
 
     private void setPhoneCallNameWithNumberOnly() {
         mHelper.setPhoneCallName(mNameView,
                 new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
-                        new int[]{ Calls.INCOMING_TYPE }, TEST_DATE, TEST_DURATION));
+                        TEST_GEOCODE, new int[]{ Calls.INCOMING_TYPE }, TEST_DATE, TEST_DURATION));
     }
 
     private void setPhoneCallName(String name) {
         mHelper.setPhoneCallName(mNameView,
                 new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
-                        new int[]{ Calls.INCOMING_TYPE }, TEST_DATE, TEST_DURATION,
+                        TEST_GEOCODE, new int[]{ Calls.INCOMING_TYPE }, TEST_DATE, TEST_DURATION,
                         name, 0, "", 1, null));
     }
 }
