@@ -110,10 +110,10 @@
     <string name="menu_removeStar">Remove from favorites</string>
 
     <!-- Menu item used to edit a specific contact -->
-    <string name="menu_editContact">Edit contact</string>
+    <string name="menu_editContact">Edit</string>
 
     <!-- Menu item used to delete a specific contact -->
-    <string name="menu_deleteContact">Delete contact</string>
+    <string name="menu_deleteContact">Delete</string>
 
     <!-- Menu item used to call a specific contact when viewing the details of that contact. -->
     <string name="menu_call">Call contact</string>
@@ -1040,7 +1040,7 @@
     <string name="dialog_import_export">Import/Export contacts</string>
 
     <!-- The menu item to share the currently viewed contact [CHAR LIMIT=30] -->
-    <string name="menu_share">Share contact</string>
+    <string name="menu_share">Share</string>
 
     <!-- Dialog title when picking the application to share a contact with. -->
     <string name="share_via">Share contact via</string>
