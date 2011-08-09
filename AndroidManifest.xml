@@ -651,6 +651,7 @@
                 <data
                     android:scheme="content"
                     android:host="com.android.voicemail"
+                    android:mimeType="vnd.android.cursor.item/voicemail"
                 />
             </intent-filter>
             <intent-filter android:priority="100">
