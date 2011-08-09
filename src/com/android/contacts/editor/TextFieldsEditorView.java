@@ -184,9 +184,6 @@ public class TextFieldsEditorView extends LabeledEditorView {
             }
             int inputType = field.inputType;
             fieldView.setInputType(inputType);
-            if (field.isFullName) {
-                fieldView.addTextChangedListener(new NameFormattingTextWatcher());
-            }
             if (inputType == InputType.TYPE_CLASS_PHONE) {
                 fieldView.addTextChangedListener(new PhoneNumberFormattingTextWatcher(
                         ContactsUtils.getCurrentCountryIso(mContext)));
@@ -351,62 +348,6 @@ public class TextFieldsEditorView extends LabeledEditorView {
                 return new SavedState[size];
             }
         };
-    }
-
-    private class NameFormattingTextWatcher implements TextWatcher {
-
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            String displayName = s.toString();
-            Map<String, String> structuredName = NameConverter.displayNameToStructuredName(
-                    getContext(), displayName);
-            String givenName = structuredName.get(StructuredName.GIVEN_NAME);
-            if (!TextUtils.isEmpty(givenName)) {
-                int spanStart = -1;
-                int spanEnd = -1;
-                if (displayName.startsWith(givenName + " ")) {
-                    spanStart = 0;
-                    spanEnd = givenName.length();
-                } else {
-                    spanStart = displayName.lastIndexOf(" " + givenName);
-                    if (spanStart > -1) {
-                        spanStart++;
-                        spanEnd = spanStart + givenName.length();
-                    }
-                }
-
-                // If the requested range is already bolded, don't make any changes.
-                if (spanStart > -1) {
-                    StyleSpan[] existingSpans = s.getSpans(0, s.length(), StyleSpan.class);
-                    for (StyleSpan span : existingSpans) {
-                        if (span.getStyle() == Typeface.BOLD
-                                && s.getSpanStart(span.getUnderlying()) == spanStart
-                                && s.getSpanEnd(span.getUnderlying()) == spanEnd) {
-                            // Nothing to do - the correct portion is already bolded.
-                            return;
-                        }
-                    }
-
-                    // Clear any existing bold style spans.
-                    for (StyleSpan span : existingSpans) {
-                        if (span.getStyle() == Typeface.BOLD) {
-                            s.removeSpan(span);
-                        }
-                    }
-
-                    // Set the new bold span.
-                    s.setSpan(new StyleSpan(Typeface.BOLD), spanStart, spanEnd,
-                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                }
-            }
-        }
     }
 
     @Override

@@ -65,15 +65,6 @@ public final class DisplayNameFormatter {
 
     public CharSequence getDisplayName(int displayOrder, boolean highlightingEnabled,
             char[] highlightedPrefix) {
-        // Compute the point at which name and alternate name overlap (for bolding).
-        int overlapPoint = FormatUtils.overlapPoint(mNameBuffer, mAlternateNameBuffer);
-        int boldStart = 0;
-        int boldEnd = overlapPoint;
-        if (displayOrder == ContactsContract.Preferences.DISPLAY_ORDER_ALTERNATIVE) {
-            boldStart = overlapPoint;
-            boldEnd = mNameBuffer.sizeCopied;
-        }
-
         int size = mNameBuffer.sizeCopied;
         if (size == 0) {
             return mUnknownNameText;
@@ -92,11 +83,6 @@ public final class DisplayNameFormatter {
         }
         if (highlightedPrefix != null) {
             text = mPrefixHighlighter.apply(text, highlightedPrefix);
-        }
-        if (overlapPoint > 0) {
-            // Bold the first or last name.
-            text = FormatUtils.applyStyleToSpan(Typeface.BOLD, text, boldStart, boldEnd,
-                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
         return text;
     }

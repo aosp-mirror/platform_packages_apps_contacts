@@ -67,9 +67,8 @@ public class ContactDetailDisplayUtils {
     }
 
     /**
-     * Returns the display name of the contact. Depending on the preference for
-     * display name ordering, the contact's first name may be bolded if
-     * possible. Returns empty string if there is no display name.
+     * Returns the display name of the contact, using the current display order setting.
+     * Returns res/string/missing_name if there is no display name.
      */
     public static CharSequence getDisplayName(Context context, Result contactData) {
         CharSequence displayName = contactData.getDisplayName();
@@ -78,25 +77,9 @@ public class ContactDetailDisplayUtils {
         CharSequence styledName = "";
         if (!TextUtils.isEmpty(displayName) && !TextUtils.isEmpty(altDisplayName)) {
             if (prefs.getDisplayOrder() == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
-                int overlapPoint = FormatUtils.overlapPoint(
-                        displayName.toString(), altDisplayName.toString());
-                if (overlapPoint > 0) {
-                    styledName = FormatUtils.applyStyleToSpan(Typeface.BOLD,
-                            displayName, 0, overlapPoint, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                } else {
-                    styledName = displayName;
-                }
+                styledName = displayName;
             } else {
-                // Displaying alternate display name.
-                int overlapPoint = FormatUtils.overlapPoint(
-                        altDisplayName.toString(), displayName.toString());
-                if (overlapPoint > 0) {
-                    styledName = FormatUtils.applyStyleToSpan(Typeface.BOLD,
-                            altDisplayName, overlapPoint, altDisplayName.length(),
-                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                } else {
-                    styledName = altDisplayName;
-                }
+                styledName = altDisplayName;
             }
         } else {
             styledName = context.getResources().getString(R.string.missing_name);
