@@ -118,7 +118,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ContactDetailFragment extends Fragment implements FragmentKeyListener, ViewOverlay,
-        SelectAccountDialogFragment.Listener {
+        SelectAccountDialogFragment.Listener, OnItemClickListener {
 
     private static final String TAG = "ContactDetailFragment";
 
@@ -279,6 +279,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
         mListView = (ListView) mView.findViewById(android.R.id.list);
         mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
+        mListView.setOnItemClickListener(this);
         mListView.setItemsCanFocus(true);
         mListView.setOnScrollListener(mVerticalScrollListener);
 
@@ -1707,6 +1708,21 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         if (mListener != null) {
             mListener.onCreateRawContactRequested(mContactData.getContentValues(), account);
         }
+    }
+
+    /**
+     * Default (fallback) list item click listener.  Note the click event for DetailViewEntry is
+     * caught by individual views in the list item view to distinguish the primary action and the
+     * secondary action, so this method won't be invoked for that.  (The listener is set in the
+     * bindview in the adapter)
+     * This listener is used for other kind of entries.
+     */
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (mListener == null) return;
+        final ViewEntry entry = mAdapter.getItem(position);
+        if (entry == null) return;
+        entry.click(view, mListener);
     }
 
     @Override
