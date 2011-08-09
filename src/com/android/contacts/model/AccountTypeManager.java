@@ -69,6 +69,7 @@ public abstract class AccountTypeManager {
      * the available authenticators. This method can safely be called from the UI thread.
      */
     public static AccountTypeManager getInstance(Context context) {
+        context = context.getApplicationContext();
         AccountTypeManager service =
                 (AccountTypeManager) context.getSystemService(ACCOUNT_TYPE_SERVICE);
         if (service == null) {
