@@ -19,7 +19,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="32dip">
 
     <include
         layout="@layout/editor_account_header" />
@@ -28,8 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:paddingLeft="16dip"
-        android:paddingRight="16dip">
+        android:paddingTop="8dip"
+        android:paddingLeft="16dip">
 
         <TextView android:id="@+id/read_only_name"
             android:layout_width="0dip"
@@ -45,7 +46,8 @@
         <FrameLayout
             android:id="@+id/stub_photo"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dip">
 
             <include
                 android:id="@+id/edit_photo"

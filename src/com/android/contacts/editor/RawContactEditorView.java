@@ -129,12 +129,11 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
         mInflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        final int photoSize = getResources().getDimensionPixelSize(R.dimen.edit_photo_size);
-
         mName = (StructuredNameEditorView)findViewById(R.id.edit_name);
         mName.setDeletable(false);
 
         mPhoneticName = (PhoneticNameEditorView)findViewById(R.id.edit_phonetic_name);
+        mPhoneticName.setDeletable(false);
 
         mFields = (ViewGroup)findViewById(R.id.sect_fields);
 

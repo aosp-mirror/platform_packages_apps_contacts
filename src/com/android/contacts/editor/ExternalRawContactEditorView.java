@@ -138,6 +138,8 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
                     mContext.getString(R.string.from_account_format, mAccountName));
         }
         mAccountTypeTextView.setText(mContext.getString(R.string.account_type_format, accountType));
+        mAccountTypeTextView.setTextColor(mContext.getResources().getColor(
+                R.color.secondary_text_color));
 
         // TODO: Expose data set in the UI somehow?
 

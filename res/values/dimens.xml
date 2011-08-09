@@ -14,8 +14,6 @@
      limitations under the License.
 -->
 <resources>
-    <dimen name="edit_photo_size">42dip</dimen>
-
     <!-- The height of the ScrollingTabWidget -->
     <dimen name="tab_height">40dip</dimen>
     <dimen name="account_name_height">25dip</dimen>
@@ -33,11 +31,20 @@
     based on the source of the request -->
     <dimen name="quick_contact_top_position">48dip</dimen>
 
+    <!-- Top padding of the entire contact editor  -->
+    <dimen name="editor_padding_top">0dip</dimen>
+
     <!-- Padding of the rounded plus/minus/expand/collapse buttons in the editor  -->
     <dimen name="editor_round_button_padding_left">2dip</dimen>
     <dimen name="editor_round_button_padding_right">2dip</dimen>
     <dimen name="editor_round_button_padding_top">4dip</dimen>
     <dimen name="editor_round_button_padding_bottom">4dip</dimen>
+
+    <!-- Left padding of the kind title in the contact editor -->
+    <dimen name="editor_kind_title_left_padding">8dip</dimen>
+
+    <!-- Left padding of the label in the add field button for the contact editor -->
+    <dimen name="editor_add_field_label_left_padding">16dip</dimen>
 
     <!-- Width of the Type-Label in the Editor -->
     <dimen name="editor_type_label_width">100dip</dimen>
@@ -47,12 +54,6 @@
 
     <!-- Right padding of a field in the Editor -->
     <dimen name="editor_field_right_padding">4dip</dimen>
-
-    <!-- Top padding of a field in the Editor -->
-    <dimen name="editor_field_top_padding">10dip</dimen>
-
-    <!-- Bottom padding of a field in the Editor -->
-    <dimen name="editor_field_bottom_padding">5dip</dimen>
 
     <!-- Minimum height of a row in the Editor -->
     <dimen name="editor_min_line_item_height">48dip</dimen>
@@ -74,9 +75,6 @@
 
     <!-- Width of the title labels in the contact editor -->
     <dimen name="editor_title_label_width">120dip</dimen>
-
-    <!-- Interpolator layout narrow width value of the contact editor -->
-    <dimen name="editor_interpolator_narrow_width">600dip</dimen>
 
     <!-- Height of the attribution text view in the contact detail header view -->
     <dimen name="detail_header_attribution_height">40dip</dimen>

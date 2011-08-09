@@ -60,7 +60,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
     private ImageView mExpansionView;
     private boolean mHideOptional = true;
     private boolean mHasShortAndLongForms;
-    private int mHintTextColor;
+    private int mMinFieldHeight;
 
     public TextFieldsEditorView(Context context) {
         super(context);
@@ -82,7 +82,8 @@ public class TextFieldsEditorView extends LabeledEditorView {
         setDrawingCacheEnabled(true);
         setAlwaysDrawnWithCacheEnabled(true);
 
-        mHintTextColor = getContext().getResources().getColor(R.color.secondary_text_color);
+        mMinFieldHeight = mContext.getResources().getDimensionPixelSize(
+                R.dimen.editor_min_line_item_height);
         mFields = (ViewGroup) findViewById(R.id.editors);
         mExpansionView = (ImageView) findViewById(R.id.expansion_view);
         mExpansionViewContainer = findViewById(R.id.expansion_view_container);
@@ -173,9 +174,8 @@ public class TextFieldsEditorView extends LabeledEditorView {
             final EditField field = kind.fieldList.get(index);
             final EditText fieldView = new EditText(mContext);
             fieldView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
-                    LayoutParams.WRAP_CONTENT));
+                    field.isMultiLine() ? LayoutParams.WRAP_CONTENT : mMinFieldHeight));
             fieldView.setTextAppearance(getContext(), kind.textAppearanceResourceId);
-            fieldView.setHintTextColor(mHintTextColor);
             fieldView.setGravity(Gravity.TOP);
             mFieldEditTexts[index] = fieldView;
             fieldView.setId(vig.getId(state, kind, entry, index));

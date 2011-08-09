@@ -14,14 +14,14 @@
      limitations under the License.
 -->
 <resources>
-    <dimen name="edit_photo_size">96dip</dimen>
     <dimen name="aggregation_suggestion_icon_size">64dip</dimen>
-    <dimen name="editor_type_label_width">180dip</dimen>
+    <dimen name="editor_padding_top">32dip</dimen>
+    <dimen name="editor_type_label_width">122dip</dimen>
     <dimen name="editor_field_spinner_text_size">15sp</dimen>
-    <dimen name="editor_round_button_padding_left">8dip</dimen>
-    <dimen name="editor_round_button_padding_right">8dip</dimen>
-    <dimen name="editor_field_top_padding">12dip</dimen>
-    <dimen name="editor_field_bottom_padding">12dip</dimen>
+    <dimen name="editor_round_button_padding_left">16dip</dimen>
+    <dimen name="editor_round_button_padding_right">16dip</dimen>
+    <dimen name="editor_kind_title_left_padding">16dip</dimen>
+    <dimen name="editor_add_field_label_left_padding">24dip</dimen>
     <dimen name="detail_item_side_margin">0dip</dimen>
     <dimen name="detail_item_vertical_margin">16dip</dimen>
     <dimen name="detail_item_icon_margin">8dip</dimen>

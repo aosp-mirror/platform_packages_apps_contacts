@@ -17,13 +17,13 @@
 <view
     class="com.android.contacts.editor.PhotoEditorView"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/edit_photo_size"
-    android:layout_height="@dimen/edit_photo_size"
+    android:layout_width="42dip"
+    android:layout_height="42dip"
     >
     <ImageView
         android:id="@+id/photo"
-        android:layout_width="@dimen/edit_photo_size"
-        android:layout_height="@dimen/edit_photo_size"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:src="@drawable/ic_contact_picture"
         android:cropToPadding="true"
         android:scaleType="centerCrop"
@@ -31,8 +31,8 @@
     />
     <View
         android:id="@+id/frame"
-        android:layout_width="@dimen/edit_photo_size"
-        android:layout_height="@dimen/edit_photo_size"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:clickable="true"
         android:focusable="true"
         android:contentDescription="@string/description_contact_photo"
