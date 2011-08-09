@@ -24,3 +24,9 @@
 -keep class ** {
   *** *ForTest(...);
 }
+
+# Any class or method annotated with NeededForTesting.
+-keep @com.android.contacts.test.NeededForTesting class *
+-keepclassmembers class * {
+@com.android.contacts.test.NeededForTesting *;
+}

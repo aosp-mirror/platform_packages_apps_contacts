@@ -17,6 +17,7 @@
 package com.android.contacts.calllog;
 
 import com.android.contacts.R;
+import com.android.contacts.test.NeededForTesting;
 import com.google.common.collect.Lists;
 
 import android.content.Context;
@@ -64,10 +65,12 @@ public class CallTypeIconsView extends View {
         invalidate();
     }
 
+    @NeededForTesting
     public int getCount() {
         return mCallTypes.size();
     }
 
+    @NeededForTesting
     public int getCallType(int index) {
         return mCallTypes.get(index);
     }

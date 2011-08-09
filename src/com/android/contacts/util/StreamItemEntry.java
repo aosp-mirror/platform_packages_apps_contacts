@@ -16,6 +16,8 @@
 
 package com.android.contacts.util;
 
+import com.android.contacts.test.NeededForTesting;
+
 import android.database.Cursor;
 import android.provider.ContactsContract.StreamItems;
 
@@ -46,6 +48,7 @@ public class StreamItemEntry implements Comparable<StreamItemEntry> {
     // Photos associated with this stream item.
     private List<StreamItemPhotoEntry> mPhotos;
 
+    @NeededForTesting
     public StreamItemEntry(long id, String text, String comments, long timestamp, String action,
             String actionUri, String resPackage, int iconRes, int labelRes) {
         mId = id;
