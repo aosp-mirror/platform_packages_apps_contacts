@@ -30,6 +30,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Entity;
 import android.content.Entity.NamedContentValues;
+import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -772,7 +773,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
             HashMap<String, AccountType> result = new HashMap<String, AccountType>(allInvitables);
 
-            // Remove the ones that already has a raw contact in the current contact
+            // Remove the ones that already have a raw contact in the current contact
             for (Entity entity : contactData.getEntities()) {
                 final String type = entity.getEntityValues().getAsString(RawContacts.ACCOUNT_TYPE);
                 if (!TextUtils.isEmpty(type)) {
@@ -1082,9 +1083,42 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                     mContact.setLoadingPhoto(true);
                     new AsyncPhotoLoader().execute(mContact.getPhotoUri());
                 }
+
+                // inform the source of the data that this contact is being looked at
+                postViewNotificationToSyncAdapter();
             }
 
             deliverResult(mContact);
+        }
+    }
+
+    /**
+     * Posts a message to the contributing sync adapters that have opted-in, notifying them
+     * that the contact has just been loaded
+     */
+    private void postViewNotificationToSyncAdapter() {
+        Context context = getContext();
+        for (Entity entity : mContact.getEntities()) {
+            final ContentValues entityValues = entity.getEntityValues();
+            final String type = entityValues.getAsString(RawContacts.ACCOUNT_TYPE);
+            final String dataSet = entityValues.getAsString(RawContacts.DATA_SET);
+            final AccountType accountType = AccountTypeManager.getInstance(context ).getAccountType(
+                    type, dataSet);
+            final String serviceName = accountType.getViewContactNotifyServiceClassName();
+            final String resPackageName = accountType.resPackageName;
+            if (!TextUtils.isEmpty(serviceName) && !TextUtils.isEmpty(resPackageName)) {
+                final long rawContactId = entityValues.getAsLong(RawContacts.Entity._ID);
+                final Uri uri = ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId);
+                final Intent intent = new Intent();
+                intent.setClassName(resPackageName, serviceName);
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setDataAndType(uri, RawContacts.CONTENT_ITEM_TYPE);
+                try {
+                    context.startService(intent);
+                } catch (Exception e) {
+                    Log.e(TAG, "Error sending message to source-app", e);
+                }
+            }
         }
     }
 

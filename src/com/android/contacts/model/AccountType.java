@@ -112,6 +112,16 @@ public abstract class AccountType {
         return null;
     }
 
+    /**
+     * Returns an optional service that can be launched whenever a contact is being looked at.
+     * This allows the sync adapter to provide more up-to-date information.
+     * The service class should reside in the sync adapter package as determined by
+     * {@link #resPackageName}.
+     */
+    public String getViewContactNotifyServiceClassName() {
+        return null;
+    }
+
     public CharSequence getDisplayLabel(Context context) {
         return getResourceText(context, summaryResPackageName, titleRes, accountType);
     }
