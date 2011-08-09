@@ -174,7 +174,7 @@ public class CallLogActivityTests
         insert(CallerInfo.PRIVATE_NUMBER, NOW, 0, Calls.INCOMING_TYPE);
         View view = mAdapter.newGroupView(getActivity(), mParentView);
         mAdapter.bindGroupView(view, getActivity(), mCursor, 3, false);
-        assertNotNull(view.findViewById(R.id.call_icon));
+        assertNotNull(view.findViewById(R.id.secondary_action_icon));
     }
 
     @MediumTest
@@ -183,7 +183,7 @@ public class CallLogActivityTests
         insert(CallerInfo.PRIVATE_NUMBER, NOW, 0, Calls.INCOMING_TYPE);
         View view = mAdapter.newStandAloneView(getActivity(), mParentView);
         mAdapter.bindStandAloneView(view, getActivity(), mCursor);
-        assertNotNull(view.findViewById(R.id.call_icon));
+        assertNotNull(view.findViewById(R.id.secondary_action_icon));
     }
 
     @MediumTest
@@ -192,7 +192,7 @@ public class CallLogActivityTests
         insert(CallerInfo.PRIVATE_NUMBER, NOW, 0, Calls.INCOMING_TYPE);
         View view = mAdapter.newChildView(getActivity(), mParentView);
         mAdapter.bindChildView(view, getActivity(), mCursor);
-        assertNotNull(view.findViewById(R.id.call_icon));
+        assertNotNull(view.findViewById(R.id.secondary_action_icon));
     }
 
     @MediumTest
@@ -303,7 +303,7 @@ public class CallLogActivityTests
         mAdapter.bindStandAloneView(view, getActivity(), mCursor);
 
         CallLogListItemViews views = (CallLogListItemViews) view.getTag();
-        IntentProvider intentProvider = (IntentProvider) views.callView.getTag();
+        IntentProvider intentProvider = (IntentProvider) views.secondaryActionView.getTag();
         Intent intent = intentProvider.getIntent(mActivity);
         // Starts a call.
         assertEquals(Intent.ACTION_CALL_PRIVILEGED, intent.getAction());
@@ -319,7 +319,7 @@ public class CallLogActivityTests
         mAdapter.bindStandAloneView(view, getActivity(), mCursor);
 
         CallLogListItemViews views = (CallLogListItemViews) view.getTag();
-        IntentProvider intentProvider = (IntentProvider) views.playView.getTag();
+        IntentProvider intentProvider = (IntentProvider) views.secondaryActionView.getTag();
         Intent intent = intentProvider.getIntent(mActivity);
         // Starts the call detail activity.
         assertEquals(new ComponentName(mActivity, CallDetailActivity.class),
@@ -357,9 +357,9 @@ public class CallLogActivityTests
             String number = getPhoneNumberForListEntry(i);
             if (CallerInfo.PRIVATE_NUMBER.equals(number) ||
                 CallerInfo.UNKNOWN_NUMBER.equals(number)) {
-                assertFalse(View.VISIBLE == mItem.callView.getVisibility());
+                assertFalse(View.VISIBLE == mItem.secondaryActionView.getVisibility());
             } else {
-                assertEquals(View.VISIBLE, mItem.callView.getVisibility());
+                assertEquals(View.VISIBLE, mItem.secondaryActionView.getVisibility());
             }
         }
     }

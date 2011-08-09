@@ -21,6 +21,7 @@ import com.android.contacts.R;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
@@ -30,13 +31,11 @@ import android.widget.TextView;
 public final class CallLogListItemViews {
     /** The quick contact badge for the contact. */
     public final QuickContactBadge quickContactView;
-    /** The main action button on the entry. */
-    public final View callView;
-    /** The play action button used for voicemail. */
-    public final View playView;
+    /** The secondary action button on the entry. */
+    public final ImageView secondaryActionView;
     /** The icon used for unheard voicemail. */
     public final View unheardView;
-    /** The divider between callView and playView. */
+    /** The divider between the primary and secondary actions. */
     public final View dividerView;
     /** The details of the phone call. */
     public final PhoneCallDetailsViews phoneCallDetailsViews;
@@ -46,12 +45,11 @@ public final class CallLogListItemViews {
     public final TextView listHeaderTextView;
 
     private CallLogListItemViews(QuickContactBadge quickContactView,
-            View callView, View playView, View unheardView, View dividerView,
+            ImageView secondaryActionView, View unheardView, View dividerView,
             PhoneCallDetailsViews phoneCallDetailsViews, View listItemView,
             TextView listHeaderTextView) {
         this.quickContactView = quickContactView;
-        this.callView = callView;
-        this.playView = playView;
+        this.secondaryActionView = secondaryActionView;
         this.unheardView = unheardView;
         this.dividerView = dividerView;
         this.phoneCallDetailsViews = phoneCallDetailsViews;
@@ -62,8 +60,7 @@ public final class CallLogListItemViews {
     public static CallLogListItemViews fromView(View view) {
         return new CallLogListItemViews(
                 (QuickContactBadge) view.findViewById(R.id.quick_contact_photo),
-                view.findViewById(R.id.call_icon),
-                view.findViewById(R.id.play_icon),
+                (ImageView) view.findViewById(R.id.secondary_action_icon),
                 view.findViewById(R.id.unheard_icon),
                 view.findViewById(R.id.divider),
                 PhoneCallDetailsViews.fromView(view),
@@ -74,8 +71,7 @@ public final class CallLogListItemViews {
     public static CallLogListItemViews createForTest(Context context) {
         return new CallLogListItemViews(
                 new QuickContactBadge(context),
-                new View(context),
-                new View(context),
+                new ImageView(context),
                 new View(context),
                 new View(context),
                 PhoneCallDetailsViews.createForTest(context),
