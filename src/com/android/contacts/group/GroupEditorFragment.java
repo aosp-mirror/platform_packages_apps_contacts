@@ -345,13 +345,27 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         }
     }
 
+    private AccountType getAccountType() {
+        return AccountTypeManager.getInstance(mContext).getAccountType(mAccountType, mDataSet);
+    }
+
+    /**
+     * @return true if the group membership is editable on this account type.  false otherwise,
+     *         or account is not set yet.
+     */
+    private boolean isGroupMembershipEditable() {
+        if (mAccountType == null) {
+            return false;
+        }
+        return getAccountType().isGroupMembershipEditable();
+    }
+
     /**
      * Sets up the editor based on the group's account name and type.
      */
     private void setupEditorForAccount() {
-        final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(mContext);
-        final AccountType accountType = accountTypeManager.getAccountType(mAccountType, mDataSet);
-        final boolean editable = accountType.isGroupMembershipEditable();
+        final AccountType accountType = getAccountType();
+        final boolean editable = isGroupMembershipEditable();
         mMemberListAdapter.setIsGroupMembershipEditable(editable);
 
         View editorView = mLayoutInflater.inflate(editable ?
@@ -449,8 +463,13 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         mListener = value;
     }
 
-    public void doSaveAction() {
-        save(SaveMode.CLOSE);
+    public void onDoneClicked() {
+        if (isGroupMembershipEditable()) {
+            save(SaveMode.CLOSE);
+        } else {
+            // Just revert it.
+            doRevertAction();
+        }
     }
 
     @Override
