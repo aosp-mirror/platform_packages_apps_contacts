@@ -73,6 +73,7 @@ public class ContactTileAdapter extends BaseAdapter {
     private int mPhoneNumberLabelIndex;
 
     private boolean mIsQuickContactEnabled = false;
+    private final int mPaddingInPixels;
 
     /**
      * Configures the adapter to filter and display contacts using different view types.
@@ -115,6 +116,10 @@ public class ContactTileAdapter extends BaseAdapter {
         mResources = context.getResources();
         mColumnCount = (displayType == DisplayType.FREQUENT_ONLY ? 1 : numCols);
         mDisplayType = displayType;
+
+        // Converting padding in dips to padding in pixels
+        mPaddingInPixels = mContext.getResources()
+                .getDimensionPixelOffset(R.dimen.contact_tile_divider_padding);
 
         bindColumnIndices();
     }
@@ -406,7 +411,7 @@ public class ContactTileAdapter extends BaseAdapter {
     }
     @Override
     public int getViewTypeCount() {
-        return ViewTypes.MAX_VIEW_COUNT;
+        return ViewTypes.COUNT;
     }
 
     @Override
@@ -498,10 +503,21 @@ public class ContactTileAdapter extends BaseAdapter {
             contactTile.setClickable(entry != null);
             contactTile.loadFromContact(entry);
 
-            contactTile.setVerticalDividerVisibility(
-                    childIndex >= mColumnCount - 1 ? View.GONE : View.VISIBLE);
-            contactTile.setHorizontalDividerVisibility(
-                    isLastRow ? View.GONE : View.VISIBLE);
+            switch (mItemViewType) {
+                case ViewTypes.STARRED_WITH_SECONDARY_ACTION:
+                case ViewTypes.STARRED:
+                    // Setting divider visibilities
+                    contactTile.setPadding(0, 0,
+                            childIndex >= mColumnCount - 1 ? 0 : mPaddingInPixels,
+                            isLastRow ? 0 : mPaddingInPixels);
+                    break;
+                case ViewTypes.FREQUENT:
+                    contactTile.setHorizontalDividerVisibility(
+                            isLastRow ? View.GONE : View.VISIBLE);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -519,7 +535,7 @@ public class ContactTileAdapter extends BaseAdapter {
     }
 
     private static class ViewTypes {
-        public static final int MAX_VIEW_COUNT = 4;
+        public static final int COUNT = 4;
         public static final int STARRED = 0;
         public static final int DIVIDER = 1;
         public static final int FREQUENT = 2;

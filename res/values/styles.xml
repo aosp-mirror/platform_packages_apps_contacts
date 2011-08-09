@@ -270,25 +270,14 @@
         <item name="android:soundEffectsEnabled">false</item>
     </style>
 
-    <style name="ContactTileStarred">
-        <item name="android:focusable">true</item>
+    <style name="FavoritesFragmentStyle">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_weight">1</item>
     </style>
 
-    <style name="ContactTileStarredName">
-        <item name="android:singleLine">true</item>
-        <item name="android:ellipsize">end</item>
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="ContactTileStatusText">
-        <item name="android:singleLine">true</item>
-        <item name="android:ellipsize">end</item>
-        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
-        <item name="android:textColor">#777777</item>
-    </style>
-
-    <style name="ContactTileStarredShadowBox">
-        <item name="android:background">#7F000000</item>
+    <style name="FrequentFragmentStyle">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_weight">1</item>
     </style>
 
     <style name="DialtactsActionBarStyle" parent="android:Widget.Holo.ActionBar">

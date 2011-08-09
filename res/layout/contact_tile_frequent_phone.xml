@@ -17,7 +17,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     class="com.android.contacts.list.ContactTileView"
     android:focusable="true"
-    android:background="@drawable/list_selector"
+    android:background="@null"
     android:paddingRight="16dip"
     android:paddingLeft="16dip" >
 
@@ -36,22 +36,24 @@
             android:id="@+id/contact_tile_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:ellipsize="end"
             android:layout_marginLeft="8dip"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_marginTop="8dip"
-            android:layout_toRightOf="@id/contact_tile_quick" />
+            android:layout_toRightOf="@id/contact_tile_quick"
+            android:singleLine="true"
+            android:fadingEdge="horizontal"
+            android:fadingEdgeLength="3dip"
+            android:ellipsize="marquee" />
 
         <TextView
             android:id="@+id/contact_tile_phone_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:ellipsize="end"
-            android:singleLine="true"
             android:textColor="@color/dialtacts_secondary_text_color"
             android:layout_marginLeft="8dip"
+            android:singleLine="true"
+            android:maxLength="18"
             android:layout_toRightOf="@id/contact_tile_quick"
             android:layout_below="@id/contact_tile_name" />
 
@@ -65,23 +67,16 @@
             android:textAllCaps="true"
             android:textColor="@color/dialtacts_secondary_text_color"
             android:layout_marginLeft="12dip"
+            android:maxLength="8"
             android:layout_alignParentRight="true"
             android:layout_alignTop="@id/contact_tile_phone_number" />
 
         <View
             android:id="@+id/contact_tile_horizontal_divider"
             android:layout_width="match_parent"
-            android:layout_height="1dip"
+            android:layout_height="1px"
             android:background="?android:attr/listDivider"
-            android:layout_alignParentBottom="true" />
-
-        <View
-            android:id="@+id/contact_tile_horizontal_picture_divider"
-            android:layout_width="64dip"
-            android:layout_height="1dip"
-            android:background="@android:color/black"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true" />
+            android:layout_below="@id/contact_tile_quick" />
 
     </RelativeLayout>
 

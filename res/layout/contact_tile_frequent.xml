@@ -17,7 +17,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     class="com.android.contacts.list.ContactTileView"
     android:focusable="true"
-    android:background="@drawable/list_selector"
+    android:background="@null"
     android:paddingRight="16dip"
     android:paddingLeft="16dip" >
 
@@ -32,32 +32,46 @@
             android:scaleType="centerCrop"
             android:layout_alignParentRight="true" />
 
-        <TextView
-            android:id="@+id/contact_tile_name"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_toLeftOf="@id/contact_tile_quick" />
+            android:layout_height="64dip"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_vertical"
+            android:paddingRight="80dip"
+            android:paddingLeft="8dip">
 
-        <ImageView
-            android:id="@+id/contact_tile_presence"
-            android:layout_width="16dip"
-            android:layout_height="16dip"
-            android:layout_below="@id/contact_tile_name"
-            android:layout_alignParentLeft="true" />
+            <TextView
+                android:id="@+id/contact_tile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary_text_color"
+                android:textSize="18sp"
+                android:singleLine="true"
+                android:fadingEdge="horizontal"
+                android:fadingEdgeLength="3dip"
+                android:ellipsize="marquee" />
 
-        <TextView
-            android:id="@+id/contact_tile_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:textColor="#cccccc"
-            android:layout_toRightOf="@id/contact_tile_presence"
-            android:layout_below="@id/contact_tile_name" />
+            <TextView
+                android:id="@+id/contact_tile_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="?android:attr/textColorSecondary"
+                android:singleLine="true"
+                android:drawablePadding="4dip"
+                android:fadingEdge="horizontal"
+                android:fadingEdgeLength="3dip"
+                android:ellipsize="marquee" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/contact_tile_horizontal_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="?android:attr/listDivider"
+            android:layout_below="@id/contact_tile_quick" />
 
     </RelativeLayout>
 

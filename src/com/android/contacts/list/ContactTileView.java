@@ -27,7 +27,6 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
@@ -40,17 +39,15 @@ public class ContactTileView extends FrameLayout {
 
     private Uri mLookupUri;
     private ImageView mPhoto;
-    private ImageView mPresence;
     private QuickContactBadge mQuickContact;
     private TextView mName;
     private TextView mStatus;
     private TextView mPhoneLabel;
     private TextView mPhoneNumber;
     private ContactPhotoManager mPhotoManager = null;
-    private ImageButton mPushState;
-    private Listener mListener;
-    private View mVerticalDivider;
+    private View mPushState;
     private View mHorizontalDivider;
+    private Listener mListener;
 
     public ContactTileView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -63,12 +60,10 @@ public class ContactTileView extends FrameLayout {
 
         mQuickContact = (QuickContactBadge) findViewById(R.id.contact_tile_quick);
         mPhoto = (ImageView) findViewById(R.id.contact_tile_image);
-        mPresence = (ImageView) findViewById(R.id.contact_tile_presence);
         mStatus = (TextView) findViewById(R.id.contact_tile_status);
         mPhoneLabel = (TextView) findViewById(R.id.contact_tile_phone_type);
         mPhoneNumber = (TextView) findViewById(R.id.contact_tile_phone_number);
-        mPushState = (ImageButton) findViewById(R.id.contact_tile_push_state);
-        mVerticalDivider = findViewById(R.id.contact_tile_vertical_divider);
+        mPushState = findViewById(R.id.contact_tile_push_state);
         mHorizontalDivider = findViewById(R.id.contact_tile_horizontal_divider);
 
         OnClickListener listener = new OnClickListener() {
@@ -100,23 +95,25 @@ public class ContactTileView extends FrameLayout {
             mName.setText(entry.name);
             mLookupUri = entry.lookupKey;
 
-            int presenceDrawableResId = (entry.presence == null ? 0 :
-                    StatusUpdates.getPresenceIconResourceId(entry.presence));
-
-            if (mPresence != null) {
-                mPresence.setBackgroundResource(presenceDrawableResId);
-            }
-
             if (mStatus != null) {
                 String statusText;
                 if (entry.presence == null) {
-                    statusText = null;
+                    mStatus.setVisibility(View.GONE);
                 } else {
                     statusText =
                           (entry.status != null ? entry.status :
                           ContactStatusUtil.getStatusString(mContext, entry.presence));
+                    mStatus.setText(statusText);
+                    int presenceDrawableResId = (entry.presence == null ? 0 :
+                            StatusUpdates.getPresenceIconResourceId(entry.presence));
+                    if (presenceDrawableResId != 0) {
+                        Log.i(TAG, "iconId = " + presenceDrawableResId);
+                        mStatus.setCompoundDrawablesWithIntrinsicBounds(
+                                getResources().getDrawable(presenceDrawableResId),
+                                null, null, null);
+                    }
+                    mStatus.setVisibility(View.VISIBLE);
                 }
-                mStatus.setText(statusText);
             }
 
             if (mPhoneLabel != null) {
@@ -128,21 +125,19 @@ public class ContactTileView extends FrameLayout {
                 mPhoneNumber.setText(entry.phoneNumber);
             }
 
-            if (mQuickContact != null) {
-                mQuickContact.assignContactUri(mLookupUri);
-                mQuickContact.setImageBitmap(null);
-            } else {
-                mPhoto.setImageBitmap(null);
-            }
-
             setVisibility(View.VISIBLE);
 
             if (mPhotoManager != null) {
-                if (mQuickContact != null){
-                    mPhotoManager.loadPhoto(mQuickContact, entry.photoUri);
-                } else {
+                if (mPhoto != null) {
                     mPhotoManager.loadPhoto(mPhoto, entry.photoUri);
-                }
+
+                    if (mQuickContact != null) {
+                        mQuickContact.assignContactUri(mLookupUri);
+                    }
+                } else if (mQuickContact != null) {
+                        mQuickContact.assignContactUri(mLookupUri);
+                        mPhotoManager.loadPhoto(mQuickContact, entry.photoUri);
+                    }
 
             } else {
                 Log.w(TAG, "contactPhotoManager not set");
@@ -152,16 +147,12 @@ public class ContactTileView extends FrameLayout {
         }
     }
 
-    public void setVerticalDividerVisibility(int visibility) {
-        if (mVerticalDivider != null) mVerticalDivider.setVisibility(visibility);
+    public void setListener(Listener listener) {
+        mListener = listener;
     }
 
     public void setHorizontalDividerVisibility(int visibility) {
         if (mHorizontalDivider != null) mHorizontalDivider.setVisibility(visibility);
-    }
-
-    public void setListener(Listener listener) {
-        mListener = listener;
     }
 
     public Uri getLookupUri() {

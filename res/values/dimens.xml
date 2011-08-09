@@ -255,4 +255,7 @@
     <!-- Height for directory headers in contact lists -->
     <dimen name="directory_header_height">24dip</dimen>
 
+    <!--  Vertical and horizontal padding in between contact tiles -->
+    <dimen name="contact_tile_divider_padding">2dip</dimen>
+
 </resources>

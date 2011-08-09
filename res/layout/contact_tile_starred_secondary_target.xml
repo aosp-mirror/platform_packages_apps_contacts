@@ -15,8 +15,10 @@
 -->
 <view
     xmlns:android="http://schemas.android.com/apk/res/android"
-    class="com.android.contacts.list.ContactTileSecondaryTargetView"
-    style="@style/ContactTileStarred" >
+    android:background="@null"
+    android:paddingBottom="1dip"
+    android:paddingRight="1dip"
+    class="com.android.contacts.list.ContactTileSecondaryTargetView" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,49 +30,24 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop" />
 
-        <View
-            android:id="@+id/contact_tile_background"
+        <TextView
+            android:id="@+id/contact_tile_name"
             android:layout_width="match_parent"
             android:layout_height="@dimen/contact_tile_shadowbox_height"
+            android:background="@color/contact_tile_shadow_box_color"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/white"
+            android:singleLine="true"
+            android:textSize="16sp"
+            android:fadingEdge="horizontal"
+            android:fadingEdgeLength="3dip"
+            android:ellipsize="marquee"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            style="@style/ContactTileStarredShadowBox" />
-
-        <FrameLayout
-            android:id="@+id/contact_tile_info_layout"
-            android:layout_height="@dimen/contact_tile_shadowbox_height"
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="8dip"
-            android:layout_marginRight="45dip">
-
-            <TextView
-                android:id="@+id/contact_tile_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:textColor="@android:color/white"
-                android:singleLine="true"
-                android:textSize="16sp"
-                android:fadingEdge="horizontal"
-                android:fadingEdgeLength="3dip"
-                android:ellipsize="marquee" />
-
-        </FrameLayout>
+            android:paddingLeft="8dip"
+            android:paddingRight="47dip"
+            android:drawableRight="@drawable/ic_divider_dashed_holo_dark" />
 
         <View
-            android:id="@+id/secondary_vertical_divider"
-            android:layout_width="1dip"
-            android:layout_height="32dip"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="44dip"
-            android:layout_marginBottom="8dip"
-            android:background="@drawable/ic_divider_dashed_holo_dark" />
-
-        <ImageButton
             android:id="@+id/contact_tile_push_state"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -82,24 +59,10 @@
             android:background="?android:attr/selectableItemBackground"
             android:layout_height="@dimen/contact_tile_shadowbox_height"
             android:layout_width="48dip"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
             android:paddingRight="8dip"
-            android:paddingLeft="8dip" />
-
-        <View
-            android:id="@+id/contact_tile_vertical_divider"
-            android:layout_height="match_parent"
-            android:layout_width="2dip"
-            android:background="@color/phone_contact_tile_divider_color"
+            android:paddingLeft="8dip"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true" />
-
-        <View
-            android:id="@+id/contact_tile_horizontal_divider"
-            android:layout_width="match_parent"
-            android:layout_height="2dip"
-            android:background="@color/phone_contact_tile_divider_color"
-            android:layout_alignParentBottom="true" />
 
     </RelativeLayout>
 
