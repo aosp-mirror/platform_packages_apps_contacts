@@ -41,10 +41,13 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private View mSearchHeaderView;
     private TextView mAccountFilterHeaderView;
     private View mAccountFilterHeaderContainer;
+    private FrameLayout mProfileHeaderContainer;
     private View mProfileHeader;
     private Button mProfileMessage;
     private FrameLayout mMessageContainer;
     private View mProfileTitle;
+
+    private View mPaddingView;
 
     public DefaultContactBrowseListFragment() {
         setPhotoLoaderEnabled(true);
@@ -209,11 +212,14 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         // Changing visibility of just the mProfileHeader doesn't do anything unless
         // you change visibility of its children, hence the call to mCounterHeaderView
         // and mProfileTitle
+        mProfileHeaderContainer.setVisibility(show ? View.VISIBLE : View.GONE);
         mProfileHeader.setVisibility(show ? View.VISIBLE : View.GONE);
         mCounterHeaderView.setVisibility(show ? View.VISIBLE : View.GONE);
         mProfileTitle.setVisibility(show ? View.VISIBLE : View.GONE);
         mMessageContainer.setVisibility(show ? View.VISIBLE : View.GONE);
         mProfileMessage.setVisibility(show ? View.VISIBLE : View.GONE);
+
+        mPaddingView.setVisibility(show ? View.GONE : View.VISIBLE);
     }
 
     /**
@@ -226,14 +232,16 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
         ListView list = getListView();
         // Put a header with the "ME" name and a view for the number of contacts
+        // The view is embedded in a frame view since you cannot change the visibility of a
+        // view in a ListView without having a parent view.
+        mProfileHeaderContainer = new FrameLayout(inflater.getContext());
         mProfileHeader = inflater.inflate(R.layout.user_profile_header, null, false);
         mCounterHeaderView = (TextView) mProfileHeader.findViewById(R.id.contacts_count);
         mProfileTitle = mProfileHeader.findViewById(R.id.profile_title);
-        list.addHeaderView(mProfileHeader, null, false);
+        mProfileHeaderContainer.addView(mProfileHeader);
+        list.addHeaderView(mProfileHeaderContainer, null, false);
 
         // Add a selectable view with a message inviting the user to create a local profile
-        // The view is embedded in a frame view since you cannot change the visibility of a
-        // view in a ListView without having a parent view.
         mMessageContainer = new FrameLayout(inflater.getContext());
         mProfileMessage = (Button)inflater.inflate(R.layout.user_profile_button, null, false);
         mMessageContainer.addView(mProfileMessage);
@@ -246,5 +254,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                 startActivity(intent);
             }
         });
+
+        View paddingViewContainer =
+                inflater.inflate(R.layout.contact_detail_list_padding, null, false);
+        mPaddingView = paddingViewContainer.findViewById(R.id.contact_detail_list_padding);
+        mPaddingView.setVisibility(View.GONE);
+        getListView().addHeaderView(paddingViewContainer);
     }
 }

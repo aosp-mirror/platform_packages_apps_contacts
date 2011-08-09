@@ -48,6 +48,11 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     private TextView mAccountFilterHeaderView;
     private View mAccountFilterHeaderContainer;
+    /**
+     * Lives as ListView's header and is shown when {@link #mAccountFilterHeaderContainer} is set
+     * to View.GONE.
+     */
+    private View mPaddingView;
 
     private static final String KEY_FILTER = "filter";
 
@@ -80,6 +85,10 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     protected void onCreateView(LayoutInflater inflater, ViewGroup container) {
         super.onCreateView(inflater, container);
 
+        View paddingView = inflater.inflate(R.layout.contact_detail_list_padding, null, false);
+        mPaddingView = paddingView.findViewById(R.id.contact_detail_list_padding);
+        getListView().addHeaderView(paddingView);
+
         mAccountFilterHeaderView = (TextView) getView().findViewById(R.id.account_filter_header);
         mAccountFilterHeaderContainer =
                 getView().findViewById(R.id.account_filter_header_container);
@@ -101,8 +110,10 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
                 mAccountFilterHeaderContainer.setVisibility(View.VISIBLE);
                 mAccountFilterHeaderView.setText(getContext().getString(
                         R.string.listAllContactsInAccount, filter.accountName));
+                mPaddingView.setVisibility(View.GONE);
             } else {
                 mAccountFilterHeaderContainer.setVisibility(View.GONE);
+                mPaddingView.setVisibility(View.VISIBLE);
             }
         }
     }

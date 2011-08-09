@@ -19,35 +19,33 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="@dimen/detail_min_line_item_height">
+    android:paddingLeft="?attr/list_item_padding_left"
+    android:paddingTop="?attr/list_item_padding_top"
+    android:paddingRight="?attr/list_item_padding_right"
+    android:paddingBottom="?attr/list_item_padding_bottom"
+    android:minHeight="@dimen/detail_min_line_item_height" >
 
-    <ImageView
+    <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dip"
-        android:paddingLeft="10dip"
-        android:paddingRight="10dip"
-        android:scaleType="fitXY"
-        android:src="@color/people_app_theme_color"/>
+        android:background="?android:attr/listDivider" />
 
     <include
         android:id="@+id/group_list_header"
         layout="@layout/group_browse_list_account_header"
-        android:paddingRight="20dip"
-        android:paddingBottom="10dip"
         android:visibility="gone" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dip"
-        android:paddingRight="20dip"
-        android:paddingBottom="10dip"
-        style="@style/GroupBrowseListItem">
+        android:paddingTop="8dip"
+        android:paddingBottom="8dip">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="?attr/list_item_text_indent"
             android:orientation="vertical"
             android:layout_toLeftOf="@+id/icons"
             android:layout_alignParentLeft="true"
@@ -57,8 +55,6 @@
                 android:id="@+id/label"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:paddingLeft="10dip"
-                android:paddingRight="10dip"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:ellipsize="end"
                 android:singleLine="true" />
@@ -67,8 +63,6 @@
                 android:id="@+id/count"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:paddingLeft="10dip"
-                android:paddingRight="10dip"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="?android:attr/textColorTertiary"
                 android:ellipsize="end"

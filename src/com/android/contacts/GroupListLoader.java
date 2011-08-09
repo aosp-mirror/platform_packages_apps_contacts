@@ -37,7 +37,6 @@ public final class GroupListLoader extends CursorLoader {
         Groups.ACTION,
         Groups.ACTION_URI,
         Groups.SUMMARY_COUNT,
-        Groups.SUMMARY_GROUP_COUNT_PER_ACCOUNT,
     };
 
     public final static int ACCOUNT_NAME = 0;
@@ -48,10 +47,8 @@ public final class GroupListLoader extends CursorLoader {
     public final static int ACTION = 5;
     public final static int ACTION_URI = 6;
     public final static int MEMBER_COUNT = 7;
-    public final static int GROUP_COUNT_PER_ACCOUNT = 8;
 
-    private static final Uri GROUP_LIST_URI = Groups.CONTENT_SUMMARY_URI.buildUpon()
-            .appendQueryParameter(Groups.PARAM_RETURN_GROUP_COUNT_PER_ACCOUNT, "true").build();
+    private static final Uri GROUP_LIST_URI = Groups.CONTENT_SUMMARY_URI;
 
     public GroupListLoader(Context context) {
         super(context, GROUP_LIST_URI, COLUMNS, Groups.ACCOUNT_TYPE + " NOT NULL AND "

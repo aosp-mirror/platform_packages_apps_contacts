@@ -22,17 +22,19 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/pinned_header_list_layout"
-    android:paddingTop="@dimen/contact_browser_list_top_margin"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <!-- Shown only when an Account filter is set. -->
+    <!-- Shown only when an Account filter is set.
+         - paddingTop should be here to show "shade" effect correctly. -->
     <LinearLayout
         android:id="@+id/account_filter_header_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="?attr/list_item_header_height"
         android:orientation="vertical"
+        android:paddingTop="@dimen/contact_browser_list_top_margin"
         android:layout_marginLeft="@dimen/contact_browser_list_header_left_margin"
         android:layout_marginRight="@dimen/contact_browser_list_header_right_margin"
         android:visibility="gone">
@@ -40,11 +42,9 @@
             android:id="@+id/account_filter_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="@dimen/contact_filter_header_min_height"
             android:singleLine="true"
             android:ellipsize="end"
             android:textStyle="bold"
-            android:gravity="left|center_vertical"
             android:textAllCaps="true"
             android:paddingLeft="@dimen/contact_browser_list_item_text_indent"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -59,9 +59,9 @@
         class="com.android.contacts.list.ContactEntryListView"
         android:id="@android:id/list"
         android:layout_width="match_parent"
-           android:layout_height="0dip"
-           android:layout_marginLeft="@dimen/contact_browser_list_left_margin"
-        android:layout_marginRight="@dimen/contact_browser_list_right_margin"
+        android:layout_height="0dip"
+        android:layout_marginLeft="?attr/contact_browser_list_padding_left"
+        android:layout_marginRight="?attr/contact_browser_list_padding_right"
         android:fastScrollEnabled="true"
         android:layout_weight="1" />
 

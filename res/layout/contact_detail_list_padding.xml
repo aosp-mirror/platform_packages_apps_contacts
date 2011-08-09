@@ -14,20 +14,15 @@
      limitations under the License.
 -->
 
-<LinearLayout
+<!-- The actual padding is embedded in a FrameLayout since we cannot change the
+     visibility of a header view in a ListView without having a parent view. -->
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/text"
+    android:layout_height="wrap_content">
+    <View
+        android:id="@+id/contact_detail_list_padding"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="?attr/list_item_header_text_indent"
-        android:minHeight="16dip"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:gravity="center_vertical" />
+        android:layout_height="@dimen/contact_browser_list_top_margin" />
+</FrameLayout>
 
-    <View style="@style/SectionDivider" />
-</LinearLayout>
