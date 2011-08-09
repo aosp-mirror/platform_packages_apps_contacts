@@ -31,17 +31,24 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Entity;
 import android.content.Entity.NamedContentValues;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Resources;
+import android.content.res.Resources.NotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.DisplayNameSources;
 import android.text.Html;
+import android.text.Html.ImageGetter;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +67,8 @@ import java.util.List;
  * {@link ContactLoader.Result} data object to appropriate {@link View}s.
  */
 public class ContactDetailDisplayUtils {
+    private static final String TAG = "ContactDetailDisplayUtils";
+
     private static final int PHOTO_FADE_IN_ANIMATION_DURATION_MILLIS = 100;
 
     private ContactDetailDisplayUtils() {
@@ -313,10 +322,11 @@ public class ContactDetailDisplayUtils {
         TextView attributionView = (TextView) rootView.findViewById(
                 R.id.stream_item_attribution);
         TextView commentsView = (TextView) rootView.findViewById(R.id.stream_item_comments);
-        htmlView.setText(Html.fromHtml(streamItem.getText()));
+        ImageGetter imageGetter = new DefaultImageGetter(context.getPackageManager());
+        htmlView.setText(Html.fromHtml(streamItem.getText(), imageGetter, null));
         attributionView.setText(ContactBadgeUtil.getSocialDate(streamItem, context));
         if (streamItem.getComments() != null) {
-            commentsView.setText(Html.fromHtml(streamItem.getComments()));
+            commentsView.setText(Html.fromHtml(streamItem.getComments(), imageGetter, null));
             commentsView.setVisibility(View.VISIBLE);
         } else {
             commentsView.setVisibility(View.GONE);
@@ -382,4 +392,79 @@ public class ContactDetailDisplayUtils {
         }
     }
 
+    /** Fetcher for images from resources to be included in HTML text. */
+    private static class DefaultImageGetter implements Html.ImageGetter {
+        /** The scheme used to load resources. */
+        private static final String RES_SCHEME = "res";
+
+        private final PackageManager mPackageManager;
+
+        public DefaultImageGetter(PackageManager packageManager) {
+            mPackageManager = packageManager;
+        }
+
+        @Override
+        public Drawable getDrawable(String source) {
+            // Returning null means that a default image will be used.
+            Uri uri;
+            try {
+                uri = Uri.parse(source);
+            } catch (Throwable e) {
+                Log.d(TAG, "Could not parse image source: " + source);
+                return null;
+            }
+            if (!RES_SCHEME.equals(uri.getScheme())) {
+                Log.d(TAG, "Image source does not correspond to a resource: " + source);
+                return null;
+            }
+            // The URI authority represents the package name.
+            String packageName = uri.getAuthority();
+
+            Resources resources = getResourcesForResourceName(packageName);
+            if (resources == null) {
+                Log.d(TAG, "Could not parse image source: " + source);
+                return null;
+            }
+
+            List<String> pathSegments = uri.getPathSegments();
+            if (pathSegments.size() != 1) {
+                Log.d(TAG, "Could not parse image source: " + source);
+                return null;
+            }
+
+            final String name = pathSegments.get(0);
+            final int resId = resources.getIdentifier(name, "drawable", packageName);
+
+            if (resId == 0) {
+                // Use the default image icon in this case.
+                Log.d(TAG, "Cannot resolve resource identifier: " + source);
+                return null;
+            }
+
+            try {
+                return getResourceDrawable(resources, resId);
+            } catch (NotFoundException e) {
+                Log.d(TAG, "Resource not found: " + source, e);
+                return null;
+            }
+        }
+
+        /** Returns the drawable associated with the given id. */
+        private Drawable getResourceDrawable(Resources resources, int resId)
+                throws NotFoundException {
+            Drawable drawable = resources.getDrawable(resId);
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+            return drawable;
+        }
+
+        /** Returns the {@link Resources} of the package of the given resource name. */
+        private Resources getResourcesForResourceName(String packageName) {
+            try {
+                return mPackageManager.getResourcesForApplication(packageName);
+            } catch (NameNotFoundException e) {
+                Log.d(TAG, "Could not find package: " + packageName);
+                return null;
+            }
+        }
+    }
 }
