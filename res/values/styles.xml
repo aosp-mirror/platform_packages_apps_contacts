@@ -123,6 +123,7 @@
 
     <style name="PeopleTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
+        <item name="android:actionBarTabStyle">@style/ContactsActionBarTabView</item>
         <item name="android:textColorPrimary">@color/primary_text_color</item>
         <item name="android:textColorSecondary">@color/secondary_text_color</item>
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
@@ -158,6 +159,10 @@
     <style name="ContactsActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@drawable/ab_solid_custom_blue_inverse_holo</item>
         <item name="android:backgroundStacked">@drawable/ab_solid_custom_blue_inverse_holo</item>
+    </style>
+
+    <style name="ContactsActionBarTabView" parent="@android:style/Widget.Holo.ActionBar.TabView">
+        <item name="android:background">@drawable/action_bar_tab</item>
     </style>
 
     <!-- TODO: Clean up this file so themes aren't copied. -->
