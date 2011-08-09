@@ -31,6 +31,8 @@ import android.widget.TextView;
 public final class CallLogListItemViews {
     /** The quick contact badge for the contact. */
     public final QuickContactBadge quickContactView;
+    /** The primary action view of the entry. */
+    public final View primaryActionView;
     /** The secondary action button on the entry. */
     public final ImageView secondaryActionView;
     /** The icon used for unheard voicemail. */
@@ -44,11 +46,12 @@ public final class CallLogListItemViews {
     /** The text of the header in a stand-alone row, or null for other types of rows. */
     public final TextView listHeaderTextView;
 
-    private CallLogListItemViews(QuickContactBadge quickContactView,
+    private CallLogListItemViews(QuickContactBadge quickContactView, View primaryActionView,
             ImageView secondaryActionView, View unheardView, View dividerView,
             PhoneCallDetailsViews phoneCallDetailsViews, View listItemView,
             TextView listHeaderTextView) {
         this.quickContactView = quickContactView;
+        this.primaryActionView = primaryActionView;
         this.secondaryActionView = secondaryActionView;
         this.unheardView = unheardView;
         this.dividerView = dividerView;
@@ -60,6 +63,7 @@ public final class CallLogListItemViews {
     public static CallLogListItemViews fromView(View view) {
         return new CallLogListItemViews(
                 (QuickContactBadge) view.findViewById(R.id.quick_contact_photo),
+                view.findViewById(R.id.primary_action_view),
                 (ImageView) view.findViewById(R.id.secondary_action_icon),
                 view.findViewById(R.id.unheard_icon),
                 view.findViewById(R.id.divider),
@@ -71,6 +75,7 @@ public final class CallLogListItemViews {
     public static CallLogListItemViews createForTest(Context context) {
         return new CallLogListItemViews(
                 new QuickContactBadge(context),
+                new View(context),
                 new ImageView(context),
                 new View(context),
                 new View(context),

@@ -17,7 +17,6 @@
 package com.android.contacts.calllog;
 
 import com.android.common.widget.GroupingListAdapter;
-import com.android.contacts.CallDetailActivity;
 import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.PhoneCallDetails;
@@ -34,7 +33,6 @@ import com.android.internal.telephony.ITelephony;
 import com.google.common.annotations.VisibleForTesting;
 
 import android.app.ListFragment;
-import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -275,7 +273,18 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         /** Can be set to true by tests to disable processing of requests. */
         private volatile boolean mRequestProcessingDisabled = false;
 
-        private final View.OnClickListener mCallPlayOnClickListener = new View.OnClickListener() {
+        /** Listener for the primary action in the list, opens the call details. */
+        private final View.OnClickListener mPrimaryActionListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IntentProvider intentProvider = (IntentProvider) view.getTag();
+                if (intentProvider != null) {
+                    mContext.startActivity(intentProvider.getIntent(mContext));
+                }
+            }
+        };
+        /** Listener for the secondary action in the list, either call or play. */
+        private final View.OnClickListener mSecondaryActionListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 IntentProvider intentProvider = (IntentProvider) view.getTag();
@@ -663,7 +672,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         private void findAndCacheViews(View view) {
             // Get the views to bind to.
             CallLogListItemViews views = CallLogListItemViews.fromView(view);
-            views.secondaryActionView.setOnClickListener(mCallPlayOnClickListener);
+            views.primaryActionView.setOnClickListener(mPrimaryActionListener);
+            views.secondaryActionView.setOnClickListener(mSecondaryActionListener);
             view.setTag(views);
         }
 
@@ -701,6 +711,9 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             final String formattedNumber;
             final String countryIso = c.getString(CallLogQuery.COUNTRY_ISO);
 
+            views.primaryActionView.setTag(
+                    IntentProvider.getCallDetailIntentProvider(
+                            this, c.getPosition(), c.getLong(CallLogQuery.ID), count));
             // Store away the voicemail information so we can play it directly.
             if (callType == Calls.VOICEMAIL_TYPE) {
                 String voicemailUri = c.getString(CallLogQuery.VOICEMAIL_URI);
@@ -907,6 +920,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         mAdapter = new CallLogAdapter(getActivity(), mCallLogQueryHandler, currentCountryIso,
                 getVoiceMailNumber());
         setListAdapter(mAdapter);
+        getListView().setItemsCanFocus(true);
     }
 
     @Override
@@ -1099,38 +1113,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                     Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
             startActivity(intent);
         }
-    }
-
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        Cursor cursor = (Cursor) mAdapter.getItem(position);
-        if (CallLogQuery.isSectionHeader(cursor)) {
-            // Do nothing when a header is clicked.
-            return;
-        }
-        Intent intent = new Intent(getActivity(), CallDetailActivity.class);
-        if (mAdapter.isGroupHeader(position)) {
-            // We want to restore the position in the cursor at the end.
-            int currentPosition = cursor.getPosition();
-            int groupSize = mAdapter.getGroupSize(position);
-            long[] ids = new long[groupSize];
-            // Copy the ids of the rows in the group.
-            for (int index = 0; index < groupSize; ++index) {
-                ids[index] = cursor.getLong(CallLogQuery.ID);
-                cursor.moveToNext();
-            }
-            intent.putExtra(CallDetailActivity.EXTRA_CALL_LOG_IDS, ids);
-            cursor.moveToPosition(currentPosition);
-        } else {
-            // If there is a single item, use the direct URI for it.
-            intent.setData(ContentUris.withAppendedId(Calls.CONTENT_URI_WITH_VOICEMAIL, id));
-            String voicemailUri = cursor.getString(CallLogQuery.VOICEMAIL_URI);
-            if (voicemailUri != null) {
-                intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_URI, Uri.parse(voicemailUri));
-            }
-            intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_START_PLAYBACK, false);
-        }
-        startActivity(intent);
     }
 
     @VisibleForTesting
