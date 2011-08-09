@@ -52,7 +52,7 @@
             android:id="@+id/contact_tile_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:ellipsize="end"
             android:singleLine="true"
             android:textColor="#cccccc"

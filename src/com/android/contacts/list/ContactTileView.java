@@ -49,6 +49,8 @@ public class ContactTileView extends FrameLayout {
     private ContactPhotoManager mPhotoManager = null;
     private ImageButton mPushState;
     private Listener mListener;
+    private View mVerticalDivider;
+    private View mHorizontalDivider;
 
     public ContactTileView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -66,6 +68,8 @@ public class ContactTileView extends FrameLayout {
         mPhoneLabel = (TextView) findViewById(R.id.contact_tile_phone_type);
         mPhoneNumber = (TextView) findViewById(R.id.contact_tile_phone_number);
         mPushState = (ImageButton) findViewById(R.id.contact_tile_push_state);
+        mVerticalDivider = findViewById(R.id.contact_tile_vertical_divider);
+        mHorizontalDivider = findViewById(R.id.contact_tile_horizontal_divider);
 
         OnClickListener listener = new OnClickListener() {
             @Override
@@ -146,6 +150,14 @@ public class ContactTileView extends FrameLayout {
         } else {
             setVisibility(View.INVISIBLE);
         }
+    }
+
+    public void setVerticalDividerVisibility(int visibility) {
+        if (mVerticalDivider != null) mVerticalDivider.setVisibility(visibility);
+    }
+
+    public void setHorizontalDividerVisibility(int visibility) {
+        if (mHorizontalDivider != null) mHorizontalDivider.setVisibility(visibility);
     }
 
     public void setListener(Listener listener) {
