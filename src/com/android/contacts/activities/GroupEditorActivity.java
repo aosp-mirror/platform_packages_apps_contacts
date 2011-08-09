@@ -71,7 +71,7 @@ public class GroupEditorActivity extends ContactsActivity
             saveMenuItem.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mFragment.doSaveAction();
+                    mFragment.onDoneClicked();
                 }
             });
             // Show the custom action bar but hide the home icon and title
