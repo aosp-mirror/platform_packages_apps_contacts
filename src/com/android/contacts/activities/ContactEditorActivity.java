@@ -171,11 +171,6 @@ public class ContactEditorActivity extends ContactsActivity
         }
 
         @Override
-        public void setTitleTo(int resourceId) {
-            setTitle(resourceId);
-        }
-
-        @Override
         public void onEditOtherContactRequested(
                 Uri contactLookupUri, ArrayList<ContentValues> values) {
             Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);

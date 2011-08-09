@@ -317,11 +317,8 @@ public class ContactEditorFragment extends Fragment implements
 
         if (!hasIncomingState) {
             if (Intent.ACTION_EDIT.equals(mAction)) {
-                if (mListener != null) mListener.setTitleTo(R.string.editContact_title_edit);
                 getLoaderManager().initLoader(LOADER_DATA, null, mDataLoaderListener);
             } else if (Intent.ACTION_INSERT.equals(mAction)) {
-                if (mListener != null) mListener.setTitleTo(R.string.editContact_title_insert);
-
                 final Account account = mIntentExtras == null ? null :
                         (Account) mIntentExtras.getParcelable(Intents.Insert.ACCOUNT);
                 final String dataSet = mIntentExtras == null ? null :
@@ -1117,11 +1114,6 @@ public class ContactEditorFragment extends Fragment implements
          * User has tapped Revert, close the fragment now.
          */
         void onReverted();
-
-        /**
-         * Set the Title (e.g. of the Activity)
-         */
-        void setTitleTo(int resourceId);
 
         /**
          * Contact was saved and the Fragment can now be closed safely.

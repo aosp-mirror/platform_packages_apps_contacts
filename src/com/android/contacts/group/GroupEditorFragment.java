@@ -104,13 +104,6 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         void onReverted();
 
         /**
-         * Title has been determined.
-         *
-         * TODO Remove this.  No longer needed with the latest visual spec.
-         */
-        void onTitleLoaded(int resourceId);
-
-        /**
          * Contact was saved and the Fragment can now be closed safely.
          */
         void onSaveFinished(int resultCode, Intent resultIntent);
@@ -256,13 +249,6 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         } else {
             throw new IllegalArgumentException("Unknown Action String " + mAction +
                     ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
-        }
-
-        // Let the activity update the title.
-        if (mListener != null) {
-            mListener.onTitleLoaded(Intent.ACTION_EDIT.equals(mAction)
-                    ? R.string.editGroup_title_edit
-                    : R.string.editGroup_title_insert);
         }
     }
 

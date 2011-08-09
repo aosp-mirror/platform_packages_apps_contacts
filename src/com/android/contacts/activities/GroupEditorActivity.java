@@ -163,11 +163,6 @@ public class GroupEditorActivity extends ContactsActivity
             }
             finish();
         }
-
-        @Override
-        public void onTitleLoaded(int resourceId) {
-            setTitle(resourceId);
-        }
     };
 
     @Override

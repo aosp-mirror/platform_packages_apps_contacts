@@ -205,12 +205,6 @@
     <!-- Menu item to indicate you want to stop editing a contact and NOT save the changes you've made [CHAR LIMIT=12] -->
     <string name="menu_discard">Discard</string>
 
-    <!-- The title of the activity that edits and existing contact -->
-    <string name="editContact_title_edit">Edit contact</string>
-
-    <!-- The title of the activity that creates a new contact -->
-    <string name="editContact_title_insert">New contact</string>
-
     <!-- The label describing the phonetic pronunciation/reading of a contact name [CHAR LIMIT=20] -->
     <string name="label_phonetic_name">Phonetic</string>
 
@@ -1602,12 +1596,6 @@
 
     <!-- Label to instruct the user to type in a contact's name to add the contact as a member of the current group. [CHAR LIMIT=64] -->
     <string name="enter_contact_name">Enter contact\'s name</string>
-
-    <!-- The title of the activity that creates a new group [CHAR LIMIT=NONE] -->
-    <string name="editGroup_title_insert">New group</string>
-
-    <!-- The title of the activity that edits an existing group [CHAR LIMIT=NONE] -->
-    <string name="editGroup_title_edit">Edit group</string>
 
     <!-- Button to view the updates from the current group on the group detail page [CHAR LIMIT=20] -->
     <string name="view_updates_from_group">View updates</string>
