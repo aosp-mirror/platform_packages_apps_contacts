@@ -404,13 +404,11 @@ public class ContactTileAdapter extends BaseAdapter {
      */
     private View getDivider() {
         View dividerView = View.inflate(mContext, R.layout.list_separator, null);
-        dividerView.setFocusable(false);
-        TextView text = (TextView) dividerView.findViewById(R.id.header_text);
+        TextView text = (TextView) dividerView.findViewById(R.id.title);
 
         text.setText(mDisplayType == DisplayType.STREQUENT_PHONE_ONLY ?
                 mContext.getString(R.string.favoritesFrequentCalled) :
                 mContext.getString(R.string.favoritesFrequentContacted));
-
        return dividerView;
     }
 

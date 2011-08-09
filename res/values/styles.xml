@@ -279,10 +279,4 @@
         <item name="android:displayOptions"></item>
     </style>
 
-    <style name="UpdatesTitleStyle">
-        <item name="android:paddingLeft">8dip</item>
-        <item name="android:paddingTop">5dip</item>
-        <item name="android:paddingBottom">2dip</item>
-    </style>
-
 </resources>

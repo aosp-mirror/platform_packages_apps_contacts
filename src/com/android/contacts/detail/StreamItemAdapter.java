@@ -27,6 +27,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -101,7 +102,10 @@ public class StreamItemAdapter extends BaseAdapter {
             return mInflater.inflate(R.layout.updates_header_contact, null);
         }
         if (position == 1) {
-            return mInflater.inflate(R.layout.updates_title, null);
+            final View titleView = mInflater.inflate(R.layout.list_separator, null);
+            TextView titleTextView = (TextView) titleView.findViewById(R.id.title);
+            titleTextView.setText(mContext.getString(R.string.recent_updates));
+            return titleView;
         }
         final StreamItemEntry streamItem = (StreamItemEntry) getItem(position);
         final AccountTypeManager manager = AccountTypeManager.getInstance(mContext);

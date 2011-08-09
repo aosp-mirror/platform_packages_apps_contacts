@@ -51,6 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="8dip"
+        android:paddingLeft="8dip"
         android:paddingBottom="8dip"
         android:duplicateParentState="true"
         android:background="@drawable/group_list_item_background"
