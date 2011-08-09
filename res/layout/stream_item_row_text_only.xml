@@ -15,15 +15,16 @@
 -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/detail_update_section_between_items_vertical_padding">
 
     <TextView android:id="@+id/stream_item_html"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:textColor="@color/social_update_text_color" />
+        android:textColor="?android:attr/textColorPrimary" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -33,14 +34,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/social_update_attribution_color" />
+            android:textColor="?android:attr/textColorSecondary" />
 
         <TextView android:id="@+id/stream_item_comments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dip"
+            android:layout_marginLeft="@dimen/detail_update_section_attribution_comments_padding"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/social_update_comments_color" />
+            android:textColor="?android:attr/textColorSecondary" />
     </LinearLayout>
-
 </LinearLayout>

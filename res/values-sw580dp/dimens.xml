@@ -33,6 +33,7 @@
     <dimen name="shortcut_icon_size">64dip</dimen>
     <dimen name="list_section_height">37dip</dimen>
     <dimen name="detail_update_section_item_vertical_padding">32dip</dimen>
+    <dimen name="detail_update_section_item_last_row_extra_vertical_padding">16dip</dimen>
     <dimen name="search_view_width">400dip</dimen>
     <!-- Center vertically -->
     <dimen name="quick_contact_top_position">-1px</dimen>
