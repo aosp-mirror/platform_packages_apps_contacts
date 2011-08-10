@@ -77,7 +77,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:background="@android:color/black"
-        android:alpha=".50"
         android:visibility="gone"/>
 
     <View
