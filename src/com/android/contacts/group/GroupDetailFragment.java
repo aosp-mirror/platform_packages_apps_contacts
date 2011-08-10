@@ -149,6 +149,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         mGroupSourceViewContainer = (ViewGroup) mRootView.findViewById(
                 R.id.group_source_view_container);
         mMemberListView = (ListView) mRootView.findViewById(android.R.id.list);
+        mMemberListView.setAdapter(mAdapter);
 
         return mRootView;
     }
@@ -160,11 +161,6 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
 
     public void setQuickContact(boolean enableQuickContact) {
         mAdapter.enableQuickContact(enableQuickContact);
-    }
-
-    private void configureAdapter(long groupId) {
-        mGroupId = groupId;
-        mMemberListView.setAdapter(mAdapter);
     }
 
     private void configurePhotoLoader() {
@@ -234,7 +230,6 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
                     bindGroupMetaData(data);
 
                     // Retrieve the list of members
-                    configureAdapter(mGroupId);
                     startGroupMembersLoader();
                     return;
                 }
