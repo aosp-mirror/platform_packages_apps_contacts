@@ -1262,7 +1262,6 @@ public class PeopleActivity extends ContactsActivity
         }
         makeAllMenuItemsVisible(menu, true);
 
-        final MenuItem searchMenu = menu.findItem(R.id.menu_search);
         final MenuItem addContactMenu = menu.findItem(R.id.menu_add_contact);
         final MenuItem contactsFilterMenu = menu.findItem(R.id.menu_contacts_filter);
 
@@ -1271,7 +1270,8 @@ public class PeopleActivity extends ContactsActivity
             addGroupMenu = menu.findItem(R.id.menu_custom_add_group);
         }
 
-        if (mActionBarAdapter.isSearchMode()) {
+        final boolean isSearchMode = mActionBarAdapter.isSearchMode();
+        if (isSearchMode) {
             addContactMenu.setVisible(false);
             addGroupMenu.setVisible(false);
             contactsFilterMenu.setVisible(false);
@@ -1299,17 +1299,12 @@ public class PeopleActivity extends ContactsActivity
                     break;
             }
         }
-
-        if (searchMenu != null) {
-            // Don't show the search menu in search mode.
-            searchMenu.setVisible(!mActionBarAdapter.isSearchMode());
-        }
-
-
-        MenuItem settings = menu.findItem(R.id.menu_settings);
-        if (settings != null) {
-            settings.setVisible(!ContactsPreferenceActivity.isEmpty(this));
-        }
+        final boolean showMiscOptions = !isSearchMode;
+        makeMenuItemVisible(menu, R.id.menu_search, showMiscOptions);
+        makeMenuItemVisible(menu, R.id.menu_import_export, showMiscOptions);
+        makeMenuItemVisible(menu, R.id.menu_accounts, showMiscOptions);
+        makeMenuItemVisible(menu, R.id.menu_settings,
+                showMiscOptions && !ContactsPreferenceActivity.isEmpty(this));
 
         return true;
     }
@@ -1318,6 +1313,13 @@ public class PeopleActivity extends ContactsActivity
         final int itemCount = menu.size();
         for (int i = 0; i < itemCount; i++) {
             menu.getItem(i).setVisible(visible);
+        }
+    }
+
+    private void makeMenuItemVisible(Menu menu, int itemId, boolean visible) {
+        MenuItem item =menu.findItem(itemId);
+        if (item != null) {
+            item.setVisible(visible);
         }
     }
 
