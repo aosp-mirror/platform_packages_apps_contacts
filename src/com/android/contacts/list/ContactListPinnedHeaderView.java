@@ -26,6 +26,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,7 @@ public class ContactListPinnedHeaderView extends ViewGroup {
     private final int mPaddingRight;
     private final int mPaddingLeft;
     private final int mContactsCountTextColor;
+    private final int mCountViewTextSize;
 
     private int mHeaderBackgroundHeight;
     private TextView mHeaderTextView;
@@ -76,12 +78,14 @@ public class ContactListPinnedHeaderView extends ViewGroup {
                 R.styleable.ContactListItemView_list_item_padding_right, 0);
         mContactsCountTextColor = a.getColor(
                 R.styleable.ContactListItemView_list_item_contacts_count_text_color, Color.BLACK);
+        mCountViewTextSize = (int)a.getDimensionPixelSize(
+                R.styleable.ContactListItemView_list_item_contacts_count_text_size, 12);
 
         a.recycle();
 
         mHeaderTextView = new TextView(mContext);
         mHeaderTextView.setTextColor(mHeaderTextColor);
-        mHeaderTextView.setTextSize(mHeaderTextSize);
+        mHeaderTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mHeaderTextSize);
         mHeaderTextView.setTypeface(mHeaderTextView.getTypeface(), Typeface.BOLD);
         mHeaderTextView.setGravity(Gravity.CENTER_VERTICAL);
         addView(mHeaderTextView);
@@ -156,7 +160,8 @@ public class ContactListPinnedHeaderView extends ViewGroup {
         if (mCountTextView == null) {
             mCountTextView = new TextView(mContext);
             mCountTextView.setTextColor(mContactsCountTextColor);
-            mCountTextView.setTextSize(mHeaderTextSize);
+            mCountTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mCountViewTextSize);
+            mCountTextView.setGravity(Gravity.CENTER_VERTICAL);
             addView(mCountTextView);
         }
         mCountTextView.setText(count);
