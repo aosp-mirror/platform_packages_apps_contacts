@@ -14,13 +14,22 @@
      limitations under the License.
 -->
 
-<!-- Layout to contain a list of fields in the contact editor. -->
-
+<!-- Layout that behaves similarly to edit_field_list.xml,
+     but also has an anchor view for ListPopupWindow -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/editors"
     android:layout_width="0dip"
-    android:layout_weight="1"
     android:layout_height="wrap_content"
+    android:layout_weight="1"
     android:paddingLeft="@dimen/editor_field_left_padding"
-    android:orientation="vertical" />
+    android:orientation="vertical">
+    <LinearLayout
+         android:id="@+id/editors"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="vertical" />
+    <View
+         android:id="@+id/anchor_view"
+         android:layout_width="match_parent"
+         android:layout_height="0px" />
+</LinearLayout>

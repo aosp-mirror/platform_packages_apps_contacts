@@ -14,7 +14,6 @@
      limitations under the License.
 -->
 <resources>
-    <dimen name="aggregation_suggestion_icon_size">64dip</dimen>
     <dimen name="editor_padding_top">32dip</dimen>
     <dimen name="editor_type_label_width">122dip</dimen>
     <dimen name="editor_field_spinner_text_size">15sp</dimen>

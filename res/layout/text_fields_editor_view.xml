@@ -31,8 +31,7 @@
         android:clickable="true">
 
         <include
-            android:id="@+id/editors"
-            layout="@layout/edit_field_list" />
+            layout="@layout/edit_field_list_with_anchor_view" />
 
         <include
             android:id="@+id/expansion_view_container"

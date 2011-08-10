@@ -29,7 +29,7 @@ import android.net.Uri;
 import android.provider.ContactsContract.Contacts;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ import java.util.List;
 /**
  * A view that contains a name, picture and other data for a contact aggregation suggestion.
  */
-public class AggregationSuggestionView extends RelativeLayout {
+public class AggregationSuggestionView extends LinearLayout {
 
     public interface Listener {
 
@@ -63,17 +63,14 @@ public class AggregationSuggestionView extends RelativeLayout {
 
     public AggregationSuggestionView(Context context) {
         super(context);
-        setClickable(true);
     }
 
     public AggregationSuggestionView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setClickable(true);
     }
 
     public AggregationSuggestionView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        setClickable(true);
     }
 
     public void setNewContact(boolean flag) {
@@ -135,8 +132,7 @@ public class AggregationSuggestionView extends RelativeLayout {
         mListener = listener;
     }
 
-    @Override
-    public boolean performClick() {
+    public boolean handleItemClickEvent() {
         if (mListener != null && isEnabled()) {
             if (canEditSuggestedContact()) {
                 mListener.onEditAction(Contacts.getLookupUri(mContactId, mLookupKey));
