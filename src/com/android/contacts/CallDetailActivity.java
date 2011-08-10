@@ -272,133 +272,152 @@ public class CallDetailActivity extends ListActivity {
      * @param callUris URIs into {@link CallLog.Calls} of the calls to be displayed
      */
     private void updateData(final Uri... callUris) {
-        // TODO: All phone calls correspond to the same person, so we can make a single lookup.
-        final int numCalls = callUris.length;
-        final PhoneCallDetails[] details = new PhoneCallDetails[numCalls];
-        try {
-            for (int index = 0; index < numCalls; ++index) {
-                details[index] = getPhoneCallDetailsForUri(callUris[index]);
-            }
-        } catch (IllegalArgumentException e) {
-            // Something went wrong reading in our primary data, so we're going to
-            // bail out and show error to users.
-            Log.w(TAG, "invalid URI starting call details", e);
-            Toast.makeText(this, R.string.toast_call_detail_error,
-                    Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
+        mBackgroundTaskService.submit(new BackgroundTask() {
+            private PhoneCallDetails[] details;
 
-        // We know that all calls are from the same number and the same contact, so pick the first.
-        PhoneCallDetails firstDetails = details[0];
-        mNumber = firstDetails.number.toString();
-        final long personId = firstDetails.personId;
-        final Uri photoUri = firstDetails.photoUri;
-
-        // Set the details header, based on the first phone call.
-        mPhoneCallDetailsHelper.setPhoneCallName(mHeaderTextView, firstDetails);
-
-        // Cache the details about the phone number.
-        final Uri numberCallUri = mPhoneNumberHelper.getCallUri(mNumber);
-        final boolean canPlaceCallsTo = mPhoneNumberHelper.canPlaceCallsTo(mNumber);
-        final boolean isVoicemailNumber = mPhoneNumberHelper.isVoicemailNumber(mNumber);
-        final boolean isSipNumber = mPhoneNumberHelper.isSipNumber(mNumber);
-
-        // Let user view contact details if they exist, otherwise add option to create new contact
-        // from this number.
-        final Intent mainActionIntent;
-        final int mainActionIcon;
-
-        if (firstDetails.personId != -1) {
-            Uri personUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, personId);
-            mainActionIntent = new Intent(Intent.ACTION_VIEW, personUri);
-            mainActionIcon = R.drawable.ic_contacts_holo_dark;
-        } else if (isVoicemailNumber) {
-            mainActionIntent = null;
-            mainActionIcon = 0;
-        } else if (isSipNumber) {
-            // TODO: This item is currently disabled for SIP addresses, because
-            // the Insert.PHONE extra only works correctly for PSTN numbers.
-            //
-            // To fix this for SIP addresses, we need to:
-            // - define ContactsContract.Intents.Insert.SIP_ADDRESS, and use it here if
-            //   the current number is a SIP address
-            // - update the contacts UI code to handle Insert.SIP_ADDRESS by
-            //   updating the SipAddress field
-            // and then we can remove the "!isSipNumber" check above.
-            mainActionIntent = null;
-            mainActionIcon = 0;
-        } else if (canPlaceCallsTo) {
-            mainActionIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-            mainActionIntent.setType(Contacts.CONTENT_ITEM_TYPE);
-            mainActionIntent.putExtra(Insert.PHONE, mNumber);
-            mainActionIcon = R.drawable.ic_add_contact_holo_dark;
-        } else {
-            // If we cannot call the number, when we probably cannot add it as a contact either.
-            // This is usually the case of private, unknown, or payphone numbers.
-            mainActionIntent = null;
-            mainActionIcon = 0;
-        }
-
-        if (mainActionIntent == null) {
-            mMainActionView.setVisibility(View.INVISIBLE);
-            mMainActionPushLayerView.setVisibility(View.GONE);
-        } else {
-            mMainActionView.setVisibility(View.VISIBLE);
-            mMainActionView.setImageResource(mainActionIcon);
-            mMainActionPushLayerView.setVisibility(View.VISIBLE);
-            mMainActionPushLayerView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(mainActionIntent);
+            @Override
+            public void doInBackground() {
+                // TODO: All phone calls correspond to the same person, so we can make a single
+                // lookup.
+                final int numCalls = callUris.length;
+                details = new PhoneCallDetails[numCalls];
+                try {
+                    for (int index = 0; index < numCalls; ++index) {
+                        details[index] = getPhoneCallDetailsForUri(callUris[index]);
+                    }
+                } catch (IllegalArgumentException e) {
+                    // Something went wrong reading in our primary data.
+                    Log.w(TAG, "invalid URI starting call details", e);
+                    details = null;
                 }
-            });
-        }
-
-        // Build list of various available actions.
-        final List<ViewEntry> actions = new ArrayList<ViewEntry>();
-
-        // This action allows to call the number that places the call.
-        if (canPlaceCallsTo) {
-            final CharSequence displayNumber =
-                    mPhoneNumberHelper.getDisplayNumber(
-                            firstDetails.number, firstDetails.formattedNumber);
-
-            ViewEntry entry = new ViewEntry(
-                    getString(R.string.menu_callNumber, displayNumber),
-                    new Intent(Intent.ACTION_CALL_PRIVILEGED, numberCallUri));
-
-            // Only show a label if the number is shown and it is not a SIP address.
-            if (!TextUtils.isEmpty(firstDetails.number)
-                    && !PhoneNumberUtils.isUriNumber(firstDetails.number.toString())) {
-                entry.label = Phone.getTypeLabel(mResources, firstDetails.numberType,
-                        firstDetails.numberLabel);
             }
 
-            // The secondary action allows to send an SMS to the number that placed the call.
-            if (mPhoneNumberHelper.canSendSmsTo(mNumber)) {
-                entry.setSecondaryAction(R.drawable.ic_text_holo_dark,
-                        new Intent(Intent.ACTION_SENDTO, Uri.fromParts("sms", mNumber, null)));
+            @Override
+            public void onPostExecute() {
+                if (details == null) {
+                    // Somewhere went wrong: we're going to bail out and show error to users.
+                    Toast.makeText(CallDetailActivity.this, R.string.toast_call_detail_error,
+                            Toast.LENGTH_SHORT).show();
+                    finish();
+                    return;
+                }
+
+                // We know that all calls are from the same number and the same contact, so pick the
+                // first.
+                PhoneCallDetails firstDetails = details[0];
+                mNumber = firstDetails.number.toString();
+                final long personId = firstDetails.personId;
+                final Uri photoUri = firstDetails.photoUri;
+
+                // Set the details header, based on the first phone call.
+                mPhoneCallDetailsHelper.setPhoneCallName(mHeaderTextView, firstDetails);
+
+                // Cache the details about the phone number.
+                final Uri numberCallUri = mPhoneNumberHelper.getCallUri(mNumber);
+                final boolean canPlaceCallsTo = mPhoneNumberHelper.canPlaceCallsTo(mNumber);
+                final boolean isVoicemailNumber = mPhoneNumberHelper.isVoicemailNumber(mNumber);
+                final boolean isSipNumber = mPhoneNumberHelper.isSipNumber(mNumber);
+
+                // Let user view contact details if they exist, otherwise add option to create new
+                // contact from this number.
+                final Intent mainActionIntent;
+                final int mainActionIcon;
+
+                if (firstDetails.personId != -1) {
+                    Uri personUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, personId);
+                    mainActionIntent = new Intent(Intent.ACTION_VIEW, personUri);
+                    mainActionIcon = R.drawable.ic_contacts_holo_dark;
+                } else if (isVoicemailNumber) {
+                    mainActionIntent = null;
+                    mainActionIcon = 0;
+                } else if (isSipNumber) {
+                    // TODO: This item is currently disabled for SIP addresses, because
+                    // the Insert.PHONE extra only works correctly for PSTN numbers.
+                    //
+                    // To fix this for SIP addresses, we need to:
+                    // - define ContactsContract.Intents.Insert.SIP_ADDRESS, and use it here if
+                    //   the current number is a SIP address
+                    // - update the contacts UI code to handle Insert.SIP_ADDRESS by
+                    //   updating the SipAddress field
+                    // and then we can remove the "!isSipNumber" check above.
+                    mainActionIntent = null;
+                    mainActionIcon = 0;
+                } else if (canPlaceCallsTo) {
+                    mainActionIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+                    mainActionIntent.setType(Contacts.CONTENT_ITEM_TYPE);
+                    mainActionIntent.putExtra(Insert.PHONE, mNumber);
+                    mainActionIcon = R.drawable.ic_add_contact_holo_dark;
+                } else {
+                    // If we cannot call the number, when we probably cannot add it as a contact either.
+                    // This is usually the case of private, unknown, or payphone numbers.
+                    mainActionIntent = null;
+                    mainActionIcon = 0;
+                }
+
+                if (mainActionIntent == null) {
+                    mMainActionView.setVisibility(View.INVISIBLE);
+                    mMainActionPushLayerView.setVisibility(View.GONE);
+                } else {
+                    mMainActionView.setVisibility(View.VISIBLE);
+                    mMainActionView.setImageResource(mainActionIcon);
+                    mMainActionPushLayerView.setVisibility(View.VISIBLE);
+                    mMainActionPushLayerView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(mainActionIntent);
+                        }
+                    });
+                }
+
+                // Build list of various available actions.
+                final List<ViewEntry> actions = new ArrayList<ViewEntry>();
+
+                // This action allows to call the number that places the call.
+                if (canPlaceCallsTo) {
+                    final CharSequence displayNumber =
+                            mPhoneNumberHelper.getDisplayNumber(
+                                    firstDetails.number, firstDetails.formattedNumber);
+
+                    ViewEntry entry = new ViewEntry(
+                            getString(R.string.menu_callNumber, displayNumber),
+                            new Intent(Intent.ACTION_CALL_PRIVILEGED, numberCallUri));
+
+                    // Only show a label if the number is shown and it is not a SIP address.
+                    if (!TextUtils.isEmpty(firstDetails.number)
+                            && !PhoneNumberUtils.isUriNumber(firstDetails.number.toString())) {
+                        entry.label = Phone.getTypeLabel(mResources, firstDetails.numberType,
+                                firstDetails.numberLabel);
+                    }
+
+                    // The secondary action allows to send an SMS to the number that placed the
+                    // call.
+                    if (mPhoneNumberHelper.canSendSmsTo(mNumber)) {
+                        entry.setSecondaryAction(R.drawable.ic_text_holo_dark,
+                                new Intent(Intent.ACTION_SENDTO,
+                                           Uri.fromParts("sms", mNumber, null)));
+                    }
+
+                    actions.add(entry);
+                }
+
+                mHasEditNumberBeforeCall = canPlaceCallsTo && !isSipNumber && !isVoicemailNumber;
+
+                if (actions.size() != 0) {
+                    // Set the actions for this phone number.
+                    setListAdapter(new ViewAdapter(CallDetailActivity.this, actions));
+                    getListView().setVisibility(View.VISIBLE);
+                    getListView().setItemsCanFocus(true);
+                } else {
+                    getListView().setVisibility(View.GONE);
+                }
+
+                ListView historyList = (ListView) findViewById(R.id.history);
+                historyList.setAdapter(
+                        new CallDetailHistoryAdapter(CallDetailActivity.this, mInflater,
+                                mCallTypeHelper, details));
+                loadContactPhotos(photoUri);
             }
-
-            actions.add(entry);
-        }
-
-        mHasEditNumberBeforeCall = canPlaceCallsTo && !isSipNumber && !isVoicemailNumber;
-
-        if (actions.size() != 0) {
-            // Set the actions for this phone number.
-            setListAdapter(new ViewAdapter(this, actions));
-            getListView().setVisibility(View.VISIBLE);
-            getListView().setItemsCanFocus(true);
-        } else {
-            getListView().setVisibility(View.GONE);
-        }
-
-        ListView historyList = (ListView) findViewById(R.id.history);
-        historyList.setAdapter(
-                new CallDetailHistoryAdapter(this, mInflater, mCallTypeHelper, details));
-        loadContactPhotos(photoUri);
+        });
     }
 
     /** Return the phone call details for a given call log URI. */
