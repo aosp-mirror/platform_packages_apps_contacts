@@ -1195,11 +1195,10 @@ public class PeopleActivity extends ContactsActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//      STOPSHIP Un-comment it once b/5027071 is fixed.
-//        if (!areContactsAvailable()) {
-//            If contacts aren't available, hide all menu items.
-//            return false;
-//        }
+        if (!areContactsAvailable()) {
+            // If contacts aren't available, hide all menu items.
+            return false;
+        }
         super.onCreateOptionsMenu(menu);
 
         MenuInflater inflater = getMenuInflater();
@@ -1255,12 +1254,8 @@ public class PeopleActivity extends ContactsActivity
     public boolean onPrepareOptionsMenu(Menu menu) {
         mOptionsMenuContactsAvailable = areContactsAvailable();
         if (!mOptionsMenuContactsAvailable) {
-            // STOPSHIP Remove makeAllMenuItemsVisible()when STOPSHIP in onCreateOptionsMenu() is
-            // fixed.
-            makeAllMenuItemsVisible(menu, false);
             return false;
         }
-        makeAllMenuItemsVisible(menu, true);
 
         final MenuItem addContactMenu = menu.findItem(R.id.menu_add_contact);
         final MenuItem contactsFilterMenu = menu.findItem(R.id.menu_contacts_filter);
@@ -1307,13 +1302,6 @@ public class PeopleActivity extends ContactsActivity
                 showMiscOptions && !ContactsPreferenceActivity.isEmpty(this));
 
         return true;
-    }
-
-    private void makeAllMenuItemsVisible(Menu menu, boolean visible) {
-        final int itemCount = menu.size();
-        for (int i = 0; i < itemCount; i++) {
-            menu.getItem(i).setVisible(visible);
-        }
     }
 
     private void makeMenuItemVisible(Menu menu, int itemId, boolean visible) {
