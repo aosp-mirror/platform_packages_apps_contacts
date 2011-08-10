@@ -32,6 +32,7 @@ import com.android.internal.telephony.CallerInfo;
 import com.android.internal.telephony.ITelephony;
 import com.google.common.annotations.VisibleForTesting;
 
+import android.app.KeyguardManager;
 import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
@@ -171,6 +172,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     private View mStatusMessageView;
     private TextView mStatusMessageText;
     private TextView mStatusMessageAction;
+    private KeyguardManager mKeyguardManager;
 
     public static final class ContactInfo {
         public long personId = -1;
@@ -871,6 +873,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         mVoiceMailNumber = ((TelephonyManager) getActivity().getSystemService(
                 Context.TELEPHONY_SERVICE)).getVoiceMailNumber();
         mCallLogQueryHandler = new CallLogQueryHandler(getActivity().getContentResolver(), this);
+        mKeyguardManager =
+                (KeyguardManager) getActivity().getSystemService(Context.KEYGUARD_SERVICE);
         setHasOptionsMenu(true);
     }
 
@@ -975,11 +979,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     public void onStop() {
         super.onStop();
         resetNewCallsFlag();
-        // Clear notifications only when window gains focus.  This activity won't
-        // immediately receive focus if the keyguard screen is above it.
-        if (getActivity().hasWindowFocus()) {
-            removeMissedCallNotifications();
-        }
     }
 
     @Override
@@ -1141,9 +1140,9 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         startCallsQuery();
         startVoicemailStatusQuery();
         mAdapter.mPreDrawListener = null; // Let it restart the thread after next draw
-        // Clear notifications only when window gains focus.  This activity won't
-        // immediately receive focus if the keyguard screen is above it.
-        if (getActivity().hasWindowFocus()) {
+        // We don't want to remove notification when keyguard is on because the user has likely not
+        // seen the new call yet.
+        if (!mKeyguardManager.inKeyguardRestrictedInputMode()) {
             removeMissedCallNotifications();
         }
     }
