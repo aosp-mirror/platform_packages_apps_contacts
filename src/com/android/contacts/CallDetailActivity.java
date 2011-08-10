@@ -28,7 +28,7 @@ import com.android.contacts.voicemail.VoicemailStatusHelper.StatusMessage;
 import com.android.contacts.voicemail.VoicemailStatusHelperImpl;
 
 import android.app.ActionBar;
-import android.app.ListActivity;
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -54,15 +54,12 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -71,7 +68,7 @@ import java.util.List;
  * This activity can be either started with the URI of a single call log entry, or with the
  * {@link #EXTRA_CALL_LOG_IDS} extra to specify a group of call log entries.
  */
-public class CallDetailActivity extends ListActivity {
+public class CallDetailActivity extends Activity {
     private static final String TAG = "CallDetail";
 
     /** A long array extra containing ids of call log entries to display. */
@@ -141,6 +138,20 @@ public class CallDetailActivity extends ListActivity {
     static final int COLUMN_INDEX_NUMBER = 4;
     static final int COLUMN_INDEX_NORMALIZED_NUMBER = 5;
     static final int COLUMN_INDEX_PHOTO_URI = 6;
+
+    private final View.OnClickListener mPrimaryActionListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            startActivity(((ViewEntry) view.getTag()).primaryIntent);
+        }
+    };
+
+    private final View.OnClickListener mSecondaryActionListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            startActivity(((ViewEntry) view.getTag()).secondaryIntent);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -322,14 +333,25 @@ public class CallDetailActivity extends ListActivity {
                 // contact from this number.
                 final Intent mainActionIntent;
                 final int mainActionIcon;
+                final String mainActionDescription;
+
+                final CharSequence nameOrNumber;
+                if (!TextUtils.isEmpty(firstDetails.name)) {
+                    nameOrNumber = firstDetails.name;
+                } else {
+                    nameOrNumber = firstDetails.number;
+                }
 
                 if (firstDetails.personId != -1) {
                     Uri personUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, personId);
                     mainActionIntent = new Intent(Intent.ACTION_VIEW, personUri);
                     mainActionIcon = R.drawable.ic_contacts_holo_dark;
+                    mainActionDescription =
+                            getString(R.string.description_view_contact, nameOrNumber);
                 } else if (isVoicemailNumber) {
                     mainActionIntent = null;
                     mainActionIcon = 0;
+                    mainActionDescription = null;
                 } else if (isSipNumber) {
                     // TODO: This item is currently disabled for SIP addresses, because
                     // the Insert.PHONE extra only works correctly for PSTN numbers.
@@ -342,16 +364,19 @@ public class CallDetailActivity extends ListActivity {
                     // and then we can remove the "!isSipNumber" check above.
                     mainActionIntent = null;
                     mainActionIcon = 0;
+                    mainActionDescription = null;
                 } else if (canPlaceCallsTo) {
                     mainActionIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
                     mainActionIntent.setType(Contacts.CONTENT_ITEM_TYPE);
                     mainActionIntent.putExtra(Insert.PHONE, mNumber);
                     mainActionIcon = R.drawable.ic_add_contact_holo_dark;
+                    mainActionDescription = getString(R.string.description_add_contact);
                 } else {
                     // If we cannot call the number, when we probably cannot add it as a contact either.
                     // This is usually the case of private, unknown, or payphone numbers.
                     mainActionIntent = null;
                     mainActionIcon = 0;
+                    mainActionDescription = null;
                 }
 
                 if (mainActionIntent == null) {
@@ -367,10 +392,8 @@ public class CallDetailActivity extends ListActivity {
                             startActivity(mainActionIntent);
                         }
                     });
+                    mMainActionPushLayerView.setContentDescription(mainActionDescription);
                 }
-
-                // Build list of various available actions.
-                final List<ViewEntry> actions = new ArrayList<ViewEntry>();
 
                 // This action allows to call the number that places the call.
                 if (canPlaceCallsTo) {
@@ -380,7 +403,8 @@ public class CallDetailActivity extends ListActivity {
 
                     ViewEntry entry = new ViewEntry(
                             getString(R.string.menu_callNumber, displayNumber),
-                            new Intent(Intent.ACTION_CALL_PRIVILEGED, numberCallUri));
+                            new Intent(Intent.ACTION_CALL_PRIVILEGED, numberCallUri),
+                            getString(R.string.description_call, nameOrNumber));
 
                     // Only show a label if the number is shown and it is not a SIP address.
                     if (!TextUtils.isEmpty(firstDetails.number)
@@ -392,24 +416,19 @@ public class CallDetailActivity extends ListActivity {
                     // The secondary action allows to send an SMS to the number that placed the
                     // call.
                     if (mPhoneNumberHelper.canSendSmsTo(mNumber)) {
-                        entry.setSecondaryAction(R.drawable.ic_text_holo_dark,
+                        entry.setSecondaryAction(
+                                R.drawable.ic_text_holo_dark,
                                 new Intent(Intent.ACTION_SENDTO,
-                                           Uri.fromParts("sms", mNumber, null)));
+                                           Uri.fromParts("sms", mNumber, null)),
+                                getString(R.string.description_send_text_message, nameOrNumber));
                     }
 
-                    actions.add(entry);
+                    configureCallButton(entry);
+                } else {
+                    disableCallButton();
                 }
 
                 mHasEditNumberBeforeCall = canPlaceCallsTo && !isSipNumber && !isVoicemailNumber;
-
-                if (actions.size() != 0) {
-                    // Set the actions for this phone number.
-                    setListAdapter(new ViewAdapter(CallDetailActivity.this, actions));
-                    getListView().setVisibility(View.VISIBLE);
-                    getListView().setItemsCanFocus(true);
-                } else {
-                    getListView().setVisibility(View.GONE);
-                }
 
                 ListView historyList = (ListView) findViewById(R.id.history);
                 historyList.setAdapter(
@@ -506,6 +525,8 @@ public class CallDetailActivity extends ListActivity {
     static final class ViewEntry {
         public final String text;
         public final Intent primaryIntent;
+        /** The description for accessibility of the primary action. */
+        public final String primaryDescription;
 
         public CharSequence label = null;
         public String number = null;
@@ -513,111 +534,72 @@ public class CallDetailActivity extends ListActivity {
         public int secondaryIcon = 0;
         /** Intent for the secondary action. If not null, an icon must be defined. */
         public Intent secondaryIntent = null;
+        /** The description for accessibility of the secondary action. */
+        public String secondaryDescription = null;
 
-        public ViewEntry(String text, Intent intent) {
+        public ViewEntry(String text, Intent intent, String description) {
             this.text = text;
-            this.primaryIntent = intent;
+            primaryIntent = intent;
+            primaryDescription = description;
         }
 
-        public void setSecondaryAction(int icon, Intent intent) {
+        public void setSecondaryAction(int icon, Intent intent, String description) {
             secondaryIcon = icon;
             secondaryIntent = intent;
+            secondaryDescription = description;
         }
     }
 
-    private static final class ViewAdapter extends BaseAdapter {
-        private final Context mContext;
-        private final List<ViewEntry> mActions;
-        private final LayoutInflater mInflater;
+    /** Disables the call button area, e.g., for private numbers. */
+    private void disableCallButton() {
+        findViewById(R.id.call_and_sms).setVisibility(View.GONE);
+    }
 
-        private final View.OnClickListener mPrimaryActionListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ViewEntry entry = (ViewEntry) view.getTag();
-                mContext.startActivity(entry.primaryIntent);
-            }
-        };
+    /** Configures the call button area using the given entry. */
+    private void configureCallButton(ViewEntry entry) {
+        View convertView = findViewById(R.id.call_and_sms);
+        convertView.setVisibility(View.VISIBLE);
 
-        private final View.OnClickListener mSecondaryActionListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ViewEntry entry = (ViewEntry) view.getTag();
-                mContext.startActivity(entry.secondaryIntent);
-            }
-        };
+        ImageView icon = (ImageView) convertView.findViewById(R.id.call_and_sms_icon);
+        View divider = convertView.findViewById(R.id.call_and_sms_divider);
+        TextView text = (TextView) convertView.findViewById(R.id.call_and_sms_text1);
 
-        public ViewAdapter(Context context, List<ViewEntry> actions) {
-            mContext = context;
-            mActions = actions;
-            mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View mainAction = convertView.findViewById(R.id.call_and_sms_main_action);
+        mainAction.setOnClickListener(mPrimaryActionListener);
+        mainAction.setTag(entry);
+        mainAction.setContentDescription(entry.primaryDescription);
+
+        if (entry.secondaryIntent != null) {
+            icon.setOnClickListener(mSecondaryActionListener);
+            icon.setImageResource(entry.secondaryIcon);
+            icon.setVisibility(View.VISIBLE);
+            icon.setTag(entry);
+            icon.setContentDescription(entry.secondaryDescription);
+            divider.setVisibility(View.VISIBLE);
+        } else {
+            icon.setVisibility(View.GONE);
+            divider.setVisibility(View.GONE);
         }
+        text.setText(entry.text);
 
-        @Override
-        public int getCount() {
-            return mActions.size();
-        }
+        View line2 = convertView.findViewById(R.id.call_and_sms_line2);
+        boolean numberEmpty = TextUtils.isEmpty(entry.number);
+        boolean labelEmpty = TextUtils.isEmpty(entry.label) || numberEmpty;
+        if (labelEmpty && numberEmpty) {
+            line2.setVisibility(View.GONE);
+        } else {
+            line2.setVisibility(View.VISIBLE);
 
-        @Override
-        public Object getItem(int position) {
-            return mActions.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            // Make sure we have a valid convertView to start with
-            if (convertView == null) {
-                convertView = mInflater.inflate(R.layout.call_detail_list_item, parent, false);
-            }
-
-            // Fill action with icon and text.
-            ViewEntry entry = mActions.get(position);
-
-            ImageView icon = (ImageView) convertView.findViewById(R.id.icon);
-            View divider = convertView.findViewById(R.id.divider);
-            TextView text = (TextView) convertView.findViewById(android.R.id.text1);
-
-            View mainAction = convertView.findViewById(R.id.main_action);
-            mainAction.setOnClickListener(mPrimaryActionListener);
-            mainAction.setTag(entry);
-
-            if (entry.secondaryIntent != null) {
-                icon.setOnClickListener(mSecondaryActionListener);
-                icon.setImageResource(entry.secondaryIcon);
-                icon.setVisibility(View.VISIBLE);
-                icon.setTag(entry);
-                divider.setVisibility(View.VISIBLE);
+            TextView label = (TextView) convertView.findViewById(R.id.call_and_sms_label);
+            if (labelEmpty) {
+                label.setVisibility(View.GONE);
             } else {
-                icon.setVisibility(View.GONE);
-                divider.setVisibility(View.GONE);
-            }
-            text.setText(entry.text);
-
-            View line2 = convertView.findViewById(R.id.line2);
-            boolean numberEmpty = TextUtils.isEmpty(entry.number);
-            boolean labelEmpty = TextUtils.isEmpty(entry.label) || numberEmpty;
-            if (labelEmpty && numberEmpty) {
-                line2.setVisibility(View.GONE);
-            } else {
-                line2.setVisibility(View.VISIBLE);
-
-                TextView label = (TextView) convertView.findViewById(R.id.label);
-                if (labelEmpty) {
-                    label.setVisibility(View.GONE);
-                } else {
-                    label.setText(entry.label);
-                    label.setVisibility(View.VISIBLE);
-                }
-
-                TextView number = (TextView) convertView.findViewById(R.id.number);
-                number.setText(entry.number);
+                label.setText(entry.label);
+                label.setVisibility(View.VISIBLE);
             }
 
-            return convertView;
+            TextView number = (TextView) convertView.findViewById(R.id.call_and_sms_number);
+            number.setText(entry.number);
         }
     }
 

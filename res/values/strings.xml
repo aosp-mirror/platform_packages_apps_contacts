@@ -1732,6 +1732,34 @@
     -->
     <string name="description_call_log_voicemail">Voicemail</string>
 
+    <!-- String describing the button to add a contact for the current number.
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_add_contact">Add contact</string>
+
+    <!-- String describing the button to view the contact for the current number.
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_view_contact">View contact <xliff:g id="name">%1$s</xliff:g></string>
+
+    <!-- String describing the button to call a number or contact.
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_call">Call <xliff:g id="name">%1$s</xliff:g></string>
+
+    <!-- String describing the button to SMS a number or contact.
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+    <string name="description_send_text_message">Send text message to <xliff:g id="name">%1$s</xliff:g></string>
+
     <!-- String describing the icon in the call log used to represent an unheard voicemail left to
          the user.
 
