@@ -17,10 +17,13 @@
 package com.android.contacts.calllog;
 
 import com.android.contacts.CallDetailActivity;
+import com.android.contacts.calllog.CallLogFragment.CallLogAdapter;
+import com.android.contacts.calllog.CallLogFragment.CallLogQuery;
 
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.provider.CallLog.Calls;
 import android.telephony.PhoneNumberUtils;
@@ -64,6 +67,43 @@ public abstract class IntentProvider {
                             Uri.parse(voicemailUri));
                 }
                 intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_START_PLAYBACK, true);
+                return intent;
+            }
+        };
+    }
+
+    public static IntentProvider getCallDetailIntentProvider(
+            final CallLogAdapter adapter, final int position, final long id, final int groupSize) {
+        return new IntentProvider() {
+            @Override
+            public Intent getIntent(Context context) {
+                Cursor cursor = adapter.getCursor();
+                cursor.moveToPosition(position);
+                if (CallLogQuery.isSectionHeader(cursor)) {
+                    // Do nothing when a header is clicked.
+                    return null;
+                }
+                Intent intent = new Intent(context, CallDetailActivity.class);
+                if (adapter.isGroupHeader(position)) {
+                    // We want to restore the position in the cursor at the end.
+                    long[] ids = new long[groupSize];
+                    // Copy the ids of the rows in the group.
+                    for (int index = 0; index < groupSize; ++index) {
+                        ids[index] = cursor.getLong(CallLogQuery.ID);
+                        cursor.moveToNext();
+                    }
+                    intent.putExtra(CallDetailActivity.EXTRA_CALL_LOG_IDS, ids);
+                } else {
+                    // If there is a single item, use the direct URI for it.
+                    intent.setData(ContentUris.withAppendedId(
+                            Calls.CONTENT_URI_WITH_VOICEMAIL, id));
+                    String voicemailUri = cursor.getString(CallLogQuery.VOICEMAIL_URI);
+                    if (voicemailUri != null) {
+                        intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_URI,
+                                Uri.parse(voicemailUri));
+                    }
+                    intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_START_PLAYBACK, false);
+                }
                 return intent;
             }
         };
