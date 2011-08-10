@@ -74,24 +74,12 @@
                 android:background="@drawable/ic_divider_dashed_holo_dark"
             />
             <ImageView
-                android:id="@+id/call_icon"
+                android:id="@+id/secondary_action_icon"
                 android:layout_width="@dimen/call_log_call_action_width"
                 android:layout_height="@dimen/call_log_call_action_height"
                 android:layout_gravity="center_vertical"
                 android:scaleType="center"
-                android:src="@drawable/ic_ab_dialer_holo_dark"
                 android:background="@drawable/list_selector"
-                android:contentDescription="@string/description_call_log_call_button"
-            />
-            <ImageView
-                android:id="@+id/play_icon"
-                android:layout_width="@dimen/call_log_call_action_width"
-                android:layout_height="@dimen/call_log_call_action_height"
-                android:layout_gravity="center_vertical"
-                android:scaleType="center"
-                android:src="@drawable/ic_play_holo_dark"
-                android:background="@drawable/list_selector"
-                android:contentDescription="@string/description_call_log_play_button"
             />
         </LinearLayout>
         <LinearLayout

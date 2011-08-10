@@ -18,7 +18,9 @@ package com.android.contacts.calllog;
 
 import com.android.contacts.PhoneCallDetails;
 import com.android.contacts.PhoneCallDetailsHelper;
+import com.android.contacts.R;
 
+import android.content.res.Resources;
 import android.provider.CallLog.Calls;
 import android.view.View;
 
@@ -30,6 +32,8 @@ import android.view.View;
     private final PhoneCallDetailsHelper mPhoneCallDetailsHelper;
     /** Helper for handling phone numbers. */
     private final PhoneNumberHelper mPhoneNumberHelper;
+    /** Resources to look up strings. */
+    private final Resources mResources;
 
     /**
      * Creates a new helper instance.
@@ -38,9 +42,10 @@ import android.view.View;
      * @param phoneNumberHelper used to process phone number
      */
     public CallLogListItemHelper(PhoneCallDetailsHelper phoneCallDetailsHelper,
-            PhoneNumberHelper phoneNumberHelper) {
+            PhoneNumberHelper phoneNumberHelper, Resources resources) {
         mPhoneCallDetailsHelper = phoneCallDetailsHelper;
         mPhoneNumberHelper= phoneNumberHelper;
+        mResources = resources;
     }
 
     /**
@@ -59,22 +64,35 @@ import android.view.View;
 
         if (canPlay) {
             // Playback action takes preference.
-            views.callView.setVisibility(View.GONE);
-            views.playView.setVisibility(View.VISIBLE);
+            configurePlaySecondaryAction(views);
             views.unheardView.setVisibility(isHighlighted ? View.VISIBLE : View.GONE);
             views.dividerView.setVisibility(View.VISIBLE);
         } else if (canCall) {
-            // Call is the main action.
-            views.callView.setVisibility(View.VISIBLE);
-            views.playView.setVisibility(View.GONE);
+            // Call is the secondary action.
+            configureCallSecondaryAction(views);
             views.unheardView.setVisibility(View.GONE);
             views.dividerView.setVisibility(View.VISIBLE);
         } else {
             // No action available.
-            views.callView.setVisibility(View.GONE);
-            views.playView.setVisibility(View.GONE);
+            views.secondaryActionView.setVisibility(View.GONE);
             views.unheardView.setVisibility(View.GONE);
             views.dividerView.setVisibility(View.GONE);
         }
+    }
+
+    /** Sets the secondary action to correspond to the call button. */
+    private void configureCallSecondaryAction(CallLogListItemViews views) {
+        views.secondaryActionView.setVisibility(View.VISIBLE);
+        views.secondaryActionView.setImageResource(R.drawable.ic_ab_dialer_holo_dark);
+        views.secondaryActionView.setContentDescription(
+                mResources.getString(R.string.description_call_log_call_button));
+    }
+
+    /** Sets the secondary action to correspond to the play button. */
+    private void configurePlaySecondaryAction(CallLogListItemViews views) {
+        views.secondaryActionView.setVisibility(View.VISIBLE);
+        views.secondaryActionView.setImageResource(R.drawable.ic_play_holo_dark);
+        views.secondaryActionView.setContentDescription(
+                mResources.getString(R.string.description_call_log_play_button));
     }
 }

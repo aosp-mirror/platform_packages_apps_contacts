@@ -327,7 +327,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             PhoneCallDetailsHelper phoneCallDetailsHelper = new PhoneCallDetailsHelper(
                     resources, callTypeHelper, mPhoneNumberHelper);
             mCallLogViewsHelper =
-                    new CallLogListItemHelper(phoneCallDetailsHelper, mPhoneNumberHelper);
+                    new CallLogListItemHelper(
+                            phoneCallDetailsHelper, mPhoneNumberHelper, resources);
             mCallLogGroupBuilder = new CallLogGroupBuilder(this);
         }
 
@@ -660,8 +661,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         private void findAndCacheViews(View view) {
             // Get the views to bind to.
             CallLogListItemViews views = CallLogListItemViews.fromView(view);
-            views.callView.setOnClickListener(mCallPlayOnClickListener);
-            views.playView.setOnClickListener(mCallPlayOnClickListener);
+            views.secondaryActionView.setOnClickListener(mCallPlayOnClickListener);
             view.setTag(views);
         }
 
@@ -703,17 +703,15 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             if (callType == Calls.VOICEMAIL_TYPE) {
                 String voicemailUri = c.getString(CallLogQuery.VOICEMAIL_URI);
                 final long rowId = c.getLong(CallLogQuery.ID);
-                views.playView.setTag(
+                views.secondaryActionView.setTag(
                         IntentProvider.getPlayVoicemailIntentProvider(rowId, voicemailUri));
-                views.callView.setTag(null);
             } else if (!TextUtils.isEmpty(number)) {
                 // Store away the number so we can call it directly if you click on the call icon.
-                views.callView.setTag(IntentProvider.getReturnCallIntentProvider(number));
-                views.playView.setTag(null);
+                views.secondaryActionView.setTag(
+                        IntentProvider.getReturnCallIntentProvider(number));
             } else {
                 // No action enabled.
-                views.callView.setTag(null);
-                views.playView.setTag(null);
+                views.secondaryActionView.setTag(null);
             }
 
             // Lookup contacts with this number
