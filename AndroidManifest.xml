@@ -599,17 +599,23 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/BackgroundOnly">
             <intent-filter>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-                <data android:mimeType="text/x-vcard" />
-                <data android:mimeType="text/x-vCard" />
-                <data android:mimeType="text/vcard" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <data android:mimeType="text/directory" />
                 <data android:mimeType="text/vcard" />
                 <data android:mimeType="text/x-vcard" />
+                <data android:mimeType="text/x-vCard" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".vcard.NfcImportVCardActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:theme="@style/BackgroundOnly">
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <data android:mimeType="text/vcard" />
+                <data android:mimeType="text/x-vcard" />
+                <data android:mimeType="text/x-vCard" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

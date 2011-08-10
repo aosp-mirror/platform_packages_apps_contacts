@@ -15,9 +15,10 @@
  */
 package com.android.contacts.vcard;
 
-import com.android.contacts.R;
+import com.android.vcard.VCardEntry;
 import com.android.vcard.VCardEntryCommitter;
 import com.android.vcard.VCardEntryConstructor;
+import com.android.vcard.VCardEntryHandler;
 import com.android.vcard.VCardInterpreter;
 import com.android.vcard.VCardParser;
 import com.android.vcard.VCardParser_V21;
@@ -28,14 +29,8 @@ import com.android.vcard.exception.VCardNotSupportedException;
 import com.android.vcard.exception.VCardVersionException;
 
 import android.accounts.Account;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.content.ContentResolver;
-import android.content.ContentUris;
-import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
-import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 
 import java.io.ByteArrayInputStream;
@@ -48,17 +43,15 @@ import java.util.List;
  * Class for processing one import request from a user. Dropped after importing requested Uri(s).
  * {@link VCardService} will create another object when there is another import request.
  */
-public class ImportProcessor extends ProcessorBase {
+public class ImportProcessor extends ProcessorBase implements VCardEntryHandler {
     private static final String LOG_TAG = "VCardImport";
     private static final boolean DEBUG = VCardService.DEBUG;
 
     private final VCardService mService;
     private final ContentResolver mResolver;
-    private final NotificationManager mNotificationManager;
     private final ImportRequest mImportRequest;
     private final int mJobId;
-
-    private final ImportProgressNotifier mNotifier;
+    private final VCardImportExportListener mListener;
 
     // TODO: remove and show appropriate message instead.
     private final List<Uri> mFailedUris = new ArrayList<Uri>();
@@ -68,17 +61,35 @@ public class ImportProcessor extends ProcessorBase {
     private volatile boolean mCanceled;
     private volatile boolean mDone;
 
-    public ImportProcessor(final VCardService service, final ImportRequest request,
-            final int jobId) {
+    private int mCurrentCount = 0;
+    private int mTotalCount = 0;
+
+    public ImportProcessor(final VCardService service, final VCardImportExportListener listener,
+            final ImportRequest request, final int jobId) {
         mService = service;
         mResolver = mService.getContentResolver();
-        mNotificationManager = (NotificationManager)
-                mService.getSystemService(Context.NOTIFICATION_SERVICE);
+        mListener = listener;
 
         mImportRequest = request;
         mJobId = jobId;
-        mNotifier = new ImportProgressNotifier(service, mNotificationManager, jobId,
-                request.displayName);
+    }
+
+    @Override
+    public void onStart() {
+        // do nothing
+    }
+
+    @Override
+    public void onEnd() {
+        // do nothing
+    }
+
+    @Override
+    public void onEntryCreated(VCardEntry entry) {
+        mCurrentCount++;
+        if (mListener != null) {
+            mListener.onImportParsed(mImportRequest, mJobId, entry, mCurrentCount, mTotalCount);
+        }
     }
 
     @Override
@@ -92,8 +103,8 @@ public class ImportProcessor extends ProcessorBase {
         try {
             runInternal();
 
-            if (isCancelled()) {
-                doCancelNotification();
+            if (isCancelled() && mListener != null) {
+                mListener.onImportCanceled(mImportRequest, mJobId);
             }
         } catch (OutOfMemoryError e) {
             Log.e(LOG_TAG, "OutOfMemoryError thrown during import", e);
@@ -136,15 +147,13 @@ public class ImportProcessor extends ProcessorBase {
         final int estimatedVCardType = request.estimatedVCardType;
         final String estimatedCharset = request.estimatedCharset;
         final int entryCount = request.entryCount;
-        mNotifier.addTotalCount(entryCount);
+        mTotalCount += entryCount;
 
         final VCardEntryConstructor constructor =
                 new VCardEntryConstructor(estimatedVCardType, account, estimatedCharset);
         final VCardEntryCommitter committer = new VCardEntryCommitter(mResolver);
         constructor.addEntryHandler(committer);
-        if (!request.showImmediately) {
-            constructor.addEntryHandler(mNotifier);
-        }
+        constructor.addEntryHandler(this);
 
         InputStream is = null;
         boolean successful = false;
@@ -184,53 +193,22 @@ public class ImportProcessor extends ProcessorBase {
             } else {
                 Log.i(LOG_TAG, "Successfully finished importing one vCard file: " + uri);
                 List<Uri> uris = committer.getCreatedUris();
-                if (uris != null && uris.size() > 0) {
-                    // TODO: construct intent showing a list of imported contact list.
-                    doFinishNotification(uris.get(0));
-                } else {
-                    // Not critical, but suspicious.
-                    Log.w(LOG_TAG,
-                            "Created Uris is null or 0 length " +
-                            "though the creation itself is successful.");
-                    doFinishNotification(null);
+                if (mListener != null) {
+                    if (uris != null && uris.size() > 0) {
+                        // TODO: construct intent showing a list of imported contact list.
+                        mListener.onImportFinished(mImportRequest, mJobId, uris.get(0));
+                    } else {
+                        // Not critical, but suspicious.
+                        Log.w(LOG_TAG,
+                                "Created Uris is null or 0 length " +
+                                "though the creation itself is successful.");
+                        mListener.onImportFinished(mImportRequest, mJobId, null);
+                    }
                 }
             }
         } else {
             Log.w(LOG_TAG, "Failed to read one vCard file: " + uri);
             mFailedUris.add(uri);
-        }
-    }
-
-    private void doCancelNotification() {
-        final String description = mService.getString(R.string.importing_vcard_canceled_title,
-                mImportRequest.displayName);
-        final Notification notification =
-                VCardService.constructCancelNotification(mService, description);
-        mNotificationManager.notify(VCardService.DEFAULT_NOTIFICATION_TAG, mJobId, notification);
-    }
-
-    private void doFinishNotification(final Uri createdUri) {
-        final String description = mService.getString(R.string.importing_vcard_finished_title,
-                mImportRequest.displayName);
-        final Intent intent;
-        if (createdUri != null) {
-            final long rawContactId = ContentUris.parseId(createdUri);
-            final Uri contactUri = RawContacts.getContactLookupUri(
-                    mResolver, ContentUris.withAppendedId(
-                            RawContacts.CONTENT_URI, rawContactId));
-            intent = new Intent(Intent.ACTION_VIEW, contactUri);
-        } else {
-            intent = null;
-        }
-        if (mImportRequest.showImmediately && (intent != null)) {
-            mNotificationManager.cancel(VCardService.DEFAULT_NOTIFICATION_TAG, mJobId);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            mService.startActivity(intent);
-        } else {
-            final Notification notification = VCardService.constructFinishNotification(mService,
-                    description, null, intent);
-            mNotificationManager.notify(VCardService.DEFAULT_NOTIFICATION_TAG, mJobId,
-                    notification);
         }
     }
 

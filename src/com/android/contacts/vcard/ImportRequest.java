@@ -56,12 +56,6 @@ public class ImportRequest {
     public final String displayName;
 
     /**
-     * Whether to show the imported vcard immediately after the import is done.
-     * If set to false, just a notification will be shown.
-     */
-    public final boolean showImmediately;
-
-    /**
      * Can be {@link VCardSourceDetector#PARSE_TYPE_UNKNOWN}.
      */
     public final int estimatedVCardType;
@@ -103,7 +97,7 @@ public class ImportRequest {
 
     public ImportRequest(Account account,
             byte[] data, Uri uri, String displayName, int estimatedType, String estimatedCharset,
-            int vcardVersion, int entryCount, boolean showImmediately) {
+            int vcardVersion, int entryCount) {
         this.account = account;
         this.data = data;
         this.uri = uri;
@@ -112,6 +106,5 @@ public class ImportRequest {
         this.estimatedCharset = estimatedCharset;
         this.vcardVersion = vcardVersion;
         this.entryCount = entryCount;
-        this.showImmediately = showImmediately;
     }
 }
