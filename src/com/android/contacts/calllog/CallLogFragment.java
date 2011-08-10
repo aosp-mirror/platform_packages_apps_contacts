@@ -89,6 +89,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                 Calls.TYPE,
                 Calls.COUNTRY_ISO,
                 Calls.VOICEMAIL_URI,
+                Calls.GEOCODED_LOCATION,
         };
 
         public static final int ID = 0;
@@ -98,6 +99,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         public static final int CALL_TYPE = 4;
         public static final int COUNTRY_ISO = 5;
         public static final int VOICEMAIL_URI = 6;
+        public static final int GEOCODED_LOCATION = 7;
 
         /**
          * The name of the synthetic "section" column.
@@ -107,7 +109,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
          */
         public static final String SECTION_NAME = "section";
         /** The index of the "section" column in the projection. */
-        public static final int SECTION = 7;
+        public static final int SECTION = 8;
         /** The value of the "section" column for the header of the new section. */
         public static final int SECTION_NEW_HEADER = 0;
         /** The value of the "section" column for the items of the new section. */
@@ -754,12 +756,13 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             final Uri thumbnailUri = info.thumbnailUri;
             final String lookupKey = info.lookupKey;
             final int[] callTypes = getCallTypes(c, count);
+            final String geocode = c.getString(CallLogQuery.GEOCODED_LOCATION);
             final PhoneCallDetails details;
             if (TextUtils.isEmpty(name)) {
-                details = new PhoneCallDetails(number, formattedNumber, countryIso,
+                details = new PhoneCallDetails(number, formattedNumber, countryIso, geocode,
                         callTypes, date, duration);
             } else {
-                details = new PhoneCallDetails(number, formattedNumber, countryIso,
+                details = new PhoneCallDetails(number, formattedNumber, countryIso, geocode,
                         callTypes, date, duration, name, ntype, label, personId, thumbnailUri);
             }
 

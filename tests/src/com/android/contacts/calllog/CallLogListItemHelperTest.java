@@ -42,6 +42,8 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
     private static final String TEST_VOICEMAIL_NUMBER = "123";
     /** The country ISO name used in the tests. */
     private static final String TEST_COUNTRY_ISO = "US";
+    /** The geocoded location used in the tests. */
+    private static final String TEST_GEOCODE = "United States";
 
     /** The object under test. */
     private CallLogListItemHelper mHelper;
@@ -132,7 +134,7 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
     private void setPhoneCallDetailsWithNumberAndType(String number, String formattedNumber,
             int callType) {
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(number, formattedNumber, TEST_COUNTRY_ISO,
+                new PhoneCallDetails(number, formattedNumber, TEST_COUNTRY_ISO, TEST_GEOCODE,
                         new int[]{ callType }, TEST_DATE, TEST_DURATION),
                 false);
     }
@@ -141,7 +143,7 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
     private void setPhoneCallDetailsWithTypes(int... types) {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
-                        types, TEST_DATE, TEST_DURATION),
+                        TEST_GEOCODE, types, TEST_DATE, TEST_DURATION),
                 false);
     }
 
@@ -149,7 +151,7 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
     private void setUnreadPhoneCallDetailsWithTypes(int... types) {
         mHelper.setPhoneCallDetails(mViews,
                 new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
-                        types, TEST_DATE, TEST_DURATION),
+                        TEST_GEOCODE, types, TEST_DATE, TEST_DURATION),
                 true);
     }
 }
