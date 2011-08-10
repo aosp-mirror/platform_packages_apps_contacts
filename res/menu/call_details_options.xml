@@ -22,13 +22,6 @@
         android:onClick="onMenuTrashVoicemail"
     />
     <item
-        android:id="@+id/menu_share_voicemail"
-        android:icon="@drawable/ic_share_holo_dark"
-        android:showAsAction="ifRoom"
-        android:title="@string/recentCalls_shareVoicemail"
-        android:onClick="onMenuShareVoicemail"
-    />
-    <item
         android:id="@+id/menu_remove_from_call_log"
         android:icon="@android:drawable/ic_menu_close_clear_cancel"
         android:title="@string/recentCalls_removeFromRecentList"
