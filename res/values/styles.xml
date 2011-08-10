@@ -76,7 +76,6 @@
 
     <style name="ContactDetailActivityTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
-        <item name="android:windowContentOverlay">@null</item>
         <item name="android:textColorPrimary">@color/primary_text_color</item>
         <item name="android:textColorSecondary">@color/secondary_text_color</item>
     </style>

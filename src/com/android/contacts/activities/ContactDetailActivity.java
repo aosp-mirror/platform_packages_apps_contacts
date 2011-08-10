@@ -152,7 +152,6 @@ public class ContactDetailActivity extends ContactsActivity {
         }
 
         mDetailFragment.setListener(mFragmentListener);
-        TabCarouselScrollManager.bind(mTabCarousel, mDetailFragment, mUpdatesFragment);
         mDetailFragment.setData(mLookupUri, mContactData);
         mUpdatesFragment.setData(mLookupUri, mContactData);
 
@@ -348,6 +347,7 @@ public class ContactDetailActivity extends ContactsActivity {
             mTabCarousel = (ContactDetailTabCarousel) findViewById(R.id.tab_carousel);
             if (mTabCarousel != null) {
                 mTabCarousel.setListener(mTabCarouselListener);
+                TabCarouselScrollManager.bind(mTabCarousel, mDetailFragment, mUpdatesFragment);
             }
 
             mViewPager = (ViewPager) findViewById(R.id.pager);
