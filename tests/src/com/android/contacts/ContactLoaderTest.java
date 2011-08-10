@@ -301,6 +301,7 @@ public class ContactLoaderTest extends LoaderTestCase {
 
                         Contacts.SEND_TO_VOICEMAIL,
                         Contacts.CUSTOM_RINGTONE,
+                        Contacts.IS_USER_PROFILE,
                     })
                     .withSortOrder(Contacts.Entity.RAW_CONTACT_ID)
                     .returnRow(
@@ -337,7 +338,8 @@ public class ContactLoaderTest extends LoaderTestCase {
                         "content:some.photo.uri",
 
                         0,
-                        null
+                        null,
+                        0
                     );
         }
 

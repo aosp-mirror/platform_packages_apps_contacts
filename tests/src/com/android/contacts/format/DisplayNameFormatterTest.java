@@ -53,32 +53,32 @@ public class DisplayNameFormatterTest extends AndroidTestCase {
     public void testSetDisplayName_Simple() {
         setNames("John Doe", "Doe John");
         setDisplayName();
-        SpannedTestUtils.checkHtmlText("<b>John </b>Doe", mView);
+        SpannedTestUtils.checkHtmlText("John Doe", mView);
         setNames("Jean Pierre Doe", "Doe Jean Pierre");
         setDisplayName();
-        SpannedTestUtils.checkHtmlText("<b>Jean Pierre </b>Doe", mView);
+        SpannedTestUtils.checkHtmlText("Jean Pierre Doe", mView);
         setNames("John Doe Smith", "Doe Smith John");
         setDisplayName();
-        SpannedTestUtils.checkHtmlText("<b>John </b>Doe Smith", mView);
+        SpannedTestUtils.checkHtmlText("John Doe Smith", mView);
     }
     public void testSetDisplayName_AccidentalOverlap() {
         // This is probably not what we want, but we assume that the two names differ only in the
         // order in which the two components are listed.
         setNames("Johnson John", "Johnson Smith");
         setDisplayName();
-        SpannedTestUtils.checkHtmlText("<b>Johnson </b>John", mView);
+        SpannedTestUtils.checkHtmlText("Johnson John", mView);
     }
 
     public void testSetDisplayName_Reversed() {
         setNames("John Doe", "Doe John");
         setDisplayNameReversed();
-        SpannedTestUtils.checkHtmlText("John <b>Doe</b>", mView);
+        SpannedTestUtils.checkHtmlText("John Doe", mView);
         setNames("Jean Pierre Doe", "Doe Jean Pierre");
         setDisplayNameReversed();
-        SpannedTestUtils.checkHtmlText("Jean Pierre <b>Doe</b>", mView);
+        SpannedTestUtils.checkHtmlText("Jean Pierre Doe", mView);
         setNames("John Doe Smith", "Doe Smith John");
         setDisplayNameReversed();
-        SpannedTestUtils.checkHtmlText("John <b>Doe Smith</b>", mView);
+        SpannedTestUtils.checkHtmlText("John Doe Smith", mView);
     }
 
     public void testSetDisplayName_NoOverlap() {
@@ -90,26 +90,26 @@ public class DisplayNameFormatterTest extends AndroidTestCase {
     public void testSetDisplayName_Prefix() {
         setNames("John Doe", "Doe John");
         setDisplayNameWithPrefix("DO");
-        SpannedTestUtils.checkHtmlText("<b>John </b>" + START + "Do" + END + "e", mView);
+        SpannedTestUtils.checkHtmlText("John " + START + "Do" + END + "e", mView);
     }
 
     public void testSetDisplayName_PrefixFirstName() {
         setNames("John Doe", "Doe John");
         setDisplayNameWithPrefix("JO");
-        SpannedTestUtils.checkHtmlText(START + "<b>Jo</b>" + END + "<b>hn </b>Doe", mView);
+        SpannedTestUtils.checkHtmlText(START + "Jo" + END + "hn Doe", mView);
     }
 
     public void testSetDisplayName_PrefixMiddleName() {
         setNames("John Paul Doe", "Doe John Paul");
         setDisplayNameWithPrefix("PAU");
-        SpannedTestUtils.checkHtmlText("<b>John </b>" + START + "<b>Pau</b>" + END + "<b>l </b>Doe",
+        SpannedTestUtils.checkHtmlText("John " + START + "Pau" + END + "l Doe",
                 mView);
     }
 
     public void testSetDisplayName_ReversedPrefix() {
         setNames("John Doe", "Doe John");
         setDisplayNameReversedWithPrefix("DO");
-        SpannedTestUtils.checkHtmlText("John " + START + "<b>Do</b>" + END + "<b>e</b>", mView);
+        SpannedTestUtils.checkHtmlText("John " + START + "Do" + END + "e", mView);
     }
 
     public void testSetDisplayName_Empty() {
@@ -136,7 +136,7 @@ public class DisplayNameFormatterTest extends AndroidTestCase {
         mDisplayNameFormatter.setTextWithHighlightingFactory(new TestTextWithHighlightingFactory());
         setNames("John Doe", "Doe John");
         setDisplayNameWithHighlighting();
-        SpannedTestUtils.checkHtmlText("<i><b>John </b></i><i>Doe</i> <i>Doe John</i>", mView);
+        SpannedTestUtils.checkHtmlText("<i>John Doe</i> <i>Doe John</i>", mView);
     }
 
     /**

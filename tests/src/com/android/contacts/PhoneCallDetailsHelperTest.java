@@ -175,34 +175,25 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
     }
 
     public void testSetPhoneCallDetails_Geocode() {
-        setPhoneCallDetailsWithNumber("+14125555555", "1-412-555-5555");
+        setPhoneCallDetailsWithNumberAndGeocode("+14125555555", "1-412-555-5555", "Pennsylvania");
         assertNameEquals("1-412-555-5555");  // The phone number is shown as the name.
         assertNumberEquals("Pennsylvania");  // The geocode is shown as the number.
     }
 
     public void testSetPhoneCallDetails_NoGeocode() {
-        setPhoneCallDetailsWithNumber("+0", "+0");
-        assertNameEquals("+0");  // The phone number is shown as the name.
+        setPhoneCallDetailsWithNumberAndGeocode("+14125555555", "1-412-555-5555", null);
+        assertNameEquals("1-412-555-5555");  // The phone number is shown as the name.
         assertNumberEquals("-");  // The empty geocode is shown as the number.
     }
 
-    public void testSetPhoneCallDetails_NoGeocodeForUnknown() {
-        setPhoneCallDetailsWithNumber(CallerInfo.UNKNOWN_NUMBER, "");
-        assertNumberEquals("-");  // The empty geocode is shown as the number.
-    }
-
-    public void testSetPhoneCallDetails_NoGeocodeForPrivate() {
-        setPhoneCallDetailsWithNumber(CallerInfo.PRIVATE_NUMBER, "");
-        assertNumberEquals("-");  // The empty geocode is shown as the number.
-    }
-
-    public void testSetPhoneCallDetails_NoGeocodeForPayphone() {
-        setPhoneCallDetailsWithNumber(CallerInfo.PAYPHONE_NUMBER, "");
+    public void testSetPhoneCallDetails_EmptyGeocode() {
+        setPhoneCallDetailsWithNumberAndGeocode("+14125555555", "1-412-555-5555", "");
+        assertNameEquals("1-412-555-5555");  // The phone number is shown as the name.
         assertNumberEquals("-");  // The empty geocode is shown as the number.
     }
 
     public void testSetPhoneCallDetails_NoGeocodeForVoicemail() {
-        setPhoneCallDetailsWithNumber(TEST_VOICEMAIL_NUMBER, "");
+        setPhoneCallDetailsWithNumberAndGeocode(TEST_VOICEMAIL_NUMBER, "", "United States");
         assertNumberEquals("-");  // The empty geocode is shown as the number.
     }
 
@@ -269,8 +260,14 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
 
     /** Sets the phone call details with default values and the given number. */
     private void setPhoneCallDetailsWithNumber(String number, String formattedNumber) {
+        setPhoneCallDetailsWithNumberAndGeocode(number, formattedNumber, TEST_GEOCODE);
+    }
+
+    /** Sets the phone call details with default values and the given number. */
+    private void setPhoneCallDetailsWithNumberAndGeocode(String number, String formattedNumber,
+            String geocodedLocation) {
         mHelper.setPhoneCallDetails(mViews,
-                new PhoneCallDetails(number, formattedNumber, TEST_COUNTRY_ISO, TEST_GEOCODE,
+                new PhoneCallDetails(number, formattedNumber, TEST_COUNTRY_ISO, geocodedLocation,
                         new int[]{ Calls.VOICEMAIL_TYPE }, TEST_DATE, TEST_DURATION),
                 true);
     }
