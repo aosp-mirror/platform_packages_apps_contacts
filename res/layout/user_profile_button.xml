@@ -19,9 +19,10 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
-    android:paddingLeft="@dimen/contact_browser_list_left_margin"
     android:singleLine="true"
     android:text="@string/profile_display_name"
     android:ellipsize="end"
+    android:minHeight="@dimen/contact_browser_list_item_photo_size"
     android:gravity="left|center_vertical"
+    android:paddingLeft="@dimen/contact_browser_list_item_text_indent"
     android:textAppearance="?android:attr/textAppearanceMedium" />

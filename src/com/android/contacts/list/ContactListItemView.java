@@ -36,6 +36,7 @@ import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,6 +86,9 @@ public class ContactListItemView extends ViewGroup
     private final int mHeaderTextSize;
     private final int mHeaderUnderlineHeight;
     private final int mHeaderUnderlineColor;
+    private final int mCountViewTextSize;
+    private final int mContactsCountTextColor;
+    private final int mTextIndent;
 
     private Drawable mActivatedBackgroundDrawable;
 
@@ -226,7 +230,7 @@ public class ContactListItemView extends ViewGroup
                 R.styleable.ContactListItemView_list_item_header_text_indent, 0);
         mHeaderTextColor = a.getColor(
                 R.styleable.ContactListItemView_list_item_header_text_color, Color.BLACK);
-        mHeaderTextSize = a.getDimensionPixelSize(
+        mHeaderTextSize = (int)a.getDimensionPixelSize(
                 R.styleable.ContactListItemView_list_item_header_text_size, 12);
         mHeaderBackgroundHeight = a.getDimensionPixelSize(
                 R.styleable.ContactListItemView_list_item_header_height, 30);
@@ -234,6 +238,12 @@ public class ContactListItemView extends ViewGroup
                 R.styleable.ContactListItemView_list_item_header_underline_height, 1);
         mHeaderUnderlineColor = a.getColor(
                 R.styleable.ContactListItemView_list_item_header_underline_color, 0);
+        mTextIndent = a.getDimensionPixelOffset(
+                R.styleable.ContactListItemView_list_item_text_indent, 0);
+        mCountViewTextSize = (int)a.getDimensionPixelSize(
+                R.styleable.ContactListItemView_list_item_contacts_count_text_size, 12);
+        mContactsCountTextColor = a.getColor(
+                R.styleable.ContactListItemView_list_item_contacts_count_text_color, Color.BLACK);
 
         mPrefixHighligher = new PrefixHighlighter(
                 a.getColor(R.styleable.ContactListItemView_list_item_prefix_highlight_color,
@@ -424,7 +434,7 @@ public class ContactListItemView extends ViewGroup
         // Layout all text view and presence icon
         // Put name TextView first
         if (isVisible(mNameTextView)) {
-            mNameTextView.layout(leftBound,
+            mNameTextView.layout(leftBound + mTextIndent,
                     textTopBound,
                     rightBound,
                     textTopBound + mNameTextViewHeight);
@@ -432,13 +442,13 @@ public class ContactListItemView extends ViewGroup
         }
 
         // Presence and status
-        int statusLeftBound = leftBound;
+        int statusLeftBound = leftBound + mTextIndent;
         if (isVisible(mPresenceIcon)) {
             int iconWidth = mPresenceIcon.getMeasuredWidth();
             mPresenceIcon.layout(
-                    leftBound,
+                    leftBound + mTextIndent,
                     textTopBound,
-                    leftBound + iconWidth,
+                    leftBound + iconWidth + mTextIndent,
                     textTopBound + mStatusTextViewHeight);
             statusLeftBound += (iconWidth + mPresenceIconMargin);
         }
@@ -457,7 +467,7 @@ public class ContactListItemView extends ViewGroup
         // Rest of text views
         int dataLeftBound = leftBound;
         if (isVisible(mPhoneticNameTextView)) {
-            mPhoneticNameTextView.layout(leftBound,
+            mPhoneticNameTextView.layout(leftBound + mTextIndent,
                     textTopBound,
                     rightBound,
                     textTopBound + mPhoneticNameTextViewHeight);
@@ -465,8 +475,8 @@ public class ContactListItemView extends ViewGroup
         }
 
         if (isVisible(mLabelView)) {
-            dataLeftBound = leftBound + mLabelView.getMeasuredWidth();
-            mLabelView.layout(leftBound,
+            dataLeftBound = leftBound + mLabelView.getMeasuredWidth() + mTextIndent;
+            mLabelView.layout(leftBound + mTextIndent,
                     textTopBound,
                     dataLeftBound,
                     textTopBound + mLabelTextViewHeight);
@@ -484,7 +494,7 @@ public class ContactListItemView extends ViewGroup
         }
 
         if (isVisible(mSnippetView)) {
-            mSnippetView.layout(leftBound,
+            mSnippetView.layout(leftBound + mTextIndent,
                     textTopBound,
                     rightBound,
                     textTopBound + mSnippetTextViewHeight);
@@ -645,7 +655,7 @@ public class ContactListItemView extends ViewGroup
             if (mHeaderTextView == null) {
                 mHeaderTextView = new TextView(mContext);
                 mHeaderTextView.setTextColor(mHeaderTextColor);
-                mHeaderTextView.setTextSize(mHeaderTextSize);
+                mHeaderTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mHeaderTextSize);
                 mHeaderTextView.setTypeface(mHeaderTextView.getTypeface(), Typeface.BOLD);
                 mHeaderTextView.setGravity(Gravity.CENTER_VERTICAL);
                 addView(mHeaderTextView);
@@ -958,6 +968,9 @@ public class ContactListItemView extends ViewGroup
         } else {
             getCountView();
             mCountView.setText(text);
+            mCountView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mCountViewTextSize);
+            mCountView.setGravity(Gravity.CENTER_VERTICAL);
+            mCountView.setTextColor(mContactsCountTextColor);
             mCountView.setVisibility(VISIBLE);
         }
     }

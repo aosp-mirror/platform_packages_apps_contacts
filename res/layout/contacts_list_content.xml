@@ -41,14 +41,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="@dimen/contact_filter_header_min_height"
-            android:layout_marginLeft="8dip"
             android:singleLine="true"
             android:ellipsize="end"
-            android:gravity="left"
+            android:textStyle="bold"
+            android:gravity="left|center_vertical"
+            android:textAllCaps="true"
+            android:paddingLeft="@dimen/contact_browser_list_item_text_indent"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="?android:attr/textColorSecondary" />
         <View
             android:id="@+id/account_filter_header_bottom_divider"
+            android:layout_height="1dip"
             style="@style/SectionDivider" />
     </LinearLayout>
 
