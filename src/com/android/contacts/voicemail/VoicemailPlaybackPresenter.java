@@ -27,6 +27,7 @@ import com.android.ex.variablespeed.SingleThreadedMediaPlayerProxy;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SeekBar;
@@ -165,7 +166,7 @@ import javax.annotation.concurrent.ThreadSafe;
                     mView.playbackError(mException);
                 }
             }
-        });
+        }, AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     private void postSuccessfulPrepareActions() {

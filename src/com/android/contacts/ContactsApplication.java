@@ -16,6 +16,8 @@
 
 package com.android.contacts;
 
+import static com.android.contacts.util.BackgroundTaskService.createAsyncTaskBackgroundTaskService;
+
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.test.InjectedServices;
 import com.android.contacts.util.BackgroundTaskService;
@@ -97,7 +99,7 @@ public final class ContactsApplication extends Application {
 
         if (BackgroundTaskService.BACKGROUND_TASK_SERVICE.equals(name)) {
             if (mBackgroundTaskService == null) {
-                mBackgroundTaskService = BackgroundTaskService.createBackgroundTaskService();
+                mBackgroundTaskService = createAsyncTaskBackgroundTaskService();
             }
             return mBackgroundTaskService;
         }

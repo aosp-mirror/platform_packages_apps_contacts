@@ -18,25 +18,54 @@ package com.android.contacts.util;
 
 import android.os.AsyncTask;
 
+import java.util.concurrent.Executor;
+
 /**
  * Service used to submit tasks to run in the background.
  * <p>
  * BackgroundTaskService makes the same memory-visibility guarantees that AsyncTask which it
  * emulates makes, namely that fields set in the {@link BackgroundTask#doInBackground()} method
  * will be visible to the {@link BackgroundTask#onPostExecute()} method.
+ * <p>
+ * You are not expected to derive from this class unless you are writing your own test
+ * implementation, or you are absolutely sure that the instance in
+ * {@link #createAsyncTaskBackgroundTaskService()} doesn't do what you need.
  */
 public abstract class BackgroundTaskService {
     public static final String BACKGROUND_TASK_SERVICE = BackgroundTaskService.class.getName();
 
+    /**
+     * Executes the given BackgroundTask with the default Executor.
+     * <p>
+     * All {@link BackgroundTask#doInBackground()} tasks will be guaranteed to happen serially.
+     * If this is not what you want, see {@link #submit(BackgroundTask, Executor)}.
+     */
     public abstract void submit(BackgroundTask task);
 
-    public static BackgroundTaskService createBackgroundTaskService() {
+    /**
+     * Executes the BackgroundTask with the supplied Executor.
+     * <p>
+     * The main use-case for this method will be to allow submitted tasks to perform their
+     * {@link BackgroundTask#doInBackground()} methods concurrently.
+     */
+    public abstract void submit(BackgroundTask task, Executor executor);
+
+    /**
+     * Creates a concrete BackgroundTaskService whose default Executor is
+     * {@link AsyncTask#SERIAL_EXECUTOR}.
+     */
+    public static BackgroundTaskService createAsyncTaskBackgroundTaskService() {
         return new AsyncTaskBackgroundTaskService();
     }
 
     private static final class AsyncTaskBackgroundTaskService extends BackgroundTaskService {
         @Override
-        public void submit(final BackgroundTask task) {
+        public void submit(BackgroundTask task) {
+            submit(task, AsyncTask.SERIAL_EXECUTOR);
+        }
+
+        @Override
+        public void submit(final BackgroundTask task, Executor executor) {
             new AsyncTask<Void, Void, Void>() {
                 @Override
                 protected Void doInBackground(Void... params) {
@@ -48,7 +77,7 @@ public abstract class BackgroundTaskService {
                 protected void onPostExecute(Void result) {
                     task.onPostExecute();
                 }
-            }.execute();
+            }.executeOnExecutor(executor);
         }
     }
 }
