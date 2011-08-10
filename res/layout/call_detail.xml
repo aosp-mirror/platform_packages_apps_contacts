@@ -89,11 +89,12 @@
         android:layout_width="wrap_content"
         android:layout_height="0dip"
         android:layout_alignLeft="@id/photo_text_bar"
-        android:layout_alignTop="@id/photo_text_bar"
         android:layout_toLeftOf="@id/main_action"
+        android:layout_alignTop="@id/photo_text_bar"
         android:layout_alignBottom="@id/photo_text_bar"
         android:layout_marginRight="@dimen/call_log_inner_margin"
         android:layout_marginLeft="@dimen/call_detail_contact_name_margin"
+        android:gravity="center_vertical"
         android:textColor="?attr/call_log_primary_text_color"
         android:textSize="18sp"
         android:singleLine="true"
@@ -113,14 +114,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/voicemail_container"
+        android:layout_marginTop="@dimen/call_log_icon_margin"
         android:background="?attr/call_log_primary_background_color"
     />
     <ListView
         android:id="@+id/history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/call_log_icon_margin"
         android:layout_alignParentLeft="true"
         android:layout_below="@android:id/list"
-        android:background="?attr/call_log_secondary_background_color"
+        android:background="@android:color/black"
     />
 </RelativeLayout>

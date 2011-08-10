@@ -228,6 +228,7 @@
     <dimen name="call_log_inner_margin">8dip</dimen>
     <dimen name="call_log_outer_margin">16dip</dimen>
     <dimen name="call_log_indent_margin">24dip</dimen>
+    <dimen name="call_log_list_item_height">56dip</dimen>
     <dimen name="call_log_list_contact_photo_size">64dip</dimen>
     <dimen name="call_detail_contact_background_height">174dip</dimen>
     <dimen name="call_detail_contact_name_margin">24dip</dimen>

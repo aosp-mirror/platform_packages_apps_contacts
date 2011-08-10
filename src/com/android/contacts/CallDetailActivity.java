@@ -41,6 +41,7 @@ import android.os.Bundle;
 import android.provider.CallLog;
 import android.provider.CallLog.Calls;
 import android.provider.Contacts.Intents.Insert;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.PhoneLookup;
 import android.provider.VoicemailContract.Voicemails;
@@ -54,7 +55,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -71,8 +71,7 @@ import java.util.List;
  * This activity can be either started with the URI of a single call log entry, or with the
  * {@link #EXTRA_CALL_LOG_IDS} extra to specify a group of call log entries.
  */
-public class CallDetailActivity extends ListActivity implements
-        AdapterView.OnItemClickListener {
+public class CallDetailActivity extends ListActivity {
     private static final String TAG = "CallDetail";
 
     /** A long array extra containing ids of call log entries to display. */
@@ -169,7 +168,6 @@ public class CallDetailActivity extends ListActivity implements
         mContactBackgroundView = (ImageView) findViewById(R.id.contact_background);
         mDefaultCountryIso = ContactsUtils.getCurrentCountryIso(this);
         mContactPhotoManager = ContactPhotoManager.getInstance(this);
-        getListView().setOnItemClickListener(this);
         configureActionBar();
         optionallyHandleVoicemail();
     }
@@ -292,12 +290,13 @@ public class CallDetailActivity extends ListActivity implements
         }
 
         // We know that all calls are from the same number and the same contact, so pick the first.
-        mNumber = details[0].number.toString();
-        final long personId = details[0].personId;
-        final Uri photoUri = details[0].photoUri;
+        PhoneCallDetails firstDetails = details[0];
+        mNumber = firstDetails.number.toString();
+        final long personId = firstDetails.personId;
+        final Uri photoUri = firstDetails.photoUri;
 
         // Set the details header, based on the first phone call.
-        mPhoneCallDetailsHelper.setPhoneCallName(mHeaderTextView, details[0]);
+        mPhoneCallDetailsHelper.setPhoneCallName(mHeaderTextView, firstDetails);
 
         // Cache the details about the phone number.
         final Uri numberCallUri = mPhoneNumberHelper.getCallUri(mNumber);
@@ -310,7 +309,7 @@ public class CallDetailActivity extends ListActivity implements
         final Intent mainActionIntent;
         final int mainActionIcon;
 
-        if (details[0].personId != -1) {
+        if (firstDetails.personId != -1) {
             Uri personUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, personId);
             mainActionIntent = new Intent(Intent.ACTION_VIEW, personUri);
             mainActionIcon = R.drawable.ic_contacts_holo_dark;
@@ -361,17 +360,28 @@ public class CallDetailActivity extends ListActivity implements
 
         // This action allows to call the number that places the call.
         if (canPlaceCallsTo) {
-            actions.add(new ViewEntry(android.R.drawable.sym_action_call,
-                    getString(R.string.menu_callNumber, mNumber),
-                    new Intent(Intent.ACTION_CALL_PRIVILEGED, numberCallUri)));
-        }
+            final CharSequence displayNumber =
+                    mPhoneNumberHelper.getDisplayNumber(
+                            firstDetails.number, firstDetails.formattedNumber);
 
-        // This action allows to send an SMS to the number that placed the call.
-        if (mPhoneNumberHelper.canSendSmsTo(mNumber)) {
-            Intent smsIntent = new Intent(Intent.ACTION_SENDTO,
-                    Uri.fromParts("sms", mNumber, null));
-            actions.add(new ViewEntry(R.drawable.sym_action_sms,
-                    getString(R.string.menu_sendTextMessage), smsIntent));
+            ViewEntry entry = new ViewEntry(
+                    getString(R.string.menu_callNumber, displayNumber),
+                    new Intent(Intent.ACTION_CALL_PRIVILEGED, numberCallUri));
+
+            // Only show a label if the number is shown and it is not a SIP address.
+            if (!TextUtils.isEmpty(firstDetails.number)
+                    && !PhoneNumberUtils.isUriNumber(firstDetails.number.toString())) {
+                entry.label = Phone.getTypeLabel(mResources, firstDetails.numberType,
+                        firstDetails.numberLabel);
+            }
+
+            // The secondary action allows to send an SMS to the number that placed the call.
+            if (mPhoneNumberHelper.canSendSmsTo(mNumber)) {
+                entry.setSecondaryAction(R.drawable.ic_text_holo_dark,
+                        new Intent(Intent.ACTION_SENDTO, Uri.fromParts("sms", mNumber, null)));
+            }
+
+            actions.add(entry);
         }
 
         mHasEditNumberBeforeCall = canPlaceCallsTo && !isSipNumber && !isVoicemailNumber;
@@ -380,6 +390,7 @@ public class CallDetailActivity extends ListActivity implements
             // Set the actions for this phone number.
             setListAdapter(new ViewAdapter(this, actions));
             getListView().setVisibility(View.VISIBLE);
+            getListView().setItemsCanFocus(true);
         } else {
             getListView().setVisibility(View.GONE);
         }
@@ -474,36 +485,50 @@ public class CallDetailActivity extends ListActivity implements
     }
 
     static final class ViewEntry {
-        public final int icon;
         public final String text;
-        public final Intent intent;
-        public final View.OnClickListener action;
+        public final Intent primaryIntent;
 
-        public String label = null;
+        public CharSequence label = null;
         public String number = null;
+        /** Icon for the secondary action. */
+        public int secondaryIcon = 0;
+        /** Intent for the secondary action. If not null, an icon must be defined. */
+        public Intent secondaryIntent = null;
 
-        public ViewEntry(int icon, String text, Intent intent) {
-            this.icon = icon;
+        public ViewEntry(String text, Intent intent) {
             this.text = text;
-            this.intent = intent;
-            this.action = null;
+            this.primaryIntent = intent;
         }
 
-        public ViewEntry(int icon, String text, View.OnClickListener listener) {
-            this.icon = icon;
-            this.text = text;
-            this.intent = null;
-            this.action = listener;
+        public void setSecondaryAction(int icon, Intent intent) {
+            secondaryIcon = icon;
+            secondaryIntent = intent;
         }
     }
 
-    static final class ViewAdapter extends BaseAdapter {
-
+    private static final class ViewAdapter extends BaseAdapter {
+        private final Context mContext;
         private final List<ViewEntry> mActions;
-
         private final LayoutInflater mInflater;
 
+        private final View.OnClickListener mPrimaryActionListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ViewEntry entry = (ViewEntry) view.getTag();
+                mContext.startActivity(entry.primaryIntent);
+            }
+        };
+
+        private final View.OnClickListener mSecondaryActionListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ViewEntry entry = (ViewEntry) view.getTag();
+                mContext.startActivity(entry.secondaryIntent);
+            }
+        };
+
         public ViewAdapter(Context context, List<ViewEntry> actions) {
+            mContext = context;
             mActions = actions;
             mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
@@ -532,12 +557,25 @@ public class CallDetailActivity extends ListActivity implements
 
             // Fill action with icon and text.
             ViewEntry entry = mActions.get(position);
-            convertView.setTag(entry);
 
             ImageView icon = (ImageView) convertView.findViewById(R.id.icon);
+            View divider = convertView.findViewById(R.id.divider);
             TextView text = (TextView) convertView.findViewById(android.R.id.text1);
 
-            icon.setImageResource(entry.icon);
+            View mainAction = convertView.findViewById(R.id.main_action);
+            mainAction.setOnClickListener(mPrimaryActionListener);
+            mainAction.setTag(entry);
+
+            if (entry.secondaryIntent != null) {
+                icon.setOnClickListener(mSecondaryActionListener);
+                icon.setImageResource(entry.secondaryIcon);
+                icon.setVisibility(View.VISIBLE);
+                icon.setTag(entry);
+                divider.setVisibility(View.VISIBLE);
+            } else {
+                icon.setVisibility(View.GONE);
+                divider.setVisibility(View.GONE);
+            }
             text.setText(entry.text);
 
             View line2 = convertView.findViewById(R.id.line2);
@@ -561,19 +599,6 @@ public class CallDetailActivity extends ListActivity implements
             }
 
             return convertView;
-        }
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        // Handle passing action off to correct handler.
-        if (view.getTag() instanceof ViewEntry) {
-            ViewEntry entry = (ViewEntry) view.getTag();
-            if (entry.intent != null) {
-                startActivity(entry.intent);
-            } else if (entry.action != null) {
-                entry.action.onClick(view);
-            }
         }
     }
 

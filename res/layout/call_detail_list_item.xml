@@ -16,22 +16,22 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/call_log_list_item_height"
     android:orientation="horizontal"
-    android:paddingLeft="9dip"
-    android:paddingRight="5dip"
+    android:layout_marginTop="@dimen/call_log_icon_margin"
     android:gravity="center_vertical"
+    android:background="@drawable/dialpad_background"
 >
 
-    <LinearLayout
+    <LinearLayout android:id="@+id/main_action"
         android:layout_width="0dip"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_marginRight="5dip"
-        android:paddingTop="5dip"
-        android:paddingBottom="7dip"
+        android:paddingLeft="@dimen/call_log_indent_margin"
         android:orientation="vertical"
         android:gravity="center_vertical"
+        android:focusable="true"
+        android:background="@drawable/btn_dial"
     >
 
         <TextView android:id="@android:id/text1"
@@ -53,7 +53,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textStyle="bold"
             />
-        
+
             <TextView android:id="@+id/number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -63,12 +63,22 @@
 
     </LinearLayout>
 
-    <ImageView android:id="@+id/icon"
-        android:layout_width="32dip"
+    <View android:id="@+id/divider"
+        android:layout_width="1px"
         android:layout_height="32dip"
-        android:layout_marginLeft="5dip"
+        android:background="@drawable/ic_divider_dashed_holo_dark"
+        android:layout_gravity="center_vertical"
+    />
+
+    <ImageView android:id="@+id/icon"
+        android:layout_width="@color/call_log_voicemail_highlight_color"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/call_log_inner_margin"
+        android:paddingRight="@dimen/call_log_outer_margin"
         android:gravity="center"
         android:scaleType="centerInside"
+        android:focusable="true"
+        android:background="@drawable/btn_dial"
     />
 
 </LinearLayout>
