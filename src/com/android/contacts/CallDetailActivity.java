@@ -688,7 +688,6 @@ public class CallDetailActivity extends ListActivity {
         menu.findItem(R.id.menu_remove_from_call_log).setVisible(!hasVoicemail());
         menu.findItem(R.id.menu_edit_number_before_call).setVisible(mHasEditNumberBeforeCall);
         menu.findItem(R.id.menu_trash).setVisible(hasVoicemail());
-        menu.findItem(R.id.menu_share_voicemail).setVisible(hasVoicemail());
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -728,10 +727,6 @@ public class CallDetailActivity extends ListActivity {
     }
     public void onMenuEditNumberBeforeCall(MenuItem menuItem) {
         startActivity(new Intent(Intent.ACTION_DIAL, mPhoneNumberHelper.getCallUri(mNumber)));
-    }
-
-    public void onMenuShareVoicemail(MenuItem menuItem) {
-        Log.w(TAG, "onMenuShareVoicemail not yet implemented");
     }
 
     public void onMenuTrashVoicemail(MenuItem menuItem) {
