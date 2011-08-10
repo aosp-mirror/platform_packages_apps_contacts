@@ -217,11 +217,11 @@ public class ContactDetailDisplayUtils {
             return;
         }
 
-        String snippet = null;
+        CharSequence snippet = null;
         String photoUri = null;
         if (!contactData.getStreamItems().isEmpty()) {
             StreamItemEntry firstEntry = contactData.getStreamItems().get(0);
-            snippet = firstEntry.getText();
+            snippet = Html.fromHtml(firstEntry.getText());
             if (!firstEntry.getPhotos().isEmpty()) {
                 StreamItemPhotoEntry firstPhoto = firstEntry.getPhotos().get(0);
                 photoUri = firstPhoto.getPhotoUri();
