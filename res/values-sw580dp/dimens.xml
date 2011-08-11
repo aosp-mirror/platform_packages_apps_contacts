@@ -45,4 +45,10 @@
     <dimen name="contact_browser_list_left_margin">0dip</dimen>
     <dimen name="contact_browser_list_right_margin">0dip</dimen>
     <dimen name="list_visible_scrollbar_padding">48dip</dimen>
+
+    <!-- Margins and padding for text in widget -->
+    <dimen name="widget_snippet_top_margin">5dip</dimen>
+    <dimen name="widget_snippet_bottom_margin">6dip</dimen>
+    <dimen name="widget_snippet_top_padding">6dip</dimen>
+    <dimen name="widget_snippet_bottom_padding">3dip</dimen>
 </resources>

@@ -137,7 +137,6 @@ public class SocialWidgetProvider extends AppWidgetProvider {
             setDisplayNameAndSnippet(context, views,
                     context.getString(R.string.invalidContactMessage), null, null, null);
             setPhoto(views, ContactBadgeUtil.loadPlaceholderPhoto(context));
-            setStatusAttribution(views, null);
         } else {
             byte[] photo = contactData.getPhotoBinaryData();
             setPhoto(views, photo != null
@@ -145,11 +144,6 @@ public class SocialWidgetProvider extends AppWidgetProvider {
                             : ContactBadgeUtil.loadPlaceholderPhoto(context));
 
             // TODO: Rotate between all the stream items?
-            StreamItemEntry streamItem = null;
-            if (!contactData.getStreamItems().isEmpty()) {
-                streamItem = contactData.getStreamItems().get(0);
-                setStatusAttribution(views, ContactBadgeUtil.getSocialDate(streamItem, context));
-            }
 
             // OnClick launch QuickContact
             final Intent intent = new Intent(QuickContact.ACTION_QUICK_CONTACT);
@@ -227,19 +221,6 @@ public class SocialWidgetProvider extends AppWidgetProvider {
                 views.setOnClickPendingIntent(R.id.name_and_snippet_container,
                         PendingIntent.getActivity(context, 0, intent, 0));
             }
-        }
-    }
-
-    /**
-     * Set the status attribution text to display in the header.
-     */
-    private static void setStatusAttribution(RemoteViews views,
-            CharSequence attribution) {
-        if (attribution == null) {
-            views.setViewVisibility(R.id.status_date, View.GONE);
-        } else {
-            views.setTextViewText(R.id.status_date, attribution);
-            views.setViewVisibility(R.id.status_date, View.VISIBLE);
         }
     }
 }
