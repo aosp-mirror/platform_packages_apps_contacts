@@ -797,7 +797,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         }
 
         // Add a title
-        String networkKindTitle = mContext.getString(R.string.network);
+        String networkKindTitle = mContext.getString(R.string.connections);
         mAllEntries.add(new KindTitleViewEntry(networkKindTitle.toUpperCase()));
 
         // Add the attribution if applicable
@@ -1149,7 +1149,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             // TODO Icon is temporary.  Need proper one.
             return new NetworkTitleViewEntry(
                     context.getResources().getDrawable(R.drawable.ic_menu_add_field_holo_light),
-                    context.getString(R.string.more_networks_button),
+                    context.getString(R.string.add_connection_button),
                     onClickListener);
         }
 

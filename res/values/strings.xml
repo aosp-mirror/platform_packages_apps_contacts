@@ -143,13 +143,11 @@
     <!-- Menu item (in the action bar) that creates a new group [CHAR LIMIT=12] -->
     <string name="menu_new_group_action_bar">New</string>
 
-    <!-- Title of the confirmation dialog for separating contacts into multiple instances  -->
-    <string name="splitConfirmation_title">Separate Contact</string>
+    <!-- Title of the confirmation dialog for separating contacts into multiple instances [CHAR LIMIT=20] -->
+    <string name="splitConfirmation_title">Separate contact</string>
 
-    <!-- Confirmation dialog for separating contacts into multiple instances  -->
-    <string name="splitConfirmation">Are you sure you want to separate this single contact
-        into multiple contacts: one for each set of contact information that was joined into it?
-    </string>
+    <!-- Confirmation dialog for separating contacts into multiple instances [CHAR LIMIT=NONE] -->
+    <string name="splitConfirmation">Are you sure you want to separate this single contact into multiple contacts?</string>
 
     <!-- Menu item that joins an aggregate with another aggregate -->
     <string name="menu_joinAggregate">Join</string>
@@ -903,8 +901,8 @@
     <!-- Dialog title shown when a user confirms whether he/she export Contact data -->
     <string name="confirm_export_title">Confirm export</string>
 
-    <!-- Dialog message shown when a user confirms whether he/she export Contact data -->
-    <string name="confirm_export_message">Are you sure you want to export your contact list to \"<xliff:g id="vcard_filename">%s</xliff:g>\"?</string>
+    <!-- Dialog message shown when a user confirms whether he/she export Contact data [CHAR LIMIT=NONE] -->
+    <string name="confirm_export_message">Export your contact list to file \"<xliff:g id="vcard_filename">%s</xliff:g>\"?</string>
 
     <!-- Dialog title shown when exporting Contact data failed -->
     <string name="exporting_contact_failed_title">Failed to export contact data</string>
@@ -1265,10 +1263,10 @@
     <string name="name_phonetic">Phonetic name</string>
 
     <!-- Title for the list of all contact details that come from third-party sources (including a corporate directory) [CHAR LIMIT=20] -->
-    <string name="network">Network</string>
+    <string name="connections">Connections</string>
 
-    <!-- Label of the button to open the "more networks" popup where the user can invite a contact to other social networks or services [CHAR LIMIT=32] -->
-    <string name="more_networks_button">More networks</string>
+    <!-- Label of the button to open the "add connection" popup where the user can invite a contact to other social networks or services [CHAR LIMIT=32] -->
+    <string name="add_connection_button">Add connection</string>
 
     <!-- Section title for the page containing the contact's social updates on the contact card [CHAR LIMIT=20]-->
     <string name="recent_updates">Recent</string>
@@ -1497,6 +1495,9 @@
 
     <!-- Button to add a phone number to contacts [CHAR LIMIT=25] -->
     <string name="non_phone_add_to_contacts">Add to contacts</string>
+
+    <!-- Title of the activity that allows the user to confirm the addition of a detail to 1 existing contact [CHAR LIMIT=25] -->
+    <string name="activity_title_confirm_add_detail">Add to contact</string>
 
     <!-- Button to close without add a phone number to contacts [CHAR LIMIT=25] -->
     <string name="non_phone_close">Close</string>

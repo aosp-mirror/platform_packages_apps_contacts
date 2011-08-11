@@ -515,7 +515,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
                     .setIconAttribute(android.R.attr.alertDialogIcon)
                     .setTitle(R.string.cancel_confirmation_dialog_title)
                     .setMessage(R.string.cancel_confirmation_dialog_message)
-                    .setPositiveButton(R.string.discard,
+                    .setPositiveButton(android.R.string.ok,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int whichButton) {
