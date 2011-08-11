@@ -32,42 +32,86 @@ import android.widget.TextView;
  * Adapter for a ListView containing history items from the details of a call.
  */
 public class CallDetailHistoryAdapter extends BaseAdapter {
+    /** The top element is a blank header, which is hidden under the rest of the UI. */
+    private static final int VIEW_TYPE_HEADER = 0;
+    /** Each history item shows the detail of a call. */
+    private static final int VIEW_TYPE_HISTORY_ITEM = 1;
+
     private final Context mContext;
     private final LayoutInflater mLayoutInflater;
     private final CallTypeHelper mCallTypeHelper;
     private final PhoneCallDetails[] mPhoneCallDetails;
+    /** Whether the voicemail controls are shown. */
+    private final boolean mShowVoicemail;
+    /** Whether the call and SMS controls are shown. */
+    private final boolean mShowCallAndSms;
 
     public CallDetailHistoryAdapter(Context context, LayoutInflater layoutInflater,
-            CallTypeHelper callTypeHelper, PhoneCallDetails[] phoneCallDetails) {
+            CallTypeHelper callTypeHelper, PhoneCallDetails[] phoneCallDetails,
+            boolean showVoicemail, boolean showCallAndSms) {
         mContext = context;
         mLayoutInflater = layoutInflater;
         mCallTypeHelper = callTypeHelper;
         mPhoneCallDetails = phoneCallDetails;
+        mShowVoicemail = showVoicemail;
+        mShowCallAndSms = showCallAndSms;
     }
 
     @Override
     public int getCount() {
-        return mPhoneCallDetails.length;
+        return mPhoneCallDetails.length + 1;
     }
 
     @Override
     public Object getItem(int position) {
-        return mPhoneCallDetails[position];
+        if (position == 0) {
+            return null;
+        }
+        return mPhoneCallDetails[position - 1];
     }
 
     @Override
     public long getItemId(int position) {
-        return position;
+        if (position == 0) {
+            return -1;
+        }
+        return position - 1;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return 2;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position == 0) {
+            return VIEW_TYPE_HEADER;
+        }
+        return VIEW_TYPE_HISTORY_ITEM;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        if (position == 0) {
+            final View header = convertView == null
+                    ? mLayoutInflater.inflate(R.layout.call_detail_history_header, parent, false)
+                    : convertView;
+            // Voicemail controls are only shown in the main UI if there is a voicemail.
+            View voicemailContainer = header.findViewById(R.id.header_voicemail_container);
+            voicemailContainer.setVisibility(mShowVoicemail ? View.VISIBLE : View.GONE);
+            // Call and SMS controls are only shown in the main UI if there is a known number.
+            View callAndSmsContainer = header.findViewById(R.id.header_call_and_sms_container);
+            callAndSmsContainer.setVisibility(mShowCallAndSms ? View.VISIBLE : View.GONE);
+            return header;
+        }
+
         // Make sure we have a valid convertView to start with
         final View result  = convertView == null
                 ? mLayoutInflater.inflate(R.layout.call_detail_history_item, parent, false)
                 : convertView;
 
-        PhoneCallDetails details = mPhoneCallDetails[position];
+        PhoneCallDetails details = mPhoneCallDetails[position - 1];
         CallTypeIconsView callTypeIconView =
                 (CallTypeIconsView) result.findViewById(R.id.call_type_icon);
         TextView callTypeTextView = (TextView) result.findViewById(R.id.call_type_text);
