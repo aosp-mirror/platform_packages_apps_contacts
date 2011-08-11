@@ -51,7 +51,7 @@ public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<Pe
         view.showDisplayName(cursor, 0, 1, false,
                 ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY);
 
-        SpannedTestUtils.checkHtmlText("<b>John </b>Doe", view.getNameTextView());
+        SpannedTestUtils.checkHtmlText("John Doe", view.getNameTextView());
     }
 
     public void testShowDisplayName_Unknown() {
@@ -73,7 +73,7 @@ public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<Pe
         view.showDisplayName(cursor, 0, 1, false,
                 ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY);
 
-        SpannedTestUtils.checkHtmlText("<b>John </b>" + START + "Doe" + END,
+        SpannedTestUtils.checkHtmlText("John " + START + "Doe" + END,
                 view.getNameTextView());
     }
 
@@ -85,7 +85,7 @@ public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<Pe
         view.showDisplayName(cursor, 0, 1, false,
                 ContactsContract.Preferences.DISPLAY_ORDER_ALTERNATIVE);
 
-        SpannedTestUtils.checkHtmlText("John " + START + "<b>Doe</b>" + END,
+        SpannedTestUtils.checkHtmlText("John " + START + "Doe" + END,
                 view.getNameTextView());
     }
 
@@ -97,7 +97,7 @@ public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<Pe
         view.showDisplayName(cursor, 0, 1, true,
                 ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY);
 
-        SpannedTestUtils.checkHtmlText("<i><b>John </b></i><i>Doe</i> <i>Doe John</i>",
+        SpannedTestUtils.checkHtmlText("<i>John Doe</i> <i>Doe John</i>",
                 view.getNameTextView());
     }
 

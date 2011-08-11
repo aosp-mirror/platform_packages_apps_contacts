@@ -224,7 +224,7 @@ public class CallLogGroupBuilderTest extends AndroidTestCase {
         }
         mCursor.moveToNext();
         mCursor.addRow(new Object[]{
-                mCursor.getPosition(), number, 0L, 0L, type, "", "", section
+                mCursor.getPosition(), number, 0L, 0L, type, "", "", "", section
         });
     }
 
@@ -245,7 +245,7 @@ public class CallLogGroupBuilderTest extends AndroidTestCase {
             throw new IllegalArgumentException("not a header section: " + section);
         }
         mCursor.moveToNext();
-        mCursor.addRow(new Object[]{ mCursor.getPosition(), "", 0L, 0L, 0, "", "", section });
+        mCursor.addRow(new Object[]{ mCursor.getPosition(), "", 0L, 0L, 0, "", "", "", section });
     }
 
     /** Asserts that the group matches the given values. */

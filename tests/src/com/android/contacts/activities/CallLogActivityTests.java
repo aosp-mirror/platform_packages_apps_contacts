@@ -69,6 +69,7 @@ public class CallLogActivityTests
             Calls.TYPE,
             Calls.COUNTRY_ISO,
             Calls.VOICEMAIL_URI,
+            Calls.GEOCODED_LOCATION,
             CallLogFragment.CallLogQuery.SECTION_NAME,
     };
     private static final int RAND_DURATION = -1;
@@ -505,6 +506,7 @@ public class CallLogActivityTests
         row.add(type);  // type
         row.add(TEST_COUNTRY_ISO);  // country ISO
         row.add(null);  // voicemail_uri
+        row.add(null);  // geocoded_location
         row.add(CallLogFragment.CallLogQuery.SECTION_OLD_ITEM);  // section
     }
 
@@ -535,6 +537,7 @@ public class CallLogActivityTests
         row.add(Calls.VOICEMAIL_TYPE);  // type
         row.add(TEST_COUNTRY_ISO);  // country ISO
         row.add(voicemailUri);  // voicemail_uri
+        row.add(null);  // geocoded_location
         row.add(CallLogFragment.CallLogQuery.SECTION_OLD_ITEM);  // section
     }
 
