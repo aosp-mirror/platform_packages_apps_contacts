@@ -115,7 +115,7 @@ public class GroupMembershipView extends LinearLayout
         Resources resources = mContext.getResources();
         mPrimaryTextColor = resources.getColor(R.color.primary_text_color);
         mSecondaryTextColor = resources.getColor(R.color.secondary_text_color);
-        mNoGroupString = mContext.getString(R.string.add_new_entry_for_section);
+        mNoGroupString = mContext.getString(R.string.group_edit_field_hint_text);
     }
 
     @Override
