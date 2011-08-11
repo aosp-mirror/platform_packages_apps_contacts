@@ -20,22 +20,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <ListView android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <include
-            android:id="@+id/title"
-            layout="@layout/contact_detail_kind_title_entry_view" />
-
-        <ListView android:id="@android:id/list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/background_social_updates"
-            android:divider="@null"/>
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:background="@color/background_social_updates"
+        android:divider="@null"/>
 
     <View
         android:id="@+id/alpha_overlay"

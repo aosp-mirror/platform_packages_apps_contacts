@@ -14,5 +14,5 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="recent_updates">Updates</string>
+    <string name="recent_updates">Recent updates</string>
 </resources>

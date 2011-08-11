@@ -31,7 +31,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView.OnScrollListener;
-import android.widget.TextView;
 
 public class ContactDetailUpdatesFragment extends ListFragment
         implements FragmentKeyListener, ViewOverlay {
@@ -103,11 +102,6 @@ public class ContactDetailUpdatesFragment extends ListFragment
         mInflater = inflater;
         View rootView = mInflater.inflate(R.layout.contact_detail_updates_fragment, container,
                 false);
-
-        TextView titleTextView = (TextView) rootView.findViewById(R.id.kind);
-        if (titleTextView != null) {
-            titleTextView.setText(getString(R.string.recent_updates).toUpperCase());
-        }
 
         mAlphaLayer = rootView.findViewById(R.id.alpha_overlay);
         mTouchInterceptLayer = rootView.findViewById(R.id.touch_intercept_overlay);
