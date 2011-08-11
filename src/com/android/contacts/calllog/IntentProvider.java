@@ -84,7 +84,15 @@ public abstract class IntentProvider {
                     return null;
                 }
                 Intent intent = new Intent(context, CallDetailActivity.class);
-                if (adapter.isGroupHeader(position)) {
+                // Check if the first item is a voicemail.
+                String voicemailUri = cursor.getString(CallLogQuery.VOICEMAIL_URI);
+                if (voicemailUri != null) {
+                    intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_URI,
+                            Uri.parse(voicemailUri));
+                }
+                intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_START_PLAYBACK, false);
+
+                if (groupSize > 1) {
                     // We want to restore the position in the cursor at the end.
                     long[] ids = new long[groupSize];
                     // Copy the ids of the rows in the group.
@@ -97,12 +105,6 @@ public abstract class IntentProvider {
                     // If there is a single item, use the direct URI for it.
                     intent.setData(ContentUris.withAppendedId(
                             Calls.CONTENT_URI_WITH_VOICEMAIL, id));
-                    String voicemailUri = cursor.getString(CallLogQuery.VOICEMAIL_URI);
-                    if (voicemailUri != null) {
-                        intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_URI,
-                                Uri.parse(voicemailUri));
-                    }
-                    intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_START_PLAYBACK, false);
                 }
                 return intent;
             }
