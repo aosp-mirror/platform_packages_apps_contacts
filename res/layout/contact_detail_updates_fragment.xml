@@ -14,17 +14,11 @@
      limitations under the License.
 -->
 
-<FrameLayout
+<ListView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
-    android:id="@+id/contact_detail_updates_fragment"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ListView android:id="@android:id/list"
+    android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background_social_updates"
         android:divider="@null"/>
-
-</FrameLayout>

@@ -32,8 +32,12 @@ import java.util.List;
  * List adapter for stream items of a given contact.
  */
 public class StreamItemAdapter extends BaseAdapter {
+    /** The header view, hidden under the tab carousel, if present. */
     private static final int ITEM_VIEW_TYPE_HEADER = 0;
-    private static final int ITEM_VIEW_TYPE_STREAM_ITEM = 1;
+    /** The title shown in the updates stream. */
+    private static final int ITEM_VIEW_TYPE_TITLE = 1;
+    /** The updates in the list. */
+    private static final int ITEM_VIEW_TYPE_STREAM_ITEM = 2;
 
     private final Context mContext;
     private final View.OnClickListener mListener;
@@ -50,20 +54,20 @@ public class StreamItemAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mStreamItems.size() + 1;
+        return mStreamItems.size() + 2;
     }
 
     @Override
     public Object getItem(int position) {
-        if (position == 0) {
+        if (position == 0 || position == 1) {
             return null;
         }
-        return mStreamItems.get(position - 1);
+        return mStreamItems.get(position - 2);
     }
 
     @Override
     public long getItemId(int position) {
-        if (position == 0) {
+        if (position == 0 || position == 1) {
             return -1;
         }
         return position - 1;
@@ -73,6 +77,9 @@ public class StreamItemAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (position == 0) {
             return mInflater.inflate(R.layout.updates_header_contact, null);
+        }
+        if (position == 1) {
+            return mInflater.inflate(R.layout.updates_title, null);
         }
         StreamItemEntry streamItem = (StreamItemEntry) getItem(position);
         View view = ContactDetailDisplayUtils.createStreamItemView(
@@ -93,6 +100,9 @@ public class StreamItemAdapter extends BaseAdapter {
     public int getItemViewType(int position) {
         if (position == 0) {
             return ITEM_VIEW_TYPE_HEADER;
+        }
+        if (position == 1) {
+            return ITEM_VIEW_TYPE_TITLE;
         }
         return ITEM_VIEW_TYPE_STREAM_ITEM;
     }
