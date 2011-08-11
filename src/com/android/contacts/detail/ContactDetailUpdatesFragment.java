@@ -131,7 +131,13 @@ public class ContactDetailUpdatesFragment extends ListFragment
         }
         mLookupUri = lookupUri;
         mContactData = result;
-        mStreamItemAdapter.setStreamItems(mContactData.getStreamItems());
+
+        // If the adapter has been created already, then try to set stream items. Otherwise,
+        // wait for the adapter to get initialized, after which we will try to set the stream items
+        // again.
+        if (mStreamItemAdapter != null) {
+            mStreamItemAdapter.setStreamItems(mContactData.getStreamItems());
+        }
     }
 
     @Override
