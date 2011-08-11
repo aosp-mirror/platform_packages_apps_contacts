@@ -37,6 +37,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.CallLog;
 import android.provider.CallLog.Calls;
@@ -233,7 +234,7 @@ public class CallDetailActivity extends Activity {
                 values.put(Voicemails.IS_READ, true);
                 getContentResolver().update(voicemailUri, values, null, null);
             }
-        });
+        }, AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     /**

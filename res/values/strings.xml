@@ -1619,9 +1619,6 @@
     <!-- Text used in the ticker to notify the user of the latest voicemail. [CHAR LIMIT=30] -->
     <string name="notification_new_voicemail_ticker">New voicemail from <xliff:g id="caller">%1$s</xliff:g></string>
 
-    <!-- Initial display for position of current playback, do not translate. -->
-    <string name="voicemail_initial_time">00:05</string>
-
     <!-- Message to show when there is an error playing back the voicemail. [CHAR LIMIT=40] -->
     <string name="voicemail_playback_error">failed to play voicemail</string>
 

@@ -35,6 +35,11 @@ public class FakeBackgroundTaskService extends BackgroundTaskService {
         mSubmittedTasks.add(task);
     }
 
+    @Override
+    public void submit(BackgroundTask task, Executor executor) {
+        mSubmittedTasks.add(task);
+    }
+
     public List<BackgroundTask> getSubmittedTasks() {
         return mSubmittedTasks;
     }
