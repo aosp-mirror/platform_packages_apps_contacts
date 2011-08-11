@@ -803,7 +803,14 @@ public class ContactEditorFragment extends Fragment implements
         // TODO: Find a better way to handle shortcuts, i.e. onKeyDown()?
         menu.findItem(R.id.menu_done).setVisible(false);
 
-        menu.findItem(R.id.menu_split).setVisible(mState != null && mState.size() > 1);
+        boolean editingUserProfile = mIsUserProfile || mNewLocalProfile;
+        // Split only if more than one raw profile and not a user profile
+        menu.findItem(R.id.menu_split).setVisible(mState != null && mState.size() > 1 &&
+                !editingUserProfile);
+        // Cannot join a user profile
+        menu.findItem(R.id.menu_join).setVisible(!editingUserProfile);
+
+
         int size = menu.size();
         for (int i = 0; i < size; i++) {
             menu.getItem(i).setEnabled(mEnabled);
