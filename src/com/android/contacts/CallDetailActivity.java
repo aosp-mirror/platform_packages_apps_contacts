@@ -16,6 +16,7 @@
 
 package com.android.contacts;
 
+import com.android.contacts.BackScrollManager.ScrollableHeader;
 import com.android.contacts.calllog.CallDetailHistoryAdapter;
 import com.android.contacts.calllog.CallTypeHelper;
 import com.android.contacts.calllog.PhoneNumberHelper;
@@ -434,7 +435,25 @@ public class CallDetailActivity extends Activity {
                 ListView historyList = (ListView) findViewById(R.id.history);
                 historyList.setAdapter(
                         new CallDetailHistoryAdapter(CallDetailActivity.this, mInflater,
-                                mCallTypeHelper, details));
+                                mCallTypeHelper, details, hasVoicemail(), canPlaceCallsTo));
+                BackScrollManager.bind(
+                        new ScrollableHeader() {
+                            private View controls = findViewById(R.id.controls);
+                            private View photo = findViewById(R.id.contact_background_sizer);
+                            private View nameHeader = findViewById(R.id.photo_text_bar);
+
+                            @Override
+                            public void setOffset(int offset) {
+                                controls.setY(-offset);
+                            }
+
+                            @Override
+                            public int getMaximumScrollableHeaderOffset() {
+                                // We can scroll the photo out, but we should keep the header.
+                                return photo.getHeight() - nameHeader.getHeight();
+                            }
+                        },
+                        historyList);
                 loadContactPhotos(photoUri);
                 findViewById(R.id.call_detail).setVisibility(View.VISIBLE);
             }
