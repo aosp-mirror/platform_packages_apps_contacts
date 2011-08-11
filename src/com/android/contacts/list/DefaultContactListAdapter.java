@@ -196,7 +196,8 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                                 + "SELECT DISTINCT " + RawContacts.CONTACT_ID
                                 + " FROM raw_contacts"
                                 + " WHERE " + RawContacts.ACCOUNT_TYPE + "=?"
-                                + "   AND " + RawContacts.ACCOUNT_NAME + "=?");
+                                + " AND " + RawContacts.ACCOUNT_NAME + "=?"
+                                + " OR " + Contacts.IS_USER_PROFILE + "=1");
                 selectionArgs.add(filter.accountType);
                 selectionArgs.add(filter.accountName);
                 if (filter.dataSet != null) {
