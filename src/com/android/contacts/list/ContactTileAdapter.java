@@ -183,17 +183,32 @@ public class ContactTileAdapter extends BaseAdapter {
     /**
      * Iterates over the {@link Cursor}
      * Returns position of the first NON Starred Contact
-     * Returns -1 if not {@link DisplayType#STREQUENT} or {@link DisplayType#STREQUENT_PHONE_ONLY}
+     * Returns -1 if {@link DisplayType#STARRED_ONLY} or {@link DisplayType#GROUP_MEMBERS}
+     * Returns 0 if {@link DisplayType#FREQUENT_ONLY}
      */
     private int getDividerPosition(Cursor cursor) {
-        if (cursor == null || cursor.isClosed() || (mDisplayType != DisplayType.STREQUENT
-                && mDisplayType != DisplayType.STREQUENT_PHONE_ONLY)) {
-            return -1;
+        if (cursor == null || cursor.isClosed()) {
+            throw new IllegalStateException("Unable to access cursor");
         }
-        while (cursor.moveToNext()) {
-            if (cursor.getInt(mStarredIndex) == 0) {
-                return cursor.getPosition();
-            }
+
+        switch (mDisplayType) {
+            case STREQUENT:
+            case STREQUENT_PHONE_ONLY:
+                while (cursor.moveToNext()) {
+                    if (cursor.getInt(mStarredIndex) == 0) {
+                        return cursor.getPosition();
+                    }
+                }
+                break;
+            case GROUP_MEMBERS:
+            case STARRED_ONLY:
+                // There is no divider
+                return -1;
+            case FREQUENT_ONLY:
+                // Divider is first
+                return 0;
+            default:
+                throw new IllegalStateException("Unrecognized DisplayType " + mDisplayType);
         }
 
         // There are not NON Starred contacts in cursor
@@ -354,6 +369,7 @@ public class ContactTileAdapter extends BaseAdapter {
             // Creating new row if needed
             contactTileRowView = new ContactTileRow(mContext, itemViewType);
         }
+
         contactTileRowView.configureRow(contactList, position == getCount() - 1);
         return contactTileRowView;
     }
@@ -390,20 +406,19 @@ public class ContactTileAdapter extends BaseAdapter {
     }
     @Override
     public int getViewTypeCount() {
-        return (mDisplayType == DisplayType.STREQUENT ||
-                mDisplayType == DisplayType.STREQUENT_PHONE_ONLY) ? ViewTypes.COUNT : 1;
+        return ViewTypes.MAX_VIEW_COUNT;
     }
 
-    /**
-     * Returns view type based on {@link DisplayType}.
-     * {@link DisplayType#STARRED_ONLY} and {@link DisplayType#GROUP_MEMBERS}
-     * are {@link ViewTypes#STARRED}.
-     * {@link DisplayType#FREQUENT_ONLY} is {@link ViewTypes#FREQUENT}.
-     * {@link DisplayType#STREQUENT} mixes both {@link ViewTypes}
-     * and also adds in {@link ViewTypes#DIVIDER}.
-     */
     @Override
     public int getItemViewType(int position) {
+        /*
+         * Returns view type based on {@link DisplayType}.
+         * {@link DisplayType#STARRED_ONLY} and {@link DisplayType#GROUP_MEMBERS}
+         * are {@link ViewTypes#STARRED}.
+         * {@link DisplayType#FREQUENT_ONLY} is {@link ViewTypes#FREQUENT}.
+         * {@link DisplayType#STREQUENT} mixes both {@link ViewTypes}
+         * and also adds in {@link ViewTypes#DIVIDER}.
+         */
         switch (mDisplayType) {
             case STREQUENT:
                 if (position < getRowCount(mDividerPosition)) {
@@ -504,7 +519,7 @@ public class ContactTileAdapter extends BaseAdapter {
     }
 
     private static class ViewTypes {
-        public static final int COUNT = 4;
+        public static final int MAX_VIEW_COUNT = 4;
         public static final int STARRED = 0;
         public static final int DIVIDER = 1;
         public static final int FREQUENT = 2;
