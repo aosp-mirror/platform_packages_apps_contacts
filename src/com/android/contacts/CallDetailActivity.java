@@ -435,6 +435,7 @@ public class CallDetailActivity extends Activity {
                         new CallDetailHistoryAdapter(CallDetailActivity.this, mInflater,
                                 mCallTypeHelper, details));
                 loadContactPhotos(photoUri);
+                findViewById(R.id.call_detail).setVisibility(View.VISIBLE);
             }
         });
     }

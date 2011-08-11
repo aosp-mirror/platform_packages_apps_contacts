@@ -16,10 +16,12 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
+    android:id="@+id/call_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:gravity="top"
+    android:visibility="gone"
 >
     <FrameLayout
         android:id="@+id/voicemail_status"
@@ -48,7 +50,6 @@
             android:layout_height="0dip"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:background="@drawable/ic_contact_picture"
         />
     </view>
     <LinearLayout
