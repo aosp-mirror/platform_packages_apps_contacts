@@ -110,23 +110,32 @@
                 android:background="@drawable/list_background_holo">
 
                 <!-- Starred -->
-                <fragment
-                    android:id="@+id/favorites_fragment"
-                    class="com.android.contacts.list.ContactTileListFragment"
+                <FrameLayout
+                    android:layout_width="0dip"
                     android:layout_height="match_parent"
-                    style="@style/FavoritesFragmentStyle"
-                    android:layout_marginTop="32dip"
-                    android:layout_marginLeft="32dip"
-                    android:layout_marginRight="32dip" />
+                    android:layout_weight="1"
+                    android:background="@drawable/panel_favorites_holo_light">
+
+                    <fragment
+                        android:id="@+id/favorites_fragment"
+                        class="com.android.contacts.list.ContactTileListFragment"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="32dip"
+                        android:layout_marginRight="32dip"
+                        android:layout_marginLeft="32dip"/>
+
+                </FrameLayout>
 
                 <!-- Most Frequent -->
                 <fragment
                     android:id="@+id/frequent_fragment"
                     class="com.android.contacts.list.ContactTileListFragment"
-                    style="@style/FrequentFragmentStyle"
+                    android:layout_width="0dip"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="32dip"
-                    android:layout_marginRight="32dip"/>
+                    android:layout_weight="1"
+                    android:layout_marginTop="32dip"/>
+
             </LinearLayout>
         </view>
 
