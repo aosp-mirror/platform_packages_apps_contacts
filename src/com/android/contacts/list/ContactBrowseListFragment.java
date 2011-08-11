@@ -378,7 +378,8 @@ public abstract class ContactBrowseListFragment extends
             return;
         }
 
-        if (!isSearchMode() && mFilter != null) {
+        boolean searchMode = isSearchMode();
+        if (!searchMode && mFilter != null) {
             adapter.setFilter(mFilter);
             if (mSelectionRequired
                     || mFilter.filterType == ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
@@ -387,8 +388,8 @@ public abstract class ContactBrowseListFragment extends
             }
         }
 
-        // Display the user's profile.
-        adapter.setIncludeProfile(true);
+        // Display the user's profile if not in search mode
+        adapter.setIncludeProfile(!searchMode);
     }
 
     @Override
