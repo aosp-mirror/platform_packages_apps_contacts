@@ -314,14 +314,14 @@
     <!-- Displayed in a spinner dialog as user changes to display options are saved -->
     <string name="savingDisplayGroups">Saving display options\u2026</string>
 
-    <!-- Toast displayed when a contact is saved -->
-    <string name="contactSavedToast">Contact saved.</string>
+    <!-- Toast displayed when a contact is saved [CHAR LIMIT=NONE] -->
+    <string name="contactSavedToast">Contact saved</string>
 
     <!-- Toast displayed when saving a contact failed -->
     <string name="contactSavedErrorToast">Error, unable to save contact changes.</string>
 
     <!-- Toast displayed when a group is saved [CHAR LIMIT=NONE] -->
-    <string name="groupSavedToast">Group saved.</string>
+    <string name="groupSavedToast">Group saved</string>
 
     <!-- Toast displayed when saving a group failed [CHAR LIMIT=NONE] -->
     <string name="groupSavedErrorToast">Error, unable to save group changes.</string>
@@ -1051,7 +1051,7 @@
     <!-- Header that expands to list all website types when editing a website of a contact [CHAR LIMIT=20] -->
     <string name="websiteLabelsGroup">Website</string>
     <!-- Header that expands to list all event types when editing an event of a contact [CHAR LIMIT=20] -->
-    <string name="eventLabelsGroup">Event</string>
+    <string name="eventLabelsGroup">Events</string>
     <!-- Header for the list of all relationships for a contact [CHAR LIMIT=20] -->
     <string name="relationLabelsGroup">Relationship</string>
     <!-- Header for the list of all groups for a contact [CHAR LIMIT=20] -->
@@ -1378,6 +1378,12 @@
 
     <!-- The button to add an organization field to a contact in the Raw Contact Editor [CHAR LIMIT=22] -->
     <string name="add_organization">Add organization</string>
+
+    <!-- The button to add an organization field to a contact in the Raw Contact Editor [CHAR LIMIT=12] -->
+    <string name="event_edit_field_hint_text">Date</string>
+
+    <!-- The button to add an organization field to a contact in the Raw Contact Editor [CHAR LIMIT=15] -->
+    <string name="group_edit_field_hint_text">Group name</string>
 
     <!-- Attbution of a contact status update, when the time of update is unknown -->
     <string name="contact_status_update_attribution">via <xliff:g id="source" example="Google Talk">%1$s</xliff:g></string>
@@ -1745,6 +1751,12 @@
 
     <!-- String describing the text on the header of the profile contact in the contacts list [CHAR LIMIT=20] -->
     <string name="user_profile_contacts_list_header">ME</string>
+
+    <!-- Header label in the contact editor for a profile that is local to the device only (and not associated with any account) [CHAR LIMIT=25] -->
+    <string name="local_profile_title">My local profile</string>
+
+    <!-- Header label in the contact editor for a profile that comes from an external third-party app whose name is given by source [CHAR LIMIT=20] -->
+    <string name="external_profile_title">My <xliff:g id="external_source">%1$s</xliff:g> profile</string>
 
     <!-- Toast shown when the app starts showing all contacts regardless of its current
          contact filter state. [CHAR LIMIT=64] -->
