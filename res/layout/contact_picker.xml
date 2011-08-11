@@ -18,8 +18,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     class="com.android.contacts.widget.FullHeightLinearLayout"
     style="@style/ContactPickerLayout"
-    android:paddingLeft="8dip"
-    android:paddingRight="8dip"
     android:orientation="vertical"
     android:layout_height="match_parent">
     <view
@@ -27,18 +25,18 @@
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:layout_marginBottom="10dip"
+        android:layout_marginLeft="0dip"
+        android:layout_marginRight="32dip"
         android:iconifiedByDefault="false" />
+    <!-- will contain an appropriate contacts list -->
     <FrameLayout
+        android:id="@+id/list_container"
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="1"
-        android:id="@+id/list_container">
-    </FrameLayout>
+        android:layout_weight="1" />
 
     <View
+        android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dip"
         android:layout_marginLeft="16dip"
@@ -48,7 +46,9 @@
     <LinearLayout
         style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dip"
+        android:paddingRight="16dip">
         <Button
             style="?android:attr/buttonBarButtonStyle"
             android:id="@+id/cancel"

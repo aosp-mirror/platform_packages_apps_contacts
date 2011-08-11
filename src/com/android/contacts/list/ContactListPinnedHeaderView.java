@@ -20,10 +20,8 @@ import com.android.contacts.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -124,7 +122,7 @@ public class ContactListPinnedHeaderView extends ViewGroup {
         if (isViewMeasurable(mCountTextView)) {
             mCountTextView.layout(width - mPaddingRight - mCountTextView.getMeasuredWidth(),
                     0,
-                    width,
+                    width - mPaddingRight,
                     mHeaderBackgroundHeight);
         }
 

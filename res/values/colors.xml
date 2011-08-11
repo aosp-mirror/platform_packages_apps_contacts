@@ -87,7 +87,6 @@
     <color name="dialtacts_secondary_text_color">#888888</color>
 
     <!-- Colors in the contact browser list -->
-    <color name="contact_browser_list_bk_color">#EEEEEE</color>
     <color name="contact_count_text_color">#AAAAAA</color>
 
     <!-- Color of the text of the tab carousel in the contact details  -->

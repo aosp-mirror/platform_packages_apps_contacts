@@ -19,33 +19,30 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="8dip"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/join_contact_blurb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="10dip"
-        android:paddingTop="12dip"
-        android:paddingBottom="12dip"
-        android:layout_marginLeft="12dip"
-        android:layout_marginRight="12dip"
+        android:paddingLeft="16dip"
+        android:paddingRight="16dip"
         android:maxLines="2"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="?android:attr/textColorSecondary" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <FrameLayout
         android:id="@+id/pinned_header_list_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="48dip"
-        android:layout_marginRight="48dip">
-
+        android:layout_height="match_parent">
         <view
             class="com.android.contacts.list.ContactEntryListView"
             android:id="@android:id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fastScrollEnabled="true" />
+            android:layout_marginLeft="?attr/contact_browser_list_padding_left"
+            android:layout_marginRight="?attr/contact_browser_list_padding_right"
+            android:fastScrollEnabled="true"
+            android:scrollbarStyle="outsideOverlay" />
     </FrameLayout>
 </LinearLayout>

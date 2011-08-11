@@ -32,7 +32,6 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
@@ -89,7 +88,6 @@ public class ContactListItemView extends ViewGroup
     private final int mCountViewTextSize;
     private final int mContactsCountTextColor;
     private final int mTextIndent;
-
     private Drawable mActivatedBackgroundDrawable;
 
     // Horizontal divider between contact views.
@@ -230,7 +228,7 @@ public class ContactListItemView extends ViewGroup
                 R.styleable.ContactListItemView_list_item_header_text_indent, 0);
         mHeaderTextColor = a.getColor(
                 R.styleable.ContactListItemView_list_item_header_text_color, Color.BLACK);
-        mHeaderTextSize = (int)a.getDimensionPixelSize(
+        mHeaderTextSize = a.getDimensionPixelSize(
                 R.styleable.ContactListItemView_list_item_header_text_size, 12);
         mHeaderBackgroundHeight = a.getDimensionPixelSize(
                 R.styleable.ContactListItemView_list_item_header_height, 30);
@@ -240,7 +238,7 @@ public class ContactListItemView extends ViewGroup
                 R.styleable.ContactListItemView_list_item_header_underline_color, 0);
         mTextIndent = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_text_indent, 0);
-        mCountViewTextSize = (int)a.getDimensionPixelSize(
+        mCountViewTextSize = a.getDimensionPixelSize(
                 R.styleable.ContactListItemView_list_item_contacts_count_text_size, 12);
         mContactsCountTextColor = a.getColor(
                 R.styleable.ContactListItemView_list_item_contacts_count_text_color, Color.BLACK);

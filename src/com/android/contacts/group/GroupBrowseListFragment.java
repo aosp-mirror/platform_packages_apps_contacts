@@ -152,8 +152,6 @@ public class GroupBrowseListFragment extends Fragment
     }
 
     private void configureVerticalScrollbar() {
-        mListView.setFastScrollEnabled(true);
-        mListView.setFastScrollAlwaysVisible(true);
         mListView.setVerticalScrollbarPosition(mVerticalScrollbarPosition);
         mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
         int leftPadding = 0;
@@ -259,7 +257,8 @@ public class GroupBrowseListFragment extends Fragment
     protected void requestSelectionToScreen() {
         int selectedPosition = mAdapter.getSelectedGroupPosition();
         if (selectedPosition != -1) {
-            mListView.requestPositionToScreen(selectedPosition, true /* smooth scroll requested */);
+            mListView.requestPositionToScreen(selectedPosition,
+                    true /* smooth scroll requested */);
         }
     }
 

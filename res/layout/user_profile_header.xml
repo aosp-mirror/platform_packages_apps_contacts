@@ -16,15 +16,19 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:paddingTop="@dimen/contact_browser_list_top_margin"
+    android:id="@+id/user_profile_header"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content"
+    android:minHeight="?attr/list_item_header_height"
+    android:paddingTop="@dimen/contact_browser_list_top_margin"
+    android:paddingLeft="?attr/list_item_padding_left"
+    android:paddingRight="?attr/list_item_padding_right" >
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/profile_title"
@@ -37,7 +41,7 @@
             android:gravity="left|center_vertical"
             android:layout_weight="1"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:paddingLeft="@dimen/contact_browser_list_item_text_indent"
+            android:paddingLeft="?attr/list_item_text_indent"
             android:textColor="@color/people_app_theme_color" />
 
         <TextView
@@ -55,6 +59,6 @@
     <View
         android:background="@color/people_app_theme_color"
         android:layout_width="match_parent"
-        android:layout_height="1dip" />
+        android:layout_height="?attr/list_item_header_underline_height" />
 
 </LinearLayout>

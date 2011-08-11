@@ -24,8 +24,8 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:paddingTop="12dip"
-    android:paddingBottom="12dip"
+    android:paddingTop="8dip"
+    android:paddingBottom="8dip"
     android:minHeight="@dimen/detail_min_line_item_height">
 
     <!-- Note: padding might be controlled programatically -->
