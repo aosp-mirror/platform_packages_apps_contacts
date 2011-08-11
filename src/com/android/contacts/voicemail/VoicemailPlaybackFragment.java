@@ -19,17 +19,24 @@ package com.android.contacts.voicemail;
 import static com.android.contacts.CallDetailActivity.EXTRA_VOICEMAIL_START_PLAYBACK;
 import static com.android.contacts.CallDetailActivity.EXTRA_VOICEMAIL_URI;
 
+import com.android.common.io.MoreCloseables;
 import com.android.contacts.R;
 import com.android.contacts.util.BackgroundTaskService;
 import com.android.ex.variablespeed.MediaPlayerProxy;
 import com.android.ex.variablespeed.VariableSpeed;
 import com.google.common.base.Preconditions;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
+import android.database.ContentObserver;
+import android.database.Cursor;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.VoicemailContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,30 +67,19 @@ import javax.annotation.concurrent.NotThreadSafe;
 public class VoicemailPlaybackFragment extends Fragment {
     private static final String TAG = "VoicemailPlayback";
     private static final int NUMBER_OF_THREADS_IN_POOL = 2;
+    private static final String[] HAS_CONTENT_PROJECTION = new String[] {
+        VoicemailContract.Voicemails.HAS_CONTENT,
+    };
 
     private VoicemailPlaybackPresenter mPresenter;
     private ScheduledExecutorService mScheduledExecutorService;
-    private SeekBar mPlaybackSeek;
-    private ImageButton mStartStopButton;
-    private ImageButton mPlaybackSpeakerphone;
-    private ImageButton mRateDecreaseButton;
-    private ImageButton mRateIncreaseButton;
-    private TextViewWithMessagesController mTextController;
+    private View mPlaybackLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.playback_layout, null);
-        mPlaybackSeek = (SeekBar) view.findViewById(R.id.playback_seek);
-        mPlaybackSeek = (SeekBar) view.findViewById(R.id.playback_seek);
-        mStartStopButton = (ImageButton) view.findViewById(R.id.playback_start_stop);
-        mPlaybackSpeakerphone = (ImageButton) view.findViewById(R.id.playback_speakerphone);
-        mRateDecreaseButton = (ImageButton) view.findViewById(R.id.rate_decrease_button);
-        mRateIncreaseButton = (ImageButton) view.findViewById(R.id.rate_increase_button);
-        mTextController = new TextViewWithMessagesController(
-                (TextView) view.findViewById(R.id.playback_position_text),
-                (TextView) view.findViewById(R.id.playback_speed_text));
-        return view;
+        mPlaybackLayout = inflater.inflate(R.layout.playback_layout, null);
+        return mPlaybackLayout;
     }
 
     @Override
@@ -95,7 +91,7 @@ public class VoicemailPlaybackFragment extends Fragment {
         Uri voicemailUri = arguments.getParcelable(EXTRA_VOICEMAIL_URI);
         Preconditions.checkNotNull(voicemailUri, "fragment must contain EXTRA_VOICEMAIL_URI");
         boolean startPlayback = arguments.getBoolean(EXTRA_VOICEMAIL_START_PLAYBACK, false);
-        mPresenter = new VoicemailPlaybackPresenter(new PlaybackViewImpl(),
+        mPresenter = new VoicemailPlaybackPresenter(createPlaybackViewImpl(),
                 createMediaPlayer(mScheduledExecutorService), voicemailUri,
                 mScheduledExecutorService, startPlayback, getBackgroundTaskService());
         mPresenter.onCreate(savedInstanceState);
@@ -119,6 +115,11 @@ public class VoicemailPlaybackFragment extends Fragment {
         super.onDestroy();
     }
 
+    private PlaybackViewImpl createPlaybackViewImpl() {
+        return new PlaybackViewImpl(new ActivityReference(), getActivity().getApplicationContext(),
+                mPlaybackLayout);
+    }
+
     private MediaPlayerProxy createMediaPlayer(ExecutorService executorService) {
         return VariableSpeed.createVariableSpeed(executorService);
     }
@@ -133,7 +134,7 @@ public class VoicemailPlaybackFragment extends Fragment {
      * We always use four digits, two for minutes two for seconds.  In the very unlikely event
      * that the voicemail duration exceeds 99 minutes, the display is capped at 99 minutes.
      */
-    private String formatAsMinutesAndSeconds(int millis) {
+    private static String formatAsMinutesAndSeconds(int millis) {
         int seconds = millis / 1000;
         int minutes = seconds / 60;
         seconds -= minutes * 60;
@@ -143,25 +144,79 @@ public class VoicemailPlaybackFragment extends Fragment {
         return String.format("%02d:%02d", minutes, seconds);
     }
 
-    private AudioManager getAudioManager() {
-        return (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
+    /**
+     * An object that can provide us with an Activity.
+     * <p>
+     * Fragments suffer the drawback that the Activity they belong to may sometimes be null. This
+     * can happen if the Fragment is detached, for example. In that situation a call to
+     * {@link Fragment#getString(int)} will throw and {@link IllegalStateException}. Also, calling
+     * {@link Fragment#getActivity()} is dangerous - it may sometimes return null. And thus blindly
+     * calling a method on the result of getActivity() is dangerous too.
+     * <p>
+     * To work around this, I have made the {@link PlaybackViewImpl} class static, so that it does
+     * not have access to any Fragment methods directly. Instead it uses an application Context for
+     * things like accessing strings, accessing system services. It only uses the Activity when it
+     * absolutely needs it - and does so through this class. This makes it easy to see where we have
+     * to check for null properly.
+     */
+    private final class ActivityReference {
+        /** Gets this Fragment's Activity: <b>may be null</b>. */
+        public final Activity get() {
+            return getActivity();
+        }
     }
 
     /**  Methods required by the PlaybackView for the VoicemailPlaybackPresenter. */
-    private class PlaybackViewImpl implements VoicemailPlaybackPresenter.PlaybackView {
+    private static final class PlaybackViewImpl implements VoicemailPlaybackPresenter.PlaybackView {
+        private final ActivityReference mActivityReference;
+        private final Context mApplicationContext;
+        private final SeekBar mPlaybackSeek;
+        private final ImageButton mStartStopButton;
+        private final ImageButton mPlaybackSpeakerphone;
+        private final ImageButton mRateDecreaseButton;
+        private final ImageButton mRateIncreaseButton;
+        private final TextViewWithMessagesController mTextController;
+
+        public PlaybackViewImpl(ActivityReference activityReference, Context applicationContext,
+                View playbackLayout) {
+            Preconditions.checkNotNull(activityReference);
+            Preconditions.checkNotNull(applicationContext);
+            Preconditions.checkNotNull(playbackLayout);
+            mActivityReference = activityReference;
+            mApplicationContext = applicationContext;
+            mPlaybackSeek = (SeekBar) playbackLayout.findViewById(R.id.playback_seek);
+            mStartStopButton = (ImageButton) playbackLayout.findViewById(
+                    R.id.playback_start_stop);
+            mPlaybackSpeakerphone = (ImageButton) playbackLayout.findViewById(
+                    R.id.playback_speakerphone);
+            mRateDecreaseButton = (ImageButton) playbackLayout.findViewById(
+                    R.id.rate_decrease_button);
+            mRateIncreaseButton = (ImageButton) playbackLayout.findViewById(
+                    R.id.rate_increase_button);
+            mTextController = new TextViewWithMessagesController(
+                    (TextView) playbackLayout.findViewById(R.id.playback_position_text),
+                    (TextView) playbackLayout.findViewById(R.id.playback_speed_text));
+        }
+
         @Override
         public void finish() {
-            getActivity().finish();
+            Activity activity = mActivityReference.get();
+            if (activity != null) {
+                activity.finish();
+            }
         }
 
         @Override
         public void runOnUiThread(Runnable runnable) {
-            getActivity().runOnUiThread(runnable);
+            Activity activity = mActivityReference.get();
+            if (activity != null) {
+                activity.runOnUiThread(runnable);
+            }
         }
 
         @Override
         public Context getDataSourceContext() {
-            return getActivity();
+            return mApplicationContext;
         }
 
         @Override
@@ -187,7 +242,7 @@ public class VoicemailPlaybackFragment extends Fragment {
         @Override
         public void setRateDisplay(float rate, int stringResourceId) {
             mTextController.setTemporaryText(
-                    getActivity().getString(stringResourceId), 1, TimeUnit.SECONDS);
+                    mApplicationContext.getString(stringResourceId), 1, TimeUnit.SECONDS);
         }
 
         @Override
@@ -206,6 +261,16 @@ public class VoicemailPlaybackFragment extends Fragment {
         }
 
         @Override
+        public void registerContentObserver(Uri uri, ContentObserver observer) {
+            mApplicationContext.getContentResolver().registerContentObserver(uri, false, observer);
+        }
+
+        @Override
+        public void unregisterContentObserver(ContentObserver observer) {
+            mApplicationContext.getContentResolver().unregisterContentObserver(observer);
+        }
+
+        @Override
         public void setClipPosition(int clipPositionInMillis, int clipLengthInMillis) {
             int seekBarPosition = Math.max(0, clipPositionInMillis);
             int seekBarMax = Math.max(seekBarPosition, clipLengthInMillis);
@@ -217,9 +282,26 @@ public class VoicemailPlaybackFragment extends Fragment {
                     formatAsMinutesAndSeconds(seekBarMax - seekBarPosition));
         }
 
+        private String getString(int resId) {
+            return mApplicationContext.getString(resId);
+        }
+
         @Override
         public void setIsBuffering() {
-          mTextController.setPermanentText(getString(R.string.voicemail_buffering));
+            disableUiElements();
+            mTextController.setPermanentText(getString(R.string.voicemail_buffering));
+        }
+
+        @Override
+        public void setIsFetchingContent() {
+            disableUiElements();
+            mTextController.setPermanentText(getString(R.string.voicemail_fetching_content));
+        }
+
+        @Override
+        public void setFetchContentTimeout() {
+            disableUiElements();
+            mTextController.setPermanentText(getString(R.string.voicemail_fetching_timout));
         }
 
         @Override
@@ -228,14 +310,55 @@ public class VoicemailPlaybackFragment extends Fragment {
         }
 
         @Override
-        public void playbackError(Exception e) {
+        public void disableUiElements() {
             mRateIncreaseButton.setEnabled(false);
             mRateDecreaseButton.setEnabled(false);
             mStartStopButton.setEnabled(false);
+            mPlaybackSpeakerphone.setEnabled(false);
             mPlaybackSeek.setProgress(0);
             mPlaybackSeek.setEnabled(false);
+        }
+
+        @Override
+        public void playbackError(Exception e) {
+            disableUiElements();
             mTextController.setPermanentText(getString(R.string.voicemail_playback_error));
             Log.e(TAG, "Could not play voicemail", e);
+        }
+
+        @Override
+        public void enableUiElements() {
+            mRateIncreaseButton.setEnabled(true);
+            mRateDecreaseButton.setEnabled(true);
+            mStartStopButton.setEnabled(true);
+            mPlaybackSpeakerphone.setEnabled(true);
+            mPlaybackSeek.setEnabled(true);
+        }
+
+        @Override
+        public void sendFetchVoicemailRequest(Uri voicemailUri) {
+            Intent intent = new Intent(VoicemailContract.ACTION_FETCH_VOICEMAIL, voicemailUri);
+            mApplicationContext.sendBroadcast(intent);
+        }
+
+        @Override
+        public boolean queryHasContent(Uri voicemailUri) {
+            ContentResolver contentResolver = mApplicationContext.getContentResolver();
+            Cursor cursor = contentResolver.query(
+                    voicemailUri, HAS_CONTENT_PROJECTION, null, null, null);
+            try {
+                if (cursor != null && cursor.moveToNext()) {
+                    return cursor.getInt(cursor.getColumnIndexOrThrow(
+                            VoicemailContract.Voicemails.HAS_CONTENT)) == 1;
+                }
+            } finally {
+                MoreCloseables.closeQuietly(cursor);
+            }
+            return false;
+        }
+
+        private AudioManager getAudioManager() {
+            return (AudioManager) mApplicationContext.getSystemService(Context.AUDIO_SERVICE);
         }
 
         @Override

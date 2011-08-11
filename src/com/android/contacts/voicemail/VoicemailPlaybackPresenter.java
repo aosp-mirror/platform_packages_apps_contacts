@@ -23,12 +23,15 @@ import com.android.contacts.util.BackgroundTask;
 import com.android.contacts.util.BackgroundTaskService;
 import com.android.ex.variablespeed.MediaPlayerProxy;
 import com.android.ex.variablespeed.SingleThreadedMediaPlayerProxy;
+import com.google.common.base.Preconditions;
 
 import android.content.Context;
+import android.database.ContentObserver;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.SeekBar;
 
@@ -36,6 +39,7 @@ import java.io.IOException;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.annotation.concurrent.GuardedBy;
@@ -73,10 +77,20 @@ import javax.annotation.concurrent.ThreadSafe;
         void setRateDisplay(float rate, int stringResourceId);
         void setRateIncreaseButtonListener(View.OnClickListener listener);
         void setRateDecreaseButtonListener(View.OnClickListener listener);
+        void setIsFetchingContent();
+        void disableUiElements();
+        void enableUiElements();
+        void sendFetchVoicemailRequest(Uri voicemailUri);
+        boolean queryHasContent(Uri voicemailUri);
+        void setFetchContentTimeout();
+        void registerContentObserver(Uri uri, ContentObserver observer);
+        void unregisterContentObserver(ContentObserver observer);
     }
 
     /** Update rate for the slider, 30fps. */
     private static final int SLIDER_UPDATE_PERIOD_MILLIS = 1000 / 30;
+    /** Time our ui will wait for content to be fetched before reporting not available. */
+    private static final long FETCH_CONTENT_TIMEOUT_MS = 20000;
     /**
      * If present in the saved instance bundle, we should not resume playback on
      * create.
@@ -102,6 +116,7 @@ import javax.annotation.concurrent.ThreadSafe;
         R.string.voicemail_speed_faster,
         R.string.voicemail_speed_fastest,
     };
+
     /**
      * Pointer into the {@link VoicemailPlaybackPresenter#PRESET_RATES} array.
      * <p>
@@ -131,6 +146,13 @@ import javax.annotation.concurrent.ThreadSafe;
     /** Used to run background tasks that need to interact with the ui. */
     private final BackgroundTaskService mBackgroundTaskService;
 
+    /**
+     * Used to handle the result of a successful or time-out fetch result.
+     * <p>
+     * This variable is thread-contained, accessed only on the ui thread.
+     */
+    private FetchResultHandler mFetchResultHandler;
+
     public VoicemailPlaybackPresenter(PlaybackView view, MediaPlayerProxy player,
             Uri voicemailUri, ScheduledExecutorService executorService,
             boolean startPlayingImmediately, BackgroundTaskService backgroundTaskService) {
@@ -143,6 +165,126 @@ import javax.annotation.concurrent.ThreadSafe;
     }
 
     public void onCreate(Bundle bundle) {
+        checkThatWeHaveContent();
+    }
+
+    /**
+     * Checks to see if we have content available for this voicemail.
+     * <p>
+     * This method will be called once, after the fragment has been created, before we know if the
+     * voicemail we've been asked to play has any content available.
+     * <p>
+     * This method will notify the user through the ui that we are fetching the content, then check
+     * to see if the content field in the db is set. If set, we proceed to
+     * {@link #postSuccessfullyFetchedContent()} method. If not set, we will make a request to fetch
+     * the content asynchronously via {@link #makeRequestForContent()}.
+     */
+    private void checkThatWeHaveContent() {
+        mView.setIsFetchingContent();
+        mBackgroundTaskService.submit(new BackgroundTask() {
+            private boolean mHasContent = false;
+
+            @Override
+            public void doInBackground() {
+                mHasContent = mView.queryHasContent(mVoicemailUri);
+            }
+
+            @Override
+            public void onPostExecute() {
+                if (mHasContent) {
+                    postSuccessfullyFetchedContent();
+                } else {
+                    makeRequestForContent();
+                }
+            }
+        }, AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    /**
+     * Makes a broadcast request to ask that a voicemail source fetch this content.
+     * <p>
+     * This method <b>must be called on the ui thread</b>.
+     * <p>
+     * This method will be called when we realise that we don't have content for this voicemail. It
+     * will trigger a broadcast to request that the content be downloaded. It will add a listener to
+     * the content resolver so that it will be notified when the has_content field changes. It will
+     * also set a timer. If the has_content field changes to true within the allowed time, we will
+     * proceed to {@link #postSuccessfullyFetchedContent()}. If the has_content field does not
+     * become true within the allowed time, we will update the ui to reflect the fact that content
+     * was not available.
+     */
+    private void makeRequestForContent() {
+        Handler handler = new Handler();
+        Preconditions.checkState(mFetchResultHandler == null, "mFetchResultHandler should be null");
+        mFetchResultHandler = new FetchResultHandler(handler);
+        mView.registerContentObserver(mVoicemailUri, mFetchResultHandler);
+        handler.postDelayed(mFetchResultHandler.getTimeoutRunnable(), FETCH_CONTENT_TIMEOUT_MS);
+        mView.sendFetchVoicemailRequest(mVoicemailUri);
+    }
+
+    @ThreadSafe
+    private class FetchResultHandler extends ContentObserver implements Runnable {
+        private AtomicBoolean mResultStillPending = new AtomicBoolean(true);
+        private final Handler mHandler;
+
+        public FetchResultHandler(Handler handler) {
+            super(handler);
+            mHandler = handler;
+        }
+
+        public Runnable getTimeoutRunnable() {
+            return this;
+        }
+
+        @Override
+        public void run() {
+            if (mResultStillPending.getAndSet(false)) {
+                mView.unregisterContentObserver(FetchResultHandler.this);
+                mView.setFetchContentTimeout();
+            }
+        }
+
+        public void destroy() {
+            if (mResultStillPending.getAndSet(false)) {
+                mView.unregisterContentObserver(FetchResultHandler.this);
+                mHandler.removeCallbacks(this);
+            }
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            mBackgroundTaskService.submit(new BackgroundTask() {
+                private boolean mHasContent = false;
+
+                @Override
+                public void doInBackground() {
+                    mHasContent = mView.queryHasContent(mVoicemailUri);
+                }
+
+                @Override
+                public void onPostExecute() {
+                    if (mHasContent) {
+                        if (mResultStillPending.getAndSet(false)) {
+                            mView.unregisterContentObserver(FetchResultHandler.this);
+                            postSuccessfullyFetchedContent();
+                        }
+                    }
+                }
+            }, AsyncTask.THREAD_POOL_EXECUTOR);
+        }
+    }
+
+    /**
+     * Prepares the voicemail content for playback.
+     * <p>
+     * This method will be called once we know that our voicemail has content (according to the
+     * content provider). This method will try to prepare the data source through the media player.
+     * If preparing the media player works, we will call through to
+     * {@link #postSuccessfulPrepareActions()}. If preparing the media player fails (perhaps the
+     * file the content provider points to is actually missing, perhaps it is of an unknown file
+     * format that we can't play, who knows) then we will show an error on the ui.
+     */
+    private void postSuccessfullyFetchedContent() {
         mView.setIsBuffering();
         mBackgroundTaskService.submit(new BackgroundTask() {
             private Exception mException;
@@ -169,7 +311,14 @@ import javax.annotation.concurrent.ThreadSafe;
         }, AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
+    /**
+     * Enables the ui, and optionally starts playback immediately.
+     * <p>
+     * This will be called once we have successfully prepared the media player, and will optionally
+     * playback immediately.
+     */
     private void postSuccessfulPrepareActions() {
+        mView.enableUiElements();
         mView.setPositionSeekListener(new PlaybackPositionListener());
         mView.setStartStopListener(new StartStopButtonListener());
         mView.setSpeakerphoneListener(new SpeakerphoneListener());
@@ -194,7 +343,14 @@ import javax.annotation.concurrent.ThreadSafe;
         }
     }
 
+    /**
+     * This method should be called <b>only on the ui thread</b>.
+     */
     public void onDestroy() {
+        if (mFetchResultHandler != null) {
+            mFetchResultHandler.destroy();
+            mFetchResultHandler = null;
+        }
         mPositionUpdater.stopUpdating();
         mPlayer.release();
     }

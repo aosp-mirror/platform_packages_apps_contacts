@@ -1635,6 +1635,12 @@
     <!-- Message to display before we have prepared the media player, i.e. before we know duration. [CHAR LIMIT=40] -->
     <string name="voicemail_buffering">buffering...</string>
 
+    <!-- Message to display whilst we are waiting for the content to be fetched. [CHAR LIMIT=40] -->
+    <string name="voicemail_fetching_content">fetching voicemail...</string>
+
+    <!-- Message to display if we fail to get content within a suitable time period. [CHAR LIMIT=40] -->
+    <string name="voicemail_fetching_timout">failed to fetch voicemail</string>
+
     <!-- The header in the call log used to identify missed calls and voicemail that have not yet been consumed [CHAR LIMIT=10] -->
     <string name="call_log_new_header">New</string>
 
