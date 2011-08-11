@@ -211,6 +211,10 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         return mSearchMode;
     }
 
+    public boolean shouldShowSearchResult() {
+        return mSearchMode && !TextUtils.isEmpty(mQueryString);
+    }
+
     public void setSearchMode(boolean flag) {
         if (mSearchMode != flag) {
             mSearchMode = flag;

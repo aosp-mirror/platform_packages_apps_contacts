@@ -455,10 +455,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         if (!mEmptyListEnabled) {
             return false;
         } else if (isSearchMode()) {
-            // TODO Do we really need this?  DefaultContactListAdapter overrides it and always
-            // return false, as it returns all contacts if in the search mode and the query is
-            // empty.  If there's no places relying on this behavior, we can just return false
-            // here.
             return TextUtils.isEmpty(getQueryString());
         } else if (mLoading) {
             // We don't want the empty state to show when loading.

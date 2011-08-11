@@ -867,11 +867,11 @@ public class PeopleActivity extends ContactsActivity
     }
 
     private void configureContactListFragment() {
-        final boolean searchMode = mActionBarAdapter.isSearchMode();
-        mAllFragment.setSearchMode(searchMode);
+        final boolean showSearchResult = mActionBarAdapter.shouldShowSearchResult();
+        mAllFragment.setSearchMode(showSearchResult);
 
         final boolean useTwoPane = PhoneCapabilityTester.isUsingTwoPanes(this);
-        mAllFragment.setVisibleScrollbarEnabled(!searchMode);
+        mAllFragment.setVisibleScrollbarEnabled(!showSearchResult);
         mAllFragment.setVerticalScrollbarPosition(
                 useTwoPane
                         ? View.SCROLLBAR_POSITION_LEFT
