@@ -24,6 +24,7 @@ import com.android.contacts.PhoneCallDetailsHelper;
 import com.android.contacts.R;
 import com.android.contacts.activities.DialtactsActivity;
 import com.android.contacts.activities.DialtactsActivity.ViewPagerVisibilityListener;
+import com.android.contacts.test.NeededForTesting;
 import com.android.contacts.util.ExpirableCache;
 import com.android.contacts.voicemail.VoicemailStatusHelper;
 import com.android.contacts.voicemail.VoicemailStatusHelper.StatusMessage;
@@ -167,6 +168,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     private boolean mScrollToTop;
 
     private boolean mShowOptionsMenu;
+    /** Whether we are currently filtering over voicemail. */
+    private boolean mShowingVoicemailOnly = false;
 
     private VoicemailStatusHelper mVoicemailStatusHelper;
     private View mStatusMessageView;
@@ -228,6 +231,10 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         public void addGroup(int cursorPosition, int size, boolean expanded);
     }
 
+    public interface CallFetcher {
+        public void fetchAllCalls();
+    }
+
     /** Adapter class to fill in data for the Call Log */
     public static final class CallLogAdapter extends GroupingListAdapter
             implements Runnable, ViewTreeObserver.OnPreDrawListener, GroupCreator {
@@ -236,7 +243,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
 
         private final Context mContext;
         private final String mCurrentCountryIso;
-        private final CallLogQueryHandler mCallLogQueryHandler;
+        private final CallFetcher mCallFetcher;
 
         /**
          * A cache of the contact details for the phone numbers in the call log.
@@ -320,13 +327,13 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             }
         };
 
-        public CallLogAdapter(Context context, CallLogQueryHandler callLogQueryHandler,
+        public CallLogAdapter(Context context, CallFetcher callFetcher,
                 String currentCountryIso, String voicemailNumber) {
             super(context);
 
             mContext = context;
             mCurrentCountryIso = currentCountryIso;
-            mCallLogQueryHandler = callLogQueryHandler;
+            mCallFetcher = callFetcher;
 
             mContactInfoCache = ExpirableCache.create(CONTACT_INFO_CACHE_SIZE);
             mRequests = new LinkedList<String>();
@@ -350,9 +357,9 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
          */
         @Override
         protected void onContentChanged() {
-            // Start async requery
-            setLoading(true);
-            mCallLogQueryHandler.fetchAllCalls();
+            // When the content changes, always fetch all the calls, in case a new missed call came
+            // in and we were filtering over voicemail only, so that we see the missed call.
+            mCallFetcher.fetchAllCalls();
         }
 
         void setLoading(boolean loading) {
@@ -921,8 +928,13 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         String currentCountryIso = ContactsUtils.getCurrentCountryIso(getActivity());
-        mAdapter = new CallLogAdapter(getActivity(), mCallLogQueryHandler, currentCountryIso,
-                getVoiceMailNumber());
+        mAdapter = new CallLogAdapter(getActivity(),
+                new CallFetcher() {
+                    @Override
+                    public void fetchAllCalls() {
+                        startCallsQuery();
+                    }
+                }, currentCountryIso, mVoiceMailNumber);
         setListAdapter(mAdapter);
         getListView().setItemsCanFocus(true);
     }
@@ -995,6 +1007,10 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     private void startCallsQuery() {
         mAdapter.setLoading(true);
         mCallLogQueryHandler.fetchAllCalls();
+        if (mShowingVoicemailOnly) {
+            mShowingVoicemailOnly = false;
+            getActivity().invalidateOptionsMenu();
+        }
     }
 
     private void startVoicemailStatusQuery() {
@@ -1014,21 +1030,28 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         if (mShowOptionsMenu) {
             menu.findItem(R.id.menu_call_settings_call_log)
                 .setIntent(DialtactsActivity.getCallSettingsIntent());
+            menu.findItem(R.id.show_voicemails_only).setVisible(!mShowingVoicemailOnly);
+            menu.findItem(R.id.show_all_calls).setVisible(mShowingVoicemailOnly);
         }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.delete_all: {
+            case R.id.delete_all:
                 ClearCallLogDialog.show(getFragmentManager());
                 return true;
-            }
 
-            case R.id.show_voicemails_only: {
+            case R.id.show_voicemails_only:
                 mCallLogQueryHandler.fetchVoicemailOnly();
+                mShowingVoicemailOnly = true;
                 return true;
-            }
+
+            case R.id.show_all_calls:
+                mCallLogQueryHandler.fetchAllCalls();
+                mShowingVoicemailOnly = false;
+                return true;
+
             default:
                 return false;
         }
@@ -1114,12 +1137,12 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         }
     }
 
-    @VisibleForTesting
+    @NeededForTesting
     public CallLogAdapter getAdapter() {
         return mAdapter;
     }
 
-    @VisibleForTesting
+    @NeededForTesting
     public String getVoiceMailNumber() {
         return mVoiceMailNumber;
     }

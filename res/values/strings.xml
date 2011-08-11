@@ -1676,6 +1676,9 @@
     <!-- Menu item used to show only voicemails in the call log. [CHAR LIMIT=30] -->
     <string name="menu_show_voicemails_only">Show voicemails only</string>
 
+    <!-- Menu item used to show all calls in the call log. [CHAR LIMIT=30] -->
+    <string name="menu_show_all_calls">Show all calls</string>
+
     <!--  Used to display as default status when the contact is available for chat [CHAR LIMIT=19] -->
     <string name="status_available">Available</string>
 
