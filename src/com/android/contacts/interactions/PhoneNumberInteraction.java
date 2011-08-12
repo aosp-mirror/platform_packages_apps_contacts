@@ -24,11 +24,11 @@ import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.StringInflater;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.DataKind;
+import com.android.i18n.phonenumbers.NumberParseException;
+import com.android.i18n.phonenumbers.PhoneNumberUtil;
+import com.android.i18n.phonenumbers.PhoneNumberUtil.MatchType;
+import com.android.i18n.phonenumbers.Phonenumber.PhoneNumber;
 import com.google.common.annotations.VisibleForTesting;
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.PhoneNumberUtil.MatchType;
-import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
 import android.app.Activity;
 import android.app.AlertDialog;
