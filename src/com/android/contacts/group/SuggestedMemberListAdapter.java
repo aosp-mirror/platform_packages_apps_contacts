@@ -144,11 +144,11 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
         byte[] byteArray = member.getPhotoByteArray();
         if (byteArray == null) {
             icon.setImageResource(R.drawable.ic_contact_picture);
-        }
-        else {
+        } else {
             Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
             icon.setImageBitmap(bitmap);
         }
+        result.setTag(member);
         return result;
     }
 

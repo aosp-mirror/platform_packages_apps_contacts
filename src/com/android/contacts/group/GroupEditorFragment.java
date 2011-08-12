@@ -404,7 +404,10 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
             mAutoCompleteTextView.setOnItemClickListener(new OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    SuggestedMember member = mAutoCompleteAdapter.getItem(position);
+                    SuggestedMember member = (SuggestedMember) view.getTag();
+                    if (member == null) {
+                        return; // just in case
+                    }
                     loadMemberToAddToGroup(member.getRawContactId(),
                             String.valueOf(member.getContactId()));
 
