@@ -787,6 +787,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         String attribution = ContactDetailDisplayUtils.getAttribution(mContext, mContactData);
         boolean hasAttribution = !TextUtils.isEmpty(attribution);
         int networksCount = mOtherEntriesMap.keySet().size();
+
+        // Note: invitableCount will always be 0 for me profile.  (ContactLoader won't set
+        // invitable types for me profile.)
         int invitableCount = mContactData.getInvitableAccountTypes().size();
         if (!hasAttribution && networksCount == 0 && invitableCount == 0) {
             return;

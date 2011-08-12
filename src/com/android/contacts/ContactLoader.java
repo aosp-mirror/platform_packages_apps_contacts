@@ -113,7 +113,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         private final boolean mStarred;
         private final Integer mPresence;
         private final ArrayList<Entity> mEntities;
-        private ArrayList<StreamItemEntry> mStreamItems;
+        private final ArrayList<StreamItemEntry> mStreamItems;
         private final HashMap<Long, DataStatus> mStatuses;
         private final ArrayList<AccountType> mInvitableAccountTypes;
 
@@ -127,9 +127,9 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
         private boolean mLoadingPhoto;
         private byte[] mPhotoBinaryData;
-        private boolean mSendToVoicemail;
-        private String mCustomRingtone;
-        private boolean mIsUserProfile;
+        private final boolean mSendToVoicemail;
+        private final String mCustomRingtone;
+        private final boolean mIsUserProfile;
 
         /**
          * Constructor for case "no contact found". This must only be used for the
@@ -618,7 +618,9 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                         loadStreamItems(result);
                     }
                     loadPhotoBinaryData(result);
-                    if (mLoadInvitableAccountTypes) {
+
+                    // Note ME profile should never have "Add connection"
+                    if (mLoadInvitableAccountTypes && !result.isUserProfile()) {
                         loadInvitableAccountTypes(result);
                     }
                 }
