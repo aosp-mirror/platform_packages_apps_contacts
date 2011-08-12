@@ -83,17 +83,17 @@ public class AccountFilterActivity extends ContactsActivity
             accountFilters.add(ContactListFilter.createAccountFilter(account.type, account.name,
                     account.dataSet, icon, account.name));
         }
-        int count = accountFilters.size();
+        final int count = accountFilters.size();
 
         if (count >= 1) {
-            // If we only have one account, don't show it as "account", instead show it as "all"
             mFilters.add(ContactListFilter.createFilterWithType(
                     ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS));
+            // If we only have one account, don't show it as "account", instead show it as "all"
             if (count > 1) {
                 mFilters.addAll(accountFilters);
-                mFilters.add(ContactListFilter.createFilterWithType(
-                    ContactListFilter.FILTER_TYPE_CUSTOM));
             }
+            mFilters.add(ContactListFilter.createFilterWithType(
+                    ContactListFilter.FILTER_TYPE_CUSTOM));
         }
 
         mListView.setAdapter(new FilterListAdapter(this));
