@@ -198,6 +198,7 @@ public class CallDetailActivity extends Activity {
      * playback.  If it doesn't, then hide the voicemail ui.
      */
     private void optionallyHandleVoicemail() {
+        View voicemailContainer = findViewById(R.id.voicemail_container);
         if (hasVoicemail()) {
             // Has voicemail: add the voicemail fragment.  Add suitable arguments to set the uri
             // to play and optionally start the playback.
@@ -209,6 +210,7 @@ public class CallDetailActivity extends Activity {
                 fragmentArguments.putBoolean(EXTRA_VOICEMAIL_START_PLAYBACK, true);
             }
             playbackFragment.setArguments(fragmentArguments);
+            voicemailContainer.setVisibility(View.VISIBLE);
             getFragmentManager().beginTransaction()
                     .add(R.id.voicemail_container, playbackFragment).commit();
             mAsyncQueryHandler.startVoicemailStatusQuery(getVoicemailUri());
@@ -216,6 +218,7 @@ public class CallDetailActivity extends Activity {
         } else {
             // No voicemail uri: hide the status view.
             mStatusMessageView.setVisibility(View.GONE);
+            voicemailContainer.setVisibility(View.GONE);
         }
     }
 
@@ -409,7 +412,8 @@ public class CallDetailActivity extends Activity {
                             getString(R.string.description_call, nameOrNumber));
 
                     // Only show a label if the number is shown and it is not a SIP address.
-                    if (!TextUtils.isEmpty(firstDetails.number)
+                    if (!TextUtils.isEmpty(firstDetails.name)
+                            && !TextUtils.isEmpty(firstDetails.number)
                             && !PhoneNumberUtils.isUriNumber(firstDetails.number.toString())) {
                         entry.label = Phone.getTypeLabel(mResources, firstDetails.numberType,
                                 firstDetails.numberLabel);
@@ -550,7 +554,6 @@ public class CallDetailActivity extends Activity {
         public final String primaryDescription;
 
         public CharSequence label = null;
-        public String number = null;
         /** Icon for the secondary action. */
         public int secondaryIcon = 0;
         /** Intent for the secondary action. If not null, an icon must be defined. */
@@ -583,7 +586,7 @@ public class CallDetailActivity extends Activity {
 
         ImageView icon = (ImageView) convertView.findViewById(R.id.call_and_sms_icon);
         View divider = convertView.findViewById(R.id.call_and_sms_divider);
-        TextView text = (TextView) convertView.findViewById(R.id.call_and_sms_text1);
+        TextView text = (TextView) convertView.findViewById(R.id.call_and_sms_text);
 
         View mainAction = convertView.findViewById(R.id.call_and_sms_main_action);
         mainAction.setOnClickListener(mPrimaryActionListener);
@@ -603,24 +606,12 @@ public class CallDetailActivity extends Activity {
         }
         text.setText(entry.text);
 
-        View line2 = convertView.findViewById(R.id.call_and_sms_line2);
-        boolean numberEmpty = TextUtils.isEmpty(entry.number);
-        boolean labelEmpty = TextUtils.isEmpty(entry.label) || numberEmpty;
-        if (labelEmpty && numberEmpty) {
-            line2.setVisibility(View.GONE);
+        TextView label = (TextView) convertView.findViewById(R.id.call_and_sms_label);
+        if (TextUtils.isEmpty(entry.label)) {
+            label.setVisibility(View.GONE);
         } else {
-            line2.setVisibility(View.VISIBLE);
-
-            TextView label = (TextView) convertView.findViewById(R.id.call_and_sms_label);
-            if (labelEmpty) {
-                label.setVisibility(View.GONE);
-            } else {
-                label.setText(entry.label);
-                label.setVisibility(View.VISIBLE);
-            }
-
-            TextView number = (TextView) convertView.findViewById(R.id.call_and_sms_number);
-            number.setText(entry.number);
+            label.setText(entry.label);
+            label.setVisibility(View.VISIBLE);
         }
     }
 
