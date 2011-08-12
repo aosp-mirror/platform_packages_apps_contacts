@@ -23,6 +23,7 @@ import com.android.contacts.util.StreamItemEntry;
 import com.android.contacts.util.StreamItemPhotoEntry;
 import com.google.android.collect.Lists;
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.collect.Sets;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -62,6 +63,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Loads a single Contact and all it constituent RawContacts.
@@ -76,7 +78,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
     private Result mContact;
     private ForceLoadContentObserver mObserver;
     private boolean mDestroyed;
-
+    private final Set<Long> mNotifiedRawContactIds = Sets.newHashSet();
 
     public interface Listener {
         public void onContactLoaded(Result contact);
@@ -1115,6 +1117,11 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         Context context = getContext();
         for (Entity entity : mContact.getEntities()) {
             final ContentValues entityValues = entity.getEntityValues();
+            final long rawContactId = entityValues.getAsLong(RawContacts.Entity._ID);
+            if (mNotifiedRawContactIds.contains(rawContactId)) {
+                continue; // Already notified for this raw contact.
+            }
+            mNotifiedRawContactIds.add(rawContactId);
             final String type = entityValues.getAsString(RawContacts.ACCOUNT_TYPE);
             final String dataSet = entityValues.getAsString(RawContacts.DATA_SET);
             final AccountType accountType = AccountTypeManager.getInstance(context ).getAccountType(
@@ -1122,7 +1129,6 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             final String serviceName = accountType.getViewContactNotifyServiceClassName();
             final String resPackageName = accountType.resPackageName;
             if (!TextUtils.isEmpty(serviceName) && !TextUtils.isEmpty(resPackageName)) {
-                final long rawContactId = entityValues.getAsLong(RawContacts.Entity._ID);
                 final Uri uri = ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId);
                 final Intent intent = new Intent();
                 intent.setClassName(resPackageName, serviceName);
