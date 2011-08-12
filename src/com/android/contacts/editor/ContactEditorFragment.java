@@ -693,7 +693,7 @@ public class ContactEditorFragment extends Fragment implements
 
                     @Override
                     public void onRequest(int request) {
-                        if (request == EditorListener.FIELD_CHANGED) {
+                        if (request == EditorListener.FIELD_CHANGED && !isEditingUserProfile()) {
                             acquireAggregationSuggestions(rawContactEditor);
                         }
                     }
@@ -803,12 +803,11 @@ public class ContactEditorFragment extends Fragment implements
         // TODO: Find a better way to handle shortcuts, i.e. onKeyDown()?
         menu.findItem(R.id.menu_done).setVisible(false);
 
-        boolean editingUserProfile = mIsUserProfile || mNewLocalProfile;
         // Split only if more than one raw profile and not a user profile
         menu.findItem(R.id.menu_split).setVisible(mState != null && mState.size() > 1 &&
-                !editingUserProfile);
+                !isEditingUserProfile());
         // Cannot join a user profile
-        menu.findItem(R.id.menu_join).setVisible(!editingUserProfile);
+        menu.findItem(R.id.menu_join).setVisible(!isEditingUserProfile());
 
 
         int size = menu.size();
@@ -974,7 +973,7 @@ public class ContactEditorFragment extends Fragment implements
         setEnabled(false);
 
         Intent intent = ContactSaveService.createSaveContactIntent(getActivity(), mState,
-                SAVE_MODE_EXTRA_KEY, saveMode, mNewLocalProfile || mIsUserProfile,
+                SAVE_MODE_EXTRA_KEY, saveMode, isEditingUserProfile(),
                 getActivity().getClass(), ContactEditorActivity.ACTION_SAVE_COMPLETED);
         getActivity().startService(intent);
         return true;
@@ -1148,6 +1147,10 @@ public class ContactEditorFragment extends Fragment implements
             }
         }
         return false;
+    }
+
+    private boolean isEditingUserProfile() {
+        return mNewLocalProfile || mIsUserProfile;
     }
 
     public static interface Listener {
