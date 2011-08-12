@@ -51,12 +51,13 @@ import javax.annotation.concurrent.GuardedBy;
     private static final int QUERY_OLD_CALLS_TOKEN = 54;
     /** The token for the query to mark all missed calls as old after seeing the call log. */
     private static final int UPDATE_MARK_AS_OLD_TOKEN = 55;
+    /** The token for the query to mark all new voicemails as old. */
+    private static final int UPDATE_MARK_VOICEMAILS_AS_OLD_TOKEN = 56;
     /** The token for the query to mark all missed calls as read after seeing the call log. */
-    private static final int UPDATE_MARK_MISSED_CALL_AS_READ_TOKEN = 56;
+    private static final int UPDATE_MARK_MISSED_CALL_AS_READ_TOKEN = 57;
 
     /** The token for the query to fetch voicemail status messages. */
-    private static final int QUERY_VOICEMAIL_STATUS_TOKEN = 57;
-
+    private static final int QUERY_VOICEMAIL_STATUS_TOKEN = 58;
 
     private final WeakReference<Listener> mListener;
 
@@ -190,6 +191,22 @@ import javax.annotation.concurrent.GuardedBy;
 
         startUpdate(UPDATE_MARK_AS_OLD_TOKEN, null, Calls.CONTENT_URI_WITH_VOICEMAIL,
                 values, where.toString(), null);
+    }
+
+    /** Updates all new voicemails to mark them as old. */
+    public void markNewVoicemailsAsOld() {
+        // Mark all "new" voicemails as not new anymore.
+        StringBuilder where = new StringBuilder();
+        where.append(Calls.NEW);
+        where.append(" = 1 AND ");
+        where.append(Calls.TYPE);
+        where.append(" = ?");
+
+        ContentValues values = new ContentValues(1);
+        values.put(Calls.NEW, "0");
+
+        startUpdate(UPDATE_MARK_VOICEMAILS_AS_OLD_TOKEN, null, Calls.CONTENT_URI_WITH_VOICEMAIL,
+                values, where.toString(), new String[]{ Integer.toString(Calls.VOICEMAIL_TYPE) });
     }
 
     /** Updates all missed calls to mark them as read. */

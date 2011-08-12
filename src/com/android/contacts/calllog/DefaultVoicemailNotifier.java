@@ -153,7 +153,7 @@ public class DefaultVoicemailNotifier implements VoicemailNotifier {
                 .setContentTitle(title)
                 .setContentText(callers)
                 .setDefaults(callToNotify != null ? Notification.DEFAULT_ALL : 0)
-                .setDeleteIntent(createMarkNewCallsAsOld())
+                .setDeleteIntent(createMarkNewVoicemailsAsOldIntent())
                 .setAutoCancel(true)
                 .getNotification();
 
@@ -182,10 +182,10 @@ public class DefaultVoicemailNotifier implements VoicemailNotifier {
         mNotificationManager.notify(NOTIFICATION_TAG, NOTIFICATION_ID, notification);
     }
 
-    /** Creates a pending intent that marks all new calls as old. */
-    private PendingIntent createMarkNewCallsAsOld() {
+    /** Creates a pending intent that marks all new voicemails as old. */
+    private PendingIntent createMarkNewVoicemailsAsOldIntent() {
         Intent intent = new Intent(mContext, CallLogNotificationsService.class);
-        intent.setAction(CallLogNotificationsService.ACTION_MARK_NEW_CALLS_AS_OLD);
+        intent.setAction(CallLogNotificationsService.ACTION_MARK_NEW_VOICEMAILS_AS_OLD);
         return PendingIntent.getService(mContext, 0, intent, 0);
     }
 
