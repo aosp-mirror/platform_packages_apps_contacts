@@ -142,7 +142,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     private NfcHandler mNfcHandler;
 
     private ContactLoader.Result mContactData;
-    private ViewGroup mHeaderView;
     private ImageView mStaticPhotoView;
     private ListView mListView;
     private ViewAdapter mAdapter;
@@ -395,9 +394,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             mView.setVisibility(View.INVISIBLE);
             return;
         }
-
-        // Clear old header
-        mHeaderView = null;
 
         // Figure out if the contact has social updates or not
         mContactHasSocialUpdates = !mContactData.getStreamItems().isEmpty();
@@ -1340,6 +1336,25 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     }
 
     /**
+     * Cache of the children views for a view that displays a header view entry.
+     */
+    private static class HeaderViewCache {
+        public final TextView displayNameView;
+        public final TextView companyView;
+        public final ImageView photoView;
+        public final CheckBox starredView;
+        public final int layoutResourceId;
+
+        public HeaderViewCache(View view, int layoutResourceInflated) {
+            displayNameView = (TextView) view.findViewById(R.id.name);
+            companyView = (TextView) view.findViewById(R.id.company);
+            photoView = (ImageView) view.findViewById(R.id.photo);
+            starredView = (CheckBox) view.findViewById(R.id.star);
+            layoutResourceId = layoutResourceInflated;
+        }
+    }
+
+    /**
      * Cache of the children views for a view that displays a {@link NetworkTitleViewEntry}
      */
     private static class NetworkTitleViewCache {
@@ -1421,53 +1436,58 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         }
 
         private View getHeaderEntryView(View convertView, ViewGroup parent) {
-            // We don't want to rely on the recycled header view because it may
-            // have been left over from a previously viewed contact (since we
-            // reuse the adapter), so we would have to bind the data to the
-            // header each time. However, since there is only 1 header per list,
-            // just hold onto the original header view for this contact and
-            // return that each time.
-            if (mHeaderView != null) {
-                return mHeaderView;
-            }
-
-            int resourceId = mContactHasSocialUpdates ?
+            final int desiredLayoutResourceId = mContactHasSocialUpdates ?
                     R.layout.detail_header_contact_with_updates :
                     R.layout.detail_header_contact_without_updates;
-            mHeaderView = (ViewGroup) inflate(resourceId, parent, false);
+            View result = null;
+            HeaderViewCache viewCache = null;
 
-            TextView displayNameView = (TextView) mHeaderView.findViewById(R.id.name);
-            TextView companyView = (TextView) mHeaderView.findViewById(R.id.company);
-            ImageView photoView = (ImageView) mHeaderView.findViewById(R.id.photo);
+            // Only use convertView if it has the same layout resource ID as the one desired
+            // (the two can be different on wide 2-pane screens where the detail fragment is reused
+            // for many different contacts that do and do not have social updates).
+            if (convertView != null) {
+                viewCache = (HeaderViewCache) convertView.getTag();
+                if (viewCache.layoutResourceId == desiredLayoutResourceId) {
+                    result = convertView;
+                }
+            }
 
-            ContactDetailDisplayUtils.setDisplayName(mContext, mContactData, displayNameView);
-            ContactDetailDisplayUtils.setCompanyName(mContext, mContactData, companyView);
+            // Otherwise inflate a new header view and create a new view cache.
+            if (result == null) {
+                result = mInflater.inflate(desiredLayoutResourceId, parent, false);
+                viewCache = new HeaderViewCache(result, desiredLayoutResourceId);
+                result.setTag(viewCache);
+            }
+
+            ContactDetailDisplayUtils.setDisplayName(mContext, mContactData,
+                    viewCache.displayNameView);
+            ContactDetailDisplayUtils.setCompanyName(mContext, mContactData, viewCache.companyView);
 
             // Set the photo if it should be displayed
-            if (photoView != null) {
-                ContactDetailDisplayUtils.setPhoto(mContext, mContactData, photoView);
+            if (viewCache.photoView != null) {
+                ContactDetailDisplayUtils.setPhoto(mContext, mContactData, viewCache.photoView);
             }
 
             // Set the starred state if it should be displayed
-            final CheckBox starredView = (CheckBox) mHeaderView.findViewById(R.id.star);
-            if (starredView != null) {
-                ContactDetailDisplayUtils.setStarred(mContactData, starredView);
+            final CheckBox favoritesStar = viewCache.starredView;
+            if (favoritesStar != null) {
+                ContactDetailDisplayUtils.setStarred(mContactData, favoritesStar);
                 final Uri lookupUri = mContactData.getLookupUri();
-                starredView.setOnClickListener(new OnClickListener() {
+                favoritesStar.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         // Toggle "starred" state
                         // Make sure there is a contact
                         if (lookupUri != null) {
                             Intent intent = ContactSaveService.createSetStarredIntent(
-                                    getContext(), lookupUri, starredView.isChecked());
+                                    getContext(), lookupUri, favoritesStar.isChecked());
                             getContext().startService(intent);
                         }
                     }
                 });
             }
 
-            return mHeaderView;
+            return result;
         }
 
         private View getSeparatorEntryView(int position, View convertView, ViewGroup parent) {
