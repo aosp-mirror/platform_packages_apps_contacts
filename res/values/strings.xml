@@ -1480,7 +1480,7 @@
     <string name="activity_title_contacts_filter">Contacts to display</string>
 
     <!-- Menu item for the settings activity [CHAR LIMIT=64] -->
-    <string name="menu_settings">Display Options</string>
+    <string name="menu_settings">Display options</string>
 
     <!-- The preference section title for contact display options [CHAR LIMIT=128] -->
     <string name="preference_displayOptions">Display options</string>
@@ -1601,7 +1601,7 @@
     <string name="profile_display_name">Set up my profile</string>
 
     <!-- Label to instruct the user to type in a contact's name to add the contact as a member of the current group. [CHAR LIMIT=64] -->
-    <string name="enter_contact_name">Enter contact\'s name</string>
+    <string name="enter_contact_name">Type person\'s name</string>
 
     <!-- Button to view the updates from the current group on the group detail page [CHAR LIMIT=20] -->
     <string name="view_updates_from_group">View updates</string>
