@@ -51,9 +51,12 @@ import javax.annotation.concurrent.GuardedBy;
     private static final int QUERY_OLD_CALLS_TOKEN = 54;
     /** The token for the query to mark all missed calls as old after seeing the call log. */
     private static final int UPDATE_MARK_AS_OLD_TOKEN = 55;
+    /** The token for the query to mark all missed calls as read after seeing the call log. */
+    private static final int UPDATE_MARK_MISSED_CALL_AS_READ_TOKEN = 56;
 
     /** The token for the query to fetch voicemail status messages. */
-    private static final int QUERY_VOICEMAIL_STATUS_TOKEN = 56;
+    private static final int QUERY_VOICEMAIL_STATUS_TOKEN = 57;
+
 
     private final WeakReference<Listener> mListener;
 
@@ -149,14 +152,11 @@ import javax.annotation.concurrent.GuardedBy;
 
     /** Fetches the list of calls in the call log, either the new one or the old ones. */
     private void fetchCalls(int token, boolean isNew, boolean voicemailOnly) {
-        // We need to check for NULL explicitly otherwise entries with where NEW or READ are NULL
+        // We need to check for NULL explicitly otherwise entries with where READ is NULL
         // may not match either the query or its negation.
-        String selection =
-                String.format(
-                        "(%s IS NOT NULL AND %s = 1 AND (%s = ? OR %s = ?)) OR " +
-                        "(%s IS NOT NULL AND %s = 0)",
-                        Calls.NEW, Calls.NEW, Calls.TYPE, Calls.TYPE, Calls.IS_READ, Calls.IS_READ);
-        final String[] selectionArgs;
+        // We consider the calls that are not yet consumed (i.e. IS_READ = 0) as "new".
+        String selection = String.format("%s IS NOT NULL AND %s = 0", Calls.IS_READ, Calls.IS_READ);
+        String[] selectionArgs = null;
         if (!isNew) {
             // Negate the query.
             selection = String.format("NOT (%s)", selection);
@@ -165,13 +165,6 @@ import javax.annotation.concurrent.GuardedBy;
             // Add a clause to fetch only items of type voicemail.
             selection = String.format("(%s) AND (%s = ?)", selection, Calls.TYPE);
             selectionArgs = new String[]{
-                    Integer.toString(Calls.MISSED_TYPE),
-                    Integer.toString(Calls.VOICEMAIL_TYPE),
-                    Integer.toString(Calls.VOICEMAIL_TYPE),
-            };
-        } else {
-            selectionArgs = new String[]{
-                    Integer.toString(Calls.MISSED_TYPE),
                     Integer.toString(Calls.VOICEMAIL_TYPE),
             };
         }
@@ -197,6 +190,21 @@ import javax.annotation.concurrent.GuardedBy;
 
         startUpdate(UPDATE_MARK_AS_OLD_TOKEN, null, Calls.CONTENT_URI_WITH_VOICEMAIL,
                 values, where.toString(), null);
+    }
+
+    /** Updates all missed calls to mark them as read. */
+    public void markMissedCallsAsRead() {
+        // Mark all "new" calls as not new anymore.
+        StringBuilder where = new StringBuilder();
+        where.append(Calls.IS_READ).append(" = 0");
+        where.append(" AND ");
+        where.append(Calls.TYPE).append(" = ").append(Calls.MISSED_TYPE);
+
+        ContentValues values = new ContentValues(1);
+        values.put(Calls.IS_READ, "1");
+
+        startUpdate(UPDATE_MARK_MISSED_CALL_AS_READ_TOKEN, null, Calls.CONTENT_URI, values,
+                where.toString(), null);
     }
 
     /**

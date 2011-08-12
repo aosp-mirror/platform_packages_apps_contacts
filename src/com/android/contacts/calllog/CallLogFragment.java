@@ -990,7 +990,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     @Override
     public void onStop() {
         super.onStop();
-        resetNewCallsFlag();
+        updateOnExit();
     }
 
     @Override
@@ -998,10 +998,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         super.onDestroy();
         mAdapter.stopRequestProcessing();
         mAdapter.changeCursor(null);
-    }
-
-    private void resetNewCallsFlag() {
-        mCallLogQueryHandler.markNewCallsAsOld();
     }
 
     private void startCallsQuery() {
@@ -1153,6 +1149,10 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         if (visible && isResumed()) {
             refreshData();
         }
+
+        if (!visible) {
+            updateOnExit();
+        }
     }
 
     /** Requests updates to the data to be shown. */
@@ -1163,11 +1163,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         startCallsQuery();
         startVoicemailStatusQuery();
         mAdapter.mPreDrawListener = null; // Let it restart the thread after next draw
-        // We don't want to remove notification when keyguard is on because the user has likely not
-        // seen the new call yet.
-        if (!mKeyguardManager.inKeyguardRestrictedInputMode()) {
-            removeMissedCallNotifications();
-        }
+        updateOnEntry();
     }
 
     /** Removes the missed call notifications. */
@@ -1184,5 +1180,37 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         } catch (RemoteException e) {
             Log.e(TAG, "Failed to clear missed calls notification due to remote exception");
         }
+    }
+
+    /** Updates call data and notification state while leaving the call log tab. */
+    private void updateOnExit() {
+        updateOnTransition(false);
+    }
+
+    /** Updates call data and notification state while entering the call log tab. */
+    private void updateOnEntry() {
+        updateOnTransition(true);
+    }
+
+    private void updateOnTransition(boolean onEntry) {
+        // We don't want to update any call data when keyguard is on because the user has likely not
+        // seen the new calls yet.
+        if (!mKeyguardManager.inKeyguardRestrictedInputMode()) {
+            // On either of the transitions we reset the new flag and update the notifications.
+            // While exiting we additionally consume all missed calls (by marking them as read).
+            // This will ensure that they no more appear in the "new" section when we return back.
+            mCallLogQueryHandler.markNewCallsAsOld();
+            if (!onEntry) {
+                mCallLogQueryHandler.markMissedCallsAsRead();
+            }
+            removeMissedCallNotifications();
+            updateVoicemailNotifications();
+        }
+    }
+
+    private void updateVoicemailNotifications() {
+        Intent serviceIntent = new Intent(getActivity(), CallLogNotificationsService.class);
+        serviceIntent.setAction(CallLogNotificationsService.ACTION_UPDATE_NOTIFICATIONS);
+        getActivity().startService(serviceIntent);
     }
 }
