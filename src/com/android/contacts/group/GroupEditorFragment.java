@@ -191,9 +191,9 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     private ContentResolver mContentResolver;
     private SuggestedMemberListAdapter mAutoCompleteAdapter;
 
-    private final List<Member> mListMembersToAdd = new ArrayList<Member>();
-    private final List<Member> mListMembersToRemove = new ArrayList<Member>();
-    private final List<Member> mListToDisplay = new ArrayList<Member>();
+    private ArrayList<Member> mListMembersToAdd = new ArrayList<Member>();
+    private ArrayList<Member> mListMembersToRemove = new ArrayList<Member>();
+    private ArrayList<Member> mListToDisplay = new ArrayList<Member>();
 
     public GroupEditorFragment() {
     }
@@ -273,9 +273,9 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         outState.putBoolean(KEY_GROUP_NAME_IS_READ_ONLY, mGroupNameIsReadOnly);
         outState.putString(KEY_ORIGINAL_GROUP_NAME, mOriginalGroupName);
 
-        outState.putParcelableArray(KEY_MEMBERS_TO_ADD, Member.toArray(mListMembersToAdd));
-        outState.putParcelableArray(KEY_MEMBERS_TO_REMOVE, Member.toArray(mListMembersToRemove));
-        outState.putParcelableArray(KEY_MEMBERS_TO_DISPLAY, Member.toArray(mListToDisplay));
+        outState.putParcelableArrayList(KEY_MEMBERS_TO_ADD, mListMembersToAdd);
+        outState.putParcelableArrayList(KEY_MEMBERS_TO_REMOVE, mListMembersToRemove);
+        outState.putParcelableArrayList(KEY_MEMBERS_TO_DISPLAY, mListToDisplay);
     }
 
     private void onRestoreInstanceState(Bundle state) {
@@ -291,10 +291,9 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         mGroupNameIsReadOnly = state.getBoolean(KEY_GROUP_NAME_IS_READ_ONLY);
         mOriginalGroupName = state.getString(KEY_ORIGINAL_GROUP_NAME);
 
-        Member.toList((Member[]) state.getParcelableArray(KEY_MEMBERS_TO_ADD), mListMembersToAdd);
-        Member.toList((Member[]) state.getParcelableArray(KEY_MEMBERS_TO_REMOVE),
-                mListMembersToRemove);
-        Member.toList((Member[]) state.getParcelableArray(KEY_MEMBERS_TO_DISPLAY), mListToDisplay);
+        mListMembersToAdd = state.getParcelableArrayList(KEY_MEMBERS_TO_ADD);
+        mListMembersToRemove = state.getParcelableArrayList(KEY_MEMBERS_TO_REMOVE);
+        mListToDisplay = state.getParcelableArrayList(KEY_MEMBERS_TO_DISPLAY);
     }
 
     public void setContentResolver(ContentResolver resolver) {
@@ -895,22 +894,6 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
                 return new Member[size];
             }
         };
-
-        /** Convert to an array */
-        public static Member[] toArray(List<Member> list) {
-            return list.toArray(EMPTY_ARRAY);
-        }
-
-        /**
-         * Convert to a list.  Instead of creating a new one, this method clears the passed list
-         * and adds elements to it.
-         */
-        public static void toList(Member[] array, List<Member> list) {
-            list.clear();
-            for (Member member : array) {
-                list.add(member);
-            }
-        }
     }
 
     /**
