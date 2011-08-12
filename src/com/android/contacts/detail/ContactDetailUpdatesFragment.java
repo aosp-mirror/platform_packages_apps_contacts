@@ -142,9 +142,7 @@ public class ContactDetailUpdatesFragment extends ListFragment
 
     @Override
     public void setAlphaLayerValue(float alpha) {
-        if (mAlphaLayer != null) {
-            mAlphaLayer.setAlpha(alpha);
-        }
+        ContactDetailDisplayUtils.setAlphaOnViewBackground(mAlphaLayer, alpha);
     }
 
     @Override

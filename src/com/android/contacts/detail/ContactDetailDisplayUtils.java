@@ -452,4 +452,15 @@ public class ContactDetailDisplayUtils {
             }
         }
     }
+
+    /**
+     * Sets an alpha value on the view.
+     */
+    public static void setAlphaOnViewBackground(View view, float alpha) {
+        if (view != null) {
+            // Convert alpha layer to a black background HEX color with an alpha value for better
+            // performance (i.e. use setBackgroundColor() instead of setAlpha())
+            view.setBackgroundColor((int) (alpha * 255) << 24);
+        }
+    }
 }

@@ -19,8 +19,7 @@
     class="com.android.contacts.detail.CarouselTab"
     android:layout_width="0dip"
     android:layout_height="match_parent"
-    android:layout_weight="1"
-    android:background="@color/detail_tab_background">
+    android:layout_weight="1">
 
     <ImageView android:id="@+id/photo"
         android:scaleType="centerCrop"
@@ -45,8 +44,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="@dimen/detail_tab_carousel_tab_label_height"
-        android:background="@android:color/black"
-        android:alpha="0"
         android:visibility="gone"/>
 
     <TextView

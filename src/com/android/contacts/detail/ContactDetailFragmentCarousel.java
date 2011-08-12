@@ -98,27 +98,16 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
             mAllowedHorizontalScrollLength = (2 * fragmentWidth) - screenWidth;
             mLowerThreshold = (screenWidth - fragmentWidth) / 2;
             mUpperThreshold = mAllowedHorizontalScrollLength - mLowerThreshold;
-
-            // Snap to the current page now that the allowed horizontal scroll length has been
-            // computed.
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    if (isAttachedToWindow() && mAboutFragment != null &&
-                            mUpdatesFragment != null) {
-                        snapToEdge();
-                    }
-                }
-            });
         }
     }
 
     public void setCurrentPage(int pageIndex) {
         if (mCurrentPage != pageIndex) {
             mCurrentPage = pageIndex;
-            if (isAttachedToWindow() && mAboutFragment != null && mUpdatesFragment != null) {
-                snapToEdge();
-            }
+
+            // This method could have been called before the view has been measured, so snap to edge
+            // only after the view is ready.
+            postRunnableToSnapToEdge();
         }
     }
 
@@ -131,7 +120,26 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
         mUpdatesFragment.enableAlphaLayer();
         mUpdatesFragment.setAlphaLayerValue(mCurrentPage == UPDATES_PAGE ? 0 : MAX_ALPHA);
 
-        snapToEdge();
+        // This method could have been called before the view has been measured, so snap to edge
+        // only after the view is ready.
+        postRunnableToSnapToEdge();
+    }
+
+    /**
+     * Snap to the currently selected page only once all the view setup and measurement has
+     * completed (i.e. we need to know the allowed horizontal scroll width in order to
+     * snap to the correct page).
+     */
+    private void postRunnableToSnapToEdge() {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (isAttachedToWindow() && mAboutFragment != null &&
+                        mUpdatesFragment != null) {
+                    snapToEdge();
+                }
+            }
+        });
     }
 
     public int getCurrentPage() {

@@ -94,8 +94,6 @@ public class CarouselTab extends RelativeLayout implements ViewOverlay {
 
     @Override
     public void setAlphaLayerValue(float alpha) {
-        if (mAlphaLayer != null) {
-            mAlphaLayer.setAlpha(alpha);
-        }
+        ContactDetailDisplayUtils.setAlphaOnViewBackground(mAlphaLayer, alpha);
     }
 }

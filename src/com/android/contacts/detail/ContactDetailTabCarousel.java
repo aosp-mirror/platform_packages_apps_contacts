@@ -162,7 +162,7 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         mAboutTab.setAlphaLayerValue(mLastScrollPosition * MAX_ALPHA /
                 mAllowedHorizontalScrollLength);
         mUpdatesTab.setAlphaLayerValue(MAX_ALPHA - mLastScrollPosition * MAX_ALPHA /
-                mAllowedVerticalScrollLength);
+                mAllowedHorizontalScrollLength);
     }
 
     @Override
