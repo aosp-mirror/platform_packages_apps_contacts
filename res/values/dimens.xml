@@ -163,6 +163,12 @@
     <!-- Font size used for the social status in the widget -->
     <dimen name="widget_text_size_snippet">13sp</dimen>
 
+    <!-- Margins and padding for text in widget -->
+    <dimen name="widget_snippet_top_margin">4dip</dimen>
+    <dimen name="widget_snippet_bottom_margin">7dip</dimen>
+    <dimen name="widget_snippet_top_padding">3dip</dimen>
+    <dimen name="widget_snippet_bottom_padding">6dip</dimen>
+
     <!-- Minimum width of the filter selector in the action bar -->
     <dimen name="action_bar_filter_min_width">100dip</dimen>
 
