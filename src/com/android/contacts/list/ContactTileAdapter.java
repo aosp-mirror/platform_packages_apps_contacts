@@ -16,6 +16,8 @@
 package com.android.contacts.list;
 
 import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.ContactPresenceIconUtil;
+import com.android.contacts.ContactStatusUtil;
 import com.android.contacts.ContactTileLoaderFactory;
 import com.android.contacts.GroupMemberLoader;
 import com.android.contacts.R;
@@ -25,6 +27,7 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
@@ -238,8 +241,8 @@ public class ContactTileAdapter extends BaseAdapter {
         contact.photoUri = (photoUri != null ? Uri.parse(photoUri) : null);
         contact.lookupKey = ContentUris.withAppendedId(
                 Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey), id);
-        contact.presence = cursor.isNull(mPresenceIndex) ? null : cursor.getInt(mPresenceIndex);
 
+        // Set phone number and label
         if (mDisplayType == DisplayType.STREQUENT_PHONE_ONLY) {
             int phoneNumberType = cursor.getInt(mPhoneNumberTypeIndex);
             String phoneNumberCustomLabel = cursor.getString(mPhoneNumberLabelIndex);
@@ -247,8 +250,25 @@ public class ContactTileAdapter extends BaseAdapter {
                     phoneNumberCustomLabel);
             contact.phoneNumber = cursor.getString(mPhoneNumberIndex);
         } else {
-            contact.status = cursor.getString(mStatusIndex);
-            contact.presence = cursor.isNull(mPresenceIndex) ? null : cursor.getInt(mPresenceIndex);
+            // Set presence icon and status message
+            Drawable icon = null;
+            int presence = 0;
+            if (!cursor.isNull(mPresenceIndex)) {
+                presence = cursor.getInt(mPresenceIndex);
+                icon = ContactPresenceIconUtil.getPresenceIcon(mContext, presence);
+            }
+            contact.presenceIcon = icon;
+
+            String statusMessage = null;
+            if (mStatusIndex != 0 && !cursor.isNull(mStatusIndex)) {
+                statusMessage = cursor.getString(mStatusIndex);
+            }
+            // If there is no status message from the contact, but there was a presence value,
+            // then use the default status message string
+            if (statusMessage == null && presence != 0) {
+                statusMessage = ContactStatusUtil.getStatusString(mContext, presence);
+            }
+            contact.status = statusMessage;
         }
 
         return contact;
@@ -531,7 +551,7 @@ public class ContactTileAdapter extends BaseAdapter {
         public String phoneNumber;
         public Uri photoUri;
         public Uri lookupKey;
-        public Integer presence;
+        public Drawable presenceIcon;
     }
 
     private static class ViewTypes {

@@ -96,22 +96,12 @@ public class ContactTileView extends FrameLayout {
             mLookupUri = entry.lookupKey;
 
             if (mStatus != null) {
-                String statusText;
-                if (entry.presence == null) {
+                if (entry.status == null) {
                     mStatus.setVisibility(View.GONE);
                 } else {
-                    statusText =
-                          (entry.status != null ? entry.status :
-                          ContactStatusUtil.getStatusString(mContext, entry.presence));
-                    mStatus.setText(statusText);
-                    int presenceDrawableResId = (entry.presence == null ? 0 :
-                            StatusUpdates.getPresenceIconResourceId(entry.presence));
-                    if (presenceDrawableResId != 0) {
-                        Log.i(TAG, "iconId = " + presenceDrawableResId);
-                        mStatus.setCompoundDrawablesWithIntrinsicBounds(
-                                getResources().getDrawable(presenceDrawableResId),
-                                null, null, null);
-                    }
+                    mStatus.setText(entry.status);
+                    mStatus.setCompoundDrawablesWithIntrinsicBounds(entry.presenceIcon,
+                            null, null, null);
                     mStatus.setVisibility(View.VISIBLE);
                 }
             }

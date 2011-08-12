@@ -1050,17 +1050,12 @@ public class ContactListItemView extends ViewGroup
      * Sets the proper icon (star or presence or nothing) and/or status message.
      */
     public void showPresenceAndStatusMessage(Cursor cursor, int presenceColumnIndex,
-            int capabilityColumnIndex, int contactStatusColumnIndex) {
+            int contactStatusColumnIndex) {
         Drawable icon = null;
         int presence = 0;
-        int chatCapability = 0;
         if (!cursor.isNull(presenceColumnIndex)) {
             presence = cursor.getInt(presenceColumnIndex);
-            if (capabilityColumnIndex != 0 && !cursor.isNull(presenceColumnIndex)) {
-                chatCapability = cursor.getInt(capabilityColumnIndex);
-            }
-            icon = ContactPresenceIconUtil.getChatCapabilityIcon(
-                    getContext(), presence, chatCapability);
+            icon = ContactPresenceIconUtil.getPresenceIcon(getContext(), presence);
         }
         setPresence(icon);
 

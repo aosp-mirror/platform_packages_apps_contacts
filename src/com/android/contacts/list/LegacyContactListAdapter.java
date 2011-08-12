@@ -91,6 +91,6 @@ public class LegacyContactListAdapter extends ContactEntryListAdapter {
     }
 
     protected void bindPresence(final ContactListItemView view, Cursor cursor) {
-        view.showPresenceAndStatusMessage(cursor, PERSON_PRESENCE_STATUS_COLUMN_INDEX, 0, 0);
+        view.showPresenceAndStatusMessage(cursor, PERSON_PRESENCE_STATUS_COLUMN_INDEX, 0);
     }
 }
