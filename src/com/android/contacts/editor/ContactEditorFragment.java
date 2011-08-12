@@ -1340,6 +1340,9 @@ public class ContactEditorFragment extends Fragment implements
 
         final RawContactEditorView rawContactView =
                 (RawContactEditorView)getRawContactEditorView(mAggregationSuggestionsRawContactId);
+        if (rawContactView == null) {
+            return; // Raw contact deleted?
+        }
         final View anchorView = rawContactView.findViewById(R.id.anchor_view);
         mAggregationSuggestionPopup = new ListPopupWindow(mContext, null);
         mAggregationSuggestionPopup.setAnchorView(anchorView);
