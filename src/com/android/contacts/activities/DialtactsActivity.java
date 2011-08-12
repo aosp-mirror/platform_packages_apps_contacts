@@ -392,10 +392,14 @@ public class DialtactsActivity extends Activity {
         if (fragment instanceof DialpadFragment) {
             mDialpadFragment = (DialpadFragment) fragment;
             mDialpadFragment.setListener(mDialpadListener);
-            mDialpadFragment.onVisibilityChanged(currentPosition == TAB_INDEX_DIALER);
+            if (currentPosition == TAB_INDEX_DIALER) {
+                mDialpadFragment.onVisibilityChanged(true);
+            }
         } else if (fragment instanceof CallLogFragment) {
             mCallLogFragment = (CallLogFragment) fragment;
-            mCallLogFragment.onVisibilityChanged(currentPosition == TAB_INDEX_CALL_LOG);
+            if (currentPosition == TAB_INDEX_CALL_LOG) {
+                mCallLogFragment.onVisibilityChanged(true);
+            }
         } else if (fragment instanceof ContactTileListFragment) {
             mStrequentFragment = (ContactTileListFragment) fragment;
             mStrequentFragment.enableQuickContact(false);
