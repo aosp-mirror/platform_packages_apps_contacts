@@ -141,17 +141,33 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/call_log_header_text"
+    <LinearLayout
+        android:id="@+id/call_log_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/call_log_inner_margin"
-        android:layout_marginRight="@dimen/call_log_inner_margin"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:textColor="?attr/call_log_header_color"
-        android:padding="@dimen/call_log_inner_margin"
-        android:focusable="true"
-        android:drawableBottom="@android:color/holo_blue_light"
-    />
+        android:paddingLeft="@dimen/call_log_outer_margin"
+        android:paddingRight="@dimen/call_log_outer_margin"
+        android:paddingTop="@dimen/call_log_inner_margin"
+        android:paddingBottom="@dimen/call_log_inner_margin"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/call_log_header_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/call_log_inner_margin"
+            android:paddingRight="@dimen/call_log_inner_margin"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold"
+            android:textColor="?attr/call_log_header_color"
+            android:textAllCaps="true"
+            android:focusable="true"
+        />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dip"
+            android:background="@color/call_log_voicemail_highlight_color"/>
+    </LinearLayout>
 </view>

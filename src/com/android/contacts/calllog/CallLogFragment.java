@@ -701,7 +701,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             if (section == CallLogQuery.SECTION_NEW_HEADER
                     || section == CallLogQuery.SECTION_OLD_HEADER) {
                 views.listItemView.setVisibility(View.GONE);
-                views.listHeaderTextView.setVisibility(View.VISIBLE);
+                views.listHeaderView.setVisibility(View.VISIBLE);
                 views.listHeaderTextView.setText(
                         section == CallLogQuery.SECTION_NEW_HEADER
                                 ? R.string.call_log_new_header
@@ -711,7 +711,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             }
             // Default case: an item in the call log.
             views.listItemView.setVisibility(View.VISIBLE);
-            views.listHeaderTextView.setVisibility(View.GONE);
+            views.listHeaderView.setVisibility(View.GONE);
 
             final String number = c.getString(CallLogQuery.NUMBER);
             final long date = c.getLong(CallLogQuery.DATE);
