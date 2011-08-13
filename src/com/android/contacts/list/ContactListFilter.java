@@ -20,6 +20,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
 
 /**
@@ -200,6 +201,21 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
             .putBoolean(KEY_GROUP_READ_ONLY, filter == null ? false : filter.groupReadOnly)
             .putString(KEY_GROUP_TITLE, filter == null ? null : filter.title)
             .apply();
+    }
+
+    /**
+     * Try to obtain ContactListFilter object saved in SharedPreference.
+     * If there's no info there, return custom filter instead, assuming the user wants contacts
+     * which ContactsProvider remembers as "visible contacts".
+     * (See also {@link Contacts#IN_VISIBLE_GROUP})
+     */
+    public static ContactListFilter restoreDefaultPreferences(SharedPreferences prefs) {
+        ContactListFilter filter = restoreFromPreferences(prefs);
+        if (filter == null) {
+            // Show contacts in IN_VISIBLE_GROUP instead.
+            filter = ContactListFilter.createFilterWithType(ContactListFilter.FILTER_TYPE_CUSTOM);
+        }
+        return filter;
     }
 
     public static ContactListFilter restoreFromPreferences(SharedPreferences prefs) {
