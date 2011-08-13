@@ -192,16 +192,16 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                                 + "SELECT DISTINCT " + RawContacts.CONTACT_ID
                                 + " FROM raw_contacts"
                                 + " WHERE " + RawContacts.ACCOUNT_TYPE + "=?"
-                                + " AND " + RawContacts.ACCOUNT_NAME + "=?"
-                                + " OR " + Contacts.IS_USER_PROFILE + "=1");
+                                + " AND " + RawContacts.ACCOUNT_NAME + "=?");
                 selectionArgs.add(filter.accountType);
                 selectionArgs.add(filter.accountName);
                 if (filter.dataSet != null) {
-                    selection.append(" AND " + RawContacts.DATA_SET + "=?)");
+                    selection.append(" AND " + RawContacts.DATA_SET + "=?");
                     selectionArgs.add(filter.dataSet);
                 } else {
-                    selection.append(" AND " + RawContacts.DATA_SET + " IS NULL)");
+                    selection.append(" AND " + RawContacts.DATA_SET + " IS NULL");
                 }
+                selection.append(" OR " + Contacts.IS_USER_PROFILE + "=1)");
                 break;
             }
             case ContactListFilter.FILTER_TYPE_GROUP: {

@@ -140,11 +140,12 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         if (!isSearchMode() && data != null) {
             int count = data.getCount();
             if (count != 0) {
+                count -= (mUserProfileExists ? 1: 0);
                 String format = getResources().getQuantityText(
                         R.plurals.listTotalAllContacts, count).toString();
                 // Do not count the user profile in the contacts count
                 if (mUserProfileExists) {
-                    getAdapter().setContactsCount(String.format(format, count - 1));
+                    getAdapter().setContactsCount(String.format(format, count));
                 } else {
                     mCounterHeaderView.setText(String.format(format, count));
                 }
