@@ -21,8 +21,6 @@ import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.PhoneCallDetails;
 import com.android.contacts.PhoneCallDetailsHelper;
 import com.android.contacts.R;
-import com.android.contacts.calllog.CallLogFragment.CallFetcher;
-import com.android.contacts.calllog.CallLogFragment.GroupCreator;
 import com.android.contacts.util.ExpirableCache;
 import com.google.common.annotations.VisibleForTesting;
 
@@ -50,9 +48,17 @@ import java.util.LinkedList;
  * Adapter class to fill in data for the Call Log.
  */
 public final class CallLogAdapter extends GroupingListAdapter
-        implements Runnable, ViewTreeObserver.OnPreDrawListener, GroupCreator {
+        implements Runnable, ViewTreeObserver.OnPreDrawListener, CallLogGroupBuilder.GroupCreator {
+    /** Interface used to initiate a refresh of the content. */
+    public interface CallFetcher {
+        public void startCallsQuery();
+    }
+
     /** The time in millis to delay starting the thread processing requests. */
     private static final int START_PROCESSING_REQUESTS_DELAY_MILLIS = 1000;
+
+    /** The size of the cache of contact info. */
+    private static final int CONTACT_INFO_CACHE_SIZE = 100;
 
     private final Context mContext;
     private final String mCurrentCountryIso;
@@ -64,7 +70,7 @@ public final class CallLogAdapter extends GroupingListAdapter
      * The content of the cache is expired (but not purged) whenever the application comes to
      * the foreground.
      */
-    ExpirableCache<String, ContactInfo> mContactInfoCache;
+    private ExpirableCache<String, ContactInfo> mContactInfoCache;
 
     /**
      * List of requests to update contact details.
@@ -76,7 +82,7 @@ public final class CallLogAdapter extends GroupingListAdapter
 
     private volatile boolean mDone;
     private boolean mLoading = true;
-    ViewTreeObserver.OnPreDrawListener mPreDrawListener;
+    private ViewTreeObserver.OnPreDrawListener mPreDrawListener;
     private static final int REDRAW = 1;
     private static final int START_THREAD = 2;
     private boolean mFirst;
@@ -148,7 +154,7 @@ public final class CallLogAdapter extends GroupingListAdapter
         mCurrentCountryIso = currentCountryIso;
         mCallFetcher = callFetcher;
 
-        mContactInfoCache = ExpirableCache.create(CallLogFragment.CONTACT_INFO_CACHE_SIZE);
+        mContactInfoCache = ExpirableCache.create(CONTACT_INFO_CACHE_SIZE);
         mRequests = new LinkedList<String>();
         mPreDrawListener = null;
 
@@ -172,7 +178,7 @@ public final class CallLogAdapter extends GroupingListAdapter
     protected void onContentChanged() {
         // When the content changes, always fetch all the calls, in case a new missed call came
         // in and we were filtering over voicemail only, so that we see the missed call.
-        mCallFetcher.fetchAllCalls();
+        mCallFetcher.startCallsQuery();
     }
 
     void setLoading(boolean loading) {
@@ -220,6 +226,8 @@ public final class CallLogAdapter extends GroupingListAdapter
 
     public void invalidateCache() {
         mContactInfoCache.expireAll();
+        // Let it restart the thread after next draw
+        mPreDrawListener = null;
     }
 
     private void enqueueRequest(String number, boolean immediate) {
@@ -683,5 +691,43 @@ public final class CallLogAdapter extends GroupingListAdapter
             countryIso = mCurrentCountryIso;
         }
         return PhoneNumberUtils.formatNumber(number, normalizedNumber, countryIso);
+    }
+
+    /*
+     * Get the number from the Contacts, if available, since sometimes
+     * the number provided by caller id may not be formatted properly
+     * depending on the carrier (roaming) in use at the time of the
+     * incoming call.
+     * Logic : If the caller-id number starts with a "+", use it
+     *         Else if the number in the contacts starts with a "+", use that one
+     *         Else if the number in the contacts is longer, use that one
+     */
+    public String getBetterNumberFromContacts(String number) {
+        String matchingNumber = null;
+        // Look in the cache first. If it's not found then query the Phones db
+        ContactInfo ci = mContactInfoCache.getPossiblyExpired(number);
+        if (ci != null && ci != ContactInfo.EMPTY) {
+            matchingNumber = ci.number;
+        } else {
+            try {
+                Cursor phonesCursor = mContext.getContentResolver().query(
+                        Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, number),
+                        PhoneQuery._PROJECTION, null, null, null);
+                if (phonesCursor != null) {
+                    if (phonesCursor.moveToFirst()) {
+                        matchingNumber = phonesCursor.getString(PhoneQuery.MATCHED_NUMBER);
+                    }
+                    phonesCursor.close();
+                }
+            } catch (Exception e) {
+                // Use the number from the call log
+            }
+        }
+        if (!TextUtils.isEmpty(matchingNumber) &&
+                (matchingNumber.startsWith("+")
+                        || matchingNumber.length() > number.length())) {
+            number = matchingNumber;
+        }
+        return number;
     }
 }

@@ -271,7 +271,7 @@ public class CallLogGroupBuilderTest extends AndroidTestCase {
     }
 
     /** Fake implementation of a GroupCreator which stores the created groups in a member field. */
-    private static class FakeGroupCreator implements CallLogFragment.GroupCreator {
+    private static class FakeGroupCreator implements CallLogGroupBuilder.GroupCreator {
         /** The list of created groups. */
         public final List<GroupSpec> groups = newArrayList();
 
