@@ -53,8 +53,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * A service responsible for saving changes to the content provider.
@@ -133,7 +133,8 @@ public class ContactSaveService extends IntentService {
         public void onServiceCompleted(Intent callbackIntent);
     }
 
-    private static final LinkedList<Listener> sListeners = new LinkedList<Listener>();
+    private static final CopyOnWriteArrayList<Listener> sListeners =
+            new CopyOnWriteArrayList<Listener>();
 
     private Handler mMainHandler;
 
@@ -148,15 +149,11 @@ public class ContactSaveService extends IntentService {
             throw new ClassCastException("Only activities can be registered to"
                     + " receive callback from " + ContactSaveService.class.getName());
         }
-        synchronized (sListeners) {
-            sListeners.addFirst(listener);
-        }
+        sListeners.add(0, listener);
     }
 
     public static void unregisterListener(Listener listener) {
-        synchronized (sListeners) {
-            sListeners.remove(listener);
-        }
+        sListeners.remove(listener);
     }
 
     @Override
@@ -975,13 +972,11 @@ public class ContactSaveService extends IntentService {
         // TODO: this assumes that if there are multiple instances of the same
         // activity registered, the last one registered is the one waiting for
         // the callback. Validity of this assumption needs to be verified.
-        synchronized (sListeners) {
-            for (Listener listener : sListeners) {
-                if (callbackIntent.getComponent().equals(
-                        ((Activity) listener).getIntent().getComponent())) {
-                    listener.onServiceCompleted(callbackIntent);
-                    return;
-                }
+        for (Listener listener : sListeners) {
+            if (callbackIntent.getComponent().equals(
+                    ((Activity) listener).getIntent().getComponent())) {
+                listener.onServiceCompleted(callbackIntent);
+                return;
             }
         }
     }
