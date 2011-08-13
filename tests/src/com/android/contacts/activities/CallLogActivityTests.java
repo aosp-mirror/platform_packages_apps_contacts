@@ -18,10 +18,11 @@ package com.android.contacts.activities;
 
 import com.android.contacts.CallDetailActivity;
 import com.android.contacts.R;
+import com.android.contacts.calllog.CallLogAdapter;
 import com.android.contacts.calllog.CallLogFragment;
-import com.android.contacts.calllog.CallLogFragment.CallLogQuery;
-import com.android.contacts.calllog.CallLogFragment.ContactInfo;
 import com.android.contacts.calllog.CallLogListItemViews;
+import com.android.contacts.calllog.CallLogQuery;
+import com.android.contacts.calllog.ContactInfo;
 import com.android.contacts.calllog.IntentProvider;
 import com.android.internal.telephony.CallerInfo;
 
@@ -70,7 +71,7 @@ public class CallLogActivityTests
             Calls.COUNTRY_ISO,
             Calls.VOICEMAIL_URI,
             Calls.GEOCODED_LOCATION,
-            CallLogFragment.CallLogQuery.SECTION_NAME,
+            CallLogQuery.SECTION_NAME,
     };
     private static final int RAND_DURATION = -1;
     private static final long NOW = -1L;
@@ -95,7 +96,7 @@ public class CallLogActivityTests
     private CallLogActivity mActivity;
     private CallLogFragment mFragment;
     private FrameLayout mParentView;
-    private CallLogFragment.CallLogAdapter mAdapter;
+    private CallLogAdapter mAdapter;
     private String mVoicemail;
 
     // In memory array to hold the rows corresponding to the 'calls' table.
@@ -507,7 +508,7 @@ public class CallLogActivityTests
         row.add(TEST_COUNTRY_ISO);  // country ISO
         row.add(null);  // voicemail_uri
         row.add(null);  // geocoded_location
-        row.add(CallLogFragment.CallLogQuery.SECTION_OLD_ITEM);  // section
+        row.add(CallLogQuery.SECTION_OLD_ITEM);  // section
     }
 
     /**
@@ -538,7 +539,7 @@ public class CallLogActivityTests
         row.add(TEST_COUNTRY_ISO);  // country ISO
         row.add(voicemailUri);  // voicemail_uri
         row.add(null);  // geocoded_location
-        row.add(CallLogFragment.CallLogQuery.SECTION_OLD_ITEM);  // section
+        row.add(CallLogQuery.SECTION_OLD_ITEM);  // section
     }
 
     /**

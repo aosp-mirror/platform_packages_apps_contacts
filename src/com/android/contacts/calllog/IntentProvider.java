@@ -17,8 +17,6 @@
 package com.android.contacts.calllog;
 
 import com.android.contacts.CallDetailActivity;
-import com.android.contacts.calllog.CallLogFragment.CallLogAdapter;
-import com.android.contacts.calllog.CallLogFragment.CallLogQuery;
 
 import android.content.ContentUris;
 import android.content.Context;
