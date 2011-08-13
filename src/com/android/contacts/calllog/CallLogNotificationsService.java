@@ -26,8 +26,8 @@ import android.util.Log;
  * <p>
  * It handles the following actions:
  * <ul>
- * <li>{@link #ACTION_MARK_NEW_CALLS_AS_OLD}: marks all the new items in the call log as old; this
- * is called when a notification is dismissed.</li>
+ * <li>{@link #ACTION_MARK_NEW_VOICEMAILS_AS_OLD}: marks all the new voicemails in the call log as
+ * old; this is called when a notification is dismissed.</li>
  * <li>{@link #ACTION_UPDATE_NOTIFICATIONS}: updates the content of the new items notification; it
  * may include an optional extra {@link #EXTRA_NEW_VOICEMAIL_URI}, containing the URI of the new
  * voicemail that has triggered this update (if any).</li>
@@ -36,11 +36,9 @@ import android.util.Log;
 public class CallLogNotificationsService extends IntentService {
     private static final String TAG = "CallLogNotificationsService";
 
-    /**
-     * Action to mark all the new calls as old.
-     */
-    public static final String ACTION_MARK_NEW_CALLS_AS_OLD =
-            "com.android.contacts.calllog.MARK_NEW_CALLS_AS_OLD";
+    /** Action to mark all the new voicemails as old. */
+    public static final String ACTION_MARK_NEW_VOICEMAILS_AS_OLD =
+            "com.android.contacts.calllog.ACTION_MARK_NEW_VOICEMAILS_AS_OLD";
 
     /**
      * Action to update the notifications.
@@ -72,8 +70,8 @@ public class CallLogNotificationsService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        if (ACTION_MARK_NEW_CALLS_AS_OLD.equals(intent.getAction())) {
-            mCallLogQueryHandler.markNewCallsAsOld();
+        if (ACTION_MARK_NEW_VOICEMAILS_AS_OLD.equals(intent.getAction())) {
+            mCallLogQueryHandler.markNewVoicemailsAsOld();
         } else if (ACTION_UPDATE_NOTIFICATIONS.equals(intent.getAction())) {
             Uri voicemailUri = (Uri) intent.getParcelableExtra(EXTRA_NEW_VOICEMAIL_URI);
             DefaultVoicemailNotifier.getInstance(this).updateNotification(voicemailUri);
