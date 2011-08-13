@@ -18,7 +18,6 @@ package com.android.contacts.calllog;
 
 import static com.google.android.collect.Lists.newArrayList;
 
-
 import android.database.MatrixCursor;
 import android.provider.CallLog.Calls;
 import android.test.AndroidTestCase;
@@ -223,7 +222,7 @@ public class CallLogGroupBuilderTest extends AndroidTestCase {
         }
         mCursor.moveToNext();
         mCursor.addRow(new Object[]{
-                mCursor.getPosition(), number, 0L, 0L, type, "", "", "", section
+                mCursor.getPosition(), number, 0L, 0L, type, "", "", "", null, 0, null, section
         });
     }
 
@@ -244,7 +243,9 @@ public class CallLogGroupBuilderTest extends AndroidTestCase {
             throw new IllegalArgumentException("not a header section: " + section);
         }
         mCursor.moveToNext();
-        mCursor.addRow(new Object[]{ mCursor.getPosition(), "", 0L, 0L, 0, "", "", "", section });
+        mCursor.addRow(new Object[]{
+                mCursor.getPosition(), "", 0L, 0L, 0, "", "", "", null, 0, null, section
+        });
     }
 
     /** Asserts that the group matches the given values. */
