@@ -76,7 +76,10 @@ public abstract class GroupNameDialogFragment extends DialogFragment
     @Override
     public void afterTextChanged(Editable s) {
         AlertDialog dialog = (AlertDialog) getDialog();
-        updateOkButtonState(dialog);
+        // Make sure the dialog has not already been dismissed or destroyed.
+        if (dialog != null) {
+            updateOkButtonState(dialog);
+        }
     }
 
     private void updateOkButtonState(AlertDialog dialog) {
