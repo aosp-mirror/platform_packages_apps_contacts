@@ -753,7 +753,7 @@ public class DialtactsActivity extends Activity {
 
     private void hideInputMethod(View view) {
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm != null) {
+        if (imm != null && view != null) {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
