@@ -1117,7 +1117,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             final ContentValues entityValues = entity.getEntityValues();
             final String type = entityValues.getAsString(RawContacts.ACCOUNT_TYPE);
             final String dataSet = entityValues.getAsString(RawContacts.DATA_SET);
-            final AccountType accountType = AccountTypeManager.getInstance(context ).getAccountType(
+            final AccountType accountType = AccountTypeManager.getInstance(context).getAccountType(
                     type, dataSet);
             final String serviceName = accountType.getViewContactNotifyServiceClassName();
             final String resPackageName = accountType.resPackageName;
