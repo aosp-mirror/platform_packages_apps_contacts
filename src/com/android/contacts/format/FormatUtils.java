@@ -15,6 +15,7 @@
  */
 package com.android.contacts.format;
 
+import com.android.contacts.test.NeededForTesting;
 import com.google.common.annotations.VisibleForTesting;
 
 import android.database.CharArrayBuffer;
@@ -45,6 +46,7 @@ public class FormatUtils {
      * Finds the earliest point in string1 at which the first part of string2 matches.  For example,
      * overlapPoint("abcd", "cdef") == 2.
      */
+    @NeededForTesting  // App itself doesn't use this right now, but we don't want to remove it.
     public static int overlapPoint(String string1, String string2) {
         if (string1 == null || string2 == null) {
             return -1;
