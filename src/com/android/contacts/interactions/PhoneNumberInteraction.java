@@ -89,6 +89,18 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
         long type;
         String label;
 
+        public PhoneItem() {
+        }
+
+        private PhoneItem(Parcel in) {
+            this.id          = in.readLong();
+            this.phoneNumber = in.readString();
+            this.accountType = in.readString();
+            this.dataSet     = in.readString();
+            this.type        = in.readLong();
+            this.label       = in.readString();
+        }
+
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeLong(id);
             dest.writeString(phoneNumber);
@@ -129,6 +141,17 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
         public String toString() {
             return phoneNumber;
         }
+
+        public static final Parcelable.Creator<PhoneItem> CREATOR
+                = new Parcelable.Creator<PhoneItem>() {
+            public PhoneItem createFromParcel(Parcel in) {
+                return new PhoneItem(in);
+            }
+
+            public PhoneItem[] newArray(int size) {
+                return new PhoneItem[size];
+            }
+        };
     }
 
     /**
