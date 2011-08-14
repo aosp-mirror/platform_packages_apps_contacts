@@ -24,6 +24,7 @@ import com.android.contacts.R;
 import com.android.contacts.util.ExpirableCache;
 import com.google.common.annotations.VisibleForTesting;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -37,6 +38,7 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.PhoneLookup;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +49,7 @@ import java.util.LinkedList;
 /**
  * Adapter class to fill in data for the Call Log.
  */
-public final class CallLogAdapter extends GroupingListAdapter
+public class CallLogAdapter extends GroupingListAdapter
         implements Runnable, ViewTreeObserver.OnPreDrawListener, CallLogGroupBuilder.GroupCreator {
     /** Interface used to initiate a refresh of the content. */
     public interface CallFetcher {
@@ -75,10 +77,13 @@ public final class CallLogAdapter extends GroupingListAdapter
     /**
      * List of requests to update contact details.
      * <p>
+     * Each request is made of a phone number to look up, and the contact info currently stored in
+     * the call log for this number.
+     * <p>
      * The requests are added when displaying the contacts and are processed by a background
      * thread.
      */
-    private final LinkedList<String> mRequests;
+    private final LinkedList<Pair<String, ContactInfo>> mRequests;
 
     private volatile boolean mDone;
     private boolean mLoading = true;
@@ -155,7 +160,7 @@ public final class CallLogAdapter extends GroupingListAdapter
         mCallFetcher = callFetcher;
 
         mContactInfoCache = ExpirableCache.create(CONTACT_INFO_CACHE_SIZE);
-        mRequests = new LinkedList<String>();
+        mRequests = new LinkedList<Pair<String,ContactInfo>>();
         mPreDrawListener = null;
 
         Resources resources = mContext.getResources();
@@ -230,10 +235,21 @@ public final class CallLogAdapter extends GroupingListAdapter
         mPreDrawListener = null;
     }
 
-    private void enqueueRequest(String number, boolean immediate) {
+    /**
+     * Enqueues a request to look up the contact details for the given phone number.
+     * <p>
+     * It also provides the current contact info stored in the call log for this number.
+     * <p>
+     * If the {@code immediate} parameter is true, it will start immediately the thread that looks
+     * up the contact information (if it has not been already started). Otherwise, it will be
+     * started with a delay. See {@link #START_PROCESSING_REQUESTS_DELAY_MILLIS}.
+     */
+    @VisibleForTesting
+    void enqueueRequest(String number, ContactInfo callLogInfo, boolean immediate) {
+        Pair<String, ContactInfo> request = new Pair<String, ContactInfo>(number, callLogInfo);
         synchronized (mRequests) {
-            if (!mRequests.contains(number)) {
-                mRequests.add(number);
+            if (!mRequests.contains(request)) {
+                mRequests.add(request);
                 mRequests.notifyAll();
             }
         }
@@ -378,12 +394,15 @@ public final class CallLogAdapter extends GroupingListAdapter
     /**
      * Queries the appropriate content provider for the contact associated with the number.
      * <p>
+     * Upon completion it also updates the cache in the call log, if it is different from
+     * {@code callLogInfo}.
+     * <p>
      * The number might be either a SIP address or a phone number.
      * <p>
      * It returns true if it updated the content of the cache and we should therefore tell the
      * view to update its content.
      */
-    private boolean queryContactInfo(String number) {
+    private boolean queryContactInfo(String number, ContactInfo callLogInfo) {
         final ContactInfo info;
 
         // Determine the contact info.
@@ -411,6 +430,9 @@ public final class CallLogAdapter extends GroupingListAdapter
         // Store the data in the cache so that the UI thread can use to display it. Store it
         // even if it has not changed so that it is marked as not expired.
         mContactInfoCache.put(number, info);
+        // Update the call log even if the cache it is up-to-date: it is possible that the cache
+        // contains the value from a different call log entry.
+        updateCallLogContactInfoCache(number, info, callLogInfo);
         return updated;
     }
 
@@ -423,9 +445,12 @@ public final class CallLogAdapter extends GroupingListAdapter
         boolean needNotify = false;
         while (!mDone) {
             String number = null;
+            ContactInfo callLogInfo = null;
             synchronized (mRequests) {
                 if (!mRequests.isEmpty()) {
-                    number = mRequests.removeFirst();
+                    Pair<String, ContactInfo> request = mRequests.removeFirst();
+                    number = request.first;
+                    callLogInfo  = request.second;
                 } else {
                     if (needNotify) {
                         needNotify = false;
@@ -439,7 +464,7 @@ public final class CallLogAdapter extends GroupingListAdapter
                     }
                 }
             }
-            if (!mDone && number != null && queryContactInfo(number)) {
+            if (!mDone && number != null && queryContactInfo(number, callLogInfo)) {
                 needNotify = true;
             }
         }
@@ -571,14 +596,20 @@ public final class CallLogAdapter extends GroupingListAdapter
             info = ContactInfo.EMPTY;
             mContactInfoCache.put(number, info);
             // Request the contact details immediately since they are currently missing.
-            enqueueRequest(number, true);
+            enqueueRequest(number, cachedContactInfo, true);
             // Format the phone number in the call log as best as we can.
             formattedNumber = formatPhoneNumber(number, null, countryIso);
         } else {
             if (cachedInfo.isExpired()) {
                 // The contact info is no longer up to date, we should request it. However, we
                 // do not need to request them immediately.
-                enqueueRequest(number, false);
+                enqueueRequest(number, cachedContactInfo, false);
+            } else  if (!callLogInfoMatches(cachedContactInfo, info)) {
+                // The call log information does not match the one we have, look it up again.
+                // We could simply update the call log directly, but that needs to be done in a
+                // background thread, so it is easier to simply request a new lookup, which will, as
+                // a side-effect, update the call log.
+                enqueueRequest(number, cachedContactInfo, false);
             }
 
             if (info != ContactInfo.EMPTY) {
@@ -627,6 +658,52 @@ public final class CallLogAdapter extends GroupingListAdapter
             mPreDrawListener = this;
             view.getViewTreeObserver().addOnPreDrawListener(this);
         }
+    }
+
+    /** Checks whether the contact info from the call log matches the one from the contacts db. */
+    private boolean callLogInfoMatches(ContactInfo callLogInfo, ContactInfo info) {
+        // The call log only contains a subset of the fields in the contacts db.
+        // Only check those.
+        return TextUtils.equals(callLogInfo.name, info.name)
+                && callLogInfo.type == info.type
+                && TextUtils.equals(callLogInfo.label, info.label);
+    }
+
+    /** Stores the updated contact info in the call log if it is different from the current one. */
+    private void updateCallLogContactInfoCache(String number, ContactInfo updatedInfo,
+            ContactInfo callLogInfo) {
+        final ContentValues values = new ContentValues();
+        boolean needsUpdate = false;
+
+        if (callLogInfo != null) {
+            if (!TextUtils.equals(updatedInfo.name, callLogInfo.name)) {
+                values.put(Calls.CACHED_NAME, updatedInfo.name);
+                needsUpdate = true;
+            }
+
+            if (updatedInfo.type != callLogInfo.type) {
+                values.put(Calls.CACHED_NUMBER_TYPE, updatedInfo.type);
+                needsUpdate = true;
+            }
+
+            if (!TextUtils.equals(updatedInfo.label, callLogInfo.label)) {
+                values.put(Calls.CACHED_NUMBER_LABEL, updatedInfo.label);
+                needsUpdate = true;
+            }
+        } else {
+            needsUpdate = true;
+        }
+
+        if (!needsUpdate) {
+            return;
+        }
+
+        StringBuilder where = new StringBuilder();
+        where.append(Calls.NUMBER);
+        where.append(" = ?");
+
+        mContext.getContentResolver().update(Calls.CONTENT_URI_WITH_VOICEMAIL, values,
+                where.toString(), new String[]{ number });
     }
 
     /** Returns the contact information as stored in the call log. */

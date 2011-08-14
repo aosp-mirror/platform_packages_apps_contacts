@@ -17,6 +17,9 @@
 package com.android.contacts.calllog;
 
 import static junit.framework.Assert.assertEquals;
+
+import android.provider.CallLog.Calls;
+
 import junit.framework.Assert;
 
 /**
@@ -24,13 +27,18 @@ import junit.framework.Assert;
  */
 public class CallLogQueryTestUtils {
     public static Object[] createTestValues() {
-        Object[] values = new Object[]{ -1L, "", 0L, 0L, 0, "", "", "", null, 0, null };
+        Object[] values = new Object[]{
+                -1L, "", 0L, 0L, Calls.INCOMING_TYPE, "", "", "", null, 0, null,
+        };
         assertEquals(CallLogQuery._PROJECTION.length, values.length);
         return values;
     }
 
     public static Object[] createTestExtendedValues() {
-        Object[] values = new Object[]{ -1L, "", 0L, 0L, 0, "", "", "", null, 0, null, 0 };
+        Object[] values = new Object[]{
+                -1L, "", 0L, 0L, Calls.INCOMING_TYPE, "", "", "", null, 0, null,
+                CallLogQuery.SECTION_OLD_ITEM
+        };
         Assert.assertEquals(CallLogQuery.EXTENDED_PROJECTION.length, values.length);
         return values;
     }
