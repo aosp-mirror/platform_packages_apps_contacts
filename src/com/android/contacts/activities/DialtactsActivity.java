@@ -552,6 +552,7 @@ public class DialtactsActivity extends Activity {
                 Log.e(TAG, "DialpadFragment isn't ready yet when the tab is already selected.");
             }
         }
+        invalidateOptionsMenu();
     }
 
     /** Returns true if the given intent contains a phone number to populate the dialer with */
