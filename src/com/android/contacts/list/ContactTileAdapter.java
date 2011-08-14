@@ -500,7 +500,6 @@ public class ContactTileAdapter extends BaseAdapter {
             } else {
                 contactTile = (ContactTileView) getChildAt(childIndex);
             }
-            contactTile.setClickable(entry != null);
             contactTile.loadFromContact(entry);
 
             switch (mItemViewType) {

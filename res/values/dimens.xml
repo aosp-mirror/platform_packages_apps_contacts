@@ -256,6 +256,6 @@
     <dimen name="directory_header_height">24dip</dimen>
 
     <!--  Vertical and horizontal padding in between contact tiles -->
-    <dimen name="contact_tile_divider_padding">2dip</dimen>
+    <dimen name="contact_tile_divider_padding">1dip</dimen>
 
 </resources>
