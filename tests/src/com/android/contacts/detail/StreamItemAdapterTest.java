@@ -20,11 +20,13 @@ import com.android.contacts.util.StreamItemEntry;
 import com.android.contacts.util.StreamItemEntryBuilder;
 import com.google.common.collect.Lists;
 
-import android.content.Intent;
 import android.test.AndroidTestCase;
 import android.view.View;
 
 import java.util.ArrayList;
+
+// TODO: We should have tests for action, but that requires a mock sync-adapter that specifies
+// an action or doesn't
 
 /**
  * Unit tests for {@link StreamItemAdapter}.
@@ -60,23 +62,6 @@ public class StreamItemAdapterTest extends AndroidTestCase {
         assertEquals(4, mAdapter.getCount());
     }
 
-    public void testGetView_WithAction() {
-        StreamItemEntry streamItem = createStreamItemWithAction();
-        mAdapter.setStreamItems(Lists.newArrayList(streamItem));
-        mView = mAdapter.getView(1, null, null);
-        assertStreamItemViewHasTag(streamItem);
-        assertStreamItemViewHasOnClickListener();
-        assertStreamItemViewFocusable();
-    }
-
-    public void testGetView_WithoutAction() {
-        mAdapter.setStreamItems(Lists.newArrayList(createStreamItemWithoutAction()));
-        mView = mAdapter.getView(1, null, null);
-        assertStreamItemViewHasNoTag();
-        assertStreamItemViewHasNoOnClickListener();
-        assertStreamItemViewNotFocusable();
-    }
-
     public void testGetView_Header() {
         // Just check that we can inflate it correctly.
         mView = mAdapter.getView(0, null, null);
@@ -89,22 +74,6 @@ public class StreamItemAdapterTest extends AndroidTestCase {
     private StreamItemEntryBuilder createStreamItemEntryBuilder() {
         return new StreamItemEntryBuilder().setText(
                 "text #" + mCreateStreamItemEntryBuilderCounter++);
-    }
-
-    /** Returns a stream item with an action and action URI set. */
-    private StreamItemEntry createStreamItemWithAction() {
-        return createStreamItemEntryBuilder()
-                .setAction(Intent.ACTION_VIEW)
-                .setActionUri("http://www.google.com")
-                .build();
-    }
-
-    /** Returns a stream item without an action and action URI set. */
-    private StreamItemEntry createStreamItemWithoutAction() {
-        return createStreamItemEntryBuilder()
-                .setAction(null)
-                .setActionUri(null)
-                .build();
     }
 
     /** Creates a list containing the given number of {@link StreamItemEntry}s. */

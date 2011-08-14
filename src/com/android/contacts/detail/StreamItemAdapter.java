@@ -17,6 +17,8 @@
 package com.android.contacts.detail;
 
 import com.android.contacts.R;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.util.StreamItemEntry;
 import com.google.android.collect.Lists;
 
@@ -84,7 +86,10 @@ public class StreamItemAdapter extends BaseAdapter {
         StreamItemEntry streamItem = (StreamItemEntry) getItem(position);
         View view = ContactDetailDisplayUtils.createStreamItemView(
                 mInflater, mContext, streamItem, null);
-        if (streamItem.getAction() != null && streamItem.getActionUri() != null) {
+        final AccountTypeManager manager = AccountTypeManager.getInstance(mContext);
+        final AccountType accountType =
+                manager.getAccountType(streamItem.getAccountType(), streamItem.getDataSet());
+        if (accountType.getViewStreamItemActivity() != null) {
             view.setTag(streamItem);
             view.setFocusable(true);
             view.setOnClickListener(mListener);

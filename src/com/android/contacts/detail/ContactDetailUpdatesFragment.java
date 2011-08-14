@@ -19,12 +19,16 @@ package com.android.contacts.detail;
 import com.android.contacts.ContactLoader;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.util.StreamItemEntry;
 
 import android.app.ListFragment;
+import android.content.ContentUris;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract.StreamItems;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,27 +73,16 @@ public class ContactDetailUpdatesFragment extends ListFragment
                 // Ignore if this item does not have a stream item associated with it.
                 return;
             }
-            String actionUri = streamItemEntry.getActionUri();
-            if (actionUri == null) {
-                // Ignore if this item does not have a URI.
-                return;
-            }
-            // Parse the URI.
-            Uri uri;
-            try {
-                uri = Uri.parse(actionUri);
-            } catch (Throwable throwable) {
-                // This may fail if the URI is invalid: instead of failing, just ignore it.
-                Log.e(TAG, "invalid URI for stream item #" + streamItemEntry.getId() + ": "
-                        + actionUri);
-                return;
-            }
-            String action = streamItemEntry.getAction();
-            if (action == null) {
-                // Ignore if this item does not have an action.
-                return;
-            }
-            startActivity(new Intent(action, uri));
+            final AccountTypeManager manager = AccountTypeManager.getInstance(getActivity());
+            final AccountType accountType = manager.getAccountType(
+                    streamItemEntry.getAccountType(), streamItemEntry.getDataSet());
+
+            final Uri uri = ContentUris.withAppendedId(StreamItems.CONTENT_URI,
+                    streamItemEntry.getId());
+            final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            intent.setClassName(accountType.resPackageName,
+                    accountType.getViewStreamItemActivity());
+            startActivity(intent);
         }
     };
 

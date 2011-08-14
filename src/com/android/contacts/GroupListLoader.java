@@ -34,8 +34,6 @@ public final class GroupListLoader extends CursorLoader {
         Groups.DATA_SET,
         Groups._ID,
         Groups.TITLE,
-        Groups.ACTION,
-        Groups.ACTION_URI,
         Groups.SUMMARY_COUNT,
     };
 
@@ -44,9 +42,7 @@ public final class GroupListLoader extends CursorLoader {
     public final static int DATA_SET = 2;
     public final static int GROUP_ID = 3;
     public final static int TITLE = 4;
-    public final static int ACTION = 5;
-    public final static int ACTION_URI = 6;
-    public final static int MEMBER_COUNT = 7;
+    public final static int MEMBER_COUNT = 5;
 
     private static final Uri GROUP_LIST_URI = Groups.CONTENT_SUMMARY_URI;
 

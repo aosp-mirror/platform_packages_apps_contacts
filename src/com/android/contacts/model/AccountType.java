@@ -123,6 +123,21 @@ public abstract class AccountType {
         return null;
     }
 
+    /** Returns an optional Activity string that can be used to view the group. */
+    public String getViewGroupActivity() {
+        return null;
+    }
+
+    /** Returns an optional Activity string that can be used to view the stream item. */
+    public String getViewStreamItemActivity() {
+        return null;
+    }
+
+    /** Returns an optional Activity string that can be used to view the stream item photo. */
+    public String getViewStreamItemPhotoActivity() {
+        return null;
+    }
+
     public CharSequence getDisplayLabel(Context context) {
         return getResourceText(context, summaryResPackageName, titleRes, accountType);
     }
@@ -130,7 +145,7 @@ public abstract class AccountType {
     /**
      * @return resource ID for the "invite contact" action label, or -1 if not defined.
      */
-    protected int getInviteContactActionResId(Context conext) {
+    protected int getInviteContactActionResId(Context context) {
         return -1;
     }
 

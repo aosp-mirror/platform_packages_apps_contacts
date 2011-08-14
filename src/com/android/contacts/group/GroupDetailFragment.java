@@ -30,6 +30,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
@@ -38,6 +39,7 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract.Groups;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -68,10 +70,9 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         public void onGroupSizeUpdated(String size);
 
         /**
-         * The group source (intent action and action URI) has been determined.
+         * The account type and dataset have been determined.
          */
-        public void onGroupSourceUpdated(String accountTypeString, String dataSet,
-                String groupSourceAction, String groupSourceUri);
+        public void onAccountTypeUpdated(String accountTypeString, String dataSet);
 
         /**
          * User decided to go to Edit-Mode
@@ -277,9 +278,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
 
             final String accountTypeString = cursor.getString(GroupMetaDataLoader.ACCOUNT_TYPE);
             final String dataSet = cursor.getString(GroupMetaDataLoader.DATA_SET);
-            final String groupSourceAction = cursor.getString(GroupMetaDataLoader.ACTION);
-            final String groupSourceUri = cursor.getString(GroupMetaDataLoader.ACTION_URI);
-            updateGroupSource(accountTypeString, dataSet, groupSourceAction, groupSourceUri);
+            updateAccountType(accountTypeString, dataSet);
         }
     }
 
@@ -322,21 +321,23 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
      * a button in a static header on the page, or as a header that scrolls with the
      * {@link ListView}.
      */
-    private void updateGroupSource(final String accountTypeString, final String dataSet,
-            final String groupSourceAction, final String groupSourceUri) {
+    private void updateAccountType(final String accountTypeString, final String dataSet) {
 
         // If the group action should be shown in the action bar, then pass the data to the
         // listener who will take care of setting up the view and click listener. There is nothing
         // else to be done by this {@link Fragment}.
         if (mShowGroupActionInActionBar) {
-            mListener.onGroupSourceUpdated(accountTypeString, dataSet, groupSourceAction,
-                    groupSourceUri);
+            mListener.onAccountTypeUpdated(accountTypeString, dataSet);
             return;
         }
 
+        final AccountTypeManager manager = AccountTypeManager.getInstance(getActivity());
+        final AccountType accountType =
+                manager.getAccountType(accountTypeString, dataSet);
+
         // Otherwise, if the {@link Fragment} needs to create and setup the button, then first
         // verify that there is a valid action.
-        if (!TextUtils.isEmpty(groupSourceAction) && !TextUtils.isEmpty(groupSourceUri)) {
+        if (!TextUtils.isEmpty(accountType.getViewGroupActivity())) {
             if (mGroupSourceView == null) {
                 mGroupSourceView = GroupDetailDisplayUtils.getNewGroupSourceView(mContext);
                 // Figure out how to add the view to the fragment.
@@ -358,7 +359,11 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
             mGroupSourceView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(groupSourceAction, Uri.parse(groupSourceUri)));
+                    final Uri uri = ContentUris.withAppendedId(Groups.CONTENT_URI, mGroupId);
+                    final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    intent.setClassName(accountType.resPackageName,
+                            accountType.getViewGroupActivity());
+                    startActivity(intent);
                 }
             });
         } else if (mGroupSourceView != null) {
@@ -430,5 +435,9 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
 
     public void closeActivityAfterDelete(boolean closeActivity) {
         mCloseActivityAfterDelete = closeActivity;
+    }
+
+    public long getGroupId() {
+        return mGroupId;
     }
 }

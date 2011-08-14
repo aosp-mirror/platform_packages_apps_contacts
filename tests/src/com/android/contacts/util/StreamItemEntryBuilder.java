@@ -24,36 +24,42 @@ public class StreamItemEntryBuilder {
     private String mText;
     private String mComment;
     private long mTimestamp;
-    private String mAction;
-    private String mActionUri;
+    private String mAccountType;
+    private String mAccountName;
+    private String mDataSet;
     private String mResPackage;
-    private int mIconRes;
-    private int mLabelRes;
+    private String mIconRes;
+    private String mLabelRes;
 
     public StreamItemEntryBuilder() {}
 
-    public StreamItemEntryBuilder setText(String text) {
-        mText = text;
+    public StreamItemEntryBuilder setText(String value) {
+        mText = value;
         return this;
     }
 
-    public StreamItemEntryBuilder setComment(String comment) {
-        mComment = comment;
+    public StreamItemEntryBuilder setComment(String value) {
+        mComment = value;
         return this;
     }
 
-    public StreamItemEntryBuilder setAction(String action) {
-        mAction = action;
+    public StreamItemEntryBuilder setAccountType(String value) {
+        mAccountType = value;
         return this;
     }
 
-    public StreamItemEntryBuilder setActionUri(String actionUri) {
-        mActionUri = actionUri;
+    public StreamItemEntryBuilder setAccountName(String value) {
+        mAccountName = value;
+        return this;
+    }
+
+    public StreamItemEntryBuilder setDataSet(String value) {
+        mDataSet = value;
         return this;
     }
 
     public StreamItemEntry build() {
-        return new StreamItemEntry(mId, mText, mComment, mTimestamp, mAction, mActionUri,
-                mResPackage, mIconRes, mLabelRes);
+        return new StreamItemEntry(mId, mText, mComment, mTimestamp, mAccountType, mAccountName,
+                mDataSet, mResPackage, mIconRes, mLabelRes);
     }
 }
