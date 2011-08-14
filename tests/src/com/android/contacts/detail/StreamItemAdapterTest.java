@@ -53,13 +53,13 @@ public class StreamItemAdapterTest extends AndroidTestCase {
     public void testGetCount_Empty() {
         mAdapter.setStreamItems(createStreamItemList(0));
         // There is actually one view: the header.
-        assertEquals(1, mAdapter.getCount());
+        assertEquals(2, mAdapter.getCount());
     }
 
     public void testGetCount_NonEmpty() {
         mAdapter.setStreamItems(createStreamItemList(3));
         // There is one extra view: the header.
-        assertEquals(4, mAdapter.getCount());
+        assertEquals(5, mAdapter.getCount());
     }
 
     public void testGetView_Header() {
