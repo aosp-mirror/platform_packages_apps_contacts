@@ -910,6 +910,11 @@ public class DialpadFragment extends Fragment
      *                of the regular Dialer UI
      */
     private void showDialpadChooser(boolean enabled) {
+        // Check if onCreateView() is already called by checking one of View objects.
+        if (mDigits == null) {
+            return;
+        }
+
         if (enabled) {
             // Log.i(TAG, "Showing dialpad chooser!");
             mDigits.setVisibility(View.GONE);
