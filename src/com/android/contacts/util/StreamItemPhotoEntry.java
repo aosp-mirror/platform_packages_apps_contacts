@@ -33,11 +33,9 @@ public class StreamItemPhotoEntry implements Comparable<StreamItemPhotoEntry> {
     private final int mHeight;
     private final int mWidth;
     private final int mFileSize;
-    private final String mAction;
-    private final String mActionUri;
 
     public StreamItemPhotoEntry(long id, int sortIndex, long photoFileId, String photoUri,
-            int height, int width, int fileSize, String action, String actionUri) {
+            int height, int width, int fileSize) {
         mId = id;
         mSortIndex = sortIndex;
         mPhotoFileId = photoFileId;
@@ -45,8 +43,6 @@ public class StreamItemPhotoEntry implements Comparable<StreamItemPhotoEntry> {
         mHeight = height;
         mWidth = width;
         mFileSize = fileSize;
-        mAction = action;
-        mActionUri = actionUri;
     }
 
     public StreamItemPhotoEntry(Cursor cursor) {
@@ -59,8 +55,6 @@ public class StreamItemPhotoEntry implements Comparable<StreamItemPhotoEntry> {
         mHeight = getInt(cursor, PhotoFiles.HEIGHT, -1);
         mWidth = getInt(cursor, PhotoFiles.WIDTH, -1);
         mFileSize = getInt(cursor, PhotoFiles.FILESIZE, -1);
-        mAction = getString(cursor, StreamItemPhotos.ACTION);
-        mActionUri = getString(cursor, StreamItemPhotos.ACTION_URI);
     }
 
     public long getId() {
@@ -89,14 +83,6 @@ public class StreamItemPhotoEntry implements Comparable<StreamItemPhotoEntry> {
 
     public int getFileSize() {
         return mFileSize;
-    }
-
-    public String getAction() {
-        return mAction;
-    }
-
-    public String getActionUri() {
-        return mActionUri;
     }
 
     @Override

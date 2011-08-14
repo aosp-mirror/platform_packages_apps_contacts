@@ -18,8 +18,9 @@ package com.android.contacts.socialwidget;
 
 import com.android.contacts.ContactLoader;
 import com.android.contacts.R;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.util.ContactBadgeUtil;
-import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.StreamItemEntry;
 
 import android.app.PendingIntent;
@@ -33,8 +34,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.net.Uri;
-import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.QuickContact;
+import android.provider.ContactsContract.StreamItems;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
@@ -44,7 +45,6 @@ import android.util.SparseArray;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class SocialWidgetProvider extends AppWidgetProvider {
@@ -214,10 +214,15 @@ public class SocialWidgetProvider extends AppWidgetProvider {
             views.setTextViewText(R.id.name_and_snippet, sb);
             views.setViewVisibility(R.id.name, View.GONE);
             views.setViewVisibility(R.id.name_and_snippet, View.VISIBLE);
-            if (!TextUtils.isEmpty(streamItem.getAction())
-                    && !TextUtils.isEmpty(streamItem.getActionUri())) {
-                final Intent intent = new Intent(streamItem.getAction(),
-                        Uri.parse(streamItem.getActionUri()));
+            final AccountTypeManager manager = AccountTypeManager.getInstance(context);
+            final AccountType accountType =
+                    manager.getAccountType(streamItem.getAccountType(), streamItem.getDataSet());
+            if (accountType.getViewStreamItemActivity() != null) {
+                final Uri uri = ContentUris.withAppendedId(StreamItems.CONTENT_URI,
+                        streamItem.getId());
+                final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                intent.setClassName(accountType.resPackageName,
+                        accountType.getViewStreamItemActivity());
                 views.setOnClickPendingIntent(R.id.name_and_snippet_container,
                         PendingIntent.getActivity(context, 0, intent, 0));
             }

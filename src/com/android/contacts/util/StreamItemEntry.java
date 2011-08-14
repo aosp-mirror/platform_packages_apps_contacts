@@ -37,26 +37,29 @@ public class StreamItemEntry implements Comparable<StreamItemEntry> {
     private final String mText;
     private final String mComments;
     private final long mTimestamp;
-    private final String mAction;
-    private final String mActionUri;
+    private final String mAccountType;
+    private final String mAccountName;
+    private final String mDataSet;
 
     // Package references for label and icon resources.
     private final String mResPackage;
-    private final int mIconRes;
-    private final int mLabelRes;
+    private final String mIconRes;
+    private final String mLabelRes;
 
     // Photos associated with this stream item.
     private List<StreamItemPhotoEntry> mPhotos;
 
     @NeededForTesting
-    public StreamItemEntry(long id, String text, String comments, long timestamp, String action,
-            String actionUri, String resPackage, int iconRes, int labelRes) {
+    public StreamItemEntry(long id, String text, String comments, long timestamp,
+            String accountType, String accountName, String dataSet, String resPackage,
+            String iconRes, String labelRes) {
         mId = id;
         mText = text;
         mComments = comments;
         mTimestamp = timestamp;
-        mAction = action;
-        mActionUri = actionUri;
+        mAccountType = accountType;
+        mAccountName = accountName;
+        mDataSet = dataSet;
         mResPackage = resPackage;
         mIconRes = iconRes;
         mLabelRes = labelRes;
@@ -70,11 +73,12 @@ public class StreamItemEntry implements Comparable<StreamItemEntry> {
         mText = getString(cursor, StreamItems.TEXT);
         mComments = getString(cursor, StreamItems.COMMENTS);
         mTimestamp = getLong(cursor, StreamItems.TIMESTAMP);
-        mAction = getString(cursor, StreamItems.ACTION);
-        mActionUri = getString(cursor, StreamItems.ACTION_URI);
+        mAccountType = getString(cursor, StreamItems.ACCOUNT_TYPE);
+        mAccountName = getString(cursor, StreamItems.ACCOUNT_NAME);
+        mDataSet = getString(cursor, StreamItems.DATA_SET);
         mResPackage = getString(cursor, StreamItems.RES_PACKAGE);
-        mIconRes = getInt(cursor, StreamItems.RES_ICON, -1);
-        mLabelRes = getInt(cursor, StreamItems.RES_LABEL, -1);
+        mIconRes = getString(cursor, StreamItems.RES_ICON);
+        mLabelRes = getString(cursor, StreamItems.RES_LABEL);
         mPhotos = new ArrayList<StreamItemPhotoEntry>();
     }
 
@@ -103,23 +107,27 @@ public class StreamItemEntry implements Comparable<StreamItemEntry> {
         return mTimestamp;
     }
 
-    public String getAction() {
-        return mAction;
+    public String getAccountType() {
+        return mAccountType;
     }
 
-    public String getActionUri() {
-        return mActionUri;
+    public String getAccountName() {
+        return mAccountName;
+    }
+
+    public String getDataSet() {
+        return mDataSet;
     }
 
     public String getResPackage() {
         return mResPackage;
     }
 
-    public int getIconRes() {
+    public String getIconRes() {
         return mIconRes;
     }
 
-    public int getLabelRes() {
+    public String getLabelRes() {
         return mLabelRes;
     }
 
@@ -130,11 +138,6 @@ public class StreamItemEntry implements Comparable<StreamItemEntry> {
 
     private static String getString(Cursor cursor, String columnName) {
         return cursor.getString(cursor.getColumnIndex(columnName));
-    }
-
-    private static int getInt(Cursor cursor, String columnName, int missingValue) {
-        final int columnIndex = cursor.getColumnIndex(columnName);
-        return cursor.isNull(columnIndex) ? missingValue : cursor.getInt(columnIndex);
     }
 
     private static long getLong(Cursor cursor, String columnName) {

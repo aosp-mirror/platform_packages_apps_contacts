@@ -83,15 +83,15 @@ public class StreamItemPopulatorActivity extends Activity {
             "<i>24567</i> <font color='blue' size='+1'><b>likes</b></font>"
     };
 
-    private Integer[] labelIds = new Integer[] {
-            R.string.attribution_google_plus,
-            R.string.attribution_google_talk,
-            R.string.attribution_flicker,
-            R.string.attribution_twitter
+    private String[] labelResources = new String[] {
+            "attribution_google_plus",
+            "attribution_google_talk",
+            "attribution_flicker",
+            "attribution_twitter"
     };
 
-    public Integer[] iconIds = new Integer[] {
-            R.drawable.default_icon,
+    public String[] iconResources = new String[] {
+            "default_icon"
     };
 
     // Photos to randomly select from.
@@ -264,10 +264,10 @@ public class StreamItemPopulatorActivity extends Activity {
                 + (includeAction ? " [a]" : ""));
         if (includeAttribution) {
             values.put(StreamItems.RES_PACKAGE, "com.android.contacts.tests");
-            int sourceIndex = randInt(labelIds.length);
-            values.put(StreamItems.RES_LABEL, labelIds[sourceIndex]);
-            if (sourceIndex < iconIds.length) {
-                values.put(StreamItems.RES_ICON, iconIds[sourceIndex]);
+            int sourceIndex = randInt(labelResources.length);
+            values.put(StreamItems.RES_LABEL, labelResources[sourceIndex]);
+            if (sourceIndex < iconResources.length) {
+                values.put(StreamItems.RES_ICON, iconResources[sourceIndex]);
             }
         }
         if (includeComments) {
@@ -280,10 +280,6 @@ public class StreamItemPopulatorActivity extends Activity {
                 System.currentTimeMillis() - randInt(360000000));
         values.put(RawContacts.ACCOUNT_TYPE, accountType);
         values.put(RawContacts.ACCOUNT_NAME, accountName);
-        if (includeAction) {
-            values.put(StreamItems.ACTION, Intent.ACTION_VIEW);
-            values.put(StreamItems.ACTION_URI, getGoogleSearchUri(place));
-        }
         return values;
     }
 
@@ -295,18 +291,7 @@ public class StreamItemPopulatorActivity extends Activity {
         values.put(StreamItemPhotos.PHOTO, loadPhotoFromResource(imageIndex));
         values.put(RawContacts.ACCOUNT_TYPE, accountType);
         values.put(RawContacts.ACCOUNT_NAME, accountName);
-        if (imageIndex < imageStrings.length) {
-            values.put(StreamItemPhotos.ACTION, Intent.ACTION_VIEW);
-            String queryTerm = imageStrings[imageIndex];
-            values.put(StreamItemPhotos.ACTION_URI, getGoogleSearchUri(queryTerm));
-
-        }
         return values;
-    }
-
-    /** Returns the URI of the Google search results page for the given query. */
-    private String getGoogleSearchUri(String query) {
-        return "http://www.google.com/search?q=" + query.replace(" ", "+");
     }
 
     private <T> T pickRandom(T[] from) {

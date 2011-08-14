@@ -23,7 +23,6 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.TabState;
 import com.android.contacts.detail.ContactDetailFragment;
 import com.android.contacts.detail.ContactDetailLayoutController;
-import com.android.contacts.detail.ContactDetailTabCarousel;
 import com.android.contacts.detail.ContactDetailUpdatesFragment;
 import com.android.contacts.detail.ContactLoaderFragment;
 import com.android.contacts.detail.ContactLoaderFragment.ContactLoaderFragmentListener;
@@ -39,6 +38,7 @@ import com.android.contacts.list.ContactEntryListFragment;
 import com.android.contacts.list.ContactListFilter;
 import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.list.ContactTileAdapter.DisplayType;
+import com.android.contacts.list.ContactTileListFragment;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.ContactsUnavailableFragment;
@@ -48,7 +48,6 @@ import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.list.ProviderStatusLoader;
 import com.android.contacts.list.ProviderStatusLoader.ProviderStatusListener;
-import com.android.contacts.list.ContactTileListFragment;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferenceActivity;
@@ -1160,8 +1159,7 @@ public class PeopleActivity extends ContactsActivity
         }
 
         @Override
-        public void onGroupSourceUpdated(String accountTypeString, String dataSet,
-                String groupSourceAction, String groupSourceUri) {
+        public void onAccountTypeUpdated(String accountTypeString, String dataSet) {
             // Nothing needs to be done here because the group source will be displayed in the
             // detail fragment
         }

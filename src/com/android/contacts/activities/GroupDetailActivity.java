@@ -20,11 +20,15 @@ import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.group.GroupDetailDisplayUtils;
 import com.android.contacts.group.GroupDetailFragment;
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountTypeManager;
 
 import android.app.ActionBar;
+import android.content.ContentUris;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract.Groups;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -40,8 +44,8 @@ public class GroupDetailActivity extends ContactsActivity {
 
     private String mAccountTypeString;
     private String mDataSet;
-    private String mGroupSourceAction;
-    private String mGroupSourceUri;
+
+    private GroupDetailFragment mFragment;
 
     @Override
     public void onCreate(Bundle savedState) {
@@ -55,12 +59,12 @@ public class GroupDetailActivity extends ContactsActivity {
         mShowGroupSourceInActionBar = getResources().getBoolean(
                 R.bool.config_show_group_action_in_action_bar);
 
-        GroupDetailFragment fragment = (GroupDetailFragment) getFragmentManager().findFragmentById(
+        mFragment = (GroupDetailFragment) getFragmentManager().findFragmentById(
                 R.id.group_detail_fragment);
-        fragment.setListener(mFragmentListener);
-        fragment.setShowGroupSourceInActionBar(mShowGroupSourceInActionBar);
-        fragment.loadGroup(getIntent().getData());
-        fragment.closeActivityAfterDelete(true);
+        mFragment.setListener(mFragmentListener);
+        mFragment.setShowGroupSourceInActionBar(mShowGroupSourceInActionBar);
+        mFragment.loadGroup(getIntent().getData());
+        mFragment.closeActivityAfterDelete(true);
 
         // We want the UP affordance but no app icon.
         ActionBar actionBar = getActionBar();
@@ -85,12 +89,9 @@ public class GroupDetailActivity extends ContactsActivity {
         }
 
         @Override
-        public void onGroupSourceUpdated(String accountTypeString, String dataSet,
-                String groupSourceAction, String groupSourceActionUri) {
+        public void onAccountTypeUpdated(String accountTypeString, String dataSet) {
             mAccountTypeString = accountTypeString;
             mDataSet = dataSet;
-            mGroupSourceAction = groupSourceAction;
-            mGroupSourceUri = groupSourceActionUri;
             invalidateOptionsMenu();
         }
 
@@ -128,8 +129,11 @@ public class GroupDetailActivity extends ContactsActivity {
         if (groupSourceMenuItem == null) {
             return false;
         }
-        if (TextUtils.isEmpty(mAccountTypeString) || TextUtils.isEmpty(mGroupSourceAction) ||
-                TextUtils.isEmpty(mGroupSourceUri)) {
+        final AccountTypeManager manager = AccountTypeManager.getInstance(this);
+        final AccountType accountType =
+                manager.getAccountType(mAccountTypeString, mDataSet);
+        if (TextUtils.isEmpty(mAccountTypeString)
+                || TextUtils.isEmpty(accountType.getViewGroupActivity())) {
             groupSourceMenuItem.setVisible(false);
             return false;
         }
@@ -139,7 +143,11 @@ public class GroupDetailActivity extends ContactsActivity {
         groupSourceView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(mGroupSourceAction, Uri.parse(mGroupSourceUri)));
+                final Uri uri = ContentUris.withAppendedId(Groups.CONTENT_URI,
+                        mFragment.getGroupId());
+                final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                intent.setClassName(accountType.resPackageName, accountType.getViewGroupActivity());
+                startActivity(intent);
             }
         });
         groupSourceMenuItem.setActionView(groupSourceView);

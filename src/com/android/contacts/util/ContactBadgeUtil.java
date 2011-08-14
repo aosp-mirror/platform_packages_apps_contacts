@@ -16,14 +16,12 @@
 
 package com.android.contacts.util;
 
-import com.android.contacts.ContactLoader;
 import com.android.contacts.R;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
-import android.content.res.Resources.NotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
@@ -57,9 +55,9 @@ public class ContactBadgeUtil {
 
         String labelDisplayValue = null;
 
-        final Integer statusLabel = streamItem.getLabelRes();
+        final String statusLabelRes = streamItem.getLabelRes();
         final String statusResPackage = streamItem.getResPackage();
-        if (statusLabel  != null) {
+        if (statusLabelRes  != null) {
             Resources resources;
             if (TextUtils.isEmpty(statusResPackage)) {
                 resources = context.getResources();
@@ -75,11 +73,13 @@ public class ContactBadgeUtil {
             }
 
             if (resources != null) {
-                try {
-                    labelDisplayValue = resources.getString(statusLabel.intValue());
-                } catch (NotFoundException e) {
-                    Log.w(TAG, "Contact status update resource not found: " + statusResPackage + "@"
-                            + statusLabel.intValue());
+                final int resId = resources.getIdentifier(statusLabelRes, "string",
+                        statusResPackage);
+                if (resId == 0) {
+                    Log.w(TAG, "Contact status update resource not found: " + statusLabelRes +
+                            " in " + statusResPackage);
+                } else {
+                    labelDisplayValue = resources.getString(resId);
                 }
             }
         }
