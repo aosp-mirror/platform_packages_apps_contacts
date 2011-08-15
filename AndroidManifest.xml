@@ -53,17 +53,6 @@
         android:hardwareAccelerated="true"
     >
 
-        <!-- A virtual 12 key dialer -->
-        <activity android:name=".activities.DialpadActivity"
-            android:launchMode="singleTop"
-        >
-            <intent-filter>
-                <action android:name="com.android.phone.action.TOUCH_DIALER" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.TAB" />
-            </intent-filter>
-        </activity>
-
         <!-- A list of recent calls -->
         <activity android:name=".activities.CallLogActivity"
             android:label="@string/recentCallsIconLabel"
@@ -180,6 +169,13 @@
                 <action android:name="android.intent.action.CALL_BUTTON" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+            <!-- This was never intended to be public, but is here for backward
+                 compatibility.  Use Intent.ACTION_DIAL instead. -->
+            <intent-filter>
+                <action android:name="com.android.phone.action.TOUCH_DIALER" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.TAB" />
             </intent-filter>
         </activity>
 

@@ -78,6 +78,11 @@ public class DialtactsActivity extends Activity {
     private static final String CALL_SETTINGS_CLASS_NAME =
             "com.android.phone.CallFeaturesSetting";
 
+    /**
+     * Just for backward compatibility. Should behave as same as {@link Intent#ACTION_DIAL}.
+     */
+    private static final String ACTION_TOUCH_DIALER = "com.android.phone.action.TOUCH_DIALER";
+
     /** Used both by {@link ActionBar} and {@link ViewPagerAdapter} */
     private static final int TAB_INDEX_DIALER = 0;
     private static final int TAB_INDEX_CALL_LOG = 1;
@@ -558,7 +563,7 @@ public class DialtactsActivity extends Activity {
     /** Returns true if the given intent contains a phone number to populate the dialer with */
     private boolean isDialIntent(Intent intent) {
         final String action = intent.getAction();
-        if (Intent.ACTION_DIAL.equals(action)) {
+        if (Intent.ACTION_DIAL.equals(action) || ACTION_TOUCH_DIALER.equals(action)) {
             return true;
         }
         if (Intent.ACTION_VIEW.equals(action)) {
