@@ -35,7 +35,8 @@
              in the java code.
 
              Background drawable can be controlled programatically. -->
-        <EditText android:id="@+id/digits"
+        <com.android.contacts.dialpad.DigitsEditText
+            android:id="@+id/digits"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"

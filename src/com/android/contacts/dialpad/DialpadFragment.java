@@ -33,7 +33,6 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.net.Uri;
@@ -298,12 +297,10 @@ public class DialpadFragment extends Fragment
         mDialpad = fragmentView.findViewById(R.id.dialpad);  // This is null in landscape mode.
 
         // In landscape we put the keyboard in phone mode.
-        // In portrait we prevent the soft keyboard to show since the
-        // dialpad acts as one already.
         if (null == mDialpad) {
             mDigits.setInputType(android.text.InputType.TYPE_CLASS_PHONE);
         } else {
-            mDigits.setInputType(android.text.InputType.TYPE_NULL);
+            mDigits.setCursorVisible(false);
         }
 
         // Set up the "dialpad chooser" UI; see showDialpadChooser().
