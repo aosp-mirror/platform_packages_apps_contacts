@@ -29,15 +29,19 @@ import android.telephony.PhoneNumberUtils;
  * This class is meant to be used in conjunction with {@link GroupingListAdapter}.
  */
 public class CallLogGroupBuilder {
+    public interface GroupCreator {
+        public void addGroup(int cursorPosition, int size, boolean expanded);
+    }
+
     /** Reusable char array buffer. */
     private CharArrayBuffer mBuffer1 = new CharArrayBuffer(128);
     /** Reusable char array buffer. */
     private CharArrayBuffer mBuffer2 = new CharArrayBuffer(128);
 
     /** The object on which the groups are created. */
-    private final CallLogFragment.GroupCreator mGroupCreator;
+    private final GroupCreator mGroupCreator;
 
-    public CallLogGroupBuilder(CallLogFragment.GroupCreator groupCreator) {
+    public CallLogGroupBuilder(GroupCreator groupCreator) {
         mGroupCreator = groupCreator;
     }
 

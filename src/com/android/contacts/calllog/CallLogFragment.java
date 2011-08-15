@@ -37,7 +37,6 @@ import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.provider.CallLog.Calls;
-import android.provider.ContactsContract.PhoneLookup;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -57,11 +56,8 @@ import java.util.List;
  * Displays a list of call log entries.
  */
 public class CallLogFragment extends ListFragment implements ViewPagerVisibilityListener,
-        CallLogQueryHandler.Listener {
+        CallLogQueryHandler.Listener, CallLogAdapter.CallFetcher {
     private static final String TAG = "CallLogFragment";
-
-    /** The size of the cache of contact info. */
-    static final int CONTACT_INFO_CACHE_SIZE = 100;
 
     private CallLogAdapter mAdapter;
     private CallLogQueryHandler mCallLogQueryHandler;
@@ -77,14 +73,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     private TextView mStatusMessageText;
     private TextView mStatusMessageAction;
     private KeyguardManager mKeyguardManager;
-
-    public interface GroupCreator {
-        public void addGroup(int cursorPosition, int size, boolean expanded);
-    }
-
-    public interface CallFetcher {
-        public void fetchAllCalls();
-    }
 
     @Override
     public void onCreate(Bundle state) {
@@ -141,13 +129,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         String currentCountryIso = ContactsUtils.getCurrentCountryIso(getActivity());
-        mAdapter = new CallLogAdapter(getActivity(),
-                new CallFetcher() {
-                    @Override
-                    public void fetchAllCalls() {
-                        startCallsQuery();
-                    }
-                }, currentCountryIso, mVoiceMailNumber);
+        mAdapter = new CallLogAdapter(getActivity(), this, currentCountryIso, mVoiceMailNumber);
         setListAdapter(mAdapter);
         getListView().setItemsCanFocus(true);
     }
@@ -213,7 +195,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         mAdapter.changeCursor(null);
     }
 
-    private void startCallsQuery() {
+    @Override
+    public void startCallsQuery() {
         mAdapter.setLoading(true);
         mCallLogQueryHandler.fetchAllCalls();
         if (mShowingVoicemailOnly) {
@@ -265,45 +248,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                 return false;
         }
     }
-
-    /*
-     * Get the number from the Contacts, if available, since sometimes
-     * the number provided by caller id may not be formatted properly
-     * depending on the carrier (roaming) in use at the time of the
-     * incoming call.
-     * Logic : If the caller-id number starts with a "+", use it
-     *         Else if the number in the contacts starts with a "+", use that one
-     *         Else if the number in the contacts is longer, use that one
-     */
-    private String getBetterNumberFromContacts(String number) {
-        String matchingNumber = null;
-        // Look in the cache first. If it's not found then query the Phones db
-        ContactInfo ci = mAdapter.mContactInfoCache.getPossiblyExpired(number);
-        if (ci != null && ci != ContactInfo.EMPTY) {
-            matchingNumber = ci.number;
-        } else {
-            try {
-                Cursor phonesCursor = getActivity().getContentResolver().query(
-                        Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, number),
-                        PhoneQuery._PROJECTION, null, null, null);
-                if (phonesCursor != null) {
-                    if (phonesCursor.moveToFirst()) {
-                        matchingNumber = phonesCursor.getString(PhoneQuery.MATCHED_NUMBER);
-                    }
-                    phonesCursor.close();
-                }
-            } catch (Exception e) {
-                // Use the number from the call log
-            }
-        }
-        if (!TextUtils.isEmpty(matchingNumber) &&
-                (matchingNumber.startsWith("+")
-                        || matchingNumber.length() > number.length())) {
-            number = matchingNumber;
-        }
-        return number;
-    }
-
     public void callSelectedEntry() {
         int position = getListView().getSelectedItemPosition();
         if (position < 0) {
@@ -335,7 +279,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                        (callType == Calls.INCOMING_TYPE
                                 || callType == Calls.MISSED_TYPE)) {
                     // If the caller-id matches a contact with a better qualified number, use it
-                    number = getBetterNumberFromContacts(number);
+                    number = mAdapter.getBetterNumberFromContacts(number);
                 }
                 intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
                                     Uri.fromParts("tel", number, null));
@@ -375,7 +319,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         mAdapter.invalidateCache();
         startCallsQuery();
         startVoicemailStatusQuery();
-        mAdapter.mPreDrawListener = null; // Let it restart the thread after next draw
         updateOnEntry();
     }
 
