@@ -63,23 +63,23 @@
     <skip />
     <!-- no translation found for menu_removeStar (5844227078364227030) -->
     <skip />
-    <!-- no translation found for menu_editContact (3452858480713561396) -->
+    <!-- no translation found for menu_editContact (9042415603857662633) -->
     <skip />
-    <!-- no translation found for menu_deleteContact (1916555454274101750) -->
+    <!-- no translation found for menu_deleteContact (6788644058868189393) -->
     <skip />
     <string name="menu_call" msgid="3992595586042260618">"የጥሪ ዕውቂያ"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"ዕውቂያ ፃፍ"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"ነባሪ ኢሜይል አድርግ"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"ለይ"</string>
-    <!-- no translation found for menu_editGroup (8311763560942217614) -->
+    <!-- no translation found for menu_editGroup (5062005185370983720) -->
     <skip />
     <string name="menu_renameGroup" msgid="2798886925154156075">"ቡድን እንደገና ሰይም"</string>
-    <string name="menu_deleteGroup" msgid="644571524292675446">"ቡድን ሰርዝ"</string>
+    <!-- outdated translation 644571524292675446 -->     <string name="menu_deleteGroup" msgid="3486380004411482874">"ቡድን ሰርዝ"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"አዲስ"</string>
     <!-- no translation found for menu_new_group_action_bar (5055346725617932394) -->
     <skip />
-    <string name="splitConfirmation_title" msgid="6716467920283502570">"ዕውቂያ ለይ"</string>
-    <string name="splitConfirmation" msgid="1150797297503944823">"ይህን ነጠላ ዕውቂያ ወደ ብዙ ዕውቂያዎች ለመክፈል በእርግጥ ይፈልጋሉ፡ለተቀላቀለው እያንዳንዱ ዕውቂያ መረጃ  አንድ?"</string>
+    <!-- outdated translation 6716467920283502570 -->     <string name="splitConfirmation_title" msgid="2209511048593467012">"ዕውቂያ ለይ"</string>
+    <!-- outdated translation 1150797297503944823 -->     <string name="splitConfirmation" msgid="1067993957986345974">"ይህን ነጠላ ዕውቂያ ወደ ብዙ ዕውቂያዎች ለመክፈል በእርግጥ ይፈልጋሉ፡ለተቀላቀለው እያንዳንዱ ዕውቂያ መረጃ  አንድ?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"አገናኝ"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"ዕውቄያዎችን አገናኝ"</string>
     <string name="blurbJoinContactDataWith" msgid="995870557595050304">"ከ<xliff:g id="NAME">%s</xliff:g> ጋር ለመቀላቀል የሚፈልጉትን ዕውቂያ ይምረጡ።"</string>
@@ -92,7 +92,7 @@
     <skip />
     <!-- no translation found for menu_set_ring_tone (8728345772068064946) -->
     <skip />
-    <!-- no translation found for menu_redirect_calls_to_vm (3291482125835338104) -->
+    <!-- no translation found for menu_redirect_calls_to_vm (4181789196416396656) -->
     <skip />
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"ዕውቂያዎችን ከንባብ-ብቻ መለያዎች መሰረዝ አይችሉም፤ ነገር ግን በዕውቂያ ዝርዝሮችዎ ውስጥ መደበቅ ይችላሉ።"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"ይህ ዕውቂያ ከብዙ መለያዎች መረጃ ይዟል።ከንባብ-ብቻ መለያዎች ውስጥ ያሉ ዕውቂያዎች ይደበቃሉ፣አይሰረዙም።"</string>
@@ -102,10 +102,6 @@
     <string name="menu_done" msgid="796017761764190697">"ተከናውኗል"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"ይቅር"</string>
     <!-- no translation found for menu_discard (6456087569315685632) -->
-    <skip />
-    <!-- no translation found for editContact_title_edit (7678695190666836093) -->
-    <skip />
-    <!-- no translation found for editContact_title_insert (9125600232291405757) -->
     <skip />
     <string name="label_phonetic_name" msgid="2288082649573927286">"ድምፀ ልሳን"</string>
     <!-- no translation found for label_notes (8337354953278341042) -->
@@ -159,10 +155,10 @@
   </plurals>
     <string name="savingContact" msgid="4075751076741924939">"ዕውቂያ በማስቀመጥ ላይ..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"ማሳያ አማራጮችን በማስቀመጥ ላይ..."</string>
-    <!-- no translation found for contactSavedToast (7152589189385441091) -->
+    <!-- no translation found for contactSavedToast (9171862279493213075) -->
     <skip />
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"ስህተት፣የዕውቂያለውጦችን ለማስቀመጥአልተቻለም።"</string>
-    <!-- no translation found for groupSavedToast (1168756874239833756) -->
+    <!-- no translation found for groupSavedToast (6675062559302493011) -->
     <skip />
     <!-- no translation found for groupSavedErrorToast (6434135707953150875) -->
     <skip />
@@ -220,10 +216,8 @@
     <skip />
     <!-- no translation found for recentCalls_deleteAll (6352364392762163704) -->
     <skip />
-    <!-- no translation found for recentCalls_trashVoicemail (7604696960787435655) -->
-    <skip />
-    <!-- no translation found for recentCalls_shareVoicemail (1416112847592942840) -->
-    <skip />
+    <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"የድምፅ መልዕክት ሰርዝ"</string>
+    <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"የድምፅ መልዕክት አጋራ"</string>
     <!-- no translation found for recentCalls_empty (247053222448663107) -->
     <skip />
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"የጥሪ ማስታወሻ አጥራ"</string>
@@ -276,10 +270,8 @@
     <string name="callAgain" msgid="3197312117049874778">"እንደገና ደውል"</string>
     <string name="returnCall" msgid="8171961914203617813">"ጥሪ መልስ"</string>
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g>ደቂቃዎች <xliff:g id="SECONDS">%s</xliff:g> ሰከንዶች"</string>
-    <!-- no translation found for favoritesFrequentContacted (6184232487472425690) -->
-    <skip />
-    <!-- no translation found for favoritesFrequentCalled (6128306889600696124) -->
-    <skip />
+    <string name="favoritesFrequentContacted" msgid="6184232487472425690">"በተደጋጋሚ የሚገናኙ"</string>
+    <string name="favoritesFrequentCalled" msgid="6128306889600696124">"በተደጋጋሚ የተደወለ"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"እውቅያዎች አክል"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"<xliff:g id="EMAIL">%s</xliff:g> ወደ እውቅያዎች ዝርዝር ይታከል"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"አንድ"</string>
@@ -349,7 +341,8 @@
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"እውቅያ"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"ላክ አረጋግጥ"</string>
-    <string name="confirm_export_message" msgid="3875683519257829750">"የዕውቂያዝርዝርወደ\"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\" ለመላክ እርግጠኛ ነዎት ይፈልጋሉ?"</string>
+    <!-- no translation found for confirm_export_message (4307437830474103759) -->
+    <skip />
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"የዕውቂያ ውሂብ ለመላክ አለተሳማካም"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"የዕውቂያ ውሂብ ለላክአልተሳካም"\n"ለመታወኩ ምክንያት\"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"ምንም መላክ የሚችል ዕውቂያ የለም"</string>
@@ -382,21 +375,20 @@
     <string name="sms_disambig_title" msgid="4675399294513152364">"ፅሁፍበመጠቀም"</string>
     <string name="make_primary" msgid="5829291915305113983">"ይህን ምርጫ አስታውስ"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"ይህን እርምጃ ለማስተናገድ ምንም ትግበራ አልተገኘም"</string>
-    <!-- no translation found for missing_name (7930716592850443705) -->
-    <skip />
+    <string name="missing_name" msgid="7930716592850443705">"(ስም አልባ)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"መለያዎች"</string>
     <!-- no translation found for menu_contacts_filter (2165153460860262501) -->
     <skip />
     <string name="menu_import_export" msgid="3765725645491577190">"አስመጣ/ላክ"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"ዕውቂያዎች አስመጣ/ላክ"</string>
-    <string name="menu_share" msgid="8746849630474240344">"ዕውቂያ አጋራ"</string>
+    <string name="menu_share" msgid="943789700636542260">"መጋሪያ"</string>
     <string name="share_via" msgid="563121028023030093">"ዕውቂያበ በኩል አጋራ"</string>
     <string name="share_error" msgid="4374508848981697170">"ይህ ዕውቂያ መጋራት አይችልም።"</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"ስም"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"ቅጽል ስም"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"መስርያ ቤት"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"ድረ ገፅ"</string>
-    <string name="eventLabelsGroup" msgid="8069912895912714412">"ዝግጅት"</string>
+    <!-- outdated translation 8069912895912714412 -->     <string name="eventLabelsGroup" msgid="3695433812142818803">"ዝግጅት"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"ግንኙነት"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"ቡድኖች"</string>
     <string name="type_short_home" msgid="7770424864090605384">"H"</string>
@@ -495,20 +487,19 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"የድምፀ ልሳን ቤተሰብ ስም"</string>
     <!-- no translation found for name_phonetic (4259595234312430484) -->
     <skip />
-    <!-- no translation found for network (5415816765302129264) -->
+    <!-- no translation found for connections (8098440723172028350) -->
     <skip />
-    <!-- no translation found for more_networks_button (8566780094016196438) -->
+    <!-- no translation found for add_connection_button (4861308615789601727) -->
     <skip />
     <!-- no translation found for recent_updates (2062236709538790412) -->
+    <skip />
+    <!-- no translation found for recent_updates_tab_text (5813107516506908531) -->
     <skip />
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> እውቅያ"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"ይህን ፎቶ ተጠቀም"</string>
-    <!-- unknown placeholder SOURCE in contact_read_only -->
-    <skip />
-    <!-- no translation found for contact_read_only (1969214537163492087) -->
-    <skip />
+    <string name="contact_read_only" msgid="1856479476063888348">"ከዚህ ትግበራ አርትዕ የሚደረግ አይደለም"</string>
     <string name="no_contact_details" msgid="6754415338321837001">"ለዚህ ዕውቂያ ምንም ተጨማሪ መረጃ የለም"</string>
     <!-- no translation found for group_read_only (7924922658394449477) -->
     <skip />
@@ -542,6 +533,11 @@
     <string name="add_field" msgid="2384260056674995230">"ሌላ መስክ አክል"</string>
     <!-- no translation found for add_new_entry_for_section (5223080690667565044) -->
     <skip />
+    <string name="add_organization" msgid="7311893231158291197">"ድርጅት አክል"</string>
+    <!-- no translation found for event_edit_field_hint_text (5794424930242630477) -->
+    <skip />
+    <!-- no translation found for group_edit_field_hint_text (3966441850870457808) -->
+    <skip />
     <string name="contact_status_update_attribution" msgid="752179367353018597">"በ<xliff:g id="SOURCE">%1$s</xliff:g> በኩል"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g>በ<xliff:g id="SOURCE">%2$s</xliff:g> በኩል"</string>
     <string name="description_star" msgid="2605854427360036550">"ተወዳጅ"</string>
@@ -560,7 +556,7 @@
     <skip />
     <string name="contact_directory_description" msgid="683398073603909119">"ማውጫ <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="directory_search_label" msgid="1887759056597975053">" ማውጫ"</string>
-    <string name="local_search_label" msgid="1686089693064201315">"እውቅያዎች"</string>
+    <!-- outdated translation 1686089693064201315 -->     <string name="local_search_label" msgid="2551177578246113614">"እውቅያዎች"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"የግል ቅጂ መፍጠር"</string>
     <string name="list_filter_prompt" msgid="7481426622828055116">"ዕውቂያ ዝርዝር ምረጥ"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"ሁሉም እውቅያዎች"</string>
@@ -573,12 +569,14 @@
     <string name="activity_title_settings" msgid="5464130076132770781">"ቅንብሮች"</string>
     <!-- no translation found for activity_title_contacts_filter (8275542497615516969) -->
     <skip />
-    <!-- outdated translation 377929915873428211 -->     <string name="menu_settings" msgid="1515262535785451190">"ቅንብሮች"</string>
+    <!-- outdated translation 377929915873428211 -->     <string name="menu_settings" msgid="6523251616169246235">"ቅንብሮች"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"ማሳያ አማራጮች"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>፣ <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"ዕውቂያዎች አግኝ"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"ስልክ ቁጥር:"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"ወደ ዕውቂያዎች አክል"</string>
+    <!-- no translation found for activity_title_confirm_add_detail (4065089866210730616) -->
+    <skip />
     <string name="non_phone_close" msgid="7608506439725515667">"ዝጋ"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"ዓመት አስገባ"</string>
@@ -612,13 +610,9 @@
     <string name="discard" msgid="1234315037371251414">"አስወግድ"</string>
     <!-- no translation found for call_type_and_date (1766269584078149149) -->
     <skip />
-    <!-- no translation found for profile_display_name (4179677761341328409) -->
+    <!-- no translation found for profile_display_name (4127389543625918771) -->
     <skip />
-    <!-- no translation found for enter_contact_name (2930510479516059437) -->
-    <skip />
-    <!-- no translation found for editGroup_title_insert (7803743109105317959) -->
-    <skip />
-    <!-- no translation found for editGroup_title_edit (2173278908256913247) -->
+    <!-- no translation found for enter_contact_name (1738391320566349924) -->
     <skip />
     <!-- no translation found for view_updates_from_group (1782685984905600034) -->
     <skip />
@@ -628,7 +622,11 @@
     <skip />
     <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
     <skip />
-    <!-- no translation found for voicemail_playback_error (5128928338910411763) -->
+    <string name="voicemail_playback_error" msgid="6148119635138385900">"የድምፅ መልዕክት ለማጫወት ተስኗል"</string>
+    <string name="voicemail_buffering" msgid="2021957162133938725">"ማቋት"</string>
+    <!-- no translation found for voicemail_fetching_content (8516068803491833243) -->
+    <skip />
+    <!-- no translation found for voicemail_fetching_timout (3430908587639305983) -->
     <skip />
     <!-- no translation found for call_log_new_header (846546437517724715) -->
     <skip />
@@ -656,13 +654,14 @@
     <skip />
     <!-- no translation found for voicemail_speed_fastest (3373646875150544205) -->
     <skip />
-    <!-- no translation found for call_log_item_count_and_date (7641933305703520787) -->
-    <skip />
+    <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
     <!-- no translation found for group_name_hint (2659811836386413509) -->
     <skip />
     <!-- no translation found for nfc_vcard_file_name (2823095213265993609) -->
     <skip />
     <!-- no translation found for menu_show_voicemails_only (1898421289561435703) -->
+    <skip />
+    <!-- no translation found for menu_show_all_calls (7560347482073345885) -->
     <skip />
     <!-- no translation found for status_available (5586870015822828392) -->
     <skip />
@@ -682,8 +681,24 @@
     <skip />
     <!-- no translation found for description_call_log_voicemail (4600798771975158948) -->
     <skip />
+    <!-- no translation found for description_add_contact (3103414772502485851) -->
+    <skip />
+    <!-- no translation found for description_view_contact (5205669345700598415) -->
+    <skip />
+    <!-- no translation found for description_call (3443678121983852666) -->
+    <skip />
+    <!-- no translation found for description_send_text_message (7803126439934046891) -->
+    <skip />
     <!-- no translation found for description_call_log_unheard_voicemail (118101684236996786) -->
     <skip />
     <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
+    <skip />
+    <!-- no translation found for user_profile_contacts_list_header (9154761216179882405) -->
+    <skip />
+    <!-- no translation found for local_profile_title (2021416826991393684) -->
+    <skip />
+    <!-- no translation found for external_profile_title (8034998767621359438) -->
+    <skip />
+    <!-- no translation found for toast_displaying_all_contacts (2737388783898593875) -->
     <skip />
 </resources>

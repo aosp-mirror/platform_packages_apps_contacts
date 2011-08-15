@@ -44,19 +44,20 @@
     <string name="menu_callNumber" msgid="5142851348489387516">"Zavolať kontakt <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Pridať medzi obľúbené položky"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Odstrániť z obľúbených"</string>
-    <string name="menu_editContact" msgid="3452858480713561396">"Upraviť kontakt"</string>
-    <string name="menu_deleteContact" msgid="1916555454274101750">"Odstrániť kontakt"</string>
+    <!-- outdated translation 3452858480713561396 -->     <string name="menu_editContact" msgid="9042415603857662633">"Upraviť kontakt"</string>
+    <!-- outdated translation 1916555454274101750 -->     <string name="menu_deleteContact" msgid="6788644058868189393">"Odstrániť kontakt"</string>
     <string name="menu_call" msgid="3992595586042260618">"Zavolať kontaktu"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Odoslať správu kontaktu"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Nastaviť ako predvolený e-mail"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Oddeliť"</string>
-    <string name="menu_editGroup" msgid="8311763560942217614">"Upraviť skupinu"</string>
+    <!-- no translation found for menu_editGroup (5062005185370983720) -->
+    <skip />
     <string name="menu_renameGroup" msgid="2798886925154156075">"Premenovať skupinu"</string>
-    <string name="menu_deleteGroup" msgid="644571524292675446">"Odstrániť skupinu"</string>
+    <!-- outdated translation 644571524292675446 -->     <string name="menu_deleteGroup" msgid="3486380004411482874">"Odstrániť skupinu"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Nový"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Nová"</string>
-    <string name="splitConfirmation_title" msgid="6716467920283502570">"Oddeliť kontakt"</string>
-    <string name="splitConfirmation" msgid="1150797297503944823">"Naozaj chcete tento kontakt rozdeliť do viacerých kontaktov? Pre každú pripojenú kontaktnú informáciu bude vytvorený samostatný kontakt."</string>
+    <!-- outdated translation 6716467920283502570 -->     <string name="splitConfirmation_title" msgid="2209511048593467012">"Oddeliť kontakt"</string>
+    <!-- outdated translation 1150797297503944823 -->     <string name="splitConfirmation" msgid="1067993957986345974">"Naozaj chcete tento kontakt rozdeliť do viacerých kontaktov? Pre každú pripojenú kontaktnú informáciu bude vytvorený samostatný kontakt."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Spojiť"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Spojiť kontakty"</string>
     <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Vyberte kontakt, ktorý chcete spojiť s kontaktom <xliff:g id="NAME">%s</xliff:g>."</string>
@@ -66,9 +67,8 @@
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Kontakty boli spojené"</string>
     <string name="contactOptionsTitle" msgid="8259347644090700915">"Možnosti"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Odstrániť"</string>
-    <!-- no translation found for menu_set_ring_tone (8728345772068064946) -->
-    <skip />
-    <!-- no translation found for menu_redirect_calls_to_vm (3291482125835338104) -->
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Nastaviť zvonenie"</string>
+    <!-- no translation found for menu_redirect_calls_to_vm (4181789196416396656) -->
     <skip />
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Z účtov, ktoré sú iba na čítanie, nie je možné odstrániť kontakty. Tieto kontakty môžete vo vašom zozname kontaktov skryť."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Tento kontakt obsahuje informácie z niekoľkých účtov. Informácie z účtov iba na čítanie budú v zoznamoch kontaktov skryté, ale nebudú odstránené."</string>
@@ -77,8 +77,6 @@
     <string name="menu_done" msgid="796017761764190697">"Hotovo"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Zrušiť"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Zahodiť"</string>
-    <string name="editContact_title_edit" msgid="7678695190666836093">"Upraviť kontakt"</string>
-    <string name="editContact_title_insert" msgid="9125600232291405757">"Nový kontakt"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Foneticky"</string>
     <string name="label_notes" msgid="8337354953278341042">"Poznámky"</string>
     <string name="label_sip_address" msgid="124073911714324974">"Internetový hovor"</string>
@@ -104,10 +102,9 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Presmerovať hovory priamo do hlasovej schránky"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Predvolené"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Odstrániť fotografiu"</string>
-    <!-- outdated translation 8579310973261953559 -->     <string name="noContacts" msgid="4955659076981974652">"Žiadne kontakty."</string>
-    <!-- outdated translation 8614664663561385253 -->     <string name="noGroups" msgid="7315200974181864731">"Žiadne skupiny."</string>
-    <!-- no translation found for noAccounts (4742609114153797268) -->
-    <skip />
+    <string name="noContacts" msgid="4955659076981974652">"Žiadne kontakty"</string>
+    <string name="noGroups" msgid="7315200974181864731">"Žiadne skupiny."</string>
+    <string name="noAccounts" msgid="4742609114153797268">"Ak chcete vytvárať skupiny, musíte mať účet"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Nenašli sa žiadne zodpovedajúce kontakty."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Ku kontaktom nie sú priradené žiadne telefónne čísla."</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Vyberte kontakty, ktoré budú zobrazené"</string>
@@ -119,9 +116,10 @@
   </plurals>
     <string name="savingContact" msgid="4075751076741924939">"Prebieha ukladanie kontaktu..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Prebieha ukladanie možností zobrazenia..."</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt bol uložený."</string>
+    <!-- outdated translation 7152589189385441091 -->     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt bol uložený."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Chyba, zmeny kontaktu nie je možné uložiť."</string>
-    <string name="groupSavedToast" msgid="1168756874239833756">"Skupina bola uložená."</string>
+    <!-- no translation found for groupSavedToast (6675062559302493011) -->
+    <skip />
     <string name="groupSavedErrorToast" msgid="6434135707953150875">"Chyba, zmeny do skupiny sa nepodarilo uložiť."</string>
     <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"Zmena bola uložená."</string>
     <string name="contactAlreadyInGroup" msgid="6209708213229886092">"Kontakt bol už do skupiny pridaný."</string>
@@ -136,7 +134,7 @@
   </plurals>
     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Žiadne kontakty"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Žiadne kontakty nie sú viditeľné"</string>
-    <!-- outdated translation 5391630590684099117 -->     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Žiadne kontakty označené hviezdičkou"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Žiadne obľúbené položky"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Žiadne kontakty v položke <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Kontakty v účte <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
@@ -163,10 +161,8 @@
     <string name="recentCalls_addToContact" msgid="1429899535546487008">"Pridať medzi kontakty"</string>
     <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Odstrániť zo záznamu hovorov"</string>
     <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Vymazať záznam hovorov"</string>
-    <!-- no translation found for recentCalls_trashVoicemail (7604696960787435655) -->
-    <skip />
-    <!-- no translation found for recentCalls_shareVoicemail (1416112847592942840) -->
-    <skip />
+    <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Odstrániť hlasovú správu"</string>
+    <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Zdieľať hlasovú správu"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Záznam hovorov je prázdny."</string>
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Vymazať záznam hovorov"</string>
     <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Naozaj chcete odstrániť denník hovorov?"</string>
@@ -209,10 +205,8 @@
     <string name="callAgain" msgid="3197312117049874778">"Zavolať znova"</string>
     <string name="returnCall" msgid="8171961914203617813">"Zavolať späť"</string>
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> s"</string>
-    <!-- no translation found for favoritesFrequentContacted (6184232487472425690) -->
-    <skip />
-    <!-- no translation found for favoritesFrequentCalled (6128306889600696124) -->
-    <skip />
+    <string name="favoritesFrequentContacted" msgid="6184232487472425690">"Najčastejšie používané kontakty"</string>
+    <string name="favoritesFrequentCalled" msgid="6128306889600696124">"Najčastejšie volané kontakty"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Pridať kontakt"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Chcete pridať „<xliff:g id="EMAIL">%s</xliff:g>“ medzi kontakty?"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"jedna"</string>
@@ -280,7 +274,8 @@
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"kontakt"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Potvrdiť export"</string>
-    <string name="confirm_export_message" msgid="3875683519257829750">"Naozaj chcete exportovať zoznam kontaktov do súboru <xliff:g id="VCARD_FILENAME">%s</xliff:g>?"</string>
+    <!-- no translation found for confirm_export_message (4307437830474103759) -->
+    <skip />
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Export údajov kontaktov zlyhal"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Export údajov kontaktov zlyhal."\n"Príčina chyby: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Nedá sa exportovať nijaký kontakt"</string>
@@ -312,20 +307,19 @@
     <string name="sms_disambig_title" msgid="4675399294513152364">"Odoslať správu pomocou"</string>
     <string name="make_primary" msgid="5829291915305113983">"Zapamätať si túto voľbu"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Aplikácia potrebná na spracovanie tejto akcie sa nenašla"</string>
-    <!-- no translation found for missing_name (7930716592850443705) -->
-    <skip />
+    <string name="missing_name" msgid="7930716592850443705">"(bez mena)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Účty"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakty na zobrazenie"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Import a export"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importovať alebo exportovať kontakty"</string>
-    <string name="menu_share" msgid="8746849630474240344">"Zdieľať kontakt"</string>
+    <string name="menu_share" msgid="943789700636542260">"Zdieľať"</string>
     <string name="share_via" msgid="563121028023030093">"Zdieľať kontakt pomocou"</string>
     <string name="share_error" msgid="4374508848981697170">"Tento kontakt nie je možné zdieľať."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Meno"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Prezývka"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organizácia"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Webové stránky"</string>
-    <string name="eventLabelsGroup" msgid="8069912895912714412">"Udalosť"</string>
+    <!-- outdated translation 8069912895912714412 -->     <string name="eventLabelsGroup" msgid="3695433812142818803">"Udalosť"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Vzťah"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Skupiny"</string>
     <string name="type_short_home" msgid="7770424864090605384">"D"</string>
@@ -422,18 +416,20 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Druhé meno (foneticky)"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Priezvisko (foneticky)"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Meno (foneticky)"</string>
-    <string name="network" msgid="5415816765302129264">"Sieť"</string>
-    <!-- no translation found for more_networks_button (8566780094016196438) -->
+    <!-- no translation found for connections (8098440723172028350) -->
+    <skip />
+    <!-- no translation found for add_connection_button (4861308615789601727) -->
     <skip />
     <string name="recent_updates" msgid="2062236709538790412">"Najnovšie"</string>
+    <!-- no translation found for recent_updates_tab_text (5813107516506908531) -->
+    <skip />
     <string name="account_type_format" msgid="718948015590343010">"Kontakt <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Použiť túto fotografiu"</string>
-    <string name="contact_read_only" msgid="1969214537163492087">"V tomto zariadení nie je možné upraviť"</string>
+    <string name="contact_read_only" msgid="1856479476063888348">"Nie je možné upraviť v tejto aplikácii"</string>
     <string name="no_contact_details" msgid="6754415338321837001">"Pri tomto kontakte nie sú uvedené ďalšie informácie"</string>
-    <!-- no translation found for group_read_only (7924922658394449477) -->
-    <skip />
+    <string name="group_read_only" msgid="7924922658394449477">"V tomto zariadení nie je možné upraviť"</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Zoradiť zoznam podľa"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Krstné meno"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Priezvisko"</string>
@@ -463,6 +459,11 @@
     <string name="no_contacts_selected" msgid="5877803471037324613">"Nie sú vybraté žiadne kontakty."</string>
     <string name="add_field" msgid="2384260056674995230">"Pridať ďalšie pole"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Pridať nové"</string>
+    <string name="add_organization" msgid="7311893231158291197">"Pridať organizáciu"</string>
+    <!-- no translation found for event_edit_field_hint_text (5794424930242630477) -->
+    <skip />
+    <!-- no translation found for group_edit_field_hint_text (3966441850870457808) -->
+    <skip />
     <string name="contact_status_update_attribution" msgid="752179367353018597">", zdroj: <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g>, zdroj: <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"zaradiť medzi obľúbené"</string>
@@ -480,7 +481,7 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Pridať medzi moje kontakty"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Adresár <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Adresár"</string>
-    <string name="local_search_label" msgid="1686089693064201315">"Kontakty"</string>
+    <!-- outdated translation 1686089693064201315 -->     <string name="local_search_label" msgid="2551177578246113614">"Kontakty"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"Vytváranie osobnej kópie"</string>
     <string name="list_filter_prompt" msgid="7481426622828055116">"Vyberte zoznam kontaktov"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Všetky kontakty"</string>
@@ -492,12 +493,14 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Definícia vlastného zobrazenia"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Nastavenia"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakty na zobrazenie"</string>
-    <string name="menu_settings" msgid="1515262535785451190">"Zobraziť možnosti"</string>
+    <!-- outdated translation 377929915873428211 -->     <string name="menu_settings" msgid="6523251616169246235">"Nastavenia"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Možnosti zobrazenia"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Nájsť kontakty"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Telefónne číslo"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Pridať medzi kontakty"</string>
+    <!-- no translation found for activity_title_confirm_add_detail (4065089866210730616) -->
+    <skip />
     <string name="non_phone_close" msgid="7608506439725515667">"Zavrieť"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Uviesť rok"</string>
@@ -525,47 +528,50 @@
   </plurals>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Pred združením s ďalším kontaktom zadajte meno kontaktu."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Združený kontakt"</string>
-    <!-- no translation found for copy_text (3257145021583508761) -->
-    <skip />
-    <!-- no translation found for set_default (4417505153468300351) -->
-    <skip />
-    <!-- no translation found for clear_default (7193185801596678067) -->
-    <skip />
+    <string name="copy_text" msgid="3257145021583508761">"Kopírovať do schránky"</string>
+    <string name="set_default" msgid="4417505153468300351">"Nastaviť ako predvolené"</string>
+    <string name="clear_default" msgid="7193185801596678067">"Vymazať predvolené nastavenia"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Text bol skopírovaný"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Zahodiť zmeny"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Naozaj chcete zahodiť svoje zmeny?"</string>
     <string name="discard" msgid="1234315037371251414">"Zahodiť"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4179677761341328409">"Môj profil"</string>
-    <string name="enter_contact_name" msgid="2930510479516059437">"Zadajte meno kontaktu"</string>
-    <string name="editGroup_title_insert" msgid="7803743109105317959">"Nová skupina"</string>
-    <string name="editGroup_title_edit" msgid="2173278908256913247">"Upraviť skupinu"</string>
+    <!-- no translation found for profile_display_name (4127389543625918771) -->
+    <skip />
+    <!-- no translation found for enter_contact_name (1738391320566349924) -->
+    <skip />
     <string name="view_updates_from_group" msgid="1782685984905600034">"Zobraziť aktualizácie"</string>
-    <!-- no translation found for notification_voicemail_title:one (1746619685488504230) -->
-    <!-- no translation found for notification_voicemail_title:other (5513481419205061254) -->
-    <!-- no translation found for notification_voicemail_callers_list (1153954809339404149) -->
+  <plurals name="notification_voicemail_title">
+    <item quantity="one" msgid="1746619685488504230">"Hlasová správa"</item>
+    <item quantity="other" msgid="5513481419205061254">"Počet hlasových správ: <xliff:g id="COUNT">%1$d</xliff:g>"</item>
+  </plurals>
+    <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
+    <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Nová hlasová správa – <xliff:g id="CALLER">%1$s</xliff:g>"</string>
+    <string name="voicemail_playback_error" msgid="6148119635138385900">"nepodarilo sa prehrať hlasovú správu"</string>
+    <string name="voicemail_buffering" msgid="2021957162133938725">"ukladá sa do vyrovnávacej pamäte..."</string>
+    <!-- no translation found for voicemail_fetching_content (8516068803491833243) -->
     <skip />
-    <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
+    <!-- no translation found for voicemail_fetching_timout (3430908587639305983) -->
     <skip />
-    <string name="voicemail_playback_error" msgid="5128928338910411763">"Hlasovú správu sa nepodarilo prehrať"</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Nové"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Staršie"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"K serveru hlasovej schránky sa nepodarilo pripojiť."</string>
-    <string name="voicemail_status_messages_waiting" msgid="2970301042310727909">"Na serveri hlasovej schránky sa nachádzajú nové správy. Nepodarilo sa k nemu však pripojiť."</string>
+    <string name="voicemail_status_messages_waiting" msgid="2970301042310727909">"Nepodarilo sa pripoj. k serveru hlas. schránky – sú na ňom nové hlas. správy."</string>
     <string name="voicemail_status_configure_voicemail" msgid="3940240432123700974">"Konfigurovať hlasovú schránku."</string>
     <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Zvuk nie je k dispozícii."</string>
     <string name="voicemail_status_action_configure" msgid="7008713959076506385">"Konfigurovať"</string>
-    <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"Volať do hlasovej schránky"</string>
+    <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"Volať hlas. schránku"</string>
     <string name="voicemail_speed_slowest" msgid="6047030504814773029">"najnižšia rýchlosť"</string>
     <string name="voicemail_speed_slower" msgid="7890393922358642543">"pomalá rýchlosť"</string>
     <string name="voicemail_speed_normal" msgid="6030110237820243006">"normálna rýchlosť"</string>
     <string name="voicemail_speed_faster" msgid="4161478290979905481">"vysoká rýchlosť"</string>
     <string name="voicemail_speed_fastest" msgid="3373646875150544205">"najvyššia rýchlosť"</string>
-    <!-- no translation found for call_log_item_count_and_date (7641933305703520787) -->
-    <skip />
+    <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
     <string name="group_name_hint" msgid="2659811836386413509">"Názov skupiny"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Kontakt prijatý cez NFC"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Zobraziť len hlasové správy"</string>
+    <!-- no translation found for menu_show_all_calls (7560347482073345885) -->
+    <skip />
     <string name="status_available" msgid="5586870015822828392">"K dispozícii"</string>
     <string name="status_away" msgid="1838861100379804730">"Preč"</string>
     <string name="status_busy" msgid="9147992455450257136">"Zaneprázdnený"</string>
@@ -574,8 +580,23 @@
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Prichádzajúci hovor"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Odchádzajúci hovor"</string>
     <string name="description_call_log_missed_call" msgid="2242805209983708825">"Zmeškaný hovor"</string>
-    <string name="description_call_log_voicemail" msgid="4600798771975158948">"Hlasová správa"</string>
+    <string name="description_call_log_voicemail" msgid="4600798771975158948">"Hlasová schránka"</string>
+    <!-- no translation found for description_add_contact (3103414772502485851) -->
+    <skip />
+    <!-- no translation found for description_view_contact (5205669345700598415) -->
+    <skip />
+    <!-- no translation found for description_call (3443678121983852666) -->
+    <skip />
+    <!-- no translation found for description_send_text_message (7803126439934046891) -->
+    <skip />
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Nevypočutá hlasová správa"</string>
-    <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
+    <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
+    <!-- no translation found for user_profile_contacts_list_header (9154761216179882405) -->
+    <skip />
+    <!-- no translation found for local_profile_title (2021416826991393684) -->
+    <skip />
+    <!-- no translation found for external_profile_title (8034998767621359438) -->
+    <skip />
+    <!-- no translation found for toast_displaying_all_contacts (2737388783898593875) -->
     <skip />
 </resources>

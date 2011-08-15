@@ -63,23 +63,23 @@
     <skip />
     <!-- no translation found for menu_removeStar (5844227078364227030) -->
     <skip />
-    <!-- no translation found for menu_editContact (3452858480713561396) -->
+    <!-- no translation found for menu_editContact (9042415603857662633) -->
     <skip />
-    <!-- no translation found for menu_deleteContact (1916555454274101750) -->
+    <!-- no translation found for menu_deleteContact (6788644058868189393) -->
     <skip />
     <string name="menu_call" msgid="3992595586042260618">"Mpigie"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Tuma ujumbe kwa anwani"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Fanya iwe barua pepe chaguo-msingi"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Kando"</string>
-    <!-- no translation found for menu_editGroup (8311763560942217614) -->
+    <!-- no translation found for menu_editGroup (5062005185370983720) -->
     <skip />
     <string name="menu_renameGroup" msgid="2798886925154156075">"Kipe kikundi jina lingine"</string>
-    <string name="menu_deleteGroup" msgid="644571524292675446">"Futa kikundi"</string>
+    <!-- outdated translation 644571524292675446 -->     <string name="menu_deleteGroup" msgid="3486380004411482874">"Futa kikundi"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Mpya"</string>
     <!-- no translation found for menu_new_group_action_bar (5055346725617932394) -->
     <skip />
-    <string name="splitConfirmation_title" msgid="6716467920283502570">"Tenganisha Anwani"</string>
-    <string name="splitConfirmation" msgid="1150797297503944823">"Je, una uhakika kuwa unataka kutenganisha anwani hii moja kwa anwani nyingi: moja kwa kila seti ya maelezo ya anwani ambayo yaliunganishwa kwake?"</string>
+    <!-- outdated translation 6716467920283502570 -->     <string name="splitConfirmation_title" msgid="2209511048593467012">"Tenganisha Anwani"</string>
+    <!-- outdated translation 1150797297503944823 -->     <string name="splitConfirmation" msgid="1067993957986345974">"Je, una uhakika kuwa unataka kutenganisha anwani hii moja kwa anwani nyingi: moja kwa kila seti ya maelezo ya anwani ambayo yaliunganishwa kwake?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Jiunge"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Unganisha anwani"</string>
     <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Chagua anwani unayotaka kujiunga nayo <xliff:g id="NAME">%s</xliff:g>."</string>
@@ -92,7 +92,7 @@
     <skip />
     <!-- no translation found for menu_set_ring_tone (8728345772068064946) -->
     <skip />
-    <!-- no translation found for menu_redirect_calls_to_vm (3291482125835338104) -->
+    <!-- no translation found for menu_redirect_calls_to_vm (4181789196416396656) -->
     <skip />
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Huwezi kufuta anwani kutoka kwa akaunti zinazoweza kusomwa tu, lakini unaweza kuzificha katika orodha yako ya anwani."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Anwani hii ina maelezo kutoka kwa akaunti nyingi. Maelezo kutoka kwa akaunti za soma-tu zitafichwa katika orodha zako za anwani, sio kufutwa."</string>
@@ -102,10 +102,6 @@
     <string name="menu_done" msgid="796017761764190697">"Kwisha"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Ghairi"</string>
     <!-- no translation found for menu_discard (6456087569315685632) -->
-    <skip />
-    <!-- no translation found for editContact_title_edit (7678695190666836093) -->
-    <skip />
-    <!-- no translation found for editContact_title_insert (9125600232291405757) -->
     <skip />
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetiki"</string>
     <!-- no translation found for label_notes (8337354953278341042) -->
@@ -159,10 +155,10 @@
   </plurals>
     <string name="savingContact" msgid="4075751076741924939">"Inahifadhi anwani..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Inahifadhi chaguo za mwonyesho.."</string>
-    <!-- no translation found for contactSavedToast (7152589189385441091) -->
+    <!-- no translation found for contactSavedToast (9171862279493213075) -->
     <skip />
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Hitilafu, haiwezi kuhifadhi mabadiliko ya anwani."</string>
-    <!-- no translation found for groupSavedToast (1168756874239833756) -->
+    <!-- no translation found for groupSavedToast (6675062559302493011) -->
     <skip />
     <!-- no translation found for groupSavedErrorToast (6434135707953150875) -->
     <skip />
@@ -220,10 +216,8 @@
     <skip />
     <!-- no translation found for recentCalls_deleteAll (6352364392762163704) -->
     <skip />
-    <!-- no translation found for recentCalls_trashVoicemail (7604696960787435655) -->
-    <skip />
-    <!-- no translation found for recentCalls_shareVoicemail (1416112847592942840) -->
-    <skip />
+    <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Futa barua ya sauti"</string>
+    <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Shiriki barua ya sauti"</string>
     <!-- no translation found for recentCalls_empty (247053222448663107) -->
     <skip />
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Futa kumbukumbu la upigaji simu"</string>
@@ -257,7 +251,7 @@
     <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"Huna anwani zozote za kuonyesha."\n\n"Ili kuongeza anwani, bonyeza "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>" na gusa:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" ili kuongeza au kusanidi akaunti ya anwani unaweza kupatanisha katika simu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mawasiliano mapya"</b></font>" ili kuunda anwani mpya kuanzia mwanzo"</li>" "\n\n<li><font fgcolor="#ffffffff"><b>"Leta/Hamisha"</b></font>"ili kuleta anwani kutoka kwa kadi yako ya SD"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Huna anwani zozote za kuonyesha. (Kama uliongeza akaunti, inaweza kuchukua dakika chache kusawazisha anwani.)"\n\n"Kuongeza anwani, bonyeza "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>" na uguse:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" ili kuongeza au kusanidi akaunti na anwani unazoweza kusawazisha kwenye kompyuta ndogo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Chaguo za onyesha"</b></font>" ili kubadilisha ni anwani gani zinazoonekana"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Anwani mpya"</b></font>" ili kuunda anwani mpya kutoka mwanzo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Leta/Hamisha"</b></font>" ili kuleta anwani kutoka kwa kadi yako ya SD"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Hauna anwani zozote za kuonyesha. (Kama umeongeza tu akaunti, inaweza kuchukua dadika chache ili kupatanisha anwani.)"\n\n"Ili kuongeza anwani, bonyeza "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>" na gusa:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" ili kuongeza au kusanidi anwani unayoweza kupatanisha katika simu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Onyesha Machaguo"</b></font>"ili kubadilisha anwani zinazoonekana"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Anwani mpya"</b></font>" ili kuunda anwani mpya kuanzia mwanzo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Leta/Hamisha"</b></font>"ili kuleta anwani kutoka kwa kadi yako ya SD"\n</li></string>
-    <!-- syntax error in translation for noFavoritesHelpText (3744655776704833277) org.xmlpull.v1.XmlPullParserException: expected: /string read: b (position:END_TAG </b>@1:167 in java.io.StringReader@c5e3974)  -->
+    <!-- syntax error in translation for noFavoritesHelpText (3744655776704833277) org.xmlpull.v1.XmlPullParserException: expected: /string read: b (position:END_TAG </b>@1:167 in java.io.StringReader@6100ab23)  -->
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Anwani zote"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Yenye nyota"</string>
     <string name="liveFolder_phones_label" msgid="1709786878793436245">"Simu"</string>
@@ -276,10 +270,8 @@
     <string name="callAgain" msgid="3197312117049874778">"Piga simu tena"</string>
     <string name="returnCall" msgid="8171961914203617813">"Mpigie"</string>
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"Dakika <xliff:g id="MINUTES">%s</xliff:g> sekunde <xliff:g id="SECONDS">%s</xliff:g>"</string>
-    <!-- no translation found for favoritesFrequentContacted (6184232487472425690) -->
-    <skip />
-    <!-- no translation found for favoritesFrequentCalled (6128306889600696124) -->
-    <skip />
+    <string name="favoritesFrequentContacted" msgid="6184232487472425690">"Unaowasiliana nao zaidi"</string>
+    <string name="favoritesFrequentCalled" msgid="6128306889600696124">"Zinazopigwa mara kwa mara"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Ongeza anwani"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Ongeza \"<xliff:g id="EMAIL">%s</xliff:g>\" kwa anwani?"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"moja"</string>
@@ -349,7 +341,8 @@
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"anwani"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Thibitisha hamisho"</string>
-    <string name="confirm_export_message" msgid="3875683519257829750">"Una uhakika unataka kuhamisha orodha yako ya anwani hadi kwa \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\""</string>
+    <!-- no translation found for confirm_export_message (4307437830474103759) -->
+    <skip />
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Imeshindwa kuhamisha data ya anwani"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Imeshindwa kuhamisha data ya anwani."\n"Sababu ya kushindwa: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Hakuna anwani inayoweza kuhamishwa"</string>
@@ -382,21 +375,20 @@
     <string name="sms_disambig_title" msgid="4675399294513152364">"Tuma ujumbe kwa kutumia"</string>
     <string name="make_primary" msgid="5829291915305113983">"Kumbuka chaguo hili"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Hakuna programu iliyopatikana ili kushughulikia kitendo hiki"</string>
-    <!-- no translation found for missing_name (7930716592850443705) -->
-    <skip />
+    <string name="missing_name" msgid="7930716592850443705">"( hakuna jina )"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Akaunti"</string>
     <!-- no translation found for menu_contacts_filter (2165153460860262501) -->
     <skip />
     <string name="menu_import_export" msgid="3765725645491577190">"Ingiza/Hamisha"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Ingiza/Hamisha anwani"</string>
-    <string name="menu_share" msgid="8746849630474240344">"Shiriki anwani"</string>
+    <string name="menu_share" msgid="943789700636542260">"Shiriki"</string>
     <string name="share_via" msgid="563121028023030093">"Shiriki anwani kupitia"</string>
     <string name="share_error" msgid="4374508848981697170">"Anwani hii haiwezi kushirikiwa."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Jina"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Jina la utani"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Shirika"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Tovuti"</string>
-    <string name="eventLabelsGroup" msgid="8069912895912714412">"Tukio"</string>
+    <!-- outdated translation 8069912895912714412 -->     <string name="eventLabelsGroup" msgid="3695433812142818803">"Tukio"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Uhusiano"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Vikundi"</string>
     <string name="type_short_home" msgid="7770424864090605384">"H"</string>
@@ -495,20 +487,19 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"Jina la kifonetiki la familia"</string>
     <!-- no translation found for name_phonetic (4259595234312430484) -->
     <skip />
-    <!-- no translation found for network (5415816765302129264) -->
+    <!-- no translation found for connections (8098440723172028350) -->
     <skip />
-    <!-- no translation found for more_networks_button (8566780094016196438) -->
+    <!-- no translation found for add_connection_button (4861308615789601727) -->
     <skip />
     <!-- no translation found for recent_updates (2062236709538790412) -->
+    <skip />
+    <!-- no translation found for recent_updates_tab_text (5813107516506908531) -->
     <skip />
     <string name="account_type_format" msgid="718948015590343010">"Anwani <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Tumia picha hii"</string>
-    <!-- unknown placeholder SOURCE in contact_read_only -->
-    <skip />
-    <!-- no translation found for contact_read_only (1969214537163492087) -->
-    <skip />
+    <string name="contact_read_only" msgid="1856479476063888348">"Haiwezi kuhaririwa kutoka kwa programu hii"</string>
     <string name="no_contact_details" msgid="6754415338321837001">"Hakuna maelezo ya ziada ya anwani hii"</string>
     <!-- no translation found for group_read_only (7924922658394449477) -->
     <skip />
@@ -542,6 +533,11 @@
     <string name="add_field" msgid="2384260056674995230">"Ongeza uga nyingine"</string>
     <!-- no translation found for add_new_entry_for_section (5223080690667565044) -->
     <skip />
+    <string name="add_organization" msgid="7311893231158291197">"Ongeza shirikisho"</string>
+    <!-- no translation found for event_edit_field_hint_text (5794424930242630477) -->
+    <skip />
+    <!-- no translation found for group_edit_field_hint_text (3966441850870457808) -->
+    <skip />
     <string name="contact_status_update_attribution" msgid="752179367353018597">"kupitia <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> kupitia <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"kipendwa"</string>
@@ -560,7 +556,7 @@
     <skip />
     <string name="contact_directory_description" msgid="683398073603909119">"Saraka <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Saraka"</string>
-    <string name="local_search_label" msgid="1686089693064201315">"Anwani"</string>
+    <!-- outdated translation 1686089693064201315 -->     <string name="local_search_label" msgid="2551177578246113614">"Anwani"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"Inaunda nakala ya kibinafsi"</string>
     <string name="list_filter_prompt" msgid="7481426622828055116">"Chagua orodha ya anwani"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Anwani zote"</string>
@@ -573,12 +569,14 @@
     <string name="activity_title_settings" msgid="5464130076132770781">"Mipangilio"</string>
     <!-- no translation found for activity_title_contacts_filter (8275542497615516969) -->
     <skip />
-    <!-- outdated translation 377929915873428211 -->     <string name="menu_settings" msgid="1515262535785451190">"Mipangilio"</string>
+    <!-- outdated translation 377929915873428211 -->     <string name="menu_settings" msgid="6523251616169246235">"Mipangilio"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Onyesha machaguo"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Tafuta anwani"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Nambari ya simu"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Ongeza kwa anwani"</string>
+    <!-- no translation found for activity_title_confirm_add_detail (4065089866210730616) -->
+    <skip />
     <string name="non_phone_close" msgid="7608506439725515667">"Funga"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Bainisha mwaka"</string>
@@ -612,13 +610,9 @@
     <string name="discard" msgid="1234315037371251414">"Tupa"</string>
     <!-- no translation found for call_type_and_date (1766269584078149149) -->
     <skip />
-    <!-- no translation found for profile_display_name (4179677761341328409) -->
+    <!-- no translation found for profile_display_name (4127389543625918771) -->
     <skip />
-    <!-- no translation found for enter_contact_name (2930510479516059437) -->
-    <skip />
-    <!-- no translation found for editGroup_title_insert (7803743109105317959) -->
-    <skip />
-    <!-- no translation found for editGroup_title_edit (2173278908256913247) -->
+    <!-- no translation found for enter_contact_name (1738391320566349924) -->
     <skip />
     <!-- no translation found for view_updates_from_group (1782685984905600034) -->
     <skip />
@@ -628,7 +622,11 @@
     <skip />
     <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
     <skip />
-    <!-- no translation found for voicemail_playback_error (5128928338910411763) -->
+    <string name="voicemail_playback_error" msgid="6148119635138385900">"Imeshindwa kucheza barua ya sauti"</string>
+    <string name="voicemail_buffering" msgid="2021957162133938725">"inabafa..."</string>
+    <!-- no translation found for voicemail_fetching_content (8516068803491833243) -->
+    <skip />
+    <!-- no translation found for voicemail_fetching_timout (3430908587639305983) -->
     <skip />
     <!-- no translation found for call_log_new_header (846546437517724715) -->
     <skip />
@@ -656,13 +654,14 @@
     <skip />
     <!-- no translation found for voicemail_speed_fastest (3373646875150544205) -->
     <skip />
-    <!-- no translation found for call_log_item_count_and_date (7641933305703520787) -->
-    <skip />
+    <string name="call_log_item_count_and_date" msgid="7641933305703520787">"( <xliff:g id="COUNT">%1$d</xliff:g> ) <xliff:g id="DATE">%2$s</xliff:g>"</string>
     <!-- no translation found for group_name_hint (2659811836386413509) -->
     <skip />
     <!-- no translation found for nfc_vcard_file_name (2823095213265993609) -->
     <skip />
     <!-- no translation found for menu_show_voicemails_only (1898421289561435703) -->
+    <skip />
+    <!-- no translation found for menu_show_all_calls (7560347482073345885) -->
     <skip />
     <!-- no translation found for status_available (5586870015822828392) -->
     <skip />
@@ -682,8 +681,24 @@
     <skip />
     <!-- no translation found for description_call_log_voicemail (4600798771975158948) -->
     <skip />
+    <!-- no translation found for description_add_contact (3103414772502485851) -->
+    <skip />
+    <!-- no translation found for description_view_contact (5205669345700598415) -->
+    <skip />
+    <!-- no translation found for description_call (3443678121983852666) -->
+    <skip />
+    <!-- no translation found for description_send_text_message (7803126439934046891) -->
+    <skip />
     <!-- no translation found for description_call_log_unheard_voicemail (118101684236996786) -->
     <skip />
     <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
+    <skip />
+    <!-- no translation found for user_profile_contacts_list_header (9154761216179882405) -->
+    <skip />
+    <!-- no translation found for local_profile_title (2021416826991393684) -->
+    <skip />
+    <!-- no translation found for external_profile_title (8034998767621359438) -->
+    <skip />
+    <!-- no translation found for toast_displaying_all_contacts (2737388783898593875) -->
     <skip />
 </resources>

@@ -44,19 +44,19 @@
     <string name="menu_callNumber" msgid="5142851348489387516">"Ara: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Sık kullanılanlara ekle"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Sık kullanılanlardan kaldır"</string>
-    <string name="menu_editContact" msgid="3452858480713561396">"Kişiyi düzenle"</string>
-    <string name="menu_deleteContact" msgid="1916555454274101750">"Kişiyi sil"</string>
+    <string name="menu_editContact" msgid="9042415603857662633">"Düzenle"</string>
+    <string name="menu_deleteContact" msgid="6788644058868189393">"Sil"</string>
     <string name="menu_call" msgid="3992595586042260618">"Çağrı yap"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Kısa mesaj gönder"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Varsayılan e-posta yap"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Ayır"</string>
-    <string name="menu_editGroup" msgid="8311763560942217614">"Grubu düzenle"</string>
+    <string name="menu_editGroup" msgid="5062005185370983720">"Düzenle"</string>
     <string name="menu_renameGroup" msgid="2798886925154156075">"Grubu yeniden adlandır"</string>
-    <string name="menu_deleteGroup" msgid="644571524292675446">"Grubu sil"</string>
+    <string name="menu_deleteGroup" msgid="3486380004411482874">"Sil"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Yeni"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Yeni"</string>
-    <string name="splitConfirmation_title" msgid="6716467920283502570">"Kişiyi Ayır"</string>
-    <string name="splitConfirmation" msgid="1150797297503944823">"Bu tek kişiyi birden fazla kişiye ayırmak istediğinizden emin misiniz? Bu kişiye eklenen kişi bilgileri setinin her biri için bir kişi oluşturulsun mu?"</string>
+    <!-- outdated translation 6716467920283502570 -->     <string name="splitConfirmation_title" msgid="2209511048593467012">"Kişiyi Ayır"</string>
+    <!-- outdated translation 1150797297503944823 -->     <string name="splitConfirmation" msgid="1067993957986345974">"Bu tek kişiyi birden fazla kişiye ayırmak istediğinizden emin misiniz? Bu kişiye eklenen kişi bilgileri setinin her biri için bir kişi oluşturulsun mu?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Birleştir"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Kişileri birleştir"</string>
     <string name="blurbJoinContactDataWith" msgid="995870557595050304">"<xliff:g id="NAME">%s</xliff:g> ile katılmak istediğiniz kişiyi seçin."</string>
@@ -66,10 +66,8 @@
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Kişiler birleştirildi"</string>
     <string name="contactOptionsTitle" msgid="8259347644090700915">"Seçenekler"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Sil"</string>
-    <!-- no translation found for menu_set_ring_tone (8728345772068064946) -->
-    <skip />
-    <!-- no translation found for menu_redirect_calls_to_vm (3291482125835338104) -->
-    <skip />
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Zil sesi ayarla"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Sesli mesaja gelen tüm çağrlr"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Kişileri salt okunur hesaplardan silemezsiniz ancak bu kişileri kişiler listenizde gizleyebilirsiniz."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Bu kişi birden fazla hesaptan bilgiler içeriyor. Salt okunur hesaplardaki bilgiler silinmez, kişiler listelerinizde gizlenir."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Bu kişiyi silmek, birden fazla hesaba ait bilgileri de siler."</string>
@@ -77,8 +75,6 @@
     <string name="menu_done" msgid="796017761764190697">"Bitti"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"İptal"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Sil"</string>
-    <string name="editContact_title_edit" msgid="7678695190666836093">"Kişiyi düzenle"</string>
-    <string name="editContact_title_insert" msgid="9125600232291405757">"Yeni kişi"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetik"</string>
     <string name="label_notes" msgid="8337354953278341042">"Notlar"</string>
     <string name="label_sip_address" msgid="124073911714324974">"İnternet çağrısı"</string>
@@ -104,10 +100,9 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Çağrıları doğrudan sesli mesaja gönder"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Varsayılan"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Fotoğrafı kaldır"</string>
-    <!-- outdated translation 8579310973261953559 -->     <string name="noContacts" msgid="4955659076981974652">"Hiçbir kişi yok."</string>
-    <!-- outdated translation 8614664663561385253 -->     <string name="noGroups" msgid="7315200974181864731">"Grup yok."</string>
-    <!-- no translation found for noAccounts (4742609114153797268) -->
-    <skip />
+    <string name="noContacts" msgid="4955659076981974652">"Hiç kişi yok"</string>
+    <string name="noGroups" msgid="7315200974181864731">"Grup yok"</string>
+    <string name="noAccounts" msgid="4742609114153797268">"Grup oluşturmanız için hesap gerekiyor"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Eşleşen kişi bulunamadı."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Telefon numarası olan hiçbir kişi yok."</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Görüntülenecek kişileri seçin"</string>
@@ -119,9 +114,10 @@
   </plurals>
     <string name="savingContact" msgid="4075751076741924939">"Kişi kaydediliyor..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Görüntüleme seçenekleri kaydediliyor..."</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Kişi kaydedildi."</string>
+    <!-- outdated translation 7152589189385441091 -->     <string name="contactSavedToast" msgid="9171862279493213075">"Kişi kaydedildi."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Hata, kişi değişiklikleri kaydedilemiyor."</string>
-    <string name="groupSavedToast" msgid="1168756874239833756">"Grup kaydedildi."</string>
+    <!-- no translation found for groupSavedToast (6675062559302493011) -->
+    <skip />
     <string name="groupSavedErrorToast" msgid="6434135707953150875">"Hata, grup değişiklikleri kaydedilemedi."</string>
     <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"Değişiklik kaydedildi."</string>
     <string name="contactAlreadyInGroup" msgid="6209708213229886092">"Kişi gruba zaten eklenmiş."</string>
@@ -136,7 +132,7 @@
   </plurals>
     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Hiçbir kişi yok"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Görülebilir kişi yok"</string>
-    <!-- outdated translation 5391630590684099117 -->     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Yıldız işaretli hiçbir kişi yok"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Sık kullanılan yok."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"<xliff:g id="NAME">%s</xliff:g> içinde hiçbir kişi yok"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"<xliff:g id="NAME">%s</xliff:g> alan adındaki kişiler"</string>
   <plurals name="listFoundAllContacts">
@@ -280,7 +276,8 @@
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"kişi"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Dışa aktarımı onayla"</string>
-    <string name="confirm_export_message" msgid="3875683519257829750">"Kişi listenizi \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\" için dışa aktarmak istediğinizden emin misiniz?"</string>
+    <!-- no translation found for confirm_export_message (4307437830474103759) -->
+    <skip />
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Kişi verileri dışa aktarılamadı"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Kişi verileri dışa aktarılamadı."\n"Hata nedeni: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Dışa aktarılabilen hiçbir kişi yok"</string>
@@ -312,20 +309,19 @@
     <string name="sms_disambig_title" msgid="4675399294513152364">"Şunu kullanarak SMS gönder:"</string>
     <string name="make_primary" msgid="5829291915305113983">"Bu tercihi anımsa"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Bu işlemi gerçekleştirecek bir uygulama bulunamadı"</string>
-    <!-- no translation found for missing_name (7930716592850443705) -->
-    <skip />
+    <string name="missing_name" msgid="7930716592850443705">"(ad yok)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Hesaplar"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Görüntülenecek kişiler"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"İçe/Dışa Aktar"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Kişileri içe/dışa aktar"</string>
-    <string name="menu_share" msgid="8746849630474240344">"Kişiyi paylaş"</string>
+    <string name="menu_share" msgid="943789700636542260">"Paylaş"</string>
     <string name="share_via" msgid="563121028023030093">"Şunu kullanarak kişi paylaş:"</string>
     <string name="share_error" msgid="4374508848981697170">"Bu kişi paylaşılamıyor."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Ad"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Takma ad"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Kuruluş"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Web sitesi"</string>
-    <string name="eventLabelsGroup" msgid="8069912895912714412">"Etkinlik"</string>
+    <!-- outdated translation 8069912895912714412 -->     <string name="eventLabelsGroup" msgid="3695433812142818803">"Etkinlik"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"İlişki"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Gruplar"</string>
     <string name="type_short_home" msgid="7770424864090605384">"E"</string>
@@ -422,18 +418,23 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Fonetik ikinci ad"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Fonetik soyadı"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Fonetik ad"</string>
-    <string name="network" msgid="5415816765302129264">"Ağ"</string>
-    <!-- no translation found for more_networks_button (8566780094016196438) -->
+    <!-- no translation found for connections (8098440723172028350) -->
+    <skip />
+    <!-- no translation found for add_connection_button (4861308615789601727) -->
     <skip />
     <string name="recent_updates" msgid="2062236709538790412">"Son"</string>
+    <!-- no translation found for recent_updates_tab_text (5813107516506908531) -->
+    <skip />
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kişi"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Bu fotoğrafı kullan"</string>
-    <string name="contact_read_only" msgid="1969214537163492087">"Bu cihazda düzenlenemez"</string>
-    <string name="no_contact_details" msgid="6754415338321837001">"Bu kişi için ek bilgi yok"</string>
-    <!-- no translation found for group_read_only (7924922658394449477) -->
+    <!-- unknown placeholder SOURCE in contact_read_only -->
     <skip />
+    <!-- no translation found for contact_read_only (1856479476063888348) -->
+    <skip />
+    <string name="no_contact_details" msgid="6754415338321837001">"Bu kişi için ek bilgi yok"</string>
+    <string name="group_read_only" msgid="7924922658394449477">"Bu cihazda düzenlenemez"</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Listeyi şu ölçüte göre sırala:"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Adı"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Soyadı"</string>
@@ -463,6 +464,12 @@
     <string name="no_contacts_selected" msgid="5877803471037324613">"Seçili kişi yok."</string>
     <string name="add_field" msgid="2384260056674995230">"Başka alan ekle"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Yeni ekle"</string>
+    <!-- no translation found for add_organization (7311893231158291197) -->
+    <skip />
+    <!-- no translation found for event_edit_field_hint_text (5794424930242630477) -->
+    <skip />
+    <!-- no translation found for group_edit_field_hint_text (3966441850870457808) -->
+    <skip />
     <string name="contact_status_update_attribution" msgid="752179367353018597">"<xliff:g id="SOURCE">%1$s</xliff:g> aracılığıyla"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="SOURCE">%2$s</xliff:g> üzerinden şu saatte: <xliff:g id="DATE">%1$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"favori"</string>
@@ -480,7 +487,7 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Kişilerime ekle"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"<xliff:g id="TYPE">%1$s</xliff:g> dizini"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Dizin"</string>
-    <string name="local_search_label" msgid="1686089693064201315">"Kişiler"</string>
+    <!-- outdated translation 1686089693064201315 -->     <string name="local_search_label" msgid="2551177578246113614">"Kişiler"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"Kişisel kopya oluşturuluyor"</string>
     <string name="list_filter_prompt" msgid="7481426622828055116">"Kişi listesi seç"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Tüm kişiler"</string>
@@ -492,12 +499,14 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Özel görünüm tanımla"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Ayarlar"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Görüntülenecek kişiler"</string>
-    <string name="menu_settings" msgid="1515262535785451190">"Görüntüleme Seçenekleri"</string>
+    <!-- outdated translation 377929915873428211 -->     <string name="menu_settings" msgid="6523251616169246235">"Ayarlar"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Görüntüleme seçenekleri"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Kişileri bul"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Telefon numarası"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Kişilere ekle"</string>
+    <!-- no translation found for activity_title_confirm_add_detail (4065089866210730616) -->
+    <skip />
     <string name="non_phone_close" msgid="7608506439725515667">"Kapat"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Yıl girin"</string>
@@ -521,33 +530,36 @@
   </plurals>
   <plurals name="group_list_num_contacts_in_group">
     <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> kişi"</item>
-    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> kişi"</item>
+    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> kullanıcı"</item>
   </plurals>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Başka bir kişiyle birleştirmeden önce kişi adını girin."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Birleştirilmiş kişi"</string>
-    <!-- no translation found for copy_text (3257145021583508761) -->
-    <skip />
-    <!-- no translation found for set_default (4417505153468300351) -->
-    <skip />
-    <!-- no translation found for clear_default (7193185801596678067) -->
-    <skip />
+    <string name="copy_text" msgid="3257145021583508761">"Panoya kopyala"</string>
+    <string name="set_default" msgid="4417505153468300351">"Varsayılan olarak ayarla"</string>
+    <string name="clear_default" msgid="7193185801596678067">"Varsayılanları temizle"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Metin kopyalandı"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Değişiklikleri sil"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Yaptığınız değişiklikleri silmek istiyor musunuz?"</string>
     <string name="discard" msgid="1234315037371251414">"Sil"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4179677761341328409">"Profilim"</string>
-    <string name="enter_contact_name" msgid="2930510479516059437">"Kişinin adını girin"</string>
-    <string name="editGroup_title_insert" msgid="7803743109105317959">"Yeni grup"</string>
-    <string name="editGroup_title_edit" msgid="2173278908256913247">"Grubu düzenle"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Profilimi ayarla"</string>
+    <!-- no translation found for enter_contact_name (1738391320566349924) -->
+    <skip />
     <string name="view_updates_from_group" msgid="1782685984905600034">"Gncellmlri görüntüle"</string>
-    <!-- no translation found for notification_voicemail_title:one (1746619685488504230) -->
-    <!-- no translation found for notification_voicemail_title:other (5513481419205061254) -->
-    <!-- no translation found for notification_voicemail_callers_list (1153954809339404149) -->
+  <plurals name="notification_voicemail_title">
+    <item quantity="one" msgid="1746619685488504230">"Sesli mesaj"</item>
+    <item quantity="other" msgid="5513481419205061254">"<xliff:g id="COUNT">%1$d</xliff:g> Sesli mesaj"</item>
+  </plurals>
+    <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
+    <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Yeni sesli mesj gönderen: <xliff:g id="CALLER">%1$s</xliff:g>"</string>
+    <!-- no translation found for voicemail_playback_error (6148119635138385900) -->
     <skip />
-    <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
+    <!-- no translation found for voicemail_buffering (2021957162133938725) -->
     <skip />
-    <string name="voicemail_playback_error" msgid="5128928338910411763">"Sesli mesaj oynatılamıyor"</string>
+    <!-- no translation found for voicemail_fetching_content (8516068803491833243) -->
+    <skip />
+    <!-- no translation found for voicemail_fetching_timout (3430908587639305983) -->
+    <skip />
     <string name="call_log_new_header" msgid="846546437517724715">"Yeni"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Daha eski"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"Sesli mesaj sunucusuna bağlanılamıyor."</string>
@@ -566,16 +578,31 @@
     <string name="group_name_hint" msgid="2659811836386413509">"Grubun Adı"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Kişi NFC ile alındı"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Yalnızca sesli msajları göster"</string>
-    <string name="status_available" msgid="5586870015822828392">"Müsait"</string>
+    <!-- no translation found for menu_show_all_calls (7560347482073345885) -->
+    <skip />
+    <string name="status_available" msgid="5586870015822828392">"Uygun"</string>
     <string name="status_away" msgid="1838861100379804730">"Dışarıda"</string>
     <string name="status_busy" msgid="9147992455450257136">"Meşgul"</string>
-    <string name="description_call_log_call_button" msgid="8207201401459528442">"Numarayı ara"</string>
+    <string name="description_call_log_call_button" msgid="8207201401459528442">"Numarayı sesli ara"</string>
     <string name="description_call_log_play_button" msgid="651182125650429846">"Sesli mesajı oynat"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Gelen çağrı"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Giden çağrı"</string>
     <string name="description_call_log_missed_call" msgid="2242805209983708825">"Cevapsız çağrı"</string>
     <string name="description_call_log_voicemail" msgid="4600798771975158948">"Sesli mesaj"</string>
-    <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Dinlenilmemiş sesli mesaj"</string>
-    <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
+    <!-- no translation found for description_add_contact (3103414772502485851) -->
     <skip />
+    <!-- no translation found for description_view_contact (5205669345700598415) -->
+    <skip />
+    <!-- no translation found for description_call (3443678121983852666) -->
+    <skip />
+    <!-- no translation found for description_send_text_message (7803126439934046891) -->
+    <skip />
+    <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Dinlenilmemiş sesli mesaj"</string>
+    <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
+    <string name="user_profile_contacts_list_header" msgid="9154761216179882405">"BEN"</string>
+    <!-- no translation found for local_profile_title (2021416826991393684) -->
+    <skip />
+    <!-- no translation found for external_profile_title (8034998767621359438) -->
+    <skip />
+    <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Tüm içerik görüntüleniyor"</string>
 </resources>
