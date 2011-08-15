@@ -77,16 +77,19 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     private boolean mShowHomeIcon;
 
     public enum TabState {
-        FAVORITES, ALL, GROUPS;
+        GROUPS,
+        ALL,
+        FAVORITES;
 
         public static TabState fromInt(int value) {
-            switch (value) {
-                case 0:
-                    return FAVORITES;
-                case 1:
-                    return ALL;
-                case 2:
-                    return GROUPS;
+            if (GROUPS.ordinal() == value) {
+                return GROUPS;
+            }
+            if (ALL.ordinal() == value) {
+                return ALL;
+            }
+            if (FAVORITES.ordinal() == value) {
+                return FAVORITES;
             }
             throw new IllegalArgumentException("Invalid value: " + value);
         }
@@ -126,9 +129,9 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         mActionBar.setCustomView(customSearchView, layoutParams);
 
         // Set up tabs
-        addTab(TabState.FAVORITES, mContext.getString(R.string.contactsFavoritesLabel));
-        addTab(TabState.ALL, mContext.getString(R.string.contactsAllLabel));
         addTab(TabState.GROUPS, mContext.getString(R.string.contactsGroupsLabel));
+        addTab(TabState.ALL, mContext.getString(R.string.contactsAllLabel));
+        addTab(TabState.FAVORITES, mContext.getString(R.string.contactsFavoritesLabel));
     }
 
     public void initialize(Bundle savedState, ContactsRequest request) {
