@@ -17,6 +17,7 @@ package com.android.contacts.tests.mocks;
 
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountTypeWithDataSet;
 import com.android.contacts.model.AccountWithDataSet;
 import com.google.android.collect.Maps;
 
@@ -53,7 +54,7 @@ public class MockAccountTypeManager extends AccountTypeManager {
     }
 
     @Override
-    public Map<String, AccountType> getInvitableAccountTypes() {
+    public Map<AccountTypeWithDataSet, AccountType> getInvitableAccountTypes() {
         return Maps.newHashMap(); // Always returns empty
     }
 }

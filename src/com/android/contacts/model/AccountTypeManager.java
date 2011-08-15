@@ -88,10 +88,10 @@ public abstract class AccountTypeManager {
     public abstract AccountType getAccountType(String accountType, String dataSet);
 
     /**
-     * @return Unmodifiable map from account type strings to {@link AccountType}s which support
-     * the "invite" feature and have one or more account.
+     * @return Unmodifiable map from {@link AccountTypeWithDataSet}s to {@link AccountType}s
+     * which support the "invite" feature and have one or more account.
      */
-    public abstract Map<String, AccountType> getInvitableAccountTypes();
+    public abstract Map<AccountTypeWithDataSet, AccountType> getInvitableAccountTypes();
 
     /**
      * Find the best {@link DataKind} matching the requested
@@ -114,9 +114,9 @@ class AccountTypeManagerImpl extends AccountTypeManager
 
     private List<AccountWithDataSet> mAccounts = Lists.newArrayList();
     private List<AccountWithDataSet> mWritableAccounts = Lists.newArrayList();
-    private Map<String, AccountType> mAccountTypesWithDataSets = Maps.newHashMap();
-    private Map<String, AccountType> mInvitableAccountTypes = Collections.unmodifiableMap(
-            new HashMap<String, AccountType>());
+    private Map<AccountTypeWithDataSet, AccountType> mAccountTypesWithDataSets = Maps.newHashMap();
+    private Map<AccountTypeWithDataSet, AccountType> mInvitableAccountTypes =
+            Collections.unmodifiableMap(new HashMap<AccountTypeWithDataSet, AccountType>());
 
     private static final int MESSAGE_LOAD_DATA = 0;
     private static final int MESSAGE_PROCESS_BROADCAST_INTENT = 1;
@@ -266,7 +266,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
         long startTime = SystemClock.currentThreadTimeMillis();
 
         // Account types, keyed off the account type and data set concatenation.
-        Map<String, AccountType> accountTypesByTypeAndDataSet = Maps.newHashMap();
+        Map<AccountTypeWithDataSet, AccountType> accountTypesByTypeAndDataSet = Maps.newHashMap();
 
         // The same AccountTypes, but keyed off {@link RawContacts#ACCOUNT_TYPE}.  Since there can
         // be multiple account types (with different data sets) for the same type of account, each
@@ -404,7 +404,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
 
     // Bookkeeping method for tracking the known account types in the given maps.
     private void addAccountType(AccountType accountType,
-            Map<String, AccountType> accountTypesByTypeAndDataSet,
+            Map<AccountTypeWithDataSet, AccountType> accountTypesByTypeAndDataSet,
             Map<String, List<AccountType>> accountTypesByType) {
         accountTypesByTypeAndDataSet.put(accountType.getAccountTypeAndDataSet(), accountType);
         List<AccountType> accountsForType = accountTypesByType.get(accountType.accountType);
@@ -450,7 +450,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
 
         // Try finding account type and kind matching request
         final AccountType type = mAccountTypesWithDataSets.get(
-                AccountType.getAccountTypeAndDataSet(accountType, dataSet));
+                AccountTypeWithDataSet.get(accountType, dataSet));
         if (type != null) {
             kind = type.getKindForMimetype(mimeType);
         }
@@ -475,13 +475,13 @@ class AccountTypeManagerImpl extends AccountTypeManager
         ensureAccountsLoaded();
         synchronized (this) {
             AccountType type = mAccountTypesWithDataSets.get(
-                    AccountType.getAccountTypeAndDataSet(accountType, dataSet));
+                    AccountTypeWithDataSet.get(accountType, dataSet));
             return type != null ? type : mFallbackAccountType;
         }
     }
 
     @Override
-    public Map<String, AccountType> getInvitableAccountTypes() {
+    public Map<AccountTypeWithDataSet, AccountType> getInvitableAccountTypes() {
         return mInvitableAccountTypes;
     }
 
@@ -490,14 +490,13 @@ class AccountTypeManagerImpl extends AccountTypeManager
      * its {@link AccountType#getInviteContactActivityClassName()} is not empty.
      */
     @VisibleForTesting
-    static Map<String, AccountType> findInvitableAccountTypes(Context context,
+    static Map<AccountTypeWithDataSet, AccountType> findInvitableAccountTypes(Context context,
             Collection<AccountWithDataSet> accounts,
-            Map<String, AccountType> accountTypesByTypeAndDataSet) {
-        HashMap<String, AccountType> result = Maps.newHashMap();
+            Map<AccountTypeWithDataSet, AccountType> accountTypesByTypeAndDataSet) {
+        HashMap<AccountTypeWithDataSet, AccountType> result = Maps.newHashMap();
         for (AccountWithDataSet account : accounts) {
-            String accountTypeWithDataSet = account.getAccountTypeWithDataSet();
-            AccountType type = accountTypesByTypeAndDataSet.get(
-                    account.getAccountTypeWithDataSet());
+            AccountTypeWithDataSet accountTypeWithDataSet = account.getAccountTypeAndWithDataSet();
+            AccountType type = accountTypesByTypeAndDataSet.get(accountTypeWithDataSet);
             if (type == null) continue; // just in case
             if (result.containsKey(accountTypeWithDataSet)) continue;
 

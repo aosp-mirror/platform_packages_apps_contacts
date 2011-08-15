@@ -20,6 +20,7 @@ import com.android.contacts.tests.R;
 
 import android.content.Context;
 import android.test.AndroidTestCase;
+import android.test.suitebuilder.annotation.SmallTest;
 
 /**
  * Test case for {@link ExternalAccountType}.
@@ -27,6 +28,7 @@ import android.test.AndroidTestCase;
  * adb shell am instrument -w -e class com.android.contacts.model.ExternalAccountTypeTest \
        com.android.contacts.tests/android.test.InstrumentationTestRunner
  */
+@SmallTest
 public class ExternalAccountTypeTest extends AndroidTestCase {
 
     public void testResolveExternalResId() {

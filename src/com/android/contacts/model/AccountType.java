@@ -51,8 +51,6 @@ import java.util.List;
 public abstract class AccountType {
     private static final String TAG = "AccountType";
 
-    private static final String ACCOUNT_TYPE_DATA_SET_DELIMITER = "/";
-
     /**
      * The {@link RawContacts#ACCOUNT_TYPE} these constraints apply to.
      */
@@ -150,21 +148,10 @@ public abstract class AccountType {
     }
 
     /**
-     * Returns the account type with the data set (if any) appended after a delimiter.
-     * If the data set is null, this will simply return the account type.
+     * Returns {@link AccountTypeWithDataSet} for this type.
      */
-    public String getAccountTypeAndDataSet() {
-        return getAccountTypeAndDataSet(accountType, dataSet);
-    }
-
-    /**
-     * Utility method to concatenate the given account type with a data set with a delimiter.
-     * If the data set is null, this will simply return the account type.
-     */
-    public static String getAccountTypeAndDataSet(String accountType, String dataSet) {
-        return dataSet == null
-                ? accountType
-                : accountType + ACCOUNT_TYPE_DATA_SET_DELIMITER + dataSet;
+    public AccountTypeWithDataSet getAccountTypeAndDataSet() {
+        return AccountTypeWithDataSet.get(accountType, dataSet);
     }
 
     /**

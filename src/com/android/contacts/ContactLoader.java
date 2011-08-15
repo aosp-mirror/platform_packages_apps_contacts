@@ -18,11 +18,13 @@ package com.android.contacts;
 
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountTypeWithDataSet;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.StreamItemEntry;
 import com.android.contacts.util.StreamItemPhotoEntry;
 import com.google.android.collect.Lists;
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
 import android.content.ContentResolver;
@@ -781,20 +783,21 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
          * TODO Exclude the ones with no raw contacts in the database.
          */
         private void loadInvitableAccountTypes(Result contactData) {
-            Map<String, AccountType> allInvitables =
+            Map<AccountTypeWithDataSet, AccountType> allInvitables =
                     AccountTypeManager.getInstance(getContext()).getInvitableAccountTypes();
             if (allInvitables.isEmpty()) {
                 return;
             }
 
-            HashMap<String, AccountType> result = new HashMap<String, AccountType>(allInvitables);
+            HashMap<AccountTypeWithDataSet, AccountType> result = Maps.newHashMap(allInvitables);
 
             // Remove the ones that already have a raw contact in the current contact
             for (Entity entity : contactData.getEntities()) {
-                final String type = entity.getEntityValues().getAsString(RawContacts.ACCOUNT_TYPE);
-                if (!TextUtils.isEmpty(type)) {
-                    result.remove(type);
-                }
+                final ContentValues values = entity.getEntityValues();
+                final AccountTypeWithDataSet type = AccountTypeWithDataSet.get(
+                        values.getAsString(RawContacts.ACCOUNT_TYPE),
+                        values.getAsString(RawContacts.DATA_SET));
+                result.remove(type);
             }
 
             // Set to mInvitableAccountTypes
