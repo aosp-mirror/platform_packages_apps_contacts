@@ -16,6 +16,7 @@
 
 package com.android.contacts.group;
 
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.GroupListLoader;
 import com.android.contacts.R;
 import com.android.contacts.group.GroupBrowseListAdapter.GroupListItemViewCache;
@@ -47,6 +48,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 
 /**
  * Fragment to display the list of groups.
@@ -81,7 +83,7 @@ public class GroupBrowseListFragment extends Fragment
 
     private View mRootView;
     private AutoScrollListView mListView;
-    private View mEmptyView;
+    private TextView mEmptyView;
     private View mAddAccountsView;
     private View mAddAccountButton;
 
@@ -100,7 +102,7 @@ public class GroupBrowseListFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.group_browse_list_fragment, null);
-        mEmptyView = mRootView.findViewById(R.id.empty);
+        mEmptyView = (TextView)mRootView.findViewById(R.id.empty);
 
         mAdapter = new GroupBrowseListAdapter(mContext);
         mAdapter.setSelectionVisible(mSelectionVisible);
@@ -120,7 +122,7 @@ public class GroupBrowseListFragment extends Fragment
             }
         });
 
-        mEmptyView = mRootView.findViewById(R.id.empty);
+        mListView.setEmptyView(mEmptyView);
         mAddAccountsView = mRootView.findViewById(R.id.add_accounts);
         mAddAccountButton = mRootView.findViewById(R.id.add_account_button);
         mAddAccountButton.setOnClickListener(new OnClickListener() {
@@ -133,7 +135,7 @@ public class GroupBrowseListFragment extends Fragment
                 startActivity(intent);
             }
         });
-        setAddAccountsVisibility(false);
+        setAddAccountsVisibility(!ContactsUtils.areAccountsAvailable(mContext));
 
         if (savedInstanceState != null) {
             String groupUriString = savedInstanceState.getString(EXTRA_KEY_GROUP_URI);
@@ -193,6 +195,7 @@ public class GroupBrowseListFragment extends Fragment
 
         @Override
         public CursorLoader onCreateLoader(int id, Bundle args) {
+            mEmptyView.setText(null);
             return new GroupListLoader(mContext);
         }
 
@@ -207,6 +210,8 @@ public class GroupBrowseListFragment extends Fragment
     };
 
     private void bindGroupList() {
+        mEmptyView.setText(R.string.noGroups);
+        setAddAccountsVisibility(!ContactsUtils.areAccountsAvailable(mContext));
         if (mGroupListCursor == null) {
             return;
         }
@@ -219,7 +224,6 @@ public class GroupBrowseListFragment extends Fragment
             // Restore the scroll position.
             mListView.onRestoreInstanceState(listState);
         }
-        mListView.setEmptyView(mEmptyView);
 
         mSelectedGroupUri = mAdapter.getSelectedGroup();
         if (mSelectionVisible && mSelectedGroupUri != null) {

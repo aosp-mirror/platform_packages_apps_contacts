@@ -38,32 +38,31 @@
         android:layout_marginTop="@dimen/empty_message_top_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="8dip"
         android:gravity="center_horizontal"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="?android:attr/textColorSecondary"
         android:text="@string/noGroups" />
 
     <LinearLayout
       android:id="@+id/add_accounts"
-      android:layout_width="match_parent"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
       android:orientation="vertical">
 
       <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:layout_marginTop="@dimen/no_accounts_message_margin"
         android:layout_marginBottom="@dimen/no_accounts_message_margin"
         android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="?android:attr/textColorSecondary"
         android:text="@string/noAccounts" />
 
       <Button
         android:id="@+id/add_account_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/add_account_button_left_margin"
-        android:layout_marginRight="@dimen/add_account_button_right_margin"
         android:gravity="center"
         android:layout_gravity="center_horizontal"
         android:textAppearance="?android:attr/textAppearanceMedium"

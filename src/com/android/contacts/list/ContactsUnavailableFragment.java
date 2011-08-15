@@ -39,6 +39,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
 
     private View mView;
     private TextView mMessageView;
+    private TextView mSecondaryMessageView;
     private Button mCreateContactButton;
     private Button mAddAccountButton;
     private Button mImportContactsButton;
@@ -46,6 +47,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
     private Button mRetryUpgradeButton;
     private ProgressBar mProgress;
     private int mNoContactsMsgResId = -1;
+    private int mNSecNoContactsMsgResId = -1;
 
     private OnContactsUnavailableActionListener mListener;
 
@@ -54,6 +56,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
             LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.contacts_unavailable_fragment, null);
         mMessageView = (TextView) mView.findViewById(R.id.message);
+        mSecondaryMessageView = (TextView) mView.findViewById(R.id.secondary_message);
         mCreateContactButton = (Button) mView.findViewById(R.id.create_contact_button);
         mCreateContactButton.setOnClickListener(this);
         mAddAccountButton = (Button) mView.findViewById(R.id.add_account_button);
@@ -82,14 +85,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
         int providerStatus = mProviderStatusLoader.getProviderStatus();
         switch (providerStatus) {
             case ProviderStatus.STATUS_NO_ACCOUNTS_NO_CONTACTS:
-                if (mNoContactsMsgResId != -1) {
-                    mMessageView.setText(mNoContactsMsgResId);
-                    mMessageView.setGravity(Gravity.CENTER_HORIZONTAL);
-                    mMessageView.setVisibility(View.VISIBLE);
-                } else {
-                    mMessageView.setGravity(Gravity.LEFT);
-                    mMessageView.setVisibility(View.GONE);
-                }
+                setMessageText(mNoContactsMsgResId, mNSecNoContactsMsgResId);
                 mCreateContactButton.setVisibility(View.VISIBLE);
                 mAddAccountButton.setVisibility(View.VISIBLE);
                 mImportContactsButton.setVisibility(View.VISIBLE);
@@ -162,18 +158,31 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
         }
     }
     /**
-     * Set the message to be shown if data is available for the selected tab
+     * Set the message to be shown if no data is available for the selected tab
      *
-     * @param resId - String resource ID of the message
+     * @param resId - String resource ID of the message , -1 means view will not be visible
      */
-    public void setMessageText(int resId) {
+    public void setMessageText(int resId, int secResId) {
         mNoContactsMsgResId = resId;
+        mNSecNoContactsMsgResId = secResId;
         if (mMessageView != null &&
                 mProviderStatusLoader.getProviderStatus() ==
                     ProviderStatus.STATUS_NO_ACCOUNTS_NO_CONTACTS) {
-            mMessageView.setText(mNoContactsMsgResId);
-            mMessageView.setGravity(Gravity.CENTER_HORIZONTAL);
-            mMessageView.setVisibility(View.VISIBLE);
+            if (resId != -1) {
+                mMessageView.setText(mNoContactsMsgResId);
+                mMessageView.setGravity(Gravity.CENTER_HORIZONTAL);
+                mMessageView.setVisibility(View.VISIBLE);
+                if (secResId != -1) {
+                    mSecondaryMessageView.setText(mNSecNoContactsMsgResId);
+                    mSecondaryMessageView.setGravity(Gravity.CENTER_HORIZONTAL);
+                    mSecondaryMessageView.setVisibility(View.VISIBLE);
+                } else {
+                    mSecondaryMessageView.setVisibility(View.INVISIBLE);
+                }
+            } else {
+                mSecondaryMessageView.setVisibility(View.GONE);
+                mMessageView.setVisibility(View.GONE);
+            }
         }
     }
 }
