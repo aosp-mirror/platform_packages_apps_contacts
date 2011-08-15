@@ -20,6 +20,12 @@
         android:showAsAction="always" />
 
     <item
+        android:id="@+id/menu_call_settings"
+        android:title="@string/call_settings"
+        android:icon="@drawable/ic_menu_settings_holo_light"
+        android:showAsAction="withText" />
+
+    <item
         android:id="@+id/filter_option"
         android:title="@string/menu_contacts_filter"
         android:showAsAction="withText" />

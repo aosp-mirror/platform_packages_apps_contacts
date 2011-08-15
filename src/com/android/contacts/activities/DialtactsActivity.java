@@ -644,19 +644,24 @@ public class DialtactsActivity extends Activity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         final MenuItem searchMenuItem = menu.findItem(R.id.search_on_action_bar);
         final MenuItem filterOptionMenuItem = menu.findItem(R.id.filter_option);
+        final MenuItem callSettingsMenuItem = menu.findItem(R.id.menu_call_settings);
         Tab tab = getActionBar().getSelectedTab();
         if (mInSearchUi) {
             searchMenuItem.setVisible(false);
             filterOptionMenuItem.setVisible(true);
             filterOptionMenuItem.setOnMenuItemClickListener(
                     mFilterOptionsMenuItemClickListener);
-        } else if (tab == null || tab.getPosition() == TAB_INDEX_DIALER) {
-            searchMenuItem.setVisible(false);
-            filterOptionMenuItem.setVisible(false);
+            callSettingsMenuItem.setVisible(false);
         } else {
+            if (tab != null && tab.getPosition() == TAB_INDEX_DIALER) {
+                searchMenuItem.setVisible(false);
+            } else {
+                searchMenuItem.setVisible(true);
+                searchMenuItem.setOnMenuItemClickListener(mSearchMenuItemClickListener);
+            }
             filterOptionMenuItem.setVisible(false);
-            searchMenuItem.setVisible(true);
-            searchMenuItem.setOnMenuItemClickListener(mSearchMenuItemClickListener);
+            callSettingsMenuItem.setVisible(true);
+            callSettingsMenuItem.setIntent(DialtactsActivity.getCallSettingsIntent());
         }
 
         return true;
