@@ -107,7 +107,8 @@ public class PhoneCallDetailsHelper {
             mPhoneNumberHelper.getDisplayNumber(details.number, details.formattedNumber);
         if (TextUtils.isEmpty(details.name)) {
             nameText = displayNumber;
-            if (TextUtils.isEmpty(details.geocode)) {
+            if (TextUtils.isEmpty(details.geocode)
+                    || mPhoneNumberHelper.isVoicemailNumber(details.number)) {
                 numberText = mResources.getString(R.string.call_log_empty_gecode);
             } else {
                 numberText = details.geocode;
