@@ -29,10 +29,4 @@
         android:id="@+id/show_all_calls"
         android:title="@string/menu_show_all_calls"
         android:showAsAction="withText" />
-
-    <item
-        android:id="@+id/menu_call_settings_call_log"
-        android:title="@string/call_settings"
-        android:icon="@drawable/ic_menu_settings_holo_light"
-        android:showAsAction="withText" />
 </menu>

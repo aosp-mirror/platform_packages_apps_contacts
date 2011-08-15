@@ -571,13 +571,9 @@ public class DialpadFragment extends Fragment
     }
 
     private void setupMenuItems(Menu menu) {
-        final MenuItem callSettingsMenuItem = menu.findItem(R.id.menu_call_settings_dialpad);
         final MenuItem addToContactMenuItem = menu.findItem(R.id.menu_add_contacts);
         final MenuItem twoSecPauseMenuItem = menu.findItem(R.id.menu_2s_pause);
         final MenuItem waitMenuItem = menu.findItem(R.id.menu_add_wait);
-
-        callSettingsMenuItem.setVisible(true);
-        callSettingsMenuItem.setIntent(DialtactsActivity.getCallSettingsIntent());
 
         // We show "add to contacts", "2sec pause", and "add wait" menus only when the user is
         // seeing usual dialpads and has typed at least one digit.

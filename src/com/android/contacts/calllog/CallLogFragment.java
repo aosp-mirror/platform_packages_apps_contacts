@@ -220,8 +220,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         if (mShowOptionsMenu) {
-            menu.findItem(R.id.menu_call_settings_call_log)
-                .setIntent(DialtactsActivity.getCallSettingsIntent());
             menu.findItem(R.id.show_voicemails_only).setVisible(!mShowingVoicemailOnly);
             menu.findItem(R.id.show_all_calls).setVisible(mShowingVoicemailOnly);
         }
