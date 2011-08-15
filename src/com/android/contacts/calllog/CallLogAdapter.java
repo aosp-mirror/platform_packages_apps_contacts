@@ -541,6 +541,8 @@ public final class CallLogAdapter extends GroupingListAdapter
         final String formattedNumber;
         final String countryIso = c.getString(CallLogQuery.COUNTRY_ISO);
 
+        final ContactInfo cachedContactInfo = getContactInfoFromCallLog(c);
+
         views.primaryActionView.setTag(
                 IntentProvider.getCallDetailIntentProvider(
                         this, c.getPosition(), c.getLong(CallLogQuery.ID), count));
@@ -592,6 +594,10 @@ public final class CallLogAdapter extends GroupingListAdapter
             }
         }
 
+        if (info == null || info == ContactInfo.EMPTY) {
+            info = cachedContactInfo;
+        }
+
         final long personId = info.personId;
         final String name = info.name;
         final int ntype = info.type;
@@ -621,6 +627,22 @@ public final class CallLogAdapter extends GroupingListAdapter
             mPreDrawListener = this;
             view.getViewTreeObserver().addOnPreDrawListener(this);
         }
+    }
+
+    /** Returns the contact information as stored in the call log. */
+    private ContactInfo getContactInfoFromCallLog(Cursor c) {
+        ContactInfo info = new ContactInfo();
+        info.personId = -1;
+        info.name = c.getString(CallLogQuery.CACHED_NAME);
+        info.type = c.getInt(CallLogQuery.CACHED_NUMBER_TYPE);
+        info.label = c.getString(CallLogQuery.CACHED_NUMBER_LABEL);
+        // TODO: This should be added to the call log cached values.
+        info.number = c.getString(CallLogQuery.NUMBER);
+        info.formattedNumber = info.number;
+        info.normalizedNumber = info.number;
+        info.thumbnailUri = null;
+        info.lookupKey = null;
+        return info;
     }
 
     /**

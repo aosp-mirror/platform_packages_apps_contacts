@@ -34,6 +34,9 @@ public final class CallLogQuery {
             Calls.COUNTRY_ISO,
             Calls.VOICEMAIL_URI,
             Calls.GEOCODED_LOCATION,
+            Calls.CACHED_NAME,
+            Calls.CACHED_NUMBER_TYPE,
+            Calls.CACHED_NUMBER_LABEL,
     };
 
     public static final int ID = 0;
@@ -44,6 +47,9 @@ public final class CallLogQuery {
     public static final int COUNTRY_ISO = 5;
     public static final int VOICEMAIL_URI = 6;
     public static final int GEOCODED_LOCATION = 7;
+    public static final int CACHED_NAME = 8;
+    public static final int CACHED_NUMBER_TYPE = 9;
+    public static final int CACHED_NUMBER_LABEL = 10;
 
     /**
      * The name of the synthetic "section" column.
@@ -53,7 +59,7 @@ public final class CallLogQuery {
      */
     public static final String SECTION_NAME = "section";
     /** The index of the "section" column in the projection. */
-    public static final int SECTION = 8;
+    public static final int SECTION = 11;
     /** The value of the "section" column for the header of the new section. */
     public static final int SECTION_NEW_HEADER = 0;
     /** The value of the "section" column for the items of the new section. */

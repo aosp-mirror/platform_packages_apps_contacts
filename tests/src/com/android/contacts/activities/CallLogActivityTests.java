@@ -62,17 +62,6 @@ import java.util.Random;
 @LargeTest
 public class CallLogActivityTests
         extends ActivityInstrumentationTestCase2<CallLogActivity> {
-    private static final String[] EXTENDED_CALL_LOG_PROJECTION = new String[] {
-            Calls._ID,
-            Calls.NUMBER,
-            Calls.DATE,
-            Calls.DURATION,
-            Calls.TYPE,
-            Calls.COUNTRY_ISO,
-            Calls.VOICEMAIL_URI,
-            Calls.GEOCODED_LOCATION,
-            CallLogQuery.SECTION_NAME,
-    };
     private static final int RAND_DURATION = -1;
     private static final long NOW = -1L;
 
@@ -133,7 +122,7 @@ public class CallLogActivityTests
         mAdapter.disableRequestProcessingForTest();
         mAdapter.stopRequestProcessing();
         mParentView = new FrameLayout(mActivity);
-        mCursor = new MatrixCursor(EXTENDED_CALL_LOG_PROJECTION);
+        mCursor = new MatrixCursor(CallLogQuery.EXTENDED_PROJECTION);
         buildIconMap();
     }
 
@@ -508,6 +497,9 @@ public class CallLogActivityTests
         row.add(TEST_COUNTRY_ISO);  // country ISO
         row.add(null);  // voicemail_uri
         row.add(null);  // geocoded_location
+        row.add(null);  // cached_name
+        row.add(0);  // cached_number_type
+        row.add(null);  // cached_number_label
         row.add(CallLogQuery.SECTION_OLD_ITEM);  // section
     }
 
@@ -539,6 +531,9 @@ public class CallLogActivityTests
         row.add(TEST_COUNTRY_ISO);  // country ISO
         row.add(voicemailUri);  // voicemail_uri
         row.add(null);  // geocoded_location
+        row.add(null);  // cached_name
+        row.add(0);  // cached_number_type
+        row.add(null);  // cached_number_label
         row.add(CallLogQuery.SECTION_OLD_ITEM);  // section
     }
 
