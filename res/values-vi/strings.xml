@@ -44,19 +44,19 @@
     <string name="menu_callNumber" msgid="5142851348489387516">"Gọi <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Thêm vào mục ưa thích"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Xoá khỏi mục ưa thích"</string>
-    <string name="menu_editContact" msgid="3452858480713561396">"Chỉnh sửa liên hệ"</string>
-    <string name="menu_deleteContact" msgid="1916555454274101750">"Xoá liên hệ"</string>
+    <string name="menu_editContact" msgid="9042415603857662633">"Chỉnh sửa"</string>
+    <string name="menu_deleteContact" msgid="6788644058868189393">"Xóa"</string>
     <string name="menu_call" msgid="3992595586042260618">"Gọi liên hệ"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Nhắn tin tới liên hệ"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Đặt làm email mặc định"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Tách"</string>
-    <string name="menu_editGroup" msgid="8311763560942217614">"Chỉnh sửa nhóm"</string>
+    <string name="menu_editGroup" msgid="5062005185370983720">"Chỉnh sửa"</string>
     <string name="menu_renameGroup" msgid="2798886925154156075">"Đổi tên nhóm"</string>
-    <string name="menu_deleteGroup" msgid="644571524292675446">"Xóa nhóm"</string>
+    <string name="menu_deleteGroup" msgid="3486380004411482874">"Xóa"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Mới"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Mới"</string>
-    <string name="splitConfirmation_title" msgid="6716467920283502570">"Tách Liên hệ"</string>
-    <string name="splitConfirmation" msgid="1150797297503944823">"Bạn có chắc chắn muốn tách liên hệ duy nhất này thành nhiều liên hệ: một liên hệ cho mỗi tập thông tin liên hệ đã được nhập vào liên hệ không?"</string>
+    <!-- outdated translation 6716467920283502570 -->     <string name="splitConfirmation_title" msgid="2209511048593467012">"Tách Liên hệ"</string>
+    <!-- outdated translation 1150797297503944823 -->     <string name="splitConfirmation" msgid="1067993957986345974">"Bạn có chắc chắn muốn tách liên hệ duy nhất này thành nhiều liên hệ: một liên hệ cho mỗi tập thông tin liên hệ đã được nhập vào liên hệ không?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Kết hợp"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Kết hợp danh bạ"</string>
     <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Chọn liên hệ bạn muốn kết hợp với <xliff:g id="NAME">%s</xliff:g>."</string>
@@ -66,10 +66,8 @@
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Danh bạ đã được kết hợp"</string>
     <string name="contactOptionsTitle" msgid="8259347644090700915">"Tùy chọn"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Xoá"</string>
-    <!-- no translation found for menu_set_ring_tone (8728345772068064946) -->
-    <skip />
-    <!-- no translation found for menu_redirect_calls_to_vm (3291482125835338104) -->
-    <skip />
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Đặt nhạc chuông"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Tất cả c.gọi tới th.thoại"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Bạn không thể xoá liên hệ khỏi tài khoản chỉ đọc nhưng bạn có thể ẩn liên hệ trong danh bạ của mình."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Liên hệ này chứa thông tin từ nhiều tài khoản. Thông tin từ các tài khoản ở chế độ chỉ đọc sẽ bị ẩn trong danh sách liên hệ của bạn, chứ không bị xoá."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Xoá liên hệ này sẽ xoá thông tin khỏi nhiều tài khoản."</string>
@@ -77,8 +75,6 @@
     <string name="menu_done" msgid="796017761764190697">"Xong"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Hủy"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Loại bỏ"</string>
-    <string name="editContact_title_edit" msgid="7678695190666836093">"Chỉnh sửa liên hệ"</string>
-    <string name="editContact_title_insert" msgid="9125600232291405757">"Liên hệ mới"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Đúng phát âm"</string>
     <string name="label_notes" msgid="8337354953278341042">"Ghi chú"</string>
     <string name="label_sip_address" msgid="124073911714324974">"Cuộc gọi qua internet"</string>
@@ -104,10 +100,9 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Gửi cuộc gọi trực tiếp tới thư thoại"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Mặc định"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Xóa ảnh"</string>
-    <!-- outdated translation 8579310973261953559 -->     <string name="noContacts" msgid="4955659076981974652">"Không có liên hệ nào."</string>
-    <!-- outdated translation 8614664663561385253 -->     <string name="noGroups" msgid="7315200974181864731">"Không có nhóm nào."</string>
-    <!-- no translation found for noAccounts (4742609114153797268) -->
-    <skip />
+    <string name="noContacts" msgid="4955659076981974652">"Không có địa chỉ liên hệ nào"</string>
+    <string name="noGroups" msgid="7315200974181864731">"Không có nhóm nào"</string>
+    <string name="noAccounts" msgid="4742609114153797268">"Để tạo nhóm, bạn cần có tài khoản"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Không tìm thấy liên hệ nào phù hợp."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Không có liên hệ nào có số điện thoại"</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Chọn liên hệ để hiển thị"</string>
@@ -119,9 +114,10 @@
   </plurals>
     <string name="savingContact" msgid="4075751076741924939">"Đang lưu liên hệ…"</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Đang lưu tùy chọn hiển thị…"</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Đã lưu liên hệ."</string>
+    <!-- outdated translation 7152589189385441091 -->     <string name="contactSavedToast" msgid="9171862279493213075">"Đã lưu liên hệ."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Lỗi, không thể lưu thay đổi liên hệ."</string>
-    <string name="groupSavedToast" msgid="1168756874239833756">"Đã lưu nhóm."</string>
+    <!-- no translation found for groupSavedToast (6675062559302493011) -->
+    <skip />
     <string name="groupSavedErrorToast" msgid="6434135707953150875">"Lỗi, không thể lưu các thay đổi về nhóm."</string>
     <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"Thay đổi đã được lưu."</string>
     <string name="contactAlreadyInGroup" msgid="6209708213229886092">"Địa chỉ liên hệ đã được thêm vào nhóm."</string>
@@ -136,7 +132,7 @@
   </plurals>
     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Không có liên hệ nào"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Không có liên hệ hiển thị nào"</string>
-    <!-- outdated translation 5391630590684099117 -->     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Không liên hệ nào được gắn dấu sao"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Không có mục ưa thích nào"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Không có liên hệ nào trong <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Danh bạ trong <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
@@ -163,10 +159,8 @@
     <string name="recentCalls_addToContact" msgid="1429899535546487008">"Thêm vào danh bạ"</string>
     <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Xoá khỏi nhật ký cuộc gọi"</string>
     <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Xoá nhật ký cuộc gọi"</string>
-    <!-- no translation found for recentCalls_trashVoicemail (7604696960787435655) -->
-    <skip />
-    <!-- no translation found for recentCalls_shareVoicemail (1416112847592942840) -->
-    <skip />
+    <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Xóa thư thoại"</string>
+    <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Hiển thị thư thoại"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Nhật ký cuộc gọi trống."</string>
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Xoá nhật ký cuộc gọi"</string>
     <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Bạn có chắc chắn muốn xoá nhật ký cuộc gọi không?"</string>
@@ -209,10 +203,8 @@
     <string name="callAgain" msgid="3197312117049874778">"Gọi lại"</string>
     <string name="returnCall" msgid="8171961914203617813">"Gọi lại"</string>
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> phút <xliff:g id="SECONDS">%s</xliff:g> giây"</string>
-    <!-- no translation found for favoritesFrequentContacted (6184232487472425690) -->
-    <skip />
-    <!-- no translation found for favoritesFrequentCalled (6128306889600696124) -->
-    <skip />
+    <string name="favoritesFrequentContacted" msgid="6184232487472425690">"Thường xuyên được liên hệ"</string>
+    <string name="favoritesFrequentCalled" msgid="6128306889600696124">"Thường xuyên được gọi"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Thêm liên hệ"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Thêm \"<xliff:g id="EMAIL">%s</xliff:g>\" vào danh bạ?"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"một"</string>
@@ -280,7 +272,8 @@
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"địa chỉ liên hệ"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Xác nhận xuất"</string>
-    <string name="confirm_export_message" msgid="3875683519257829750">"Bạn có chắc chắn muốn xuất danh sách liên hệ của mình sang \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\" không?"</string>
+    <!-- no translation found for confirm_export_message (4307437830474103759) -->
+    <skip />
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Không thể xuất dữ liệu liên hệ"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Không thể xuất dữ liệu liên hệ."\n"Lý do không thành công: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Không có liên hệ có thể xuất nào"</string>
@@ -312,20 +305,19 @@
     <string name="sms_disambig_title" msgid="4675399294513152364">"Nhắn tin sử dụng"</string>
     <string name="make_primary" msgid="5829291915305113983">"Nhớ lựa chọn này"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Không tìm thấy ứng dụng nào để xử lý tác vụ này"</string>
-    <!-- no translation found for missing_name (7930716592850443705) -->
-    <skip />
+    <string name="missing_name" msgid="7930716592850443705">"(không có tên)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Tài khoản"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Danh sách liên hệ để hiển thị"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Nhập/Xuất"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Nhập/Xuất danh bạ"</string>
-    <string name="menu_share" msgid="8746849630474240344">"Chia sẻ địa chỉ liên hệ"</string>
+    <string name="menu_share" msgid="943789700636542260">"Chia sẻ"</string>
     <string name="share_via" msgid="563121028023030093">"Chia sẻ liên hệ qua"</string>
     <string name="share_error" msgid="4374508848981697170">"Không thể chia sẻ liên hệ này."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Tên"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Biệt hiệu"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Tổ chức"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Trang web"</string>
-    <string name="eventLabelsGroup" msgid="8069912895912714412">"Sự kiện"</string>
+    <!-- outdated translation 8069912895912714412 -->     <string name="eventLabelsGroup" msgid="3695433812142818803">"Sự kiện"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Mối quan hệ"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Nhóm"</string>
     <string name="type_short_home" msgid="7770424864090605384">"Nhà riêng"</string>
@@ -422,18 +414,20 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Tên đệm đúng phát âm"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Họ đúng phát âm"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Tên theo phiên âm"</string>
-    <string name="network" msgid="5415816765302129264">"Mạng"</string>
-    <!-- no translation found for more_networks_button (8566780094016196438) -->
+    <!-- no translation found for connections (8098440723172028350) -->
+    <skip />
+    <!-- no translation found for add_connection_button (4861308615789601727) -->
     <skip />
     <string name="recent_updates" msgid="2062236709538790412">"Gần đây"</string>
+    <!-- no translation found for recent_updates_tab_text (5813107516506908531) -->
+    <skip />
     <string name="account_type_format" msgid="718948015590343010">"Liên hệ <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Sử dụng ảnh này"</string>
-    <string name="contact_read_only" msgid="1969214537163492087">"Không chỉnh sửa được trên thiết bị này"</string>
+    <string name="contact_read_only" msgid="1856479476063888348">"Không thể chỉnh sửa được từ ứng dụng này"</string>
     <string name="no_contact_details" msgid="6754415338321837001">"Không có thông tin bổ sung cho liên hệ này"</string>
-    <!-- no translation found for group_read_only (7924922658394449477) -->
-    <skip />
+    <string name="group_read_only" msgid="7924922658394449477">"Không chỉnh sửa được trên thiết bị này"</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Sắp xếp danh sách theo"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Tên"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Họ"</string>
@@ -463,6 +457,11 @@
     <string name="no_contacts_selected" msgid="5877803471037324613">"Không có địa chỉ liên hệ nào được chọn."</string>
     <string name="add_field" msgid="2384260056674995230">"Thêm trường khác"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Thêm mục mới"</string>
+    <string name="add_organization" msgid="7311893231158291197">"Thêm tổ chức"</string>
+    <!-- no translation found for event_edit_field_hint_text (5794424930242630477) -->
+    <skip />
+    <!-- no translation found for group_edit_field_hint_text (3966441850870457808) -->
+    <skip />
     <string name="contact_status_update_attribution" msgid="752179367353018597">" qua <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> qua <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"Yêu thích"</string>
@@ -480,7 +479,7 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Thêm vào Danh bạ của tôi"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Thư mục <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Thư mục"</string>
-    <string name="local_search_label" msgid="1686089693064201315">"Danh bạ"</string>
+    <!-- outdated translation 1686089693064201315 -->     <string name="local_search_label" msgid="2551177578246113614">"Danh bạ"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"Đang tạo bản sao cá nhân"</string>
     <string name="list_filter_prompt" msgid="7481426622828055116">"Chọn danh sách địa chỉ liên hệ"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Tất cả địa chỉ liên hệ"</string>
@@ -492,12 +491,14 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Xác định chế độ xem tùy chỉnh"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Cài đặt"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"DS liên hệ để hiển thị"</string>
-    <string name="menu_settings" msgid="1515262535785451190">"Tùy chọn hiển thị"</string>
+    <!-- outdated translation 377929915873428211 -->     <string name="menu_settings" msgid="6523251616169246235">"Cài đặt"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Tùy chọn hiển thị"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Tìm địa chỉ liên hệ"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Số điện thoại"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Thêm vào danh bạ"</string>
+    <!-- no translation found for activity_title_confirm_add_detail (4065089866210730616) -->
+    <skip />
     <string name="non_phone_close" msgid="7608506439725515667">"Đóng"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Cho biết năm"</string>
@@ -525,29 +526,30 @@
   </plurals>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Vui lòng nhập tên liên hệ trước khi kết hợp với một địa chỉ liên hệ khác."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Địa chỉ liên hệ đã kết hợp"</string>
-    <!-- no translation found for copy_text (3257145021583508761) -->
-    <skip />
-    <!-- no translation found for set_default (4417505153468300351) -->
-    <skip />
-    <!-- no translation found for clear_default (7193185801596678067) -->
-    <skip />
+    <string name="copy_text" msgid="3257145021583508761">"Sao chép vào khay nhớ tạm"</string>
+    <string name="set_default" msgid="4417505153468300351">"Đặt mặc định"</string>
+    <string name="clear_default" msgid="7193185801596678067">"Xóa mặc định"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Đã sao chép văn bản"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Hủy thay đổi"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Bạn muốn hủy thay đổi của mình?"</string>
     <string name="discard" msgid="1234315037371251414">"Hủy"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4179677761341328409">"Tiểu sử của tôi"</string>
-    <string name="enter_contact_name" msgid="2930510479516059437">"Nhập tên địa chỉ liên hệ"</string>
-    <string name="editGroup_title_insert" msgid="7803743109105317959">"Nhóm mới"</string>
-    <string name="editGroup_title_edit" msgid="2173278908256913247">"Chỉnh sửa nhóm"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Thiết lập tiểu sử của tôi"</string>
+    <!-- no translation found for enter_contact_name (1738391320566349924) -->
+    <skip />
     <string name="view_updates_from_group" msgid="1782685984905600034">"Xem nội dung cập nhật"</string>
-    <!-- no translation found for notification_voicemail_title:one (1746619685488504230) -->
-    <!-- no translation found for notification_voicemail_title:other (5513481419205061254) -->
-    <!-- no translation found for notification_voicemail_callers_list (1153954809339404149) -->
+  <plurals name="notification_voicemail_title">
+    <item quantity="one" msgid="1746619685488504230">"Thư thoại"</item>
+    <item quantity="other" msgid="5513481419205061254">"<xliff:g id="COUNT">%1$d</xliff:g> Thư thoại"</item>
+  </plurals>
+    <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
+    <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Thư thoại mới từ <xliff:g id="CALLER">%1$s</xliff:g>"</string>
+    <string name="voicemail_playback_error" msgid="6148119635138385900">"không thể phát thư thoại"</string>
+    <string name="voicemail_buffering" msgid="2021957162133938725">"đang lưu tạm vào bộ đệm..."</string>
+    <!-- no translation found for voicemail_fetching_content (8516068803491833243) -->
     <skip />
-    <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
+    <!-- no translation found for voicemail_fetching_timout (3430908587639305983) -->
     <skip />
-    <string name="voicemail_playback_error" msgid="5128928338910411763">"Không thể phát thư thoại"</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Mới"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Cũ hơn"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"Không thể kết nối với máy chủ thư thoại."</string>
@@ -561,11 +563,12 @@
     <string name="voicemail_speed_normal" msgid="6030110237820243006">"tốc độ thông thường"</string>
     <string name="voicemail_speed_faster" msgid="4161478290979905481">"tốc độ nhanh"</string>
     <string name="voicemail_speed_fastest" msgid="3373646875150544205">"tốc độ nhanh nhất"</string>
-    <!-- no translation found for call_log_item_count_and_date (7641933305703520787) -->
-    <skip />
+    <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
     <string name="group_name_hint" msgid="2659811836386413509">"Tên nhóm"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Địa chỉ liên hệ nhận được qua NFC"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Chỉ hiển thị thư thoại"</string>
+    <!-- no translation found for menu_show_all_calls (7560347482073345885) -->
+    <skip />
     <string name="status_available" msgid="5586870015822828392">"Đang có mặt"</string>
     <string name="status_away" msgid="1838861100379804730">"Vắng mặt"</string>
     <string name="status_busy" msgid="9147992455450257136">"Bận"</string>
@@ -575,7 +578,20 @@
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Cuộc gọi đi"</string>
     <string name="description_call_log_missed_call" msgid="2242805209983708825">"Cuộc gọi nhỡ"</string>
     <string name="description_call_log_voicemail" msgid="4600798771975158948">"Thư thoại"</string>
-    <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Thư thoại chưa nghe"</string>
-    <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
+    <!-- no translation found for description_add_contact (3103414772502485851) -->
     <skip />
+    <!-- no translation found for description_view_contact (5205669345700598415) -->
+    <skip />
+    <!-- no translation found for description_call (3443678121983852666) -->
+    <skip />
+    <!-- no translation found for description_send_text_message (7803126439934046891) -->
+    <skip />
+    <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Thư thoại chưa nghe"</string>
+    <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
+    <string name="user_profile_contacts_list_header" msgid="9154761216179882405">"TÔI"</string>
+    <!-- no translation found for local_profile_title (2021416826991393684) -->
+    <skip />
+    <!-- no translation found for external_profile_title (8034998767621359438) -->
+    <skip />
+    <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Đang hiển thị tất cả thông tin liên hệ"</string>
 </resources>

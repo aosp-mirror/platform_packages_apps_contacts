@@ -44,19 +44,20 @@
     <string name="menu_callNumber" msgid="5142851348489387516">"Ring til <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Føj til favoritter"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Fjern fra favoritter"</string>
-    <string name="menu_editContact" msgid="3452858480713561396">"Rediger kontakt"</string>
-    <string name="menu_deleteContact" msgid="1916555454274101750">"Slet kontakt"</string>
+    <!-- outdated translation 3452858480713561396 -->     <string name="menu_editContact" msgid="9042415603857662633">"Rediger kontakt"</string>
+    <!-- outdated translation 1916555454274101750 -->     <string name="menu_deleteContact" msgid="6788644058868189393">"Slet kontakt"</string>
     <string name="menu_call" msgid="3992595586042260618">"Ring til kontakt"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Send sms til kontakt"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Benyt e-mail som standard"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Opdel"</string>
-    <string name="menu_editGroup" msgid="8311763560942217614">"Rediger gruppe"</string>
+    <!-- no translation found for menu_editGroup (5062005185370983720) -->
+    <skip />
     <string name="menu_renameGroup" msgid="2798886925154156075">"Omdøb gruppe"</string>
-    <string name="menu_deleteGroup" msgid="644571524292675446">"Slet gruppe"</string>
+    <!-- outdated translation 644571524292675446 -->     <string name="menu_deleteGroup" msgid="3486380004411482874">"Slet gruppe"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Ny"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Ny"</string>
-    <string name="splitConfirmation_title" msgid="6716467920283502570">"Opdel kontakt"</string>
-    <string name="splitConfirmation" msgid="1150797297503944823">"Er du sikker på, at du vil opdele denne ene kontakt i flere kontakter: én for hver sæt af de indeholdte kontaktoplysninger?"</string>
+    <!-- outdated translation 6716467920283502570 -->     <string name="splitConfirmation_title" msgid="2209511048593467012">"Opdel kontakt"</string>
+    <!-- outdated translation 1150797297503944823 -->     <string name="splitConfirmation" msgid="1067993957986345974">"Er du sikker på, at du vil opdele denne ene kontakt i flere kontakter: én for hver sæt af de indeholdte kontaktoplysninger?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Føj til"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Føj til kontakter"</string>
     <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Vælg den kontaktperson, du ønsker at forbinde til <xliff:g id="NAME">%s</xliff:g>."</string>
@@ -66,9 +67,8 @@
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Tilføjede kontakter"</string>
     <string name="contactOptionsTitle" msgid="8259347644090700915">"Indstillinger"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Slet"</string>
-    <!-- no translation found for menu_set_ring_tone (8728345772068064946) -->
-    <skip />
-    <!-- no translation found for menu_redirect_calls_to_vm (3291482125835338104) -->
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Indstil ringetone"</string>
+    <!-- no translation found for menu_redirect_calls_to_vm (4181789196416396656) -->
     <skip />
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Du kan ikke slette kontakter på skrivebeskyttede konti, men du kan skjule dem i dine lister over kontakter."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Denne kontakt indeholder oplysninger fra flere konti. Oplysningerne fra skrivebeskyttede konti vil blive skjult i dine lister over kontakter, men ikke slettet."</string>
@@ -77,8 +77,6 @@
     <string name="menu_done" msgid="796017761764190697">"Udfør"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Annuller"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Kassér"</string>
-    <string name="editContact_title_edit" msgid="7678695190666836093">"Rediger kontakt"</string>
-    <string name="editContact_title_insert" msgid="9125600232291405757">"Ny kontakt"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetisk"</string>
     <string name="label_notes" msgid="8337354953278341042">"Noter"</string>
     <string name="label_sip_address" msgid="124073911714324974">"Internetopkald"</string>
@@ -104,10 +102,9 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Send opkald direkte til voicemail"</string>
     <string name="default_ringtone" msgid="9099988849649827972">"Standard"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Fjern billede"</string>
-    <!-- outdated translation 8579310973261953559 -->     <string name="noContacts" msgid="4955659076981974652">"Der er ingen kontakter."</string>
-    <!-- outdated translation 8614664663561385253 -->     <string name="noGroups" msgid="7315200974181864731">"Ingen grupper."</string>
-    <!-- no translation found for noAccounts (4742609114153797268) -->
-    <skip />
+    <string name="noContacts" msgid="4955659076981974652">"Ingen kontaktpersoner"</string>
+    <string name="noGroups" msgid="7315200974181864731">"Ingen grupper"</string>
+    <string name="noAccounts" msgid="4742609114153797268">"Du skal have en konto for at kunne oprette grupper"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Der blev ikke fundet nogen matchende kontakter."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Der er ingen kontakter med telefonnumre."</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Vælg de kontakter, der skal vises"</string>
@@ -119,9 +116,10 @@
   </plurals>
     <string name="savingContact" msgid="4075751076741924939">"Gemmer kontakt ..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Gemmer indstillinger for visning …"</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Kontakten er gemt."</string>
+    <!-- outdated translation 7152589189385441091 -->     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakten er gemt."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Fejl, kunne ikke gemme ændringer af kontakter"</string>
-    <string name="groupSavedToast" msgid="1168756874239833756">"Gruppen er gemt."</string>
+    <!-- no translation found for groupSavedToast (6675062559302493011) -->
+    <skip />
     <string name="groupSavedErrorToast" msgid="6434135707953150875">"Fejl. Ændringer i gruppen kan ikke gemmes."</string>
     <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"Ændringen er gemt."</string>
     <string name="contactAlreadyInGroup" msgid="6209708213229886092">"Kontaktpersonen er allerede føjet til gruppen."</string>
@@ -136,7 +134,7 @@
   </plurals>
     <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Ingen kontakter"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Ingen synlige kontakter"</string>
-    <!-- outdated translation 5391630590684099117 -->     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Ingen stjernemarkerede kontakter"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Der er ingen favoritter"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Ingen kontakter i <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Kontaktpersoner i <xliff:g id="NAME">%s</xliff:g>"</string>
   <plurals name="listFoundAllContacts">
@@ -280,7 +278,8 @@
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"kontakt"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Bekræft eksport"</string>
-    <string name="confirm_export_message" msgid="3875683519257829750">"Er du sikker på, at du vil eksportere listen over kontaktpersoner til  \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
+    <!-- no translation found for confirm_export_message (4307437830474103759) -->
+    <skip />
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Eksport af kontaktdata mislykkedes"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Eksport af kontaktpersondata mislykkedes."\n"Årsag til fejl: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Der er ingen kontakter, der kan eksporteres"</string>
@@ -312,20 +311,19 @@
     <string name="sms_disambig_title" msgid="4675399294513152364">"Send sms ved hjælp af"</string>
     <string name="make_primary" msgid="5829291915305113983">"Husk dette valg"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Der blev ikke fundet nogen applikation til denne handling"</string>
-    <!-- no translation found for missing_name (7930716592850443705) -->
-    <skip />
+    <string name="missing_name" msgid="7930716592850443705">"(intet navn)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Konti"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontaktpersoner, der skal vises"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Import/eksport"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importer/eksporter kontakter"</string>
-    <string name="menu_share" msgid="8746849630474240344">"Del kontaktperson"</string>
+    <string name="menu_share" msgid="943789700636542260">"Del"</string>
     <string name="share_via" msgid="563121028023030093">"Del kontakt via"</string>
     <string name="share_error" msgid="4374508848981697170">"Denne kontakt kan ikke deles."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Navn"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Kaldenavn"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organisation"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Websted"</string>
-    <string name="eventLabelsGroup" msgid="8069912895912714412">"Begivenhed"</string>
+    <!-- outdated translation 8069912895912714412 -->     <string name="eventLabelsGroup" msgid="3695433812142818803">"Begivenhed"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Forhold"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Grupper"</string>
     <string name="type_short_home" msgid="7770424864090605384">"H"</string>
@@ -422,18 +420,23 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Fonetisk mellemnavn"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Fonetisk efternavn"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Fonetisk navn"</string>
-    <string name="network" msgid="5415816765302129264">"Netværk"</string>
-    <!-- no translation found for more_networks_button (8566780094016196438) -->
+    <!-- no translation found for connections (8098440723172028350) -->
+    <skip />
+    <!-- no translation found for add_connection_button (4861308615789601727) -->
     <skip />
     <string name="recent_updates" msgid="2062236709538790412">"Seneste"</string>
+    <!-- no translation found for recent_updates_tab_text (5813107516506908531) -->
+    <skip />
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kontaktperson"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Brug dette billede"</string>
-    <string name="contact_read_only" msgid="1969214537163492087">"Kan ikke redigeres på denne enhed"</string>
-    <string name="no_contact_details" msgid="6754415338321837001">"Ingen yderligere oplysninger for denne kontakt"</string>
-    <!-- no translation found for group_read_only (7924922658394449477) -->
+    <!-- unknown placeholder SOURCE in contact_read_only -->
     <skip />
+    <!-- no translation found for contact_read_only (1856479476063888348) -->
+    <skip />
+    <string name="no_contact_details" msgid="6754415338321837001">"Ingen yderligere oplysninger for denne kontakt"</string>
+    <string name="group_read_only" msgid="7924922658394449477">"Kan ikke redigeres på denne enhed"</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Sorter liste efter"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Fornavn"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Efternavn"</string>
@@ -463,6 +466,12 @@
     <string name="no_contacts_selected" msgid="5877803471037324613">"Ingen kontaktpersoner er valgt."</string>
     <string name="add_field" msgid="2384260056674995230">"Tilføj et felt mere"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Tilføj ny"</string>
+    <!-- no translation found for add_organization (7311893231158291197) -->
+    <skip />
+    <!-- no translation found for event_edit_field_hint_text (5794424930242630477) -->
+    <skip />
+    <!-- no translation found for group_edit_field_hint_text (3966441850870457808) -->
+    <skip />
     <string name="contact_status_update_attribution" msgid="752179367353018597">"via <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> via <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"foretrukken"</string>
@@ -480,7 +489,7 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Føj til mine kontaktpersoner"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Indeks <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Indeks"</string>
-    <string name="local_search_label" msgid="1686089693064201315">"Kontaktpersoner"</string>
+    <!-- outdated translation 1686089693064201315 -->     <string name="local_search_label" msgid="2551177578246113614">"Kontaktpersoner"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"Oprettelse af privat kopi"</string>
     <string name="list_filter_prompt" msgid="7481426622828055116">"Vælg liste over kontaktpersoner"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Alle kontaktpersoner"</string>
@@ -492,12 +501,14 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Angiv tilpasset visning"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Indstillinger"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Viste kontaktpersoner"</string>
-    <string name="menu_settings" msgid="1515262535785451190">"Visningsindstillinger"</string>
+    <!-- outdated translation 377929915873428211 -->     <string name="menu_settings" msgid="6523251616169246235">"Indstillinger"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Indstillinger for visning"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Find kontaktpersoner"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Telefonnummer"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Føj til kontaktpersoner"</string>
+    <!-- no translation found for activity_title_confirm_add_detail (4065089866210730616) -->
+    <skip />
     <string name="non_phone_close" msgid="7608506439725515667">"Luk"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Angiv et år"</string>
@@ -525,29 +536,33 @@
   </plurals>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Indtast kontaktpersonens navn, før du forbinder med en anden kontakt."</string>
     <string name="indicator_joined_contact" msgid="3321049349627022128">"Samlet kontaktperson"</string>
-    <!-- no translation found for copy_text (3257145021583508761) -->
-    <skip />
-    <!-- no translation found for set_default (4417505153468300351) -->
-    <skip />
-    <!-- no translation found for clear_default (7193185801596678067) -->
-    <skip />
+    <string name="copy_text" msgid="3257145021583508761">"Kopier til udklipsholder"</string>
+    <string name="set_default" msgid="4417505153468300351">"Indstil standard"</string>
+    <string name="clear_default" msgid="7193185801596678067">"Ryd standarder"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Kopieret tekst"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Kasser ændringer"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Er du sikker på, at du vil kassere dine ændringer?"</string>
     <string name="discard" msgid="1234315037371251414">"Kasser"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4179677761341328409">"Min profil"</string>
-    <string name="enter_contact_name" msgid="2930510479516059437">"Angiv kontaktpersonens navn"</string>
-    <string name="editGroup_title_insert" msgid="7803743109105317959">"Ny gruppe"</string>
-    <string name="editGroup_title_edit" msgid="2173278908256913247">"Rediger gruppe"</string>
-    <string name="view_updates_from_group" msgid="1782685984905600034">"Vis opdateringer"</string>
-    <!-- no translation found for notification_voicemail_title:one (1746619685488504230) -->
-    <!-- no translation found for notification_voicemail_title:other (5513481419205061254) -->
-    <!-- no translation found for notification_voicemail_callers_list (1153954809339404149) -->
+    <!-- no translation found for profile_display_name (4127389543625918771) -->
     <skip />
-    <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
+    <!-- no translation found for enter_contact_name (1738391320566349924) -->
     <skip />
-    <string name="voicemail_playback_error" msgid="5128928338910411763">"Kunne ikke afspille telefonsvarerbesked"</string>
+    <string name="view_updates_from_group" msgid="1782685984905600034">"Se opdateringer"</string>
+  <plurals name="notification_voicemail_title">
+    <item quantity="one" msgid="1746619685488504230">"Telefonsvarer"</item>
+    <item quantity="other" msgid="5513481419205061254">"<xliff:g id="COUNT">%1$d</xliff:g> telefonsvarerbeskeder"</item>
+  </plurals>
+    <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
+    <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Nye besked fra <xliff:g id="CALLER">%1$s</xliff:g>"</string>
+    <!-- no translation found for voicemail_playback_error (6148119635138385900) -->
+    <skip />
+    <!-- no translation found for voicemail_buffering (2021957162133938725) -->
+    <skip />
+    <!-- no translation found for voicemail_fetching_content (8516068803491833243) -->
+    <skip />
+    <!-- no translation found for voicemail_fetching_timout (3430908587639305983) -->
+    <skip />
     <string name="call_log_new_header" msgid="846546437517724715">"Nye"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Ældre"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"Kan ikke oprette forbindelse til telefonsvareren."</string>
@@ -555,7 +570,7 @@
     <string name="voicemail_status_configure_voicemail" msgid="3940240432123700974">"Konfigurer din telefonsvarer."</string>
     <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Lyd ikke tilgængelig."</string>
     <string name="voicemail_status_action_configure" msgid="7008713959076506385">"Konfigurer"</string>
-    <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"Kald telefonsvarer"</string>
+    <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"Ring t telefonsvarer"</string>
     <string name="voicemail_speed_slowest" msgid="6047030504814773029">"langsomste hastighed"</string>
     <string name="voicemail_speed_slower" msgid="7890393922358642543">"langsom hastighed"</string>
     <string name="voicemail_speed_normal" msgid="6030110237820243006">"normal hastighed"</string>
@@ -566,6 +581,8 @@
     <string name="group_name_hint" msgid="2659811836386413509">"Gruppens navn"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Kontakt via NFC"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Vis kun telefonsvarerbeskeder"</string>
+    <!-- no translation found for menu_show_all_calls (7560347482073345885) -->
+    <skip />
     <string name="status_available" msgid="5586870015822828392">"Tilgængelig"</string>
     <string name="status_away" msgid="1838861100379804730">"Ikke til stede"</string>
     <string name="status_busy" msgid="9147992455450257136">"Optaget"</string>
@@ -574,8 +591,23 @@
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Indgående opkald"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Udgående opkald"</string>
     <string name="description_call_log_missed_call" msgid="2242805209983708825">"Ubesvaret opkald"</string>
-    <string name="description_call_log_voicemail" msgid="4600798771975158948">"Telefonsvarerbesked"</string>
-    <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Uaflyttet telefonsvarerbesked"</string>
-    <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
+    <string name="description_call_log_voicemail" msgid="4600798771975158948">"Telefonsvarer"</string>
+    <!-- no translation found for description_add_contact (3103414772502485851) -->
+    <skip />
+    <!-- no translation found for description_view_contact (5205669345700598415) -->
+    <skip />
+    <!-- no translation found for description_call (3443678121983852666) -->
+    <skip />
+    <!-- no translation found for description_send_text_message (7803126439934046891) -->
+    <skip />
+    <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Uaflyttet besked på telefonsvareren"</string>
+    <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
+    <!-- no translation found for user_profile_contacts_list_header (9154761216179882405) -->
+    <skip />
+    <!-- no translation found for local_profile_title (2021416826991393684) -->
+    <skip />
+    <!-- no translation found for external_profile_title (8034998767621359438) -->
+    <skip />
+    <!-- no translation found for toast_displaying_all_contacts (2737388783898593875) -->
     <skip />
 </resources>

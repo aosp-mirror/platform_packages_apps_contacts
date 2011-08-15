@@ -50,24 +50,24 @@
     <string name="menu_callNumber" msgid="5142851348489387516">"Telefonar a(d) <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Agiuntar als favurits"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Allontanar dals favurits"</string>
-    <string name="menu_editContact" msgid="3452858480713561396">"Modifitgar il contact"</string>
-    <string name="menu_deleteContact" msgid="1916555454274101750">"Stizzar il contact"</string>
+    <!-- outdated translation 3452858480713561396 -->     <string name="menu_editContact" msgid="9042415603857662633">"Modifitgar il contact"</string>
+    <!-- outdated translation 1916555454274101750 -->     <string name="menu_deleteContact" msgid="6788644058868189393">"Stizzar il contact"</string>
     <string name="menu_call" msgid="3992595586042260618">"Telefonar al contact"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Trametter in SMS al contact"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"E-mail predefinì"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Divider"</string>
-    <!-- no translation found for menu_editGroup (8311763560942217614) -->
+    <!-- no translation found for menu_editGroup (5062005185370983720) -->
     <skip />
     <!-- no translation found for menu_renameGroup (2798886925154156075) -->
     <skip />
-    <!-- no translation found for menu_deleteGroup (644571524292675446) -->
+    <!-- no translation found for menu_deleteGroup (3486380004411482874) -->
     <skip />
     <!-- no translation found for menu_new_contact_action_bar (8887818026717394343) -->
     <skip />
     <!-- no translation found for menu_new_group_action_bar (5055346725617932394) -->
     <skip />
-    <string name="splitConfirmation_title" msgid="6716467920283502570">"Divider il contact"</string>
-    <string name="splitConfirmation" msgid="1150797297503944823">"Vulais Vus propi divider quest contact en plirs contacts (in per mintga detagl da contact)?"</string>
+    <!-- outdated translation 6716467920283502570 -->     <string name="splitConfirmation_title" msgid="2209511048593467012">"Divider il contact"</string>
+    <!-- outdated translation 1150797297503944823 -->     <string name="splitConfirmation" msgid="1067993957986345974">"Vulais Vus propi divider quest contact en plirs contacts (in per mintga detagl da contact)?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Unir"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Unir contacts"</string>
     <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Tschernì il contact che Vus vulais associar cun <xliff:g id="NAME">%s</xliff:g>."</string>
@@ -79,7 +79,7 @@
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Stizzar"</string>
     <!-- no translation found for menu_set_ring_tone (8728345772068064946) -->
     <skip />
-    <!-- no translation found for menu_redirect_calls_to_vm (3291482125835338104) -->
+    <!-- no translation found for menu_redirect_calls_to_vm (4181789196416396656) -->
     <skip />
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"\"Impussibel da stizzar contacts da contos mo per lectura, ma Vus als pudais zuppentar en la glista da contacts.\""</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"\"Quest contact cuntegna infurmaziuns da plirs contos. Infurmaziuns da contos mo per lectura vegnan betg stizzadas, mabain zuppentadas en Vossas glistas da contacts.\""</string>
@@ -89,8 +89,6 @@
     <!-- outdated translation 2174577548513895144 -->     <string name="menu_doNotSave" msgid="58593876893538465">"Annullar"</string>
     <!-- no translation found for menu_discard (6456087569315685632) -->
     <skip />
-    <string name="editContact_title_edit" msgid="7678695190666836093">"Modifitgar il contact"</string>
-    <string name="editContact_title_insert" msgid="9125600232291405757">"Nov contact"</string>
     <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetic"</string>
     <string name="label_notes" msgid="8337354953278341042">"Notizias"</string>
     <!-- outdated translation 943765439755300724 -->     <string name="label_sip_address" msgid="124073911714324974">"Adressa SIP"</string>
@@ -134,9 +132,9 @@
   </plurals>
     <string name="savingContact" msgid="4075751076741924939">"Il contact vegn memorisà…"</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Las opziuns da vista vegnan memorisadas…"</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Contact memorisà."</string>
+    <!-- outdated translation 7152589189385441091 -->     <string name="contactSavedToast" msgid="9171862279493213075">"Contact memorisà."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Errur: impussibel da memorisar las modificaziuns dal contact"</string>
-    <!-- no translation found for groupSavedToast (1168756874239833756) -->
+    <!-- no translation found for groupSavedToast (6675062559302493011) -->
     <skip />
     <!-- no translation found for groupSavedErrorToast (6434135707953150875) -->
     <skip />
@@ -316,7 +314,8 @@
     <skip />
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Confermar l\'export"</string>
-    <string name="confirm_export_message" msgid="3875683519257829750">"Vulais Vus propi exportar la glista da contacts en «<xliff:g id="VCARD_FILENAME">%s</xliff:g>»?"</string>
+    <!-- no translation found for confirm_export_message (4307437830474103759) -->
+    <skip />
     <string name="exporting_contact_failed_title" msgid="585823094820602526">"Errur cun exportar las datas da contact"</string>
     <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Errur cun exportar las datas da contact. "\n"Il motiv: «<xliff:g id="FAIL_REASON">%s</xliff:g>»"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Nagin contact exportabel"</string>
@@ -362,14 +361,14 @@
     <skip />
     <string name="menu_import_export" msgid="3765725645491577190">"Importar/exportar"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importar/exportar ils contacts"</string>
-    <!-- outdated translation 943789700636542260 -->     <string name="menu_share" msgid="8746849630474240344">"Cundivider"</string>
+    <string name="menu_share" msgid="943789700636542260">"Cundivider"</string>
     <string name="share_via" msgid="563121028023030093">"Cundivider in contact sur"</string>
     <string name="share_error" msgid="4374508848981697170">"Quest contact na po betg vegnir cundividì."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Num"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Alias"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Firma/Organisaziun"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Website"</string>
-    <string name="eventLabelsGroup" msgid="8069912895912714412">"Termin"</string>
+    <!-- outdated translation 8069912895912714412 -->     <string name="eventLabelsGroup" msgid="3695433812142818803">"Termin"</string>
     <!-- no translation found for relationLabelsGroup (1854373894284572781) -->
     <skip />
     <!-- no translation found for groupsLabel (8573535366319059326) -->
@@ -470,11 +469,13 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"Num da famiglia fonetic"</string>
     <!-- no translation found for name_phonetic (4259595234312430484) -->
     <skip />
-    <!-- no translation found for network (5415816765302129264) -->
+    <!-- no translation found for connections (8098440723172028350) -->
     <skip />
-    <!-- no translation found for more_networks_button (8566780094016196438) -->
+    <!-- no translation found for add_connection_button (4861308615789601727) -->
     <skip />
     <!-- no translation found for recent_updates (2062236709538790412) -->
+    <skip />
+    <!-- no translation found for recent_updates_tab_text (5813107516506908531) -->
     <skip />
     <string name="account_type_format" msgid="718948015590343010">"Contact <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
@@ -482,7 +483,7 @@
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Utilisar quest foto"</string>
     <!-- unknown placeholder SOURCE in contact_read_only -->
     <skip />
-    <!-- no translation found for contact_read_only (1969214537163492087) -->
+    <!-- no translation found for contact_read_only (1856479476063888348) -->
     <skip />
     <string name="no_contact_details" msgid="6754415338321837001">"Naginas infurmaziuns supplementaras per quest contact"</string>
     <!-- no translation found for group_read_only (7924922658394449477) -->
@@ -526,6 +527,12 @@
     <!-- outdated translation 5257149039253569615 -->     <string name="add_field" msgid="2384260056674995230">"Agiuntar infurmaziuns"</string>
     <!-- no translation found for add_new_entry_for_section (5223080690667565044) -->
     <skip />
+    <!-- no translation found for add_organization (7311893231158291197) -->
+    <skip />
+    <!-- no translation found for event_edit_field_hint_text (5794424930242630477) -->
+    <skip />
+    <!-- no translation found for group_edit_field_hint_text (3966441850870457808) -->
+    <skip />
     <string name="contact_status_update_attribution" msgid="752179367353018597">"entras <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> entras <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"favurit"</string>
@@ -551,7 +558,7 @@
     <skip />
     <!-- no translation found for directory_search_label (1887759056597975053) -->
     <skip />
-    <!-- no translation found for local_search_label (1686089693064201315) -->
+    <!-- no translation found for local_search_label (2551177578246113614) -->
     <skip />
     <!-- no translation found for toast_making_personal_copy (7905283986345263275) -->
     <skip />
@@ -575,7 +582,7 @@
     <skip />
     <!-- no translation found for activity_title_contacts_filter (8275542497615516969) -->
     <skip />
-    <!-- no translation found for menu_settings (1515262535785451190) -->
+    <!-- no translation found for menu_settings (6523251616169246235) -->
     <skip />
     <!-- no translation found for preference_displayOptions (1341720270148252393) -->
     <skip />
@@ -586,6 +593,8 @@
     <!-- no translation found for non_phone_caption (1541655052330027380) -->
     <skip />
     <!-- no translation found for non_phone_add_to_contacts (6590985286250471169) -->
+    <skip />
+    <!-- no translation found for activity_title_confirm_add_detail (4065089866210730616) -->
     <skip />
     <!-- no translation found for non_phone_close (7608506439725515667) -->
     <skip />
@@ -639,13 +648,9 @@
     <skip />
     <!-- no translation found for call_type_and_date (1766269584078149149) -->
     <skip />
-    <!-- no translation found for profile_display_name (4179677761341328409) -->
+    <!-- no translation found for profile_display_name (4127389543625918771) -->
     <skip />
-    <!-- no translation found for enter_contact_name (2930510479516059437) -->
-    <skip />
-    <!-- no translation found for editGroup_title_insert (7803743109105317959) -->
-    <skip />
-    <!-- no translation found for editGroup_title_edit (2173278908256913247) -->
+    <!-- no translation found for enter_contact_name (1738391320566349924) -->
     <skip />
     <!-- no translation found for view_updates_from_group (1782685984905600034) -->
     <skip />
@@ -655,7 +660,13 @@
     <skip />
     <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
     <skip />
-    <!-- no translation found for voicemail_playback_error (5128928338910411763) -->
+    <!-- no translation found for voicemail_playback_error (6148119635138385900) -->
+    <skip />
+    <!-- no translation found for voicemail_buffering (2021957162133938725) -->
+    <skip />
+    <!-- no translation found for voicemail_fetching_content (8516068803491833243) -->
+    <skip />
+    <!-- no translation found for voicemail_fetching_timout (3430908587639305983) -->
     <skip />
     <!-- no translation found for call_log_new_header (846546437517724715) -->
     <skip />
@@ -691,6 +702,8 @@
     <skip />
     <!-- no translation found for menu_show_voicemails_only (1898421289561435703) -->
     <skip />
+    <!-- no translation found for menu_show_all_calls (7560347482073345885) -->
+    <skip />
     <!-- no translation found for status_available (5586870015822828392) -->
     <skip />
     <!-- no translation found for status_away (1838861100379804730) -->
@@ -709,8 +722,24 @@
     <skip />
     <!-- no translation found for description_call_log_voicemail (4600798771975158948) -->
     <skip />
+    <!-- no translation found for description_add_contact (3103414772502485851) -->
+    <skip />
+    <!-- no translation found for description_view_contact (5205669345700598415) -->
+    <skip />
+    <!-- no translation found for description_call (3443678121983852666) -->
+    <skip />
+    <!-- no translation found for description_send_text_message (7803126439934046891) -->
+    <skip />
     <!-- no translation found for description_call_log_unheard_voicemail (118101684236996786) -->
     <skip />
     <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
+    <skip />
+    <!-- no translation found for user_profile_contacts_list_header (9154761216179882405) -->
+    <skip />
+    <!-- no translation found for local_profile_title (2021416826991393684) -->
+    <skip />
+    <!-- no translation found for external_profile_title (8034998767621359438) -->
+    <skip />
+    <!-- no translation found for toast_displaying_all_contacts (2737388783898593875) -->
     <skip />
 </resources>
