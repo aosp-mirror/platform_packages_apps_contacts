@@ -22,6 +22,7 @@ import com.android.contacts.calllog.CallLogAdapter;
 import com.android.contacts.calllog.CallLogFragment;
 import com.android.contacts.calllog.CallLogListItemViews;
 import com.android.contacts.calllog.CallLogQuery;
+import com.android.contacts.calllog.CallLogQueryTestUtils;
 import com.android.contacts.calllog.ContactInfo;
 import com.android.contacts.calllog.IntentProvider;
 import com.android.internal.telephony.CallerInfo;
@@ -477,30 +478,19 @@ public class CallLogActivityTests
      * @param type Either Call.OUTGOING_TYPE or Call.INCOMING_TYPE or Call.MISSED_TYPE.
      */
     private void insert(String number, long date, int duration, int type) {
-        MatrixCursor.RowBuilder row = mCursor.newRow();
-        row.add(mIndex);
-        mIndex ++;
-        row.add(number);
-        if (NOW == date) {
-            row.add(new Date().getTime());
-        } else {
-            row.add(date);
-        }
-        if (duration < 0) {
-            duration = mRnd.nextInt(10 * 60);  // 0 - 10 minutes random.
-        }
-        row.add(duration);  // duration
+        Object[] values = CallLogQueryTestUtils.createTestExtendedValues();
+        values[CallLogQuery.ID] = mIndex;
+        values[CallLogQuery.NUMBER] = number;
+        values[CallLogQuery.DATE] = date == NOW ? new Date().getTime() : date;
+        values[CallLogQuery.DURATION] = duration < 0 ? mRnd.nextInt(10 * 60) : duration;
         if (mVoicemail != null && mVoicemail.equals(number)) {
             assertEquals(Calls.OUTGOING_TYPE, type);
         }
-        row.add(type);  // type
-        row.add(TEST_COUNTRY_ISO);  // country ISO
-        row.add(null);  // voicemail_uri
-        row.add(null);  // geocoded_location
-        row.add(null);  // cached_name
-        row.add(0);  // cached_number_type
-        row.add(null);  // cached_number_label
-        row.add(CallLogQuery.SECTION_OLD_ITEM);  // section
+        values[CallLogQuery.CALL_TYPE] = type;
+        values[CallLogQuery.COUNTRY_ISO] = TEST_COUNTRY_ISO;
+        values[CallLogQuery.SECTION] = CallLogQuery.SECTION_OLD_ITEM;
+        mCursor.addRow(values);
+        ++mIndex;
     }
 
     /**
@@ -511,30 +501,19 @@ public class CallLogActivityTests
      * @param duration In seconds of the call. Use RAND_DURATION to pick a random one.
      */
     private void insertVoicemail(String number, long date, int duration) {
-        MatrixCursor.RowBuilder row = mCursor.newRow();
+        Object[] values = CallLogQueryTestUtils.createTestExtendedValues();
+        values[CallLogQuery.ID] = mIndex;
+        values[CallLogQuery.NUMBER] = number;
+        values[CallLogQuery.DATE] = date == NOW ? new Date().getTime() : date;
+        values[CallLogQuery.DURATION] = duration < 0 ? mRnd.nextInt(10 * 60) : duration;
+        values[CallLogQuery.CALL_TYPE] = Calls.VOICEMAIL_TYPE;
+        values[CallLogQuery.COUNTRY_ISO] = TEST_COUNTRY_ISO;
         // Must have the same index as the row.
-        Uri voicemailUri =
+        values[CallLogQuery.VOICEMAIL_URI] =
                 ContentUris.withAppendedId(VoicemailContract.Voicemails.CONTENT_URI, mIndex);
-        row.add(mIndex);
-        mIndex ++;
-        row.add(number);
-        if (NOW == date) {
-            row.add(new Date().getTime());
-        } else {
-            row.add(date);
-        }
-        if (duration < 0) {
-            duration = mRnd.nextInt(10 * 60);  // 0 - 10 minutes random.
-        }
-        row.add(duration);  // duration
-        row.add(Calls.VOICEMAIL_TYPE);  // type
-        row.add(TEST_COUNTRY_ISO);  // country ISO
-        row.add(voicemailUri);  // voicemail_uri
-        row.add(null);  // geocoded_location
-        row.add(null);  // cached_name
-        row.add(0);  // cached_number_type
-        row.add(null);  // cached_number_label
-        row.add(CallLogQuery.SECTION_OLD_ITEM);  // section
+        values[CallLogQuery.SECTION] = CallLogQuery.SECTION_OLD_ITEM;
+        mCursor.addRow(values);
+        ++mIndex;
     }
 
     /**

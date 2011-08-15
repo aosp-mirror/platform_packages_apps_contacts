@@ -221,9 +221,12 @@ public class CallLogGroupBuilderTest extends AndroidTestCase {
             throw new IllegalArgumentException("not an item section: " + section);
         }
         mCursor.moveToNext();
-        mCursor.addRow(new Object[]{
-                mCursor.getPosition(), number, 0L, 0L, type, "", "", "", null, 0, null, section
-        });
+        Object[] values = CallLogQueryTestUtils.createTestExtendedValues();
+        values[CallLogQuery.ID] = mCursor.getPosition();
+        values[CallLogQuery.NUMBER] = number;
+        values[CallLogQuery.CALL_TYPE] = type;
+        values[CallLogQuery.SECTION] = section;
+        mCursor.addRow(values);
     }
 
     /** Adds the old section header to the call log. */
@@ -243,9 +246,10 @@ public class CallLogGroupBuilderTest extends AndroidTestCase {
             throw new IllegalArgumentException("not a header section: " + section);
         }
         mCursor.moveToNext();
-        mCursor.addRow(new Object[]{
-                mCursor.getPosition(), "", 0L, 0L, 0, "", "", "", null, 0, null, section
-        });
+        Object[] values = CallLogQueryTestUtils.createTestExtendedValues();
+        values[CallLogQuery.ID] = mCursor.getPosition();
+        values[CallLogQuery.SECTION] = section;
+        mCursor.addRow(values);
     }
 
     /** Asserts that the group matches the given values. */
