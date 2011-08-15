@@ -27,19 +27,22 @@ import android.os.Parcel;
 public class AccountWithDataSet extends Account {
 
     public final String dataSet;
+    private final AccountTypeWithDataSet mAccountTypeWithDataSet;
 
     public AccountWithDataSet(String name, String type, String dataSet) {
         super(name, type);
         this.dataSet = dataSet;
+        mAccountTypeWithDataSet = AccountTypeWithDataSet.get(type, dataSet);
     }
 
     public AccountWithDataSet(Parcel in, String dataSet) {
         super(in);
         this.dataSet = dataSet;
+        mAccountTypeWithDataSet = AccountTypeWithDataSet.get(type, dataSet);
     }
 
-    public String getAccountTypeWithDataSet() {
-        return dataSet == null ? type : AccountType.getAccountTypeAndDataSet(type, dataSet);
+    public AccountTypeWithDataSet getAccountTypeAndWithDataSet() {
+        return mAccountTypeWithDataSet;
     }
 
     @Override

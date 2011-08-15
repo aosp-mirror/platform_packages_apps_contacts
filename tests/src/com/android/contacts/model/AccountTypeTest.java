@@ -17,14 +17,10 @@
 package com.android.contacts.model;
 
 import com.android.contacts.tests.R;
-import com.google.common.collect.Lists;
 
 import android.content.Context;
 import android.test.AndroidTestCase;
-import android.test.MoreAsserts;
-
-import java.util.ArrayList;
-import java.util.Collections;
+import android.test.suitebuilder.annotation.SmallTest;
 
 /**
  * Test case for {@link AccountType}.
@@ -32,6 +28,7 @@ import java.util.Collections;
  * adb shell am instrument -w -e class com.android.contacts.model.AccountTypeTest \
        com.android.contacts.tests/android.test.InstrumentationTestRunner
  */
+@SmallTest
 public class AccountTypeTest extends AndroidTestCase {
     public void testGetResourceText() {
         // In this test we use the test package itself as an external package.
