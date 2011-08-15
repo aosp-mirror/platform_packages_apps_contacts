@@ -348,7 +348,7 @@ public class DialtactsActivity extends Activity {
                     Log.w(TAG, "Search Fragment isn't available when ContactListFilter is changed");
                     return;
                 }
-                mSearchFragment .setFilter(mContactListFilterController.getFilter());
+                mSearchFragment.setFilter(mContactListFilterController.getFilter());
 
                 invalidateOptionsMenu();
             }

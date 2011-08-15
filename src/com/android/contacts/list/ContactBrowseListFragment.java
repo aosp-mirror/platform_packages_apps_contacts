@@ -660,11 +660,7 @@ public abstract class ContactBrowseListFragment extends
     }
 
     private void restoreFilter() {
-        mFilter = ContactListFilter.restoreFromPreferences(mPrefs);
-        if (mFilter == null) {
-            mFilter = ContactListFilter.createFilterWithType(
-                    ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
-        }
+        mFilter = ContactListFilter.restoreDefaultPreferences(mPrefs);
     }
 
     private String getPersistentSelectionKey() {

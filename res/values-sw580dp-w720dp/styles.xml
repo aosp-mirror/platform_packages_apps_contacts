@@ -43,7 +43,6 @@
         <item name="list_item_header_underline_height">1dip</item>
         <item name="list_item_contacts_count_text_color">@color/contact_count_text_color</item>
         <item name="list_item_contacts_count_text_size">12sp</item>
-        <item name="contact_filter_popup_width">320dip</item>
         <item name="contact_browser_list_padding_left">0dip</item>
         <item name="contact_browser_list_padding_right">0dip</item>
         <item name="contact_browser_background">@android:color/transparent</item>

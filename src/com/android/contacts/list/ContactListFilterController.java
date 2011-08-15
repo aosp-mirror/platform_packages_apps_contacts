@@ -45,7 +45,7 @@ public class ContactListFilterController {
 
     public void onStart() {
         if (mFilter == null) {
-            mFilter = ContactListFilter.restoreFromPreferences(getSharedPreferences());
+            mFilter = ContactListFilter.restoreDefaultPreferences(getSharedPreferences());
             mIsInitialized = true;
         }
     }

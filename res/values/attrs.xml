@@ -67,7 +67,6 @@
     </declare-styleable>
 
     <declare-styleable name="ContactBrowser">
-        <attr name="contact_filter_popup_width" format="dimension"/>
         <attr name="contact_browser_list_padding_left" format="dimension"/>
         <attr name="contact_browser_list_padding_right" format="dimension"/>
         <attr name="contact_browser_background" format="reference"/>
