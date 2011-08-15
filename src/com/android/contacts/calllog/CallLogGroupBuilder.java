@@ -17,7 +17,6 @@
 package com.android.contacts.calllog;
 
 import com.android.common.widget.GroupingListAdapter;
-import com.android.contacts.calllog.CallLogFragment.CallLogQuery;
 
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
@@ -74,7 +73,7 @@ public class CallLogGroupBuilder {
             final boolean sameNumber = equalPhoneNumbers(firstNumber, currentNumber);
             final boolean shouldGroup;
 
-            if (CallLogFragment.CallLogQuery.isSectionHeader(cursor)) {
+            if (CallLogQuery.isSectionHeader(cursor)) {
                 // Cannot group headers.
                 shouldGroup = false;
             } else if (!sameNumber) {
@@ -120,7 +119,7 @@ public class CallLogGroupBuilder {
      * <p>
      * The group is always unexpanded.
      *
-     * @see CallLogFragment.CallLogAdapter#addGroup(int, int, boolean)
+     * @see CallLogAdapter#addGroup(int, int, boolean)
      */
     private void addGroup(int cursorPosition, int size) {
         mGroupCreator.addGroup(cursorPosition, size, false);

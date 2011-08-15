@@ -18,7 +18,6 @@ package com.android.contacts.calllog;
 
 import static com.google.android.collect.Lists.newArrayList;
 
-import com.android.contacts.calllog.CallLogFragment.CallLogQuery;
 
 import android.database.MatrixCursor;
 import android.provider.CallLog.Calls;
@@ -171,7 +170,7 @@ public class CallLogGroupBuilderTest extends AndroidTestCase {
 
     /** Creates (or recreates) the cursor used to store the call log content for the tests. */
     private void createCursor() {
-        mCursor = new MatrixCursor(CallLogFragment.CallLogQuery.EXTENDED_PROJECTION);
+        mCursor = new MatrixCursor(CallLogQuery.EXTENDED_PROJECTION);
     }
 
     /** Clears the content of the {@link FakeGroupCreator} used in the tests. */
