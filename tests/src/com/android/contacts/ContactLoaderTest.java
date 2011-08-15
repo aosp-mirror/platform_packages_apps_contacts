@@ -16,7 +16,12 @@
 
 package com.android.contacts;
 
+import com.android.contacts.model.AccountType;
+import com.android.contacts.model.AccountWithDataSet;
+import com.android.contacts.model.BaseAccountType;
+import com.android.contacts.test.InjectedServices;
 import com.android.contacts.tests.mocks.ContactsMockContext;
+import com.android.contacts.tests.mocks.MockAccountTypeManager;
 import com.android.contacts.tests.mocks.MockContentProvider;
 
 import android.content.ContentUris;
@@ -36,18 +41,31 @@ import android.test.suitebuilder.annotation.LargeTest;
  */
 @LargeTest
 public class ContactLoaderTest extends LoaderTestCase {
-    ContactsMockContext mMockContext;
-    MockContentProvider mContactsProvider;
+    private ContactsMockContext mMockContext;
+    private MockContentProvider mContactsProvider;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
         mMockContext = new ContactsMockContext(getContext());
         mContactsProvider = mMockContext.getContactsProvider();
+
+        InjectedServices services = new InjectedServices();
+        AccountType accountType = new BaseAccountType();
+        accountType.accountType = "mockAccountType";
+
+        AccountWithDataSet account =
+                new AccountWithDataSet("mockAccountName", "mockAccountType", null);
+
+        mMockContext.setMockAccountTypeManager(
+                new MockAccountTypeManager(
+                        new AccountType[] { accountType }, new AccountWithDataSet[] { account }));
     }
 
     @Override
     protected void tearDown() throws Exception {
+        mMockContext = null;
+        mContactsProvider = null;
         super.tearDown();
     }
 

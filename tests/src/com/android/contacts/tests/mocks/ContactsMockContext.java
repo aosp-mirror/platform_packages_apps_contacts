@@ -16,6 +16,8 @@
 
 package com.android.contacts.tests.mocks;
 
+import com.android.contacts.model.AccountTypeManager;
+
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -32,13 +34,11 @@ import android.test.mock.MockContentResolver;
  * to mock content providers.
  */
 public class ContactsMockContext extends ContextWrapper {
-
-    private static final String TAG = "ContactsMockContext";
-
     private ContactsMockPackageManager mPackageManager;
     private MockContentResolver mContentResolver;
     private MockContentProvider mContactsProvider;
     private MockContentProvider mSettingsProvider;
+    private MockAccountTypeManager mMockAccountTypeManager;
     private Intent mIntentForStartActivity;
 
     public ContactsMockContext(Context base) {
@@ -51,6 +51,10 @@ public class ContactsMockContext extends ContextWrapper {
         mSettingsProvider = new MockContentProvider();
         mSettingsProvider.attachInfo(this, new ProviderInfo());
         mContentResolver.addProvider(Settings.AUTHORITY, mSettingsProvider);
+    }
+
+    public void setMockAccountTypeManager(MockAccountTypeManager mockAccountTypeManager) {
+        mMockAccountTypeManager = mockAccountTypeManager;
     }
 
     @Override
@@ -92,5 +96,13 @@ public class ContactsMockContext extends ContextWrapper {
     public void verify() {
         mContactsProvider.verify();
         mSettingsProvider.verify();
+    }
+
+    @Override
+    public Object getSystemService(String name) {
+        if (AccountTypeManager.ACCOUNT_TYPE_SERVICE.equals(name)) {
+           return mMockAccountTypeManager;
+        }
+        return super.getSystemService(name);
     }
 }
