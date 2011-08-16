@@ -58,6 +58,7 @@ import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnAttachStateChangeListener;
+import android.view.ViewConfiguration;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
@@ -653,15 +654,25 @@ public class DialtactsActivity extends Activity {
                     mFilterOptionsMenuItemClickListener);
             callSettingsMenuItem.setVisible(false);
         } else {
+            final boolean showCallSettingsMenu;
             if (tab != null && tab.getPosition() == TAB_INDEX_DIALER) {
                 searchMenuItem.setVisible(false);
+                // When permanent menu key is _not_ available, the call settings menu should be
+                // available via DialpadFragment.
+                showCallSettingsMenu = ViewConfiguration.get(this).hasPermanentMenuKey();
             } else {
                 searchMenuItem.setVisible(true);
                 searchMenuItem.setOnMenuItemClickListener(mSearchMenuItemClickListener);
+                showCallSettingsMenu = true;
             }
             filterOptionMenuItem.setVisible(false);
-            callSettingsMenuItem.setVisible(true);
-            callSettingsMenuItem.setIntent(DialtactsActivity.getCallSettingsIntent());
+
+            if (showCallSettingsMenu) {
+                callSettingsMenuItem.setVisible(true);
+                callSettingsMenuItem.setIntent(DialtactsActivity.getCallSettingsIntent());
+            } else {
+                callSettingsMenuItem.setVisible(false);
+            }
         }
 
         return true;
