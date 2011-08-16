@@ -30,4 +30,10 @@
         android:icon="@drawable/ic_menu_wait"
         android:title="@string/add_wait"
         android:showAsAction="withText" />
+
+    <item
+        android:id="@+id/menu_call_settings_dialpad"
+        android:title="@string/call_settings"
+        android:icon="@drawable/ic_menu_settings_holo_light"
+        android:showAsAction="withText" />
 </menu>
