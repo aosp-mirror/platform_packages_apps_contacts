@@ -32,11 +32,6 @@ public interface ViewOverlay {
     public void setAlphaLayerValue(float alpha);
 
     /**
-     * Makes the alpha layer on this fragment visible (if there is one).
-     */
-    public void enableAlphaLayer();
-
-    /**
      * Makes the touch intercept layer on this fragment visible (if there is one). Also adds a click
      * listener which is called when there is a touch event on the layer.
      */

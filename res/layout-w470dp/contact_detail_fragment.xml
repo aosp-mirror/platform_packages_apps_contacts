@@ -75,8 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:visibility="gone"/>
+        android:layout_alignParentTop="true"/>
 
     <View
         android:id="@+id/touch_intercept_overlay"

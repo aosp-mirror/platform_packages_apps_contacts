@@ -43,8 +43,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="@dimen/detail_tab_carousel_tab_label_height"
-        android:visibility="gone"/>
+        android:layout_marginBottom="@dimen/detail_tab_carousel_tab_label_height"/>
 
     <TextView
         android:id="@+id/label"
