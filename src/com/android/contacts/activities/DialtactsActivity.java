@@ -364,6 +364,8 @@ public class DialtactsActivity extends Activity {
         mViewPager.setAdapter(new ViewPagerAdapter(getFragmentManager()));
         mViewPager.setOnPageChangeListener(mPageChangeListener);
 
+        prepareSearchView();
+
         // Setup the ActionBar tabs (the order matches the tab-index contants TAB_INDEX_*)
         setupDialer();
         setupCallLog();
@@ -387,6 +389,25 @@ public class DialtactsActivity extends Activity {
                 && icicle == null) {
             setupFilterText(intent);
         }
+    }
+
+    private void prepareSearchView() {
+        final View searchViewLayout =
+                getLayoutInflater().inflate(R.layout.custom_action_bar, null);
+        mSearchView = (SearchView) searchViewLayout.findViewById(R.id.search_view);
+        mSearchView.setOnQueryTextListener(mPhoneSearchQueryTextListener);
+        mSearchView.setOnCloseListener(mPhoneSearchCloseListener);
+        // Since we're using a custom layout for showing SearchView instead of letting the
+        // search menu icon do that job, we need to manually configure the View so it looks
+        // "shown via search menu".
+        // - it should be iconified by default
+        // - it should not be iconified at this time
+        // See also comments for onActionViewExpanded()/onActionViewCollapsed()
+        mSearchView.setIconifiedByDefault(true);
+        mSearchView.setQueryHint(getString(R.string.hint_findContacts));
+        mSearchView.setIconified(false);
+        getActionBar().setCustomView(searchViewLayout,
+                new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
     }
 
     @Override
@@ -706,46 +727,7 @@ public class DialtactsActivity extends Activity {
             mLastManuallySelectedFragment = tab.getPosition();
         }
 
-        // Instantiate or reset SearchView in ActionBar.
-        if (mSearchView == null) {
-            final View searchViewLayout =
-                    getLayoutInflater().inflate(R.layout.custom_action_bar, null);
-            mSearchView = (SearchView) searchViewLayout.findViewById(R.id.search_view);
-            mSearchView.setOnQueryTextListener(mPhoneSearchQueryTextListener);
-            mSearchView.setOnCloseListener(mPhoneSearchCloseListener);
-            // Since we're using a custom layout for showing SearchView instead of letting the
-            // search menu icon do that job, we need to manually configure the View so it looks
-            // "shown via search menu".
-            // - it should be iconified by default
-            // - it should not be iconified at this time
-            // See also comments for onActionViewExpanded()/onActionViewCollapsed()
-            mSearchView.setIconifiedByDefault(true);
-            mSearchView.setQueryHint(getString(R.string.hint_findContacts));
-            mSearchView.setIconified(false);
-            mSearchView.requestFocus();
-            // Show soft keyboard when SearchView has a focus. Need to delay the request in order
-            // to let InputMethodManager handle it correctly.
-            mSearchView.addOnAttachStateChangeListener(new OnAttachStateChangeListener() {
-                @Override
-                public void onViewDetachedFromWindow(View v) {
-                }
-
-                @Override
-                public void onViewAttachedToWindow(View v) {
-                    if (mSearchView.hasFocus()) {
-                        mSearchView.postDelayed(new Runnable() {
-                            public void run() {
-                                showInputMethod(mSearchView.findFocus());
-                            }
-                        }, 0);
-                    }
-                }
-            });
-            actionBar.setCustomView(searchViewLayout,
-                    new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-        } else {
-            mSearchView.setQuery(null, true);
-        }
+        mSearchView.setQuery(null, true);
 
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
@@ -764,6 +746,9 @@ public class DialtactsActivity extends Activity {
         // layout instead of asking the search menu item to take care of SearchView.
         mSearchView.onActionViewExpanded();
         mInSearchUi = true;
+
+        // Clear focus and suppress keyboard show-up.
+        mSearchView.clearFocus();
     }
 
     private void showInputMethod(View view) {
