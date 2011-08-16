@@ -16,23 +16,24 @@
 
 package com.android.contacts;
 
-import com.android.contacts.test.InjectedServices;
-import com.android.contacts.util.BackgroundTaskService;
+import static com.android.contacts.CallDetailActivity.Tasks.UPDATE_PHONE_CALL_DETAILS;
+import static com.android.contacts.voicemail.VoicemailPlaybackPresenter.Tasks.CHECK_FOR_CONTENT;
+import static com.android.contacts.voicemail.VoicemailPlaybackPresenter.Tasks.PREPARE_MEDIA_PLAYER;
+
+import com.android.contacts.util.AsyncTaskExecutors;
+import com.android.contacts.util.FakeAsyncTaskExecutor;
 import com.android.contacts.util.IntegrationTestUtils;
 import com.android.contacts.util.LocaleTestUtils;
-import com.android.contacts.util.FakeBackgroundTaskService;
 import com.android.internal.view.menu.ContextMenuBuilder;
 import com.google.common.base.Preconditions;
-import com.google.common.util.concurrent.Executors;
 
-import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.CallLog;
-import android.provider.VoicemailContract.Voicemails;
+import android.provider.VoicemailContract;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.test.suitebuilder.annotation.Suppress;
@@ -47,12 +48,12 @@ import java.util.Locale;
  */
 @LargeTest
 public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<CallDetailActivity> {
-    private static final String FAKE_VOICEMAIL_URI_STRING = ContentUris.withAppendedId(
-            Voicemails.CONTENT_URI, Integer.MAX_VALUE).toString();
-    private Uri mUri;
+    private Uri mCallLogUri;
+    private Uri mVoicemailUri;
     private IntegrationTestUtils mTestUtils;
     private LocaleTestUtils mLocaleTestUtils;
-    private FakeBackgroundTaskService mMockBackgroundTaskService;
+    private FakeAsyncTaskExecutor mFakeAsyncTaskExecutor;
+    private CallDetailActivity mActivityUnderTest;
 
     public CallDetailActivityTest() {
         super(CallDetailActivity.class);
@@ -61,11 +62,8 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        InjectedServices injectedServices = new InjectedServices();
-        mMockBackgroundTaskService = new FakeBackgroundTaskService();
-        injectedServices.setSystemService(BackgroundTaskService.BACKGROUND_TASK_SERVICE,
-                mMockBackgroundTaskService);
-        ContactsApplication.injectServices(injectedServices);
+        mFakeAsyncTaskExecutor = new FakeAsyncTaskExecutor(getInstrumentation());
+        AsyncTaskExecutors.setFactoryForTest(mFakeAsyncTaskExecutor.getFactory());
         // I don't like the default of focus-mode for tests, the green focus border makes the
         // screenshots look weak.
         setActivityInitialTouchMode(true);
@@ -82,45 +80,58 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
         mLocaleTestUtils = null;
         cleanUpUri();
         mTestUtils = null;
-        ContactsApplication.injectServices(null);
+        AsyncTaskExecutors.setFactoryForTest(null);
         super.tearDown();
     }
 
-    public void testInitialActivityStartsWithBuffering() throws Throwable {
+    public void testInitialActivityStartsWithFetchingVoicemail() throws Throwable {
         setActivityIntentForTestVoicemailEntry();
-        CallDetailActivity activity = getActivity();
-        // When the activity first starts, we will show "buffering..." on the screen.
+        startActivityUnderTest();
+        // When the activity first starts, we will show "Fetching voicemail" on the screen.
         // The duration should not be visible.
-        assertHasOneTextViewContaining(activity, "buffering...");
-        assertZeroTextViewsContaining(activity, "00:00");
+        assertHasOneTextViewContaining("Fetching voicemail");
+        assertZeroTextViewsContaining("00:00");
+    }
+
+    public void testWhenCheckForContentCompletes_UiShowsBuffering() throws Throwable {
+        setActivityIntentForTestVoicemailEntry();
+        startActivityUnderTest();
+        // There is a background check that is testing to see if we have the content available.
+        // Once that task completes, we shouldn't be showing the fetching message, we should
+        // be showing "Buffering".
+        mFakeAsyncTaskExecutor.runTask(CHECK_FOR_CONTENT);
+        assertHasOneTextViewContaining("Buffering");
+        assertZeroTextViewsContaining("Fetching voicemail");
     }
 
     public void testInvalidVoicemailShowsErrorMessage() throws Throwable {
         setActivityIntentForTestVoicemailEntry();
-        CallDetailActivity activity = getActivity();
-        // If we run all the background tasks, one of them should have prepared the media player.
+        startActivityUnderTest();
+        mFakeAsyncTaskExecutor.runTask(CHECK_FOR_CONTENT);
+        // There should be exactly one background task ready to prepare the media player.
         // Preparing the media player will have thrown an IOException since the file doesn't exist.
         // This should have put a failed to play message on screen, buffering is gone.
-        runAllBackgroundTasks();
-        assertHasOneTextViewContaining(activity, "failed to play voicemail");
-        assertZeroTextViewsContaining(activity, "buffering...");
+        mFakeAsyncTaskExecutor.runTask(PREPARE_MEDIA_PLAYER);
+        assertHasOneTextViewContaining("Couldn't play voicemail");
+        assertZeroTextViewsContaining("Buffering");
     }
 
     public void testOnResumeDoesNotCreateManyFragments() throws Throwable {
         // There was a bug where every time the activity was resumed, a new fragment was created.
-        // Before the fix, this was failing reproducibly with at least 3 "buffering..." views.
+        // Before the fix, this was failing reproducibly with at least 3 "Buffering" views.
         setActivityIntentForTestVoicemailEntry();
-        final CallDetailActivity activity = getActivity();
+        startActivityUnderTest();
+        mFakeAsyncTaskExecutor.runTask(CHECK_FOR_CONTENT);
         getInstrumentation().runOnMainSync(new Runnable() {
             @Override
             public void run() {
-                getInstrumentation().callActivityOnPause(activity);
-                getInstrumentation().callActivityOnResume(activity);
-                getInstrumentation().callActivityOnPause(activity);
-                getInstrumentation().callActivityOnResume(activity);
+                getInstrumentation().callActivityOnPause(mActivityUnderTest);
+                getInstrumentation().callActivityOnResume(mActivityUnderTest);
+                getInstrumentation().callActivityOnPause(mActivityUnderTest);
+                getInstrumentation().callActivityOnResume(mActivityUnderTest);
             }
         });
-        assertHasOneTextViewContaining(activity, "buffering...");
+        assertHasOneTextViewContaining("Buffering");
     }
 
     /**
@@ -132,15 +143,15 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
      */
     public void testClickIncreaseRateButtonWithInvalidVoicemailDoesNotCrash() throws Throwable {
         setActivityIntentForTestVoicemailEntry();
-        Activity activity = getActivity();
-        mTestUtils.clickButton(activity, R.id.playback_start_stop);
-        mTestUtils.clickButton(activity, R.id.rate_increase_button);
+        startActivityUnderTest();
+        mTestUtils.clickButton(mActivityUnderTest, R.id.playback_start_stop);
+        mTestUtils.clickButton(mActivityUnderTest, R.id.rate_increase_button);
     }
 
     /** Test for bug where missing Extras on intent used to start Activity causes NPE. */
-    public void testCallLogUriWithMissingExtrasShouldNotCauseNPE() throws Exception {
+    public void testCallLogUriWithMissingExtrasShouldNotCauseNPE() throws Throwable {
         setActivityIntentForTestCallEntry();
-        getActivity();
+        startActivityUnderTest();
     }
 
     /**
@@ -150,20 +161,20 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
      */
     public void testVoicemailDoesNotHaveRemoveFromCallLog() throws Throwable {
         setActivityIntentForTestVoicemailEntry();
-        CallDetailActivity activity = getActivity();
-        Menu menu = new ContextMenuBuilder(activity);
-        activity.onCreateOptionsMenu(menu);
-        activity.onPrepareOptionsMenu(menu);
+        startActivityUnderTest();
+        Menu menu = new ContextMenuBuilder(mActivityUnderTest);
+        mActivityUnderTest.onCreateOptionsMenu(menu);
+        mActivityUnderTest.onPrepareOptionsMenu(menu);
         assertFalse(menu.findItem(R.id.menu_remove_from_call_log).isVisible());
     }
 
     /** Test to check that I haven't broken the remove-from-call-log entry from regular calls. */
     public void testRegularCallDoesHaveRemoveFromCallLog() throws Throwable {
         setActivityIntentForTestCallEntry();
-        CallDetailActivity activity = getActivity();
-        Menu menu = new ContextMenuBuilder(activity);
-        activity.onCreateOptionsMenu(menu);
-        activity.onPrepareOptionsMenu(menu);
+        startActivityUnderTest();
+        Menu menu = new ContextMenuBuilder(mActivityUnderTest);
+        mActivityUnderTest.onCreateOptionsMenu(menu);
+        mActivityUnderTest.onPrepareOptionsMenu(menu);
         assertTrue(menu.findItem(R.id.menu_remove_from_call_log).isVisible());
     }
 
@@ -175,16 +186,16 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
     @Suppress
     public void testVoicemailPlaybackRateDisplayedOnUi() throws Throwable {
         setActivityIntentForTestVoicemailEntry();
-        CallDetailActivity activity = getActivity();
+        startActivityUnderTest();
         // Find the TextView containing the duration.  It should be initially displaying "00:00".
-        List<TextView> views = mTestUtils.getTextViewsWithString(activity, "00:00");
+        List<TextView> views = mTestUtils.getTextViewsWithString(mActivityUnderTest, "00:00");
         assertEquals(1, views.size());
         TextView timeDisplay = views.get(0);
         // Hit the plus button.  At this point we should be displaying "fast speed".
-        mTestUtils.clickButton(activity, R.id.rate_increase_button);
+        mTestUtils.clickButton(mActivityUnderTest, R.id.rate_increase_button);
         assertEquals("fast speed", mTestUtils.getText(timeDisplay));
         // Hit the minus button.  We should be back to "normal" speed.
-        mTestUtils.clickButton(activity, R.id.rate_decrease_button);
+        mTestUtils.clickButton(mActivityUnderTest, R.id.rate_decrease_button);
         assertEquals("normal speed", mTestUtils.getText(timeDisplay));
         // Wait for one and a half seconds.  The timer will be back.
         Thread.sleep(1500);
@@ -192,39 +203,39 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
     }
 
     private void setActivityIntentForTestCallEntry() {
-        createTestCallEntry(false);
-        setActivityIntent(new Intent(Intent.ACTION_VIEW, mUri));
+        Preconditions.checkState(mCallLogUri == null, "mUri should be null");
+        ContentResolver contentResolver = getContentResolver();
+        ContentValues values = new ContentValues();
+        values.put(CallLog.Calls.NUMBER, "01234567890");
+        values.put(CallLog.Calls.TYPE, CallLog.Calls.INCOMING_TYPE);
+        mCallLogUri = contentResolver.insert(CallLog.Calls.CONTENT_URI, values);
+        setActivityIntent(new Intent(Intent.ACTION_VIEW, mCallLogUri));
     }
 
     private void setActivityIntentForTestVoicemailEntry() {
-        createTestCallEntry(true);
-        Intent intent = new Intent(Intent.ACTION_VIEW, mUri);
-        Uri voicemailUri = Uri.parse(FAKE_VOICEMAIL_URI_STRING);
-        intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_URI, voicemailUri);
+        Preconditions.checkState(mVoicemailUri == null, "mUri should be null");
+        ContentResolver contentResolver = getContentResolver();
+        ContentValues values = new ContentValues();
+        values.put(VoicemailContract.Voicemails.NUMBER, "01234567890");
+        values.put(VoicemailContract.Voicemails.HAS_CONTENT, 1);
+        mVoicemailUri = contentResolver.insert(VoicemailContract.Voicemails.CONTENT_URI, values);
+        Uri callLogUri = ContentUris.withAppendedId(CallLog.Calls.CONTENT_URI_WITH_VOICEMAIL,
+                ContentUris.parseId(mVoicemailUri));
+        Intent intent = new Intent(Intent.ACTION_VIEW, callLogUri);
+        intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_URI, mVoicemailUri);
         setActivityIntent(intent);
     }
 
-    /** Inserts an entry into the call log. */
-    private void createTestCallEntry(boolean isVoicemail) {
-        Preconditions.checkState(mUri == null, "mUri should be null");
-        ContentResolver contentResolver = getContentResolver();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(CallLog.Calls.NUMBER, "01234567890");
-        if (isVoicemail) {
-            contentValues.put(CallLog.Calls.TYPE, CallLog.Calls.VOICEMAIL_TYPE);
-            contentValues.put(CallLog.Calls.VOICEMAIL_URI, FAKE_VOICEMAIL_URI_STRING);
-        } else {
-            contentValues.put(CallLog.Calls.TYPE, CallLog.Calls.INCOMING_TYPE);
-        }
-        contentValues.put(CallLog.Calls.VOICEMAIL_URI, FAKE_VOICEMAIL_URI_STRING);
-        mUri = contentResolver.insert(CallLog.Calls.CONTENT_URI_WITH_VOICEMAIL, contentValues);
-    }
-
     private void cleanUpUri() {
-        if (mUri != null) {
+        if (mVoicemailUri != null) {
+            getContentResolver().delete(VoicemailContract.Voicemails.CONTENT_URI,
+                    "_ID = ?", new String[] { String.valueOf(ContentUris.parseId(mVoicemailUri)) });
+            mVoicemailUri = null;
+        }
+        if (mCallLogUri != null) {
             getContentResolver().delete(CallLog.Calls.CONTENT_URI_WITH_VOICEMAIL,
-                    "_ID = ?", new String[] { String.valueOf(ContentUris.parseId(mUri)) });
-            mUri = null;
+                    "_ID = ?", new String[] { String.valueOf(ContentUris.parseId(mCallLogUri)) });
+            mCallLogUri = null;
         }
     }
 
@@ -232,23 +243,28 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
         return getInstrumentation().getTargetContext().getContentResolver();
     }
 
-    private TextView assertHasOneTextViewContaining(Activity activity, String text)
-            throws Throwable {
-        List<TextView> views = mTestUtils.getTextViewsWithString(activity, text);
+    private TextView assertHasOneTextViewContaining(String text) throws Throwable {
+        Preconditions.checkNotNull(mActivityUnderTest, "forget to call startActivityUnderTest()?");
+        List<TextView> views = mTestUtils.getTextViewsWithString(mActivityUnderTest, text);
         assertEquals("There should have been one TextView with text '" + text + "' but found "
                 + views, 1, views.size());
         return views.get(0);
     }
 
-    private void assertZeroTextViewsContaining(Activity activity, String text) throws Throwable {
-        List<TextView> views = mTestUtils.getTextViewsWithString(activity, text);
+    private void assertZeroTextViewsContaining(String text) throws Throwable {
+        Preconditions.checkNotNull(mActivityUnderTest, "forget to call startActivityUnderTest()?");
+        List<TextView> views = mTestUtils.getTextViewsWithString(mActivityUnderTest, text);
         assertEquals("There should have been no TextViews with text '" + text + "' but found "
                 + views, 0,  views.size());
     }
 
-    private void runAllBackgroundTasks() {
-        mMockBackgroundTaskService.runAllBackgroundTasks(
-                Executors.sameThreadExecutor(),
-                FakeBackgroundTaskService.createMainSyncExecutor(getInstrumentation()));
+    private void startActivityUnderTest() throws Throwable {
+        Preconditions.checkState(mActivityUnderTest == null, "must only start the activity once");
+        mActivityUnderTest = getActivity();
+        assertNotNull("activity should not be null", mActivityUnderTest);
+        // We have to run all tasks, not just one.
+        // This is because it seems that we can have onResume, onPause, onResume during the course
+        // of a single unit test.
+        mFakeAsyncTaskExecutor.runAllTasks(UPDATE_PHONE_CALL_DETAILS);
     }
 }

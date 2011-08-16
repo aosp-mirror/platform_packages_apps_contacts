@@ -16,11 +16,8 @@
 
 package com.android.contacts;
 
-import static com.android.contacts.util.BackgroundTaskService.createAsyncTaskBackgroundTaskService;
-
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.test.InjectedServices;
-import com.android.contacts.util.BackgroundTaskService;
 import com.google.common.annotations.VisibleForTesting;
 
 import android.app.Application;
@@ -36,7 +33,6 @@ public final class ContactsApplication extends Application {
     private static InjectedServices sInjectedServices;
     private AccountTypeManager mAccountTypeManager;
     private ContactPhotoManager mContactPhotoManager;
-    private BackgroundTaskService mBackgroundTaskService;
 
     /**
      * Overrides the system services with mocks for testing.
@@ -95,13 +91,6 @@ public final class ContactsApplication extends Application {
                 mContactPhotoManager.preloadPhotosInBackground();
             }
             return mContactPhotoManager;
-        }
-
-        if (BackgroundTaskService.BACKGROUND_TASK_SERVICE.equals(name)) {
-            if (mBackgroundTaskService == null) {
-                mBackgroundTaskService = createAsyncTaskBackgroundTaskService();
-            }
-            return mBackgroundTaskService;
         }
 
         return super.getSystemService(name);

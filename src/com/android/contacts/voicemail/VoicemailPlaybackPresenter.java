@@ -19,10 +19,10 @@ package com.android.contacts.voicemail;
 import static android.util.MathUtils.constrain;
 
 import com.android.contacts.R;
-import com.android.contacts.util.BackgroundTask;
-import com.android.contacts.util.BackgroundTaskService;
+import com.android.contacts.util.AsyncTaskExecutor;
 import com.android.ex.variablespeed.MediaPlayerProxy;
 import com.android.ex.variablespeed.SingleThreadedMediaPlayerProxy;
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Preconditions;
 
 import android.content.Context;
@@ -57,7 +57,8 @@ import javax.annotation.concurrent.ThreadSafe;
  * the main ui thread.
  */
 @NotThreadSafe
-/*package*/ class VoicemailPlaybackPresenter {
+@VisibleForTesting
+public class VoicemailPlaybackPresenter {
     /** Contract describing the behaviour we need from the ui we are controlling. */
     public interface PlaybackView {
         Context getDataSourceContext();
@@ -85,6 +86,13 @@ import javax.annotation.concurrent.ThreadSafe;
         void setFetchContentTimeout();
         void registerContentObserver(Uri uri, ContentObserver observer);
         void unregisterContentObserver(ContentObserver observer);
+    }
+
+    /** The enumeration of {@link AsyncTask} objects we use in this class. */
+    public enum Tasks {
+        CHECK_FOR_CONTENT,
+        CHECK_CONTENT_AFTER_CHANGE,
+        PREPARE_MEDIA_PLAYER,
     }
 
     /** Update rate for the slider, 30fps. */
@@ -143,8 +151,8 @@ import javax.annotation.concurrent.ThreadSafe;
     private final Uri mVoicemailUri;
     /** Start playing in onCreate iff this is true. */
     private final boolean mStartPlayingImmediately;
-    /** Used to run background tasks that need to interact with the ui. */
-    private final BackgroundTaskService mBackgroundTaskService;
+    /** Used to run async tasks that need to interact with the ui. */
+    private final AsyncTaskExecutor mAsyncTaskExecutor;
 
     /**
      * Used to handle the result of a successful or time-out fetch result.
@@ -155,12 +163,12 @@ import javax.annotation.concurrent.ThreadSafe;
 
     public VoicemailPlaybackPresenter(PlaybackView view, MediaPlayerProxy player,
             Uri voicemailUri, ScheduledExecutorService executorService,
-            boolean startPlayingImmediately, BackgroundTaskService backgroundTaskService) {
+            boolean startPlayingImmediately, AsyncTaskExecutor asyncTaskExecutor) {
         mView = view;
         mPlayer = player;
         mVoicemailUri = voicemailUri;
         mStartPlayingImmediately = startPlayingImmediately;
-        mBackgroundTaskService = backgroundTaskService;
+        mAsyncTaskExecutor = asyncTaskExecutor;
         mPositionUpdater = new PositionUpdater(executorService, SLIDER_UPDATE_PERIOD_MILLIS);
     }
 
@@ -181,23 +189,21 @@ import javax.annotation.concurrent.ThreadSafe;
      */
     private void checkThatWeHaveContent() {
         mView.setIsFetchingContent();
-        mBackgroundTaskService.submit(new BackgroundTask() {
-            private boolean mHasContent = false;
-
+        mAsyncTaskExecutor.submit(Tasks.CHECK_FOR_CONTENT, new AsyncTask<Void, Void, Boolean>() {
             @Override
-            public void doInBackground() {
-                mHasContent = mView.queryHasContent(mVoicemailUri);
+            public Boolean doInBackground(Void... params) {
+                return mView.queryHasContent(mVoicemailUri);
             }
 
             @Override
-            public void onPostExecute() {
-                if (mHasContent) {
+            public void onPostExecute(Boolean hasContent) {
+                if (hasContent) {
                     postSuccessfullyFetchedContent();
                 } else {
                     makeRequestForContent();
                 }
             }
-        }, AsyncTask.THREAD_POOL_EXECUTOR);
+        });
     }
 
     /**
@@ -253,24 +259,23 @@ import javax.annotation.concurrent.ThreadSafe;
 
         @Override
         public void onChange(boolean selfChange) {
-            mBackgroundTaskService.submit(new BackgroundTask() {
-                private boolean mHasContent = false;
-
+            mAsyncTaskExecutor.submit(Tasks.CHECK_CONTENT_AFTER_CHANGE,
+                    new AsyncTask<Void, Void, Boolean>() {
                 @Override
-                public void doInBackground() {
-                    mHasContent = mView.queryHasContent(mVoicemailUri);
+                public Boolean doInBackground(Void... params) {
+                    return mView.queryHasContent(mVoicemailUri);
                 }
 
                 @Override
-                public void onPostExecute() {
-                    if (mHasContent) {
+                public void onPostExecute(Boolean hasContent) {
+                    if (hasContent) {
                         if (mResultStillPending.getAndSet(false)) {
                             mView.unregisterContentObserver(FetchResultHandler.this);
                             postSuccessfullyFetchedContent();
                         }
                     }
                 }
-            }, AsyncTask.THREAD_POOL_EXECUTOR);
+            });
         }
     }
 
@@ -286,29 +291,29 @@ import javax.annotation.concurrent.ThreadSafe;
      */
     private void postSuccessfullyFetchedContent() {
         mView.setIsBuffering();
-        mBackgroundTaskService.submit(new BackgroundTask() {
-            private Exception mException;
+        mAsyncTaskExecutor.submit(Tasks.PREPARE_MEDIA_PLAYER,
+                new AsyncTask<Void, Void, Exception>() {
+                    @Override
+                    public Exception doInBackground(Void... params) {
+                        try {
+                            mPlayer.reset();
+                            mPlayer.setDataSource(mView.getDataSourceContext(), mVoicemailUri);
+                            mPlayer.prepare();
+                            return null;
+                        } catch (IOException e) {
+                            return e;
+                        }
+                    }
 
-            @Override
-            public void doInBackground() {
-                try {
-                    mPlayer.reset();
-                    mPlayer.setDataSource(mView.getDataSourceContext(), mVoicemailUri);
-                    mPlayer.prepare();
-                } catch (IOException e) {
-                    mException = e;
-                }
-            }
-
-            @Override
-            public void onPostExecute() {
-                if (mException == null) {
-                    postSuccessfulPrepareActions();
-                } else {
-                    mView.playbackError(mException);
-                }
-            }
-        }, AsyncTask.THREAD_POOL_EXECUTOR);
+                    @Override
+                    public void onPostExecute(Exception exception) {
+                        if (exception == null) {
+                            postSuccessfulPrepareActions();
+                        } else {
+                            mView.playbackError(exception);
+                        }
+                    }
+                });
     }
 
     /**

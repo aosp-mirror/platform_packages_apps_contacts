@@ -21,7 +21,7 @@ import static com.android.contacts.CallDetailActivity.EXTRA_VOICEMAIL_URI;
 
 import com.android.common.io.MoreCloseables;
 import com.android.contacts.R;
-import com.android.contacts.util.BackgroundTaskService;
+import com.android.contacts.util.AsyncTaskExecutors;
 import com.android.ex.variablespeed.MediaPlayerProxy;
 import com.android.ex.variablespeed.VariableSpeed;
 import com.google.common.base.Preconditions;
@@ -93,13 +93,9 @@ public class VoicemailPlaybackFragment extends Fragment {
         boolean startPlayback = arguments.getBoolean(EXTRA_VOICEMAIL_START_PLAYBACK, false);
         mPresenter = new VoicemailPlaybackPresenter(createPlaybackViewImpl(),
                 createMediaPlayer(mScheduledExecutorService), voicemailUri,
-                mScheduledExecutorService, startPlayback, getBackgroundTaskService());
+                mScheduledExecutorService, startPlayback,
+                AsyncTaskExecutors.createAsyncTaskExecutor());
         mPresenter.onCreate(savedInstanceState);
-    }
-
-    private BackgroundTaskService getBackgroundTaskService() {
-        return (BackgroundTaskService) getActivity().getApplicationContext().getSystemService(
-                BackgroundTaskService.BACKGROUND_TASK_SERVICE);
     }
 
     @Override

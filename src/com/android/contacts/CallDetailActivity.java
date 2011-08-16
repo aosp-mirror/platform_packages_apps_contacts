@@ -20,9 +20,8 @@ import com.android.contacts.BackScrollManager.ScrollableHeader;
 import com.android.contacts.calllog.CallDetailHistoryAdapter;
 import com.android.contacts.calllog.CallTypeHelper;
 import com.android.contacts.calllog.PhoneNumberHelper;
-import com.android.contacts.util.AbstractBackgroundTask;
-import com.android.contacts.util.BackgroundTask;
-import com.android.contacts.util.BackgroundTaskService;
+import com.android.contacts.util.AsyncTaskExecutor;
+import com.android.contacts.util.AsyncTaskExecutors;
 import com.android.contacts.voicemail.VoicemailPlaybackFragment;
 import com.android.contacts.voicemail.VoicemailStatusHelper;
 import com.android.contacts.voicemail.VoicemailStatusHelper.StatusMessage;
@@ -73,6 +72,14 @@ import java.util.List;
 public class CallDetailActivity extends Activity {
     private static final String TAG = "CallDetail";
 
+    /** The enumeration of {@link AsyncTask} objects used in this class. */
+    public enum Tasks {
+        MARK_VOICEMAIL_READ,
+        DELETE_VOICEMAIL_AND_FINISH,
+        REMOVE_FROM_CALL_LOG_AND_FINISH,
+        UPDATE_PHONE_CALL_DETAILS,
+    }
+
     /** A long array extra containing ids of call log entries to display. */
     public static final String EXTRA_CALL_LOG_IDS = "EXTRA_CALL_LOG_IDS";
     /** If we are started with a voicemail, we'll find the uri to play with this extra. */
@@ -87,7 +94,7 @@ public class CallDetailActivity extends Activity {
     private ImageView mMainActionView;
     private ImageButton mMainActionPushLayerView;
     private ImageView mContactBackgroundView;
-    private BackgroundTaskService mBackgroundTaskService;
+    private AsyncTaskExecutor mAsyncTaskExecutor;
 
     private String mNumber = null;
     private String mDefaultCountryIso;
@@ -161,8 +168,7 @@ public class CallDetailActivity extends Activity {
 
         setContentView(R.layout.call_detail);
 
-        mBackgroundTaskService = (BackgroundTaskService) getApplicationContext().getSystemService(
-                BackgroundTaskService.BACKGROUND_TASK_SERVICE);
+        mAsyncTaskExecutor = AsyncTaskExecutors.createThreadPoolExecutor();
         mInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         mResources = getResources();
 
@@ -231,14 +237,15 @@ public class CallDetailActivity extends Activity {
     }
 
     private void markVoicemailAsRead(final Uri voicemailUri) {
-        mBackgroundTaskService.submit(new AbstractBackgroundTask() {
+        mAsyncTaskExecutor.submit(Tasks.MARK_VOICEMAIL_READ, new AsyncTask<Void, Void, Void>() {
             @Override
-            public void doInBackground() {
+            public Void doInBackground(Void... params) {
                 ContentValues values = new ContentValues();
                 values.put(Voicemails.IS_READ, true);
                 getContentResolver().update(voicemailUri, values, null, null);
+                return null;
             }
-        }, AsyncTask.THREAD_POOL_EXECUTOR);
+        });
     }
 
     /**
@@ -288,28 +295,27 @@ public class CallDetailActivity extends Activity {
      * @param callUris URIs into {@link CallLog.Calls} of the calls to be displayed
      */
     private void updateData(final Uri... callUris) {
-        mBackgroundTaskService.submit(new BackgroundTask() {
-            private PhoneCallDetails[] details;
-
+        class UpdateContactDetailsTask extends AsyncTask<Void, Void, PhoneCallDetails[]> {
             @Override
-            public void doInBackground() {
+            public PhoneCallDetails[] doInBackground(Void... params) {
                 // TODO: All phone calls correspond to the same person, so we can make a single
                 // lookup.
                 final int numCalls = callUris.length;
-                details = new PhoneCallDetails[numCalls];
+                PhoneCallDetails[] details = new PhoneCallDetails[numCalls];
                 try {
                     for (int index = 0; index < numCalls; ++index) {
                         details[index] = getPhoneCallDetailsForUri(callUris[index]);
                     }
+                    return details;
                 } catch (IllegalArgumentException e) {
                     // Something went wrong reading in our primary data.
                     Log.w(TAG, "invalid URI starting call details", e);
-                    details = null;
+                    return null;
                 }
             }
 
             @Override
-            public void onPostExecute() {
+            public void onPostExecute(PhoneCallDetails[] details) {
                 if (details == null) {
                     // Somewhere went wrong: we're going to bail out and show error to users.
                     Toast.makeText(CallDetailActivity.this, R.string.toast_call_detail_error,
@@ -461,7 +467,8 @@ public class CallDetailActivity extends Activity {
                 loadContactPhotos(photoUri);
                 findViewById(R.id.call_detail).setVisibility(View.VISIBLE);
             }
-        });
+        }
+        mAsyncTaskExecutor.submit(Tasks.UPDATE_PHONE_CALL_DETAILS, new UpdateContactDetailsTask());
     }
 
     /** Return the phone call details for a given call log URI. */
@@ -707,34 +714,40 @@ public class CallDetailActivity extends Activity {
             }
             callIds.append(ContentUris.parseId(callUri));
         }
-        mBackgroundTaskService.submit(new BackgroundTask() {
-            @Override
-            public void doInBackground() {
-                getContentResolver().delete(Calls.CONTENT_URI_WITH_VOICEMAIL,
-                        Calls._ID + " IN (" + callIds + ")", null);
-            }
-            @Override
-            public void onPostExecute() {
-                finish();
-            }
-        });
+        mAsyncTaskExecutor.submit(Tasks.REMOVE_FROM_CALL_LOG_AND_FINISH,
+                new AsyncTask<Void, Void, Void>() {
+                    @Override
+                    public Void doInBackground(Void... params) {
+                        getContentResolver().delete(Calls.CONTENT_URI_WITH_VOICEMAIL,
+                                Calls._ID + " IN (" + callIds + ")", null);
+                        return null;
+                    }
+
+                    @Override
+                    public void onPostExecute(Void result) {
+                        finish();
+                    }
+                });
     }
+
     public void onMenuEditNumberBeforeCall(MenuItem menuItem) {
         startActivity(new Intent(Intent.ACTION_DIAL, mPhoneNumberHelper.getCallUri(mNumber)));
     }
 
     public void onMenuTrashVoicemail(MenuItem menuItem) {
         final Uri voicemailUri = getVoicemailUri();
-        mBackgroundTaskService.submit(new BackgroundTask() {
-            @Override
-            public void doInBackground() {
-                getContentResolver().delete(voicemailUri, null, null);
-            }
-            @Override
-            public void onPostExecute() {
-                finish();
-            }
-        });
+        mAsyncTaskExecutor.submit(Tasks.DELETE_VOICEMAIL_AND_FINISH,
+                new AsyncTask<Void, Void, Void>() {
+                    @Override
+                    public Void doInBackground(Void... params) {
+                        getContentResolver().delete(voicemailUri, null, null);
+                        return null;
+                    }
+                    @Override
+                    public void onPostExecute(Void result) {
+                        finish();
+                    }
+                });
     }
 
     private void configureActionBar() {
