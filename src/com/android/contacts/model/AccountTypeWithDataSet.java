@@ -25,16 +25,14 @@ import android.text.TextUtils;
  * Encapsulates an "account type" string and a "data set" string.
  */
 public class AccountTypeWithDataSet {
-    /** account type will never be null. */
+    /** account type.  Can be null for fallback type. */
     public final String accountType;
 
     /** dataSet may be null, but never be "". */
     public final String dataSet;
 
     private AccountTypeWithDataSet(String accountType, String dataSet) {
-        if (accountType == null) throw new NullPointerException();
-
-        this.accountType = accountType;
+        this.accountType = TextUtils.isEmpty(accountType) ? null : accountType;
         this.dataSet = TextUtils.isEmpty(dataSet) ? null : dataSet;
     }
 
@@ -53,7 +51,8 @@ public class AccountTypeWithDataSet {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(accountType) ^ (dataSet == null ? 0 : Objects.hashCode(dataSet));
+        return (accountType == null ? 0 : accountType.hashCode())
+                ^ (dataSet == null ? 0 : dataSet.hashCode());
     }
 
     @Override
