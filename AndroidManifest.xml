@@ -117,7 +117,9 @@
             </intent-filter>
         </activity>
 
-        <!-- Tab container for all tabs -->
+        <!-- The entrance point for Phone UI.
+             stateAlwaysHidden is set to suppress keyboard show up on
+             dialpad screen. -->
         <activity android:name=".activities.DialtactsActivity"
             android:label="@string/launcherDialer"
             android:theme="@style/DialtactsTheme"
@@ -128,7 +130,7 @@
             android:screenOrientation="nosensor"
             android:enabled="@*android:bool/config_voice_capable"
             android:taskAffinity="android.task.contacts.phone"
-        >
+            android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.DIAL" />
                 <category android:name="android.intent.category.DEFAULT" />
