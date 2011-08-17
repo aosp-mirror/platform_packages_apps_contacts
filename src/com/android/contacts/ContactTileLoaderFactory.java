@@ -23,7 +23,6 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Contacts.Data;
 
 /**
  * Used to create {@link CursorLoader}s to load different groups of {@link ContactTileView}s
