@@ -14,10 +14,12 @@
      limitations under the License.
 -->
 <view
+    android:id="@+id/contact_tile_frequent_phone"
     xmlns:android="http://schemas.android.com/apk/res/android"
     class="com.android.contacts.list.ContactTileView"
     android:focusable="true"
-    android:background="@null"
+    android:background="?android:attr/selectableItemBackground"
+    android:nextFocusLeft="@+id/contact_tile_quick"
     android:paddingRight="16dip"
     android:paddingLeft="16dip" >
 
@@ -26,10 +28,12 @@
         android:layout_height="match_parent" >
 
         <QuickContactBadge
-            android:id="@+id/contact_tile_quick"
+            android:id="@id/contact_tile_quick"
+            android:nextFocusRight="@id/contact_tile_frequent_phone"
             android:layout_width="64dip"
             android:layout_height="64dip"
             android:scaleType="centerCrop"
+            android:focusable="true"
             android:layout_alignParentLeft="true" />
 
         <TextView

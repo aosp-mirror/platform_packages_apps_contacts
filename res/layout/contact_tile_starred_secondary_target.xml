@@ -51,10 +51,12 @@
             android:id="@+id/contact_tile_push_state"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:focusable="true"
+            android:nextFocusRight="@+id/contact_tile_secondary_button"
             android:background="?android:attr/selectableItemBackground" />
 
         <ImageButton
-            android:id="@+id/contact_tile_secondary_button"
+            android:id="@id/contact_tile_secondary_button"
             android:src="@drawable/ic_contacts_holo_dark"
             android:background="?android:attr/selectableItemBackground"
             android:layout_height="@dimen/contact_tile_shadowbox_height"
