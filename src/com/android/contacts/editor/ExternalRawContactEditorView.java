@@ -168,7 +168,8 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
 
         // Name
         primary = state.getPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
-        mName.setText(primary.getAsString(StructuredName.DISPLAY_NAME));
+        mName.setText(primary != null ? primary.getAsString(StructuredName.DISPLAY_NAME) :
+                mContext.getString(R.string.missing_name));
 
         if (type.readOnly) {
             mAccountContainer.setOnClickListener(new OnClickListener() {
