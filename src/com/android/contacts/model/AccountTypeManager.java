@@ -338,6 +338,17 @@ class AccountTypeManagerImpl extends AccountTypeManager
                         // Skip external account types that couldn't be initialized.
                         continue;
                     }
+                    if (!accountType.hasContactsMetadata()) {
+                        Log.w(TAG, "Skipping extension package " + extensionPackage + " because"
+                                + " it doesn't have the CONTACTS_STRUCTURE metadata");
+                        continue;
+                    }
+                    if (TextUtils.isEmpty(accountType.accountType)) {
+                        Log.w(TAG, "Skipping extension package " + extensionPackage + " because"
+                                + " the CONTACTS_STRUCTURE metadata doesn't have the accountType"
+                                + " attribute");
+                        continue;
+                    }
                     Log.d(TAG, "Registering extension package account type="
                             + accountType.accountType + ", dataSet=" + accountType.dataSet
                             + ", packageName=" + extensionPackage);

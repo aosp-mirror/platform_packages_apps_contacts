@@ -22,11 +22,9 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.pm.ResolveInfo;
 import android.content.pm.ServiceInfo;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -46,7 +44,6 @@ import java.util.List;
 public class ExternalAccountType extends BaseAccountType {
     private static final String TAG = "ExternalAccountType";
 
-    private static final String ACTION_SYNC_ADAPTER = "android.content.SyncAdapter";
     private static final String METADATA_CONTACTS = "android.provider.CONTACTS_STRUCTURE";
 
     private static final String TAG_CONTACTS_SOURCE_LEGACY = "ContactsSource";
@@ -85,6 +82,7 @@ public class ExternalAccountType extends BaseAccountType {
     private String mAccountTypeLabelAttribute;
     private String mAccountTypeIconAttribute;
     private boolean mInitSuccessful;
+    private boolean mHasContactsMetadata;
 
     public ExternalAccountType(Context context, String resPackageName) {
         this.resPackageName = resPackageName;
@@ -135,6 +133,13 @@ public class ExternalAccountType extends BaseAccountType {
      */
     public boolean isInitialized() {
         return mInitSuccessful;
+    }
+
+    /**
+     * Whether this account type has the android.provider.CONTACTS_STRUCTURE metadata xml.
+     */
+    public boolean hasContactsMetadata() {
+        return mHasContactsMetadata;
     }
 
     @Override
@@ -206,6 +211,8 @@ public class ExternalAccountType extends BaseAccountType {
                 throw new IllegalStateException("Top level element must be "
                         + TAG_CONTACTS_ACCOUNT_TYPE + ", not " + rootTag);
             }
+
+            mHasContactsMetadata = true;
 
             int attributeCount = parser.getAttributeCount();
             for (int i = 0; i < attributeCount; i++) {
