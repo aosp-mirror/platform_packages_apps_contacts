@@ -20,6 +20,7 @@ import com.android.contacts.ContactLoader;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
 
+import android.animation.ObjectAnimator;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -28,7 +29,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 
 /**
  * Determines the layout of the contact card.
@@ -37,6 +40,9 @@ public class ContactDetailLayoutController {
 
     private static final String KEY_CONTACT_HAS_UPDATES = "contactHasUpdates";
     private static final String KEY_CURRENT_PAGE_INDEX = "currentPageIndex";
+
+    private static final int TAB_INDEX_DETAIL = 0;
+    private static final int TAB_INDEX_UPDATES = 1;
 
     /**
      * There are 3 possible layouts for the contact detail screen:
@@ -48,6 +54,7 @@ public class ContactDetailLayoutController {
         TWO_COLUMN, VIEW_PAGER_AND_TAB_CAROUSEL, FRAGMENT_CAROUSEL,
     }
 
+    private final Context mContext;
     private final LayoutInflater mLayoutInflater;
     private final FragmentManager mFragmentManager;
 
@@ -58,10 +65,11 @@ public class ContactDetailLayoutController {
     private View mUpdatesFragmentView;
 
     private final ViewPager mViewPager;
-    private final ContactDetailTabCarousel mTabCarousel;
     private ContactDetailViewPagerAdapter mViewPagerAdapter;
+    private int mViewPagerState;
 
-    private ContactDetailFragmentCarousel mFragmentCarousel;
+    private final ContactDetailTabCarousel mTabCarousel;
+    private final ContactDetailFragmentCarousel mFragmentCarousel;
 
     private ContactDetailFragment.Listener mContactDetailFragmentListener;
 
@@ -80,6 +88,7 @@ public class ContactDetailLayoutController {
                     + "without a non-null FragmentManager");
         }
 
+        mContext = context;
         mLayoutInflater = (LayoutInflater) context.getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
         mFragmentManager = fragmentManager;
@@ -139,17 +148,17 @@ public class ContactDetailLayoutController {
                 // which will in turn be the parents to the mDetailFragment and mUpdatesFragment
                 // since the fragments must have the same parent view IDs in both landscape and
                 // portrait layouts.
-                ViewGroup detailContainer = (ViewGroup) mLayoutInflater.inflate(
+                mDetailFragmentView = mLayoutInflater.inflate(
                         R.layout.contact_detail_about_fragment_container, mViewPager, false);
-                ViewGroup updatesContainer = (ViewGroup) mLayoutInflater.inflate(
+                mUpdatesFragmentView = mLayoutInflater.inflate(
                         R.layout.contact_detail_updates_fragment_container, mViewPager, false);
 
                 mViewPagerAdapter = new ContactDetailViewPagerAdapter();
-                mViewPagerAdapter.setAboutFragmentView(detailContainer);
-                mViewPagerAdapter.setUpdatesFragmentView(updatesContainer);
+                mViewPagerAdapter.setAboutFragmentView(mDetailFragmentView);
+                mViewPagerAdapter.setUpdatesFragmentView(mUpdatesFragmentView);
 
-                mViewPager.addView(detailContainer);
-                mViewPager.addView(updatesContainer);
+                mViewPager.addView(mDetailFragmentView);
+                mViewPager.addView(mUpdatesFragmentView);
                 mViewPager.setAdapter(mViewPagerAdapter);
                 mViewPager.setOnPageChangeListener(mOnPageChangeListener);
 
@@ -164,7 +173,10 @@ public class ContactDetailLayoutController {
                 }
 
                 mTabCarousel.setListener(mTabCarouselListener);
-                TabCarouselScrollManager.bind(mTabCarousel, mDetailFragment, mUpdatesFragment);
+                mDetailFragment.setVerticalScrollListener(
+                        new VerticalScrollListener(TAB_INDEX_DETAIL));
+                mUpdatesFragment.setVerticalScrollListener(
+                        new VerticalScrollListener(TAB_INDEX_UPDATES));
                 mViewPager.setCurrentItem(currentPageIndex);
                 break;
             }
@@ -239,8 +251,9 @@ public class ContactDetailLayoutController {
                 break;
             }
             case VIEW_PAGER_AND_TAB_CAROUSEL: {
-                // Update and show the tab carousel
+                // Update and show the tab carousel (also restore its last saved position)
                 mTabCarousel.loadData(mContactData);
+                mTabCarousel.restoreYCoordinate();
                 mTabCarousel.setVisibility(View.VISIBLE);
                 // Update ViewPager to allow swipe between all the fragments (to see updates)
                 mViewPagerAdapter.enableSwipe(true);
@@ -320,7 +333,9 @@ public class ContactDetailLayoutController {
         outState.putInt(KEY_CURRENT_PAGE_INDEX, getCurrentPageIndex());
     }
 
-    private OnPageChangeListener mOnPageChangeListener = new OnPageChangeListener() {
+    private final OnPageChangeListener mOnPageChangeListener = new OnPageChangeListener() {
+
+        private ObjectAnimator mTabCarouselAnimator;
 
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -338,17 +353,102 @@ public class ContactDetailLayoutController {
 
         @Override
         public void onPageSelected(int position) {
-            // Since a new page has been selected by the {@link ViewPager},
-            // update the tab selection in the carousel.
+            // Since the {@link ViewPager} has committed to a new page now (but may not have
+            // finished scrolling yet), update the tab selection in the carousel.
             mTabCarousel.setCurrentTab(position);
         }
 
         @Override
-        public void onPageScrollStateChanged(int state) {}
+        public void onPageScrollStateChanged(int state) {
+            if (mViewPagerState == ViewPager.SCROLL_STATE_IDLE) {
 
+                // If we are leaving the IDLE state, we are starting a swipe.
+                // First cancel any pending animations on the tab carousel.
+                cancelTabCarouselAnimator();
+
+                // Sync the two lists because the list on the other page will start to show as
+                // we swipe over more.
+                syncScrollStateBetweenLists(mViewPager.getCurrentItem());
+
+            } else if (state == ViewPager.SCROLL_STATE_IDLE) {
+
+                // Otherwise if the {@link ViewPager} is idle now, a page has been selected and
+                // scrolled into place. Perform an animation of the tab carousel is needed.
+                int currentPageIndex = mViewPager.getCurrentItem();
+                int tabCarouselOffset = (int) mTabCarousel.getY();
+                boolean shouldAnimateTabCarousel;
+
+                // Find the offset position of the first item in the list of the current page.
+                int listOffset = getOffsetOfFirstItemInList(currentPageIndex);
+
+                // If the list was able to successfully offset by the tab carousel amount, then
+                // log this as the new Y coordinate for that page, and no animation is needed.
+                if (listOffset == tabCarouselOffset) {
+                    mTabCarousel.storeYCoordinate(currentPageIndex, tabCarouselOffset);
+                    shouldAnimateTabCarousel = false;
+                } else if (listOffset == Integer.MIN_VALUE) {
+                    // If the offset of the first item in the list is unknown (i.e. the item
+                    // is no longer visible on screen) then just animate the tab carousel to the
+                    // previously logged position.
+                    shouldAnimateTabCarousel = true;
+                } else if (Math.abs(listOffset) < Math.abs(tabCarouselOffset)) {
+                    // If the list could not offset the full amount of the tab carousel offset (i.e.
+                    // the list can only be scrolled a tiny amount), then animate the carousel down
+                    // to compensate.
+                    mTabCarousel.storeYCoordinate(currentPageIndex, listOffset);
+                    shouldAnimateTabCarousel = true;
+                } else {
+                    // By default, animate back to the Y coordinate of the tab carousel the last
+                    // time the other page was selected.
+                    shouldAnimateTabCarousel = true;
+                }
+
+                if (shouldAnimateTabCarousel) {
+                    float desiredOffset = mTabCarousel.getStoredYCoordinateForTab(currentPageIndex);
+                    if (desiredOffset != tabCarouselOffset) {
+                        createTabCarouselAnimator(desiredOffset);
+                        mTabCarouselAnimator.start();
+                    }
+                }
+            }
+            mViewPagerState = state;
+        }
+
+        private void createTabCarouselAnimator(float desiredValue) {
+            mTabCarouselAnimator = ObjectAnimator.ofFloat(
+                    mTabCarousel, "y", desiredValue).setDuration(75);
+            mTabCarouselAnimator.setInterpolator(AnimationUtils.loadInterpolator(
+                    mContext, android.R.anim.accelerate_decelerate_interpolator));
+        }
+
+        private void cancelTabCarouselAnimator() {
+            if (mTabCarouselAnimator != null) {
+                mTabCarouselAnimator.cancel();
+                mTabCarouselAnimator = null;
+            }
+        }
     };
 
-    private ContactDetailTabCarousel.Listener mTabCarouselListener =
+    private void syncScrollStateBetweenLists(int currentPageIndex) {
+        // Since the user interacted with the currently visible page, we need to sync the
+        // list on the other page (i.e. if the updates page is the current page, modify the
+        // list in the details page).
+        if (currentPageIndex == TAB_INDEX_UPDATES) {
+            mDetailFragment.requestToMoveToOffset((int) mTabCarousel.getY());
+        } else {
+            mUpdatesFragment.requestToMoveToOffset((int) mTabCarousel.getY());
+        }
+    }
+
+    private int getOffsetOfFirstItemInList(int currentPageIndex) {
+        if (currentPageIndex == TAB_INDEX_DETAIL) {
+            return mDetailFragment.getFirstListItemOffset();
+        } else {
+            return mUpdatesFragment.getFirstListItemOffset();
+        }
+    }
+
+    private final ContactDetailTabCarousel.Listener mTabCarouselListener =
             new ContactDetailTabCarousel.Listener() {
 
         @Override
@@ -385,4 +485,52 @@ public class ContactDetailLayoutController {
             mViewPager.setCurrentItem(position);
         }
     };
+
+    private final class VerticalScrollListener implements OnScrollListener {
+
+        private final int mPageIndex;
+
+        public VerticalScrollListener(int pageIndex) {
+            mPageIndex = pageIndex;
+        }
+
+        @Override
+        public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
+                int totalItemCount) {
+            int currentPageIndex = mViewPager.getCurrentItem();
+            // Don't move the carousel if: 1) the contact does not have social updates because then
+            // tab carousel must not be visible, 2) if the view pager is still being scrolled, or
+            // 3) if the current page being viewed is not this one.
+            if (!mContactHasUpdates || mViewPagerState != ViewPager.SCROLL_STATE_IDLE ||
+                    mPageIndex != currentPageIndex) {
+                return;
+            }
+            // If the FIRST item is not visible on the screen, then the carousel must be pinned
+            // at the top of the screen.
+            if (firstVisibleItem != 0) {
+                mTabCarousel.moveToYCoordinate(mPageIndex,
+                        -mTabCarousel.getAllowedVerticalScrollLength());
+                return;
+            }
+            View topView = view.getChildAt(firstVisibleItem);
+            if (topView == null) {
+                return;
+            }
+            int amtToScroll = Math.max((int) view.getChildAt(firstVisibleItem).getY(),
+                    -mTabCarousel.getAllowedVerticalScrollLength());
+            mTabCarousel.moveToYCoordinate(mPageIndex, amtToScroll);
+        }
+
+        @Override
+        public void onScrollStateChanged(AbsListView view, int scrollState) {
+            // Once the list has become IDLE, check if we need to sync the scroll position of
+            // the other list now. This will make swiping faster by doing the re-layout now
+            // (instead of at the start of a swipe). However, there will still be another check
+            // when we start swiping if the scroll positions are correct (to catch the edge case
+            // where the user flings and immediately starts a swipe so we never get the idle state).
+            if (scrollState == SCROLL_STATE_IDLE) {
+                syncScrollStateBetweenLists(mPageIndex);
+            }
+        }
+    }
 }

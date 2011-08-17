@@ -377,6 +377,25 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         bindData();
     }
 
+    /**
+     * Returns the top coordinate of the first item in the {@link ListView}. If the first item
+     * in the {@link ListView} is not visible or there are no children in the list, then return
+     * Integer.MIN_VALUE. Note that the returned value will be <= 0 because the first item in the
+     * list cannot have a positive offset.
+     */
+    public int getFirstListItemOffset() {
+        return ContactDetailDisplayUtils.getFirstListItemOffset(mListView);
+    }
+
+    /**
+     * Tries to scroll the first item to the given offset (this can be a no-op if the list is
+     * already in the correct position).
+     * @param offset which should be <= 0
+     */
+    public void requestToMoveToOffset(int offset) {
+        ContactDetailDisplayUtils.requestToMoveToOffset(mListView, offset);
+    }
+
     protected void bindData() {
         if (mView == null) {
             return;

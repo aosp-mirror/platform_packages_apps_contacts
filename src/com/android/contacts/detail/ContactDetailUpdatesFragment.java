@@ -23,7 +23,6 @@ import com.android.contacts.detail.ContactDetailDisplayUtils.StreamPhotoTag;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.util.StreamItemEntry;
-import com.android.contacts.util.StreamItemPhotoEntry;
 
 import android.app.ListFragment;
 import android.content.ContentUris;
@@ -31,12 +30,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.StreamItems;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.ListView;
 
 public class ContactDetailUpdatesFragment extends ListFragment
         implements FragmentKeyListener, ViewOverlay {
@@ -194,4 +193,22 @@ public class ContactDetailUpdatesFragment extends ListFragment
         mVerticalScrollListener = listener;
     }
 
+    /**
+     * Returns the top coordinate of the first item in the {@link ListView}. If the first item
+     * in the {@link ListView} is not visible or there are no children in the list, then return
+     * Integer.MIN_VALUE. Note that the returned value will be <= 0 because the first item in the
+     * list cannot have a positive offset.
+     */
+    public int getFirstListItemOffset() {
+        return ContactDetailDisplayUtils.getFirstListItemOffset(getListView());
+    }
+
+    /**
+     * Tries to scroll the first item to the given offset (this can be a no-op if the list is
+     * already in the correct position).
+     * @param offset which should be <= 0
+     */
+    public void requestToMoveToOffset(int offset) {
+        ContactDetailDisplayUtils.requestToMoveToOffset(getListView(), offset);
+    }
 }
