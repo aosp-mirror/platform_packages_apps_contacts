@@ -57,10 +57,15 @@ public class ContactBadgeUtil {
 
         final String statusLabelRes = streamItem.getLabelRes();
         final String statusResPackage = streamItem.getResPackage();
+
+        // Package name used for resources.getIdentifier()
+        String identiferPackage = statusResPackage;
         if (statusLabelRes  != null) {
             Resources resources;
             if (TextUtils.isEmpty(statusResPackage)) {
                 resources = context.getResources();
+                // In this case, we're using the framework resources.
+                identiferPackage = "android";
             } else {
                 PackageManager pm = context.getPackageManager();
                 try {
@@ -74,7 +79,7 @@ public class ContactBadgeUtil {
 
             if (resources != null) {
                 final int resId = resources.getIdentifier(statusLabelRes, "string",
-                        statusResPackage);
+                        identiferPackage);
                 if (resId == 0) {
                     Log.w(TAG, "Contact status update resource not found: " + statusLabelRes +
                             " in " + statusResPackage);
