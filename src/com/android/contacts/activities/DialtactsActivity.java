@@ -57,9 +57,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
-import android.view.View.OnAttachStateChangeListener;
+import android.view.View.OnClickListener;
 import android.view.ViewConfiguration;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
 import android.widget.SearchView.OnQueryTextListener;
@@ -245,6 +246,23 @@ public class DialtactsActivity extends Activity {
     private SearchView mSearchView;
 
     /**
+     * Available only when the device doesn't have hard menu key. Used to show "filter option"
+     * menu on the right of {@link SearchView}.
+     */
+    private View mFilterOptionView;
+    private final OnClickListener mFilterOptionClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            final PopupMenu popupMenu = new PopupMenu(DialtactsActivity.this, view);
+            final Menu menu = popupMenu.getMenu();
+            popupMenu.inflate(R.menu.dialtacts_search_options);
+            final MenuItem filterOptionMenuItem = menu.findItem(R.id.filter_option);
+            filterOptionMenuItem.setOnMenuItemClickListener(mFilterOptionsMenuItemClickListener);
+            popupMenu.show();
+        }
+    };
+
+    /**
      * The index of the Fragment (or, the tab) that has last been manually selected.
      * This value does not keep track of programmatically set Tabs (e.g. Call Log after a Call)
      */
@@ -393,7 +411,7 @@ public class DialtactsActivity extends Activity {
 
     private void prepareSearchView() {
         final View searchViewLayout =
-                getLayoutInflater().inflate(R.layout.custom_action_bar, null);
+                getLayoutInflater().inflate(R.layout.dialtacts_custom_action_bar, null);
         mSearchView = (SearchView) searchViewLayout.findViewById(R.id.search_view);
         mSearchView.setOnQueryTextListener(mPhoneSearchQueryTextListener);
         mSearchView.setOnCloseListener(mPhoneSearchCloseListener);
@@ -406,6 +424,14 @@ public class DialtactsActivity extends Activity {
         mSearchView.setIconifiedByDefault(true);
         mSearchView.setQueryHint(getString(R.string.hint_findContacts));
         mSearchView.setIconified(false);
+
+        if (!ViewConfiguration.get(this).hasPermanentMenuKey()) {
+            // Filter option menu should be shown on the right side of SearchView.
+            mFilterOptionView = searchViewLayout.findViewById(R.id.search_option);
+            mFilterOptionView.setVisibility(View.VISIBLE);
+            mFilterOptionView.setOnClickListener(mFilterOptionClickListener);
+        }
+
         getActionBar().setCustomView(searchViewLayout,
                 new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
     }
@@ -675,9 +701,14 @@ public class DialtactsActivity extends Activity {
         Tab tab = getActionBar().getSelectedTab();
         if (mInSearchUi) {
             searchMenuItem.setVisible(false);
-            filterOptionMenuItem.setVisible(true);
-            filterOptionMenuItem.setOnMenuItemClickListener(
-                    mFilterOptionsMenuItemClickListener);
+            if (ViewConfiguration.get(this).hasPermanentMenuKey()) {
+                filterOptionMenuItem.setVisible(true);
+                filterOptionMenuItem.setOnMenuItemClickListener(
+                        mFilterOptionsMenuItemClickListener);
+            } else {
+                // Filter option menu should be not be shown as a overflow menu.
+                filterOptionMenuItem.setVisible(false);
+            }
             callSettingsMenuItem.setVisible(false);
         } else {
             final boolean showCallSettingsMenu;
