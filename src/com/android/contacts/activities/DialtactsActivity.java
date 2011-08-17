@@ -245,11 +245,6 @@ public class DialtactsActivity extends Activity {
     private boolean mInSearchUi;
     private SearchView mSearchView;
 
-    /**
-     * Available only when the device doesn't have hard menu key. Used to show "filter option"
-     * menu on the right of {@link SearchView}.
-     */
-    private View mFilterOptionView;
     private final OnClickListener mFilterOptionClickListener = new OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -427,9 +422,9 @@ public class DialtactsActivity extends Activity {
 
         if (!ViewConfiguration.get(this).hasPermanentMenuKey()) {
             // Filter option menu should be shown on the right side of SearchView.
-            mFilterOptionView = searchViewLayout.findViewById(R.id.search_option);
-            mFilterOptionView.setVisibility(View.VISIBLE);
-            mFilterOptionView.setOnClickListener(mFilterOptionClickListener);
+            final View filterOptionView = searchViewLayout.findViewById(R.id.search_option);
+            filterOptionView.setVisibility(View.VISIBLE);
+            filterOptionView.setOnClickListener(mFilterOptionClickListener);
         }
 
         getActionBar().setCustomView(searchViewLayout,
