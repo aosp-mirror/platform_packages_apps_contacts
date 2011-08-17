@@ -103,11 +103,9 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
 
         // TODO: We can't always assume the "about" page will be the current page.
         mAboutTab.showSelectedState();
-        mAboutTab.enableAlphaLayer();
         mAboutTab.setAlphaLayerValue(0);
         mAboutTab.enableTouchInterceptor(mAboutTabTouchInterceptListener);
 
-        mUpdatesTab.enableAlphaLayer();
         mUpdatesTab.setAlphaLayerValue(MAX_ALPHA);
         mUpdatesTab.enableTouchInterceptor(mUpdatesTabTouchInterceptListener);
 

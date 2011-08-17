@@ -50,12 +50,12 @@ public class ContactDetailViewPagerAdapter extends PagerAdapter {
         mUpdatesFragmentView = view;
     }
 
-    public void setFragmentViewCount(int viewCount) {
-        if (viewCount < 0 || viewCount > MAX_FRAGMENT_VIEW_COUNT) {
-            throw new IllegalStateException("The view count in the ViewPager adapter must not be"
-                    + "less than 0 or exceed " + MAX_FRAGMENT_VIEW_COUNT);
-        }
-        mFragmentViewCount = viewCount;
+    /**
+     * Enable swiping if the detail and update fragments should be showing. Otherwise diable
+     * swiping if only the detail fragment should be showing.
+     */
+    public void enableSwipe(boolean enable) {
+        mFragmentViewCount = enable ? MAX_FRAGMENT_VIEW_COUNT : 1;
         notifyDataSetChanged();
     }
 

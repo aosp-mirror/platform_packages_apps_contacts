@@ -183,6 +183,11 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     private View mEmptyView;
 
     /**
+     * Initial alpha value to set on the alpha layer.
+     */
+    private float mInitialAlphaValue;
+
+    /**
      * This optional view adds an alpha layer over the entire fragment.
      */
     private View mAlphaLayer;
@@ -285,8 +290,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         // Don't set it to mListView yet.  We do so later when we bind the adapter.
         mEmptyView = mView.findViewById(android.R.id.empty);
 
-        mAlphaLayer = mView.findViewById(R.id.alpha_overlay);
         mTouchInterceptLayer = mView.findViewById(R.id.touch_intercept_overlay);
+        mAlphaLayer = mView.findViewById(R.id.alpha_overlay);
+        ContactDetailDisplayUtils.setAlphaOnViewBackground(mAlphaLayer, mInitialAlphaValue);
 
         mQuickFixButton = (Button) mView.findViewById(R.id.contact_quick_fix);
         mQuickFixButton.setOnClickListener(new OnClickListener() {
@@ -315,13 +321,12 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
     @Override
     public void setAlphaLayerValue(float alpha) {
-        ContactDetailDisplayUtils.setAlphaOnViewBackground(mAlphaLayer, alpha);
-    }
-
-    @Override
-    public void enableAlphaLayer() {
-        if (mAlphaLayer != null) {
-            mAlphaLayer.setVisibility(View.VISIBLE);
+        // If the alpha layer is not ready yet, store it for later when the view is initialized
+        if (mAlphaLayer == null) {
+            mInitialAlphaValue = alpha;
+        } else {
+            // Otherwise set the value immediately
+            ContactDetailDisplayUtils.setAlphaOnViewBackground(mAlphaLayer, alpha);
         }
     }
 

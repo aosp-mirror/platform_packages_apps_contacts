@@ -78,13 +78,6 @@ public class CarouselTab extends RelativeLayout implements ViewOverlay {
     }
 
     @Override
-    public void enableAlphaLayer() {
-        if (mAlphaLayer != null) {
-            mAlphaLayer.setVisibility(View.VISIBLE);
-        }
-    }
-
-    @Override
     public void enableTouchInterceptor(OnClickListener clickListener) {
         if (mTouchInterceptLayer != null) {
             mTouchInterceptLayer.setVisibility(View.VISIBLE);

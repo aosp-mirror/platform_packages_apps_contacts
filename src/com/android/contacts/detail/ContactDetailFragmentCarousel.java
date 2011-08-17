@@ -54,8 +54,30 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
      */
     private int mUpperThreshold = Integer.MIN_VALUE;
 
+    /**
+     * Minimum width of a fragment (if there is more than 1 fragment in the carousel, then this is
+     * the width of one of the fragments).
+     */
+    private int mMinFragmentWidth = Integer.MIN_VALUE;
+
+    /**
+     * Maximum alpha value of the overlay on the fragment that is not currently selected
+     * (if there are 1+ fragments in the carousel).
+     */
+    private static final float MAX_ALPHA = 0.5f;
+
+    /**
+     * Fragment width (if there are 1+ fragments in the carousel) as defined as a fraction of the
+     * screen width.
+     */
+    private static final float FRAGMENT_WIDTH_SCREEN_WIDTH_FRACTION = 0.85f;
+
     private static final int ABOUT_PAGE = 0;
     private static final int UPDATES_PAGE = 1;
+
+    private static final int MAX_FRAGMENT_VIEW_COUNT = 2;
+
+    private boolean mEnableSwipe;
 
     private int mCurrentPage = ABOUT_PAGE;
     private int mLastScrollPosition;
@@ -63,7 +85,8 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
     private ViewOverlay mAboutFragment;
     private ViewOverlay mUpdatesFragment;
 
-    private static final float MAX_ALPHA = 0.5f;
+    private View mDetailFragmentView;
+    private View mUpdatesFragmentView;
 
     private final Handler mHandler = new Handler();
 
@@ -87,42 +110,86 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int screenWidth = MeasureSpec.getSize(widthMeasureSpec);
+        int screenHeight = MeasureSpec.getSize(heightMeasureSpec);
 
         // Take the width of this view as the width of the screen and compute necessary thresholds.
         // Only do this computation 1x.
         if (mAllowedHorizontalScrollLength == Integer.MIN_VALUE) {
-            int screenWidth = MeasureSpec.getSize(widthMeasureSpec);
-            int fragmentWidth = mContext.getResources().getDimensionPixelSize(
-                    R.dimen.detail_fragment_carousel_fragment_width);
-            mAllowedHorizontalScrollLength = (2 * fragmentWidth) - screenWidth;
-            mLowerThreshold = (screenWidth - fragmentWidth) / 2;
+            mMinFragmentWidth = (int) (FRAGMENT_WIDTH_SCREEN_WIDTH_FRACTION * screenWidth);
+            mAllowedHorizontalScrollLength = (MAX_FRAGMENT_VIEW_COUNT * mMinFragmentWidth) -
+                    screenWidth;
+            mLowerThreshold = (screenWidth - mMinFragmentWidth) / MAX_FRAGMENT_VIEW_COUNT;
             mUpperThreshold = mAllowedHorizontalScrollLength - mLowerThreshold;
         }
+
+        if (getChildCount() > 0) {
+            View child = getChildAt(0);
+            // If we enable swipe, then the {@link LinearLayout} child width must be the sum of the
+            // width of all its children fragments.
+            if (mEnableSwipe) {
+                child.measure(MeasureSpec.makeMeasureSpec(
+                        mMinFragmentWidth * MAX_FRAGMENT_VIEW_COUNT, MeasureSpec.EXACTLY),
+                        MeasureSpec.makeMeasureSpec(screenHeight, MeasureSpec.EXACTLY));
+            } else {
+                // Otherwise, the {@link LinearLayout} child width will just be the screen width
+                // because it will only have 1 child fragment.
+                child.measure(MeasureSpec.makeMeasureSpec(screenWidth, MeasureSpec.EXACTLY),
+                        MeasureSpec.makeMeasureSpec(screenHeight, MeasureSpec.EXACTLY));
+            }
+        }
+
+        setMeasuredDimension(
+                resolveSize(screenWidth, widthMeasureSpec),
+                resolveSize(screenHeight, heightMeasureSpec));
     }
 
+    /**
+     * Set the current page. This auto-scrolls the carousel to the current page and dims out
+     * the non-selected page.
+     */
     public void setCurrentPage(int pageIndex) {
-        if (mCurrentPage != pageIndex) {
-            mCurrentPage = pageIndex;
+        mCurrentPage = pageIndex;
 
-            // This method could have been called before the view has been measured, so snap to edge
-            // only after the view is ready.
-            postRunnableToSnapToEdge();
+        if (mAboutFragment != null && mUpdatesFragment != null) {
+            mAboutFragment.setAlphaLayerValue(mCurrentPage == ABOUT_PAGE ? 0 : MAX_ALPHA);
+            mUpdatesFragment.setAlphaLayerValue(mCurrentPage == UPDATES_PAGE ? 0 : MAX_ALPHA);
+            snapToEdge();
         }
     }
 
+    /**
+     * Set the view containers for the detail and updates fragment.
+     */
+    public void setFragmentViews(View detailFragmentView, View updatesFragmentView) {
+        mDetailFragmentView = detailFragmentView;
+        mUpdatesFragmentView = updatesFragmentView;
+    }
+
+    /**
+     * Set the detail and updates fragment.
+     */
     public void setFragments(ViewOverlay aboutFragment, ViewOverlay updatesFragment) {
         mAboutFragment = aboutFragment;
-        mAboutFragment.enableAlphaLayer();
-        mAboutFragment.setAlphaLayerValue(mCurrentPage == ABOUT_PAGE ? 0 : MAX_ALPHA);
-
         mUpdatesFragment = updatesFragment;
-        mUpdatesFragment.enableAlphaLayer();
-        mUpdatesFragment.setAlphaLayerValue(mCurrentPage == UPDATES_PAGE ? 0 : MAX_ALPHA);
+    }
 
-        // This method could have been called before the view has been measured, so snap to edge
-        // only after the view is ready.
-        postRunnableToSnapToEdge();
+    /**
+     * Enable swiping if the detail and update fragments should be showing. Otherwise disable
+     * swiping if only the detail fragment should be showing.
+     */
+    public void enableSwipe(boolean enable) {
+        if (mEnableSwipe != enable) {
+            mEnableSwipe = enable;
+            if (mUpdatesFragmentView != null) {
+                mUpdatesFragmentView.setVisibility(enable ? View.VISIBLE : View.GONE);
+                requestLayout();
+                invalidate();
+            }
+            // This method could have been called before the view has been measured (i.e.
+            // immediately after a rotation), so snap to edge only after the view is ready.
+            postRunnableToSnapToEdge();
+        }
     }
 
     /**
@@ -134,8 +201,7 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                if (isAttachedToWindow() && mAboutFragment != null &&
-                        mUpdatesFragment != null) {
+                if (isAttachedToWindow() && mAboutFragment != null && mUpdatesFragment != null) {
                     snapToEdge();
                 }
             }
@@ -187,6 +253,9 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
     @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         super.onScrollChanged(l, t, oldl, oldt);
+        if (!mEnableSwipe) {
+            return;
+        }
         mLastScrollPosition= l;
         updateAlphaLayers();
     }
@@ -223,6 +292,9 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
+        if (!mEnableSwipe) {
+            return false;
+        }
         if (event.getAction() == MotionEvent.ACTION_UP) {
             mCurrentPage = getDesiredPage();
             snapToEdge();

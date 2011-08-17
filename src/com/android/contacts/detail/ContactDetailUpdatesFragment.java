@@ -47,6 +47,8 @@ public class ContactDetailUpdatesFragment extends ListFragment
     private LayoutInflater mInflater;
     private StreamItemAdapter mStreamItemAdapter;
 
+    private float mInitialAlphaValue;
+
     /**
      * This optional view adds an alpha layer over the entire fragment.
      */
@@ -96,8 +98,9 @@ public class ContactDetailUpdatesFragment extends ListFragment
         View rootView = mInflater.inflate(R.layout.contact_detail_updates_fragment, container,
                 false);
 
-        mAlphaLayer = rootView.findViewById(R.id.alpha_overlay);
         mTouchInterceptLayer = rootView.findViewById(R.id.touch_intercept_overlay);
+        mAlphaLayer = rootView.findViewById(R.id.alpha_overlay);
+        ContactDetailDisplayUtils.setAlphaOnViewBackground(mAlphaLayer, mInitialAlphaValue);
 
         return rootView;
     }
@@ -135,13 +138,12 @@ public class ContactDetailUpdatesFragment extends ListFragment
 
     @Override
     public void setAlphaLayerValue(float alpha) {
-        ContactDetailDisplayUtils.setAlphaOnViewBackground(mAlphaLayer, alpha);
-    }
-
-    @Override
-    public void enableAlphaLayer() {
-        if (mAlphaLayer != null) {
-            mAlphaLayer.setVisibility(View.VISIBLE);
+        // If the alpha layer is not ready yet, store it for later when the view is initialized
+        if (mAlphaLayer == null) {
+            mInitialAlphaValue = alpha;
+        } else {
+            // Otherwise set the value immediately
+            ContactDetailDisplayUtils.setAlphaOnViewBackground(mAlphaLayer, alpha);
         }
     }
 
