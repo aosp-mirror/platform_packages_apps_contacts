@@ -156,6 +156,7 @@ public class PeopleActivity extends ContactsActivity
     /** ViewPager for swipe, used only on the phone (i.e. one-pane mode) */
     private ViewPager mTabPager;
     private TabPagerAdapter mTabPagerAdapter;
+    private final TabPagerListener mTabPagerListener = new TabPagerListener();
 
     private ContactDetailLayoutController mContactDetailLayoutController;
 
@@ -315,7 +316,7 @@ public class PeopleActivity extends ContactsActivity
             mTabPager = getView(R.id.tab_pager);
             mTabPagerAdapter = new TabPagerAdapter();
             mTabPager.setAdapter(mTabPagerAdapter);
-            mTabPager.setOnPageChangeListener(new TabPagerListener());
+            mTabPager.setOnPageChangeListener(mTabPagerListener);
 
             final String FAVORITE_TAG = "tab-pager-favorite";
             final String ALL_TAG = "tab-pager-all";
@@ -450,6 +451,9 @@ public class PeopleActivity extends ContactsActivity
         // Re-register the listener, which may have been cleared when onSaveInstanceState was
         // called.  See also: onSaveInstanceState
         mActionBarAdapter.setListener(this);
+        if (mTabPager != null) {
+            mTabPager.setOnPageChangeListener(mTabPagerListener);
+        }
         // Current tab may have changed since the last onSaveInstanceState().  Make sure
         // the actual contents match the tab.
         updateFragmentsVisibility();
@@ -1527,6 +1531,9 @@ public class PeopleActivity extends ContactsActivity
         // in order to avoid doing fragment transactions after it.
         // TODO Figure out a better way to deal with the issue.
         mActionBarAdapter.setListener(null);
+        if (mTabPager != null) {
+            mTabPager.setOnPageChangeListener(null);
+        }
     }
 
     @Override
