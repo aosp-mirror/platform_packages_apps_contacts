@@ -107,6 +107,11 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
          * Contact was saved and the Fragment can now be closed safely.
          */
         void onSaveFinished(int resultCode, Intent resultIntent);
+
+        /**
+         * Fragment is created but there's no accounts set up.
+         */
+        void onAccountsNotFound();
     }
 
     private static final int LOADER_GROUP_METADATA = 1;
@@ -308,7 +313,11 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
                 AccountTypeManager.getInstance(mContext).getAccounts(true /* writeable */);
         // No Accounts available
         if (accounts.isEmpty()) {
-            throw new IllegalStateException("No accounts were found.");
+            Log.e(TAG, "No accounts were found.");
+            if (mListener != null) {
+                mListener.onAccountsNotFound();
+            }
+            return;
         }
 
         // In the common case of a single account being writable, auto-select

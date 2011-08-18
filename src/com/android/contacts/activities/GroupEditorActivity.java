@@ -147,6 +147,11 @@ public class GroupEditorActivity extends ContactsActivity
         }
 
         @Override
+        public void onAccountsNotFound() {
+            finish();
+        }
+
+        @Override
         public void onSaveFinished(int resultCode, Intent resultIntent) {
             // TODO: Collapse these 2 cases into 1 that will just launch an intent with the VIEW
             // action to see the group URI (when group URIs are supported)
