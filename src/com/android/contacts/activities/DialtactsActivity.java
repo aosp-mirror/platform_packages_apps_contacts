@@ -568,13 +568,14 @@ public class DialtactsActivity extends Activity {
         } else {
             tabIndex = mLastManuallySelectedFragment;
         }
+
+        final int previousItemIndex = mViewPager.getCurrentItem();
         mViewPager.setCurrentItem(tabIndex, false /* smoothScroll */);
-        if (mViewPager.getCurrentItem() == tabIndex) {
-            mPageChangeListener.setCurrentPosition(tabIndex);
-            sendFragmentVisibilityChange(tabIndex, true);
-        } else {
-            getActionBar().selectTab(getActionBar().getTabAt(tabIndex));
+        if (previousItemIndex != tabIndex) {
+            sendFragmentVisibilityChange(previousItemIndex, false);
         }
+        mPageChangeListener.setCurrentPosition(tabIndex);
+        sendFragmentVisibilityChange(tabIndex, true);
 
         // Restore to the previous manual selection
         mLastManuallySelectedFragment = savedTabIndex;
