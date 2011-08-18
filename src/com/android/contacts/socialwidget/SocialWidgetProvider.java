@@ -36,6 +36,7 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.StreamItems;
+import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
@@ -204,7 +205,7 @@ public class SocialWidgetProvider extends AppWidgetProvider {
         } else {
             // TODO: Rotate between all the stream items?
             StreamItemEntry streamItem = streamItems.get(0);
-            CharSequence status = streamItem.getText();
+            CharSequence status = Html.fromHtml(streamItem.getText());
             if (status.length() <= SHORT_SNIPPET_LENGTH) {
                 sb.append("\n");
             } else {
