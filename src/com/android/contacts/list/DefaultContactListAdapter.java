@@ -186,7 +186,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 break;
             }
             case ContactListFilter.FILTER_TYPE_ACCOUNT: {
-                // TODO: avoid the use of private API
+                // TODO (stopship): avoid the use of private API
                 selection.append(
                         Contacts._ID + " IN ("
                                 + "SELECT DISTINCT " + RawContacts.CONTACT_ID
@@ -201,7 +201,11 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 } else {
                     selection.append(" AND " + RawContacts.DATA_SET + " IS NULL");
                 }
-                selection.append(" OR " + Contacts.IS_USER_PROFILE + "=1)");
+                // TODO (stopship): And also this private API, which is even worse
+                selection.append(") OR " + Contacts._ID + "=(" +
+                        "SELECT contact_id " +
+                        "FROM raw_contacts rc inner join accounts a" +
+                        " ON a.profile_raw_contact_id = rc._id)");
                 break;
             }
             case ContactListFilter.FILTER_TYPE_GROUP: {
