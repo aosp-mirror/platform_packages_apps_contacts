@@ -46,6 +46,7 @@ import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.provider.CallLog.Calls;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents.UI;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -253,6 +254,9 @@ public class DialtactsActivity extends Activity {
             popupMenu.inflate(R.menu.dialtacts_search_options);
             final MenuItem filterOptionMenuItem = menu.findItem(R.id.filter_option);
             filterOptionMenuItem.setOnMenuItemClickListener(mFilterOptionsMenuItemClickListener);
+            final MenuItem addContactOptionMenuItem = menu.findItem(R.id.add_contact);
+            addContactOptionMenuItem.setIntent(
+                    new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI));
             popupMenu.show();
         }
     };
@@ -692,6 +696,7 @@ public class DialtactsActivity extends Activity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         final MenuItem searchMenuItem = menu.findItem(R.id.search_on_action_bar);
         final MenuItem filterOptionMenuItem = menu.findItem(R.id.filter_option);
+        final MenuItem addContactOptionMenuItem = menu.findItem(R.id.add_contact);
         final MenuItem callSettingsMenuItem = menu.findItem(R.id.menu_call_settings);
         Tab tab = getActionBar().getSelectedTab();
         if (mInSearchUi) {
@@ -700,9 +705,13 @@ public class DialtactsActivity extends Activity {
                 filterOptionMenuItem.setVisible(true);
                 filterOptionMenuItem.setOnMenuItemClickListener(
                         mFilterOptionsMenuItemClickListener);
+                addContactOptionMenuItem.setVisible(true);
+                addContactOptionMenuItem.setIntent(
+                        new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI));
             } else {
                 // Filter option menu should be not be shown as a overflow menu.
                 filterOptionMenuItem.setVisible(false);
+                addContactOptionMenuItem.setVisible(false);
             }
             callSettingsMenuItem.setVisible(false);
         } else {
@@ -718,6 +727,7 @@ public class DialtactsActivity extends Activity {
                 showCallSettingsMenu = true;
             }
             filterOptionMenuItem.setVisible(false);
+            addContactOptionMenuItem.setVisible(false);
 
             if (showCallSettingsMenu) {
                 callSettingsMenuItem.setVisible(true);
