@@ -96,7 +96,9 @@ public class DialpadFragment extends Fragment
         public void onSearchButtonPressed();
     }
 
+    private View mDigitsContainer;
     private EditText mDigits;
+
     private View mDelete;
     private ToneGenerator mToneGenerator;
     private Object mToneGeneratorLock = new Object();
@@ -240,6 +242,7 @@ public class DialpadFragment extends Fragment
         // Load up the resources for the text field.
         Resources r = getResources();
 
+        mDigitsContainer = fragmentView.findViewById(R.id.digits_container);
         mDigits = (EditText) fragmentView.findViewById(R.id.digits);
         mDigits.setKeyListener(DialerKeyListener.getInstance());
         mDigits.setOnClickListener(this);
@@ -920,7 +923,7 @@ public class DialpadFragment extends Fragment
 
         if (enabled) {
             // Log.i(TAG, "Showing dialpad chooser!");
-            mDigits.setVisibility(View.GONE);
+            mDigitsContainer.setVisibility(View.GONE);
             if (mDialpad != null) mDialpad.setVisibility(View.GONE);
             mAdditionalButtonsRow.setVisibility(View.GONE);
             mDialpadChooser.setVisibility(View.VISIBLE);
@@ -933,7 +936,7 @@ public class DialpadFragment extends Fragment
             mDialpadChooser.setAdapter(mDialpadChooserAdapter);
         } else {
             // Log.i(TAG, "Displaying normal Dialer UI.");
-            mDigits.setVisibility(View.VISIBLE);
+            mDigitsContainer.setVisibility(View.VISIBLE);
             if (mDialpad != null) mDialpad.setVisibility(View.VISIBLE);
             mAdditionalButtonsRow.setVisibility(View.VISIBLE);
             mDialpadChooser.setVisibility(View.GONE);
