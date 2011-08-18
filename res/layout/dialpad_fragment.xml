@@ -25,6 +25,7 @@
     <!-- Text field and possibly soft menu button above the keypad where
          the digits are displayed. -->
     <RelativeLayout
+        android:id="@+id/digits_container"
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="0.200"
