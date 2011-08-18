@@ -60,6 +60,7 @@
                 android:textColor="@color/people_contact_tile_status_color"
                 android:singleLine="true"
                 android:drawablePadding="4dip"
+                android:paddingBottom="4dip"
                 android:fadingEdge="horizontal"
                 android:fadingEdgeLength="3dip"
                 android:ellipsize="marquee" />

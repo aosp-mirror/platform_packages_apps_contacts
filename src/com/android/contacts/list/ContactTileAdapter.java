@@ -122,7 +122,7 @@ public class ContactTileAdapter extends BaseAdapter {
 
         // Converting padding in dips to padding in pixels
         mPaddingInPixels = mContext.getResources()
-                .getDimensionPixelOffset(R.dimen.contact_tile_divider_padding);
+                .getDimensionPixelSize(R.dimen.contact_tile_divider_padding);
 
         bindColumnIndices();
     }

@@ -64,6 +64,7 @@
         android:layout_marginLeft="?attr/contact_browser_list_padding_left"
         android:layout_marginRight="?attr/contact_browser_list_padding_right"
         android:fastScrollEnabled="true"
+        android:fadingEdge="none"
         android:layout_weight="1" />
 
    <ViewStub

@@ -16,13 +16,11 @@
 package com.android.contacts.list;
 
 import com.android.contacts.ContactPhotoManager;
-import com.android.contacts.ContactStatusUtil;
 import com.android.contacts.R;
 import com.android.contacts.list.ContactTileAdapter.ContactEntry;
 
 import android.content.Context;
 import android.net.Uri;
-import android.provider.ContactsContract.StatusUpdates;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -91,6 +89,7 @@ public class ContactTileView extends FrameLayout {
      * fields in {@link ContactEntry}
      */
     public void loadFromContact(ContactEntry entry) {
+
         if (entry != null) {
             mName.setText(entry.name);
             mLookupUri = entry.lookupKey;
