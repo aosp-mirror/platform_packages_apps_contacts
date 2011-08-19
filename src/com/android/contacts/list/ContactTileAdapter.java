@@ -21,7 +21,6 @@ import com.android.contacts.ContactStatusUtil;
 import com.android.contacts.ContactTileLoaderFactory;
 import com.android.contacts.GroupMemberLoader;
 import com.android.contacts.R;
-import com.android.contacts.list.ContactTileAdapter.DisplayType;
 
 import android.content.ContentUris;
 import android.content.Context;
@@ -34,7 +33,7 @@ import android.provider.ContactsContract.Contacts;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -482,8 +481,10 @@ public class ContactTileAdapter extends BaseAdapter {
 
     /**
      * Acts as a row item composed of {@link ContactTileView}
+     *
+     * TODO: FREQUENT doesn't really need it.  Just let {@link #getView} return
      */
-    private class ContactTileRow extends LinearLayout {
+    private class ContactTileRow extends FrameLayout {
         private int mItemViewType;
         private int mLayoutResId;
 
@@ -512,8 +513,11 @@ public class ContactTileAdapter extends BaseAdapter {
 
             if (getChildCount() <= childIndex) {
                 contactTile = (ContactTileView) inflate(mContext, mLayoutResId, null);
-                contactTile.setLayoutParams(new LinearLayout.LayoutParams(0,
-                        LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f));
+                // Note: the layoutparam set here is only actually used for FREQUENT.
+                // We override onMeasure() for STARRED and we don't care the layout param there.
+                contactTile.setLayoutParams(new FrameLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT));
                 contactTile.setPhotoManager(mPhotoManager);
                 contactTile.setListener(mContactTileListener);
                 addView(contactTile);
@@ -537,6 +541,89 @@ public class ContactTileAdapter extends BaseAdapter {
                 default:
                     break;
             }
+        }
+
+        @Override
+        protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+            switch (mItemViewType) {
+                case ViewTypes.STARRED_WITH_SECONDARY_ACTION:
+                case ViewTypes.STARRED:
+                    onLayoutForTiles(left, top, right, bottom);
+                    return;
+                default:
+                    super.onLayout(changed, left, top, right, bottom);
+                    return;
+            }
+        }
+
+        private void onLayoutForTiles(int left, int top, int right, int bottom) {
+            final int count = getChildCount();
+            final int width = right - left;
+
+            // Just line up children horizontally.
+            int childLeft = 0;
+            for (int i = 0; i < count; i++) {
+                final View child = getChildAt(i);
+
+                // Note MeasuredWidth includes the padding.
+                final int childWidth = child.getMeasuredWidth();
+                child.layout(childLeft, 0, childLeft + childWidth, child.getMeasuredHeight());
+                childLeft += childWidth;
+            }
+        }
+
+        @Override
+        protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+            switch (mItemViewType) {
+                case ViewTypes.STARRED_WITH_SECONDARY_ACTION:
+                case ViewTypes.STARRED:
+                    onMeasureForTiles(widthMeasureSpec, heightMeasureSpec);
+                    return;
+                default:
+                    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+                    return;
+            }
+        }
+
+        private void onMeasureForTiles(int widthMeasureSpec, int heightMeasureSpec) {
+            final int width = MeasureSpec.getSize(widthMeasureSpec);
+
+            final int childCount = getChildCount();
+            if (childCount == 0) {
+                // Just in case...
+                setMeasuredDimension(width, 0);
+                return;
+            }
+
+            // 1. Calculate image size.
+            //      = ([total width] - [total padding]) / [child count]
+            //
+            // 2. Set it to width/height of each children.
+            //    If we have a remainder, some tiles will have 1 pixel larger width than its height.
+            //
+            // 3. Set the dimensions of itself.
+            //    Let width = given width.
+            //    Let height = image size + bottom paddding.
+
+            final int totalPaddingsInPixels = (mColumnCount - 1) * mPaddingInPixels;
+
+            // Preferred width / height for images (excluding the padding).
+            // The actual width may be 1 pixel larger than this if we have a remainder.
+            final int imageSize = (width - totalPaddingsInPixels) / mColumnCount;
+            final int remainder = width - (imageSize * mColumnCount) - totalPaddingsInPixels;
+
+            for (int i = 0; i < childCount; i++) {
+                final View child = getChildAt(i);
+                final int childWidth = imageSize + child.getPaddingRight()
+                        // Compensate for the remainder
+                        + (i < remainder ? 1 : 0);
+                final int childHeight = imageSize + child.getPaddingBottom();
+                child.measure(
+                        MeasureSpec.makeMeasureSpec(childWidth, MeasureSpec.EXACTLY),
+                        MeasureSpec.makeMeasureSpec(childHeight, MeasureSpec.EXACTLY)
+                        );
+            }
+            setMeasuredDimension(width, imageSize + getChildAt(0).getPaddingBottom());
         }
     }
 
