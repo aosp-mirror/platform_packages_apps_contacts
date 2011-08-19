@@ -168,6 +168,7 @@
     <style name="ContactsActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@drawable/ab_solid_custom_blue_inverse_holo</item>
         <item name="android:backgroundStacked">@drawable/ab_solid_custom_blue_inverse_holo</item>
+        <item name="android:displayOptions"></item>
     </style>
 
     <style name="ContactsActionBarTabView" parent="@android:style/Widget.Holo.ActionBar.TabView">
@@ -287,6 +288,7 @@
     <style name="DialtactsActionBarStyle" parent="android:Widget.Holo.ActionBar">
         <item name="android:backgroundSplit">@drawable/ab_bottom_opaque_dark_holo</item>
         <item name="android:backgroundStacked">@drawable/ab_stacked_opaque_dark_holo</item>
+        <item name="android:displayOptions"></item>
     </style>
 
 </resources>
