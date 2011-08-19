@@ -19,9 +19,11 @@ package com.android.contacts.detail;
 import com.android.contacts.ContactLoader;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
+import com.android.contacts.detail.ContactDetailDisplayUtils.StreamPhotoTag;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.util.StreamItemEntry;
+import com.android.contacts.util.StreamItemPhotoEntry;
 
 import android.app.ListFragment;
 import android.content.ContentUris;
@@ -67,7 +69,7 @@ public class ContactDetailUpdatesFragment extends ListFragment
      * <p>
      * It assumes the view has a tag of type {@link StreamItemEntry} associated with it.
      */
-    private View.OnClickListener mStreamItemClickListener = new View.OnClickListener() {
+    private final View.OnClickListener mStreamItemClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             StreamItemEntry streamItemEntry = (StreamItemEntry) view.getTag();
@@ -75,9 +77,7 @@ public class ContactDetailUpdatesFragment extends ListFragment
                 // Ignore if this item does not have a stream item associated with it.
                 return;
             }
-            final AccountTypeManager manager = AccountTypeManager.getInstance(getActivity());
-            final AccountType accountType = manager.getAccountType(
-                    streamItemEntry.getAccountType(), streamItemEntry.getDataSet());
+            final AccountType accountType = getAccountTypeForStreamItemEntry(streamItemEntry);
 
             final Uri uri = ContentUris.withAppendedId(StreamItems.CONTENT_URI,
                     streamItemEntry.getId());
@@ -87,6 +87,28 @@ public class ContactDetailUpdatesFragment extends ListFragment
             startActivity(intent);
         }
     };
+
+    private final View.OnClickListener mStreamItemPhotoItemClickListener
+            = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            StreamPhotoTag tag = (StreamPhotoTag) view.getTag();
+            if (tag == null) {
+                return;
+            }
+            final AccountType accountType = getAccountTypeForStreamItemEntry(tag.streamItem);
+
+            final Intent intent = new Intent(Intent.ACTION_VIEW, tag.getStreamItemPhotoUri());
+            intent.setClassName(accountType.resPackageName,
+                    accountType.getViewStreamItemPhotoActivity());
+            startActivity(intent);
+        }
+    };
+
+    private AccountType getAccountTypeForStreamItemEntry(StreamItemEntry streamItemEntry) {
+        return AccountTypeManager.getInstance(getActivity()).getAccountType(
+                streamItemEntry.getAccountType(), streamItemEntry.getDataSet());
+    }
 
     public ContactDetailUpdatesFragment() {
         // Explicit constructor for inflation
@@ -108,7 +130,8 @@ public class ContactDetailUpdatesFragment extends ListFragment
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mStreamItemAdapter = new StreamItemAdapter(getActivity(), mStreamItemClickListener);
+        mStreamItemAdapter = new StreamItemAdapter(getActivity(), mStreamItemClickListener,
+                mStreamItemPhotoItemClickListener);
         setListAdapter(mStreamItemAdapter);
         getListView().setOnScrollListener(mVerticalScrollListener);
 

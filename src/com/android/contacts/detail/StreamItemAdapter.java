@@ -42,14 +42,17 @@ public class StreamItemAdapter extends BaseAdapter {
     private static final int ITEM_VIEW_TYPE_STREAM_ITEM = 2;
 
     private final Context mContext;
-    private final View.OnClickListener mListener;
+    private final View.OnClickListener mItemClickListener;
+    private final View.OnClickListener mPhotoClickListener;
     private final LayoutInflater mInflater;
 
     private List<StreamItemEntry> mStreamItems;
 
-    public StreamItemAdapter(Context context, View.OnClickListener listener) {
+    public StreamItemAdapter(Context context, View.OnClickListener itemClickListener,
+            View.OnClickListener photoClickListener) {
         mContext = context;
-        mListener = listener;
+        mItemClickListener = itemClickListener;
+        mPhotoClickListener = photoClickListener;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mStreamItems = Lists.newArrayList();
     }
@@ -83,20 +86,23 @@ public class StreamItemAdapter extends BaseAdapter {
         if (position == 1) {
             return mInflater.inflate(R.layout.updates_title, null);
         }
-        StreamItemEntry streamItem = (StreamItemEntry) getItem(position);
-        View view = ContactDetailDisplayUtils.createStreamItemView(
-                mInflater, mContext, streamItem, null);
+        final StreamItemEntry streamItem = (StreamItemEntry) getItem(position);
         final AccountTypeManager manager = AccountTypeManager.getInstance(mContext);
         final AccountType accountType =
                 manager.getAccountType(streamItem.getAccountType(), streamItem.getDataSet());
+        final View view = ContactDetailDisplayUtils.createStreamItemView(
+                mInflater, mContext, streamItem, null,
+                (accountType.getViewStreamItemPhotoActivity() == null) ? null : mPhotoClickListener
+                );
         if (accountType.getViewStreamItemActivity() != null) {
             view.setTag(streamItem);
             view.setFocusable(true);
-            view.setOnClickListener(mListener);
+            view.setOnClickListener(mItemClickListener);
         } else {
             view.setTag(null);
             view.setFocusable(false);
             view.setOnClickListener(null);
+            view.setClickable(false); // setOnClickListener makes it clickable, so overwrite it
         }
         return view;
     }

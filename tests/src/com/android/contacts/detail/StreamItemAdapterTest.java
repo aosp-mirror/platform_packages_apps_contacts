@@ -28,19 +28,22 @@ import java.util.ArrayList;
 // TODO: We should have tests for action, but that requires a mock sync-adapter that specifies
 // an action or doesn't
 
+// TODO Add test for photo click
+
 /**
  * Unit tests for {@link StreamItemAdapter}.
  */
 public class StreamItemAdapterTest extends AndroidTestCase {
     private StreamItemAdapter mAdapter;
     private FakeOnClickListener mListener;
+    private FakeOnClickListener mPhotoListener;
     private View mView;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
         mListener = new FakeOnClickListener();
-        mAdapter = new StreamItemAdapter(getContext(), mListener);
+        mAdapter = new StreamItemAdapter(getContext(), mListener, mPhotoListener);
     }
 
     @Override
