@@ -30,6 +30,7 @@
       android:paddingRight="16dip"
       android:scrollbarStyle="outsideOverlay"
       android:layout_weight="1"
+      android:fadingEdge="none"
       android:cacheColorHint="@android:color/transparent"
       android:divider="@null" />
 

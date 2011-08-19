@@ -24,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1"
+        android:fadingEdge="none"
         android:background="@color/background_primary"
         android:divider="@null"/>
 
@@ -31,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1"
+        android:fadingEdge="none"
         android:visibility="gone">
 
         <TextView android:id="@+id/emptyText"

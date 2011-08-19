@@ -26,6 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:fadingEdge="none"
         ex:layout_wideParentWidth="800dip"
         ex:layout_wideMarginLeft="128dip"
         ex:layout_wideMarginRight="128dip"
