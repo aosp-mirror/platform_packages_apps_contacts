@@ -319,16 +319,21 @@ public class ContactDetailDisplayUtils {
     private static void loadPhoto(ContactPhotoManager contactPhotoManager,
             final StreamItemEntry streamItem, final StreamItemPhotoEntry streamItemPhoto,
             View photoContainer, int imageViewId, View.OnClickListener photoClickListener) {
-        ImageView imageView = (ImageView) photoContainer.findViewById(imageViewId);
+        final View frame = photoContainer.findViewById(imageViewId);
+        final View pushLayerView = frame.findViewById(R.id.push_layer);
+        final ImageView imageView = (ImageView) frame.findViewById(R.id.image);
         if (photoClickListener != null) {
-            imageView.setOnClickListener(photoClickListener);
-            imageView.setTag(new StreamPhotoTag(streamItem, streamItemPhoto));
-            imageView.setFocusable(true);
+            pushLayerView.setOnClickListener(photoClickListener);
+            pushLayerView.setTag(new StreamPhotoTag(streamItem, streamItemPhoto));
+            pushLayerView.setFocusable(true);
+            pushLayerView.setEnabled(true);
         } else {
-            imageView.setOnClickListener(null);
-            imageView.setTag(null);
-            imageView.setFocusable(false);
-            imageView.setClickable(false); // setOnClickListener makes it clickable, so overwrite it
+            pushLayerView.setOnClickListener(null);
+            pushLayerView.setTag(null);
+            pushLayerView.setFocusable(false);
+            // setOnClickListener makes it clickable, so we need to overwrite it
+            pushLayerView.setClickable(false);
+            pushLayerView.setEnabled(false);
         }
         contactPhotoManager.loadPhoto(imageView, Uri.parse(streamItemPhoto.getPhotoUri()));
     }
