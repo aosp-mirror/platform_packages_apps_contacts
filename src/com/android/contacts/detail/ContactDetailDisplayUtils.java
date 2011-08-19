@@ -20,13 +20,13 @@ import com.android.contacts.ContactLoader;
 import com.android.contacts.ContactLoader.Result;
 import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.R;
-import com.android.contacts.format.FormatUtils;
 import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.util.ContactBadgeUtil;
 import com.android.contacts.util.StreamItemEntry;
 import com.android.contacts.util.StreamItemPhotoEntry;
 import com.google.common.annotations.VisibleForTesting;
 
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Entity;
@@ -37,16 +37,15 @@ import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.DisplayNameSources;
+import android.provider.ContactsContract.StreamItems;
 import android.text.Html;
 import android.text.Html.ImageGetter;
-import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -70,6 +69,27 @@ public class ContactDetailDisplayUtils {
     private static final String TAG = "ContactDetailDisplayUtils";
 
     private static final int PHOTO_FADE_IN_ANIMATION_DURATION_MILLIS = 100;
+
+    /**
+     * Tag object used for stream item photos.
+     */
+    public static class StreamPhotoTag {
+        public final StreamItemEntry streamItem;
+        public final StreamItemPhotoEntry streamItemPhoto;
+
+        public StreamPhotoTag(StreamItemEntry streamItem, StreamItemPhotoEntry streamItemPhoto) {
+            this.streamItem = streamItem;
+            this.streamItemPhoto = streamItemPhoto;
+        }
+
+        public Uri getStreamItemPhotoUri() {
+            final Uri.Builder builder = StreamItems.CONTENT_URI.buildUpon();
+            ContentUris.appendId(builder, streamItem.getId());
+            builder.appendPath(StreamItems.StreamItemPhotos.CONTENT_DIRECTORY);
+            ContentUris.appendId(builder, streamItemPhoto.getId());
+            return builder.build();
+        }
+    }
 
     private ContactDetailDisplayUtils() {
         // Disallow explicit creation of this class.
@@ -244,7 +264,8 @@ public class ContactDetailDisplayUtils {
 
     /** Creates the view that represents a stream item. */
     public static View createStreamItemView(LayoutInflater inflater, Context context,
-            StreamItemEntry streamItem, LinearLayout parent) {
+            StreamItemEntry streamItem, LinearLayout parent,
+            View.OnClickListener photoClickListener) {
         View container = inflater.inflate(R.layout.stream_item_container, parent, false);
         ViewGroup contentTable = (ViewGroup) container.findViewById(R.id.stream_item_content);
 
@@ -261,17 +282,17 @@ public class ContactDetailDisplayUtils {
 
                 View photoContainer = inflater.inflate(R.layout.stream_item_row_two_images,
                         contentTable, false);
-                loadPhoto(contactPhotoManager, firstPhoto, photoContainer,
-                        R.id.stream_item_first_image);
-                loadPhoto(contactPhotoManager, secondPhoto, photoContainer,
-                        R.id.stream_item_second_image);
+                loadPhoto(contactPhotoManager, streamItem, firstPhoto, photoContainer,
+                        R.id.stream_item_first_image, photoClickListener);
+                loadPhoto(contactPhotoManager, streamItem, secondPhoto, photoContainer,
+                        R.id.stream_item_second_image, photoClickListener);
                 contentTable.addView(photoContainer);
             } else {
                 // Put in a single photo with text on the side.
                 View photoContainer = inflater.inflate(
                         R.layout.stream_item_row_image_and_text, contentTable, false);
-                loadPhoto(contactPhotoManager, firstPhoto, photoContainer,
-                        R.id.stream_item_first_image);
+                loadPhoto(contactPhotoManager, streamItem, firstPhoto, photoContainer,
+                        R.id.stream_item_first_image, photoClickListener);
                 addStreamItemText(context, streamItem,
                         photoContainer.findViewById(R.id.stream_item_second_text));
                 contentTable.addView(photoContainer);
@@ -294,11 +315,22 @@ public class ContactDetailDisplayUtils {
         return container;
     }
 
-    /** Loads a photo into an image view. The image view is identifiedc by the given id. */
+    /** Loads a photo into an image view. The image view is identified by the given id. */
     private static void loadPhoto(ContactPhotoManager contactPhotoManager,
-            final StreamItemPhotoEntry firstPhoto, View photoContainer, int imageViewId) {
-        ImageView firstImageView = (ImageView) photoContainer.findViewById(imageViewId);
-        contactPhotoManager.loadPhoto(firstImageView, Uri.parse(firstPhoto.getPhotoUri()));
+            final StreamItemEntry streamItem, final StreamItemPhotoEntry streamItemPhoto,
+            View photoContainer, int imageViewId, View.OnClickListener photoClickListener) {
+        ImageView imageView = (ImageView) photoContainer.findViewById(imageViewId);
+        if (photoClickListener != null) {
+            imageView.setOnClickListener(photoClickListener);
+            imageView.setTag(new StreamPhotoTag(streamItem, streamItemPhoto));
+            imageView.setFocusable(true);
+        } else {
+            imageView.setOnClickListener(null);
+            imageView.setTag(null);
+            imageView.setFocusable(false);
+            imageView.setClickable(false); // setOnClickListener makes it clickable, so overwrite it
+        }
+        contactPhotoManager.loadPhoto(imageView, Uri.parse(streamItemPhoto.getPhotoUri()));
     }
 
     @VisibleForTesting
