@@ -92,6 +92,8 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     private static final String KEY_MEMBERS_TO_REMOVE = "membersToRemove";
     private static final String KEY_MEMBERS_TO_DISPLAY = "membersToDisplay";
 
+    private static final String CURRENT_EDITOR_TAG = "currentEditorForAccount";
+
     public static interface Listener {
         /**
          * Group metadata was not found, close the fragment now.
@@ -189,6 +191,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
 
     private boolean mGroupNameIsReadOnly;
     private String mOriginalGroupName = "";
+    private int mLastGroupEditorId;
 
     private MemberListAdapter mMemberListAdapter;
     private ContactPhotoManager mPhotoManager;
@@ -374,10 +377,31 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     private void setupEditorForAccount() {
         final AccountType accountType = getAccountType();
         final boolean editable = isGroupMembershipEditable();
+        boolean isNewEditor = false;
         mMemberListAdapter.setIsGroupMembershipEditable(editable);
 
-        View editorView = mLayoutInflater.inflate(editable ?
-                R.layout.group_editor_view : R.layout.external_group_editor_view, mRootView, false);
+        // Since this method can be called multiple time, remove old editor if the editor type
+        // is different from the new one and mark the editor with a tag so it can be found for
+        // removal if needed
+        View editorView;
+        int newGroupEditorId =
+                editable ? R.layout.group_editor_view : R.layout.external_group_editor_view;
+        if (newGroupEditorId != mLastGroupEditorId) {
+            View oldEditorView = mRootView.findViewWithTag(CURRENT_EDITOR_TAG);
+            if (oldEditorView != null) {
+                mRootView.removeView(oldEditorView);
+            }
+            editorView = mLayoutInflater.inflate(newGroupEditorId, mRootView, false);
+            editorView.setTag(CURRENT_EDITOR_TAG);
+            mAutoCompleteAdapter = null;
+            mLastGroupEditorId = newGroupEditorId;
+            isNewEditor = true;
+        } else {
+            editorView = mRootView.findViewWithTag(CURRENT_EDITOR_TAG);
+            if (editorView == null) {
+                throw new IllegalStateException("Group editor view not found");
+            }
+        }
 
         mGroupNameView = (TextView) editorView.findViewById(R.id.group_name);
         mAccountIcon = (ImageView) editorView.findViewById(R.id.account_icon);
@@ -433,8 +457,9 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
 
         // If the group name is ready only, don't let the user focus on the field.
         mGroupNameView.setFocusable(!mGroupNameIsReadOnly);
-
-        mRootView.addView(editorView);
+        if(isNewEditor) {
+            mRootView.addView(editorView);
+        }
         mStatus = Status.EDITING;
     }
 
@@ -680,8 +705,14 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     }
 
     private void addExistingMembers(List<Member> members) {
+
+        // Re-create the list to display
+        mListToDisplay.clear();
         mListToDisplay.addAll(members);
+        mListToDisplay.addAll(mListMembersToAdd);
+        mListToDisplay.removeAll(mListMembersToRemove);
         mMemberListAdapter.notifyDataSetChanged();
+
 
         // Update the autocomplete adapter (if there is one) so these contacts don't get suggested
         if (mAutoCompleteAdapter != null) {
