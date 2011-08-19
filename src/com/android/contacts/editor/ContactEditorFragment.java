@@ -61,11 +61,9 @@ import android.os.Environment;
 import android.os.SystemClock;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Event;
-import android.provider.ContactsContract.CommonDataKinds.Note;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
-import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.DisplayPhoto;
 import android.provider.ContactsContract.Groups;
@@ -79,9 +77,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
-import android.view.ViewGroup.MarginLayoutParams;
-import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
@@ -102,7 +97,7 @@ public class ContactEditorFragment extends Fragment implements
         AggregationSuggestionEngine.Listener, AggregationSuggestionView.Listener,
         ExternalRawContactEditorView.Listener {
 
-    private static final String TAG = "ContactEditorFragment";
+    private static final String TAG = ContactEditorFragment.class.getSimpleName();
 
     private static final int LOADER_DATA = 1;
     private static final int LOADER_GROUPS = 2;
