@@ -25,7 +25,7 @@ import android.text.TextUtils;
  * Information for a contact as needed by the Call Log.
  */
 public final class ContactInfo {
-    public Uri contactUri;
+    public Uri lookupUri;
     public String name;
     public int type;
     public String label;
@@ -41,10 +41,10 @@ public final class ContactInfo {
     public int hashCode() {
         // Uses only name and contactUri to determine hashcode.
         // This should be sufficient to have a reasonable distribution of hash codes.
-        // Moreover, there should be no two people with the same contactUri.
+        // Moreover, there should be no two people with the same lookupUri.
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((contactUri == null) ? 0 : contactUri.hashCode());
+        result = prime * result + ((lookupUri == null) ? 0 : lookupUri.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         return result;
     }
@@ -55,7 +55,7 @@ public final class ContactInfo {
         if (obj == null) return false;
         if (getClass() != obj.getClass()) return false;
         ContactInfo other = (ContactInfo) obj;
-        if (!UriUtils.areEqual(contactUri, other.contactUri)) return false;
+        if (!UriUtils.areEqual(lookupUri, other.lookupUri)) return false;
         if (!TextUtils.equals(name, other.name)) return false;
         if (type != other.type) return false;
         if (!TextUtils.equals(label, other.label)) return false;

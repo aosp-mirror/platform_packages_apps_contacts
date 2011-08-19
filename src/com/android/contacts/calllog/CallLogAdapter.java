@@ -22,6 +22,7 @@ import com.android.contacts.PhoneCallDetails;
 import com.android.contacts.PhoneCallDetailsHelper;
 import com.android.contacts.R;
 import com.android.contacts.util.ExpirableCache;
+import com.android.contacts.util.UriUtils;
 import com.google.common.annotations.VisibleForTesting;
 
 import android.content.ContentValues;
@@ -90,6 +91,7 @@ public class CallLogAdapter extends GroupingListAdapter
     private ViewTreeObserver.OnPreDrawListener mPreDrawListener;
     private static final int REDRAW = 1;
     private static final int START_THREAD = 2;
+
     private boolean mFirst;
     private Thread mCallerIdThread;
 
@@ -317,7 +319,7 @@ public class CallLogAdapter extends GroupingListAdapter
                         dataTableCursor.getColumnIndex(Data.CONTACT_ID));
                 String lookupKey = dataTableCursor.getString(
                         dataTableCursor.getColumnIndex(Data.LOOKUP_KEY));
-                info.contactUri = Contacts.getLookupUri(contactId, lookupKey);
+                info.lookupUri = Contacts.getLookupUri(contactId, lookupKey);
                 info.name = dataTableCursor.getString(
                         dataTableCursor.getColumnIndex(Data.DISPLAY_NAME));
                 // "type" and "label" are currently unused for SIP addresses
@@ -326,8 +328,7 @@ public class CallLogAdapter extends GroupingListAdapter
 
                 // And "number" is the SIP address.
                 // Note Data.DATA1 and SipAddress.SIP_ADDRESS are equivalent.
-                info.number = dataTableCursor.getString(
-                        dataTableCursor.getColumnIndex(Data.DATA1));
+                info.number = dataTableCursor.getString(dataTableCursor.getColumnIndex(Data.DATA1));
                 info.normalizedNumber = null;  // meaningless for SIP addresses
                 info.photoId = dataTableCursor.getLong(
                         dataTableCursor.getColumnIndex(Data.PHOTO_ID));
@@ -366,14 +367,12 @@ public class CallLogAdapter extends GroupingListAdapter
                 info = new ContactInfo();
                 long contactId = phonesCursor.getLong(PhoneQuery.PERSON_ID);
                 String lookupKey = phonesCursor.getString(PhoneQuery.LOOKUP_KEY);
-                info.contactUri = Contacts.getLookupUri(contactId, lookupKey);
+                info.lookupUri = Contacts.getLookupUri(contactId, lookupKey);
                 info.name = phonesCursor.getString(PhoneQuery.NAME);
                 info.type = phonesCursor.getInt(PhoneQuery.PHONE_TYPE);
                 info.label = phonesCursor.getString(PhoneQuery.LABEL);
-                info.number = phonesCursor
-                        .getString(PhoneQuery.MATCHED_NUMBER);
-                info.normalizedNumber = phonesCursor
-                        .getString(PhoneQuery.NORMALIZED_NUMBER);
+                info.number = phonesCursor.getString(PhoneQuery.MATCHED_NUMBER);
+                info.normalizedNumber = phonesCursor.getString(PhoneQuery.NORMALIZED_NUMBER);
                 info.photoId = phonesCursor.getLong(PhoneQuery.PHOTO_ID);
             } else {
                 info = ContactInfo.EMPTY;
@@ -586,14 +585,15 @@ public class CallLogAdapter extends GroupingListAdapter
                 mContactInfoCache.getCachedValue(number);
         ContactInfo info = cachedInfo == null ? null : cachedInfo.getValue();
         if (cachedInfo == null) {
-            // Mark it as empty and queue up a request to find the name.
+            mContactInfoCache.put(number, ContactInfo.EMPTY);
+            // Use the cached contact info from the call log.
+            info = cachedContactInfo;
             // The db request should happen on a non-UI thread.
-            info = ContactInfo.EMPTY;
-            mContactInfoCache.put(number, info);
             // Request the contact details immediately since they are currently missing.
             enqueueRequest(number, cachedContactInfo, true);
             // Format the phone number in the call log as best as we can.
-            formattedNumber = formatPhoneNumber(number, null, countryIso);
+            formattedNumber = formatPhoneNumber(info.number, info.normalizedNumber, countryIso);
+            info.formattedNumber = formattedNumber;
         } else {
             if (cachedInfo.isExpired()) {
                 // The contact info is no longer up to date, we should request it. However, we
@@ -615,16 +615,15 @@ public class CallLogAdapter extends GroupingListAdapter
                 }
                 formattedNumber = info.formattedNumber;
             } else {
+                // Use the cached contact info from the call log.
+                info = cachedContactInfo;
                 // Format the phone number in the call log as best as we can.
-                formattedNumber = formatPhoneNumber(number, null, countryIso);
+                formattedNumber = formatPhoneNumber(info.number, info.normalizedNumber, countryIso);
+                info.formattedNumber = formattedNumber;
             }
         }
 
-        if (info == null || info == ContactInfo.EMPTY) {
-            info = cachedContactInfo;
-        }
-
-        final Uri contactUri = info.contactUri;
+        final Uri lookupUri = info.lookupUri;
         final String name = info.name;
         final int ntype = info.type;
         final String label = info.label;
@@ -638,14 +637,14 @@ public class CallLogAdapter extends GroupingListAdapter
         } else {
             // We do not pass a photo id since we do not need the high-res picture.
             details = new PhoneCallDetails(number, formattedNumber, countryIso, geocode,
-                    callTypes, date, duration, name, ntype, label, contactUri, null);
+                    callTypes, date, duration, name, ntype, label, lookupUri, null);
         }
 
         final boolean isNew = CallLogQuery.isNewSection(c);
         // New items also use the highlighted version of the text.
         final boolean isHighlighted = isNew;
         mCallLogViewsHelper.setPhoneCallDetails(views, details, isHighlighted);
-        setPhoto(views, photoId, contactUri);
+        setPhoto(views, photoId, lookupUri);
 
         // Listen for the first draw
         if (mPreDrawListener == null) {
@@ -685,7 +684,31 @@ public class CallLogAdapter extends GroupingListAdapter
                 values.put(Calls.CACHED_NUMBER_LABEL, updatedInfo.label);
                 needsUpdate = true;
             }
+            if (!UriUtils.areEqual(updatedInfo.lookupUri, callLogInfo.lookupUri)) {
+                values.put(Calls.CACHED_LOOKUP_URI, UriUtils.uriToString(updatedInfo.lookupUri));
+                needsUpdate = true;
+            }
+            if (!TextUtils.equals(updatedInfo.normalizedNumber, callLogInfo.normalizedNumber)) {
+                values.put(Calls.CACHED_NORMALIZED_NUMBER, updatedInfo.normalizedNumber);
+                needsUpdate = true;
+            }
+            if (!TextUtils.equals(updatedInfo.number, callLogInfo.number)) {
+                values.put(Calls.CACHED_MATCHED_NUMBER, updatedInfo.number);
+                needsUpdate = true;
+            }
+            if (updatedInfo.photoId != callLogInfo.photoId) {
+                values.put(Calls.CACHED_PHOTO_ID, updatedInfo.photoId);
+                needsUpdate = true;
+            }
         } else {
+            // No previous values, store all of them.
+            values.put(Calls.CACHED_NAME, updatedInfo.name);
+            values.put(Calls.CACHED_NUMBER_TYPE, updatedInfo.type);
+            values.put(Calls.CACHED_NUMBER_LABEL, updatedInfo.label);
+            values.put(Calls.CACHED_LOOKUP_URI, UriUtils.uriToString(updatedInfo.lookupUri));
+            values.put(Calls.CACHED_MATCHED_NUMBER, updatedInfo.number);
+            values.put(Calls.CACHED_NORMALIZED_NUMBER, updatedInfo.normalizedNumber);
+            values.put(Calls.CACHED_PHOTO_ID, updatedInfo.photoId);
             needsUpdate = true;
         }
 
@@ -704,15 +727,16 @@ public class CallLogAdapter extends GroupingListAdapter
     /** Returns the contact information as stored in the call log. */
     private ContactInfo getContactInfoFromCallLog(Cursor c) {
         ContactInfo info = new ContactInfo();
-        info.contactUri = null;
+        info.lookupUri = UriUtils.parseUriOrNull(c.getString(CallLogQuery.CACHED_LOOKUP_URI));
         info.name = c.getString(CallLogQuery.CACHED_NAME);
         info.type = c.getInt(CallLogQuery.CACHED_NUMBER_TYPE);
         info.label = c.getString(CallLogQuery.CACHED_NUMBER_LABEL);
-        // TODO: This should be added to the call log cached values.
-        info.number = c.getString(CallLogQuery.NUMBER);
-        info.formattedNumber = info.number;
-        info.normalizedNumber = info.number;
-        info.photoId = 0;
+        String matchedNumber = c.getString(CallLogQuery.CACHED_MATCHED_NUMBER);
+        info.number = matchedNumber == null ? c.getString(CallLogQuery.NUMBER) : matchedNumber;
+        info.normalizedNumber = c.getString(CallLogQuery.CACHED_NORMALIZED_NUMBER);
+        info.photoId = c.getLong(CallLogQuery.CACHED_PHOTO_ID);
+        // TODO: This could be added to the call log cached values as well.
+        info.formattedNumber = null;  // Computed on demand.
         return info;
     }
 
