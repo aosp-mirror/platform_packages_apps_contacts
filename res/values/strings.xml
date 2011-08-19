@@ -783,16 +783,16 @@
     <string name="searching_vcard_message" product="default">Searching for vCard data on SD card</string>
 
     <!-- Dialog title shown when scanning VCard data failed. [CHAR LIMIT=NONE] -->
-    <string name="scanning_sdcard_failed_title" product="nosdcard">Scanning storage failed</string>
+    <string name="scanning_sdcard_failed_title" product="nosdcard">Couldn\'t scan storage</string>
     <!-- Dialog title shown when scanning VCard data failed. -->
-    <string name="scanning_sdcard_failed_title" product="default">Scanning SD card failed</string>
+    <string name="scanning_sdcard_failed_title" product="default">Couldn\'t scan SD card</string>
 
     <!-- Dialog message shown when searching VCard data failed.
          An exact reason for the failure should [CHAR LIMIT=NONE] -->
-    <string name="scanning_sdcard_failed_message" product="nosdcard">Scanning storage failed (Reason: \"<xliff:g id="fail_reason">%s</xliff:g>\")</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard">Couldn\'t scan storage (Reason: \"<xliff:g id="fail_reason">%s</xliff:g>\")</string>
     <!-- Dialog message shown when searching VCard data failed.
          An exact reason for the failure should -->
-    <string name="scanning_sdcard_failed_message" product="default">Scanning SD card failed (Reason: \"<xliff:g id="fail_reason">%s</xliff:g>\")</string>
+    <string name="scanning_sdcard_failed_message" product="default">Couldn\'t scan SD card (Reason: \"<xliff:g id="fail_reason">%s</xliff:g>\")</string>
 
     <!-- The failed reason shown when Contacts app (especially vCard importer/exporter)
          emitted some I/O error. Exact reason will be appended by the system. -->
@@ -805,14 +805,14 @@
     <!-- The failed reason shown when vCard parser was not able to be parsed by the current vCard
          implementation. This might happen even when the input vCard is completely valid, though
          we believe it is rather rare in the actual world. -->
-    <string name="fail_reason_vcard_parse_error">Failed to parse vCard for unexpected reason</string>
+    <string name="fail_reason_vcard_parse_error">Couldn\'t parse vCard for unexpected reason</string>
 
     <!-- The failed reason shown when vCard importer doesn't support the format.
          This may be shown when the vCard is corrupted [CHAR LIMIT=40] -->
     <string name="fail_reason_not_supported">The format is not supported.</string>
 
     <!-- Message used when vCard import has failed. [CHAR LIMIT=40] -->
-    <string name="vcard_import_failed">Failed to import vCard</string>
+    <string name="vcard_import_failed">Couldn\'t import vCard</string>
 
     <!-- The failure message shown when the system could not find any vCard file.
          (with extension ".vcf" in (USB) storage.)
@@ -824,11 +824,11 @@
     <string name="import_failure_no_vcard_file" product="default">No vCard file found on the SD card</string>
 
     <!-- Fail reason shown when vCard importer failed to look over meta information stored in vCard file(s). -->
-    <string name="fail_reason_failed_to_collect_vcard_meta_info">Failed to collect meta information of given vCard file(s).</string>
+    <string name="fail_reason_failed_to_collect_vcard_meta_info">Couldn\'t collect meta information of given vCard file(s).</string>
 
     <!-- The failed reason shown when the import of some of vCard files failed during multiple vCard
          files import. It includes the case where all files were failed to be imported. -->
-    <string name="fail_reason_failed_to_read_files">One or more files failed to be imported (%s).</string>
+    <string name="fail_reason_failed_to_read_files">One or more files couldn\'t be imported (%s).</string>
 
     <!-- The failed reason which should not be shown but it may in some buggy condition. -->
     <string name="fail_reason_unknown">Unknown error</string>
@@ -857,7 +857,7 @@
     <string name="importing_vcard_description">Importing <xliff:g id="name" example="Joe Due">%s</xliff:g></string>
 
     <!-- Dialog title shown when reading vCard data failed [CHAR LIMIT=40] -->
-    <string name="reading_vcard_failed_title">Failed to Read vCard data</string>
+    <string name="reading_vcard_failed_title">Couldn\'t read vCard data</string>
 
     <!-- The title shown when reading vCard is canceled (probably by a user)
          [CHAR LIMIT=40] -->
@@ -905,10 +905,10 @@
     <string name="confirm_export_message">Export your contact list to file \"<xliff:g id="vcard_filename">%s</xliff:g>\"?</string>
 
     <!-- Dialog title shown when exporting Contact data failed -->
-    <string name="exporting_contact_failed_title">Failed to export contact data</string>
+    <string name="exporting_contact_failed_title">Couldn\'t export contact data</string>
 
     <!-- Dialog message shown when exporting Contact data failed -->
-    <string name="exporting_contact_failed_message">Failed to export contact data.\nReason for failure: \"<xliff:g id="fail_reason">%s</xliff:g>\"</string>
+    <string name="exporting_contact_failed_message">Couldn\'t export contact data.\nReason: \"<xliff:g id="fail_reason">%s</xliff:g>\"</string>
 
     <!-- The failed reason shown when there's no contact which is allowed to be exported.
          Note that user may have contacts data but all of them are probably not allowed to be
@@ -951,7 +951,7 @@
 
     <!-- The error reason the vCard composer "may" emit when database is corrupted or
          something is going wrong. Usually users should not see this text. -->
-    <string name="composer_failed_to_get_database_infomation">Failed to get database information</string>
+    <string name="composer_failed_to_get_database_infomation">Couldn\'t get database information</string>
 
     <!-- This error message shown when the user actually have no contact
          (e.g. just after data-wiping), or, data providers of the contact list prohibits their
@@ -991,7 +991,7 @@
     <string name="cancel_export_confirmation_message">Are you sure to cancel exporting <xliff:g id="filename" example="export.vcf">%s</xliff:g>?</string>
 
     <!-- Title shown in a Dialog telling users cancel vCard import/export operation is failed. [CHAR LIMIT=40] -->
-    <string name="cancel_vcard_import_or_export_failed">Failed to cancel vCard import/export</string>
+    <string name="cancel_vcard_import_or_export_failed">Couldn\'t cancel vCard import/export</string>
 
     <!-- The string used to describe Contacts as a searchable item within system search settings. -->
     <string name="search_settings_description">Names of your contacts</string>
@@ -1630,16 +1630,16 @@
     <string name="notification_new_voicemail_ticker">New voicemail from <xliff:g id="caller">%1$s</xliff:g></string>
 
     <!-- Message to show when there is an error playing back the voicemail. [CHAR LIMIT=40] -->
-    <string name="voicemail_playback_error">failed to play voicemail</string>
+    <string name="voicemail_playback_error">Couldn\'t play voicemail.</string>
 
     <!-- Message to display before we have prepared the media player, i.e. before we know duration. [CHAR LIMIT=40] -->
-    <string name="voicemail_buffering">buffering...</string>
+    <string name="voicemail_buffering">Buffering\u2026</string>
 
     <!-- Message to display whilst we are waiting for the content to be fetched. [CHAR LIMIT=40] -->
-    <string name="voicemail_fetching_content">fetching voicemail...</string>
+    <string name="voicemail_fetching_content">Fetching voicemail\u2026</string>
 
     <!-- Message to display if we fail to get content within a suitable time period. [CHAR LIMIT=40] -->
-    <string name="voicemail_fetching_timout">failed to fetch voicemail</string>
+    <string name="voicemail_fetching_timout">Couldn\'t fetch voicemail.</string>
 
     <!-- The header in the call log used to identify missed calls and voicemail that have not yet been consumed [CHAR LIMIT=10] -->
     <string name="call_log_new_header">New</string>
