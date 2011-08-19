@@ -64,6 +64,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+                <ImageView
+                    android:id="@+id/presence_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dip"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:scaleType="centerInside" />
+
                 <TextView
                     android:id="@+id/type"
                     style="@style/ContactDetailItemType"
@@ -90,14 +99,6 @@
                 android:visibility="gone" />
 
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/presence_icon"
-            android:layout_width="32dip"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:gravity="center"
-            android:scaleType="centerInside" />
     </com.android.contacts.detail.PrimaryActionViewContainer>
 
     <View
