@@ -43,6 +43,7 @@ import com.android.contacts.util.DateUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.widget.TransitionAnimationView;
 import com.android.internal.telephony.ITelephony;
+import com.google.common.annotations.VisibleForTesting;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -122,8 +123,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
     private static final String TAG = "ContactDetailFragment";
 
-    private static final int LOADER_DETAILS = 1;
-
     private interface ContextMenuIds {
         static final int COPY_TEXT = 0;
         static final int CLEAR_DEFAULT = 1;
@@ -132,7 +131,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
     private static final String KEY_CONTACT_URI = "contactUri";
     private static final String KEY_LIST_STATE = "liststate";
-    private static final String LOADER_ARG_CONTACT_URI = "contactUri";
 
     private Context mContext;
     private View mView;
@@ -605,7 +603,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                         final DetailViewEntry imEntry = DetailViewEntry.fromValues(mContext, imMime,
                                 imKind, dataId, entryValues, mContactData.isDirectoryEntry(),
                                 mContactData.getDirectoryId());
-                        buildImActions(imEntry, entryValues);
+                        buildImActions(mContext, imEntry, entryValues);
                         imEntry.applyStatus(status, false);
                         mImEntries.add(imEntry);
                     }
@@ -617,7 +615,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     mPostalEntries.add(entry);
                 } else if (Im.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     // Build IM entries
-                    buildImActions(entry, entryValues);
+                    buildImActions(mContext, entry, entryValues);
 
                     // Apply presence and status details when available
                     final DataStatus status = mContactData.getStatuses().get(entry.id);
@@ -936,11 +934,11 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     }
 
     /**
-     * Build {@link Intent} to launch an action for the given {@link Im} or
-     * {@link Email} row. If the result is non-null, it either contains one or two Intents
-     * (e.g. [Text, Videochat] or just [Text])
+     * Writes the Instant Messaging action into the given entry value.
      */
-    public static void buildImActions(DetailViewEntry entry, ContentValues values) {
+    @VisibleForTesting
+    public static void buildImActions(Context context, DetailViewEntry entry,
+            ContentValues values) {
         final boolean isEmail = Email.CONTENT_ITEM_TYPE.equals(values.getAsString(Data.MIMETYPE));
 
         if (!isEmail && !isProtocolValid(values)) {
@@ -958,6 +956,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             final Integer chatCapabilityObj = values.getAsInteger(Im.CHAT_CAPABILITY);
             final int chatCapability = chatCapabilityObj == null ? 0 : chatCapabilityObj;
             entry.chatCapability = chatCapability;
+            entry.typeString = Im.getProtocolLabel(context.getResources(), Im.PROTOCOL_GOOGLE_TALK,
+                    null).toString();
             if ((chatCapability & Im.CAPABILITY_HAS_CAMERA) != 0) {
                 entry.actionIcon = R.drawable.sym_action_talk_holo_light;
                 entry.intent =
