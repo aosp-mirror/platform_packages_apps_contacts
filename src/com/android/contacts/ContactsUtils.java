@@ -16,6 +16,8 @@
 
 package com.android.contacts;
 
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
 import com.android.i18n.phonenumbers.NumberParseException;
 import com.android.i18n.phonenumbers.PhoneNumberUtil;
 import com.android.i18n.phonenumbers.PhoneNumberUtil.MatchType;
@@ -28,6 +30,8 @@ import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
+
+import java.util.List;
 
 public class ContactsUtils {
     private static final String TAG = "ContactsUtils";
@@ -166,4 +170,12 @@ public class ContactsUtils {
                 (CountryDetector) context.getSystemService(Context.COUNTRY_DETECTOR);
         return detector.detectCountry().getCountryIso();
     }
+
+    public static boolean areAccountsAvailable(Context context) {
+        final List<AccountWithDataSet> accounts =
+                AccountTypeManager.getInstance(context).getAccounts(true /* writeable */);
+        return !accounts.isEmpty();
+    }
+
+
 }

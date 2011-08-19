@@ -19,6 +19,7 @@ package com.android.contacts.activities;
 import com.android.contacts.ContactLoader;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.TabState;
 import com.android.contacts.detail.ContactDetailFragment;
@@ -199,9 +200,7 @@ public class PeopleActivity extends ContactsActivity
     }
 
     private boolean areAccountsAvailable() {
-        final List<AccountWithDataSet> accounts =
-                AccountTypeManager.getInstance(this).getAccounts(true /* writeable */);
-        return !accounts.isEmpty();
+        return ContactsUtils.areAccountsAvailable(this);
     }
 
 
@@ -681,13 +680,14 @@ public class PeopleActivity extends ContactsActivity
             switch (tab) {
                 case FAVORITES:
                     mContactsUnavailableFragment.setMessageText(
-                            R.string.listTotalAllContactsZeroStarred);
+                            R.string.listTotalAllContactsZeroStarred, -1);
                     break;
                 case GROUPS:
-                    mContactsUnavailableFragment.setMessageText(R.string.noGroups);
+                    mContactsUnavailableFragment.setMessageText(R.string.noGroups,
+                            areAccountsAvailable() ? -1 : R.string.noAccounts);
                     break;
                 case ALL:
-                    mContactsUnavailableFragment.setMessageText(R.string.noContacts);
+                    mContactsUnavailableFragment.setMessageText(R.string.noContacts, -1);
                     break;
             }
         }
