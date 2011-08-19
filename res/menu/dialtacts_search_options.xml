@@ -19,4 +19,8 @@
         android:id="@+id/filter_option"
         android:title="@string/menu_contacts_filter"
         android:showAsAction="withText" />
+    <item
+        android:id="@+id/add_contact"
+        android:title="@string/menu_newContact"
+        android:showAsAction="withText" />
 </menu>

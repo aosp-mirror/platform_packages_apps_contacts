@@ -151,11 +151,6 @@ public class ContactEditorActivity extends ContactsActivity
         public void onSaveFinished(Intent resultIntent) {
             if (resultIntent != null) {
                 startActivity(resultIntent);
-            } else {
-                // Navigate home
-                Intent intent = new Intent(ContactEditorActivity.this, PeopleActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
             }
             finish();
         }
