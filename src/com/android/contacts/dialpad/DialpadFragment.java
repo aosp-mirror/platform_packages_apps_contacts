@@ -172,34 +172,42 @@ public class DialpadFragment extends Fragment
     };
 
     private final PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
-            /**
-             * Listen for phone state changes so that we can take down the
-             * "dialpad chooser" if the phone becomes idle while the
-             * chooser UI is visible.
-             */
-            @Override
-            public void onCallStateChanged(int state, String incomingNumber) {
-                // Log.i(TAG, "PhoneStateListener.onCallStateChanged: "
-                //       + state + ", '" + incomingNumber + "'");
-                if ((state == TelephonyManager.CALL_STATE_IDLE) && dialpadChooserVisible()) {
-                    // Log.i(TAG, "Call ended with dialpad chooser visible!  Taking it down...");
-                    // Note there's a race condition in the UI here: the
-                    // dialpad chooser could conceivably disappear (on its
-                    // own) at the exact moment the user was trying to select
-                    // one of the choices, which would be confusing.  (But at
-                    // least that's better than leaving the dialpad chooser
-                    // onscreen, but useless...)
-                    showDialpadChooser(false);
-                }
+        /**
+         * Listen for phone state changes so that we can take down the
+         * "dialpad chooser" if the phone becomes idle while the
+         * chooser UI is visible.
+         */
+        @Override
+        public void onCallStateChanged(int state, String incomingNumber) {
+            // Log.i(TAG, "PhoneStateListener.onCallStateChanged: "
+            //       + state + ", '" + incomingNumber + "'");
+            if ((state == TelephonyManager.CALL_STATE_IDLE) && dialpadChooserVisible()) {
+                // Log.i(TAG, "Call ended with dialpad chooser visible!  Taking it down...");
+                // Note there's a race condition in the UI here: the
+                // dialpad chooser could conceivably disappear (on its
+                // own) at the exact moment the user was trying to select
+                // one of the choices, which would be confusing.  (But at
+                // least that's better than leaving the dialpad chooser
+                // onscreen, but useless...)
+                showDialpadChooser(false);
             }
-        };
+        }
+    };
+
+    private boolean mWasEmptyBeforeTextChange;
 
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        // Do nothing
+        mWasEmptyBeforeTextChange = TextUtils.isEmpty(s);
     }
 
     public void onTextChanged(CharSequence input, int start, int before, int changeCount) {
-        // Do nothing
+        if (mWasEmptyBeforeTextChange != TextUtils.isEmpty(input)) {
+            final Activity activity = getActivity();
+            if (activity != null) {
+                activity.invalidateOptionsMenu();
+            }
+        }
+
         // DTMF Tones do not need to be played here any longer -
         // the DTMF dialer handles that functionality now.
     }
