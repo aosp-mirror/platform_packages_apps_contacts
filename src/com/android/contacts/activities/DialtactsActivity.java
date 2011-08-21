@@ -59,6 +59,7 @@ import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.view.ViewConfiguration;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.PopupMenu;
@@ -423,6 +424,14 @@ public class DialtactsActivity extends Activity {
         mSearchView.setIconifiedByDefault(true);
         mSearchView.setQueryHint(getString(R.string.hint_findContacts));
         mSearchView.setIconified(false);
+        mSearchView.setOnQueryTextFocusChangeListener(new OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus) {
+                    showInputMethod(view.findFocus());
+                }
+            }
+        });
 
         if (!ViewConfiguration.get(this).hasPermanentMenuKey()) {
             // Filter option menu should be shown on the right side of SearchView.
@@ -745,7 +754,15 @@ public class DialtactsActivity extends Activity {
     public void startSearch(String initialQuery, boolean selectInitialQuery,
             Bundle appSearchData, boolean globalSearch) {
         if (mSearchFragment != null && mSearchFragment.isAdded() && !globalSearch) {
-            enterSearchUi();
+            if (mInSearchUi) {
+                if (mSearchView.hasFocus()) {
+                    showInputMethod(mSearchView.findFocus());
+                } else {
+                    mSearchView.requestFocus();
+                }
+            } else {
+                enterSearchUi();
+            }
         } else {
             super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
         }
@@ -791,7 +808,9 @@ public class DialtactsActivity extends Activity {
     private void showInputMethod(View view) {
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null) {
-            imm.showSoftInput(view, 0);
+            if (!imm.showSoftInput(view, 0)) {
+                Log.w(TAG, "Failed to show soft input method.");
+            }
         }
     }
 
