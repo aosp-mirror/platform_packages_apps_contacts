@@ -44,16 +44,15 @@
     <string name="menu_callNumber" msgid="5142851348489387516">"<xliff:g id="NAME">%s</xliff:g> bellen"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Toevoegen aan favorieten"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Uit favorieten verwijderen"</string>
-    <!-- outdated translation 3452858480713561396 -->     <string name="menu_editContact" msgid="9042415603857662633">"Contact bewerken"</string>
-    <!-- outdated translation 1916555454274101750 -->     <string name="menu_deleteContact" msgid="6788644058868189393">"Contact verwijderen"</string>
+    <string name="menu_editContact" msgid="9042415603857662633">"Bewerken"</string>
+    <string name="menu_deleteContact" msgid="6788644058868189393">"Verwijderen"</string>
     <string name="menu_call" msgid="3992595586042260618">"Contact bellen"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Sms\'en naar contact"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Instellen als standaard e-mailadres"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Scheiden"</string>
-    <!-- no translation found for menu_editGroup (5062005185370983720) -->
-    <skip />
+    <string name="menu_editGroup" msgid="5062005185370983720">"Bewerken"</string>
     <string name="menu_renameGroup" msgid="2798886925154156075">"Naam van groep wijzigen"</string>
-    <!-- outdated translation 644571524292675446 -->     <string name="menu_deleteGroup" msgid="3486380004411482874">"Groep verwijderen"</string>
+    <string name="menu_deleteGroup" msgid="3486380004411482874">"Verwijderen"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Nieuw"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Nieuw"</string>
     <!-- outdated translation 6716467920283502570 -->     <string name="splitConfirmation_title" msgid="2209511048593467012">"Contacten scheiden"</string>
@@ -68,8 +67,7 @@
     <string name="contactOptionsTitle" msgid="8259347644090700915">"Opties"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Verwijderen"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Beltoon instellen"</string>
-    <!-- no translation found for menu_redirect_calls_to_vm (4181789196416396656) -->
-    <skip />
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Alle oproepen naar voicemail"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"U kunt contacten niet verwijderen uit alleen-lezen accounts, maar u kunt ze verbergen in uw contactenlijst."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Dit contact bevat gegevens uit meerdere accounts. Gegevens uit alleen-lezen accounts worden verborgen in uw contactenlijst, maar niet verwijderd."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Als u dit contact verwijdert, worden gegevens van meerdere accounts verwijderd."</string>
@@ -118,8 +116,7 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Weergaveopties opslaan..."</string>
     <!-- outdated translation 7152589189385441091 -->     <string name="contactSavedToast" msgid="9171862279493213075">"Contact opgeslagen."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Fout. Kan wijzigingen in contact niet opslaan."</string>
-    <!-- no translation found for groupSavedToast (6675062559302493011) -->
-    <skip />
+    <!-- outdated translation 1168756874239833756 -->     <string name="groupSavedToast" msgid="6675062559302493011">"Groep opgeslagen."</string>
     <string name="groupSavedErrorToast" msgid="6434135707953150875">"Fout. Kan wijzigingen in groep niet opslaan."</string>
     <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"Wijziging is opgeslagen."</string>
     <string name="contactAlreadyInGroup" msgid="6209708213229886092">"Contact is al aan de groep toegevoegd."</string>
@@ -243,26 +240,29 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Alle vCard-bestanden importeren"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Zoeken naar vCard-gegevens in opslag"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Zoeken naar vCard-gegevens op SD-kaart"</string>
-    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="6957414493948497249">"Scannen van opslag is mislukt"</string>
-    <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Scannen van SD-kaart is mislukt"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="4106156155205860626">"Scannen van USB-opslag is mislukt (reden: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\')"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Scannen van SD-kaart is mislukt: (Reden: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\')"</string>
+    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Scannen van opslag is mislukt"</string>
+    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Scannen van opslag is mislukt"</string>
+    <!-- no translation found for scanning_sdcard_failed_message (8290634758602152611) -->
+    <skip />
+    <!-- no translation found for scanning_sdcard_failed_message (2462918339722946736) -->
+    <skip />
     <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O-fout"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Onvoldoende geheugen (het bestand is mogelijk te groot)"</string>
-    <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Parseren van vCard is mislukt om onbekende reden"</string>
+    <!-- outdated translation 1201233722762680214 -->     <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"Parseren van vCard is mislukt om onbekende reden"</string>
     <string name="fail_reason_not_supported" msgid="294499264620201243">"De indeling wordt niet ondersteund."</string>
-    <string name="vcard_import_failed" msgid="7718330063493653085">"Kan vCard niet importeren"</string>
+    <!-- outdated translation 7718330063493653085 -->     <string name="vcard_import_failed" msgid="8856125211629574066">"Kan vCard niet importeren"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"Geen vCard-bestand gevonden in opslag"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Geen vCard-bestand gevonden op SD-kaart"</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Verzamelen van metagegevens van betreffende vCard-bestanden is mislukt."</string>
-    <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Een of meer bestanden kunnen niet worden geïmporteerd (%s)"</string>
+    <!-- outdated translation 4154492282316067754 -->     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Verzamelen van metagegevens van betreffende vCard-bestanden is mislukt."</string>
+    <!-- no translation found for fail_reason_failed_to_read_files (5823434810622484922) -->
+    <skip />
     <string name="fail_reason_unknown" msgid="999034019513096768">"Onbekende fout"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"vCard-bestand selecteren"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"vCard(s) cachen in lokale tijdelijke opslag"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"De importer cacht vCard(s) in de lokale tijdelijke opslag. Daadwerkelijk importeren begint gauw."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Importeren <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g> importeren"</string>
-    <string name="reading_vcard_failed_title" msgid="2162610359561887043">"Lezen van vCard-gegevens is mislukt"</string>
+    <!-- outdated translation 2162610359561887043 -->     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Lezen van vCard-gegevens is mislukt"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Lezen van vCard-gegevens is geannuleerd"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Importeren van vCard <xliff:g id="FILENAME">%s</xliff:g> voltooid"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Importeren van <xliff:g id="FILENAME">%s</xliff:g> is geannuleerd"</string>
@@ -276,8 +276,9 @@
     <string name="confirm_export_title" msgid="7648747763127442983">"Exporteren bevestigen"</string>
     <!-- no translation found for confirm_export_message (4307437830474103759) -->
     <skip />
-    <string name="exporting_contact_failed_title" msgid="585823094820602526">"Exporteren van contactgegevens mislukt"</string>
-    <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Exporteren van contactgegevens mislukt."\n"Reden voor de fout: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\'"</string>
+    <!-- outdated translation 585823094820602526 -->     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Exporteren van contactgegevens mislukt"</string>
+    <!-- no translation found for exporting_contact_failed_message (2704925031146288635) -->
+    <skip />
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Er is geen contact dat geëxporteerd kan worden"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Te veel vCard-bestanden in opslag"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Te veel vCard-gegevens op de SD-kaart"</string>
@@ -288,7 +289,7 @@
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Contactgegevens exporteren naar \'<xliff:g id="FILE_NAME">%s</xliff:g>\'"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Kan het exportprogramma niet initialiseren: \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Fout opgetreden tijdens export: \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'"</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Databasegegevens ophalen mislukt"</string>
+    <!-- outdated translation 3723109558155169053 -->     <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Databasegegevens ophalen mislukt"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Er zijn geen contacten die kunnen worden geëxporteerd. Als er contacten op uw tablet staan, kan het exporteren van alle contacten vanaf uw tablet mogelijk worden geblokkeerd door bepaalde gegevensproviders."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Er zijn geen contacten die kunnen worden geëxporteerd. Als er contacten op uw telefoon staan, kan het exporteren van alle contacten vanaf uw telefoon mogelijk worden geblokkeerd door bepaalde gegevensproviders."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"De vCard-editor is niet juist geïnitialiseerd"</string>
@@ -298,7 +299,7 @@
     <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"Weet u zeker dat u het importeren van <xliff:g id="FILENAME">%s</xliff:g> annuleren?"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Exporteren van vCard annuleren"</string>
     <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"Weet u zeker dat u het exporteren van <xliff:g id="FILENAME">%s</xliff:g> wilt annuleren?"</string>
-    <string name="cancel_vcard_import_or_export_failed" msgid="7096533244663846810">"Annuleren van import/export vCard mislukt"</string>
+    <!-- outdated translation 7096533244663846810 -->     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Annuleren van import/export vCard mislukt"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Namen van uw contacten"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Pauze van 2 seconden toevoegen"</string>
     <string name="add_wait" msgid="3360818652790319634">"Wachten toevoegen"</string>
@@ -493,7 +494,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Aangepaste weergave definiëren"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Instellingen"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Zichtbare contacten"</string>
-    <!-- outdated translation 377929915873428211 -->     <string name="menu_settings" msgid="6523251616169246235">"Instellingen"</string>
+    <!-- outdated translation 1515262535785451190 -->     <string name="menu_settings" msgid="6523251616169246235">"Opties weergeven"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Weergaveopties"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Contacten vinden"</string>
@@ -536,10 +537,8 @@
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Wilt u uw wijzigingen annuleren?"</string>
     <string name="discard" msgid="1234315037371251414">"Verwijderen"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <!-- no translation found for profile_display_name (4127389543625918771) -->
-    <skip />
-    <!-- no translation found for enter_contact_name (1738391320566349924) -->
-    <skip />
+    <string name="profile_display_name" msgid="4127389543625918771">"Mijn profiel instellen"</string>
+    <!-- outdated translation 2930510479516059437 -->     <string name="enter_contact_name" msgid="1738391320566349924">"Geef de naam van het contact op"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Updates bekijken"</string>
   <plurals name="notification_voicemail_title">
     <item quantity="one" msgid="1746619685488504230">"Voicemail"</item>
@@ -547,11 +546,11 @@
   </plurals>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Nieuwe voicemail van <xliff:g id="CALLER">%1$s</xliff:g>"</string>
-    <string name="voicemail_playback_error" msgid="6148119635138385900">"kan voicemail niet afspelen"</string>
-    <string name="voicemail_buffering" msgid="2021957162133938725">"bufferen..."</string>
-    <!-- no translation found for voicemail_fetching_content (8516068803491833243) -->
+    <!-- outdated translation 6148119635138385900 -->     <string name="voicemail_playback_error" msgid="1811242131549854624">"kan voicemail niet afspelen"</string>
+    <!-- outdated translation 2021957162133938725 -->     <string name="voicemail_buffering" msgid="738287747618697097">"bufferen..."</string>
+    <!-- no translation found for voicemail_fetching_content (877911315738258780) -->
     <skip />
-    <!-- no translation found for voicemail_fetching_timout (3430908587639305983) -->
+    <!-- no translation found for voicemail_fetching_timout (6691792377574905201) -->
     <skip />
     <string name="call_log_new_header" msgid="846546437517724715">"Nieuw"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Ouder"</string>
@@ -591,12 +590,10 @@
     <skip />
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Niet-beluisterde voicemail"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
-    <!-- no translation found for user_profile_contacts_list_header (9154761216179882405) -->
-    <skip />
+    <string name="user_profile_contacts_list_header" msgid="9154761216179882405">"IK"</string>
     <!-- no translation found for local_profile_title (2021416826991393684) -->
     <skip />
     <!-- no translation found for external_profile_title (8034998767621359438) -->
     <skip />
-    <!-- no translation found for toast_displaying_all_contacts (2737388783898593875) -->
-    <skip />
+    <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Alle contacten worden weergegeven"</string>
 </resources>

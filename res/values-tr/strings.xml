@@ -116,8 +116,7 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Görüntüleme seçenekleri kaydediliyor..."</string>
     <!-- outdated translation 7152589189385441091 -->     <string name="contactSavedToast" msgid="9171862279493213075">"Kişi kaydedildi."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Hata, kişi değişiklikleri kaydedilemiyor."</string>
-    <!-- no translation found for groupSavedToast (6675062559302493011) -->
-    <skip />
+    <!-- outdated translation 1168756874239833756 -->     <string name="groupSavedToast" msgid="6675062559302493011">"Grup kaydedildi."</string>
     <string name="groupSavedErrorToast" msgid="6434135707953150875">"Hata, grup değişiklikleri kaydedilemedi."</string>
     <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"Değişiklik kaydedildi."</string>
     <string name="contactAlreadyInGroup" msgid="6209708213229886092">"Kişi gruba zaten eklenmiş."</string>
@@ -159,10 +158,8 @@
     <string name="recentCalls_addToContact" msgid="1429899535546487008">"Kişilere ekle"</string>
     <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Çağrı kaydından kaldır"</string>
     <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Çağrı kaydını temizle"</string>
-    <!-- no translation found for recentCalls_trashVoicemail (7604696960787435655) -->
-    <skip />
-    <!-- no translation found for recentCalls_shareVoicemail (1416112847592942840) -->
-    <skip />
+    <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Sesli mesajı sil"</string>
+    <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Sesli mesajı paylaş"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Çağrı kaydı boş."</string>
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Çağrı kaydını temizle"</string>
     <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Çağrı kaydını silmek istediğinizden emin misiniz?"</string>
@@ -205,10 +202,8 @@
     <string name="callAgain" msgid="3197312117049874778">"Tekrar çağrı yap"</string>
     <string name="returnCall" msgid="8171961914203617813">"Geri ara"</string>
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> dak <xliff:g id="SECONDS">%s</xliff:g> sn"</string>
-    <!-- no translation found for favoritesFrequentContacted (6184232487472425690) -->
-    <skip />
-    <!-- no translation found for favoritesFrequentCalled (6128306889600696124) -->
-    <skip />
+    <string name="favoritesFrequentContacted" msgid="6184232487472425690">"Sık iletişim kurulanlar"</string>
+    <string name="favoritesFrequentCalled" msgid="6128306889600696124">"Sık arananlar"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Kişi ekle"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"\"<xliff:g id="EMAIL">%s</xliff:g>\" adresi kişilere eklensin mi?"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"bir"</string>
@@ -245,26 +240,29 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Tüm vCard dosyalarını içe aktar"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Depolama birimindeki vCard verileri aranıyor"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"SD kartta vCard verileri aranıyor"</string>
-    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="6957414493948497249">"Depolama birimi taraması başarısız oldu"</string>
-    <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"SD kart taranamadı"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="4106156155205860626">"Depolama birimi taraması başarısız oldu (Nedeni: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"SD kart taraması başarısız oldu (Neden: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Depolama birimi taraması başarısız oldu"</string>
+    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Depolama birimi taraması başarısız oldu"</string>
+    <!-- no translation found for scanning_sdcard_failed_message (8290634758602152611) -->
+    <skip />
+    <!-- no translation found for scanning_sdcard_failed_message (2462918339722946736) -->
+    <skip />
     <string name="fail_reason_io_error" msgid="5922864781066136340">"G/Ç Hatası"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Bellek yetersiz (dosya çok büyük olabilir)"</string>
-    <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Beklenmedik bir nedenden dolayı vCard ayrıştırılamadı"</string>
+    <!-- outdated translation 1201233722762680214 -->     <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"Beklenmedik bir nedenden dolayı vCard ayrıştırılamadı"</string>
     <string name="fail_reason_not_supported" msgid="294499264620201243">"Biçim desteklenmiyor."</string>
-    <string name="vcard_import_failed" msgid="7718330063493653085">"vCard içe aktarılamadı"</string>
+    <!-- outdated translation 7718330063493653085 -->     <string name="vcard_import_failed" msgid="8856125211629574066">"vCard içe aktarılamadı"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"Depolama biriminde hiçbir vCard dosyası bulunamadı"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"SD kartta hiçbir vCard dosyası bulunamadı"</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Belirtilen vCard dosyalarının meta bilgileri toplanamıyor."</string>
-    <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"İçe aktarılamayan bir veya birden fazla dosya (%s)."</string>
+    <!-- outdated translation 4154492282316067754 -->     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Belirtilen vCard dosyalarının meta bilgileri toplanamıyor."</string>
+    <!-- no translation found for fail_reason_failed_to_read_files (5823434810622484922) -->
+    <skip />
     <string name="fail_reason_unknown" msgid="999034019513096768">"Bilinmeyen hata"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"vCard dosyasını seç"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"vCard\'lar yerel geçici depolamada önbelleğe kaydediliyor"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"İçe aktarma aracı vCard\'ları yerel geçici depolama alanına önbelleğe kaydediyor. Asıl içe aktarma işlemi kısa süre içinde başlayacak."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"İçe aktarılıyor <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g> içe aktarılıyor"</string>
-    <string name="reading_vcard_failed_title" msgid="2162610359561887043">"vCard verileri Okunamadı"</string>
+    <!-- outdated translation 2162610359561887043 -->     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"vCard verileri Okunamadı"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"vCard verilerini okuma işlemi iptal edildi."</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"vCard <xliff:g id="FILENAME">%s</xliff:g> dosysn içe aktarma tamamlandı"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"<xliff:g id="FILENAME">%s</xliff:g> dosyasını içe aktarma iptal edildi"</string>
@@ -278,8 +276,9 @@
     <string name="confirm_export_title" msgid="7648747763127442983">"Dışa aktarımı onayla"</string>
     <!-- no translation found for confirm_export_message (4307437830474103759) -->
     <skip />
-    <string name="exporting_contact_failed_title" msgid="585823094820602526">"Kişi verileri dışa aktarılamadı"</string>
-    <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Kişi verileri dışa aktarılamadı."\n"Hata nedeni: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <!-- outdated translation 585823094820602526 -->     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Kişi verileri dışa aktarılamadı"</string>
+    <!-- no translation found for exporting_contact_failed_message (2704925031146288635) -->
+    <skip />
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Dışa aktarılabilen hiçbir kişi yok"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Depolama biriminde çok fazla vCard dosyası var"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"SD kartta çok fazla vCard dosyası var"</string>
@@ -290,7 +289,7 @@
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Kişi verileri \"<xliff:g id="FILE_NAME">%s</xliff:g>\" dosyasına dışa aktarılıyor"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Dışa aktarıcı başlatılamadı: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Dışa aktarma sırasında hata oluştu: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Veri tabanı bilgileri alınamadı"</string>
+    <!-- outdated translation 3723109558155169053 -->     <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Veri tabanı bilgileri alınamadı"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Dışa aktarılabilir kişi yok. Gerçekte tabletinizde kişi kayıtları varsa da, veri sağlayıcısı tarafından tüm kişilerin telefon dışına aktarılması yasaklanmış olabilir."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Dışa aktarılabilir kişi yok. Gerçekte telefonunuzda kişi kayıtları varsa da, veri sağlayıcısı tarafından tüm kişilerin telefon dışına aktarılması yasaklanmış olabilir."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"vCard oluşturucu doğru bir şekilde başlatılmamış"</string>
@@ -300,7 +299,7 @@
     <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"<xliff:g id="FILENAME">%s</xliff:g> dosyasını içe aktarma işlemini iptal etmek istediğinizden emin misiniz?"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"vCard dışa aktarmayı iptal etme"</string>
     <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"<xliff:g id="FILENAME">%s</xliff:g> dosyasını dışa aktarmayı iptal etmek istediğinizden emin misiniz?"</string>
-    <string name="cancel_vcard_import_or_export_failed" msgid="7096533244663846810">"vCard içe/dışa aktarma iptal edilemedi"</string>
+    <!-- outdated translation 7096533244663846810 -->     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard içe/dışa aktarma iptal edilemedi"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Kişilerinizin adları"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"2 saniyelik duraklama ekle"</string>
     <string name="add_wait" msgid="3360818652790319634">"Bekleme ekle"</string>
@@ -429,10 +428,7 @@
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Bu fotoğrafı kullan"</string>
-    <!-- unknown placeholder SOURCE in contact_read_only -->
-    <skip />
-    <!-- no translation found for contact_read_only (1856479476063888348) -->
-    <skip />
+    <string name="contact_read_only" msgid="1856479476063888348">"Bu uygulamadan düzenlenemez"</string>
     <string name="no_contact_details" msgid="6754415338321837001">"Bu kişi için ek bilgi yok"</string>
     <string name="group_read_only" msgid="7924922658394449477">"Bu cihazda düzenlenemez"</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Listeyi şu ölçüte göre sırala:"</string>
@@ -464,8 +460,7 @@
     <string name="no_contacts_selected" msgid="5877803471037324613">"Seçili kişi yok."</string>
     <string name="add_field" msgid="2384260056674995230">"Başka alan ekle"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Yeni ekle"</string>
-    <!-- no translation found for add_organization (7311893231158291197) -->
-    <skip />
+    <string name="add_organization" msgid="7311893231158291197">"Kuruluş ekle"</string>
     <!-- no translation found for event_edit_field_hint_text (5794424930242630477) -->
     <skip />
     <!-- no translation found for group_edit_field_hint_text (3966441850870457808) -->
@@ -499,7 +494,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Özel görünüm tanımla"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Ayarlar"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Görüntülenecek kişiler"</string>
-    <!-- outdated translation 377929915873428211 -->     <string name="menu_settings" msgid="6523251616169246235">"Ayarlar"</string>
+    <!-- outdated translation 1515262535785451190 -->     <string name="menu_settings" msgid="6523251616169246235">"Görüntüleme Seçenekleri"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Görüntüleme seçenekleri"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Kişileri bul"</string>
@@ -543,8 +538,7 @@
     <string name="discard" msgid="1234315037371251414">"Sil"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Profilimi ayarla"</string>
-    <!-- no translation found for enter_contact_name (1738391320566349924) -->
-    <skip />
+    <!-- outdated translation 2930510479516059437 -->     <string name="enter_contact_name" msgid="1738391320566349924">"Kişinin adını girin"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Gncellmlri görüntüle"</string>
   <plurals name="notification_voicemail_title">
     <item quantity="one" msgid="1746619685488504230">"Sesli mesaj"</item>
@@ -552,13 +546,11 @@
   </plurals>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Yeni sesli mesj gönderen: <xliff:g id="CALLER">%1$s</xliff:g>"</string>
-    <!-- no translation found for voicemail_playback_error (6148119635138385900) -->
+    <!-- outdated translation 6148119635138385900 -->     <string name="voicemail_playback_error" msgid="1811242131549854624">"Sesli mesaj oynatılamadı"</string>
+    <!-- outdated translation 2021957162133938725 -->     <string name="voicemail_buffering" msgid="738287747618697097">"Arabelleğe alınıyor..."</string>
+    <!-- no translation found for voicemail_fetching_content (877911315738258780) -->
     <skip />
-    <!-- no translation found for voicemail_buffering (2021957162133938725) -->
-    <skip />
-    <!-- no translation found for voicemail_fetching_content (8516068803491833243) -->
-    <skip />
-    <!-- no translation found for voicemail_fetching_timout (3430908587639305983) -->
+    <!-- no translation found for voicemail_fetching_timout (6691792377574905201) -->
     <skip />
     <string name="call_log_new_header" msgid="846546437517724715">"Yeni"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Daha eski"</string>
@@ -573,8 +565,7 @@
     <string name="voicemail_speed_normal" msgid="6030110237820243006">"normal hız"</string>
     <string name="voicemail_speed_faster" msgid="4161478290979905481">"yüksek hız"</string>
     <string name="voicemail_speed_fastest" msgid="3373646875150544205">"en yüksek hız"</string>
-    <!-- no translation found for call_log_item_count_and_date (7641933305703520787) -->
-    <skip />
+    <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
     <string name="group_name_hint" msgid="2659811836386413509">"Grubun Adı"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Kişi NFC ile alındı"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Yalnızca sesli msajları göster"</string>

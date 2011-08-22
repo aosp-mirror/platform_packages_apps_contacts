@@ -63,18 +63,15 @@
     <skip />
     <!-- no translation found for menu_removeStar (5844227078364227030) -->
     <skip />
-    <!-- no translation found for menu_editContact (9042415603857662633) -->
-    <skip />
-    <!-- no translation found for menu_deleteContact (6788644058868189393) -->
-    <skip />
+    <string name="menu_editContact" msgid="9042415603857662633">"አርትዕ"</string>
+    <string name="menu_deleteContact" msgid="6788644058868189393">"ሰርዝ"</string>
     <string name="menu_call" msgid="3992595586042260618">"የጥሪ ዕውቂያ"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"ዕውቂያ ፃፍ"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"ነባሪ ኢሜይል አድርግ"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"ለይ"</string>
-    <!-- no translation found for menu_editGroup (5062005185370983720) -->
-    <skip />
+    <string name="menu_editGroup" msgid="5062005185370983720">"አርትዕ"</string>
     <string name="menu_renameGroup" msgid="2798886925154156075">"ቡድን እንደገና ሰይም"</string>
-    <!-- outdated translation 644571524292675446 -->     <string name="menu_deleteGroup" msgid="3486380004411482874">"ቡድን ሰርዝ"</string>
+    <string name="menu_deleteGroup" msgid="3486380004411482874">"ሰርዝ"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"አዲስ"</string>
     <!-- no translation found for menu_new_group_action_bar (5055346725617932394) -->
     <skip />
@@ -92,8 +89,7 @@
     <skip />
     <!-- no translation found for menu_set_ring_tone (8728345772068064946) -->
     <skip />
-    <!-- no translation found for menu_redirect_calls_to_vm (4181789196416396656) -->
-    <skip />
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ሁሉንም ጥሪዎች ወደ ድምፅ መልዕክት"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"ዕውቂያዎችን ከንባብ-ብቻ መለያዎች መሰረዝ አይችሉም፤ ነገር ግን በዕውቂያ ዝርዝሮችዎ ውስጥ መደበቅ ይችላሉ።"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"ይህ ዕውቂያ ከብዙ መለያዎች መረጃ ይዟል።ከንባብ-ብቻ መለያዎች ውስጥ ያሉ ዕውቂያዎች ይደበቃሉ፣አይሰረዙም።"</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"ይህን ዕውቂያ መሰረዝ ከብዙ መለያዎች ውስጥ መረጃ ይሰርዛል።"</string>
@@ -309,27 +305,29 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"ሁሉም vCard ፋይሎችን አስገባ"</string>
     <!-- outdated translation 8214795338181412751 -->     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"የvCard ውሂብ በUSB ማከማቻ በመፈለግ ላይ"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"በSD ካርድ ላይ vCard ፍለጋ"</string>
-    <!-- outdated translation 7447077516493667568 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="6957414493948497249">"የUSB  ማከማቻ መቃኘት ተስኗል"</string>
-    <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"የSD ካርድ መቃኘትአልተሳካም"</string>
-    <!-- no translation found for scanning_sdcard_failed_message (4106156155205860626) -->
+    <!-- outdated translation 7447077516493667568 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"የUSB  ማከማቻ መቃኘት ተስኗል"</string>
+    <!-- outdated translation 7447077516493667568 -->     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"የUSB  ማከማቻ መቃኘት ተስኗል"</string>
+    <!-- no translation found for scanning_sdcard_failed_message (8290634758602152611) -->
     <skip />
-    <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"የSD ካርድ መቃኘትአልተሳካም (ምክንያት፡\"<xliff:g id="FAIL_REASON">%s</xliff:g>\" )"</string>
+    <!-- no translation found for scanning_sdcard_failed_message (2462918339722946736) -->
+    <skip />
     <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O ስህተት"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"ማህደረ ትውስታ በቂ አይደለም(ፋይሉ ምናልባት በጣም ትልቅ ይሆናል)"</string>
-    <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"ባልታወቀ ምክንያትወደ vCard ለመተንተን አልተሳካም"</string>
+    <!-- outdated translation 1201233722762680214 -->     <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"ባልታወቀ ምክንያትወደ vCard ለመተንተን አልተሳካም"</string>
     <string name="fail_reason_not_supported" msgid="294499264620201243">"ቅርፀቱ አይታገዝም"</string>
-    <string name="vcard_import_failed" msgid="7718330063493653085">"vCard ለማስገባት ተስኗል"</string>
+    <!-- outdated translation 7718330063493653085 -->     <string name="vcard_import_failed" msgid="8856125211629574066">"vCard ለማስገባት ተስኗል"</string>
     <!-- outdated translation 1730986357514922756 -->     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"በSD ካርዱ ላይ ምንም SD ካርድ ፋይል አልተገኘም"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"በSD ካርዱ ላይ ምንም SD ካርድ ፋይል አልተገኘም"</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"የvCard ፋይል(ኦች) ልዕለ መረጃ ለመሰብሰብ አልተሳካም"</string>
-    <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"ለማስገባት(%s) አንድ ወይም ተጨማሪ ፋይሎች አልተሳኩም።"</string>
+    <!-- outdated translation 4154492282316067754 -->     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"የvCard ፋይል(ኦች) ልዕለ መረጃ ለመሰብሰብ አልተሳካም"</string>
+    <!-- no translation found for fail_reason_failed_to_read_files (5823434810622484922) -->
+    <skip />
     <string name="fail_reason_unknown" msgid="999034019513096768">"ያልታወቀ ስህተት"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"vCard ፋይል ምረጥ"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"ወደ ጊዜያዊ ማከማቻ vCard(s) መሸጎጫ"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"አስመጪ ወደ ጊዜያዊ ማከማቻ vCard(s) እየሸጎጠ ነው። ትክክለኛው አስመጣ በቅርቡ ይጀምራል።"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"በማስገባት ላይ<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>፡<xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g> ማስገባት"</string>
-    <string name="reading_vcard_failed_title" msgid="2162610359561887043">"የvCard ውሂብ ለማንበብ አልተሳካም"</string>
+    <!-- outdated translation 2162610359561887043 -->     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"የvCard ውሂብ ለማንበብ አልተሳካም"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"የvCard ውሂብ ማንበብ ተሰርዟል"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">" <xliff:g id="FILENAME">%s</xliff:g> vCard  ማስመጣት ጨርሷል"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"<xliff:g id="FILENAME">%s</xliff:g> ማስመጣት ተሰርዞ ነበር"</string>
@@ -343,8 +341,9 @@
     <string name="confirm_export_title" msgid="7648747763127442983">"ላክ አረጋግጥ"</string>
     <!-- no translation found for confirm_export_message (4307437830474103759) -->
     <skip />
-    <string name="exporting_contact_failed_title" msgid="585823094820602526">"የዕውቂያ ውሂብ ለመላክ አለተሳማካም"</string>
-    <string name="exporting_contact_failed_message" msgid="4151348002470298092">"የዕውቂያ ውሂብ ለላክአልተሳካም"\n"ለመታወኩ ምክንያት\"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <!-- outdated translation 585823094820602526 -->     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"የዕውቂያ ውሂብ ለመላክ አለተሳማካም"</string>
+    <!-- no translation found for exporting_contact_failed_message (2704925031146288635) -->
+    <skip />
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"ምንም መላክ የሚችል ዕውቂያ የለም"</string>
     <!-- outdated translation 2638638826954895225 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"በጣም ብዙ vCard ፋይሎችበUSB ማከማቻ ውስጥ"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"በSD ካርድ ላይ በጣም ብዙ vCard ፋይሎች"</string>
@@ -355,7 +354,7 @@
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"የዕውቂያ ውሂብ ወደ \"<xliff:g id="FILE_NAME">%s</xliff:g>\" በመላክ ላይ"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">" ላኪው፡\"<xliff:g id="EXACT_REASON">%s</xliff:g>\" ለማስነሳት አልተቻለም"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"በላክ ጊዜ <xliff:g id="EXACT_REASON">%s</xliff:g> ስህተት ተከስቷል"</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"የውሂብ ጎታ መረጃ ለማግኘት አልተሳካም"</string>
+    <!-- outdated translation 3723109558155169053 -->     <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"የውሂብ ጎታ መረጃ ለማግኘት አልተሳካም"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"መላክ የሚችሉ ዕውቂያዎች የሉም።በጡባዊዎ ላይ ዕውቂያዎች ካሉ፣ በውሂብ አቅራቢው ከጡባዊዎ ወደ ውጪ እንዳይላኩ ተከልክለው ሊሆን ይችላል።"</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"መላክ የሚችሉ ዕውቂያዎች የሉም።በስልክዎ ላይ ዕውቂያዎች ካሉ፣ በውሂብ አቅራቢው ከስልክዎ ወደ ውጪ እንዳይላኩ ተከልክለው ሊሆን ይችላል።"</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"የvCard ፅሁፍ አዘጋጅ በትክክል አልተነሳም።"</string>
@@ -365,7 +364,7 @@
     <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"<xliff:g id="FILENAME">%s</xliff:g> ማስመጣት ለመሰረዝ እርግጠኛ ነዎት?"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"vCard ላክበመሰረዝላይ"</string>
     <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"<xliff:g id="FILENAME">%s</xliff:g> መላክ ለመሰረዝ እርግጠኛ ነዎት?"</string>
-    <string name="cancel_vcard_import_or_export_failed" msgid="7096533244663846810">"vCard  አስመጣ/ላክ ተስኗል"</string>
+    <!-- outdated translation 7096533244663846810 -->     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard  አስመጣ/ላክ ተስኗል"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"የዕውቂያዎችዎ ስሞች"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"2 ሰከንድ ፋታ አክል"</string>
     <string name="add_wait" msgid="3360818652790319634">"ጠብቅአክል"</string>
@@ -610,8 +609,7 @@
     <string name="discard" msgid="1234315037371251414">"አስወግድ"</string>
     <!-- no translation found for call_type_and_date (1766269584078149149) -->
     <skip />
-    <!-- no translation found for profile_display_name (4127389543625918771) -->
-    <skip />
+    <string name="profile_display_name" msgid="4127389543625918771">"መገለጫዬን አዘጋጅ"</string>
     <!-- no translation found for enter_contact_name (1738391320566349924) -->
     <skip />
     <!-- no translation found for view_updates_from_group (1782685984905600034) -->
@@ -622,11 +620,11 @@
     <skip />
     <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
     <skip />
-    <string name="voicemail_playback_error" msgid="6148119635138385900">"የድምፅ መልዕክት ለማጫወት ተስኗል"</string>
-    <string name="voicemail_buffering" msgid="2021957162133938725">"ማቋት"</string>
-    <!-- no translation found for voicemail_fetching_content (8516068803491833243) -->
+    <!-- outdated translation 6148119635138385900 -->     <string name="voicemail_playback_error" msgid="1811242131549854624">"የድምፅ መልዕክት ለማጫወት ተስኗል"</string>
+    <!-- outdated translation 2021957162133938725 -->     <string name="voicemail_buffering" msgid="738287747618697097">"ማቋት"</string>
+    <!-- no translation found for voicemail_fetching_content (877911315738258780) -->
     <skip />
-    <!-- no translation found for voicemail_fetching_timout (3430908587639305983) -->
+    <!-- no translation found for voicemail_fetching_timout (6691792377574905201) -->
     <skip />
     <!-- no translation found for call_log_new_header (846546437517724715) -->
     <skip />
@@ -693,12 +691,10 @@
     <skip />
     <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
     <skip />
-    <!-- no translation found for user_profile_contacts_list_header (9154761216179882405) -->
-    <skip />
+    <string name="user_profile_contacts_list_header" msgid="9154761216179882405">"እኔ"</string>
     <!-- no translation found for local_profile_title (2021416826991393684) -->
     <skip />
     <!-- no translation found for external_profile_title (8034998767621359438) -->
     <skip />
-    <!-- no translation found for toast_displaying_all_contacts (2737388783898593875) -->
-    <skip />
+    <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"ሁሉንም ዕውቂያዎች በማሳየት ላይ"</string>
 </resources>

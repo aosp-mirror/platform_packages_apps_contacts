@@ -270,31 +270,33 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Importar tut las datotecas vCard"</string>
     <!-- outdated translation 6917522333561434546 -->     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Tschertgar datas vCard sin la carta SD"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Tschertgar datas vCard sin la carta SD"</string>
-    <!-- outdated translation 3506782007953167180 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="6957414493948497249">"Errur cun leger la carta SD"</string>
-    <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Errur cun leger la carta SD"</string>
-    <!-- no translation found for scanning_sdcard_failed_message (4106156155205860626) -->
+    <!-- outdated translation 3506782007953167180 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Errur cun leger la carta SD"</string>
+    <!-- outdated translation 3506782007953167180 -->     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Errur cun leger la carta SD"</string>
+    <!-- no translation found for scanning_sdcard_failed_message (8290634758602152611) -->
     <skip />
-    <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Errur cun leger la carta SD. Il motiv: «<xliff:g id="FAIL_REASON">%s</xliff:g>»"</string>
+    <!-- no translation found for scanning_sdcard_failed_message (2462918339722946736) -->
+    <skip />
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Errur I/O"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Memoria insuffizienta (probablamain è la datoteca memia gronda)"</string>
-    <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"L\'analisa da las datas vCard n\'è betg reussida per motiv nunenconuschent."</string>
+    <!-- outdated translation 1201233722762680214 -->     <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"L\'analisa da las datas vCard n\'è betg reussida per motiv nunenconuschent."</string>
     <!-- no translation found for fail_reason_not_supported (294499264620201243) -->
     <skip />
-    <!-- no translation found for vcard_import_failed (7718330063493653085) -->
+    <!-- no translation found for vcard_import_failed (8856125211629574066) -->
     <skip />
     <!-- no translation found for import_failure_no_vcard_file (6339234836196984924) -->
     <skip />
     <!-- no translation found for import_failure_no_vcard_file (1730986357514922756) -->
     <skip />
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Betg reussì da leger las metadatas cuntegnidas en la(s) datoteca(s) vCard."</string>
-    <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Errur cun importar ina u pliras datotecas (%s)."</string>
+    <!-- outdated translation 4154492282316067754 -->     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Betg reussì da leger las metadatas cuntegnidas en la(s) datoteca(s) vCard."</string>
+    <!-- no translation found for fail_reason_failed_to_read_files (5823434810622484922) -->
+    <skip />
     <string name="fail_reason_unknown" msgid="999034019513096768">"Errur nunenconuschenta"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Tscherner ina datoteca vCard"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"Metter la(s) vCard(s) en il cache da la memoria temporara locala"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"Il program d\'importaziun metta gist la(s) vCard(s) en il cache da la memoria temporara locala. Il process d\'importaziun effectiv cumenza en pauc temp"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Importar <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Importar <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="reading_vcard_failed_title" msgid="2162610359561887043">"Errur cun leger las datas vCard"</string>
+    <!-- outdated translation 2162610359561887043 -->     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Errur cun leger las datas vCard"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Interrut la lectura da datas vCard"</string>
     <!-- no translation found for importing_vcard_finished_title (3341541727268747967) -->
     <skip />
@@ -316,8 +318,9 @@
     <string name="confirm_export_title" msgid="7648747763127442983">"Confermar l\'export"</string>
     <!-- no translation found for confirm_export_message (4307437830474103759) -->
     <skip />
-    <string name="exporting_contact_failed_title" msgid="585823094820602526">"Errur cun exportar las datas da contact"</string>
-    <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Errur cun exportar las datas da contact. "\n"Il motiv: «<xliff:g id="FAIL_REASON">%s</xliff:g>»"</string>
+    <!-- outdated translation 585823094820602526 -->     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Errur cun exportar las datas da contact"</string>
+    <!-- no translation found for exporting_contact_failed_message (2704925031146288635) -->
+    <skip />
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Nagin contact exportabel"</string>
     <!-- outdated translation 7084146295639672658 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"La carta SD cuntegna memia bleras datotecas vCard"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"La carta SD cuntegna memia bleras datotecas vCard"</string>
@@ -330,7 +333,7 @@
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Exportaziun da las datas da contact en «<xliff:g id="FILE_NAME">%s</xliff:g>»"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Errur cun inizialisar il program d\'export: «<xliff:g id="EXACT_REASON">%s</xliff:g>»"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Errur cun exportar: «<xliff:g id="EXACT_REASON">%s</xliff:g>»"</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Impussibel dad obtegnair las infurmaziuns concernent la banca da datas"</string>
+    <!-- outdated translation 3723109558155169053 -->     <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Impussibel dad obtegnair las infurmaziuns concernent la banca da datas"</string>
     <!-- outdated translation 754734132189369094 -->     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"\"Nagin contact exportabel è avant maun. Sche Vus avais memorisà contacts sin Voss telefonin, ha in purschider da datas eventualmain protegì els cunter l\'export dal telefon.\""</string>
     <!-- outdated translation 754734132189369094 -->     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"\"Nagin contact exportabel è avant maun. Sche Vus avais memorisà contacts sin Voss telefonin, ha in purschider da datas eventualmain protegì els cunter l\'export dal telefon.\""</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"Il program per crear la vCard n\'è betg inizialisà correctamain."</string>
@@ -343,7 +346,7 @@
     <skip />
     <!-- no translation found for cancel_export_confirmation_message (1392976902396351957) -->
     <skip />
-    <!-- no translation found for cancel_vcard_import_or_export_failed (7096533244663846810) -->
+    <!-- no translation found for cancel_vcard_import_or_export_failed (6139900383366166706) -->
     <skip />
     <string name="search_settings_description" msgid="2675223022992445813">"Num da Voss contacts"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Agiuntar ina pausa da 2 secundas"</string>
@@ -660,13 +663,13 @@
     <skip />
     <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
     <skip />
-    <!-- no translation found for voicemail_playback_error (6148119635138385900) -->
+    <!-- no translation found for voicemail_playback_error (1811242131549854624) -->
     <skip />
-    <!-- no translation found for voicemail_buffering (2021957162133938725) -->
+    <!-- no translation found for voicemail_buffering (738287747618697097) -->
     <skip />
-    <!-- no translation found for voicemail_fetching_content (8516068803491833243) -->
+    <!-- no translation found for voicemail_fetching_content (877911315738258780) -->
     <skip />
-    <!-- no translation found for voicemail_fetching_timout (3430908587639305983) -->
+    <!-- no translation found for voicemail_fetching_timout (6691792377574905201) -->
     <skip />
     <!-- no translation found for call_log_new_header (846546437517724715) -->
     <skip />
