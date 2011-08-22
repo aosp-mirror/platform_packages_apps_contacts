@@ -1045,6 +1045,8 @@ public class PeopleActivity extends ContactsActivity
         @Override
         public void onDetailsLoaded(final ContactLoader.Result result) {
             if (result == null) {
+                // Nothing is loaded. Show empty state.
+                mContactDetailLayoutController.showEmptyState();
                 return;
             }
             // Since {@link FragmentTransaction}s cannot be done in the onLoadFinished() of the
