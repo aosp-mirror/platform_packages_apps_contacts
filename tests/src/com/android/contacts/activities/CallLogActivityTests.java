@@ -66,12 +66,10 @@ public class CallLogActivityTests
     private static final int RAND_DURATION = -1;
     private static final long NOW = -1L;
 
-    /** A test value for the person id of a contact. */
-    private static final long TEST_PERSON_ID = 1;
+    /** A test value for the URI of a contact. */
+    private static final Uri TEST_CONTACT_URI = Uri.parse("content://contacts/2");
     /** A test value for the photo uri of a contact. */
     private static final Uri TEST_THUMBNAIL_URI = Uri.parse("something://picture/2");
-    /** A test value for the lookup key for contacts. */
-    private static final String TEST_LOOKUP_KEY = "contact_id";
     /** A test value for the country ISO of the phone number in the call log. */
     private static final String TEST_COUNTRY_ISO = "US";
     /** A phone number to be used in tests. */
@@ -454,7 +452,7 @@ public class CallLogActivityTests
             String cachedName, int cachedNumberType, String cachedNumberLabel) {
         insert(number, date, duration, type);
         ContactInfo contactInfo = new ContactInfo();
-        contactInfo.personId = TEST_PERSON_ID;
+        contactInfo.contactUri = TEST_CONTACT_URI;
         contactInfo.name = cachedName;
         contactInfo.type = cachedNumberType;
         contactInfo.label = cachedNumberLabel;
@@ -465,7 +463,6 @@ public class CallLogActivityTests
         contactInfo.formattedNumber = formattedNumber;
         contactInfo.normalizedNumber = number;
         contactInfo.thumbnailUri = TEST_THUMBNAIL_URI;
-        contactInfo.lookupKey = TEST_LOOKUP_KEY;
         mAdapter.injectContactInfoForTest(number, contactInfo);
     }
 

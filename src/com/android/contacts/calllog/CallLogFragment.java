@@ -18,7 +18,6 @@ package com.android.contacts.calllog;
 
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
-import com.android.contacts.activities.DialtactsActivity;
 import com.android.contacts.activities.DialtactsActivity.ViewPagerVisibilityListener;
 import com.android.contacts.test.NeededForTesting;
 import com.android.contacts.voicemail.VoicemailStatusHelper;

@@ -313,8 +313,11 @@ public class CallLogAdapter extends GroupingListAdapter
                 // Note the Data.CONTACT_ID column here is
                 // equivalent to the PERSON_ID_COLUMN_INDEX column
                 // we use with "phonesCursor" below.
-                info.personId = dataTableCursor.getLong(
+                long contactId = dataTableCursor.getLong(
                         dataTableCursor.getColumnIndex(Data.CONTACT_ID));
+                String lookupKey = dataTableCursor.getString(
+                        dataTableCursor.getColumnIndex(Data.LOOKUP_KEY));
+                info.contactUri = Contacts.getLookupUri(contactId, lookupKey);
                 info.name = dataTableCursor.getString(
                         dataTableCursor.getColumnIndex(Data.DISPLAY_NAME));
                 // "type" and "label" are currently unused for SIP addresses
@@ -331,8 +334,6 @@ public class CallLogAdapter extends GroupingListAdapter
                 info.thumbnailUri = thumbnailUriString == null
                         ? null
                         : Uri.parse(thumbnailUriString);
-                info.lookupKey = dataTableCursor.getString(
-                        dataTableCursor.getColumnIndex(Data.LOOKUP_KEY));
             } else {
                 info = ContactInfo.EMPTY;
             }
@@ -366,7 +367,9 @@ public class CallLogAdapter extends GroupingListAdapter
         if (phonesCursor != null) {
             if (phonesCursor.moveToFirst()) {
                 info = new ContactInfo();
-                info.personId = phonesCursor.getLong(PhoneQuery.PERSON_ID);
+                long contactId = phonesCursor.getLong(PhoneQuery.PERSON_ID);
+                String lookupKey = phonesCursor.getString(PhoneQuery.LOOKUP_KEY);
+                info.contactUri = Contacts.getLookupUri(contactId, lookupKey);
                 info.name = phonesCursor.getString(PhoneQuery.NAME);
                 info.type = phonesCursor.getInt(PhoneQuery.PHONE_TYPE);
                 info.label = phonesCursor.getString(PhoneQuery.LABEL);
@@ -379,7 +382,6 @@ public class CallLogAdapter extends GroupingListAdapter
                 info.thumbnailUri = thumbnailUriString == null
                         ? null
                         : Uri.parse(thumbnailUriString);
-                info.lookupKey = phonesCursor.getString(PhoneQuery.LOOKUP_KEY);
             } else {
                 info = ContactInfo.EMPTY;
             }
@@ -629,12 +631,11 @@ public class CallLogAdapter extends GroupingListAdapter
             info = cachedContactInfo;
         }
 
-        final long personId = info.personId;
+        final Uri contactUri = info.contactUri;
         final String name = info.name;
         final int ntype = info.type;
         final String label = info.label;
         final Uri thumbnailUri = info.thumbnailUri;
-        final String lookupKey = info.lookupKey;
         final int[] callTypes = getCallTypes(c, count);
         final String geocode = c.getString(CallLogQuery.GEOCODED_LOCATION);
         final PhoneCallDetails details;
@@ -643,14 +644,14 @@ public class CallLogAdapter extends GroupingListAdapter
                     callTypes, date, duration);
         } else {
             details = new PhoneCallDetails(number, formattedNumber, countryIso, geocode,
-                    callTypes, date, duration, name, ntype, label, personId, thumbnailUri);
+                    callTypes, date, duration, name, ntype, label, contactUri , thumbnailUri);
         }
 
         final boolean isNew = CallLogQuery.isNewSection(c);
         // New items also use the highlighted version of the text.
         final boolean isHighlighted = isNew;
         mCallLogViewsHelper.setPhoneCallDetails(views, details, isHighlighted);
-        setPhoto(views, thumbnailUri, personId, lookupKey);
+        setPhoto(views, thumbnailUri, contactUri);
 
         // Listen for the first draw
         if (mPreDrawListener == null) {
@@ -709,7 +710,7 @@ public class CallLogAdapter extends GroupingListAdapter
     /** Returns the contact information as stored in the call log. */
     private ContactInfo getContactInfoFromCallLog(Cursor c) {
         ContactInfo info = new ContactInfo();
-        info.personId = -1;
+        info.contactUri = null;
         info.name = c.getString(CallLogQuery.CACHED_NAME);
         info.type = c.getInt(CallLogQuery.CACHED_NUMBER_TYPE);
         info.label = c.getString(CallLogQuery.CACHED_NUMBER_LABEL);
@@ -718,7 +719,6 @@ public class CallLogAdapter extends GroupingListAdapter
         info.formattedNumber = info.number;
         info.normalizedNumber = info.number;
         info.thumbnailUri = null;
-        info.lookupKey = null;
         return info;
     }
 
@@ -740,10 +740,8 @@ public class CallLogAdapter extends GroupingListAdapter
         return callTypes;
     }
 
-    private void setPhoto(CallLogListItemViews views, Uri thumbnailUri, long contactId,
-            String lookupKey) {
-        views.quickContactView.assignContactUri(contactId == -1 ? null :
-                Contacts.getLookupUri(contactId, lookupKey));
+    private void setPhoto(CallLogListItemViews views, Uri thumbnailUri, Uri contactUri) {
+        views.quickContactView.assignContactUri(contactUri);
         mContactPhotoManager.loadPhoto(views.quickContactView, thumbnailUri);
     }
 

@@ -139,6 +139,7 @@ public class CallDetailActivity extends Activity {
         PhoneLookup.NUMBER,
         PhoneLookup.NORMALIZED_NUMBER,
         PhoneLookup.PHOTO_URI,
+        PhoneLookup.LOOKUP_KEY,
     };
     static final int COLUMN_INDEX_ID = 0;
     static final int COLUMN_INDEX_NAME = 1;
@@ -147,6 +148,7 @@ public class CallDetailActivity extends Activity {
     static final int COLUMN_INDEX_NUMBER = 4;
     static final int COLUMN_INDEX_NORMALIZED_NUMBER = 5;
     static final int COLUMN_INDEX_PHOTO_URI = 6;
+    static final int COLUMN_INDEX_LOOKUP_KEY = 7;
 
     private final View.OnClickListener mPrimaryActionListener = new View.OnClickListener() {
         @Override
@@ -328,7 +330,7 @@ public class CallDetailActivity extends Activity {
                 // first.
                 PhoneCallDetails firstDetails = details[0];
                 mNumber = firstDetails.number.toString();
-                final long personId = firstDetails.personId;
+                final Uri contactUri = firstDetails.contactUri;
                 final Uri photoUri = firstDetails.photoUri;
 
                 // Set the details header, based on the first phone call.
@@ -353,9 +355,8 @@ public class CallDetailActivity extends Activity {
                     nameOrNumber = firstDetails.number;
                 }
 
-                if (firstDetails.personId != -1) {
-                    Uri personUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, personId);
-                    mainActionIntent = new Intent(Intent.ACTION_VIEW, personUri);
+                if (contactUri != null) {
+                    mainActionIntent = new Intent(Intent.ACTION_VIEW, contactUri);
                     mainActionIcon = R.drawable.ic_contacts_holo_dark;
                     mainActionDescription =
                             getString(R.string.description_view_contact, nameOrNumber);
@@ -498,8 +499,8 @@ public class CallDetailActivity extends Activity {
             CharSequence nameText = "";
             int numberType = 0;
             CharSequence numberLabel = "";
-            long personId = -1L;
             Uri photoUri = null;
+            Uri contactUri = null;
             // If this is not a regular number, there is no point in looking it up in the contacts.
             if (!mPhoneNumberHelper.canPlaceCallsTo(number)) {
                 numberText = mPhoneNumberHelper.getDisplayNumber(number, null);
@@ -511,7 +512,6 @@ public class CallDetailActivity extends Activity {
                 String candidateNumberText = number;
                 try {
                     if (phonesCursor != null && phonesCursor.moveToFirst()) {
-                        personId = phonesCursor.getLong(COLUMN_INDEX_ID);
                         nameText = phonesCursor.getString(COLUMN_INDEX_NAME);
                         String photoUriString = phonesCursor.getString(COLUMN_INDEX_PHOTO_URI);
                         photoUri = photoUriString == null ? null : Uri.parse(photoUriString);
@@ -521,6 +521,11 @@ public class CallDetailActivity extends Activity {
                                 countryIso);
                         numberType = phonesCursor.getInt(COLUMN_INDEX_TYPE);
                         numberLabel = phonesCursor.getString(COLUMN_INDEX_LABEL);
+                        long personId = phonesCursor.getLong(COLUMN_INDEX_ID);
+                        if (personId > 0) {
+                            contactUri = Contacts.getLookupUri(personId,
+                                    phonesCursor.getString(COLUMN_INDEX_LOOKUP_KEY));
+                        }
                     } else {
                         // We could not find this contact in the contacts, just format the phone
                         // number as best as we can. All the other fields will have their default
@@ -535,7 +540,7 @@ public class CallDetailActivity extends Activity {
             }
             return new PhoneCallDetails(number, numberText, countryIso, geocode,
                     new int[]{ callType }, date, duration,
-                    nameText, numberType, numberLabel, personId, photoUri);
+                    nameText, numberType, numberLabel, contactUri, photoUri);
         } finally {
             if (callCursor != null) {
                 callCursor.close();
