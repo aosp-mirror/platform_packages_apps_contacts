@@ -27,7 +27,7 @@
         android:paddingBottom="@dimen/detail_update_section_item_last_row_extra_vertical_padding"
         android:paddingLeft="@dimen/detail_update_section_item_horizontal_padding"
         android:paddingRight="@dimen/detail_update_section_item_horizontal_padding"
-        android:background="@drawable/list_selector"
+        android:background="?android:attr/selectableItemBackground"
         />
 
     <View

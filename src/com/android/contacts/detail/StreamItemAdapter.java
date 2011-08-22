@@ -79,6 +79,20 @@ public class StreamItemAdapter extends BaseAdapter {
     }
 
     @Override
+    public boolean isEnabled(int position) {
+        // Make all list items disabled, so they're not clickable.
+        // We make child views clickable in getvView() if the account type supports
+        // viewStreamItemActivity or viewStreamItemPhotoActivity.
+        return false;
+    }
+
+    @Override
+    public boolean areAllItemsEnabled() {
+        // See isEnabled().
+        return false;
+    }
+
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (position == 0) {
             return mInflater.inflate(R.layout.updates_header_contact, null);
@@ -90,19 +104,29 @@ public class StreamItemAdapter extends BaseAdapter {
         final AccountTypeManager manager = AccountTypeManager.getInstance(mContext);
         final AccountType accountType =
                 manager.getAccountType(streamItem.getAccountType(), streamItem.getDataSet());
+
         final View view = ContactDetailDisplayUtils.createStreamItemView(
                 mInflater, mContext, streamItem, null,
+                // Only pass the photo click listener if the account type has the photo
+                // view activity.
                 (accountType.getViewStreamItemPhotoActivity() == null) ? null : mPhotoClickListener
                 );
+        final View contentView = view.findViewById(R.id.stream_item_content);
+
+        // If the account type has the stream item view activity, make the stream container
+        // clickable.
         if (accountType.getViewStreamItemActivity() != null) {
-            view.setTag(streamItem);
-            view.setFocusable(true);
-            view.setOnClickListener(mItemClickListener);
+            contentView.setTag(streamItem);
+            contentView.setFocusable(true);
+            contentView.setOnClickListener(mItemClickListener);
+            contentView.setEnabled(true);
         } else {
-            view.setTag(null);
-            view.setFocusable(false);
-            view.setOnClickListener(null);
-            view.setClickable(false); // setOnClickListener makes it clickable, so overwrite it
+            contentView.setTag(null);
+            contentView.setFocusable(false);
+            contentView.setOnClickListener(null);
+            // setOnClickListener makes it clickable, so we need to overwrite it.
+            contentView.setClickable(false);
+            contentView.setEnabled(false);
         }
         return view;
     }
