@@ -14,6 +14,17 @@
      limitations under the License.
 -->
 
+<!--
+    Note: Because this item layout contains the header too, we don't want to highlight the entire
+    thing when pressed or set the activated background to it.  So we disable the default hilighting
+    by setting transparent to android:listSelector for the list view in
+    group_browse_list_fragment.xml, and make the body part "duplicateParentState", and then set the
+    state list drawable to its background, which has the "activated" background (the drawable with
+    the triangular thing on the right side).  Because of this structure, the item view can't have
+    paddingRight, as the body part should touch the right edge.  Instead we make each child have
+    either marginRight or paddingRight.
+-->
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
@@ -21,7 +32,6 @@
     android:layout_height="wrap_content"
     android:paddingLeft="?attr/list_item_padding_left"
     android:paddingTop="?attr/list_item_padding_top"
-    android:paddingRight="?attr/list_item_padding_right"
     android:paddingBottom="?attr/list_item_padding_bottom"
     android:minHeight="@dimen/detail_min_line_item_height" >
 
@@ -29,6 +39,7 @@
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dip"
+        android:layout_marginRight="?attr/list_item_padding_right"
         android:background="?android:attr/listDivider" />
 
     <include
@@ -40,12 +51,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="8dip"
-        android:paddingBottom="8dip">
+        android:paddingBottom="8dip"
+        android:duplicateParentState="true"
+        android:background="@drawable/group_list_item_background"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="?attr/list_item_text_indent"
+            android:layout_marginRight="?attr/list_item_padding_right"
             android:orientation="vertical"
             android:layout_toLeftOf="@+id/icons"
             android:layout_alignParentLeft="true"
