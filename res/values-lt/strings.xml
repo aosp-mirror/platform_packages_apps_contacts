@@ -44,16 +44,15 @@
     <string name="menu_callNumber" msgid="5142851348489387516">"Skambinti <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Pridėti prie adresyno"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Pašalinti iš adresyno"</string>
-    <!-- outdated translation 3452858480713561396 -->     <string name="menu_editContact" msgid="9042415603857662633">"Redaguoti adresatą"</string>
-    <!-- outdated translation 1916555454274101750 -->     <string name="menu_deleteContact" msgid="6788644058868189393">"Ištrinti adresatą"</string>
+    <string name="menu_editContact" msgid="9042415603857662633">"Redaguoti"</string>
+    <string name="menu_deleteContact" msgid="6788644058868189393">"Ištrinti"</string>
     <string name="menu_call" msgid="3992595586042260618">"Skambinti adresatui"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Siųsti pranešimą adresatui"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Padaryti numatytuoju el. paštu"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Atskiras"</string>
-    <!-- no translation found for menu_editGroup (5062005185370983720) -->
-    <skip />
+    <string name="menu_editGroup" msgid="5062005185370983720">"Redaguoti"</string>
     <string name="menu_renameGroup" msgid="2798886925154156075">"Pervardyti grupę"</string>
-    <!-- outdated translation 644571524292675446 -->     <string name="menu_deleteGroup" msgid="3486380004411482874">"Ištrinti grupę"</string>
+    <string name="menu_deleteGroup" msgid="3486380004411482874">"Ištrinti"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Naujas"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Nauja"</string>
     <!-- outdated translation 6716467920283502570 -->     <string name="splitConfirmation_title" msgid="2209511048593467012">"Atskiras adresatas"</string>
@@ -68,8 +67,7 @@
     <string name="contactOptionsTitle" msgid="8259347644090700915">"Parinktys"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Ištrinti"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Nst. skmb. toną"</string>
-    <!-- no translation found for menu_redirect_calls_to_vm (4181789196416396656) -->
-    <skip />
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Visi skamb. į balso paštą"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Negalite ištrinti adresatų iš tik skaitomų paskyrų, bet galite paslėpti juos savo adresatų sąrašuose."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Šiam adresatui priskirta kelių paskyrų informacija. Tik skaitomų paskyrų informacija bus paslėpta adresatų sąrašuose; ji nebus ištrinta."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Ištrynus šią informaciją, bus ištrinta kelių paskyrų informacija."</string>
@@ -118,8 +116,7 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Išsaugomos pateikties parinktys..."</string>
     <!-- outdated translation 7152589189385441091 -->     <string name="contactSavedToast" msgid="9171862279493213075">"Adresatas išsaugotas."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Klaida, neįmanoma išsaugoti adresatų pakeitimų."</string>
-    <!-- no translation found for groupSavedToast (6675062559302493011) -->
-    <skip />
+    <!-- outdated translation 1168756874239833756 -->     <string name="groupSavedToast" msgid="6675062559302493011">"Grupė išsaugota."</string>
     <string name="groupSavedErrorToast" msgid="6434135707953150875">"Klaida, neįmanoma išsaugoti grupės pakeitimų."</string>
     <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"Pakeitimas išsaugotas."</string>
     <string name="contactAlreadyInGroup" msgid="6209708213229886092">"Kontaktinis asmuo jau pridėtas prie grupės."</string>
@@ -161,10 +158,8 @@
     <string name="recentCalls_addToContact" msgid="1429899535546487008">"Pridėti prie adresatų"</string>
     <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Pašalinti iš skambučių žurnalo"</string>
     <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Išvalyti skambučių žurnalą"</string>
-    <!-- no translation found for recentCalls_trashVoicemail (7604696960787435655) -->
-    <skip />
-    <!-- no translation found for recentCalls_shareVoicemail (1416112847592942840) -->
-    <skip />
+    <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Ištrinti balso pašto pran."</string>
+    <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Bendrinti balso paštą"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Skambučių žurnalas tuščias."</string>
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Išvalyti skambučių žurnalą"</string>
     <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Ar tikrai norite išvalyti skambučių žurnalą?"</string>
@@ -207,10 +202,8 @@
     <string name="callAgain" msgid="3197312117049874778">"Skambinti dar kartą"</string>
     <string name="returnCall" msgid="8171961914203617813">"Grįžtamasis skambutis"</string>
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> min. <xliff:g id="SECONDS">%s</xliff:g> sek."</string>
-    <!-- no translation found for favoritesFrequentContacted (6184232487472425690) -->
-    <skip />
-    <!-- no translation found for favoritesFrequentCalled (6128306889600696124) -->
-    <skip />
+    <string name="favoritesFrequentContacted" msgid="6184232487472425690">"Dažnai susisiekiama"</string>
+    <string name="favoritesFrequentCalled" msgid="6128306889600696124">"Dažniausiai skambinta"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Pridėti adresatą"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Pridėti „<xliff:g id="EMAIL">%s</xliff:g>“ prie adresatų?"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"vienas"</string>
@@ -247,26 +240,29 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Importuoti visus „VCard“ kortelės failus"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Ieškoma el. vizitinės kortelės duomenų USB atmintinėje"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"SD kortelėje ieškoma „vCard“ duomenų"</string>
-    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="6957414493948497249">"Nepavyko nuskaityti saugyklos"</string>
-    <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"SD kortelės nuskaitymas nepavyko"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="4106156155205860626">"Nepavyko nuskaityti saugyklos (priežastis: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"SD kortelės nuskaitymas nepavyko (priežastis: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
+    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Nepavyko nuskaityti saugyklos"</string>
+    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Nepavyko nuskaityti saugyklos"</string>
+    <!-- no translation found for scanning_sdcard_failed_message (8290634758602152611) -->
+    <skip />
+    <!-- no translation found for scanning_sdcard_failed_message (2462918339722946736) -->
+    <skip />
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Įvesties / išvesties klaida"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Nepakanka atminties (failas gali būti per didelis)"</string>
-    <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Dėl netikėtos priežasties nepavyko išanalizuoti „vCard“"</string>
+    <!-- outdated translation 1201233722762680214 -->     <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"Dėl netikėtos priežasties nepavyko išanalizuoti „vCard“"</string>
     <string name="fail_reason_not_supported" msgid="294499264620201243">"Formatas nepalaikomas."</string>
-    <string name="vcard_import_failed" msgid="7718330063493653085">"Nepavyko import. el. vizitinės kortelės"</string>
+    <!-- outdated translation 7718330063493653085 -->     <string name="vcard_import_failed" msgid="8856125211629574066">"Nepavyko import. el. vizitinės kortelės"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"Saugykloje nerasta el. vizitinės kortelės failų"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"SD kortelėje nerasta jokių el. vizitinių kortelių failų"</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Nepavyko surinkti nurodyto (-ų) el. vizitinės kortelės failo (-ų) metainformacijos."</string>
-    <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Nepavyko importuoti vieno ar daugiau failų (%s)."</string>
+    <!-- outdated translation 4154492282316067754 -->     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Nepavyko surinkti nurodyto (-ų) el. vizitinės kortelės failo (-ų) metainformacijos."</string>
+    <!-- no translation found for fail_reason_failed_to_read_files (5823434810622484922) -->
+    <skip />
     <string name="fail_reason_unknown" msgid="999034019513096768">"Nežinoma klaida"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Pasirinkti „vCard“ failą"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"Padedamas (-i) el. vizitinės kortelės failas (-ai) į vietinę laikinąją atmintinę"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"Importavimo programa padeda el. vizitinės kortelės failą (-us) į vietinę laikinąją atmintinę. Netrukus bus pradėtas tikrasis importavimas."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Importuojama <xliff:g id="CURRENT_NUMBER">%s</xliff:g> / <xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Importuojama <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="reading_vcard_failed_title" msgid="2162610359561887043">"Nepavyko perskaityti el. vizitinės kortelės duomenų"</string>
+    <!-- outdated translation 2162610359561887043 -->     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Nepavyko perskaityti el. vizitinės kortelės duomenų"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"El. vizitinės kortelės duomenų skaitymas buvo atšauktas"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Baigtas „<xliff:g id="FILENAME">%s</xliff:g>“ el. vizitinės kortelės importavimas"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"<xliff:g id="FILENAME">%s</xliff:g> importavimas atšauktas"</string>
@@ -280,8 +276,9 @@
     <string name="confirm_export_title" msgid="7648747763127442983">"Patvirtinti eksportavimą"</string>
     <!-- no translation found for confirm_export_message (4307437830474103759) -->
     <skip />
-    <string name="exporting_contact_failed_title" msgid="585823094820602526">"Nepavyko eksportuoti adresatų duomenų"</string>
-    <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Nepavyko eksportuoti adresato duomenų."\n"Trikties priežastis: „<xliff:g id="FAIL_REASON">%s</xliff:g>“"</string>
+    <!-- outdated translation 585823094820602526 -->     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Nepavyko eksportuoti adresatų duomenų"</string>
+    <!-- no translation found for exporting_contact_failed_message (2704925031146288635) -->
+    <skip />
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Nėra eksportuojamo adresato"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Per daug el. vizitinės kortelės failų saugykloje"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Per daug „vCard“ failų SD kortelėje"</string>
@@ -292,7 +289,7 @@
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Adresato duomenys eksportuojami į „<xliff:g id="FILE_NAME">%s</xliff:g>“"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Nepavyko inicijuoti eksportuotojo: „<xliff:g id="EXACT_REASON">%s</xliff:g>“"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Eksportuojant įvyko klaida: „<xliff:g id="EXACT_REASON">%s</xliff:g>“"</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Nepavyko gauti duomenų informacijos"</string>
+    <!-- outdated translation 3723109558155169053 -->     <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Nepavyko gauti duomenų informacijos"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Nėra eksportuojamų kontaktų. Jei planšetiniame kompiuteryje iš tiesų yra kontaktų, kai kurie duomenų teikėjai gali drausti eksportuoti visus kontaktus iš planšetinio kompiuterio."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Nėra eksportuojamų kontaktų. Jei telefone iš tiesų yra kontaktų, kai kurie duomenų teikėjai gali drausti eksportuoti visus kontaktus iš telefono."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"„vCard“ rašyklė netinkamai inicijuota"</string>
@@ -302,7 +299,7 @@
     <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"Ar tikrai norite atšaukti „<xliff:g id="FILENAME">%s</xliff:g>“ importavimą?"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Atšaukiamas el. vizitinės kortelės eksportavimas"</string>
     <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"Ar tikrai norite atšaukti <xliff:g id="FILENAME">%s</xliff:g> eksportavimą?"</string>
-    <string name="cancel_vcard_import_or_export_failed" msgid="7096533244663846810">"Nepavyko atšaukti el. vizitinės kortelės importavimo / eksportavimo"</string>
+    <!-- outdated translation 7096533244663846810 -->     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Nepavyko atšaukti el. vizitinės kortelės importavimo / eksportavimo"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Adresatų vardai"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Pridėti 2 sek. pauzę"</string>
     <string name="add_wait" msgid="3360818652790319634">"Pridėti laukimą"</string>
@@ -431,10 +428,7 @@
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Naudoti šią nuotrauką"</string>
-    <!-- unknown placeholder SOURCE in contact_read_only -->
-    <skip />
-    <!-- no translation found for contact_read_only (1856479476063888348) -->
-    <skip />
+    <string name="contact_read_only" msgid="1856479476063888348">"Negalima redaguoti šioje programoje"</string>
     <string name="no_contact_details" msgid="6754415338321837001">"Nėra papildomos informacijos apie šį adresatą"</string>
     <string name="group_read_only" msgid="7924922658394449477">"Negalima redaguoti šiame įrenginyje"</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Rūšiuoti sąrašą pagal"</string>
@@ -466,8 +460,7 @@
     <string name="no_contacts_selected" msgid="5877803471037324613">"Nepasirinkote kontaktų."</string>
     <string name="add_field" msgid="2384260056674995230">"Pridėti kitą lauką"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Pridėti naują"</string>
-    <!-- no translation found for add_organization (7311893231158291197) -->
-    <skip />
+    <string name="add_organization" msgid="7311893231158291197">"Pridėti organizaciją"</string>
     <!-- no translation found for event_edit_field_hint_text (5794424930242630477) -->
     <skip />
     <!-- no translation found for group_edit_field_hint_text (3966441850870457808) -->
@@ -501,7 +494,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Nustatyti priskirtą rodinį"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Nustatymai"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Pateiktini kontaktai"</string>
-    <!-- outdated translation 377929915873428211 -->     <string name="menu_settings" msgid="6523251616169246235">"Nustatymai"</string>
+    <!-- outdated translation 1515262535785451190 -->     <string name="menu_settings" msgid="6523251616169246235">"Pateikti parinktis"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Pateikties parinktys"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"„<xliff:g id="COMPANY_0">%2$s</xliff:g>“, „<xliff:g id="COMPANY_1">%1$s</xliff:g>“"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Ieškoti kontaktų"</string>
@@ -544,10 +537,8 @@
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Ar tikrai norite atmesti pakeitimus?"</string>
     <string name="discard" msgid="1234315037371251414">"Atmesti"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <!-- no translation found for profile_display_name (4127389543625918771) -->
-    <skip />
-    <!-- no translation found for enter_contact_name (1738391320566349924) -->
-    <skip />
+    <string name="profile_display_name" msgid="4127389543625918771">"Nustatyti mano profilį"</string>
+    <!-- outdated translation 2930510479516059437 -->     <string name="enter_contact_name" msgid="1738391320566349924">"Įveskite kontaktinio asmens vardą ir pavardę"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Žiūrėti naujinius"</string>
   <plurals name="notification_voicemail_title">
     <item quantity="one" msgid="1746619685488504230">"Balso paštas"</item>
@@ -555,15 +546,13 @@
   </plurals>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Nauj. balso pšt. prnš. iš <xliff:g id="CALLER">%1$s</xliff:g>"</string>
-    <!-- no translation found for voicemail_playback_error (6148119635138385900) -->
+    <!-- outdated translation 6148119635138385900 -->     <string name="voicemail_playback_error" msgid="1811242131549854624">"nepavyko paleisti balso pašto"</string>
+    <!-- outdated translation 2021957162133938725 -->     <string name="voicemail_buffering" msgid="738287747618697097">"įrašoma į laikinąją atmintį..."</string>
+    <!-- no translation found for voicemail_fetching_content (877911315738258780) -->
     <skip />
-    <!-- no translation found for voicemail_buffering (2021957162133938725) -->
+    <!-- no translation found for voicemail_fetching_timout (6691792377574905201) -->
     <skip />
-    <!-- no translation found for voicemail_fetching_content (8516068803491833243) -->
-    <skip />
-    <!-- no translation found for voicemail_fetching_timout (3430908587639305983) -->
-    <skip />
-    <string name="call_log_new_header" msgid="846546437517724715">"Nauji"</string>
+    <string name="call_log_new_header" msgid="846546437517724715">"Nauja"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Senesni"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"Neįmanoma prisijungti prie balso pašto serverio."</string>
     <string name="voicemail_status_messages_waiting" msgid="2970301042310727909">"Neįm. prisij. prie bal. pšt. serv. Laukia nauji b. pšt. praneš."</string>
@@ -576,8 +565,7 @@
     <string name="voicemail_speed_normal" msgid="6030110237820243006">"normalus greitis"</string>
     <string name="voicemail_speed_faster" msgid="4161478290979905481">"didelis greitis"</string>
     <string name="voicemail_speed_fastest" msgid="3373646875150544205">"didžiausias greitis"</string>
-    <!-- no translation found for call_log_item_count_and_date (7641933305703520787) -->
-    <skip />
+    <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
     <string name="group_name_hint" msgid="2659811836386413509">"Grupės pavadinimas"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Knt. gt. per ALR"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Rodyti tik balso pšt. praneš."</string>
@@ -602,12 +590,10 @@
     <skip />
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Neklausytas balso pašto pranešimas"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
-    <!-- no translation found for user_profile_contacts_list_header (9154761216179882405) -->
-    <skip />
+    <string name="user_profile_contacts_list_header" msgid="9154761216179882405">"AŠ"</string>
     <!-- no translation found for local_profile_title (2021416826991393684) -->
     <skip />
     <!-- no translation found for external_profile_title (8034998767621359438) -->
     <skip />
-    <!-- no translation found for toast_displaying_all_contacts (2737388783898593875) -->
-    <skip />
+    <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Pateikiami visi kontaktai"</string>
 </resources>

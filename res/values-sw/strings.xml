@@ -63,18 +63,15 @@
     <skip />
     <!-- no translation found for menu_removeStar (5844227078364227030) -->
     <skip />
-    <!-- no translation found for menu_editContact (9042415603857662633) -->
-    <skip />
-    <!-- no translation found for menu_deleteContact (6788644058868189393) -->
-    <skip />
+    <string name="menu_editContact" msgid="9042415603857662633">"Hariri"</string>
+    <string name="menu_deleteContact" msgid="6788644058868189393">"Futa"</string>
     <string name="menu_call" msgid="3992595586042260618">"Mpigie"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Tuma ujumbe kwa anwani"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Fanya iwe barua pepe chaguo-msingi"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Kando"</string>
-    <!-- no translation found for menu_editGroup (5062005185370983720) -->
-    <skip />
+    <string name="menu_editGroup" msgid="5062005185370983720">"Hariri"</string>
     <string name="menu_renameGroup" msgid="2798886925154156075">"Kipe kikundi jina lingine"</string>
-    <!-- outdated translation 644571524292675446 -->     <string name="menu_deleteGroup" msgid="3486380004411482874">"Futa kikundi"</string>
+    <string name="menu_deleteGroup" msgid="3486380004411482874">"Futa"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Mpya"</string>
     <!-- no translation found for menu_new_group_action_bar (5055346725617932394) -->
     <skip />
@@ -92,8 +89,7 @@
     <skip />
     <!-- no translation found for menu_set_ring_tone (8728345772068064946) -->
     <skip />
-    <!-- no translation found for menu_redirect_calls_to_vm (4181789196416396656) -->
-    <skip />
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Simu zote kwa barua ya sauti"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Huwezi kufuta anwani kutoka kwa akaunti zinazoweza kusomwa tu, lakini unaweza kuzificha katika orodha yako ya anwani."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Anwani hii ina maelezo kutoka kwa akaunti nyingi. Maelezo kutoka kwa akaunti za soma-tu zitafichwa katika orodha zako za anwani, sio kufutwa."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Kufuta anwani hii kutafuta maelezo kutoka kwa akaunti nyingi."</string>
@@ -251,7 +247,7 @@
     <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"Huna anwani zozote za kuonyesha."\n\n"Ili kuongeza anwani, bonyeza "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>" na gusa:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" ili kuongeza au kusanidi akaunti ya anwani unaweza kupatanisha katika simu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mawasiliano mapya"</b></font>" ili kuunda anwani mpya kuanzia mwanzo"</li>" "\n\n<li><font fgcolor="#ffffffff"><b>"Leta/Hamisha"</b></font>"ili kuleta anwani kutoka kwa kadi yako ya SD"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Huna anwani zozote za kuonyesha. (Kama uliongeza akaunti, inaweza kuchukua dakika chache kusawazisha anwani.)"\n\n"Kuongeza anwani, bonyeza "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>" na uguse:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" ili kuongeza au kusanidi akaunti na anwani unazoweza kusawazisha kwenye kompyuta ndogo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Chaguo za onyesha"</b></font>" ili kubadilisha ni anwani gani zinazoonekana"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Anwani mpya"</b></font>" ili kuunda anwani mpya kutoka mwanzo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Leta/Hamisha"</b></font>" ili kuleta anwani kutoka kwa kadi yako ya SD"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Hauna anwani zozote za kuonyesha. (Kama umeongeza tu akaunti, inaweza kuchukua dadika chache ili kupatanisha anwani.)"\n\n"Ili kuongeza anwani, bonyeza "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>" na gusa:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" ili kuongeza au kusanidi anwani unayoweza kupatanisha katika simu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Onyesha Machaguo"</b></font>"ili kubadilisha anwani zinazoonekana"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Anwani mpya"</b></font>" ili kuunda anwani mpya kuanzia mwanzo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Leta/Hamisha"</b></font>"ili kuleta anwani kutoka kwa kadi yako ya SD"\n</li></string>
-    <!-- syntax error in translation for noFavoritesHelpText (3744655776704833277) org.xmlpull.v1.XmlPullParserException: expected: /string read: b (position:END_TAG </b>@1:167 in java.io.StringReader@6100ab23)  -->
+    <!-- syntax error in translation for noFavoritesHelpText (3744655776704833277) org.xmlpull.v1.XmlPullParserException: expected: /string read: b (position:END_TAG </b>@1:167 in java.io.StringReader@2d3bad12)  -->
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Anwani zote"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Yenye nyota"</string>
     <string name="liveFolder_phones_label" msgid="1709786878793436245">"Simu"</string>
@@ -309,27 +305,29 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Ingiza faili zote za vKadi"</string>
     <!-- outdated translation 8214795338181412751 -->     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Inatafuta data ya vCard katika hifadhi ya USB"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Inatafuta data ya vKadi kwenye kadi ya SD"</string>
-    <!-- outdated translation 7447077516493667568 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="6957414493948497249">"Uchanganuzi wa hifadhi ya USB umeshindwa"</string>
-    <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Imeshindwa kuchunguza kadi ya SD"</string>
-    <!-- no translation found for scanning_sdcard_failed_message (4106156155205860626) -->
+    <!-- outdated translation 7447077516493667568 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Uchanganuzi wa hifadhi ya USB umeshindwa"</string>
+    <!-- outdated translation 7447077516493667568 -->     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Uchanganuzi wa hifadhi ya USB umeshindwa"</string>
+    <!-- no translation found for scanning_sdcard_failed_message (8290634758602152611) -->
     <skip />
-    <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Imeshindwa kuchunguza kadi ya SD (Sababu: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <!-- no translation found for scanning_sdcard_failed_message (2462918339722946736) -->
+    <skip />
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Hitilafu ya I/O"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Kumbukumbu haitoshi (faili inaweza kuwa kubwa zaidi)"</string>
-    <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Imeshindwa kuchanganua vCard kwa sababu zisizotarajiwa"</string>
+    <!-- outdated translation 1201233722762680214 -->     <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"Imeshindwa kuchanganua vCard kwa sababu zisizotarajiwa"</string>
     <string name="fail_reason_not_supported" msgid="294499264620201243">"Fomati haihamiliwi."</string>
-    <string name="vcard_import_failed" msgid="7718330063493653085">"Imeshindwa kuleta vCard"</string>
+    <!-- outdated translation 7718330063493653085 -->     <string name="vcard_import_failed" msgid="8856125211629574066">"Imeshindwa kuleta vCard"</string>
     <!-- outdated translation 1730986357514922756 -->     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"Hakuna faili ya vCard iliyopatikana kwenye kadi ya SD"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Hakuna faili ya vCard iliyopatikana kwenye kadi ya SD"</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Imeshindwa kukusanya habari ya faili ya vCard iliyotolewa."</string>
-    <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Faili moja au zaidi zilishindwa kuingizwa (%s)."</string>
+    <!-- outdated translation 4154492282316067754 -->     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Imeshindwa kukusanya habari ya faili ya vCard iliyotolewa."</string>
+    <!-- no translation found for fail_reason_failed_to_read_files (5823434810622484922) -->
+    <skip />
     <string name="fail_reason_unknown" msgid="999034019513096768">"Hitilafu isiyojulikana"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Chagua faili ya vCard"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"Akibisha vCard(s) kwa uhifadhi wa muda wa karibu"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"Kifaa cha kuingiza kinaakibisha kadi ya/za vCard kwa hifadhi ya muda. Uingizaji asili utaanza baada ya muda mfupi."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Inaingiza <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Inaingiza <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="reading_vcard_failed_title" msgid="2162610359561887043">"Imeshindwa Kusoma data ya vCard"</string>
+    <!-- outdated translation 2162610359561887043 -->     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Imeshindwa Kusoma data ya vCard"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Usomaji wa data ya vCard ulibatilishwa"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Imemaliza kuleta vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Uingizaji <xliff:g id="FILENAME">%s</xliff:g> ulighairiwa"</string>
@@ -343,8 +341,9 @@
     <string name="confirm_export_title" msgid="7648747763127442983">"Thibitisha hamisho"</string>
     <!-- no translation found for confirm_export_message (4307437830474103759) -->
     <skip />
-    <string name="exporting_contact_failed_title" msgid="585823094820602526">"Imeshindwa kuhamisha data ya anwani"</string>
-    <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Imeshindwa kuhamisha data ya anwani."\n"Sababu ya kushindwa: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <!-- outdated translation 585823094820602526 -->     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Imeshindwa kuhamisha data ya anwani"</string>
+    <!-- no translation found for exporting_contact_failed_message (2704925031146288635) -->
+    <skip />
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Hakuna anwani inayoweza kuhamishwa"</string>
     <!-- outdated translation 2638638826954895225 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Kuna faili nyingi sana za vCard katika hifadhi ya USB"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Kuna faili nyingi sana za vCard kwenye kadi ya SD"</string>
@@ -355,7 +354,7 @@
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Inahamisha data ya anwani kwa \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Haikuweza kuanzisha kihamishaji: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Kosa limetokea wakati wa hali: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Imeshindwa kupata maelezo ya hifadhidata"</string>
+    <!-- outdated translation 3723109558155169053 -->     <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Imeshindwa kupata maelezo ya hifadhidata"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Hakuna anwani zinazoweza kuhamishwa. Ikiwa kweli una anwani kwenye kompyuta yako ndogo, anwani zote huenda zikazuiwa kuhamishwa nje ya kompyuta ndogo na watoa huduma wengine."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Hakuna anwani zinazoweza kuhamishwa. Kama kwa kweli una anwani kwenye simu yako, anwani zote huenda zikwa zimebanwa kuhamishwa nje ya simu na watoa huduma wengine."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"Kitungaji vKadi hakijaanzishwa vizuri"</string>
@@ -365,7 +364,7 @@
     <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"Je, una uhakika wataka kughairi uletaji <xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Inaghairi uhamishaji wa vCard"</string>
     <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"Una uhakika unataka kughairi uhamishaji <xliff:g id="FILENAME">%s</xliff:g>?"</string>
-    <string name="cancel_vcard_import_or_export_failed" msgid="7096533244663846810">"Imeshindwa kughairi uingizaji/uhamishaji wa vCard"</string>
+    <!-- outdated translation 7096533244663846810 -->     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Imeshindwa kughairi uingizaji/uhamishaji wa vCard"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Majina ya anwani zako"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Ongeza usitishaji wa sekunde 2"</string>
     <string name="add_wait" msgid="3360818652790319634">"Ongeza kusubiri"</string>
@@ -610,8 +609,7 @@
     <string name="discard" msgid="1234315037371251414">"Tupa"</string>
     <!-- no translation found for call_type_and_date (1766269584078149149) -->
     <skip />
-    <!-- no translation found for profile_display_name (4127389543625918771) -->
-    <skip />
+    <string name="profile_display_name" msgid="4127389543625918771">"Sanidi maelezo yangu mafupi"</string>
     <!-- no translation found for enter_contact_name (1738391320566349924) -->
     <skip />
     <!-- no translation found for view_updates_from_group (1782685984905600034) -->
@@ -622,11 +620,11 @@
     <skip />
     <!-- no translation found for notification_new_voicemail_ticker (895342132049452081) -->
     <skip />
-    <string name="voicemail_playback_error" msgid="6148119635138385900">"Imeshindwa kucheza barua ya sauti"</string>
-    <string name="voicemail_buffering" msgid="2021957162133938725">"inabafa..."</string>
-    <!-- no translation found for voicemail_fetching_content (8516068803491833243) -->
+    <!-- outdated translation 6148119635138385900 -->     <string name="voicemail_playback_error" msgid="1811242131549854624">"Imeshindwa kucheza barua ya sauti"</string>
+    <!-- outdated translation 2021957162133938725 -->     <string name="voicemail_buffering" msgid="738287747618697097">"inabafa..."</string>
+    <!-- no translation found for voicemail_fetching_content (877911315738258780) -->
     <skip />
-    <!-- no translation found for voicemail_fetching_timout (3430908587639305983) -->
+    <!-- no translation found for voicemail_fetching_timout (6691792377574905201) -->
     <skip />
     <!-- no translation found for call_log_new_header (846546437517724715) -->
     <skip />
@@ -693,12 +691,10 @@
     <skip />
     <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
     <skip />
-    <!-- no translation found for user_profile_contacts_list_header (9154761216179882405) -->
-    <skip />
+    <string name="user_profile_contacts_list_header" msgid="9154761216179882405">"MIMI"</string>
     <!-- no translation found for local_profile_title (2021416826991393684) -->
     <skip />
     <!-- no translation found for external_profile_title (8034998767621359438) -->
     <skip />
-    <!-- no translation found for toast_displaying_all_contacts (2737388783898593875) -->
-    <skip />
+    <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Inaonyesha anwani zote"</string>
 </resources>

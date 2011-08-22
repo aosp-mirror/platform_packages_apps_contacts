@@ -116,8 +116,7 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Menyimpan opsi tampilan..."</string>
     <!-- outdated translation 7152589189385441091 -->     <string name="contactSavedToast" msgid="9171862279493213075">"Kenalan disimpan."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Galat, tidak dapat menyimpan perubahan kenalan."</string>
-    <!-- no translation found for groupSavedToast (6675062559302493011) -->
-    <skip />
+    <!-- outdated translation 1168756874239833756 -->     <string name="groupSavedToast" msgid="6675062559302493011">"Grup disimpan."</string>
     <string name="groupSavedErrorToast" msgid="6434135707953150875">"Galat, tidak dapat menyimpan perubahan grup."</string>
     <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"Perubahan telah disimpan."</string>
     <string name="contactAlreadyInGroup" msgid="6209708213229886092">"Kenalan telah ditambahkan ke grup."</string>
@@ -159,8 +158,8 @@
     <string name="recentCalls_addToContact" msgid="1429899535546487008">"Tambahkan ke kenalan"</string>
     <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Hapus dari log panggilan"</string>
     <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Hapus log panggilan"</string>
-    <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Hapus kotak pesan"</string>
-    <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Berbagi kotak pesan"</string>
+    <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Hapus pesan suara"</string>
+    <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Bagikan kotak pesan"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Log panggilan kosong."</string>
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Hapus log panggilan"</string>
     <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Apakah Anda yakin ingin menghapus log panggilan?"</string>
@@ -241,26 +240,29 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Impor semua berkas vCard"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Menelusuri data vCard dalam penyimpanan"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Menelusuri data vCard pada kartu SD."</string>
-    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="6957414493948497249">"Gagal memindai penyimpanan"</string>
-    <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Kartu SD gagal dipindai"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="4106156155205860626">"Gagal memindai penyimpanan (Alasan: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Kartu SD gagal dipindai (Alasan: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Gagal memindai penyimpanan"</string>
+    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Gagal memindai penyimpanan"</string>
+    <!-- no translation found for scanning_sdcard_failed_message (8290634758602152611) -->
+    <skip />
+    <!-- no translation found for scanning_sdcard_failed_message (2462918339722946736) -->
+    <skip />
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Galat I/O"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Memori tidak memadai (berkas mungkin terlalu besar)"</string>
-    <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Gagal melakukan parse pada vCard karena alasan yang tidak diharapkan"</string>
+    <!-- outdated translation 1201233722762680214 -->     <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"Gagal melakukan parse pada vCard karena alasan yang tidak diharapkan"</string>
     <string name="fail_reason_not_supported" msgid="294499264620201243">"Format tidak didukung."</string>
-    <string name="vcard_import_failed" msgid="7718330063493653085">"Gagal mengimpor vCard"</string>
+    <!-- outdated translation 7718330063493653085 -->     <string name="vcard_import_failed" msgid="8856125211629574066">"Gagal mengimpor vCard"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"Tidak ditemukan berkas vCard dalam penyimpanan"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Tidak ada berkas vCard yang ditemukan pada kartu SD"</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Gagal mengumpulkan informasi meta dari berkas vCard yang diberikan."</string>
-    <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Satu berkas atau lebih gagal diimpor (%s)"</string>
+    <!-- outdated translation 4154492282316067754 -->     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Gagal mengumpulkan informasi meta dari berkas vCard yang diberikan."</string>
+    <!-- no translation found for fail_reason_failed_to_read_files (5823434810622484922) -->
+    <skip />
     <string name="fail_reason_unknown" msgid="999034019513096768">"Galat tidak dikenal"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Pilih berkas vCard"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"Menyimpan vCard ke penyimpanan sementara lokal"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"Pengimpor menyimpan vCard ke penyimpanan sementara lokal. Impor sesungguhnya akan segera dimulai."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Mengimpor <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Mengimpor <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="reading_vcard_failed_title" msgid="2162610359561887043">"Gagal Membaca data vCard"</string>
+    <!-- outdated translation 2162610359561887043 -->     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Gagal Membaca data vCard"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Membaca data vCard telah dibatalkan"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Selesai mengimpor vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Impor <xliff:g id="FILENAME">%s</xliff:g> dibatalkan"</string>
@@ -274,8 +276,9 @@
     <string name="confirm_export_title" msgid="7648747763127442983">"Konfirmasi ekspor"</string>
     <!-- no translation found for confirm_export_message (4307437830474103759) -->
     <skip />
-    <string name="exporting_contact_failed_title" msgid="585823094820602526">"Gagal mengekspor data kenalan"</string>
-    <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Gagal mengekspor data kenalan."\n"Alasan kegagalan: \"<xliff:g id="FAIL_REASON">%s</xliff:g>:"</string>
+    <!-- outdated translation 585823094820602526 -->     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Gagal mengekspor data kenalan"</string>
+    <!-- no translation found for exporting_contact_failed_message (2704925031146288635) -->
+    <skip />
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Tidak ada kenalan yang dapat diekspor"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Terlalu banyak berkas vCard dalam penyimpanan"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Terlalu banyak berkas vCard pada kartu SD"</string>
@@ -286,7 +289,7 @@
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Mengekspor data kenalan ke \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Tidak dapat menginisiasi pengeskpor: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Terjadi galat selama ekspor: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Gagal mendapatkan informasi database"</string>
+    <!-- outdated translation 3723109558155169053 -->     <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Gagal mendapatkan informasi database"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Tidak ada kenalan yang dapat diekspor. Jika Anda memiliki kenalan pada tablet, semua kenalan mungkin dilarang diekspor ke luar tablet oleh beberapa penyedia data."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Tidak ada kenalan yang dapat diekspor. Jika Anda memiliki kenalan pada ponsel, semua kenalan mungkin dilarang diekspor ke luar ponsel oleh beberapa penyedia data."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"Penyusun vCard tidak dimulai dengan benar"</string>
@@ -296,7 +299,7 @@
     <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"Yakin ingin membatalkan mengimpor <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Membatalkan ekspor vCard"</string>
     <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"Yakin ingin membatalkan mengekspor <xliff:g id="FILENAME">%s</xliff:g>?"</string>
-    <string name="cancel_vcard_import_or_export_failed" msgid="7096533244663846810">"Gagal membatalkan impor/ekspor vCard"</string>
+    <!-- outdated translation 7096533244663846810 -->     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Gagal membatalkan impor/ekspor vCard"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Nama kenalan Anda"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Tambahkan jeda 2-det"</string>
     <string name="add_wait" msgid="3360818652790319634">"Tambahkan tunggu"</string>
@@ -491,7 +494,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Tentukan tampilan ubahsuaian"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Setelan"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kenalan untuk ditampilkan"</string>
-    <!-- outdated translation 377929915873428211 -->     <string name="menu_settings" msgid="6523251616169246235">"Setelan"</string>
+    <!-- outdated translation 1515262535785451190 -->     <string name="menu_settings" msgid="6523251616169246235">"Opsi Tampilan"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Opsi tampilan"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Temukan kenalan"</string>
@@ -535,8 +538,7 @@
     <string name="discard" msgid="1234315037371251414">"Singkirkan"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Siapkan profil saya"</string>
-    <!-- no translation found for enter_contact_name (1738391320566349924) -->
-    <skip />
+    <!-- outdated translation 2930510479516059437 -->     <string name="enter_contact_name" msgid="1738391320566349924">"Masukkan nama kenalan"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Lihat pembaruan"</string>
   <plurals name="notification_voicemail_title">
     <item quantity="one" msgid="1746619685488504230">"Kotak pesan"</item>
@@ -544,11 +546,11 @@
   </plurals>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Kotak pesan baru dari <xliff:g id="CALLER">%1$s</xliff:g>"</string>
-    <string name="voicemail_playback_error" msgid="6148119635138385900">"gagal memutar kotak pesan"</string>
-    <string name="voicemail_buffering" msgid="2021957162133938725">"menyangga..."</string>
-    <!-- no translation found for voicemail_fetching_content (8516068803491833243) -->
+    <!-- outdated translation 6148119635138385900 -->     <string name="voicemail_playback_error" msgid="1811242131549854624">"gagal memutar pesan suara"</string>
+    <!-- outdated translation 2021957162133938725 -->     <string name="voicemail_buffering" msgid="738287747618697097">"menyangga..."</string>
+    <!-- no translation found for voicemail_fetching_content (877911315738258780) -->
     <skip />
-    <!-- no translation found for voicemail_fetching_timout (3430908587639305983) -->
+    <!-- no translation found for voicemail_fetching_timout (6691792377574905201) -->
     <skip />
     <string name="call_log_new_header" msgid="846546437517724715">"Baru"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Lebih Lama"</string>

@@ -44,16 +44,15 @@
     <string name="menu_callNumber" msgid="5142851348489387516">"Κλήση <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Προσθήκη στα αγαπημένα"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Κατάργηση από τα αγαπημένα"</string>
-    <!-- outdated translation 3452858480713561396 -->     <string name="menu_editContact" msgid="9042415603857662633">"Επεξεργασία επαφής"</string>
-    <!-- outdated translation 1916555454274101750 -->     <string name="menu_deleteContact" msgid="6788644058868189393">"Διαγραφή επαφής"</string>
+    <string name="menu_editContact" msgid="9042415603857662633">"Επεξεργασία"</string>
+    <string name="menu_deleteContact" msgid="6788644058868189393">"Διαγραφή"</string>
     <string name="menu_call" msgid="3992595586042260618">"Κλήση επαφής"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Αποστολή μηνύματος κειμένου σε επαφή"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Ορισμός διεύθυνσης ηλεκτρονικού ταχυδρομείου ως προεπιλογή"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Διαχωρισμός"</string>
-    <!-- no translation found for menu_editGroup (5062005185370983720) -->
-    <skip />
+    <string name="menu_editGroup" msgid="5062005185370983720">"Επεξεργασία"</string>
     <string name="menu_renameGroup" msgid="2798886925154156075">"Μετονομασία ομάδας"</string>
-    <!-- outdated translation 644571524292675446 -->     <string name="menu_deleteGroup" msgid="3486380004411482874">"Διαγραφή ομάδας"</string>
+    <string name="menu_deleteGroup" msgid="3486380004411482874">"Διαγραφή"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Νέα"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Νέα"</string>
     <!-- outdated translation 6716467920283502570 -->     <string name="splitConfirmation_title" msgid="2209511048593467012">"Διαχωρισμός επαφής"</string>
@@ -68,8 +67,7 @@
     <string name="contactOptionsTitle" msgid="8259347644090700915">"Επιλογές"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Διαγραφή"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Ορ. ήχου κλήσης"</string>
-    <!-- no translation found for menu_redirect_calls_to_vm (4181789196416396656) -->
-    <skip />
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Κλήσεις στον τηλεφωνητή"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Δεν μπορείτε να διαγράψετε επαφές από λογαριασμούς οι οποίοι είναι μόνο για ανάγνωση, αλλά μπορείτε να τις αποκρύψετε στις λίστες επαφών σας."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Αυτή η επαφή περιέχει πληροφορίες από πολλούς λογαριασμούς. Θα γίνει απόκρυψη και όχι διαγραφή των πληροφοριών που προέρχονται από λογαριασμούς μόνο για ανάγνωση στις λίστες επαφών σας."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Εάν διαγράψετε αυτήν την επαφή, θα γίνει διαγραφή των πληροφοριών από πολλούς λογαριασμούς."</string>
@@ -118,8 +116,7 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Αποθήκευση επιλογών προβολής…"</string>
     <!-- outdated translation 7152589189385441091 -->     <string name="contactSavedToast" msgid="9171862279493213075">"Η επαφή αποθηκεύτηκε."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Σφάλμα, δεν ήταν δυνατή η αποθήκευση αλλαγών επαφής."</string>
-    <!-- no translation found for groupSavedToast (6675062559302493011) -->
-    <skip />
+    <!-- outdated translation 1168756874239833756 -->     <string name="groupSavedToast" msgid="6675062559302493011">"Η ομάδα αποθηκεύτηκε."</string>
     <string name="groupSavedErrorToast" msgid="6434135707953150875">"Σφάλμα. Δεν είναι δυνατή η αποθήκευση των αλλαγών στην ομάδα."</string>
     <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"Η αλλαγή αποθηκεύτηκε."</string>
     <string name="contactAlreadyInGroup" msgid="6209708213229886092">"Η επαφή έχει προστεθεί ήδη στην ομάδα."</string>
@@ -243,26 +240,29 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Εισαγωγή όλων των αρχείων vCard"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Αναζήτηση δεδομένων vCard στον χώρο αποθήκευσης"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Αναζήτηση για δεδομένα vCard στην κάρτα SD"</string>
-    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="6957414493948497249">"Η σάρωση του χώρου αποθήκευσης απέτυχε"</string>
-    <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Η σάρωση της κάρτας SD απέτυχε"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="4106156155205860626">"Η σάρωση του αποθηκευτικού χώρου απέτυχε (Αιτία: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Η σάρωση της κάρτας SD απέτυχε (Αιτία:\"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Η σάρωση του χώρου αποθήκευσης απέτυχε"</string>
+    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Η σάρωση του χώρου αποθήκευσης απέτυχε"</string>
+    <!-- no translation found for scanning_sdcard_failed_message (8290634758602152611) -->
+    <skip />
+    <!-- no translation found for scanning_sdcard_failed_message (2462918339722946736) -->
+    <skip />
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Σφάλμα I/O"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Η μνήμη είναι ανεπαρκής (το αρχείο μπορεί να είναι πολύ μεγάλο)"</string>
-    <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Η ανάλυση της κάρτας vCard απέτυχε εξαιτίας μη αναμενόμενου συμβάντος"</string>
+    <!-- outdated translation 1201233722762680214 -->     <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"Η ανάλυση της κάρτας vCard απέτυχε εξαιτίας μη αναμενόμενου συμβάντος"</string>
     <string name="fail_reason_not_supported" msgid="294499264620201243">"Η μορφή δεν υποστηρίζεται."</string>
-    <string name="vcard_import_failed" msgid="7718330063493653085">"Αποτυχία εισαγωγής vCard"</string>
+    <!-- outdated translation 7718330063493653085 -->     <string name="vcard_import_failed" msgid="8856125211629574066">"Αποτυχία εισαγωγής vCard"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"Δεν βρέθηκαν αρχεία vCard στον χώρο αποθήκευσης"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Δεν βρέθηκε αρχείο VCard στην κάρτα SD"</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Η συλλογή μετα-πληροφοριών του δεδομένου αρχείου(ων) vCard απέτυχε."</string>
-    <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Η εισαγωγή ενός ή περισσοτέρων αρχείων απέτυχε (%s)."</string>
+    <!-- outdated translation 4154492282316067754 -->     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Η συλλογή μετα-πληροφοριών του δεδομένου αρχείου(ων) vCard απέτυχε."</string>
+    <!-- no translation found for fail_reason_failed_to_read_files (5823434810622484922) -->
+    <skip />
     <string name="fail_reason_unknown" msgid="999034019513096768">"Άγνωστο σφάλμα"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Επιλογή αρχείου vCard"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"Αποθήκευση vCard(s) σε τοπικό προσωρινό χώρο αποθήκευσης"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"Το πρόγραμμα εισαγωγής αποθηκεύει προσωρινά vCard(s) σε τοπικό χώρο προσωρινής αποθήκευσης. Η κανονική εισαγωγή θα ξεκινήσει σύντομα."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Εισαγωγή <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Εισαγωγή <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="reading_vcard_failed_title" msgid="2162610359561887043">"Αποτυχία ανάγνωσης δεδομένων vCard"</string>
+    <!-- outdated translation 2162610359561887043 -->     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Αποτυχία ανάγνωσης δεδομένων vCard"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Η ανάγνωση των δεδομένων vCard ακυρώθηκε"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Η εισαγωγή vCard ολοκληρώθηκε <xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Η εισαγωγή της <xliff:g id="FILENAME">%s</xliff:g> ακυρώθηκε"</string>
@@ -276,8 +276,9 @@
     <string name="confirm_export_title" msgid="7648747763127442983">"Επιβεβαίωση εξαγωγής"</string>
     <!-- no translation found for confirm_export_message (4307437830474103759) -->
     <skip />
-    <string name="exporting_contact_failed_title" msgid="585823094820602526">"Αποτυχία εξαγωγής δεδομένων επαφής"</string>
-    <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Αποτυχία εξαγωγής δεδομένων επαφής."\n"Αιτία αποτυχίας: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <!-- outdated translation 585823094820602526 -->     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Αποτυχία εξαγωγής δεδομένων επαφής"</string>
+    <!-- no translation found for exporting_contact_failed_message (2704925031146288635) -->
+    <skip />
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Δεν υπάρχει επαφή με δυνατότητα εξαγωγής"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Υπερβολικά πολλά αρχεία vCard στον χώρο αποθήκευσης"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Υπερβολικά μεγάλος όγκος αρχείων VCard στην κάρτα SD"</string>
@@ -288,7 +289,7 @@
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Εξαγωγή δεδομένων επαφών προς \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Δεν ήταν δυνατή η εκκίνηση της εξαγωγής: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Προέκυψε σφάλμα κατά την εξαγωγή: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Αποτυχία λήψης πληροφοριών βάσης δεδομένων"</string>
+    <!-- outdated translation 3723109558155169053 -->     <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Αποτυχία λήψης πληροφοριών βάσης δεδομένων"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Δεν υπάρχουν επαφές με δυνατότητα εξαγωγής. Αν έχετε επαφές στο tablet σας, ενδέχεται να μην επιτρέπεται η εξαγωγή όλων των επαφών εκτός του τηλεφώνου από κάποιους παρόχους δεδομένων."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Δεν υπάρχουν επαφές με δυνατότητα εξαγωγής. Αν έχετε επαφές στο τηλέφωνό σας, ενδέχεται να μην επιτρέπεται η εξαγωγή όλων των επαφών εκτός του τηλεφώνου από κάποιους παρόχους δεδομένων."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"Δεν έχει γίνει σωστή εκκίνηση του προγράμματος σύνθεσης της vCard"</string>
@@ -298,7 +299,7 @@
     <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"Είστε βέβαιοι ότι θέλετε να ακυρώσετε την εισαγωγή <xliff:g id="FILENAME">%s</xliff:g>;"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Ακύρωση εξαγωγής της vCard"</string>
     <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"Είστε βέβαιοι ότι θέλετε να ακυρώσετε την εξαγωγή της <xliff:g id="FILENAME">%s</xliff:g>;"</string>
-    <string name="cancel_vcard_import_or_export_failed" msgid="7096533244663846810">"Η εισαγωγή/εξαγωγή vCard δεν ακυρώθηκε"</string>
+    <!-- outdated translation 7096533244663846810 -->     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Η εισαγωγή/εξαγωγή vCard δεν ακυρώθηκε"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Ονόματα ων επαφών σας"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Προσθήκη παύσης 2 δευτερολέπτων"</string>
     <string name="add_wait" msgid="3360818652790319634">"Προσθήκη αναμονής"</string>
@@ -493,7 +494,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Ορισμός προσαρμοσμένης προβολής"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Ρυθμίσεις"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Επαφές για προβολή"</string>
-    <!-- outdated translation 377929915873428211 -->     <string name="menu_settings" msgid="6523251616169246235">"Ρυθμίσεις"</string>
+    <!-- outdated translation 1515262535785451190 -->     <string name="menu_settings" msgid="6523251616169246235">"Προβολή επιλογών"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Επιλογές προβολής"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Εύρεση επαφών"</string>
@@ -536,10 +537,8 @@
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Θέλετε να απορριφθούν οι αλλαγές σας;"</string>
     <string name="discard" msgid="1234315037371251414">"Απόρριψη"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <!-- no translation found for profile_display_name (4127389543625918771) -->
-    <skip />
-    <!-- no translation found for enter_contact_name (1738391320566349924) -->
-    <skip />
+    <string name="profile_display_name" msgid="4127389543625918771">"Ρύθμιση του προφίλ μου"</string>
+    <!-- outdated translation 2930510479516059437 -->     <string name="enter_contact_name" msgid="1738391320566349924">"Εισαγάγετε το όνομα της επαφής"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Προβολή ενημερώσεων"</string>
   <plurals name="notification_voicemail_title">
     <item quantity="one" msgid="1746619685488504230">"Αυτόματος τηλεφωνητής"</item>
@@ -547,11 +546,11 @@
   </plurals>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Νέα μην. αυτ. τηλεφ. από <xliff:g id="CALLER">%1$s</xliff:g>"</string>
-    <string name="voicemail_playback_error" msgid="6148119635138385900">"η αναπαραγωγή του τηλεφωνητή απέτυχε"</string>
-    <string name="voicemail_buffering" msgid="2021957162133938725">"Αποθήκευση στην προσωρινή μνήμη..."</string>
-    <!-- no translation found for voicemail_fetching_content (8516068803491833243) -->
+    <!-- outdated translation 6148119635138385900 -->     <string name="voicemail_playback_error" msgid="1811242131549854624">"η αναπαραγωγή του τηλεφωνητή απέτυχε"</string>
+    <!-- outdated translation 2021957162133938725 -->     <string name="voicemail_buffering" msgid="738287747618697097">"Αποθήκευση στην προσωρινή μνήμη..."</string>
+    <!-- no translation found for voicemail_fetching_content (877911315738258780) -->
     <skip />
-    <!-- no translation found for voicemail_fetching_timout (3430908587639305983) -->
+    <!-- no translation found for voicemail_fetching_timout (6691792377574905201) -->
     <skip />
     <string name="call_log_new_header" msgid="846546437517724715">"Νέο"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Παλαιότερα"</string>
@@ -591,12 +590,10 @@
     <skip />
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Μηνύματα αυτόματου τηλεφωνητή που δεν έχετε ακούσει"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
-    <!-- no translation found for user_profile_contacts_list_header (9154761216179882405) -->
-    <skip />
+    <string name="user_profile_contacts_list_header" msgid="9154761216179882405">"ΕΓΩ"</string>
     <!-- no translation found for local_profile_title (2021416826991393684) -->
     <skip />
     <!-- no translation found for external_profile_title (8034998767621359438) -->
     <skip />
-    <!-- no translation found for toast_displaying_all_contacts (2737388783898593875) -->
-    <skip />
+    <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Εμφάνιση όλων των επαφών"</string>
 </resources>

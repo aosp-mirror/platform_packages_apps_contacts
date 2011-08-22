@@ -44,16 +44,15 @@
     <string name="menu_callNumber" msgid="5142851348489387516">"<xliff:g id="NAME">%s</xliff:g>님에게 전화걸기"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"즐겨찾기에 추가"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"즐겨찾기에서 삭제"</string>
-    <!-- outdated translation 3452858480713561396 -->     <string name="menu_editContact" msgid="9042415603857662633">"연락처 수정"</string>
-    <!-- outdated translation 1916555454274101750 -->     <string name="menu_deleteContact" msgid="6788644058868189393">"연락처 삭제"</string>
+    <string name="menu_editContact" msgid="9042415603857662633">"수정"</string>
+    <string name="menu_deleteContact" msgid="6788644058868189393">"삭제"</string>
     <string name="menu_call" msgid="3992595586042260618">"연락처로 전화 걸기"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"연락처에 문자 보내기"</string>
     <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"기본 이메일로 설정"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"분리"</string>
-    <!-- no translation found for menu_editGroup (5062005185370983720) -->
-    <skip />
+    <string name="menu_editGroup" msgid="5062005185370983720">"수정"</string>
     <string name="menu_renameGroup" msgid="2798886925154156075">"그룹 이름 변경"</string>
-    <!-- outdated translation 644571524292675446 -->     <string name="menu_deleteGroup" msgid="3486380004411482874">"그룹 삭제"</string>
+    <string name="menu_deleteGroup" msgid="3486380004411482874">"삭제"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"새 연락처"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"새 그룹"</string>
     <!-- outdated translation 6716467920283502570 -->     <string name="splitConfirmation_title" msgid="2209511048593467012">"연락처 분리"</string>
@@ -68,8 +67,7 @@
     <string name="contactOptionsTitle" msgid="8259347644090700915">"옵션"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"삭제"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"벨소리 설정"</string>
-    <!-- no translation found for menu_redirect_calls_to_vm (4181789196416396656) -->
-    <skip />
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"모든 통화를 음성사서함으로 보내기"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"읽기 전용 계정의 주소록은 삭제할 수 없지만 주소록 목록에서 숨길 수는 있습니다."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"연락처에 여러 계정의 정보가 들어 있습니다. 읽기 전용 계정의 정보는 주소록 목록에서 숨길 수 있지만 삭제할 수는 없습니다."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"이 연락처를 삭제하면 여러 계정의 정보가 삭제됩니다."</string>
@@ -118,8 +116,7 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"표시 옵션 저장 중...."</string>
     <!-- outdated translation 7152589189385441091 -->     <string name="contactSavedToast" msgid="9171862279493213075">"연락처를 저장했습니다."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"오류가 발생해서 연락처 변경사항을 저장할 수 없습니다."</string>
-    <!-- no translation found for groupSavedToast (6675062559302493011) -->
-    <skip />
+    <!-- outdated translation 1168756874239833756 -->     <string name="groupSavedToast" msgid="6675062559302493011">"그룹이 저장되었습니다."</string>
     <string name="groupSavedErrorToast" msgid="6434135707953150875">"오류가 발생해서 그룹 변경사항을 저장할 수 없습니다."</string>
     <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"변경사항이 저장되었습니다."</string>
     <string name="contactAlreadyInGroup" msgid="6209708213229886092">"연락처가 그룹에 이미 추가되었습니다."</string>
@@ -243,26 +240,29 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"모든 vCard 파일 가져오기"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"저장장치에서 vCard 데이터 검색"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"SD 카드의 vCard 데이터 검색"</string>
-    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="6957414493948497249">"저장장치 스캔 실패"</string>
-    <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"SD 카드 스캔 실패"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="4106156155205860626">"저장장치 스캔 실패(이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\')"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"SD 카드 스캔 실패(이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\')"</string>
+    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"저장장치 스캔 실패"</string>
+    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"저장장치 스캔 실패"</string>
+    <!-- no translation found for scanning_sdcard_failed_message (8290634758602152611) -->
+    <skip />
+    <!-- no translation found for scanning_sdcard_failed_message (2462918339722946736) -->
+    <skip />
     <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O 오류"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"메모리가 부족합니다. 파일이 너무 크기 때문일 수 있습니다."</string>
-    <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"예기치 못한 이유로 인해 vCard를 구문분석하지 못했습니다."</string>
+    <!-- outdated translation 1201233722762680214 -->     <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"예기치 못한 이유로 인해 vCard를 구문분석하지 못했습니다."</string>
     <string name="fail_reason_not_supported" msgid="294499264620201243">"지원되지 않는 형식입니다."</string>
-    <string name="vcard_import_failed" msgid="7718330063493653085">"vCard를 가져오지 못했습니다."</string>
+    <!-- outdated translation 7718330063493653085 -->     <string name="vcard_import_failed" msgid="8856125211629574066">"vCard를 가져오지 못했습니다."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"저장공간에 vCard 파일이 없습니다."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"SD 카드에 VCard 파일이 없습니다."</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"지정한 vCard 파일에 대한 메타 정보를 수집하지 못했습니다."</string>
-    <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"하나 이상의 파일을 가져오지 못했습니다(%s)."</string>
+    <!-- outdated translation 4154492282316067754 -->     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"지정한 vCard 파일에 대한 메타 정보를 수집하지 못했습니다."</string>
+    <!-- no translation found for fail_reason_failed_to_read_files (5823434810622484922) -->
+    <skip />
     <string name="fail_reason_unknown" msgid="999034019513096768">"알 수 없는 오류"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"vCard 파일 선택"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"vCard를 로컬 임시 저장공간에 캐시하는 중"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"가져오기 도구가 vCard를 로컬 임시 저장공간에 캐시하는 중입니다. 곧 실제 가져오기가 시작됩니다."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> 가져오는 중: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g> 가져오는 중"</string>
-    <string name="reading_vcard_failed_title" msgid="2162610359561887043">"vCard 데이터를 읽지 못했습니다."</string>
+    <!-- outdated translation 2162610359561887043 -->     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"vCard 데이터를 읽지 못했습니다."</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"vCard 데이터 읽기가 취소되었습니다."</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"<xliff:g id="FILENAME">%s</xliff:g> vCard 가져오기 완료"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"<xliff:g id="FILENAME">%s</xliff:g> 가져오기가 취소됨"</string>
@@ -276,8 +276,9 @@
     <string name="confirm_export_title" msgid="7648747763127442983">"내보내기 확인"</string>
     <!-- no translation found for confirm_export_message (4307437830474103759) -->
     <skip />
-    <string name="exporting_contact_failed_title" msgid="585823094820602526">"연락처 데이터를 내보내지 못했습니다."</string>
-    <string name="exporting_contact_failed_message" msgid="4151348002470298092">"연락처 데이터를 내보내지 못했습니다."\n"실패 이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\'"</string>
+    <!-- outdated translation 585823094820602526 -->     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"연락처 데이터를 내보내지 못했습니다."</string>
+    <!-- no translation found for exporting_contact_failed_message (2704925031146288635) -->
+    <skip />
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"내보낼 수 있는 연락처가 없습니다."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"저장공간에 vCard 파일이 너무 많습니다."</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"SD 카드에 vCard 파일이 너무 많습니다."</string>
@@ -288,7 +289,7 @@
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"연락처 데이터를 \'<xliff:g id="FILE_NAME">%s</xliff:g>\'(으)로 내보내는 중"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"내보내기를 초기화하지 못했습니다. \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"내보내는 중에 오류가 발생했습니다. \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'"</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"데이터베이스 정보를 가져오지 못했습니다."</string>
+    <!-- outdated translation 3723109558155169053 -->     <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"데이터베이스 정보를 가져오지 못했습니다."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"내보낼 수 있는 연락처가 없습니다. 태블릿에 실제로 연락처가 있다면 일부 데이터 제공업체에서 모든 연락처를 외부로 내보내지 못하도록 금지했을 수 있습니다."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"내보낼 수 있는 연락처가 없습니다. 휴대전화에 실제로 연락처가 있다면 일부 데이터 제공업체에서 모든 연락처를 휴대전화 외부로 내보내지 못하도록 금지했을 수 있습니다."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"vCard 작성기가 바르게 초기화되지 않았습니다."</string>
@@ -298,7 +299,7 @@
     <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"<xliff:g id="FILENAME">%s</xliff:g> 가져오기를 취소하시겠습니까?"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"vCard 내보내기 취소 중"</string>
     <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"<xliff:g id="FILENAME">%s</xliff:g> 내보내기를 취소하시겠습니까?"</string>
-    <string name="cancel_vcard_import_or_export_failed" msgid="7096533244663846810">"vCard 가져오기/내보내기 취소 실패"</string>
+    <!-- outdated translation 7096533244663846810 -->     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard 가져오기/내보내기 취소 실패"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"연락처 명단"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"2초 간 일시 정지 추가"</string>
     <string name="add_wait" msgid="3360818652790319634">"대기 시간 추가"</string>
@@ -493,7 +494,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"맞춤 보기 정의"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"설정"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"표시할 연락처"</string>
-    <!-- outdated translation 377929915873428211 -->     <string name="menu_settings" msgid="6523251616169246235">"설정"</string>
+    <!-- outdated translation 1515262535785451190 -->     <string name="menu_settings" msgid="6523251616169246235">"옵션 표시"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"표시 옵션"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"연락처 찾기"</string>
@@ -536,10 +537,8 @@
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"변경사항을 취소하시겠습니까?"</string>
     <string name="discard" msgid="1234315037371251414">"취소"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g> "</string>
-    <!-- no translation found for profile_display_name (4127389543625918771) -->
-    <skip />
-    <!-- no translation found for enter_contact_name (1738391320566349924) -->
-    <skip />
+    <string name="profile_display_name" msgid="4127389543625918771">"내 프로필 설정"</string>
+    <!-- outdated translation 2930510479516059437 -->     <string name="enter_contact_name" msgid="1738391320566349924">"연락처 이름 입력"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"업데이트 보기"</string>
   <plurals name="notification_voicemail_title">
     <item quantity="one" msgid="1746619685488504230">"음성사서함"</item>
@@ -547,11 +546,11 @@
   </plurals>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"<xliff:g id="CALLER">%1$s</xliff:g>님이 보낸 새 음성사서함"</string>
-    <string name="voicemail_playback_error" msgid="6148119635138385900">"음성사서함을 재생하지 못했습니다."</string>
-    <string name="voicemail_buffering" msgid="2021957162133938725">"버퍼링 중..."</string>
-    <!-- no translation found for voicemail_fetching_content (8516068803491833243) -->
+    <!-- outdated translation 6148119635138385900 -->     <string name="voicemail_playback_error" msgid="1811242131549854624">"음성사서함을 재생하지 못했습니다."</string>
+    <!-- outdated translation 2021957162133938725 -->     <string name="voicemail_buffering" msgid="738287747618697097">"버퍼링 중..."</string>
+    <!-- no translation found for voicemail_fetching_content (877911315738258780) -->
     <skip />
-    <!-- no translation found for voicemail_fetching_timout (3430908587639305983) -->
+    <!-- no translation found for voicemail_fetching_timout (6691792377574905201) -->
     <skip />
     <string name="call_log_new_header" msgid="846546437517724715">"신규"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"이전"</string>
@@ -591,12 +590,10 @@
     <skip />
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"듣지 않은 음성사서함"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
-    <!-- no translation found for user_profile_contacts_list_header (9154761216179882405) -->
-    <skip />
+    <string name="user_profile_contacts_list_header" msgid="9154761216179882405">"나"</string>
     <!-- no translation found for local_profile_title (2021416826991393684) -->
     <skip />
     <!-- no translation found for external_profile_title (8034998767621359438) -->
     <skip />
-    <!-- no translation found for toast_displaying_all_contacts (2737388783898593875) -->
-    <skip />
+    <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"모든 연락처 표시"</string>
 </resources>

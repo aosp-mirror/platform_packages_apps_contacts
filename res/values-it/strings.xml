@@ -55,8 +55,8 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Elimina"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Nuovo"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Nuovo"</string>
-    <!-- outdated translation 6716467920283502570 -->     <string name="splitConfirmation_title" msgid="2209511048593467012">"Separa contatto"</string>
-    <!-- outdated translation 1150797297503944823 -->     <string name="splitConfirmation" msgid="1067993957986345974">"Separare questo contatto singolo in più contatti, uno per ogni serie di informazioni di contatto unita in precedenza?"</string>
+    <string name="splitConfirmation_title" msgid="2209511048593467012">"Separa contatto"</string>
+    <string name="splitConfirmation" msgid="1067993957986345974">"Suddividere questo contatto singolo in più contatti?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Unisci"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Unisci contatti"</string>
     <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Seleziona il contatto che desideri unire a <xliff:g id="NAME">%s</xliff:g>."</string>
@@ -114,10 +114,9 @@
   </plurals>
     <string name="savingContact" msgid="4075751076741924939">"Salvataggio contatto in corso..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Salvataggio opzioni di visualizzazione in corso..."</string>
-    <!-- outdated translation 7152589189385441091 -->     <string name="contactSavedToast" msgid="9171862279493213075">"Contatto salvato."</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"Contatto salvato"</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Errore, impossibile salvare le modifiche ai contatti."</string>
-    <!-- no translation found for groupSavedToast (6675062559302493011) -->
-    <skip />
+    <string name="groupSavedToast" msgid="6675062559302493011">"Gruppo salvato"</string>
     <string name="groupSavedErrorToast" msgid="6434135707953150875">"Errore, impossibile salvare le modifiche al gruppo."</string>
     <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"La modifica è stata salvata."</string>
     <string name="contactAlreadyInGroup" msgid="6209708213229886092">"Il contatto è già stato aggiunto al gruppo."</string>
@@ -241,26 +240,29 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Importa tutti i file vCard"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Ricerca di dati vCard nell\'archivio"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Ricerca dati vCard su scheda SD"</string>
-    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="6957414493948497249">"Scansione dell\'archivio non riuscita"</string>
-    <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"Analisi scheda SD non riuscita"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="4106156155205860626">"Scansione dell\'archivio non riuscita (motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"Analisi scheda SD non riuscita (motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Scansione dell\'archivio non riuscita"</string>
+    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Scansione dell\'archivio non riuscita"</string>
+    <!-- no translation found for scanning_sdcard_failed_message (8290634758602152611) -->
+    <skip />
+    <!-- no translation found for scanning_sdcard_failed_message (2462918339722946736) -->
+    <skip />
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Errore I/O"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Memoria insufficiente (il file potrebbe essere di dimensioni eccessive)"</string>
-    <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"Impossibile analizzare la vCard per motivi imprevisti"</string>
+    <!-- outdated translation 1201233722762680214 -->     <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"Impossibile analizzare la vCard per motivi imprevisti"</string>
     <string name="fail_reason_not_supported" msgid="294499264620201243">"Il formato non è supportato."</string>
-    <string name="vcard_import_failed" msgid="7718330063493653085">"Importazione vCard non riuscita"</string>
+    <!-- outdated translation 7718330063493653085 -->     <string name="vcard_import_failed" msgid="8856125211629574066">"Importazione vCard non riuscita"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"Nessun file vCard trovato nell\'archivio"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Nessun file vCard trovato sulla scheda SD"</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="4154492282316067754">"Raccolta dei metadati dei file vCard forniti non riuscita."</string>
-    <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"Impossibile importare uno o più file (%s)."</string>
+    <!-- outdated translation 4154492282316067754 -->     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Raccolta dei metadati dei file vCard forniti non riuscita."</string>
+    <!-- no translation found for fail_reason_failed_to_read_files (5823434810622484922) -->
+    <skip />
     <string name="fail_reason_unknown" msgid="999034019513096768">"Errore sconosciuto"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Seleziona file vCard"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"Memorizzazione delle vCard nella cache di archiviazione temporanea locale"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"L\'importazione memorizzerà le vCard nella cache di archiviazione temporanea locale. L\'importazione reale inizierà a breve."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Importazione di <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Importazione di <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="reading_vcard_failed_title" msgid="2162610359561887043">"Lettura dati vCard non riuscita"</string>
+    <!-- outdated translation 2162610359561887043 -->     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Lettura dati vCard non riuscita"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Lettura dati vCard annullata"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Importazione vCard <xliff:g id="FILENAME">%s</xliff:g> terminata"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Importazione di <xliff:g id="FILENAME">%s</xliff:g> annullata"</string>
@@ -272,10 +274,10 @@
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"contatto"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Conferma esportazione"</string>
-    <!-- no translation found for confirm_export_message (4307437830474103759) -->
+    <string name="confirm_export_message" msgid="4307437830474103759">"Esportare l\'elenco dei contatti in un file \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
+    <!-- outdated translation 585823094820602526 -->     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Esportazione dati contatti non riuscita"</string>
+    <!-- no translation found for exporting_contact_failed_message (2704925031146288635) -->
     <skip />
-    <string name="exporting_contact_failed_title" msgid="585823094820602526">"Esportazione dati contatti non riuscita"</string>
-    <string name="exporting_contact_failed_message" msgid="4151348002470298092">"Esportazione dati contatti non riuscita."\n"Motivo dell\'errore: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Nessun contatto esportabile"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Troppi file vCard nell\'archivio"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Troppi dati vCard sulla scheda SD"</string>
@@ -286,7 +288,7 @@
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Esportazione dati di contatto in \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Impossibile inizializzare l\'utilità di esportazione: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Si è verificato un errore durante l\'esportazione: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"Recupero informazioni database non riuscito"</string>
+    <!-- outdated translation 3723109558155169053 -->     <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Recupero informazioni database non riuscito"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Non sono presenti contatti esportabili. Se sul tuo tablet sono presenti dei contatti, qualche provider di dati potrebbe impedire l\'esportazione di tutti i contatti all\'esterno del tablet."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Non sono presenti contatti esportabili. Se nel tuo telefono sono presenti dei contatti, qualche provider di dati potrebbe impedire l\'esportazione di tutti i contatti all\'esterno del telefono."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"Il compositore di vCard non è correttamente inizializzato"</string>
@@ -296,7 +298,7 @@
     <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"Annullare l\'importazione di <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Annullamento esportazione vCard"</string>
     <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"Annullare l\'esportazione di <xliff:g id="FILENAME">%s</xliff:g>?"</string>
-    <string name="cancel_vcard_import_or_export_failed" msgid="7096533244663846810">"Impossibile annullare l\'operazione"</string>
+    <!-- outdated translation 7096533244663846810 -->     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Impossibile annullare l\'operazione"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"I nomi dei tuoi contatti"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Aggiungi pausa 2 sec"</string>
     <string name="add_wait" msgid="3360818652790319634">"Aggiungi attesa"</string>
@@ -317,7 +319,7 @@
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Nickname"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organizzazione"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Sito web"</string>
-    <!-- outdated translation 8069912895912714412 -->     <string name="eventLabelsGroup" msgid="3695433812142818803">"Evento"</string>
+    <string name="eventLabelsGroup" msgid="3695433812142818803">"Eventi"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Relazione"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Gruppi"</string>
     <string name="type_short_home" msgid="7770424864090605384">"H"</string>
@@ -414,13 +416,10 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Secondo nome fonetico"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Cognome fonetico"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Nome fonetico"</string>
-    <!-- no translation found for connections (8098440723172028350) -->
-    <skip />
-    <!-- no translation found for add_connection_button (4861308615789601727) -->
-    <skip />
+    <string name="connections" msgid="8098440723172028350">"Connessioni"</string>
+    <string name="add_connection_button" msgid="4861308615789601727">"Aggiungi connessione"</string>
     <string name="recent_updates" msgid="2062236709538790412">"Recenti"</string>
-    <!-- no translation found for recent_updates_tab_text (5813107516506908531) -->
-    <skip />
+    <string name="recent_updates_tab_text" msgid="5813107516506908531">"\"<xliff:g id="UPDATE_TEXT">%s</xliff:g>\""</string>
     <string name="account_type_format" msgid="718948015590343010">"Contatto da <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -458,10 +457,8 @@
     <string name="add_field" msgid="2384260056674995230">"Aggiungi un altro campo"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Aggiungi nuovo"</string>
     <string name="add_organization" msgid="7311893231158291197">"Aggiungi organizzazione"</string>
-    <!-- no translation found for event_edit_field_hint_text (5794424930242630477) -->
-    <skip />
-    <!-- no translation found for group_edit_field_hint_text (3966441850870457808) -->
-    <skip />
+    <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Data"</string>
+    <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Nome del gruppo"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"tramite <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> tramite <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"preferiti"</string>
@@ -479,7 +476,7 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Aggiungi ai contatti personali"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Directory <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Directory"</string>
-    <!-- outdated translation 1686089693064201315 -->     <string name="local_search_label" msgid="2551177578246113614">"Contatti"</string>
+    <string name="local_search_label" msgid="2551177578246113614">"Tutti i contatti"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"Creazione di una copia personale"</string>
     <string name="list_filter_prompt" msgid="7481426622828055116">"Scegli elenco contatti"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Tutti i contatti"</string>
@@ -491,14 +488,13 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Definisci visualizzazione personalizzata"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Impostazioni"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Contatti da visualizzare"</string>
-    <!-- outdated translation 377929915873428211 -->     <string name="menu_settings" msgid="6523251616169246235">"Impostazioni"</string>
+    <string name="menu_settings" msgid="6523251616169246235">"Opzioni di visualizzazione"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Opzioni di visualizzazione"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Trova contatti"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Numero di telefono"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Aggiungi a contatti"</string>
-    <!-- no translation found for activity_title_confirm_add_detail (4065089866210730616) -->
-    <skip />
+    <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Aggiungi al contatto"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Chiudi"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Specifica un anno"</string>
@@ -535,8 +531,7 @@
     <string name="discard" msgid="1234315037371251414">"Ignora"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g> "</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Imposta il mio profilo"</string>
-    <!-- no translation found for enter_contact_name (1738391320566349924) -->
-    <skip />
+    <string name="enter_contact_name" msgid="1738391320566349924">"Digita il nome della persona"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Visualizza aggiornam."</string>
   <plurals name="notification_voicemail_title">
     <item quantity="one" msgid="1746619685488504230">"Segreteria"</item>
@@ -544,12 +539,10 @@
   </plurals>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Nuovo messaggio vocale da <xliff:g id="CALLER">%1$s</xliff:g>"</string>
-    <string name="voicemail_playback_error" msgid="6148119635138385900">"impossibile riprodurre messaggio vocale"</string>
-    <string name="voicemail_buffering" msgid="2021957162133938725">"buffering..."</string>
-    <!-- no translation found for voicemail_fetching_content (8516068803491833243) -->
-    <skip />
-    <!-- no translation found for voicemail_fetching_timout (3430908587639305983) -->
-    <skip />
+    <!-- outdated translation 6148119635138385900 -->     <string name="voicemail_playback_error" msgid="1811242131549854624">"impossibile riprodurre messaggio vocale"</string>
+    <!-- outdated translation 2021957162133938725 -->     <string name="voicemail_buffering" msgid="738287747618697097">"buffering..."</string>
+    <!-- outdated translation 8516068803491833243 -->     <string name="voicemail_fetching_content" msgid="877911315738258780">"recupero messaggi segreteria..."</string>
+    <!-- outdated translation 3430908587639305983 -->     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"recupero messaggi segreteria non riuscito"</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Nuovi"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Precedenti"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"Impossibile collegarsi al server della segreteria."</string>
@@ -567,8 +560,7 @@
     <string name="group_name_hint" msgid="2659811836386413509">"Nome del gruppo"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Contatto ricevuto via NFC"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Mostra solo messaggi vocali"</string>
-    <!-- no translation found for menu_show_all_calls (7560347482073345885) -->
-    <skip />
+    <string name="menu_show_all_calls" msgid="7560347482073345885">"Mostra tutte le chiamate"</string>
     <string name="status_available" msgid="5586870015822828392">"Disponibile"</string>
     <string name="status_away" msgid="1838861100379804730">"Assente"</string>
     <string name="status_busy" msgid="9147992455450257136">"Occupato"</string>
@@ -578,20 +570,14 @@
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Chiamata in uscita"</string>
     <string name="description_call_log_missed_call" msgid="2242805209983708825">"Chiamata senza risposta"</string>
     <string name="description_call_log_voicemail" msgid="4600798771975158948">"Messaggio vocale"</string>
-    <!-- no translation found for description_add_contact (3103414772502485851) -->
-    <skip />
-    <!-- no translation found for description_view_contact (5205669345700598415) -->
-    <skip />
-    <!-- no translation found for description_call (3443678121983852666) -->
-    <skip />
-    <!-- no translation found for description_send_text_message (7803126439934046891) -->
-    <skip />
+    <string name="description_add_contact" msgid="3103414772502485851">"Aggiungi contatto"</string>
+    <string name="description_view_contact" msgid="5205669345700598415">"Visualizza <xliff:g id="NAME">%1$s</xliff:g> contatto"</string>
+    <string name="description_call" msgid="3443678121983852666">"Chiama <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_send_text_message" msgid="7803126439934046891">"Invia messaggio di testo a <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Messaggio vocale non ascoltato"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="9154761216179882405">"IO"</string>
-    <!-- no translation found for local_profile_title (2021416826991393684) -->
-    <skip />
-    <!-- no translation found for external_profile_title (8034998767621359438) -->
-    <skip />
+    <string name="local_profile_title" msgid="2021416826991393684">"Il mio profilo locale"</string>
+    <string name="external_profile_title" msgid="8034998767621359438">"Il mio profilo <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Sono visualizzati tutti i contatti"</string>
 </resources>
