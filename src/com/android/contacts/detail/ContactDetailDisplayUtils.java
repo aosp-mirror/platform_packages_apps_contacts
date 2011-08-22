@@ -129,16 +129,11 @@ public class ContactDetailDisplayUtils {
     }
 
     /**
-     * Returns the attribution string for the contact. This could either specify
-     * that this is a joined contact or specify the contact directory that the
-     * contact came from. Returns null if there is none applicable.
+     * Returns the attribution string for the contact, which may specify the contact directory that
+     * the contact came from. Returns null if there is none applicable.
      */
     public static String getAttribution(Context context, Result contactData) {
-        // Check if this is a joined contact
-        if (contactData.getEntities().size() > 1) {
-            return context.getString(R.string.indicator_joined_contact);
-        } else if (contactData.isDirectoryEntry()) {
-            // This contact is from a directory
+        if (contactData.isDirectoryEntry()) {
             String directoryDisplayName = contactData.getDirectoryDisplayName();
             String directoryType = contactData.getDirectoryType();
             String displayName = !TextUtils.isEmpty(directoryDisplayName)
@@ -192,7 +187,6 @@ public class ContactDetailDisplayUtils {
         }
         return null;
     }
-
 
     /**
      * Sets the contact photo to display in the given {@link ImageView}. If bitmap is null, the
