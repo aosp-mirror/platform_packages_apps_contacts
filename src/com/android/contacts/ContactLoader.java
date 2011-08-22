@@ -93,14 +93,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         /**
          * Singleton instance that represents "No Contact Found"
          */
-        public static final Result NOT_FOUND = new Result();
-
-        /**
-         * Singleton instance that represents an error, e.g. because of an invalid Uri
-         * TODO: We should come up with something nicer here. Maybe use an Either type so
-         * that we can capture the Exception?
-         */
-        public static final Result ERROR = new Result();
+        public static final Result NOT_FOUND = new Result((Exception) null);
 
         private final Uri mLookupUri;
         private final Uri mUri;
@@ -135,11 +128,12 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         private final String mCustomRingtone;
         private final boolean mIsUserProfile;
 
+        private final Exception mException;
+
         /**
-         * Constructor for case "no contact found". This must only be used for the
-         * final {@link Result#NOT_FOUND} singleton
+         * Constructor for special results, namely "no contact found" and "error".
          */
-        private Result() {
+        private Result(Exception exception) {
             mLookupUri = null;
             mUri = null;
             mDirectoryId = -1;
@@ -161,7 +155,11 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mSendToVoicemail = false;
             mCustomRingtone = null;
             mIsUserProfile = false;
+            mException = exception;
+        }
 
+        private static Result forError(Exception exception) {
+            return new Result(exception);
         }
 
         /**
@@ -172,6 +170,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 String displayName, String altDisplayName, String phoneticName, boolean starred,
                 Integer presence, boolean sendToVoicemail, String customRingtone,
                 boolean isUserProfile) {
+            mException = null;
             mLookupUri = lookupUri;
             mUri = uri;
             mDirectoryId = directoryId;
@@ -196,6 +195,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         }
 
         private Result(Result from) {
+            mException = from.mException;
             mLookupUri = from.mLookupUri;
             mUri = from.mUri;
             mDirectoryId = from.mDirectoryId;
@@ -265,6 +265,18 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         @VisibleForTesting
         /*package*/ long getId() {
             return mId;
+        }
+
+        /**
+         * @return true when an exception happened during loading, in which case
+         *     {@link #getException} returns the actual exception object.
+         */
+        public boolean isError() {
+            return mException != null;
+        }
+
+        public Exception getException() {
+            return mException;
         }
 
         public long getNameRawContactId() {
@@ -631,7 +643,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 return result;
             } catch (Exception e) {
                 Log.e(TAG, "Error loading the contact: " + mLookupUri, e);
-                return Result.ERROR;
+                return Result.forError(e);
             }
         }
 
@@ -1087,7 +1099,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
             mContact = result;
 
-            if (result != Result.ERROR && result != Result.NOT_FOUND) {
+            if (!result.isError() && result != Result.NOT_FOUND) {
                 mLookupUri = result.getLookupUri();
 
                 if (!result.isDirectoryEntry()) {
