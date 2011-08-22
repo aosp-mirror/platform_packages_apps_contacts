@@ -56,6 +56,7 @@ import android.view.animation.AlphaAnimation;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -499,5 +500,45 @@ public class ContactDetailDisplayUtils {
             // performance (i.e. use setBackgroundColor() instead of setAlpha())
             view.setBackgroundColor((int) (alpha * 255) << 24);
         }
+    }
+
+    /**
+     * Returns the top coordinate of the first item in the {@link ListView}. If the first item
+     * in the {@link ListView} is not visible or there are no children in the list, then return
+     * Integer.MIN_VALUE. Note that the returned value will be <= 0 because the first item in the
+     * list cannot have a positive offset.
+     */
+    public static int getFirstListItemOffset(ListView listView) {
+        if (listView == null || listView.getChildCount() == 0 ||
+                listView.getFirstVisiblePosition() != 0) {
+            return Integer.MIN_VALUE;
+        }
+        return listView.getChildAt(0).getTop();
+    }
+
+    /**
+     * Tries to scroll the first item in the list to the given offset (this can be a no-op if the
+     * list is already in the correct position).
+     * @param listView that should be scrolled
+     * @param offset which should be <= 0
+     */
+    public static void requestToMoveToOffset(ListView listView, int offset) {
+        // We try to offset the list if the first item in the list is showing (which is presumed
+        // to have a larger height than the desired offset). If the first item in the list is not
+        // visible, then we simply do not scroll the list at all (since it can get complicated to
+        // compute how many items in the list will equal the given offset). Potentially
+        // some animation elsewhere will make the transition smoother for the user to compensate
+        // for this simplification.
+        if (listView == null || listView.getChildCount() == 0 ||
+                listView.getFirstVisiblePosition() != 0 || offset > 0) {
+            return;
+        }
+
+        // As an optimization, check if the first item is already at the given offset.
+        if (listView.getChildAt(0).getTop() == offset) {
+            return;
+        }
+
+        listView.setSelectionFromTop(0, offset);
     }
 }

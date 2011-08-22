@@ -24,7 +24,6 @@ import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
@@ -58,6 +57,9 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
 
     private CarouselTab mAboutTab;
     private CarouselTab mUpdatesTab;
+
+    /** Last Y coordinate of the carousel when the tab at the given index was selected */
+    private final float[] mYCoordinateArray = new float[TAB_COUNT];
 
     private int mTabDisplayLabelHeight;
 
@@ -169,6 +171,39 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         mListener.onScrollChanged(l, t, oldl, oldt);
         mLastScrollPosition = l;
         updateAlphaLayers();
+    }
+
+    /**
+     * Restore the Y position of this view to the last manually requested value. This can be done
+     * after the parent has been re-laid out again, where this view's position could have been
+     * lost if the view laid outside its parent's bounds.
+     */
+    public void restoreYCoordinate() {
+        setY(getStoredYCoordinateForTab(mCurrentTab));
+    }
+
+    /**
+     * Request that the view move to the given Y coordinate. Also store the Y coordinate as the
+     * last requested Y coordinate for the given tabIndex.
+     */
+    public void moveToYCoordinate(int tabIndex, float y) {
+        setY(y);
+        storeYCoordinate(tabIndex, y);
+    }
+
+    /**
+     * Store this information as the last requested Y coordinate for the given tabIndex.
+     */
+    public void storeYCoordinate(int tabIndex, float y) {
+        mYCoordinateArray[tabIndex] = y;
+    }
+
+    /**
+     * Returns the stored Y coordinate of this view the last time the user was on the selected
+     * tab given by tabIndex.
+     */
+    public float getStoredYCoordinateForTab(int tabIndex) {
+        return mYCoordinateArray[tabIndex];
     }
 
     /**

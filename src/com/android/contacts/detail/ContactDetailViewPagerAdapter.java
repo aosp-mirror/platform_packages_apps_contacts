@@ -36,17 +36,17 @@ public class ContactDetailViewPagerAdapter extends PagerAdapter {
 
     private int mFragmentViewCount = MAX_FRAGMENT_VIEW_COUNT;
 
-    private ViewGroup mAboutFragmentView;
-    private ViewGroup mUpdatesFragmentView;
+    private View mAboutFragmentView;
+    private View mUpdatesFragmentView;
 
     public ContactDetailViewPagerAdapter() {
     }
 
-    public void setAboutFragmentView(ViewGroup view) {
+    public void setAboutFragmentView(View view) {
         mAboutFragmentView = view;
     }
 
-    public void setUpdatesFragmentView(ViewGroup view) {
+    public void setUpdatesFragmentView(View view) {
         mUpdatesFragmentView = view;
     }
 

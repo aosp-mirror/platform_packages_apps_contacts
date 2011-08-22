@@ -27,7 +27,8 @@
     android:background="@drawable/bg_people_updates_holo">
 
     <ImageView android:id="@+id/status_photo"
-        android:layout_width="wrap_content"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
