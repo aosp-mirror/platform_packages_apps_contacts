@@ -360,6 +360,9 @@
     <!-- Displayed at the top of the contacts showing the account filter selected  [CHAR LIMIT=64] -->
     <string name="listAllContactsInAccount">Contacts in <xliff:g id="name" example="abc@gmail.com">%s</xliff:g></string>
 
+    <!-- Displayed at the top of the contacts showing single contact. [CHAR LIMIT=64] -->
+    <string name="listSingleContact">Single contact</string>
+
     <!-- Displayed at the top of the contacts showing the total number of contacts found when "Only contacts with phones" not selected -->
     <plurals name="listFoundAllContacts">
         <item quantity="one">1 found</item>
