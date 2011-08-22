@@ -18,6 +18,7 @@ package com.android.contacts.dialpad;
 
 import android.content.Context;
 import android.graphics.Rect;
+import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.inputmethod.InputMethodManager;
@@ -29,7 +30,7 @@ import android.widget.EditText;
 public class DigitsEditText extends EditText {
     public DigitsEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setSuggestionsEnabled(false);
+        setInputType(getInputType() | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
     }
 
     @Override
