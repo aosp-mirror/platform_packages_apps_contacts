@@ -79,6 +79,7 @@
         android:layout_marginLeft="@dimen/group_detail_border_padding"
         android:layout_marginRight="@dimen/group_detail_border_padding"
         android:cacheColorHint="#00000000"
+        android:fadingEdge="none"
         android:divider="@null" />
 
 </LinearLayout>
