@@ -317,9 +317,8 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
     /**
      * Once the account type, group source action, and group source URI have been determined
      * (based on the result from the {@link Loader}), then we can display this to the user in 1 of
-     * 3 ways depending on screen size and orientation: either as a button in the action bar,
-     * a button in a static header on the page, or as a header that scrolls with the
-     * {@link ListView}.
+     * 2 ways depending on screen size and orientation: either as a button in the action bar or as
+     * a button in a static header on the page.
      */
     private void updateAccountType(final String accountTypeString, final String dataSet) {
 
@@ -345,10 +344,6 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
                 // the view there.
                 if (mGroupSourceViewContainer != null) {
                     mGroupSourceViewContainer.addView(mGroupSourceView);
-                } else {
-                    // Otherwise, display the group source as a scrolling header within the
-                    // {@link ListView} of group members.
-                    mMemberListView.addHeaderView(mGroupSourceView);
                 }
             }
 
