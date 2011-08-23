@@ -361,28 +361,18 @@
             </intent-filter>
         </activity>
 
-
         <!-- List of groups -->
         <activity android:name=".activities.GroupBrowserActivity"
             android:label="@string/contactsGroupsLabel"
             android:theme="@style/PeopleTheme"
             android:uiOptions="splitActionBarWhenNarrow"
             android:launchMode="singleTop"
-            android:clearTaskOnLaunch="true">
-            <!-- TODO: Remove this temporary intent action name when the fragmentization
-                 work is done. -->
-            <intent-filter>
-                <action android:name="com.android.phone.action.GROUPS_LIST" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.TAB" />
-            </intent-filter>
-        </activity>
+            android:clearTaskOnLaunch="true"/>
 
         <!-- Views the details of a single group -->
         <activity android:name=".activities.GroupDetailActivity"
             android:label=""
-            android:theme="@style/GroupDetailTheme"
-            android:uiOptions="splitActionBarWhenNarrow"/>
+            android:theme="@style/DetailActivityTheme"/>
 
         <!-- Create a new or edit an existing group -->
         <activity
@@ -485,7 +475,7 @@
         <!-- Views the details of a single contact -->
         <activity android:name=".activities.ContactDetailActivity"
             android:label="@string/viewContactTitle"
-            android:theme="@style/ContactDetailActivityTheme">
+            android:theme="@style/DetailActivityTheme">
 
             <intent-filter android:label="@string/viewContactDesription">
                 <action android:name="android.intent.action.VIEW" />

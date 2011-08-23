@@ -27,8 +27,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="12dip"
-        android:paddingBottom="12dip"
         android:orientation="horizontal" >
 
         <LinearLayout
@@ -42,6 +40,7 @@
                 android:id="@+id/group_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingTop="12dip"
                 android:paddingLeft="8dip"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textStyle="bold" />
@@ -50,6 +49,7 @@
                 android:id="@+id/group_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingBottom="12dip"
                 android:paddingLeft="8dip"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="?android:attr/textColorSecondary" />
@@ -60,7 +60,6 @@
             android:id="@+id/group_source_view_container"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
             android:paddingRight="@dimen/group_detail_border_padding" />
 
     </LinearLayout>
