@@ -120,7 +120,6 @@ public class EmailAddressListAdapter extends ContactEntryListAdapter {
             ViewGroup parent) {
         final ContactListItemView view = new ContactListItemView(context, null);
         view.setUnknownNameText(mUnknownNameText);
-        view.setTextWithHighlightingFactory(getTextWithHighlightingFactory());
         view.setQuickContactEnabled(isQuickContactEnabled());
         return view;
     }
@@ -167,8 +166,7 @@ public class EmailAddressListAdapter extends ContactEntryListAdapter {
 
     protected void bindName(final ContactListItemView view, Cursor cursor) {
         view.showDisplayName(cursor, mDisplayNameColumnIndex, mAlternativeDisplayNameColumnIndex,
-                isNameHighlightingEnabled(), getContactNameDisplayOrder());
-//        view.showPhoneticName(cursor, PHONE_PHONETIC_NAME_COLUMN_INDEX);
+                false, getContactNameDisplayOrder());
     }
 
     protected void bindPhoto(final ContactListItemView view, Cursor cursor) {

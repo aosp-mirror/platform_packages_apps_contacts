@@ -222,7 +222,6 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             ViewGroup parent) {
         ContactListItemView view = new ContactListItemView(context, null);
         view.setUnknownNameText(mUnknownNameText);
-        view.setTextWithHighlightingFactory(getTextWithHighlightingFactory());
         view.setQuickContactEnabled(isQuickContactEnabled());
         view.setActivatedStateSupported(isSelectionVisible());
         return view;
@@ -271,7 +270,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
 
     protected void bindName(final ContactListItemView view, Cursor cursor) {
         view.showDisplayName(cursor, mDisplayNameColumnIndex, mAlternativeDisplayNameColumnIndex,
-                isNameHighlightingEnabled(), getContactNameDisplayOrder());
+                false, getContactNameDisplayOrder());
         view.showPhoneticName(cursor, CONTACT_PHONETIC_NAME_COLUMN_INDEX);
     }
 
