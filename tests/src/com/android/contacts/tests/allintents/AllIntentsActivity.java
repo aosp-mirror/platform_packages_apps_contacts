@@ -70,6 +70,7 @@ public class AllIntentsActivity extends ListActivity
         LIST_FREQUENT_ACTION,
         LIST_STREQUENT_ACTION,
         LIST_GROUP_ACTION,
+        VIEW_CONTACT_WITHOUT_ID,
         ACTION_PICK_CONTACT,
         ACTION_PICK_CONTACT_LEGACY,
         ACTION_PICK_PHONE,
@@ -407,6 +408,10 @@ public class AllIntentsActivity extends ListActivity
                 final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
                 final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
+                break;
+            }
+            case VIEW_CONTACT_WITHOUT_ID: {
+                startActivity(new Intent(Intent.ACTION_VIEW, Contacts.CONTENT_URI));
                 break;
             }
             case VIEW_CONTACT_LOOKUP: {
