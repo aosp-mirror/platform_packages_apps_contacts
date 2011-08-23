@@ -107,8 +107,8 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         mShowHomeIcon = mContext.getResources().getBoolean(R.bool.show_home_icon);
 
         // Set up search view.
-        View customSearchView = LayoutInflater.from(mContext).inflate(R.layout.custom_action_bar,
-                null);
+        View customSearchView = LayoutInflater.from(mActionBar.getThemedContext()).inflate(
+                R.layout.custom_action_bar, null);
         int searchViewWidth = mContext.getResources().getDimensionPixelSize(
                 R.dimen.search_view_width);
         if (searchViewWidth == 0) {
