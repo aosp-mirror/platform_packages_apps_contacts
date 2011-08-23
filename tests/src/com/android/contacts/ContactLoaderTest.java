@@ -76,17 +76,17 @@ public class ContactLoaderTest extends LoaderTestCase {
 
     public void testNullUri() {
         ContactLoader.Result result = assertLoadContact(null);
-        assertEquals(ContactLoader.Result.ERROR, result);
+        assertTrue(result.isError());
     }
 
     public void testEmptyUri() {
         ContactLoader.Result result = assertLoadContact(Uri.EMPTY);
-        assertEquals(ContactLoader.Result.ERROR, result);
+        assertTrue(result.isError());
     }
 
     public void testInvalidUri() {
         ContactLoader.Result result = assertLoadContact(Uri.parse("content://wtf"));
-        assertEquals(ContactLoader.Result.ERROR, result);
+        assertTrue(result.isError());
     }
 
     public void testLoadContactWithContactIdUri() {
