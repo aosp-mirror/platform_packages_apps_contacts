@@ -173,7 +173,11 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
                 return results;
             }
 
-            // Map of raw contact IDs to {@link SuggestedMember} objects
+            // Create a list to store the suggested contacts (which will be alphabetically ordered),
+            // but also keep a map of raw contact IDs to {@link SuggestedMember}s to make it easier
+            // to add supplementary data to the contact (photo, phone, email) to the members based
+            // on raw contact IDs after the second query is completed.
+            List<SuggestedMember> suggestionsList = new ArrayList<SuggestedMember>();
             HashMap<Long, SuggestedMember> suggestionsMap = new HashMap<Long, SuggestedMember>();
 
             // First query for all the raw contacts that match the given search query
@@ -197,7 +201,7 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
                     accountClause + " AND (" +
                     RawContacts.DISPLAY_NAME_PRIMARY + " LIKE ? OR " +
                     RawContacts.DISPLAY_NAME_ALTERNATIVE + " LIKE ? )",
-                    args, null);
+                    args, RawContacts.DISPLAY_NAME_PRIMARY + " COLLATE LOCALIZED ASC");
 
             if (cursor == null) {
                 return results;
@@ -216,8 +220,11 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
                     }
                     // Otherwise, add the contact as a suggested new group member
                     String displayName = cursor.getString(DISPLAY_NAME_PRIMARY_COLUMN_INDEX);
-                    suggestionsMap.put(rawContactId, new SuggestedMember(rawContactId,
-                            displayName, contactId));
+                    SuggestedMember member = new SuggestedMember(rawContactId, displayName,
+                            contactId);
+                    // Store the member in the list of suggestions and add it to the hash map too.
+                    suggestionsList.add(member);
+                    suggestionsMap.put(rawContactId, member);
                 }
             } finally {
                 cursor.close();
@@ -282,14 +289,14 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
             } finally {
                 memberDataCursor.close();
             }
-            results.values = suggestionsMap;
+            results.values = suggestionsList;
             return results;
         }
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            HashMap<Long, SuggestedMember> map = (HashMap<Long, SuggestedMember>) results.values;
-            if (map == null || map.keySet() == null) {
+            List<SuggestedMember> suggestionsList = (List<SuggestedMember>) results.values;
+            if (suggestionsList == null) {
                 return;
             }
 
@@ -297,7 +304,7 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
             clear();
 
             // Add all the suggested members to this adapter
-            for (SuggestedMember member : map.values()) {
+            for (SuggestedMember member : suggestionsList) {
                 add(member);
             }
 
