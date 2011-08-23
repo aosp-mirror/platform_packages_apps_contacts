@@ -31,6 +31,7 @@
     <dimen name="action_bar_search_spacing">12dip</dimen>
     <dimen name="shortcut_icon_size">64dip</dimen>
     <dimen name="list_section_height">37dip</dimen>
+    <dimen name="group_detail_border_padding">16dip</dimen>
     <dimen name="detail_update_section_side_padding">0dip</dimen>
     <dimen name="detail_update_section_item_horizontal_padding">8dip</dimen>
     <dimen name="detail_update_section_item_vertical_padding">32dip</dimen>

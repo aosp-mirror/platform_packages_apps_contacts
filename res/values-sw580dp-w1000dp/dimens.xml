@@ -18,6 +18,7 @@
     <dimen name="action_bar_filter_max_width">300dip</dimen>
     <dimen name="action_bar_search_max_width">336dip</dimen>
     <dimen name="action_bar_search_spacing">32dip</dimen>
+    <dimen name="group_detail_border_padding">32dip</dimen>
     <dimen name="detail_header_view_margin">16dip</dimen>
     <dimen name="detail_header_attribution_height">56dip</dimen>
     <dimen name="detail_update_section_top_padding">48dip</dimen>
