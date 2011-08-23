@@ -53,6 +53,8 @@ public class PhoneCallDetails {
     /**
      * The photo URI of the picture of the contact that is associated with this phone call or
      * null if there is none.
+     * <p>
+     * This is meant to store the high-res photo only.
      */
     public final Uri photoUri;
 

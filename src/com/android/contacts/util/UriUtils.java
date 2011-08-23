@@ -35,4 +35,12 @@ public class UriUtils {
         }
         return uri1.equals(uri2);
     }
+
+    /** Parses a string into a URI and returns null if the given string is null. */
+    public static Uri parseUriOrNull(String uriString) {
+        if (uriString == null) {
+            return null;
+        }
+        return Uri.parse(uriString);
+    }
 }

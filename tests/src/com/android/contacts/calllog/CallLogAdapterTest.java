@@ -21,6 +21,7 @@ import com.google.common.collect.Lists;
 import android.content.Context;
 import android.database.MatrixCursor;
 import android.test.AndroidTestCase;
+import android.test.suitebuilder.annotation.SmallTest;
 import android.view.View;
 
 import java.util.List;
@@ -28,6 +29,7 @@ import java.util.List;
 /**
  * Unit tests for {@link CallLogAdapter}.
  */
+@SmallTest
 public class CallLogAdapterTest extends AndroidTestCase {
     private static final String TEST_NUMBER = "12345678";
     private static final String TEST_NAME = "name";

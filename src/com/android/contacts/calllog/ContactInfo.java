@@ -32,7 +32,8 @@ public final class ContactInfo {
     public String number;
     public String formattedNumber;
     public String normalizedNumber;
-    public Uri thumbnailUri;
+    /** The photo for the contact, if available. */
+    public long photoId;
 
     public static ContactInfo EMPTY = new ContactInfo();
 
@@ -61,7 +62,7 @@ public final class ContactInfo {
         if (!TextUtils.equals(number, other.number)) return false;
         // Ignore formatted number.
         if (!TextUtils.equals(normalizedNumber, other.normalizedNumber)) return false;
-        if (!UriUtils.areEqual(thumbnailUri, other.thumbnailUri)) return false;
+        if (photoId != other.photoId) return false;
         return true;
     }
 }
