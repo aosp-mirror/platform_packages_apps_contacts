@@ -96,6 +96,10 @@ public class DialpadFragment extends Fragment
         public void onSearchButtonPressed();
     }
 
+    /**
+     * View (usually FrameLayout) containing mDigits field. This can be null, in which mDigits
+     * isn't enclosed by the container.
+     */
     private View mDigitsContainer;
     private EditText mDigits;
 
@@ -931,7 +935,12 @@ public class DialpadFragment extends Fragment
 
         if (enabled) {
             // Log.i(TAG, "Showing dialpad chooser!");
-            mDigitsContainer.setVisibility(View.GONE);
+            if (mDigitsContainer != null) {
+                mDigitsContainer.setVisibility(View.GONE);
+            } else {
+                // mDigits is not enclosed by the container. Make the digits field itself gone.
+                mDigits.setVisibility(View.GONE);
+            }
             if (mDialpad != null) mDialpad.setVisibility(View.GONE);
             mAdditionalButtonsRow.setVisibility(View.GONE);
             mDialpadChooser.setVisibility(View.VISIBLE);
@@ -944,7 +953,11 @@ public class DialpadFragment extends Fragment
             mDialpadChooser.setAdapter(mDialpadChooserAdapter);
         } else {
             // Log.i(TAG, "Displaying normal Dialer UI.");
-            mDigitsContainer.setVisibility(View.VISIBLE);
+            if (mDigitsContainer != null) {
+                mDigitsContainer.setVisibility(View.VISIBLE);
+            } else {
+                mDigits.setVisibility(View.VISIBLE);
+            }
             if (mDialpad != null) mDialpad.setVisibility(View.VISIBLE);
             mAdditionalButtonsRow.setVisibility(View.VISIBLE);
             mDialpadChooser.setVisibility(View.GONE);
