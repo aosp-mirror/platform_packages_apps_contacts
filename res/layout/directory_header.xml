@@ -24,25 +24,12 @@
     android:paddingLeft="?attr/list_item_padding_left"
     android:paddingRight="?attr/list_item_padding_right">
     <TextView
-        android:id="@+id/display_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/label"
-        android:layout_toLeftOf="@+id/count"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="8dip"
-        android:layout_marginRight="8dip"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="?android:attr/textColorSecondary"
-        android:singleLine="true"
-        android:textStyle="bold"
-        android:textAllCaps="true" />
-    <TextView
         android:id="@+id/label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignBaseline="@id/display_name"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="8dip"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="?android:attr/textColorSecondary"
@@ -54,10 +41,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_alignBaseline="@id/display_name"
+        android:layout_alignBaseline="@id/label"
         android:singleLine="true"
         android:textSize="12sp"
         android:textColor="@color/contact_count_text_color" />
+    <TextView
+        android:id="@+id/display_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/label"
+        android:layout_toLeftOf="@id/count"
+        android:layout_alignBaseline="@id/label"
+        android:layout_marginLeft="8dip"
+        android:layout_marginRight="8dip"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="?android:attr/textColorSecondary"
+        android:singleLine="true"
+        android:textStyle="bold"
+        android:textAllCaps="true" />
     <View
         android:id="@+id/contact_filter_header_bottom_divider"
         style="@style/SectionDivider"
