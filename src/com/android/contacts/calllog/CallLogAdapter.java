@@ -329,11 +329,8 @@ public class CallLogAdapter extends GroupingListAdapter
                 info.number = dataTableCursor.getString(
                         dataTableCursor.getColumnIndex(Data.DATA1));
                 info.normalizedNumber = null;  // meaningless for SIP addresses
-                final String thumbnailUriString = dataTableCursor.getString(
-                        dataTableCursor.getColumnIndex(Data.PHOTO_THUMBNAIL_URI));
-                info.thumbnailUri = thumbnailUriString == null
-                        ? null
-                        : Uri.parse(thumbnailUriString);
+                info.photoId = dataTableCursor.getLong(
+                        dataTableCursor.getColumnIndex(Data.PHOTO_ID));
             } else {
                 info = ContactInfo.EMPTY;
             }
@@ -377,11 +374,7 @@ public class CallLogAdapter extends GroupingListAdapter
                         .getString(PhoneQuery.MATCHED_NUMBER);
                 info.normalizedNumber = phonesCursor
                         .getString(PhoneQuery.NORMALIZED_NUMBER);
-                final String thumbnailUriString = phonesCursor.getString(
-                        PhoneQuery.THUMBNAIL_URI);
-                info.thumbnailUri = thumbnailUriString == null
-                        ? null
-                        : Uri.parse(thumbnailUriString);
+                info.photoId = phonesCursor.getLong(PhoneQuery.PHOTO_ID);
             } else {
                 info = ContactInfo.EMPTY;
             }
@@ -635,7 +628,7 @@ public class CallLogAdapter extends GroupingListAdapter
         final String name = info.name;
         final int ntype = info.type;
         final String label = info.label;
-        final Uri thumbnailUri = info.thumbnailUri;
+        final long photoId = info.photoId;
         final int[] callTypes = getCallTypes(c, count);
         final String geocode = c.getString(CallLogQuery.GEOCODED_LOCATION);
         final PhoneCallDetails details;
@@ -643,15 +636,16 @@ public class CallLogAdapter extends GroupingListAdapter
             details = new PhoneCallDetails(number, formattedNumber, countryIso, geocode,
                     callTypes, date, duration);
         } else {
+            // We do not pass a photo id since we do not need the high-res picture.
             details = new PhoneCallDetails(number, formattedNumber, countryIso, geocode,
-                    callTypes, date, duration, name, ntype, label, contactUri , thumbnailUri);
+                    callTypes, date, duration, name, ntype, label, contactUri, null);
         }
 
         final boolean isNew = CallLogQuery.isNewSection(c);
         // New items also use the highlighted version of the text.
         final boolean isHighlighted = isNew;
         mCallLogViewsHelper.setPhoneCallDetails(views, details, isHighlighted);
-        setPhoto(views, thumbnailUri, contactUri);
+        setPhoto(views, photoId, contactUri);
 
         // Listen for the first draw
         if (mPreDrawListener == null) {
@@ -718,7 +712,7 @@ public class CallLogAdapter extends GroupingListAdapter
         info.number = c.getString(CallLogQuery.NUMBER);
         info.formattedNumber = info.number;
         info.normalizedNumber = info.number;
-        info.thumbnailUri = null;
+        info.photoId = 0;
         return info;
     }
 
@@ -740,9 +734,9 @@ public class CallLogAdapter extends GroupingListAdapter
         return callTypes;
     }
 
-    private void setPhoto(CallLogListItemViews views, Uri thumbnailUri, Uri contactUri) {
+    private void setPhoto(CallLogListItemViews views, long photoId, Uri contactUri) {
         views.quickContactView.assignContactUri(contactUri);
-        mContactPhotoManager.loadPhoto(views.quickContactView, thumbnailUri);
+        mContactPhotoManager.loadPhoto(views.quickContactView, photoId);
     }
 
     /**

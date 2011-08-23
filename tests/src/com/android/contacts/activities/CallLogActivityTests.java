@@ -68,8 +68,6 @@ public class CallLogActivityTests
 
     /** A test value for the URI of a contact. */
     private static final Uri TEST_CONTACT_URI = Uri.parse("content://contacts/2");
-    /** A test value for the photo uri of a contact. */
-    private static final Uri TEST_THUMBNAIL_URI = Uri.parse("something://picture/2");
     /** A test value for the country ISO of the phone number in the call log. */
     private static final String TEST_COUNTRY_ISO = "US";
     /** A phone number to be used in tests. */
@@ -462,7 +460,7 @@ public class CallLogActivityTests
         }
         contactInfo.formattedNumber = formattedNumber;
         contactInfo.normalizedNumber = number;
-        contactInfo.thumbnailUri = TEST_THUMBNAIL_URI;
+        contactInfo.photoId = 0;
         mAdapter.injectContactInfoForTest(number, contactInfo);
     }
 

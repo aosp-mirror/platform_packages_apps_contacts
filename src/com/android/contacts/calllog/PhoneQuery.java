@@ -29,7 +29,7 @@ final class PhoneQuery {
             PhoneLookup.LABEL,
             PhoneLookup.NUMBER,
             PhoneLookup.NORMALIZED_NUMBER,
-            PhoneLookup.PHOTO_THUMBNAIL_URI,
+            PhoneLookup.PHOTO_ID,
             PhoneLookup.LOOKUP_KEY};
 
     public static final int PERSON_ID = 0;
@@ -38,6 +38,6 @@ final class PhoneQuery {
     public static final int LABEL = 3;
     public static final int MATCHED_NUMBER = 4;
     public static final int NORMALIZED_NUMBER = 5;
-    public static final int THUMBNAIL_URI = 6;
+    public static final int PHOTO_ID = 6;
     public static final int LOOKUP_KEY = 7;
 }
