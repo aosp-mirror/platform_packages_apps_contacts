@@ -371,6 +371,10 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         mShowStaticPhoto = showPhoto;
     }
 
+    public void showEmptyState() {
+        setData(null, null);
+    }
+
     public void setData(Uri lookupUri, ContactLoader.Result result) {
         mLookupUri = lookupUri;
         mContactData = result;
@@ -412,6 +416,10 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
         if (mContactData == null) {
             mView.setVisibility(View.INVISIBLE);
+            mAllEntries.clear();
+            if (mAdapter != null) {
+                mAdapter.notifyDataSetChanged();
+            }
             return;
         }
 

@@ -233,6 +233,33 @@ public class ContactDetailLayoutController {
         }
     }
 
+    public void showEmptyState() {
+        switch (mLayoutMode) {
+            case FRAGMENT_CAROUSEL: {
+                mFragmentCarousel.enableSwipe(false);
+                mDetailFragment.showEmptyState();
+                break;
+            }
+            case TWO_COLUMN: {
+                mDetailFragment.setShowStaticPhoto(false);
+                mUpdatesFragmentView.setVisibility(View.GONE);
+                mDetailFragment.showEmptyState();
+                break;
+            }
+            case VIEW_PAGER_AND_TAB_CAROUSEL: {
+                mDetailFragment.setShowStaticPhoto(false);
+                mDetailFragment.showEmptyState();
+                mTabCarousel.loadData(null);
+                mTabCarousel.setVisibility(View.GONE);
+                mViewPagerAdapter.enableSwipe(false);
+                mViewPager.setCurrentItem(0);
+                break;
+            }
+            default:
+                throw new IllegalStateException("Invalid LayoutMode " + mLayoutMode);
+        }
+    }
+
     /**
      * Setup the layout for the contact with updates. Pass in the index of the current page to
      * select or null if the current selection should be left as is.
