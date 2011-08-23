@@ -69,6 +69,8 @@ public class ExternalAccountType extends BaseAccountType {
     private static final String ATTR_ACCOUNT_LABEL = "accountTypeLabel";
     private static final String ATTR_ACCOUNT_ICON = "accountTypeIcon";
 
+    private final boolean mIsExtension;
+
     private String mEditContactActivityClassName;
     private String mCreateContactActivityClassName;
     private String mInviteContactActivity;
@@ -84,7 +86,8 @@ public class ExternalAccountType extends BaseAccountType {
     private boolean mInitSuccessful;
     private boolean mHasContactsMetadata;
 
-    public ExternalAccountType(Context context, String resPackageName) {
+    public ExternalAccountType(Context context, String resPackageName, boolean isExtension) {
+        this.mIsExtension = isExtension;
         this.resPackageName = resPackageName;
         this.summaryResPackageName = resPackageName;
 
@@ -125,6 +128,11 @@ public class ExternalAccountType extends BaseAccountType {
     @Override
     public boolean isExternal() {
         return true;
+    }
+
+    @Override
+    public boolean isExtension() {
+        return mIsExtension;
     }
 
     /**

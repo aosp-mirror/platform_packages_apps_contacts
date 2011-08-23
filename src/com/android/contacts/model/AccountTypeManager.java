@@ -309,7 +309,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
                     // TODO: use syncadapter package instead, since it provides resources
                     Log.d(TAG, "Registering external account type=" + type
                             + ", packageName=" + auth.packageName);
-                    accountType = new ExternalAccountType(mContext, auth.packageName);
+                    accountType = new ExternalAccountType(mContext, auth.packageName, false);
                     if (!((ExternalAccountType) accountType).isInitialized()) {
                         // Skip external account types that couldn't be initialized.
                         continue;
@@ -333,7 +333,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
                 Log.d(TAG, "Registering " + extensionPackages.size() + " extension packages");
                 for (String extensionPackage : extensionPackages) {
                     ExternalAccountType accountType =
-                            new ExternalAccountType(mContext, extensionPackage);
+                            new ExternalAccountType(mContext, extensionPackage, true);
                     if (!accountType.isInitialized()) {
                         // Skip external account types that couldn't be initialized.
                         continue;
