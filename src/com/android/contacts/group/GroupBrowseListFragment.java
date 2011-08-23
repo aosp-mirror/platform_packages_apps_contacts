@@ -101,6 +101,15 @@ public class GroupBrowseListFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            mSelectedGroupUri = savedInstanceState.getParcelable(EXTRA_KEY_GROUP_URI);
+            if (mSelectedGroupUri != null) {
+                // The selection may be out of screen, if rotated from portrait to landscape,
+                // so ensure it's visible.
+                mSelectionToScreenRequested = true;
+            }
+        }
+
         mRootView = inflater.inflate(R.layout.group_browse_list_fragment, null);
         mEmptyView = (TextView)mRootView.findViewById(R.id.empty);
 
@@ -137,12 +146,6 @@ public class GroupBrowseListFragment extends Fragment
         });
         setAddAccountsVisibility(!ContactsUtils.areAccountsAvailable(mContext));
 
-        if (savedInstanceState != null) {
-            String groupUriString = savedInstanceState.getString(EXTRA_KEY_GROUP_URI);
-            if (groupUriString != null) {
-                mSelectedGroupUri = Uri.parse(groupUriString);
-            }
-        }
         return mRootView;
     }
 
@@ -300,12 +303,7 @@ public class GroupBrowseListFragment extends Fragment
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        if (mSelectedGroupUri != null) {
-            String uriString = mSelectedGroupUri.toString();
-            if (!TextUtils.isEmpty(uriString)) {
-                outState.putString(EXTRA_KEY_GROUP_URI, uriString);
-            }
-        }
+        outState.putParcelable(EXTRA_KEY_GROUP_URI, mSelectedGroupUri);
     }
 
     public void setAddAccountsVisibility(boolean visible) {
