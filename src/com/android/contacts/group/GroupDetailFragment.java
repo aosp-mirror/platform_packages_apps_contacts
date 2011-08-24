@@ -403,10 +403,9 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         mOptionsMenuEditable = isGroupEditable() && isVisible();
         mOptionsMenuGroupPresent = isGroupPresent() && isVisible();
 
-        // Editing a group is always possible if a group is selected
-        // TODO: check for external group (member editable) buganizer #5049046
+        // Editing is not possible for read only groups
         final MenuItem editMenu = menu.findItem(R.id.menu_edit_group);
-        editMenu.setVisible(mOptionsMenuGroupPresent);
+        editMenu.setVisible(mOptionsMenuGroupPresent && mOptionsMenuEditable);
 
         final MenuItem deleteMenu = menu.findItem(R.id.menu_delete_group);
         deleteMenu.setVisible(mOptionsMenuEditable);
