@@ -115,7 +115,6 @@ public class ContactDetailActivity extends ContactsActivity {
     public void onAttachFragment(Fragment fragment) {
          if (fragment instanceof ContactLoaderFragment) {
             mLoaderFragment = (ContactLoaderFragment) fragment;
-            mLoaderFragment.setRetainInstance(true);
             mLoaderFragment.setListener(mLoaderFragmentListener);
             mLoaderFragment.loadUri(getIntent().getData());
         }

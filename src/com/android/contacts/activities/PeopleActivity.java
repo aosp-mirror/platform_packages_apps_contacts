@@ -373,7 +373,6 @@ public class PeopleActivity extends ContactsActivity
 
             mContactDetailLoaderFragment = getFragment(R.id.contact_detail_loader_fragment);
             mContactDetailLoaderFragment.setListener(mContactDetailLoaderFragmentListener);
-            mContactDetailLoaderFragment.setRetainInstance(true);
 
             mGroupDetailFragment = getFragment(R.id.group_detail_fragment);
             mGroupDetailFragment.setListener(mGroupDetailFragmentListener);

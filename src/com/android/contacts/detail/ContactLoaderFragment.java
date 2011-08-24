@@ -210,14 +210,8 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
         }
 
         @Override
-        public void onLoaderReset(Loader<ContactLoader.Result> loader) {
-            mContactData = null;
-            if (mListener != null) {
-                mListener.onDetailsLoaded(mContactData);
-            }
-        }
+        public void onLoaderReset(Loader<ContactLoader.Result> loader) {}
     };
-
 
     @Override
     public void onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
