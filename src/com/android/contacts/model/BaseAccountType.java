@@ -65,7 +65,7 @@ public class BaseAccountType extends AccountType {
     public BaseAccountType() {
         this.accountType = null;
         this.dataSet = null;
-        this.titleRes = R.string.account_phone;
+        this.titleRes = R.string.local_profile_title;
         this.iconRes = R.mipmap.ic_launcher_contacts;
     }
 
