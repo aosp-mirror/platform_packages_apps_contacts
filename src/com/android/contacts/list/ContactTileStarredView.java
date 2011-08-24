@@ -20,22 +20,16 @@ import android.util.AttributeSet;
 
 /**
  * A {@link ContactTileStarredView} displays the contact's picture overlayed with their name
- * in a perfect square.
+ * in a square.  The actual dimensions are set by
+ * {@link com.android.contacts.list.ContactTileAdapter.ContactTileRow}.
+ *
+ * TODO Just remove this class.  We probably don't need {@link ContactTileSecondaryTargetView}
+ * either.  (We can probably put the functionality to {@link ContactTileView})
  */
 public class ContactTileStarredView extends ContactTileView {
     private final static String TAG = ContactTileStarredView.class.getSimpleName();
 
     public ContactTileStarredView(Context context, AttributeSet attrs) {
         super(context, attrs);
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        // Getting how much space is currently available and telling our
-        // Children to split it.
-        int width = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
-        int childMeasureSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
-        measureChildren(childMeasureSpec, childMeasureSpec);
-        setMeasuredDimension(width, width);
     }
 }
