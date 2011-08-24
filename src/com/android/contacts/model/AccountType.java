@@ -87,6 +87,10 @@ public abstract class AccountType {
         return false;
     }
 
+    public boolean isExtension() {
+        return false;
+    }
+
     /**
      * Returns an optional custom edit activity.  The activity class should reside
      * in the sync adapter package as determined by {@link #resPackageName}.

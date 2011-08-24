@@ -22,13 +22,24 @@ import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
+import com.google.android.collect.Lists;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.LoaderManager.LoaderCallbacks;
+import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.Intent;
+import android.content.Loader;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.BaseColumns;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.RawContacts;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,9 +64,13 @@ public class AccountFilterActivity extends ContactsActivity
 
     public static final String KEY_EXTRA_CONTACT_LIST_FILTER = "contactListFilter";
 
+    private static final int FILTER_LOADER_ID = 0;
+
     private ListView mListView;
 
-    private List<ContactListFilter> mFilters = new ArrayList<ContactListFilter>();
+    private static final String[] ID_PROJECTION = new String[] {BaseColumns._ID};
+    private static final Uri RAW_CONTACTS_URI_LIMIT_1 = RawContacts.CONTENT_URI.buildUpon()
+            .appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY, "1").build();
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -70,38 +85,118 @@ public class AccountFilterActivity extends ContactsActivity
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        loadAccountFilters();
+        getLoaderManager().initLoader(FILTER_LOADER_ID, null, new MyLoaderCallbacks());
     }
 
-    private void loadAccountFilters() {
-        ArrayList<ContactListFilter> accountFilters = new ArrayList<ContactListFilter>();
-        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(this);
+    private static class FilterLoader extends AsyncTaskLoader<List<ContactListFilter>> {
+        private Context mContext;
+
+        public FilterLoader(Context context) {
+            super(context);
+            mContext = context;
+        }
+
+        @Override
+        public List<ContactListFilter> loadInBackground() {
+            return loadAccountFilters(mContext);
+        }
+
+        @Override
+        protected void onStartLoading() {
+            forceLoad();
+        }
+
+        @Override
+        protected void onStopLoading() {
+            cancelLoad();
+        }
+
+        @Override
+        protected void onReset() {
+            onStopLoading();
+        }
+    }
+
+    private static List<ContactListFilter> loadAccountFilters(Context context) {
+        final ArrayList<ContactListFilter> result = Lists.newArrayList();
+        final ArrayList<ContactListFilter> accountFilters = Lists.newArrayList();
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(context);
         List<AccountWithDataSet> accounts = accountTypes.getAccounts(false);
         for (AccountWithDataSet account : accounts) {
             AccountType accountType = accountTypes.getAccountType(account.type, account.dataSet);
-            Drawable icon = accountType != null ? accountType.getDisplayIcon(this) : null;
+            if (accountType.isExtension() && !hasAccountData(context, account)) {
+                // Hide extensions with no raw_contacts.
+                continue;
+            }
+            Drawable icon = accountType != null ? accountType.getDisplayIcon(context) : null;
             accountFilters.add(ContactListFilter.createAccountFilter(account.type, account.name,
                     account.dataSet, icon, account.name));
         }
-        final int count = accountFilters.size();
 
+        // Always show "All", even when there's no accounts.  (We may have local contacts)
+        result.add(ContactListFilter.createFilterWithType(
+                ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS));
+
+        final int count = accountFilters.size();
         if (count >= 1) {
-            mFilters.add(ContactListFilter.createFilterWithType(
-                    ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS));
             // If we only have one account, don't show it as "account", instead show it as "all"
             if (count > 1) {
-                mFilters.addAll(accountFilters);
+                result.addAll(accountFilters);
             }
-            mFilters.add(ContactListFilter.createFilterWithType(
+            result.add(ContactListFilter.createFilterWithType(
                     ContactListFilter.FILTER_TYPE_CUSTOM));
         }
+        return result;
+    }
 
-        mListView.setAdapter(new FilterListAdapter(this));
+    private static boolean hasAccountData(Context context, AccountWithDataSet account) {
+        final String BASE_SELECTION =
+                RawContacts.ACCOUNT_TYPE + " = ?" + " AND " + RawContacts.ACCOUNT_NAME + " = ?";
+        final String selection;
+        final String[] args;
+        if (TextUtils.isEmpty(account.dataSet)) {
+            selection = BASE_SELECTION + " AND " + RawContacts.DATA_SET + " IS NULL";
+            args = new String[] {account.type, account.name};
+        } else {
+            selection = BASE_SELECTION + " AND " + RawContacts.DATA_SET + " = ?";
+            args = new String[] {account.type, account.name, account.dataSet};
+        }
+
+        final Cursor c = context.getContentResolver().query(RAW_CONTACTS_URI_LIMIT_1,
+                ID_PROJECTION, selection, args, null);
+        if (c == null) return false;
+        try {
+            return c.moveToFirst();
+        } finally {
+            c.close();
+        }
+    }
+
+    private class MyLoaderCallbacks implements LoaderCallbacks<List<ContactListFilter>> {
+        @Override
+        public Loader<List<ContactListFilter>> onCreateLoader(int id, Bundle args) {
+            return new FilterLoader(AccountFilterActivity.this);
+        }
+
+        @Override
+        public void onLoadFinished(
+                Loader<List<ContactListFilter>> loader, List<ContactListFilter> data) {
+            if (data == null) { // Just in case...
+                Log.e(TAG, "Failed to load filters");
+                return;
+            }
+            mListView.setAdapter(new FilterListAdapter(AccountFilterActivity.this, data));
+        }
+
+        @Override
+        public void onLoaderReset(Loader<List<ContactListFilter>> loader) {
+        }
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ContactListFilter filter = mFilters.get(position);
+        final ContactListFilter filter = (ContactListFilter) view.getTag();
+        if (filter == null) return; // Just in case
         if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
             final Intent intent = new Intent(this,
                     CustomContactListFilterActivity.class);
@@ -143,12 +238,14 @@ public class AccountFilterActivity extends ContactsActivity
         }
     }
 
-    private class FilterListAdapter extends BaseAdapter {
-        private LayoutInflater mLayoutInflater;
+    private static class FilterListAdapter extends BaseAdapter {
+        private final List<ContactListFilter> mFilters;
+        private final LayoutInflater mLayoutInflater;
 
-        public FilterListAdapter(Context context) {
+        public FilterListAdapter(Context context, List<ContactListFilter> filters) {
             mLayoutInflater = (LayoutInflater) context.getSystemService
                     (Context.LAYOUT_INFLATER_SERVICE);
+            mFilters = filters;
         }
 
         @Override
@@ -167,7 +264,7 @@ public class AccountFilterActivity extends ContactsActivity
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {
-            ContactListFilterView view;
+            final ContactListFilterView view;
             if (convertView != null) {
                 view = (ContactListFilterView) convertView;
             } else {
@@ -175,9 +272,10 @@ public class AccountFilterActivity extends ContactsActivity
                         R.layout.contact_list_filter_item, parent, false);
             }
             view.setSingleAccount(mFilters.size() == 1);
-            ContactListFilter filter = mFilters.get(position);
+            final ContactListFilter filter = mFilters.get(position);
             view.setContactListFilter(filter);
             view.bindView(true);
+            view.setTag(filter);
             return view;
         }
     }
