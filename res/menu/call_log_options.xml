@@ -14,19 +14,23 @@
      limitations under the License.
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/delete_all"
-        android:icon="@android:drawable/ic_menu_close_clear_cancel"
-        android:title="@string/recentCalls_deleteAll"
-        android:showAsAction="withText" />
 
     <item
         android:id="@+id/show_voicemails_only"
         android:title="@string/menu_show_voicemails_only"
-        android:showAsAction="withText" />
+        android:showAsAction="withText"
+        android:orderInCategory="1" />
 
     <item
         android:id="@+id/show_all_calls"
         android:title="@string/menu_show_all_calls"
-        android:showAsAction="withText" />
+        android:showAsAction="withText"
+        android:orderInCategory="1" />
+
+    <item
+        android:id="@+id/delete_all"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        android:title="@string/recentCalls_deleteAll"
+        android:showAsAction="withText"
+        android:orderInCategory="1" />
 </menu>

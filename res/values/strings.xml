@@ -1004,7 +1004,7 @@
     <string name="call_disambig_title">Call using</string>
 
     <!-- Menu item label for call settings [CHAR LIMIT=30] -->
-    <string name="call_settings">Call settings</string>
+    <string name="call_settings">Settings</string>
 
     <!-- Title for the sms disambiguation dialog -->
     <string name="sms_disambig_title">Text using</string>
