@@ -59,7 +59,10 @@ public class StreamItemAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mStreamItems.size() + 2;
+        // The header and title should only be included as items in the list if there are other
+        // stream items.
+        int count = mStreamItems.size();
+        return (count == 0) ? 0 : (count + 2);
     }
 
     @Override
