@@ -137,7 +137,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     private OnScrollListener mVerticalScrollListener;
     private Uri mLookupUri;
     private Listener mListener;
-    private NfcHandler mNfcHandler;
 
     private ContactLoader.Result mContactData;
     private ImageView mStaticPhotoView;
@@ -239,7 +238,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             mLookupUri = savedInstanceState.getParcelable(KEY_CONTACT_URI);
             mListState = savedInstanceState.getParcelable(KEY_LIST_STATE);
         }
-        mNfcHandler = new NfcHandler(this);
     }
 
     @Override
@@ -254,13 +252,11 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     @Override
     public void onPause() {
         super.onPause();
-        mNfcHandler.onPause();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mNfcHandler.onResume();
     }
 
     @Override
