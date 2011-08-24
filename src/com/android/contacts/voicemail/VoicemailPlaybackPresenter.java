@@ -555,4 +555,10 @@ public class VoicemailPlaybackPresenter {
             }
         }
     }
+
+    public void onPause() {
+        if (mPlayer.isPlaying()) {
+            stopPlaybackAtPosition(mPlayer.getCurrentPosition(), mDuration.get());
+        }
+    }
 }

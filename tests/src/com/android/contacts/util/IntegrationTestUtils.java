@@ -90,7 +90,7 @@ public class IntegrationTestUtils {
      * Waits for an idle sync on the main thread (see {@link Instrumentation#waitForIdle(Runnable)})
      * before executing this callable.
      */
-    private <T> T runOnUiThreadAndGetTheResult(Callable<T> callable) throws Throwable {
+    public <T> T runOnUiThreadAndGetTheResult(Callable<T> callable) throws Throwable {
         FutureTask<T> future = new FutureTask<T>(callable);
         mInstrumentation.waitForIdle(future);
         try {

@@ -26,11 +26,13 @@ import com.android.contacts.util.IntegrationTestUtils;
 import com.android.contacts.util.LocaleTestUtils;
 import com.android.internal.view.menu.ContextMenuBuilder;
 import com.google.common.base.Preconditions;
+import com.google.common.io.Closeables;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.net.Uri;
 import android.provider.CallLog;
 import android.provider.VoicemailContract;
@@ -40,6 +42,9 @@ import android.test.suitebuilder.annotation.Suppress;
 import android.view.Menu;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Locale;
 
@@ -48,6 +53,11 @@ import java.util.Locale;
  */
 @LargeTest
 public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<CallDetailActivity> {
+    private static final String TEST_ASSET_NAME = "quick_test_recording.mp3";
+    private static final String MIME_TYPE = "audio/mp3";
+    private static final String CONTACT_NUMBER = "+1412555555";
+    private static final String VOICEMAIL_FILE_LOCATION = "/sdcard/sadlfj893w4j23o9sfu.mp3";
+
     private Uri mCallLogUri;
     private Uri mVoicemailUri;
     private IntegrationTestUtils mTestUtils;
@@ -202,11 +212,25 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
         assertEquals("00:00", mTestUtils.getText(timeDisplay));
     }
 
+    @Suppress
+    public void testClickingCallStopsPlayback() throws Throwable {
+        setActivityIntentForRealFileVoicemailEntry();
+        startActivityUnderTest();
+        mFakeAsyncTaskExecutor.runTask(CHECK_FOR_CONTENT);
+        mFakeAsyncTaskExecutor.runTask(PREPARE_MEDIA_PLAYER);
+        mTestUtils.clickButton(mActivityUnderTest, R.id.playback_speakerphone);
+        mTestUtils.clickButton(mActivityUnderTest, R.id.playback_start_stop);
+        mTestUtils.clickButton(mActivityUnderTest, R.id.call_and_sms_main_action);
+        Thread.sleep(2000);
+        // TODO: Suppressed the test for now, because I'm looking for an easy way to say "the audio
+        // is not playing at this point", and I can't find it without doing dirty things.
+    }
+
     private void setActivityIntentForTestCallEntry() {
         Preconditions.checkState(mCallLogUri == null, "mUri should be null");
         ContentResolver contentResolver = getContentResolver();
         ContentValues values = new ContentValues();
-        values.put(CallLog.Calls.NUMBER, "01234567890");
+        values.put(CallLog.Calls.NUMBER, CONTACT_NUMBER);
         values.put(CallLog.Calls.TYPE, CallLog.Calls.INCOMING_TYPE);
         mCallLogUri = contentResolver.insert(CallLog.Calls.CONTENT_URI, values);
         setActivityIntent(new Intent(Intent.ACTION_VIEW, mCallLogUri));
@@ -216,14 +240,53 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
         Preconditions.checkState(mVoicemailUri == null, "mUri should be null");
         ContentResolver contentResolver = getContentResolver();
         ContentValues values = new ContentValues();
-        values.put(VoicemailContract.Voicemails.NUMBER, "01234567890");
+        values.put(VoicemailContract.Voicemails.NUMBER, CONTACT_NUMBER);
         values.put(VoicemailContract.Voicemails.HAS_CONTENT, 1);
+        values.put(VoicemailContract.Voicemails._DATA, VOICEMAIL_FILE_LOCATION);
         mVoicemailUri = contentResolver.insert(VoicemailContract.Voicemails.CONTENT_URI, values);
         Uri callLogUri = ContentUris.withAppendedId(CallLog.Calls.CONTENT_URI_WITH_VOICEMAIL,
                 ContentUris.parseId(mVoicemailUri));
         Intent intent = new Intent(Intent.ACTION_VIEW, callLogUri);
         intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_URI, mVoicemailUri);
         setActivityIntent(intent);
+    }
+
+    private void setActivityIntentForRealFileVoicemailEntry() throws IOException {
+        Preconditions.checkState(mVoicemailUri == null, "mUri should be null");
+        ContentValues values = new ContentValues();
+        values.put(VoicemailContract.Voicemails.DATE, String.valueOf(System.currentTimeMillis()));
+        values.put(VoicemailContract.Voicemails.NUMBER, CONTACT_NUMBER);
+        values.put(VoicemailContract.Voicemails.MIME_TYPE, MIME_TYPE);
+        values.put(VoicemailContract.Voicemails.HAS_CONTENT, 1);
+        String packageName = getInstrumentation().getTargetContext().getPackageName();
+        mVoicemailUri = getContentResolver().insert(
+                VoicemailContract.Voicemails.buildSourceUri(packageName), values);
+        AssetManager assets = getAssets();
+        OutputStream outputStream = null;
+        InputStream inputStream = null;
+        try {
+            inputStream = assets.open(TEST_ASSET_NAME);
+            outputStream = getContentResolver().openOutputStream(mVoicemailUri);
+            copyBetweenStreams(inputStream, outputStream);
+        } finally {
+            Closeables.closeQuietly(outputStream);
+            Closeables.closeQuietly(inputStream);
+        }
+        Uri callLogUri = ContentUris.withAppendedId(CallLog.Calls.CONTENT_URI_WITH_VOICEMAIL,
+                ContentUris.parseId(mVoicemailUri));
+        Intent intent = new Intent(Intent.ACTION_VIEW, callLogUri);
+        intent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_URI, mVoicemailUri);
+        setActivityIntent(intent);
+    }
+
+    public void copyBetweenStreams(InputStream in, OutputStream out) throws IOException {
+        byte[] buffer = new byte[1024];
+        int bytesRead;
+        int total = 0;
+        while ((bytesRead = in.read(buffer)) != -1) {
+            total += bytesRead;
+            out.write(buffer, 0, bytesRead);
+        }
     }
 
     private void cleanUpUri() {
@@ -266,5 +329,9 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
         // This is because it seems that we can have onResume, onPause, onResume during the course
         // of a single unit test.
         mFakeAsyncTaskExecutor.runAllTasks(UPDATE_PHONE_CALL_DETAILS);
+    }
+
+    private AssetManager getAssets() {
+        return getInstrumentation().getContext().getAssets();
     }
 }

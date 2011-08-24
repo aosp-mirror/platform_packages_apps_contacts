@@ -111,6 +111,12 @@ public class VoicemailPlaybackFragment extends Fragment {
         super.onDestroy();
     }
 
+    @Override
+    public void onPause() {
+        mPresenter.onPause();
+        super.onPause();
+    }
+
     private PlaybackViewImpl createPlaybackViewImpl() {
         return new PlaybackViewImpl(new ActivityReference(), getActivity().getApplicationContext(),
                 mPlaybackLayout);
