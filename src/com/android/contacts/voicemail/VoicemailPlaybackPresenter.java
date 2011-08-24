@@ -32,6 +32,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.PowerManager;
 import android.view.View;
 import android.widget.SeekBar;
 
@@ -86,6 +87,8 @@ public class VoicemailPlaybackPresenter {
         void setFetchContentTimeout();
         void registerContentObserver(Uri uri, ContentObserver observer);
         void unregisterContentObserver(ContentObserver observer);
+        void enableProximitySensor();
+        void disableProximitySensor();
     }
 
     /** The enumeration of {@link AsyncTask} objects we use in this class. */
@@ -160,16 +163,19 @@ public class VoicemailPlaybackPresenter {
      * This variable is thread-contained, accessed only on the ui thread.
      */
     private FetchResultHandler mFetchResultHandler;
+    private PowerManager.WakeLock mWakeLock;
 
     public VoicemailPlaybackPresenter(PlaybackView view, MediaPlayerProxy player,
             Uri voicemailUri, ScheduledExecutorService executorService,
-            boolean startPlayingImmediately, AsyncTaskExecutor asyncTaskExecutor) {
+            boolean startPlayingImmediately, AsyncTaskExecutor asyncTaskExecutor,
+            PowerManager.WakeLock wakeLock) {
         mView = view;
         mPlayer = player;
         mVoicemailUri = voicemailUri;
         mStartPlayingImmediately = startPlayingImmediately;
         mAsyncTaskExecutor = asyncTaskExecutor;
         mPositionUpdater = new PositionUpdater(executorService, SLIDER_UPDATE_PERIOD_MILLIS);
+        mWakeLock = wakeLock;
     }
 
     public void onCreate(Bundle bundle) {
@@ -334,6 +340,8 @@ public class VoicemailPlaybackPresenter {
         mView.setRateIncreaseButtonListener(createRateIncreaseListener());
         mView.setClipPosition(0, mPlayer.getDuration());
         mView.playbackStopped();
+        // Always disable on stop.
+        mView.disableProximitySensor();
         if (mStartPlayingImmediately) {
             resetPrepareStartPlaying(0);
         }
@@ -348,16 +356,16 @@ public class VoicemailPlaybackPresenter {
         }
     }
 
-    /**
-     * This method should be called <b>only on the ui thread</b>.
-     */
     public void onDestroy() {
+        mPlayer.release();
         if (mFetchResultHandler != null) {
             mFetchResultHandler.destroy();
             mFetchResultHandler = null;
         }
         mPositionUpdater.stopUpdating();
-        mPlayer.release();
+        if (mWakeLock.isHeld()) {
+            mWakeLock.release();
+        }
     }
 
     private class MediaPlayerErrorListener implements MediaPlayer.OnErrorListener {
@@ -427,6 +435,13 @@ public class VoicemailPlaybackPresenter {
             mPlayer.seekTo(startPosition);
             mPlayer.start();
             mView.playbackStarted();
+            if (!mWakeLock.isHeld()) {
+                mWakeLock.acquire();
+            }
+            // Only enable if we are not currently using the speaker phone.
+            if (!mView.isSpeakerPhoneOn()) {
+                mView.enableProximitySensor();
+            }
             mPositionUpdater.startUpdating(startPosition, mDuration.get());
         } catch (IOException e) {
             handleError(e);
@@ -446,6 +461,11 @@ public class VoicemailPlaybackPresenter {
     private void stopPlaybackAtPosition(int clipPosition, int duration) {
         mPositionUpdater.stopUpdating();
         mView.playbackStopped();
+        if (mWakeLock.isHeld()) {
+            mWakeLock.release();
+        }
+        // Always disable on stop.
+        mView.disableProximitySensor();
         mView.setClipPosition(clipPosition, duration);
         if (mPlayer.isPlaying()) {
             mPlayer.pause();
@@ -489,7 +509,16 @@ public class VoicemailPlaybackPresenter {
     private class SpeakerphoneListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            mView.setSpeakerPhoneOn(!mView.isSpeakerPhoneOn());
+            boolean previousState = mView.isSpeakerPhoneOn();
+            mView.setSpeakerPhoneOn(!previousState);
+            if (mPlayer.isPlaying() && previousState) {
+                // If we are currently playing and we are disabling the speaker phone, enable the
+                // sensor.
+                mView.enableProximitySensor();
+            } else {
+                // If we are not currently playing, disable the sensor.
+                mView.disableProximitySensor();
+            }
         }
     }
 
@@ -559,6 +588,9 @@ public class VoicemailPlaybackPresenter {
     public void onPause() {
         if (mPlayer.isPlaying()) {
             stopPlaybackAtPosition(mPlayer.getCurrentPosition(), mDuration.get());
+        }
+        if (mWakeLock.isHeld()) {
+            mWakeLock.release();
         }
     }
 }

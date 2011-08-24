@@ -20,6 +20,7 @@ import static com.android.contacts.CallDetailActivity.EXTRA_VOICEMAIL_START_PLAY
 import static com.android.contacts.CallDetailActivity.EXTRA_VOICEMAIL_URI;
 
 import com.android.common.io.MoreCloseables;
+import com.android.contacts.ProximitySensorAware;
 import com.android.contacts.R;
 import com.android.contacts.util.AsyncTaskExecutors;
 import com.android.ex.variablespeed.MediaPlayerProxy;
@@ -36,6 +37,7 @@ import android.database.Cursor;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.provider.VoicemailContract;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -91,10 +93,15 @@ public class VoicemailPlaybackFragment extends Fragment {
         Uri voicemailUri = arguments.getParcelable(EXTRA_VOICEMAIL_URI);
         Preconditions.checkNotNull(voicemailUri, "fragment must contain EXTRA_VOICEMAIL_URI");
         boolean startPlayback = arguments.getBoolean(EXTRA_VOICEMAIL_START_PLAYBACK, false);
+        PowerManager powerManager =
+                (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
+        PowerManager.WakeLock wakeLock =
+                powerManager.newWakeLock(
+                        PowerManager.SCREEN_DIM_WAKE_LOCK, getClass().getSimpleName());
         mPresenter = new VoicemailPlaybackPresenter(createPlaybackViewImpl(),
                 createMediaPlayer(mScheduledExecutorService), voicemailUri,
                 mScheduledExecutorService, startPlayback,
-                AsyncTaskExecutors.createAsyncTaskExecutor());
+                AsyncTaskExecutors.createAsyncTaskExecutor(), wakeLock);
         mPresenter.onCreate(savedInstanceState);
     }
 
@@ -260,6 +267,24 @@ public class VoicemailPlaybackFragment extends Fragment {
         @Override
         public void playbackStopped() {
             mStartStopButton.setImageResource(R.drawable.ic_play_holo_dark);
+        }
+
+        @Override
+        public void enableProximitySensor() {
+            // Only change the state if the activity is still around.
+            Activity activity = mActivityReference.get();
+            if (activity != null && activity instanceof ProximitySensorAware) {
+                ((ProximitySensorAware) activity).enableProximitySensor();
+            }
+        }
+
+        @Override
+        public void disableProximitySensor() {
+            // Only change the state if the activity is still around.
+            Activity activity = mActivityReference.get();
+            if (activity != null && activity instanceof ProximitySensorAware) {
+                ((ProximitySensorAware) activity).disableProximitySensor(true);
+            }
         }
 
         @Override
