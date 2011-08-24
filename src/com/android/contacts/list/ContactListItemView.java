@@ -934,7 +934,7 @@ public class ContactListItemView extends ViewGroup
             mStatusView.setSingleLine(true);
             mStatusView.setEllipsize(getTextEllipsis());
             mStatusView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
-            mStatusView.setTextColor(Color.GRAY);
+            mStatusView.setTextColor(R.color.secondary_text_color);
             addView(mStatusView);
         }
         return mStatusView;
