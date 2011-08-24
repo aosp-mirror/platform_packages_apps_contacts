@@ -107,7 +107,7 @@ public class DataAction implements Action {
                     if (hasPhone && hasSms) {
                         mIntent = phoneIntent;
                         mAlternateIntent = smsIntent;
-                        mAlternateIconRes = kind.iconAltResDark;
+                        mAlternateIconRes = kind.iconAltRes;
                     } else if (hasPhone) {
                         mIntent = phoneIntent;
                     } else if (hasSms) {

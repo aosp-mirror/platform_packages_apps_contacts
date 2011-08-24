@@ -33,10 +33,10 @@
             <View
                 android:id="@+id/selected_tab_rectangle"
                 android:layout_width="60dip"
-                android:layout_height="8dip"
+                android:layout_height="6dip"
                 android:layout_alignBottom="@id/track"
                 android:layout_alignParentLeft="true"
-                android:background="@color/quickcontact_list_background" />
+                android:background="@color/quickcontact_tab_indicator" />
         </RelativeLayout>
     </HorizontalScrollView>
 </merge>

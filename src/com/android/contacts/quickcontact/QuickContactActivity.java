@@ -83,9 +83,6 @@ import java.util.Set;
 
 // TODO: Save selected tab index during rotation
 
-// Missing assets and specs:
-//   Pushed states for list items
-
 /**
  * Mostly translucent {@link Activity} that shows QuickContact dialog. It loads
  * data asynchronously, and then shows a popup with details centered around
@@ -115,8 +112,7 @@ public class QuickContactActivity extends Activity {
     private ViewGroup mTrack;
     private HorizontalScrollView mTrackScroller;
     private View mSelectedTabRectangle;
-    /** Line before the track. Depending on the layout, this can be null */
-    private View mLineBeforeTrack;
+    private View mLineAfterTrack;
 
     private ImageButton mOpenDetailsButton;
     private ImageButton mOpenDetailsPushLayerButton;
@@ -172,7 +168,7 @@ public class QuickContactActivity extends Activity {
         mOpenDetailsPushLayerButton = (ImageButton) findViewById(R.id.open_details_push_layer);
         mListPager = (ViewPager) findViewById(R.id.item_list_pager);
         mSelectedTabRectangle = findViewById(R.id.selected_tab_rectangle);
-        mLineBeforeTrack = findViewById(R.id.line_before_track);
+        mLineAfterTrack = findViewById(R.id.line_after_track);
 
         mFloatingLayout.setOnOutsideTouchListener(new View.OnTouchListener() {
             @Override
@@ -540,11 +536,9 @@ public class QuickContactActivity extends Activity {
         }
 
         final boolean hasData = !mSortedActionMimeTypes.isEmpty();
-        if (mLineBeforeTrack != null) {
-            mLineBeforeTrack.setVisibility(hasData ? View.VISIBLE : View.GONE);
-        }
         mTrackScroller.setVisibility(hasData ? View.VISIBLE : View.GONE);
         mSelectedTabRectangle.setVisibility(hasData ? View.VISIBLE : View.GONE);
+        mLineAfterTrack.setVisibility(hasData ? View.VISIBLE : View.GONE);
         mListPager.setVisibility(hasData ? View.VISIBLE : View.GONE);
     }
 

@@ -14,7 +14,6 @@
      limitations under the License.
 -->
 
-<!-- TODO These all have to be refined -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_window_focused="false"
@@ -31,5 +30,5 @@
         android:state_focused="true"
         android:drawable="@drawable/list_focused_holo" />
     <item
-        android:drawable="@color/people_app_theme_color" />
+        android:drawable="@color/quickcontact_list_background" />
 </selector>

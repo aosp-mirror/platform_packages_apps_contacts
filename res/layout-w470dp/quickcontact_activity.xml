@@ -42,6 +42,11 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <include layout="@layout/quickcontact_track" />
+            <View
+                android:id="@+id/line_after_track"
+                android:layout_width="match_parent"
+                android:layout_height="2dip"
+                android:background="@color/quickcontact_tab_indicator" />
             <android.support.v4.view.ViewPager
                 android:id="@+id/item_list_pager"
                 android:background="@color/quickcontact_list_background"
