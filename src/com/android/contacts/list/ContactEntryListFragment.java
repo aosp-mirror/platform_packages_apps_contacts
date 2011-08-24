@@ -351,13 +351,17 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mAdapter.configureDirectoryLoader(loader);
             return loader;
         } else {
-            CursorLoader loader = new CursorLoader(mContext, null, null, null, null, null);
+            CursorLoader loader = createCursorLoader();
             long directoryId = args != null && args.containsKey(DIRECTORY_ID_ARG_KEY)
                     ? args.getLong(DIRECTORY_ID_ARG_KEY)
                     : Directory.DEFAULT;
             mAdapter.configureLoader(loader, directoryId);
             return loader;
         }
+    }
+
+    public CursorLoader createCursorLoader() {
+        return new CursorLoader(mContext, null, null, null, null, null);
     }
 
     private void startLoadingDirectoryPartition(int partitionIndex) {

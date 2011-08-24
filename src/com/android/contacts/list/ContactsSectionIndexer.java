@@ -26,9 +26,9 @@ import java.util.Arrays;
  */
 public class ContactsSectionIndexer implements SectionIndexer {
 
-    private final String[] mSections;
-    private final int[] mPositions;
-    private final int mCount;
+    private String[] mSections;
+    private int[] mPositions;
+    private int mCount;
 
     /**
      * Constructor.
@@ -95,8 +95,25 @@ public class ContactsSectionIndexer implements SectionIndexer {
     }
 
     public void setProfileHeader(String header) {
-        if (mSections != null && mSections.length > 0) {
-            mSections[0] = header;
+        if (mSections != null) {
+            // Don't do anything if the header is already set properly.
+            if (mSections.length > 0 && header.equals(mSections[0])) {
+                return;
+            }
+
+            // Since the section indexer isn't aware of the profile at the top, we need to add a
+            // special section at the top for it and shift everything else down.
+            String[] tempSections = new String[mSections.length + 1];
+            int[] tempPositions = new int[mPositions.length + 1];
+            tempSections[0] = header;
+            tempPositions[0] = 0;
+            for (int i = 1; i <= mPositions.length; i++) {
+                tempSections[i] = mSections[i - 1];
+                tempPositions[i] = mPositions[i - 1] + 1;
+            }
+            mSections = tempSections;
+            mPositions = tempPositions;
+            mCount++;
         }
     }
 }

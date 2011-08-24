@@ -18,6 +18,7 @@ package com.android.contacts.list;
 import com.android.contacts.R;
 import com.android.contacts.editor.ContactEditorFragment;
 
+import android.content.CursorLoader;
 import android.content.Intent;
 import android.database.Cursor;
 import android.provider.ContactsContract.Contacts;
@@ -53,6 +54,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         setPhotoLoaderEnabled(true);
         setSectionHeaderDisplayEnabled(true);
         setVisibleScrollbarEnabled(true);
+    }
+
+    @Override
+    public CursorLoader createCursorLoader() {
+        return new ProfileAndContactsLoader(getActivity());
     }
 
     @Override
