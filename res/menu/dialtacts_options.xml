@@ -20,11 +20,13 @@
         android:icon="@android:drawable/ic_menu_search"
         android:showAsAction="always" />
 
+    <!-- This should come after the other menus in CallLog and Dialpad -->
     <item
         android:id="@+id/menu_call_settings"
         android:title="@string/call_settings"
         android:icon="@drawable/ic_menu_settings_holo_light"
-        android:showAsAction="withText" />
+        android:showAsAction="withText"
+        android:orderInCategory="2" />
 
     <item
         android:id="@+id/filter_option"
