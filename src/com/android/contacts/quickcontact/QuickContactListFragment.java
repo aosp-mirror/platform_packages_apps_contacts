@@ -113,6 +113,7 @@ public class QuickContactListFragment extends Fragment {
                 final boolean hasAlternateAction = action.getAlternateIntent() != null;
                 alternateActionDivider.setVisibility(hasAlternateAction ? View.VISIBLE : View.GONE);
                 alternateActionButton.setImageDrawable(action.getAlternateIcon());
+                alternateActionButton.setVisibility(hasAlternateAction ? View.VISIBLE : View.GONE);
 
                 text1.setText(action.getBody());
                 text2.setText(action.getSubtitle());

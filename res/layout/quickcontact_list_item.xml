@@ -36,28 +36,30 @@
             android:id="@android:id/text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
+            android:textColor="@color/primary_text_color"
             android:textAppearance="?android:attr/textAppearanceMedium" />
         <TextView
             android:id="@android:id/text2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
+            android:textColor="@color/primary_text_color"
             android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceSmall" />
     </LinearLayout>
     <View
         android:id="@+id/vertical_divider"
         android:layout_width="1dip"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
-        android:background="@drawable/ic_divider_dashed_holo_dark" />
+        android:layout_marginTop="@dimen/detail_vertical_divider_vertical_margin"
+        android:layout_marginBottom="@dimen/detail_vertical_divider_vertical_margin"
+        android:background="?android:attr/dividerVertical" />
     <ImageView
         android:id="@+id/secondary_action_button"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:paddingLeft="@dimen/detail_item_icon_margin"
         android:paddingRight="@dimen/detail_item_icon_margin"
-        android:background="@drawable/quickcontact_list_item_background"
+        android:background="?android:attr/selectableItemBackground"
         android:duplicateParentState="false" />
 </LinearLayout>

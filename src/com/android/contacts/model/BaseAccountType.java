@@ -206,7 +206,6 @@ public class BaseAccountType extends AccountType {
                 android.R.drawable.sym_action_call, 10, true,
                 R.layout.text_fields_editor_view, android.R.style.TextAppearance_Medium));
         kind.iconAltRes = R.drawable.ic_text_holo_light;
-        kind.iconAltResDark = R.drawable.ic_text_holo_dark;
         kind.actionHeader = new PhoneActionInflater();
         kind.actionAltHeader = new PhoneActionAltInflater();
         kind.actionBody = new SimpleInflater(Phone.NUMBER);

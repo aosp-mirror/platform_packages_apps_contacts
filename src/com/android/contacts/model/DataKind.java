@@ -27,10 +27,7 @@ public class DataKind {
     public String mimeType;
     public int titleRes;
     public int iconRes;
-    /** Icon used for secondary action when shown on top of a bright background */
     public int iconAltRes;
-    /** Icon used for secondary action when shown on top of a dark background */
-    public int iconAltResDark;
     public int weight;
     public boolean editable;
 
