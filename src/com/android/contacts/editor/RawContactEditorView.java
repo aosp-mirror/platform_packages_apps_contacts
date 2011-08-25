@@ -156,7 +156,8 @@ public class RawContactEditorView extends BaseRawContactEditorView {
      * apply to that state.
      */
     @Override
-    public void setState(EntityDelta state, AccountType type, ViewIdGenerator vig) {
+    public void setState(EntityDelta state, AccountType type, ViewIdGenerator vig,
+            boolean isProfile) {
 
         mState = state;
 
@@ -176,17 +177,28 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         mRawContactId = values.getAsLong(RawContacts._ID);
 
         // Fill in the account info
-        String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
-        CharSequence accountType = type.getDisplayLabel(mContext);
-        if (TextUtils.isEmpty(accountType)) {
-            accountType = mContext.getString(R.string.account_phone);
+        if (isProfile) {
+            mAccountNameTextView.setVisibility(View.GONE);
+            String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
+            if (TextUtils.isEmpty(accountName)) {
+                mAccountTypeTextView.setText(R.string.local_profile_title);
+            } else {
+                mAccountTypeTextView.setText(
+                        mContext.getString(R.string.external_profile_title, accountName));
+            }
+        } else {
+            String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
+            CharSequence accountType = type.getDisplayLabel(mContext);
+            if (TextUtils.isEmpty(accountType)) {
+                accountType = mContext.getString(R.string.account_phone);
+            }
+            if (!TextUtils.isEmpty(accountName)) {
+                mAccountNameTextView.setText(
+                        mContext.getString(R.string.from_account_format, accountName));
+            }
+            mAccountTypeTextView.setText(
+                    mContext.getString(R.string.account_type_format, accountType));
         }
-        if (!TextUtils.isEmpty(accountName)) {
-            mAccountNameTextView.setText(
-                    mContext.getString(R.string.from_account_format, accountName));
-        }
-        mAccountTypeTextView.setText(
-                mContext.getString(R.string.account_type_format, accountType));
         mAccountIcon.setImageDrawable(type.getDisplayIcon(mContext));
 
         // Show photo editor when supported

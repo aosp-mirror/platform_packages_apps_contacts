@@ -676,7 +676,7 @@ public class ContactEditorFragment extends Fragment implements
 
             mContent.addView(editor);
 
-            editor.setState(entity, type, mViewIdGenerator);
+            editor.setState(entity, type, mViewIdGenerator, isEditingUserProfile());
 
             editor.getPhotoEditor().setEditorListener(
                     new PhotoEditorListener(editor, type.readOnly));

@@ -118,7 +118,8 @@ public abstract class BaseRawContactEditorView extends LinearLayout {
      * {@link EntityDelta} state and the {@link AccountType} that
      * apply to that state.
      */
-    public abstract void setState(EntityDelta state, AccountType source, ViewIdGenerator vig);
+    public abstract void setState(EntityDelta state, AccountType source, ViewIdGenerator vig,
+            boolean isProfile);
 
     /* package */ void setExpanded(boolean value) {
         // only allow collapsing if we are one of several children
