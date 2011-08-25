@@ -18,9 +18,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:minHeight="58dip"
-    android:paddingLeft="10dip">
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/name"
@@ -31,7 +29,8 @@
         android:gravity="center_vertical"
         android:paddingRight="3dip"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:focusable="true" />
+        android:focusable="true"
+        android:paddingLeft="@dimen/group_member_item_left_padding" />
 
     <QuickContactBadge
         android:id="@+id/badge"

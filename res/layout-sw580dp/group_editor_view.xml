@@ -19,8 +19,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="50dip"
-    android:paddingLeft="50dip"
-    android:paddingRight="100dip"
+    android:paddingLeft="64dip"
+    android:paddingRight="64dip"
     android:orientation="horizontal"
     android:background="@color/background_primary">
 
@@ -39,11 +39,12 @@
             android:id="@+id/group_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dip"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textStyle="bold"
             android:inputType="textCapWords"
             android:hint="@string/group_name_hint"
-            android:layout_marginBottom="5dip"/>
+            android:paddingLeft="16dip"/>
 
     </LinearLayout>
 
@@ -53,6 +54,11 @@
         android:layout_height="match_parent"
         android:layout_weight="2"
         android:orientation="vertical">
+
+        <include
+            android:id="@+id/spacer"
+            layout="@layout/editor_account_header"
+            android:visibility="invisible"/>
 
         <include
             layout="@layout/group_editor_autocomplete_view"
