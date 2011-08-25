@@ -22,4 +22,5 @@
     <dimen name="detail_header_view_margin">16dip</dimen>
     <dimen name="detail_header_attribution_height">56dip</dimen>
     <dimen name="detail_update_section_top_padding">48dip</dimen>
+    <dimen name="contact_detail_list_top_padding">32dip</dimen>
 </resources>

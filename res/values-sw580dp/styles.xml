@@ -121,4 +121,11 @@
         <item name="android:windowNoDisplay">true</item>
         <item name="android:windowIsFloating">true</item>
     </style>
+
+    <style name="UpdatesTitleStyle">
+        <item name="android:paddingLeft">8dip</item>
+        <item name="android:layout_height">16dip</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
 </resources>

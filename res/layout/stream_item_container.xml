@@ -17,14 +17,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/detail_update_section_side_padding"
+    android:paddingRight="@dimen/detail_update_section_side_padding">
 
     <TableLayout
         android:id="@+id/stream_item_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/detail_update_section_item_vertical_padding"
-        android:paddingBottom="@dimen/detail_update_section_item_last_row_extra_vertical_padding"
+        android:paddingBottom="@dimen/detail_update_section_item_vertical_padding"
         android:paddingLeft="@dimen/detail_update_section_item_horizontal_padding"
         android:paddingRight="@dimen/detail_update_section_item_horizontal_padding"
         android:background="?android:attr/selectableItemBackground"
@@ -34,8 +36,6 @@
         android:id="@+id/horizontal_divider"
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_marginLeft="@dimen/detail_update_section_side_padding"
-        android:layout_marginRight="@dimen/detail_update_section_side_padding"
         android:background="?android:attr/dividerHorizontal" />
 
 </LinearLayout>

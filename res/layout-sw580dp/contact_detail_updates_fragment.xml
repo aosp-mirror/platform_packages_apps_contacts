@@ -25,7 +25,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fadingEdge="none"
-        android:divider="@null"/>
+        android:divider="@null"
+        android:paddingTop="32dip"/>
 
     <View
         android:id="@+id/alpha_overlay"

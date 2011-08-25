@@ -20,4 +20,6 @@
     android:layout_height="match_parent"
     android:background="@color/background_social_updates"
     android:fadingEdge="none"
-    android:divider="@null"/>
+    android:divider="@null"
+    android:paddingTop="@dimen/contact_detail_list_top_padding"
+    android:clipToPadding="false"/>

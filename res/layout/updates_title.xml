@@ -34,9 +34,7 @@
         android:textAllCaps="true"
         android:singleLine="true"
         android:ellipsize="end"
-        android:paddingLeft="8dip"
-        android:paddingTop="5dip"
-        android:paddingBottom="2dip" />
+        style="@style/UpdatesTitleStyle"/>
 
     <View
         android:layout_width="match_parent"
