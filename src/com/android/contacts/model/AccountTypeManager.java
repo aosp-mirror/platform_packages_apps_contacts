@@ -85,7 +85,15 @@ public abstract class AccountTypeManager {
 
     public abstract List<AccountWithDataSet> getAccounts(boolean writableOnly);
 
-    public abstract AccountType getAccountType(String accountType, String dataSet);
+    public abstract AccountType getAccountType(AccountTypeWithDataSet accountTypeWithDataSet);
+
+    public final AccountType getAccountType(String accountType, String dataSet) {
+        return getAccountType(AccountTypeWithDataSet.get(accountType, dataSet));
+    }
+
+    public final AccountType getAccountTypeForAccount(AccountWithDataSet account) {
+        return getAccountType(account.getAccountTypeWithDataSet());
+    }
 
     /**
      * @return Unmodifiable map from {@link AccountTypeWithDataSet}s to {@link AccountType}s
@@ -482,11 +490,10 @@ class AccountTypeManagerImpl extends AccountTypeManager
      * Return {@link AccountType} for the given account type and data set.
      */
     @Override
-    public AccountType getAccountType(String accountType, String dataSet) {
+    public AccountType getAccountType(AccountTypeWithDataSet accountTypeWithDataSet) {
         ensureAccountsLoaded();
         synchronized (this) {
-            AccountType type = mAccountTypesWithDataSets.get(
-                    AccountTypeWithDataSet.get(accountType, dataSet));
+            AccountType type = mAccountTypesWithDataSets.get(accountTypeWithDataSet);
             return type != null ? type : mFallbackAccountType;
         }
     }
@@ -506,7 +513,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
             Map<AccountTypeWithDataSet, AccountType> accountTypesByTypeAndDataSet) {
         HashMap<AccountTypeWithDataSet, AccountType> result = Maps.newHashMap();
         for (AccountWithDataSet account : accounts) {
-            AccountTypeWithDataSet accountTypeWithDataSet = account.getAccountTypeAndWithDataSet();
+            AccountTypeWithDataSet accountTypeWithDataSet = account.getAccountTypeWithDataSet();
             AccountType type = accountTypesByTypeAndDataSet.get(accountTypeWithDataSet);
             if (type == null) continue; // just in case
             if (result.containsKey(accountTypeWithDataSet)) continue;

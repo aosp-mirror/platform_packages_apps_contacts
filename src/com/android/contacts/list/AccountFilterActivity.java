@@ -68,10 +68,6 @@ public class AccountFilterActivity extends ContactsActivity
 
     private ListView mListView;
 
-    private static final String[] ID_PROJECTION = new String[] {BaseColumns._ID};
-    private static final Uri RAW_CONTACTS_URI_LIMIT_1 = RawContacts.CONTENT_URI.buildUpon()
-            .appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY, "1").build();
-
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -124,7 +120,7 @@ public class AccountFilterActivity extends ContactsActivity
         List<AccountWithDataSet> accounts = accountTypes.getAccounts(false);
         for (AccountWithDataSet account : accounts) {
             AccountType accountType = accountTypes.getAccountType(account.type, account.dataSet);
-            if (accountType.isExtension() && !hasAccountData(context, account)) {
+            if (accountType.isExtension() && !account.hasData(context)) {
                 // Hide extensions with no raw_contacts.
                 continue;
             }
@@ -147,29 +143,6 @@ public class AccountFilterActivity extends ContactsActivity
                     ContactListFilter.FILTER_TYPE_CUSTOM));
         }
         return result;
-    }
-
-    private static boolean hasAccountData(Context context, AccountWithDataSet account) {
-        final String BASE_SELECTION =
-                RawContacts.ACCOUNT_TYPE + " = ?" + " AND " + RawContacts.ACCOUNT_NAME + " = ?";
-        final String selection;
-        final String[] args;
-        if (TextUtils.isEmpty(account.dataSet)) {
-            selection = BASE_SELECTION + " AND " + RawContacts.DATA_SET + " IS NULL";
-            args = new String[] {account.type, account.name};
-        } else {
-            selection = BASE_SELECTION + " AND " + RawContacts.DATA_SET + " = ?";
-            args = new String[] {account.type, account.name, account.dataSet};
-        }
-
-        final Cursor c = context.getContentResolver().query(RAW_CONTACTS_URI_LIMIT_1,
-                ID_PROJECTION, selection, args, null);
-        if (c == null) return false;
-        try {
-            return c.moveToFirst();
-        } finally {
-            c.close();
-        }
     }
 
     private class MyLoaderCallbacks implements LoaderCallbacks<List<ContactListFilter>> {
