@@ -56,16 +56,6 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     private static final String KEY_FILTER = "filter";
 
-    /**
-     * Used to remember the result of {@link #setNameHighlightingEnabled(boolean)} when it is called
-     * before this Fragment is attached to its parent Activity. The value will be used after
-     * an actual Adapter is ready.
-     *
-     * Null if the Adapter is already available and thus we don't need to remember the user's
-     * decision.
-     */
-    private Boolean mDelayedNameHighlightingEnabled;
-
     public PhoneNumberPickerFragment() {
         setQuickContactEnabled(false);
         setPhotoLoaderEnabled(true);
@@ -191,16 +181,10 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
         if (!isLegacyCompatibilityMode()) {
             PhoneNumberListAdapter adapter = new PhoneNumberListAdapter(getActivity());
             adapter.setDisplayPhotos(true);
-            if (mDelayedNameHighlightingEnabled != null) {
-                adapter.setNameHighlightingEnabled(mDelayedNameHighlightingEnabled);
-            }
             return adapter;
         } else {
             LegacyPhoneNumberListAdapter adapter = new LegacyPhoneNumberListAdapter(getActivity());
             adapter.setDisplayPhotos(true);
-            if (mDelayedNameHighlightingEnabled != null) {
-                adapter.setNameHighlightingEnabled(mDelayedNameHighlightingEnabled);
-            }
             return adapter;
         }
     }
@@ -249,25 +233,6 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     @Override
     public void onPickerResult(Intent data) {
         mListener.onPickPhoneNumberAction(data.getData());
-    }
-
-    public void setNameHighlightingEnabled(boolean highlight) {
-        final Adapter adapter = getAdapter();
-        // This may happen when the Fragment is not attached to its parent Activity and thus
-        // parent's onCreateView() isn't called yet (where adapter will be prepared).
-        // See also ContactEntryListFragment#onCreateView()
-        if (adapter == null) {
-            mDelayedNameHighlightingEnabled = highlight;
-        } else {
-            if (!isLegacyCompatibilityMode()) {
-                ((PhoneNumberListAdapter) adapter).setNameHighlightingEnabled(highlight);
-            } else {
-                ((LegacyPhoneNumberListAdapter) adapter).setNameHighlightingEnabled(highlight);
-            }
-
-            // We don't want to remember the choice if the adapter is already available.
-            mDelayedNameHighlightingEnabled = null;
-        }
     }
 
     public ContactListFilter getFilter() {

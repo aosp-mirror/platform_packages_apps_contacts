@@ -242,22 +242,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         mSortOrder = sortOrder;
     }
 
-    public void setNameHighlightingEnabled(boolean flag) {
-        mNameHighlightingEnabled = flag;
-    }
-
-    public boolean isNameHighlightingEnabled() {
-        return mNameHighlightingEnabled;
-    }
-
-    public void setTextWithHighlightingFactory(TextWithHighlightingFactory factory) {
-        mTextWithHighlightingFactory = factory;
-    }
-
-    protected TextWithHighlightingFactory getTextWithHighlightingFactory() {
-        return mTextWithHighlightingFactory;
-    }
-
     public void setPhotoLoader(ContactPhotoManager photoLoader) {
         mPhotoLoader = photoLoader;
     }

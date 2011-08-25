@@ -717,11 +717,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             changed = true;
         }
 
-        if (mListView instanceof ContactEntryListView) {
-            ContactEntryListView listView = (ContactEntryListView)mListView;
-            listView.setHighlightNamesWhenScrolling(isNameHighlightingEnabled());
-        }
-
         return changed;
     }
 
@@ -755,6 +750,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
                     "Your content must have a ListView whose id attribute is " +
                     "'android.R.id.list'");
         }
+
+        mListView.setSelector(getContext().getResources().getDrawable(R.drawable.list_selector));
 
         View emptyView = mView.findViewById(com.android.internal.R.id.empty);
         if (emptyView != null) {
@@ -810,28 +807,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mAdapter.setPinnedPartitionHeadersEnabled(mSearchMode);
         mAdapter.setContactNameDisplayOrder(mDisplayOrder);
         mAdapter.setSortOrder(mSortOrder);
-        mAdapter.setNameHighlightingEnabled(isNameHighlightingEnabled());
         mAdapter.setSectionHeaderDisplayEnabled(mSectionHeaderDisplayEnabled);
         mAdapter.setSelectionVisible(mSelectionVisible);
         mAdapter.setDirectoryResultLimit(mDirectoryResultLimit);
-    }
-
-    protected boolean isNameHighlightingEnabled() {
-        if (mAdapter.isNameHighlightingEnabled()) {
-            return true;
-        }
-
-        // When sort order and display order contradict each other, we want to
-        // highlight the part of the name used for sorting.
-        if (mSortOrder == ContactsContract.Preferences.SORT_ORDER_PRIMARY &&
-                mDisplayOrder == ContactsContract.Preferences.DISPLAY_ORDER_ALTERNATIVE) {
-            return true;
-        } else if (mSortOrder == ContactsContract.Preferences.SORT_ORDER_ALTERNATIVE &&
-                mDisplayOrder == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     @Override

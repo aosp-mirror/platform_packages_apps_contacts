@@ -231,7 +231,6 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             ViewGroup parent) {
         final ContactListItemView view = new ContactListItemView(context, null);
         view.setUnknownNameText(mUnknownNameText);
-        view.setTextWithHighlightingFactory(getTextWithHighlightingFactory());
         view.setQuickContactEnabled(isQuickContactEnabled());
         return view;
     }
@@ -239,9 +238,6 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     @Override
     protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         ContactListItemView view = (ContactListItemView)itemView;
-
-        view.setHighlightedPrefix(isNameHighlightingEnabled() && isSearchMode() ?
-                getUpperCaseQueryString() : null);
 
         // Look at elements before and after this position, checking if contact IDs are same.
         // If they have one same contact ID, it means they can be grouped.
@@ -317,7 +313,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
     protected void bindName(final ContactListItemView view, Cursor cursor) {
         view.showDisplayName(cursor, mDisplayNameColumnIndex, mAlternativeDisplayNameColumnIndex,
-                isNameHighlightingEnabled(), getContactNameDisplayOrder());
+                false, getContactNameDisplayOrder());
         view.showPhoneticName(cursor, PHONE_PHONETIC_NAME_COLUMN_INDEX);
     }
 
