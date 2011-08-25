@@ -19,6 +19,7 @@ package com.android.contacts.list;
 import com.android.contacts.activities.PeopleActivity;
 import com.android.contacts.format.SpannedTestUtils;
 import com.android.contacts.format.TestTextWithHighlightingFactory;
+import com.android.contacts.util.IntegrationTestUtils;
 
 import android.database.Cursor;
 import android.database.MatrixCursor;
@@ -40,8 +41,24 @@ public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<Pe
     /** The HTML code used to mark the end of the highlighted part. */
     private static final String END = "</font>";
 
+    private IntegrationTestUtils mUtils;
+
     public ContactListItemViewTest() {
         super(PeopleActivity.class);
+    }
+
+    @Override
+    protected void setUp() throws Exception {
+        super.setUp();
+        // This test requires that the screen be turned on.
+        mUtils = new IntegrationTestUtils(getInstrumentation());
+        mUtils.acquireScreenWakeLock(getInstrumentation().getTargetContext());
+    }
+
+    @Override
+    protected void tearDown() throws Exception {
+        mUtils.releaseScreenWakeLock();
+        super.tearDown();
     }
 
     public void testShowDisplayName_Simple() {
