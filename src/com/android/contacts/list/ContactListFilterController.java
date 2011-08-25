@@ -43,11 +43,15 @@ public class ContactListFilterController {
         mContext = activity;
     }
 
-    public void onStart() {
-        if (mFilter == null) {
+    /**
+     * @param forceFilterReload when true filter is reloaded even when there's already a cache
+     * for it.
+     */
+    public void onStart(boolean forceFilterReload) {
+        if (mFilter == null || forceFilterReload) {
             mFilter = ContactListFilter.restoreDefaultPreferences(getSharedPreferences());
-            mIsInitialized = true;
         }
+        mIsInitialized = true;
     }
 
     public boolean isInitialized() {

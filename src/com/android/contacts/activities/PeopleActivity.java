@@ -427,7 +427,7 @@ public class PeopleActivity extends ContactsActivity
              */
             configureFragments(!mIsRecreatedInstance);
         }
-        mContactListFilterController.onStart();
+        mContactListFilterController.onStart(false);
         super.onStart();
     }
 
