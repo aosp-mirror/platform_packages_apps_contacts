@@ -1034,6 +1034,9 @@
     <!-- The menu item to share the currently viewed contact [CHAR LIMIT=30] -->
     <string name="menu_share">Share</string>
 
+    <!-- The menu item to show all contacts in Phone entrance [CHAR LIMIT=30] -->
+    <string name="menu_all_contacts">All contacts</string>
+
     <!-- Dialog title when picking the application to share a contact with. -->
     <string name="share_via">Share contact via</string>
 
