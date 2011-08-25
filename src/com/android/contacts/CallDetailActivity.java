@@ -220,7 +220,7 @@ public class CallDetailActivity extends Activity {
             playbackFragment.setArguments(fragmentArguments);
             voicemailContainer.setVisibility(View.VISIBLE);
             getFragmentManager().beginTransaction()
-                    .add(R.id.voicemail_container, playbackFragment).commit();
+                    .add(R.id.voicemail_container, playbackFragment).commitAllowingStateLoss();
             mAsyncQueryHandler.startVoicemailStatusQuery(getVoicemailUri());
             markVoicemailAsRead(getVoicemailUri());
         } else {

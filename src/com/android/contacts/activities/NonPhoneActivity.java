@@ -48,7 +48,7 @@ public class NonPhoneActivity extends ContactsActivity {
 
         final NonPhoneDialogFragment fragment = new NonPhoneDialogFragment();
         fragment.setArguments(Bundle.forPair("PHONE_NUMBER", phoneNumber));
-        getFragmentManager().beginTransaction().add(fragment, "Fragment").commit();
+        getFragmentManager().beginTransaction().add(fragment, "Fragment").commitAllowingStateLoss();
     }
 
     private String getPhoneNumber() {

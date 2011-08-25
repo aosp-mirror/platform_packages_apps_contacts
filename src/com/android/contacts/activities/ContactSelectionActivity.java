@@ -284,7 +284,7 @@ public class ContactSelectionActivity extends ContactsActivity
 
         getFragmentManager().beginTransaction()
                 .replace(R.id.list_container, mListFragment)
-                .commit();
+                .commitAllowingStateLoss();
     }
 
     public void setupActionListener() {

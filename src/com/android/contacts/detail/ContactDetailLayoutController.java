@@ -168,7 +168,7 @@ public class ContactDetailLayoutController {
                             ContactDetailViewPagerAdapter.ABOUT_FRAGMENT_TAG);
                     transaction.add(R.id.updates_fragment_container, mUpdatesFragment,
                             ContactDetailViewPagerAdapter.UPDTES_FRAGMENT_TAG);
-                    transaction.commit();
+                    transaction.commitAllowingStateLoss();
                     mFragmentManager.executePendingTransactions();
                 }
 
@@ -187,7 +187,7 @@ public class ContactDetailLayoutController {
                             ContactDetailViewPagerAdapter.ABOUT_FRAGMENT_TAG);
                     transaction.add(R.id.updates_fragment_container, mUpdatesFragment,
                             ContactDetailViewPagerAdapter.UPDTES_FRAGMENT_TAG);
-                    transaction.commit();
+                    transaction.commitAllowingStateLoss();
                     mFragmentManager.executePendingTransactions();
                 }
                 break;
@@ -202,7 +202,7 @@ public class ContactDetailLayoutController {
                             ContactDetailViewPagerAdapter.ABOUT_FRAGMENT_TAG);
                     transaction.add(R.id.updates_fragment_container, mUpdatesFragment,
                             ContactDetailViewPagerAdapter.UPDTES_FRAGMENT_TAG);
-                    transaction.commit();
+                    transaction.commitAllowingStateLoss();
                     mFragmentManager.executePendingTransactions();
                 }
 

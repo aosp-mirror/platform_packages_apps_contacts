@@ -388,7 +388,7 @@ public class PeopleActivity extends ContactsActivity
                     getFragmentManager(), findViewById(R.id.contact_detail_container),
                     new ContactDetailFragmentListener());
         }
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
         fragmentManager.executePendingTransactions();
 
         // Setting Properties after fragment is created
@@ -665,7 +665,7 @@ public class PeopleActivity extends ContactsActivity
                 break;
         }
         if (!ft.isEmpty()) {
-            ft.commit();
+            ft.commitAllowingStateLoss();
             fragmentManager.executePendingTransactions();
             // When switching tabs, we need to invalidate options menu, but executing a
             // fragment transaction does it implicitly.  We don't have to call invalidateOptionsMenu
@@ -816,7 +816,7 @@ public class PeopleActivity extends ContactsActivity
         @Override
         public void finishUpdate(View container) {
             if (mCurTransaction != null) {
-                mCurTransaction.commit();
+                mCurTransaction.commitAllowingStateLoss();
                 mCurTransaction = null;
                 mFragmentManager.executePendingTransactions();
             }
@@ -926,7 +926,7 @@ public class PeopleActivity extends ContactsActivity
                         new ContactsUnavailableFragmentListener());
                 getFragmentManager().beginTransaction()
                         .replace(R.id.contacts_unavailable_container, mContactsUnavailableFragment)
-                        .commit();
+                        .commitAllowingStateLoss();
             } else {
                 mContactsUnavailableFragment.update();
             }
