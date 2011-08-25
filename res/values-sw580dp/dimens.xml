@@ -52,4 +52,15 @@
     <dimen name="widget_snippet_bottom_margin">6dip</dimen>
     <dimen name="widget_snippet_top_padding">6dip</dimen>
     <dimen name="widget_snippet_bottom_padding">3dip</dimen>
+
+    <!-- Left padding for a group member list item -->
+    <dimen name="group_member_item_left_padding">12dip</dimen>
+    <!-- Left margin for the group member list to match the built in margin in the autocomplete asset -->
+    <dimen name="group_editor_member_list_left_margin">4dip</dimen>
+    <!-- Right margin for the group member list to match the built in margin in the autocomplete asset -->
+    <dimen name="group_editor_member_list_right_margin">4dip</dimen>
+    <!-- Account title left padding -->
+    <dimen name="account_container_left_padding">16dip</dimen>
+    <!-- Left padding of the auto complete field to line hint text up with member list -->
+    <dimen name="group_editor_autocomplete_left_padding">16dip</dimen>
 </resources>
