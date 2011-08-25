@@ -22,18 +22,15 @@
     android:minHeight="48dip"
     android:background="#EEEEEE"
     android:orientation="horizontal"
-    android:paddingTop="8dip"
-    android:paddingBottom="8dip"
     android:paddingLeft="@dimen/account_container_left_padding"
     android:paddingRight="32dip">
 
     <LinearLayout
         android:id="@+id/account"
         android:layout_height="wrap_content"
-        android:layout_width="0dip"
-        android:layout_weight="1"
+        android:layout_width="wrap_content"
         android:orientation="vertical"
-        android:background="?android:attr/selectableItemBackground">
+        style="?android:attr/spinnerStyle">
 
         <TextView
             android:id="@+id/account_type"
@@ -46,11 +43,18 @@
              android:id="@+id/account_name"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
+             android:paddingRight="8dip"
              android:textAppearance="?android:attr/textAppearanceSmall"
              android:textColor="?android:attr/textColorTertiary"
              android:singleLine="true" />
 
     </LinearLayout>
+
+    <!-- Spacer between the account type / name dropdown and the account icon -->
+    <View
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
 
     <FrameLayout
         android:layout_width="wrap_content"

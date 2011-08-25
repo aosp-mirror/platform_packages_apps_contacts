@@ -19,7 +19,7 @@
 <com.android.contacts.editor.EventFieldEditorView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/editor_min_line_item_height"
     android:orientation="vertical">
 
     <LinearLayout
@@ -38,10 +38,10 @@
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="@dimen/editor_type_label_width"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dip"
-            android:paddingRight="20dip"
+            android:layout_height="match_parent"
             android:layout_gravity="bottom"
+            android:paddingLeft="0dip"
+            android:paddingRight="10dip"
             android:visibility="gone"/>
 
         <include
