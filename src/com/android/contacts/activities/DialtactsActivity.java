@@ -409,6 +409,20 @@ public class DialtactsActivity extends Activity {
         }
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Force filter reload to reflect possible filter changes done via People UI.
+        //
+        // Ideally both (People/Phone) UI should share the same instance for
+        // ContactListFilterController and they should be able to receive filter change event
+        // from the same controller (Bug 5165507)
+        mContactListFilterController.onStart(true);
+        if (mSearchFragment != null) {
+            mSearchFragment.setFilter(mContactListFilterController.getFilter());
+        }
+    }
+
     private void prepareSearchView() {
         final View searchViewLayout =
                 getLayoutInflater().inflate(R.layout.dialtacts_custom_action_bar, null);
