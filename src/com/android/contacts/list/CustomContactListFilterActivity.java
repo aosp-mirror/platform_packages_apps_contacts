@@ -132,6 +132,12 @@ public class CustomContactListFilterActivity extends ContactsActivity
 
             final AccountSet accounts = new AccountSet();
             for (AccountWithDataSet account : accountTypes.getAccounts(false)) {
+                final AccountType accountType = accountTypes.getAccountTypeForAccount(account);
+                if (accountType.isExtension() && !account.hasData(context)) {
+                    // Extension with no data -- skip.
+                    continue;
+                }
+
                 AccountDisplay accountDisplay =
                         new AccountDisplay(resolver, account.name, account.type, account.dataSet);
 

@@ -25,6 +25,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import libcore.util.Objects;
+
 /**
  * A mock {@link AccountTypeManager} class.
  */
@@ -39,9 +41,10 @@ public class MockAccountTypeManager extends AccountTypeManager {
     }
 
     @Override
-    public AccountType getAccountType(String accountType, String dataSet) {
+    public AccountType getAccountType(AccountTypeWithDataSet accountTypeWithDataSet) {
         for (AccountType type : mTypes) {
-            if (accountType.equals(type.accountType)) {
+            if (Objects.equal(accountTypeWithDataSet.accountType, type.accountType)
+                    && Objects.equal(accountTypeWithDataSet.dataSet, type.dataSet)) {
                 return type;
             }
         }
