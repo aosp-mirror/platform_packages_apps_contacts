@@ -95,7 +95,7 @@ public class JoinContactActivity extends ContactsActivity implements OnClickList
 
             getFragmentManager().beginTransaction()
                     .replace(R.id.list_container, mListFragment)
-                    .commit();
+                    .commitAllowingStateLoss();
         }
     }
 

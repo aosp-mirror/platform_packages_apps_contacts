@@ -123,7 +123,8 @@ public class ContactDeletionInteraction extends Fragment
             fragment.setTestLoaderManager(testLoaderManager);
             fragment.setContactUri(contactUri);
             fragment.setFinishActivityWhenDone(finishActivityWhenDone);
-            fragmentManager.beginTransaction().add(fragment, FRAGMENT_TAG).commit();
+            fragmentManager.beginTransaction().add(fragment, FRAGMENT_TAG)
+                    .commitAllowingStateLoss();
         } else {
             fragment.setTestLoaderManager(testLoaderManager);
             fragment.setContactUri(contactUri);

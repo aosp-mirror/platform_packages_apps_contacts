@@ -476,7 +476,7 @@ public class DialtactsActivity extends Activity {
             } else {
                 transaction.hide(mSearchFragment);
             }
-            transaction.commit();
+            transaction.commitAllowingStateLoss();
         }
     }
 
@@ -793,7 +793,7 @@ public class DialtactsActivity extends Activity {
         // Show the search fragment and hide everything else.
         final FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.show(mSearchFragment);
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
         mViewPager.setVisibility(View.GONE);
 
         // We need to call this and onActionViewCollapsed() manually, since we are using a custom
@@ -830,7 +830,7 @@ public class DialtactsActivity extends Activity {
 
         final FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.hide(mSearchFragment);
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
 
         // We want to hide SearchView and show Tabs. Also focus on previously selected one.
         actionBar.setDisplayShowCustomEnabled(false);
