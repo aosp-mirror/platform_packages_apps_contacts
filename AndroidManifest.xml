@@ -492,7 +492,6 @@
         <activity
             android:name=".activities.ContactEditorActivity"
             android:theme="@style/EditorActivityTheme"
-            android:uiOptions="splitActionBarWhenNarrow"
             android:windowSoftInputMode="adjustResize">
 
             <intent-filter android:label="@string/editContactDescription">
