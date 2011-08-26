@@ -170,7 +170,9 @@ public class ImportVCardActivity extends ContactsActivity {
         }
         @Override
         public void run() {
-            showDialog(mResId);
+            if (!isFinishing()) {
+                showDialog(mResId);
+            }
         }
     }
 
