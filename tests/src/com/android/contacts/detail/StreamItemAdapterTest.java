@@ -55,8 +55,8 @@ public class StreamItemAdapterTest extends AndroidTestCase {
 
     public void testGetCount_Empty() {
         mAdapter.setStreamItems(createStreamItemList(0));
-        // There is actually one view: the header.
-        assertEquals(2, mAdapter.getCount());
+        // The header and title are gone when there are no stream items.
+        assertEquals(0, mAdapter.getCount());
     }
 
     public void testGetCount_NonEmpty() {
