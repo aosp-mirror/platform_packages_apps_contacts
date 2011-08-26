@@ -220,12 +220,9 @@ public class GroupBrowseListFragment extends Fragment
         }
         mAdapter.setCursor(mGroupListCursor);
 
-        Parcelable listState = mListView.onSaveInstanceState();
         if (mSelectionToScreenRequested) {
+            mSelectionToScreenRequested = false;
             requestSelectionToScreen();
-        } else {
-            // Restore the scroll position.
-            mListView.onRestoreInstanceState(listState);
         }
 
         mSelectedGroupUri = mAdapter.getSelectedGroup();
@@ -262,6 +259,9 @@ public class GroupBrowseListFragment extends Fragment
     }
 
     protected void requestSelectionToScreen() {
+        if (!mSelectionVisible) {
+            return; // If selection isn't visible we don't care.
+        }
         int selectedPosition = mAdapter.getSelectedGroupPosition();
         if (selectedPosition != -1) {
             mListView.requestPositionToScreen(selectedPosition,
