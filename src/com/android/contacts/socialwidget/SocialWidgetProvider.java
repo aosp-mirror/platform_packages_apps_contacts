@@ -200,7 +200,11 @@ public class SocialWidgetProvider extends AppWidgetProvider {
             views.setTextViewText(R.id.name, sb);
             views.setViewVisibility(R.id.name, View.VISIBLE);
             views.setViewVisibility(R.id.name_and_snippet, View.GONE);
-            views.setOnClickPendingIntent(R.id.widget_container, defaultIntent);
+            // Don't set a pending intent if the intent is null, otherwise the system will try
+            // to write the null intent to a Parcel.
+            if (defaultIntent != null) {
+                views.setOnClickPendingIntent(R.id.widget_container, defaultIntent);
+            }
         } else {
             // TODO: Rotate between all the stream items?
             StreamItemEntry streamItem = streamItems.get(0);
