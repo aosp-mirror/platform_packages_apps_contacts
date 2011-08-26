@@ -43,4 +43,9 @@ public class UriUtils {
         }
         return Uri.parse(uriString);
     }
+
+    /** Converts a URI into a string, returns null if the given URI is null. */
+    public static String uriToString(Uri uri) {
+        return uri == null ? null : uri.toString();
+    }
 }

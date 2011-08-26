@@ -26,17 +26,21 @@ public final class CallLogQuery {
     // If you alter this, you must also alter the method that inserts a fake row to the headers
     // in the CallLogQueryHandler class called createHeaderCursorFor().
     public static final String[] _PROJECTION = new String[] {
-            Calls._ID,
-            Calls.NUMBER,
-            Calls.DATE,
-            Calls.DURATION,
-            Calls.TYPE,
-            Calls.COUNTRY_ISO,
-            Calls.VOICEMAIL_URI,
-            Calls.GEOCODED_LOCATION,
-            Calls.CACHED_NAME,
-            Calls.CACHED_NUMBER_TYPE,
-            Calls.CACHED_NUMBER_LABEL,
+            Calls._ID,                       // 0
+            Calls.NUMBER,                    // 1
+            Calls.DATE,                      // 2
+            Calls.DURATION,                  // 3
+            Calls.TYPE,                      // 4
+            Calls.COUNTRY_ISO,               // 5
+            Calls.VOICEMAIL_URI,             // 6
+            Calls.GEOCODED_LOCATION,         // 7
+            Calls.CACHED_NAME,               // 8
+            Calls.CACHED_NUMBER_TYPE,        // 9
+            Calls.CACHED_NUMBER_LABEL,       // 10
+            Calls.CACHED_LOOKUP_URI,         // 11
+            Calls.CACHED_MATCHED_NUMBER,     // 12
+            Calls.CACHED_NORMALIZED_NUMBER,  // 13
+            Calls.CACHED_PHOTO_ID,           // 14
     };
 
     public static final int ID = 0;
@@ -50,6 +54,12 @@ public final class CallLogQuery {
     public static final int CACHED_NAME = 8;
     public static final int CACHED_NUMBER_TYPE = 9;
     public static final int CACHED_NUMBER_LABEL = 10;
+    public static final int CACHED_LOOKUP_URI = 11;
+    public static final int CACHED_MATCHED_NUMBER = 12;
+    public static final int CACHED_NORMALIZED_NUMBER = 13;
+    public static final int CACHED_PHOTO_ID = 14;
+    /** The index of the synthetic "section" column in the extended projection. */
+    public static final int SECTION = 15;
 
     /**
      * The name of the synthetic "section" column.
@@ -58,8 +68,6 @@ public final class CallLogQuery {
      * part of the new or old calls.
      */
     public static final String SECTION_NAME = "section";
-    /** The index of the "section" column in the projection. */
-    public static final int SECTION = 11;
     /** The value of the "section" column for the header of the new section. */
     public static final int SECTION_NEW_HEADER = 0;
     /** The value of the "section" column for the items of the new section. */

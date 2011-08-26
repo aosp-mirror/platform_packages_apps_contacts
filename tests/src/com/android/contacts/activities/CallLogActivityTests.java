@@ -67,7 +67,7 @@ public class CallLogActivityTests
     private static final long NOW = -1L;
 
     /** A test value for the URI of a contact. */
-    private static final Uri TEST_CONTACT_URI = Uri.parse("content://contacts/2");
+    private static final Uri TEST_LOOKUP_URI = Uri.parse("content://contacts/2");
     /** A test value for the country ISO of the phone number in the call log. */
     private static final String TEST_COUNTRY_ISO = "US";
     /** A phone number to be used in tests. */
@@ -450,7 +450,7 @@ public class CallLogActivityTests
             String cachedName, int cachedNumberType, String cachedNumberLabel) {
         insert(number, date, duration, type);
         ContactInfo contactInfo = new ContactInfo();
-        contactInfo.contactUri = TEST_CONTACT_URI;
+        contactInfo.lookupUri = TEST_LOOKUP_URI;
         contactInfo.name = cachedName;
         contactInfo.type = cachedNumberType;
         contactInfo.label = cachedNumberLabel;
