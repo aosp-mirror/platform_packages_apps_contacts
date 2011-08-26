@@ -352,8 +352,6 @@ public class ContactEditorFragment extends Fragment implements
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        Log.d(TAG, "onActivityCreated(" + savedInstanceState + ")");
-
         // Handle initial actions only when existing state missing
         final boolean hasIncomingState = savedInstanceState != null;
 
