@@ -130,17 +130,20 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                 mAccountFilterHeaderContainer.setVisibility(View.VISIBLE);
                 mAccountFilterHeaderView.setText(getContext().getString(
                         R.string.listSingleContact));
-            } else if (filter.filterType != ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS
-                && filter.filterType != ContactListFilter.FILTER_TYPE_CUSTOM) {
+                return;
+            } else if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
+                mAccountFilterHeaderContainer.setVisibility(View.VISIBLE);
+                mAccountFilterHeaderView.setText(getContext().getString(
+                        R.string.listCustomView));
+                return;
+            } else if (filter.filterType != ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
                 mAccountFilterHeaderContainer.setVisibility(View.VISIBLE);
                 mAccountFilterHeaderView.setText(getContext().getString(
                         R.string.listAllContactsInAccount, filter.accountName));
-            } else {
-                mAccountFilterHeaderContainer.setVisibility(View.GONE);
+                return;
             }
-        } else {
-            mAccountFilterHeaderContainer.setVisibility(View.GONE);
         }
+        mAccountFilterHeaderContainer.setVisibility(View.GONE);
     }
 
     @Override
