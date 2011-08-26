@@ -136,31 +136,8 @@ public class JoinContactActivity extends ContactsActivity implements OnClickList
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.search, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_search: {
-                onSearchRequested();
-                return true;
-            }
-        }
+    public boolean onSearchRequested() {
         return false;
-    }
-
-    @Override
-    public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
-            boolean globalSearch) {
-        if (globalSearch) {
-            super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
-        } else {
-            mListFragment.startSearch(initialQuery);
-        }
     }
 
     @Override
