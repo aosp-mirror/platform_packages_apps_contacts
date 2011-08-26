@@ -134,6 +134,8 @@
     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Brak ulubionych"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Brak kontaktów w grupie <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Kontakty na koncie <xliff:g id="NAME">%s</xliff:g>"</string>
+    <!-- no translation found for listSingleContact (6067813698903535563) -->
+    <skip />
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"Znaleziono: 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Znaleziono: <xliff:g id="COUNT">%d</xliff:g>"</item>
@@ -240,29 +242,26 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Importuj wszystkie pliki vCard"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Wyszukiwanie danych vCard na nośniku"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Wyszukiwanie danych vCard na karcie SD"</string>
-    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Skanowanie nośnika nie powiodło się"</string>
-    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Skanowanie nośnika nie powiodło się"</string>
-    <!-- no translation found for scanning_sdcard_failed_message (8290634758602152611) -->
-    <skip />
-    <!-- no translation found for scanning_sdcard_failed_message (2462918339722946736) -->
-    <skip />
+    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Nie można przeskanować pamięci"</string>
+    <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Nie można przeskanować karty SD"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8290634758602152611">"Nie można przeskanować pamięci (przyczyna: „<xliff:g id="FAIL_REASON">%s</xliff:g>”)"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="2462918339722946736">"Nie można przeskanować karty SD (przyczyna: „<xliff:g id="FAIL_REASON">%s</xliff:g>”)"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Błąd wejścia/wyjścia"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Niewystarczająca ilość pamięci (plik może być zbyt duży)"</string>
-    <!-- outdated translation 1201233722762680214 -->     <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"Nie można zanalizować pliku vCard z nieoczekiwanego powodu"</string>
+    <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"Nie można przeanalizować pliku vCard z nieoczekiwanego powodu"</string>
     <string name="fail_reason_not_supported" msgid="294499264620201243">"Ten format nie jest obsługiwany."</string>
-    <!-- outdated translation 7718330063493653085 -->     <string name="vcard_import_failed" msgid="8856125211629574066">"Nie można zaimportować karty vCard"</string>
+    <string name="vcard_import_failed" msgid="8856125211629574066">"Nie można zaimportować pliku vCard"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"Na nośniku nie znaleziono żadnego pliku vCard"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Na karcie SD nie znaleziono żadnego pliku vCard"</string>
-    <!-- outdated translation 4154492282316067754 -->     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Nie można zebrać metainformacji z podanych plików vCard."</string>
-    <!-- no translation found for fail_reason_failed_to_read_files (5823434810622484922) -->
-    <skip />
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Nie można zebrać metainformacji z podanych plików vCard."</string>
+    <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Nie można zaimportować co najmniej jednego pliku (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Nieznany błąd"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Wybierz plik vCard"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"Buforowanie kart vCard w lokalnym obszarze tymczasowym"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"Program importujący buforuje karty vCard w lokalnym obszarze tymczasowym. Rzeczywisty proces importowania rozpocznie się za chwilę."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Importowanie <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Importowanie <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- outdated translation 2162610359561887043 -->     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Nie można odczytać danych karty vCard"</string>
+    <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Nie można odczytać danych vCard"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Odczytywanie danych kart vCard zostało anulowane"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Zakończono importowanie pliku vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Importowanie pliku <xliff:g id="FILENAME">%s</xliff:g> zostało anulowane"</string>
@@ -275,9 +274,8 @@
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Potwierdź eksport"</string>
     <string name="confirm_export_message" msgid="4307437830474103759">"Wyeksportować listę kontaktów do pliku „<xliff:g id="VCARD_FILENAME">%s</xliff:g>”?"</string>
-    <!-- outdated translation 585823094820602526 -->     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Nie można wyeksportować danych kontaktu"</string>
-    <!-- no translation found for exporting_contact_failed_message (2704925031146288635) -->
-    <skip />
+    <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Nie można wyeksportować danych kontaktów"</string>
+    <string name="exporting_contact_failed_message" msgid="2704925031146288635">"Nie można wyeksportować danych kontaktów."\n"Przyczyna: „<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Brak kontaktów, które można wyeksportować"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Zbyt wiele plików vCard na nośniku"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Zbyt dużo plików vCard na karcie SD"</string>
@@ -288,7 +286,7 @@
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Eksportowanie danych kontaktowych do pliku „<xliff:g id="FILE_NAME">%s</xliff:g>”"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Nie można zainicjować programu eksportującego: „<xliff:g id="EXACT_REASON">%s</xliff:g>”"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Wystąpił błąd podczas eksportowania: „<xliff:g id="EXACT_REASON">%s</xliff:g>”"</string>
-    <!-- outdated translation 3723109558155169053 -->     <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Nie można pobrać informacji o bazie danych"</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Nie można pobrać informacji z bazy danych"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Brak kontaktów, które można wyeksportować. Jeśli faktycznie masz kontakty w tablecie, wyeksportowanie ich poza tablet może być zabronione przez dostawcę danych."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Brak kontaktów, które można wyeksportować. Jeśli faktycznie masz kontakty w telefonie, wyeksportowanie ich poza telefon może być zabronione przez dostawcę danych."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"Obiekt tworzenia danych vCard nie został poprawnie zainicjowany"</string>
@@ -298,12 +296,12 @@
     <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"Czy na pewno anulować importowanie pliku <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Anulowanie eksportowania pliku vCard"</string>
     <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"Czy na pewno chcesz anulować eksportowanie pliku <xliff:g id="FILENAME">%s</xliff:g>?"</string>
-    <!-- outdated translation 7096533244663846810 -->     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Nie można anulować imp./eksp. pliku vCard"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Nie można anulować importu/eksportu vCard"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Imiona i nazwiska oraz nazwy w Twoich kontaktach"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Dodaj 2-sekundową pauzę"</string>
     <string name="add_wait" msgid="3360818652790319634">"Dodaj oczekiwanie"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"Zadzwoń przy użyciu"</string>
-    <string name="call_settings" msgid="5009897887137674341">"Ustawienia połączeń"</string>
+    <!-- outdated translation 5009897887137674341 -->     <string name="call_settings" msgid="7666474782093693667">"Ustawienia połączeń"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Wyślij SMS przy użyciu"</string>
     <string name="make_primary" msgid="5829291915305113983">"Zapamiętaj ten wybór"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Nie znaleziono aplikacji do obsługi tej akcji"</string>
@@ -313,6 +311,8 @@
     <string name="menu_import_export" msgid="3765725645491577190">"Importuj/eksportuj"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importuj/eksportuj kontakty"</string>
     <string name="menu_share" msgid="943789700636542260">"Udostępnij"</string>
+    <!-- no translation found for menu_all_contacts (5101735431586050711) -->
+    <skip />
     <string name="share_via" msgid="563121028023030093">"Udostępnij kontakt przez"</string>
     <string name="share_error" msgid="4374508848981697170">"Tego kontaktu nie można udostępniać."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Nazwa"</string>
@@ -513,7 +513,7 @@
   </plurals>
     <string name="delete_group_dialog_message" msgid="295063284548750881">"Czy na pewno chcesz usunąć grupę „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>”? (Kontakty nie zostaną usunięte)."</string>
   <plurals name="num_contacts_in_group">
-    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g> osoba z <xliff:g id="COUNT_0">%1$d</xliff:g>"</item>
+    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> osoba z <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
     <item quantity="other" msgid="8146027769011086349">"Osoby z <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>: <xliff:g id="COUNT_0">%1$d</xliff:g>"</item>
   </plurals>
   <plurals name="group_list_num_contacts_in_group">
@@ -539,18 +539,18 @@
   </plurals>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Nowa poczta głosowa od: <xliff:g id="CALLER">%1$s</xliff:g>"</string>
-    <!-- outdated translation 6148119635138385900 -->     <string name="voicemail_playback_error" msgid="1811242131549854624">"Nie można odtworzyć poczty głosowej."</string>
-    <!-- outdated translation 2021957162133938725 -->     <string name="voicemail_buffering" msgid="738287747618697097">"buforowanie..."</string>
-    <!-- outdated translation 8516068803491833243 -->     <string name="voicemail_fetching_content" msgid="877911315738258780">"pobieranie poczty głosowej..."</string>
-    <!-- outdated translation 3430908587639305983 -->     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"nie udało się pobrać poczty głosowej"</string>
+    <string name="voicemail_playback_error" msgid="1811242131549854624">"Nie można odtworzyć poczty głosowej."</string>
+    <string name="voicemail_buffering" msgid="738287747618697097">"Buforowanie..."</string>
+    <string name="voicemail_fetching_content" msgid="877911315738258780">"Pobieranie poczty głosowej..."</string>
+    <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Nie można pobrać poczty głosowej."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Nowe"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Starsze"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"Nie można połączyć z serwerem poczty głosowej."</string>
-    <string name="voicemail_status_messages_waiting" msgid="2970301042310727909">"Nie można połączyć z serwerem poczty głos. Masz nowe wiadomości."</string>
+    <string name="voicemail_status_messages_waiting" msgid="2970301042310727909">"Nie można połączyć z pocztą głosową. Masz nowe wiadomości."</string>
     <string name="voicemail_status_configure_voicemail" msgid="3940240432123700974">"Skonfiguruj pocztę głosową."</string>
-    <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Dźwięk niedostępny."</string>
+    <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Dźwięk jest niedostępny."</string>
     <string name="voicemail_status_action_configure" msgid="7008713959076506385">"Konfiguruj"</string>
-    <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"Zadzwoń na pocztę"</string>
+    <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"Połącz z pocztą"</string>
     <string name="voicemail_speed_slowest" msgid="6047030504814773029">"najwolniej"</string>
     <string name="voicemail_speed_slower" msgid="7890393922358642543">"wolno"</string>
     <string name="voicemail_speed_normal" msgid="6030110237820243006">"normalnie"</string>
@@ -558,7 +558,7 @@
     <string name="voicemail_speed_fastest" msgid="3373646875150544205">"najszybciej"</string>
     <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
     <string name="group_name_hint" msgid="2659811836386413509">"Nazwa grupy"</string>
-    <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Odebrane (NFC)"</string>
+    <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Odebrane przez NFC"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Pokaż tylko pocztę głosową"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"Pokaż wszystkie połączenia"</string>
     <string name="status_available" msgid="5586870015822828392">"Dostępny"</string>

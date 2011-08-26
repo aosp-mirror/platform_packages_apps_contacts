@@ -55,8 +55,8 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"ลบ"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"ใหม่"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"ใหม่"</string>
-    <!-- outdated translation 6716467920283502570 -->     <string name="splitConfirmation_title" msgid="2209511048593467012">"แยกรายชื่อแล้ว"</string>
-    <!-- outdated translation 1150797297503944823 -->     <string name="splitConfirmation" msgid="1067993957986345974">"คุณแน่ใจหรือไม่ว่าต้องการแยกรายชื่อในสมุดโทรศัพท์ติดต่อนี้เป็นแบบหลายรายการ นั่นคือ หนึ่งรายการสำหรับชุดข้อมูลแต่ละชุดที่นำมารวมในรายการนี้"</string>
+    <string name="splitConfirmation_title" msgid="2209511048593467012">"แยกรายชื่อติดต่อ"</string>
+    <string name="splitConfirmation" msgid="1067993957986345974">"คุณแน่ใจหรือไม่ว่าต้องการแยกรายชื่อติดต่อนี้ออกเป็นหลายรายการ"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"เข้าร่วม"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"รวมรายชื่อ"</string>
     <string name="blurbJoinContactDataWith" msgid="995870557595050304">"เลือกรายชื่อที่ต้องการรวมกับ <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -114,9 +114,9 @@
   </plurals>
     <string name="savingContact" msgid="4075751076741924939">"กำลังบันทึกรายชื่อ…"</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"บันทึกตัวเลือกการแสดงผล..."</string>
-    <!-- outdated translation 7152589189385441091 -->     <string name="contactSavedToast" msgid="9171862279493213075">"บันทึกรายชื่อ"</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"บันทึกรายชื่อติดต่อแล้ว"</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"ข้อผิดพลาด บันทึกการเปลี่ยนแปลงรายชื่อในสมุดโทรศัพท์ไม่ได้"</string>
-    <!-- outdated translation 1168756874239833756 -->     <string name="groupSavedToast" msgid="6675062559302493011">"บันทึกกลุ่มแล้ว"</string>
+    <string name="groupSavedToast" msgid="6675062559302493011">"บันทึกกลุ่มแล้ว"</string>
     <string name="groupSavedErrorToast" msgid="6434135707953150875">"ข้อผิดพลาด บันทึกการเปลี่ยนแปลงกลุ่มไม่ได้"</string>
     <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"บันทึกการเปลี่ยนแปลงแล้ว"</string>
     <string name="contactAlreadyInGroup" msgid="6209708213229886092">"เพิ่มผู้ติดต่อลงในกลุ่มแล้ว"</string>
@@ -134,6 +134,8 @@
     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"ไม่มีรายการโปรด"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"ไม่มีรายชื่อติดต่อใน <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"ผู้ติดต่อใน <xliff:g id="NAME">%s</xliff:g>"</string>
+    <!-- no translation found for listSingleContact (6067813698903535563) -->
+    <skip />
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"พบ 1 รายการ"</item>
     <item quantity="other" msgid="3852668542926965042">"พบ <xliff:g id="COUNT">%d</xliff:g> รายการ"</item>
@@ -240,29 +242,26 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"นำเข้าไฟล์ vCard ทั้งหมด"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"กำลังค้นหาข้อมูล vCard ในที่เก็บข้อมูล"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"กำลังค้นหาข้อมูล vCard บนการ์ด SD"</string>
-    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"การสแกนที่เก็บข้อมูลล้มเหลว"</string>
-    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"การสแกนที่เก็บข้อมูลล้มเหลว"</string>
-    <!-- no translation found for scanning_sdcard_failed_message (8290634758602152611) -->
-    <skip />
-    <!-- no translation found for scanning_sdcard_failed_message (2462918339722946736) -->
-    <skip />
+    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"ไม่สามารถสแกนที่เก็บข้อมูล"</string>
+    <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"ไม่สามารถสแกนการ์ด SD"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8290634758602152611">"ไม่สามารถสแกนที่เก็บข้อมูล (เหตุผล: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="2462918339722946736">"ไม่สามารถสแกนการ์ด SD (เหตุผล: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"ข้อผิดพลาด I/O"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"หน่วยความจำไม่เพียงพอ (ไฟล์อาจใหญ่เกินไป)"</string>
-    <!-- outdated translation 1201233722762680214 -->     <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"แยกวิเคราะห์ vCard ไม่สำเร็จด้วยเหตุผลที่ไม่คาดคิด"</string>
+    <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"ไม่สามารถแยกวิเคราะห์ vCard ด้วยเหตุผลที่ไม่คาดคิด"</string>
     <string name="fail_reason_not_supported" msgid="294499264620201243">"รูปแบบไม่ได้รับการสนับสนุน"</string>
-    <!-- outdated translation 7718330063493653085 -->     <string name="vcard_import_failed" msgid="8856125211629574066">"ไม่สามารถนำเข้า vCard"</string>
+    <string name="vcard_import_failed" msgid="8856125211629574066">"ไม่สามารถนำเข้า vCard"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"ไม่พบไฟล์ vCard ในที่เก็บข้อมูล"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"ไม่พบไฟล์ vCard บนการ์ด SD"</string>
-    <!-- outdated translation 4154492282316067754 -->     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"รวบรวมข้อมูลเมตาของไฟล์ vCard ที่ระบุไม่สำเร็จ"</string>
-    <!-- no translation found for fail_reason_failed_to_read_files (5823434810622484922) -->
-    <skip />
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"ไม่สามารถรวบรวมข้อมูลเมตาของ vCard ที่ระบุ"</string>
+    <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"ไม่สามารถนำเข้าไฟล์ตั้งแต่หนึ่งไฟล์ขึ้นไป (%s)"</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"เลือกไฟล์ vCard"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"กำลังแคช vCard ไปยังที่เก็บข้อมูลชั่วคราวในตัวเครื่อง"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"ตัวนำเข้ากำลังแคช vCard ไปยังที่เก็บข้อมูลชั่วคราวในตัวเครื่อง การนำเข้าจริงจะเริ่มต้นในอีกสักครู่"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"กำลังนำเข้า <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"กำลังนำเข้า <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- outdated translation 2162610359561887043 -->     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"อ่านข้อมูล vCard ไม่สำเร็จ"</string>
+    <string name="reading_vcard_failed_title" msgid="4251647443358422855">"ไม่สามารถอ่านข้อมูล vCard"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"ยกเลิกการอ่านข้อมูล vCard แล้ว"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"นำเข้า vCard <xliff:g id="FILENAME">%s</xliff:g> เรียบร้อยแล้ว"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"ยกเลิกการนำเข้า <xliff:g id="FILENAME">%s</xliff:g> แล้ว"</string>
@@ -274,11 +273,9 @@
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"สมุดโทรศัพท์"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"ยืนยันการส่งออก"</string>
-    <!-- no translation found for confirm_export_message (4307437830474103759) -->
-    <skip />
-    <!-- outdated translation 585823094820602526 -->     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"ส่งออกข้อมูลรายชื่อในสมุดโทรศัพท์ไม่สำเร็จ"</string>
-    <!-- no translation found for exporting_contact_failed_message (2704925031146288635) -->
-    <skip />
+    <string name="confirm_export_message" msgid="4307437830474103759">"ต้องการส่งออกรายชื่อผู้ติดต่อของคุณไปยังไฟล์ \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\" หรือไม่"</string>
+    <string name="exporting_contact_failed_title" msgid="2339788270863991417">"ไม่สามารถส่งออกข้อมูลรายชื่อติดต่อ"</string>
+    <string name="exporting_contact_failed_message" msgid="2704925031146288635">"ไม่สามารถส่งออกข้อมูลรายชื่อติดต่อ "\n"เหตุผล: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"ไม่มีรายชื่อในสมุดโทรศัพท์ที่สามารถส่งออกได้"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"มีไฟล์ vCard มากเกินไปในที่เก็บข้อมูล"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"มีไฟล์ vCard บนการ์ด SD มากเกินไป"</string>
@@ -289,7 +286,7 @@
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"กำลังส่งออกข้อมูลรายชื่อในสมุดโทรศัพท์ไปยัง \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"เริ่มใช้งานโปรแกรมส่งออกไม่ได้: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"เกิดข้อผิดพลาดระหว่างส่งออก: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
-    <!-- outdated translation 3723109558155169053 -->     <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"เรียกข้อมูลจากฐานข้อมูลไม่สำเร็จ"</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"ไม่สามารถดึงข้อมูลจากฐานข้อมูล"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"ไม่มีรายชื่อติดต่อที่สามารถส่งออกได้ หากคุณมีรายชื่อติดต่ออยู่ในแท็บเล็ตของคุณจริงๆ รายชื่อติดต่อทั้งหมดอาจถูกห้ามไม่ให้ส่งออกไปภายนอกแท็บเล็ตโดยผู้ให้บริการข้อมูลบางราย"</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"ไม่มีรายชื่อติดต่อที่สามารถส่งออกได้ หากคุณมีรายชื่อติดต่ออยู่ในโทรศัพท์ของคุณจริงๆ รายชื่อติดต่อทั้งหมดอาจถูกห้ามไม่ให้ส่งออกไปภายนอกโทรศัพท์โดยผู้ให้บริการข้อมูลบางราย"</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"โปรแกรมเขียนข้อความ vCard เริ่มการทำงานไม่ถูกต้อง"</string>
@@ -299,12 +296,12 @@
     <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"คุณต้องการยกเลิกการนำเข้า <xliff:g id="FILENAME">%s</xliff:g> หรือไม่"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"การยกเลิกการส่งออก vCard"</string>
     <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"คุณต้องการยกเลิกการส่งออก <xliff:g id="FILENAME">%s</xliff:g> หรือไม่"</string>
-    <!-- outdated translation 7096533244663846810 -->     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"ยกเลิกการนำเข้า/ส่งออก vCard ไม่สำเร็จ"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"ไม่สามารถยกเลิกการนำเข้า/ส่งออก vCard"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"ชื่อของรายชื่อในสมุดโทรศัพท์ของคุณ"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"เพิ่มช่วงคั่น 2 วินาที"</string>
     <string name="add_wait" msgid="3360818652790319634">"เพิ่มการรอ"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"โทรออกโดยใช้"</string>
-    <string name="call_settings" msgid="5009897887137674341">"การตั้งค่าการโทร"</string>
+    <!-- outdated translation 5009897887137674341 -->     <string name="call_settings" msgid="7666474782093693667">"การตั้งค่าการโทร"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"ส่งข้อความโดยใช้"</string>
     <string name="make_primary" msgid="5829291915305113983">"จำตัวเลือกนี้"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"ไม่พบแอปพลิเคชันสำหรับการทำงานนี้"</string>
@@ -314,13 +311,15 @@
     <string name="menu_import_export" msgid="3765725645491577190">"นำเข้า/ส่งออก"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"นำเข้า/ส่งออกรายชื่อในสมุดโทรศัพท์"</string>
     <string name="menu_share" msgid="943789700636542260">"ใช้ร่วมกัน"</string>
+    <!-- no translation found for menu_all_contacts (5101735431586050711) -->
+    <skip />
     <string name="share_via" msgid="563121028023030093">"ใช้สมุดโทรศัพท์ร่วมกันทาง"</string>
     <string name="share_error" msgid="4374508848981697170">"รายชื่อนี้ไม่สามารถแบ่งปันได้"</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"ชื่อ"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"ชื่อเล่น"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"องค์กร"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"เว็บไซต์"</string>
-    <!-- outdated translation 8069912895912714412 -->     <string name="eventLabelsGroup" msgid="3695433812142818803">"กิจกรรม"</string>
+    <string name="eventLabelsGroup" msgid="3695433812142818803">"กิจกรรม"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"ความสัมพันธ์"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"กลุ่ม"</string>
     <string name="type_short_home" msgid="7770424864090605384">"H"</string>
@@ -417,13 +416,10 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"ชื่อกลางแบบออกเสียง"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"นามสกุลแบบออกเสียง"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"ชื่อแบบออกเสียง"</string>
-    <!-- no translation found for connections (8098440723172028350) -->
-    <skip />
-    <!-- no translation found for add_connection_button (4861308615789601727) -->
-    <skip />
+    <string name="connections" msgid="8098440723172028350">"การเชื่อมต่อ"</string>
+    <string name="add_connection_button" msgid="4861308615789601727">"เพิ่มการเชื่อมต่อ"</string>
     <string name="recent_updates" msgid="2062236709538790412">"ล่าสุด"</string>
-    <!-- no translation found for recent_updates_tab_text (5813107516506908531) -->
-    <skip />
+    <string name="recent_updates_tab_text" msgid="5813107516506908531">"\"<xliff:g id="UPDATE_TEXT">%s</xliff:g>\""</string>
     <string name="account_type_format" msgid="718948015590343010">"รายชื่อในสมุดโทรศัพท์จาก <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -461,10 +457,8 @@
     <string name="add_field" msgid="2384260056674995230">"เพิ่มฟิลด์อื่น"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"เพิ่มใหม่"</string>
     <string name="add_organization" msgid="7311893231158291197">"เพิ่มองค์กร"</string>
-    <!-- no translation found for event_edit_field_hint_text (5794424930242630477) -->
-    <skip />
-    <!-- no translation found for group_edit_field_hint_text (3966441850870457808) -->
-    <skip />
+    <string name="event_edit_field_hint_text" msgid="5794424930242630477">"วันที่"</string>
+    <string name="group_edit_field_hint_text" msgid="3966441850870457808">"ชื่อกลุ่ม"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"ผ่านทาง <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> ผ่านทาง <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"รายการโปรด"</string>
@@ -482,7 +476,7 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"เพิ่มในสมุดโทรศัพท์ของฉัน"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"ไดเรกทอรี <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"ไดเรกทอรี"</string>
-    <!-- outdated translation 1686089693064201315 -->     <string name="local_search_label" msgid="2551177578246113614">"สมุดโทรศัพท์"</string>
+    <string name="local_search_label" msgid="2551177578246113614">"รายชื่อติดต่อทั้งหมด"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"กำลังสร้างสำเนาส่วนบุคคล"</string>
     <string name="list_filter_prompt" msgid="7481426622828055116">"เลือกรายชื่อติดต่อ"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"รายชื่อติดต่อทั้งหมด"</string>
@@ -494,14 +488,13 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"กำหนดมุมมองที่กำหนดเอง"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"การตั้งค่า"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"รายชื่อติดต่อที่จะแสดง"</string>
-    <!-- outdated translation 1515262535785451190 -->     <string name="menu_settings" msgid="6523251616169246235">"ตัวเลือกการแสดงผล"</string>
+    <string name="menu_settings" msgid="6523251616169246235">"ตัวเลือกการแสดงผล"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"ตัวเลือกการแสดงผล"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"ค้นหารายชื่อติดต่อ"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"หมายเลขโทรศัพท์"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"เพิ่มลงในสมุดโทรศัพท์"</string>
-    <!-- no translation found for activity_title_confirm_add_detail (4065089866210730616) -->
-    <skip />
+    <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"เพิ่มลงในรายชื่อติดต่อ"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"ปิด"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"ระบุปี"</string>
@@ -538,7 +531,7 @@
     <string name="discard" msgid="1234315037371251414">"ยกเลิก"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"ตั้งค่าโปรไฟล์ของฉัน"</string>
-    <!-- outdated translation 2930510479516059437 -->     <string name="enter_contact_name" msgid="1738391320566349924">"ป้อนชื่อผู้ติดต่อ"</string>
+    <string name="enter_contact_name" msgid="1738391320566349924">"พิมพ์ชื่อของบุคคล"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"ดูการอัปเดต"</string>
   <plurals name="notification_voicemail_title">
     <item quantity="one" msgid="1746619685488504230">"ข้อความเสียง"</item>
@@ -546,16 +539,14 @@
   </plurals>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"ข้อความเสียงใหม่จาก <xliff:g id="CALLER">%1$s</xliff:g>"</string>
-    <!-- outdated translation 6148119635138385900 -->     <string name="voicemail_playback_error" msgid="1811242131549854624">"เล่นข้อความเสียงไม่ได้"</string>
-    <!-- outdated translation 2021957162133938725 -->     <string name="voicemail_buffering" msgid="738287747618697097">"กำลังเก็บบัฟเฟอร์..."</string>
-    <!-- no translation found for voicemail_fetching_content (877911315738258780) -->
-    <skip />
-    <!-- no translation found for voicemail_fetching_timout (6691792377574905201) -->
-    <skip />
+    <string name="voicemail_playback_error" msgid="1811242131549854624">"ไม่สามารถเล่นข้อความเสียง"</string>
+    <string name="voicemail_buffering" msgid="738287747618697097">"กำลังเก็บบัฟเฟอร์???"</string>
+    <string name="voicemail_fetching_content" msgid="877911315738258780">"กำลังดึงข้อความเสียง???"</string>
+    <string name="voicemail_fetching_timout" msgid="6691792377574905201">"ไม่สามารถดึงข้อความเสียง"</string>
     <string name="call_log_new_header" msgid="846546437517724715">"ใหม่"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"เก่ากว่า"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ข้อความเสียง"</string>
-    <string name="voicemail_status_messages_waiting" msgid="2970301042310727909">"ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ข้อความเสียง มีข้อความเสียงใหม่"</string>
+    <string name="voicemail_status_messages_waiting" msgid="2970301042310727909">"ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ข้อความเสียง มีข้อความเสียงใหม่"</string>
     <string name="voicemail_status_configure_voicemail" msgid="3940240432123700974">"กำหนดค่าข้อความเสียงของคุณ"</string>
     <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"ไม่มีเสียง"</string>
     <string name="voicemail_status_action_configure" msgid="7008713959076506385">"กำหนดค่า"</string>
@@ -569,31 +560,24 @@
     <string name="group_name_hint" msgid="2659811836386413509">"ชื่อกลุ่ม"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"ผู้ติดต่อทาง NFC"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"แสดงเฉพาะข้อความเสียง"</string>
-    <!-- no translation found for menu_show_all_calls (7560347482073345885) -->
-    <skip />
+    <string name="menu_show_all_calls" msgid="7560347482073345885">"แสดงการโทรทั้งหมด"</string>
     <string name="status_available" msgid="5586870015822828392">"ว่าง"</string>
     <string name="status_away" msgid="1838861100379804730">"ไม่อยู่"</string>
     <string name="status_busy" msgid="9147992455450257136">"ไม่ว่าง"</string>
-    <string name="description_call_log_call_button" msgid="8207201401459528442">"โทร"</string>
-    <string name="description_call_log_play_button" msgid="651182125650429846">"เปิดข้อความเสียง"</string>
+    <string name="description_call_log_call_button" msgid="8207201401459528442">"โทรออกหมายเลขนี้"</string>
+    <string name="description_call_log_play_button" msgid="651182125650429846">"เล่นข้อความเสียง"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"สายเรียกเข้า"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"สายโทรออก"</string>
     <string name="description_call_log_missed_call" msgid="2242805209983708825">"สายที่ไม่ได้รับ"</string>
     <string name="description_call_log_voicemail" msgid="4600798771975158948">"ข้อความเสียง"</string>
-    <!-- no translation found for description_add_contact (3103414772502485851) -->
-    <skip />
-    <!-- no translation found for description_view_contact (5205669345700598415) -->
-    <skip />
-    <!-- no translation found for description_call (3443678121983852666) -->
-    <skip />
-    <!-- no translation found for description_send_text_message (7803126439934046891) -->
-    <skip />
+    <string name="description_add_contact" msgid="3103414772502485851">"เพิ่มรายชื่อติดต่อ"</string>
+    <string name="description_view_contact" msgid="5205669345700598415">"ดูรายชื่อติดต่อ <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_call" msgid="3443678121983852666">"โทรหา <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_send_text_message" msgid="7803126439934046891">"ส่งข้อความไปที่ <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"ข้อความเสียงที่ยังไม่ได้ฟัง"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="9154761216179882405">"ฉัน"</string>
-    <!-- no translation found for local_profile_title (2021416826991393684) -->
-    <skip />
-    <!-- no translation found for external_profile_title (8034998767621359438) -->
-    <skip />
+    <string name="local_profile_title" msgid="2021416826991393684">"โปรไฟล์ในอุปกรณ์ของฉัน"</string>
+    <string name="external_profile_title" msgid="8034998767621359438">"โปรไฟล์ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> ของฉัน"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"แสดงที่อยู่ติดต่อทั้งหมด"</string>
 </resources>

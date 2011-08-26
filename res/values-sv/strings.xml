@@ -55,8 +55,8 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Ta bort"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Ny"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Ny"</string>
-    <!-- outdated translation 6716467920283502570 -->     <string name="splitConfirmation_title" msgid="2209511048593467012">"Dela upp kontakt"</string>
-    <!-- outdated translation 1150797297503944823 -->     <string name="splitConfirmation" msgid="1067993957986345974">"Vill du dela upp den här kontakten i flera kontakter, en för varje uppsättning kontaktinformation som kombinerats i den?"</string>
+    <string name="splitConfirmation_title" msgid="2209511048593467012">"Dela upp kontakt"</string>
+    <string name="splitConfirmation" msgid="1067993957986345974">"Vill du dela upp den här kontakten i flera olika kontakter?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Slå ihop"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Kombinera kontakter"</string>
     <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Välj en kontakt som du vill slå ihop med <xliff:g id="NAME">%s</xliff:g>."</string>
@@ -114,9 +114,9 @@
   </plurals>
     <string name="savingContact" msgid="4075751076741924939">"Sparar kontakt..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Sparar visningsalternativ ..."</string>
-    <!-- outdated translation 7152589189385441091 -->     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt sparad."</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt sparad"</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Fel: det går inte att spara kontakter."</string>
-    <!-- outdated translation 1168756874239833756 -->     <string name="groupSavedToast" msgid="6675062559302493011">"Gruppen sparades."</string>
+    <string name="groupSavedToast" msgid="6675062559302493011">"Gruppen sparades"</string>
     <string name="groupSavedErrorToast" msgid="6434135707953150875">"Fel: det gick inte att spara ändringen av gruppen."</string>
     <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"Ändringen har sparats."</string>
     <string name="contactAlreadyInGroup" msgid="6209708213229886092">"Kontakten har redan lagts i gruppen."</string>
@@ -134,6 +134,8 @@
     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Inga favoriter"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Inga kontakter i <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Kontakter i <xliff:g id="NAME">%s</xliff:g>"</string>
+    <!-- no translation found for listSingleContact (6067813698903535563) -->
+    <skip />
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 hittades"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> hittades"</item>
@@ -240,29 +242,26 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Importera alla vCard-filer"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Sökning efter vCard-data på lagringsenheten pågår"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Söker efter vCard-data på SD-kort"</string>
-    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Det gick inte att söka igenom lagringsenheten"</string>
-    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Det gick inte att söka igenom lagringsenheten"</string>
-    <!-- no translation found for scanning_sdcard_failed_message (8290634758602152611) -->
-    <skip />
-    <!-- no translation found for scanning_sdcard_failed_message (2462918339722946736) -->
-    <skip />
+    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Det gick inte att söka igenom lagringsenheten"</string>
+    <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Det gick inte att söka igenom SD-kortet"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8290634758602152611">"Det gick inte att söka igenom lagringsenheten (orsak: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="2462918339722946736">"Det gick inte att söka igenom SD-kortet (orsak: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O-fel"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Det finns för lite minne (filen kan vara för stor)"</string>
-    <!-- outdated translation 1201233722762680214 -->     <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"Det gick inte att analysera vCard av okänd anledning"</string>
+    <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"Det gick inte att analysera vCard av okänd anledning"</string>
     <string name="fail_reason_not_supported" msgid="294499264620201243">"Formatet stöds inte."</string>
-    <!-- outdated translation 7718330063493653085 -->     <string name="vcard_import_failed" msgid="8856125211629574066">"Det gick inte att importera vCard"</string>
+    <string name="vcard_import_failed" msgid="8856125211629574066">"Det gick inte att importera vCard"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"Det finns ingen vCard-fil på lagringsenheten"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Det finns ingen vCard-fil på SD-kortet"</string>
-    <!-- outdated translation 4154492282316067754 -->     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Det går inte att samla in metainformation för den eller de givna vCard-filerna."</string>
-    <!-- no translation found for fail_reason_failed_to_read_files (5823434810622484922) -->
-    <skip />
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Det gick inte att samla in metainformation för de angivna vCard-filerna."</string>
+    <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"En eller flera filer kunde inte importeras (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Okänt fel"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Välj vCard-fil"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"Cachelagrar vCard i lokalt tillfälligt utrymme"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"Importfunktionen cachelagrar vCard-fil(er) i lokalt tillfälligt utrymme. Den faktiska importen börjar snart."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Importerar <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Importerar <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- outdated translation 2162610359561887043 -->     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Det går inte att läsa vCard-data"</string>
+    <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Det gick inte att läsa vCard-data"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Läsning av vCard-data avbröts"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"vCard-filen <xliff:g id="FILENAME">%s</xliff:g> har importerats"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Importen av <xliff:g id="FILENAME">%s</xliff:g> avbröts"</string>
@@ -274,11 +273,9 @@
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"kontakt"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Bekräfta export"</string>
-    <!-- no translation found for confirm_export_message (4307437830474103759) -->
-    <skip />
-    <!-- outdated translation 585823094820602526 -->     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Det gick inte att exportera kontaktdata"</string>
-    <!-- no translation found for exporting_contact_failed_message (2704925031146288635) -->
-    <skip />
+    <string name="confirm_export_message" msgid="4307437830474103759">"Vill du exportera kontaktlistan till filen <xliff:g id="VCARD_FILENAME">%s</xliff:g>?"</string>
+    <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Det gick inte att exportera kontaktuppgifterna"</string>
+    <string name="exporting_contact_failed_message" msgid="2704925031146288635">"Det gick inte att exportera kontaktuppgifterna."\n"orsak: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Det finns ingen kontakt som kan exporteras"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"För många vCard-filer på lagringsenheten"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"För många vCard-filer på SD-kortet"</string>
@@ -289,7 +286,7 @@
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Exporterar kontaktuppgifter till: <xliff:g id="FILE_NAME">%s</xliff:g>"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Det gick inte att starta exportverktyget: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Ett fel uppstod under export: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
-    <!-- outdated translation 3723109558155169053 -->     <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Det gick inte att hämta databasinformation"</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Det gick inte att hämta databasinformation"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Det finns inga kontakter som kan exporteras. Om du vet att du har kontakter på pekdatorn kan problemet vara att en leverantör förhindrar att kontakterna exporteras från pekdatorn."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Det finns inga kontakter som kan exporteras. Om du vet att du har kontakter i telefonen kan problemet vara att en leverantör förhindrar att kontakterna exporteras från telefonen."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"vCard-kompositören är inte korrekt initierad"</string>
@@ -299,12 +296,12 @@
     <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"Vill du avbryta importen av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Avbryter vCard-export"</string>
     <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"Vill du avbryta exporten av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
-    <!-- outdated translation 7096533244663846810 -->     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard-import/-export kunde inte avbrytas"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Det gick inte att avbryta importen/exporten av vCard"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Dina kontakters namn"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Lägg till en paus på 2 sek."</string>
     <string name="add_wait" msgid="3360818652790319634">"Lägg till väntetid"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"Ring upp med"</string>
-    <string name="call_settings" msgid="5009897887137674341">"Samtalsinställningar"</string>
+    <!-- outdated translation 5009897887137674341 -->     <string name="call_settings" msgid="7666474782093693667">"Samtalsinställningar"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Skicka SMS med"</string>
     <string name="make_primary" msgid="5829291915305113983">"Kom ihåg det här valet"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Ingen app som kan hantera åtgärden hittades"</string>
@@ -314,13 +311,15 @@
     <string name="menu_import_export" msgid="3765725645491577190">"Importera/exportera"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importera/exportera kontakter"</string>
     <string name="menu_share" msgid="943789700636542260">"Dela"</string>
+    <!-- no translation found for menu_all_contacts (5101735431586050711) -->
+    <skip />
     <string name="share_via" msgid="563121028023030093">"Dela kontakt via"</string>
     <string name="share_error" msgid="4374508848981697170">"Den här kontakten kan inte delas."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Namn"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Smeknamn"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organisation"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Webbplats"</string>
-    <!-- outdated translation 8069912895912714412 -->     <string name="eventLabelsGroup" msgid="3695433812142818803">"Händelse"</string>
+    <string name="eventLabelsGroup" msgid="3695433812142818803">"Händelser"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Relation"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Grupper"</string>
     <string name="type_short_home" msgid="7770424864090605384">"H"</string>
@@ -417,13 +416,10 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Fonetiskt mellannamn"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Fonetiskt efternamn"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Fonetiskt namn"</string>
-    <!-- no translation found for connections (8098440723172028350) -->
-    <skip />
-    <!-- no translation found for add_connection_button (4861308615789601727) -->
-    <skip />
+    <string name="connections" msgid="8098440723172028350">"Anslutningar"</string>
+    <string name="add_connection_button" msgid="4861308615789601727">"Lägg till anslutning"</string>
     <string name="recent_updates" msgid="2062236709538790412">"Senaste"</string>
-    <!-- no translation found for recent_updates_tab_text (5813107516506908531) -->
-    <skip />
+    <string name="recent_updates_tab_text" msgid="5813107516506908531">"<xliff:g id="UPDATE_TEXT">%s</xliff:g>"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>-kontakt"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -461,10 +457,8 @@
     <string name="add_field" msgid="2384260056674995230">"Lägg till ett fält"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Lägg till ny"</string>
     <string name="add_organization" msgid="7311893231158291197">"Lägg till organisation"</string>
-    <!-- no translation found for event_edit_field_hint_text (5794424930242630477) -->
-    <skip />
-    <!-- no translation found for group_edit_field_hint_text (3966441850870457808) -->
-    <skip />
+    <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Datum"</string>
+    <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Gruppnamn"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"via <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> via <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"favorit"</string>
@@ -482,7 +476,7 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Lägg till i mina kontakter"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Katalog <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Katalog"</string>
-    <!-- outdated translation 1686089693064201315 -->     <string name="local_search_label" msgid="2551177578246113614">"Kontakter"</string>
+    <string name="local_search_label" msgid="2551177578246113614">"Alla kontakter"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"En personlig kopia skapas"</string>
     <string name="list_filter_prompt" msgid="7481426622828055116">"Välj kontaktlista"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Alla kontakter"</string>
@@ -494,14 +488,13 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Definiera anpassad visning"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Inställningar"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakter som ska visas"</string>
-    <!-- outdated translation 1515262535785451190 -->     <string name="menu_settings" msgid="6523251616169246235">"Visningsalternativ"</string>
+    <string name="menu_settings" msgid="6523251616169246235">"Visningsalternativ"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Visa alternativ"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Sök efter kontakter"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Telefonnummer"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Lägg till i Kontakter"</string>
-    <!-- no translation found for activity_title_confirm_add_detail (4065089866210730616) -->
-    <skip />
+    <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Lägg till kontakt"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Stäng"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Ange ett år"</string>
@@ -538,7 +531,7 @@
     <string name="discard" msgid="1234315037371251414">"Ignorera"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Skapa min profil"</string>
-    <!-- outdated translation 2930510479516059437 -->     <string name="enter_contact_name" msgid="1738391320566349924">"Ange kontaktens namn"</string>
+    <string name="enter_contact_name" msgid="1738391320566349924">"Ange personens namn"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Visa uppdateringar"</string>
   <plurals name="notification_voicemail_title">
     <item quantity="one" msgid="1746619685488504230">"Röstmeddelanden"</item>
@@ -546,12 +539,10 @@
   </plurals>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Nytt röstmeddelande från <xliff:g id="CALLER">%1$s</xliff:g>"</string>
-    <!-- outdated translation 6148119635138385900 -->     <string name="voicemail_playback_error" msgid="1811242131549854624">"det gick inte att spela upp röstmeddelandet"</string>
-    <!-- outdated translation 2021957162133938725 -->     <string name="voicemail_buffering" msgid="738287747618697097">"buffrar ..."</string>
-    <!-- no translation found for voicemail_fetching_content (877911315738258780) -->
-    <skip />
-    <!-- no translation found for voicemail_fetching_timout (6691792377574905201) -->
-    <skip />
+    <string name="voicemail_playback_error" msgid="1811242131549854624">"Det gick inte att spela upp röstmeddelandet."</string>
+    <string name="voicemail_buffering" msgid="738287747618697097">"Buffrar???"</string>
+    <string name="voicemail_fetching_content" msgid="877911315738258780">"Hämtar röstmedelande???"</string>
+    <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Det gick inte att hämta röstmeddelandet."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Nya"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Äldre"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"Det gick inte att ansluta till röstbrevlådan."</string>
@@ -569,8 +560,7 @@
     <string name="group_name_hint" msgid="2659811836386413509">"Gruppens namn"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Mott. v. NFC"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Visa bara röstmeddelanden"</string>
-    <!-- no translation found for menu_show_all_calls (7560347482073345885) -->
-    <skip />
+    <string name="menu_show_all_calls" msgid="7560347482073345885">"Visa alla samtal"</string>
     <string name="status_available" msgid="5586870015822828392">"Tillgänglig"</string>
     <string name="status_away" msgid="1838861100379804730">"Borta"</string>
     <string name="status_busy" msgid="9147992455450257136">"Upptagen"</string>
@@ -580,20 +570,14 @@
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Utgående samtal"</string>
     <string name="description_call_log_missed_call" msgid="2242805209983708825">"Missat samtal"</string>
     <string name="description_call_log_voicemail" msgid="4600798771975158948">"Röstmeddelande"</string>
-    <!-- no translation found for description_add_contact (3103414772502485851) -->
-    <skip />
-    <!-- no translation found for description_view_contact (5205669345700598415) -->
-    <skip />
-    <!-- no translation found for description_call (3443678121983852666) -->
-    <skip />
-    <!-- no translation found for description_send_text_message (7803126439934046891) -->
-    <skip />
+    <string name="description_add_contact" msgid="3103414772502485851">"Lägg till kontakt"</string>
+    <string name="description_view_contact" msgid="5205669345700598415">"Visa kontakten <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_call" msgid="3443678121983852666">"Ring <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_send_text_message" msgid="7803126439934046891">"Skicka SMS till <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Ej hört röstmeddelande"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="9154761216179882405">"JAG"</string>
-    <!-- no translation found for local_profile_title (2021416826991393684) -->
-    <skip />
-    <!-- no translation found for external_profile_title (8034998767621359438) -->
-    <skip />
+    <string name="local_profile_title" msgid="2021416826991393684">"Min lokala profil"</string>
+    <string name="external_profile_title" msgid="8034998767621359438">"Min <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-profil"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Visar alla kontakter"</string>
 </resources>

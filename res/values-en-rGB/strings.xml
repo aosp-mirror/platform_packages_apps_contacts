@@ -134,6 +134,7 @@
     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"No Favourites"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"No contacts in <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Contacts in <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="listSingleContact" msgid="6067813698903535563">"Single contact"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 found"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> found"</item>
@@ -240,29 +241,26 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Import all vCard files"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Searching for vCard data in storage"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Searching for vCard data on SD card"</string>
-    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Scanning storage failed"</string>
-    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Scanning storage failed"</string>
-    <!-- no translation found for scanning_sdcard_failed_message (8290634758602152611) -->
-    <skip />
-    <!-- no translation found for scanning_sdcard_failed_message (2462918339722946736) -->
-    <skip />
+    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Couldn\'t scan storage"</string>
+    <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Couldn\'t scan SD card"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8290634758602152611">"Couldn\'t scan storage (Reason: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="2462918339722946736">"Couldn\'t scan SD card (Reason: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O Error"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Memory is insufficient (the file may be too large)"</string>
-    <!-- outdated translation 1201233722762680214 -->     <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"Failed to parse vCard for unexpected reason"</string>
+    <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"Couldn\'t parse vCard for unexpected reason"</string>
     <string name="fail_reason_not_supported" msgid="294499264620201243">"The format is not supported."</string>
-    <!-- outdated translation 7718330063493653085 -->     <string name="vcard_import_failed" msgid="8856125211629574066">"Failed to import vCard"</string>
+    <string name="vcard_import_failed" msgid="8856125211629574066">"Couldn\'t import vCard"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"No vCard file found in the storage"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"No vCard file found on the SD card"</string>
-    <!-- outdated translation 4154492282316067754 -->     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Failed to collect meta information of given vCard file(s)."</string>
-    <!-- no translation found for fail_reason_failed_to_read_files (5823434810622484922) -->
-    <skip />
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Couldn\'t collect meta information of given vCard file(s)."</string>
+    <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"One or more files couldn\'t be imported (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Unknown error"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Select vCard file"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"Caching vCard(s) to local temporary storage"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"Importer is caching vCard(s) to local temporary storage. Actual import will start soon."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Importing <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Importing <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- outdated translation 2162610359561887043 -->     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Failed to Read vCard data"</string>
+    <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Couldn\'t read vCard data"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Reading vCard data was cancelled"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Finished importing vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Importing <xliff:g id="FILENAME">%s</xliff:g> was cancelled"</string>
@@ -275,9 +273,8 @@
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Confirm export"</string>
     <string name="confirm_export_message" msgid="4307437830474103759">"Export your contact list to file \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
-    <!-- outdated translation 585823094820602526 -->     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Failed to export contact data"</string>
-    <!-- no translation found for exporting_contact_failed_message (2704925031146288635) -->
-    <skip />
+    <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Couldn\'t export contact data"</string>
+    <string name="exporting_contact_failed_message" msgid="2704925031146288635">"Couldn\'t export contact data."\n"Reason: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"There is no exportable contact"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Too many vCard files in the storage"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Too many vCard files on the SD card"</string>
@@ -288,7 +285,7 @@
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Exporting contact data to \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Could not initialise the exporter. \"<xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Error occured during export: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
-    <!-- outdated translation 3723109558155169053 -->     <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Failed to get database information"</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Couldn\'t get database information"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"There are no exportable contacts. If you do have contacts on your tablet, all the contacts may be prohibited from being exported outside the tablet by some data providers."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"There are no exportable contacts. If you do have contacts on your phone, all the contacts may be prohibited from being exported outside the phone by some data providers."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"The vCard composer is not initialised correctly"</string>
@@ -298,12 +295,12 @@
     <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"Are you sure that you want to cancel importing <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Cancelling vCard export"</string>
     <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"Are you sure that you want to cancel exporting <xliff:g id="FILENAME">%s</xliff:g>?"</string>
-    <!-- outdated translation 7096533244663846810 -->     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Failed to cancel vCard import/export"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Couldn\'t cancel vCard import/export"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Names of your contacts"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Add 2-sec pause"</string>
     <string name="add_wait" msgid="3360818652790319634">"Add wait"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"Call using"</string>
-    <string name="call_settings" msgid="5009897887137674341">"Call settings"</string>
+    <string name="call_settings" msgid="7666474782093693667">"Settings"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Text using"</string>
     <string name="make_primary" msgid="5829291915305113983">"Remember this choice"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"No application found to handle this action"</string>
@@ -313,6 +310,7 @@
     <string name="menu_import_export" msgid="3765725645491577190">"Import/Export"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Import/Export contacts"</string>
     <string name="menu_share" msgid="943789700636542260">"Share"</string>
+    <string name="menu_all_contacts" msgid="5101735431586050711">"All contacts"</string>
     <string name="share_via" msgid="563121028023030093">"Share contact via"</string>
     <string name="share_error" msgid="4374508848981697170">"This contact cannot be shared."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Name"</string>
@@ -539,10 +537,10 @@
   </plurals>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"New voicemail from <xliff:g id="CALLER">%1$s</xliff:g>"</string>
-    <!-- outdated translation 6148119635138385900 -->     <string name="voicemail_playback_error" msgid="1811242131549854624">"failed to play voicemail"</string>
-    <!-- outdated translation 2021957162133938725 -->     <string name="voicemail_buffering" msgid="738287747618697097">"buffering..."</string>
-    <!-- outdated translation 8516068803491833243 -->     <string name="voicemail_fetching_content" msgid="877911315738258780">"fetching voicemail..."</string>
-    <!-- outdated translation 3430908587639305983 -->     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"failed to fetch voicemail"</string>
+    <string name="voicemail_playback_error" msgid="1811242131549854624">"Couldn\'t play voicemail."</string>
+    <string name="voicemail_buffering" msgid="738287747618697097">"Buffering???"</string>
+    <string name="voicemail_fetching_content" msgid="877911315738258780">"Fetching voicemail???"</string>
+    <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Couldn\'t fetch voicemail."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"New"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Older"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"Cannot connect to voicemail server."</string>
