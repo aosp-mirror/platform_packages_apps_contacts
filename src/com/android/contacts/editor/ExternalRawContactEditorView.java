@@ -114,7 +114,8 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
      * apply to that state.
      */
     @Override
-    public void setState(EntityDelta state, AccountType type, ViewIdGenerator vig) {
+    public void setState(EntityDelta state, AccountType type, ViewIdGenerator vig,
+            boolean isProfile) {
         // Remove any existing sections
         mGeneral.removeAllViews();
 
@@ -129,15 +130,27 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
         mAccountName = values.getAsString(RawContacts.ACCOUNT_NAME);
         mAccountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
         mDataSet = values.getAsString(RawContacts.DATA_SET);
-        CharSequence accountType = type.getDisplayLabel(mContext);
-        if (TextUtils.isEmpty(accountType)) {
-            accountType = mContext.getString(R.string.account_phone);
+
+        if (isProfile) {
+            mAccountNameTextView.setVisibility(View.GONE);
+            if (TextUtils.isEmpty(mAccountName)) {
+                mAccountTypeTextView.setText(R.string.local_profile_title);
+            } else {
+                mAccountTypeTextView.setText(
+                        mContext.getString(R.string.external_profile_title, mAccountName));
+            }
+        } else {
+            CharSequence accountType = type.getDisplayLabel(mContext);
+            if (TextUtils.isEmpty(accountType)) {
+                accountType = mContext.getString(R.string.account_phone);
+            }
+            if (!TextUtils.isEmpty(mAccountName)) {
+                mAccountNameTextView.setText(
+                        mContext.getString(R.string.from_account_format, mAccountName));
+            }
+            mAccountTypeTextView.setText(mContext.getString(R.string.account_type_format,
+                    accountType));
         }
-        if (!TextUtils.isEmpty(mAccountName)) {
-            mAccountNameTextView.setText(
-                    mContext.getString(R.string.from_account_format, mAccountName));
-        }
-        mAccountTypeTextView.setText(mContext.getString(R.string.account_type_format, accountType));
         mAccountTypeTextView.setTextColor(mContext.getResources().getColor(
                 R.color.secondary_text_color));
 
