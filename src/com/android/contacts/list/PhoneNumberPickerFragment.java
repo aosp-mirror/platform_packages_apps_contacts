@@ -94,17 +94,29 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     private void updateFilterHeaderView() {
         if (mAccountFilterHeaderView != null) {
             ContactListFilter filter = getFilter();
-            if (filter != null
-                    && !isSearchMode()
-                    && filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
-                mAccountFilterHeaderContainer.setVisibility(View.VISIBLE);
-                mAccountFilterHeaderView.setText(getContext().getString(
-                        R.string.listAllContactsInAccount, filter.accountName));
-                mPaddingView.setVisibility(View.GONE);
-            } else {
-                mAccountFilterHeaderContainer.setVisibility(View.GONE);
-                mPaddingView.setVisibility(View.VISIBLE);
+            if (filter != null && !isSearchMode()) {
+                if (filter.filterType == ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
+                    mAccountFilterHeaderContainer.setVisibility(View.VISIBLE);
+                    mAccountFilterHeaderView.setText(getContext().getString(
+                            R.string.listSingleContact));
+                    mPaddingView.setVisibility(View.GONE);
+                    return;
+                } else if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
+                    mAccountFilterHeaderContainer.setVisibility(View.VISIBLE);
+                    mAccountFilterHeaderView.setText(getContext().getString(
+                            R.string.listCustomView));
+                    mPaddingView.setVisibility(View.GONE);
+                    return;
+                } else if (filter.filterType != ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
+                    mAccountFilterHeaderContainer.setVisibility(View.VISIBLE);
+                    mAccountFilterHeaderView.setText(getContext().getString(
+                            R.string.listAllContactsInAccount, filter.accountName));
+                    mPaddingView.setVisibility(View.GONE);
+                    return;
+                }
             }
+            mAccountFilterHeaderContainer.setVisibility(View.GONE);
+            mPaddingView.setVisibility(View.VISIBLE);
         }
     }
 
