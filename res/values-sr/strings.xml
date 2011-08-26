@@ -55,8 +55,8 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Избриши"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Ново"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Нова"</string>
-    <!-- outdated translation 6716467920283502570 -->     <string name="splitConfirmation_title" msgid="2209511048593467012">"Раздвоји контакт"</string>
-    <!-- outdated translation 1150797297503944823 -->     <string name="splitConfirmation" msgid="1067993957986345974">"Желите ли заиста да поделите овај контакт у више контаката: по један контакт за сваки скуп информација о контакту придружен њему?"</string>
+    <string name="splitConfirmation_title" msgid="2209511048593467012">"Раздвајање контаката"</string>
+    <string name="splitConfirmation" msgid="1067993957986345974">"Да ли сте сигурни да желите да раздвојите овај појединачни контакт на више контаката?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Придружи"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Придруживање контаката"</string>
     <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Изаберите контакт који желите да придружите контакту <xliff:g id="NAME">%s</xliff:g>."</string>
@@ -114,9 +114,9 @@
   </plurals>
     <string name="savingContact" msgid="4075751076741924939">"Чување контакта је у току..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Чување опција приказа је у току..."</string>
-    <!-- outdated translation 7152589189385441091 -->     <string name="contactSavedToast" msgid="9171862279493213075">"Контакт је сачуван."</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"Контакт је сачуван"</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Дошло је до грешке и није било могуће сачувати промене контаката."</string>
-    <!-- outdated translation 1168756874239833756 -->     <string name="groupSavedToast" msgid="6675062559302493011">"Група је сачувана."</string>
+    <string name="groupSavedToast" msgid="6675062559302493011">"Група је сачувана"</string>
     <string name="groupSavedErrorToast" msgid="6434135707953150875">"Дошло је до грешке и није било могуће сачувати промене групе."</string>
     <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"Промена је сачувана."</string>
     <string name="contactAlreadyInGroup" msgid="6209708213229886092">"Контакт је већ додат групи."</string>
@@ -134,6 +134,8 @@
     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Нема омиљених"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Нема контаката у групи <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Контакти за <xliff:g id="NAME">%s</xliff:g>"</string>
+    <!-- no translation found for listSingleContact (6067813698903535563) -->
+    <skip />
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 пронађен"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> пронађено"</item>
@@ -274,8 +276,7 @@
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"контакт"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Потврдите извоз"</string>
-    <!-- no translation found for confirm_export_message (4307437830474103759) -->
-    <skip />
+    <string name="confirm_export_message" msgid="4307437830474103759">"Желите ли да извезете листу контаката у датотеку „<xliff:g id="VCARD_FILENAME">%s</xliff:g>“?"</string>
     <!-- outdated translation 585823094820602526 -->     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Извоз података о контактима није успео"</string>
     <!-- no translation found for exporting_contact_failed_message (2704925031146288635) -->
     <skip />
@@ -304,7 +305,7 @@
     <string name="add_2sec_pause" msgid="9214012315201040129">"Додај паузу од 2 секунде"</string>
     <string name="add_wait" msgid="3360818652790319634">"Додај чекање"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"Позови помоћу"</string>
-    <string name="call_settings" msgid="5009897887137674341">"Подешавања позива"</string>
+    <!-- outdated translation 5009897887137674341 -->     <string name="call_settings" msgid="7666474782093693667">"Подешавања позива"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Пошаљи SMS помоћу"</string>
     <string name="make_primary" msgid="5829291915305113983">"Запамти овај избор"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Није пронађена ниједна апликација која би могла да изврши ову радњу"</string>
@@ -314,13 +315,15 @@
     <string name="menu_import_export" msgid="3765725645491577190">"Увоз/извоз"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Увоз/извоз контаката"</string>
     <string name="menu_share" msgid="943789700636542260">"Дели"</string>
+    <!-- no translation found for menu_all_contacts (5101735431586050711) -->
+    <skip />
     <string name="share_via" msgid="563121028023030093">"Дели контакт преко"</string>
     <string name="share_error" msgid="4374508848981697170">"Овај контакт се не може делити."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Име"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Надимак"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Организација"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Веб сајт"</string>
-    <!-- outdated translation 8069912895912714412 -->     <string name="eventLabelsGroup" msgid="3695433812142818803">"Догађај"</string>
+    <string name="eventLabelsGroup" msgid="3695433812142818803">"Догађаји"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Однос"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Групе"</string>
     <string name="type_short_home" msgid="7770424864090605384">"К"</string>
@@ -417,13 +420,10 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Средње име – фонетски"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Презиме – фонетски"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Име – фонетски"</string>
-    <!-- no translation found for connections (8098440723172028350) -->
-    <skip />
-    <!-- no translation found for add_connection_button (4861308615789601727) -->
-    <skip />
+    <string name="connections" msgid="8098440723172028350">"Везе"</string>
+    <string name="add_connection_button" msgid="4861308615789601727">"Додај везу"</string>
     <string name="recent_updates" msgid="2062236709538790412">"Недавно"</string>
-    <!-- no translation found for recent_updates_tab_text (5813107516506908531) -->
-    <skip />
+    <string name="recent_updates_tab_text" msgid="5813107516506908531">"„<xliff:g id="UPDATE_TEXT">%s</xliff:g>“"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> контакт"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -461,10 +461,8 @@
     <string name="add_field" msgid="2384260056674995230">"Додај друго поље"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Додај ново"</string>
     <string name="add_organization" msgid="7311893231158291197">"Додај организацију"</string>
-    <!-- no translation found for event_edit_field_hint_text (5794424930242630477) -->
-    <skip />
-    <!-- no translation found for group_edit_field_hint_text (3966441850870457808) -->
-    <skip />
+    <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Датум"</string>
+    <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Назив групе"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"преко <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> преко <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"омиљено"</string>
@@ -482,7 +480,7 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Додај у Моје контакте"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Каталог <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Каталог"</string>
-    <!-- outdated translation 1686089693064201315 -->     <string name="local_search_label" msgid="2551177578246113614">"Контакти"</string>
+    <string name="local_search_label" msgid="2551177578246113614">"Сви контакти"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"Креирање личне копије"</string>
     <string name="list_filter_prompt" msgid="7481426622828055116">"Одаберите листу контаката"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Сви контакти"</string>
@@ -494,14 +492,13 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Дефинисање прилагођеног приказа"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Подешавања"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Контакти за приказ"</string>
-    <!-- outdated translation 1515262535785451190 -->     <string name="menu_settings" msgid="6523251616169246235">"Опције приказа"</string>
+    <string name="menu_settings" msgid="6523251616169246235">"Опције приказа"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Опције приказа"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Пронађи контакте"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Број телефона"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Додај у контакте"</string>
-    <!-- no translation found for activity_title_confirm_add_detail (4065089866210730616) -->
-    <skip />
+    <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Додајте контакту"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Затвори"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Наведите годину"</string>
@@ -538,7 +535,7 @@
     <string name="discard" msgid="1234315037371251414">"Одбаци"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Подеси мој профил"</string>
-    <!-- outdated translation 2930510479516059437 -->     <string name="enter_contact_name" msgid="1738391320566349924">"Унесите име контакта"</string>
+    <string name="enter_contact_name" msgid="1738391320566349924">"Унесите име особе"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Прикажи ажурирања"</string>
   <plurals name="notification_voicemail_title">
     <item quantity="one" msgid="1746619685488504230">"Говорна пошта"</item>
@@ -548,18 +545,16 @@
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Нова говорна порука од <xliff:g id="CALLER">%1$s</xliff:g>"</string>
     <!-- outdated translation 6148119635138385900 -->     <string name="voicemail_playback_error" msgid="1811242131549854624">"пуштање говорне поруке није успело"</string>
     <!-- outdated translation 2021957162133938725 -->     <string name="voicemail_buffering" msgid="738287747618697097">"чување у међумеморији..."</string>
-    <!-- no translation found for voicemail_fetching_content (877911315738258780) -->
-    <skip />
-    <!-- no translation found for voicemail_fetching_timout (6691792377574905201) -->
-    <skip />
+    <!-- outdated translation 8516068803491833243 -->     <string name="voicemail_fetching_content" msgid="877911315738258780">"преузимање говорне поште..."</string>
+    <!-- outdated translation 3430908587639305983 -->     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"преузимање говорне поште није успело"</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Ново"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Старије"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"Није могуће повезати се са сервером говорне поште."</string>
-    <string name="voicemail_status_messages_waiting" msgid="2970301042310727909">"Није могућа веза са серв. гов. поште. Нове гов. пор. су на чекању."</string>
+    <string name="voicemail_status_messages_waiting" msgid="2970301042310727909">"Није могућа веза са сервером. Нове говорне поруке су на чекању."</string>
     <string name="voicemail_status_configure_voicemail" msgid="3940240432123700974">"Конфигуришите говорну пошту."</string>
     <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Звук није доступан."</string>
     <string name="voicemail_status_action_configure" msgid="7008713959076506385">"Конфигуриши"</string>
-    <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"Зовите говорну пошту"</string>
+    <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"Зови говорну пошту"</string>
     <string name="voicemail_speed_slowest" msgid="6047030504814773029">"најмања брзина"</string>
     <string name="voicemail_speed_slower" msgid="7890393922358642543">"мала брзина"</string>
     <string name="voicemail_speed_normal" msgid="6030110237820243006">"нормална брзина"</string>
@@ -569,8 +564,7 @@
     <string name="group_name_hint" msgid="2659811836386413509">"Назив групе"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Контакт преко NFC-а"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Прикажи само говорне поруке"</string>
-    <!-- no translation found for menu_show_all_calls (7560347482073345885) -->
-    <skip />
+    <string name="menu_show_all_calls" msgid="7560347482073345885">"Прикажи све позиве"</string>
     <string name="status_available" msgid="5586870015822828392">"Доступан/на"</string>
     <string name="status_away" msgid="1838861100379804730">"Одсутан/на"</string>
     <string name="status_busy" msgid="9147992455450257136">"Заузет/а"</string>
@@ -580,20 +574,14 @@
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Одлазни позив"</string>
     <string name="description_call_log_missed_call" msgid="2242805209983708825">"Пропуштен позив"</string>
     <string name="description_call_log_voicemail" msgid="4600798771975158948">"Говорна пошта"</string>
-    <!-- no translation found for description_add_contact (3103414772502485851) -->
-    <skip />
-    <!-- no translation found for description_view_contact (5205669345700598415) -->
-    <skip />
-    <!-- no translation found for description_call (3443678121983852666) -->
-    <skip />
-    <!-- no translation found for description_send_text_message (7803126439934046891) -->
-    <skip />
+    <string name="description_add_contact" msgid="3103414772502485851">"Додавање контакта"</string>
+    <string name="description_view_contact" msgid="5205669345700598415">"Прикажи контакт <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_call" msgid="3443678121983852666">"Позови корисника <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_send_text_message" msgid="7803126439934046891">"Слање текстуалне поруке контакту <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Непреслушана говорна пошта"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="9154761216179882405">"ЈА"</string>
-    <!-- no translation found for local_profile_title (2021416826991393684) -->
-    <skip />
-    <!-- no translation found for external_profile_title (8034998767621359438) -->
-    <skip />
+    <string name="local_profile_title" msgid="2021416826991393684">"Мој локални профил"</string>
+    <string name="external_profile_title" msgid="8034998767621359438">"Мој <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> профил"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Приказани су сви контакти"</string>
 </resources>

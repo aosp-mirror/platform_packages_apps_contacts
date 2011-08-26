@@ -55,8 +55,8 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Izbriši"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Novo"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Novo"</string>
-    <!-- outdated translation 6716467920283502570 -->     <string name="splitConfirmation_title" msgid="2209511048593467012">"Odvoji kontakt"</string>
-    <!-- outdated translation 1150797297503944823 -->     <string name="splitConfirmation" msgid="1067993957986345974">"Jeste li sigurni da želite podijeliti ovaj kontakt u više kontakata: jedan za svaki skup podataka za kontakt koji su mu pridruženi?"</string>
+    <string name="splitConfirmation_title" msgid="2209511048593467012">"Razdvoji kontakt"</string>
+    <string name="splitConfirmation" msgid="1067993957986345974">"Jeste li sigurni da ovaj kontakt želite razdijeliti u više kontakata?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Pridruži se"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Pridruži kontakte"</string>
     <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Odaberite kontakt koji želite pridružiti s <xliff:g id="NAME">%s</xliff:g>."</string>
@@ -101,8 +101,8 @@
     <string name="default_ringtone" msgid="9099988849649827972">"Zadano"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Ukloni fotografiju"</string>
     <string name="noContacts" msgid="4955659076981974652">"Nema kontakata"</string>
-    <string name="noGroups" msgid="7315200974181864731">"Nema skupina"</string>
-    <string name="noAccounts" msgid="4742609114153797268">"Za izradu skupina trebate račun"</string>
+    <string name="noGroups" msgid="7315200974181864731">"Nema grupa"</string>
+    <string name="noAccounts" msgid="4742609114153797268">"Za izradu grupa trebate račun"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Nisu pronađeni podudarni kontakti."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Nema kontakata s telefonskim brojevima."</string>
     <string name="headerContactGroups" msgid="2426134991932503843">"Odaberite kontakte za prikaz"</string>
@@ -114,9 +114,9 @@
   </plurals>
     <string name="savingContact" msgid="4075751076741924939">"Spremanje kontakta..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Spremanje opcija prikaza..."</string>
-    <!-- outdated translation 7152589189385441091 -->     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt je spremljen."</string>
+    <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt je spremljen"</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Pogreška, nije moguće spremiti promjene kontakta."</string>
-    <!-- outdated translation 1168756874239833756 -->     <string name="groupSavedToast" msgid="6675062559302493011">"Skupina spremljena."</string>
+    <string name="groupSavedToast" msgid="6675062559302493011">"Grupa je spremljena"</string>
     <string name="groupSavedErrorToast" msgid="6434135707953150875">"Pogreška, nije moguće spremiti promjene skupine."</string>
     <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"Promjena je spremljena."</string>
     <string name="contactAlreadyInGroup" msgid="6209708213229886092">"Kontakt je već dodan skupini."</string>
@@ -134,6 +134,8 @@
     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Nema favorita"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Nema kontakata pod: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Kontakti u <xliff:g id="NAME">%s</xliff:g>"</string>
+    <!-- no translation found for listSingleContact (6067813698903535563) -->
+    <skip />
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 pronađen"</item>
     <item quantity="other" msgid="3852668542926965042">"Pronađeno kontakata: <xliff:g id="COUNT">%d</xliff:g>"</item>
@@ -274,8 +276,7 @@
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"kontakt"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Potvrdite izvoz"</string>
-    <!-- no translation found for confirm_export_message (4307437830474103759) -->
-    <skip />
+    <string name="confirm_export_message" msgid="4307437830474103759">"Izvesti popis kontakata u datoteku \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
     <!-- outdated translation 585823094820602526 -->     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Izvoz podataka o kontaktu nije uspio."</string>
     <!-- no translation found for exporting_contact_failed_message (2704925031146288635) -->
     <skip />
@@ -304,7 +305,7 @@
     <string name="add_2sec_pause" msgid="9214012315201040129">"Dodaj pauzu od 2 sek."</string>
     <string name="add_wait" msgid="3360818652790319634">"Dodaj čekanje"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"Nazovi koristeći"</string>
-    <string name="call_settings" msgid="5009897887137674341">"Postavke poziva"</string>
+    <!-- outdated translation 5009897887137674341 -->     <string name="call_settings" msgid="7666474782093693667">"Postavke poziva"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Poruka korištenjem"</string>
     <string name="make_primary" msgid="5829291915305113983">"Zapamti ovaj izbor"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Nije pronađena aplikacija za upravljanje ovom radnjom"</string>
@@ -314,13 +315,15 @@
     <string name="menu_import_export" msgid="3765725645491577190">"Uvoz/izvoz"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Uvoz//Izvoz kontakata"</string>
     <string name="menu_share" msgid="943789700636542260">"Podijeli"</string>
+    <!-- no translation found for menu_all_contacts (5101735431586050711) -->
+    <skip />
     <string name="share_via" msgid="563121028023030093">"Dijeli kontakt putem"</string>
     <string name="share_error" msgid="4374508848981697170">"Ovaj se kontakt ne može dijeliti."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Ime"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Nadimak"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organizacija"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Web-lokacija"</string>
-    <!-- outdated translation 8069912895912714412 -->     <string name="eventLabelsGroup" msgid="3695433812142818803">"Događaj"</string>
+    <string name="eventLabelsGroup" msgid="3695433812142818803">"Događaji"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Odnos"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Grupe"</string>
     <string name="type_short_home" msgid="7770424864090605384">"K"</string>
@@ -417,13 +420,10 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Fonetsko srednje ime"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Fonetsko prezime"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Ime fonetski"</string>
-    <!-- no translation found for connections (8098440723172028350) -->
-    <skip />
-    <!-- no translation found for add_connection_button (4861308615789601727) -->
-    <skip />
+    <string name="connections" msgid="8098440723172028350">"Veze"</string>
+    <string name="add_connection_button" msgid="4861308615789601727">"Dodaj vezu"</string>
     <string name="recent_updates" msgid="2062236709538790412">"Nedavni"</string>
-    <!-- no translation found for recent_updates_tab_text (5813107516506908531) -->
-    <skip />
+    <string name="recent_updates_tab_text" msgid="5813107516506908531">"\"<xliff:g id="UPDATE_TEXT">%s</xliff:g>\""</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kontakt"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -461,10 +461,8 @@
     <string name="add_field" msgid="2384260056674995230">"Dodaj drugo polje"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Dodaj novo"</string>
     <string name="add_organization" msgid="7311893231158291197">"Dodaj organizaciju"</string>
-    <!-- no translation found for event_edit_field_hint_text (5794424930242630477) -->
-    <skip />
-    <!-- no translation found for group_edit_field_hint_text (3966441850870457808) -->
-    <skip />
+    <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Datum"</string>
+    <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Naziv grupe"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"preko izvora <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> preko izvora <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="description_star" msgid="2605854427360036550">"favorit"</string>
@@ -482,7 +480,7 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Dodaj u Moje kontakte"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Direktorij <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Direktorij"</string>
-    <!-- outdated translation 1686089693064201315 -->     <string name="local_search_label" msgid="2551177578246113614">"Kontakti"</string>
+    <string name="local_search_label" msgid="2551177578246113614">"Svi kontakti"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"Stvaranje osobne kopije"</string>
     <string name="list_filter_prompt" msgid="7481426622828055116">"Odaberite popis kontakata"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Svi kontakti"</string>
@@ -494,14 +492,13 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Definiranje prilagođenog prikaza"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Postavke"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakti za prikaz"</string>
-    <!-- outdated translation 1515262535785451190 -->     <string name="menu_settings" msgid="6523251616169246235">"Opcije prikaza"</string>
+    <string name="menu_settings" msgid="6523251616169246235">"Opcije prikaza"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Opcije prikaza"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Pronađi kontakte"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Broj telefona"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Dodaj kontaktima"</string>
-    <!-- no translation found for activity_title_confirm_add_detail (4065089866210730616) -->
-    <skip />
+    <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Dodavanje kontaktu"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Zatvori"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Navesti godinu"</string>
@@ -520,8 +517,8 @@
   </plurals>
     <string name="delete_group_dialog_message" msgid="295063284548750881">"Jeste li sigurni da želite izbrisati grupu \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Sami kontakti neće biti izbrisani.)"</string>
   <plurals name="num_contacts_in_group">
-    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> osoba iz skupine <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
-    <item quantity="other" msgid="8146027769011086349">"Broj ljudi: <xliff:g id="COUNT_0">%1$d</xliff:g> iz skupine <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
+    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> osoba iz grupe <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
+    <item quantity="other" msgid="8146027769011086349">"Broj ljudi: <xliff:g id="COUNT_0">%1$d</xliff:g> iz grupe <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
   </plurals>
   <plurals name="group_list_num_contacts_in_group">
     <item quantity="one" msgid="3323065321661972446">"Broj osoba: <xliff:g id="COUNT">%1$d</xliff:g>"</item>
@@ -538,20 +535,18 @@
     <string name="discard" msgid="1234315037371251414">"Odbaci"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g><xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Postavi moj profil"</string>
-    <!-- outdated translation 2930510479516059437 -->     <string name="enter_contact_name" msgid="1738391320566349924">"Unesite ime kontakta"</string>
+    <string name="enter_contact_name" msgid="1738391320566349924">"Upišite ime osobe"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Prikaži ažuriranja"</string>
   <plurals name="notification_voicemail_title">
     <item quantity="one" msgid="1746619685488504230">"Govorna pošta"</item>
-    <item quantity="other" msgid="5513481419205061254">"Br. govornih pošti: <xliff:g id="COUNT">%1$d</xliff:g>"</item>
+    <item quantity="other" msgid="5513481419205061254">"Br. govornih pošta: <xliff:g id="COUNT">%1$d</xliff:g>"</item>
   </plurals>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Nova govorna pošta od kontakta <xliff:g id="CALLER">%1$s</xliff:g>"</string>
     <!-- outdated translation 6148119635138385900 -->     <string name="voicemail_playback_error" msgid="1811242131549854624">"neuspjela reprodukcija govorne pošte"</string>
     <!-- outdated translation 2021957162133938725 -->     <string name="voicemail_buffering" msgid="738287747618697097">"predmemoriranje..."</string>
-    <!-- no translation found for voicemail_fetching_content (877911315738258780) -->
-    <skip />
-    <!-- no translation found for voicemail_fetching_timout (6691792377574905201) -->
-    <skip />
+    <!-- outdated translation 8516068803491833243 -->     <string name="voicemail_fetching_content" msgid="877911315738258780">"dohvaćanje govorne pošte..."</string>
+    <!-- outdated translation 3430908587639305983 -->     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"neuspjelo dohvaćanje govorne pošte"</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Novo"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Starije"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"Povezivanje s poslužiteljem govorne pošte nije moguće."</string>
@@ -566,11 +561,10 @@
     <string name="voicemail_speed_faster" msgid="4161478290979905481">"brzo"</string>
     <string name="voicemail_speed_fastest" msgid="3373646875150544205">"najbrže"</string>
     <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
-    <string name="group_name_hint" msgid="2659811836386413509">"Ime skupine"</string>
+    <string name="group_name_hint" msgid="2659811836386413509">"Ime grupe"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Kontakt NFC-om"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Prikaži samo govorne pošte"</string>
-    <!-- no translation found for menu_show_all_calls (7560347482073345885) -->
-    <skip />
+    <string name="menu_show_all_calls" msgid="7560347482073345885">"Prikaz svih poziva"</string>
     <string name="status_available" msgid="5586870015822828392">"Dostupan"</string>
     <string name="status_away" msgid="1838861100379804730">"Odsutan"</string>
     <string name="status_busy" msgid="9147992455450257136">"Zauzet"</string>
@@ -580,20 +574,14 @@
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Odlazni poziv"</string>
     <string name="description_call_log_missed_call" msgid="2242805209983708825">"Propušteni poziv"</string>
     <string name="description_call_log_voicemail" msgid="4600798771975158948">"Govorna pošta"</string>
-    <!-- no translation found for description_add_contact (3103414772502485851) -->
-    <skip />
-    <!-- no translation found for description_view_contact (5205669345700598415) -->
-    <skip />
-    <!-- no translation found for description_call (3443678121983852666) -->
-    <skip />
-    <!-- no translation found for description_send_text_message (7803126439934046891) -->
-    <skip />
+    <string name="description_add_contact" msgid="3103414772502485851">"Dodaj kontakt"</string>
+    <string name="description_view_contact" msgid="5205669345700598415">"Prikaz kontakta <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_call" msgid="3443678121983852666">"Pozovi: <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_send_text_message" msgid="7803126439934046891">"Slanje tekstualne poruke: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Nepreslušana govorna pošta"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="9154761216179882405">"JA"</string>
-    <!-- no translation found for local_profile_title (2021416826991393684) -->
-    <skip />
-    <!-- no translation found for external_profile_title (8034998767621359438) -->
-    <skip />
+    <string name="local_profile_title" msgid="2021416826991393684">"Moj lokalni profil"</string>
+    <string name="external_profile_title" msgid="8034998767621359438">"Moj <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> profil"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Prikaz svih kontakata"</string>
 </resources>
