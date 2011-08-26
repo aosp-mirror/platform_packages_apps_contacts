@@ -23,14 +23,12 @@
     <item
         android:id="@+id/menu_add_contact"
         android:icon="@drawable/ic_menu_add_contact_holo_dark"
-        android:title="@string/menu_new_contact_action_bar"
-        android:showAsAction="withText" />
+        android:title="@string/menu_new_contact_action_bar" />
 
     <item
         android:id="@+id/menu_add_group"
         android:icon="@drawable/ic_menu_add_group_holo_dark"
-        android:title="@string/menu_new_group_action_bar"
-        android:showAsAction="withText" />
+        android:title="@string/menu_new_group_action_bar" />
 
     <!-- Added orderInCategory to keep the following buttons at the end of the menu
          Buttons will be added in the order added/inflated. Ordered buttons will be added

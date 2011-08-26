@@ -14,40 +14,18 @@
      limitations under the License.
 -->
 
-<LinearLayout
+<!--
+  Custom action bar button for creating new groups. This is a custom view so
+  that we can anchor the account list dropdown from this view when creating a group.
+-->
+
+<ImageView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/icon"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:divider="?android:attr/dividerVertical"
-    android:showDividers="end"
-    android:dividerPadding="12dip"
-    android:orientation="horizontal">
-
-    <LinearLayout
-        style="?android:attr/actionButtonStyle"
-        android:id="@+id/menu_item"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="8dip"
-            android:src="@drawable/ic_menu_add_group_holo_dark"
-            android:description="@string/menu_new_group_action_bar" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/menu_new_group_action_bar"
-            android:textColor="@color/action_bar_button_text_color"
-            style="@android:style/Widget.Holo.ActionBar.TabText" />
-
-    </LinearLayout>
-
-</LinearLayout>
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:layout_marginRight="8dip"
+    android:src="@drawable/ic_menu_add_group_holo_dark"
+    android:description="@string/menu_new_group_action_bar"
+    style="?android:attr/actionButtonStyle" />

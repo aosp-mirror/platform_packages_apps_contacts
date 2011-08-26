@@ -1221,8 +1221,7 @@ public class PeopleActivity extends ContactsActivity
         if (addGroup != null) {
             mAddGroupImageView = getLayoutInflater().inflate(
                     R.layout.add_group_menu_item, null, false);
-            View item = mAddGroupImageView.findViewById(R.id.menu_item);
-            item.setOnClickListener(new OnClickListener() {
+            mAddGroupImageView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     createNewGroupWithAccountDisambiguation();
