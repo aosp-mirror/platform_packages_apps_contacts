@@ -17,10 +17,12 @@
 package com.android.contacts.detail;
 
 import com.android.contacts.ContactLoader;
+import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
 
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -54,7 +56,7 @@ public class ContactDetailLayoutController {
         TWO_COLUMN, VIEW_PAGER_AND_TAB_CAROUSEL, FRAGMENT_CAROUSEL,
     }
 
-    private final Context mContext;
+    private final Activity mActivity;
     private final LayoutInflater mLayoutInflater;
     private final FragmentManager mFragmentManager;
 
@@ -79,7 +81,7 @@ public class ContactDetailLayoutController {
 
     private LayoutMode mLayoutMode;
 
-    public ContactDetailLayoutController(Context context, Bundle savedState,
+    public ContactDetailLayoutController(Activity activity, Bundle savedState,
             FragmentManager fragmentManager, View viewContainer, ContactDetailFragment.Listener
             contactDetailFragmentListener) {
 
@@ -88,8 +90,8 @@ public class ContactDetailLayoutController {
                     + "without a non-null FragmentManager");
         }
 
-        mContext = context;
-        mLayoutInflater = (LayoutInflater) context.getSystemService(
+        mActivity = activity;
+        mLayoutInflater = (LayoutInflater) activity.getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
         mFragmentManager = fragmentManager;
         mContactDetailFragmentListener = contactDetailFragmentListener;
@@ -134,6 +136,7 @@ public class ContactDetailLayoutController {
         }
 
         mDetailFragment.setListener(mContactDetailFragmentListener);
+        NfcHandler.register(mActivity, mDetailFragment);
 
         // Read from savedState if possible
         int currentPageIndex = 0;
@@ -445,7 +448,7 @@ public class ContactDetailLayoutController {
             mTabCarouselAnimator = ObjectAnimator.ofFloat(
                     mTabCarousel, "y", desiredValue).setDuration(75);
             mTabCarouselAnimator.setInterpolator(AnimationUtils.loadInterpolator(
-                    mContext, android.R.anim.accelerate_decelerate_interpolator));
+                    mActivity, android.R.anim.accelerate_decelerate_interpolator));
         }
 
         private void cancelTabCarouselAnimator() {

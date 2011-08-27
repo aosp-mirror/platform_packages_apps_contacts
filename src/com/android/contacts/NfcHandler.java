@@ -20,13 +20,11 @@ import com.android.contacts.detail.ContactDetailFragment;
 
 import android.app.Activity;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.net.Uri;
-import android.net.Uri.Builder;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
-import android.provider.ContactsContract;
+import android.nfc.NfcEvent;
 import android.provider.ContactsContract.Contacts;
 
 import android.util.Log;
@@ -43,33 +41,26 @@ import java.io.InputStream;
   * will be called to create the data to be sent over the link,
   * which is a vCard in this case.
   */
-public class NfcHandler implements NfcAdapter.NdefPushCallback {
-    private NfcAdapter mNfcAdapter;
-    private ContactDetailFragment mContactFragment;
-    private static final String TAG = "ContactsNfcHandler";
+public class NfcHandler implements NfcAdapter.CreateNdefMessageCallback {
+
+    static final String TAG = "ContactNfcHandler";
+
+    final ContactDetailFragment mContactFragment;
+
+    public static void register(Activity activity, ContactDetailFragment contactFragment) {
+        NfcAdapter adapter = NfcAdapter.getDefaultAdapter(activity.getApplicationContext());
+        if (adapter == null) {
+            return;  // NFC not available on this device
+        }
+        adapter.setNdefPushMessageCallback(new NfcHandler(contactFragment), activity);
+    }
 
     public NfcHandler(ContactDetailFragment contactFragment) {
         mContactFragment = contactFragment;
-        mNfcAdapter = NfcAdapter.getDefaultAdapter(
-                mContactFragment.getActivity());
-    }
-
-    public void onPause() {
-        if (mNfcAdapter != null) {
-            mNfcAdapter.disableForegroundNdefPush(
-                    mContactFragment.getActivity());
-        }
-    }
-
-    public void onResume() {
-        if (mNfcAdapter != null) {
-            mNfcAdapter.enableForegroundNdefPush(
-                    mContactFragment.getActivity(), this);
-        }
     }
 
     @Override
-    public NdefMessage createMessage() {
+    public NdefMessage createNdefMessage(NfcEvent event) {
         // Get the current contact URI
         Uri contactUri = mContactFragment.getUri();
         ContentResolver resolver = mContactFragment.getActivity().getContentResolver();
@@ -99,9 +90,5 @@ public class NfcHandler implements NfcAdapter.NdefPushCallback {
             Log.w(TAG, "No contact URI to share.");
             return null;
         }
-    }
-
-    @Override
-    public void onMessagePushed() {
     }
 }
