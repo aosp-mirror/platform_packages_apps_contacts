@@ -23,6 +23,7 @@ import com.android.contacts.model.DataKind;
 import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.util.NameConverter;
+import com.android.contacts.util.PhoneNumberFormatter;
 
 import android.content.Context;
 import android.content.Entity;
@@ -185,8 +186,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
             int inputType = field.inputType;
             fieldView.setInputType(inputType);
             if (inputType == InputType.TYPE_CLASS_PHONE) {
-                fieldView.addTextChangedListener(new PhoneNumberFormattingTextWatcher(
-                        ContactsUtils.getCurrentCountryIso(mContext)));
+                PhoneNumberFormatter.setPhoneNumberFormattingTextWatcher(mContext, fieldView);
             }
             fieldView.setMinLines(field.minLines);
 
