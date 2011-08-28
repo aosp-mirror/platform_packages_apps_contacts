@@ -3,7 +3,6 @@ package com.android.contacts.quickcontact;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType.EditType;
-import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.DataKind;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.PhoneCapabilityTester;
@@ -179,14 +178,11 @@ public class DataAction implements Action {
                     final boolean isAudioChatCapable =
                             (chatCapability & Im.CAPABILITY_HAS_VOICE) != 0;
                     if (isVideoChatCapable || isAudioChatCapable) {
-                        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(
-                                context.getApplicationContext());
                         mAlternateIntent = new Intent(
                                 Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?call"));
-                        // Use Holo dark theme since the background is darker than usual.
                         mAlternateIconRes = (isVideoChatCapable
-                                ? R.drawable.sym_action_videochat_holo_dark
-                                : R.drawable.sym_action_audiochat_holo_dark);
+                                ? R.drawable.sym_action_videochat_holo_light
+                                : R.drawable.sym_action_audiochat_holo_light);
                     }
                 }
             }
