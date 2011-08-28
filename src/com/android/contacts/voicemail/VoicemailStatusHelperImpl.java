@@ -24,7 +24,6 @@ import static android.provider.VoicemailContract.Status.NOTIFICATION_CHANNEL_STA
 import static android.provider.VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_NO_CONNECTION;
 import static android.provider.VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK;
 
-import com.android.common.io.MoreCloseables;
 import com.android.contacts.R;
 
 import android.database.Cursor;
@@ -154,20 +153,35 @@ public class VoicemailStatusHelperImpl implements VoicemailStatusHelper {
 
     @Override
     public List<StatusMessage> getStatusMessages(Cursor cursor) {
-        try {
-            List<MessageStatusWithPriority> messages =
-                new ArrayList<VoicemailStatusHelperImpl.MessageStatusWithPriority>();
-            while(cursor.moveToNext()) {
-                MessageStatusWithPriority message = getMessageForStatusEntry(cursor);
-                if (message != null) {
-                    messages.add(message);
-                }
+        List<MessageStatusWithPriority> messages =
+            new ArrayList<VoicemailStatusHelperImpl.MessageStatusWithPriority>();
+        cursor.moveToPosition(-1);
+        while(cursor.moveToNext()) {
+            MessageStatusWithPriority message = getMessageForStatusEntry(cursor);
+            if (message != null) {
+                messages.add(message);
             }
-            // Finally reorder the messages by their priority.
-            return reorderMessages(messages);
-        } finally {
-            MoreCloseables.closeQuietly(cursor);
         }
+        // Finally reorder the messages by their priority.
+        return reorderMessages(messages);
+    }
+
+    @Override
+    public int getNumberActivityVoicemailSources(Cursor cursor) {
+        int count = 0;
+        cursor.moveToPosition(-1);
+        while(cursor.moveToNext()) {
+            if (isVoicemailSourceActive(cursor)) {
+                ++count;
+            }
+        }
+        return count;
+    }
+
+    /** Returns whether the source status in the cursor corresponds to an active source. */
+    private boolean isVoicemailSourceActive(Cursor cursor) {
+        return cursor.getString(SOURCE_PACKAGE_INDEX) != null
+                &&  cursor.getInt(CONFIGURATION_STATE_INDEX) == Status.CONFIGURATION_STATE_OK;
     }
 
     private List<StatusMessage> reorderMessages(List<MessageStatusWithPriority> messageWrappers) {

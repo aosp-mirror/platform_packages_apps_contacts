@@ -16,6 +16,7 @@
 
 package com.android.contacts.calllog;
 
+import com.android.common.io.MoreCloseables;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.activities.DialtactsActivity.ViewPagerVisibilityListener;
@@ -26,6 +27,7 @@ import com.android.contacts.voicemail.VoicemailStatusHelperImpl;
 import com.android.internal.telephony.CallerInfo;
 import com.android.internal.telephony.ITelephony;
 
+import android.app.Activity;
 import android.app.KeyguardManager;
 import android.app.ListFragment;
 import android.content.Context;
@@ -64,6 +66,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     private boolean mScrollToTop;
 
     private boolean mShowOptionsMenu;
+    /** Whether there is at least one voicemail source installed. */
+    private boolean mVoicemailSourcesAvailable = false;
     /** Whether we are currently filtering over voicemail. */
     private boolean mShowingVoicemailOnly = false;
 
@@ -112,6 +116,23 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             return;
         }
         updateVoicemailStatusMessage(statusCursor);
+
+        int activeSources = mVoicemailStatusHelper.getNumberActivityVoicemailSources(statusCursor);
+        Log.d(TAG, "Num active sources: " + activeSources);
+        setVoicemailSourcesAvailable(activeSources != 0);
+        MoreCloseables.closeQuietly(statusCursor);
+    }
+
+    /** Sets whether there are any voicemail sources available in the platform. */
+    private void setVoicemailSourcesAvailable(boolean voicemailSourcesAvailable) {
+        if (mVoicemailSourcesAvailable == voicemailSourcesAvailable) return;
+        mVoicemailSourcesAvailable = voicemailSourcesAvailable;
+
+        Activity activity = getActivity();
+        if (activity != null) {
+            // This is so that the options menu content is updated.
+            activity.invalidateOptionsMenu();
+        }
     }
 
     @Override
@@ -219,8 +240,10 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         if (mShowOptionsMenu) {
-            menu.findItem(R.id.show_voicemails_only).setVisible(!mShowingVoicemailOnly);
-            menu.findItem(R.id.show_all_calls).setVisible(mShowingVoicemailOnly);
+            menu.findItem(R.id.show_voicemails_only).setVisible(
+                    mVoicemailSourcesAvailable && !mShowingVoicemailOnly);
+            menu.findItem(R.id.show_all_calls).setVisible(
+                    mVoicemailSourcesAvailable && mShowingVoicemailOnly);
         }
     }
 
