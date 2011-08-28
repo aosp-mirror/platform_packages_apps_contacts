@@ -541,6 +541,7 @@ public class CallLogAdapter extends GroupingListAdapter
         if (section == CallLogQuery.SECTION_NEW_HEADER
                 || section == CallLogQuery.SECTION_OLD_HEADER) {
             views.listItemView.setVisibility(View.GONE);
+            views.bottomDivider.setVisibility(View.GONE);
             views.listHeaderView.setVisibility(View.VISIBLE);
             views.listHeaderTextView.setText(
                     section == CallLogQuery.SECTION_NEW_HEADER
@@ -551,6 +552,7 @@ public class CallLogAdapter extends GroupingListAdapter
         }
         // Default case: an item in the call log.
         views.listItemView.setVisibility(View.VISIBLE);
+        views.bottomDivider.setVisibility(isLastOfSection(c) ? View.GONE : View.VISIBLE);
         views.listHeaderView.setVisibility(View.GONE);
 
         final String number = c.getString(CallLogQuery.NUMBER);
@@ -652,6 +654,16 @@ public class CallLogAdapter extends GroupingListAdapter
             mPreDrawListener = this;
             view.getViewTreeObserver().addOnPreDrawListener(this);
         }
+    }
+
+    /** Returns true if this is the last item of a section. */
+    private boolean isLastOfSection(Cursor c) {
+        if (c.isLast()) return true;
+        final int section = c.getInt(CallLogQuery.SECTION);
+        if (!c.moveToNext()) return true;
+        final int nextSection = c.getInt(CallLogQuery.SECTION);
+        c.moveToPrevious();
+        return section != nextSection;
     }
 
     /** Checks whether the contact info from the call log matches the one from the contacts db. */

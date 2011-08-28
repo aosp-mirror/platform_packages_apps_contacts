@@ -19,6 +19,7 @@
     class="com.android.contacts.calllog.CallLogListItemView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
 >
     <!--
         This layout may represent either a call log item or one of the
@@ -170,4 +171,13 @@
             android:layout_height="2dip"
             android:background="@color/call_log_voicemail_highlight_color"/>
     </LinearLayout>
+
+    <View
+        android:id="@+id/call_log_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="16dip"
+        android:layout_marginRight="16dip"
+        android:background="#1a1a1a"
+    />
 </view>
