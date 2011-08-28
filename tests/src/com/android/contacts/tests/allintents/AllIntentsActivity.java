@@ -516,12 +516,13 @@ public class AllIntentsActivity extends ListActivity
                 }
                 final Intent intent = new Intent("android.intent.action.VIEW");
                 intent.setData(uri);
-                bindIntentToClass(intent, "CallDetailActivity");
+                bindIntentToClass(intent, "com.android.contacts.CallDetailActivity");
                 startActivity(intent);
                 break;
             }
             case LEGACY_CALL_LOG_ACTIVITY: {
-                startActivity(bindIntentToClass(new Intent(), "activities.CallLogActivity"));
+                startActivity(bindIntentToClass(new Intent(),
+                        "com.android.contacts.activities.CallLogActivity"));
                 break;
             }
 
