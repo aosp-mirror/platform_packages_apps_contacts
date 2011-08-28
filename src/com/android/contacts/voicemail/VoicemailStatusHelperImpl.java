@@ -221,8 +221,13 @@ public class VoicemailStatusHelperImpl implements VoicemailStatusHelper {
         Uri actionUri = null;
         if (action == Action.CALL_VOICEMAIL) {
             actionUri = UriUtils.parseUriOrNull(cursor.getString(VOICEMAIL_ACCESS_URI_INDEX));
+            // Even if actionUri is null, it is still be useful to show the notification.
         } else if (action == Action.CONFIGURE_VOICEMAIL) {
             actionUri = UriUtils.parseUriOrNull(cursor.getString(SETTINGS_URI_INDEX));
+            // If there is no settings URI, there is no point in showing the notification.
+            if (actionUri == null) {
+                return null;
+            }
         }
         return new MessageStatusWithPriority(
                 new StatusMessage(sourcePackage, overallState.getCallLogMessageId(),
