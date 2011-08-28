@@ -24,4 +24,8 @@ public class Constants {
     public static final String SCHEME_MAILTO = "mailto";
     public static final String SCHEME_IMTO = "imto";
     public static final String SCHEME_SIP = "sip";
+
+    // Log tag for performance measurement.
+    // To enable: adb shell setprop log.tag.ContactsPerf VERBOSE
+    public static final String PERFORMANCE_TAG = "ContactsPerf";
 }
