@@ -18,6 +18,7 @@ package com.android.contacts;
 
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.test.InjectedServices;
+import com.android.contacts.util.Constants;
 import com.google.common.annotations.VisibleForTesting;
 
 import android.app.Application;
@@ -27,9 +28,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 public final class ContactsApplication extends Application {
-
     private static InjectedServices sInjectedServices;
     private AccountTypeManager mAccountTypeManager;
     private ContactPhotoManager mContactPhotoManager;
@@ -100,6 +101,10 @@ public final class ContactsApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        if (Log.isLoggable(Constants.PERFORMANCE_TAG, Log.DEBUG)) {
+            Log.d(Constants.PERFORMANCE_TAG, "ContactsApplication.onCreate start");
+        }
+
         // Priming caches to placate the StrictMode police
         Context context = getApplicationContext();
         PreferenceManager.getDefaultSharedPreferences(context);
@@ -108,5 +113,9 @@ public final class ContactsApplication extends Application {
 
         StrictMode.setThreadPolicy(
                 new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
+
+        if (Log.isLoggable(Constants.PERFORMANCE_TAG, Log.DEBUG)) {
+            Log.d(Constants.PERFORMANCE_TAG, "ContactsApplication.onCreate finish");
+        }
     }
 }

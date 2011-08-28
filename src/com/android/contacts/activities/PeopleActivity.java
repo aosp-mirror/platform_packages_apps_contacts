@@ -55,6 +55,7 @@ import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.preference.DisplayOptionsPreferenceFragment;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.AccountsListAdapter;
+import com.android.contacts.util.Constants;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.PhoneCapabilityTester;
 
@@ -233,6 +234,9 @@ public class PeopleActivity extends ContactsActivity
 
     @Override
     protected void onCreate(Bundle savedState) {
+        if (Log.isLoggable(Constants.PERFORMANCE_TAG, Log.DEBUG)) {
+            Log.d(Constants.PERFORMANCE_TAG, "PeopleActivity.onCreate start");
+        }
         super.onCreate(savedState);
 
         if (!processIntent(false)) {
@@ -242,6 +246,9 @@ public class PeopleActivity extends ContactsActivity
 
         mIsRecreatedInstance = (savedState != null);
         createViewsAndFragments(savedState);
+        if (Log.isLoggable(Constants.PERFORMANCE_TAG, Log.DEBUG)) {
+            Log.d(Constants.PERFORMANCE_TAG, "PeopleActivity.onCreate finish");
+        }
     }
 
     @Override

@@ -16,6 +16,7 @@
 
 package com.android.contacts.model;
 
+import com.android.contacts.util.Constants;
 import com.android.i18n.phonenumbers.PhoneNumberUtil;
 import com.android.internal.util.Objects;
 import com.google.android.collect.Lists;
@@ -271,6 +272,9 @@ class AccountTypeManagerImpl extends AccountTypeManager
      * called on a background thread.
      */
     protected void loadAccountsInBackground() {
+        if (Log.isLoggable(Constants.PERFORMANCE_TAG, Log.DEBUG)) {
+            Log.d(Constants.PERFORMANCE_TAG, "AccountTypeManager.loadAccountsInBackground start");
+        }
         long startTime = SystemClock.currentThreadTimeMillis();
 
         // Account types, keyed off the account type and data set concatenation.
@@ -418,6 +422,9 @@ class AccountTypeManagerImpl extends AccountTypeManager
         if (mInitializationLatch != null) {
             mInitializationLatch.countDown();
             mInitializationLatch = null;
+        }
+        if (Log.isLoggable(Constants.PERFORMANCE_TAG, Log.DEBUG)) {
+            Log.d(Constants.PERFORMANCE_TAG, "AccountTypeManager.loadAccountsInBackground finish");
         }
     }
 
