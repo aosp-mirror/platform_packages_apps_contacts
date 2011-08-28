@@ -17,35 +17,34 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/call_log_voicemail_status_height"
-        android:background="?attr/call_log_voicemail_status_background_color">
+        android:background="?attr/call_log_voicemail_status_background_color"
+    >
         <TextView
             android:id="@+id/voicemail_status_message"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:paddingLeft="14dip"
-            android:paddingRight="14dip"
-            android:textColor="?attr/call_log_voicemail_status_text_color"
-            android:layout_gravity="left"
-            android:layout_weight="5"
-        />
-        <View android:id="@+id/divider"
-            android:layout_width="1px"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
-            android:layout_marginBottom="5dip"
-            android:layout_marginLeft="11dip"
-            android:background="@drawable/divider_vertical_dark"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/call_log_outer_margin"
+            android:paddingRight="@dimen/call_log_inner_margin"
+            android:textColor="?attr/call_log_voicemail_status_text_color"
+        />
+        <View
+            android:id="@+id/voicemail_status_divider"
+            android:layout_width="1px"
+            android:layout_height="@dimen/call_log_call_action_size"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/ic_divider_dashed_holo_dark"
         />
         <TextView
             android:id="@+id/voicemail_status_action"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:paddingLeft="14dip"
-            android:paddingRight="14dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/call_log_inner_margin"
+            android:paddingRight="@dimen/call_log_outer_margin"
             android:textColor="?attr/call_log_voicemail_status_text_color"
-            android:gravity="right"
-            android:layout_alignParentRight="true"
+            android:background="@drawable/list_selector"
             android:clickable="true"
         />
     </LinearLayout>
