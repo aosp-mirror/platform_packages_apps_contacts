@@ -293,16 +293,13 @@ public class DataAction implements Action {
             Log.e(TAG, "t must be DataAction");
             return false;
         }
-        DataAction other = (DataAction)t;
-        if (!ContactsUtils.areObjectsEqual(mKind, other.mKind)) {
+        DataAction that = (DataAction)t;
+        if (!ContactsUtils.shouldCollapse(mContext, mMimeType, mBody, that.mMimeType,
+                that.mBody)) {
             return false;
         }
-        if (!ContactsUtils.shouldCollapse(mContext, mMimeType, mBody, other.mMimeType,
-                other.mBody)) {
-            return false;
-        }
-        if (!TextUtils.equals(mMimeType, other.mMimeType)
-                || !ContactsUtils.areIntentActionEqual(mIntent, other.mIntent)) {
+        if (!TextUtils.equals(mMimeType, that.mMimeType)
+                || !ContactsUtils.areIntentActionEqual(mIntent, that.mIntent)) {
             return false;
         }
         return true;
