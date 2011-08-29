@@ -24,6 +24,7 @@ import com.android.contacts.format.PrefixHighlighter;
 import com.android.contacts.widget.TextWithHighlightingFactory;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
@@ -119,6 +120,9 @@ public class ContactListItemView extends ViewGroup
     private TextView mStatusView;
     private TextView mCountView;
     private ImageView mPresenceIcon;
+
+    private ColorStateList mPrimaryTextColor;
+    private ColorStateList mSecondaryTextColor;
 
     private char[] mHighlightedPrefix;
 
@@ -247,6 +251,9 @@ public class ContactListItemView extends ViewGroup
                 a.getColor(R.styleable.ContactListItemView_list_item_prefix_highlight_color,
                         Color.GREEN));
         a.recycle();
+
+        mPrimaryTextColor = getResources().getColorStateList(R.color.list_primary_text_color);
+        mSecondaryTextColor = getResources().getColorStateList(R.color.list_secondary_text_color);
 
         mHorizontalDividerHeight = mHorizontalDividerDrawable.getIntrinsicHeight();
 
@@ -409,7 +416,7 @@ public class ContactListItemView extends ViewGroup
 
         mBoundsWithoutHeader.set(0, topBound, width, bottomBound);
 
-        if (mActivatedStateSupported) {
+        if (mActivatedStateSupported && isActivated()) {
             mActivatedBackgroundDrawable.setBounds(mBoundsWithoutHeader);
         }
 
@@ -624,7 +631,7 @@ public class ContactListItemView extends ViewGroup
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        if (mActivatedStateSupported) {
+        if (mActivatedStateSupported && isActivated()) {
             mActivatedBackgroundDrawable.draw(canvas);
         }
         if (mHorizontalDividerVisible) {
@@ -759,6 +766,10 @@ public class ContactListItemView extends ViewGroup
             mNameTextView.setSingleLine(true);
             mNameTextView.setEllipsize(getTextEllipsis());
             mNameTextView.setTextAppearance(mContext, android.R.style.TextAppearance_Medium);
+            mNameTextView.setTextColor(mPrimaryTextColor);
+            // Manually call setActivated() since this view may be added after the first
+            // setActivated() call toward this whole item view.
+            mNameTextView.setActivated(isActivated());
             mNameTextView.setGravity(Gravity.CENTER_VERTICAL);
             addView(mNameTextView);
         }
@@ -815,6 +826,8 @@ public class ContactListItemView extends ViewGroup
             mPhoneticNameTextView.setEllipsize(getTextEllipsis());
             mPhoneticNameTextView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
             mPhoneticNameTextView.setTypeface(mPhoneticNameTextView.getTypeface(), Typeface.BOLD);
+            mPhoneticNameTextView.setTextColor(mPrimaryTextColor);
+            mPhoneticNameTextView.setActivated(isActivated());
             addView(mPhoneticNameTextView);
         }
         return mPhoneticNameTextView;
@@ -860,6 +873,8 @@ public class ContactListItemView extends ViewGroup
             mLabelView.setEllipsize(getTextEllipsis());
             mLabelView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
             mLabelView.setTypeface(mLabelView.getTypeface(), Typeface.BOLD);
+            mLabelView.setTextColor(mPrimaryTextColor);
+            mLabelView.setActivated(isActivated());
             addView(mLabelView);
         }
         return mLabelView;
@@ -890,6 +905,8 @@ public class ContactListItemView extends ViewGroup
             mDataView.setSingleLine(true);
             mDataView.setEllipsize(getTextEllipsis());
             mDataView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
+            mDataView.setTextColor(mPrimaryTextColor);
+            mDataView.setActivated(isActivated());
             addView(mDataView);
         }
         return mDataView;
@@ -919,6 +936,8 @@ public class ContactListItemView extends ViewGroup
             mSnippetView.setEllipsize(getTextEllipsis());
             mSnippetView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
             mSnippetView.setTypeface(mSnippetView.getTypeface(), Typeface.BOLD);
+            mSnippetView.setTextColor(mPrimaryTextColor);
+            mSnippetView.setActivated(isActivated());
             addView(mSnippetView);
         }
         return mSnippetView;
@@ -927,14 +946,14 @@ public class ContactListItemView extends ViewGroup
     /**
      * Returns the text view for the status, creating it if necessary.
      */
-
     public TextView getStatusView() {
         if (mStatusView == null) {
             mStatusView = new TextView(mContext);
             mStatusView.setSingleLine(true);
             mStatusView.setEllipsize(getTextEllipsis());
             mStatusView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
-            mStatusView.setTextColor(R.color.secondary_text_color);
+            mStatusView.setTextColor(mSecondaryTextColor);
+            mStatusView.setActivated(isActivated());
             addView(mStatusView);
         }
         return mStatusView;
