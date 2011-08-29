@@ -16,8 +16,7 @@
 
 <TableRow
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
-    android:paddingBottom="@dimen/detail_update_section_between_items_vertical_padding">
+    xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts">
 
     <view
         class="com.android.contacts.widget.ProportionalLayout"
