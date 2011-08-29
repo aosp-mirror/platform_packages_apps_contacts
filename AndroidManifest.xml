@@ -597,7 +597,7 @@
         <!-- vCard related -->
         <activity android:name=".vcard.ImportVCardActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:theme="@style/BackgroundOnly">
+            android:theme="@style/BackgroundOnlyTheme">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <data android:mimeType="text/directory" />
@@ -610,7 +610,7 @@
 
         <activity android:name=".vcard.NfcImportVCardActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:theme="@style/BackgroundOnly">
+            android:theme="@style/BackgroundOnlyTheme">
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
                 <data android:mimeType="text/vcard" />
@@ -621,13 +621,13 @@
         </activity>
 
         <activity android:name=".vcard.CancelActivity"
-            android:theme="@style/BackgroundOnly" />
+            android:theme="@style/BackgroundOnlyTheme" />
 
         <activity android:name=".vcard.SelectAccountActivity"
-            android:theme="@style/BackgroundOnly" />
+            android:theme="@style/BackgroundOnlyTheme" />
 
         <activity android:name=".vcard.ExportVCardActivity"
-            android:theme="@style/BackgroundOnly" />
+            android:theme="@style/BackgroundOnlyTheme" />
 
         <service
             android:name=".vcard.VCardService"

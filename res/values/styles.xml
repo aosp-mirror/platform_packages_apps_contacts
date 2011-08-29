@@ -92,7 +92,7 @@
         <item name="android:textColorSecondary">@color/secondary_text_color</item>
     </style>
 
-    <style name="BackgroundOnly">
+    <style name="BackgroundOnlyTheme" parent="@android:style/Theme.Holo.Light">
         <item name="android:windowBackground">@null</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@null</item>
