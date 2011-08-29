@@ -1658,6 +1658,15 @@ public class ContactEditorFragment extends Fragment implements
 
     @Override
     public void onSplitContactConfirmed() {
+        if (mState == null) {
+            // This may happen when this Fragment is recreated by the system during users
+            // confirming the split action (and thus this method is called just before onCreate()),
+            // for example.
+            Log.e(TAG, "mState became null during the user's confirming split action. " +
+                    "Cannot perform the save action.");
+            return;
+        }
+
         mState.markRawContactsForSplitting();
         save(SaveMode.SPLIT);
     }
