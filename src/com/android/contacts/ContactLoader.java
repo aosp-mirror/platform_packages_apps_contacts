@@ -1240,7 +1240,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
     @Override
     protected void onForceLoad() {
         final LoadContactTask task = new LoadContactTask();
-        task.execute((Void[])null);
+        task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, (Void[])null);
     }
 
     @Override

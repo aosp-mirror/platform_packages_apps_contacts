@@ -432,7 +432,7 @@ public class QuickContactActivity extends Activity {
                             if (result == null) return;
                             photoView.setImageBitmap(result);
                         }
-                    }.execute();
+                    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, (Void[]) null);
                 }
                 final int photoColumnIndex = cursor.getColumnIndex(Photo.PHOTO);
                 final byte[] photoBlob = cursor.getBlob(photoColumnIndex);
