@@ -18,14 +18,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginRight="?attr/list_item_padding_right"
-    android:minHeight="?attr/list_item_header_height"
     android:orientation="vertical">
+
+    <!-- Only visible when it is the first element in the list. -->
+    <View
+        android:id="@+id/header_extra_top_padding"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/contact_browser_list_top_margin" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="?attr/list_item_header_text_indent"
+        android:minHeight="?attr/list_item_header_height"
+        android:paddingLeft="?attr/list_item_padding_left"
+        android:paddingRight="?attr/list_item_padding_right"
         android:orientation="horizontal">
 
         <TextView
@@ -33,6 +39,8 @@
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="?attr/list_item_header_text_indent"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/people_app_theme_color"
             android:textStyle="bold"

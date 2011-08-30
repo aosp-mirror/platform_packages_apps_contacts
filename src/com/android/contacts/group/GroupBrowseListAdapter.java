@@ -164,9 +164,20 @@ public class GroupBrowseListAdapter extends BaseAdapter {
             bindHeaderView(entry, viewCache);
             viewCache.accountHeader.setVisibility(View.VISIBLE);
             viewCache.divider.setVisibility(View.GONE);
+            if (position == 0) {
+                // Have the list's top padding in the first header.
+                //
+                // This allows the ListView to show correct fading effect on top.
+                // If we have topPadding in the ListView itself, an inappropriate padding is
+                // inserted between fading items and the top edge.
+                viewCache.accountHeaderExtraTopPadding.setVisibility(View.VISIBLE);
+            } else {
+                viewCache.accountHeaderExtraTopPadding.setVisibility(View.GONE);
+            }
         } else {
             viewCache.accountHeader.setVisibility(View.GONE);
             viewCache.divider.setVisibility(View.VISIBLE);
+            viewCache.accountHeaderExtraTopPadding.setVisibility(View.GONE);
         }
 
         // Bind the group data
@@ -205,6 +216,7 @@ public class GroupBrowseListAdapter extends BaseAdapter {
         public final TextView groupTitle;
         public final TextView groupMemberCount;
         public final View accountHeader;
+        public final View accountHeaderExtraTopPadding;
         public final View divider;
         private Uri mUri;
 
@@ -214,6 +226,7 @@ public class GroupBrowseListAdapter extends BaseAdapter {
             groupTitle = (TextView) view.findViewById(R.id.label);
             groupMemberCount = (TextView) view.findViewById(R.id.count);
             accountHeader = view.findViewById(R.id.group_list_header);
+            accountHeaderExtraTopPadding = view.findViewById(R.id.header_extra_top_padding);
             divider = view.findViewById(R.id.divider);
         }
 
