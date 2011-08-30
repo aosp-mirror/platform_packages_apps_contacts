@@ -74,6 +74,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
     private static final String TAG = "ContactLoader";
 
     private Uri mLookupUri;
+    private final Uri mRequestedUri;
     private boolean mLoadGroupMetaData;
     private boolean mLoadStreamItems;
     private final boolean mLoadInvitableAccountTypes;
@@ -95,6 +96,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
          */
         public static final Result NOT_FOUND = new Result((Exception) null);
 
+        private final Uri mRequestedUri;
         private final Uri mLookupUri;
         private final Uri mUri;
         private final long mDirectoryId;
@@ -134,6 +136,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
          * Constructor for special results, namely "no contact found" and "error".
          */
         private Result(Exception exception) {
+            mRequestedUri = null;
             mLookupUri = null;
             mUri = null;
             mDirectoryId = -1;
@@ -165,12 +168,13 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         /**
          * Constructor to call when contact was found
          */
-        private Result(Uri uri, Uri lookupUri, long directoryId, String lookupKey, long id,
-                long nameRawContactId, int displayNameSource, long photoId, String photoUri,
-                String displayName, String altDisplayName, String phoneticName, boolean starred,
-                Integer presence, boolean sendToVoicemail, String customRingtone,
+        private Result(Uri requestedUri, Uri uri, Uri lookupUri, long directoryId, String lookupKey,
+                long id, long nameRawContactId, int displayNameSource, long photoId,
+                String photoUri, String displayName, String altDisplayName, String phoneticName,
+                boolean starred, Integer presence, boolean sendToVoicemail, String customRingtone,
                 boolean isUserProfile) {
             mException = null;
+            mRequestedUri = requestedUri;
             mLookupUri = lookupUri;
             mUri = uri;
             mDirectoryId = directoryId;
@@ -196,6 +200,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
         private Result(Result from) {
             mException = from.mException;
+            mRequestedUri = from.mRequestedUri;
             mLookupUri = from.mLookupUri;
             mUri = from.mUri;
             mDirectoryId = from.mDirectoryId;
@@ -250,6 +255,11 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mPhotoBinaryData = photoBinaryData;
         }
 
+        /**
+         * Returns the URI for the contact that contains both the lookup key and the ID. This is
+         * the best URI to reference a contact.
+         * For directory contacts, this is the same a the URI as returned by {@link #getUri()}
+         */
         public Uri getLookupUri() {
             return mLookupUri;
         }
@@ -258,8 +268,21 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             return mLookupKey;
         }
 
+        /**
+         * Returns the contact Uri that was passed to the provider to make the query. This is
+         * the same as the requested Uri, unless the requested Uri doesn't specify a Contact:
+         * If it either references a Raw-Contact or a Person (a pre-Eclair style Uri), this Uri will
+         * always reference the full aggregate contact.
+         */
         public Uri getUri() {
             return mUri;
+        }
+
+        /**
+         * Returns the URI for which this {@link ContactLoader) was initially requested.
+         */
+        public Uri getRequestedUri() {
+            return mRequestedUri;
         }
 
         @VisibleForTesting
@@ -850,8 +873,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 lookupUri = contactUri;
             }
 
-            return new Result(contactUri, lookupUri, directoryId, lookupKey, contactId,
-                    nameRawContactId, displayNameSource, photoId, photoUri, displayName,
+            return new Result(mRequestedUri, contactUri, lookupUri, directoryId, lookupKey,
+                    contactId, nameRawContactId, displayNameSource, photoId, photoUri, displayName,
                     altDisplayName, phoneticName, starred, presence, sendToVoicemail,
                     customRingtone, isUserProfile);
         }
@@ -1217,6 +1240,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             boolean loadStreamItems, boolean loadInvitableAccountTypes) {
         super(context);
         mLookupUri = lookupUri;
+        mRequestedUri = lookupUri;
         mLoadGroupMetaData = loadGroupMetaData;
         mLoadStreamItems = loadStreamItems;
         mLoadInvitableAccountTypes = loadInvitableAccountTypes;
