@@ -22,4 +22,6 @@
     android:fadingEdge="none"
     android:divider="@null"
     android:paddingTop="@dimen/contact_detail_list_top_padding"
+    android:paddingLeft="16dip"
+    android:paddingRight="16dip"
     android:clipToPadding="false"/>

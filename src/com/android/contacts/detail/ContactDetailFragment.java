@@ -1401,7 +1401,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
      * {@link DetailViewEntry}
      */
     private static class DetailViewCache {
-        public final TextView kind;
         public final TextView type;
         public final TextView data;
         public final TextView footer;
@@ -1415,7 +1414,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         public DetailViewCache(View view,
                 OnClickListener primaryActionClickListener,
                 OnClickListener secondaryActionClickListener) {
-            kind = (TextView) view.findViewById(R.id.kind);
             type = (TextView) view.findViewById(R.id.type);
             data = (TextView) view.findViewById(R.id.data);
             footer = (TextView) view.findViewById(R.id.footer);
@@ -1535,8 +1533,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             final KindTitleViewEntry entry = (KindTitleViewEntry) getItem(position);
 
             final View result = (convertView != null) ? convertView :
-                    mInflater.inflate(R.layout.contact_detail_kind_title_entry_view, parent, false);
-            final TextView titleTextView = (TextView) result.findViewById(R.id.kind);
+                    mInflater.inflate(R.layout.list_separator, parent, false);
+            final TextView titleTextView = (TextView) result.findViewById(R.id.title);
             titleTextView.setText(entry.getTitle());
 
             return result;

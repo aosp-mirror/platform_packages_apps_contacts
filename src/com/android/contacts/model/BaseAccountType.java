@@ -344,7 +344,7 @@ public class BaseAccountType extends AccountType {
     protected DataKind addDataKindNote(Context context) {
         DataKind kind = addKind(new DataKind(Note.CONTENT_ITEM_TYPE,
                     R.string.label_notes, -1, 110, true,
-                    R.layout.text_fields_editor_view, android.R.style.TextAppearance_Medium));
+                    R.layout.text_fields_editor_view, android.R.style.TextAppearance_Small));
         kind.isList = false;
         kind.actionHeader = new SimpleInflater(R.string.label_notes);
         kind.actionBody = new SimpleInflater(Note.NOTE);

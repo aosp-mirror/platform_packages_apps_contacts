@@ -17,34 +17,23 @@
  */
 -->
 
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:minHeight="24dip"
+    android:layout_height="32dip"
     android:paddingLeft="8dip"
     android:paddingRight="8dip"
-    android:paddingBottom="4dip"
-    android:orientation="vertical">
+    android:focusable="false">
 
     <TextView
         android:id="@+id/kind_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/editor_kind_title_left_padding"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:paddingLeft="8dip"
+        android:paddingRight="8dip"
+        android:background="@drawable/list_section_divider_holo_custom"
         android:textColor="@color/people_app_theme_color"
-        android:textStyle="bold"
         android:textAllCaps="true"
         android:singleLine="true"
-        android:ellipsize="end"
-        android:layout_gravity="center_vertical" />
+        android:ellipsize="end" />
 
-    <ImageView
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="2dip"
-        android:scaleType="fitXY"
-        android:src="@color/people_app_theme_color"/>
-
-</LinearLayout>
+</FrameLayout>

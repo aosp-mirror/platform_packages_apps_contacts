@@ -21,7 +21,7 @@
     <dimen name="editor_round_button_padding_right">16dip</dimen>
     <dimen name="editor_kind_title_left_padding">16dip</dimen>
     <dimen name="editor_add_field_label_left_padding">24dip</dimen>
-    <dimen name="detail_item_side_margin">16dip</dimen>
+    <dimen name="detail_item_side_margin">0dip</dimen>
     <dimen name="detail_item_vertical_margin">16dip</dimen>
     <dimen name="detail_item_icon_margin">8dip</dimen>
     <dimen name="contact_name_text_size">26sp</dimen>
@@ -32,7 +32,7 @@
     <dimen name="shortcut_icon_size">64dip</dimen>
     <dimen name="list_section_height">37dip</dimen>
     <dimen name="group_detail_border_padding">16dip</dimen>
-    <dimen name="detail_update_section_side_padding">16dip</dimen>
+    <dimen name="detail_update_section_side_padding">0dip</dimen>
     <dimen name="detail_update_section_item_horizontal_padding">8dip</dimen>
     <dimen name="detail_update_section_item_vertical_padding">16dip</dimen>
     <dimen name="detail_update_section_between_items_vertical_padding">16dip</dimen>
