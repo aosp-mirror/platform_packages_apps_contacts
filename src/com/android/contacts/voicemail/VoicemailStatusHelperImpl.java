@@ -25,6 +25,7 @@ import static android.provider.VoicemailContract.Status.NOTIFICATION_CHANNEL_STA
 import static android.provider.VoicemailContract.Status.NOTIFICATION_CHANNEL_STATE_OK;
 
 import com.android.contacts.R;
+import com.android.contacts.util.UriUtils;
 
 import android.database.Cursor;
 import android.net.Uri;
@@ -219,9 +220,9 @@ public class VoicemailStatusHelperImpl implements VoicemailStatusHelper {
 
         Uri actionUri = null;
         if (action == Action.CALL_VOICEMAIL) {
-            actionUri = Uri.parse(cursor.getString(VOICEMAIL_ACCESS_URI_INDEX));
+            actionUri = UriUtils.parseUriOrNull(cursor.getString(VOICEMAIL_ACCESS_URI_INDEX));
         } else if (action == Action.CONFIGURE_VOICEMAIL) {
-            actionUri = Uri.parse(cursor.getString(SETTINGS_URI_INDEX));
+            actionUri = UriUtils.parseUriOrNull(cursor.getString(SETTINGS_URI_INDEX));
         }
         return new MessageStatusWithPriority(
                 new StatusMessage(sourcePackage, overallState.getCallLogMessageId(),
