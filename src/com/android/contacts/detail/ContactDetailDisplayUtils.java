@@ -237,8 +237,6 @@ public class ContactDetailDisplayUtils {
         if (!contactData.getStreamItems().isEmpty()) {
             StreamItemEntry firstEntry = contactData.getStreamItems().get(0);
             snippet = Html.fromHtml(firstEntry.getText());
-            // Add quotes around the text
-            snippet = context.getString(R.string.recent_updates_tab_text, snippet);
             if (!firstEntry.getPhotos().isEmpty()) {
                 StreamItemPhotoEntry firstPhoto = firstEntry.getPhotos().get(0);
                 photoUri = firstPhoto.getPhotoUri();

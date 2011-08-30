@@ -14,68 +14,41 @@
      limitations under the License.
 -->
 
-<TableRow
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts">
+    xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <view
-        class="com.android.contacts.widget.ProportionalLayout"
-        android:layout_width="0dip"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/detail_update_section_between_items_horizontal_padding"
-        android:layout_weight="1"
-        ex:ratio="1"
-        ex:direction="widthToHeight">
-        <include
-            android:id="@+id/stream_item_first_image"
-            layout="@layout/stream_item_photo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </view>
+        android:layout_marginBottom="8dip"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
-    <view
-        class="com.android.contacts.widget.ProportionalLayout"
-        android:layout_width="0dip"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        ex:ratio="1"
-        ex:direction="widthToHeight">
-        <LinearLayout
-            android:id="@+id/stream_item_second_text"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <view
+            class="com.android.contacts.widget.ProportionalLayout"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/detail_update_section_between_items_horizontal_padding"
+            ex:ratio="1"
+            ex:direction="widthToHeight">
 
-            <TextView android:id="@+id/stream_item_html"
+            <include
+                android:id="@+id/stream_item_first_image"
+                layout="@layout/stream_item_photo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:layout_height="match_parent"/>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView android:id="@+id/stream_item_attribution"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="?android:attr/textColorSecondary"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:layout_weight="1" />
+        </view>
 
-                <TextView android:id="@+id/stream_item_comments"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/detail_update_section_attribution_comments_padding"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="?android:attr/textColorSecondary"
-                    android:visibility="gone"
-                    android:maxLines="1" />
-            </LinearLayout>
+    </LinearLayout>
 
-        </LinearLayout>
-    </view>
+    <include
+        android:id="@+id/stream_item_second_text"
+        layout="@layout/stream_item_row_text_only"/>
 
-</TableRow>
+</LinearLayout>
