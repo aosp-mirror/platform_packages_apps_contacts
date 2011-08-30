@@ -47,11 +47,13 @@ public final class CallLogListItemViews {
     public final View listHeaderView;
     /** The text of the header of a section. */
     public final TextView listHeaderTextView;
+    /** The divider to be shown below items. */
+    public final View bottomDivider;
 
     private CallLogListItemViews(QuickContactBadge quickContactView, View primaryActionView,
             ImageView secondaryActionView, View unheardView, View dividerView,
             PhoneCallDetailsViews phoneCallDetailsViews, View listItemView,
-            View listHeaderView, TextView listHeaderTextView) {
+            View listHeaderView, TextView listHeaderTextView, View bottomDivider) {
         this.quickContactView = quickContactView;
         this.primaryActionView = primaryActionView;
         this.secondaryActionView = secondaryActionView;
@@ -61,6 +63,7 @@ public final class CallLogListItemViews {
         this.listItemView = listItemView;
         this.listHeaderView = listHeaderView;
         this.listHeaderTextView = listHeaderTextView;
+        this.bottomDivider = bottomDivider;
     }
 
     public static CallLogListItemViews fromView(View view) {
@@ -73,7 +76,8 @@ public final class CallLogListItemViews {
                 PhoneCallDetailsViews.fromView(view),
                 view.findViewById(R.id.call_log_item),
                 view.findViewById(R.id.call_log_header),
-                (TextView) view.findViewById(R.id.call_log_header_text));
+                (TextView) view.findViewById(R.id.call_log_header_text),
+                view.findViewById(R.id.call_log_divider));
     }
 
     public static CallLogListItemViews createForTest(Context context) {
@@ -86,6 +90,7 @@ public final class CallLogListItemViews {
                 PhoneCallDetailsViews.createForTest(context),
                 new View(context),
                 new View(context),
-                new TextView(context));
+                new TextView(context),
+                new View(context));
     }
 }
