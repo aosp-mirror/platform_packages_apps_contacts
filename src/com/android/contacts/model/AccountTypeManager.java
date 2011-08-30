@@ -532,8 +532,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
 
             if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "Type " + accountTypeWithDataSet
-                        + " inviteClass=" + type.getInviteContactActivityClassName()
-                        + " inviteAction=" + type.getInviteContactActionLabel(context));
+                        + " inviteClass=" + type.getInviteContactActivityClassName());
             }
             if (!TextUtils.isEmpty(type.getInviteContactActivityClassName())) {
                 result.put(accountTypeWithDataSet, type);
