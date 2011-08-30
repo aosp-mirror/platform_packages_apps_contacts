@@ -144,11 +144,6 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
                 .appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true").build();
     }
 
-    protected static Uri includeProfileEntry(Uri uri) {
-        return uri.buildUpon()
-                .appendQueryParameter(ContactsContract.ALLOW_PROFILE, "true").build();
-    }
-
     public boolean getHasPhoneNumber(int position) {
         return ((Cursor)getItem(position)).getInt(CONTACT_HAS_PHONE_COLUMN_INDEX) != 0;
     }

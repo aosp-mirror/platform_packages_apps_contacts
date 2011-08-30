@@ -21,6 +21,7 @@ import com.google.android.collect.Lists;
 import com.google.android.collect.Sets;
 
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -642,7 +643,6 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                         ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT))
                         .appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY,
                                 String.valueOf(MAX_PHOTOS_TO_PRELOAD))
-                        .appendQueryParameter(ContactsContract.ALLOW_PROFILE, "1")
                         .build();
                 cursor = mResolver.query(uri, new String[] { Contacts.PHOTO_ID },
                         Contacts.PHOTO_ID + " NOT NULL AND " + Contacts.PHOTO_ID + "!=0",
@@ -698,8 +698,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
 
             Cursor cursor = null;
             try {
-                cursor = mResolver.query(Data.CONTENT_URI.buildUpon()
-                        .appendQueryParameter(ContactsContract.ALLOW_PROFILE, "1").build(),
+                cursor = mResolver.query(Data.CONTENT_URI,
                         COLUMNS,
                         mStringBuilder.toString(),
                         mPhotoIdsAsStrings.toArray(EMPTY_STRING_ARRAY),
@@ -719,9 +718,30 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                 }
             }
 
-            // Remaining photos were not found in the database - mark the cache accordingly.
+            // Remaining photos were not found in the contacts database (but might be in profile).
             for (Long id : mPhotoIds) {
-                cacheBitmap(id, null, preloading);
+                if (ContactsContract.isProfileId(id)) {
+                    Cursor profileCursor = null;
+                    try {
+                        profileCursor = mResolver.query(
+                                ContentUris.withAppendedId(Data.CONTENT_URI, id),
+                                COLUMNS, null, null, null);
+                        if (profileCursor != null && profileCursor.moveToFirst()) {
+                            cacheBitmap(profileCursor.getLong(0), profileCursor.getBlob(1),
+                                    preloading);
+                        } else {
+                            // Couldn't load a photo this way either.
+                            cacheBitmap(id, null, preloading);
+                        }
+                    } finally {
+                        if (profileCursor != null) {
+                            profileCursor.close();
+                        }
+                    }
+                } else {
+                    // Not a profile photo and not found - mark the cache accordingly
+                    cacheBitmap(id, null, preloading);
+                }
             }
 
             mMainThreadHandler.sendEmptyMessage(MESSAGE_PHOTOS_LOADED);

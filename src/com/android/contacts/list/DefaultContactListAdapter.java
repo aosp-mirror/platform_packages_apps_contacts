@@ -57,6 +57,9 @@ public class DefaultContactListAdapter extends ContactListAdapter {
 
     @Override
     public void configureLoader(CursorLoader loader, long directoryId) {
+        if (loader instanceof ProfileAndContactsLoader) {
+            ((ProfileAndContactsLoader) loader).setLoadProfile(shouldIncludeProfile());
+        }
 
         ContactListFilter filter = getFilter();
         if (isSearchMode()) {
@@ -127,11 +130,6 @@ public class DefaultContactListAdapter extends ContactListAdapter {
             uri = uri.buildUpon().appendQueryParameter(
                     ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT))
                     .build();
-        }
-
-        // Include the user's personal profile.
-        if (shouldIncludeProfile()) {
-            uri = includeProfileEntry(uri);
         }
 
         loader.setUri(uri);
