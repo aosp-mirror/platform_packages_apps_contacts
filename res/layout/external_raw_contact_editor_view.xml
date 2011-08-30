@@ -43,17 +43,24 @@
             android:textColor="?android:attr/textColorSecondary"
             android:textStyle="bold"/>
 
-        <FrameLayout
+        <LinearLayout
             android:id="@+id/stub_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="8dip">
+            android:layout_marginRight="8dip"
+            android:orientation="horizontal">
 
             <include
                 android:id="@+id/edit_photo"
                 layout="@layout/item_photo_editor" />
 
-        </FrameLayout>
+            <ImageView
+                android:src="@drawable/account_spinner_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

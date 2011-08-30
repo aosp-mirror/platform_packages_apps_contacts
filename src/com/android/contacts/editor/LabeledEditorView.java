@@ -35,6 +35,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -515,6 +516,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
                 textView.setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
                 textView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
                 textView.setTextColor(mTextColor);
+                textView.setEllipsize(TruncateAt.MIDDLE);
             } else {
                 textView = (TextView) convertView;
             }

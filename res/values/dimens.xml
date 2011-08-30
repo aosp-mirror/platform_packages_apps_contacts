@@ -33,10 +33,10 @@
     <dimen name="editor_padding_top">0dip</dimen>
 
     <!-- Padding of the rounded plus/minus/expand/collapse buttons in the editor  -->
-    <dimen name="editor_round_button_padding_left">2dip</dimen>
-    <dimen name="editor_round_button_padding_right">2dip</dimen>
-    <dimen name="editor_round_button_padding_top">4dip</dimen>
-    <dimen name="editor_round_button_padding_bottom">4dip</dimen>
+    <dimen name="editor_round_button_padding_left">8dip</dimen>
+    <dimen name="editor_round_button_padding_right">8dip</dimen>
+    <dimen name="editor_round_button_padding_top">8dip</dimen>
+    <dimen name="editor_round_button_padding_bottom">8dip</dimen>
 
     <!-- Left padding of the kind title in the contact editor -->
     <dimen name="editor_kind_title_left_padding">8dip</dimen>

@@ -23,5 +23,5 @@
     android:layout_gravity="top"
     android:layout_width="@dimen/editor_type_label_width"
     android:layout_height="@dimen/editor_min_line_item_height"
-    android:paddingLeft="8dip"
-    android:paddingRight="20dip"/>
+    android:paddingLeft="0dip"
+    android:paddingRight="10dip"/>

@@ -670,6 +670,8 @@ public class ContactEditorFragment extends Fragment implements
                 } else {
                     disableAccountSwitcher(editor);
                 }
+            } else {
+                disableAccountSwitcher(editor);
             }
 
             editor.setEnabled(mEnabled);

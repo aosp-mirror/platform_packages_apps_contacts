@@ -20,6 +20,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="@dimen/editor_min_line_item_height"
+    android:layout_marginRight="2dip"
     android:layout_gravity="top">
     <ImageView
         android:id="@+id/delete_button"
