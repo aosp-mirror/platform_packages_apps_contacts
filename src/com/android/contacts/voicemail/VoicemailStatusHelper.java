@@ -74,8 +74,13 @@ public interface VoicemailStatusHelper {
      * empty list is returned if no message needs to be shown.
      * @param cursor The cursor pointing to the query on {@link Status#CONTENT_URI}. The projection
      *      to be used is defined by the implementation class of this interface.
-     *      The class takes over the ownership of the cursor and closes it after processing the
-     *      request.
      */
     public List<StatusMessage> getStatusMessages(Cursor cursor);
+
+    /**
+     * Returns the number of active voicemail sources installed.
+     * <p>
+     * The number of sources is counted by querying the voicemail status table.
+     */
+    public int getNumberActivityVoicemailSources(Cursor cursor);
 }
