@@ -57,10 +57,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView android:id="@+id/stream_item_attribution"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="?android:attr/textColorSecondary" />
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_weight="1" />
 
                 <TextView android:id="@+id/stream_item_comments"
                     android:layout_width="wrap_content"
@@ -68,7 +71,8 @@
                     android:layout_marginLeft="@dimen/detail_update_section_attribution_comments_padding"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="?android:attr/textColorSecondary"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    android:maxLines="1" />
             </LinearLayout>
 
         </LinearLayout>
