@@ -45,6 +45,7 @@ import android.os.SystemClock;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.TimingLogger;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -275,7 +276,9 @@ class AccountTypeManagerImpl extends AccountTypeManager
         if (Log.isLoggable(Constants.PERFORMANCE_TAG, Log.DEBUG)) {
             Log.d(Constants.PERFORMANCE_TAG, "AccountTypeManager.loadAccountsInBackground start");
         }
-        long startTime = SystemClock.currentThreadTimeMillis();
+        TimingLogger timings = new TimingLogger(TAG, "loadAccountsInBackground");
+        final long startTime = SystemClock.currentThreadTimeMillis();
+        final long startTimeWall = SystemClock.elapsedRealtime();
 
         // Account types, keyed off the account type and data set concatenation.
         Map<AccountTypeWithDataSet, AccountType> accountTypesByTypeAndDataSet = Maps.newHashMap();
@@ -371,6 +374,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
         } catch (RemoteException e) {
             Log.w(TAG, "Problem loading accounts: " + e.toString());
         }
+        timings.addSplit("Loaded account types");
 
         // Map in accounts to associate the account names with each account type entry.
         Account[] accounts = mAccountManager.getAccounts();
@@ -402,11 +406,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
         Collections.sort(allAccounts, ACCOUNT_COMPARATOR);
         Collections.sort(writableAccounts, ACCOUNT_COMPARATOR);
 
-        // The UI will need a phone number formatter.  We can preload meta data for the
-        // current locale to prevent a delay later on.
-        PhoneNumberUtil.getInstance().getAsYouTypeFormatter(Locale.getDefault().getCountry());
-
-        long endTime = SystemClock.currentThreadTimeMillis();
+        timings.addSplit("Loaded accounts");
 
         synchronized (this) {
             mAccountTypesWithDataSets = accountTypesByTypeAndDataSet;
@@ -416,8 +416,13 @@ class AccountTypeManagerImpl extends AccountTypeManager
                     mContext, allAccounts, accountTypesByTypeAndDataSet);
         }
 
+        timings.dumpToLog();
+        final long endTimeWall = SystemClock.elapsedRealtime();
+        final long endTime = SystemClock.currentThreadTimeMillis();
+
         Log.i(TAG, "Loaded meta-data for " + mAccountTypesWithDataSets.size() + " account types, "
-                + mAccounts.size() + " accounts in " + (endTime - startTime) + "ms");
+                + mAccounts.size() + " accounts in " + (endTimeWall - startTimeWall) + "ms(wall) "
+                + (endTime - startTime) + "ms(cpu)");
 
         if (mInitializationLatch != null) {
             mInitializationLatch.countDown();
