@@ -199,11 +199,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 } else {
                     selection.append(" AND " + RawContacts.DATA_SET + " IS NULL");
                 }
-                // TODO (stopship): And also this private API, which is even worse
-                selection.append(") OR " + Contacts._ID + "=(" +
-                        "SELECT contact_id " +
-                        "FROM raw_contacts rc inner join accounts a" +
-                        " ON a.profile_raw_contact_id = rc._id)");
+                selection.append(")");
                 break;
             }
             case ContactListFilter.FILTER_TYPE_GROUP: {
