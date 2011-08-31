@@ -395,12 +395,19 @@ public class VoicemailPlaybackFragment extends Fragment {
 
         @Override
         public void setSpeakerPhoneOn(boolean on) {
-            getAudioManager().setMode(AudioManager.MODE_IN_CALL);
             getAudioManager().setSpeakerphoneOn(on);
             if (on) {
                 mPlaybackSpeakerphone.setImageResource(R.drawable.ic_sound_holo_dark);
             } else {
                 mPlaybackSpeakerphone.setImageResource(R.drawable.ic_sound_holo_dark);
+            }
+        }
+
+        @Override
+        public void setVolumeControlStream(int streamType) {
+            Activity activity = mActivityReference.get();
+            if (activity != null) {
+                activity.setVolumeControlStream(streamType);
             }
         }
     }
