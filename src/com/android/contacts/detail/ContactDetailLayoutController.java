@@ -21,6 +21,8 @@ import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
 
+import android.animation.Animator;
+import android.animation.Animator.AnimatorListener;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.FragmentManager;
@@ -77,6 +79,7 @@ public class ContactDetailLayoutController {
 
     private ContactLoader.Result mContactData;
 
+    private boolean mTabCarouselIsAnimating;
     private boolean mContactHasUpdates;
 
     private LayoutMode mLayoutMode;
@@ -176,6 +179,7 @@ public class ContactDetailLayoutController {
                 }
 
                 mTabCarousel.setListener(mTabCarouselListener);
+                mTabCarousel.restoreCurrentTab(currentPageIndex);
                 mDetailFragment.setVerticalScrollListener(
                         new VerticalScrollListener(TAB_INDEX_DETAIL));
                 mUpdatesFragment.setVerticalScrollListener(
@@ -211,7 +215,7 @@ public class ContactDetailLayoutController {
 
                 mFragmentCarousel.setFragmentViews(mDetailFragmentView, mUpdatesFragmentView);
                 mFragmentCarousel.setFragments(mDetailFragment, mUpdatesFragment);
-                mFragmentCarousel.setCurrentPage(currentPageIndex);
+                mFragmentCarousel.restoreCurrentPage(currentPageIndex);
                 break;
             }
         }
@@ -239,6 +243,7 @@ public class ContactDetailLayoutController {
     public void showEmptyState() {
         switch (mLayoutMode) {
             case FRAGMENT_CAROUSEL: {
+                mFragmentCarousel.setCurrentPage(0);
                 mFragmentCarousel.enableSwipe(false);
                 mDetailFragment.showEmptyState();
                 break;
@@ -323,6 +328,7 @@ public class ContactDetailLayoutController {
                 break;
             case FRAGMENT_CAROUSEL: {
                 // Disable swipe so only the detail fragment shows
+                mFragmentCarousel.setCurrentPage(0);
                 mFragmentCarousel.enableSwipe(false);
                 break;
             }
@@ -449,12 +455,14 @@ public class ContactDetailLayoutController {
                     mTabCarousel, "y", desiredValue).setDuration(75);
             mTabCarouselAnimator.setInterpolator(AnimationUtils.loadInterpolator(
                     mActivity, android.R.anim.accelerate_decelerate_interpolator));
+            mTabCarouselAnimator.addListener(mTabCarouselAnimatorListener);
         }
 
         private void cancelTabCarouselAnimator() {
             if (mTabCarouselAnimator != null) {
                 mTabCarouselAnimator.cancel();
                 mTabCarouselAnimator = null;
+                mTabCarouselIsAnimating = false;
             }
         }
     };
@@ -477,6 +485,34 @@ public class ContactDetailLayoutController {
             return mUpdatesFragment.getFirstListItemOffset();
         }
     }
+
+    /**
+     * This listener keeps track of whether the tab carousel animation is currently going on or not,
+     * in order to prevent other simultaneous changes to the Y position of the tab carousel which
+     * can cause flicker.
+     */
+    private final AnimatorListener mTabCarouselAnimatorListener = new AnimatorListener() {
+
+        @Override
+        public void onAnimationCancel(Animator animation) {
+            mTabCarouselIsAnimating = false;
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animation) {
+            mTabCarouselIsAnimating = false;
+        }
+
+        @Override
+        public void onAnimationRepeat(Animator animation) {
+            mTabCarouselIsAnimating = true;
+        }
+
+        @Override
+        public void onAnimationStart(Animator animation) {
+            mTabCarouselIsAnimating = true;
+        }
+    };
 
     private final ContactDetailTabCarousel.Listener mTabCarouselListener =
             new ContactDetailTabCarousel.Listener() {
@@ -529,10 +565,11 @@ public class ContactDetailLayoutController {
                 int totalItemCount) {
             int currentPageIndex = mViewPager.getCurrentItem();
             // Don't move the carousel if: 1) the contact does not have social updates because then
-            // tab carousel must not be visible, 2) if the view pager is still being scrolled, or
-            // 3) if the current page being viewed is not this one.
+            // tab carousel must not be visible, 2) if the view pager is still being scrolled,
+            // 3) if the current page being viewed is not this one, or 4) if the tab carousel
+            // is already being animated vertically.
             if (!mContactHasUpdates || mViewPagerState != ViewPager.SCROLL_STATE_IDLE ||
-                    mPageIndex != currentPageIndex) {
+                    mPageIndex != currentPageIndex || mTabCarouselIsAnimating) {
                 return;
             }
             // If the FIRST item is not visible on the screen, then the carousel must be pinned

@@ -88,7 +88,7 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
     private View mDetailFragmentView;
     private View mUpdatesFragmentView;
 
-    private final Handler mHandler = new Handler();
+    private boolean mScrollToCurrentPage = false;
 
     public ContactDetailFragmentCarousel(Context context) {
         this(context, null);
@@ -144,6 +144,28 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
                 resolveSize(screenHeight, heightMeasureSpec));
     }
 
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+        if (mScrollToCurrentPage) {
+            mScrollToCurrentPage = false;
+            // Use scrollTo() instead of smoothScrollTo() to prevent a visible flicker to the user
+            scrollTo(mCurrentPage == ABOUT_PAGE ? 0 : mAllowedHorizontalScrollLength, 0);
+            updateTouchInterceptors();
+        }
+    }
+
+    /**
+     * Set the current page that should be restored when the view is first laid out.
+     */
+    public void restoreCurrentPage(int pageIndex) {
+        setCurrentPage(pageIndex);
+        // It is only possible to scroll the view after onMeasure() has been called (where the
+        // allowed horizontal scroll length is determined). Hence, set a flag that will be read
+        // in onLayout() after the children and this view have finished being laid out.
+        mScrollToCurrentPage = true;
+    }
+
     /**
      * Set the current page. This auto-scrolls the carousel to the current page and dims out
      * the non-selected page.
@@ -183,29 +205,11 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
             mEnableSwipe = enable;
             if (mUpdatesFragmentView != null) {
                 mUpdatesFragmentView.setVisibility(enable ? View.VISIBLE : View.GONE);
+                mScrollToCurrentPage = true;
                 requestLayout();
                 invalidate();
             }
-            // This method could have been called before the view has been measured (i.e.
-            // immediately after a rotation), so snap to edge only after the view is ready.
-            postRunnableToSnapToEdge();
         }
-    }
-
-    /**
-     * Snap to the currently selected page only once all the view setup and measurement has
-     * completed (i.e. we need to know the allowed horizontal scroll width in order to
-     * snap to the correct page).
-     */
-    private void postRunnableToSnapToEdge() {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                if (isAttachedToWindow() && mAboutFragment != null && mUpdatesFragment != null) {
-                    snapToEdge();
-                }
-            }
-        });
     }
 
     public int getCurrentPage() {
@@ -301,9 +305,5 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
             return true;
         }
         return false;
-    }
-
-    private boolean isAttachedToWindow() {
-        return getWindowToken() != null;
     }
 }
