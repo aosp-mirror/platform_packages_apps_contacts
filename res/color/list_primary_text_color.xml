@@ -14,9 +14,9 @@
      limitations under the License.
 -->
 
-<selector xmlns:android="http://schemas.android.com/apk/res/android"
-        android:exitFadeDuration="@android:integer/config_mediumAnimTime">
-    <item android:state_activated="true" android:drawable="@drawable/list_activated_holo" />
-    <item android:state_pressed="true" android:drawable="@drawable/list_pressed_holo_light" />
-    <item android:state_focused="true" android:drawable="@drawable/list_focused_holo" />
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_activated="true" android:color="@color/primary_text_color_activated"/>
+    <item android:color="@color/primary_text_color" /> <!-- not selected -->
+
 </selector>
