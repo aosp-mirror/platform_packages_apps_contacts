@@ -205,15 +205,13 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
 
     /**
      * Try to obtain ContactListFilter object saved in SharedPreference.
-     * If there's no info there, return custom filter instead, assuming the user wants contacts
-     * which ContactsProvider remembers as "visible contacts".
-     * (See also {@link Contacts#IN_VISIBLE_GROUP})
+     * If there's no info there, return ALL filter instead.
      */
     public static ContactListFilter restoreDefaultPreferences(SharedPreferences prefs) {
         ContactListFilter filter = restoreFromPreferences(prefs);
         if (filter == null) {
-            // Show contacts in IN_VISIBLE_GROUP instead.
-            filter = ContactListFilter.createFilterWithType(ContactListFilter.FILTER_TYPE_CUSTOM);
+            filter = ContactListFilter.createFilterWithType(
+                    ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
         }
         return filter;
     }
