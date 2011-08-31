@@ -1490,7 +1490,7 @@
     <string name="activity_title_contacts_filter">Contacts to display</string>
 
     <!-- Menu item for the settings activity [CHAR LIMIT=64] -->
-    <string name="menu_settings">Display options</string>
+    <string name="menu_settings" msgid="377929915873428211">Settings</string>
 
     <!-- The preference section title for contact display options [CHAR LIMIT=128] -->
     <string name="preference_displayOptions">Display options</string>
