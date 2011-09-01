@@ -181,6 +181,8 @@
     </style>
 
     <style name="ContactPickerTheme" parent="@style/PeopleTheme">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
     <style name="ContactPickerLayout" parent="ContactPickerTheme">
         <item name="android:layout_width">match_parent</item>
