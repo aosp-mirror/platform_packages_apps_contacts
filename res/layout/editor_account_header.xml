@@ -24,6 +24,7 @@
     android:orientation="horizontal"
     android:paddingTop="8dip"
     android:paddingBottom="8dip"
+    android:gravity="center_vertical"
     android:paddingLeft="@dimen/account_container_left_padding"
     android:paddingRight="32dip">
 

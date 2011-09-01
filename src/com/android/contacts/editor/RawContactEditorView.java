@@ -178,13 +178,15 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
         // Fill in the account info
         if (isProfile) {
-            mAccountNameTextView.setVisibility(View.GONE);
             String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);
             if (TextUtils.isEmpty(accountName)) {
+                mAccountNameTextView.setVisibility(View.GONE);
                 mAccountTypeTextView.setText(R.string.local_profile_title);
             } else {
-                mAccountTypeTextView.setText(
-                        mContext.getString(R.string.external_profile_title, accountName));
+                CharSequence accountType = type.getDisplayLabel(mContext);
+                mAccountTypeTextView.setText(mContext.getString(R.string.external_profile_title,
+                        accountType));
+                mAccountNameTextView.setText(accountName);
             }
         } else {
             String accountName = values.getAsString(RawContacts.ACCOUNT_NAME);

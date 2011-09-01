@@ -22,6 +22,7 @@
     android:minHeight="48dip"
     android:background="#EEEEEE"
     android:orientation="horizontal"
+    android:gravity="center_vertical"
     android:paddingLeft="@dimen/account_container_left_padding"
     android:paddingRight="32dip">
 
