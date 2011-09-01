@@ -561,6 +561,11 @@ public class EntityDelta implements Parcelable {
             return mAfter;
         }
 
+        public boolean containsKey(String key) {
+            return ((mAfter != null && mAfter.containsKey(key)) ||
+                    (mBefore != null && mBefore.containsKey(key)));
+        }
+
         public String getAsString(String key) {
             if (mAfter != null && mAfter.containsKey(key)) {
                 return mAfter.getAsString(key);

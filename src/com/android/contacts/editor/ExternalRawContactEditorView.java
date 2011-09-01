@@ -27,6 +27,7 @@ import com.android.contacts.model.EntityModifier;
 
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
@@ -199,35 +200,42 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
             mEditExternallyButton.setVisibility(View.VISIBLE);
         }
 
+        final Resources res = mContext.getResources();
         // Phones
         ArrayList<ValuesDelta> phones = state.getMimeEntries(Phone.CONTENT_ITEM_TYPE);
         if (phones != null) {
-            for (ValuesDelta phone : phones) {
-                View field = mInflater.inflate(
-                        R.layout.item_read_only_field, mGeneral, false);
-                TextView v;
-                v = (TextView) field.findViewById(R.id.kind_title);
-                v.setText(mContext.getText(R.string.phoneLabelsGroup));
-                v = (TextView) field.findViewById(R.id.data);
-                v.setText(PhoneNumberUtils.formatNumber(phone.getAsString(Phone.NUMBER),
+            for (int i = 0; i < phones.size(); i++) {
+                ValuesDelta phone = phones.get(i);
+                final String phoneNumber = PhoneNumberUtils.formatNumber(
+                        phone.getAsString(Phone.NUMBER),
                         phone.getAsString(Phone.NORMALIZED_NUMBER),
-                        ContactsUtils.getCurrentCountryIso(getContext())));
-                mGeneral.addView(field);
+                        ContactsUtils.getCurrentCountryIso(getContext()));
+                final CharSequence phoneType;
+                if (phone.containsKey(Phone.TYPE)) {
+                    phoneType = Phone.getTypeLabel(
+                            res, phone.getAsInteger(Phone.TYPE), phone.getAsString(Phone.LABEL));
+                } else {
+                    phoneType = null;
+                }
+                bindData(mContext.getText(R.string.phoneLabelsGroup),
+                        phoneNumber, phoneType, i == 0);
             }
         }
 
         // Emails
         ArrayList<ValuesDelta> emails = state.getMimeEntries(Email.CONTENT_ITEM_TYPE);
         if (emails != null) {
-            for (ValuesDelta email : emails) {
-                View field = mInflater.inflate(
-                        R.layout.item_read_only_field, mGeneral, false);
-                TextView v;
-                v = (TextView) field.findViewById(R.id.kind_title);
-                v.setText(mContext.getText(R.string.emailLabelsGroup));
-                v = (TextView) field.findViewById(R.id.data);
-                v.setText(email.getAsString(Email.DATA));
-                mGeneral.addView(field);
+            for (int i = 0; i < emails.size(); i++) {
+                ValuesDelta email = emails.get(i);
+                final String emailAddress = email.getAsString(Email.DATA);
+                final CharSequence emailType;
+                if (email.containsKey(Email.TYPE)) {
+                    emailType = Email.getTypeLabel(
+                            res, email.getAsInteger(Email.TYPE), email.getAsString(Email.LABEL));
+                } else {
+                    emailType = null;
+                }
+                bindData(mContext.getText(R.string.emailLabelsGroup), emailAddress, null, i == 0);
             }
         }
 
@@ -237,6 +245,28 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
         } else {
             mGeneral.setVisibility(View.GONE);
         }
+    }
+
+    private void bindData(
+            CharSequence titleText, CharSequence data, CharSequence type, boolean isFirstEntry) {
+        final View field = mInflater.inflate(R.layout.item_read_only_field, mGeneral, false);
+        if (isFirstEntry) {
+            final TextView titleView = (TextView) field.findViewById(R.id.kind_title);
+            titleView.setText(titleText);
+        } else {
+            View titleContainer = field.findViewById(R.id.kind_title_layout);
+            titleContainer.setVisibility(View.GONE);
+        }
+        final TextView dataView = (TextView) field.findViewById(R.id.data);
+        dataView.setText(data);
+        final TextView typeView = (TextView) field.findViewById(R.id.type);
+        if (!TextUtils.isEmpty(type)) {
+            typeView.setText(type);
+        } else {
+            typeView.setVisibility(View.GONE);
+        }
+
+        mGeneral.addView(field);
     }
 
     @Override
