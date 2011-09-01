@@ -69,8 +69,13 @@ import java.util.List;
  * This activity can be either started with the URI of a single call log entry, or with the
  * {@link #EXTRA_CALL_LOG_IDS} extra to specify a group of call log entries.
  */
-public class CallDetailActivity extends Activity {
+public class CallDetailActivity extends Activity implements ProximitySensorAware {
     private static final String TAG = "CallDetail";
+
+    /** The time to wait before enabling the blank the screen due to the proximity sensor. */
+    private static final long PROXIMITY_BLANK_DELAY_MILLIS = 100;
+    /** The time to wait before disabling the blank the screen due to the proximity sensor. */
+    private static final long PROXIMITY_UNBLANK_DELAY_MILLIS = 500;
 
     /** The enumeration of {@link AsyncTask} objects used in this class. */
     public enum Tasks {
@@ -114,6 +119,60 @@ public class CallDetailActivity extends Activity {
 
     /** Whether we should show "edit number before call" in the options menu. */
     private boolean mHasEditNumberBeforeCall;
+
+    private ProximitySensorManager mProximitySensorManager;
+    private final ProximitySensorListener mProximitySensorListener = new ProximitySensorListener();
+
+    /** Listener to changes in the proximity sensor state. */
+    private class ProximitySensorListener implements ProximitySensorManager.Listener {
+        /** Used to show a blank view and hide the action bar. */
+        private final Runnable mBlankRunnable = new Runnable() {
+            @Override
+            public void run() {
+                View blankView = findViewById(R.id.blank);
+                blankView.setVisibility(View.VISIBLE);
+                getActionBar().hide();
+            }
+        };
+        /** Used to remove the blank view and show the action bar. */
+        private final Runnable mUnblankRunnable = new Runnable() {
+            @Override
+            public void run() {
+                View blankView = findViewById(R.id.blank);
+                blankView.setVisibility(View.GONE);
+                getActionBar().show();
+            }
+        };
+
+        @Override
+        public synchronized void onNear() {
+            clearPendingRequests();
+            postDelayed(mBlankRunnable, PROXIMITY_BLANK_DELAY_MILLIS);
+        }
+
+        @Override
+        public synchronized void onFar() {
+            clearPendingRequests();
+            postDelayed(mUnblankRunnable, PROXIMITY_UNBLANK_DELAY_MILLIS);
+        }
+
+        /** Removed any delayed requests that may be pending. */
+        public synchronized void clearPendingRequests() {
+            View blankView = findViewById(R.id.blank);
+            blankView.removeCallbacks(mBlankRunnable);
+            blankView.removeCallbacks(mUnblankRunnable);
+        }
+
+        /** Post a {@link Runnable} with a delay on the main thread. */
+        private synchronized void postDelayed(Runnable runnable, long delayMillis) {
+            // Post these instead of executing immediately so that:
+            // - They are guaranteed to be executed on the main thread.
+            // - If the sensor values changes rapidly for some time, the UI will not be
+            //   updated immediately.
+            View blankView = findViewById(R.id.blank);
+            blankView.postDelayed(runnable, delayMillis);
+        }
+    }
 
     static final String[] CALL_LOG_PROJECTION = new String[] {
         CallLog.Calls.DATE,
@@ -189,6 +248,7 @@ public class CallDetailActivity extends Activity {
         mContactBackgroundView = (ImageView) findViewById(R.id.contact_background);
         mDefaultCountryIso = ContactsUtils.getCurrentCountryIso(this);
         mContactPhotoManager = ContactPhotoManager.getInstance(this);
+        mProximitySensorManager = new ProximitySensorManager(this, mProximitySensorListener);
         configureActionBar();
         optionallyHandleVoicemail();
     }
@@ -769,5 +829,23 @@ public class CallDetailActivity extends Activity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    protected void onPause() {
+        // Immediately stop the proximity sensor.
+        disableProximitySensor(false);
+        mProximitySensorListener.clearPendingRequests();
+        super.onPause();
+    }
+
+    @Override
+    public void enableProximitySensor() {
+        mProximitySensorManager.enable();
+    }
+
+    @Override
+    public void disableProximitySensor(boolean waitForFarState) {
+        mProximitySensorManager.disable(waitForFarState);
     }
 }
