@@ -80,18 +80,8 @@
     <!-- Color of the theme of the People app -->
     <color name="people_app_theme_color">#33B5E5</color>
 
-    <!-- Primary text color in the People app -->
-    <color name="primary_text_color">#333333</color>
-
-    <!-- Activated primary text color in the People app -->
-    <color name="primary_text_color_activated">#FFFFFF</color>
-
-    <!-- Secondary text color in the People app -->
-    <color name="secondary_text_color">#777777</color>
+    <!-- Secondary text color in the Phone app -->
     <color name="dialtacts_secondary_text_color">#888888</color>
-
-    <!-- Activated secondary text color in the People app -->
-    <color name="secondary_text_color_activated">#FFFFFF</color>
 
     <!-- Colors in the contact browser list -->
     <color name="contact_count_text_color">#AAAAAA</color>
