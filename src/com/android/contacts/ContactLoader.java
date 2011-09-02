@@ -1079,30 +1079,51 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             }
 
             // Now retrieve any photo records associated with the stream items.
-            String[] streamItemIdArr = new String[streamItems.size()];
-            StringBuilder streamItemPhotoSelection = new StringBuilder();
             if (!streamItems.isEmpty()) {
-                streamItemPhotoSelection.append(StreamItemPhotos.STREAM_ITEM_ID + " IN (");
-                for (int i = 0; i < streamItems.size(); i++) {
-                    if (i > 0) {
-                        streamItemPhotoSelection.append(",");
+                if (result.isUserProfile()) {
+                    // If the stream items we're loading are for the profile, we can't bulk-load the
+                    // stream items with a custom selection.
+                    for (StreamItemEntry entry : streamItems) {
+                        Cursor siCursor = getContext().getContentResolver().query(
+                                Uri.withAppendedPath(
+                                        ContentUris.withAppendedId(
+                                                StreamItems.CONTENT_URI, entry.getId()),
+                                        StreamItems.StreamItemPhotos.CONTENT_DIRECTORY),
+                                null, null, null, null);
+                        try {
+                            while (siCursor.moveToNext()) {
+                                entry.addPhoto(new StreamItemPhotoEntry(siCursor));
+                            }
+                        } finally {
+                            siCursor.close();
+                        }
                     }
-                    streamItemPhotoSelection.append("?");
-                    streamItemIdArr[i] = String.valueOf(streamItems.get(i).getId());
-                }
-                streamItemPhotoSelection.append(")");
-                cursor = getContext().getContentResolver().query(StreamItems.CONTENT_PHOTO_URI,
-                        null, streamItemPhotoSelection.toString(), streamItemIdArr,
-                        StreamItemPhotos.STREAM_ITEM_ID);
-                try {
-                    while (cursor.moveToNext()) {
-                        long streamItemId = cursor.getLong(
-                                cursor.getColumnIndex(StreamItemPhotos.STREAM_ITEM_ID));
-                        StreamItemEntry streamItem = streamItemsById.get(streamItemId);
-                        streamItem.addPhoto(new StreamItemPhotoEntry(cursor));
+                } else {
+                    String[] streamItemIdArr = new String[streamItems.size()];
+                    StringBuilder streamItemPhotoSelection = new StringBuilder();
+                    streamItemPhotoSelection.append(StreamItemPhotos.STREAM_ITEM_ID + " IN (");
+                    for (int i = 0; i < streamItems.size(); i++) {
+                        if (i > 0) {
+                            streamItemPhotoSelection.append(",");
+                        }
+                        streamItemPhotoSelection.append("?");
+                        streamItemIdArr[i] = String.valueOf(streamItems.get(i).getId());
                     }
-                } finally {
-                    cursor.close();
+                    streamItemPhotoSelection.append(")");
+                    Cursor sipCursor = getContext().getContentResolver().query(
+                            StreamItems.CONTENT_PHOTO_URI,
+                            null, streamItemPhotoSelection.toString(), streamItemIdArr,
+                            StreamItemPhotos.STREAM_ITEM_ID);
+                    try {
+                        while (sipCursor.moveToNext()) {
+                            long streamItemId = sipCursor.getLong(
+                                    sipCursor.getColumnIndex(StreamItemPhotos.STREAM_ITEM_ID));
+                            StreamItemEntry streamItem = streamItemsById.get(streamItemId);
+                            streamItem.addPhoto(new StreamItemPhotoEntry(sipCursor));
+                        }
+                    } finally {
+                        sipCursor.close();
+                    }
                 }
             }
 
