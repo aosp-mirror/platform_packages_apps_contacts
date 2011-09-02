@@ -116,8 +116,8 @@
     <!-- Horizontal padding for individual stream items -->
     <dimen name="detail_update_section_item_horizontal_padding">8dip</dimen>
 
-    <!-- Horizontal padding between columns images and/or text in a single stream item -->
-    <dimen name="detail_update_section_between_items_horizontal_padding">16dip</dimen>
+    <!-- Padding between columns images and/or text in a single stream item -->
+    <dimen name="detail_update_section_between_items_padding">1dip</dimen>
 
     <!-- Horizontal padding between content sections within a stream item -->
     <dimen name="detail_update_section_internal_padding">16dip</dimen>

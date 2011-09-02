@@ -18,13 +18,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/detail_update_section_between_items_padding">
 
     <view
         class="com.android.contacts.widget.ProportionalLayout"
         android:layout_width="0dip"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/detail_update_section_between_items_horizontal_padding"
+        android:layout_marginRight="@dimen/detail_update_section_between_items_padding"
         android:layout_weight="1"
         ex:ratio="1"
         ex:direction="widthToHeight">
