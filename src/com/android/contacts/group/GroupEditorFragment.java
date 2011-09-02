@@ -481,6 +481,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         mOriginalGroupName = cursor.getString(GroupMetaDataLoader.TITLE);
         mAccountName = cursor.getString(GroupMetaDataLoader.ACCOUNT_NAME);
         mAccountType = cursor.getString(GroupMetaDataLoader.ACCOUNT_TYPE);
+        mDataSet = cursor.getString(GroupMetaDataLoader.DATA_SET);
         mGroupNameIsReadOnly = (cursor.getInt(GroupMetaDataLoader.IS_READ_ONLY) == 1);
         setupEditorForAccount();
 
