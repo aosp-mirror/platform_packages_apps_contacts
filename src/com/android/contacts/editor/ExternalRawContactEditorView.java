@@ -252,12 +252,15 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
     private void bindData(
             CharSequence titleText, CharSequence data, CharSequence type, boolean isFirstEntry) {
         final View field = mInflater.inflate(R.layout.item_read_only_field, mGeneral, false);
+        final View divider = field.findViewById(R.id.divider);
         if (isFirstEntry) {
             final TextView titleView = (TextView) field.findViewById(R.id.kind_title);
             titleView.setText(titleText);
+            divider.setVisibility(View.GONE);
         } else {
             View titleContainer = field.findViewById(R.id.kind_title_layout);
             titleContainer.setVisibility(View.GONE);
+            divider.setVisibility(View.VISIBLE);
         }
         final TextView dataView = (TextView) field.findViewById(R.id.data);
         dataView.setText(data);
