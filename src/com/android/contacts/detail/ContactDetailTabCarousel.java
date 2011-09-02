@@ -63,6 +63,7 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
 
     private int mTabDisplayLabelHeight;
 
+    private boolean mScrollToCurrentTab = false;
     private int mLastScrollPosition;
 
     private int mAllowedHorizontalScrollLength = Integer.MIN_VALUE;
@@ -103,12 +104,7 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         mUpdatesTab = (CarouselTab) findViewById(R.id.tab_update);
         mUpdatesTab.setLabel(mContext.getString(R.string.contactDetailUpdates));
 
-        // TODO: We can't always assume the "about" page will be the current page.
-        mAboutTab.showSelectedState();
-        mAboutTab.setAlphaLayerValue(0);
         mAboutTab.enableTouchInterceptor(mAboutTabTouchInterceptListener);
-
-        mUpdatesTab.setAlphaLayerValue(MAX_ALPHA);
         mUpdatesTab.enableTouchInterceptor(mUpdatesTabTouchInterceptListener);
 
         // Retrieve the photo view for the "about" tab
@@ -144,6 +140,15 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
                 resolveSize(tabHeight, heightMeasureSpec));
     }
 
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+        if (mScrollToCurrentTab) {
+            mScrollToCurrentTab = false;
+            scrollTo(mCurrentTab == TAB_INDEX_ABOUT ? 0 : mAllowedHorizontalScrollLength, 0);
+        }
+    }
+
     private final OnClickListener mAboutTabTouchInterceptListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -171,6 +176,17 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         mListener.onScrollChanged(l, t, oldl, oldt);
         mLastScrollPosition = l;
         updateAlphaLayers();
+    }
+
+    /**
+     * Set the current tab that should be restored when the view is first laid out.
+     */
+    public void restoreCurrentTab(int position) {
+        setCurrentTab(position);
+        // It is only possible to scroll the view after onMeasure() has been called (where the
+        // allowed horizontal scroll length is determined). Hence, set a flag that will be read
+        // in onLayout() after the children and this view have finished being laid out.
+        mScrollToCurrentTab = true;
     }
 
     /**
@@ -225,8 +241,6 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
      * Updates the tab selection.
      */
     public void setCurrentTab(int position) {
-        // TODO: Handle device rotation (saving and restoring state of the selected tab)
-        // This will take more work because there is no tab carousel in phone landscape
         switch (position) {
             case TAB_INDEX_ABOUT:
                 mAboutTab.showSelectedState();
@@ -270,10 +284,10 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 mListener.onTouchDown();
-                return false;
+                return true;
             case MotionEvent.ACTION_UP:
                 mListener.onTouchUp();
-                return false;
+                return true;
         }
         return super.onTouchEvent(event);
     }
