@@ -1808,4 +1808,7 @@
     <!-- Toast shown when the app starts showing all contacts regardless of its current
          contact filter state. [CHAR LIMIT=64] -->
     <string name="toast_displaying_all_contacts">Displaying all contacts</string>
+
+    <!-- Message in the standard "no account" prompt that encourages the user to add a Google account before continuing to use the People app [CHAR LIMIT=NONE] -->
+    <string name="no_account_prompt">People works better with a Google Account.\n\n\u2022 Access from any web browser.\n\u2022 Back up your contacts securely.</string>
 </resources>
