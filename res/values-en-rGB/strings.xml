@@ -135,6 +135,7 @@
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"No contacts in <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Contacts in <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listSingleContact" msgid="6067813698903535563">"Single contact"</string>
+    <string name="listCustomView" msgid="6950713892532194050">"Contacts in customised view"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 found"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> found"</item>
@@ -486,7 +487,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Define customised view"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Settings"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Contacts to display"</string>
-    <string name="menu_settings" msgid="6523251616169246235">"Display options"</string>
+    <string name="menu_settings" msgid="377929915873428211">"Settings"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Display options"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Find contacts"</string>

@@ -134,8 +134,8 @@
     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"No hi ha cap preferit"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"No hi ha cap contacte a <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Contactes a <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for listSingleContact (6067813698903535563) -->
-    <skip />
+    <string name="listSingleContact" msgid="6067813698903535563">"Un sol contacte"</string>
+    <string name="listCustomView" msgid="6950713892532194050">"Contactes a la visualització personalitzada"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 contacte"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> contactes"</item>
@@ -248,12 +248,12 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="2462918339722946736">"No s\'ha pogut explorar la targeta SD (Motiu: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Error d\'E/S"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"La memòria és insuficient (és possible que el fitxer sigui massa gran)"</string>
-    <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"No s\'ha pogut analitzar la targeta virtual per un motiu inesperat"</string>
+    <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"No s\'ha pogut analitzar la vCard per un motiu inesperat"</string>
     <string name="fail_reason_not_supported" msgid="294499264620201243">"No s\'admet aquest format."</string>
-    <string name="vcard_import_failed" msgid="8856125211629574066">"No s\'ha pogut importar targeta virtual"</string>
+    <string name="vcard_import_failed" msgid="8856125211629574066">"No s\'ha pogut importar la vCard"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"No s\'ha trobat cap fitxer vCard a l\'emmagatzematge"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"No s\'ha trobat cap fitxer vCard a la targeta SD"</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"No s\'ha pogut recopilar metainformació dels fitxers de targeta virtual."</string>
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"No s\'ha pogut recopilar metainformació dels fitxers de la vCard."</string>
     <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"No s\'ha pogut importar un dels fitxers com a mínim (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Error desconegut"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Selecció del fitxer vCard"</string>
@@ -261,7 +261,7 @@
     <string name="caching_vcard_message" msgid="2380844718093378900">"L\'importador està desant els vCard a l\'emmagatzematge temporal local. La importació real començarà aviat."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"S\'està important <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"S\'està important <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="reading_vcard_failed_title" msgid="4251647443358422855">"No s\'ha pogut llegir la targeta virtual"</string>
+    <string name="reading_vcard_failed_title" msgid="4251647443358422855">"No s\'han pogut llegir les dades de vCard"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"S\'ha cancel·lat la lectura de dades de vCard"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Importació de vCard <xliff:g id="FILENAME">%s</xliff:g> finalitzada"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"La importació de <xliff:g id="FILENAME">%s</xliff:g> s\'ha cancel·lat"</string>
@@ -286,7 +286,7 @@
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"S\'estan exportant les dades de contacte a \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"No s\'ha pogut inicialitzar l\'exportador: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"S\'ha produït un error durant l\'exportació: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"No s\'ha pogut obtenir informació de la bases de dades"</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"No s\'ha pogut obtenir informació de la base de dades"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"No hi ha contactes que es puguin exportar. Si realment tens contactes a la tauleta, és possible que alguns proveïdors de dades impedeixin exportar tots els contactes fora de la tauleta."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"No hi ha contactes que es puguin exportar. Si realment tens contactes al teu telèfon, és possible que alguns proveïdors de dades impedeixin exportar tots els contactes fora del telèfon."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"El creador de vCard no s\'ha inicialitzat correctament"</string>
@@ -296,12 +296,12 @@
     <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"Estàs segur que vols cancel·lar la importació de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Cancel·lació de l\'exportació de la vCard"</string>
     <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"Estàs segur que vols cancel·lar l\'exportació de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
-    <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"No es pot cancel. imp./exp. targ. virt."</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"No es pot cancel·lar la imp./exp. vCard"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Noms dels contactes"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Afegeix una pausa de 2 segons"</string>
     <string name="add_wait" msgid="3360818652790319634">"Afegeix espera"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"Trucada mitjançant"</string>
-    <!-- outdated translation 5009897887137674341 -->     <string name="call_settings" msgid="7666474782093693667">"Configuració de trucada"</string>
+    <string name="call_settings" msgid="7666474782093693667">"Configuració"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Envia un SMS amb"</string>
     <string name="make_primary" msgid="5829291915305113983">"Recorda aquesta selecció"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"No s\'ha trobat cap aplicació per processar aquesta acció"</string>
@@ -311,8 +311,7 @@
     <string name="menu_import_export" msgid="3765725645491577190">"Importa/Exporta"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importació/Exportació de contactes"</string>
     <string name="menu_share" msgid="943789700636542260">"Comparteix"</string>
-    <!-- no translation found for menu_all_contacts (5101735431586050711) -->
-    <skip />
+    <string name="menu_all_contacts" msgid="5101735431586050711">"Tots els contactes"</string>
     <string name="share_via" msgid="563121028023030093">"Comparteix el contacte mitjançant"</string>
     <string name="share_error" msgid="4374508848981697170">"Aquest contacte no es pot compartir."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Nom"</string>
@@ -488,7 +487,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Defineix la visualització personalitzada"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Configuració"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Contactes per mostrar"</string>
-    <string name="menu_settings" msgid="6523251616169246235">"Mostra les opcions"</string>
+    <string name="menu_settings" msgid="377929915873428211">"Configuració"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Opcions de visualització"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Cerca contactes"</string>
@@ -540,7 +539,7 @@
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Nou missatge de veu de <xliff:g id="CALLER">%1$s</xliff:g>"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"No s\'ha pogut reproduir correu de veu."</string>
-    <string name="voicemail_buffering" msgid="738287747618697097">"S\'està emmagatzemant a mem. interna???"</string>
+    <string name="voicemail_buffering" msgid="738287747618697097">"S\'està emmagatzemant a mem. intermèd.???"</string>
     <string name="voicemail_fetching_content" msgid="877911315738258780">"S\'està obtenint el correu de veu???"</string>
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"No s\'ha pogut obtenir el correu de veu."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Nous"</string>

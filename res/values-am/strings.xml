@@ -178,8 +178,8 @@
     <skip />
     <!-- no translation found for listAllContactsInAccount (7496143179265311758) -->
     <skip />
-    <!-- no translation found for listSingleContact (6067813698903535563) -->
-    <skip />
+    <string name="listSingleContact" msgid="6067813698903535563">"ነጠላ እውቂያ"</string>
+    <string name="listCustomView" msgid="6950713892532194050">"እውቂያዎች በብጁ እይታ"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 ተገኝቷል"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> ተገኝቷል"</item>
@@ -364,8 +364,7 @@
     <string name="add_2sec_pause" msgid="9214012315201040129">"2 ሰከንድ ፋታ አክል"</string>
     <string name="add_wait" msgid="3360818652790319634">"ጠብቅአክል"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"ጥሪ በመጠቀም"</string>
-    <!-- no translation found for call_settings (7666474782093693667) -->
-    <skip />
+    <string name="call_settings" msgid="7666474782093693667">"ቅንጅቶች"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"ፅሁፍበመጠቀም"</string>
     <string name="make_primary" msgid="5829291915305113983">"ይህን ምርጫ አስታውስ"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"ይህን እርምጃ ለማስተናገድ ምንም ትግበራ አልተገኘም"</string>
@@ -376,8 +375,7 @@
     <string name="menu_import_export" msgid="3765725645491577190">"አስመጣ/ላክ"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"ዕውቂያዎች አስመጣ/ላክ"</string>
     <string name="menu_share" msgid="943789700636542260">"መጋሪያ"</string>
-    <!-- no translation found for menu_all_contacts (5101735431586050711) -->
-    <skip />
+    <string name="menu_all_contacts" msgid="5101735431586050711">"ሁሉም እውቅያዎች"</string>
     <string name="share_via" msgid="563121028023030093">"ዕውቂያበ በኩል አጋራ"</string>
     <string name="share_error" msgid="4374508848981697170">"ይህ ዕውቂያ መጋራት አይችልም።"</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"ስም"</string>
@@ -560,7 +558,7 @@
     <string name="activity_title_settings" msgid="5464130076132770781">"ቅንብሮች"</string>
     <!-- no translation found for activity_title_contacts_filter (8275542497615516969) -->
     <skip />
-    <string name="menu_settings" msgid="6523251616169246235">"አማራጮች አሳይ"</string>
+    <string name="menu_settings" msgid="377929915873428211">"ቅንብሮች"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"ማሳያ አማራጮች"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>፣ <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"ዕውቂያዎች አግኝ"</string>

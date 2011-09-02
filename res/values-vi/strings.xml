@@ -134,8 +134,8 @@
     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Không có mục ưa thích nào"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Không có liên hệ nào trong <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Danh bạ trong <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for listSingleContact (6067813698903535563) -->
-    <skip />
+    <string name="listSingleContact" msgid="6067813698903535563">"Một liên hệ"</string>
+    <string name="listCustomView" msgid="6950713892532194050">"Danh bạ ở chế độ xem tùy chỉnh"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"Đã tìm thấy 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Đã tìm thấy <xliff:g id="COUNT">%d</xliff:g>"</item>
@@ -301,7 +301,7 @@
     <string name="add_2sec_pause" msgid="9214012315201040129">"Thêm 2 giây dừng"</string>
     <string name="add_wait" msgid="3360818652790319634">"Thêm chờ"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"Sử dụng cuộc gọi"</string>
-    <!-- outdated translation 5009897887137674341 -->     <string name="call_settings" msgid="7666474782093693667">"Cài đặt cuộc gọi"</string>
+    <string name="call_settings" msgid="7666474782093693667">"Cài đặt"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Nhắn tin sử dụng"</string>
     <string name="make_primary" msgid="5829291915305113983">"Nhớ lựa chọn này"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Không tìm thấy ứng dụng nào để xử lý tác vụ này"</string>
@@ -311,8 +311,7 @@
     <string name="menu_import_export" msgid="3765725645491577190">"Nhập/Xuất"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Nhập/Xuất danh bạ"</string>
     <string name="menu_share" msgid="943789700636542260">"Chia sẻ"</string>
-    <!-- no translation found for menu_all_contacts (5101735431586050711) -->
-    <skip />
+    <string name="menu_all_contacts" msgid="5101735431586050711">"Tất cả liên hệ"</string>
     <string name="share_via" msgid="563121028023030093">"Chia sẻ liên hệ qua"</string>
     <string name="share_error" msgid="4374508848981697170">"Không thể chia sẻ liên hệ này."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Tên"</string>
@@ -488,7 +487,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Xác định chế độ xem tùy chỉnh"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Cài đặt"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"DS liên hệ để hiển thị"</string>
-    <string name="menu_settings" msgid="6523251616169246235">"Tùy chọn hiển thị"</string>
+    <string name="menu_settings" msgid="377929915873428211">"Cài đặt"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Tùy chọn hiển thị"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Tìm địa chỉ liên hệ"</string>

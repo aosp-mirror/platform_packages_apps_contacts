@@ -134,8 +134,8 @@
     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Nenhum favorito"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Nenhum contato em <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Contatos em <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for listSingleContact (6067813698903535563) -->
-    <skip />
+    <string name="listSingleContact" msgid="6067813698903535563">"Único contato"</string>
+    <string name="listCustomView" msgid="6950713892532194050">"Contatos no modo de exibição personalizado"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"Um encontrado"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> encontrados"</item>
@@ -301,7 +301,7 @@
     <string name="add_2sec_pause" msgid="9214012315201040129">"Adicionar pausa de 2 segundos"</string>
     <string name="add_wait" msgid="3360818652790319634">"Adicionar espera"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"Chamar usando"</string>
-    <!-- outdated translation 5009897887137674341 -->     <string name="call_settings" msgid="7666474782093693667">"Configurações de chamada"</string>
+    <string name="call_settings" msgid="7666474782093693667">"Configurações"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Enviar SMS usando"</string>
     <string name="make_primary" msgid="5829291915305113983">"Lembrar desta escolha"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Nenhum aplicativo foi encontrado para executar esta ação."</string>
@@ -311,8 +311,7 @@
     <string name="menu_import_export" msgid="3765725645491577190">"Importar/Exportar"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importar/Exportar contatos"</string>
     <string name="menu_share" msgid="943789700636542260">"Compartilhar"</string>
-    <!-- no translation found for menu_all_contacts (5101735431586050711) -->
-    <skip />
+    <string name="menu_all_contacts" msgid="5101735431586050711">"Todos os contatos"</string>
     <string name="share_via" msgid="563121028023030093">"Compartilhar contato via"</string>
     <string name="share_error" msgid="4374508848981697170">"Este contato não pode ser compartilhado."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Nome"</string>
@@ -488,7 +487,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Definir exibição personalizada"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Configurações"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Contatos a exibir"</string>
-    <string name="menu_settings" msgid="6523251616169246235">"Opções de exibição"</string>
+    <string name="menu_settings" msgid="377929915873428211">"Configurações"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Opções de exibição"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Localizar contatos"</string>

@@ -134,8 +134,8 @@
     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Няма любими"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Няма контакти във: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Контакти във: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for listSingleContact (6067813698903535563) -->
-    <skip />
+    <string name="listSingleContact" msgid="6067813698903535563">"Един контакт"</string>
+    <string name="listCustomView" msgid="6950713892532194050">"Контакти в персонализиран изглед"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1 намерен"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> намерени"</item>
@@ -242,29 +242,26 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Импортиране на всички vCard файлове"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Търсят се данни за vCard в хранилището"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Търсене на vCard данни в SD картата"</string>
-    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Сканирането на хранилището не бе успешно"</string>
-    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Сканирането на хранилището не бе успешно"</string>
-    <!-- no translation found for scanning_sdcard_failed_message (8290634758602152611) -->
-    <skip />
-    <!-- no translation found for scanning_sdcard_failed_message (2462918339722946736) -->
-    <skip />
+    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Хранилището не можа да бъде сканирано"</string>
+    <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"SD картата не можа да бъде сканирана"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8290634758602152611">"Хранилището не можа да бъде сканирано (Причина: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="2462918339722946736">"SD картата не можа да бъде сканирана (Причина: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O грешка"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Няма достатъчно памет (файлът може да е твърде голям)"</string>
-    <!-- outdated translation 1201233722762680214 -->     <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"Неуспешен анализ на vCard по неизвестна причина"</string>
+    <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"vCard не можа да бъде анализирана по неочаквана причина"</string>
     <string name="fail_reason_not_supported" msgid="294499264620201243">"Форматът не се поддържа."</string>
-    <!-- outdated translation 7718330063493653085 -->     <string name="vcard_import_failed" msgid="8856125211629574066">"Импортирането на vCard не бе успешно"</string>
+    <string name="vcard_import_failed" msgid="8856125211629574066">"vCard не можа да бъде импортирана"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"В хранилището не бе намерен vCard файл"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"На SD картата не бе намерен vCard файл"</string>
-    <!-- outdated translation 4154492282316067754 -->     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Събирането на метаинформация от дадените vCard файлове не бе успешно."</string>
-    <!-- no translation found for fail_reason_failed_to_read_files (5823434810622484922) -->
-    <skip />
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Метаинформацията от даден/и vCard файл/ове не можа да бъде събрана."</string>
+    <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Един или повече файла не можаха да бъдат импортирани (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"Неизвестна грешка"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"Избор на vCard файл"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"vCard се кешира/т във временно локално хранилище"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"Инструментът за импортиране кешира vCard във временно локално хранилище. Самото импортиране ще започне скоро."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Импортира се <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g> се импортира"</string>
-    <!-- outdated translation 2162610359561887043 -->     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Четенето на данни от vCard не бе успешно"</string>
+    <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Данните не можаха да бъдат прочетени"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Четенето на данни от vCard бе анулирано"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Импортирането на vCard <xliff:g id="FILENAME">%s</xliff:g> завърши"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Импортирането на <xliff:g id="FILENAME">%s</xliff:g> бе анулирано"</string>
@@ -277,9 +274,8 @@
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Потвърждение на експортиране"</string>
     <string name="confirm_export_message" msgid="4307437830474103759">"Да се експортира ли списъкът ви с контакти във файла „<xliff:g id="VCARD_FILENAME">%s</xliff:g>“?"</string>
-    <!-- outdated translation 585823094820602526 -->     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Неуспешно експортиране на данни за контакти"</string>
-    <!-- no translation found for exporting_contact_failed_message (2704925031146288635) -->
-    <skip />
+    <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Данните за контакти не можаха да бъдат експортирани"</string>
+    <string name="exporting_contact_failed_message" msgid="2704925031146288635">"Данните за контактите не можаха да бъдат експортирани."\n"Причина: „<xliff:g id="FAIL_REASON">%s</xliff:g>“"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Няма контакт за експортиране"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Твърде много vCard файлове в хранилището"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Твърде много vCard файлове на SD картата"</string>
@@ -290,7 +286,7 @@
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Експортиране на данни за контакти в „<xliff:g id="FILE_NAME">%s</xliff:g>“"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Експортирането не можа да започне: „<xliff:g id="EXACT_REASON">%s</xliff:g>“"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Възникна грешка при експортирането: „<xliff:g id="EXACT_REASON">%s</xliff:g>“"</string>
-    <!-- outdated translation 3723109558155169053 -->     <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Неуспешно извличане на информация за базата от данни"</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Информацията за базата от данни не можа да бъде получена"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Няма контакти, позволяващи експортиране. Ако в телефона си имате контакти, възможно е експортирането на всички тях извън таблета да е забранено от някои доставчици на данни."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Няма контакти, позволяващи експортиране. Ако в телефона си имате контакти, възможно е експортирането на всички тях извън телефона да е забранено от някои доставчици на данни."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"Създателят на vCard не се стартира правилно"</string>
@@ -300,12 +296,12 @@
     <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"Наистина ли искате да анулирате импортирането на <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Анулиране на експортирането на vCard"</string>
     <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"Наистина ли искате да анулирате експортирането на <xliff:g id="FILENAME">%s</xliff:g>?"</string>
-    <!-- outdated translation 7096533244663846810 -->     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Неуспешно импорт./експорт. на vCard"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Импорт./експорт. не можа да се анулира"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Имена на контактите ви"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Добавяне на 2-сек пауза"</string>
     <string name="add_wait" msgid="3360818652790319634">"Добавяне на изчакване"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"Обаждане на"</string>
-    <!-- outdated translation 5009897887137674341 -->     <string name="call_settings" msgid="7666474782093693667">"Настройки за обаждане"</string>
+    <string name="call_settings" msgid="7666474782093693667">"Настройки"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Изпращaне на SMS чрез"</string>
     <string name="make_primary" msgid="5829291915305113983">"Запомняне на този избор"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Няма намерено приложение за извършване на това действие"</string>
@@ -315,8 +311,7 @@
     <string name="menu_import_export" msgid="3765725645491577190">"Импортиране/Експортиране"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Импортиране/Експортиране на контакти"</string>
     <string name="menu_share" msgid="943789700636542260">"Споделяне"</string>
-    <!-- no translation found for menu_all_contacts (5101735431586050711) -->
-    <skip />
+    <string name="menu_all_contacts" msgid="5101735431586050711">"Всички контакти"</string>
     <string name="share_via" msgid="563121028023030093">"Споделяне на контакт чрез"</string>
     <string name="share_error" msgid="4374508848981697170">"Този контакт не може да бъде споделен."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Име"</string>
@@ -492,7 +487,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Определяне на персонализиран изглед"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Настройки"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Контакти за показване"</string>
-    <string name="menu_settings" msgid="6523251616169246235">"Опции за показване"</string>
+    <string name="menu_settings" msgid="377929915873428211">"Настройки"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Опции за показване"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Намиране на контакти"</string>
@@ -543,10 +538,10 @@
   </plurals>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Нова гласова поща от <xliff:g id="CALLER">%1$s</xliff:g>"</string>
-    <!-- outdated translation 6148119635138385900 -->     <string name="voicemail_playback_error" msgid="1811242131549854624">"глас. поща не бе възпроизведена успешно"</string>
-    <!-- outdated translation 2021957162133938725 -->     <string name="voicemail_buffering" msgid="738287747618697097">"буферира се..."</string>
-    <!-- outdated translation 8516068803491833243 -->     <string name="voicemail_fetching_content" msgid="877911315738258780">"гласовата поща се извлича..."</string>
-    <!-- outdated translation 3430908587639305983 -->     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"гласовата поща не можа да се извлече"</string>
+    <string name="voicemail_playback_error" msgid="1811242131549854624">"Гласовата поща не можа да бъде пусната."</string>
+    <string name="voicemail_buffering" msgid="738287747618697097">"Буферира се..."</string>
+    <string name="voicemail_fetching_content" msgid="877911315738258780">"Гласовата поща се извлича..."</string>
+    <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Гл. поща не можа да бъде извлечена."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Нови"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"По-стари"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"Не може да се осъществи връзка със сървъра за гласова поща."</string>

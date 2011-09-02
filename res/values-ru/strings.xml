@@ -134,8 +134,8 @@
     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Нет избранных."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Нет контактов в: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Контакты в <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for listSingleContact (6067813698903535563) -->
-    <skip />
+    <string name="listSingleContact" msgid="6067813698903535563">"1 контакт"</string>
+    <string name="listCustomView" msgid="6950713892532194050">"Контакты в пользовательском представлении"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"Найдено: 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Найдено: <xliff:g id="COUNT">%d</xliff:g>"</item>
@@ -161,7 +161,7 @@
     <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Удалить из списка вызовов"</string>
     <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Очистить список вызовов"</string>
     <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Удалить голосовое сообщение"</string>
-    <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Поделиться сообщением"</string>
+    <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Поделиться"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Список вызовов пуст."</string>
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Очистить список вызовов"</string>
     <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Действительно очистить список вызовов?"</string>
@@ -301,7 +301,7 @@
     <string name="add_2sec_pause" msgid="9214012315201040129">"Добавить двухсекундную паузу"</string>
     <string name="add_wait" msgid="3360818652790319634">"Добавить паузу"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"Вызов"</string>
-    <!-- outdated translation 5009897887137674341 -->     <string name="call_settings" msgid="7666474782093693667">"Настройки вызовов"</string>
+    <string name="call_settings" msgid="7666474782093693667">"Настройки"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Отправить SMS с помощью"</string>
     <string name="make_primary" msgid="5829291915305113983">"Запомнить выбранное"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Отсутствует приложение для обработки этого действия"</string>
@@ -311,8 +311,7 @@
     <string name="menu_import_export" msgid="3765725645491577190">"Импорт/Экспорт"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Импорт и экспорт контактов"</string>
     <string name="menu_share" msgid="943789700636542260">"Отправить"</string>
-    <!-- no translation found for menu_all_contacts (5101735431586050711) -->
-    <skip />
+    <string name="menu_all_contacts" msgid="5101735431586050711">"Все контакты"</string>
     <string name="share_via" msgid="563121028023030093">"Способ отправки"</string>
     <string name="share_error" msgid="4374508848981697170">"Этот контакт нельзя отправить."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Имя"</string>
@@ -424,7 +423,7 @@
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Использовать эту фотографию"</string>
-    <string name="contact_read_only" msgid="1856479476063888348">"Невозможно изменить в этом приложении"</string>
+    <string name="contact_read_only" msgid="1856479476063888348">"Изменение невозможно в этом приложении"</string>
     <string name="no_contact_details" msgid="6754415338321837001">"Отсутствует дополнительная информация об этом контакте."</string>
     <string name="group_read_only" msgid="7924922658394449477">"Данные доступны только для чтения"</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Упорядочить контакты"</string>
@@ -488,7 +487,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Настройка отображения"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Настройки"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Фильтр контактов"</string>
-    <string name="menu_settings" msgid="6523251616169246235">"Показать параметры"</string>
+    <string name="menu_settings" msgid="377929915873428211">"Настройки"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Варианты отображения"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Найти контакты"</string>

@@ -35,7 +35,7 @@
     <string name="insertContactDescription" msgid="4709878105452681987">"צור איש קשר"</string>
     <string name="editGroupDescription" msgid="6321161304201540561">"ערוך קבוצה"</string>
     <string name="insertGroupDescription" msgid="5658512271662210139">"צור קבוצה"</string>
-    <string name="contactDetailAbout" msgid="5430408883907061400">"אודות"</string>
+    <string name="contactDetailAbout" msgid="5430408883907061400">"מידע על"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"עדכונים"</string>
     <string name="searchHint" msgid="8482945356247760701">"חפש אנשי קשר"</string>
     <string name="menu_search" msgid="9147752853603483719">"חפש"</string>
@@ -134,8 +134,8 @@
     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"אין מועדפים"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"אין אנשי קשר ב<xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"אנשי קשר ב-<xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for listSingleContact (6067813698903535563) -->
-    <skip />
+    <string name="listSingleContact" msgid="6067813698903535563">"איש קשר יחיד"</string>
+    <string name="listCustomView" msgid="6950713892532194050">"אנשי קשר בתצוגה מותאמת אישית"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"נמצא אחד"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> נמצאו"</item>
@@ -242,29 +242,26 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"ייבא את כל קובצי vCard"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"מחפש נתוני vCard באמצעי אחסון"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"מחפש נתוני vCard בכרטיס SD"</string>
-    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"סריקת אמצעי אחסון נכשלה"</string>
-    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"סריקת אמצעי אחסון נכשלה"</string>
-    <!-- no translation found for scanning_sdcard_failed_message (8290634758602152611) -->
-    <skip />
-    <!-- no translation found for scanning_sdcard_failed_message (2462918339722946736) -->
-    <skip />
+    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"לא ניתן לסרוק אחסון"</string>
+    <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"לא ניתן לסרוק כרטיס SD"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8290634758602152611">"לא ניתן לסרוק אחסון (סיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="2462918339722946736">"לא ניתן לסרוק כרטיס SD (סיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"שגיאת קלט/פלט"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"אין מספיק זיכרון (ייתכן שהקובץ גדול מדי)"</string>
-    <!-- outdated translation 1201233722762680214 -->     <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"נכשל ניתוח vCard עקב סיבה לא צפויה"</string>
+    <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"לא ניתן לנתח vCard מסיבה בלתי צפויה"</string>
     <string name="fail_reason_not_supported" msgid="294499264620201243">"הפורמט אינו נתמך."</string>
-    <!-- outdated translation 7718330063493653085 -->     <string name="vcard_import_failed" msgid="8856125211629574066">"ייבוא ה-vCard נכשל"</string>
+    <string name="vcard_import_failed" msgid="8856125211629574066">"לא ניתן לייבא vCard"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"לא נמצא קובץ vCard באמצעי האחסון"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"לא נמצא קובץ vCard בכרטיס ה-SD"</string>
-    <!-- outdated translation 4154492282316067754 -->     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"נכשל איסוף מטא-מידע על קובצי vCard נתונים."</string>
-    <!-- no translation found for fail_reason_failed_to_read_files (5823434810622484922) -->
-    <skip />
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"לא ניתן לאסוף מטא-מידע של קבצים נתונים של vCard."</string>
+    <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"לא ניתן לייבא קובץ אחד או יותר (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"שגיאה לא ידועה"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"בחר קובץ vCard"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"מעביר קובצי vCard לקובץ שמור מקומי זמני"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"המייבא מעביר קובצי vCard לקובץ שמור זמני מקומי. היבוא בפועל יתחיל בקרוב."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"מייבא <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"מייבא את <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- outdated translation 2162610359561887043 -->     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"קריאת נתוני vCard נכשלה"</string>
+    <string name="reading_vcard_failed_title" msgid="4251647443358422855">"לא ניתן לקרוא נתוני vCard"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"קריאת נתוני vCard בוטלה"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"הייבוא של vCard בשם <xliff:g id="FILENAME">%s</xliff:g> הסתיים"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"הייבוא של <xliff:g id="FILENAME">%s</xliff:g> בוטל"</string>
@@ -277,9 +274,8 @@
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"אשר יצוא"</string>
     <string name="confirm_export_message" msgid="4307437830474103759">"לייצא את רשימת אנשי הקשר שלך לקובץ \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
-    <!-- outdated translation 585823094820602526 -->     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"נכשל היצוא של נתוני אנשי קשר"</string>
-    <!-- no translation found for exporting_contact_failed_message (2704925031146288635) -->
-    <skip />
+    <string name="exporting_contact_failed_title" msgid="2339788270863991417">"לא ניתן לייצא נתונים של אנשי קשר"</string>
+    <string name="exporting_contact_failed_message" msgid="2704925031146288635">"לא ניתן לייצא נתונים של אנשי קשר."\n"סיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"אין איש קשר שניתן לייצא"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"קובצי vCard רבים מדי באמצעי האחסון"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"קובצי vCard רבים מדי בכרטיס SD"</string>
@@ -290,7 +286,7 @@
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"מייצא נתוני אנשי קשר אל \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"אין אפשרות לאתחל את המייצא: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"אירעה שגיאה במהלך היצוא: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
-    <!-- outdated translation 3723109558155169053 -->     <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"השגת מידע של מסד נתונים נכשלה"</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"לא ניתן לקבל מידע על מסד נתונים"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"אין אנשי קשר לייצוא. אם למעשה יש אנשי קשר בטבלט שלך, ייתכן שהייצוא של כל אנשי הקשר מחוץ לטבלט נאסר על ידי ספקי נתונים מסוימים."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"אין אנשי קשר לייצוא. אם למעשה יש אנשי קשר בטלפון שלך, ייתכן שהייצוא של כל אנשי הקשר מחוץ לטלפון נאסר על ידי ספקי נתונים מסוימים."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"מחבר vCard אינו מאותחל כראוי"</string>
@@ -300,12 +296,12 @@
     <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"האם אתה בטוח שברצונך לבטל את הייבוא של <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"מבטל יצוא של vCard"</string>
     <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"האם אתה בטוח שברצונך לבטל את הייצוא של <xliff:g id="FILENAME">%s</xliff:g>?"</string>
-    <!-- outdated translation 7096533244663846810 -->     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"הביטול של הייבוא/הייצוא של vCard נכשל"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"לא ניתן לבטל ייבוא/ייצוא של vCard"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"השמות של אנשי הקשר"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"הוסף השהיה של 2 שניות"</string>
     <string name="add_wait" msgid="3360818652790319634">"הוסף המתנה"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"התקשר באמצעות"</string>
-    <!-- outdated translation 5009897887137674341 -->     <string name="call_settings" msgid="7666474782093693667">"הגדרות שיחה"</string>
+    <string name="call_settings" msgid="7666474782093693667">"הגדרות"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"שלח הודעת טקסט באמצעות"</string>
     <string name="make_primary" msgid="5829291915305113983">"זכור בחירה זו"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"לא נמצא יישום שתומך בפעולה זו"</string>
@@ -315,8 +311,7 @@
     <string name="menu_import_export" msgid="3765725645491577190">"יבוא/יצוא"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"ייבא/ייצא אנשי קשר"</string>
     <string name="menu_share" msgid="943789700636542260">"שתף"</string>
-    <!-- no translation found for menu_all_contacts (5101735431586050711) -->
-    <skip />
+    <string name="menu_all_contacts" msgid="5101735431586050711">"כל אנשי הקשר"</string>
     <string name="share_via" msgid="563121028023030093">"שתף איש קשר באמצעות"</string>
     <string name="share_error" msgid="4374508848981697170">"אין אפשרות לשתף איש קשר זה."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"שם"</string>
@@ -371,7 +366,7 @@
     <string name="sms_pager" msgid="7730404569637015192">"שלח הודעת טקסט לזימונית"</string>
     <string name="sms_other" msgid="806127844607642331">"הודעת טקסט"</string>
     <string name="sms_callback" msgid="5004824430094288752">"שלח הודעת טקסט למספר להתקשרות חזרה"</string>
-    <string name="sms_car" msgid="7444227058437359641">"שלח הודעת טקסט למכונית"</string>
+    <string name="sms_car" msgid="7444227058437359641">"שלח SMS לטלפון במכונית"</string>
     <string name="sms_company_main" msgid="118970873419678087">"שלח הודעת טקסט למספר הטלפון הראשי של החברה"</string>
     <string name="sms_isdn" msgid="8153785037515047845">"שלח הודעת טקסט ל-ISDN"</string>
     <string name="sms_main" msgid="8621625784504541679">"שלח הודעת טקסט למספר הטלפון הראשי"</string>
@@ -492,7 +487,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"הגדר תצוגה מותאמת אישית"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"הגדרות"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"אנשי קשר להצגה"</string>
-    <string name="menu_settings" msgid="6523251616169246235">"אפשרויות תצוגה"</string>
+    <string name="menu_settings" msgid="377929915873428211">"הגדרות"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"אפשרויות תצוגה"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"חפש אנשי קשר"</string>
@@ -512,7 +507,7 @@
     <string name="rename_group_dialog_title" msgid="3765299704290513289">"שנה את שם הקבוצה"</string>
     <string name="delete_group_dialog_title" msgid="7368429698398624427">"מחק את הקבוצה"</string>
   <plurals name="num_groups_in_account">
-    <item quantity="one" msgid="2944819210288517794">"קבוצה 1"</item>
+    <item quantity="one" msgid="2944819210288517794">"קבוצה אחת"</item>
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> קבוצות"</item>
   </plurals>
     <string name="delete_group_dialog_message" msgid="295063284548750881">"האם אתה בטוח שברצונך למחוק את הקבוצה \'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\'? (אנשי הקשר עצמם לא יימחקו.)"</string>
@@ -543,10 +538,10 @@
   </plurals>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"דואר קולי חדש מאת <xliff:g id="CALLER">%1$s</xliff:g>"</string>
-    <!-- outdated translation 6148119635138385900 -->     <string name="voicemail_playback_error" msgid="1811242131549854624">"לא ניתן להפעיל דואר קולי"</string>
-    <!-- outdated translation 2021957162133938725 -->     <string name="voicemail_buffering" msgid="738287747618697097">"מאחסן במאגר..."</string>
-    <!-- outdated translation 8516068803491833243 -->     <string name="voicemail_fetching_content" msgid="877911315738258780">"מאחזר דואר קולי..."</string>
-    <!-- outdated translation 3430908587639305983 -->     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"אחזור דואר קולי נכשל"</string>
+    <string name="voicemail_playback_error" msgid="1811242131549854624">"לא ניתן להפעיל דואר קולי."</string>
+    <string name="voicemail_buffering" msgid="738287747618697097">"מבצע אחסון זמני..."</string>
+    <string name="voicemail_fetching_content" msgid="877911315738258780">"מאחזר דואר קולי..."</string>
+    <string name="voicemail_fetching_timout" msgid="6691792377574905201">"לא ניתן להשיג דואר קולי."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"חדש"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"ישן יותר"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"לא ניתן להתחבר לשרת הדואר הקולי."</string>
