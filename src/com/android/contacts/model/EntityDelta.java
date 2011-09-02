@@ -414,7 +414,14 @@ public class EntityDelta implements Parcelable {
                 // Ignore children if parent was deleted
                 if (isContactDelete) continue;
 
-                builder = child.buildDiff(Data.CONTENT_URI);
+                // Use the profile data URI if the contact is the profile.
+                if (mContactsQueryUri.equals(Profile.CONTENT_RAW_CONTACTS_URI)) {
+                    builder = child.buildDiff(Uri.withAppendedPath(Profile.CONTENT_URI,
+                            RawContacts.Data.CONTENT_DIRECTORY));
+                } else {
+                    builder = child.buildDiff(Data.CONTENT_URI);
+                }
+
                 if (child.isInsert()) {
                     if (isContactInsert) {
                         // Parent is brand new insert, so back-reference _id
