@@ -85,6 +85,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 }
                 builder.appendQueryParameter(SearchSnippetColumns.SNIPPET_ARGS_PARAM_KEY,
                         SNIPPET_ARGS);
+                builder.appendQueryParameter(SearchSnippetColumns.DEFERRED_SNIPPETING_KEY,"1");
                 loader.setUri(builder.build());
                 loader.setProjection(FILTER_PROJECTION);
             }
