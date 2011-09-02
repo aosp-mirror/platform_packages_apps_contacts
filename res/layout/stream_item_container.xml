@@ -21,7 +21,7 @@
     android:paddingLeft="@dimen/detail_update_section_side_padding"
     android:paddingRight="@dimen/detail_update_section_side_padding">
 
-    <TableLayout
+    <LinearLayout
         android:id="@+id/stream_item_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,6 +31,7 @@
         android:paddingBottom="@dimen/detail_update_section_item_vertical_padding"
         android:background="?android:attr/selectableItemBackground"
         android:layout_gravity="center_vertical"
+        android:orientation="vertical"
         />
 
     <View
