@@ -133,12 +133,14 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
         mDataSet = values.getAsString(RawContacts.DATA_SET);
 
         if (isProfile) {
-            mAccountNameTextView.setVisibility(View.GONE);
             if (TextUtils.isEmpty(mAccountName)) {
+                mAccountNameTextView.setVisibility(View.GONE);
                 mAccountTypeTextView.setText(R.string.local_profile_title);
             } else {
-                mAccountTypeTextView.setText(
-                        mContext.getString(R.string.external_profile_title, mAccountName));
+                CharSequence accountType = type.getDisplayLabel(mContext);
+                mAccountTypeTextView.setText(mContext.getString(R.string.external_profile_title,
+                        accountType));
+                mAccountNameTextView.setText(mAccountName);
             }
         } else {
             CharSequence accountType = type.getDisplayLabel(mContext);
