@@ -27,6 +27,7 @@ import com.google.common.base.Preconditions;
 
 import android.content.Context;
 import android.database.ContentObserver;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -60,6 +61,9 @@ import javax.annotation.concurrent.ThreadSafe;
 @NotThreadSafe
 @VisibleForTesting
 public class VoicemailPlaybackPresenter {
+    /** The stream used to playback voicemail. */
+    private static final int PLAYBACK_STREAM = AudioManager.STREAM_VOICE_CALL;
+
     /** Contract describing the behaviour we need from the ui we are controlling. */
     public interface PlaybackView {
         Context getDataSourceContext();
@@ -89,6 +93,7 @@ public class VoicemailPlaybackPresenter {
         void unregisterContentObserver(ContentObserver observer);
         void enableProximitySensor();
         void disableProximitySensor();
+        void setVolumeControlStream(int streamType);
     }
 
     /** The enumeration of {@link AsyncTask} objects we use in this class. */
@@ -179,6 +184,7 @@ public class VoicemailPlaybackPresenter {
     }
 
     public void onCreate(Bundle bundle) {
+        mView.setVolumeControlStream(PLAYBACK_STREAM);
         checkThatWeHaveContent();
     }
 
@@ -304,6 +310,7 @@ public class VoicemailPlaybackPresenter {
                         try {
                             mPlayer.reset();
                             mPlayer.setDataSource(mView.getDataSourceContext(), mVoicemailUri);
+                            mPlayer.setAudioStreamType(PLAYBACK_STREAM);
                             mPlayer.prepare();
                             return null;
                         } catch (IOException e) {
@@ -428,6 +435,7 @@ public class VoicemailPlaybackPresenter {
         try {
             mPlayer.reset();
             mPlayer.setDataSource(mView.getDataSourceContext(), mVoicemailUri);
+            mPlayer.setAudioStreamType(PLAYBACK_STREAM);
             mPlayer.prepare();
             mDuration.set(mPlayer.getDuration());
             int startPosition = constrain(clipPositionInMillis, 0, mDuration.get());
