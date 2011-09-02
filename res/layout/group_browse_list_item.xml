@@ -71,7 +71,6 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/list_primary_text_color"
                 android:ellipsize="end"
                 android:singleLine="true" />
 
@@ -80,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/list_secondary_text_color"
+                android:textColor="?android:attr/textColorSecondary"
                 android:ellipsize="end"
                 android:singleLine="true" />
 
