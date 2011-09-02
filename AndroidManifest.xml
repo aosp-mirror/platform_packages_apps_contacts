@@ -557,12 +557,6 @@
             android:theme="@android:style/Theme.Translucent">
         </activity>
 
-        <!-- Makes .PeopleActivity the search target for any activity in Contacts -->
-        <meta-data
-            android:name="android.app.default_searchable"
-            android:value=".activities.PeopleActivity" />
-
-
         <!-- LIVE FOLDERS -->
         <activity
             android:name=".ContactsLiveFolders$AllContacts"

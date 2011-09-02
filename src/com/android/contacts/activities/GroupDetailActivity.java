@@ -169,9 +169,4 @@ public class GroupDetailActivity extends ContactsActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-    @Override
-    public boolean onSearchRequested() {
-        return true; // Don't respond to the search key.
-    }
 }

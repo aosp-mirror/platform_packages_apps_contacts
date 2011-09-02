@@ -921,14 +921,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     }
 
     /**
-     * Processes a user request to start search. This may be triggered by the
-     * search key, a menu item or some other user action.
-     */
-    public void startSearch(String initialQuery) {
-        ContactsSearchManager.startSearch(getActivity(), initialQuery, mRequest);
-    }
-
-    /**
      * Processes a result returned by the contact picker.
      */
     public void onPickerResult(Intent data) {

@@ -16,7 +16,6 @@
 
 package com.android.contacts.activities;
 
-import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.calllog.CallLogFragment;
 import com.android.internal.telephony.ITelephony;
@@ -98,15 +97,5 @@ public class CallLogActivity extends Activity {
                 return true;
         }
         return super.onKeyUp(keyCode, event);
-    }
-
-    @Override
-    public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
-            boolean globalSearch) {
-        if (globalSearch) {
-            super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
-        } else {
-            ContactsSearchManager.startSearch(this, initialQuery);
-        }
     }
 }

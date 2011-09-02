@@ -29,9 +29,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -133,11 +130,6 @@ public class JoinContactActivity extends ContactsActivity implements OnClickList
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         mTargetContactId = savedInstanceState.getLong(KEY_TARGET_CONTACT_ID);
-    }
-
-    @Override
-    public boolean onSearchRequested() {
-        return false;
     }
 
     @Override

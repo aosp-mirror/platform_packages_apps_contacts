@@ -17,7 +17,6 @@
 package com.android.contacts.list;
 
 import com.android.contacts.ContactsActivity;
-import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
@@ -31,14 +30,8 @@ import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
-import android.database.Cursor;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.BaseColumns;
-import android.provider.ContactsContract;
-import android.provider.ContactsContract.RawContacts;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -198,16 +191,6 @@ public class AccountFilterActivity extends ContactsActivity
                 finish();
                 break;
             }
-        }
-    }
-
-    @Override
-    public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
-            boolean globalSearch) {
-        if (globalSearch) {
-            super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
-        } else {
-            ContactsSearchManager.startSearch(this, initialQuery);
         }
     }
 

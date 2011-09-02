@@ -131,11 +131,6 @@ public class ContactEditorActivity extends ContactsActivity
     }
 
     @Override
-    public boolean onSearchRequested() {
-        return true; // Don't respond to the search key.
-    }
-
-    @Override
     public void onBackPressed() {
         mFragment.save(SaveMode.CLOSE);
     }

@@ -210,12 +210,6 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
     }
 
     @Override
-    public void startSearch(String initialQuery) {
-        ContactsSearchManager.startSearchForResult(getActivity(), initialQuery,
-                ACTIVITY_REQUEST_CODE_PICKER, getContactsRequest());
-    }
-
-    @Override
     public void onPickerResult(Intent data) {
         mListener.onPickContactAction(data.getData());
     }

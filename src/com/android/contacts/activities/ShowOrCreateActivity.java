@@ -17,7 +17,6 @@
 package com.android.contacts.activities;
 
 import com.android.contacts.ContactsActivity;
-import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
@@ -256,16 +255,6 @@ public final class ShowOrCreateActivity extends ContactsActivity
                 mParent.startActivity(mIntent);
             }
             mParent.finish();
-        }
-    }
-
-    @Override
-    public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
-            boolean globalSearch) {
-        if (globalSearch) {
-            super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
-        } else {
-            ContactsSearchManager.startSearch(this, initialQuery);
         }
     }
 }
