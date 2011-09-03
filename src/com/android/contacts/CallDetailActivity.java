@@ -394,7 +394,7 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
                 final Uri photoUri = firstDetails.photoUri;
 
                 // Set the details header, based on the first phone call.
-                mPhoneCallDetailsHelper.setPhoneCallName(mHeaderTextView, firstDetails);
+                mPhoneCallDetailsHelper.setCallDetailsHeader(mHeaderTextView, firstDetails);
 
                 // Cache the details about the phone number.
                 final Uri numberCallUri = mPhoneNumberHelper.getCallUri(mNumber);

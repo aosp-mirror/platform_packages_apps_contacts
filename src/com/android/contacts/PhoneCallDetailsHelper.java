@@ -129,11 +129,12 @@ public class PhoneCallDetailsHelper {
         views.numberView.setText(numberText);
     }
 
-    /** Sets the name in the text view for the given phone call. */
-    public void setPhoneCallName(TextView nameView, PhoneCallDetails details) {
+    /** Sets the text of the header view for the details page of a phone call. */
+    public void setCallDetailsHeader(TextView nameView, PhoneCallDetails details) {
         final CharSequence nameText;
         final CharSequence displayNumber =
-            mPhoneNumberHelper.getDisplayNumber(details.number, details.formattedNumber);
+                mPhoneNumberHelper.getDisplayNumber(details.number,
+                        mResources.getString(R.string.recentCalls_addToContact));
         if (TextUtils.isEmpty(details.name)) {
             nameText = displayNumber;
         } else {

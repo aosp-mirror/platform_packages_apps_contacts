@@ -201,14 +201,38 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
         setPhoneCallDetailsWithNumber(TEST_VOICEMAIL_NUMBER, "");
     }
 
-    public void testSetPhoneName_NumberOnly() {
-        setPhoneCallNameWithNumberOnly();
+    public void testSetCallDetailsHeader_NumberOnly() {
+        setCallDetailsHeaderWithNumberOnly(TEST_NUMBER);
         assertEquals(View.VISIBLE, mNameView.getVisibility());
-        assertEquals(TEST_FORMATTED_NUMBER, mNameView.getText().toString());
+        assertEquals("Add to contacts", mNameView.getText().toString());
     }
 
-    public void testSetPhoneName() {
-        setPhoneCallName("John Doe");
+    public void testSetCallDetailsHeader_UnknownNumber() {
+        setCallDetailsHeaderWithNumberOnly(CallerInfo.UNKNOWN_NUMBER);
+        assertEquals(View.VISIBLE, mNameView.getVisibility());
+        assertEquals("Unknown", mNameView.getText().toString());
+    }
+
+    public void testSetCallDetailsHeader_PrivateNumber() {
+        setCallDetailsHeaderWithNumberOnly(CallerInfo.PRIVATE_NUMBER);
+        assertEquals(View.VISIBLE, mNameView.getVisibility());
+        assertEquals("Private number", mNameView.getText().toString());
+    }
+
+    public void testSetCallDetailsHeader_PayphoneNumber() {
+        setCallDetailsHeaderWithNumberOnly(CallerInfo.PAYPHONE_NUMBER);
+        assertEquals(View.VISIBLE, mNameView.getVisibility());
+        assertEquals("Pay phone", mNameView.getText().toString());
+    }
+
+    public void testSetCallDetailsHeader_VoicemailNumber() {
+        setCallDetailsHeaderWithNumberOnly(TEST_VOICEMAIL_NUMBER);
+        assertEquals(View.VISIBLE, mNameView.getVisibility());
+        assertEquals("Voicemail", mNameView.getText().toString());
+    }
+
+    public void testSetCallDetailsHeader() {
+        setCallDetailsHeader("John Doe");
         assertEquals(View.VISIBLE, mNameView.getVisibility());
         assertEquals("John Doe", mNameView.getText().toString());
     }
@@ -288,14 +312,14 @@ public class PhoneCallDetailsHelperTest extends AndroidTestCase {
                 false);
     }
 
-    private void setPhoneCallNameWithNumberOnly() {
-        mHelper.setPhoneCallName(mNameView,
-                new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
+    private void setCallDetailsHeaderWithNumberOnly(String number) {
+        mHelper.setCallDetailsHeader(mNameView,
+                new PhoneCallDetails(number, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
                         TEST_GEOCODE, new int[]{ Calls.INCOMING_TYPE }, TEST_DATE, TEST_DURATION));
     }
 
-    private void setPhoneCallName(String name) {
-        mHelper.setPhoneCallName(mNameView,
+    private void setCallDetailsHeader(String name) {
+        mHelper.setCallDetailsHeader(mNameView,
                 new PhoneCallDetails(TEST_NUMBER, TEST_FORMATTED_NUMBER, TEST_COUNTRY_ISO,
                         TEST_GEOCODE, new int[]{ Calls.INCOMING_TYPE }, TEST_DATE, TEST_DURATION,
                         name, 0, "", null, null));
