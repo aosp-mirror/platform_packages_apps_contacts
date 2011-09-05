@@ -249,9 +249,8 @@
     <dimen name="call_log_indent_margin">24dip</dimen>
     <dimen name="call_log_list_item_height">56dip</dimen>
     <dimen name="call_log_list_contact_photo_size">64dip</dimen>
-    <dimen name="call_detail_contact_background_height">174dip</dimen>
     <dimen name="call_detail_contact_name_margin">24dip</dimen>
-    <dimen name="call_detail_action_bar_height">60dip</dimen>
+    <dimen name="call_detail_button_spacing">2dip</dimen>
 
     <!-- Empty message margins -->
     <dimen name="empty_message_top_margin">48dip</dimen>

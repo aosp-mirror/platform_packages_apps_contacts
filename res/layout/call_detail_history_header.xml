@@ -48,8 +48,8 @@
     <View
         android:id="@+id/header_voicemail_container"
         android:layout_width="match_parent"
-        android:layout_height="142dip"
-        android:layout_marginBottom="@dimen/call_log_icon_margin"
+        android:layout_height="140dip"
+        android:layout_marginBottom="@dimen/call_detail_button_spacing"
     />
     <!-- Call and SMS -->
     <View

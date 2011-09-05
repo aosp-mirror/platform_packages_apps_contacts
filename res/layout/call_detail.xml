@@ -83,7 +83,7 @@
             android:id="@+id/voicemail_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/call_log_icon_margin"
+            android:paddingBottom="@dimen/call_detail_button_spacing"
             android:layout_below="@id/blue_separator"
             android:background="@android:color/black"
         >
@@ -135,7 +135,7 @@
         <FrameLayout android:id="@+id/call_and_sms_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/call_log_icon_margin"
+            android:layout_marginBottom="@dimen/call_detail_button_spacing"
             android:layout_below="@id/voicemail_container"
             android:background="@android:color/black"
         >
