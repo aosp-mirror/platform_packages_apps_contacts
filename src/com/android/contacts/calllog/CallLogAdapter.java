@@ -542,7 +542,7 @@ public class CallLogAdapter extends GroupingListAdapter
                 || section == CallLogQuery.SECTION_OLD_HEADER) {
             views.listItemView.setVisibility(View.GONE);
             views.bottomDivider.setVisibility(View.GONE);
-            views.listHeaderView.setVisibility(View.VISIBLE);
+            views.listHeaderTextView.setVisibility(View.VISIBLE);
             views.listHeaderTextView.setText(
                     section == CallLogQuery.SECTION_NEW_HEADER
                             ? R.string.call_log_new_header
@@ -553,7 +553,7 @@ public class CallLogAdapter extends GroupingListAdapter
         // Default case: an item in the call log.
         views.listItemView.setVisibility(View.VISIBLE);
         views.bottomDivider.setVisibility(isLastOfSection(c) ? View.GONE : View.VISIBLE);
-        views.listHeaderView.setVisibility(View.GONE);
+        views.listHeaderTextView.setVisibility(View.GONE);
 
         final String number = c.getString(CallLogQuery.NUMBER);
         final long date = c.getLong(CallLogQuery.DATE);

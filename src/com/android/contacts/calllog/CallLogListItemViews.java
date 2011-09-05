@@ -43,8 +43,6 @@ public final class CallLogListItemViews {
     public final PhoneCallDetailsViews phoneCallDetailsViews;
     /** The item view for a stand-alone row, or null for other types of rows. */
     public final View listItemView;
-    /** The header of a section. */
-    public final View listHeaderView;
     /** The text of the header of a section. */
     public final TextView listHeaderTextView;
     /** The divider to be shown below items. */
@@ -53,7 +51,7 @@ public final class CallLogListItemViews {
     private CallLogListItemViews(QuickContactBadge quickContactView, View primaryActionView,
             ImageView secondaryActionView, View unheardView, View dividerView,
             PhoneCallDetailsViews phoneCallDetailsViews, View listItemView,
-            View listHeaderView, TextView listHeaderTextView, View bottomDivider) {
+            TextView listHeaderTextView, View bottomDivider) {
         this.quickContactView = quickContactView;
         this.primaryActionView = primaryActionView;
         this.secondaryActionView = secondaryActionView;
@@ -61,7 +59,6 @@ public final class CallLogListItemViews {
         this.dividerView = dividerView;
         this.phoneCallDetailsViews = phoneCallDetailsViews;
         this.listItemView = listItemView;
-        this.listHeaderView = listHeaderView;
         this.listHeaderTextView = listHeaderTextView;
         this.bottomDivider = bottomDivider;
     }
@@ -75,8 +72,7 @@ public final class CallLogListItemViews {
                 view.findViewById(R.id.divider),
                 PhoneCallDetailsViews.fromView(view),
                 view.findViewById(R.id.call_log_item),
-                view.findViewById(R.id.call_log_header),
-                (TextView) view.findViewById(R.id.call_log_header_text),
+                (TextView) view.findViewById(R.id.call_log_header),
                 view.findViewById(R.id.call_log_divider));
     }
 
@@ -88,7 +84,6 @@ public final class CallLogListItemViews {
                 new View(context),
                 new View(context),
                 PhoneCallDetailsViews.createForTest(context),
-                new View(context),
                 new View(context),
                 new TextView(context),
                 new View(context));

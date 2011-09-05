@@ -142,42 +142,29 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <LinearLayout
+    <TextView
         android:id="@+id/call_log_header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/call_log_outer_margin"
-        android:paddingRight="@dimen/call_log_outer_margin"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:layout_marginLeft="@dimen/call_log_outer_margin"
+        android:layout_marginRight="@dimen/call_log_outer_margin"
         android:paddingTop="@dimen/call_log_inner_margin"
         android:paddingBottom="@dimen/call_log_inner_margin"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/call_log_header_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/call_log_inner_margin"
-            android:paddingRight="@dimen/call_log_inner_margin"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textStyle="bold"
-            android:textColor="?attr/call_log_header_color"
-            android:textAllCaps="true"
-            android:focusable="true"
-        />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dip"
-            android:background="@color/call_log_voicemail_highlight_color"/>
-    </LinearLayout>
+        android:background="@drawable/list_section_divider_holo_custom"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textStyle="bold"
+        android:textColor="?attr/call_log_header_color"
+        android:textAllCaps="true"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:focusable="true"
+    />
 
     <View
         android:id="@+id/call_log_divider"
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_marginLeft="16dip"
-        android:layout_marginRight="16dip"
-        android:background="#1a1a1a"
+        android:layout_marginLeft="@dimen/call_log_outer_margin"
+        android:layout_marginRight="@dimen/call_log_outer_margin"
+        android:background="#55ffffff"
     />
 </view>
