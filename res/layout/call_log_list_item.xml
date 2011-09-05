@@ -93,6 +93,7 @@
             android:layout_height="match_parent"
             android:layout_toRightOf="@id/quick_contact_photo"
             android:layout_toLeftOf="@id/divider"
+            android:layout_alignWithParentIfMissing="true"
             android:layout_centerVertical="true"
             android:padding="@dimen/call_log_inner_margin"
             android:orientation="vertical"
