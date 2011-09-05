@@ -75,7 +75,6 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
     public void testSetPhoneCallDetails() {
         setPhoneCallDetailsWithNumber("12125551234", "1-212-555-1234");
         assertEquals(View.VISIBLE, mViews.secondaryActionView.getVisibility());
-        assertEquals(View.GONE, mViews.unheardView.getVisibility());
     }
 
     public void testSetPhoneCallDetails_Unknown() {
@@ -96,32 +95,27 @@ public class CallLogListItemHelperTest extends AndroidTestCase {
     public void testSetPhoneCallDetails_VoicemailNumber() {
         setPhoneCallDetailsWithNumber(TEST_VOICEMAIL_NUMBER, TEST_VOICEMAIL_NUMBER);
         assertEquals(View.VISIBLE, mViews.secondaryActionView.getVisibility());
-        assertEquals(View.GONE, mViews.unheardView.getVisibility());
     }
 
     public void testSetPhoneCallDetails_ReadVoicemail() {
         setPhoneCallDetailsWithTypes(Calls.VOICEMAIL_TYPE);
         assertEquals(View.VISIBLE, mViews.secondaryActionView.getVisibility());
-        assertEquals(View.GONE, mViews.unheardView.getVisibility());
     }
 
     public void testSetPhoneCallDetails_UnreadVoicemail() {
         setUnreadPhoneCallDetailsWithTypes(Calls.VOICEMAIL_TYPE);
         assertEquals(View.VISIBLE, mViews.secondaryActionView.getVisibility());
-        assertEquals(View.VISIBLE, mViews.unheardView.getVisibility());
     }
 
     public void testSetPhoneCallDetails_VoicemailFromUnknown() {
         setPhoneCallDetailsWithNumberAndType(CallerInfo.UNKNOWN_NUMBER, CallerInfo.UNKNOWN_NUMBER,
                 Calls.VOICEMAIL_TYPE);
         assertEquals(View.VISIBLE, mViews.secondaryActionView.getVisibility());
-        assertEquals(View.GONE, mViews.unheardView.getVisibility());
     }
 
     /** Asserts that the whole call area is gone. */
     private void assertNoCallButton() {
         assertEquals(View.GONE, mViews.secondaryActionView.getVisibility());
-        assertEquals(View.GONE, mViews.unheardView.getVisibility());
         assertEquals(View.GONE, mViews.dividerView.getVisibility());
     }
 

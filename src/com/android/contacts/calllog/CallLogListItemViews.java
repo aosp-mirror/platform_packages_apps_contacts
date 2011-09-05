@@ -35,8 +35,6 @@ public final class CallLogListItemViews {
     public final View primaryActionView;
     /** The secondary action button on the entry. */
     public final ImageView secondaryActionView;
-    /** The icon used for unheard voicemail. */
-    public final View unheardView;
     /** The divider between the primary and secondary actions. */
     public final View dividerView;
     /** The details of the phone call. */
@@ -49,13 +47,12 @@ public final class CallLogListItemViews {
     public final View bottomDivider;
 
     private CallLogListItemViews(QuickContactBadge quickContactView, View primaryActionView,
-            ImageView secondaryActionView, View unheardView, View dividerView,
+            ImageView secondaryActionView, View dividerView,
             PhoneCallDetailsViews phoneCallDetailsViews, View listItemView,
             TextView listHeaderTextView, View bottomDivider) {
         this.quickContactView = quickContactView;
         this.primaryActionView = primaryActionView;
         this.secondaryActionView = secondaryActionView;
-        this.unheardView = unheardView;
         this.dividerView = dividerView;
         this.phoneCallDetailsViews = phoneCallDetailsViews;
         this.listItemView = listItemView;
@@ -68,7 +65,6 @@ public final class CallLogListItemViews {
                 (QuickContactBadge) view.findViewById(R.id.quick_contact_photo),
                 view.findViewById(R.id.primary_action_view),
                 (ImageView) view.findViewById(R.id.secondary_action_icon),
-                view.findViewById(R.id.unheard_icon),
                 view.findViewById(R.id.divider),
                 PhoneCallDetailsViews.fromView(view),
                 view.findViewById(R.id.call_log_item),
@@ -81,7 +77,6 @@ public final class CallLogListItemViews {
                 new QuickContactBadge(context),
                 new View(context),
                 new ImageView(context),
-                new View(context),
                 new View(context),
                 PhoneCallDetailsViews.createForTest(context),
                 new View(context),

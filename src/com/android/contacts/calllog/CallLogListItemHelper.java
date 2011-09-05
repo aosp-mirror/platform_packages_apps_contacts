@@ -65,17 +65,14 @@ import android.view.View;
         if (canPlay) {
             // Playback action takes preference.
             configurePlaySecondaryAction(views);
-            views.unheardView.setVisibility(isHighlighted ? View.VISIBLE : View.GONE);
             views.dividerView.setVisibility(View.VISIBLE);
         } else if (canCall) {
             // Call is the secondary action.
             configureCallSecondaryAction(views);
-            views.unheardView.setVisibility(View.GONE);
             views.dividerView.setVisibility(View.VISIBLE);
         } else {
             // No action available.
             views.secondaryActionView.setVisibility(View.GONE);
-            views.unheardView.setVisibility(View.GONE);
             views.dividerView.setVisibility(View.GONE);
         }
     }
