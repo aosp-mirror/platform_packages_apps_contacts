@@ -714,6 +714,10 @@ public class ConfirmAddDetailActivity extends Activity implements
 
             EntityDeltaList state = params[0];
 
+            if (state == null) {
+                return RESULT_FAILURE;
+            }
+
             // Trim any empty fields, and RawContacts, before persisting
             EntityModifier.trimEmpty(state, mAccountTypeManager);
 
