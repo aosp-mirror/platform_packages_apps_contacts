@@ -14,13 +14,6 @@
      limitations under the License.
 -->
 <resources>
-    <!-- The height of the ScrollingTabWidget -->
-    <dimen name="tab_height">40dip</dimen>
-    <dimen name="account_name_height">25dip</dimen>
-
-    <dimen name="contact_shortcut_frame_width">50dip</dimen>
-    <dimen name="contact_shortcut_frame_height">56dip</dimen>
-
     <dimen name="account_selector_popup_width">400dip</dimen>
 
     <dimen name="photo_action_popup_width">400dip</dimen>
@@ -38,9 +31,6 @@
     <dimen name="editor_round_button_padding_top">8dip</dimen>
     <dimen name="editor_round_button_padding_bottom">8dip</dimen>
 
-    <!-- Left padding of the kind title in the contact editor -->
-    <dimen name="editor_kind_title_left_padding">8dip</dimen>
-
     <!-- Left padding of the label in the add field button for the contact editor -->
     <dimen name="editor_add_field_label_left_padding">16dip</dimen>
 
@@ -56,47 +46,14 @@
     <!-- Minimum height of a row in the Editor -->
     <dimen name="editor_min_line_item_height">48dip</dimen>
 
-    <!-- Font size used for the value of a field in the contact editor. -->
-    <dimen name="editor_field_text_size">18sp</dimen>
-
-    <!-- Font size used for the title of a field in the contact editor. -->
-    <dimen name="editor_field_title_text_size">15sp</dimen>
-
-    <!-- Font size for the entries in a spinner in the contact editor. -->
-    <dimen name="editor_field_spinner_text_size">10sp</dimen>
-
-    <!-- Left margin of the name text input fields and the photo in the contact editor -->
-    <dimen name="editor_name_text_field_left_margin">25dip</dimen>
-
-    <!-- Right margin of the text input fields in the contact editor -->
-    <dimen name="editor_name_text_field_right_margin">0dip</dimen>
-
-    <!-- Width of the title labels in the contact editor -->
-    <dimen name="editor_title_label_width">120dip</dimen>
-
-    <!-- Height of the attribution text view in the contact detail header view -->
-    <dimen name="detail_header_attribution_height">40dip</dimen>
-
-    <!-- Margin between the photo, the star, and text in the contact detail header view -->
-    <dimen name="detail_header_view_margin">8dip</dimen>
-
     <!-- Height of the tab text label in the tab carousel on the contact detail page -->
     <dimen name="detail_tab_carousel_tab_label_height">45dip</dimen>
 
     <!-- Height of the tab text label in the tab carousel on the contact detail page -->
     <dimen name="detail_tab_carousel_tab_label_indent">24dip</dimen>
 
-    <!-- Width of one fragment in the fragment carousel on the contact detail page -->
-    <dimen name="detail_fragment_carousel_fragment_width">420dip</dimen>
-
-    <!-- Vertical margin of the text within the update tab in the tab carousel -->
-    <dimen name="detail_update_tab_vertical_margin">32dip</dimen>
-
     <!-- Left and right padding of the text within the update tab in the tab carousel -->
     <dimen name="detail_update_tab_side_padding">24dip</dimen>
-
-    <!-- Top padding of the update section in the contact detail card -->
-    <dimen name="detail_update_section_top_padding">8dip</dimen>
 
     <!-- Left and right padding of the update section in the contact detail card -->
     <dimen name="detail_update_section_side_padding">16dip</dimen>
@@ -104,23 +61,11 @@
     <!-- Vertical padding above and below individual stream items -->
     <dimen name="detail_update_section_item_vertical_padding">16dip</dimen>
 
-    <!-- Vertical padding between rows of images in a single stream item -->
-    <dimen name="detail_update_section_between_items_vertical_padding">16dip</dimen>
-
-    <!-- The extra padding to be added at the end of last row in a stream items, i.e., the
-         difference between detail_update_section_item_vertical_padding and
-         detail_update_section_between_items_vertical_padding
-      -->
-    <dimen name="detail_update_section_item_last_row_extra_vertical_padding">0dip</dimen>
-
     <!-- Horizontal padding for individual stream items -->
     <dimen name="detail_update_section_item_horizontal_padding">8dip</dimen>
 
     <!-- Padding between columns images and/or text in a single stream item -->
     <dimen name="detail_update_section_between_items_padding">1dip</dimen>
-
-    <!-- Horizontal padding between content sections within a stream item -->
-    <dimen name="detail_update_section_internal_padding">16dip</dimen>
 
     <!-- Horizontal padding between attribution and comments -->
     <dimen name="detail_update_section_attribution_comments_padding">4dip</dimen>
@@ -168,26 +113,11 @@
     <dimen name="widget_snippet_top_padding">3dip</dimen>
     <dimen name="widget_snippet_bottom_padding">6dip</dimen>
 
-    <!-- Minimum width of the filter selector in the action bar -->
-    <dimen name="action_bar_filter_min_width">100dip</dimen>
-
-    <!-- Maximum width of the filter selector in the action bar -->
-    <dimen name="action_bar_filter_max_width">100dip</dimen>
-
-    <!-- Maximum width of the search field in the action bar -->
-    <dimen name="action_bar_search_max_width">100dip</dimen>
-
-    <!-- Spacing on the left the search field in the action bar -->
-    <dimen name="action_bar_search_spacing">12dip</dimen>
-
     <!-- Size of the shortcut icon. 0dip means: use the system default -->
     <dimen name="shortcut_icon_size">0dip</dimen>
 
     <!-- Height of list sections (A, B, C) that show the first character of the contacts -->
     <dimen name="list_section_height">25dip</dimen>
-
-    <!-- Border padding for the group list header for each account -->
-    <dimen name="group_list_header_padding">5dip</dimen>
 
     <!-- Account title left padding -->
     <dimen name="account_container_left_padding">16dip</dimen>
@@ -204,14 +134,8 @@
     <!-- Left padding of the auto complete field to line hint text up with member list -->
     <dimen name="group_editor_autocomplete_left_padding">8dip</dimen>
 
-    <!-- Size of group list icons -->
-    <dimen name="group_list_icon_size">32dip</dimen>
-
     <!-- Border padding for the group detail fragment -->
     <dimen name="group_detail_border_padding">32dip</dimen>
-
-    <!-- Height of the member list in the group editor -->
-    <dimen name="group_editor_member_list_height">550dip</dimen>
 
     <!-- Height of edit text in dialpad fragment -->
     <dimen name="dialpad_horizontal_margin">4dip</dimen>
@@ -232,9 +156,7 @@
     <dimen name="contact_browser_list_header_right_margin">@dimen/list_visible_scrollbar_padding</dimen>
     <dimen name="contact_browser_list_item_photo_size">64dip</dimen>
     <dimen name="contact_browser_list_item_text_indent">8dip</dimen>
-
     <dimen name="contact_browser_list_top_margin">8dip</dimen>
-    <dimen name="contacts_count_right_margin">40dip</dimen>
 
     <!--  ContactTile Layouts -->
     <dimen name="contact_tile_shadowbox_height">48dip</dimen>

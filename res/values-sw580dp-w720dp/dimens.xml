@@ -17,8 +17,4 @@
     <dimen name="editor_type_label_width">180dip</dimen>
     <dimen name="editor_round_button_padding_left">8dip</dimen>
     <dimen name="editor_round_button_padding_right">8dip</dimen>
-    <dimen name="editor_name_text_field_left_margin">52dip</dimen>
-    <dimen name="editor_title_label_width">150dip</dimen>
-    <dimen name="editor_interpolator_narrow_width">800dip</dimen>
-    <dimen name="editor_name_text_field_right_margin">10dip</dimen>
 </resources>
