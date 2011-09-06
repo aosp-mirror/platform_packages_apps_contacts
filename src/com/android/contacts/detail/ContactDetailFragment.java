@@ -670,7 +670,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 } else if (Website.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     // Build Website entries
                     entry.uri = null;
-                    entry.maxLines = 10;
+                    entry.maxLines = 1;
                     try {
                         WebAddress webAddress = new WebAddress(entry.data);
                         entry.intent = new Intent(Intent.ACTION_VIEW,
@@ -711,14 +711,12 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     entry.intent = new Intent(Intent.ACTION_VIEW);
                     entry.intent.setDataAndType(entry.uri, entry.mimetype);
 
-                    // Use social summary when requested by external source
-                    final DataStatus status = mContactData.getStatuses().get(entry.id);
-                    final boolean hasSocial = kind.actionBodySocial && status != null;
-                    if (hasSocial) {
-                        entry.applyStatus(status, true);
+                    if (kind.actionBody != null) {
+                         CharSequence body = kind.actionBody.inflateUsing(mContext, entryValues);
+                         entry.data = (body == null) ? null : body.toString();
                     }
 
-                    if (hasSocial || hasData) {
+                    if (!TextUtils.isEmpty(entry.data)) {
                         // If the account type exists in the hash map, add it as another entry for
                         // that account type
                         if (mOtherEntriesMap.containsKey(type)) {
@@ -749,6 +747,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             entry.mimetype = GroupMembership.MIMETYPE;
             entry.kind = mContext.getString(R.string.groupsLabel);
             entry.data = sb.toString();
+            entry.maxLines = 10;
             mGroupEntries.add(entry);
         }
     }
