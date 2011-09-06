@@ -16,33 +16,23 @@
 <resources>
     <dimen name="editor_padding_top">32dip</dimen>
     <dimen name="editor_type_label_width">122dip</dimen>
-    <dimen name="editor_field_spinner_text_size">15sp</dimen>
     <dimen name="editor_round_button_padding_left">16dip</dimen>
     <dimen name="editor_round_button_padding_right">16dip</dimen>
-    <dimen name="editor_kind_title_left_padding">16dip</dimen>
     <dimen name="editor_add_field_label_left_padding">24dip</dimen>
     <dimen name="detail_item_side_margin">0dip</dimen>
     <dimen name="detail_item_vertical_margin">16dip</dimen>
     <dimen name="detail_item_icon_margin">8dip</dimen>
-    <dimen name="contact_name_text_size">26sp</dimen>
-    <dimen name="action_bar_filter_min_width">120dip</dimen>
-    <dimen name="action_bar_filter_max_width">120dip</dimen>
-    <dimen name="action_bar_search_max_width">300dip</dimen>
-    <dimen name="action_bar_search_spacing">12dip</dimen>
     <dimen name="shortcut_icon_size">64dip</dimen>
     <dimen name="list_section_height">37dip</dimen>
     <dimen name="group_detail_border_padding">16dip</dimen>
     <dimen name="detail_update_section_side_padding">0dip</dimen>
     <dimen name="detail_update_section_item_horizontal_padding">8dip</dimen>
     <dimen name="detail_update_section_item_vertical_padding">16dip</dimen>
-    <dimen name="detail_update_section_between_items_vertical_padding">16dip</dimen>
-    <dimen name="detail_update_section_item_last_row_extra_vertical_padding">8dip</dimen>
     <dimen name="search_view_width">400dip</dimen>
     <!-- Center vertically -->
     <dimen name="quick_contact_top_position">-1px</dimen>
     <!-- Contact list (vertical scroll bar comes left) -->
     <dimen name="directory_header_height">24dip</dimen>
-    <dimen name="contacts_count_right_margin">24dip</dimen>
     <dimen name="contact_browser_list_top_margin">16dip</dimen>
     <dimen name="contact_browser_list_header_left_margin">@dimen/list_visible_scrollbar_padding</dimen>
     <dimen name="contact_browser_list_header_right_margin">24dip</dimen>

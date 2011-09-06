@@ -21,40 +21,13 @@
     <color name="quickcontact_list_background">#ffe2e2e2</color>
     <color name="quickcontact_tab_indicator">#ff33b5e6</color>
 
-    <color name="edit_divider">#ff666666</color>
-
     <!-- Color of the background of the contact detail and editor pages -->
     <color name="background_primary">#FFFFFF</color>
-
-    <color name="background_secondary">#ff202020</color>
-
-    <color name="translucent_search_background">#cc000000</color>
 
     <color name="background_social_updates">#ffeeeeee</color>
 
     <!-- Color used for the letter in the A-Z section header -->
     <color name="section_header_text_color">#ff999999</color>
-
-    <!-- Color used as a selected background for the account/group selection widget -->
-    <color name="filter_selector_selected_background">#66ffffff</color>
-
-    <!-- Color used for the label (type) in the editor -->
-    <color name="editor_label_text_color">#FF7F7F7F</color>
-
-    <!-- Color of the line above the contact photo in the contact detail header -->
-    <color name="contact_detail_header_divider_color">#FF999999</color>
-
-    <!-- Color of the title text and divider for the kind type on the contact detail page -->
-    <color name="detail_kind_title_color">#63B8FF</color>
-
-    <!-- Color of the text indicating the type of entry (e.g. Home, Work etc) -->
-    <color name="detail_item_type_color">#B4B4B4</color>
-
-    <!-- Color of the text indicating the type of entry (e.g. Home, Work etc) -->
-    <color name="detail_header_view_text_color">#FFFFFF</color>
-
-    <!-- Color of the background of the tabs on the contact detail page -->
-    <color name="detail_tab_background">#DBDBDB</color>
 
     <!-- Color of the text in the updates tab in the tab carousel on the contact detail page -->
     <color name="detail_update_tab_text_color">#777777</color>
