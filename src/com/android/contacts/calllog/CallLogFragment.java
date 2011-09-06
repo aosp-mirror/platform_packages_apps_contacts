@@ -220,6 +220,14 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     }
 
     @Override
+    public void fetchCalls() {
+        if (mShowingVoicemailOnly) {
+            mCallLogQueryHandler.fetchVoicemailOnly();
+        } else {
+            mCallLogQueryHandler.fetchAllCalls();
+        }
+    }
+
     public void startCallsQuery() {
         mAdapter.setLoading(true);
         mCallLogQueryHandler.fetchAllCalls();

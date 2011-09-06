@@ -54,7 +54,7 @@ public class CallLogAdapter extends GroupingListAdapter
         implements Runnable, ViewTreeObserver.OnPreDrawListener, CallLogGroupBuilder.GroupCreator {
     /** Interface used to initiate a refresh of the content. */
     public interface CallFetcher {
-        public void startCallsQuery();
+        public void fetchCalls();
     }
 
     /** The time in millis to delay starting the thread processing requests. */
@@ -183,9 +183,7 @@ public class CallLogAdapter extends GroupingListAdapter
      */
     @Override
     protected void onContentChanged() {
-        // When the content changes, always fetch all the calls, in case a new missed call came
-        // in and we were filtering over voicemail only, so that we see the missed call.
-        mCallFetcher.startCallsQuery();
+        mCallFetcher.fetchCalls();
     }
 
     void setLoading(boolean loading) {
