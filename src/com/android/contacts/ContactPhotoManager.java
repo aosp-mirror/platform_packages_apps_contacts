@@ -43,6 +43,7 @@ import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.lang.ref.Reference;
 import java.lang.ref.SoftReference;
 import java.util.Iterator;
 import java.util.List;
@@ -154,7 +155,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
 
         volatile boolean fresh;
         Bitmap bitmap;
-        SoftReference<Bitmap> bitmapRef;
+        Reference<Bitmap> bitmapRef;
 
         public BitmapHolder(byte[] bytes) {
             this.bytes = bytes;
@@ -494,7 +495,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         /**
          * A pause between preload batches that yields to the UI thread.
          */
-        private static final int PHOTO_PRELOAD_DELAY = 50;
+        private static final int PHOTO_PRELOAD_DELAY = 1000;
 
         /**
          * Number of photos to preload per batch.
@@ -505,7 +506,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
          * Maximum number of photos to preload.  If the cache size is 2Mb and
          * the expected average size of a photo is 4kb, then this number should be 2Mb/4kb = 500.
          */
-        private static final int MAX_PHOTOS_TO_PRELOAD = 500;
+        private static final int MAX_PHOTOS_TO_PRELOAD = 100;
 
         private final ContentResolver mResolver;
         private final StringBuilder mStringBuilder = new StringBuilder();
@@ -629,9 +630,8 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                 mPreloadStatus = PRELOAD_STATUS_DONE;
             }
 
-            Log.v(TAG, "Preloaded " + count + " photos. Photos in cache: "
-                    + mBitmapHolderCache.size()
-                    + ". Total size: " + mBitmapHolderCache.size());
+            Log.v(TAG, "Preloaded " + count + " photos.  Cached bytes: "
+                    + mBitmapHolderCache.size());
 
             requestPreloading();
         }
