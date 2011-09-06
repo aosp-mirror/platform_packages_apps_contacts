@@ -56,7 +56,7 @@
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Nouă"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Nou"</string>
     <string name="splitConfirmation_title" msgid="2209511048593467012">"Separ. pers. din ag."</string>
-    <string name="splitConfirmation" msgid="1067993957986345974">"Sigur doriţi să separaţi această persoană din agendă în mai multe?"</string>
+    <string name="splitConfirmation" msgid="1067993957986345974">"Sigur doriţi să separaţi această intrare de persoană din agendă în mai multe?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Alăturaţi-vă"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Asociaţi intrările din Agendă"</string>
     <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Selectaţi persoana din agendă, căreia vreţi să vă alăturaţi <xliff:g id="NAME">%s</xliff:g>."</string>
@@ -134,8 +134,8 @@
     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Nu există preferate"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Nicio persoană din agendă în <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Agenda din <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for listSingleContact (6067813698903535563) -->
-    <skip />
+    <string name="listSingleContact" msgid="6067813698903535563">"O singură persoană din agendă"</string>
+    <string name="listCustomView" msgid="6950713892532194050">"Agenda în afişarea personalizată"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"A fost găsită 1 persoană din agendă"</item>
     <item quantity="other" msgid="3852668542926965042">"Au fost găsite <xliff:g id="COUNT">%d</xliff:g> (de) persoane din agendă"</item>
@@ -275,7 +275,7 @@
     <string name="confirm_export_title" msgid="7648747763127442983">"Confirmaţi exportul"</string>
     <string name="confirm_export_message" msgid="4307437830474103759">"Exportaţi lista dvs. de persoane din agendă în fişierul „<xliff:g id="VCARD_FILENAME">%s</xliff:g>”?"</string>
     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Nu s-au putut exporta datele din agendă"</string>
-    <string name="exporting_contact_failed_message" msgid="2704925031146288635">"Nu s-au putut exporta datele din agendă."\n"Motivul:„<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
+    <string name="exporting_contact_failed_message" msgid="2704925031146288635">"Nu s-au putut exporta datele din agendă."\n"Motivul: „<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Nicio persoană în agendă exportabilă"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Prea multe fişiere vCard în spaţiul de stocare"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Prea multe fişiere de tip vCard pe cardul SD"</string>
@@ -301,7 +301,7 @@
     <string name="add_2sec_pause" msgid="9214012315201040129">"Pauză 2 secunde"</string>
     <string name="add_wait" msgid="3360818652790319634">"Adăugaţi interval de aşteptare"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"Apelaţi utilizând"</string>
-    <!-- outdated translation 5009897887137674341 -->     <string name="call_settings" msgid="7666474782093693667">"Setări de apel"</string>
+    <string name="call_settings" msgid="7666474782093693667">"Setări"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Mesaj text utilizând"</string>
     <string name="make_primary" msgid="5829291915305113983">"Reţineţi această alegere"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Nicio aplicaţie pentru gestionarea acestei acţiuni"</string>
@@ -311,8 +311,7 @@
     <string name="menu_import_export" msgid="3765725645491577190">"Importaţi/Exportaţi"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importaţi/exportaţi persoanele din agendă"</string>
     <string name="menu_share" msgid="943789700636542260">"Distribuiţi"</string>
-    <!-- no translation found for menu_all_contacts (5101735431586050711) -->
-    <skip />
+    <string name="menu_all_contacts" msgid="5101735431586050711">"Toată agenda"</string>
     <string name="share_via" msgid="563121028023030093">"Distribuiţi persoana din agendă prin"</string>
     <string name="share_error" msgid="4374508848981697170">"Aceasta persoană din agendă nu poate fi distribuită."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Nume"</string>
@@ -488,7 +487,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Definiţi afişarea personalizată"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Setări"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Pers. din agendă de afiş."</string>
-    <string name="menu_settings" msgid="6523251616169246235">"Opţiuni de afişare"</string>
+    <string name="menu_settings" msgid="377929915873428211">"Setări"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Opţiuni de afişare"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Găsiţi persoane din agendă"</string>

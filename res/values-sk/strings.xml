@@ -134,8 +134,8 @@
     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Žiadne obľúbené položky"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Žiadne kontakty v položke <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Kontakty v účte <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for listSingleContact (6067813698903535563) -->
-    <skip />
+    <string name="listSingleContact" msgid="6067813698903535563">"Jednotlivý kontakt"</string>
+    <string name="listCustomView" msgid="6950713892532194050">"Kontakty vo vlastnom zobrazení"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"Počet nájdených položiek: 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Počet nájdených položiek: <xliff:g id="COUNT">%d</xliff:g>"</item>
@@ -301,7 +301,7 @@
     <string name="add_2sec_pause" msgid="9214012315201040129">"Pridať dvojsekundovú pauzu"</string>
     <string name="add_wait" msgid="3360818652790319634">"Pridať čakanie"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"Zavolať pomocou"</string>
-    <!-- outdated translation 5009897887137674341 -->     <string name="call_settings" msgid="7666474782093693667">"Nastavenia hovorov"</string>
+    <string name="call_settings" msgid="7666474782093693667">"Nastavenia"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Odoslať správu pomocou"</string>
     <string name="make_primary" msgid="5829291915305113983">"Zapamätať si túto voľbu"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Aplikácia potrebná na spracovanie tejto akcie sa nenašla"</string>
@@ -311,8 +311,7 @@
     <string name="menu_import_export" msgid="3765725645491577190">"Import a export"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importovať alebo exportovať kontakty"</string>
     <string name="menu_share" msgid="943789700636542260">"Zdieľať"</string>
-    <!-- no translation found for menu_all_contacts (5101735431586050711) -->
-    <skip />
+    <string name="menu_all_contacts" msgid="5101735431586050711">"Všetky kontakty"</string>
     <string name="share_via" msgid="563121028023030093">"Zdieľať kontakt pomocou"</string>
     <string name="share_error" msgid="4374508848981697170">"Tento kontakt nie je možné zdieľať."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Meno"</string>
@@ -488,7 +487,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"Definícia vlastného zobrazenia"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Nastavenia"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakty na zobrazenie"</string>
-    <string name="menu_settings" msgid="6523251616169246235">"Možnosti zobrazenia"</string>
+    <string name="menu_settings" msgid="377929915873428211">"Nastavenia"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Možnosti zobrazenia"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Nájsť kontakty"</string>

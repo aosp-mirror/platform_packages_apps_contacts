@@ -156,6 +156,8 @@
     <skip />
     <!-- no translation found for listSingleContact (6067813698903535563) -->
     <skip />
+    <!-- no translation found for listCustomView (6950713892532194050) -->
+    <skip />
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"chattà 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Chattà <xliff:g id="COUNT">%d</xliff:g>"</item>
@@ -589,7 +591,8 @@
     <skip />
     <!-- no translation found for activity_title_contacts_filter (8275542497615516969) -->
     <skip />
-    <!-- no translation found for menu_settings (6523251616169246235) -->
+    <!-- no translation found for menu_settings (377929915873428211) -->
+    <!-- no translation found for menu_settings (377929915873428211) -->
     <skip />
     <!-- no translation found for preference_displayOptions (1341720270148252393) -->
     <skip />

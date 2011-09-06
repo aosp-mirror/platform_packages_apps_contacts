@@ -178,7 +178,8 @@
     <skip />
     <!-- no translation found for listAllContactsInAccount (7496143179265311758) -->
     <skip />
-    <!-- no translation found for listSingleContact (6067813698903535563) -->
+    <string name="listSingleContact" msgid="6067813698903535563">"Mhusika mmoja"</string>
+    <!-- no translation found for listCustomView (6950713892532194050) -->
     <skip />
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"Imepatikana 1"</item>
@@ -247,7 +248,7 @@
     <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"Huna anwani zozote za kuonyesha."\n\n"Ili kuongeza anwani, bonyeza "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>" na gusa:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" ili kuongeza au kusanidi akaunti ya anwani unaweza kupatanisha katika simu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mawasiliano mapya"</b></font>" ili kuunda anwani mpya kuanzia mwanzo"</li>" "\n\n<li><font fgcolor="#ffffffff"><b>"Leta/Hamisha"</b></font>"ili kuleta anwani kutoka kwa kadi yako ya SD"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Huna anwani zozote za kuonyesha. (Kama uliongeza akaunti, inaweza kuchukua dakika chache kusawazisha anwani.)"\n\n"Kuongeza anwani, bonyeza "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>" na uguse:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" ili kuongeza au kusanidi akaunti na anwani unazoweza kusawazisha kwenye kompyuta ndogo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Chaguo za onyesha"</b></font>" ili kubadilisha ni anwani gani zinazoonekana"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Anwani mpya"</b></font>" ili kuunda anwani mpya kutoka mwanzo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Leta/Hamisha"</b></font>" ili kuleta anwani kutoka kwa kadi yako ya SD"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Hauna anwani zozote za kuonyesha. (Kama umeongeza tu akaunti, inaweza kuchukua dadika chache ili kupatanisha anwani.)"\n\n"Ili kuongeza anwani, bonyeza "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>" na gusa:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" ili kuongeza au kusanidi anwani unayoweza kupatanisha katika simu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Onyesha Machaguo"</b></font>"ili kubadilisha anwani zinazoonekana"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Anwani mpya"</b></font>" ili kuunda anwani mpya kuanzia mwanzo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Leta/Hamisha"</b></font>"ili kuleta anwani kutoka kwa kadi yako ya SD"\n</li></string>
-    <!-- syntax error in translation for noFavoritesHelpText (3744655776704833277) org.xmlpull.v1.XmlPullParserException: expected: /string read: b (position:END_TAG </b>@1:167 in java.io.StringReader@28df8ff1)  -->
+    <!-- syntax error in translation for noFavoritesHelpText (3744655776704833277) org.xmlpull.v1.XmlPullParserException: expected: /string read: b (position:END_TAG </b>@1:167 in java.io.StringReader@3e60420f)  -->
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Anwani zote"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Yenye nyota"</string>
     <string name="liveFolder_phones_label" msgid="1709786878793436245">"Simu"</string>
@@ -366,8 +367,7 @@
     <string name="add_2sec_pause" msgid="9214012315201040129">"Ongeza usitishaji wa sekunde 2"</string>
     <string name="add_wait" msgid="3360818652790319634">"Ongeza kusubiri"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"Piga simu kwa kutumia"</string>
-    <!-- no translation found for call_settings (7666474782093693667) -->
-    <skip />
+    <string name="call_settings" msgid="7666474782093693667">"Mipangilio"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Tuma ujumbe kwa kutumia"</string>
     <string name="make_primary" msgid="5829291915305113983">"Kumbuka chaguo hili"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Hakuna programu iliyopatikana ili kushughulikia kitendo hiki"</string>
@@ -378,8 +378,7 @@
     <string name="menu_import_export" msgid="3765725645491577190">"Ingiza/Hamisha"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Ingiza/Hamisha anwani"</string>
     <string name="menu_share" msgid="943789700636542260">"Shiriki"</string>
-    <!-- no translation found for menu_all_contacts (5101735431586050711) -->
-    <skip />
+    <string name="menu_all_contacts" msgid="5101735431586050711">"Wahusika wote"</string>
     <string name="share_via" msgid="563121028023030093">"Shiriki anwani kupitia"</string>
     <string name="share_error" msgid="4374508848981697170">"Anwani hii haiwezi kushirikiwa."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Jina"</string>
@@ -562,7 +561,7 @@
     <string name="activity_title_settings" msgid="5464130076132770781">"Mipangilio"</string>
     <!-- no translation found for activity_title_contacts_filter (8275542497615516969) -->
     <skip />
-    <string name="menu_settings" msgid="6523251616169246235">"Onyesha machaguo"</string>
+    <string name="menu_settings" msgid="377929915873428211">"Mipangilio"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Onyesha machaguo"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Tafuta anwani"</string>

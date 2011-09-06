@@ -134,8 +134,8 @@
     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"즐겨찾기가 없습니다."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"<xliff:g id="NAME">%s</xliff:g>에 주소록이 없습니다."</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"<xliff:g id="NAME">%s</xliff:g>의 주소록"</string>
-    <!-- no translation found for listSingleContact (6067813698903535563) -->
-    <skip />
+    <string name="listSingleContact" msgid="6067813698903535563">"단일 연락처"</string>
+    <string name="listCustomView" msgid="6950713892532194050">"주소록 맞춤 보기"</string>
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"1개를 찾았습니다."</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g>개를 찾았습니다."</item>
@@ -301,7 +301,7 @@
     <string name="add_2sec_pause" msgid="9214012315201040129">"2초 간 일시 정지 추가"</string>
     <string name="add_wait" msgid="3360818652790319634">"대기 시간 추가"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"전화 걸기:"</string>
-    <!-- outdated translation 5009897887137674341 -->     <string name="call_settings" msgid="7666474782093693667">"통화 설정"</string>
+    <string name="call_settings" msgid="7666474782093693667">"설정"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"다음을 사용하여 문자 보내기:"</string>
     <string name="make_primary" msgid="5829291915305113983">"이 선택사항 저장"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"이 작업을 처리하는 애플리케이션을 찾을 수 없습니다."</string>
@@ -311,8 +311,7 @@
     <string name="menu_import_export" msgid="3765725645491577190">"가져오기/내보내기"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"연락처 가져오기/내보내기"</string>
     <string name="menu_share" msgid="943789700636542260">"공유"</string>
-    <!-- no translation found for menu_all_contacts (5101735431586050711) -->
-    <skip />
+    <string name="menu_all_contacts" msgid="5101735431586050711">"모든 연락처"</string>
     <string name="share_via" msgid="563121028023030093">"연락처 공유에 사용할 애플리케이션:"</string>
     <string name="share_error" msgid="4374508848981697170">"연락처를 공유할 수 없습니다."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"이름"</string>
@@ -488,7 +487,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"맞춤 보기 정의"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"설정"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"표시할 연락처"</string>
-    <string name="menu_settings" msgid="6523251616169246235">"표시 옵션"</string>
+    <string name="menu_settings" msgid="377929915873428211">"설정"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"표시 옵션"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"연락처 찾기"</string>
@@ -539,10 +538,10 @@
   </plurals>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"<xliff:g id="CALLER">%1$s</xliff:g>님이 보낸 새 음성사서함"</string>
-    <string name="voicemail_playback_error" msgid="1811242131549854624">"음성사서함을 재생할 수 없습니다."</string>
+    <string name="voicemail_playback_error" msgid="1811242131549854624">"음성메시지를 재생할 수 없습니다."</string>
     <string name="voicemail_buffering" msgid="738287747618697097">"버퍼링 중..."</string>
-    <string name="voicemail_fetching_content" msgid="877911315738258780">"음성사서함을 가져오는 중..."</string>
-    <string name="voicemail_fetching_timout" msgid="6691792377574905201">"음성사서함을 가져오지 못했습니다."</string>
+    <string name="voicemail_fetching_content" msgid="877911315738258780">"음성메시지를 가져오는 중..."</string>
+    <string name="voicemail_fetching_timout" msgid="6691792377574905201">"음성메시지 가져오지 못했습니다."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"신규"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"이전"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"음성사서함 서버에 연결할 수 없습니다."</string>

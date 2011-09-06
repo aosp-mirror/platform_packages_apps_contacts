@@ -134,7 +134,8 @@
     <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"ليست هناك مفضلة"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"ليس هناك جهات اتصال في <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"جهات الاتصال في <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for listSingleContact (6067813698903535563) -->
+    <string name="listSingleContact" msgid="6067813698903535563">"جهة اتصال واحدة"</string>
+    <!-- no translation found for listCustomView (6950713892532194050) -->
     <skip />
   <plurals name="listFoundAllContacts">
     <item quantity="one" msgid="5517063038754171134">"تم العثور على جهة اتصال واحدة"</item>
@@ -242,29 +243,26 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"استيراد جميع ملفات vCard"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"جارٍ البحث عن بيانات vCard في وحدة التخزين."</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"البحث عن بيانات vCard على بطاقة SD"</string>
-    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"أخفق فحص وحدة التخزين."</string>
-    <!-- outdated translation 6957414493948497249 -->     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"أخفق فحص وحدة التخزين."</string>
-    <!-- no translation found for scanning_sdcard_failed_message (8290634758602152611) -->
-    <skip />
-    <!-- no translation found for scanning_sdcard_failed_message (2462918339722946736) -->
-    <skip />
+    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"تعذر فحص وحدة التخزين"</string>
+    <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"تعذر فحص بطاقة SD"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8290634758602152611">"تعذر فحص وحدة التخزين (السبب: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="2462918339722946736">"تعذر فحص بطاقة SD (السبب: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"خطأ I/O"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"الذاكرة لا تكفي (ربما يكون الملف كبير جدًا)"</string>
-    <!-- outdated translation 1201233722762680214 -->     <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"أخفق تحليل vCard بسبب غير متوقع"</string>
+    <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"تعذر تحليل vCard بسبب غير متوقع"</string>
     <string name="fail_reason_not_supported" msgid="294499264620201243">"التنسيق غير معتمد."</string>
-    <!-- outdated translation 7718330063493653085 -->     <string name="vcard_import_failed" msgid="8856125211629574066">"أخفق استيراد vCard"</string>
+    <string name="vcard_import_failed" msgid="8856125211629574066">"تعذر استيراد vCard"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"لم يتم العثور على أي ملف vCard في وحدة التخزين."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"لم يتم العثور على ملف vCard على بطاقة SD"</string>
-    <!-- outdated translation 4154492282316067754 -->     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"أخفق جمع معلومات وصفية عن ملفات vCard المحددة"</string>
-    <!-- no translation found for fail_reason_failed_to_read_files (5823434810622484922) -->
-    <skip />
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"تعذر جمع معلومات وصفية حول ملفات vCard المحددة."</string>
+    <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"تعذر استيراد ملف أو أكثر (%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"خطأ غير معروف"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"تحديد ملف vCard"</string>
     <string name="caching_vcard_title" msgid="5009556022082659780">"تخزين ملفات vCard مؤقتًا إلى وحدة التخزين المؤقتة المحلية"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"تخزن حاليًا برامج الاستيراد ملفات vCard مؤقتًا إلى وحدة تخزين مؤقتة محلية. سيبدأ الاستيراد الفعلي قريبًا."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"استيراد <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"جارٍ استيراد <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- outdated translation 2162610359561887043 -->     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"أخفقت قراءة بيانات vCard"</string>
+    <string name="reading_vcard_failed_title" msgid="4251647443358422855">"تتعذر قراءة بيانات vCard."</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"تم إلغاء قراءة بيانات vCard"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"تم الانتهاء من استيراد ملف vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"تم إلغاء استيراد <xliff:g id="FILENAME">%s</xliff:g>"</string>
@@ -277,9 +275,8 @@
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"تأكيد التصدير"</string>
     <string name="confirm_export_message" msgid="4307437830474103759">"هل تريد تصدير قائمة جهات الاتصال إلى ملف \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"؟"</string>
-    <!-- outdated translation 585823094820602526 -->     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"أخفق تصدير بيانات جهة الاتصال"</string>
-    <!-- no translation found for exporting_contact_failed_message (2704925031146288635) -->
-    <skip />
+    <string name="exporting_contact_failed_title" msgid="2339788270863991417">"تعذر تصدير بيانات جهة الاتصال"</string>
+    <string name="exporting_contact_failed_message" msgid="2704925031146288635">"تعذر تصدير بيانات جهة الاتصال."\n"السبب: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"ليس هناك جهة اتصال قابلة للتصدير"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"هناك عدد أكبر مما يجب من ملفات vCard في وحدة التخزين."</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"هناك ملفات vCard كثيرة جدًا على بطاقة SD"</string>
@@ -290,7 +287,7 @@
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"تصدير بيانات جهة الاتصال إلى: \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"تعذرت تهيئة المُصدر: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"حدث خطأ أثناء التصدير: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
-    <!-- outdated translation 3723109558155169053 -->     <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"أخفق الحصول على معلومات قاعدة البيانات"</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"تعذر الحصول على معلومات قاعدة البيانات"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"ليس هناك جهات اتصال قابلة للتصدير. إذا كان لديك فعلاً جهات اتصال على الجهاز اللوحي، فقد يحظر بعض موفري البيانات تصدير جميع جهات الاتصال خارج الجهاز اللوحي."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"ليس هناك جهات اتصال قابلة للتصدير. إذا كان لديك فعلاً جهات اتصال على الهاتف، فقد يحظر بعض موفري البيانات تصدير جميع جهات الاتصال خارج الهاتف."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"لم تتم تهيئة مؤلف vCard بشكل صحيح"</string>
@@ -300,12 +297,12 @@
     <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"هل تريد بالتأكيد إلغاء استيراد <xliff:g id="FILENAME">%s</xliff:g>؟"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"إلغاء تصدير ملف vCard"</string>
     <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"هل تريد بالتأكيد إلغاء تصدير <xliff:g id="FILENAME">%s</xliff:g>؟"</string>
-    <!-- outdated translation 7096533244663846810 -->     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"أخفق إلغاء استيراد/تصدير ملف vCard"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"تعذر إلغاء استيراد/تصدير vCard"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"أسماء جهات الاتصال"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"إضافة فترة إيقاف مؤقت مدتها ثانيتان"</string>
     <string name="add_wait" msgid="3360818652790319634">"إضافة انتظار"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"اتصال باستخدام"</string>
-    <!-- outdated translation 5009897887137674341 -->     <string name="call_settings" msgid="7666474782093693667">"إعدادات الاتصال"</string>
+    <string name="call_settings" msgid="7666474782093693667">"الإعدادات"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"إرسال رسالة نصية قصيرة باستخدام"</string>
     <string name="make_primary" msgid="5829291915305113983">"تذكر هذا الاختيار"</string>
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"لم يتم العثور على تطبيق يمكنه مباشرة هذا الإجراء."</string>
@@ -315,8 +312,7 @@
     <string name="menu_import_export" msgid="3765725645491577190">"استيراد/تصدير"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"استيراد/تصدير جهات الاتصال"</string>
     <string name="menu_share" msgid="943789700636542260">"مشاركة"</string>
-    <!-- no translation found for menu_all_contacts (5101735431586050711) -->
-    <skip />
+    <string name="menu_all_contacts" msgid="5101735431586050711">"جميع جهات الاتصال"</string>
     <string name="share_via" msgid="563121028023030093">"مشاركة جهة الاتصال عبر"</string>
     <string name="share_error" msgid="4374508848981697170">"لا يمكن مشاركة جهة الاتصال هذه."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"الاسم"</string>
@@ -492,7 +488,7 @@
     <string name="custom_list_filter" msgid="7836035257402013957">"تحديد عرض مخصص"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"الإعدادات"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"جهات الاتصال التي يتم عرضها"</string>
-    <string name="menu_settings" msgid="6523251616169246235">"خيارات العرض"</string>
+    <string name="menu_settings" msgid="377929915873428211">"الإعدادات"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"خيارات العرض"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>، <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"البحث عن جهات اتصال"</string>
@@ -543,10 +539,10 @@
   </plurals>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>، <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"بريد صوتي جديد من <xliff:g id="CALLER">%1$s</xliff:g>"</string>
-    <!-- outdated translation 6148119635138385900 -->     <string name="voicemail_playback_error" msgid="1811242131549854624">"أخفق تشغيل البريد الصوتي"</string>
-    <!-- outdated translation 2021957162133938725 -->     <string name="voicemail_buffering" msgid="738287747618697097">"جارٍ التخزين مؤقتًا..."</string>
-    <!-- outdated translation 8516068803491833243 -->     <string name="voicemail_fetching_content" msgid="877911315738258780">"جارٍ جلب البريد الصوتي..."</string>
-    <!-- outdated translation 3430908587639305983 -->     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"أخفق جلب البريد الصوتي"</string>
+    <string name="voicemail_playback_error" msgid="1811242131549854624">"تعذر تشغيل البريد الصوتي."</string>
+    <string name="voicemail_buffering" msgid="738287747618697097">"جارٍ التخزين مؤقتًا..."</string>
+    <string name="voicemail_fetching_content" msgid="877911315738258780">"جارٍ جلب البريد الصوتي..."</string>
+    <string name="voicemail_fetching_timout" msgid="6691792377574905201">"تعذر جلب البريد الصوتي."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"جديد"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"أقدم"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"لا يمكن الاتصال بخادم البريد الصوتي."</string>
