@@ -502,6 +502,7 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
                 }
 
                 mHasEditNumberBeforeCall = canPlaceCallsTo && !isSipNumber && !isVoicemailNumber;
+                invalidateOptionsMenu();
 
                 ListView historyList = (ListView) findViewById(R.id.history);
                 historyList.setAdapter(
