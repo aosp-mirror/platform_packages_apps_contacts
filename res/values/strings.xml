@@ -1796,8 +1796,9 @@
     <!-- The string used to represent an unknown location for a phone number in the call log [CHAR LIMIT=3] -->
     <string name="call_log_empty_gecode">-</string>
 
-    <!-- String describing the text on the header of the profile contact in the contacts list [CHAR LIMIT=20] -->
-    <string name="user_profile_contacts_list_header">ME</string>
+    <!-- String describing the text on the header of the profile contact in the contacts list
+         This may be programatically capitalized. [CHAR LIMIT=20] -->
+    <string name="user_profile_contacts_list_header" msgid="9154761216179882405">Me</string>
 
     <!-- Header label in the contact editor for a profile that is local to the device only (and not associated with any account) [CHAR LIMIT=25] -->
     <string name="local_profile_title">My local profile</string>

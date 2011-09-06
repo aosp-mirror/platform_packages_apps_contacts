@@ -673,6 +673,7 @@ public class ContactListItemView extends ViewGroup
             mHeaderTextView.setText(title);
             mHeaderTextView.setVisibility(View.VISIBLE);
             mHeaderDivider.setVisibility(View.VISIBLE);
+            mHeaderTextView.setAllCaps(true);
             mHeaderVisible = true;
         } else {
             if (mHeaderTextView != null) {
