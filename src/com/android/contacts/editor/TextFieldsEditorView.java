@@ -176,6 +176,13 @@ public class TextFieldsEditorView extends LabeledEditorView {
             final EditText fieldView = new EditText(mContext);
             fieldView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                     field.isMultiLine() ? LayoutParams.WRAP_CONTENT : mMinFieldHeight));
+            // Set either a minimum line requirement or a minimum height (because {@link TextView}
+            // only takes one or the other at a single time).
+            if (field.minLines != 0) {
+                fieldView.setMinLines(field.minLines);
+            } else {
+                fieldView.setMinHeight(mMinFieldHeight);
+            }
             fieldView.setTextAppearance(getContext(), kind.textAppearanceResourceId);
             fieldView.setGravity(Gravity.TOP);
             mFieldEditTexts[index] = fieldView;
@@ -188,7 +195,6 @@ public class TextFieldsEditorView extends LabeledEditorView {
             if (inputType == InputType.TYPE_CLASS_PHONE) {
                 PhoneNumberFormatter.setPhoneNumberFormattingTextWatcher(mContext, fieldView);
             }
-            fieldView.setMinLines(field.minLines);
 
             // Read current value from state
             final String column = field.column;
