@@ -113,7 +113,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
     private boolean mIsReadOnly;
 
     private boolean mShowGroupActionInActionBar;
-    private boolean mOptionsMenuEditable;
+    private boolean mOptionsMenuGroupDeletable;
     private boolean mOptionsMenuGroupPresent;
     private boolean mCloseActivityAfterDelete;
 
@@ -386,11 +386,11 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
     }
 
     public boolean isOptionsMenuChanged() {
-        return mOptionsMenuEditable != isGroupEditable() &&
+        return mOptionsMenuGroupDeletable != isGroupDeletable() &&
                 mOptionsMenuGroupPresent != isGroupPresent();
     }
 
-    public boolean isGroupEditable() {
+    public boolean isGroupDeletable() {
         return mGroupUri != null && !mIsReadOnly;
     }
 
@@ -400,15 +400,14 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        mOptionsMenuEditable = isGroupEditable() && isVisible();
+        mOptionsMenuGroupDeletable = isGroupDeletable() && isVisible();
         mOptionsMenuGroupPresent = isGroupPresent() && isVisible();
 
-        // Editing is not possible for read only groups
         final MenuItem editMenu = menu.findItem(R.id.menu_edit_group);
-        editMenu.setVisible(mOptionsMenuGroupPresent && mOptionsMenuEditable);
+        editMenu.setVisible(mOptionsMenuGroupPresent);
 
         final MenuItem deleteMenu = menu.findItem(R.id.menu_delete_group);
-        deleteMenu.setVisible(mOptionsMenuEditable);
+        deleteMenu.setVisible(mOptionsMenuGroupDeletable);
     }
 
     @Override
