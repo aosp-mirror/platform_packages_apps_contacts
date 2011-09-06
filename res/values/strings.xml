@@ -121,18 +121,11 @@
     <!-- Menu item used to send an SMS or MMS message to a specific phone number or a contacts default phone number -->
     <string name="menu_sendSMS">Text contact</string>
 
-    <!-- Menu item that makes an email address the default for a contact. The default email used
-         when you try to email a contact without specifying a specific address. -->
-    <string name="menu_makeDefaultEmail">Make default email</string>
-
     <!-- Menu item that splits an item from the contact detail into a separate aggregate -->
     <string name="menu_splitAggregate">Separate</string>
 
     <!-- Menu item that edits the currently selected group [CHAR LIMIT=30] -->
     <string name="menu_editGroup">Edit</string>
-
-    <!-- Menu item that renames the currently selected group [CHAR LIMIT=30] -->
-    <string name="menu_renameGroup">Rename group</string>
 
     <!-- Menu item that deletes the currently selected group [CHAR LIMIT=30] -->
     <string name="menu_deleteGroup">Delete</string>
@@ -170,9 +163,6 @@
     <!-- Toast shown after two contacts have been joined by a user action -->
     <string name="contactsJoinedMessage">Contacts joined</string>
 
-    <!-- Title for the Options activity for a given contact -->
-    <string name="contactOptionsTitle">Options</string>
-
     <!-- Confirmation dialog title after users selects to delete a contact. -->
     <string name="deleteConfirmation_title">Delete</string>
 
@@ -203,20 +193,11 @@
     <!-- Menu item to indicate you want to stop editing a contact and NOT save the changes you've made [CHAR LIMIT=12] -->
     <string name="menu_discard">Discard</string>
 
-    <!-- The label describing the phonetic pronunciation/reading of a contact name [CHAR LIMIT=20] -->
-    <string name="label_phonetic_name">Phonetic</string>
-
     <!-- The label describing the Notes field of a contact. This field allows free form text entry about a contact -->
     <string name="label_notes">Notes</string>
 
     <!-- The label describing the SIP address field of a contact. [CHAR LIMIT=20] -->
     <string name="label_sip_address">Internet call</string>
-
-    <!-- The label describing the custom ringtone for a contact -->
-    <string name="label_ringtone">Ringtone</string>
-
-    <!-- Hint text for the phonetic reading of the contact name when editing -->
-    <string name="ghostData_phonetic_name">Phonetic name</string>
 
     <!-- Hint text for the organization name when editing -->
     <string name="ghostData_company">Company</string>
@@ -266,14 +247,8 @@
          For example, this may be used to set a phone number's label to "Vaction house" -->
     <string name="customLabelPickerTitle">Custom label name</string>
 
-    <!-- The menu item to open the list of groups to display -->
-    <string name="menu_displayGroup">Display options</string>
-
     <!-- Check box label that allows calls to the contact to be sent directly to voicemail -->
     <string name="send_to_voicemail_checkbox">Send calls directly to voicemail</string>
-
-    <!-- String used to indicate that a contact doesn't have a custom ringtone -->
-    <string name="default_ringtone">Default</string>
 
     <!-- The menu item that allows you to remove a photo from a contact [CHAR LIMIT=50] -->
     <string name="removePhoto">Remove photo</string>
@@ -293,19 +268,6 @@
     <!-- The text displayed when the contacts list is empty while displaying only contacts that have phone numbers -->
     <string name="noContactsWithPhoneNumbers">No contacts with phone numbers.</string>
 
-    <!-- The header over the list of all contacts groups -->
-    <string name="headerContactGroups">Choose contacts to display</string>
-
-    <!-- The description of a group with the total number of contacts -->
-    <plurals name="groupDescrip">
-        <item quantity="other"><xliff:g id="count">%0$d</xliff:g> contacts</item>
-    </plurals>
-
-    <!-- The description of a group with the total number of contacts, and the total number of contacts with phone numbers -->
-    <plurals name="groupDescripPhones">
-        <item quantity="other"><xliff:g id="count">%1$d</xliff:g> contacts, <xliff:g id="countWithPhones">%2$d</xliff:g> with phones</item>
-    </plurals>
-
     <!-- Displayed in a spinner dialog after the user creates a contact and it's being saved to the database -->
     <string name="savingContact">Saving contact\u2026</string>
 
@@ -323,12 +285,6 @@
 
     <!-- Toast displayed when saving a group failed [CHAR LIMIT=NONE] -->
     <string name="groupSavedErrorToast">Error, unable to save group changes.</string>
-
-    <!-- Toast displayed when adding or removing a member from a group has been saved. [CHAR LIMIT=NONE] -->
-    <string name="groupMembershipChangeSavedToast">Change has been saved.</string>
-
-    <!-- Toast displayed when trying to add a contact that has already been added to the group. [CHAR LIMIT=NONE] -->
-    <string name="contactAlreadyInGroup">Contact has already been added to the group.</string>
 
     <!-- Displayed at the top of the contacts showing the total number of contacts visible when "Only contacts with phones" is selected -->
     <plurals name="listTotalPhoneContacts">
@@ -1280,9 +1236,6 @@
     <!-- Section title for the page containing the contact's social updates on the contact card [CHAR LIMIT=20]-->
     <string name="recent_updates">Recent</string>
 
-    <!-- Label that contains the social update from a contact on the contact card. The text should appear as a quotation. [CHAR LIMIT=5] -->
-    <string name="recent_updates_tab_text">\"<xliff:g id="update_text">%s</xliff:g>\"</string>
-
     <!-- String describing which account type a contact came from when editing it -->
     <string name="account_type_format"><xliff:g id="source" example="Gmail">%1$s</xliff:g> contact</string>
 
@@ -1321,9 +1274,6 @@
 
     <!-- Gray hint displayed in the search field in Contacts when empty -->
     <string name="search_bar_hint">Search contacts</string>
-
-    <!-- Button displayed underneath the list of filtered visible contacts -->
-    <string name="search_for_all_contacts">Search for all contacts</string>
 
     <!-- An option in the 'Contact photo' dialog, if there is no photo yet [CHAR LIMIT=50] -->
     <string name="take_photo">Take photo</string>
@@ -1368,14 +1318,6 @@
 
     <!-- Label to clear all selection in multiple picker -->
     <string name="menu_select_none">"Unselect all"</string>
-
-    <!-- Label to display how many selected in multiple picker -->
-    <plurals name="multiple_picker_title">
-        <!-- number of selected recipients is one -->
-        <item quantity="one">"1 recipient selected"</item>
-        <!-- number of selected recipients is not equal to one -->
-        <item quantity="other"><xliff:g id="count">%d</xliff:g>" recipients selected"</item>
-    </plurals>
 
     <!-- The text displayed when the contacts list is empty while displaying only selected contacts in multiple picker -->
     <string name="no_contacts_selected">"No contacts selected."</string>
@@ -1459,9 +1401,6 @@
     <!-- Toast shown when creating a personal copy of a contact [CHAR LIMIT=100] -->
     <string name="toast_making_personal_copy">Creating a personal copy</string>
 
-    <!-- Prompt for selection of a contact list filter [CHAR LIMIT=64] -->
-    <string name="list_filter_prompt">Choose contact list</string>
-
     <!-- Contact list filter label indicating that the list is showing all available accounts [CHAR LIMIT=64] -->
     <string name="list_filter_all_accounts">All contacts</string>
 
@@ -1544,9 +1483,6 @@
     <!-- An item in the popup list of groups that triggers creation of a contact group [CHAR LIMIT=128] -->
     <string name="create_group_item_label">[Create new group]</string>
 
-    <!-- Title of the dialog that allows renaming of a contact group [CHAR LIMIT=128] -->
-    <string name="rename_group_dialog_title">Rename group</string>
-
     <!-- Title of the dialog that allows deletion of a contact group [CHAR LIMIT=128] -->
     <string name="delete_group_dialog_title">Delete group</string>
 
@@ -1580,9 +1516,6 @@
       with another contact.
     </string>
 
-    <!-- Joined contact indicator displayed in the contact detail [CHAR LIMIT=64] -->
-    <string name="indicator_joined_contact">Joined contact</string>
-
     <!-- Option displayed in context menu to copy long pressed item to clipboard [CHAR LIMIT=64] -->
     <string name="copy_text">Copy to clipboard</string>
 
@@ -1600,9 +1533,6 @@
 
     <!-- Contents of the alert dialog when the user hits the Cancel button in the editor [CHAR LIMIT=128] -->
     <string name="cancel_confirmation_dialog_message">Do you want to discard your changes?</string>
-
-    <!-- Button in the alert dialog when the user hits the Cancel button in the editor [CHAR LIMIT=20] -->
-    <string name="discard">Discard</string>
 
     <!-- Description of a call log entry, made of a call type and a date -->
     <string name="call_type_and_date">
