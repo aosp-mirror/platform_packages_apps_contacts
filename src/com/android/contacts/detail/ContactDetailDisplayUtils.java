@@ -267,37 +267,46 @@ public class ContactDetailDisplayUtils {
         List<StreamItemPhotoEntry> photos = streamItem.getPhotos();
         final int photoCount = photos.size();
 
-        // Process the photos, two at a time.
-        for (int index = 0; index < photoCount; index += 2) {
-            final StreamItemPhotoEntry firstPhoto = photos.get(index);
-            if (index + 1 < photoCount) {
-                // Put in two photos, side by side.
-                final StreamItemPhotoEntry secondPhoto = photos.get(index + 1);
-
-                View photoContainer = inflater.inflate(R.layout.stream_item_row_two_images,
-                        contentTable, false);
-                loadPhoto(contactPhotoManager, streamItem, firstPhoto, photoContainer,
-                        R.id.stream_item_first_image, photoClickListener);
-                loadPhoto(contactPhotoManager, streamItem, secondPhoto, photoContainer,
-                        R.id.stream_item_second_image, photoClickListener);
-                contentTable.addView(photoContainer);
-            } else {
-                // Put in a single photo with text on the side.
-                View photoContainer = inflater.inflate(
-                        R.layout.stream_item_row_image_and_text, contentTable, false);
-                loadPhoto(contactPhotoManager, streamItem, firstPhoto, photoContainer,
-                        R.id.stream_item_first_image, photoClickListener);
-                addStreamItemText(context, streamItem,
-                        photoContainer.findViewById(R.id.stream_item_second_text));
-                contentTable.addView(photoContainer);
-            }
-        }
-
-        if (photoCount % 2 == 0) {
-            // Even number of photos, add the text below them. Otherwise, it should have been
-            // already added next to the last photo.
-            View textContainer = inflater.inflate(R.layout.stream_item_row_text_only, contentTable,
+        // This stream item only has text.
+        if (photoCount == 0) {
+            View textOnlyContainer = inflater.inflate(R.layout.stream_item_row_text, contentTable,
                     false);
+            addStreamItemText(context, streamItem, textOnlyContainer);
+            contentTable.addView(textOnlyContainer);
+        } else {
+            // This stream item has text and photos. Process the photos, two at a time.
+            for (int index = 0; index < photoCount; index += 2) {
+                final StreamItemPhotoEntry firstPhoto = photos.get(index);
+                if (index + 1 < photoCount) {
+                    // Put in two photos, side by side.
+                    final StreamItemPhotoEntry secondPhoto = photos.get(index + 1);
+                    View photoContainer = inflater.inflate(R.layout.stream_item_row_two_images,
+                            contentTable, false);
+                    loadPhoto(contactPhotoManager, streamItem, firstPhoto, photoContainer,
+                            R.id.stream_item_first_image, photoClickListener);
+                    loadPhoto(contactPhotoManager, streamItem, secondPhoto, photoContainer,
+                            R.id.stream_item_second_image, photoClickListener);
+                    contentTable.addView(photoContainer);
+                } else {
+                    // Put in a single photo
+                    View photoContainer = inflater.inflate(
+                            R.layout.stream_item_row_one_image, contentTable, false);
+                    loadPhoto(contactPhotoManager, streamItem, firstPhoto, photoContainer,
+                            R.id.stream_item_first_image, photoClickListener);
+                    contentTable.addView(photoContainer);
+                }
+            }
+
+            // Add text, comments, and attribution if applicable
+            View textContainer = inflater.inflate(R.layout.stream_item_row_text, contentTable,
+                    false);
+            // Add extra padding between the text and the images
+            int extraVerticalPadding = context.getResources().getDimensionPixelSize(
+                    R.dimen.detail_update_section_between_items_vertical_padding);
+            textContainer.setPadding(textContainer.getPaddingLeft(),
+                    textContainer.getPaddingTop() + extraVerticalPadding,
+                    textContainer.getPaddingRight(),
+                    textContainer.getPaddingBottom());
             addStreamItemText(context, streamItem, textContainer);
             contentTable.addView(textContainer);
         }

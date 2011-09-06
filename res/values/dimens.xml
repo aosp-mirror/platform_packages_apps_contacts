@@ -61,17 +61,20 @@
     <!-- Vertical padding above and below individual stream items -->
     <dimen name="detail_update_section_item_vertical_padding">16dip</dimen>
 
+    <!-- Vertical padding between text and images in a single stream item -->
+    <dimen name="detail_update_section_between_items_vertical_padding">8dip</dimen>
+
     <!-- Horizontal padding for individual stream items -->
     <dimen name="detail_update_section_item_horizontal_padding">8dip</dimen>
 
-    <!-- Padding between columns images and/or text in a single stream item -->
+    <!-- Padding between images in a single stream item -->
     <dimen name="detail_update_section_between_items_padding">1dip</dimen>
 
     <!-- Horizontal padding between attribution and comments -->
     <dimen name="detail_update_section_attribution_comments_padding">4dip</dimen>
 
     <!-- Margin around the contact's photo on the contact card -->
-    <dimen name="detail_contact_photo_margin">16dip</dimen>
+    <dimen name="detail_contact_photo_margin">8dip</dimen>
 
     <!-- Width and height of the contact photo on the contact detail page -->
     <dimen name="detail_contact_photo_size">256dip</dimen>

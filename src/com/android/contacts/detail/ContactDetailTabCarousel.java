@@ -146,6 +146,7 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         if (mScrollToCurrentTab) {
             mScrollToCurrentTab = false;
             scrollTo(mCurrentTab == TAB_INDEX_ABOUT ? 0 : mAllowedHorizontalScrollLength, 0);
+            updateAlphaLayers();
         }
     }
 

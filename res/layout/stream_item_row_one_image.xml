@@ -25,7 +25,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/detail_update_section_between_items_padding"
         android:orientation="horizontal"
         android:weightSum="2">
 
@@ -47,9 +46,5 @@
         </view>
 
     </LinearLayout>
-
-    <include
-        android:id="@+id/stream_item_second_text"
-        layout="@layout/stream_item_row_text_only"/>
 
 </LinearLayout>

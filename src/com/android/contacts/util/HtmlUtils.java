@@ -7,6 +7,7 @@ import android.text.Html.ImageGetter;
 import android.text.Html.TagHandler;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.ImageSpan;
 import android.text.style.QuoteSpan;
 
@@ -23,6 +24,9 @@ public class HtmlUtils {
      * Converts HTML string to a {@link Spanned} text, adjusting formatting.
      */
     public static Spanned fromHtml(Context context, String text) {
+        if (TextUtils.isEmpty(text)) {
+            return null;
+        }
         Spanned spanned = Html.fromHtml(text);
         postprocess(context, spanned);
         return spanned;
@@ -34,6 +38,9 @@ public class HtmlUtils {
      */
     public static CharSequence fromHtml(Context context, String text, ImageGetter imageGetter,
             TagHandler tagHandler) {
+        if (TextUtils.isEmpty(text)) {
+            return null;
+        }
         Spanned spanned = Html.fromHtml(text, imageGetter, tagHandler);
         postprocess(context, spanned);
         return spanned;

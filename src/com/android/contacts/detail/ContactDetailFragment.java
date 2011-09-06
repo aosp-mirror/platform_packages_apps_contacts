@@ -132,6 +132,13 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     private static final String KEY_CONTACT_URI = "contactUri";
     private static final String KEY_LIST_STATE = "liststate";
 
+    // TODO: Make maxLines a field in {@link DataKind}
+    private static final int WEBSITE_MAX_LINES = 1;
+    private static final int SIP_ADDRESS_MAX_LINES= 1;
+    private static final int POSTAL_ADDRESS_MAX_LINES = 10;
+    private static final int GROUP_MAX_LINES = 10;
+    private static final int NOTE_MAX_LINES = 100;
+
     private Context mContext;
     private View mView;
     private OnScrollListener mVerticalScrollListener;
@@ -632,7 +639,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     }
                 } else if (StructuredPostal.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     // Build postal entries
-                    entry.maxLines = 4;
+                    entry.maxLines = POSTAL_ADDRESS_MAX_LINES;
                     entry.intent = new Intent(
                             Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + Uri.encode(entry.data)));
                     mPostalEntries.add(entry);
@@ -665,12 +672,12 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 } else if (Note.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     // Build note entries
                     entry.uri = null;
-                    entry.maxLines = 100;
+                    entry.maxLines = NOTE_MAX_LINES;
                     mNoteEntries.add(entry);
                 } else if (Website.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     // Build Website entries
                     entry.uri = null;
-                    entry.maxLines = 1;
+                    entry.maxLines = WEBSITE_MAX_LINES;
                     try {
                         WebAddress webAddress = new WebAddress(entry.data);
                         entry.intent = new Intent(Intent.ACTION_VIEW,
@@ -682,7 +689,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 } else if (SipAddress.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     // Build SipAddress entries
                     entry.uri = null;
-                    entry.maxLines = 1;
+                    entry.maxLines = SIP_ADDRESS_MAX_LINES;
                     if (mHasSip) {
                         entry.intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
                                 Uri.fromParts(Constants.SCHEME_SIP, entry.data, null));
@@ -747,7 +754,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             entry.mimetype = GroupMembership.MIMETYPE;
             entry.kind = mContext.getString(R.string.groupsLabel);
             entry.data = sb.toString();
-            entry.maxLines = 10;
+            entry.maxLines = GROUP_MAX_LINES;
             mGroupEntries.add(entry);
         }
     }
