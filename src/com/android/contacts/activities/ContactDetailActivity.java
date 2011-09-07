@@ -37,6 +37,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -45,6 +46,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
@@ -233,6 +236,13 @@ public class ContactDetailActivity extends ContactsActivity {
         ActionBar actionBar = getActionBar();
         actionBar.setTitle(displayName);
         actionBar.setSubtitle(company);
+
+        if (!TextUtils.isEmpty(displayName) &&
+                AccessibilityManager.getInstance(this).isEnabled()) {
+            View decorView = getWindow().getDecorView();
+            decorView.setContentDescription(displayName);
+            decorView.sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
+        }
     }
 
     private final ContactDetailFragment.Listener mContactDetailFragmentListener =
