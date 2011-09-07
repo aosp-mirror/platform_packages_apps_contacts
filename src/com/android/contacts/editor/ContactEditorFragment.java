@@ -479,9 +479,26 @@ public class ContactEditorFragment extends Fragment implements
 
         // For user profile, change the contacts query URI
         mIsUserProfile = data.isUserProfile();
+        boolean localProfileExists = false;
+
         if (mIsUserProfile) {
             for (EntityDelta state : mState) {
+                // For profile contacts, we need a different query URI
                 state.setProfileQueryUri();
+                // Try to find a local profile contact
+                if (state.getValues().getAsString(RawContacts.ACCOUNT_TYPE) == null) {
+                    localProfileExists = true;
+                }
+            }
+            // Editor should always present a local profile for editing
+            if (!localProfileExists) {
+                final ContentValues values = new ContentValues();
+                values.putNull(RawContacts.ACCOUNT_NAME);
+                values.putNull(RawContacts.ACCOUNT_TYPE);
+                values.putNull(RawContacts.DATA_SET);
+                EntityDelta insert = new EntityDelta(ValuesDelta.fromAfter(values));
+                insert.setProfileQueryUri();
+                mState.add(insert);
             }
         }
         mRequestFocus = true;
