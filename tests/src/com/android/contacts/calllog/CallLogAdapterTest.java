@@ -50,7 +50,7 @@ public class CallLogAdapterTest extends AndroidTestCase {
         // Use a call fetcher that does not do anything.
         CallLogAdapter.CallFetcher fakeCallFetcher = new CallLogAdapter.CallFetcher() {
             @Override
-            public void startCallsQuery() {}
+            public void fetchCalls() {}
         };
 
         mAdapter = new TestCallLogAdapter(getContext(), fakeCallFetcher, TEST_COUNTRY_ISO,
