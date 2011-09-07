@@ -29,8 +29,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.TextView;
 
 /**
@@ -55,6 +55,21 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     private View mPaddingView;
 
     private static final String KEY_FILTER = "filter";
+
+    // A complete copy from DefaultContactBrowserListFragment
+    // TODO: should be able to share logic around filter header.
+    private class FilterHeaderClickListener implements OnClickListener {
+        @Override
+        public void onClick(View view) {
+            final Activity activity = getActivity();
+            if (activity != null) {
+                final Intent intent = new Intent(activity, AccountFilterActivity.class);
+                activity.startActivityForResult(
+                        intent, AccountFilterActivity.DEFAULT_REQUEST_CODE);
+            }
+        }
+    }
+    private OnClickListener mFilterHeaderClickListener = new FilterHeaderClickListener();
 
     public PhoneNumberPickerFragment() {
         setQuickContactEnabled(false);
@@ -82,6 +97,7 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
         mAccountFilterHeaderView = (TextView) getView().findViewById(R.id.account_filter_header);
         mAccountFilterHeaderContainer =
                 getView().findViewById(R.id.account_filter_header_container);
+        mAccountFilterHeaderContainer.setOnClickListener(mFilterHeaderClickListener);
         updateFilterHeaderView();
     }
 
