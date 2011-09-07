@@ -53,74 +53,132 @@ public class ContactsUtilsTests extends AndroidTestCase {
     }
 
     public void testShouldCollapse() throws Exception {
-        checkShouldCollapse("1", true, null, null, null, null);
-        checkShouldCollapse("2", true, "a", "b", "a", "b");
+        assertCollapses("1", true, null, null, null, null);
+        assertCollapses("2", true, "a", "b", "a", "b");
 
-        checkShouldCollapse("11", false, "a", null, null, null);
-        checkShouldCollapse("12", false, null, "a", null, null);
-        checkShouldCollapse("13", false, null, null, "a", null);
-        checkShouldCollapse("14", false, null, null, null, "a");
+        assertCollapses("11", false, "a", null, null, null);
+        assertCollapses("12", false, null, "a", null, null);
+        assertCollapses("13", false, null, null, "a", null);
+        assertCollapses("14", false, null, null, null, "a");
 
-        checkShouldCollapse("21", false, "a", "b", null, null);
-        checkShouldCollapse("22", false, "a", "b", "a", null);
-        checkShouldCollapse("23", false, "a", "b", null, "b");
-        checkShouldCollapse("24", false, "a", "b", "a", "x");
-        checkShouldCollapse("25", false, "a", "b", "x", "b");
+        assertCollapses("21", false, "a", "b", null, null);
+        assertCollapses("22", false, "a", "b", "a", null);
+        assertCollapses("23", false, "a", "b", null, "b");
+        assertCollapses("24", false, "a", "b", "a", "x");
+        assertCollapses("25", false, "a", "b", "x", "b");
 
-        checkShouldCollapse("31", false, null, null, "a", "b");
-        checkShouldCollapse("32", false, "a", null, "a", "b");
-        checkShouldCollapse("33", false, null, "b", "a", "b");
-        checkShouldCollapse("34", false, "a", "x", "a", "b");
-        checkShouldCollapse("35", false, "x", "b", "a", "b");
+        assertCollapses("31", false, null, null, "a", "b");
+        assertCollapses("32", false, "a", null, "a", "b");
+        assertCollapses("33", false, null, "b", "a", "b");
+        assertCollapses("34", false, "a", "x", "a", "b");
+        assertCollapses("35", false, "x", "b", "a", "b");
 
-        checkShouldCollapse("41", true, Phone.CONTENT_ITEM_TYPE, null, Phone.CONTENT_ITEM_TYPE,
+        assertCollapses("41", true, Phone.CONTENT_ITEM_TYPE, null, Phone.CONTENT_ITEM_TYPE,
                 null);
-        checkShouldCollapse("42", true, Phone.CONTENT_ITEM_TYPE, "1", Phone.CONTENT_ITEM_TYPE, "1");
+        assertCollapses("42", true, Phone.CONTENT_ITEM_TYPE, "1", Phone.CONTENT_ITEM_TYPE, "1");
 
-        checkShouldCollapse("51", false, Phone.CONTENT_ITEM_TYPE, "1", Phone.CONTENT_ITEM_TYPE,
+        assertCollapses("51", false, Phone.CONTENT_ITEM_TYPE, "1", Phone.CONTENT_ITEM_TYPE,
                 "2");
-        checkShouldCollapse("52", false, Phone.CONTENT_ITEM_TYPE, "1", Phone.CONTENT_ITEM_TYPE,
+        assertCollapses("52", false, Phone.CONTENT_ITEM_TYPE, "1", Phone.CONTENT_ITEM_TYPE,
                 null);
-        checkShouldCollapse("53", false, Phone.CONTENT_ITEM_TYPE, null, Phone.CONTENT_ITEM_TYPE,
+        assertCollapses("53", false, Phone.CONTENT_ITEM_TYPE, null, Phone.CONTENT_ITEM_TYPE,
                 "2");
 
         // Test phone numbers
-        checkShouldCollapse("60", true,
+        assertCollapses("60", true,
                 Phone.CONTENT_ITEM_TYPE, "1234567",
                 Phone.CONTENT_ITEM_TYPE, "1234567");
-        checkShouldCollapse("61", false,
+        assertCollapses("61", false,
                 Phone.CONTENT_ITEM_TYPE, "1234567",
                 Phone.CONTENT_ITEM_TYPE, "1234568");
-        checkShouldCollapse("62", true,
+        assertCollapses("62", true,
                 Phone.CONTENT_ITEM_TYPE, "1234567;0",
                 Phone.CONTENT_ITEM_TYPE, "1234567;0");
-        checkShouldCollapse("63", false,
+        assertCollapses("63", false,
                 Phone.CONTENT_ITEM_TYPE, "1234567;89321",
-                Phone.CONTENT_ITEM_TYPE, "1234567;321");
-        checkShouldCollapse("64", true,
+                Phone.CONTENT_ITEM_TYPE, "1234567;89322");
+        assertCollapses("64", true,
                 Phone.CONTENT_ITEM_TYPE, "1234567;89321",
                 Phone.CONTENT_ITEM_TYPE, "1234567;89321");
-        checkShouldCollapse("65", false,
+        assertCollapses("65", false,
                 Phone.CONTENT_ITEM_TYPE, "1234567;0111111111",
                 Phone.CONTENT_ITEM_TYPE, "1234567;");
-        checkShouldCollapse("66", false,
+        assertCollapses("66", false,
                 Phone.CONTENT_ITEM_TYPE, "12345675426;91970xxxxx",
                 Phone.CONTENT_ITEM_TYPE, "12345675426");
-        checkShouldCollapse("67", false,
+        assertCollapses("67", false,
                 Phone.CONTENT_ITEM_TYPE, "12345675426;23456xxxxx",
                 Phone.CONTENT_ITEM_TYPE, "12345675426;234567xxxx");
-        checkShouldCollapse("68", true,
+        assertCollapses("68", true,
                 Phone.CONTENT_ITEM_TYPE, "1234567;1234567;1234567",
                 Phone.CONTENT_ITEM_TYPE, "1234567;1234567;1234567");
-        checkShouldCollapse("69", false,
+        assertCollapses("69", false,
                 Phone.CONTENT_ITEM_TYPE, "1234567;1234567;1234567",
                 Phone.CONTENT_ITEM_TYPE, "1234567;1234567");
+
+        // test some numbers with country and area code
+        assertCollapses("70", true,
+                Phone.CONTENT_ITEM_TYPE, "+49 (89) 12345678",
+                Phone.CONTENT_ITEM_TYPE, "+49 (89) 12345678");
+        assertCollapses("71", true,
+                Phone.CONTENT_ITEM_TYPE, "+49 (89) 12345678",
+                Phone.CONTENT_ITEM_TYPE, "+49 (89)12345678");
+        assertCollapses("72", true,
+                Phone.CONTENT_ITEM_TYPE, "+49 (8092) 1234",
+                Phone.CONTENT_ITEM_TYPE, "+49 (8092)1234");
+        assertCollapses("73", true,
+                Phone.CONTENT_ITEM_TYPE, "0049 (8092) 1234",
+                Phone.CONTENT_ITEM_TYPE, "+49/80921234");
+        assertCollapses("74", false,
+                Phone.CONTENT_ITEM_TYPE, "+49 (89) 12345678",
+                Phone.CONTENT_ITEM_TYPE, "+49 (89) 12345679");
+
+        // test some numbers with wait symbol and area code
+        assertCollapses("80", true,
+                Phone.CONTENT_ITEM_TYPE, "+49 (8092) 1234;89321",
+                Phone.CONTENT_ITEM_TYPE, "+49/80921234;89321");
+        assertCollapses("81", false,
+                Phone.CONTENT_ITEM_TYPE, "+49 (8092) 1234;89321",
+                Phone.CONTENT_ITEM_TYPE, "+49/80921235;89321");
+        assertCollapses("82", false,
+                Phone.CONTENT_ITEM_TYPE, "+49 (8092) 1234;89322",
+                Phone.CONTENT_ITEM_TYPE, "+49/80921234;89321");
+        assertCollapses("83", true,
+                Phone.CONTENT_ITEM_TYPE, "1234567;+49 (8092) 1234",
+                Phone.CONTENT_ITEM_TYPE, "1234567;+49/80921234");
+
+        // this makes sure that if if two segments are identical, we don't even try to parse
+        // (and therefore allow invalid phone numbers)
+        assertCollapses("84", true,
+                Phone.CONTENT_ITEM_TYPE, "+49/80921234;a89",
+                Phone.CONTENT_ITEM_TYPE, "+49 (8092) 1234;a89");
+        assertCollapses("85", false,
+                Phone.CONTENT_ITEM_TYPE, "+49/80921234;a89",
+                Phone.CONTENT_ITEM_TYPE, "+49/80921234;b89");
     }
 
-    private void checkShouldCollapse(String message, boolean expected, CharSequence mimetype1,
+    private void assertCollapses(String message, boolean expected, CharSequence mimetype1,
             CharSequence data1, CharSequence mimetype2, CharSequence data2) {
         assertEquals(message, expected,
                 ContactsUtils.shouldCollapse(mContext, mimetype1, data1, mimetype2, data2));
+        assertEquals(message, expected,
+                ContactsUtils.shouldCollapse(mContext, mimetype2, data2, mimetype1, data1));
+
+        if (data1 == data2 && data1 != null) {
+            // make sure we also do a test where object equality is not given
+            final CharSequence data2_newref = data2 + "";
+
+            // this just makes sure the test is working
+            assertFalse(data1 == data2_newref);
+
+            // we have two different instances, now make sure we get the same result as before
+            assertEquals(message, expected,
+                    ContactsUtils.shouldCollapse(mContext, mimetype1, data1, mimetype2,
+                    data2_newref));
+            assertEquals(message, expected,
+                    ContactsUtils.shouldCollapse(mContext, mimetype2, data2_newref, mimetype1,
+                    data1));
+        }
     }
 
     public void testAreIntentActionEqual() throws Exception {
