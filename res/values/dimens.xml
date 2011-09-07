@@ -191,4 +191,7 @@
     <!--  Vertical and horizontal padding in between contact tiles -->
     <dimen name="contact_tile_divider_padding">1dip</dimen>
 
+    <!--  Width of the lead margin on the left of a block quote inside a stream item -->
+    <dimen name="stream_item_stripe_width">8dip</dimen>
+
 </resources>

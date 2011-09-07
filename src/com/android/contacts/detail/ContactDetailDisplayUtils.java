@@ -22,6 +22,7 @@ import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.R;
 import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.util.ContactBadgeUtil;
+import com.android.contacts.util.HtmlUtils;
 import com.android.contacts.util.StreamItemEntry;
 import com.android.contacts.util.StreamItemPhotoEntry;
 import com.google.common.annotations.VisibleForTesting;
@@ -236,7 +237,7 @@ public class ContactDetailDisplayUtils {
         String photoUri = null;
         if (!contactData.getStreamItems().isEmpty()) {
             StreamItemEntry firstEntry = contactData.getStreamItems().get(0);
-            snippet = Html.fromHtml(firstEntry.getText());
+            snippet = HtmlUtils.fromHtml(context, firstEntry.getText());
             if (!firstEntry.getPhotos().isEmpty()) {
                 StreamItemPhotoEntry firstPhoto = firstEntry.getPhotos().get(0);
                 photoUri = firstPhoto.getPhotoUri();
@@ -338,10 +339,11 @@ public class ContactDetailDisplayUtils {
                 R.id.stream_item_attribution);
         TextView commentsView = (TextView) rootView.findViewById(R.id.stream_item_comments);
         ImageGetter imageGetter = new DefaultImageGetter(context.getPackageManager());
-        htmlView.setText(Html.fromHtml(streamItem.getText(), imageGetter, null));
+        htmlView.setText(HtmlUtils.fromHtml(context, streamItem.getText(), imageGetter, null));
         attributionView.setText(ContactBadgeUtil.getSocialDate(streamItem, context));
         if (streamItem.getComments() != null) {
-            commentsView.setText(Html.fromHtml(streamItem.getComments(), imageGetter, null));
+            commentsView.setText(HtmlUtils.fromHtml(context, streamItem.getComments(), imageGetter,
+                    null));
             commentsView.setVisibility(View.VISIBLE);
         } else {
             commentsView.setVisibility(View.GONE);

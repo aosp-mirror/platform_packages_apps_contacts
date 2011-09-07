@@ -21,6 +21,7 @@ import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.util.ContactBadgeUtil;
+import com.android.contacts.util.HtmlUtils;
 import com.android.contacts.util.StreamItemEntry;
 
 import android.app.PendingIntent;
@@ -36,7 +37,6 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.StreamItems;
-import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
@@ -208,7 +208,7 @@ public class SocialWidgetProvider extends AppWidgetProvider {
         } else {
             // TODO: Rotate between all the stream items?
             StreamItemEntry streamItem = streamItems.get(0);
-            CharSequence status = Html.fromHtml(streamItem.getText());
+            CharSequence status = HtmlUtils.fromHtml(context, streamItem.getText());
             if (status.length() <= SHORT_SNIPPET_LENGTH) {
                 sb.append("\n");
             } else {
