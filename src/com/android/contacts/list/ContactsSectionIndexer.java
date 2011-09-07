@@ -16,6 +16,7 @@
 
 package com.android.contacts.list;
 
+import android.text.TextUtils;
 import android.widget.SectionIndexer;
 
 import java.util.Arrays;
@@ -29,6 +30,7 @@ public class ContactsSectionIndexer implements SectionIndexer {
     private String[] mSections;
     private int[] mPositions;
     private int mCount;
+    private static final String BLANK_HEADER_STRING = " ";
 
     /**
      * Constructor.
@@ -52,9 +54,9 @@ public class ContactsSectionIndexer implements SectionIndexer {
         mPositions = new int[counts.length];
         int position = 0;
         for (int i = 0; i < counts.length; i++) {
-            if (mSections[i] == null) {
-                mSections[i] = " ";
-            } else {
+            if (TextUtils.isEmpty(mSections[i])) {
+                mSections[i] = BLANK_HEADER_STRING;
+            } else if (!mSections[i].equals(BLANK_HEADER_STRING)) {
                 mSections[i] = mSections[i].trim();
             }
 
