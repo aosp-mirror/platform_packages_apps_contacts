@@ -492,13 +492,9 @@ public class PeopleActivity extends ContactsActivity
                     tabToOpen = TabState.ALL;
                     break;
 
-                // TODO: handle FREQUENT and STREQUENT according to the spec
                 case ContactsRequest.ACTION_FREQUENT:
                 case ContactsRequest.ACTION_STREQUENT:
-                    // For now they are treated the same as STARRED
                 case ContactsRequest.ACTION_STARRED:
-                    filter = ContactListFilter.createFilterWithType(
-                            ContactListFilter.FILTER_TYPE_STARRED);
                     tabToOpen = TabState.FAVORITES;
                     break;
                 case ContactsRequest.ACTION_VIEW_CONTACT:
