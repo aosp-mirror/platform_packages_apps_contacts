@@ -18,10 +18,7 @@ package com.android.contacts;
 
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
-import com.android.i18n.phonenumbers.NumberParseException;
 import com.android.i18n.phonenumbers.PhoneNumberUtil;
-import com.android.i18n.phonenumbers.PhoneNumberUtil.MatchType;
-import com.android.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
 import android.content.Context;
 import android.content.Intent;
@@ -105,47 +102,49 @@ public class ContactsUtils {
      */
     public static final boolean shouldCollapse(Context context, CharSequence mimetype1,
             CharSequence data1, CharSequence mimetype2, CharSequence data2) {
-        if (TextUtils.equals(Phone.CONTENT_ITEM_TYPE, mimetype1)
-                && TextUtils.equals(Phone.CONTENT_ITEM_TYPE, mimetype2)) {
-            if (data1 == data2) {
-                return true;
-            }
-            if (data1 == null || data2 == null) {
-                return false;
-            }
+        // different mimetypes? don't collapse
+        if (!TextUtils.equals(mimetype1, mimetype2)) return false;
 
-            // If the number contains semicolons, PhoneNumberUtils.compare
-            // only checks the substring before that (which is fine for caller-id usually)
-            // but not for collapsing numbers. so we check each segment indidually to be more strict
-            // TODO: This should be replaced once we have a more robust phonenumber-library
-            String[] dataParts1 = data1.toString().split(WAIT_SYMBOL_AS_STRING);
-            String[] dataParts2 = data2.toString().split(WAIT_SYMBOL_AS_STRING);
-            if (dataParts1.length != dataParts2.length) {
-                return false;
-            }
-            PhoneNumberUtil util = PhoneNumberUtil.getInstance();
-            for (int i = 0; i < dataParts1.length; i++) {
-                try {
-                    PhoneNumber phoneNumber1 = util.parse(dataParts1[i], "ZZ" /* Unknown */);
-                    PhoneNumber phoneNumber2 = util.parse(dataParts2[i], "ZZ" /* Unknown */);
-                    MatchType matchType = util.isNumberMatch(phoneNumber1, phoneNumber2);
-                    if (matchType != MatchType.SHORT_NSN_MATCH) {
-                        return false;
-                    }
-                } catch (NumberParseException e) {
-                    if (!TextUtils.equals(dataParts1[i], dataParts2[i])) {
-                        return false;
-                    }
-                }
-            }
+        // exact same string? good, bail out early
+        if (TextUtils.equals(data1, data2)) return true;
 
-            return true;
-        } else {
-            if (mimetype1 == mimetype2 && data1 == data2) {
-                return true;
+        // so if either is null, these two must be different
+        if (data1 == null || data2 == null) return false;
+
+        // if this is not about phone numbers, we know this is not a match (of course, some
+        // mimetypes could have more sophisticated matching is the future, e.g. addresses)
+        if (!TextUtils.equals(Phone.CONTENT_ITEM_TYPE, mimetype1)) return false;
+
+        // Now do the full phone number thing. split into parts, seperated by waiting symbol
+        // and compare them individually
+        final String[] dataParts1 = data1.toString().split(WAIT_SYMBOL_AS_STRING);
+        final String[] dataParts2 = data2.toString().split(WAIT_SYMBOL_AS_STRING);
+        if (dataParts1.length != dataParts2.length) return false;
+        final PhoneNumberUtil util = PhoneNumberUtil.getInstance();
+        for (int i = 0; i < dataParts1.length; i++) {
+            final String dataPart1 = dataParts1[i];
+            final String dataPart2 = dataParts2[i];
+
+            // substrings equal? shortcut, don't parse
+            if (TextUtils.equals(dataPart1, dataPart2)) continue;
+
+            // do a full parse of the numbers
+            switch (util.isNumberMatch(dataPart1, dataPart2)) {
+                case NOT_A_NUMBER:
+                    // don't understand the numbers? let's play it safe
+                    return false;
+                case NO_MATCH:
+                    return false;
+                case EXACT_MATCH:
+                case SHORT_NSN_MATCH:
+                case NSN_MATCH:
+                    break;
+                default:
+                    throw new IllegalStateException("Unknown result value from phone number " +
+                            "library");
             }
-            return TextUtils.equals(mimetype1, mimetype2) && TextUtils.equals(data1, data2);
         }
+        return true;
     }
 
     /**
