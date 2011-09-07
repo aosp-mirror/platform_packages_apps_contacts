@@ -26,6 +26,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityEvent;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
@@ -207,14 +208,15 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                         R.id.totalContactsText);
                 ProgressBar progress = (ProgressBar) mSearchHeaderView.findViewById(
                         R.id.progress);
+                mSearchHeaderView.setVisibility(View.VISIBLE);
                 if (adapter.isLoading()) {
                     textView.setText(R.string.search_results_searching);
                     progress.setVisibility(View.VISIBLE);
                 } else {
                     textView.setText(R.string.listFoundAllContactsZero);
+                    textView.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_SELECTED);
                     progress.setVisibility(View.GONE);
                 }
-                mSearchHeaderView.setVisibility(View.VISIBLE);
             }
             showEmptyUserProfile(false);
         }
