@@ -279,7 +279,7 @@ public class BaseAccountType extends AccountType {
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(
                 new EditField(StructuredPostal.FORMATTED_ADDRESS, R.string.postal_address,
-                        FLAGS_POSTAL).setMinLines(1));
+                        FLAGS_POSTAL));
 
         return kind;
     }

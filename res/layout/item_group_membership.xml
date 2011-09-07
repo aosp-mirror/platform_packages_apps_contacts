@@ -27,12 +27,12 @@
         style="?android:attr/spinnerStyle"
         android:id="@+id/group_list"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/editor_min_line_item_height"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/editor_min_line_item_height"
         android:layout_marginLeft="@dimen/editor_field_left_padding"
         android:layout_marginRight="@dimen/editor_field_left_padding"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:gravity="left|center_vertical"
-        android:ellipsize="end"
         android:focusable="true"
         android:paddingLeft="12dip" />
 

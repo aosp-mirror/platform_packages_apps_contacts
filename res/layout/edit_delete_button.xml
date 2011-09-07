@@ -21,7 +21,7 @@
     android:layout_width="wrap_content"
     android:layout_height="@dimen/editor_min_line_item_height"
     android:layout_marginRight="2dip"
-    android:layout_gravity="top">
+    android:layout_gravity="bottom">
     <ImageView
         android:id="@+id/delete_button"
         android:layout_width="wrap_content"
