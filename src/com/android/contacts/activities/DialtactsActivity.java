@@ -94,8 +94,6 @@ public class DialtactsActivity extends Activity {
 
     private static final int TAB_INDEX_COUNT = 3;
 
-    private static final int SUBACTIVITY_ACCOUNT_FILTER = 0;
-
     /** Name of the dialtacts shared preferences */
     static final String PREFS_DIALTACTS = "dialtacts";
     static final boolean PREF_FAVORITES_AS_CONTACTS_DEFAULT = false;
@@ -276,7 +274,7 @@ public class DialtactsActivity extends Activity {
             final Intent intent =
                     new Intent(DialtactsActivity.this, AccountFilterActivity.class);
             ContactListFilter filter = mContactListFilterController.getFilter();
-            startActivityForResult(intent, SUBACTIVITY_ACCOUNT_FILTER);
+            startActivityForResult(intent, AccountFilterActivity.DEFAULT_REQUEST_CODE);
             return true;
         }
     };
@@ -899,7 +897,7 @@ public class DialtactsActivity extends Activity {
             return;
         }
         switch (requestCode) {
-            case SUBACTIVITY_ACCOUNT_FILTER: {
+            case AccountFilterActivity.DEFAULT_REQUEST_CODE: {
                 ContactListFilter filter = (ContactListFilter) data.getParcelableExtra(
                         AccountFilterActivity.KEY_EXTRA_CONTACT_LIST_FILTER);
                 if (filter == null) {

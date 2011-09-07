@@ -18,6 +18,7 @@ package com.android.contacts.list;
 import com.android.contacts.R;
 import com.android.contacts.editor.ContactEditorFragment;
 
+import android.app.Activity;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.database.Cursor;
@@ -25,6 +26,7 @@ import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.Button;
@@ -50,6 +52,19 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private View mProfileTitle;
 
     private View mPaddingView;
+
+    private class FilterHeaderClickListener implements OnClickListener {
+        @Override
+        public void onClick(View view) {
+            final Activity activity = getActivity();
+            if (activity != null) {
+                final Intent intent = new Intent(activity, AccountFilterActivity.class);
+                activity.startActivityForResult(
+                        intent, AccountFilterActivity.DEFAULT_REQUEST_CODE);
+            }
+        }
+    }
+    private OnClickListener mFilterHeaderClickListener = new FilterHeaderClickListener();
 
     public DefaultContactBrowseListFragment() {
         setPhotoLoaderEnabled(true);
@@ -87,6 +102,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         mAccountFilterHeaderView = (TextView) getView().findViewById(R.id.account_filter_header);
         mAccountFilterHeaderContainer =
                 getView().findViewById(R.id.account_filter_header_container);
+        mAccountFilterHeaderContainer.setOnClickListener(mFilterHeaderClickListener);
         mCounterHeaderView = (TextView) getView().findViewById(R.id.contacts_count);
 
         // Create an empty user profile header and hide it for now (it will be visible if the

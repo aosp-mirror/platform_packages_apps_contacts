@@ -108,7 +108,6 @@ public class PeopleActivity extends ContactsActivity
 
     private static final int SUBACTIVITY_NEW_GROUP = 2;
     private static final int SUBACTIVITY_EDIT_GROUP = 3;
-    private static final int SUBACTIVITY_ACCOUNT_FILTER = 4;
 
     private static final String KEY_SEARCH_MODE = "searchMode";
 
@@ -1356,7 +1355,7 @@ public class PeopleActivity extends ContactsActivity
             }
             case R.id.menu_contacts_filter: {
                 final Intent intent = new Intent(this, AccountFilterActivity.class);
-                startActivityForResult(intent, SUBACTIVITY_ACCOUNT_FILTER);
+                startActivityForResult(intent, AccountFilterActivity.DEFAULT_REQUEST_CODE);
                 return true;
             }
             case R.id.menu_search: {
@@ -1433,7 +1432,7 @@ public class PeopleActivity extends ContactsActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
-            case SUBACTIVITY_ACCOUNT_FILTER: {
+            case AccountFilterActivity.DEFAULT_REQUEST_CODE: {
                 if (resultCode == Activity.RESULT_OK) {
                     ContactListFilter filter = (ContactListFilter) data.getParcelableExtra(
                             AccountFilterActivity.KEY_EXTRA_CONTACT_LIST_FILTER);
