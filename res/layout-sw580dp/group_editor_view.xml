@@ -41,7 +41,6 @@
             android:layout_height="wrap_content"
             android:minHeight="48dip"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textStyle="bold"
             android:inputType="textCapWords"
             android:hint="@string/group_name_hint"
             android:paddingLeft="16dip"/>
