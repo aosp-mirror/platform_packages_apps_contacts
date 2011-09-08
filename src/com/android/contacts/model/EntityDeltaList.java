@@ -21,6 +21,7 @@ import android.content.ContentResolver;
 import android.content.Entity;
 import android.content.EntityIterator;
 import android.content.ContentProviderOperation.Builder;
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.ContactsContract.AggregationExceptions;
@@ -63,10 +64,10 @@ public class EntityDeltaList extends ArrayList<EntityDelta> implements Parcelabl
      * given query parameters. This closes the {@link EntityIterator} when
      * finished, so it doesn't subscribe to updates.
      */
-    public static EntityDeltaList fromQuery(ContentResolver resolver, String selection,
-            String[] selectionArgs, String sortOrder) {
+    public static EntityDeltaList fromQuery(Uri entityUri, ContentResolver resolver,
+            String selection, String[] selectionArgs, String sortOrder) {
         final EntityIterator iterator = RawContacts.newEntityIterator(resolver.query(
-                RawContactsEntity.CONTENT_URI, null, selection, selectionArgs,
+                entityUri, null, selection, selectionArgs,
                 sortOrder));
         try {
             return fromIterator(iterator);
