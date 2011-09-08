@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/btn_dial"
-                android:src="@drawable/ic_sound_holo_dark"
+                android:src="@drawable/ic_sound_speakerphone_holo_dark"
             />
         </LinearLayout>
     </LinearLayout>
