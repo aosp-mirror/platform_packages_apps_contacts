@@ -180,9 +180,6 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     private LayoutInflater mLayoutInflater;
 
     private TextView mGroupNameView;
-    private ImageView mAccountIcon;
-    private TextView mAccountTypeTextView;
-    private TextView mAccountNameTextView;
     private AutoCompleteTextView mAutoCompleteTextView;
 
     private String mAccountName;
@@ -404,23 +401,25 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         }
 
         mGroupNameView = (TextView) editorView.findViewById(R.id.group_name);
-        mAccountIcon = (ImageView) editorView.findViewById(R.id.account_icon);
-        mAccountTypeTextView = (TextView) editorView.findViewById(R.id.account_type);
-        mAccountNameTextView = (TextView) editorView.findViewById(R.id.account_name);
         mAutoCompleteTextView = (AutoCompleteTextView) editorView.findViewById(
                 R.id.add_member_field);
 
         mListView = (ListView) editorView.findViewById(android.R.id.list);
         mListView.setAdapter(mMemberListAdapter);
 
-        // Setup the account header
-        CharSequence accountTypeDisplayLabel = accountType.getDisplayLabel(mContext);
-        if (!TextUtils.isEmpty(mAccountName)) {
-            mAccountNameTextView.setText(
-                    mContext.getString(R.string.from_account_format, mAccountName));
+        // Setup the account header, only when exists.
+        if (editorView.findViewById(R.id.account_header) != null) {
+            CharSequence accountTypeDisplayLabel = accountType.getDisplayLabel(mContext);
+            ImageView accountIcon = (ImageView) editorView.findViewById(R.id.account_icon);
+            TextView accountTypeTextView = (TextView) editorView.findViewById(R.id.account_type);
+            TextView accountNameTextView = (TextView) editorView.findViewById(R.id.account_name);
+            if (!TextUtils.isEmpty(mAccountName)) {
+                accountNameTextView.setText(
+                        mContext.getString(R.string.from_account_format, mAccountName));
+            }
+            accountTypeTextView.setText(accountTypeDisplayLabel);
+            accountIcon.setImageDrawable(accountType.getDisplayIcon(mContext));
         }
-        mAccountTypeTextView.setText(accountTypeDisplayLabel);
-        mAccountIcon.setImageDrawable(accountType.getDisplayIcon(mContext));
 
         // Setup the autocomplete adapter (for contacts to suggest to add to the group) based on the
         // account name and type. For groups that cannot have membership edited, there will be no
