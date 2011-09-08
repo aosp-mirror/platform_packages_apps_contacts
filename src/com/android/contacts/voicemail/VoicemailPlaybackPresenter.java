@@ -313,7 +313,7 @@ public class VoicemailPlaybackPresenter {
                             mPlayer.setAudioStreamType(PLAYBACK_STREAM);
                             mPlayer.prepare();
                             return null;
-                        } catch (IOException e) {
+                        } catch (Exception e) {
                             return e;
                         }
                     }
