@@ -18,6 +18,7 @@ package com.android.contacts;
 
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
+import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.model.EntityModifier;
 import com.google.android.collect.Lists;
@@ -48,6 +49,7 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.Profile;
 import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.RawContactsEntity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -355,9 +357,19 @@ public class ContactSaveService extends IntentService {
                     throw new IllegalStateException("Version consistency failed for a new contact");
                 }
 
-                final EntityDeltaList newState = EntityDeltaList.fromQuery(resolver,
-                        sb.toString(), null, null);
+                final EntityDeltaList newState = EntityDeltaList.fromQuery(
+                        isProfile
+                                ? RawContactsEntity.PROFILE_CONTENT_URI
+                                : RawContactsEntity.CONTENT_URI,
+                        resolver, sb.toString(), null, null);
                 state = EntityDeltaList.mergeAfter(newState, state);
+
+                // Update the new state to use profile URIs if appropriate.
+                if (isProfile) {
+                    for (EntityDelta delta : state) {
+                        delta.setProfileQueryUri();
+                    }
+                }
             }
         }
 

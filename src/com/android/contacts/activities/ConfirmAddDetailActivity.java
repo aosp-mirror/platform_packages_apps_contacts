@@ -58,6 +58,7 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.RawContactsEntity;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
@@ -378,7 +379,10 @@ public class ConfirmAddDetailActivity extends Activity implements
                 mSelection = Data.RAW_CONTACT_ID + "=?";
             }
 
-            return EntityDeltaList.fromQuery(activityTarget.getContentResolver(), mSelection,
+            // Note that this query does not need to concern itself with whether the contact is
+            // the user's profile, since the profile does not show up in the picker.
+            return EntityDeltaList.fromQuery(RawContactsEntity.CONTENT_URI,
+                    activityTarget.getContentResolver(), mSelection,
                     new String[] { selectionArg }, null);
         }
 
