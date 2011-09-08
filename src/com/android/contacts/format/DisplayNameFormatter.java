@@ -20,9 +20,6 @@ import com.android.contacts.widget.TextWithHighlighting;
 import com.android.contacts.widget.TextWithHighlightingFactory;
 
 import android.database.CharArrayBuffer;
-import android.graphics.Typeface;
-import android.provider.ContactsContract;
-import android.text.Spannable;
 import android.widget.TextView;
 
 /**
@@ -48,10 +45,6 @@ public final class DisplayNameFormatter {
 
     public CharArrayBuffer getAlternateNameBuffer() {
         return mAlternateNameBuffer;
-    }
-
-    public void setTextWithHighlightingFactory(TextWithHighlightingFactory factory) {
-        mTextWithHighlightingFactory = factory;
     }
 
     public void setUnknownNameText(CharSequence unknownNameText) {

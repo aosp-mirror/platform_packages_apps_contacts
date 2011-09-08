@@ -125,20 +125,6 @@ public class DisplayNameFormatterTest extends AndroidTestCase {
         SpannedTestUtils.checkHtmlText("unknown", mView);
     }
 
-    public void testSetDisplayName_Highlighting() {
-        mDisplayNameFormatter.setTextWithHighlightingFactory(new TestTextWithHighlightingFactory());
-        setNames("John Doe", "Sue Anne");
-        setDisplayNameWithHighlighting();
-        SpannedTestUtils.checkHtmlText("<i>John Doe</i> <i>Sue Anne</i>", mView);
-    }
-
-    public void testSetDisplayName_HighlightingAndBoldFirstName() {
-        mDisplayNameFormatter.setTextWithHighlightingFactory(new TestTextWithHighlightingFactory());
-        setNames("John Doe", "Doe John");
-        setDisplayNameWithHighlighting();
-        SpannedTestUtils.checkHtmlText("<i>John Doe</i> <i>Doe John</i>", mView);
-    }
-
     /**
      * Sets the name and alternate name on the formatter.
      *
