@@ -21,6 +21,7 @@ import android.graphics.Rect;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.accessibility.AccessibilityEvent;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
@@ -53,5 +54,15 @@ public class DigitsEditText extends EditText {
             imm.hideSoftInputFromWindow(getApplicationWindowToken(), 0);
         }
         return ret;
+    }
+
+    @Override
+    public void sendAccessibilityEventUnchecked(AccessibilityEvent event) {
+        if (event.getEventType() == AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED) {
+            // AsYouTypeFormatter frequently replaces digits with formatted ones, which makes
+            // tts too verbose. Let's ignore the whole event.
+            return;
+        }
+        super.sendAccessibilityEventUnchecked(event);
     }
 }
