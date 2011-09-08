@@ -69,7 +69,7 @@ public class PhotoActionPopup {
                     context.getString(resId)));
         }
         final ListAdapter adapter = new ArrayAdapter<ChoiceListItem>(context,
-                android.R.layout.select_dialog_item, choices);
+                R.layout.select_dialog_item, choices);
 
         final ListPopupWindow listPopupWindow = new ListPopupWindow(context);
         final OnItemClickListener clickListener = new OnItemClickListener() {
