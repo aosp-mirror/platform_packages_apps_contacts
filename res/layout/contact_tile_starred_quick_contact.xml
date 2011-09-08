@@ -61,6 +61,7 @@
                 android:drawablePadding="4dip"
                 android:fadingEdge="horizontal"
                 android:fadingEdgeLength="3dip"
+                android:layout_marginTop="-3dip"
                 android:ellipsize="marquee" />
 
         </LinearLayout>
