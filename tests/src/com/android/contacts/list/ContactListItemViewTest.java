@@ -18,7 +18,6 @@ package com.android.contacts.list;
 
 import com.android.contacts.activities.PeopleActivity;
 import com.android.contacts.format.SpannedTestUtils;
-import com.android.contacts.format.TestTextWithHighlightingFactory;
 import com.android.contacts.util.IntegrationTestUtils;
 
 import android.database.Cursor;
@@ -37,7 +36,7 @@ import android.widget.TextView;
 @LargeTest
 public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<PeopleActivity> {
     /** The HTML code used to mark the start of the highlighted part. */
-    private static final String START = "<font color =\"#729a27\">";
+    private static final String START = "<font color =\"#99cc00\">";
     /** The HTML code used to mark the end of the highlighted part. */
     private static final String END = "</font>";
 
@@ -103,18 +102,6 @@ public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<Pe
                 ContactsContract.Preferences.DISPLAY_ORDER_ALTERNATIVE);
 
         SpannedTestUtils.checkHtmlText("John " + START + "Doe" + END,
-                view.getNameTextView());
-    }
-
-    public void testShowDisplayName_WithHighlight() {
-        Cursor cursor = createCursor("John Doe", "Doe John");
-        ContactListItemView view = createView();
-
-        view.setTextWithHighlightingFactory(new TestTextWithHighlightingFactory());
-        view.showDisplayName(cursor, 0, 1, true,
-                ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY);
-
-        SpannedTestUtils.checkHtmlText("<i>John Doe</i> <i>Doe John</i>",
                 view.getNameTextView());
     }
 

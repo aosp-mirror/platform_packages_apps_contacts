@@ -21,7 +21,6 @@ import com.android.contacts.ContactStatusUtil;
 import com.android.contacts.R;
 import com.android.contacts.format.DisplayNameFormatter;
 import com.android.contacts.format.PrefixHighlighter;
-import com.android.contacts.widget.TextWithHighlightingFactory;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -277,10 +276,6 @@ public class ContactListItemView extends ViewGroup
      */
     public void setOnCallButtonClickListener(OnClickListener callButtonClickListener) {
         mCallButtonClickListener = callButtonClickListener;
-    }
-
-    public void setTextWithHighlightingFactory(TextWithHighlightingFactory factory) {
-        mDisplayNameFormatter.setTextWithHighlightingFactory(factory);
     }
 
     public void setUnknownNameText(CharSequence unknownNameText) {

@@ -18,6 +18,7 @@ package com.android.contacts;
 
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
+import com.android.contacts.test.NeededForTesting;
 import com.android.i18n.phonenumbers.PhoneNumberUtil;
 
 import android.content.Context;
@@ -91,6 +92,7 @@ public class ContactsUtils {
     /**
      * Returns true if two objects are considered equal.  Two null references are equal here.
      */
+    @NeededForTesting
     public static boolean areObjectsEqual(Object a, Object b) {
         return a == b || (a != null && a.equals(b));
     }
