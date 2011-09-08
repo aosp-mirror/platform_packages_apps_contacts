@@ -20,18 +20,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--
+      This layout can contain the second row of the action bar containing a group source
+      button if applicable (this is a fake stacked action bar)
+    -->
     <FrameLayout
         android:id="@+id/group_source_view_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical" />
+        android:layout_gravity="center_vertical"/>
 
-    <ListView
-        android:id="@android:id/list"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="1"
-        android:fadingEdge="none"
-        android:scrollbarStyle="outsideOverlay"/>
+        android:layout_weight="1">
+
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadingEdge="none"
+            android:scrollbarStyle="outsideOverlay"/>
+
+        <!--
+          Shadow overlay over the list of group members (since we have a fake stacked
+          action bar)
+        -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="20dip"
+            android:background="?android:attr/windowContentOverlay"/>
+
+    </FrameLayout>
 
 </LinearLayout>
