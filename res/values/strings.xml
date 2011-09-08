@@ -340,19 +340,44 @@
         <item quantity="other"><xliff:g id="count">%d</xliff:g> found</item>
     </plurals>
 
-    <!-- The description text for the "all contacts" tab. Space is limited for this string, so the shorter the better -->
+    <!-- The content description for the "all contacts" tab.
+
+         Note: AccessibilityServices use this attribute to announce what the view represents.
+         This is especially valuable for views without textual representation like ImageView.
+
+         [CHAR LIMIT=NONE] -->
     <string name="contactsAllLabel">All</string>
 
-    <!-- The description text for the groups tab. Space is limited for this string, so the shorter the better -->
+    <!-- The content description text for the groups tab.
+
+         Note: AccessibilityServices use this attribute to announce what the view represents.
+         This is especially valuable for views without textual representation like ImageView.
+
+         [CHAR LIMIT=NONE] -->
     <string name="contactsGroupsLabel">Groups</string>
 
-    <!-- The description text for the favorites tab. Space is limited for this string, so the shorter the better -->
+    <!-- The description text for the favorites tab.
+
+         Note: AccessibilityServices use this attribute to announce what the view represents.
+         This is especially valuable for views without textual representation like ImageView.
+
+         [CHAR LIMIT=NONE] -->
     <string name="contactsFavoritesLabel">Favorites</string>
 
-    <!-- The description text for the dialer tab. Space is limited for this string, so the shorter the better -->
+    <!-- The description text for the dialer tab.
+
+         Note: AccessibilityServices use this attribute to announce what the view represents.
+         This is especially valuable for views without textual representation like ImageView.
+
+         [CHAR LIMIT=NONE] -->
     <string name="dialerIconLabel">Phone</string>
 
-    <!-- The description text for the call log tab. Space is limited for this string, so the shorter the better -->
+    <!-- The description text for the call log tab.
+
+         Note: AccessibilityServices use this attribute to announce what the view represents.
+         This is especially valuable for views without textual representation like ImageView.
+
+         [CHAR LIMIT=NONE] -->
     <string name="recentCallsIconLabel">Call log</string>
     <string name="liveFolderAll">All contacts</string>
     <string name="liveFolderFavorites">Starred contacts</string>
