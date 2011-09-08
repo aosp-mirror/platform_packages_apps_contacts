@@ -106,11 +106,6 @@ public class GroupEditorActivity extends ContactsActivity
     }
 
     @Override
-    public boolean onSearchRequested() {
-        return true; // Don't respond to the search key.
-    }
-
-    @Override
     public void onBackPressed() {
         // If the change could not be saved, then revert to the default "back" button behavior.
         if (!mFragment.save(SaveMode.CLOSE)) {

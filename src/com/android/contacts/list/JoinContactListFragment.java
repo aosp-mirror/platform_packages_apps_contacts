@@ -163,15 +163,6 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
     }
 
     @Override
-    public void startSearch(String initialQuery) {
-        ContactsRequest request = new ContactsRequest();
-        request.setActionCode(ContactsRequest.ACTION_PICK_CONTACT);
-        request.setDirectorySearchEnabled(false);
-        ContactsSearchManager.startSearchForResult(getActivity(), initialQuery,
-                ACTIVITY_REQUEST_CODE_PICKER, request);
-    }
-
-    @Override
     public void onPickerResult(Intent data) {
         mListener.onPickContactAction(data.getData());
     }

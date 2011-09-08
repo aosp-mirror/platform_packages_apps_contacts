@@ -124,11 +124,6 @@ public class ContactDetailActivity extends ContactsActivity {
     }
 
     @Override
-    public boolean onSearchRequested() {
-        return true; // Don't respond to the search key.
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();

@@ -688,16 +688,6 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
         }
     }
 
-    @Override
-    public void startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData,
-            boolean globalSearch) {
-        if (globalSearch) {
-            super.startSearch(initialQuery, selectInitialQuery, appSearchData, globalSearch);
-        } else {
-            ContactsSearchManager.startSearch(this, initialQuery);
-        }
-    }
-
     protected void updateVoicemailStatusMessage(Cursor statusCursor) {
         if (statusCursor == null) {
             mStatusMessageView.setVisibility(View.GONE);
