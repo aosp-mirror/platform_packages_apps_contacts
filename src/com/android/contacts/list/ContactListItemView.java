@@ -33,6 +33,9 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
@@ -45,6 +48,11 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * A custom view for an item in the contact list.
@@ -1094,8 +1102,25 @@ public class ContactListItemView extends ViewGroup
             setSnippet(null);
             return;
         }
+        String snippet;
+        String columnContent = cursor.getString(summarySnippetColumnIndex);
 
-        String snippet = cursor.getString(summarySnippetColumnIndex);
+        // Do client side snippeting if provider didn't do it
+        Bundle extras = cursor.getExtras();
+        if (extras.getBoolean(ContactsContract.DEFERRED_SNIPPETING)) {
+            int displayNameIndex = cursor.getColumnIndex(Contacts.DISPLAY_NAME);
+
+            snippet = ContactsContract.snippetize(columnContent,
+                    displayNameIndex < 0 ? null : cursor.getString(displayNameIndex),
+                            extras.getString(ContactsContract.DEFERRED_SNIPPETING_QUERY),
+                            DefaultContactListAdapter.SNIPPET_START_MATCH,
+                            DefaultContactListAdapter.SNIPPET_END_MATCH,
+                            DefaultContactListAdapter.SNIPPET_ELLIPSIS,
+                            DefaultContactListAdapter.SNIPPET_MAX_TOKENS);
+        } else {
+            snippet = columnContent;
+        }
+
         if (snippet != null) {
             int from = 0;
             int to = snippet.length();
