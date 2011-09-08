@@ -25,11 +25,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <ImageView
-            android:id="@+id/contact_tile_image"
+        <view
+            class="com.android.contacts.list.ContactTileImageContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
+            android:layout_height="match_parent">
+            <ImageView
+                 android:id="@+id/contact_tile_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+        </view>
 
         <LinearLayout
             android:layout_width="match_parent"

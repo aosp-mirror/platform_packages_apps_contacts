@@ -27,14 +27,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <QuickContactBadge
-            android:id="@id/contact_tile_quick"
-            android:nextFocusRight="@id/contact_tile_frequent_phone"
-            android:layout_width="64dip"
-            android:layout_height="64dip"
-            android:scaleType="centerCrop"
-            android:focusable="true"
-            android:layout_alignParentLeft="true" />
+        <view
+            class="com.android.contacts.list.ContactTileImageContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <QuickContactBadge
+                android:id="@id/contact_tile_quick"
+                android:nextFocusRight="@id/contact_tile_frequent_phone"
+                android:layout_width="64dip"
+                android:layout_height="64dip"
+                android:scaleType="centerCrop"
+                android:focusable="true"
+                android:layout_alignParentLeft="true" />
+        </view>
 
         <TextView
             android:id="@+id/contact_tile_name"
