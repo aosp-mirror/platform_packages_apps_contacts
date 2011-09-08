@@ -724,6 +724,14 @@
     -->
     <string name="description_plus_button">plus</string>
 
+    <!-- String describing a contact picture that introduces users to the contact detail screen.
+
+         Used by AccessibilityService to announce the purpose of the button.
+
+         [CHAR LIMIT=NONE]
+      -->
+    <string name="description_view_contact_detail" msgid="2795575601596468581">View contact</string>
+
     <!-- Dialog title shown when (USB) storage does not exist [CHAR LIMIT=25] -->
     <string name="no_sdcard_title" product="nosdcard">Storage unavailable</string>
     <!-- Dialog title shown when SD Card does not exist -->

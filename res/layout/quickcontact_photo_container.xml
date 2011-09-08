@@ -84,6 +84,7 @@
             android:id="@+id/open_details_push_layer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:contentDescription="@string/viewContactDesription"
             android:background="?android:attr/selectableItemBackground" />
     </RelativeLayout>
 </merge>
