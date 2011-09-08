@@ -52,6 +52,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:src="@drawable/ic_menu_overflow"
+            android:contentDescription="@*android:string/action_menu_overflow_description"
             android:background="@android:color/transparent"/>
 
     </RelativeLayout>
