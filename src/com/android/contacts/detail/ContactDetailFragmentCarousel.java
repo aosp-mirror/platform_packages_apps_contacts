@@ -19,7 +19,6 @@ package com.android.contacts.detail;
 import com.android.contacts.R;
 
 import android.content.Context;
-import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -88,8 +87,6 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
     private View mDetailFragmentView;
     private View mUpdatesFragmentView;
 
-    private boolean mScrollToCurrentPage = false;
-
     public ContactDetailFragmentCarousel(Context context) {
         this(context, null);
     }
@@ -144,31 +141,9 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
                 resolveSize(screenHeight, heightMeasureSpec));
     }
 
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        super.onLayout(changed, l, t, r, b);
-        if (mScrollToCurrentPage) {
-            mScrollToCurrentPage = false;
-            // Use scrollTo() instead of smoothScrollTo() to prevent a visible flicker to the user
-            scrollTo(mCurrentPage == ABOUT_PAGE ? 0 : mAllowedHorizontalScrollLength, 0);
-            updateTouchInterceptors();
-        }
-    }
-
     /**
-     * Set the current page that should be restored when the view is first laid out.
-     */
-    public void restoreCurrentPage(int pageIndex) {
-        setCurrentPage(pageIndex);
-        // It is only possible to scroll the view after onMeasure() has been called (where the
-        // allowed horizontal scroll length is determined). Hence, set a flag that will be read
-        // in onLayout() after the children and this view have finished being laid out.
-        mScrollToCurrentPage = true;
-    }
-
-    /**
-     * Set the current page. This auto-scrolls the carousel to the current page and dims out
-     * the non-selected page.
+     * Set the current page. This dims out the non-selected page but doesn't do any scrolling of
+     * the carousel.
      */
     public void setCurrentPage(int pageIndex) {
         mCurrentPage = pageIndex;
@@ -176,7 +151,6 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
         if (mAboutFragment != null && mUpdatesFragment != null) {
             mAboutFragment.setAlphaLayerValue(mCurrentPage == ABOUT_PAGE ? 0 : MAX_ALPHA);
             mUpdatesFragment.setAlphaLayerValue(mCurrentPage == UPDATES_PAGE ? 0 : MAX_ALPHA);
-            snapToEdge();
         }
     }
 
@@ -205,9 +179,12 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
             mEnableSwipe = enable;
             if (mUpdatesFragmentView != null) {
                 mUpdatesFragmentView.setVisibility(enable ? View.VISIBLE : View.GONE);
-                mScrollToCurrentPage = true;
-                requestLayout();
-                invalidate();
+                if (mCurrentPage == ABOUT_PAGE) {
+                    mDetailFragmentView.requestFocus();
+                } else {
+                    mUpdatesFragmentView.requestFocus();
+                }
+                updateTouchInterceptors();
             }
         }
     }

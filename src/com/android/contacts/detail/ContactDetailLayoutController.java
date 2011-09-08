@@ -215,7 +215,7 @@ public class ContactDetailLayoutController {
 
                 mFragmentCarousel.setFragmentViews(mDetailFragmentView, mUpdatesFragmentView);
                 mFragmentCarousel.setFragments(mDetailFragment, mUpdatesFragment);
-                mFragmentCarousel.restoreCurrentPage(currentPageIndex);
+                mFragmentCarousel.setCurrentPage(currentPageIndex);
                 break;
             }
         }
