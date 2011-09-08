@@ -24,8 +24,10 @@
     android:id="@+id/group_source"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?android:attr/selectableItemBackground"
-    android:padding="10dip" >
+    android:minHeight="48dip"
+    android:background="@drawable/group_source_button_background"
+    android:paddingLeft="16dip"
+    android:paddingRight="16dip" >
 
     <TextView
         android:layout_width="0dip"
@@ -34,15 +36,21 @@
         android:layout_gravity="center_vertical"
         android:duplicateParentState="true"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/view_updates_from_group"/>
+        android:textColor="@color/action_bar_button_text_color"
+        android:text="@string/view_updates_from_group"
+        style="@android:style/Widget.Holo.ActionBar.TabText"/>
 
-    <ImageView
-        android:id="@android:id/icon"
-        android:layout_width="30dip"
-        android:layout_height="30dip"
-        android:duplicateParentState="true"
-        android:layout_marginLeft="7dip"
-        android:layout_marginRight="7dip"
-        android:layout_centerVertical="true"/>
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@android:id/icon"
+            android:layout_width="32dip"
+            android:layout_height="32dip"
+            android:duplicateParentState="true"
+            android:layout_gravity="center_vertical"/>
+
+    </FrameLayout>
 
 </LinearLayout>
