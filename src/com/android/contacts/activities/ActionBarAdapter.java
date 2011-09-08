@@ -129,9 +129,9 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         mActionBar.setCustomView(customSearchView, layoutParams);
 
         // Set up tabs
-        addTab(TabState.GROUPS, mContext.getString(R.string.contactsGroupsLabel));
-        addTab(TabState.ALL, mContext.getString(R.string.contactsAllLabel));
-        addTab(TabState.FAVORITES, mContext.getString(R.string.contactsFavoritesLabel));
+        addTab(TabState.GROUPS, R.drawable.ic_tab_groups, R.string.contactsGroupsLabel);
+        addTab(TabState.ALL, R.drawable.ic_tab_all, R.string.contactsAllLabel);
+        addTab(TabState.FAVORITES, R.drawable.ic_tab_starred, R.string.contactsFavoritesLabel);
     }
 
     public void initialize(Bundle savedState, ContactsRequest request) {
@@ -153,10 +153,11 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         mListener = listener;
     }
 
-    private void addTab(TabState tabState, String text) {
+    private void addTab(TabState tabState, int icon, int contentDescription) {
         final Tab tab = mActionBar.newTab();
         tab.setTag(tabState);
-        tab.setText(text);
+        tab.setIcon(icon);
+        tab.setContentDescription(contentDescription);
         tab.setTabListener(mTabListener);
         mActionBar.addTab(tab);
     }
