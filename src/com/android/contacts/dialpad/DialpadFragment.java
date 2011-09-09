@@ -294,6 +294,10 @@ public class DialpadFragment extends Fragment
         return fragmentView;
     }
 
+    private boolean isLayoutReady() {
+        return mDigits != null;
+    }
+
     public EditText getDigitsWidget() {
         return mDigits;
     }
@@ -393,6 +397,16 @@ public class DialpadFragment extends Fragment
      * the screen to enter "Add Call" mode, this method will show correct UI for the mode.
      */
     public void configureScreenFromIntent(Intent intent) {
+        if (!isLayoutReady()) {
+            // This happens typically when parent's Activity#onNewIntent() is called while
+            // Fragment#onCreateView() isn't called yet, and thus we cannot configure Views at
+            // this point. onViewCreate() should call this method after preparing layouts, so
+            // just ignore this call now.
+            Log.i(TAG,
+                    "Screen configuration is requested before onCreateView() is called. Ignored");
+            return;
+        }
+
         boolean needToShowDialpadChooser = false;
 
         final boolean isAddCallMode = isAddCallMode(intent);
@@ -535,7 +549,7 @@ public class DialpadFragment extends Fragment
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         if (mShowOptionsMenu && ViewConfiguration.get(getActivity()).hasPermanentMenuKey() &&
-                mDialpadChooser != null && mDigits != null) {
+                isLayoutReady() && mDialpadChooser != null) {
             inflater.inflate(R.menu.dialpad_options, menu);
         }
     }
@@ -544,7 +558,7 @@ public class DialpadFragment extends Fragment
     public void onPrepareOptionsMenu(Menu menu) {
         // Hardware menu key should be available and Views should already be ready.
         if (mShowOptionsMenu && ViewConfiguration.get(getActivity()).hasPermanentMenuKey() &&
-                mDialpadChooser != null && mDigits != null) {
+                isLayoutReady() && mDialpadChooser != null) {
              setupMenuItems(menu);
         }
     }
@@ -896,7 +910,7 @@ public class DialpadFragment extends Fragment
      */
     private void showDialpadChooser(boolean enabled) {
         // Check if onCreateView() is already called by checking one of View objects.
-        if (mDigits == null) {
+        if (!isLayoutReady()) {
             return;
         }
 
