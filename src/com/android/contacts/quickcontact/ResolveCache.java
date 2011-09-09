@@ -184,10 +184,10 @@ public class ResolveCache {
     public CharSequence getDescription(Action action) {
         final CharSequence actionSubtitle = action.getSubtitle();
         final ResolveInfo info = getEntry(action).bestResolve;
-        if (!TextUtils.isEmpty(actionSubtitle)) {
-            return actionSubtitle;
-        } else if (info != null) {
+        if (info != null) {
             return info.loadLabel(mPackageManager);
+        } else if (!TextUtils.isEmpty(actionSubtitle)) {
+            return actionSubtitle;
         } else {
             return null;
         }
