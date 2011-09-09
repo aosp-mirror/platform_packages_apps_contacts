@@ -42,6 +42,10 @@ import android.widget.Toast;
  * Helper class to listen for some magic character sequences
  * that are handled specially by the dialer.
  *
+ * Note the Phone app also handles these sequences too (in a couple of
+ * relativly obscure places in the UI), so there's a separate version of
+ * this class under apps/Phone.
+ *
  * TODO: there's lots of duplicated code between this class and the
  * corresponding class under apps/Phone.  Let's figure out a way to
  * unify these two classes (in the framework? in a common shared library?)
@@ -198,6 +202,12 @@ public class SpecialCharSequenceMgr {
         return false;
     }
 
+    // TODO: Combine showIMEIPanel() and showMEIDPanel() into a single
+    // generic "showDeviceIdPanel()" method, like in the apps/Phone
+    // version of SpecialCharSequenceMgr.java.  (This will require moving
+    // the phone app's TelephonyCapabilities.getDeviceIdLabel() method
+    // into the telephony framework, though.)
+
     static void showIMEIPanel(Context context, boolean useSystemWindow) {
         String imeiStr = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE))
                 .getDeviceId();
@@ -208,7 +218,6 @@ public class SpecialCharSequenceMgr {
                 .setPositiveButton(android.R.string.ok, null)
                 .setCancelable(false)
                 .show();
-        alert.getWindow().setType(WindowManager.LayoutParams.TYPE_PRIORITY_PHONE);
     }
 
     static void showMEIDPanel(Context context, boolean useSystemWindow) {
@@ -221,7 +230,6 @@ public class SpecialCharSequenceMgr {
                 .setPositiveButton(android.R.string.ok, null)
                 .setCancelable(false)
                 .show();
-        alert.getWindow().setType(WindowManager.LayoutParams.TYPE_PRIORITY_PHONE);
     }
 
     /*******
