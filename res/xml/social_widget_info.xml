@@ -17,8 +17,8 @@
  <!-- It is enough to update once per day, as the widget watches the database for changes -->
  
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
-    android:minWidth="294dip"
-    android:minHeight="72dip"
+    android:minWidth="260dip"
+    android:minHeight="40dip"
     android:updatePeriodMillis="86400000"
     android:initialLayout="@layout/social_widget"
     android:previewImage="@drawable/contacts_widget_preview"
