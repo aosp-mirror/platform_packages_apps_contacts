@@ -62,6 +62,10 @@ public class DigitsEditText extends EditText {
             // AsYouTypeFormatter frequently replaces digits with formatted ones, which makes
             // tts too verbose. Let's ignore the whole event.
             return;
+        } else if (event.getEventType() == AccessibilityEvent.TYPE_VIEW_FOCUSED) {
+            // The parent EditText class lets tts read "edit box" when this View has a focus, which
+            // confuses users on app launch (issue 5275935).
+            return;
         }
         super.sendAccessibilityEventUnchecked(event);
     }
