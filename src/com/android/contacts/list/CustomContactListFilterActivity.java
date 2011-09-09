@@ -160,7 +160,8 @@ public class CustomContactListFilterActivity extends ContactsActivity
                     }
                     // Create single entry handling ungrouped status
                     accountDisplay.mUngrouped =
-                        GroupDelta.fromSettings(resolver, account.name, account.type, hasGroups);
+                        GroupDelta.fromSettings(resolver, account.name, account.type,
+                                account.dataSet, hasGroups);
                     accountDisplay.addGroup(accountDisplay.mUngrouped);
                 } finally {
                     iterator.close();
@@ -246,14 +247,18 @@ public class CustomContactListFilterActivity extends ContactsActivity
 
         /**
          * Build {@link GroupDelta} from the {@link Settings} row for the given
-         * {@link Settings#ACCOUNT_NAME} and {@link Settings#ACCOUNT_TYPE}.
+         * {@link Settings#ACCOUNT_NAME}, {@link Settings#ACCOUNT_TYPE}, and
+         * {@link Settings#DATA_SET}.
          */
         public static GroupDelta fromSettings(ContentResolver resolver, String accountName,
-                String accountType, boolean accountHasGroups) {
-            final Uri settingsUri = Settings.CONTENT_URI.buildUpon()
+                String accountType, String dataSet, boolean accountHasGroups) {
+            final Uri.Builder settingsUri = Settings.CONTENT_URI.buildUpon()
                     .appendQueryParameter(Settings.ACCOUNT_NAME, accountName)
-                    .appendQueryParameter(Settings.ACCOUNT_TYPE, accountType).build();
-            final Cursor cursor = resolver.query(settingsUri, new String[] {
+                    .appendQueryParameter(Settings.ACCOUNT_TYPE, accountType);
+            if (dataSet != null) {
+                settingsUri.appendQueryParameter(Settings.DATA_SET, dataSet);
+            }
+            final Cursor cursor = resolver.query(settingsUri.build(), new String[] {
                     Settings.SHOULD_SYNC, Settings.UNGROUPED_VISIBLE
             }, null, null, null);
 
@@ -261,6 +266,7 @@ public class CustomContactListFilterActivity extends ContactsActivity
                 final ContentValues values = new ContentValues();
                 values.put(Settings.ACCOUNT_NAME, accountName);
                 values.put(Settings.ACCOUNT_TYPE, accountType);
+                values.put(Settings.DATA_SET, dataSet);
 
                 if (cursor != null && cursor.moveToFirst()) {
                     // Read existing values when present
