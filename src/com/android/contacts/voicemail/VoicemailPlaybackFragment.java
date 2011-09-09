@@ -397,10 +397,9 @@ public class VoicemailPlaybackFragment extends Fragment {
         public void setSpeakerPhoneOn(boolean on) {
             getAudioManager().setSpeakerphoneOn(on);
             if (on) {
-                mPlaybackSpeakerphone.setImageResource(R.drawable.ic_sound_speakerphone_holo_dark);
+                mPlaybackSpeakerphone.setImageResource(R.drawable.ic_speakerphone_on);
             } else {
-                mPlaybackSpeakerphone.setImageResource(
-                        R.drawable.ic_sound_off_speakerphone_holo_dark);
+                mPlaybackSpeakerphone.setImageResource(R.drawable.ic_speakerphone_off);
             }
         }
 

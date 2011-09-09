@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/btn_dial"
-                android:src="@drawable/ic_hold_pause_holo_dark"
+                android:src="@drawable/ic_hold_pause"
             />
         </LinearLayout>
         <LinearLayout
@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/btn_dial"
-                android:src="@drawable/ic_sound_speakerphone_holo_dark"
+                android:src="@drawable/ic_speakerphone_on"
             />
         </LinearLayout>
     </LinearLayout>
@@ -94,7 +94,7 @@
         />
         <ImageButton
             android:id="@+id/rate_decrease_button"
-            android:src="@drawable/ic_minus_holo_dark"
+            android:src="@drawable/ic_minus"
             android:layout_width="64dip"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_dial"
@@ -105,7 +105,7 @@
         />
         <ImageButton
             android:id="@+id/rate_increase_button"
-            android:src="@drawable/ic_plus_holo_dark"
+            android:src="@drawable/ic_plus"
             android:layout_width="64dip"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_dial"
