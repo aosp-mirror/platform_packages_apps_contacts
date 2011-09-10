@@ -98,6 +98,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         }
         mAdapter.setLoading(false);
         mAdapter.changeCursor(cursor);
+        // This will update the state of the "Clear call log" menu item.
+        getActivity().invalidateOptionsMenu();
         if (mScrollToTop) {
             final ListView listView = getListView();
             if (listView.getFirstVisiblePosition() > 5) {
@@ -252,6 +254,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         if (mShowOptionsMenu) {
+            menu.findItem(R.id.delete_all).setEnabled(mAdapter != null && !mAdapter.isEmpty());
             menu.findItem(R.id.show_voicemails_only).setVisible(
                     mVoicemailSourcesAvailable && !mShowingVoicemailOnly);
             menu.findItem(R.id.show_all_calls).setVisible(
