@@ -25,8 +25,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -100,14 +98,14 @@ public class QuickContactListFragment extends Fragment {
                         android.R.id.text1);
                 final TextView text2 = (TextView) resultView.findViewById(
                         android.R.id.text2);
-                final View primaryActionContainer = resultView.findViewById(
-                        R.id.primary_action_view_container);
+                final View actionsContainer = resultView.findViewById(
+                        R.id.actions_view_container);
                 final ImageView alternateActionButton = (ImageView) resultView.findViewById(
                         R.id.secondary_action_button);
                 final View alternateActionDivider = resultView.findViewById(R.id.vertical_divider);
 
-                primaryActionContainer.setOnClickListener(mPrimaryActionClickListener);
-                primaryActionContainer.setTag(action);
+                actionsContainer.setOnClickListener(mPrimaryActionClickListener);
+                actionsContainer.setTag(action);
                 alternateActionButton.setOnClickListener(mSecondaryActionClickListener);
                 alternateActionButton.setTag(action);
 

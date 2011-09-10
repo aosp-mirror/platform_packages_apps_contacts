@@ -25,21 +25,21 @@ import android.widget.ListView;
 
 /**
  * Custom {@link LinearLayout} which remembers its position in the {@link ListView}. Should be
- * used for primary touch targets in {@link ContactDetailFragment}.
+ * used for action touch targets in {@link ContactDetailFragment}.
  */
-/* package */ class PrimaryActionViewContainer extends LinearLayout {
+/* package */ class ActionsViewContainer extends LinearLayout {
 
     private ContextMenuInfo mContextMenuInfo;
 
-    public PrimaryActionViewContainer(Context context) {
+    public ActionsViewContainer(Context context) {
         super(context);
     }
 
-    public PrimaryActionViewContainer(Context context, AttributeSet attrs) {
+    public ActionsViewContainer(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public PrimaryActionViewContainer(Context context, AttributeSet attrs, int defStyle) {
+    public ActionsViewContainer(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
