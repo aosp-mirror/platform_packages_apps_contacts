@@ -22,13 +22,13 @@
 
     <item
         android:id="@+id/menu_add_contact"
-        android:icon="@drawable/ic_menu_add_contact_holo_dark"
+        android:icon="@drawable/ic_add_contact_holo_dark"
         android:title="@string/menu_new_contact_action_bar"
         android:showAsAction="always" />
 
     <item
         android:id="@+id/menu_custom_add_group"
-        android:icon="@drawable/ic_menu_add_group_holo_dark"
+        android:icon="@drawable/ic_add_group_holo_dark"
         android:title="@string/menu_new_group_action_bar"
         android:showAsAction="always" />
 
