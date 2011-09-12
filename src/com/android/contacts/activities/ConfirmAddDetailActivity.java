@@ -96,6 +96,7 @@ public class ConfirmAddDetailActivity extends Activity implements
     private TextView mReadOnlyWarningView;
     private ImageView mPhotoView;
     private ViewGroup mEditorContainerView;
+    private static WeakReference<ProgressDialog> sProgressDialog;
 
     private AccountTypeManager mAccountTypeManager;
     private ContentResolver mContentResolver;
@@ -691,7 +692,6 @@ public class ConfirmAddDetailActivity extends Activity implements
         private static final int RESULT_FAILURE = 2;
 
         private ConfirmAddDetailActivity activityTarget;
-        private WeakReference<ProgressDialog> mProgress;
 
         private AccountTypeManager mAccountTypeManager;
 
@@ -702,8 +702,8 @@ public class ConfirmAddDetailActivity extends Activity implements
 
         @Override
         protected void onPreExecute() {
-            mProgress = new WeakReference<ProgressDialog>(ProgressDialog.show(activityTarget, null,
-                    activityTarget.getText(R.string.savingContact)));
+            sProgressDialog = new WeakReference<ProgressDialog>(ProgressDialog.show(activityTarget,
+                    null, activityTarget.getText(R.string.savingContact)));
 
             // Before starting this task, start an empty service to protect our
             // process from being reclaimed by the system.
@@ -760,8 +760,7 @@ public class ConfirmAddDetailActivity extends Activity implements
         protected void onPostExecute(Integer result) {
             final Context context = activityTarget;
 
-            // Dismiss the progress dialog
-            mProgress.get().dismiss();
+            dismissProgressDialog();
 
             // Show a toast message based on the success or failure of the save action.
             if (result == RESULT_SUCCESS) {
@@ -774,6 +773,24 @@ public class ConfirmAddDetailActivity extends Activity implements
             context.stopService(new Intent(context, EmptyService.class));
             activityTarget.onSaveCompleted(result != RESULT_FAILURE);
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // Dismiss the progress dialog here to prevent leaking the window on orientation change.
+        dismissProgressDialog();
+    }
+
+    /**
+     * Dismiss the progress dialog (check if it is null because it is a {@link WeakReference}).
+     */
+    private static void dismissProgressDialog() {
+        ProgressDialog dialog = (sProgressDialog == null) ? null : sProgressDialog.get();
+        if (dialog != null) {
+            dialog.dismiss();
+        }
+        sProgressDialog = null;
     }
 
     /**
