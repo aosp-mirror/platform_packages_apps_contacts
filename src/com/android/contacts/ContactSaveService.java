@@ -323,10 +323,26 @@ public class ContactSaveService extends IntentService {
                 if (rawContactId == -1) {
                     throw new IllegalStateException("Could not determine RawContact ID after save");
                 }
-                final Uri rawContactUri = ContentUris.withAppendedId(
-                        isProfile ? Profile.CONTENT_RAW_CONTACTS_URI : RawContacts.CONTENT_URI,
-                                rawContactId);
-                lookupUri = RawContacts.getContactLookupUri(resolver, rawContactUri);
+                if (isProfile) {
+                    // Since the profile supports local raw contacts, which may have been completely
+                    // removed if all information was removed, we need to do a special query to
+                    // get the lookup URI for the profile contact (if it still exists).
+                    Cursor c = resolver.query(Profile.CONTENT_URI,
+                            new String[] {Contacts._ID, Contacts.LOOKUP_KEY},
+                            null, null, null);
+                    try {
+                        c.moveToFirst();
+                        final long contactId = c.getLong(0);
+                        final String lookupKey = c.getString(1);
+                        lookupUri = Contacts.getLookupUri(contactId, lookupKey);
+                    } finally {
+                        c.close();
+                    }
+                } else {
+                    final Uri rawContactUri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
+                                    rawContactId);
+                    lookupUri = RawContacts.getContactLookupUri(resolver, rawContactUri);
+                }
                 Log.v(TAG, "Saved contact. New URI: " + lookupUri);
                 break;
 
