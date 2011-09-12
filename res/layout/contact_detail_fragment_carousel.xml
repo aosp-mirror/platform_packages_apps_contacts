@@ -30,7 +30,9 @@
         android:id="@+id/about_fragment_container"
         android:layout_width="0dip"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
 
     <!--
       Container for the "Updates" page fragment on the contact card for a contact
@@ -42,6 +44,8 @@
         android:layout_width="0dip"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
 
 </LinearLayout>
