@@ -45,18 +45,14 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.net.Uri;
-import android.nfc.NdefMessage;
-import android.nfc.NdefRecord;
-import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
 import android.os.PowerManager;
-import android.os.RemoteException;
+import android.provider.OpenableColumns;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -72,7 +68,6 @@ import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
-import java.nio.charset.Charset;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -285,6 +280,8 @@ public class ImportVCardActivity extends ContactsActivity {
                         return;
                     }
                 } else {
+                    final ContentResolver resolver =
+                            ImportVCardActivity.this.getContentResolver();
                     for (Uri sourceUri : mSourceUris) {
                         String filename = null;
                         // Note: caches are removed by VCardService.
@@ -309,10 +306,37 @@ public class ImportVCardActivity extends ContactsActivity {
                             Log.w(LOG_TAG, "destUri is null");
                             break;
                         }
+
+                        String displayName = null;
+                        Cursor cursor = null;
+                        // Try to get a display name from the given Uri. If it fails, we just
+                        // pick up the last part of the Uri.
+                        try {
+                            cursor = resolver.query(sourceUri,
+                                    new String[] { OpenableColumns.DISPLAY_NAME },
+                                    null, null, null);
+                            if (cursor != null && cursor.getCount() > 0 && cursor.moveToFirst()) {
+                                if (cursor.getCount() > 1) {
+                                    Log.w(LOG_TAG, "Unexpected multiple rows: "
+                                            + cursor.getCount());
+                                }
+                                int index = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                                if (index >= 0) {
+                                    displayName = cursor.getString(index);
+                                }
+                            }
+                        } finally {
+                            if (cursor != null) {
+                                cursor.close();
+                            }
+                        }
+                        if (TextUtils.isEmpty(displayName)){
+                            displayName = sourceUri.getLastPathSegment();
+                        }
+
                         final ImportRequest request;
                         try {
-                            request = constructImportRequest(null, localDataUri,
-                                    sourceUri.getLastPathSegment());
+                            request = constructImportRequest(null, localDataUri, displayName);
                         } catch (VCardException e) {
                             Log.e(LOG_TAG, "Maybe the file is in wrong format", e);
                             showFailureNotification(R.string.fail_reason_not_supported);
