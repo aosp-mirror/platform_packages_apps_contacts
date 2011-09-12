@@ -67,10 +67,8 @@
     <string name="menu_deleteContact" msgid="6788644058868189393">"Susa"</string>
     <string name="menu_call" msgid="3992595586042260618">"Shayela othintana naye"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Bhalela othintana naye"</string>
-    <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Yenza i-imeyili ezenzakalelayo"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Hlukanisa"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Hlela"</string>
-    <string name="menu_renameGroup" msgid="2798886925154156075">"Qamba kabusha iqembu"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Susa"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Okusha"</string>
     <!-- no translation found for menu_new_group_action_bar (5055346725617932394) -->
@@ -84,7 +82,6 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Othintana nabo abasikiselwayo"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Bonke othintana nabo"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Othintana nabo abahlanganisiwe"</string>
-    <string name="contactOptionsTitle" msgid="8259347644090700915">"Okukhethwa kukho"</string>
     <!-- no translation found for deleteConfirmation_title (6394309508930335204) -->
     <skip />
     <!-- no translation found for menu_set_ring_tone (8728345772068064946) -->
@@ -99,13 +96,9 @@
     <string name="menu_doNotSave" msgid="58593876893538465">"Khansela"</string>
     <!-- no translation found for menu_discard (6456087569315685632) -->
     <skip />
-    <string name="label_phonetic_name" msgid="2288082649573927286">"Ifonethikhi"</string>
     <!-- no translation found for label_notes (8337354953278341042) -->
     <skip />
     <string name="label_sip_address" msgid="124073911714324974">"Ikholi le-Inthanethi"</string>
-    <!-- no translation found for label_ringtone (8833166825330686244) -->
-    <skip />
-    <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Igama leFonethikhi"</string>
     <!-- no translation found for ghostData_company (5414421120553765775) -->
     <skip />
     <string name="ghostData_title" msgid="7496735200318496110">"Isihloko"</string>
@@ -128,10 +121,7 @@
     <!-- outdated translation 6247290728908599701 -->     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Azikho izithombe ezitholakalayo kwithebhulethi."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Isithombe sothintana naye"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Igama lelebula efiswayo"</string>
-    <string name="menu_displayGroup" msgid="5655505437727616553">"Bonisa okukhethwa kukho"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Thumela ngokuqondile amakholi emyalezwini wezwi"</string>
-    <!-- no translation found for default_ringtone (9099988849649827972) -->
-    <skip />
     <string name="removePhoto" msgid="4898105274130284565">"Khipha isithombe"</string>
     <!-- no translation found for noContacts (4955659076981974652) -->
     <skip />
@@ -142,23 +132,12 @@
     <string name="noMatchingContacts" msgid="4266283206853990471">"Abekho othintana nabo abafanayo abatholakele."</string>
     <!-- no translation found for noContactsWithPhoneNumbers (1605457050218824269) -->
     <skip />
-    <string name="headerContactGroups" msgid="2426134991932503843">"Khetha othintana nabo ozobabonisa"</string>
-  <plurals name="groupDescrip">
-    <item quantity="other" msgid="3507881585720628389">"<xliff:g id="COUNT">%0$d</xliff:g> othintana nabo"</item>
-  </plurals>
-  <plurals name="groupDescripPhones">
-    <item quantity="other" msgid="3816047547470490208">"<xliff:g id="COUNT_0">%1$d</xliff:g> othintana nabo, <xliff:g id="COUNTWITHPHONES">%2$d</xliff:g> abanamafoni"</item>
-  </plurals>
     <string name="savingContact" msgid="4075751076741924939">"Igcina othintana naye..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Igcina okukhethwa kukho kokubonisa"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Oxhumana naye olondoloziwe"</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Iphutha, ayikwazi ukugcina izinguquko zothintana naye."</string>
     <string name="groupSavedToast" msgid="6675062559302493011">"Iqembu elilondoloziwe"</string>
     <!-- no translation found for groupSavedErrorToast (6434135707953150875) -->
-    <skip />
-    <!-- no translation found for groupMembershipChangeSavedToast (5323580174093150793) -->
-    <skip />
-    <!-- no translation found for contactAlreadyInGroup (6209708213229886092) -->
     <skip />
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"othintana naye ongu-1 onenombolo yocingo"</item>
@@ -291,6 +270,9 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"isithombe sothintana naye"</string>
     <string name="description_minus_button" msgid="387136707700230172">"susa"</string>
     <string name="description_plus_button" msgid="515164827856229880">"kuhlanganise"</string>
+    <!-- no translation found for description_view_contact_detail (9133251213656414807) -->
+    <!-- no translation found for description_view_contact_detail (2795575601596468581) -->
+    <skip />
     <!-- outdated translation 5362631473262100989 -->     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"Isitoreji se-USB asitholakali"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Alikho ikhadi le-SD"</string>
     <!-- outdated translation 8045830739790534254 -->     <string name="no_sdcard_message" product="nosdcard" msgid="1334170151822669976">"Asikho isitoreji se-USB esitholiwe"</string>
@@ -485,7 +467,6 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Yengeza oxhumana nabo"</string>
     <!-- no translation found for recent_updates (2062236709538790412) -->
     <skip />
-    <string name="recent_updates_tab_text" msgid="5813107516506908531">"\"<xliff:g id="UPDATE_TEXT">%s</xliff:g>\""</string>
     <string name="account_type_format" msgid="718948015590343010">"Othintana naye nge-<xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -501,7 +482,6 @@
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Igama elinikeziwe kuqala"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Igama lomkhaya kuqala"</string>
     <string name="search_bar_hint" msgid="1012756309632856553">"Sesha othintana nabo"</string>
-    <string name="search_for_all_contacts" msgid="6644963335787294131">"Sesha bonke othintana nabo"</string>
     <string name="take_photo" msgid="7496128293167402354">"Thatha isithombe"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Thatha isithombe esisha"</string>
     <string name="pick_photo" msgid="448886509158039462">"Khetha isithombe kwiGalari"</string>
@@ -516,10 +496,6 @@
     <string name="menu_display_all" msgid="8887488642609786198">"Bonisa konke"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Khetha konke"</string>
     <string name="menu_select_none" msgid="7093222469852132345">"Ungakhethi konke"</string>
-  <plurals name="multiple_picker_title">
-    <item quantity="one" msgid="4761009734586319101">"umamukeli ongu-1 okhethiwe"</item>
-    <item quantity="other" msgid="4608837420986126229">"<xliff:g id="COUNT">%d</xliff:g> abamukeli abakhethiwe"</item>
-  </plurals>
     <string name="no_contacts_selected" msgid="5877803471037324613">"Abekho othintana nabo abakhethiwe."</string>
     <string name="add_field" msgid="2384260056674995230">"Yengeza enye inkambu"</string>
     <!-- no translation found for add_new_entry_for_section (5223080690667565044) -->
@@ -547,7 +523,6 @@
     <string name="directory_search_label" msgid="1887759056597975053">"Uhla lwemibhalo"</string>
     <string name="local_search_label" msgid="2551177578246113614">"Bonke oxhumana nabo"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"Idala ikhophi yomuntu siqu"</string>
-    <string name="list_filter_prompt" msgid="7481426622828055116">"Khetha uhlu lothintana naye"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Bonke othintana nabo"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Okunenkanyezi"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Ngokwezifiso"</string>
@@ -575,7 +550,6 @@
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Ngenisa othintana nabo kwifayela"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Dala iqembu elisha"</string>
     <string name="create_group_item_label" msgid="5218022006186243310">"[Yenza iqembu elisha]"</string>
-    <string name="rename_group_dialog_title" msgid="3765299704290513289">"Qamba kabusha iqembu"</string>
     <string name="delete_group_dialog_title" msgid="7368429698398624427">"Susa iqembu"</string>
     <!-- no translation found for num_groups_in_account:one (2944819210288517794) -->
     <!-- no translation found for num_groups_in_account:other (1276758425904917367) -->
@@ -585,7 +559,6 @@
     <!-- no translation found for group_list_num_contacts_in_group:one (3323065321661972446) -->
     <!-- no translation found for group_list_num_contacts_in_group:other (6251996206137048525) -->
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Sicela ufake igama lothintana naye ngaphambi kokujoyina nomunye othintana naye."</string>
-    <string name="indicator_joined_contact" msgid="3321049349627022128">"Othintana naye ojoyinile"</string>
     <!-- no translation found for copy_text (3257145021583508761) -->
     <skip />
     <!-- no translation found for set_default (4417505153468300351) -->
@@ -595,7 +568,6 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"Umbhalo okopishiwe"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Lahla izinguquko"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Ingabe ufuna ukulahla izinguquko zakho?"</string>
-    <string name="discard" msgid="1234315037371251414">"Lahla"</string>
     <!-- no translation found for call_type_and_date (1766269584078149149) -->
     <skip />
     <string name="profile_display_name" msgid="4127389543625918771">"Misa iphrofayli yami"</string>
@@ -672,8 +644,9 @@
     <skip />
     <!-- no translation found for call_log_empty_gecode (5588904744812100846) -->
     <skip />
-    <string name="user_profile_contacts_list_header" msgid="9154761216179882405">"MINA"</string>
+    <!-- outdated translation 9154761216179882405 -->     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"MINA"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Imininingwane yami yakuleli"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Imininingwane <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> yami"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Ibonisa bonke abathintwayo"</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"I-People isebenza kangcono nge-akhawunti yakwa-Google. "\n\n"• Finyelela kuyo nganoma iluphi uhlobo lwesiphequluli."\n"• Londoloza oxhumana nabo ngokuphepha."</string>
 </resources>
