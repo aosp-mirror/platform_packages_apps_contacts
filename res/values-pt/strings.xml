@@ -48,10 +48,8 @@
     <string name="menu_deleteContact" msgid="6788644058868189393">"Excluir"</string>
     <string name="menu_call" msgid="3992595586042260618">"Chamar contato"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Enviar SMS/MMS para o contato"</string>
-    <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Tornar o e-mail padrão"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Separar"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Editar"</string>
-    <string name="menu_renameGroup" msgid="2798886925154156075">"Renomear grupo"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Excluir"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Novo"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Novo"</string>
@@ -64,7 +62,6 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Contatos sugeridos"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Todos os contatos"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Contatos unificados"</string>
-    <string name="contactOptionsTitle" msgid="8259347644090700915">"Opções"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Excluir"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Definir toque"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Todas as cham. p/ correio voz"</string>
@@ -75,11 +72,8 @@
     <string name="menu_done" msgid="796017761764190697">"Concluído"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Cancelar"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Descartar"</string>
-    <string name="label_phonetic_name" msgid="2288082649573927286">"Fonética"</string>
     <string name="label_notes" msgid="8337354953278341042">"Observações"</string>
     <string name="label_sip_address" msgid="124073911714324974">"Chamada da internet"</string>
-    <string name="label_ringtone" msgid="8833166825330686244">"Toque"</string>
-    <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Nome fonético"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Empresa"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Título"</string>
     <string name="invalidContactMessage" msgid="5816991830260044593">"O contato não existe."</string>
@@ -96,30 +90,19 @@
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Nenhuma imagem disponível no telefone."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Foto do contato"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Personalizar nome do marcador"</string>
-    <string name="menu_displayGroup" msgid="5655505437727616553">"Opções de exibição"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Enviar chamadas diretamente para o correio de voz"</string>
-    <string name="default_ringtone" msgid="9099988849649827972">"Padrão"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Remover foto"</string>
     <string name="noContacts" msgid="4955659076981974652">"Nenhum contato"</string>
     <string name="noGroups" msgid="7315200974181864731">"Nenhum grupo"</string>
     <string name="noAccounts" msgid="4742609114153797268">"Você precisa de uma conta para criar grupos"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Nenhum contato correspondente foi encontrado."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Nenhum contato com números de telefone."</string>
-    <string name="headerContactGroups" msgid="2426134991932503843">"Escolha os contatos para exibir"</string>
-  <plurals name="groupDescrip">
-    <item quantity="other" msgid="3507881585720628389">"<xliff:g id="COUNT">%0$d</xliff:g> contatos"</item>
-  </plurals>
-  <plurals name="groupDescripPhones">
-    <item quantity="other" msgid="3816047547470490208">"<xliff:g id="COUNT_0">%1$d</xliff:g> contatos, <xliff:g id="COUNTWITHPHONES">%2$d</xliff:g> com telefones"</item>
-  </plurals>
     <string name="savingContact" msgid="4075751076741924939">"Salvando contato…"</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Salvando opções de exibição…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"O contato foi salvo"</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Erro: não é possível salvar as alterações do contato."</string>
     <string name="groupSavedToast" msgid="6675062559302493011">"Grupo salvo"</string>
     <string name="groupSavedErrorToast" msgid="6434135707953150875">"Erro, não é possível salvar as alterações do grupo."</string>
-    <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"A alteração foi salva."</string>
-    <string name="contactAlreadyInGroup" msgid="6209708213229886092">"O contato já foi adicionado ao grupo."</string>
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"Um contato com número de telefone"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> contatos com números de telefone"</item>
@@ -228,6 +211,9 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"foto do contato"</string>
     <string name="description_minus_button" msgid="387136707700230172">"menos"</string>
     <string name="description_plus_button" msgid="515164827856229880">"mais"</string>
+    <!-- no translation found for description_view_contact_detail (9133251213656414807) -->
+    <!-- no translation found for description_view_contact_detail (2795575601596468581) -->
+    <skip />
     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"Armazenamento não disponível"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Nenhum cartão SD"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="1334170151822669976">"Nenhum armazenamento detectado"</string>
@@ -418,7 +404,6 @@
     <string name="connections" msgid="8098440723172028350">"Conexões"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Adicionar conexão"</string>
     <string name="recent_updates" msgid="2062236709538790412">"Recente"</string>
-    <string name="recent_updates_tab_text" msgid="5813107516506908531">"\"<xliff:g id="UPDATE_TEXT">%s</xliff:g>\""</string>
     <string name="account_type_format" msgid="718948015590343010">"Contato de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -433,7 +418,6 @@
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Nome primeiro"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Sobrenome primeiro"</string>
     <string name="search_bar_hint" msgid="1012756309632856553">"Pesquisar contatos"</string>
-    <string name="search_for_all_contacts" msgid="6644963335787294131">"Pesquisar em todos os contatos"</string>
     <string name="take_photo" msgid="7496128293167402354">"Tirar foto"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Tirar outra foto"</string>
     <string name="pick_photo" msgid="448886509158039462">"Selecionar foto da Galeria"</string>
@@ -448,10 +432,6 @@
     <string name="menu_display_all" msgid="8887488642609786198">"Mostrar todos"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Selecionar todos"</string>
     <string name="menu_select_none" msgid="7093222469852132345">"Desmarcar todos"</string>
-  <plurals name="multiple_picker_title">
-    <item quantity="one" msgid="4761009734586319101">"1 destinatário selecionado"</item>
-    <item quantity="other" msgid="4608837420986126229">"<xliff:g id="COUNT">%d</xliff:g> destinatários selecionados"</item>
-  </plurals>
     <string name="no_contacts_selected" msgid="5877803471037324613">"Nenhum contato selecionado."</string>
     <string name="add_field" msgid="2384260056674995230">"Adicionar outro campo"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Adicionar novo"</string>
@@ -477,7 +457,6 @@
     <string name="directory_search_label" msgid="1887759056597975053">"Diretório"</string>
     <string name="local_search_label" msgid="2551177578246113614">"Todos os contatos"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"Como criar uma cópia pessoal"</string>
-    <string name="list_filter_prompt" msgid="7481426622828055116">"Escolher lista de contatos"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Todos os contatos"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Com estrela"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Personalizado"</string>
@@ -504,7 +483,6 @@
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Importar contatos de um arquivo"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Criar um novo grupo"</string>
     <string name="create_group_item_label" msgid="5218022006186243310">"[Criar um novo grupo]"</string>
-    <string name="rename_group_dialog_title" msgid="3765299704290513289">"Renomear grupo"</string>
     <string name="delete_group_dialog_title" msgid="7368429698398624427">"Excluir grupo"</string>
   <plurals name="num_groups_in_account">
     <item quantity="one" msgid="2944819210288517794">"Um grupo"</item>
@@ -520,14 +498,12 @@
     <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> pessoas"</item>
   </plurals>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Insira o nome do contato antes de unificá-lo com outro contato."</string>
-    <string name="indicator_joined_contact" msgid="3321049349627022128">"Contato unificado"</string>
     <string name="copy_text" msgid="3257145021583508761">"Copiar para área de transferência"</string>
     <string name="set_default" msgid="4417505153468300351">"Definir padrão"</string>
     <string name="clear_default" msgid="7193185801596678067">"Limpar padrão"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Texto copiado"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Descartar alterações"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Deseja realmente descartar as alterações?"</string>
-    <string name="discard" msgid="1234315037371251414">"Descartar"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g> "</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Configurar meu perfil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Digite o nome da pessoa"</string>
@@ -575,8 +551,9 @@
     <string name="description_send_text_message" msgid="7803126439934046891">"Enviar mensagem de texto para <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Nova mensagem de voz"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
-    <string name="user_profile_contacts_list_header" msgid="9154761216179882405">"EU"</string>
+    <!-- outdated translation 9154761216179882405 -->     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"EU"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Meu perfil local"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Meu perfil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Exibindo todos os contatos"</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"O aplicativo Pessoas funciona melhor com uma Conta do Google."\n\n"• Acesse-o a partir de qualquer navegador da web."\n"• Faça backup de seus contatos com segurança."</string>
 </resources>

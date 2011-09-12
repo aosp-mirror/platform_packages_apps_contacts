@@ -48,10 +48,8 @@
     <string name="menu_deleteContact" msgid="6788644058868189393">"Slett"</string>
     <string name="menu_call" msgid="3992595586042260618">"Ring kontakt"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Send SMS til kontakt"</string>
-    <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Bruk som standard e-post"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Del"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Rediger"</string>
-    <string name="menu_renameGroup" msgid="2798886925154156075">"Gi nytt navn til gruppen"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Slett"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Ny"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Ny"</string>
@@ -64,7 +62,6 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Forslag"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alle kontakter"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Kontaktene er forent"</string>
-    <string name="contactOptionsTitle" msgid="8259347644090700915">"Alternativer"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Slett"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Angi ringetone"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Alle samtaler til talepost"</string>
@@ -75,11 +72,8 @@
     <string name="menu_done" msgid="796017761764190697">"Lagre"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Avbryt"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Forkast"</string>
-    <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetisk"</string>
     <string name="label_notes" msgid="8337354953278341042">"Notater"</string>
     <string name="label_sip_address" msgid="124073911714324974">"Internett-anrop"</string>
-    <string name="label_ringtone" msgid="8833166825330686244">"Ringetone"</string>
-    <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Fonetisk navn"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Firma"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Tittel"</string>
     <string name="invalidContactMessage" msgid="5816991830260044593">"Kontakten finnes ikke."</string>
@@ -96,30 +90,19 @@
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Det er ingen bilder på telefonen."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Kontaktens bilde"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Egendefinert etikett"</string>
-    <string name="menu_displayGroup" msgid="5655505437727616553">"Vis grupper"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Send anrop direkte til telefonsvarer."</string>
-    <string name="default_ringtone" msgid="9099988849649827972">"Standardvalg"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Fjern bilde"</string>
     <string name="noContacts" msgid="4955659076981974652">"Ingen kontakter"</string>
     <string name="noGroups" msgid="7315200974181864731">"Ingen grupper"</string>
     <string name="noAccounts" msgid="4742609114153797268">"Du må ha en konto for å opprette grupper"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Fant ingen kontakter."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Ingen kontakter med telefonnummer."</string>
-    <string name="headerContactGroups" msgid="2426134991932503843">"Kontaktgrupper"</string>
-  <plurals name="groupDescrip">
-    <item quantity="other" msgid="3507881585720628389">"<xliff:g id="COUNT">%0$d</xliff:g> kontakter"</item>
-  </plurals>
-  <plurals name="groupDescripPhones">
-    <item quantity="other" msgid="3816047547470490208">"<xliff:g id="COUNT_0">%1$d</xliff:g> kontakter, <xliff:g id="COUNTWITHPHONES">%2$d</xliff:g> med telefoner"</item>
-  </plurals>
     <string name="savingContact" msgid="4075751076741924939">"Lagrer kontakt…"</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Lagrer viste grupper…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt er lagret"</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Kunne ikke lagre kontaktendringene."</string>
     <string name="groupSavedToast" msgid="6675062559302493011">"Gruppen er lagret"</string>
     <string name="groupSavedErrorToast" msgid="6434135707953150875">"Feil. Kan ikke lagre gruppeendringer."</string>
-    <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"Endringen er lagret."</string>
-    <string name="contactAlreadyInGroup" msgid="6209708213229886092">"Kontakten er allerede lagt til i gruppen."</string>
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"1 kontakt med telefonnummer"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> kontakter med telefonnumre"</item>
@@ -178,12 +161,12 @@
     <string name="simContacts_title" msgid="27341688347689769">"Kontakter på SIM-kort"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Du har ingen kontakter å vise. (Hvis du nettopp har lagt til en konto, kan det ta noen minutter å synkronisere kontaktene.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Du har ingen kontakter å vise."</string>
-    <!-- syntax error in translation for noContactsHelpText (6450346791169710787) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:292 in java.io.StringReader@38540408)  -->
-    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:293 in java.io.StringReader@13d4c61c)  -->
+    <!-- syntax error in translation for noContactsHelpText (6450346791169710787) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:292 in java.io.StringReader@67ee3914)  -->
+    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:293 in java.io.StringReader@48e5855a)  -->
     <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Du har ingen kontakter å vise. (Hvis du nylig la til en konto, kan det ta noen minutter å synkronisere kontaktene.)"\n\n"Slik legger du til kontakter: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>", og trykk deretter på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer"</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til nettbrettet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativer"</b></font>" for å endre hvilke kontakter som vises"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt fra grunnen av"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Eksporter"</b></font>" for å importere kontakter fra SIM- eller SD-kort"\n</li></string>
     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Du har ingen kontakter å vise. (Hvis du nylig la til en konto, kan det ta noen minutter å synkronisere kontaktene.)"\n\n"Slik legger du til kontakter: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" og trykk deretter på: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer "</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativer"</b></font>" for å endre hvilke kontakter som vises"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importér/Eksportér"</b></font>" for å importere kontakter fra SIM- eller SD-kort"\n</li></string>
-    <!-- syntax error in translation for noContactsNoSimHelpText (6031363021287849874) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:297 in java.io.StringReader@7176c74b)  -->
-    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:297 in java.io.StringReader@2d16471f)  -->
+    <!-- syntax error in translation for noContactsNoSimHelpText (6031363021287849874) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:297 in java.io.StringReader@5495fd19)  -->
+    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:297 in java.io.StringReader@431b9fb1)  -->
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Du har ingen kontakter å vise. (Hvis du nylig la til en konto, kan det ta noen minutter å synkronisere kontaktene.)"\n\n"Slik legger du til kontakter: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>", og trykk deretter på: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer"</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til nettbrettet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativer"</b></font>" for å endre hvilke kontakter som vises"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt fra grunnen av"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/eksporter"</b></font>" for å importere kontakter fra SD-kortet"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Du har ingen kontakter å vise. (Hvis du nylig la til en konto, kan det ta noen minutter å synkronisere kontaktene.)"\n\n"Slik legger du til kontakter: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" og trykk deretter på: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer "</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativer"</b></font>" for å endre hvilke kontakter som vises"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importér/eksportér"</b></font>" for å importere kontakter fra SD-kortet"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Du har ingen favoritter."\n\n"Slik legger du til en kontakt i favorittlisten:"\n\n" "<li>"Trykk på fanen "<b>"Kontakter"</b>" "\n</li>" "\n<li>"Trykk på kontakten du vil legge til i favoritter"\n</li>" "\n<li>"Trykk på stjernen ved siden av kontaktnavnet"\n</li></string>
@@ -228,6 +211,9 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"kontaktens bilde"</string>
     <string name="description_minus_button" msgid="387136707700230172">"minusknapp"</string>
     <string name="description_plus_button" msgid="515164827856229880">"plussknapp"</string>
+    <!-- no translation found for description_view_contact_detail (9133251213656414807) -->
+    <!-- no translation found for description_view_contact_detail (2795575601596468581) -->
+    <skip />
     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"Lagring utilgjengelig"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Mangler minnekort"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="1334170151822669976">"Ingen lagring oppdaget"</string>
@@ -418,7 +404,6 @@
     <string name="connections" msgid="8098440723172028350">"Tilknytninger"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Legg til tilknytning"</string>
     <string name="recent_updates" msgid="2062236709538790412">"Nylig"</string>
-    <string name="recent_updates_tab_text" msgid="5813107516506908531">"«<xliff:g id="UPDATE_TEXT">%s</xliff:g>»"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>-kontakt"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -433,7 +418,6 @@
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Fornavn først"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Etternavn først"</string>
     <string name="search_bar_hint" msgid="1012756309632856553">"Søk etter kontakter"</string>
-    <string name="search_for_all_contacts" msgid="6644963335787294131">"Søk i alle kontakter"</string>
     <string name="take_photo" msgid="7496128293167402354">"Ta bilde"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Ta nytt bilde"</string>
     <string name="pick_photo" msgid="448886509158039462">"Velg bilde fra galleriet"</string>
@@ -448,10 +432,6 @@
     <string name="menu_display_all" msgid="8887488642609786198">"Vis alle"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Marker alle"</string>
     <string name="menu_select_none" msgid="7093222469852132345">"Fjern alle markeringer"</string>
-  <plurals name="multiple_picker_title">
-    <item quantity="one" msgid="4761009734586319101">"Én mottager valgt"</item>
-    <item quantity="other" msgid="4608837420986126229">"<xliff:g id="COUNT">%d</xliff:g> mottagere valgt"</item>
-  </plurals>
     <string name="no_contacts_selected" msgid="5877803471037324613">"Ingen kontakter valgt."</string>
     <string name="add_field" msgid="2384260056674995230">"Legg til et annet felt"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Legg til ny"</string>
@@ -477,7 +457,6 @@
     <string name="directory_search_label" msgid="1887759056597975053">"Katalog"</string>
     <string name="local_search_label" msgid="2551177578246113614">"Alle kontakter"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"Oppretter en personlig kopi"</string>
-    <string name="list_filter_prompt" msgid="7481426622828055116">"Velg kontaktliste"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Alle kontakter"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Stjernemerket"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Egendefinert"</string>
@@ -504,7 +483,6 @@
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Importer kontakter fra en fil"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Opprett ny gruppe"</string>
     <string name="create_group_item_label" msgid="5218022006186243310">"[Opprett ny gruppe]"</string>
-    <string name="rename_group_dialog_title" msgid="3765299704290513289">"Gi nytt navn til gruppe"</string>
     <string name="delete_group_dialog_title" msgid="7368429698398624427">"Slett gruppe"</string>
   <plurals name="num_groups_in_account">
     <item quantity="one" msgid="2944819210288517794">"Én gruppe"</item>
@@ -520,14 +498,12 @@
     <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> personer"</item>
   </plurals>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Skriv inn kontaktnavn før du registrerer deg med en annen kontakt."</string>
-    <string name="indicator_joined_contact" msgid="3321049349627022128">"Sammenslått kontakt"</string>
     <string name="copy_text" msgid="3257145021583508761">"Kopier til utklippstavlen"</string>
     <string name="set_default" msgid="4417505153468300351">"Angi som standard"</string>
     <string name="clear_default" msgid="7193185801596678067">"Fjern som standard"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Tekst kopiert"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Forkast endringer"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Vil du forkaste endringene?"</string>
-    <string name="discard" msgid="1234315037371251414">"Forkast"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Konfigurer profilen min"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Tast inn personens navn"</string>
@@ -575,8 +551,9 @@
     <string name="description_send_text_message" msgid="7803126439934046891">"Send tekstmelding til <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Ikke avspilt talepost"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"–"</string>
-    <string name="user_profile_contacts_list_header" msgid="9154761216179882405">"JEG"</string>
+    <!-- outdated translation 9154761216179882405 -->     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"JEG"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Min lokale profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Min profil for <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Viser alle kontakter"</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"People fungerer bedre med en Google-konto."\n\n"• Tilgang fra hvilken som helst nettleser."\n"• Sikkerhetskopier kontaktene sikkert."</string>
 </resources>

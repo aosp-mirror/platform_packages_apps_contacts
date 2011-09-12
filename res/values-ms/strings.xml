@@ -48,10 +48,8 @@
     <string name="menu_deleteContact" msgid="6788644058868189393">"Padam"</string>
     <string name="menu_call" msgid="3992595586042260618">"Panggil kenalan"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"SMS kepada kenalan"</string>
-    <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"Jadikan e-mel lalai"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Asingkan"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Edit"</string>
-    <string name="menu_renameGroup" msgid="2798886925154156075">"Namakan semula kumpulan"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Padam"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Baru"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Baru"</string>
@@ -64,7 +62,6 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Kenalan cadangan"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Semua kenalan"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Kenalan digabungkan"</string>
-    <string name="contactOptionsTitle" msgid="8259347644090700915">"Pilihan"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Padam"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Ttpkn nd dering"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Semua panggilan ke mel suara"</string>
@@ -75,11 +72,8 @@
     <string name="menu_done" msgid="796017761764190697">"Selesai"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Batal"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Buang"</string>
-    <string name="label_phonetic_name" msgid="2288082649573927286">"Fonetik"</string>
     <string name="label_notes" msgid="8337354953278341042">"Nota"</string>
     <string name="label_sip_address" msgid="124073911714324974">"Panggilan internet"</string>
-    <string name="label_ringtone" msgid="8833166825330686244">"Nada dering"</string>
-    <string name="ghostData_phonetic_name" msgid="7852749081984070902">"Nama fonetik"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Syarikat"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Tajuk"</string>
     <string name="invalidContactMessage" msgid="5816991830260044593">"Kenalan tidak wujud."</string>
@@ -96,30 +90,19 @@
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Tidak ada gambar yang tersedia pada telefon."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Foto kenalan"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Label nama peribadi"</string>
-    <string name="menu_displayGroup" msgid="5655505437727616553">"Pilihan paparan"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Hantar panggilan terus ke peti suara"</string>
-    <string name="default_ringtone" msgid="9099988849649827972">"Lalai"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Alih keluar foto"</string>
     <string name="noContacts" msgid="4955659076981974652">"Tiada kenalan"</string>
     <string name="noGroups" msgid="7315200974181864731">"Tiada kumpulan"</string>
     <string name="noAccounts" msgid="4742609114153797268">"Anda memerlukan akaun untuk membuat kumpulan"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Tiada kenalan yang sepadan ditemui."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Tiada kenalan dengan nombor telefon."</string>
-    <string name="headerContactGroups" msgid="2426134991932503843">"Pilih kenalan untuk dipaparkan"</string>
-  <plurals name="groupDescrip">
-    <item quantity="other" msgid="3507881585720628389">"(<xliff:g id="COUNT">%0$d</xliff:g> kenalan)"</item>
-  </plurals>
-  <plurals name="groupDescripPhones">
-    <item quantity="other" msgid="3816047547470490208">"<xliff:g id="COUNT_0">%1$d</xliff:g> kenalan, <xliff:g id="COUNTWITHPHONES">%2$d</xliff:g> dengan telefon"</item>
-  </plurals>
     <string name="savingContact" msgid="4075751076741924939">"Simpan kenalan..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Menyimpan pilihan paparan..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kenalan disimpan."</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Ralat, tidak boleh menyimpan perubahan kenalan."</string>
-    <string name="groupSavedToast" msgid="6675062559302493011">"Kumpulan telah disimpan."</string>
+    <string name="groupSavedToast" msgid="6675062559302493011">"Kumpulan telah disimpan"</string>
     <string name="groupSavedErrorToast" msgid="6434135707953150875">"Ralat, tidak boleh menyimpan perubahan kumpulan."</string>
-    <string name="groupMembershipChangeSavedToast" msgid="5323580174093150793">"Perubahan telah disimpan."</string>
-    <string name="contactAlreadyInGroup" msgid="6209708213229886092">"Kenalan sudah pun ditambahkan pada kumpulan."</string>
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"1 kenalan dengan nombor telefon"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> kenalan dengan nombor telefon"</item>
@@ -228,6 +211,9 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"foto kenalan"</string>
     <string name="description_minus_button" msgid="387136707700230172">"tolak"</string>
     <string name="description_plus_button" msgid="515164827856229880">"tambah"</string>
+    <!-- no translation found for description_view_contact_detail (9133251213656414807) -->
+    <!-- no translation found for description_view_contact_detail (2795575601596468581) -->
+    <skip />
     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"Storan tidak tersedia"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Tiada kad SD"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="1334170151822669976">"Tiada storan dikesan"</string>
@@ -253,7 +239,7 @@
     <string name="vcard_import_failed" msgid="8856125211629574066">"Tidak dapat mengimport vCard"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"Tiada fail vCard ditemui dalam storan"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Tiada fail vCard ditemui pada kad SD"</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Tidak boleh mengumpul maklumat meta fail Vcard yang diberikan."</string>
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Tidak boleh mengumpul maklumat meta fail Vcard yang tertentu."</string>
     <!-- String.format failed for translation -->
     <!-- no translation found for fail_reason_failed_to_read_files (5823434810622484922) -->
     <skip />
@@ -277,7 +263,7 @@
     <string name="confirm_export_title" msgid="7648747763127442983">"Sahkan eksport"</string>
     <string name="confirm_export_message" msgid="4307437830474103759">"Eksport senarai kenalan anda ke fail \" <xliff:g id="VCARD_FILENAME">%s</xliff:g> \"?"</string>
     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Tidak dapat mengeksport data kenalan"</string>
-    <string name="exporting_contact_failed_message" msgid="2704925031146288635">"Tidak dapat mengeksport data kenalan "\n" Sebab: \" <xliff:g id="FAIL_REASON">%s</xliff:g> \""</string>
+    <string name="exporting_contact_failed_message" msgid="2704925031146288635">"Tidak dapat mengeksport data kenalan."\n"Sebab: \" <xliff:g id="FAIL_REASON">%s</xliff:g> \""</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Tiada kandungan boleh eksport"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Terlalu banyak fail vCard dalam storan"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Terlalu banyak fail vCard pada kad SD"</string>
@@ -288,7 +274,7 @@
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Mengeksport data kenalan ke \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Tidak boleh memulakan pengeksport: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Ralat berlaku semasa mengeksport: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Tidak dapat mendapatkan maklumat pangkalan data"</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Tidak boleh mendapatkan maklumat pangkalan data"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Tiada kenalan yang boleh dieksport. Jika anda sebenarnya mempunyai kenalan pada tablet anda, semua kenalan itu mungkin dilarang dari dieksport ke luar daripada tablet oleh sesetengah pembekal data."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Tiada kenalan yang boleh dieksport. Jika anda sebenarnya mempunyai kenalan pada telefon anda, semua kenalan itu mungkin dilarang dari dieksport ke luar daripada telefon oleh sesetengah pembekal data."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"Penulis vCard tidak diasalkan dengan betul"</string>
@@ -418,9 +404,8 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"Nama keluarga fonetik"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Nama fonetik"</string>
     <string name="connections" msgid="8098440723172028350">"Sambungan"</string>
-    <string name="add_connection_button" msgid="4861308615789601727">"Tambah sambungag"</string>
+    <string name="add_connection_button" msgid="4861308615789601727">"Tambah sambungan"</string>
     <string name="recent_updates" msgid="2062236709538790412">"Baru-baru ini"</string>
-    <string name="recent_updates_tab_text" msgid="5813107516506908531">"\"<xliff:g id="UPDATE_TEXT">%s</xliff:g>\""</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kenalan"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -435,7 +420,6 @@
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Nama berian dahulu"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Nama keluarga dahulu"</string>
     <string name="search_bar_hint" msgid="1012756309632856553">"Cari dalam kenalan"</string>
-    <string name="search_for_all_contacts" msgid="6644963335787294131">"Cari semua kenalan"</string>
     <string name="take_photo" msgid="7496128293167402354">"Ambil foto"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Ambil foto baru"</string>
     <string name="pick_photo" msgid="448886509158039462">"Pilih foto daripada Galeri"</string>
@@ -450,10 +434,6 @@
     <string name="menu_display_all" msgid="8887488642609786198">"Tunjukkan semua"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Pilih semua"</string>
     <string name="menu_select_none" msgid="7093222469852132345">"Nyahpilih semua"</string>
-  <plurals name="multiple_picker_title">
-    <item quantity="one" msgid="4761009734586319101">"1 penerima dipilih"</item>
-    <item quantity="other" msgid="4608837420986126229">"<xliff:g id="COUNT">%d</xliff:g> penerima dipilih"</item>
-  </plurals>
     <string name="no_contacts_selected" msgid="5877803471037324613">"Tiada kenalan dipilih."</string>
     <string name="add_field" msgid="2384260056674995230">"Tambah medan lain"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Tambah baru"</string>
@@ -479,7 +459,6 @@
     <string name="directory_search_label" msgid="1887759056597975053">"Direktori"</string>
     <string name="local_search_label" msgid="2551177578246113614">"Semua kenalan"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"Membuat salinan peribadi"</string>
-    <string name="list_filter_prompt" msgid="7481426622828055116">"Pilih senarai kenalan"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Semua kenalan"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Dibintangkan"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Peribadi"</string>
@@ -506,7 +485,6 @@
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Import kenalan dari fail"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Buat kumpulan baru"</string>
     <string name="create_group_item_label" msgid="5218022006186243310">"[Buat kumpulan baru]"</string>
-    <string name="rename_group_dialog_title" msgid="3765299704290513289">"Namakan semula kumpulan"</string>
     <string name="delete_group_dialog_title" msgid="7368429698398624427">"Padam kumpulan"</string>
   <plurals name="num_groups_in_account">
     <item quantity="one" msgid="2944819210288517794">"1 kumpulan"</item>
@@ -522,14 +500,12 @@
     <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> orang"</item>
   </plurals>
     <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Sila masukkan nama kenalan sebelum menggabungkan dengan kenalan lain."</string>
-    <string name="indicator_joined_contact" msgid="3321049349627022128">"Kenalan yang digabungkan"</string>
     <string name="copy_text" msgid="3257145021583508761">"Salin ke papan keratan"</string>
     <string name="set_default" msgid="4417505153468300351">"Tetapkan lalai"</string>
     <string name="clear_default" msgid="7193185801596678067">"Kosongkan lalai"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Teks disalin"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Buang perubahan"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Adakah anda mahu membuang perubahan anda?"</string>
-    <string name="discard" msgid="1234315037371251414">"Buang"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Sediakan profil saya"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Taip nama orang"</string>
@@ -540,9 +516,9 @@
   </plurals>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Mel suara baru daripada <xliff:g id="CALLER">%1$s</xliff:g>"</string>
-    <string name="voicemail_playback_error" msgid="1811242131549854624">"Tidak dapat memainkan mel suara"</string>
-    <string name="voicemail_buffering" msgid="738287747618697097">"Menimbal..."</string>
-    <string name="voicemail_fetching_content" msgid="877911315738258780">"sedang mendapatkan mel suara..."</string>
+    <string name="voicemail_playback_error" msgid="1811242131549854624">"Tidak dapat memainkan mel suara."</string>
+    <string name="voicemail_buffering" msgid="738287747618697097">"Menimbal???"</string>
+    <string name="voicemail_fetching_content" msgid="877911315738258780">"Sedang mendapatkan mel suara???"</string>
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Tidak dapat mengambil mel suara."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Baru"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Lebih lama"</string>
@@ -574,12 +550,12 @@
     <string name="description_add_contact" msgid="3103414772502485851">"Tambah kenalan"</string>
     <string name="description_view_contact" msgid="5205669345700598415">"Lihat kenalan <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call" msgid="3443678121983852666">"Panggil <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_send_text_message" msgid="7803126439934046891">"Hantar mesej teks ke <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_send_text_message" msgid="7803126439934046891">"Hantar mesej teks kepada <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Mel suara belum didengar"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
-    <string name="user_profile_contacts_list_header" msgid="9154761216179882405">"SAYA"</string>
-    <string name="local_profile_title" msgid="2021416826991393684">"Profil tempatan saya"</string>
-    <!-- no translation found for external_profile_title (8034998767621359438) -->
-    <skip />
+    <!-- outdated translation 9154761216179882405 -->     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"SAYA"</string>
+    <string name="local_profile_title" msgid="2021416826991393684">"Profil setempat saya"</string>
+    <string name="external_profile_title" msgid="8034998767621359438">"Profil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> saya"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Memaparkan semua kenalan"</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Orang berfungsi lebih baik dengan Akaun Google. "\n" "\n"• Akses dari mana-mana penyemak imbas "\n"• Buat sandaran untuk kenalan anda secara selamat."</string>
 </resources>
