@@ -84,7 +84,7 @@
                 android:paddingBottom="@dimen/call_log_inner_margin"
                 android:paddingRight="@dimen/call_log_outer_margin"
                 android:scaleType="center"
-                android:background="@drawable/list_selector"
+                android:background="?android:attr/selectableItemBackground"
             />
         </LinearLayout>
         <LinearLayout
@@ -97,7 +97,7 @@
             android:layout_centerVertical="true"
             android:padding="@dimen/call_log_inner_margin"
             android:orientation="vertical"
-            android:background="@drawable/list_selector"
+            android:background="?android:attr/selectableItemBackground"
             android:focusable="true"
         >
             <TextView
