@@ -44,7 +44,7 @@
             android:paddingLeft="@dimen/call_log_inner_margin"
             android:paddingRight="@dimen/call_log_outer_margin"
             android:textColor="?attr/call_log_voicemail_status_text_color"
-            android:background="@drawable/list_selector"
+            android:background="?android:attr/selectableItemBackground"
             android:clickable="true"
         />
     </LinearLayout>
