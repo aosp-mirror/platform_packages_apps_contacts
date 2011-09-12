@@ -46,6 +46,8 @@
             android:layout_height="match_parent"
             android:text="@string/recentCalls_empty"
             android:gravity="center"
+            android:layout_marginTop="@dimen/empty_message_top_margin"
+            android:textColor="?android:attr/textColorSecondary"
             android:textAppearance="?android:attr/textAppearanceLarge"
         />
     </FrameLayout>
