@@ -373,13 +373,21 @@ public class CustomContactListFilterActivity extends ContactsActivity
                 }
             } else if (isUpdate()) {
                 if (mUngrouped) {
+                    String accountName = this.getAsString(Settings.ACCOUNT_NAME);
+                    String accountType = this.getAsString(Settings.ACCOUNT_TYPE);
+                    String dataSet = this.getAsString(Settings.DATA_SET);
+                    StringBuilder selection = new StringBuilder(Settings.ACCOUNT_NAME + "=? AND "
+                            + Settings.ACCOUNT_TYPE + "=?");
+                    String[] selectionArgs;
+                    if (dataSet == null) {
+                        selection.append(" AND " + Settings.DATA_SET + " IS NULL");
+                        selectionArgs = new String[] {accountName, accountType};
+                    } else {
+                        selection.append(" AND " + Settings.DATA_SET + "=?");
+                        selectionArgs = new String[] {accountName, accountType, dataSet};
+                    }
                     return ContentProviderOperation.newUpdate(Settings.CONTENT_URI)
-                            .withSelection(Settings.ACCOUNT_NAME + "=? AND "
-                                    + Settings.ACCOUNT_TYPE + "=?",
-                                    new String[] {
-                                        this.getAsString(Settings.ACCOUNT_NAME),
-                                        this.getAsString(Settings.ACCOUNT_TYPE)
-                                    })
+                            .withSelection(selection.toString(), selectionArgs)
                             .withValues(mAfter)
                             .build();
                 } else {
