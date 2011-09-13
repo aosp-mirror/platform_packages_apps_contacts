@@ -45,6 +45,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.preference.PreferenceManager;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents.UI;
@@ -94,12 +95,11 @@ public class DialtactsActivity extends Activity {
 
     private static final int TAB_INDEX_COUNT = 3;
 
-    /** Name of the dialtacts shared preferences */
-    static final String PREFS_DIALTACTS = "dialtacts";
-    static final boolean PREF_FAVORITES_AS_CONTACTS_DEFAULT = false;
+    private SharedPreferences mPrefs;
 
     /** Last manually selected tab index */
-    private static final String PREF_LAST_MANUALLY_SELECTED_TAB = "last_manually_selected_tab";
+    private static final String PREF_LAST_MANUALLY_SELECTED_TAB =
+            "DialtactsActivity_last_manually_selected_tab";
     private static final int PREF_LAST_MANUALLY_SELECTED_TAB_DEFAULT = TAB_INDEX_DIALER;
 
     /**
@@ -391,8 +391,8 @@ public class DialtactsActivity extends Activity {
         getActionBar().setDisplayShowHomeEnabled(false);
 
         // Load the last manually loaded tab
-        final SharedPreferences prefs = getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE);
-        mLastManuallySelectedFragment = prefs.getInt(PREF_LAST_MANUALLY_SELECTED_TAB,
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mLastManuallySelectedFragment = mPrefs.getInt(PREF_LAST_MANUALLY_SELECTED_TAB,
                 PREF_LAST_MANUALLY_SELECTED_TAB_DEFAULT);
         if (mLastManuallySelectedFragment >= TAB_INDEX_COUNT) {
             // Stored value may have exceeded the number of current tabs. Reset it.
@@ -496,11 +496,8 @@ public class DialtactsActivity extends Activity {
     protected void onPause() {
         super.onPause();
 
-        final SharedPreferences.Editor editor =
-                getSharedPreferences(PREFS_DIALTACTS, MODE_PRIVATE).edit();
-        editor.putInt(PREF_LAST_MANUALLY_SELECTED_TAB, mLastManuallySelectedFragment);
-
-        editor.apply();
+        mPrefs.edit().putInt(PREF_LAST_MANUALLY_SELECTED_TAB, mLastManuallySelectedFragment)
+                .apply();
     }
 
     private void fixIntent(Intent intent) {
