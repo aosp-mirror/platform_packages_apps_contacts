@@ -584,7 +584,13 @@ public class CallLogAdapter extends GroupingListAdapter
         ExpirableCache.CachedValue<ContactInfo> cachedInfo =
                 mContactInfoCache.getCachedValue(number);
         ContactInfo info = cachedInfo == null ? null : cachedInfo.getValue();
-        if (cachedInfo == null) {
+        if (!mPhoneNumberHelper.canPlaceCallsTo(number)
+                || mPhoneNumberHelper.isVoicemailNumber(number)) {
+            // If this is a number that cannot be dialed, there is no point in looking up a contact
+            // for it.
+            info = ContactInfo.EMPTY;
+            formattedNumber = null;
+        } else if (cachedInfo == null) {
             mContactInfoCache.put(number, ContactInfo.EMPTY);
             // Use the cached contact info from the call log.
             info = cachedContactInfo;
