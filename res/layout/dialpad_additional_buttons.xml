@@ -33,7 +33,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:state_enabled="false"
-        android:background="@drawable/btn_dial"
+        android:background="?android:attr/selectableItemBackground"
         android:contentDescription="@string/description_search_button"
         android:src="@drawable/ic_see_contacts_holo_dark"/>
 
@@ -57,7 +57,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:state_enabled="false"
-        android:background="@drawable/btn_dial"
+        android:background="?android:attr/selectableItemBackground"
         android:contentDescription="@string/description_delete_button"
         android:src="@drawable/ic_dial_action_delete" />
 </LinearLayout>

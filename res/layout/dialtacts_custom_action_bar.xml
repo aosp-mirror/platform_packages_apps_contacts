@@ -31,11 +31,12 @@
     <ImageButton
         android:id="@+id/search_option"
         android:layout_width="wrap_content"
-        android:paddingRight="8dip"
+        android:paddingLeft="4dip"
+        android:paddingRight="4dip"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:src="@drawable/ic_menu_overflow"
-        android:background="@android:color/transparent"
+        android:background="?android:attr/selectableItemBackground"
         android:visibility="gone" />
 
 </LinearLayout>

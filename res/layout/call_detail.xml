@@ -156,7 +156,7 @@
                     android:orientation="vertical"
                     android:gravity="center_vertical"
                     android:focusable="true"
-                    android:background="@drawable/btn_dial"
+                    android:background="?android:attr/selectableItemBackground"
                 >
 
                     <TextView android:id="@+id/call_and_sms_text"
@@ -191,7 +191,7 @@
                     android:gravity="center"
                     android:scaleType="centerInside"
                     android:focusable="true"
-                    android:background="@drawable/btn_dial"
+                    android:background="?android:attr/selectableItemBackground"
                 />
             </LinearLayout>
         </FrameLayout>

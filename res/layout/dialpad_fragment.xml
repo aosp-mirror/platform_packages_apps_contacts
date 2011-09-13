@@ -30,30 +30,29 @@
         android:layout_height="0px"
         android:layout_weight="0.200"
         android:layout_marginTop="@dimen/dialpad_vertical_margin"
-        android:gravity="center" >
+        android:gravity="center"
+        android:background="@drawable/dialpad_background" >
 
-        <!-- Type of this EditText is set to NULL (to disable the IME keyboard)
-             in the java code.
-
-             Background drawable can be controlled programatically. -->
         <com.android.contacts.dialpad.DigitsEditText
             android:id="@+id/digits"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/moreoverflow"
-            android:background="@drawable/dialpad_background"
             android:gravity="center"
             android:textAppearance="@style/DialtactsDigitsTextAppearance"
-            android:textColor="?android:attr/textColorPrimary" />
+            android:textColor="?android:attr/textColorPrimary"
+            android:nextFocusRight="@+id/overflow_menu"
+            android:background="@android:color/transparent" />
 
-        <ImageButton android:id="@+id/overflow_menu"
+        <ImageButton
+            android:id="@+id/overflow_menu"
             android:layout_width="48dip"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:src="@drawable/ic_menu_overflow"
             android:contentDescription="@*android:string/action_menu_overflow_description"
-            android:background="@android:color/transparent"/>
+            android:nextFocusLeft="@id/digits"
+            android:background="?android:attr/selectableItemBackground"/>
 
     </RelativeLayout>
 

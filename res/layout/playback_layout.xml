@@ -24,7 +24,7 @@
                 android:id="@+id/playback_start_stop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/btn_dial"
+                android:background="?android:attr/selectableItemBackground"
                 android:src="@drawable/ic_hold_pause"
             />
         </LinearLayout>
@@ -38,7 +38,7 @@
                 android:id="@+id/playback_speakerphone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/btn_dial"
+                android:background="?android:attr/selectableItemBackground"
                 android:src="@drawable/ic_speakerphone_on"
             />
         </LinearLayout>
@@ -97,7 +97,7 @@
             android:src="@drawable/ic_minus"
             android:layout_width="64dip"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_dial"
+            android:background="?android:attr/selectableItemBackground"
             android:paddingBottom="19dip"
             android:paddingTop="29dip"
             android:layout_alignParentLeft="true"
@@ -108,7 +108,7 @@
             android:src="@drawable/ic_plus"
             android:layout_width="64dip"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_dial"
+            android:background="?android:attr/selectableItemBackground"
             android:paddingBottom="19dip"
             android:paddingTop="29dip"
             android:layout_alignParentRight="true"
