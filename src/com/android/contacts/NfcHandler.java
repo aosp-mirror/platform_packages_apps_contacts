@@ -26,6 +26,7 @@ import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.NfcEvent;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Profile;
 
 import android.util.Log;
 
@@ -43,9 +44,9 @@ import java.io.InputStream;
   */
 public class NfcHandler implements NfcAdapter.CreateNdefMessageCallback {
 
-    static final String TAG = "ContactNfcHandler";
-
-    final ContactDetailFragment mContactFragment;
+    private static final String TAG = "ContactNfcHandler";
+    private static final String PROFILE_LOOKUP_KEY = "profile";
+    private final ContactDetailFragment mContactFragment;
 
     public static void register(Activity activity, ContactDetailFragment contactFragment) {
         NfcAdapter adapter = NfcAdapter.getDefaultAdapter(activity.getApplicationContext());
@@ -66,10 +67,19 @@ public class NfcHandler implements NfcAdapter.CreateNdefMessageCallback {
         ContentResolver resolver = mContactFragment.getActivity().getContentResolver();
         if (contactUri != null) {
             final String lookupKey = Uri.encode(contactUri.getPathSegments().get(2));
-            final Uri shareUri = Contacts.CONTENT_VCARD_URI.buildUpon().
-                    appendPath(lookupKey).
-                    appendQueryParameter(Contacts.QUERY_PARAMETER_VCARD_NO_PHOTO, "true").
-                    build();
+            final Uri shareUri;
+            // TODO find out where to get this constant from, or find another way
+            // of determining this.
+            if (lookupKey.equals(PROFILE_LOOKUP_KEY)) {
+                shareUri = Profile.CONTENT_VCARD_URI.buildUpon().
+                appendQueryParameter(Contacts.QUERY_PARAMETER_VCARD_NO_PHOTO, "true").
+                build();
+            } else {
+                shareUri = Contacts.CONTENT_VCARD_URI.buildUpon().
+                appendPath(lookupKey).
+                appendQueryParameter(Contacts.QUERY_PARAMETER_VCARD_NO_PHOTO, "true").
+                build();
+            }
             ByteArrayOutputStream ndefBytes = new ByteArrayOutputStream();
             byte[] buffer = new byte[1024];
             int r;
