@@ -17,6 +17,7 @@
 package com.android.contacts;
 
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.util.UriUtils;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Sets;
 
@@ -59,11 +60,12 @@ public abstract class ContactPhotoManager {
 
     public static final String CONTACT_PHOTO_SERVICE = "contactPhotos";
 
-    /**
-     * The resource ID of the image to be used when the photo is unavailable or being
-     * loaded.
-     */
-    protected final int mDefaultResourceId = R.drawable.ic_contact_picture;
+    public static int getDefaultAvatarResId(boolean hires, boolean darkTheme) {
+        if (hires && darkTheme) return R.drawable.ic_contact_picture_180_holo_dark;
+        if (hires) return R.drawable.ic_contact_picture_180_holo_light;
+        if (darkTheme) return R.drawable.ic_contact_picture_holo_dark;
+        return R.drawable.ic_contact_picture_holo_light;
+    }
 
     /**
      * Requests the singleton instance of {@link AccountTypeManager} with data bound from
@@ -89,14 +91,14 @@ public abstract class ContactPhotoManager {
      * it is displayed immediately.  Otherwise a request is sent to load the photo
      * from the database.
      */
-    public abstract void loadPhoto(ImageView view, long photoId);
+    public abstract void loadPhoto(ImageView view, long photoId, boolean hires, boolean darkTheme);
 
     /**
      * Load photo into the supplied image view.  If the photo is already cached,
      * it is displayed immediately.  Otherwise a request is sent to load the photo
      * from the location specified by the URI.
      */
-    public abstract void loadPhoto(ImageView view, Uri photoUri);
+    public abstract void loadPhoto(ImageView view, Uri photoUri, boolean hires, boolean darkTheme);
 
     /**
      * Remove photo from the supplied image view. This also cancels current pending load request
@@ -185,11 +187,11 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
     private final LruCache<Object, Bitmap> mBitmapCache;
 
     /**
-     * A map from ImageView to the corresponding photo ID. Please note that this
-     * photo ID may change before the photo loading request is started.
+     * A map from ImageView to the corresponding photo ID or uri, encapsulated in a request.
+     * The request may swapped out before the photo loading request is started.
      */
-    private final ConcurrentHashMap<ImageView, Object> mPendingRequests =
-            new ConcurrentHashMap<ImageView, Object>();
+    private final ConcurrentHashMap<ImageView, Request> mPendingRequests =
+            new ConcurrentHashMap<ImageView, Request>();
 
     /**
      * Handler for messages sent to the UI thread.
@@ -234,33 +236,33 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
     }
 
     @Override
-    public void loadPhoto(ImageView view, long photoId) {
+    public void loadPhoto(ImageView view, long photoId, boolean hires, boolean darkTheme) {
         if (photoId == 0) {
             // No photo is needed
-            view.setImageResource(mDefaultResourceId);
+            view.setImageResource(getDefaultAvatarResId(hires, darkTheme));
             mPendingRequests.remove(view);
         } else {
-            loadPhotoByIdOrUri(view, photoId);
+            loadPhotoByIdOrUri(view, Request.createFromId(photoId, hires, darkTheme));
         }
     }
 
     @Override
-    public void loadPhoto(ImageView view, Uri photoUri) {
+    public void loadPhoto(ImageView view, Uri photoUri, boolean hires, boolean darkTheme) {
         if (photoUri == null) {
             // No photo is needed
-            view.setImageResource(mDefaultResourceId);
+            view.setImageResource(getDefaultAvatarResId(hires, darkTheme));
             mPendingRequests.remove(view);
         } else {
-            loadPhotoByIdOrUri(view, photoUri);
+            loadPhotoByIdOrUri(view, Request.createFromUri(photoUri, hires, darkTheme));
         }
     }
 
-    private void loadPhotoByIdOrUri(ImageView view, Object key) {
-        boolean loaded = loadCachedPhoto(view, key);
+    private void loadPhotoByIdOrUri(ImageView view, Request request) {
+        boolean loaded = loadCachedPhoto(view, request);
         if (loaded) {
             mPendingRequests.remove(view);
         } else {
-            mPendingRequests.put(view, key);
+            mPendingRequests.put(view, request);
             if (!mPaused) {
                 // Send a request to start loading photos
                 requestLoading();
@@ -286,16 +288,16 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
      *
      * @return false if the photo needs to be (re)loaded from the provider.
      */
-    private boolean loadCachedPhoto(ImageView view, Object key) {
-        BitmapHolder holder = mBitmapHolderCache.get(key);
+    private boolean loadCachedPhoto(ImageView view, Request request) {
+        BitmapHolder holder = mBitmapHolderCache.get(request.getKey());
         if (holder == null) {
             // The bitmap has not been loaded - should display the placeholder image.
-            view.setImageResource(mDefaultResourceId);
+            view.setImageResource(getDefaultAvatarResId(request.isHires(), request.isDarkTheme()));
             return false;
         }
 
         if (holder.bytes == null) {
-            view.setImageResource(mDefaultResourceId);
+            view.setImageResource(getDefaultAvatarResId(request.isHires(), request.isDarkTheme()));
             return holder.fresh;
         }
 
@@ -305,7 +307,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         view.setImageBitmap(holder.bitmap);
 
         // Put the bitmap in the LRU cache
-        mBitmapCache.put(key, holder.bitmap);
+        mBitmapCache.put(request, holder.bitmap);
 
         // Soften the reference
         holder.bitmap = null;
@@ -376,6 +378,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
     /**
      * Processes requests on the main thread.
      */
+    @Override
     public boolean handleMessage(Message msg) {
         switch (msg.what) {
             case MESSAGE_REQUEST_LOADING: {
@@ -412,7 +415,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         Iterator<ImageView> iterator = mPendingRequests.keySet().iterator();
         while (iterator.hasNext()) {
             ImageView view = iterator.next();
-            Object key = mPendingRequests.get(view);
+            Request key = mPendingRequests.get(view);
             boolean loaded = loadCachedPhoto(view, key);
             if (loaded) {
                 iterator.remove();
@@ -469,16 +472,16 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
          * concurrent change, we will need to check the map again once loading
          * is complete.
          */
-        Iterator<Object> iterator = mPendingRequests.values().iterator();
+        Iterator<Request> iterator = mPendingRequests.values().iterator();
         while (iterator.hasNext()) {
-            Object key = iterator.next();
-            BitmapHolder holder = mBitmapHolderCache.get(key);
+            Request request = iterator.next();
+            BitmapHolder holder = mBitmapHolderCache.get(request);
             if (holder == null || !holder.fresh) {
-                if (key instanceof Long) {
-                    photoIds.add((Long)key);
-                    photoIdsAsStrings.add(key.toString());
+                if (request.isUriRequest()) {
+                    uris.add(request.mUri);
                 } else {
-                    uris.add((Uri)key);
+                    photoIds.add(request.mId);
+                    photoIdsAsStrings.add(String.valueOf(request.mId));
                 }
             }
         }
@@ -571,6 +574,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
          * Receives the above message, loads photos and then sends a message
          * to the main thread to process them.
          */
+        @Override
         public boolean handleMessage(Message msg) {
             switch (msg.what) {
                 case MESSAGE_PRELOAD_PHOTOS:
@@ -775,6 +779,67 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                     cacheBitmap(uri, null, false);
                 }
             }
+        }
+    }
+
+    /**
+     * A holder for either a Uri or an id and a flag whether this was requested for the dark or
+     * light theme
+     */
+    private static final class Request {
+        private final long mId;
+        private final Uri mUri;
+        private final boolean mDarkTheme;
+        private final boolean mHires;
+
+        private Request(long id, Uri uri, boolean hires, boolean darkTheme) {
+            mId = id;
+            mUri = uri;
+            mDarkTheme = darkTheme;
+            mHires = hires;
+        }
+
+        public static Request createFromId(long id, boolean hires, boolean darkTheme) {
+            return new Request(id, null /* no URI */, hires, darkTheme);
+        }
+
+        public static Request createFromUri(Uri uri, boolean hires, boolean darkTheme) {
+            return new Request(0 /* no ID */, uri, hires, darkTheme);
+        }
+
+        public boolean isDarkTheme() {
+            return mDarkTheme;
+        }
+
+        public boolean isHires() {
+            return mHires;
+        }
+
+        public boolean isUriRequest() {
+            return mUri != null;
+        }
+
+        @Override
+        public int hashCode() {
+            if (mUri != null) return mUri.hashCode();
+
+            // copied over from Long.hashCode()
+            return (int) (mId ^ (mId >>> 32));
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (!(o instanceof Request)) return false;
+            final Request that = (Request) o;
+            // Don't compare equality of mHires and mDarkTheme fields because these are only used
+            // in the default contact photo case. When the contact does have a photo, the contact
+            // photo is the same regardless of mHires and mDarkTheme, so we shouldn't need to put
+            // the photo request on the queue twice.
+            return mId == that.mId && UriUtils.areEqual(mUri, that.mUri);
+        }
+
+        public Object getKey() {
+            return mUri == null ? mId : mUri;
         }
     }
 }

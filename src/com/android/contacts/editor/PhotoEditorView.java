@@ -162,7 +162,7 @@ public class PhotoEditorView extends FrameLayout implements Editor {
 
     protected void resetDefault() {
         // Invalid photo, show default "add photo" place-holder
-        mPhotoImageView.setImageResource(R.drawable.ic_contact_picture);
+        mPhotoImageView.setImageResource(R.drawable.ic_contact_picture_holo_light);
         mFrameView.setEnabled(!mReadOnly && isEnabled());
         mHasSetPhoto = false;
         mEntry.setFromTemplate(true);

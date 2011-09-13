@@ -118,14 +118,16 @@ public class ContactTileView extends FrameLayout {
 
             if (mPhotoManager != null) {
                 if (mPhoto != null) {
-                    mPhotoManager.loadPhoto(mPhoto, entry.photoUri);
+                    mPhotoManager.loadPhoto(mPhoto, entry.photoUri, isDefaultIconHires(),
+                            isDarkTheme());
 
                     if (mQuickContact != null) {
                         mQuickContact.assignContactUri(mLookupUri);
                     }
                 } else if (mQuickContact != null) {
                     mQuickContact.assignContactUri(mLookupUri);
-                    mPhotoManager.loadPhoto(mQuickContact, entry.photoUri);
+                    mPhotoManager.loadPhoto(mQuickContact, entry.photoUri, isDefaultIconHires(),
+                            isDarkTheme());
                 }
 
             } else {
@@ -146,6 +148,14 @@ public class ContactTileView extends FrameLayout {
 
     public Uri getLookupUri() {
         return mLookupUri;
+    }
+
+    protected boolean isDefaultIconHires() {
+        return false;
+    }
+
+    protected boolean isDarkTheme() {
+        return false;
     }
 
     public interface Listener {

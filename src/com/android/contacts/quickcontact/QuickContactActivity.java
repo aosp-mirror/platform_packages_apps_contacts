@@ -17,11 +17,11 @@
 package com.android.contacts.quickcontact;
 
 import com.android.contacts.Collapser;
+import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.DataKind;
-import com.android.contacts.util.ContactBadgeUtil;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import com.android.contacts.util.NotifyingAsyncQueryHandler.AsyncQueryListener;
@@ -491,8 +491,11 @@ public class QuickContactActivity extends Activity {
 
         if (photoView != null) {
             // Place photo when discovered in data, otherwise show generic avatar
-            photoView.setImageBitmap(photoBitmap != null ? photoBitmap
-                    : ContactBadgeUtil.loadPlaceholderPhoto(context));
+            if (photoBitmap != null) {
+                photoView.setImageBitmap(photoBitmap);
+            } else {
+                photoView.setImageResource(ContactPhotoManager.getDefaultAvatarResId(true, false));
+            }
         }
 
         // TODO: Bring this back once we have a design

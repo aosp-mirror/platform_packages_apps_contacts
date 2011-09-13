@@ -15,7 +15,6 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
 

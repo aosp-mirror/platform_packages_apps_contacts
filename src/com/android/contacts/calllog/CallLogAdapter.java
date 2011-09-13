@@ -776,7 +776,7 @@ public class CallLogAdapter extends GroupingListAdapter
 
     private void setPhoto(CallLogListItemViews views, long photoId, Uri contactUri) {
         views.quickContactView.assignContactUri(contactUri);
-        mContactPhotoManager.loadPhoto(views.quickContactView, photoId);
+        mContactPhotoManager.loadPhoto(views.quickContactView, photoId, false, true);
     }
 
     /**

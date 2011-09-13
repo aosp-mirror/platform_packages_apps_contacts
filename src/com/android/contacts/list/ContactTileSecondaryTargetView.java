@@ -50,4 +50,9 @@ public class ContactTileSecondaryTargetView extends ContactTileStarredView {
             }
         });
     }
+
+    @Override
+    protected boolean isDarkTheme() {
+        return true;
+    }
 }

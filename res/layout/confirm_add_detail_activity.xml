@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_contact_picture" />
+            android:src="@drawable/ic_contact_picture_180_holo_light" />
 
         <View
             android:id="@+id/photo_text_bar"

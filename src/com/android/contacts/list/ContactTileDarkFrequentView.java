@@ -19,19 +19,15 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 /**
- * A {@link ContactTileStarredView} displays the contact's picture overlayed with their name
- * in a square.  The actual dimensions are set by
- * {@link com.android.contacts.list.ContactTileAdapter.ContactTileRow}.
+ * A dark version of the {@link ContactTileView} (This class is needed to load the proper avatar)
  */
-public class ContactTileStarredView extends ContactTileView {
-    private final static String TAG = ContactTileStarredView.class.getSimpleName();
-
-    public ContactTileStarredView(Context context, AttributeSet attrs) {
+public class ContactTileDarkFrequentView extends ContactTileView {
+    public ContactTileDarkFrequentView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
     @Override
-    protected boolean isDefaultIconHires() {
+    protected boolean isDarkTheme() {
         return true;
     }
 }

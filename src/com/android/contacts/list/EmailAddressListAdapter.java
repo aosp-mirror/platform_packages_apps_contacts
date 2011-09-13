@@ -175,7 +175,7 @@ public class EmailAddressListAdapter extends ContactEntryListAdapter {
             photoId = cursor.getLong(EMAIL_PHOTO_ID_COLUMN_INDEX);
         }
 
-        getPhotoLoader().loadPhoto(view.getPhotoView(), photoId);
+        getPhotoLoader().loadPhoto(view.getPhotoView(), photoId, false, false);
     }
 //
 //    protected void bindSearchSnippet(final ContactListItemView view, Cursor cursor) {

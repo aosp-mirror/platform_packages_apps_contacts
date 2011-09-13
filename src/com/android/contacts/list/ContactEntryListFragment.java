@@ -19,7 +19,6 @@ package com.android.contacts.list;
 import com.android.common.widget.CompositeCursorAdapter.Partition;
 import com.android.contacts.ContactListEmptyView;
 import com.android.contacts.ContactPhotoManager;
-import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.widget.ContextMenuAdapter;
@@ -86,6 +85,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private static final String KEY_DIRECTORY_SEARCH_MODE = "directorySearchMode";
     private static final String KEY_SELECTION_VISIBLE = "selectionVisible";
     private static final String KEY_REQUEST = "request";
+    private static final String KEY_DARK_THEME = "darkTheme";
     private static final String KEY_LEGACY_COMPATIBILITY = "legacyCompatibility";
     private static final String KEY_DIRECTORY_RESULT_LIMIT = "directoryResultLimit";
 
@@ -134,6 +134,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     private boolean mForceLoad;
 
+    private boolean mDarkTheme;
+
     protected boolean mUserProfileExists;
 
     private static final int STATUS_NOT_LOADED = 0;
@@ -160,7 +162,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             }
         }
     };
-
 
     protected abstract View inflateView(LayoutInflater inflater, ViewGroup container);
     protected abstract T createListAdapter();
@@ -249,6 +250,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         outState.putString(KEY_QUERY_STRING, mQueryString);
         outState.putInt(KEY_DIRECTORY_RESULT_LIMIT, mDirectoryResultLimit);
         outState.putParcelable(KEY_REQUEST, mRequest);
+        outState.putBoolean(KEY_DARK_THEME, mDarkTheme);
 
         if (mListView != null) {
             mListState = mListView.onSaveInstanceState();
@@ -281,6 +283,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mQueryString = savedState.getString(KEY_QUERY_STRING);
         mDirectoryResultLimit = savedState.getInt(KEY_DIRECTORY_RESULT_LIMIT);
         mRequest = savedState.getParcelable(KEY_REQUEST);
+        mDarkTheme = savedState.getBoolean(KEY_DARK_THEME);
 
         // Retrieve list state. This will be applied in onLoadFinished
         mListState = savedState.getParcelable(KEY_LIST_STATE);
@@ -812,6 +815,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mAdapter.setSectionHeaderDisplayEnabled(mSectionHeaderDisplayEnabled);
         mAdapter.setSelectionVisible(mSelectionVisible);
         mAdapter.setDirectoryResultLimit(mDirectoryResultLimit);
+        mAdapter.setDarkTheme(mDarkTheme);
     }
 
     @Override
@@ -918,6 +922,11 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         TelephonyManager telephonyManager =
                 (TelephonyManager)mContext.getSystemService(Context.TELEPHONY_SERVICE);
         return telephonyManager.hasIccCard();
+    }
+
+    public void setDarkTheme(boolean value) {
+        mDarkTheme = value;
+        if (mAdapter != null) mAdapter.setDarkTheme(value);
     }
 
     /**

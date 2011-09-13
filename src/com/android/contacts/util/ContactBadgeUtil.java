@@ -16,6 +16,7 @@
 
 package com.android.contacts.util;
 
+import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.R;
 
 import android.content.Context;
@@ -106,7 +107,8 @@ public class ContactBadgeUtil {
         return attribution;
     }
 
-    public static Bitmap loadPlaceholderPhoto(Context context) {
-        return BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_contact_picture);
+    public static Bitmap loadDefaultAvatarPhoto(Context context, boolean hires, boolean darkTheme) {
+        return BitmapFactory.decodeResource(context.getResources(),
+                ContactPhotoManager.getDefaultAvatarResId(hires, darkTheme));
     }
 }
