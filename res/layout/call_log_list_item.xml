@@ -36,19 +36,10 @@
         android:id="@+id/call_log_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/call_log_outer_margin"
+        android:layout_marginRight="@dimen/call_log_outer_margin"
         android:gravity="center_vertical"
     >
-        <!-- Only one of the next two is visible at one time. The other one is set to INVISIBLE -->
-        <QuickContactBadge
-            android:id="@+id/quick_contact_photo"
-            android:layout_width="@dimen/call_log_list_contact_photo_size"
-            android:layout_height="@dimen/call_log_list_contact_photo_size"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/call_log_outer_margin"
-            android:layout_marginTop="@dimen/call_log_inner_margin"
-            android:layout_marginBottom="@dimen/call_log_inner_margin"
-        />
         <LinearLayout
             android:id="@+id/divider"
             android:layout_width="wrap_content"
@@ -59,16 +50,6 @@
             android:layout_alignBottom="@+id/primary_action_view"
             android:orientation="horizontal"
         >
-            <ImageView
-                android:id="@+id/unheard_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingRight="@dimen/call_log_inner_margin"
-                android:scaleType="center"
-                android:src="@drawable/ic_unheard_voicemail_holo_dark"
-                android:visibility="gone"
-                android:contentDescription="@string/description_call_log_unheard_voicemail"
-            />
             <View
                 android:layout_width="1px"
                 android:layout_height="@dimen/call_log_call_action_size"
@@ -82,7 +63,7 @@
                 android:paddingLeft="@dimen/call_log_inner_margin"
                 android:paddingTop="@dimen/call_log_inner_margin"
                 android:paddingBottom="@dimen/call_log_inner_margin"
-                android:paddingRight="@dimen/call_log_outer_margin"
+                android:paddingRight="@dimen/call_log_inner_margin"
                 android:scaleType="center"
                 android:background="?android:attr/selectableItemBackground"
             />
@@ -90,55 +71,73 @@
         <LinearLayout
             android:id="@+id/primary_action_view"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_toRightOf="@id/quick_contact_photo"
+            android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/divider"
+            android:layout_alignParentLeft="true"
             android:layout_alignWithParentIfMissing="true"
             android:layout_centerVertical="true"
-            android:padding="@dimen/call_log_inner_margin"
-            android:orientation="vertical"
+            android:paddingRight="@dimen/call_log_inner_margin"
+            android:paddingTop="@dimen/call_log_inner_margin"
+            android:paddingBottom="@dimen/call_log_inner_margin"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:background="?android:attr/selectableItemBackground"
             android:focusable="true"
         >
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="?attr/call_log_primary_text_color"
-                android:textSize="18sp"
-                android:singleLine="true"
-            />
-            <TextView
-                android:id="@+id/number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="?attr/call_log_secondary_text_color"
-                android:textSize="14sp"
-                android:singleLine="true"
+            <QuickContactBadge
+                android:id="@+id/quick_contact_photo"
+                android:layout_width="@dimen/call_log_list_contact_photo_size"
+                android:layout_height="@dimen/call_log_list_contact_photo_size"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
             />
             <LinearLayout
-                android:id="@+id/call_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="@dimen/call_log_inner_margin"
             >
-                <view
-                    class="com.android.contacts.calllog.CallTypeIconsView"
-                    android:id="@+id/call_type_icons"
+                <TextView
+                    android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/call_log_icon_margin"
-                    android:layout_gravity="center_vertical"
+                    android:textColor="?attr/call_log_primary_text_color"
+                    android:textSize="18sp"
+                    android:singleLine="true"
                 />
                 <TextView
-                    android:id="@+id/call_count_and_date"
+                    android:id="@+id/number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
                     android:textColor="?attr/call_log_secondary_text_color"
                     android:textSize="14sp"
                     android:singleLine="true"
                 />
+                <LinearLayout
+                    android:id="@+id/call_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                >
+                    <view
+                        class="com.android.contacts.calllog.CallTypeIconsView"
+                        android:id="@+id/call_type_icons"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/call_log_icon_margin"
+                        android:layout_gravity="center_vertical"
+                    />
+                    <TextView
+                        android:id="@+id/call_count_and_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="?attr/call_log_secondary_text_color"
+                        android:textSize="14sp"
+                        android:singleLine="true"
+                    />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
