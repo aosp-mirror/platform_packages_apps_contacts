@@ -44,13 +44,16 @@
             android:background="?android:attr/selectableItemBackground"
             android:focusable="true"
             android:nextFocusRight="@+id/secondary_action_icon"
+            android:nextFocusLeft="@+id/quick_contact_photo"
         >
             <QuickContactBadge
                 android:id="@+id/quick_contact_photo"
                 android:layout_width="@dimen/call_log_list_contact_photo_size"
                 android:layout_height="@dimen/call_log_list_contact_photo_size"
+                android:nextFocusRight="@id/primary_action_view"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
+                android:focusable="true"
             />
             <LinearLayout
                 android:layout_width="wrap_content"
