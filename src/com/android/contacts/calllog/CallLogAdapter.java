@@ -538,7 +538,7 @@ public class CallLogAdapter extends GroupingListAdapter
         // This might be a header: check the value of the section column in the cursor.
         if (section == CallLogQuery.SECTION_NEW_HEADER
                 || section == CallLogQuery.SECTION_OLD_HEADER) {
-            views.listItemView.setVisibility(View.GONE);
+            views.primaryActionView.setVisibility(View.GONE);
             views.bottomDivider.setVisibility(View.GONE);
             views.listHeaderTextView.setVisibility(View.VISIBLE);
             views.listHeaderTextView.setText(
@@ -549,7 +549,7 @@ public class CallLogAdapter extends GroupingListAdapter
             return;
         }
         // Default case: an item in the call log.
-        views.listItemView.setVisibility(View.VISIBLE);
+        views.primaryActionView.setVisibility(View.VISIBLE);
         views.bottomDivider.setVisibility(isLastOfSection(c) ? View.GONE : View.VISIBLE);
         views.listHeaderTextView.setVisibility(View.GONE);
 

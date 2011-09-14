@@ -39,8 +39,6 @@ public final class CallLogListItemViews {
     public final View dividerView;
     /** The details of the phone call. */
     public final PhoneCallDetailsViews phoneCallDetailsViews;
-    /** The item view for a stand-alone row, or null for other types of rows. */
-    public final View listItemView;
     /** The text of the header of a section. */
     public final TextView listHeaderTextView;
     /** The divider to be shown below items. */
@@ -48,14 +46,13 @@ public final class CallLogListItemViews {
 
     private CallLogListItemViews(QuickContactBadge quickContactView, View primaryActionView,
             ImageView secondaryActionView, View dividerView,
-            PhoneCallDetailsViews phoneCallDetailsViews, View listItemView,
+            PhoneCallDetailsViews phoneCallDetailsViews,
             TextView listHeaderTextView, View bottomDivider) {
         this.quickContactView = quickContactView;
         this.primaryActionView = primaryActionView;
         this.secondaryActionView = secondaryActionView;
         this.dividerView = dividerView;
         this.phoneCallDetailsViews = phoneCallDetailsViews;
-        this.listItemView = listItemView;
         this.listHeaderTextView = listHeaderTextView;
         this.bottomDivider = bottomDivider;
     }
@@ -67,7 +64,6 @@ public final class CallLogListItemViews {
                 (ImageView) view.findViewById(R.id.secondary_action_icon),
                 view.findViewById(R.id.divider),
                 PhoneCallDetailsViews.fromView(view),
-                view.findViewById(R.id.call_log_item),
                 (TextView) view.findViewById(R.id.call_log_header),
                 view.findViewById(R.id.call_log_divider));
     }
@@ -79,7 +75,6 @@ public final class CallLogListItemViews {
                 new ImageView(context),
                 new View(context),
                 PhoneCallDetailsViews.createForTest(context),
-                new View(context),
                 new TextView(context),
                 new View(context));
     }
