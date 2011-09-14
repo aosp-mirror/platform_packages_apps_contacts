@@ -53,6 +53,7 @@ import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.preference.DisplayOptionsPreferenceFragment;
+import com.android.contacts.util.AccountPromptUtils;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.Constants;
@@ -918,6 +919,16 @@ public class PeopleActivity extends ContactsActivity
                 mAllFragment.setEnabled(true);
             }
         } else {
+            // If there are no accounts on the device and we should show the "no account" prompt
+            // (based on {@link SharedPreferences}), then launch the account setup activity so the
+            // user can sign-in or create an account.
+            if (!areAccountsAvailable() && AccountPromptUtils.shouldShowAccountPrompt(this)) {
+                AccountPromptUtils.launchAccountPrompt(this);
+                return;
+            }
+
+            // Otherwise, continue setting up the page so that the user can still use the app
+            // without an account.
             if (mAllFragment != null) {
                 mAllFragment.setEnabled(false);
             }
