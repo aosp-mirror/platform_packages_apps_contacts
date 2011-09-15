@@ -20,6 +20,7 @@ import com.android.contacts.R;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -114,6 +115,16 @@ public class QuickContactListFragment extends Fragment {
                 alternateActionDivider.setVisibility(hasAlternateAction ? View.VISIBLE : View.GONE);
                 alternateActionButton.setImageDrawable(action.getAlternateIcon());
                 alternateActionButton.setVisibility(hasAlternateAction ? View.VISIBLE : View.GONE);
+
+                // Special case for phone numbers in accessibility mode
+                if (action.getMimeType().equals(Phone.CONTENT_ITEM_TYPE)) {
+                    text1.setContentDescription(getActivity().getString(
+                            R.string.description_dial_phone_number, action.getBody()));
+                    if (hasAlternateAction) {
+                        alternateActionButton.setContentDescription(getActivity()
+                                .getString(R.string.description_send_message, action.getBody()));
+                    }
+                }
 
                 text1.setText(action.getBody());
                 text2.setText(action.getSubtitle());

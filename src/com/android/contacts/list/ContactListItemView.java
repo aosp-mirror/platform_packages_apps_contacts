@@ -698,6 +698,11 @@ public class ContactListItemView extends ViewGroup
         }
         if (mQuickContact == null) {
             mQuickContact = new QuickContactBadge(mContext, null, QUICK_CONTACT_BADGE_STYLE);
+            if (mNameTextView != null) {
+                mQuickContact.setContentDescription(mContext.getString(
+                        R.string.description_quick_contact_for, mNameTextView.getText()));
+            }
+
             addView(mQuickContact);
             mPhotoViewWidthAndHeightAreReady = false;
         }
@@ -1038,6 +1043,13 @@ public class ContactListItemView extends ViewGroup
 
         mDisplayNameFormatter.setDisplayName(
                 getNameTextView(), displayOrder, highlightingEnabled, mHighlightedPrefix);
+        // Since the quick contact content description is derived from the display name and there is
+        // no guarantee that when the quick contact is initialized the display name is already set,
+        // do it here too.
+        if (mQuickContact != null) {
+            mQuickContact.setContentDescription(mContext.getString(
+                    R.string.description_quick_contact_for, mNameTextView.getText()));
+        }
     }
 
     public void hideDisplayName() {
