@@ -131,6 +131,12 @@ public class ContactTileView extends FrameLayout {
             } else {
                 Log.w(TAG, "contactPhotoManager not set");
             }
+
+            if (mPushState != null) {
+                mPushState.setContentDescription(entry.name);
+            } else if (mQuickContact != null) {
+                mQuickContact.setContentDescription(entry.name);
+            }
         } else {
             setVisibility(View.INVISIBLE);
         }

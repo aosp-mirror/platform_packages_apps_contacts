@@ -69,7 +69,8 @@
             android:paddingRight="8dip"
             android:paddingLeft="8dip"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true"
+            android:contentDescription="@string/description_view_contact_detail" />
 
     </RelativeLayout>
 
