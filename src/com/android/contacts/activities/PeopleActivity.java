@@ -949,9 +949,7 @@ public class PeopleActivity extends ContactsActivity
             }
 
             TabState tab = mActionBarAdapter.getCurrentTab();
-            if (tab == TabState.GROUPS) {
-                mGroupsFragment.setAddAccountsVisibility(!areAccountsAvailable());
-            }
+            showEmptyStateForTab(tab);
         }
 
         invalidateOptionsMenuIfNeeded();
