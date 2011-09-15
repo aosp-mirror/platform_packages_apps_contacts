@@ -1348,8 +1348,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 return false;
             }
 
-            if (!ContactsUtils.shouldCollapse(context, mimetype, data, entry.mimetype,
-                    entry.data)) {
+            if (!ContactsUtils.shouldCollapse(mimetype, data, entry.mimetype, entry.data)) {
                 return false;
             }
 

@@ -19,6 +19,7 @@ package com.android.contacts.interactions;
 import com.android.contacts.Collapser;
 import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.ContactSaveService;
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.StringInflater;
@@ -123,18 +124,8 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
         }
 
         public boolean shouldCollapseWith(PhoneItem phoneItem) {
-            try {
-                PhoneNumberUtil util = PhoneNumberUtil.getInstance();
-                PhoneNumber phoneNumber1 = util.parse(phoneNumber, "ZZ" /* Unknown */);
-                PhoneNumber phoneNumber2 = util.parse(phoneItem.phoneNumber, "ZZ" /* Unknown */);
-                MatchType matchType = util.isNumberMatch(phoneNumber1, phoneNumber2);
-                if (matchType == MatchType.SHORT_NSN_MATCH) {
-                    return true;
-                }
-            } catch (NumberParseException e) {
-                return TextUtils.equals(phoneNumber, phoneItem.phoneNumber);
-            }
-            return false;
+            return ContactsUtils.shouldCollapse(Phone.CONTENT_ITEM_TYPE, phoneNumber,
+                    Phone.CONTENT_ITEM_TYPE, phoneItem.phoneNumber);
         }
 
         @Override

@@ -102,8 +102,8 @@ public class ContactsUtils {
      * considered equal for collapsing in the GUI. For caller-id, use
      * {@link PhoneNumberUtils#compare(Context, String, String)} instead
      */
-    public static final boolean shouldCollapse(Context context, CharSequence mimetype1,
-            CharSequence data1, CharSequence mimetype2, CharSequence data2) {
+    public static final boolean shouldCollapse(CharSequence mimetype1, CharSequence data1,
+            CharSequence mimetype2, CharSequence data2) {
         // different mimetypes? don't collapse
         if (!TextUtils.equals(mimetype1, mimetype2)) return false;
 
