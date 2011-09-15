@@ -195,8 +195,12 @@ public class RawContactEditorView extends BaseRawContactEditorView {
                 accountType = mContext.getString(R.string.account_phone);
             }
             if (!TextUtils.isEmpty(accountName)) {
+                mAccountNameTextView.setVisibility(View.VISIBLE);
                 mAccountNameTextView.setText(
                         mContext.getString(R.string.from_account_format, accountName));
+            } else {
+                // Hide this view so the other text view will be centered vertically
+                mAccountNameTextView.setVisibility(View.GONE);
             }
             mAccountTypeTextView.setText(
                     mContext.getString(R.string.account_type_format, accountType));
