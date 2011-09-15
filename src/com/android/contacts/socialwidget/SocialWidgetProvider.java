@@ -136,12 +136,12 @@ public class SocialWidgetProvider extends AppWidgetProvider {
         if (contactData.isError() || contactData == ContactLoader.Result.NOT_FOUND) {
             setDisplayNameAndSnippet(context, views,
                     context.getString(R.string.invalidContactMessage), null, null, null);
-            setPhoto(views, ContactBadgeUtil.loadPlaceholderPhoto(context));
+            setPhoto(views, ContactBadgeUtil.loadDefaultAvatarPhoto(context, false, false));
         } else {
             byte[] photo = contactData.getPhotoBinaryData();
             setPhoto(views, photo != null
                     ? BitmapFactory.decodeByteArray(photo, 0, photo.length)
-                            : ContactBadgeUtil.loadPlaceholderPhoto(context));
+                            : ContactBadgeUtil.loadDefaultAvatarPhoto(context, false, false));
 
             // TODO: Rotate between all the stream items?
 

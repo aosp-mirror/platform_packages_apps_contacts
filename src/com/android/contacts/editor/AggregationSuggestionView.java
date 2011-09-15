@@ -86,7 +86,7 @@ public class AggregationSuggestionView extends LinearLayout {
             photo.setImageBitmap(BitmapFactory.decodeByteArray(
                     suggestion.photo, 0, suggestion.photo.length));
         } else {
-            photo.setImageResource(R.drawable.ic_contact_picture);
+            photo.setImageResource(R.drawable.ic_contact_picture_holo_light);
         }
 
         TextView name = (TextView) findViewById(R.id.aggregation_suggestion_name);

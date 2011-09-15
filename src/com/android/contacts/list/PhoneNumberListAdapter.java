@@ -313,6 +313,6 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             photoId = cursor.getLong(PHONE_PHOTO_ID_COLUMN_INDEX);
         }
 
-        getPhotoLoader().loadPhoto(view.getPhotoView(), photoId);
+        getPhotoLoader().loadPhoto(view.getPhotoView(), photoId, false, false);
     }
 }

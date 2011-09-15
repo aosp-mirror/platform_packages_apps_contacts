@@ -35,7 +35,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_above="@id/contact_quick_fix"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:background="@color/background_primary" >
 
         <ImageView android:id="@+id/photo"
             android:scaleType="centerCrop"

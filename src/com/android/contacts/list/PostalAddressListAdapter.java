@@ -164,7 +164,7 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
             photoId = cursor.getLong(POSTAL_PHOTO_ID_COLUMN_INDEX);
         }
 
-        getPhotoLoader().loadPhoto(view.getPhotoView(), photoId);
+        getPhotoLoader().loadPhoto(view.getPhotoView(), photoId, false, false);
     }
 //
 //    protected void bindSearchSnippet(final ContactListItemView view, Cursor cursor) {

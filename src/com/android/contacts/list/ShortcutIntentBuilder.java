@@ -224,7 +224,7 @@ public class ShortcutIntentBuilder {
             bitmap = BitmapFactory.decodeByteArray(bitmapData, 0, bitmapData.length, null);
         } else {
             bitmap = ((BitmapDrawable) mContext.getResources().getDrawableForDensity(
-                    R.drawable.ic_contact_picture, mIconDensity)).getBitmap();
+                    R.drawable.ic_contact_picture_holo_light, mIconDensity)).getBitmap();
         }
 
         Intent shortcutIntent;

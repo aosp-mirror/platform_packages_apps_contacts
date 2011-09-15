@@ -200,7 +200,7 @@ public class ContactDetailDisplayUtils {
         }
         byte[] photo = contactData.getPhotoBinaryData();
         Bitmap bitmap = photo != null ? BitmapFactory.decodeByteArray(photo, 0, photo.length)
-                : ContactBadgeUtil.loadPlaceholderPhoto(context);
+                : ContactBadgeUtil.loadDefaultAvatarPhoto(context, true, false);
         boolean fadeIn = contactData.isDirectoryEntry();
         if (photoView.getDrawable() == null && fadeIn) {
             AlphaAnimation animation = new AlphaAnimation(0, 1);
@@ -249,7 +249,7 @@ public class ContactDetailDisplayUtils {
         setDataOrHideIfNone(snippet, statusView);
         if (photoUri != null) {
             ContactPhotoManager.getInstance(context).loadPhoto(
-                    statusPhotoView, Uri.parse(photoUri));
+                    statusPhotoView, Uri.parse(photoUri), true, false);
             statusPhotoView.setVisibility(View.VISIBLE);
         } else {
             statusPhotoView.setVisibility(View.GONE);
@@ -338,7 +338,8 @@ public class ContactDetailDisplayUtils {
             pushLayerView.setClickable(false);
             pushLayerView.setEnabled(false);
         }
-        contactPhotoManager.loadPhoto(imageView, Uri.parse(streamItemPhoto.getPhotoUri()));
+        contactPhotoManager.loadPhoto(imageView, Uri.parse(streamItemPhoto.getPhotoUri()), true,
+                false);
     }
 
     @VisibleForTesting

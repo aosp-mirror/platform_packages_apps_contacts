@@ -90,6 +90,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     private ContactListFilter mFilter;
     private String mContactsCount = "";
+    private boolean mDarkTheme = false;
 
     public ContactEntryListAdapter(Context context) {
         super(context);
@@ -304,6 +305,10 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     public boolean hasProfile() {
         return mProfileExists;
+    }
+
+    public void setDarkTheme(boolean value) {
+        mDarkTheme = value;
     }
 
     public void configureDirectoryLoader(DirectoryListLoader loader) {
@@ -607,7 +612,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         QuickContactBadge quickContact = view.getQuickContact();
         quickContact.assignContactUri(
                 getContactUri(partitionIndex, cursor, contactIdColumn, lookUpKeyColumn));
-        getPhotoLoader().loadPhoto(quickContact, photoId);
+        getPhotoLoader().loadPhoto(quickContact, photoId, false, mDarkTheme);
     }
 
     protected Uri getContactUri(int partitionIndex, Cursor cursor,

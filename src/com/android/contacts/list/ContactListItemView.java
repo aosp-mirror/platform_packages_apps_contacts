@@ -48,11 +48,6 @@ import android.widget.ImageView.ScaleType;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /**
  * A custom view for an item in the contact list.
  * The view contains the contact's photo, a set of text views (for name, status, etc...) and
