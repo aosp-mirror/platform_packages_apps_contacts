@@ -550,10 +550,16 @@
     <string name="description_call" msgid="3443678121983852666">"<xliff:g id="NAME">%1$s</xliff:g> anrufen"</string>
     <string name="description_send_text_message" msgid="7803126439934046891">"SMS an <xliff:g id="NAME">%1$s</xliff:g> senden"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Nicht abgehörte Mailbox-Nachricht"</string>
+    <!-- no translation found for description_send_message (6046623392322890962) -->
+    <skip />
+    <!-- no translation found for description_dial_phone_number (8831647331642648637) -->
+    <skip />
+    <!-- no translation found for description_quick_contact_for (6737516415168327789) -->
+    <skip />
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
-    <!-- outdated translation 9154761216179882405 -->     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Ich"</string>
+    <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Ich"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Mein lokales Profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mein <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-Profil"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Alle Kontakte werden angezeigt."</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Die Personenfunktion funktioniert besser mit einem Google-Konto."\n\n"• Zugriff über einen beliebigen Webbrowser"\n"• Sichern von Kontakten mit Schutzfunktion"</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Die Personenfunktion funktioniert besser mit einem Google-Konto."\n\n"• Zugriff über einen beliebigen Browser"\n"• Sichern von Kontakten mit Schutzfunktion"</string>
 </resources>
