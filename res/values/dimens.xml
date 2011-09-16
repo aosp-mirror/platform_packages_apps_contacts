@@ -110,11 +110,6 @@
     <!-- Font size used for the social status in the widget -->
     <dimen name="widget_text_size_snippet">13sp</dimen>
 
-    <!-- Margins and padding for text in widget -->
-    <dimen name="widget_snippet_top_margin">4dip</dimen>
-    <dimen name="widget_snippet_bottom_margin">7dip</dimen>
-    <dimen name="widget_snippet_top_padding">3dip</dimen>
-    <dimen name="widget_snippet_bottom_padding">6dip</dimen>
 
     <!-- Size of the shortcut icon. 0dip means: use the system default -->
     <dimen name="shortcut_icon_size">0dip</dimen>
