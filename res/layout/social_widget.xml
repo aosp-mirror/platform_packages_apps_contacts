@@ -30,10 +30,10 @@
             android:layout_width="70dip"
             android:layout_height="70dip"
             android:layout_marginTop="1dip"
-            android:layout_marginLeft="13dip">
+            android:layout_marginLeft="16dip"
+            android:layout_marginRight="4dip">
             <ImageView
                 android:id="@+id/image"
-                android:padding="4dip"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <ImageButton

@@ -16,9 +16,7 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true"
-        android:drawable="@drawable/frame_thumbnail_contact_widget_pressed_holo" />
-    <item android:state_focused="true"
-        android:drawable="@drawable/frame_thumbnail_contact_widget_focused_holo" />
+        android:drawable="@*android:drawable/quickcontact_badge_overlay_pressed_light" />
     <item
-        android:drawable="@drawable/frame_thumbnail_contact_widget_normal_holo" />
+        android:drawable="@*android:drawable/quickcontact_badge_overlay_normal_light" />
 </selector>
