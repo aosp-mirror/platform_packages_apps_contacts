@@ -211,9 +211,7 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"foto del contacte"</string>
     <string name="description_minus_button" msgid="387136707700230172">"menys"</string>
     <string name="description_plus_button" msgid="515164827856229880">"més"</string>
-    <!-- no translation found for description_view_contact_detail (9133251213656414807) -->
-    <!-- no translation found for description_view_contact_detail (2795575601596468581) -->
-    <skip />
+    <string name="description_view_contact_detail" msgid="9133251213656414807">"Mostra el contacte"</string>
     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"Emmagatzematge no dispon."</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"No hi ha cap targeta SD"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="1334170151822669976">"No s\'ha detectat cap emmagatzematge"</string>
@@ -550,6 +548,9 @@
     <string name="description_call" msgid="3443678121983852666">"Truca a <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_send_text_message" msgid="7803126439934046891">"Envia un missatge de text a <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Missatge de veu no escoltat"</string>
+    <string name="description_send_message" msgid="6046623392322890962">"Envia un missatge a <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="8831647331642648637">"Marca el telèfon <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"Contacte ràpid per a <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Usuari"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"El meu perfil local"</string>
