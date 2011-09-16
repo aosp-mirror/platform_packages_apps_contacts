@@ -141,7 +141,7 @@
     <dimen name="group_detail_border_padding">32dip</dimen>
 
     <!-- Height of edit text in dialpad fragment -->
-    <dimen name="dialpad_horizontal_margin">4dip</dimen>
+    <dimen name="dialpad_horizontal_margin">0dip</dimen>
     <dimen name="dialpad_vertical_margin">2dip</dimen>
     <dimen name="dialpad_digits_text_size">35sp</dimen>
 
