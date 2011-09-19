@@ -160,9 +160,9 @@ public class ContactsUtilsTests extends AndroidTestCase {
     private void assertCollapses(String message, boolean expected, CharSequence mimetype1,
             CharSequence data1, CharSequence mimetype2, CharSequence data2) {
         assertEquals(message, expected,
-                ContactsUtils.shouldCollapse(mContext, mimetype1, data1, mimetype2, data2));
+                ContactsUtils.shouldCollapse(mimetype1, data1, mimetype2, data2));
         assertEquals(message, expected,
-                ContactsUtils.shouldCollapse(mContext, mimetype2, data2, mimetype1, data1));
+                ContactsUtils.shouldCollapse(mimetype2, data2, mimetype1, data1));
 
         if (data1 == data2 && data1 != null) {
             // make sure we also do a test where object equality is not given
@@ -173,10 +173,10 @@ public class ContactsUtilsTests extends AndroidTestCase {
 
             // we have two different instances, now make sure we get the same result as before
             assertEquals(message, expected,
-                    ContactsUtils.shouldCollapse(mContext, mimetype1, data1, mimetype2,
+                    ContactsUtils.shouldCollapse(mimetype1, data1, mimetype2,
                     data2_newref));
             assertEquals(message, expected,
-                    ContactsUtils.shouldCollapse(mContext, mimetype2, data2_newref, mimetype1,
+                    ContactsUtils.shouldCollapse(mimetype2, data2_newref, mimetype1,
                     data1));
         }
     }
