@@ -21,7 +21,6 @@
     android:layout_height="0px"
     android:layout_weight="0.150"
     android:layout_gravity="center_horizontal"
-    android:layout_marginTop="@dimen/dialpad_vertical_margin"
     android:background="@drawable/dialpad_background"
     android:orientation="horizontal">
 
@@ -37,6 +36,12 @@
         android:contentDescription="@string/description_search_button"
         android:src="@drawable/ic_see_contacts_holo_dark"/>
 
+    <View
+        android:layout_width="1dip"
+        android:layout_height="24dip"
+        android:layout_gravity="center_vertical"
+        android:background="?android:attr/dividerVertical" />
+
     <!-- Onscreen "Dial" button, diused on all platforms by
          default. Its usage can be disabled using resources (see
          config.xml.) -->
@@ -49,6 +54,12 @@
         android:background="@drawable/btn_call"
         android:contentDescription="@string/description_dial_button"
         android:src="@drawable/ic_dial_action_call" />
+
+    <View
+        android:layout_width="1dip"
+        android:layout_height="24dip"
+        android:layout_gravity="center_vertical"
+        android:background="?android:attr/dividerVertical" />
 
     <!-- Onscreen "Backspace/Delete" button -->
     <ImageButton android:id="@+id/deleteButton"
