@@ -548,12 +548,9 @@
     <string name="description_call" msgid="3443678121983852666">"<xliff:g id="NAME">%1$s</xliff:g>님에게 전화걸기"</string>
     <string name="description_send_text_message" msgid="7803126439934046891">"<xliff:g id="NAME">%1$s</xliff:g>님에게 문자 메시지 보내기"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"듣지 않은 음성사서함"</string>
-    <!-- no translation found for description_send_message (6046623392322890962) -->
-    <skip />
-    <!-- no translation found for description_dial_phone_number (8831647331642648637) -->
-    <skip />
-    <!-- no translation found for description_quick_contact_for (6737516415168327789) -->
-    <skip />
+    <string name="description_send_message" msgid="6046623392322890962">"<xliff:g id="NAME">%1$s</xliff:g>님에게 메시지 보내기"</string>
+    <string name="description_dial_phone_number" msgid="8831647331642648637">"<xliff:g id="NAME">%1$s</xliff:g>님의 번호로 전화걸기"</string>
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"<xliff:g id="NAME">%1$s</xliff:g>님의 빠른 주소록"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"나"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"내 로컬 프로필"</string>

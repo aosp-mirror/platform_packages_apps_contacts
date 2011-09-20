@@ -169,7 +169,7 @@
     <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"Huna anwani zozote za kuonyesha."\n\n"Ili kuongeza anwani, bonyeza "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>" na gusa:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" ili kuongeza au kusanidi akaunti ya anwani unaweza kupatanisha katika simu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mawasiliano mapya"</b></font>" ili kuunda anwani mpya kuanzia mwanzo"</li>" "\n\n<li><font fgcolor="#ffffffff"><b>"Leta/Hamisha"</b></font>"ili kuleta anwani kutoka kwa kadi yako ya SD"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Huna anwani zozote za kuonyesha. (Kama uliongeza akaunti, inaweza kuchukua dakika chache kusawazisha anwani.)"\n\n"Kuongeza anwani, bonyeza "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>" na uguse:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" ili kuongeza au kusanidi akaunti na anwani unazoweza kusawazisha kwenye kompyuta ndogo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Chaguo za onyesha"</b></font>" ili kubadilisha ni anwani gani zinazoonekana"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Anwani mpya"</b></font>" ili kuunda anwani mpya kutoka mwanzo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Leta/Hamisha"</b></font>" ili kuleta anwani kutoka kwa kadi yako ya SD"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Hauna anwani zozote za kuonyesha. (Kama umeongeza tu akaunti, inaweza kuchukua dadika chache ili kupatanisha anwani.)"\n\n"Ili kuongeza anwani, bonyeza "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>" na gusa:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Akaunti"</b></font>" ili kuongeza au kusanidi anwani unayoweza kupatanisha katika simu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Onyesha Machaguo"</b></font>"ili kubadilisha anwani zinazoonekana"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Anwani mpya"</b></font>" ili kuunda anwani mpya kuanzia mwanzo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Leta/Hamisha"</b></font>"ili kuleta anwani kutoka kwa kadi yako ya SD"\n</li></string>
-    <!-- syntax error in translation for noFavoritesHelpText (3744655776704833277) org.xmlpull.v1.XmlPullParserException: expected: /string read: b (position:END_TAG </b>@1:167 in java.io.StringReader@2d3bad12)  -->
+    <!-- syntax error in translation for noFavoritesHelpText (3744655776704833277) org.xmlpull.v1.XmlPullParserException: expected: /string read: b (position:END_TAG </b>@1:167 in java.io.StringReader@28df8ff1)  -->
     <string name="liveFolder_all_label" msgid="5961411940473276616">"Anwani zote"</string>
     <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Yenye nyota"</string>
     <string name="liveFolder_phones_label" msgid="1709786878793436245">"Simu"</string>
@@ -452,7 +452,7 @@
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Hariri majina yaliyochaguliwa"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Badilisha kwa hariri anwani iliyochaguliwa? Maelezo uliyoyaingiza hadi sasa yatanakiliwa."</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"Nakili kwa anwani zangu"</string>
-    <string name="add_to_my_contacts" msgid="1068274916793627723">"Ongeza kwa  Anwani Zangu"</string>
+    <string name="add_to_my_contacts" msgid="1068274916793627723">"Ongeza kwa Anwani Zangu"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Saraka <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Saraka"</string>
     <string name="local_search_label" msgid="2551177578246113614">"Anwani zote"</string>
@@ -486,7 +486,7 @@
     <string name="delete_group_dialog_title" msgid="7368429698398624427">"Futa kikundi"</string>
   <plurals name="num_groups_in_account">
     <item quantity="one" msgid="2944819210288517794">"Kikundi 1"</item>
-    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> vikundi"</item>
+    <item quantity="other" msgid="1276758425904917367">"Vikundi <xliff:g id="COUNT">%0$d</xliff:g>"</item>
   </plurals>
     <string name="delete_group_dialog_message" msgid="295063284548750881">"Una uhakika unataka kufuta kikundi \'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\'? (Anwani zenyewe hazitafutwa.)"</string>
   <plurals name="num_contacts_in_group">
@@ -510,7 +510,7 @@
     <string name="view_updates_from_group" msgid="1782685984905600034">"Tazama visasisho"</string>
   <plurals name="notification_voicemail_title">
     <item quantity="one" msgid="1746619685488504230">"Barua ya sauti"</item>
-    <item quantity="other" msgid="5513481419205061254">"<xliff:g id="COUNT">%1$d</xliff:g> Barua za sauti"</item>
+    <item quantity="other" msgid="5513481419205061254">"Barua za sauti <xliff:g id="COUNT">%1$d</xliff:g>"</item>
   </plurals>
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Barua mpya ya sauti kutoka <xliff:g id="CALLER">%1$s</xliff:g>"</string>
@@ -521,7 +521,7 @@
     <string name="call_log_new_header" msgid="846546437517724715">"Mpya"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Nzee zaidi"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"Haiwezi kuunganisha kwa seva ya barua ya sauti."</string>
-    <string name="voicemail_status_messages_waiting" msgid="2970301042310727909">"Haiwezi kuunganishwa kwenye seva ya barua ya sauti. Barua mpya za sauti zinasubiri."</string>
+    <string name="voicemail_status_messages_waiting" msgid="2970301042310727909">"Haiwezi kuunganishwa kwenye seva ya barua sauti. Barua sauti mpya zinasubiri."</string>
     <string name="voicemail_status_configure_voicemail" msgid="3940240432123700974">"Weka mipangilio ya barua zako za sauti"</string>
     <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Sauti haipatikani."</string>
     <string name="voicemail_status_action_configure" msgid="7008713959076506385">"Sanidi"</string>
@@ -540,7 +540,7 @@
     <string name="status_away" msgid="1838861100379804730">"Mbali"</string>
     <string name="status_busy" msgid="9147992455450257136">"Ana shughuli"</string>
     <string name="description_call_log_call_button" msgid="8207201401459528442">"Pigia nambari"</string>
-    <string name="description_call_log_play_button" msgid="651182125650429846">"Chezesha barua ya sauti"</string>
+    <string name="description_call_log_play_button" msgid="651182125650429846">"Cheza barua ya sauti"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Simu inayoingia"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Simu inayotoka"</string>
     <string name="description_call_log_missed_call" msgid="2242805209983708825">"Simu isiyojibiwa"</string>
@@ -549,7 +549,7 @@
     <string name="description_view_contact" msgid="5205669345700598415">"Angalia anwani <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call" msgid="3443678121983852666">"Piga <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_send_text_message" msgid="7803126439934046891">"Tuma ujumbe wa maandishi kwa <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Barua ya sauti isiyosikika"</string>
+    <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Barua sauti ambayo haijasikizwa"</string>
     <!-- no translation found for description_send_message (6046623392322890962) -->
     <skip />
     <!-- no translation found for description_dial_phone_number (8831647331642648637) -->

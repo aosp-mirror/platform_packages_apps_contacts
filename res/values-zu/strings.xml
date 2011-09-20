@@ -80,7 +80,7 @@
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Yenza othintana naye omusha"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Ifoni"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"I-imeyli"</string>
-    <string name="imLabelsGroup" msgid="3898238486262614027">"I-IM"</string>
+    <string name="imLabelsGroup" msgid="3898238486262614027">"IM"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Ikheli"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Inhlangano"</item>
@@ -149,7 +149,7 @@
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Sula ifayela lokungena"</string>
     <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Uqinisekile ukuthi ufuna ukusula ifayela lokungena?"</string>
     <string name="clearCallLogProgress_title" msgid="6870412675015656948">"Isula lonke ifayela lokungena laboshayelayo"</string>
-    <string name="imei" msgid="3045126336951684285">"I-MEI"</string>
+    <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"I-MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Imeyli yezwi"</string>
     <string name="unknown" msgid="740067747858270469">"Akwaziwa"</string>
@@ -548,12 +548,9 @@
     <string name="description_call" msgid="3443678121983852666">"Fonela <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_send_text_message" msgid="7803126439934046891">"Hambisa umyalezo ku <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"I-imeyli yezwi engazwakalanga"</string>
-    <!-- no translation found for description_send_message (6046623392322890962) -->
-    <skip />
-    <!-- no translation found for description_dial_phone_number (8831647331642648637) -->
-    <skip />
-    <!-- no translation found for description_quick_contact_for (6737516415168327789) -->
-    <skip />
+    <string name="description_send_message" msgid="6046623392322890962">"Thumela imiyalezo ku <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="8831647331642648637">"Shayela ucingo <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"Oxhumene naye ngokushesha ku <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Mina"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Imininingwane yami yakuleli"</string>
