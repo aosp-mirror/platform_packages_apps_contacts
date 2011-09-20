@@ -515,8 +515,8 @@
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Yeni sesli mesj gönderen: <xliff:g id="CALLER">%1$s</xliff:g>"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"Sesli mesaj yürütülemedi."</string>
-    <string name="voicemail_buffering" msgid="738287747618697097">"Arabelleğe alınıyor???"</string>
-    <string name="voicemail_fetching_content" msgid="877911315738258780">"Sesli mesaj getiriliyor???"</string>
+    <string name="voicemail_buffering" msgid="738287747618697097">"Arabelleğe alınıyor..."</string>
+    <string name="voicemail_fetching_content" msgid="877911315738258780">"Sesli mesaj getiriliyor..."</string>
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Sesli mesaj getirilemedi."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Yeni"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Daha eski"</string>
@@ -550,11 +550,16 @@
     <string name="description_call" msgid="3443678121983852666">"Sesli arama yap: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_send_text_message" msgid="7803126439934046891">"Şu kişiye kısa mesaj gönder: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Dinlenilmemiş sesli mesaj"</string>
+    <!-- no translation found for description_send_message (6046623392322890962) -->
+    <skip />
+    <!-- no translation found for description_dial_phone_number (8831647331642648637) -->
+    <skip />
+    <!-- no translation found for description_quick_contact_for (6737516415168327789) -->
+    <skip />
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
-    <!-- outdated translation 9154761216179882405 -->     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"BEN"</string>
+    <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Ben"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Yerel profilim"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> profilim"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Tüm içerik görüntüleniyor"</string>
-    <!-- no translation found for no_account_prompt (7061052512446855192) -->
-    <skip />
+    <string name="no_account_prompt" msgid="7061052512446855192">"Kişi Arama bir Google Account hesabıyla daha iyi çalışır."\n\n"• Kişi Arama\'ya Herhangi bir tarayıcıdan erişin."\n"• Kişilerinizi güvenli bir şekilde yedekleyin."</string>
 </resources>
