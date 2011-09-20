@@ -278,6 +278,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
                             // collapse them again.
                             addOrganizationButton.setVisibility(View.GONE);
                             organizationSectionViewContainer.setVisibility(View.VISIBLE);
+                            organizationSectionViewContainer.requestFocus();
                         }
                     });
 
