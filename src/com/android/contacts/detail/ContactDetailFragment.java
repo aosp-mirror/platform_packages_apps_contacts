@@ -23,7 +23,6 @@ import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.GroupMetaData;
-import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
 import com.android.contacts.TypePrecedence;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
@@ -1411,7 +1410,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         public final TextView footer;
         public final ImageView presenceIcon;
         public final ImageView secondaryActionButton;
-        public final View primaryActionViewContainer;
+        public final View actionsViewContainer;
+        public final View primaryActionView;
         public final View secondaryActionViewContainer;
         public final View secondaryActionDivider;
         public final View primaryIndicator;
@@ -1425,8 +1425,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             primaryIndicator = view.findViewById(R.id.primary_indicator);
             presenceIcon = (ImageView) view.findViewById(R.id.presence_icon);
 
-            primaryActionViewContainer = view.findViewById(R.id.primary_action_view_container);
-            primaryActionViewContainer.setOnClickListener(primaryActionClickListener);
+            actionsViewContainer = view.findViewById(R.id.actions_view_container);
+            actionsViewContainer.setOnClickListener(primaryActionClickListener);
+            primaryActionView = view.findViewById(R.id.primary_action_view);
 
             secondaryActionViewContainer = view.findViewById(
                     R.id.secondary_action_view_container);
@@ -1625,11 +1626,11 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 presenceIconView.setVisibility(View.GONE);
             }
 
-            final PrimaryActionViewContainer primaryActionButtonContainer =
-                    (PrimaryActionViewContainer) views.primaryActionViewContainer;
-            primaryActionButtonContainer.setTag(entry);
-            primaryActionButtonContainer.setPosition(position);
-            registerForContextMenu(primaryActionButtonContainer);
+            final ActionsViewContainer actionsButtonContainer =
+                    (ActionsViewContainer) views.actionsViewContainer;
+            actionsButtonContainer.setTag(entry);
+            actionsButtonContainer.setPosition(position);
+            registerForContextMenu(actionsButtonContainer);
 
             // Set the secondary action button
             final ImageView secondaryActionView = views.secondaryActionButton;
@@ -1655,14 +1656,18 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 views.secondaryActionDivider.setVisibility(View.GONE);
             }
 
-            // Right padding should not have "pressed" effect.
-            view.setPadding(0, 0, mViewEntryDimensions.getPaddingRight(), 0);
-            // Top, left, and bottom paddings should have "pressed" effect.
-            primaryActionButtonContainer.setPadding(entry.isInSubSection() ?
-                    mViewEntryDimensions.getWidePaddingLeft() :
-                            mViewEntryDimensions.getPaddingLeft(),
+            // Right and left padding should not have "pressed" effect.
+            view.setPadding(
+                    entry.isInSubSection()
+                            ? mViewEntryDimensions.getWidePaddingLeft()
+                            : mViewEntryDimensions.getPaddingLeft(),
+                    0, mViewEntryDimensions.getPaddingRight(), 0);
+            // Top and bottom padding should have "pressed" effect.
+            final View primaryActionView = views.primaryActionView;
+            primaryActionView.setPadding(
+                    primaryActionView.getPaddingLeft(),
                     mViewEntryDimensions.getPaddingTop(),
-                    0,
+                    primaryActionView.getPaddingRight(),
                     mViewEntryDimensions.getPaddingBottom());
             secondaryActionViewContainer.setPadding(
                     secondaryActionViewContainer.getPaddingLeft(),

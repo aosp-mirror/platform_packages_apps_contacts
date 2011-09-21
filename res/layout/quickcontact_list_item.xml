@@ -16,22 +16,23 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/actions_view_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:minHeight="?android:attr/listPreferredItemHeight"
     android:orientation="horizontal"
-    android:background="@drawable/quickcontact_list_item_background"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:background="?android:attr/selectableItemBackground"
+    android:nextFocusRight="@+id/secondary_action_button">
     <LinearLayout
-        android:id="@+id/primary_action_view_container"
         android:layout_width="0dip"
         android:layout_height="wrap_content"
-        android:minHeight="?android:attr/listPreferredItemHeight"
         android:layout_weight="1"
-        android:orientation="vertical"
         android:paddingLeft="16dip"
         android:paddingRight="16dip"
         android:gravity="center_vertical"
-        android:background="?android:attr/selectableItemBackground">
+        android:orientation="vertical"
+    >
         <TextView
             android:id="@android:id/text1"
             android:layout_width="wrap_content"
@@ -61,5 +62,6 @@
         android:paddingLeft="@dimen/detail_item_icon_margin"
         android:paddingRight="@dimen/detail_item_icon_margin"
         android:background="?android:attr/selectableItemBackground"
-        android:duplicateParentState="false" />
+        android:duplicateParentState="false"
+        android:nextFocusLeft="@id/actions_view_container" />
 </LinearLayout>
