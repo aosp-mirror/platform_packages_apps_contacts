@@ -71,11 +71,11 @@ public class ImportExportDialogFragment extends DialogFragment {
 
         // Adapter that shows a list of string resources
         final ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(getActivity(),
-                android.R.layout.select_dialog_item) {
+                R.layout.select_dialog_item) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 final TextView result = (TextView)(convertView != null ? convertView :
-                        dialogInflater.inflate(android.R.layout.select_dialog_item, parent, false));
+                        dialogInflater.inflate(R.layout.select_dialog_item, parent, false));
 
                 final int resId = getItem(position);
                 result.setText(resId);
@@ -127,7 +127,6 @@ public class ImportExportDialogFragment extends DialogFragment {
         };
         return new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.dialog_import_export)
-                .setNegativeButton(android.R.string.cancel, null)
                 .setSingleChoiceItems(adapter, -1, clickListener)
                 .create();
     }
