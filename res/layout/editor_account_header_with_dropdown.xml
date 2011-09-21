@@ -29,37 +29,35 @@
     <LinearLayout
         android:id="@+id/account"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:layout_width="0dip"
+        android:layout_weight="1"
         android:orientation="vertical"
         style="?android:attr/spinnerStyle">
 
         <TextView
             android:id="@+id/account_type"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:ellipsize="end" />
 
         <TextView
              android:id="@+id/account_name"
-             android:layout_width="wrap_content"
+             android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:paddingRight="8dip"
              android:textAppearance="?android:attr/textAppearanceSmall"
              android:textColor="?android:attr/textColorTertiary"
-             android:singleLine="true" />
+             android:singleLine="true"
+             android:ellipsize="end" />
 
     </LinearLayout>
 
-    <!-- Spacer between the account type / name dropdown and the account icon -->
-    <View
-        android:layout_width="0dip"
-        android:layout_height="match_parent"
-        android:layout_weight="1"/>
-
     <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dip">
 
         <ImageView
              android:id="@+id/account_icon"

@@ -38,18 +38,20 @@
 
         <TextView
             android:id="@+id/account_type"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:ellipsize="end" />
 
         <TextView
              android:id="@+id/account_name"
-             android:layout_width="wrap_content"
+             android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:textAppearance="?android:attr/textAppearanceSmall"
              android:textColor="?android:attr/textColorTertiary"
-             android:singleLine="true" />
+             android:singleLine="true"
+             android:ellipsize="end" />
 
     </LinearLayout>
 
