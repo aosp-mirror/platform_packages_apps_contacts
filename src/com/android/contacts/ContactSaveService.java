@@ -331,10 +331,11 @@ public class ContactSaveService extends IntentService {
                             new String[] {Contacts._ID, Contacts.LOOKUP_KEY},
                             null, null, null);
                     try {
-                        c.moveToFirst();
-                        final long contactId = c.getLong(0);
-                        final String lookupKey = c.getString(1);
-                        lookupUri = Contacts.getLookupUri(contactId, lookupKey);
+                        if (c.moveToFirst()) {
+                            final long contactId = c.getLong(0);
+                            final String lookupKey = c.getString(1);
+                            lookupUri = Contacts.getLookupUri(contactId, lookupKey);
+                        }
                     } finally {
                         c.close();
                     }
