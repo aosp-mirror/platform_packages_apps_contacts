@@ -40,6 +40,7 @@
             android:ellipsize="end"
             android:gravity="left|center_vertical"
             android:layout_weight="1"
+            android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:paddingLeft="?attr/list_item_text_indent"
             android:textColor="@color/people_app_theme_color" />
