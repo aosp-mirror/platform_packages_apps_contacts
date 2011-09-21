@@ -22,11 +22,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_vertical"
-    android:paddingLeft="16dip"
-    android:paddingTop="8dip"
-    android:paddingBottom="8dip"
-    android:minHeight="@dimen/detail_min_line_item_height">
+    android:paddingLeft="16dip">
 
     <com.android.contacts.detail.ActionsViewContainer
         android:id="@+id/actions_view_container"
@@ -35,7 +31,8 @@
         android:orientation="horizontal"
         android:focusable="true"
         android:background="?android:attr/selectableItemBackground"
-        android:nextFocusRight="@+id/secondary_action_view_container">
+        android:nextFocusRight="@+id/secondary_action_view_container"
+        android:minHeight="@dimen/detail_min_line_item_height">
 
         <!-- Note: padding might be controlled programatically -->
         <LinearLayout
