@@ -172,7 +172,7 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
             boolean hasPhotoEditor = type.getKindForMimetype(Photo.CONTENT_ITEM_TYPE) != null;
             setHasPhotoEditor(hasPhotoEditor);
             primary = state.getPrimaryEntry(Photo.CONTENT_ITEM_TYPE);
-            getPhotoEditor().setValues(kind, primary, state, type.readOnly, vig);
+            getPhotoEditor().setValues(kind, primary, state, !type.areContactsWritable(), vig);
             if (!hasPhotoEditor || !getPhotoEditor().hasSetPhoto()) {
                 mPhotoStub.setVisibility(View.GONE);
             } else {
@@ -187,7 +187,11 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
         mName.setText(primary != null ? primary.getAsString(StructuredName.DISPLAY_NAME) :
                 mContext.getString(R.string.missing_name));
 
-        if (type.readOnly) {
+        if (type.areContactsWritable()) {
+            mAccountContainer.setBackgroundDrawable(null);
+            mAccountContainer.setEnabled(false);
+            mEditExternallyButton.setVisibility(View.VISIBLE);
+        } else {
             mAccountContainer.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -196,10 +200,6 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
                 }
             });
             mEditExternallyButton.setVisibility(View.GONE);
-        } else {
-            mAccountContainer.setBackgroundDrawable(null);
-            mAccountContainer.setEnabled(false);
-            mEditExternallyButton.setVisibility(View.VISIBLE);
         }
 
         final Resources res = mContext.getResources();

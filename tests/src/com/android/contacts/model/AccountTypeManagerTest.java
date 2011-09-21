@@ -196,5 +196,10 @@ public class AccountTypeManagerTest extends AndroidTestCase {
         public boolean isGroupMembershipEditable() {
             return false;
         }
+
+        @Override
+        public boolean areContactsWritable() {
+            return false;
+        }
     }
 }

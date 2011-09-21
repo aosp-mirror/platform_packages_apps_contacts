@@ -40,7 +40,7 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.view.inputmethod.EditorInfo;
 
-public class BaseAccountType extends AccountType {
+public abstract class BaseAccountType extends AccountType {
     protected static final int FLAGS_PHONE = EditorInfo.TYPE_CLASS_PHONE;
     protected static final int FLAGS_EMAIL = EditorInfo.TYPE_CLASS_TEXT
             | EditorInfo.TYPE_TEXT_VARIATION_EMAIL_ADDRESS;

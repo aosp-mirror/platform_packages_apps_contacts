@@ -71,8 +71,6 @@ public abstract class AccountType {
     public int titleRes;
     public int iconRes;
 
-    public boolean readOnly;
-
     /**
      * Set of {@link DataKind} supported by this source.
      */
@@ -90,6 +88,11 @@ public abstract class AccountType {
     public boolean isExtension() {
         return false;
     }
+
+    /**
+     * @return True if contacts can be created and edited using this app
+     */
+    public abstract boolean areContactsWritable();
 
     /**
      * Returns an optional custom edit activity.  The activity class should reside

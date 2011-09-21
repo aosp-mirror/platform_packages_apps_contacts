@@ -65,7 +65,6 @@ public class ExternalAccountType extends BaseAccountType {
     // The following attributes should only be set in non-sync-adapter account types.  They allow
     // for the account type and resource IDs to be specified without an associated authenticator.
     private static final String ATTR_ACCOUNT_TYPE = "accountType";
-    private static final String ATTR_READ_ONLY = "readOnly";
     private static final String ATTR_ACCOUNT_LABEL = "accountTypeLabel";
     private static final String ATTR_ACCOUNT_ICON = "accountTypeIcon";
 
@@ -141,6 +140,11 @@ public class ExternalAccountType extends BaseAccountType {
      */
     public boolean isInitialized() {
         return mInitSuccessful;
+    }
+
+    @Override
+    public boolean areContactsWritable() {
+        return getCreateContactActivityClassName() != null;
     }
 
     /**
@@ -251,8 +255,6 @@ public class ExternalAccountType extends BaseAccountType {
                     mExtensionPackageNames.add(value);
                 } else if (ATTR_ACCOUNT_TYPE.equals(attr)) {
                     accountType = value;
-                } else if (ATTR_READ_ONLY.equals(attr)) {
-                    readOnly = !"0".equals(value) && !"false".equals(value);
                 } else if (ATTR_ACCOUNT_LABEL.equals(attr)) {
                     mAccountTypeLabelAttribute = value;
                 } else if (ATTR_ACCOUNT_ICON.equals(attr)) {
