@@ -14,8 +14,7 @@
      limitations under the License.
 -->
 
-<!-- placed inside act_edit as tabcontent -->
-<com.android.contacts.editor.ExternalRawContactEditorView
+<com.android.contacts.editor.RawContactReadOnlyEditorView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -77,4 +76,4 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"/>
 
-</com.android.contacts.editor.ExternalRawContactEditorView>
+</com.android.contacts.editor.RawContactReadOnlyEditorView>

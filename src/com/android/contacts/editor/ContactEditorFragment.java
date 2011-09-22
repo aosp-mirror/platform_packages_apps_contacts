@@ -95,7 +95,7 @@ import java.util.List;
 public class ContactEditorFragment extends Fragment implements
         SplitContactConfirmationDialogFragment.Listener,
         AggregationSuggestionEngine.Listener, AggregationSuggestionView.Listener,
-        ExternalRawContactEditorView.Listener {
+        RawContactReadOnlyEditorView.Listener {
 
     private static final String TAG = ContactEditorFragment.class.getSimpleName();
 
@@ -449,7 +449,8 @@ public class ContactEditorFragment extends Fragment implements
             String dataSet = entityValues.getAsString(RawContacts.DATA_SET);
             AccountType accountType = AccountTypeManager.getInstance(mContext).getAccountType(
                     type, dataSet);
-            if (accountType.getEditContactActivityClassName() != null) {
+            if (accountType.getEditContactActivityClassName() != null &&
+                    !accountType.areContactsWritable()) {
                 if (mListener != null) {
                     String name = entityValues.getAsString(RawContacts.ACCOUNT_NAME);
                     long rawContactId = entityValues.getAsLong(RawContacts.Entity._ID);
@@ -671,10 +672,10 @@ public class ContactEditorFragment extends Fragment implements
             final long rawContactId = values.getAsLong(RawContacts._ID);
 
             final BaseRawContactEditorView editor;
-            if (type.isExternal()) {
+            if (!type.areContactsWritable()) {
                 editor = (BaseRawContactEditorView) inflater.inflate(
-                        R.layout.external_raw_contact_editor_view, mContent, false);
-                ((ExternalRawContactEditorView) editor).setListener(this);
+                        R.layout.raw_contact_readonly_editor_view, mContent, false);
+                ((RawContactReadOnlyEditorView) editor).setListener(this);
             } else {
                 editor = (RawContactEditorView) inflater.inflate(R.layout.raw_contact_editor_view,
                         mContent, false);
