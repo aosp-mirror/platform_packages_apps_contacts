@@ -51,7 +51,12 @@ public class ContactLoaderTest extends LoaderTestCase {
         mContactsProvider = mMockContext.getContactsProvider();
 
         InjectedServices services = new InjectedServices();
-        AccountType accountType = new BaseAccountType();
+        AccountType accountType = new BaseAccountType() {
+            @Override
+            public boolean areContactsWritable() {
+                return false;
+            }
+        };
         accountType.accountType = "mockAccountType";
 
         AccountWithDataSet account =

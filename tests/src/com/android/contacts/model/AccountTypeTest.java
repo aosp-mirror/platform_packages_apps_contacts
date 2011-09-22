@@ -84,6 +84,10 @@ public class AccountTypeTest extends AndroidTestCase {
             @Override public boolean isGroupMembershipEditable() {
                 return false;
             }
+
+            @Override public boolean areContactsWritable() {
+                return false;
+            }
         };
 
         assertEquals(getTestContext().getString(externalResID),
@@ -135,6 +139,11 @@ public class AccountTypeTest extends AndroidTestCase {
 
         @Override
         public boolean isGroupMembershipEditable() {
+            return false;
+        }
+
+        @Override
+        public boolean areContactsWritable() {
             return false;
         }
     }

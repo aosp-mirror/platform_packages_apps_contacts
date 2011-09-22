@@ -550,7 +550,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 mRawContactIds.add(rawContactId);
             }
             AccountType type = accountTypes.getAccountType(accountType, dataSet);
-            if (type == null || !type.readOnly) {
+            if (type == null || type.areContactsWritable()) {
                 mWritableRawContactIds.add(rawContactId);
             }
 
@@ -1948,7 +1948,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     AccountTypeManager.getInstance(mContext);
             final AccountType type = accountTypes.getAccountType(accountType, dataSet);
             // Offline or non-writeable account? Nothing to fix
-            if (type == null || type.readOnly) return false;
+            if (type == null || !type.areContactsWritable()) return false;
 
             // Check whether the contact is in the default group
             boolean isInDefaultGroup = false;

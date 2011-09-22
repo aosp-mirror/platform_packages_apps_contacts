@@ -153,6 +153,11 @@ public class EntityModifierTests extends AndroidTestCase {
         public boolean isGroupMembershipEditable() {
             return false;
         }
+
+        @Override
+        public boolean areContactsWritable() {
+            return true;
+        }
     }
 
     /**

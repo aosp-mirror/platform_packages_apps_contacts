@@ -183,4 +183,9 @@ public class GoogleAccountType extends BaseAccountType {
     public boolean isGroupMembershipEditable() {
         return true;
     }
+
+    @Override
+    public boolean areContactsWritable() {
+        return true;
+    }
 }

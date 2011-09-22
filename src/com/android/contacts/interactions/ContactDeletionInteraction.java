@@ -240,11 +240,11 @@ public class ContactDeletionInteraction extends Fragment
             contactId = cursor.getLong(COLUMN_INDEX_CONTACT_ID);
             lookupKey = cursor.getString(COLUMN_INDEX_LOOKUP_KEY);
             AccountType type = accountTypes.getAccountType(accountType, dataSet);
-            boolean readonly = type != null && type.readOnly;
-            if (readonly) {
-                readOnlyRawContacts.add(rawContactId);
-            } else {
+            boolean writable = type == null || type.areContactsWritable();
+            if (writable) {
                 writableRawContacts.add(rawContactId);
+            } else {
+                readOnlyRawContacts.add(rawContactId);
             }
         }
 

@@ -519,7 +519,7 @@ public class ContactEditorFragment extends Fragment implements
             final String accountType = state.getValues().getAsString(RawContacts.ACCOUNT_TYPE);
             final String dataSet = state.getValues().getAsString(RawContacts.DATA_SET);
             final AccountType type = accountTypes.getAccountType(accountType, dataSet);
-            if (!type.readOnly) {
+            if (type.areContactsWritable()) {
                 // Apply extras to the first writable raw contact only
                 EntityModifier.parseExtras(mContext, type, state, extras);
                 break;
@@ -698,7 +698,7 @@ public class ContactEditorFragment extends Fragment implements
             editor.setState(entity, type, mViewIdGenerator, isEditingUserProfile());
 
             editor.getPhotoEditor().setEditorListener(
-                    new PhotoEditorListener(editor, type.readOnly));
+                    new PhotoEditorListener(editor, type.areContactsWritable()));
             if (editor instanceof RawContactEditorView) {
                 final RawContactEditorView rawContactEditor = (RawContactEditorView) editor;
                 EditorListener listener = new EditorListener() {
@@ -1154,7 +1154,7 @@ public class ContactEditorFragment extends Fragment implements
             final String accountType = values.getAsString(RawContacts.ACCOUNT_TYPE);
             final String dataSet = values.getAsString(RawContacts.DATA_SET);
             final AccountType type = accountTypes.getAccountType(accountType, dataSet);
-            if (!type.readOnly) {
+            if (type.areContactsWritable()) {
                 return true;
             }
         }
@@ -1234,9 +1234,9 @@ public class ContactEditorFragment extends Fragment implements
             final AccountType type2 = accountTypes.getAccountType(accountType2, dataSet2);
 
             // Check read-only
-            if (type1.readOnly && !type2.readOnly) {
+            if (!type1.areContactsWritable() && type2.areContactsWritable()) {
                 return 1;
-            } else if (!type1.readOnly && type2.readOnly) {
+            } else if (type1.areContactsWritable() && !type2.areContactsWritable()) {
                 return -1;
             }
 
@@ -1693,11 +1693,11 @@ public class ContactEditorFragment extends Fragment implements
     private final class PhotoEditorListener
             implements EditorListener, PhotoActionPopup.Listener {
         private final BaseRawContactEditorView mEditor;
-        private final boolean mAccountReadOnly;
+        private final boolean mAccountWritable;
 
-        private PhotoEditorListener(BaseRawContactEditorView editor, boolean accountReadOnly) {
+        private PhotoEditorListener(BaseRawContactEditorView editor, boolean accountWritable) {
             mEditor = editor;
-            mAccountReadOnly = accountReadOnly;
+            mAccountWritable = accountWritable;
         }
 
         @Override
@@ -1707,14 +1707,7 @@ public class ContactEditorFragment extends Fragment implements
             if (request == EditorListener.REQUEST_PICK_PHOTO) {
                 // Determine mode
                 final int mode;
-                if (mAccountReadOnly) {
-                    if (mEditor.hasSetPhoto() && hasMoreThanOnePhoto()) {
-                        mode = PhotoActionPopup.MODE_READ_ONLY_ALLOW_PRIMARY;
-                    } else {
-                        // Read-only and either no photo or the only photo ==> no options
-                        return;
-                    }
-                } else {
+                if (mAccountWritable) {
                     if (mEditor.hasSetPhoto()) {
                         if (hasMoreThanOnePhoto()) {
                             mode = PhotoActionPopup.MODE_PHOTO_ALLOW_PRIMARY;
@@ -1723,6 +1716,13 @@ public class ContactEditorFragment extends Fragment implements
                         }
                     } else {
                         mode = PhotoActionPopup.MODE_NO_PHOTO;
+                    }
+                } else {
+                    if (mEditor.hasSetPhoto() && hasMoreThanOnePhoto()) {
+                        mode = PhotoActionPopup.MODE_READ_ONLY_ALLOW_PRIMARY;
+                    } else {
+                        // Read-only and either no photo or the only photo ==> no options
+                        return;
                     }
                 }
                 PhotoActionPopup.createPopupMenu(mContext, mEditor.getPhotoEditor(), this, mode)
