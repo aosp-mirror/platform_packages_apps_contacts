@@ -83,11 +83,20 @@ public class ContactDeletionInteractionTest
         InjectedServices services = new InjectedServices();
         services.setContentResolver(mContext.getContentResolver());
 
-        AccountType readOnlyAccountType = new BaseAccountType();
+        AccountType readOnlyAccountType = new BaseAccountType() {
+            @Override
+            public boolean areContactsWritable() {
+                return false;
+            }
+        };
         readOnlyAccountType.accountType = READONLY_ACCOUNT_TYPE;
-        readOnlyAccountType.readOnly = true;
 
-        AccountType writableAccountType = new BaseAccountType();
+        AccountType writableAccountType = new BaseAccountType() {
+            @Override
+            public boolean areContactsWritable() {
+                return true;
+            }
+        };
         writableAccountType.accountType = WRITABLE_ACCOUNT_TYPE;
 
         services.setSystemService(AccountTypeManager.ACCOUNT_TYPE_SERVICE,

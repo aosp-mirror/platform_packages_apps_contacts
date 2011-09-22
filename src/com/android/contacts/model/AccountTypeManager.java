@@ -329,7 +329,6 @@ class AccountTypeManagerImpl extends AccountTypeManager
                         // Skip external account types that couldn't be initialized.
                         continue;
                     }
-                    accountType.readOnly = !sync.supportsUploading();
                 }
 
                 accountType.accountType = auth.type;
@@ -395,7 +394,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
                         AccountWithDataSet accountWithDataSet = new AccountWithDataSet(
                                 account.name, account.type, accountType.dataSet);
                         allAccounts.add(accountWithDataSet);
-                        if (!accountType.readOnly) {
+                        if (accountType.areContactsWritable()) {
                             writableAccounts.add(accountWithDataSet);
                         }
                     }

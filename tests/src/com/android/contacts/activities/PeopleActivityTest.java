@@ -94,7 +94,12 @@ public class PeopleActivityTest
         services.setSharedPreferences(new MockSharedPreferences());
         services.setSystemService(ContactPhotoManager.CONTACT_PHOTO_SERVICE,
                 new MockContactPhotoManager());
-        AccountType accountType = new BaseAccountType();
+        AccountType accountType = new BaseAccountType() {
+            @Override
+            public boolean areContactsWritable() {
+                return false;
+            }
+        };
         accountType.accountType = TEST_ACCOUNT_TYPE;
 
         AccountWithDataSet account = new AccountWithDataSet(TEST_ACCOUNT, TEST_ACCOUNT_TYPE, null);

@@ -120,7 +120,7 @@ public class AggregationSuggestionView extends LinearLayout {
                 return true;
             }
             AccountType type = accountTypes.getAccountType(accountType, dataSet);
-            if (!type.readOnly) {
+            if (type.areContactsWritable()) {
                 return true;
             }
         }
