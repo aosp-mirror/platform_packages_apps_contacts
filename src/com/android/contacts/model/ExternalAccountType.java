@@ -49,6 +49,7 @@ public class ExternalAccountType extends BaseAccountType {
     private static final String TAG_CONTACTS_SOURCE_LEGACY = "ContactsSource";
     private static final String TAG_CONTACTS_ACCOUNT_TYPE = "ContactsAccountType";
     private static final String TAG_CONTACTS_DATA_KIND = "ContactsDataKind";
+    private static final String TAG_EDIT_SCHEMA = "EditSchema";
 
     private static final String ATTR_EDIT_CONTACT_ACTIVITY = "editContactActivity";
     private static final String ATTR_CREATE_CONTACT_ACTIVITY = "createContactActivity";
@@ -87,6 +88,7 @@ public class ExternalAccountType extends BaseAccountType {
     private String mAccountTypeIconAttribute;
     private boolean mInitSuccessful;
     private boolean mHasContactsMetadata;
+    private boolean mHasEditSchema;
 
     public ExternalAccountType(Context context, String resPackageName, boolean isExtension) {
         this.mIsExtension = isExtension;
@@ -132,11 +134,6 @@ public class ExternalAccountType extends BaseAccountType {
     }
 
     @Override
-    public boolean isExternal() {
-        return true;
-    }
-
-    @Override
     public boolean isExtension() {
         return mIsExtension;
     }
@@ -151,7 +148,7 @@ public class ExternalAccountType extends BaseAccountType {
 
     @Override
     public boolean areContactsWritable() {
-        return getCreateContactActivityClassName() != null;
+        return mHasEditSchema;
     }
 
     /**
@@ -283,50 +280,81 @@ public class ExternalAccountType extends BaseAccountType {
             while (((type = parser.next()) != XmlPullParser.END_TAG || parser.getDepth() > depth)
                     && type != XmlPullParser.END_DOCUMENT) {
                 String tag = parser.getName();
-                if (type == XmlPullParser.END_TAG || !TAG_CONTACTS_DATA_KIND.equals(tag)) {
-                    continue;
+                if (TAG_EDIT_SCHEMA.equals(tag)) {
+                    parseEditSchema(context, parser);
+                } else if (TAG_CONTACTS_DATA_KIND.equals(tag)) {
+                    final TypedArray a = context.obtainStyledAttributes(attrs,
+                            android.R.styleable.ContactsDataKind);
+                    final DataKind kind = new DataKind();
+
+                    kind.mimeType = a
+                            .getString(com.android.internal.R.styleable.ContactsDataKind_mimeType);
+                    kind.iconRes = a.getResourceId(
+                            com.android.internal.R.styleable.ContactsDataKind_icon, -1);
+
+                    final String summaryColumn = a.getString(
+                            com.android.internal.R.styleable.ContactsDataKind_summaryColumn);
+                    if (summaryColumn != null) {
+                        // Inflate a specific column as summary when requested
+                        kind.actionHeader = new SimpleInflater(summaryColumn);
+                    }
+
+                    final String detailColumn = a.getString(
+                            com.android.internal.R.styleable.ContactsDataKind_detailColumn);
+                    final boolean detailSocialSummary = a.getBoolean(
+                            com.android.internal.R.styleable.ContactsDataKind_detailSocialSummary,
+                            false);
+
+                    if (detailSocialSummary) {
+                        // Inflate social summary when requested
+                        kind.actionBodySocial = true;
+                    }
+
+                    if (detailColumn != null) {
+                        // Inflate specific column as summary
+                        kind.actionBody = new SimpleInflater(detailColumn);
+                    }
+
+                    a.recycle();
+
+                    addKind(kind);
                 }
-
-                final TypedArray a = context.obtainStyledAttributes(attrs,
-                        android.R.styleable.ContactsDataKind);
-                final DataKind kind = new DataKind();
-
-                kind.mimeType = a
-                        .getString(com.android.internal.R.styleable.ContactsDataKind_mimeType);
-                kind.iconRes = a.getResourceId(
-                        com.android.internal.R.styleable.ContactsDataKind_icon, -1);
-
-                final String summaryColumn = a
-                        .getString(com.android.internal.R.styleable.ContactsDataKind_summaryColumn);
-                if (summaryColumn != null) {
-                    // Inflate a specific column as summary when requested
-                    kind.actionHeader = new FallbackAccountType.SimpleInflater(summaryColumn);
-                }
-
-                final String detailColumn = a
-                        .getString(com.android.internal.R.styleable.ContactsDataKind_detailColumn);
-                final boolean detailSocialSummary = a.getBoolean(
-                        com.android.internal.R.styleable.ContactsDataKind_detailSocialSummary,
-                        false);
-
-                if (detailSocialSummary) {
-                    // Inflate social summary when requested
-                    kind.actionBodySocial = true;
-                }
-
-                if (detailColumn != null) {
-                    // Inflate specific column as summary
-                    kind.actionBody = new FallbackAccountType.SimpleInflater(detailColumn);
-                }
-
-                addKind(kind);
-                a.recycle();
             }
         } catch (XmlPullParserException e) {
             throw new IllegalStateException("Problem reading XML", e);
         } catch (IOException e) {
             throw new IllegalStateException("Problem reading XML", e);
         }
+    }
+
+    /**
+     * Has to be started while the parser is on the EditSchema tag. Will finish on the end tag
+     */
+    private void parseEditSchema(Context context, XmlPullParser parser)
+            throws XmlPullParserException, IOException {
+        // Loop until we left this tag
+        final int startingDepth = parser.getDepth();
+        int type;
+        do {
+            type = parser.next();
+        } while (!(parser.getDepth() == startingDepth && type == XmlPullParser.END_TAG));
+
+        // Just add all defaults for now
+        addDataKindStructuredName(context);
+        addDataKindDisplayName(context);
+        addDataKindPhoneticName(context);
+        addDataKindNickname(context);
+        addDataKindPhone(context);
+        addDataKindEmail(context);
+        addDataKindStructuredPostal(context);
+        addDataKindIm(context);
+        addDataKindOrganization(context);
+        addDataKindPhoto(context);
+        addDataKindNote(context);
+        addDataKindWebsite(context);
+        addDataKindSipAddress(context);
+
+        mHasEditSchema = true;
     }
 
     @Override

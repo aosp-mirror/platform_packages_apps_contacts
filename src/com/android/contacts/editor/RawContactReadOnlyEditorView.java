@@ -51,7 +51,7 @@ import java.util.ArrayList;
 /**
  * Custom view that displays external contacts in the edit screen.
  */
-public class ExternalRawContactEditorView extends BaseRawContactEditorView
+public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
         implements OnClickListener {
     private LayoutInflater mInflater;
 
@@ -76,11 +76,11 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
         void onExternalEditorRequest(AccountWithDataSet account, Uri uri);
     }
 
-    public ExternalRawContactEditorView(Context context) {
+    public RawContactReadOnlyEditorView(Context context) {
         super(context);
     }
 
-    public ExternalRawContactEditorView(Context context, AttributeSet attrs) {
+    public RawContactReadOnlyEditorView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -191,7 +191,7 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
         mName.setText(primary != null ? primary.getAsString(StructuredName.DISPLAY_NAME) :
                 mContext.getString(R.string.missing_name));
 
-        if (type.areContactsWritable()) {
+        if (type.getEditContactActivityClassName() != null) {
             mAccountContainer.setBackgroundDrawable(null);
             mAccountContainer.setEnabled(false);
             mEditExternallyButton.setVisibility(View.VISIBLE);
@@ -241,7 +241,8 @@ public class ExternalRawContactEditorView extends BaseRawContactEditorView
                 } else {
                     emailType = null;
                 }
-                bindData(mContext.getText(R.string.emailLabelsGroup), emailAddress, null, i == 0);
+                bindData(mContext.getText(R.string.emailLabelsGroup), emailAddress, emailType,
+                        i == 0);
             }
         }
 

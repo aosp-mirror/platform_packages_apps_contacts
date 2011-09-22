@@ -560,8 +560,7 @@ public class ConfirmAddDetailActivity extends Activity implements
             final String dataSet = state.getValues().getAsString(RawContacts.DATA_SET);
             final AccountType type = mAccountTypeManager.getAccountType(accountType, dataSet);
 
-            // Raw contacts that are not from external sources should be editable.
-            if (!type.isExternal()) {
+            if (type.areContactsWritable()) {
                 mEditableAccountType = type;
                 mState = state;
                 return;

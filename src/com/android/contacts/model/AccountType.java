@@ -82,16 +82,14 @@ public abstract class AccountType {
      */
     private HashMap<String, DataKind> mMimeKinds = Maps.newHashMap();
 
-    public boolean isExternal() {
-        return false;
-    }
-
     public boolean isExtension() {
         return false;
     }
 
     /**
-     * @return True if contacts can be created and edited using this app
+     * @return True if contacts can be created and edited using this app. If false,
+     * there could still be an external editor as provided by
+     * {@link #getEditContactActivityClassName()} or {@link #getCreateContactActivityClassName()}
      */
     public abstract boolean areContactsWritable();
 
