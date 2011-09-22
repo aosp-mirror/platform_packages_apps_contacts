@@ -961,12 +961,11 @@ public class EntityModifier {
             // Migrate data supported by the new account type.
             // All the other data inside oldState are silently dropped.
             for (DataKind kind : newAccountType.getSortedDataKinds()) {
+                if (!kind.editable) continue;
                 final String mimeType = kind.mimeType;
-                final int fieldCount = kind.fieldList.size();
-                final Set<String> allowedColumns = new HashSet<String>();
                 if (DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME.equals(mimeType)
                         || DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME.equals(mimeType)) {
-                    // Ignore pseude data.
+                    // Ignore pseudo data.
                     continue;
                 } else if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
                     migrateStructuredName(context, oldState, newState, kind);
@@ -976,8 +975,10 @@ public class EntityModifier {
                     migrateEvent(oldState, newState, kind, null /* default Year */);
                 } else if (sGenericMimeTypesWithoutTypeSupport.contains(mimeType)) {
                     migrateGenericWithoutTypeColumn(oldState, newState, kind);
-                } else {
+                } else if (sGenericMimeTypesWithTypeSupport.contains(mimeType)) {
                     migrateGenericWithTypeColumn(oldState, newState, kind);
+                } else {
+                    throw new IllegalStateException("Unexpected editable mime-type: " + mimeType);
                 }
             }
         }
@@ -1296,10 +1297,6 @@ public class EntityModifier {
     /** @hide Public only for testing. */
     public static void migrateGenericWithTypeColumn(
             EntityDelta oldState, EntityDelta newState, DataKind newDataKind) {
-        if (!sGenericMimeTypesWithTypeSupport.contains(newDataKind.mimeType)) {
-            throw new RuntimeException("not supported: " + newDataKind.mimeType);
-        }
-
         final ArrayList<ValuesDelta> mimeEntries = oldState.getMimeEntries(newDataKind.mimeType);
         if (mimeEntries == null || mimeEntries.isEmpty()) {
             return;

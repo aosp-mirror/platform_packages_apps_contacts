@@ -153,7 +153,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
     private Button mQuickFixButton;
     private QuickFix mQuickFix;
-    private final ArrayList<Long> mWritableRawContactIds = new ArrayList<Long>();
     private int mNumPhoneNumbers = 0;
     private String mDefaultCountryIso;
     private boolean mContactHasSocialUpdates;
@@ -530,8 +529,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         mPrimaryPhoneUri = null;
         mNumPhoneNumbers = 0;
 
-        mWritableRawContactIds.clear();
-
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
 
         // Build up method entries
@@ -549,10 +546,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             if (!mRawContactIds.contains(rawContactId)) {
                 mRawContactIds.add(rawContactId);
             }
+
             AccountType type = accountTypes.getAccountType(accountType, dataSet);
-            if (type == null || type.areContactsWritable()) {
-                mWritableRawContactIds.add(rawContactId);
-            }
 
             for (NamedContentValues subValue : entity.getSubValues()) {
                 final ContentValues entryValues = subValue.values;
