@@ -507,7 +507,8 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
                 ListView historyList = (ListView) findViewById(R.id.history);
                 historyList.setAdapter(
                         new CallDetailHistoryAdapter(CallDetailActivity.this, mInflater,
-                                mCallTypeHelper, details, hasVoicemail(), canPlaceCallsTo));
+                                mCallTypeHelper, details, hasVoicemail(), canPlaceCallsTo,
+                                findViewById(R.id.controls)));
                 BackScrollManager.bind(
                         new ScrollableHeader() {
                             private View controls = findViewById(R.id.controls);
