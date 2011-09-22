@@ -27,13 +27,15 @@ import android.widget.ImageView;
  */
 public class MockContactPhotoManager extends ContactPhotoManager {
     @Override
-    public void loadPhoto(ImageView view, long photoId, boolean hires, boolean darkTheme) {
-        view.setImageResource(getDefaultAvatarResId(hires, darkTheme));
+    public void loadPhoto(ImageView view, long photoId, boolean hires, boolean darkTheme,
+            DefaultImageProvider defaultProvider) {
+        defaultProvider.applyDefaultImage(view, hires, darkTheme);
     }
 
     @Override
-    public void loadPhoto(ImageView view, Uri photoUri, boolean hires, boolean darkTheme) {
-        view.setImageResource(getDefaultAvatarResId(hires, darkTheme));
+    public void loadPhoto(ImageView view, Uri photoUri, boolean hires, boolean darkTheme,
+            DefaultImageProvider defaultProvider) {
+        defaultProvider.applyDefaultImage(view, hires, darkTheme);
     }
 
     @Override
