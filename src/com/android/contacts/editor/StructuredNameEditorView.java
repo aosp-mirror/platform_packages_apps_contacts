@@ -77,18 +77,18 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
         if (!isFieldChanged(column, value)) {
             return;
         }
+        super.onFieldChanged(column, value);
 
         mChanged = true;
 
+        // Make sure the display name and the structured name are synced
         if (hasShortAndLongForms()) {
             if (areOptionalFieldsVisible()) {
-                eraseFullName(getValues());
+                rebuildFullName(getValues());
             } else {
-                eraseStructuredName(getValues());
+                rebuildStructuredName(getValues());
             }
         }
-
-        super.onFieldChanged(column, value);
     }
 
     @Override
@@ -165,9 +165,25 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
         values.putNull(StructuredName.DISPLAY_NAME);
     }
 
+    private void rebuildFullName(ValuesDelta values) {
+        Map<String, String> structuredNameMap = valuesToStructuredNameMap(values);
+        String displayName = NameConverter.structuredNameToDisplayName(getContext(),
+                structuredNameMap);
+        values.put(StructuredName.DISPLAY_NAME, displayName);
+    }
+
     private void eraseStructuredName(ValuesDelta values) {
         for (String field : NameConverter.STRUCTURED_NAME_FIELDS) {
             values.putNull(field);
+        }
+    }
+
+    private void rebuildStructuredName(ValuesDelta values) {
+        String displayName = values.getAsString(StructuredName.DISPLAY_NAME);
+        Map<String, String> structuredNameMap = NameConverter.displayNameToStructuredName(
+                getContext(), displayName);
+        for (String field : structuredNameMap.keySet()) {
+            values.put(field, structuredNameMap.get(field));
         }
     }
 
