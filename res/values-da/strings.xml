@@ -557,4 +557,16 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Min <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-profil"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Viser alle kontaktpersoner"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Personer fungerer bedre med en Google-konto."\n\n"• Få adgang fra enhver webbrowser."\n"• Sikkerhedskopier dine kontaktpersoner sikkert."</string>
+    <!-- no translation found for contact_editor_prompt_zero_accounts (1785345895691886499) -->
+    <skip />
+    <!-- no translation found for contact_editor_prompt_one_account (8669032699767375976) -->
+    <skip />
+    <!-- no translation found for contact_editor_prompt_multiple_accounts (611828200100438242) -->
+    <skip />
+    <!-- no translation found for keep_local (1258761699192993322) -->
+    <skip />
+    <!-- no translation found for add_account (8201790677994503186) -->
+    <skip />
+    <!-- no translation found for add_new_account (5748627740680940264) -->
+    <skip />
 </resources>

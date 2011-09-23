@@ -557,4 +557,16 @@
     <string name="external_profile_title" msgid="8034998767621359438">"我的<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>个人资料"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"显示所有联系人"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"拥有 Google 帐户可增强“分享对象”的功能。"\n\n"• 通过任意网络浏览器访问“分享对象”"\n"• 安全地备份您的联系人。"</string>
+    <!-- no translation found for contact_editor_prompt_zero_accounts (1785345895691886499) -->
+    <skip />
+    <!-- no translation found for contact_editor_prompt_one_account (8669032699767375976) -->
+    <skip />
+    <!-- no translation found for contact_editor_prompt_multiple_accounts (611828200100438242) -->
+    <skip />
+    <!-- no translation found for keep_local (1258761699192993322) -->
+    <skip />
+    <!-- no translation found for add_account (8201790677994503186) -->
+    <skip />
+    <!-- no translation found for add_new_account (5748627740680940264) -->
+    <skip />
 </resources>

@@ -557,4 +557,16 @@
     <string name="external_profile_title" msgid="8034998767621359438">"내 <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> 프로필"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"모든 연락처 표시"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"인물 앱은 Google 계정에서 사용할 때 더 효과적입니다."\n\n"• 어떤 웹 브라우저에서든 액세스하세요."\n"• 주소록을 안전하게 백업하세요."</string>
+    <!-- no translation found for contact_editor_prompt_zero_accounts (1785345895691886499) -->
+    <skip />
+    <!-- no translation found for contact_editor_prompt_one_account (8669032699767375976) -->
+    <skip />
+    <!-- no translation found for contact_editor_prompt_multiple_accounts (611828200100438242) -->
+    <skip />
+    <!-- no translation found for keep_local (1258761699192993322) -->
+    <skip />
+    <!-- no translation found for add_account (8201790677994503186) -->
+    <skip />
+    <!-- no translation found for add_new_account (5748627740680940264) -->
+    <skip />
 </resources>

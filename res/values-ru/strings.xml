@@ -548,13 +548,25 @@
     <string name="description_call" msgid="3443678121983852666">"Позвонить абоненту: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_send_text_message" msgid="7803126439934046891">"Отправить текстовое сообщение контакту: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Непрослушанные сообщения голосовой почты"</string>
-    <string name="description_send_message" msgid="6046623392322890962">"Отправить текстовое сообщение контакту <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_dial_phone_number" msgid="8831647331642648637">"Позвонить контакту <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"Быстрый вызов контакта <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_send_message" msgid="6046623392322890962">"Отправить сообщение, контакт: <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="8831647331642648637">"Позвонить, контакт: <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"Быстрый вызов, контакт: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Я"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Мой локальный профиль"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Мой профиль <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Отображаются все контакты"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Эффективная работа приложения \"Люди\" с помощью аккаунта Google – это:"\n\n"• Доступ к приложению из любого браузера."\n"• Безопасное резервное копирование контактов."</string>
+    <!-- no translation found for contact_editor_prompt_zero_accounts (1785345895691886499) -->
+    <skip />
+    <!-- no translation found for contact_editor_prompt_one_account (8669032699767375976) -->
+    <skip />
+    <!-- no translation found for contact_editor_prompt_multiple_accounts (611828200100438242) -->
+    <skip />
+    <!-- no translation found for keep_local (1258761699192993322) -->
+    <skip />
+    <!-- no translation found for add_account (8201790677994503186) -->
+    <skip />
+    <!-- no translation found for add_new_account (5748627740680940264) -->
+    <skip />
 </resources>

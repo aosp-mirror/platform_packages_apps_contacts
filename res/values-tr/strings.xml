@@ -548,16 +548,25 @@
     <string name="description_call" msgid="3443678121983852666">"Sesli arama yap: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_send_text_message" msgid="7803126439934046891">"Şu kişiye kısa mesaj gönder: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Dinlenilmemiş sesli mesaj"</string>
-    <!-- no translation found for description_send_message (6046623392322890962) -->
-    <skip />
-    <!-- no translation found for description_dial_phone_number (8831647331642648637) -->
-    <skip />
-    <!-- no translation found for description_quick_contact_for (6737516415168327789) -->
-    <skip />
+    <string name="description_send_message" msgid="6046623392322890962">"<xliff:g id="NAME">%1$s</xliff:g> adlı kişiye mesaj gönder"</string>
+    <string name="description_dial_phone_number" msgid="8831647331642648637">"<xliff:g id="NAME">%1$s</xliff:g> için çevrilecek telefon numarası"</string>
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"<xliff:g id="NAME">%1$s</xliff:g> için hızlı kişi"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Ben"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Yerel profilim"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> profilim"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Tüm içerik görüntüleniyor"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Kişi Arama bir Google Account hesabıyla daha iyi çalışır."\n\n"• Kişi Arama\'ya Herhangi bir tarayıcıdan erişin."\n"• Kişilerinizi güvenli bir şekilde yedekleyin."</string>
+    <!-- no translation found for contact_editor_prompt_zero_accounts (1785345895691886499) -->
+    <skip />
+    <!-- no translation found for contact_editor_prompt_one_account (8669032699767375976) -->
+    <skip />
+    <!-- no translation found for contact_editor_prompt_multiple_accounts (611828200100438242) -->
+    <skip />
+    <!-- no translation found for keep_local (1258761699192993322) -->
+    <skip />
+    <!-- no translation found for add_account (8201790677994503186) -->
+    <skip />
+    <!-- no translation found for add_new_account (5748627740680940264) -->
+    <skip />
 </resources>
