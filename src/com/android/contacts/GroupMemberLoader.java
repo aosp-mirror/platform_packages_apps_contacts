@@ -16,6 +16,7 @@
 package com.android.contacts;
 
 import com.android.contacts.list.ContactListAdapter;
+import com.android.contacts.preference.ContactsPreferences;
 
 import android.content.Context;
 import android.content.CursorLoader;
@@ -81,7 +82,13 @@ public final class GroupMemberLoader extends CursorLoader {
         setProjection(PROJECTION_DATA);
         setSelection(createSelection());
         setSelectionArgs(createSelectionArgs());
-        setSortOrder(Contacts.SORT_KEY_ALTERNATIVE);
+
+        ContactsPreferences prefs = new ContactsPreferences(context);
+        if (prefs.getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
+            setSortOrder(Contacts.SORT_KEY_PRIMARY);
+        } else {
+            setSortOrder(Contacts.SORT_KEY_ALTERNATIVE);
+        }
     }
 
     private Uri createUri() {
