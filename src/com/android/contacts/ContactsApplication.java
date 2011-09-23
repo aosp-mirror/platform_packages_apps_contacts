@@ -22,6 +22,7 @@ import com.android.contacts.util.Constants;
 import com.google.common.annotations.VisibleForTesting;
 
 import android.app.Application;
+import android.app.FragmentManager;
 import android.app.LoaderManager;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -109,10 +110,14 @@ public final class ContactsApplication extends Application {
         Context context = getApplicationContext();
         PreferenceManager.getDefaultSharedPreferences(context);
         AccountTypeManager.getInstance(context);
-        LoaderManager.enableDebugLogging(true);
 
-        StrictMode.setThreadPolicy(
-                new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
+        LoaderManager.enableDebugLogging(Log.isLoggable(Constants.LOADER_MANAGER_TAG, Log.DEBUG));
+        FragmentManager.enableDebugLogging(
+                Log.isLoggable(Constants.FRAGMENT_MANAGER_TAG, Log.DEBUG));
+        if (Log.isLoggable(Constants.STRICT_MODE_TAG, Log.DEBUG)) {
+            StrictMode.setThreadPolicy(
+                    new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
+        }
 
         if (Log.isLoggable(Constants.PERFORMANCE_TAG, Log.DEBUG)) {
             Log.d(Constants.PERFORMANCE_TAG, "ContactsApplication.onCreate finish");
