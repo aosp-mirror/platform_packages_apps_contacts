@@ -44,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="8dip"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?android:attr/textColorSecondary"
             android:singleLine="true"
             android:ellipsize="end"/>
     </LinearLayout>

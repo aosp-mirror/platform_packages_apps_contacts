@@ -20,6 +20,7 @@ import com.android.contacts.ContactLoader;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
+import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
 import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.activities.JoinContactActivity;
 import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
@@ -192,6 +193,7 @@ public class ContactEditorFragment extends Fragment implements
     private static final int REQUEST_CODE_JOIN = 0;
     private static final int REQUEST_CODE_CAMERA_WITH_DATA = 1;
     private static final int REQUEST_CODE_PHOTO_PICKED_WITH_DATA = 2;
+    private static final int REQUEST_CODE_ACCOUNTS_CHANGED = 3;
 
     private Bitmap mPhoto = null;
     private long mRawContactIdRequestingPhoto = -1;
@@ -217,6 +219,8 @@ public class ContactEditorFragment extends Fragment implements
 
     private long mContactIdForJoin;
     private boolean mContactWritableForJoin;
+
+    private ContactEditorUtils mEditorUtils;
 
     private LinearLayout mContent;
     private EntityDeltaList mState;
@@ -316,6 +320,7 @@ public class ContactEditorFragment extends Fragment implements
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mContext = activity;
+        mEditorUtils = ContactEditorUtils.getInstance(mContext);
         loadPhotoPickSize();
     }
 
@@ -370,7 +375,7 @@ public class ContactEditorFragment extends Fragment implements
                 } else {
                     // No Account specified. Let the user choose
                     // Load Accounts async so that we can present them
-                    createContact();
+                    selectAccountAndCreateContact();
                 }
             } else if (ContactEditorActivity.ACTION_SAVE_COMPLETED.equals(mAction)) {
                 // do nothing
@@ -528,24 +533,49 @@ public class ContactEditorFragment extends Fragment implements
         }
     }
 
+    private void selectAccountAndCreateContact() {
+        // If this is a local profile, then skip the logic about showing the accounts changed
+        // activity and create a phone-local contact.
+        if (mNewLocalProfile) {
+            createContact(null);
+            return;
+        }
+
+        // If there is no default account or the accounts have changed such that we need to
+        // prompt the user again, then launch the account prompt.
+        if (mEditorUtils.shouldShowAccountChangedNotification()) {
+            Intent intent = new Intent(mContext, ContactEditorAccountsChangedActivity.class);
+            mStatus = Status.SUB_ACTIVITY;
+            startActivityForResult(intent, REQUEST_CODE_ACCOUNTS_CHANGED);
+        } else {
+            // Otherwise, there should be a default account. Then either create a local contact
+            // (if default account is null) or create a contact with the specified account.
+            AccountWithDataSet defaultAccount = mEditorUtils.getDefaultAccount();
+            if (defaultAccount == null) {
+                createContact(null);
+            } else {
+                createContact(defaultAccount);
+            }
+        }
+    }
+
     /**
-     * Shows the account creation screen. An account associated with the contact is automatically
-     * selected. If there's no available account, device-local contact should be created.
+     * Create a contact by automatically selecting the first account. If there's no available
+     * account, a device-local contact should be created.
      */
     private void createContact() {
         final List<AccountWithDataSet> accounts =
                 AccountTypeManager.getInstance(mContext).getAccounts(true);
-        // No Accounts available or creating a local profile.  Create a phone-local contact.
-        if (accounts.isEmpty() || mNewLocalProfile) {
+        // No Accounts available. Create a phone-local contact.
+        if (accounts.isEmpty()) {
             createContact(null);
-            return;  // Don't show a dialog.
+            return;
         }
 
         // We have an account switcher in "create-account" screen, so don't need to ask a user to
         // select an account here.
         createContact(accounts.get(0));
     }
-
 
     /**
      * Shows account creation screen associated with a given account.
@@ -758,6 +788,28 @@ public class ContactEditorFragment extends Fragment implements
             BaseRawContactEditorView editor = (BaseRawContactEditorView) mContent.getChildAt(i);
             editor.setGroupMetaData(mGroupMetaData);
         }
+    }
+
+    private void saveDefaultAccountIfNecessary() {
+        // Verify that this is a newly created contact, that the contact is composed of only
+        // 1 raw contact, and that the contact is not a user profile.
+        if (!Intent.ACTION_INSERT.equals(mAction) && mState.size() == 1 &&
+                !isEditingUserProfile()) {
+            return;
+        }
+
+        // Find the associated account for this contact (retrieve it here because there are
+        // multiple paths to creating a contact and this ensures we always have the correct
+        // account).
+        final EntityDelta entity = mState.get(0);
+        final ValuesDelta values = entity.getValues();
+        String name = values.getAsString(RawContacts.ACCOUNT_NAME);
+        String type = values.getAsString(RawContacts.ACCOUNT_TYPE);
+        String dataSet = values.getAsString(RawContacts.DATA_SET);
+
+        AccountWithDataSet account = (name == null || type == null) ? null :
+                new AccountWithDataSet(name, type, dataSet);
+        mEditorUtils.saveDefaultAndAllAccounts(account);
     }
 
     private void addAccountSwitcher(
@@ -985,6 +1037,10 @@ public class ContactEditorFragment extends Fragment implements
 
         setEnabled(false);
 
+        // Store account as default account, only if this is a new contact
+        saveDefaultAccountIfNecessary();
+
+        // Save contact
         Intent intent = ContactSaveService.createSaveContactIntent(getActivity(), mState,
                 SAVE_MODE_EXTRA_KEY, saveMode, isEditingUserProfile(),
                 getActivity().getClass(), ContactEditorActivity.ACTION_SAVE_COMPLETED);
@@ -1536,10 +1592,10 @@ public class ContactEditorFragment extends Fragment implements
             mStatus = Status.EDITING;
         }
 
-        // Ignore failed requests
-        if (resultCode != Activity.RESULT_OK) return;
         switch (requestCode) {
             case REQUEST_CODE_PHOTO_PICKED_WITH_DATA: {
+                // Ignore failed requests
+                if (resultCode != Activity.RESULT_OK) return;
                 // As we are coming back to this view, the editor will be reloaded automatically,
                 // which will cause the photo that is set here to disappear. To prevent this,
                 // we remember to set a flag which is interpreted after loading.
@@ -1552,14 +1608,38 @@ public class ContactEditorFragment extends Fragment implements
                 break;
             }
             case REQUEST_CODE_CAMERA_WITH_DATA: {
+                // Ignore failed requests
+                if (resultCode != Activity.RESULT_OK) return;
                 doCropPhoto(mCurrentPhotoFile);
                 break;
             }
             case REQUEST_CODE_JOIN: {
+                // Ignore failed requests
+                if (resultCode != Activity.RESULT_OK) return;
                 if (data != null) {
                     final long contactId = ContentUris.parseId(data.getData());
                     joinAggregate(contactId);
                 }
+                break;
+            }
+            case REQUEST_CODE_ACCOUNTS_CHANGED: {
+                // Bail if the account selector was not successful.
+                if (resultCode != Activity.RESULT_OK) {
+                    mListener.onReverted();
+                    return;
+                }
+                // If there's an account specified, use it.
+                if (data != null) {
+                    AccountWithDataSet account = data.getParcelableExtra(Intents.Insert.ACCOUNT);
+                    if (account != null) {
+                        createContact(account);
+                        return;
+                    }
+                }
+                // If there isn't an account specified, then this is likely a phone-local
+                // contact, so we should continue setting up the editor by automatically selecting
+                // the most appropriate account.
+                createContact();
                 break;
             }
         }
