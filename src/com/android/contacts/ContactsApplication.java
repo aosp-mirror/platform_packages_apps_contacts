@@ -111,9 +111,6 @@ public final class ContactsApplication extends Application {
         PreferenceManager.getDefaultSharedPreferences(context);
         AccountTypeManager.getInstance(context);
 
-        LoaderManager.enableDebugLogging(Log.isLoggable(Constants.LOADER_MANAGER_TAG, Log.DEBUG));
-        FragmentManager.enableDebugLogging(
-                Log.isLoggable(Constants.FRAGMENT_MANAGER_TAG, Log.DEBUG));
         if (Log.isLoggable(Constants.STRICT_MODE_TAG, Log.DEBUG)) {
             StrictMode.setThreadPolicy(
                     new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
