@@ -557,16 +557,10 @@
     <string name="external_profile_title" msgid="8034998767621359438">"My <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> profile"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Displaying all contacts"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"People works better with a Google Account."\n\n"• Access from any web browser."\n"• Back up your contacts securely."</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (1785345895691886499) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_one_account (8669032699767375976) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_multiple_accounts (611828200100438242) -->
-    <skip />
-    <!-- no translation found for keep_local (1258761699192993322) -->
-    <skip />
-    <!-- no translation found for add_account (8201790677994503186) -->
-    <skip />
-    <!-- no translation found for add_new_account (5748627740680940264) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Your new contact won\'t be backed up. Add an account that backs up contacts online?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Your new contact will be synchronised with <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"You can synchronise your new contact with one of the following accounts. Which do you want to use?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Keep locally"</string>
+    <string name="add_account" msgid="8201790677994503186">"Add account"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Add new account"</string>
 </resources>

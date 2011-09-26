@@ -550,28 +550,19 @@
     <string name="description_call" msgid="3443678121983852666">"Panggil <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_send_text_message" msgid="7803126439934046891">"Hantar mesej teks kepada <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Mel suara belum didengar"</string>
-    <!-- no translation found for description_send_message (6046623392322890962) -->
-    <skip />
-    <!-- no translation found for description_dial_phone_number (8831647331642648637) -->
-    <skip />
-    <!-- no translation found for description_quick_contact_for (6737516415168327789) -->
-    <skip />
+    <string name="description_send_message" msgid="6046623392322890962">"Hantar mesej kepada <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="8831647331642648637">"Dail telefon <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"Kenalan cepat untuk <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Saya"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Profil setempat saya"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Profil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> saya"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Memaparkan semua kenalan"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Orang berfungsi lebih baik dengan Akaun Google. "\n" "\n"• Akses dari mana-mana penyemak imbas "\n"• Buat sandaran untuk kenalan anda secara selamat."</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (1785345895691886499) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_one_account (8669032699767375976) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_multiple_accounts (611828200100438242) -->
-    <skip />
-    <!-- no translation found for keep_local (1258761699192993322) -->
-    <skip />
-    <!-- no translation found for add_account (8201790677994503186) -->
-    <skip />
-    <!-- no translation found for add_new_account (5748627740680940264) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Kenalan baharu anda tidak akan dibuat sandaran. Tambahkan akaun yang membuat sandaran kenalan dalam talian?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Kenalan baharu anda akan disegerakkan dengan <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Anda boleh menyegerakkan kenalan baharu anda dengan salah satu akaun berikut. Mana satu yang anda mahu gunakan?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Simpan setempat"</string>
+    <string name="add_account" msgid="8201790677994503186">"Tambah akaun"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Tambah akaun baharu"</string>
 </resources>

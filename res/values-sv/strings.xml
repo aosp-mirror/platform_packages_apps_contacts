@@ -548,8 +548,8 @@
     <string name="description_call" msgid="3443678121983852666">"Ring <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_send_text_message" msgid="7803126439934046891">"Skicka SMS till <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Ej hört röstmeddelande"</string>
-    <string name="description_send_message" msgid="6046623392322890962">"Skicka meddelande till <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_dial_phone_number" msgid="8831647331642648637">"Ring telefonnummer <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_send_message" msgid="6046623392322890962">"Skicka SMS till <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="8831647331642648637">"Ring telefonnumret <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_quick_contact_for" msgid="6737516415168327789">"Snabbkontakt för <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Jag"</string>
@@ -557,16 +557,10 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Min <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-profil"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Visar alla kontakter"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Appen People fungerar bättre med ett Google-konto."\n\n"• Öppna den i valfri webbläsare."\n"• Säkerhetskopiera dina kontakter säkert."</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (1785345895691886499) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_one_account (8669032699767375976) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_multiple_accounts (611828200100438242) -->
-    <skip />
-    <!-- no translation found for keep_local (1258761699192993322) -->
-    <skip />
-    <!-- no translation found for add_account (8201790677994503186) -->
-    <skip />
-    <!-- no translation found for add_new_account (5748627740680940264) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Din nya kontakt kommer inte att säkerhetskopieras. Vill du lägga till ett konto så att kontakterna säkerhetskopieras online?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Din nya kontakt kommer att synkroniseras med <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> ."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Du kan synkronisera din nya kontakt med något av följande konton. Vilket konto vill du använda?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Spara lokalt"</string>
+    <string name="add_account" msgid="8201790677994503186">"Lägg till ett konto"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Lägg till ett nytt konto"</string>
 </resources>

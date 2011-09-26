@@ -557,16 +557,10 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Tiểu sử <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> của tôi"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Đang hiển thị tất cả liên hệ"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Ứng dụng Người hoạt động tốt hơn với Tài khoản Google."\n\n"• Truy cập từ bất kỳ trình duyệt web nào."\n"• Sao lưu danh sách liên hệ của bạn một cách an toàn."</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (1785345895691886499) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_one_account (8669032699767375976) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_multiple_accounts (611828200100438242) -->
-    <skip />
-    <!-- no translation found for keep_local (1258761699192993322) -->
-    <skip />
-    <!-- no translation found for add_account (8201790677994503186) -->
-    <skip />
-    <!-- no translation found for add_new_account (5748627740680940264) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Địa chỉ liên hệ mới của bạn sẽ không được sao lưu. Thêm tài khoản sao lưu danh bạ trực tuyến?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Địa chỉ liên hệ mới của bạn sẽ được đồng bộ hóa với <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Bạn có thể đồng bộ hóa địa chỉ liên hệ mới của mình với một trong những tài khoản sau. Bạn muốn sử dụng tài khoản nào?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Lưu trữ cục bộ"</string>
+    <string name="add_account" msgid="8201790677994503186">"Thêm tài khoản"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Thêm tài khoản mới"</string>
 </resources>

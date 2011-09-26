@@ -557,16 +557,10 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Mijn <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-profiel"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Alle contacten worden weergegeven"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Personen werkt beter met een Google-account."\n\n"• Toegang via elke webbrowser."\n"• Maak beveiligde back-ups van uw contacten."</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (1785345895691886499) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_one_account (8669032699767375976) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_multiple_accounts (611828200100438242) -->
-    <skip />
-    <!-- no translation found for keep_local (1258761699192993322) -->
-    <skip />
-    <!-- no translation found for add_account (8201790677994503186) -->
-    <skip />
-    <!-- no translation found for add_new_account (5748627740680940264) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Er wordt geen back-up van uw nieuwe contact gemaakt. Een account toevoegen waarmee online een back-up van contacten wordt gemaakt?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Uw nieuwe contact wordt gesynchroniseerd met <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"U kunt uw nieuwe contact synchroniseren met een van de volgende accounts. Welk account wilt u gebruiken?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Lokaal opslaan"</string>
+    <string name="add_account" msgid="8201790677994503186">"Account toevoegen"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Nieuw account toevoegen"</string>
 </resources>

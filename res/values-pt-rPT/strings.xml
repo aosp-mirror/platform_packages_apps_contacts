@@ -550,23 +550,17 @@
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Mensagem de correio de voz ainda não ouvida"</string>
     <string name="description_send_message" msgid="6046623392322890962">"Enviar mensagem para <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="8831647331642648637">"Marcar número de telefone de <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"Contacto rápido para <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"Contacto rápido de <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Eu"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"O meu perfil local"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"O meu perfil do <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"A apresentar todos os contactos"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"A aplicação Pessoas funciona melhor com uma Conta Google."\n\n"• Aceda à Conta Google a partir de qualquer navegador de internet."\n"• Faça uma cópia de segurança dos seus contatos de forma segura."</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (1785345895691886499) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_one_account (8669032699767375976) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_multiple_accounts (611828200100438242) -->
-    <skip />
-    <!-- no translation found for keep_local (1258761699192993322) -->
-    <skip />
-    <!-- no translation found for add_account (8201790677994503186) -->
-    <skip />
-    <!-- no translation found for add_new_account (5748627740680940264) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Não será efetuada cópia de segurança do novo contacto. Adicionar uma conta que efetua a cópia de segurança dos contactos on-line?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"O novo contacto será sincronizado com <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Pode sincronizar o novo contacto com uma das seguintes contas. Qual a conta que deseja utilizar?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Manter localmente"</string>
+    <string name="add_account" msgid="8201790677994503186">"Adicionar conta"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Adicionar nova conta"</string>
 </resources>
