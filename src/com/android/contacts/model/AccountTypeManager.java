@@ -112,6 +112,13 @@ public abstract class AccountTypeManager {
         final AccountType type = getAccountType(accountType, dataSet);
         return type == null ? null : type.getKindForMimetype(mimeType);
     }
+
+    /*
+     * Returns all registered {@link AccountType}s, including extension ones.
+     *
+     * @param contactWritableOnly if true, it only returns ones that support writing contacts.
+     */
+    public abstract List<AccountType> getAccountTypes(boolean contactWritableOnly);
 }
 
 class AccountTypeManagerImpl extends AccountTypeManager
@@ -538,5 +545,18 @@ class AccountTypeManagerImpl extends AccountTypeManager
             }
         }
         return Collections.unmodifiableMap(result);
+    }
+
+    @Override
+    public List<AccountType> getAccountTypes(boolean contactWritableOnly) {
+        final List<AccountType> accountTypes = Lists.newArrayList();
+        synchronized (this) {
+            for (AccountType type : mAccountTypesWithDataSets.values()) {
+                if (!contactWritableOnly || type.areContactsWritable()) {
+                    accountTypes.add(type);
+                }
+            }
+        }
+        return accountTypes;
     }
 }
