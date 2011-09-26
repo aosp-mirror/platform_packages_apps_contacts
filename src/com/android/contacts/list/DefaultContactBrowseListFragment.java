@@ -49,7 +49,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private View mProfileHeader;
     private Button mProfileMessage;
     private FrameLayout mMessageContainer;
-    private View mProfileTitle;
+    private TextView mProfileTitle;
 
     private View mPaddingView;
 
@@ -273,7 +273,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         mProfileHeaderContainer = new FrameLayout(inflater.getContext());
         mProfileHeader = inflater.inflate(R.layout.user_profile_header, null, false);
         mCounterHeaderView = (TextView) mProfileHeader.findViewById(R.id.contacts_count);
-        mProfileTitle = mProfileHeader.findViewById(R.id.profile_title);
+        mProfileTitle = (TextView) mProfileHeader.findViewById(R.id.profile_title);
+        mProfileTitle.setAllCaps(true);
         mProfileHeaderContainer.addView(mProfileHeader);
         list.addHeaderView(mProfileHeaderContainer, null, false);
 
