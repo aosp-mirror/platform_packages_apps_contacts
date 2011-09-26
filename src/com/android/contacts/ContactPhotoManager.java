@@ -28,6 +28,8 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Handler.Callback;
@@ -67,6 +69,35 @@ public abstract class ContactPhotoManager {
         return R.drawable.ic_contact_picture_holo_light;
     }
 
+    public static abstract class DefaultImageProvider {
+        public abstract void applyDefaultImage(ImageView view, boolean hires, boolean darkTheme);
+    }
+
+    private static class AvatarDefaultImageProvider extends DefaultImageProvider {
+        @Override
+        public void applyDefaultImage(ImageView view, boolean hires, boolean darkTheme) {
+            view.setImageResource(getDefaultAvatarResId(hires, darkTheme));
+        }
+    }
+
+    private static class BlankDefaultImageProvider extends DefaultImageProvider {
+        private static Drawable sDrawable;
+
+        @Override
+        public void applyDefaultImage(ImageView view, boolean hires, boolean darkTheme) {
+            if (sDrawable == null) {
+                Context context = view.getContext();
+                sDrawable = new ColorDrawable(context.getResources().getColor(
+                        R.color.image_placeholder));
+            }
+            view.setImageDrawable(sDrawable);
+        }
+    }
+
+    public static final DefaultImageProvider DEFAULT_AVATER = new AvatarDefaultImageProvider();
+
+    public static final DefaultImageProvider DEFAULT_BLANK = new BlankDefaultImageProvider();
+
     /**
      * Requests the singleton instance of {@link AccountTypeManager} with data bound from
      * the available authenticators. This method can safely be called from the UI thread.
@@ -91,14 +122,32 @@ public abstract class ContactPhotoManager {
      * it is displayed immediately.  Otherwise a request is sent to load the photo
      * from the database.
      */
-    public abstract void loadPhoto(ImageView view, long photoId, boolean hires, boolean darkTheme);
+    public abstract void loadPhoto(ImageView view, long photoId, boolean hires, boolean darkTheme,
+            DefaultImageProvider defaultProvider);
+
+    /**
+     * Calls {@link #loadPhoto(ImageView, long, boolean, boolean, DefaultImageProvider)} with
+     * {@link #DEFAULT_AVATER}.
+     */
+    public final void loadPhoto(ImageView view, long photoId, boolean hires, boolean darkTheme) {
+        loadPhoto(view, photoId, hires, darkTheme, DEFAULT_AVATER);
+    }
 
     /**
      * Load photo into the supplied image view.  If the photo is already cached,
      * it is displayed immediately.  Otherwise a request is sent to load the photo
      * from the location specified by the URI.
      */
-    public abstract void loadPhoto(ImageView view, Uri photoUri, boolean hires, boolean darkTheme);
+    public abstract void loadPhoto(ImageView view, Uri photoUri, boolean hires, boolean darkTheme,
+            DefaultImageProvider defaultProvider);
+
+    /**
+     * Calls {@link #loadPhoto(ImageView, Uri, boolean, boolean, DefaultImageProvider)} with
+     * {@link #DEFAULT_AVATER}.
+     */
+    public final void loadPhoto(ImageView view, Uri photoUri, boolean hires, boolean darkTheme) {
+        loadPhoto(view, photoUri, hires, darkTheme, DEFAULT_AVATER);
+    }
 
     /**
      * Remove photo from the supplied image view. This also cancels current pending load request
@@ -236,24 +285,28 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
     }
 
     @Override
-    public void loadPhoto(ImageView view, long photoId, boolean hires, boolean darkTheme) {
+    public void loadPhoto(ImageView view, long photoId, boolean hires, boolean darkTheme,
+            DefaultImageProvider defaultProvider) {
         if (photoId == 0) {
             // No photo is needed
-            view.setImageResource(getDefaultAvatarResId(hires, darkTheme));
+            defaultProvider.applyDefaultImage(view, hires, darkTheme);
             mPendingRequests.remove(view);
         } else {
-            loadPhotoByIdOrUri(view, Request.createFromId(photoId, hires, darkTheme));
+            loadPhotoByIdOrUri(view, Request.createFromId(photoId, hires, darkTheme,
+                    defaultProvider));
         }
     }
 
     @Override
-    public void loadPhoto(ImageView view, Uri photoUri, boolean hires, boolean darkTheme) {
+    public void loadPhoto(ImageView view, Uri photoUri, boolean hires, boolean darkTheme,
+            DefaultImageProvider defaultProvider) {
         if (photoUri == null) {
             // No photo is needed
-            view.setImageResource(getDefaultAvatarResId(hires, darkTheme));
+            defaultProvider.applyDefaultImage(view, hires, darkTheme);
             mPendingRequests.remove(view);
         } else {
-            loadPhotoByIdOrUri(view, Request.createFromUri(photoUri, hires, darkTheme));
+            loadPhotoByIdOrUri(view, Request.createFromUri(photoUri, hires, darkTheme,
+                    defaultProvider));
         }
     }
 
@@ -292,12 +345,12 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         BitmapHolder holder = mBitmapHolderCache.get(request.getKey());
         if (holder == null) {
             // The bitmap has not been loaded - should display the placeholder image.
-            view.setImageResource(getDefaultAvatarResId(request.isHires(), request.isDarkTheme()));
+            request.applyDefaultImage(view);
             return false;
         }
 
         if (holder.bytes == null) {
-            view.setImageResource(getDefaultAvatarResId(request.isHires(), request.isDarkTheme()));
+            request.applyDefaultImage(view);
             return holder.fresh;
         }
 
@@ -791,20 +844,25 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         private final Uri mUri;
         private final boolean mDarkTheme;
         private final boolean mHires;
+        private final DefaultImageProvider mDefaultProvider;
 
-        private Request(long id, Uri uri, boolean hires, boolean darkTheme) {
+        private Request(long id, Uri uri, boolean hires, boolean darkTheme,
+                DefaultImageProvider defaultProvider) {
             mId = id;
             mUri = uri;
             mDarkTheme = darkTheme;
             mHires = hires;
+            mDefaultProvider = defaultProvider;
         }
 
-        public static Request createFromId(long id, boolean hires, boolean darkTheme) {
-            return new Request(id, null /* no URI */, hires, darkTheme);
+        public static Request createFromId(long id, boolean hires, boolean darkTheme,
+                DefaultImageProvider defaultProvider) {
+            return new Request(id, null /* no URI */, hires, darkTheme, defaultProvider);
         }
 
-        public static Request createFromUri(Uri uri, boolean hires, boolean darkTheme) {
-            return new Request(0 /* no ID */, uri, hires, darkTheme);
+        public static Request createFromUri(Uri uri, boolean hires, boolean darkTheme,
+                DefaultImageProvider defaultProvider) {
+            return new Request(0 /* no ID */, uri, hires, darkTheme, defaultProvider);
         }
 
         public boolean isDarkTheme() {
@@ -840,6 +898,10 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
 
         public Object getKey() {
             return mUri == null ? mId : mUri;
+        }
+
+        public void applyDefaultImage(ImageView view) {
+            mDefaultProvider.applyDefaultImage(view, mHires, mDarkTheme);
         }
     }
 }
