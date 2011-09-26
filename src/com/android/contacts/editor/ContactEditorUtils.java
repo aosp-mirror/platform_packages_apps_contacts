@@ -65,7 +65,7 @@ public class ContactEditorUtils {
 
     @VisibleForTesting
     ContactEditorUtils(Context context, AccountTypeManager accountTypes) {
-        mContext = context;
+        mContext = context.getApplicationContext();
         mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         mAccountTypes = accountTypes;
     }
