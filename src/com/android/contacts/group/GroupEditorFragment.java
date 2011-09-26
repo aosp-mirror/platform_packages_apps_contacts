@@ -28,6 +28,7 @@ import com.android.contacts.group.SuggestedMemberListAdapter.SuggestedMember;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
+import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 import com.android.internal.util.Objects;
 
 import android.accounts.Account;
@@ -332,7 +333,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
 
         mStatus = Status.SELECTING_ACCOUNT;
         final SelectAccountDialogFragment dialog = new SelectAccountDialogFragment(
-                R.string.dialog_new_group_account);
+                R.string.dialog_new_group_account, AccountListFilter.ACCOUNTS_GROUP_WRITABLE);
         dialog.setTargetFragment(this, 0);
         dialog.show(getFragmentManager(), SelectAccountDialogFragment.TAG);
     }
