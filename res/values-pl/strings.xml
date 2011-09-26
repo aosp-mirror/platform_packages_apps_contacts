@@ -557,16 +557,10 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Mój profil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Wyświetlanie wszystkich kontaktów"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Aplikacja Ludzie działa lepiej z kontem Google."\n\n"• Używaj jej w dowolnej przeglądarce."\n"• Twórz kopie zapasowe kontaktów."</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (1785345895691886499) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_one_account (8669032699767375976) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_multiple_accounts (611828200100438242) -->
-    <skip />
-    <!-- no translation found for keep_local (1258761699192993322) -->
-    <skip />
-    <!-- no translation found for add_account (8201790677994503186) -->
-    <skip />
-    <!-- no translation found for add_new_account (5748627740680940264) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Kopia zapasowa nowego kontaktu nie zostanie utworzona. Dodać konto, na którym kopie zapasowe kontaktów będą tworzone online?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Nowy kontakt zostanie zsynchronizowany z kontem <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Nowy kontakt możesz zsynchronizować z jednym z następujących kont. Którego z nich chcesz użyć?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Przechowuj lokalnie"</string>
+    <string name="add_account" msgid="8201790677994503186">"Dodaj konto"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Dodaj nowe konto"</string>
 </resources>

@@ -557,16 +557,10 @@
     <string name="external_profile_title" msgid="8034998767621359438">"<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> profilom"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Az összes névjegy megjelenítése"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"A Személyek alkalmazás jobban működik egy Google Fiókkal."\n\n"• Bármilyen bőngészőből elérheti"\n"• Biztonsági másolatot készíthet névjegyeiről."</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (1785345895691886499) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_one_account (8669032699767375976) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_multiple_accounts (611828200100438242) -->
-    <skip />
-    <!-- no translation found for keep_local (1258761699192993322) -->
-    <skip />
-    <!-- no translation found for add_account (8201790677994503186) -->
-    <skip />
-    <!-- no translation found for add_new_account (5748627740680940264) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Az Ön új névjegyéről nem készül biztonsági másolat. Hozzáad egy olyan fiókot, amelyik online biztonsági másolatot készít a névjegyekről?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Az új névjegyet a következő fiókkal fogjuk szinkronizálni: <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Szinkronizálhatja az új névjegyet a következő fiókok valamelyikével. Melyiket kívánja használni?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Tárolás helyben"</string>
+    <string name="add_account" msgid="8201790677994503186">"Fiók hozzáadása"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Új fiók hozzáadása"</string>
 </resources>

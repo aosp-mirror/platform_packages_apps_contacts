@@ -548,7 +548,7 @@
     <string name="description_call" msgid="3443678121983852666">"Klicanje osebe <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_send_text_message" msgid="7803126439934046891">"Pošlji SMS osebi <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Neodprta glasovna pošta"</string>
-    <string name="description_send_message" msgid="6046623392322890962">"Pošlji sporočilo za <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_send_message" msgid="6046623392322890962">"Pošlji sporočilo stiku <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="8831647331642648637">"Kliči: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_quick_contact_for" msgid="6737516415168327789">"Hitri stik za <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
@@ -557,16 +557,10 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Moj profil za <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Prikaz vseh stikov"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Program Ljudje deluje bolje z Google Računom."\n\n"• Do njega lahko dostopate v katerem koli spletnem brskalniku."\n"• Varno varnostno kopiranje stikov."</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (1785345895691886499) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_one_account (8669032699767375976) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_multiple_accounts (611828200100438242) -->
-    <skip />
-    <!-- no translation found for keep_local (1258761699192993322) -->
-    <skip />
-    <!-- no translation found for add_account (8201790677994503186) -->
-    <skip />
-    <!-- no translation found for add_new_account (5748627740680940264) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Nov stik ne bo varnostno kopiran. Želite dodati račun za varnostno kopiranje stikov v internetu?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Nov stik bo sinhroniziran z računom <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Nov stik lahko sinhronizirate z enim od teh računov. Katerega želite uporabiti?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Ohrani lokalno"</string>
+    <string name="add_account" msgid="8201790677994503186">"Dodaj račun"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Dodaj nov račun"</string>
 </resources>

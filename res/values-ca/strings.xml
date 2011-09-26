@@ -557,16 +557,10 @@
     <string name="external_profile_title" msgid="8034998767621359438">"El meu perfil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"S\'estan mostrant tots els contactes"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Contactes funciona millor amb un Compte de Google."\n\n"• Accedeix-hi des de qualsevol navegador web."\n"• Fes una còpia de seguretat dels teus contactes."</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (1785345895691886499) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_one_account (8669032699767375976) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_multiple_accounts (611828200100438242) -->
-    <skip />
-    <!-- no translation found for keep_local (1258761699192993322) -->
-    <skip />
-    <!-- no translation found for add_account (8201790677994503186) -->
-    <skip />
-    <!-- no translation found for add_new_account (5748627740680940264) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"No es farà una còpia de seguretat del teu contacte nou. Vols afegir un compte que faci còpies de seguretat dels contactes en línia?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"El teu contacte nou se sincronitzarà amb <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Pots sincronitzar el teu contacte nou amb un dels comptes següents. Quin vols utilitzar?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Conserva localment"</string>
+    <string name="add_account" msgid="8201790677994503186">"Afegeix un compte"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Afegeix un compte nou"</string>
 </resources>

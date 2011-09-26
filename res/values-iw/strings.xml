@@ -549,7 +549,7 @@
     <string name="description_send_text_message" msgid="7803126439934046891">"שלח הודעת טקסט אל <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"דואר קולי שעדיין לא נשמע"</string>
     <string name="description_send_message" msgid="6046623392322890962">"שלח הודעה אל <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_dial_phone_number" msgid="8831647331642648637">"חיוג לטלפון <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="8831647331642648637">"חייג לטלפון <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_quick_contact_for" msgid="6737516415168327789">"קשר מהיר עבור <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"אני"</string>
@@ -557,16 +557,10 @@
     <string name="external_profile_title" msgid="8034998767621359438">"פרופיל <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> שלי"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"מציג את כל אנשי הקשר"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"\'אנשים\' עובד טוב יותר עם ​​חשבון Google‏. "\n" "\n" • גישה מכל דפדפן אינטרנט. "\n" • גיבוי אנשי הקשר באופן מאובטח."</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (1785345895691886499) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_one_account (8669032699767375976) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_multiple_accounts (611828200100438242) -->
-    <skip />
-    <!-- no translation found for keep_local (1258761699192993322) -->
-    <skip />
-    <!-- no translation found for add_account (8201790677994503186) -->
-    <skip />
-    <!-- no translation found for add_new_account (5748627740680940264) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"איש הקשר החדש שלך לא יגובה. להוסיף חשבון שמגבה אנשי קשר באופן מקוון?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"איש הקשר החדש שלך יסונכרן עם <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"ניתן לסנכרן את איש הקשר החדש שלך עם אחד מהחשבונות הבאים. באיזה מהם ברצונך להשתמש?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"שמור באופן מקומי"</string>
+    <string name="add_account" msgid="8201790677994503186">"הוסף חשבון"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"הוסף חשבון חדש"</string>
 </resources>

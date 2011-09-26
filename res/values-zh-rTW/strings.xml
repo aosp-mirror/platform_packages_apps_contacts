@@ -549,24 +549,18 @@
     <string name="description_send_text_message" msgid="7803126439934046891">"傳送簡訊給<xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"未聽取的語音留言"</string>
     <string name="description_send_message" msgid="6046623392322890962">"傳送訊息給<xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_dial_phone_number" msgid="8831647331642648637">"<xliff:g id="NAME">%1$s</xliff:g>電話號碼"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"<xliff:g id="NAME">%1$s</xliff:g>快速聯絡人"</string>
+    <string name="description_dial_phone_number" msgid="8831647331642648637">"<xliff:g id="NAME">%1$s</xliff:g>的電話號碼"</string>
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"<xliff:g id="NAME">%1$s</xliff:g>的快速聯絡人相片"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"我自己"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"我的本機個人資料"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"我的 <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> 個人資料"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"顯示所有聯絡人"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"透過「Google 帳戶」使用「Google 人物搜尋」可獲得更佳的效益。"\n\n"• 透過任何瀏覽器都可存取。"\n"• 安全備份您的聯絡人。"</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (1785345895691886499) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_one_account (8669032699767375976) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_multiple_accounts (611828200100438242) -->
-    <skip />
-    <!-- no translation found for keep_local (1258761699192993322) -->
-    <skip />
-    <!-- no translation found for add_account (8201790677994503186) -->
-    <skip />
-    <!-- no translation found for add_new_account (5748627740680940264) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"您的新聯絡人資料不會備份。要新增可在線上備份聯絡人資料的帳戶嗎？"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"您的聯絡人資料將與 <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> 同步處理。"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"您可以透過下列其中一個帳戶同步處理您的新聯絡人資料。要使用那個帳戶？"</string>
+    <string name="keep_local" msgid="1258761699192993322">"儲存在本機中"</string>
+    <string name="add_account" msgid="8201790677994503186">"新增帳戶"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"新增帳戶"</string>
 </resources>

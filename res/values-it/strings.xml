@@ -550,23 +550,17 @@
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Messaggio vocale non ascoltato"</string>
     <string name="description_send_message" msgid="6046623392322890962">"Invia messaggio a <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="8831647331642648637">"Componi numero di telefono <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"Contatto rapido per <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"Accesso rapido ai contatti per <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Io"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Il mio profilo locale"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Il mio profilo <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Sono visualizzati tutti i contatti"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"L\'applicazione People funziona meglio con un account Google."\n\n"• Puoi accedervi da qualsiasi browser web."\n"• Effettua il backup dei tuoi contatti in modo sicuro."</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (1785345895691886499) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_one_account (8669032699767375976) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_multiple_accounts (611828200100438242) -->
-    <skip />
-    <!-- no translation found for keep_local (1258761699192993322) -->
-    <skip />
-    <!-- no translation found for add_account (8201790677994503186) -->
-    <skip />
-    <!-- no translation found for add_new_account (5748627740680940264) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Non verrà effettuato il backup del nuovo contatto. Aggiungere un account che effettua il backup dei contatti online?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Il nuovo contatto verrà sincronizzato con <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Puoi sincronizzare il nuovo contatto con uno dei seguenti account. Quale desideri utilizzare?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Memorizza in locale"</string>
+    <string name="add_account" msgid="8201790677994503186">"Aggiungi account"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Aggiungi nuovo account"</string>
 </resources>

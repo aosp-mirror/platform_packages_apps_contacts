@@ -557,16 +557,10 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Profilul meu <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Se afişează toată agenda"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Aplicaţia Persoane funcţionează mai bine cu un Cont Google."\n\n"• Accesaţi aplicaţia din orice browser web."\n"• Creaţi în siguranţă copii de rezervă pentru agendă."</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (1785345895691886499) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_one_account (8669032699767375976) -->
-    <skip />
-    <!-- no translation found for contact_editor_prompt_multiple_accounts (611828200100438242) -->
-    <skip />
-    <!-- no translation found for keep_local (1258761699192993322) -->
-    <skip />
-    <!-- no translation found for add_account (8201790677994503186) -->
-    <skip />
-    <!-- no translation found for add_new_account (5748627740680940264) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Pentru noul contact nu se va crea o copie de rezervă. Adăugați un cont care creează online copii de rezervă pentru contacte?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Noul dvs. contact va fi sincronizat cu <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Puteţi să sincronizaţi noul dvs. contact cu unul dintre următoarele conturi. Pe care doriţi să îl utilizaţi?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Păstraţi local"</string>
+    <string name="add_account" msgid="8201790677994503186">"Adăugaţi un cont"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Adăugaţi un cont nou"</string>
 </resources>
