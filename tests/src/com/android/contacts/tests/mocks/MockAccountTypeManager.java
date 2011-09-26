@@ -19,9 +19,11 @@ import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountTypeWithDataSet;
 import com.android.contacts.model.AccountWithDataSet;
+import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -32,8 +34,8 @@ import libcore.util.Objects;
  */
 public class MockAccountTypeManager extends AccountTypeManager {
 
-    private final AccountType[] mTypes;
-    private AccountWithDataSet[] mAccounts;
+    public AccountType[] mTypes;
+    public AccountWithDataSet[] mAccounts;
 
     public MockAccountTypeManager(AccountType[] types, AccountWithDataSet[] accounts) {
         this.mTypes = types;
@@ -59,5 +61,18 @@ public class MockAccountTypeManager extends AccountTypeManager {
     @Override
     public Map<AccountTypeWithDataSet, AccountType> getInvitableAccountTypes() {
         return Maps.newHashMap(); // Always returns empty
+    }
+
+    @Override
+    public List<AccountType> getAccountTypes(boolean writableOnly) {
+        final List<AccountType> ret = Lists.newArrayList();
+        synchronized (this) {
+            for (AccountType type : mTypes) {
+                if (!writableOnly || type.areContactsWritable()) {
+                    ret.add(type);
+                }
+            }
+        }
+        return ret;
     }
 }

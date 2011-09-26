@@ -17,21 +17,34 @@
 package com.android.contacts.model;
 
 import com.android.internal.util.Objects;
+import com.google.common.collect.Lists;
 
 import android.accounts.Account;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Parcel;
+import android.os.Parcelable.Creator;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
+
 /**
  * Wrapper for an account that includes a data set (which may be null).
  */
 public class AccountWithDataSet extends Account {
+    private static final String STRINGIFY_SEPARATOR = "\u0001";
+    private static final String ARRAY_STRINGIFY_SEPARATOR = "\u0002";
+
+    private static final Pattern STRINGIFY_SEPARATOR_PAT =
+            Pattern.compile(Pattern.quote(STRINGIFY_SEPARATOR));
+    private static final Pattern ARRAY_STRINGIFY_SEPARATOR_PAT =
+            Pattern.compile(Pattern.quote(ARRAY_STRINGIFY_SEPARATOR));
 
     public final String dataSet;
     private final AccountTypeWithDataSet mAccountTypeWithDataSet;
@@ -47,11 +60,28 @@ public class AccountWithDataSet extends Account {
         mAccountTypeWithDataSet = AccountTypeWithDataSet.get(type, dataSet);
     }
 
-    public AccountWithDataSet(Parcel in, String dataSet) {
+    public AccountWithDataSet(Parcel in) {
         super(in);
-        this.dataSet = dataSet;
+        this.dataSet = in.readString();
         mAccountTypeWithDataSet = AccountTypeWithDataSet.get(type, dataSet);
     }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
+        dest.writeString(dataSet);
+    }
+
+    // For Parcelable
+    public static final Creator<AccountWithDataSet> CREATOR = new Creator<AccountWithDataSet>() {
+        public AccountWithDataSet createFromParcel(Parcel source) {
+            return new AccountWithDataSet(source);
+        }
+
+        public AccountWithDataSet[] newArray(int size) {
+            return new AccountWithDataSet[size];
+        }
+    };
 
     public AccountTypeWithDataSet getAccountTypeWithDataSet() {
         return mAccountTypeWithDataSet;
@@ -99,5 +129,68 @@ public class AccountWithDataSet extends Account {
     @Override
     public String toString() {
         return "AccountWithDataSet {name=" + name + ", type=" + type + ", dataSet=" + dataSet + "}";
+    }
+
+    private static StringBuilder addStringified(StringBuilder sb, AccountWithDataSet account) {
+        sb.append(account.name);
+        sb.append(STRINGIFY_SEPARATOR);
+        sb.append(account.type);
+        sb.append(STRINGIFY_SEPARATOR);
+        if (!TextUtils.isEmpty(account.dataSet)) sb.append(account.dataSet);
+
+        return sb;
+    }
+
+    /**
+     * Pack the instance into a string.
+     */
+    public String stringify() {
+        return addStringified(new StringBuilder(), this).toString();
+    }
+
+    /**
+     * Unpack a string created by {@link #stringify}.
+     */
+    public static AccountWithDataSet unstringify(String s) {
+        final String[] array = STRINGIFY_SEPARATOR_PAT.split(s, 3);
+        if (array.length < 3) {
+            throw new IllegalArgumentException("Invalid string");
+        }
+        return new AccountWithDataSet(array[0], array[1],
+                TextUtils.isEmpty(array[2]) ? null : array[2]);
+    }
+
+    /**
+     * Pack a list of {@link AccountWithDataSet} into a string.
+     */
+    public static String stringifyList(List<AccountWithDataSet> accounts) {
+        final StringBuilder sb = new StringBuilder();
+
+        for (AccountWithDataSet account : accounts) {
+            if (sb.length() > 0) {
+                sb.append(ARRAY_STRINGIFY_SEPARATOR);
+            }
+            addStringified(sb, account);
+        }
+
+        return sb.toString();
+    }
+
+    /**
+     * Unpack a list of {@link AccountWithDataSet} into a string.
+     */
+    public static List<AccountWithDataSet> unstringifyList(String s) {
+        final ArrayList<AccountWithDataSet> ret = Lists.newArrayList();
+        if (TextUtils.isEmpty(s)) {
+            return ret;
+        }
+
+        final String[] array = ARRAY_STRINGIFY_SEPARATOR_PAT.split(s);
+
+        for (int i = 0; i < array.length; i++) {
+            ret.add(unstringify(array[i]));
+        }
+
+        return ret;
     }
 }
