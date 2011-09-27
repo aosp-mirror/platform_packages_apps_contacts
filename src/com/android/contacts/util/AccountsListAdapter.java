@@ -70,19 +70,20 @@ public final class AccountsListAdapter extends BaseAdapter {
         final View resultView = convertView != null ? convertView
                 : mInflater.inflate(R.layout.account_selector_list_item, parent, false);
 
-        final TextView text1 = (TextView)resultView.findViewById(android.R.id.text1);
-        final TextView text2 = (TextView)resultView.findViewById(android.R.id.text2);
-        final ImageView icon = (ImageView)resultView.findViewById(android.R.id.icon);
+        final TextView text1 = (TextView) resultView.findViewById(android.R.id.text1);
+        final TextView text2 = (TextView) resultView.findViewById(android.R.id.text2);
+        final ImageView icon = (ImageView) resultView.findViewById(android.R.id.icon);
 
         final AccountWithDataSet account = mAccounts.get(position);
         final AccountType accountType = mAccountTypes.getAccountType(account.type, account.dataSet);
 
-        text1.setText(account.name);
+        text1.setText(accountType.getDisplayLabel(mContext));
 
         // For email addresses, we don't want to truncate at end, which might cut off the domain
         // name.
-        text1.setEllipsize(TruncateAt.MIDDLE);
-        text2.setText(accountType.getDisplayLabel(mContext));
+        text2.setText(account.name);
+        text2.setEllipsize(TruncateAt.MIDDLE);
+
         icon.setImageDrawable(accountType.getDisplayIcon(mContext));
 
         return resultView;
