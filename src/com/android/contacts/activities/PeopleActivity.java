@@ -56,6 +56,7 @@ import com.android.contacts.preference.DisplayOptionsPreferenceFragment;
 import com.android.contacts.util.AccountPromptUtils;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.AccountsListAdapter;
+import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.PhoneCapabilityTester;
@@ -200,10 +201,13 @@ public class PeopleActivity extends ContactsActivity
         return mProviderStatus == ProviderStatus.STATUS_NORMAL;
     }
 
-    private boolean areAccountsAvailable() {
-        return ContactsUtils.areAccountsAvailable(this);
+    private boolean areContactWritableAccountsAvailable() {
+        return ContactsUtils.areContactWritableAccountsAvailable(this);
     }
 
+    private boolean areGroupWritableAccountsAvailable() {
+        return ContactsUtils.areGroupWritableAccountsAvailable(this);
+    }
 
     /**
      * Initialize fragments that are (or may not be) in the layout.
@@ -604,7 +608,7 @@ public class PeopleActivity extends ContactsActivity
             invalidateOptionsMenu();
             showEmptyStateForTab(tab);
             if (tab == TabState.GROUPS) {
-                mGroupsFragment.setAddAccountsVisibility(!areAccountsAvailable());
+                mGroupsFragment.setAddAccountsVisibility(!areGroupWritableAccountsAvailable());
             }
             return;
         }
@@ -625,7 +629,7 @@ public class PeopleActivity extends ContactsActivity
                 mFavoritesView.setVisibility(View.GONE);
                 mBrowserView.setVisibility(View.VISIBLE);
                 mDetailsView.setVisibility(View.VISIBLE);
-                mGroupsFragment.setAddAccountsVisibility(!areAccountsAvailable());
+                mGroupsFragment.setAddAccountsVisibility(!areGroupWritableAccountsAvailable());
                 break;
             case ALL:
                 mFavoritesView.setVisibility(View.GONE);
@@ -686,7 +690,7 @@ public class PeopleActivity extends ContactsActivity
                     break;
                 case GROUPS:
                     mContactsUnavailableFragment.setMessageText(R.string.noGroups,
-                            areAccountsAvailable() ? -1 : R.string.noAccounts);
+                            areGroupWritableAccountsAvailable() ? -1 : R.string.noAccounts);
                     break;
                 case ALL:
                     mContactsUnavailableFragment.setMessageText(R.string.noContacts, -1);
@@ -712,7 +716,7 @@ public class PeopleActivity extends ContactsActivity
                 mActionBarAdapter.setCurrentTab(selectedTab, false);
                 showEmptyStateForTab(selectedTab);
                 if (selectedTab == TabState.GROUPS) {
-                    mGroupsFragment.setAddAccountsVisibility(!areAccountsAvailable());
+                    mGroupsFragment.setAddAccountsVisibility(!areGroupWritableAccountsAvailable());
                 }
                 invalidateOptionsMenu();
             }
@@ -922,7 +926,8 @@ public class PeopleActivity extends ContactsActivity
             // If there are no accounts on the device and we should show the "no account" prompt
             // (based on {@link SharedPreferences}), then launch the account setup activity so the
             // user can sign-in or create an account.
-            if (!areAccountsAvailable() && AccountPromptUtils.shouldShowAccountPrompt(this)) {
+            if (!areContactWritableAccountsAvailable() &&
+                    AccountPromptUtils.shouldShowAccountPrompt(this)) {
                 AccountPromptUtils.launchAccountPrompt(this);
                 return;
             }
@@ -1304,7 +1309,7 @@ public class PeopleActivity extends ContactsActivity
                     break;
                 case GROUPS:
                     // Do not display the "new group" button if no accounts are available
-                    if (areAccountsAvailable()) {
+                    if (areGroupWritableAccountsAvailable()) {
                         addGroupMenu.setVisible(true);
                     } else {
                         addGroupMenu.setVisible(false);
@@ -1410,7 +1415,8 @@ public class PeopleActivity extends ContactsActivity
         popup.setAnchorView(mAddGroupImageView);
         // Create a list adapter with all writeable accounts (assume that the writeable accounts all
         // allow group creation).
-        final AccountsListAdapter adapter = new AccountsListAdapter(this, true);
+        final AccountsListAdapter adapter = new AccountsListAdapter(this,
+                AccountListFilter.ACCOUNTS_GROUP_WRITABLE);
         popup.setAdapter(adapter);
         popup.setOnItemClickListener(new OnItemClickListener() {
             @Override

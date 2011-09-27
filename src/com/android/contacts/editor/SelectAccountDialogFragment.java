@@ -19,6 +19,7 @@ package com.android.contacts.editor;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.util.AccountsListAdapter;
+import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -37,13 +38,18 @@ import android.os.Bundle;
 public class SelectAccountDialogFragment extends DialogFragment {
     public static final String TAG = "SelectAccountDialogFragment";
 
-    private int mTitleResourceId = R.string.dialog_new_contact_account;
+    // TODO: This dialog is used in the context of group editing by default, but should be generic
+    // to work for contact editing as well. Save/restore the resource ID and account list filter
+    // that are passed in as parameters on device rotation. Bug: 5369853
+    private int mTitleResourceId = R.string.dialog_new_group_account;
+    private AccountListFilter mAccountListFilter = AccountListFilter.ACCOUNTS_GROUP_WRITABLE;
 
     public SelectAccountDialogFragment() {
     }
 
-    public SelectAccountDialogFragment(int titleResourceId) {
+    public SelectAccountDialogFragment(int titleResourceId, AccountListFilter accountListFilter) {
         mTitleResourceId = titleResourceId;
+        mAccountListFilter = accountListFilter;
     }
 
     @Override
@@ -51,7 +57,7 @@ public class SelectAccountDialogFragment extends DialogFragment {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         final AccountsListAdapter accountAdapter = new AccountsListAdapter(builder.getContext(),
-                true);
+                mAccountListFilter);
 
         final DialogInterface.OnClickListener clickListener =
                 new DialogInterface.OnClickListener() {

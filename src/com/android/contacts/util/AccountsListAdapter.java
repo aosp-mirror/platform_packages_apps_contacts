@@ -42,20 +42,28 @@ public final class AccountsListAdapter extends BaseAdapter {
     private final AccountTypeManager mAccountTypes;
     private final Context mContext;
 
-    public AccountsListAdapter(Context context, boolean writableOnly) {
-        this(context, writableOnly, null);
+    /**
+     * Filters that affect the list of accounts that is displayed by this adapter.
+     */
+    public enum AccountListFilter {
+        ALL_ACCOUNTS,                   // All read-only and writable accounts
+        ACCOUNTS_CONTACT_WRITABLE,      // Only where the account type is contact writable
+        ACCOUNTS_GROUP_WRITABLE         // Only accounts where the account type is group writable
+    }
+
+    public AccountsListAdapter(Context context, AccountListFilter accountListFilter) {
+        this(context, accountListFilter, null);
     }
 
     /**
      * @param currentAccount the Account currently selected by the user, which should come
      * first in the list. Can be null.
      */
-    public AccountsListAdapter(Context context, boolean writableOnly,
+    public AccountsListAdapter(Context context, AccountListFilter accountListFilter,
             AccountWithDataSet currentAccount) {
         mContext = context;
         mAccountTypes = AccountTypeManager.getInstance(context);
-        // We don't want possible side-effect toward AccountTypeManager
-        mAccounts = new ArrayList<AccountWithDataSet>(mAccountTypes.getAccounts(writableOnly));
+        mAccounts = getAccounts(accountListFilter);
         if (currentAccount != null
                 && !mAccounts.isEmpty()
                 && !mAccounts.get(0).equals(currentAccount)
@@ -63,6 +71,14 @@ public final class AccountsListAdapter extends BaseAdapter {
             mAccounts.add(0, currentAccount);
         }
         mInflater = LayoutInflater.from(context);
+    }
+
+    private List<AccountWithDataSet> getAccounts(AccountListFilter accountListFilter) {
+        if (accountListFilter == AccountListFilter.ACCOUNTS_GROUP_WRITABLE) {
+            return new ArrayList<AccountWithDataSet>(mAccountTypes.getGroupWritableAccounts());
+        }
+        return new ArrayList<AccountWithDataSet>(mAccountTypes.getAccounts(
+                accountListFilter == AccountListFilter.ACCOUNTS_CONTACT_WRITABLE));
     }
 
     @Override
