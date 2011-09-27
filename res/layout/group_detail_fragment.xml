@@ -40,7 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fadingEdge="none"
-            android:scrollbarStyle="outsideOverlay"/>
+            android:scrollbarStyle="outsideOverlay"
+            android:divider="@null"/>
 
         <!--
           Shadow overlay over the list of group members (since we have a fake stacked

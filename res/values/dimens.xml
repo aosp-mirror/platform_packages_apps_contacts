@@ -156,8 +156,12 @@
     <dimen name="contact_browser_list_item_text_indent">8dip</dimen>
     <dimen name="contact_browser_list_top_margin">8dip</dimen>
 
-    <!--  ContactTile Layouts -->
-    <dimen name="contact_tile_shadowbox_height">48dip</dimen>
+    <!-- ContactTile Layouts -->
+    <!--
+      Use sp instead of dip so that the shadowbox heights can all scale uniformly
+      when the font size is scaled for accessibility purposes
+    -->
+    <dimen name="contact_tile_shadowbox_height">48sp</dimen>
 
     <!-- Call Log -->
     <dimen name="call_log_call_action_size">32dip</dimen>
