@@ -55,6 +55,9 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     private static final String KEY_FILTER = "filter";
 
+    /** true if the loader has started at least once. */
+    private boolean mLoaderStarted;
+
     // A complete copy from DefaultContactBrowserListFragment
     // TODO: should be able to share logic around filter header.
     private class FilterHeaderClickListener implements OnClickListener {
@@ -204,6 +207,12 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     }
 
     @Override
+    protected void startLoading() {
+        mLoaderStarted = true;
+        super.startLoading();
+    }
+
+    @Override
     protected ContactEntryListAdapter createListAdapter() {
         if (!isLegacyCompatibilityMode()) {
             PhoneNumberListAdapter adapter = new PhoneNumberListAdapter(getActivity());
@@ -272,7 +281,11 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
             ContactListFilter.storeToPreferences(mPrefs, mFilter);
         }
 
-        reloadData();
+        // This method can be called before {@link #onStart} where we start the loader.  In that
+        // case we shouldn't start the loader yet, as we haven't done all initialization yet.
+        if (mLoaderStarted) {
+            reloadData();
+        }
         updateFilterHeaderView();
     }
 }
