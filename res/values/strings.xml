@@ -1817,4 +1817,8 @@
 
     <!-- Button label to prompt the user to add another account (when there are already existing accounts on the device) [CHAR LIMIT=30] -->
     <string name="add_new_account">Add new account</string>
+
+    <!-- Dialog message which is shown when the user tries to make a phone call
+         to prohibited phone numbers [CHAR LIMIT=NONE] -->
+    <string name="phone_call_prohibited" msgid="4313552620858880999">Call not sent.</string>
 </resources>

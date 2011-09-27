@@ -120,4 +120,8 @@
     <!-- Height of the tab carousel as a percentage of the current screen width on the
          contact detail page -->
     <item name="tab_height_screen_width_percentage" type="fraction">50%</item>
+
+    <!-- Regular expression for prohibiting certain phone numbers in dialpad.
+         Ignored if empty. -->
+    <string name="config_prohibited_phone_number_regexp"></string>
 </resources>
