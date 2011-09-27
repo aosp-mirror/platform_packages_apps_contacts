@@ -144,7 +144,7 @@ public class GroupBrowseListFragment extends Fragment
                 startActivity(intent);
             }
         });
-        setAddAccountsVisibility(!ContactsUtils.areAccountsAvailable(mContext));
+        setAddAccountsVisibility(!ContactsUtils.areGroupWritableAccountsAvailable(mContext));
 
         return mRootView;
     }
@@ -214,7 +214,7 @@ public class GroupBrowseListFragment extends Fragment
 
     private void bindGroupList() {
         mEmptyView.setText(R.string.noGroups);
-        setAddAccountsVisibility(!ContactsUtils.areAccountsAvailable(mContext));
+        setAddAccountsVisibility(!ContactsUtils.areGroupWritableAccountsAvailable(mContext));
         if (mGroupListCursor == null) {
             return;
         }

@@ -59,6 +59,11 @@ public class MockAccountTypeManager extends AccountTypeManager {
     }
 
     @Override
+    public List<AccountWithDataSet> getGroupWritableAccounts() {
+        return Arrays.asList(mAccounts);
+    }
+
+    @Override
     public Map<AccountTypeWithDataSet, AccountType> getInvitableAccountTypes() {
         return Maps.newHashMap(); // Always returns empty
     }

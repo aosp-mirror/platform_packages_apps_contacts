@@ -16,6 +16,7 @@
 
 package com.android.contacts;
 
+import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.test.NeededForTesting;
@@ -172,11 +173,15 @@ public class ContactsUtils {
         return detector.detectCountry().getCountryIso();
     }
 
-    public static boolean areAccountsAvailable(Context context) {
+    public static boolean areContactWritableAccountsAvailable(Context context) {
         final List<AccountWithDataSet> accounts =
                 AccountTypeManager.getInstance(context).getAccounts(true /* writeable */);
         return !accounts.isEmpty();
     }
 
-
+    public static boolean areGroupWritableAccountsAvailable(Context context) {
+        final List<AccountWithDataSet> accounts =
+                AccountTypeManager.getInstance(context).getGroupWritableAccounts();
+        return !accounts.isEmpty();
+    }
 }

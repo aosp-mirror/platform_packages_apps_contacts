@@ -16,7 +16,6 @@
 
 package com.android.contacts.activities;
 
-import android.accounts.Account;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,6 +33,7 @@ import com.android.contacts.editor.ContactEditorUtils;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.util.AccountsListAdapter;
+import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 
 import java.util.List;
 
@@ -97,7 +97,8 @@ public class ContactEditorAccountsChangedActivity extends Activity {
             button.setOnClickListener(mAddAccountClickListener);
 
             final ListView accountListView = (ListView) findViewById(R.id.account_list);
-            mAccountListAdapter = new AccountsListAdapter(this, true);
+            mAccountListAdapter = new AccountsListAdapter(this,
+                    AccountListFilter.ACCOUNTS_CONTACT_WRITABLE);
             accountListView.setAdapter(mAccountListAdapter);
             accountListView.setOnItemClickListener(mAccountListItemClickListener);
         } else if (numAccounts == 1) {

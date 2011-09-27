@@ -34,6 +34,7 @@ import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.model.EntityModifier;
 import com.android.contacts.model.GoogleAccountType;
 import com.android.contacts.util.AccountsListAdapter;
+import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -825,7 +826,8 @@ public class ContactEditorFragment extends Fragment implements
             public void onClick(View v) {
                 final ListPopupWindow popup = new ListPopupWindow(mContext, null);
                 final AccountsListAdapter adapter =
-                        new AccountsListAdapter(mContext, true, currentAccount);
+                        new AccountsListAdapter(mContext,
+                        AccountListFilter.ACCOUNTS_CONTACT_WRITABLE, currentAccount);
                 popup.setWidth(anchorView.getWidth());
                 popup.setAnchorView(anchorView);
                 popup.setAdapter(adapter);
