@@ -27,8 +27,12 @@ import com.android.phone.CallLogAsync;
 import com.android.phone.HapticFeedback;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -37,7 +41,6 @@ import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
@@ -46,7 +49,6 @@ import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
 import android.provider.Contacts.PhonesColumns;
 import android.provider.Settings;
-import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -61,15 +63,20 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Fragment that displays a twelve-key phone dialpad.
@@ -116,6 +123,11 @@ public class DialpadFragment extends Fragment
     private View mDialButton;
     private ListView mDialpadChooser;
     private DialpadChooserAdapter mDialpadChooserAdapter;
+
+    /**
+     * Regular expression prohibiting manual phone call. Can be empty, which means "no rule".
+     */
+    private String mProhibitedPhoneNumberRegexp;
 
     private boolean mShowOptionsMenu;
 
@@ -219,6 +231,9 @@ public class DialpadFragment extends Fragment
         }
 
         setHasOptionsMenu(true);
+
+        mProhibitedPhoneNumberRegexp = getResources().getString(
+                R.string.config_prohibited_phone_number_regexp);
     }
 
     @Override
@@ -794,6 +809,26 @@ public class DialpadFragment extends Fragment
         getActivity().finish();
     }
 
+    public static class CallProhibitedDialogFragment extends DialogFragment {
+        public static CallProhibitedDialogFragment newInstance() {
+            return new CallProhibitedDialogFragment();
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            return new AlertDialog.Builder(getActivity())
+                    .setTitle(R.string.phone_call_prohibited)
+                    .setPositiveButton(android.R.string.ok,
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dismiss();
+                                }
+                            })
+                    .create();
+        }
+    }
+
     /**
      * In most cases, when the dial button is pressed, there is a
      * number in digits area. Pack it in the intent, start the
@@ -847,9 +882,22 @@ public class DialpadFragment extends Fragment
         } else {
             final String number = mDigits.getText().toString();
 
-            startActivity(newDialNumberIntent(number));
-            mDigits.getText().clear();  // TODO: Fix bug 1745781
-            getActivity().finish();
+            if (number != null
+                    && !TextUtils.isEmpty(mProhibitedPhoneNumberRegexp)
+                    && number.matches(mProhibitedPhoneNumberRegexp)) {
+                Log.i(TAG, "The phone number is prohibited explicitly by a rule.");
+                if (getActivity() != null) {
+                    DialogFragment dialogFragment = CallProhibitedDialogFragment.newInstance();
+                    dialogFragment.show(getFragmentManager(), "phone_prohibited_dialog");
+                }
+
+                // Clear the digits just in case.
+                mDigits.getText().clear();
+            } else {
+                startActivity(newDialNumberIntent(number));
+                mDigits.getText().clear();  // TODO: Fix bug 1745781
+                getActivity().finish();
+            }
         }
     }
 
@@ -1224,7 +1272,7 @@ public class DialpadFragment extends Fragment
                 // been entered, or if there is a last dialed number
                 // that could be redialed.
                 mDialButton.setEnabled(digitsNotEmpty ||
-                                       !TextUtils.isEmpty(mLastNumberDialed));
+                        !TextUtils.isEmpty(mLastNumberDialed));
             }
         }
         mDelete.setEnabled(digitsNotEmpty);
