@@ -85,7 +85,17 @@ public abstract class AccountTypeManager {
         return new AccountTypeManagerImpl(context);
     }
 
-    public abstract List<AccountWithDataSet> getAccounts(boolean writableOnly);
+    /**
+     * Returns the list of all accounts (if contactWritableOnly is false) or just the list of
+     * contact writable accounts (if contactWritableOnly is true).
+     */
+    // TODO: Consider splitting this into getContactWritableAccounts() and getAllAccounts()
+    public abstract List<AccountWithDataSet> getAccounts(boolean contactWritableOnly);
+
+    /**
+     * Returns the list of accounts that are group writable.
+     */
+    public abstract List<AccountWithDataSet> getGroupWritableAccounts();
 
     public abstract AccountType getAccountType(AccountTypeWithDataSet accountTypeWithDataSet);
 
@@ -130,7 +140,8 @@ class AccountTypeManagerImpl extends AccountTypeManager
     private AccountType mFallbackAccountType;
 
     private List<AccountWithDataSet> mAccounts = Lists.newArrayList();
-    private List<AccountWithDataSet> mWritableAccounts = Lists.newArrayList();
+    private List<AccountWithDataSet> mContactWritableAccounts = Lists.newArrayList();
+    private List<AccountWithDataSet> mGroupWritableAccounts = Lists.newArrayList();
     private Map<AccountTypeWithDataSet, AccountType> mAccountTypesWithDataSets = Maps.newHashMap();
     private Map<AccountTypeWithDataSet, AccountType> mInvitableAccountTypes =
             Collections.unmodifiableMap(new HashMap<AccountTypeWithDataSet, AccountType>());
@@ -288,16 +299,18 @@ class AccountTypeManagerImpl extends AccountTypeManager
         final long startTimeWall = SystemClock.elapsedRealtime();
 
         // Account types, keyed off the account type and data set concatenation.
-        Map<AccountTypeWithDataSet, AccountType> accountTypesByTypeAndDataSet = Maps.newHashMap();
+        final Map<AccountTypeWithDataSet, AccountType> accountTypesByTypeAndDataSet =
+                Maps.newHashMap();
 
         // The same AccountTypes, but keyed off {@link RawContacts#ACCOUNT_TYPE}.  Since there can
         // be multiple account types (with different data sets) for the same type of account, each
         // type string may have multiple AccountType entries.
-        Map<String, List<AccountType>> accountTypesByType = Maps.newHashMap();
+        final Map<String, List<AccountType>> accountTypesByType = Maps.newHashMap();
 
-        List<AccountWithDataSet> allAccounts = Lists.newArrayList();
-        List<AccountWithDataSet> writableAccounts = Lists.newArrayList();
-        Set<String> extensionPackages = Sets.newHashSet();
+        final List<AccountWithDataSet> allAccounts = Lists.newArrayList();
+        final List<AccountWithDataSet> contactWritableAccounts = Lists.newArrayList();
+        final List<AccountWithDataSet> groupWritableAccounts = Lists.newArrayList();
+        final Set<String> extensionPackages = Sets.newHashSet();
 
         final AccountManager am = mAccountManager;
         final IContentService cs = ContentResolver.getContentService();
@@ -402,7 +415,10 @@ class AccountTypeManagerImpl extends AccountTypeManager
                                 account.name, account.type, accountType.dataSet);
                         allAccounts.add(accountWithDataSet);
                         if (accountType.areContactsWritable()) {
-                            writableAccounts.add(accountWithDataSet);
+                            contactWritableAccounts.add(accountWithDataSet);
+                        }
+                        if (accountType.isGroupMembershipEditable()) {
+                            groupWritableAccounts.add(accountWithDataSet);
                         }
                     }
                 }
@@ -410,14 +426,16 @@ class AccountTypeManagerImpl extends AccountTypeManager
         }
 
         Collections.sort(allAccounts, ACCOUNT_COMPARATOR);
-        Collections.sort(writableAccounts, ACCOUNT_COMPARATOR);
+        Collections.sort(contactWritableAccounts, ACCOUNT_COMPARATOR);
+        Collections.sort(groupWritableAccounts, ACCOUNT_COMPARATOR);
 
         timings.addSplit("Loaded accounts");
 
         synchronized (this) {
             mAccountTypesWithDataSets = accountTypesByTypeAndDataSet;
             mAccounts = allAccounts;
-            mWritableAccounts = writableAccounts;
+            mContactWritableAccounts = contactWritableAccounts;
+            mGroupWritableAccounts = groupWritableAccounts;
             mInvitableAccountTypes = findInvitableAccountTypes(
                     mContext, allAccounts, accountTypesByTypeAndDataSet);
         }
@@ -467,12 +485,20 @@ class AccountTypeManagerImpl extends AccountTypeManager
     }
 
     /**
-     * Return list of all known, writable {@link AccountWithDataSet}'s.
+     * Return list of all known, contact writable {@link AccountWithDataSet}'s.
      */
     @Override
-    public List<AccountWithDataSet> getAccounts(boolean writableOnly) {
+    public List<AccountWithDataSet> getAccounts(boolean contactWritableOnly) {
         ensureAccountsLoaded();
-        return writableOnly ? mWritableAccounts : mAccounts;
+        return contactWritableOnly ? mContactWritableAccounts : mAccounts;
+    }
+
+    /**
+     * Return the list of all known, group writable {@link AccountWithDataSet}'s.
+     */
+    public List<AccountWithDataSet> getGroupWritableAccounts() {
+        ensureAccountsLoaded();
+        return mGroupWritableAccounts;
     }
 
     /**
