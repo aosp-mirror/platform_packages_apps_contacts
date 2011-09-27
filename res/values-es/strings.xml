@@ -563,4 +563,5 @@
     <string name="keep_local" msgid="1258761699192993322">"Guardar localmente"</string>
     <string name="add_account" msgid="8201790677994503186">"Añadir cuenta"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Añadir una cuenta nueva"</string>
+    <string name="phone_call_prohibited" msgid="4329551585931067534">"La llamada no se ha enviado."</string>
 </resources>

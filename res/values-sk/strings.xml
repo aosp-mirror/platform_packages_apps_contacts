@@ -549,7 +549,7 @@
     <string name="description_send_text_message" msgid="7803126439934046891">"Poslať textovú správu kontaktu <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Nevypočutá hlasová správa"</string>
     <string name="description_send_message" msgid="6046623392322890962">"Odoslať správu kontaktu <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_dial_phone_number" msgid="8831647331642648637">"Volať kontakt <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="8831647331642648637">"Volať na telefón <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_quick_contact_for" msgid="6737516415168327789">"Rýchly kontakt <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Ja"</string>
@@ -560,7 +560,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Váš nový kontakt nebude zálohovaný. Chcete pridať účet na zálohovanie kontaktov online?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Nový kontakt bude synchronizovaný s účtom <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Nový kontakt môžete synchronizovať s jedným z nasledujúcich účtov. Ktorý z nich chcete použiť?"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Zachovať ako miestne"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Zachovať miestne"</string>
     <string name="add_account" msgid="8201790677994503186">"Pridať účet"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Pridať nový účet"</string>
+    <string name="phone_call_prohibited" msgid="4329551585931067534">"Hovor nebol spojený."</string>
 </resources>

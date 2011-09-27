@@ -563,4 +563,5 @@
     <string name="keep_local" msgid="1258761699192993322">"Lưu trữ cục bộ"</string>
     <string name="add_account" msgid="8201790677994503186">"Thêm tài khoản"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Thêm tài khoản mới"</string>
+    <string name="phone_call_prohibited" msgid="4329551585931067534">"Cuộc gọi không được gửi đi."</string>
 </resources>

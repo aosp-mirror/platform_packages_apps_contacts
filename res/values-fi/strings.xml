@@ -563,4 +563,5 @@
     <string name="keep_local" msgid="1258761699192993322">"Säilytä paikallisena"</string>
     <string name="add_account" msgid="8201790677994503186">"Lisää tili"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Lisää uusi tili"</string>
+    <string name="phone_call_prohibited" msgid="4329551585931067534">"Puhelua ei soitettu."</string>
 </resources>

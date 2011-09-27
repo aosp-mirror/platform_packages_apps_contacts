@@ -563,4 +563,5 @@
     <string name="keep_local" msgid="1258761699192993322">"Spara lokalt"</string>
     <string name="add_account" msgid="8201790677994503186">"Lägg till ett konto"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Lägg till ett nytt konto"</string>
+    <string name="phone_call_prohibited" msgid="4329551585931067534">"Samtalet har inte skickats."</string>
 </resources>

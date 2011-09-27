@@ -228,13 +228,13 @@
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Поиск данных vCard на SD-карте"</string>
     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Накопитель не просканирован"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"SD-карта не просканирована"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8290634758602152611">"Не удалось сканировать накопитель. <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="2462918339722946736">"Не удалось сканировать SD-карту. <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8290634758602152611">"Ошибка сканирования накопителя: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="2462918339722946736">"Ошибка сканирования SD-карты: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"Ошибка ввода-вывода"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Недостаточно памяти (возможно, файл слишком велик)"</string>
-    <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"Не удалось обработать файл vCard по неизвестной причине"</string>
+    <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"Не удалось обработать файл vCard"</string>
     <string name="fail_reason_not_supported" msgid="294499264620201243">"Формат не поддерживается."</string>
-    <string name="vcard_import_failed" msgid="8856125211629574066">"Не удалось импортировать файл vCard"</string>
+    <string name="vcard_import_failed" msgid="8856125211629574066">"Не удалось импортировать vCard- файл"</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"На накопителе нет vCard-файлов"</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"На SD-карте не найдены файлы VCard"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Не удалось собрать метаданные файлов VCard."</string>
@@ -245,7 +245,7 @@
     <string name="caching_vcard_message" msgid="2380844718093378900">"Импортер кэширует файлы vCard в локальное временное хранилище. Фактический импорт начнется в ближайшее время."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Импорт <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Импорт: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Данные файла vCard не прочитаны"</string>
+    <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Ошибка чтения vCard-файла"</string>
     <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Чтение данных vCard отменено"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Импорт файла vCard <xliff:g id="FILENAME">%s</xliff:g> завершен"</string>
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Импорт <xliff:g id="FILENAME">%s</xliff:g> был отменен"</string>
@@ -258,8 +258,8 @@
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Подтверждение·экспорта"</string>
     <string name="confirm_export_message" msgid="4307437830474103759">"Экспортировать список контактов в файл <xliff:g id="VCARD_FILENAME">%s</xliff:g>?"</string>
-    <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Данные контакта не экспортированы"</string>
-    <string name="exporting_contact_failed_message" msgid="2704925031146288635">"Не удалось экспортировать данные контакта."\n"<xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
+    <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Ошибка экспорта данных"</string>
+    <string name="exporting_contact_failed_message" msgid="2704925031146288635">"Ошибка экспорта данных:"\n"<xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Нет контактов, которые можно экспортировать."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Слишком много vCard-файлов на накопителе"</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Слишком много файлов VCard на SD-карте."</string>
@@ -270,7 +270,7 @@
     <string name="exporting_contact_list_message" msgid="5640326540405486055">"Экспорт данных контакта в \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Не удается запустить функцию экспорта: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Ошибка при экспорте: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Не удалось получить информацию из базы данных"</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Не удалось получить сведения из базы данных"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Нет контактов для экспорта. Если в вашем планшетном ПК имеются контакты, возможно, их экспорт был заблокирован поставщиком данных."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Нет контактов для экспорта. Если в вашем телефоне имеются контакты, возможно, их экспорт был заблокирован поставщиком данных."</string>
     <string name="composer_not_initialized" msgid="8041534450748388843">"Редактор vCard запущен некорректно"</string>
@@ -548,9 +548,9 @@
     <string name="description_call" msgid="3443678121983852666">"Позвонить абоненту: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_send_text_message" msgid="7803126439934046891">"Отправить текстовое сообщение контакту: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Непрослушанные сообщения голосовой почты"</string>
-    <string name="description_send_message" msgid="6046623392322890962">"Отправить сообщение контакту <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_dial_phone_number" msgid="8831647331642648637">"Позвонить контакту <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"Быстрый вызов контакта <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_send_message" msgid="6046623392322890962">"Отправить сообщение, контакт: <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="8831647331642648637">"Позвонить, контакт: <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"Быстрый вызов, контакт: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Я"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Мой локальный профиль"</string>
@@ -558,9 +558,10 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Отображаются все контакты"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Эффективная работа приложения \"Люди\" с помощью аккаунта Google – это:"\n\n"• Доступ к приложению из любого браузера."\n"• Безопасное резервное копирование контактов."</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Резервная копия нового контакта не будет сохранена. Добавить аккаунт для сохранения контактов в Интернете?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Новый контакт будет добавлен в аккаунт <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Выберите, в какой из следующих аккаунтов добавить контакт."</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Контакт будет добавлен в аккаунт <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Выберите аккаунт, в который следует добавить новый контакт."</string>
     <string name="keep_local" msgid="1258761699192993322">"Сохранить локально"</string>
     <string name="add_account" msgid="8201790677994503186">"Добавить аккаунт"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Добавить аккаунт"</string>
+    <string name="phone_call_prohibited" msgid="4329551585931067534">"Вызов не осуществляется."</string>
 </resources>

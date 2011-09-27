@@ -563,4 +563,5 @@
     <string name="keep_local" msgid="1258761699192993322">"Tárolás helyben"</string>
     <string name="add_account" msgid="8201790677994503186">"Fiók hozzáadása"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Új fiók hozzáadása"</string>
+    <string name="phone_call_prohibited" msgid="4329551585931067534">"A hívás nem indítható."</string>
 </resources>
