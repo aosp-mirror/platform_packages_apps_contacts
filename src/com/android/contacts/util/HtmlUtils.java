@@ -1,5 +1,8 @@
 package com.android.contacts.util;
 
+import com.android.contacts.R;
+import com.google.common.annotations.VisibleForTesting;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.text.Html;
@@ -11,8 +14,6 @@ import android.text.TextUtils;
 import android.text.style.ImageSpan;
 import android.text.style.QuoteSpan;
 
-import com.android.contacts.R;
-
 /**
  * Provides static functions to perform custom HTML to text conversions.
  * Specifically, it adjusts the color and padding of the vertical
@@ -21,43 +22,53 @@ import com.android.contacts.R;
 public class HtmlUtils {
 
     /**
-     * Converts HTML string to a {@link Spanned} text, adjusting formatting.
+     * Converts HTML string to a {@link Spanned} text, adjusting formatting. Any extra new line
+     * characters at the end of the text will be trimmed.
      */
     public static Spanned fromHtml(Context context, String text) {
         if (TextUtils.isEmpty(text)) {
             return null;
         }
         Spanned spanned = Html.fromHtml(text);
-        postprocess(context, spanned);
-        return spanned;
+        return postprocess(context, spanned);
     }
 
     /**
      * Converts HTML string to a {@link Spanned} text, adjusting formatting and using a custom
-     * image getter.
+     * image getter. Any extra new line characters at the end of the text will be trimmed.
      */
     public static CharSequence fromHtml(Context context, String text, ImageGetter imageGetter,
             TagHandler tagHandler) {
         if (TextUtils.isEmpty(text)) {
             return null;
         }
-        Spanned spanned = Html.fromHtml(text, imageGetter, tagHandler);
-        postprocess(context, spanned);
-        return spanned;
+        return postprocess(context, Html.fromHtml(text, imageGetter, tagHandler));
     }
 
     /**
-     * Replaces some spans with custom versions of those.
+     * Replaces some spans with custom versions of those. Any extra new line characters at the end
+     * of the text will be trimmed.
      */
-    private static void postprocess(Context context, Spanned spanned) {
-        if (!(spanned instanceof SpannableStringBuilder)) {
-            return;
+    @VisibleForTesting
+    static Spanned postprocess(Context context, Spanned original) {
+        if (original == null) {
+            return null;
+        }
+        final int length = original.length();
+        if (length == 0) {
+            return original; // Bail early.
         }
 
-        int length = spanned.length();
+        // If it's a SpannableStringBuilder, just use it.  Otherwise, create a new
+        // SpannableStringBuilder based on the passed Spanned.
+        final SpannableStringBuilder builder;
+        if (original instanceof SpannableStringBuilder) {
+            builder = (SpannableStringBuilder) original;
+        } else {
+            builder = new SpannableStringBuilder(original);
+        }
 
-        SpannableStringBuilder builder = (SpannableStringBuilder)spanned;
-        QuoteSpan[] quoteSpans = spanned.getSpans(0, length, QuoteSpan.class);
+        final QuoteSpan[] quoteSpans = builder.getSpans(0, length, QuoteSpan.class);
         if (quoteSpans != null && quoteSpans.length != 0) {
             Resources resources = context.getResources();
             int color = resources.getColor(R.color.stream_item_stripe_color);
@@ -67,7 +78,7 @@ public class HtmlUtils {
             }
         }
 
-        ImageSpan[] imageSpans = spanned.getSpans(0, length, ImageSpan.class);
+        final ImageSpan[] imageSpans = builder.getSpans(0, length, ImageSpan.class);
         if (imageSpans != null) {
             for (int i = 0; i < imageSpans.length; i++) {
                 ImageSpan span = imageSpans[i];
@@ -75,6 +86,25 @@ public class HtmlUtils {
                         ImageSpan.ALIGN_BASELINE));
             }
         }
+
+        // Trim the trailing new line characters at the end of the text (which can be added
+        // when HTML block quote tags are turned into new line characters).
+        int end = length;
+        for (int i = builder.length() - 1; i >= 0; i--) {
+            if (builder.charAt(i) != '\n') {
+                break;
+            }
+            end = i;
+        }
+
+        // If there's no trailing newlines, just return it.
+        if (end == length) {
+            return builder;
+        }
+
+        // Otherwise, Return a substring of the original {@link Spanned} text
+        // from the start index (inclusive) to the end index (exclusive).
+        return new SpannableStringBuilder(builder, 0, end);
     }
 
     /**
