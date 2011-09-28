@@ -84,6 +84,13 @@ public class DialtactsActivity extends Activity {
             "com.android.phone.CallFeaturesSetting";
 
     /**
+     * Copied from PhoneApp. See comments in Phone app for more detail.
+     */
+    public static final String EXTRA_CALL_ORIGIN = "com.android.phone.CALL_ORIGIN";
+    public static final String CALL_ORIGIN_DIALTACTS =
+            "com.android.contacts.activities.DialtactsActivity";
+
+    /**
      * Just for backward compatibility. Should behave as same as {@link Intent#ACTION_DIAL}.
      */
     private static final String ACTION_TOUCH_DIALER = "com.android.phone.action.TOUCH_DIALER";
@@ -697,7 +704,8 @@ public class DialtactsActivity extends Activity {
         @Override
         public void onContactSelected(Uri contactUri) {
             PhoneNumberInteraction.startInteractionForPhoneCall(
-                    DialtactsActivity.this, contactUri);
+                    DialtactsActivity.this, contactUri,
+                    CALL_ORIGIN_DIALTACTS);
         }
     };
 

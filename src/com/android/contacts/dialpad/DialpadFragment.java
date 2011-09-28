@@ -899,7 +899,12 @@ public class DialpadFragment extends Fragment
                 // Clear the digits just in case.
                 mDigits.getText().clear();
             } else {
-                startActivity(newDialNumberIntent(number));
+                final Intent intent = newDialNumberIntent(number);
+                if (getActivity() instanceof DialtactsActivity) {
+                    intent.putExtra(DialtactsActivity.EXTRA_CALL_ORIGIN,
+                            DialtactsActivity.CALL_ORIGIN_DIALTACTS);
+                }
+                startActivity(intent);
                 mDigits.getText().clear();  // TODO: Fix bug 1745781
                 getActivity().finish();
             }
