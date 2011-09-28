@@ -22,6 +22,7 @@ import com.android.contacts.R;
 
 import android.content.res.Resources;
 import android.provider.CallLog.Calls;
+import android.text.TextUtils;
 import android.view.View;
 
 /**
@@ -68,7 +69,7 @@ import android.view.View;
             views.dividerView.setVisibility(View.VISIBLE);
         } else if (canCall) {
             // Call is the secondary action.
-            configureCallSecondaryAction(views);
+            configureCallSecondaryAction(views, details);
             views.dividerView.setVisibility(View.VISIBLE);
         } else {
             // No action available.
@@ -78,11 +79,23 @@ import android.view.View;
     }
 
     /** Sets the secondary action to correspond to the call button. */
-    private void configureCallSecondaryAction(CallLogListItemViews views) {
+    private void configureCallSecondaryAction(CallLogListItemViews views,
+            PhoneCallDetails details) {
         views.secondaryActionView.setVisibility(View.VISIBLE);
         views.secondaryActionView.setImageResource(R.drawable.ic_ab_dialer_holo_dark);
-        views.secondaryActionView.setContentDescription(
-                mResources.getString(R.string.description_call_log_call_button));
+        views.secondaryActionView.setContentDescription(getCallActionDescription(details));
+    }
+
+    /** Returns the description used by the call action for this phone call. */
+    private CharSequence getCallActionDescription(PhoneCallDetails details) {
+        final CharSequence recipient;
+        if (!TextUtils.isEmpty(details.name)) {
+            recipient = details.name;
+        } else {
+            recipient = mPhoneNumberHelper.getDisplayNumber(
+                    details.number, details.formattedNumber);
+        }
+        return mResources.getString(R.string.description_call, recipient);
     }
 
     /** Sets the secondary action to correspond to the play button. */
