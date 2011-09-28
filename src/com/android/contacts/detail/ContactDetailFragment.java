@@ -36,6 +36,7 @@ import com.android.contacts.model.EntityDelta;
 import com.android.contacts.model.EntityDelta.ValuesDelta;
 import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.model.EntityModifier;
+import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.DateUtils;
@@ -1752,7 +1753,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     }
 
     @Override
-    public void onAccountChosen(int requestCode, AccountWithDataSet account) {
+    public void onAccountChosen(AccountWithDataSet account, Bundle extraArgs) {
         createCopy(account);
     }
 
@@ -2047,9 +2048,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                         return;  // Don't show a dialog.
                     }
 
-                    final SelectAccountDialogFragment dialog = new SelectAccountDialogFragment();
-                    dialog.setTargetFragment(ContactDetailFragment.this, 0);
-                    dialog.show(getFragmentManager(), SelectAccountDialogFragment.TAG);
+                    SelectAccountDialogFragment.show(getFragmentManager(),
+                            ContactDetailFragment.this, R.string.dialog_new_contact_account,
+                            AccountListFilter.ACCOUNTS_CONTACT_WRITABLE, null);
                     break;
                 }
             }
