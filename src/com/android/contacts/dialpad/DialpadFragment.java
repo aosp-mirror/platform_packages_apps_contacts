@@ -44,6 +44,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.os.SystemProperties;
 import android.provider.Contacts.Intents.Insert;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
@@ -882,9 +883,13 @@ public class DialpadFragment extends Fragment
         } else {
             final String number = mDigits.getText().toString();
 
+            // "persist.radio.otaspdial" is a temporary hack needed for one carrier's automated
+            // test equipment.
+            // TODO: clean it up.
             if (number != null
                     && !TextUtils.isEmpty(mProhibitedPhoneNumberRegexp)
-                    && number.matches(mProhibitedPhoneNumberRegexp)) {
+                    && number.matches(mProhibitedPhoneNumberRegexp)
+                    && (SystemProperties.getInt("persist.radio.otaspdial", 0) != 1)) {
                 Log.i(TAG, "The phone number is prohibited explicitly by a rule.");
                 if (getActivity() != null) {
                     DialogFragment dialogFragment = CallProhibitedDialogFragment.newInstance();
