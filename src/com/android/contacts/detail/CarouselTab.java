@@ -73,8 +73,9 @@ public class CarouselTab extends RelativeLayout implements ViewOverlay {
 
     @Override
     public void disableTouchInterceptor() {
-        // This shouldn't be called because there is no need to disable the touch interceptor if
-        // there is no content within the tab that needs to be clicked.
+        if (mTouchInterceptLayer != null) {
+            mTouchInterceptLayer.setVisibility(View.GONE);
+        }
     }
 
     @Override

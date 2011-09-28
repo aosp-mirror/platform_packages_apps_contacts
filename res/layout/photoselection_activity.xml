@@ -13,20 +13,20 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
-<!--
-  This is a header entry in the contact details list for when the contact does not have social
-  updates, which means that the contact's photo will scroll with the list of details.
--->
-<view
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
-    class="com.android.contacts.widget.ProportionalLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    ex:ratio="0.5"
-    ex:direction="widthToHeight">
-
-    <include layout="@layout/photo_selector_view" />
-
-</view>
+    android:layout_height="match_parent">
+    <View
+        android:id="@+id/backdrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000" />
+    <view
+        android:id="@+id/photo"
+        class="com.android.contacts.detail.TransformableImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop" />
+</FrameLayout>

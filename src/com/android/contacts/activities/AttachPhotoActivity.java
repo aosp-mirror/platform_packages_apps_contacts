@@ -156,7 +156,7 @@ public class AttachPhotoActivity extends ContactsActivity {
                 Bitmap photo = extras.getParcelable("data");
                 if (photo != null) {
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    photo.compress(Bitmap.CompressFormat.JPEG, 75, stream);
+                    photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
 
                     final ContentValues imageValues = new ContentValues();
                     imageValues.put(Photo.PHOTO, stream.toByteArray());

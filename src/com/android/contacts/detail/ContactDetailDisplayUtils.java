@@ -20,6 +20,8 @@ import com.android.contacts.ContactLoader;
 import com.android.contacts.ContactLoader.Result;
 import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.R;
+import com.android.contacts.activities.PhotoSelectionActivity;
+import com.android.contacts.model.EntityDeltaList;
 import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.util.ContactBadgeUtil;
 import com.android.contacts.util.HtmlUtils;
@@ -27,19 +29,23 @@ import com.android.contacts.util.StreamItemEntry;
 import com.android.contacts.util.StreamItemPhotoEntry;
 import com.google.common.annotations.VisibleForTesting;
 
+import android.app.Activity;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Entity;
 import android.content.Entity.NamedContentValues;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Parcelable;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.Data;
@@ -51,6 +57,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
@@ -192,11 +199,20 @@ public class ContactDetailDisplayUtils {
     /**
      * Sets the contact photo to display in the given {@link ImageView}. If bitmap is null, the
      * default placeholder image is shown.
+     * @param context The context.
+     * @param contactData The contact loader result.
+     * @param photoView The photo view that will host the image and act as the basis for the
+     *     photo selector.
+     * @param expandPhotoOnClick Whether the photo should be expanded to fill more of the screen
+     *     when clicked.
+     * @return The onclick listener for the photo.  When clicked, a photo selection activity will
+     *     be launched.
      */
-    public static void setPhoto(Context context, Result contactData, ImageView photoView) {
+    public static OnClickListener setPhoto(Context context, Result contactData,
+            ImageView photoView, boolean expandPhotoOnClick) {
         if (contactData.isLoadingPhoto()) {
             photoView.setImageBitmap(null);
-            return;
+            return null;
         }
         byte[] photo = contactData.getPhotoBinaryData();
         Bitmap bitmap = photo != null ? BitmapFactory.decodeByteArray(photo, 0, photo.length)
@@ -209,6 +225,52 @@ public class ContactDetailDisplayUtils {
             photoView.startAnimation(animation);
         }
         photoView.setImageBitmap(bitmap);
+
+        // Set up the photo to display a full-screen photo selection activity when clicked.
+        OnClickListener clickListener = new PhotoClickListener(context, contactData, bitmap,
+                expandPhotoOnClick);
+        photoView.setOnClickListener(clickListener);
+        return clickListener;
+    }
+
+    private static final class PhotoClickListener implements OnClickListener {
+
+        private final Context mContext;
+        private final Result mContactData;
+        private final Bitmap mPhotoBitmap;
+        private final boolean mExpandPhotoOnClick;
+        public PhotoClickListener(Context context, Result contactData, Bitmap photoBitmap,
+                boolean expandPhotoOnClick) {
+            mContext = context;
+            mContactData = contactData;
+            mPhotoBitmap = photoBitmap;
+            mExpandPhotoOnClick = expandPhotoOnClick;
+        }
+
+        @Override
+        public void onClick(View v) {
+            // Assemble the intent.
+            EntityDeltaList delta = EntityDeltaList.fromIterator(
+                    mContactData.getEntities().iterator());
+
+            // Find location and bounds of target view, adjusting based on the
+            // assumed local density.
+            final float appScale =
+                    mContext.getResources().getCompatibilityInfo().applicationScale;
+            final int[] pos = new int[2];
+            v.getLocationOnScreen(pos);
+
+            final Rect rect = new Rect();
+            rect.left = (int) (pos[0] * appScale + 0.5f);
+            rect.top = (int) (pos[1] * appScale + 0.5f);
+            rect.right = (int) ((pos[0] + v.getWidth()) * appScale + 0.5f);
+            rect.bottom = (int) ((pos[1] + v.getHeight()) * appScale + 0.5f);
+
+            Intent photoSelectionIntent = PhotoSelectionActivity.buildIntent(mContext,
+                    mPhotoBitmap, rect, delta, mContactData.isUserProfile(),
+                    mContactData.isDirectoryEntry(), mExpandPhotoOnClick);
+            mContext.startActivity(photoSelectionIntent);
+        }
     }
 
     /**

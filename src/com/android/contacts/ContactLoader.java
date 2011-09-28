@@ -301,8 +301,10 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             return mRequestedUri;
         }
 
-        @VisibleForTesting
-        /*package*/ long getId() {
+        /**
+         * Returns the contact ID.
+         */
+        public long getId() {
             return mId;
         }
 
