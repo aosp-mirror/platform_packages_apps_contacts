@@ -21,14 +21,11 @@ import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
+import com.android.contacts.activities.DialtactsActivity;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.StringInflater;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.DataKind;
-import com.android.i18n.phonenumbers.NumberParseException;
-import com.android.i18n.phonenumbers.PhoneNumberUtil;
-import com.android.i18n.phonenumbers.PhoneNumberUtil.MatchType;
-import com.android.i18n.phonenumbers.Phonenumber.PhoneNumber;
 import com.google.common.annotations.VisibleForTesting;
 
 import android.app.Activity;
@@ -53,7 +50,6 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -197,17 +193,21 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
 
         private static final String ARG_PHONE_LIST = "phoneList";
         private static final String ARG_INTERACTION_TYPE = "interactionType";
+        private static final String ARG_CALL_ORIGIN = "callOrigin";
 
         private InteractionType mInteractionType;
         private ListAdapter mPhonesAdapter;
         private List<PhoneItem> mPhoneList;
+        private String mCallOrigin;
 
         public static void show(FragmentManager fragmentManager,
-                ArrayList<PhoneItem> phoneList, InteractionType interactionType) {
+                ArrayList<PhoneItem> phoneList, InteractionType interactionType,
+                String callOrigin) {
             PhoneDisambiguationDialogFragment fragment = new PhoneDisambiguationDialogFragment();
             Bundle bundle = new Bundle();
             bundle.putParcelableArrayList(ARG_PHONE_LIST, phoneList);
             bundle.putSerializable(ARG_INTERACTION_TYPE, interactionType);
+            bundle.putString(ARG_CALL_ORIGIN, callOrigin);
             fragment.setArguments(bundle);
             fragment.show(fragmentManager, TAG);
         }
@@ -218,6 +218,8 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
             mPhoneList = getArguments().getParcelableArrayList(ARG_PHONE_LIST);
             mInteractionType =
                     (InteractionType) getArguments().getSerializable(ARG_INTERACTION_TYPE);
+            mCallOrigin = getArguments().getString(ARG_CALL_ORIGIN);
+
             mPhonesAdapter = new PhoneItemAdapter(activity, mPhoneList, mInteractionType);
             final LayoutInflater inflater = activity.getLayoutInflater();
             final View setPrimaryView = inflater.inflate(R.layout.set_primary_checkbox, null);
@@ -242,7 +244,7 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
                 }
 
                 PhoneNumberInteraction.performAction(getActivity(), phoneItem.phoneNumber,
-                        mInteractionType);
+                        mInteractionType, mCallOrigin);
             } else {
                 dialog.dismiss();
             }
@@ -266,22 +268,31 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
     private final OnDismissListener mDismissListener;
     private final InteractionType mInteractionType;
 
+    private final String mCallOrigin;
+
     private CursorLoader mLoader;
 
     @VisibleForTesting
     /* package */ PhoneNumberInteraction(Context context, InteractionType interactionType,
             DialogInterface.OnDismissListener dismissListener) {
+        this(context, interactionType, dismissListener, null);
+    }
+
+    private PhoneNumberInteraction(Context context, InteractionType interactionType,
+            DialogInterface.OnDismissListener dismissListener, String callOrigin) {
         mContext = context;
         mInteractionType = interactionType;
         mDismissListener = dismissListener;
+        mCallOrigin = callOrigin;
     }
 
     private void performAction(String phoneNumber) {
-        PhoneNumberInteraction.performAction(mContext, phoneNumber, mInteractionType);
+        PhoneNumberInteraction.performAction(mContext, phoneNumber, mInteractionType, mCallOrigin);
     }
 
     private static void performAction(
-            Context context, String phoneNumber, InteractionType interactionType) {
+            Context context, String phoneNumber, InteractionType interactionType,
+            String callOrigin) {
         Intent intent;
         switch (interactionType) {
             case SMS:
@@ -291,6 +302,9 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
             default:
                 intent = new Intent(
                         Intent.ACTION_CALL_PRIVILEGED, Uri.fromParts("tel", phoneNumber, null));
+                if (callOrigin != null) {
+                    intent.putExtra(DialtactsActivity.EXTRA_CALL_ORIGIN, callOrigin);
+                }
                 break;
         }
         context.startActivity(intent);
@@ -402,6 +416,17 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
     }
 
     /**
+     * @param callOrigin If non null, {@link DialtactsActivity#EXTRA_CALL_ORIGIN} will be
+     * appended to the Intent initiating phone call. See comments in Phone package (PhoneApp)
+     * for more detail.
+     */
+    public static void startInteractionForPhoneCall(Activity activity, Uri uri,
+            String callOrigin) {
+        (new PhoneNumberInteraction(activity, InteractionType.PHONE_CALL, null, callOrigin))
+                .startInteraction(uri);
+    }
+
+    /**
      * Start text messaging (a.k.a SMS) action using given contact Uri. If there are multiple
      * candidates for the phone call, dialog is automatically shown and the user is asked to choose
      * one.
@@ -422,6 +447,6 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
     @VisibleForTesting
     /* package */ void showDisambiguationDialog(ArrayList<PhoneItem> phoneList) {
         PhoneDisambiguationDialogFragment.show(((Activity)mContext).getFragmentManager(),
-                phoneList, mInteractionType);
+                phoneList, mInteractionType, mCallOrigin);
     }
 }
