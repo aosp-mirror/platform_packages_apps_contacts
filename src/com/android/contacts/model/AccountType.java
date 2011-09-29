@@ -16,6 +16,7 @@
 
 package com.android.contacts.model;
 
+import com.android.contacts.R;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
 import com.google.common.annotations.VisibleForTesting;
@@ -148,7 +149,14 @@ public abstract class AccountType {
     /**
      * @return resource ID for the "invite contact" action label, or -1 if not defined.
      */
-    protected int getInviteContactActionResId(Context context) {
+    protected int getInviteContactActionResId() {
+        return -1;
+    }
+
+    /**
+     * @return resource ID for the "view group" label, or -1 if not defined.
+     */
+    protected int getViewGroupLabelResId() {
         return -1;
     }
 
@@ -174,8 +182,20 @@ public abstract class AccountType {
      * the contact card.  (If not defined, returns null.)
      */
     public CharSequence getInviteContactActionLabel(Context context) {
-        return getResourceText(context, summaryResPackageName, getInviteContactActionResId(context),
-                "");
+        return getResourceText(context, summaryResPackageName, getInviteContactActionResId(), "");
+    }
+
+    /**
+     * Returns a label for the "view group" action. If not defined, this falls back to our
+     * own "View Updates" string
+     */
+    public CharSequence getViewGroupLabel(Context context) {
+        final CharSequence customTitle =
+                getResourceText(context, summaryResPackageName, getViewGroupLabelResId(), null);
+
+        return customTitle == null
+                ? context.getText(R.string.view_updates_from_group)
+                : customTitle;
     }
 
     /**

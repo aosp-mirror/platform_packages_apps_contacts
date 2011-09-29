@@ -29,12 +29,12 @@
     android:padding="10dip" >
 
     <TextView
+        android:id="@android:id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:duplicateParentState="true"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/view_updates_from_group"/>
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <ImageView
         android:id="@android:id/icon"

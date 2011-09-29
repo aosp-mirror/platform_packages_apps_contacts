@@ -24,6 +24,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class GroupDetailDisplayUtils {
 
@@ -39,13 +40,21 @@ public class GroupDetailDisplayUtils {
 
     public static void bindGroupSourceView(Context context, View view, String accountTypeString,
             String dataSet) {
-        ImageView accountIcon = (ImageView) view.findViewById(android.R.id.icon);
-        if (accountIcon == null) {
-            throw new IllegalStateException("Group source view must contain view with id"
-                    + "android.R.id.icon");
-        }
         AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(context);
         AccountType accountType = accountTypeManager.getAccountType(accountTypeString, dataSet);
+
+        TextView label = (TextView) view.findViewById(android.R.id.title);
+        if (label == null) {
+            throw new IllegalStateException("Group source view must contain a TextView with id"
+                    + "android.R.id.label");
+        }
+        label.setText(accountType.getViewGroupLabel(context));
+
+        ImageView accountIcon = (ImageView) view.findViewById(android.R.id.icon);
+        if (accountIcon == null) {
+            throw new IllegalStateException("Group source view must contain an ImageView with id"
+                    + "android.R.id.icon");
+        }
         accountIcon.setImageDrawable(accountType.getDisplayIcon(context));
     }
 }
