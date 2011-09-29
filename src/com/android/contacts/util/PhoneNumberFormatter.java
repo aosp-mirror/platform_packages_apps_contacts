@@ -49,9 +49,7 @@ public final class PhoneNumberFormatter {
             if (watcher == null || isCancelled()) {
                 return; // May happen if we cancel the task.
             }
-            if (mTextView.getHandler() == null) {
-                return; // View is already detached.
-            }
+            // Setting a text changed listener is safe even after the view is detached.
             mTextView.addTextChangedListener(watcher);
 
             // Note changes the user made before onPostExecute() will not be formatted, but
