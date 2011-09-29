@@ -398,7 +398,7 @@ public class ContactEditorFragment extends Fragment implements
         mAutoAddToDefaultGroup = mIntentExtras != null
                 && mIntentExtras.containsKey(INTENT_EXTRA_ADD_TO_DEFAULT_DIRECTORY);
         mNewLocalProfile = mIntentExtras != null
-            && mIntentExtras.getBoolean(INTENT_EXTRA_NEW_LOCAL_PROFILE);
+                && mIntentExtras.getBoolean(INTENT_EXTRA_NEW_LOCAL_PROFILE);
     }
 
     public void setListener(Listener value) {
@@ -1032,7 +1032,7 @@ public class ContactEditorFragment extends Fragment implements
 
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
         if (!EntityModifier.hasChanges(mState, accountTypes)) {
-            onSaveCompleted(false, saveMode, mLookupUri);
+            onSaveCompleted(false, saveMode, mLookupUri != null, mLookupUri);
             return true;
         }
 
@@ -1098,14 +1098,14 @@ public class ContactEditorFragment extends Fragment implements
     }
 
     public void onJoinCompleted(Uri uri) {
-        onSaveCompleted(false, SaveMode.RELOAD, uri);
+        onSaveCompleted(false, SaveMode.RELOAD, uri != null, uri);
     }
 
-    public void onSaveCompleted(boolean hadChanges, int saveMode, Uri contactLookupUri) {
-        boolean success = contactLookupUri != null;
+    public void onSaveCompleted(boolean hadChanges, int saveMode, boolean saveSucceeded,
+            Uri contactLookupUri) {
         Log.d(TAG, "onSaveCompleted(" + saveMode + ", " + contactLookupUri);
         if (hadChanges) {
-            if (success) {
+            if (saveSucceeded) {
                 if (saveMode != SaveMode.JOIN) {
                     Toast.makeText(mContext, R.string.contactSavedToast, Toast.LENGTH_SHORT).show();
                 }
@@ -1117,7 +1117,7 @@ public class ContactEditorFragment extends Fragment implements
             case SaveMode.CLOSE:
             case SaveMode.HOME:
                 final Intent resultIntent;
-                if (success && contactLookupUri != null) {
+                if (saveSucceeded && contactLookupUri != null) {
                     final String requestAuthority =
                             mLookupUri == null ? null : mLookupUri.getAuthority();
 
@@ -1148,7 +1148,7 @@ public class ContactEditorFragment extends Fragment implements
 
             case SaveMode.RELOAD:
             case SaveMode.JOIN:
-                if (success && contactLookupUri != null) {
+                if (saveSucceeded && contactLookupUri != null) {
                     // If it was a JOIN, we are now ready to bring up the join activity.
                     if (saveMode == SaveMode.JOIN) {
                         showJoinAggregateActivity(contactLookupUri);
