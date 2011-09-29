@@ -30,6 +30,7 @@
     android:paddingRight="16dip" >
 
     <TextView
+        android:id="@android:id/title"
         android:layout_width="0dip"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -37,7 +38,6 @@
         android:duplicateParentState="true"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/action_bar_button_text_color"
-        android:text="@string/view_updates_from_group"
         style="@android:style/Widget.Holo.ActionBar.TabText"/>
 
     <FrameLayout

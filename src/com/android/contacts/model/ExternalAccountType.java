@@ -57,6 +57,7 @@ public class ExternalAccountType extends BaseAccountType {
     private static final String ATTR_INVITE_CONTACT_ACTION_LABEL = "inviteContactActionLabel";
     private static final String ATTR_VIEW_CONTACT_NOTIFY_SERVICE = "viewContactNotifyService";
     private static final String ATTR_VIEW_GROUP_ACTIVITY = "viewGroupActivity";
+    private static final String ATTR_VIEW_GROUP_ACTION_LABEL = "viewGroupActionLabel";
     private static final String ATTR_VIEW_STREAM_ITEM_ACTIVITY = "viewStreamItemActivity";
     private static final String ATTR_VIEW_STREAM_ITEM_PHOTO_ACTIVITY =
             "viewStreamItemPhotoActivity";
@@ -75,12 +76,14 @@ public class ExternalAccountType extends BaseAccountType {
     private String mCreateContactActivityClassName;
     private String mInviteContactActivity;
     private String mInviteActionLabelAttribute;
+    private int mInviteActionLabelResId;
     private String mViewContactNotifyService;
     private String mViewGroupActivity;
+    private String mViewGroupLabelAttribute;
+    private int mViewGroupLabelResId;
     private String mViewStreamItemActivity;
     private String mViewStreamItemPhotoActivity;
     private List<String> mExtensionPackageNames;
-    private int mInviteActionLabelResId;
     private String mAccountTypeLabelAttribute;
     private String mAccountTypeIconAttribute;
     private boolean mInitSuccessful;
@@ -111,6 +114,8 @@ public class ExternalAccountType extends BaseAccountType {
         mExtensionPackageNames = new ArrayList<String>();
         mInviteActionLabelResId = resolveExternalResId(context, mInviteActionLabelAttribute,
                 summaryResPackageName, ATTR_INVITE_CONTACT_ACTION_LABEL);
+        mViewGroupLabelResId = resolveExternalResId(context, mViewGroupLabelAttribute,
+                summaryResPackageName, ATTR_VIEW_GROUP_ACTION_LABEL);
         titleRes = resolveExternalResId(context, mAccountTypeLabelAttribute,
                 this.resPackageName, ATTR_ACCOUNT_LABEL);
         iconRes = resolveExternalResId(context, mAccountTypeIconAttribute,
@@ -167,7 +172,7 @@ public class ExternalAccountType extends BaseAccountType {
     }
 
     @Override
-    protected int getInviteContactActionResId(Context context) {
+    protected int getInviteContactActionResId() {
         return mInviteActionLabelResId;
     }
 
@@ -179,6 +184,11 @@ public class ExternalAccountType extends BaseAccountType {
     @Override
     public String getViewGroupActivity() {
         return mViewGroupActivity;
+    }
+
+    @Override
+    protected int getViewGroupLabelResId() {
+        return mViewGroupLabelResId;
     }
 
     @Override
@@ -242,6 +252,8 @@ public class ExternalAccountType extends BaseAccountType {
                     mViewContactNotifyService = value;
                 } else if (ATTR_VIEW_GROUP_ACTIVITY.equals(attr)) {
                     mViewGroupActivity = value;
+                } else if (ATTR_VIEW_GROUP_ACTION_LABEL.equals(attr)) {
+                    mViewGroupLabelAttribute = value;
                 } else if (ATTR_VIEW_STREAM_ITEM_ACTIVITY.equals(attr)) {
                     mViewStreamItemActivity = value;
                 } else if (ATTR_VIEW_STREAM_ITEM_PHOTO_ACTIVITY.equals(attr)) {

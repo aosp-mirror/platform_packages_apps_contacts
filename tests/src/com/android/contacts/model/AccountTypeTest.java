@@ -69,7 +69,7 @@ public class AccountTypeTest extends AndroidTestCase {
                 resPackageName = packageName;
                 summaryResPackageName = packageName;
             }
-            @Override protected int getInviteContactActionResId(Context conext) {
+            @Override protected int getInviteContactActionResId() {
                 return externalResID;
             }
 
