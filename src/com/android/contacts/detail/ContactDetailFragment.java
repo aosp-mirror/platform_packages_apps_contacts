@@ -1161,7 +1161,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             this.mIcon = icon;
             this.mLabel = label;
             this.mOnClickListener = onClickListener;
-            this.isEnabled = onClickListener != null;
+            this.isEnabled = false;
         }
 
         public static NetworkTitleViewEntry fromAccountType(Context context, AccountType type) {
@@ -1554,6 +1554,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                         parent, false);
                 viewCache = new NetworkTitleViewCache(result);
                 result.setTag(viewCache);
+                result.findViewById(R.id.primary_action_view).setOnClickListener(
+                        entry.mOnClickListener);
             }
 
             viewCache.name.setText(entry.getLabel());

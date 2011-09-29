@@ -18,9 +18,7 @@
     class="com.android.contacts.list.ContactTileView"
     android:focusable="true"
     android:background="?android:attr/selectableItemBackground"
-    android:nextFocusRight="@+id/contact_tile_quick"
-    android:paddingRight="16dip"
-    android:paddingLeft="16dip" >
+    android:nextFocusRight="@+id/contact_tile_quick">
 
     <RelativeLayout
         android:layout_width="match_parent"

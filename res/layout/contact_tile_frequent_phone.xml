@@ -13,15 +13,15 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+
+<!-- Layout parameters are set programmatically. -->
 <view
-    android:id="@+id/contact_tile_frequent_phone"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/contact_tile_frequent_phone"
     class="com.android.contacts.list.ContactTileDarkFrequentView"
     android:focusable="true"
     android:background="?android:attr/selectableItemBackground"
-    android:nextFocusLeft="@+id/contact_tile_quick"
-    android:paddingRight="16dip"
-    android:paddingLeft="16dip" >
+    android:nextFocusLeft="@+id/contact_tile_quick">
 
     <RelativeLayout
         android:layout_width="match_parent"
