@@ -79,6 +79,7 @@ public class ContactSaveService extends IntentService {
     public static final String EXTRA_CONTACT_STATE = "state";
     public static final String EXTRA_SAVE_MODE = "saveMode";
     public static final String EXTRA_SAVE_IS_PROFILE = "saveIsProfile";
+    public static final String EXTRA_SAVE_SUCCEEDED = "saveSucceeded";
 
     public static final String ACTION_CREATE_GROUP = "createGroup";
     public static final String ACTION_RENAME_GROUP = "renameGroup";
@@ -345,6 +346,10 @@ public class ContactSaveService extends IntentService {
                     lookupUri = RawContacts.getContactLookupUri(resolver, rawContactUri);
                 }
                 Log.v(TAG, "Saved contact. New URI: " + lookupUri);
+                // Mark the intent to indicate that the save was successful (even if the lookup URI
+                // is now null).  For local contacts or the local profile, it's possible that the
+                // save triggered removal of the contact, so no lookup URI would exist..
+                callbackIntent.putExtra(EXTRA_SAVE_SUCCEEDED, true);
                 break;
 
             } catch (RemoteException e) {
