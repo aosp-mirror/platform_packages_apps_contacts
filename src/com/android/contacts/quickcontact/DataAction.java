@@ -21,6 +21,7 @@ import com.android.contacts.R;
 import com.android.contacts.model.AccountType.EditType;
 import com.android.contacts.model.DataKind;
 import com.android.contacts.util.Constants;
+import com.android.contacts.util.StructuredPostalUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
 
 import android.content.ContentUris;
@@ -35,6 +36,7 @@ import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
+import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Data;
 import android.text.TextUtils;
@@ -201,6 +203,11 @@ public class DataAction implements Action {
                                 : R.drawable.sym_action_audiochat_holo_light);
                     }
                 }
+            }
+        } else if (StructuredPostal.CONTENT_ITEM_TYPE.equals(mimeType)) {
+            final String postalAddress = getAsString(cursor, StructuredPostal.FORMATTED_ADDRESS);
+            if (!TextUtils.isEmpty(postalAddress)) {
+                mIntent = StructuredPostalUtils.getViewPostalAddressIntent(postalAddress);
             }
         }
 
