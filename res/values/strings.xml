@@ -1676,13 +1676,6 @@
     <!--  Used to display as default status when the contact is busy or Do not disturb for chat [CHAR LIMIT=19] -->
     <string name="status_busy">Busy</string>
 
-    <!-- String describing the icon in the call log used to place a call.
-
-        Note: AccessibilityServices use this attribute to announce what the view represents.
-              This is especially valuable for views without textual representation like ImageView.
-    -->
-    <string name="description_call_log_call_button">Call number</string>
-
     <!-- String describing the icon in the call log used to play a voicemail.
 
         Note: AccessibilityServices use this attribute to announce what the view represents.
