@@ -1579,7 +1579,7 @@
     <!-- Label to instruct the user to type in a contact's name to add the contact as a member of the current group. [CHAR LIMIT=64] -->
     <string name="enter_contact_name">Type person\'s name</string>
 
-    <!-- Button to view the updates from the current group on the group detail page [CHAR LIMIT=20] -->
+    <!-- Button to view the updates from the current group on the group detail page [CHAR LIMIT=25] -->
     <string name="view_updates_from_group">View updates</string>
 
     <!-- Title of the notification of new voicemails. [CHAR LIMIT=30] -->
