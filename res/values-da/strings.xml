@@ -537,7 +537,6 @@
     <string name="status_available" msgid="5586870015822828392">"Tilgængelig"</string>
     <string name="status_away" msgid="1838861100379804730">"Ikke til stede"</string>
     <string name="status_busy" msgid="9147992455450257136">"Optaget"</string>
-    <string name="description_call_log_call_button" msgid="8207201401459528442">"Ring til nummer"</string>
     <string name="description_call_log_play_button" msgid="651182125650429846">"Afspil telefonsvarerbesked"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Indgående opkald"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Udgående opkald"</string>
@@ -548,16 +547,20 @@
     <string name="description_call" msgid="3443678121983852666">"Ring til <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_send_text_message" msgid="7803126439934046891">"Send sms til <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Uaflyttet besked på telefonsvareren"</string>
-    <!-- no translation found for description_send_message (6046623392322890962) -->
-    <skip />
-    <!-- no translation found for description_dial_phone_number (8831647331642648637) -->
-    <skip />
-    <!-- no translation found for description_quick_contact_for (6737516415168327789) -->
-    <skip />
+    <string name="description_send_message" msgid="6046623392322890962">"Send meddelelse til <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="8831647331642648637">"Ring til telefon tilhørende <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"Hurtigkontakt for <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Mig"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Min lokale profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Min <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-profil"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Viser alle kontaktpersoner"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Personer fungerer bedre med en Google-konto."\n\n"• Få adgang fra enhver webbrowser."\n"• Sikkerhedskopier dine kontaktpersoner sikkert."</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Din nye kontaktperson bliver ikke sikkerhedskopieret. Vil du tilføje en konto, der sikkerhedskopierer kontaktpersoner online?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Din nye kontaktperson vil blive synkroniseret med <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Du kan synkronisere din nye kontaktperson med en af de ​​følgende konti. Hvilken vil du bruge?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Gem lokalt"</string>
+    <string name="add_account" msgid="8201790677994503186">"Tilføj konto"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Tilføj ny konto"</string>
+    <string name="phone_call_prohibited" msgid="4329551585931067534">"Opkaldet blev ikke sendt."</string>
 </resources>

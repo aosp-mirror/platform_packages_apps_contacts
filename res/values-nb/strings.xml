@@ -161,12 +161,12 @@
     <string name="simContacts_title" msgid="27341688347689769">"Kontakter på SIM-kort"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Du har ingen kontakter å vise. (Hvis du nettopp har lagt til en konto, kan det ta noen minutter å synkronisere kontaktene.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Du har ingen kontakter å vise."</string>
-    <!-- syntax error in translation for noContactsHelpText (6450346791169710787) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:292 in java.io.StringReader@11975b59)  -->
-    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:293 in java.io.StringReader@67ee3914)  -->
+    <!-- syntax error in translation for noContactsHelpText (6450346791169710787) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:292 in java.io.StringReader@3e34a1fc)  -->
+    <!-- syntax error in translation for noContactsHelpText (7633826236417884130) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:293 in java.io.StringReader@7176c74b)  -->
     <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Du har ingen kontakter å vise. (Hvis du nylig la til en konto, kan det ta noen minutter å synkronisere kontaktene.)"\n\n"Slik legger du til kontakter: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>", og trykk deretter på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer"</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til nettbrettet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativer"</b></font>" for å endre hvilke kontakter som vises"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt fra grunnen av"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/Eksporter"</b></font>" for å importere kontakter fra SIM- eller SD-kort"\n</li></string>
     <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Du har ingen kontakter å vise. (Hvis du nylig la til en konto, kan det ta noen minutter å synkronisere kontaktene.)"\n\n"Slik legger du til kontakter: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" og trykk deretter på: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer "</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativer"</b></font>" for å endre hvilke kontakter som vises"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importér/Eksportér"</b></font>" for å importere kontakter fra SIM- eller SD-kort"\n</li></string>
-    <!-- syntax error in translation for noContactsNoSimHelpText (6031363021287849874) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:297 in java.io.StringReader@48e5855a)  -->
-    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:297 in java.io.StringReader@5495fd19)  -->
+    <!-- syntax error in translation for noContactsNoSimHelpText (6031363021287849874) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:297 in java.io.StringReader@2d16471f)  -->
+    <!-- syntax error in translation for noContactsNoSimHelpText (467658807711582876) org.xmlpull.v1.XmlPullParserException: expected: /li read: font (position:END_TAG </font>@1:297 in java.io.StringReader@11975b59)  -->
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Du har ingen kontakter å vise. (Hvis du nylig la til en konto, kan det ta noen minutter å synkronisere kontaktene.)"\n\n"Slik legger du til kontakter: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>", og trykk deretter på: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer"</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til nettbrettet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativer"</b></font>" for å endre hvilke kontakter som vises"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt fra grunnen av"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/eksporter"</b></font>" for å importere kontakter fra SD-kortet"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Du har ingen kontakter å vise. (Hvis du nylig la til en konto, kan det ta noen minutter å synkronisere kontaktene.)"\n\n"Slik legger du til kontakter: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" og trykk deretter på: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer "</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativer"</b></font>" for å endre hvilke kontakter som vises"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importér/eksportér"</b></font>" for å importere kontakter fra SD-kortet"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Du har ingen favoritter."\n\n"Slik legger du til en kontakt i favorittlisten:"\n\n" "<li>"Trykk på fanen "<b>"Kontakter"</b>" "\n</li>" "\n<li>"Trykk på kontakten du vil legge til i favoritter"\n</li>" "\n<li>"Trykk på stjernen ved siden av kontaktnavnet"\n</li></string>
@@ -537,7 +537,6 @@
     <string name="status_available" msgid="5586870015822828392">"Tilgjengelig"</string>
     <string name="status_away" msgid="1838861100379804730">"Borte"</string>
     <string name="status_busy" msgid="9147992455450257136">"Opptatt"</string>
-    <string name="description_call_log_call_button" msgid="8207201401459528442">"Ring nummer"</string>
     <string name="description_call_log_play_button" msgid="651182125650429846">"Spill av talemelding"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Innkommende samtale"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Utgående samtale"</string>
@@ -548,16 +547,20 @@
     <string name="description_call" msgid="3443678121983852666">"Ring til <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_send_text_message" msgid="7803126439934046891">"Send tekstmelding til <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Ikke avspilt talepost"</string>
-    <!-- no translation found for description_send_message (6046623392322890962) -->
-    <skip />
-    <!-- no translation found for description_dial_phone_number (8831647331642648637) -->
-    <skip />
-    <!-- no translation found for description_quick_contact_for (6737516415168327789) -->
-    <skip />
+    <string name="description_send_message" msgid="6046623392322890962">"Send melding til <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="8831647331642648637">"Ring <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"Hurtigkontakt for <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"–"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Meg"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Min lokale profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Min profil for <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Viser alle kontakter"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"People fungerer bedre med en Google-konto."\n\n"• Tilgang fra hvilken som helst nettleser."\n"• Ta trygge sikkerhetskopier av kontaktene dine."</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Den nye kontakten din blir ikke sikkerhetskopiert. Vil du legge til en konto som sikkerhetskopierer kontakter på nettet?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Den nye kontakten din blir synkronisert med <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Du kan synkronisere den nye kontakten din med én av de følgende kontoene. Hvilken vil du bruke?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Behold lokalt"</string>
+    <string name="add_account" msgid="8201790677994503186">"Legg til konto"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Legg til ny konto"</string>
+    <string name="phone_call_prohibited" msgid="4329551585931067534">"Anrop ikke foretatt."</string>
 </resources>

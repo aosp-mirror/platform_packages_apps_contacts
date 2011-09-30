@@ -688,8 +688,6 @@
     <skip />
     <!-- no translation found for status_busy (9147992455450257136) -->
     <skip />
-    <!-- no translation found for description_call_log_call_button (8207201401459528442) -->
-    <skip />
     <!-- no translation found for description_call_log_play_button (651182125650429846) -->
     <skip />
     <!-- no translation found for description_call_log_incoming_call (4485427487637250143) -->
@@ -728,5 +726,20 @@
     <!-- no translation found for toast_displaying_all_contacts (2737388783898593875) -->
     <skip />
     <!-- no translation found for no_account_prompt (7061052512446855192) -->
+    <skip />
+    <!-- no translation found for contact_editor_prompt_zero_accounts (1785345895691886499) -->
+    <skip />
+    <!-- no translation found for contact_editor_prompt_one_account (8669032699767375976) -->
+    <skip />
+    <!-- no translation found for contact_editor_prompt_multiple_accounts (611828200100438242) -->
+    <skip />
+    <!-- no translation found for keep_local (1258761699192993322) -->
+    <skip />
+    <!-- no translation found for add_account (8201790677994503186) -->
+    <skip />
+    <!-- no translation found for add_new_account (5748627740680940264) -->
+    <skip />
+    <!-- no translation found for phone_call_prohibited (4329551585931067534) -->
+    <!-- no translation found for phone_call_prohibited (4313552620858880999) -->
     <skip />
 </resources>

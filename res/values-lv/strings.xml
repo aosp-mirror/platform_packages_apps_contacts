@@ -537,7 +537,6 @@
     <string name="status_available" msgid="5586870015822828392">"Pieejama"</string>
     <string name="status_away" msgid="1838861100379804730">"Prombūtnē"</string>
     <string name="status_busy" msgid="9147992455450257136">"Aizņemts"</string>
-    <string name="description_call_log_call_button" msgid="8207201401459528442">"Zvanīt uz numuru"</string>
     <string name="description_call_log_play_button" msgid="651182125650429846">"Atskaņot balss pasta ziņojumu"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Ienākošs zvans"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Izejošs zvans"</string>
@@ -548,16 +547,20 @@
     <string name="description_call" msgid="3443678121983852666">"Zvanīt šim: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_send_text_message" msgid="7803126439934046891">"Sūtīt īsziņu šim: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Nenoklausīti balss pasta ziņojumi"</string>
-    <!-- no translation found for description_send_message (6046623392322890962) -->
-    <skip />
-    <!-- no translation found for description_dial_phone_number (8831647331642648637) -->
-    <skip />
-    <!-- no translation found for description_quick_contact_for (6737516415168327789) -->
-    <skip />
+    <string name="description_send_message" msgid="6046623392322890962">"Sūtīt īsziņu kontaktpersonai <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="8831647331642648637">"Kontaktpersonas <xliff:g id="NAME">%1$s</xliff:g> tālruņa numurs"</string>
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"Ātrā saziņa ar kontaktpersonu <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Es"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Mans vietējais profils"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mans <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> profils"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Tiek attēlotas visas kontaktpersonas"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Lietotne People darbojas labāk ar Google kontu."\n\n"• Piekļuve no jebkuras tīmekļa pārlūkprogrammas"\n"• Droša kontaktinformācijas dublēšana"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Jaunā kontaktinformācija netiks dublēta. Vai pievienot kontu, kurā tiek tiešsaistē dublēta kontaktinformācija?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Jaunā kontaktinformācija tiks sinhronizēta ar kontu <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Varat sinhronizēt jauno kontaktinformāciju ar vienu no tālāk norādītajiem kontiem. Kuru kontu vēlaties izmantot?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Saglabāt vietēji"</string>
+    <string name="add_account" msgid="8201790677994503186">"Pievienot kontu"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Pievienot jaunu kontu"</string>
+    <string name="phone_call_prohibited" msgid="4329551585931067534">"Zvans nav nosūtīts."</string>
 </resources>

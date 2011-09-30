@@ -537,7 +537,6 @@
     <string name="status_available" msgid="5586870015822828392">"Доступан/на"</string>
     <string name="status_away" msgid="1838861100379804730">"Одсутан/на"</string>
     <string name="status_busy" msgid="9147992455450257136">"Заузет/а"</string>
-    <string name="description_call_log_call_button" msgid="8207201401459528442">"Позивање броја"</string>
     <string name="description_call_log_play_button" msgid="651182125650429846">"Пуштање говорне поште"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Долазни позив"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Одлазни позив"</string>
@@ -548,16 +547,20 @@
     <string name="description_call" msgid="3443678121983852666">"Позови корисника <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_send_text_message" msgid="7803126439934046891">"Слање текстуалне поруке контакту <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Непреслушана говорна пошта"</string>
-    <!-- no translation found for description_send_message (6046623392322890962) -->
-    <skip />
-    <!-- no translation found for description_dial_phone_number (8831647331642648637) -->
-    <skip />
-    <!-- no translation found for description_quick_contact_for (6737516415168327789) -->
-    <skip />
+    <string name="description_send_message" msgid="6046623392322890962">"Пошаљи поруку кориснику <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="8831647331642648637">"Позови број телефона корисника <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"Брзи контакт за корисника <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Ја"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Мој локални профил"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Мој <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> профил"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Приказани су сви контакти"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Апликација Људи боље функционише са Google налогом."\n\n"• Приступајте из било ког веб прегледача."\n"• Безбедно направите резервне копије контаката."</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Неће бити направљена резервна копија новог контакта. Желите ли да додате налог који прави резервну копију контаката на мрежи?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Нови контакт ће бити синхронизован са налогом <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Можете да синхронизујете нови контакт са једним од следећих налога. Који желите да користите?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Задржи локално"</string>
+    <string name="add_account" msgid="8201790677994503186">"Додај налог"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Додај нови налог"</string>
+    <string name="phone_call_prohibited" msgid="4329551585931067534">"Позив није послат."</string>
 </resources>

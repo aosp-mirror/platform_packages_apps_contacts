@@ -537,7 +537,6 @@
     <string name="status_available" msgid="5586870015822828392">"Tavoitettavissa"</string>
     <string name="status_away" msgid="1838861100379804730">"Poissa"</string>
     <string name="status_busy" msgid="9147992455450257136">"Varattu"</string>
-    <string name="description_call_log_call_button" msgid="8207201401459528442">"Soita numeroon"</string>
     <string name="description_call_log_play_button" msgid="651182125650429846">"Toista vastaajaviesti"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Saapuva puhelu"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Lähtevä puhelu"</string>
@@ -548,16 +547,20 @@
     <string name="description_call" msgid="3443678121983852666">"Soita: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_send_text_message" msgid="7803126439934046891">"Lähetä tekstiviesti: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Kuuntelematon vastaajaviesti"</string>
-    <!-- no translation found for description_send_message (6046623392322890962) -->
-    <skip />
-    <!-- no translation found for description_dial_phone_number (8831647331642648637) -->
-    <skip />
-    <!-- no translation found for description_quick_contact_for (6737516415168327789) -->
-    <skip />
+    <string name="description_send_message" msgid="6046623392322890962">"Lähetä viesti henkilölle <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="8831647331642648637">"Henkilön <xliff:g id="NAME">%1$s</xliff:g> puhelinnumero"</string>
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"Pikayhteys henkilöön <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Minä"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Oma paikallinen profiili"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Oma <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-profiili"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Kaikki kontaktit"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Ihmiset-sovellus toimii paremmin Google-tilin kanssa."\n\n"• Käytä sovellusta millä tahansa selaimella."\n"• Varmuuskopioi yhteystietosi turvallisesti."</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Uutta kontaktiasi ei varmuuskopioida. Lisätäänkö tili, joka varmuuskopioi uudet kontaktit verkossa?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Uusi kontaktisi synkronoidaan tilillä <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Voit synkronoida uuden kontaktisi jollakin seuraavista tileistä. Mitä niistä haluat käyttää?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Säilytä paikallisena"</string>
+    <string name="add_account" msgid="8201790677994503186">"Lisää tili"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Lisää uusi tili"</string>
+    <string name="phone_call_prohibited" msgid="4329551585931067534">"Puhelua ei soitettu."</string>
 </resources>

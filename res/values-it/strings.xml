@@ -412,7 +412,7 @@
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Ordina elenco per"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Nome"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Cognome"</string>
-    <string name="display_options_view_names_as" msgid="18022868169627979">"Visualizz. nomi contatti"</string>
+    <string name="display_options_view_names_as" msgid="18022868169627979">"Visualizza nomi contatti con"</string>
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Prima il nome"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Prima il cognome"</string>
     <string name="search_bar_hint" msgid="1012756309632856553">"Cerca contatti"</string>
@@ -505,7 +505,7 @@
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g> "</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Imposta il mio profilo"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Digita il nome della persona"</string>
-    <string name="view_updates_from_group" msgid="1782685984905600034">"Visualizza aggiornam."</string>
+    <string name="view_updates_from_group" msgid="1782685984905600034">"Visualizza aggiornamenti"</string>
   <plurals name="notification_voicemail_title">
     <item quantity="one" msgid="1746619685488504230">"Segreteria"</item>
     <item quantity="other" msgid="5513481419205061254">"<xliff:g id="COUNT">%1$d</xliff:g> messaggi vocali"</item>
@@ -537,7 +537,6 @@
     <string name="status_available" msgid="5586870015822828392">"Disponibile"</string>
     <string name="status_away" msgid="1838861100379804730">"Assente"</string>
     <string name="status_busy" msgid="9147992455450257136">"Occupato"</string>
-    <string name="description_call_log_call_button" msgid="8207201401459528442">"Chiama numero"</string>
     <string name="description_call_log_play_button" msgid="651182125650429846">"Riproduci messaggio vocale"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Chiamata in arrivo"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Chiamata in uscita"</string>
@@ -550,11 +549,18 @@
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Messaggio vocale non ascoltato"</string>
     <string name="description_send_message" msgid="6046623392322890962">"Invia messaggio a <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="8831647331642648637">"Componi numero di telefono <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"Contatto rapido per <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"Accesso rapido ai contatti per <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Io"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Il mio profilo locale"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Il mio profilo <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Sono visualizzati tutti i contatti"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"L\'applicazione People funziona meglio con un account Google."\n\n"• Puoi accedervi da qualsiasi browser web."\n"• Effettua il backup dei tuoi contatti in modo sicuro."</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Non verrà effettuato il backup del nuovo contatto. Aggiungere un account che effettua il backup dei contatti online?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Il nuovo contatto verrà sincronizzato con <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Puoi sincronizzare il nuovo contatto con uno dei seguenti account. Quale desideri utilizzare?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Memorizza in locale"</string>
+    <string name="add_account" msgid="8201790677994503186">"Aggiungi account"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Aggiungi nuovo account"</string>
+    <string name="phone_call_prohibited" msgid="4329551585931067534">"Chiamata non inviata."</string>
 </resources>
