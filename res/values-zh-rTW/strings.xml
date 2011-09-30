@@ -211,9 +211,7 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"聯絡人相片"</string>
     <string name="description_minus_button" msgid="387136707700230172">"負號"</string>
     <string name="description_plus_button" msgid="515164827856229880">"加號"</string>
-    <!-- no translation found for description_view_contact_detail (9133251213656414807) -->
-    <!-- no translation found for description_view_contact_detail (2795575601596468581) -->
-    <skip />
+    <string name="description_view_contact_detail" msgid="9133251213656414807">"查看聯絡人"</string>
     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"儲存裝置無法使用"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"無 SD 卡"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="1334170151822669976">"未偵測到儲存裝置"</string>
@@ -539,7 +537,6 @@
     <string name="status_available" msgid="5586870015822828392">"線上"</string>
     <string name="status_away" msgid="1838861100379804730">"離開"</string>
     <string name="status_busy" msgid="9147992455450257136">"忙碌"</string>
-    <string name="description_call_log_call_button" msgid="8207201401459528442">"撥打號碼"</string>
     <string name="description_call_log_play_button" msgid="651182125650429846">"播放語音留言"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"來電"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"已撥電話"</string>
@@ -550,16 +547,20 @@
     <string name="description_call" msgid="3443678121983852666">"打電話給<xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_send_text_message" msgid="7803126439934046891">"傳送簡訊給<xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"未聽取的語音留言"</string>
-    <!-- no translation found for description_send_message (6046623392322890962) -->
-    <skip />
-    <!-- no translation found for description_dial_phone_number (8831647331642648637) -->
-    <skip />
-    <!-- no translation found for description_quick_contact_for (6737516415168327789) -->
-    <skip />
+    <string name="description_send_message" msgid="6046623392322890962">"傳送訊息給<xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="8831647331642648637">"撥打 <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"<xliff:g id="NAME">%1$s</xliff:g>的快速聯絡人相片"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"我自己"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"我的本機個人資料"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"我的 <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> 個人資料"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"顯示所有聯絡人"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"透過「Google 帳戶」使用「Google 人物搜尋」可獲得更佳的效益。"\n\n"• 透過任何瀏覽器都可存取。"\n"• 安全備份您的聯絡人。"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"系統不會備份您新增的聯絡人資料。您是否要新建一個帳戶，將您的聯絡人資料另存在線上？"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"您新增的聯絡人資料將會同步儲存在 <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> 的帳戶中。"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"您可以將新增的聯絡人資料同步儲存在下列其中一個帳戶中。您要選擇哪一個帳戶？"</string>
+    <string name="keep_local" msgid="1258761699192993322">"儲存在本機中"</string>
+    <string name="add_account" msgid="8201790677994503186">"新增帳戶"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"新增帳戶"</string>
+    <string name="phone_call_prohibited" msgid="4329551585931067534">"無法傳送通話。"</string>
 </resources>

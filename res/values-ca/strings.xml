@@ -537,7 +537,6 @@
     <string name="status_available" msgid="5586870015822828392">"Disponible"</string>
     <string name="status_away" msgid="1838861100379804730">"Absent"</string>
     <string name="status_busy" msgid="9147992455450257136">"Ocupat"</string>
-    <string name="description_call_log_call_button" msgid="8207201401459528442">"Truca al número"</string>
     <string name="description_call_log_play_button" msgid="651182125650429846">"Reprodueix el missatge de veu"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Trucada entrant"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Trucada sortint"</string>
@@ -557,4 +556,11 @@
     <string name="external_profile_title" msgid="8034998767621359438">"El meu perfil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"S\'estan mostrant tots els contactes"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Contactes funciona millor amb un Compte de Google."\n\n"• Accedeix-hi des de qualsevol navegador web."\n"• Fes una còpia de seguretat dels teus contactes."</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"No es farà una còpia de seguretat del teu contacte nou. Vols afegir un compte que faci còpies de seguretat dels contactes en línia?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"El teu contacte nou se sincronitzarà amb <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Pots sincronitzar el teu contacte nou amb un dels comptes següents. Quin vols utilitzar?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Conserva localment"</string>
+    <string name="add_account" msgid="8201790677994503186">"Afegeix un compte"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Afegeix un compte nou"</string>
+    <string name="phone_call_prohibited" msgid="4329551585931067534">"No s\'ha enviat la trucada."</string>
 </resources>
