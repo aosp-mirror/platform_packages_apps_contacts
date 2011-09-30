@@ -537,7 +537,6 @@
     <string name="status_available" msgid="5586870015822828392">"Có mặt"</string>
     <string name="status_away" msgid="1838861100379804730">"Vắng mặt"</string>
     <string name="status_busy" msgid="9147992455450257136">"Bận"</string>
-    <string name="description_call_log_call_button" msgid="8207201401459528442">"Số cuộc gọi"</string>
     <string name="description_call_log_play_button" msgid="651182125650429846">"Phát thư thoại"</string>
     <string name="description_call_log_incoming_call" msgid="4485427487637250143">"Cuộc gọi đến"</string>
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"Cuộc gọi đi"</string>
@@ -548,16 +547,20 @@
     <string name="description_call" msgid="3443678121983852666">"Gọi <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_send_text_message" msgid="7803126439934046891">"Gửi tin nhắn văn bản tới <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Thư thoại chưa nghe"</string>
-    <!-- no translation found for description_send_message (6046623392322890962) -->
-    <skip />
-    <!-- no translation found for description_dial_phone_number (8831647331642648637) -->
-    <skip />
-    <!-- no translation found for description_quick_contact_for (6737516415168327789) -->
-    <skip />
+    <string name="description_send_message" msgid="6046623392322890962">"Gửi tin nhắn tới <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_dial_phone_number" msgid="8831647331642648637">"Quay số điện thoại <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"Liên hệ nhanh cho <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Tôi"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"T.sử cục bộ của tôi"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Tiểu sử <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> của tôi"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Đang hiển thị tất cả liên hệ"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Ứng dụng Người hoạt động tốt hơn với Tài khoản Google."\n\n"• Truy cập từ bất kỳ trình duyệt web nào."\n"• Sao lưu danh sách liên hệ của bạn một cách an toàn."</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Địa chỉ liên hệ mới của bạn sẽ không được sao lưu. Thêm tài khoản sao lưu danh bạ trực tuyến?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Địa chỉ liên hệ mới của bạn sẽ được đồng bộ hóa với <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Bạn có thể đồng bộ hóa địa chỉ liên hệ mới của mình với một trong những tài khoản sau. Bạn muốn sử dụng tài khoản nào?"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Lưu trữ cục bộ"</string>
+    <string name="add_account" msgid="8201790677994503186">"Thêm tài khoản"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Thêm tài khoản mới"</string>
+    <string name="phone_call_prohibited" msgid="4329551585931067534">"Cuộc gọi không được gửi đi."</string>
 </resources>
