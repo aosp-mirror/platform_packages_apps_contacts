@@ -1,34 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- First item is the outer transparent sphere. -->
-    <item>
-        <shape
-            android:shape="oval"
-        >
-            <size
-                android:width="16dip"
-                android:height="16dip"
-            />
-            <solid
-                android:color="@color/voicemail_playback_seek_bar_yet_to_play"
-            />
-        </shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="true">
+        <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+            <!-- First item is the outer transparent sphere. -->
+            <item>
+                <shape
+                    android:shape="oval"
+                >
+                    <size
+                        android:width="16dip"
+                        android:height="16dip"
+                    />
+                    <solid
+                        android:color="@color/voicemail_playback_seek_bar_yet_to_play"
+                    />
+                </shape>
+            </item>
+            <!-- Second item is the inner almost-opaque sphere.
+                 Seems to derive its size from the outer, a size element doesn't change anything.
+                 Looks like using left, right, top and bottom on the item is best to fix inner sphere. -->
+            <item
+                android:left="3dip"
+                android:right="3dip"
+                android:top="3dip"
+                android:bottom="3dip"
+            >
+                <shape
+                    android:shape="oval"
+                >
+                    <solid
+                        android:color="@color/voicemail_playback_seek_bar_already_played"
+                    />
+                </shape>
+            </item>
+        </layer-list>
     </item>
-    <!-- Second item is the inner almost-opaque sphere.
-         Seems to derive its size from the outer, a size element doesn't change anything.
-         Looks like using left, right, top and bottom on the item is best to fix inner sphere. -->
-    <item
-        android:left="3dip"
-        android:right="3dip"
-        android:top="3dip"
-        android:bottom="3dip"
-    >
-        <shape
-            android:shape="oval"
-        >
-            <solid
-                android:color="@color/voicemail_playback_seek_bar_already_played"
-            />
-        </shape>
-    </item>
-</layer-list>
+
+    <!-- Do not show the thumb when disabled -->
+    <item android:drawable="@android:color/transparent" />
+</selector>
