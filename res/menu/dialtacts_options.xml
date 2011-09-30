@@ -17,6 +17,7 @@
     <item
         android:id="@+id/search_on_action_bar"
         android:title="@string/menu_all_contacts"
+        android:icon="@drawable/ic_dial_action_search"
         android:showAsAction="ifRoom" />
 
     <!-- This should come after the other menus in CallLog and Dialpad -->

@@ -201,6 +201,7 @@ public class ContactTileAdapter extends BaseAdapter {
         switch (mDisplayType) {
             case STREQUENT:
             case STREQUENT_PHONE_ONLY:
+                cursor.moveToPosition(-1);
                 while (cursor.moveToNext()) {
                     if (cursor.getInt(mStarredIndex) == 0) {
                         return cursor.getPosition();
@@ -409,7 +410,7 @@ public class ContactTileAdapter extends BaseAdapter {
         text.setText(mDisplayType == DisplayType.STREQUENT_PHONE_ONLY ?
                 mContext.getString(R.string.favoritesFrequentCalled) :
                 mContext.getString(R.string.favoritesFrequentContacted));
-       return dividerView;
+        return dividerView;
     }
 
     private int getLayoutResourceId(int viewType) {
@@ -466,6 +467,14 @@ public class ContactTileAdapter extends BaseAdapter {
             default:
                 throw new IllegalStateException("Unrecognized DisplayType " + mDisplayType);
         }
+    }
+
+    /**
+     * Returns the "frequent header" position. Only available when STREQUENT or
+     * STREQUENT_PHONE_ONLY is used for its display type.
+     */
+    public int getFrequentHeaderPosition() {
+        return getRowCount(mDividerPosition);
     }
 
     private ContactTileView.Listener mContactTileListener = new ContactTileView.Listener() {
