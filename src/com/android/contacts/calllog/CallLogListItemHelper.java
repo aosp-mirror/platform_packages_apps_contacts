@@ -101,7 +101,7 @@ import android.view.View;
     /** Sets the secondary action to correspond to the play button. */
     private void configurePlaySecondaryAction(CallLogListItemViews views) {
         views.secondaryActionView.setVisibility(View.VISIBLE);
-        views.secondaryActionView.setImageResource(R.drawable.ic_play_holo_dark);
+        views.secondaryActionView.setImageResource(R.drawable.ic_play);
         views.secondaryActionView.setContentDescription(
                 mResources.getString(R.string.description_call_log_play_button));
     }

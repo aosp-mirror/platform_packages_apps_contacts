@@ -1,22 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-  <item android:id="@android:id/background">
-    <shape android:shape="line">
-      <stroke
-        android:width="2dip"
-        android:color="@color/voicemail_playback_seek_bar_yet_to_play"
-        />
-    </shape>
-  </item>
-  <!-- I am not defining a secondary progress colour - we don't use it. -->
-  <item android:id="@android:id/progress">
-    <clip>
-      <shape android:shape="line">
-        <stroke
-          android:width="2dip"
-          android:color="@color/voicemail_playback_seek_bar_already_played"
-          />
-      </shape>
-    </clip>
-  </item>
-</layer-list>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="true">
+        <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+          <item android:id="@android:id/background">
+            <shape android:shape="line">
+              <stroke
+                android:width="2dip"
+                android:color="@color/voicemail_playback_seek_bar_yet_to_play"
+                />
+            </shape>
+          </item>
+          <!-- I am not defining a secondary progress colour - we don't use it. -->
+          <item android:id="@android:id/progress">
+            <clip>
+              <shape android:shape="line">
+                <stroke
+                  android:width="2dip"
+                  android:color="@color/voicemail_playback_seek_bar_already_played"
+                  />
+              </shape>
+            </clip>
+          </item>
+        </layer-list>
+    </item>
+    <item>
+        <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+          <item android:id="@android:id/background">
+            <shape android:shape="line">
+              <stroke
+                android:width="2dip"
+                android:color="@color/voicemail_playback_seek_bar_yet_to_play"
+                />
+            </shape>
+          </item>
+          <!-- I am not defining a secondary progress colour - we don't use it. -->
+          <item android:id="@android:id/progress">
+            <clip>
+              <shape android:shape="line">
+                <stroke
+                  android:width="2dip"
+                  android:color="@color/voicemail_playback_seek_bar_yet_to_play"
+                  />
+              </shape>
+            </clip>
+          </item>
+        </layer-list>
+    </item>
+</selector>
