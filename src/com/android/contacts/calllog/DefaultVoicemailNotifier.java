@@ -161,14 +161,12 @@ public class DefaultVoicemailNotifier implements VoicemailNotifier {
         final Intent contentIntent;
         if (newCalls.length == 1) {
             // Open the voicemail directly.
-            Log.d(TAG, "Opening voicemail directly on select");
             contentIntent = new Intent(mContext, CallDetailActivity.class);
             contentIntent.setData(newCalls[0].callsUri);
             contentIntent.putExtra(CallDetailActivity.EXTRA_VOICEMAIL_URI,
                     newCalls[0].voicemailUri);
         } else {
             // Open the call log.
-            Log.d(TAG, "Opening call log on select");
             contentIntent = new Intent(Intent.ACTION_VIEW, Calls.CONTENT_URI);
         }
         notification.contentIntent = PendingIntent.getActivity(mContext, 0, contentIntent, 0);
@@ -250,7 +248,6 @@ public class DefaultVoicemailNotifier implements VoicemailNotifier {
                 while (cursor.moveToNext()) {
                     newCalls[cursor.getPosition()] = createNewCallsFromCursor(cursor);
                 }
-                Log.d(TAG, "DefaultNewCallsQuery: " + newCalls.length + " new calls");
                 return newCalls;
             } finally {
                 MoreCloseables.closeQuietly(cursor);

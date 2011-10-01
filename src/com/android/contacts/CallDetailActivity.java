@@ -720,7 +720,6 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
 
     private StatusMessage getStatusMessage(Cursor statusCursor) {
         List<StatusMessage> messages = mVoicemailStatusHelper.getStatusMessages(statusCursor);
-        Log.d(TAG, "Num status messages: " + messages.size());
         if (messages.size() == 0) {
             return null;
         }
