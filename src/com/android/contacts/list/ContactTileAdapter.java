@@ -513,9 +513,16 @@ public class ContactTileAdapter extends BaseAdapter {
                 contactTile = (ContactTileView) inflate(mContext, mLayoutResId, null);
                 // Note: the layoutparam set here is only actually used for FREQUENT.
                 // We override onMeasure() for STARRED and we don't care the layout param there.
-                contactTile.setLayoutParams(new FrameLayout.LayoutParams(
+                Resources resources = mContext.getResources();
+                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT));
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.setMargins(
+                        resources.getDimensionPixelSize(R.dimen.detail_item_side_margin),
+                        0,
+                        resources.getDimensionPixelSize(R.dimen.detail_item_side_margin),
+                        0);
+                contactTile.setLayoutParams(params);
                 contactTile.setPhotoManager(mPhotoManager);
                 contactTile.setListener(mContactTileListener);
                 addView(contactTile);
