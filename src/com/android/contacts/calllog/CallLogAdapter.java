@@ -400,7 +400,15 @@ public class CallLogAdapter extends GroupingListAdapter
         // Determine the contact info.
         if (PhoneNumberUtils.isUriNumber(number)) {
             // This "number" is really a SIP address.
-            info = queryContactInfoForSipAddress(number);
+            ContactInfo sipInfo = queryContactInfoForSipAddress(number);
+            if (sipInfo == null || sipInfo == ContactInfo.EMPTY) {
+                // Check whether the username is actually a phone number of contact.
+                String username = number.substring(0, number.indexOf('@'));
+                if (PhoneNumberUtils.isGlobalPhoneNumber(username)) {
+                    sipInfo = queryContactInfoForPhoneNumber(username);
+                }
+            }
+            info = sipInfo;
         } else {
             info = queryContactInfoForPhoneNumber(number);
         }
