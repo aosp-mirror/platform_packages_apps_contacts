@@ -96,6 +96,7 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
     private PhoneNumberHelper mPhoneNumberHelper;
     private PhoneCallDetailsHelper mPhoneCallDetailsHelper;
     private TextView mHeaderTextView;
+    private View mHeaderOverlayView;
     private ImageView mMainActionView;
     private ImageButton mMainActionPushLayerView;
     private ImageView mContactBackgroundView;
@@ -240,6 +241,7 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
         mVoicemailStatusHelper = new VoicemailStatusHelperImpl();
         mAsyncQueryHandler = new CallDetailActivityQueryHandler(this);
         mHeaderTextView = (TextView) findViewById(R.id.header_text);
+        mHeaderOverlayView = findViewById(R.id.photo_text_bar);
         mStatusMessageView = findViewById(R.id.voicemail_status);
         mStatusMessageText = (TextView) findViewById(R.id.voicemail_status_message);
         mStatusMessageAction = (TextView) findViewById(R.id.voicemail_status_action);
@@ -454,6 +456,8 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
                 if (mainActionIntent == null) {
                     mMainActionView.setVisibility(View.INVISIBLE);
                     mMainActionPushLayerView.setVisibility(View.GONE);
+                    mHeaderTextView.setVisibility(View.INVISIBLE);
+                    mHeaderOverlayView.setVisibility(View.INVISIBLE);
                 } else {
                     mMainActionView.setVisibility(View.VISIBLE);
                     mMainActionView.setImageResource(mainActionIcon);
@@ -465,6 +469,8 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
                         }
                     });
                     mMainActionPushLayerView.setContentDescription(mainActionDescription);
+                    mHeaderTextView.setVisibility(View.VISIBLE);
+                    mHeaderOverlayView.setVisibility(View.VISIBLE);
                 }
 
                 // This action allows to call the number that places the call.
@@ -511,19 +517,27 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
                                 findViewById(R.id.controls)));
                 BackScrollManager.bind(
                         new ScrollableHeader() {
-                            private View controls = findViewById(R.id.controls);
-                            private View photo = findViewById(R.id.contact_background_sizer);
-                            private View nameHeader = findViewById(R.id.photo_text_bar);
+                            private View mControls = findViewById(R.id.controls);
+                            private View mPhoto = findViewById(R.id.contact_background_sizer);
+                            private View mHeader = findViewById(R.id.photo_text_bar);
+                            private View mSeparator = findViewById(R.id.blue_separator);
 
                             @Override
                             public void setOffset(int offset) {
-                                controls.setY(-offset);
+                                mControls.setY(-offset);
                             }
 
                             @Override
                             public int getMaximumScrollableHeaderOffset() {
-                                // We can scroll the photo out, but we should keep the header.
-                                return photo.getHeight() - nameHeader.getHeight();
+                                // We can scroll the photo out, but we should keep the header if
+                                // present.
+                                if (mHeader.getVisibility() == View.VISIBLE) {
+                                    return mPhoto.getHeight() - mHeader.getHeight();
+                                } else {
+                                    // If the header is not present, we should also scroll out the
+                                    // separator line.
+                                    return mPhoto.getHeight() + mSeparator.getHeight();
+                                }
                             }
                         },
                         historyList);
