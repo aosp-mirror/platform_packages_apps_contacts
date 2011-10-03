@@ -555,9 +555,11 @@ public class VoicemailPlaybackPresenter {
             public void run() {
                 int currentPosition = 0;
                 synchronized (mLock) {
-                    if (mScheduledFuture != null) {
-                        currentPosition = mPlayer.getCurrentPosition();
+                    if (mScheduledFuture == null) {
+                        // This task has been canceled. Just stop now.
+                        return;
                     }
+                    currentPosition = mPlayer.getCurrentPosition();
                 }
                 mView.setClipPosition(currentPosition, mDuration.get());
             }
