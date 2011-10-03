@@ -132,7 +132,6 @@ public class DialpadFragment extends Fragment
 
     private boolean mShowOptionsMenu;
 
-    private boolean mHasVoicemail = false;
 
     // Last number dialed, retrieved asynchronously from the call DB
     // in onCreate. This number is displayed when the user hits the
@@ -270,8 +269,6 @@ public class DialpadFragment extends Fragment
         }
 
         mAdditionalButtonsRow = fragmentView.findViewById(R.id.dialpadAdditionalButtons);
-
-        initVoicemailButton();
 
         mSearchButton = mAdditionalButtonsRow.findViewById(R.id.searchButton);
         if (mSearchButton != null) {
@@ -790,8 +787,15 @@ public class DialpadFragment extends Fragment
                 return true;
             }
             case R.id.one: {
-                if (mHasVoicemail && isDigitsEmpty()) {
-                    callVoicemail();
+                if (isDigitsEmpty()) {
+                    if (isVoicemailAvailable()) {
+                        callVoicemail();
+                    } else if (getActivity() != null) {
+                        DialogFragment dialogFragment = ErrorDialogFragment.newInstance(
+                                R.string.dialog_voicemail_not_ready_title,
+                                R.string.dialog_voicemail_not_ready_message);
+                        dialogFragment.show(getFragmentManager(), "voicemail_not_ready");
+                    }
                     return true;
                 }
                 return false;
@@ -810,23 +814,57 @@ public class DialpadFragment extends Fragment
         getActivity().finish();
     }
 
-    public static class CallProhibitedDialogFragment extends DialogFragment {
-        public static CallProhibitedDialogFragment newInstance() {
-            return new CallProhibitedDialogFragment();
+    public static class ErrorDialogFragment extends DialogFragment {
+        private int mTitleResId;
+        private Integer mMessageResId;  // can be null
+
+        private static final String ARG_TITLE_RES_ID = "argTitleResId";
+        private static final String ARG_MESSAGE_RES_ID = "argMessageResId";
+
+        public static ErrorDialogFragment newInstance(int titleResId) {
+            return newInstanceInter(titleResId, null);
+        }
+
+        public static ErrorDialogFragment newInstance(int titleResId, int messageResId) {
+            return newInstanceInter(titleResId, messageResId);
+        }
+
+        private static ErrorDialogFragment newInstanceInter(
+                int titleResId, Integer messageResId) {
+            final ErrorDialogFragment fragment = new ErrorDialogFragment();
+            final Bundle args = new Bundle();
+            args.putInt(ARG_TITLE_RES_ID, titleResId);
+            if (messageResId != null) {
+                args.putInt(ARG_MESSAGE_RES_ID, messageResId);
+            }
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            mTitleResId = getArguments().getInt(ARG_TITLE_RES_ID);
+            if (getArguments().containsKey(ARG_MESSAGE_RES_ID)) {
+                mMessageResId = getArguments().getInt(ARG_MESSAGE_RES_ID);
+            }
         }
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
-            return new AlertDialog.Builder(getActivity())
-                    .setTitle(R.string.phone_call_prohibited)
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle(mTitleResId)
                     .setPositiveButton(android.R.string.ok,
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dismiss();
                                 }
-                            })
-                    .create();
+                            });
+            if (mMessageResId != null) {
+                builder.setMessage(mMessageResId);
+            }
+            return builder.create();
         }
     }
 
@@ -892,7 +930,8 @@ public class DialpadFragment extends Fragment
                     && (SystemProperties.getInt("persist.radio.otaspdial", 0) != 1)) {
                 Log.i(TAG, "The phone number is prohibited explicitly by a rule.");
                 if (getActivity() != null) {
-                    DialogFragment dialogFragment = CallProhibitedDialogFragment.newInstance();
+                    DialogFragment dialogFragment = ErrorDialogFragment.newInstance(
+                                    R.string.dialog_phone_call_prohibited_title);
                     dialogFragment.show(getFragmentManager(), "phone_prohibited_dialog");
                 }
 
@@ -1290,13 +1329,19 @@ public class DialpadFragment extends Fragment
 
     /**
      * Check if voicemail is enabled/accessible.
+     *
+     * @return true if voicemail is enabled and accessibly. Note that this can be false
+     * "temporarily" after the app boot.
+     * @see TelephonyManager#getVoiceMailNumber()
      */
-    private void initVoicemailButton() {
+    private boolean isVoicemailAvailable() {
         try {
-            mHasVoicemail = TelephonyManager.getDefault().getVoiceMailNumber() != null;
+            return (TelephonyManager.getDefault().getVoiceMailNumber() != null);
         } catch (SecurityException se) {
             // Possibly no READ_PHONE_STATE privilege.
+            Log.w(TAG, "SecurityException is thrown. Maybe privilege isn't sufficient.");
         }
+        return false;
     }
 
     /**
