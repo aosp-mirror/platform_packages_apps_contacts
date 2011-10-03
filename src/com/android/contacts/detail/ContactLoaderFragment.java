@@ -191,7 +191,7 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
                 // This shouldn't ever happen, so throw an exception. The {@link ContactLoader}
                 // should log the actual exception.
                 throw new IllegalStateException("Failed to load contact", data.getException());
-            } else if (data == ContactLoader.Result.NOT_FOUND) {
+            } else if (data.isNotFound()) {
                 Log.i(TAG, "No contact found: " + ((ContactLoader)loader).getLookupUri());
                 mContactData = null;
             } else {

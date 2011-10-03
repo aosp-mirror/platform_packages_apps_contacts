@@ -1709,7 +1709,7 @@ public class ContactEditorFragment extends Fragment implements
         public void onLoadFinished(Loader<ContactLoader.Result> loader, ContactLoader.Result data) {
             final long loaderCurrentTime = SystemClock.elapsedRealtime();
             Log.v(TAG, "Time needed for loading: " + (loaderCurrentTime-mLoaderStartTime));
-            if (data == ContactLoader.Result.NOT_FOUND || data.isError()) {
+            if (!data.isLoaded()) {
                 // Item has been deleted
                 Log.i(TAG, "No contact found. Closing activity");
                 if (mListener != null) mListener.onContactNotFound();

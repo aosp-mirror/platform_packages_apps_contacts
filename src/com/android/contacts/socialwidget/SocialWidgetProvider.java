@@ -133,7 +133,7 @@ public class SocialWidgetProvider extends AppWidgetProvider {
         final RemoteViews views = new RemoteViews(context.getPackageName(),
                 R.layout.social_widget);
 
-        if (contactData.isError() || contactData == ContactLoader.Result.NOT_FOUND) {
+        if (!contactData.isLoaded()) {
             setDisplayNameAndSnippet(context, views,
                     context.getString(R.string.invalidContactMessage), null, null, null);
             setPhoto(views, ContactBadgeUtil.loadDefaultAvatarPhoto(context, false, false));

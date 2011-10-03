@@ -73,8 +73,8 @@ import java.util.Set;
 public class ContactLoader extends Loader<ContactLoader.Result> {
     private static final String TAG = "ContactLoader";
 
-    private Uri mLookupUri;
     private final Uri mRequestedUri;
+    private Uri mLookupUri;
     private boolean mLoadGroupMetaData;
     private boolean mLoadStreamItems;
     private final boolean mLoadInvitableAccountTypes;
@@ -91,10 +91,14 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
      * The result of a load operation. Contains all data necessary to display the contact.
      */
     public static final class Result {
-        /**
-         * Singleton instance that represents "No Contact Found"
-         */
-        public static final Result NOT_FOUND = new Result((Exception) null);
+        private enum Status {
+            /** Contact is successfully loaded */
+            LOADED,
+            /** There was an error loading the contact */
+            ERROR,
+            /** Contact is not found */
+            NOT_FOUND,
+        }
 
         private final Uri mRequestedUri;
         private final Uri mLookupUri;
@@ -130,13 +134,19 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         private final String mCustomRingtone;
         private final boolean mIsUserProfile;
 
+        private final Status mStatus;
         private final Exception mException;
 
         /**
          * Constructor for special results, namely "no contact found" and "error".
          */
-        private Result(Exception exception) {
-            mRequestedUri = null;
+        private Result(Uri requestedUri, Status status, Exception exception) {
+            if (status == Status.ERROR && exception == null) {
+                throw new IllegalArgumentException("ERROR result must have exception");
+            }
+            mStatus = status;
+            mException = exception;
+            mRequestedUri = requestedUri;
             mLookupUri = null;
             mUri = null;
             mDirectoryId = -1;
@@ -158,11 +168,14 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
             mSendToVoicemail = false;
             mCustomRingtone = null;
             mIsUserProfile = false;
-            mException = exception;
         }
 
-        private static Result forError(Exception exception) {
-            return new Result(exception);
+        private static Result forError(Uri requestedUri, Exception exception) {
+            return new Result(requestedUri, Status.ERROR, exception);
+        }
+
+        private static Result forNotFound(Uri requestedUri) {
+            return new Result(requestedUri, Status.NOT_FOUND, null);
         }
 
         /**
@@ -173,6 +186,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 String photoUri, String displayName, String altDisplayName, String phoneticName,
                 boolean starred, Integer presence, boolean sendToVoicemail, String customRingtone,
                 boolean isUserProfile) {
+            mStatus = Status.LOADED;
             mException = null;
             mRequestedUri = requestedUri;
             mLookupUri = lookupUri;
@@ -199,6 +213,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         }
 
         private Result(Result from) {
+            mStatus = from.mStatus;
             mException = from.mException;
             mRequestedUri = from.mRequestedUri;
             mLookupUri = from.mLookupUri;
@@ -293,13 +308,34 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         /**
          * @return true when an exception happened during loading, in which case
          *     {@link #getException} returns the actual exception object.
+         *     Note {@link #isNotFound()} and {@link #isError()} are mutually exclusive; If
+         *     {@link #isError()} is {@code true}, {@link #isNotFound()} is always {@code false},
+         *     and vice versa.
          */
         public boolean isError() {
-            return mException != null;
+            return mStatus == Status.ERROR;
         }
 
         public Exception getException() {
             return mException;
+        }
+
+        /**
+         * @return true when the specified contact is not found.
+         *     Note {@link #isNotFound()} and {@link #isError()} are mutually exclusive; If
+         *     {@link #isError()} is {@code true}, {@link #isNotFound()} is always {@code false},
+         *     and vice versa.
+         */
+        public boolean isNotFound() {
+            return mStatus == Status.NOT_FOUND;
+        }
+
+        /**
+         * @return true if the specified contact is successfully loaded.
+         *     i.e. neither {@link #isError()} nor {@link #isNotFound()}.
+         */
+        public boolean isLoaded() {
+            return mStatus == Status.LOADED;
         }
 
         public long getNameRawContactId() {
@@ -647,7 +683,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 final ContentResolver resolver = getContext().getContentResolver();
                 final Uri uriCurrentFormat = ensureIsContactUri(resolver, mLookupUri);
                 Result result = loadContactEntity(resolver, uriCurrentFormat);
-                if (result != Result.NOT_FOUND) {
+                if (!result.isNotFound()) {
                     if (result.isDirectoryEntry()) {
                         loadDirectoryMetaData(result);
                     } else if (mLoadGroupMetaData) {
@@ -666,7 +702,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 return result;
             } catch (Exception e) {
                 Log.e(TAG, "Error loading the contact: " + mLookupUri, e);
-                return Result.forError(e);
+                return Result.forError(mRequestedUri, e);
             }
         }
 
@@ -717,13 +753,13 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                     Contacts.Entity.RAW_CONTACT_ID);
             if (cursor == null) {
                 Log.e(TAG, "No cursor returned in loadContactEntity");
-                return Result.NOT_FOUND;
+                return Result.forNotFound(mRequestedUri);
             }
 
             try {
                 if (!cursor.moveToFirst()) {
                     cursor.close();
-                    return Result.NOT_FOUND;
+                    return Result.forNotFound(mRequestedUri);
                 }
 
                 long currentRawContactId = -1;
@@ -1143,7 +1179,7 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
             mContact = result;
 
-            if (!result.isError() && result != Result.NOT_FOUND) {
+            if (result.isLoaded()) {
                 mLookupUri = result.getLookupUri();
 
                 if (!result.isDirectoryEntry()) {
