@@ -39,6 +39,7 @@ import com.android.contacts.model.EntityModifier;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.DateUtils;
+import com.android.contacts.util.StructuredPostalUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.widget.TransitionAnimationView;
 import com.android.internal.telephony.ITelephony;
@@ -634,8 +635,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 } else if (StructuredPostal.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     // Build postal entries
                     entry.maxLines = POSTAL_ADDRESS_MAX_LINES;
-                    entry.intent = new Intent(
-                            Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + Uri.encode(entry.data)));
+                    entry.intent = StructuredPostalUtils.getViewPostalAddressIntent(entry.data);
                     mPostalEntries.add(entry);
                 } else if (Im.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     // Build IM entries
