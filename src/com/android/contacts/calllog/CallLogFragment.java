@@ -121,7 +121,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         updateVoicemailStatusMessage(statusCursor);
 
         int activeSources = mVoicemailStatusHelper.getNumberActivityVoicemailSources(statusCursor);
-        Log.d(TAG, "Num active sources: " + activeSources);
         setVoicemailSourcesAvailable(activeSources != 0);
         MoreCloseables.closeQuietly(statusCursor);
     }
