@@ -46,7 +46,7 @@
         <item name="list_item_header_underline_color">@color/people_app_theme_color</item>
         <item name="contact_browser_list_padding_left">16dip</item>
         <item name="contact_browser_list_padding_right">0dip</item>
-        <item name="contact_browser_background">@android:color/black</item>
+        <item name="contact_browser_background">@android:color/transparent</item>
         <item name="list_item_text_indent">@dimen/contact_browser_list_item_text_indent</item>
         <!-- CallLog -->
         <item name="call_log_primary_text_color">#FFFFFF</item>
