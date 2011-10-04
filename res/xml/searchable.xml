@@ -25,6 +25,7 @@
     android:searchMode="queryRewriteFromText"
 
     android:includeInGlobalSearch="true"
+    android:queryAfterZeroResults="true"
     android:searchSuggestAuthority="com.android.contacts"
     android:searchSuggestIntentAction="android.provider.Contacts.SEARCH_SUGGESTION_CLICKED"
     android:searchSuggestIntentData="content://com.android.contacts/contacts/lookup"
