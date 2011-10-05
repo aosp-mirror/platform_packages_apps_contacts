@@ -21,6 +21,7 @@ import com.android.contacts.editor.SelectAccountDialogFragment;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.util.AccountSelectionUtil;
+import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.vcard.ExportVCardActivity;
 
 import android.app.AlertDialog;
@@ -49,8 +50,11 @@ import java.util.List;
 /**
  * An dialog invoked to import/export contacts.
  */
-public class ImportExportDialogFragment extends DialogFragment {
+public class ImportExportDialogFragment extends DialogFragment
+        implements SelectAccountDialogFragment.Listener {
     public static final String TAG = "ImportExportDialogFragment";
+
+    private static final String KEY_RES_ID = "resourceId";
 
     private final String[] LOOKUP_PROJECTION = new String[] {
             Contacts.LOOKUP_KEY
@@ -100,28 +104,33 @@ public class ImportExportDialogFragment extends DialogFragment {
                 new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-
+                boolean dismissDialog;
                 final int resId = adapter.getItem(which);
                 switch (resId) {
                     case R.string.import_from_sim:
                     case R.string.import_from_sdcard: {
-                        handleImportRequest(resId);
+                        dismissDialog = handleImportRequest(resId);
                         break;
                     }
                     case R.string.export_to_sdcard: {
+                        dismissDialog = true;
                         Intent exportIntent = new Intent(getActivity(), ExportVCardActivity.class);
                         getActivity().startActivity(exportIntent);
                         break;
                     }
                     case R.string.share_visible_contacts: {
+                        dismissDialog = true;
                         doShareVisibleContacts();
                         break;
                     }
                     default: {
+                        dismissDialog = true;
                         Log.e(TAG, "Unexpected resource: "
                                 + getActivity().getResources().getResourceEntryName(resId));
                     }
+                }
+                if (dismissDialog) {
+                    dialog.dismiss();
                 }
             }
         };
@@ -164,7 +173,12 @@ public class ImportExportDialogFragment extends DialogFragment {
         }
     }
 
-    private void handleImportRequest(int resId) {
+    /**
+     * Handle "import from SIM" and "import from SD".
+     *
+     * @return {@code true} if the dialog show be closed.  {@code false} otherwise.
+     */
+    private boolean handleImportRequest(int resId) {
         // There are three possibilities:
         // - more than one accounts -> ask the user
         // - just one account -> use the account without asking the user
@@ -174,32 +188,39 @@ public class ImportExportDialogFragment extends DialogFragment {
         final int size = accountList.size();
         if (size > 1) {
             // Send over to the account selector
-            ImportExportAccountSelectorDialog.show(getFragmentManager(), resId);
-            return;
+            final Bundle args = new Bundle();
+            args.putInt(KEY_RES_ID, resId);
+            SelectAccountDialogFragment.show(
+                    getFragmentManager(), this,
+                    R.string.dialog_new_contact_account,
+                    AccountListFilter.ACCOUNTS_CONTACT_WRITABLE, args);
+
+            // In this case, because this DialogFragment is used as a target fragment to
+            // SelectAccountDialogFragment, we can't close it yet.  We close the dialog when
+            // we get a callback from it.
+            return false;
         }
 
         AccountSelectionUtil.doImport(getActivity(), resId,
                 (size == 1 ? accountList.get(0) : null));
+        return true; // Close the dialog.
     }
 
-    /** Sub-Dialog for showing an account selector in case there are several accounts */
-    public static class ImportExportAccountSelectorDialog extends SelectAccountDialogFragment {
-        private static final String SELECTOR_TAG = "ImportExportAccountSelectorDialog";
-        private static final String BUNDLE_RES_ID = "resourceId";
+    /**
+     * Called when an account is selected on {@link SelectAccountDialogFragment}.
+     */
+    @Override
+    public void onAccountChosen(AccountWithDataSet account, Bundle extraArgs) {
+        AccountSelectionUtil.doImport(getActivity(), extraArgs.getInt(KEY_RES_ID), account);
 
-        public static void show(FragmentManager manager, int resId) {
-            final ImportExportAccountSelectorDialog dialog =
-                new ImportExportAccountSelectorDialog();
-            final Bundle bundle = new Bundle();
-            bundle.putInt(BUNDLE_RES_ID, resId);
-            dialog.setArguments(bundle);
-            dialog.show(manager, SELECTOR_TAG);
-        }
+        // At this point the dialog is still showing (which is why we can use getActivity() above)
+        // So close it.
+        dismiss();
+    }
 
-        @Override
-        protected void onAccountSelected(AccountWithDataSet account) {
-            final int resourceId = getArguments().getInt(BUNDLE_RES_ID);
-            AccountSelectionUtil.doImport(getActivity(), resourceId, account);
-        }
+    @Override
+    public void onAccountSelectorCancelled() {
+        // See onAccountChosen() -- at this point the dialog is still showing.  Close it.
+        dismiss();
     }
 }

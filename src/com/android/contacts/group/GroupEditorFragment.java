@@ -332,14 +332,13 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         }
 
         mStatus = Status.SELECTING_ACCOUNT;
-        final SelectAccountDialogFragment dialog = new SelectAccountDialogFragment(
-                R.string.dialog_new_group_account, AccountListFilter.ACCOUNTS_GROUP_WRITABLE);
-        dialog.setTargetFragment(this, 0);
-        dialog.show(getFragmentManager(), SelectAccountDialogFragment.TAG);
+        SelectAccountDialogFragment.show(getFragmentManager(), this,
+                R.string.dialog_new_group_account, AccountListFilter.ACCOUNTS_GROUP_WRITABLE,
+                null);
     }
 
     @Override
-    public void onAccountChosen(int requestCode, AccountWithDataSet account) {
+    public void onAccountChosen(AccountWithDataSet account, Bundle extraArgs) {
         mAccountName = account.name;
         mAccountType = account.type;
         mDataSet = account.dataSet;
