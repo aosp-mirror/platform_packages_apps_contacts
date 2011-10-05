@@ -39,13 +39,14 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.PhoneLookup;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
 import java.util.LinkedList;
+
+import libcore.util.Objects;
 
 /**
  * Adapter class to fill in data for the Call Log.
@@ -76,6 +77,49 @@ public class CallLogAdapter extends GroupingListAdapter
     private ExpirableCache<String, ContactInfo> mContactInfoCache;
 
     /**
+     * A request for contact details for the given number.
+     */
+    private static final class ContactInfoRequest {
+        /** The number to look-up. */
+        public final String number;
+        /** The country in which a call to or from this number was placed or received. */
+        public final String countryIso;
+        /** The cached contact information stored in the call log. */
+        public final ContactInfo callLogInfo;
+
+        public ContactInfoRequest(String number, String countryIso, ContactInfo callLogInfo) {
+            this.number = number;
+            this.countryIso = countryIso;
+            this.callLogInfo = callLogInfo;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (obj == null) return false;
+            if (!(obj instanceof ContactInfoRequest)) return false;
+
+            ContactInfoRequest other = (ContactInfoRequest) obj;
+
+            if (!TextUtils.equals(number, other.number)) return false;
+            if (!TextUtils.equals(countryIso, other.countryIso)) return false;
+            if (!Objects.equal(callLogInfo, other.callLogInfo)) return false;
+
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            final int prime = 31;
+            int result = 1;
+            result = prime * result + ((callLogInfo == null) ? 0 : callLogInfo.hashCode());
+            result = prime * result + ((countryIso == null) ? 0 : countryIso.hashCode());
+            result = prime * result + ((number == null) ? 0 : number.hashCode());
+            return result;
+        }
+    }
+
+    /**
      * List of requests to update contact details.
      * <p>
      * Each request is made of a phone number to look up, and the contact info currently stored in
@@ -84,7 +128,7 @@ public class CallLogAdapter extends GroupingListAdapter
      * The requests are added when displaying the contacts and are processed by a background
      * thread.
      */
-    private final LinkedList<Pair<String, ContactInfo>> mRequests;
+    private final LinkedList<ContactInfoRequest> mRequests;
 
     private volatile boolean mDone;
     private boolean mLoading = true;
@@ -162,7 +206,7 @@ public class CallLogAdapter extends GroupingListAdapter
         mCallFetcher = callFetcher;
 
         mContactInfoCache = ExpirableCache.create(CONTACT_INFO_CACHE_SIZE);
-        mRequests = new LinkedList<Pair<String,ContactInfo>>();
+        mRequests = new LinkedList<ContactInfoRequest>();
         mPreDrawListener = null;
 
         Resources resources = mContext.getResources();
@@ -245,8 +289,9 @@ public class CallLogAdapter extends GroupingListAdapter
      * started with a delay. See {@link #START_PROCESSING_REQUESTS_DELAY_MILLIS}.
      */
     @VisibleForTesting
-    void enqueueRequest(String number, ContactInfo callLogInfo, boolean immediate) {
-        Pair<String, ContactInfo> request = new Pair<String, ContactInfo>(number, callLogInfo);
+    void enqueueRequest(String number, String countryIso, ContactInfo callLogInfo,
+            boolean immediate) {
+        ContactInfoRequest request = new ContactInfoRequest(number, countryIso, callLogInfo);
         synchronized (mRequests) {
             if (!mRequests.contains(request)) {
                 mRequests.add(request);
@@ -330,6 +375,7 @@ public class CallLogAdapter extends GroupingListAdapter
                 info.normalizedNumber = null;  // meaningless for SIP addresses
                 info.photoId = dataTableCursor.getLong(
                         dataTableCursor.getColumnIndex(Data.PHOTO_ID));
+                info.formattedNumber = null;  // meaningless for SIP addresses
             } else {
                 info = ContactInfo.EMPTY;
             }
@@ -350,7 +396,7 @@ public class CallLogAdapter extends GroupingListAdapter
      * <p>
      * If the lookup fails for some other reason, it returns null.
      */
-    private ContactInfo queryContactInfoForPhoneNumber(String number) {
+    private ContactInfo queryContactInfoForPhoneNumber(String number, String countryIso) {
         final ContactInfo info;
 
         // "number" is a regular phone number, so use the
@@ -372,6 +418,9 @@ public class CallLogAdapter extends GroupingListAdapter
                 info.number = phonesCursor.getString(PhoneQuery.MATCHED_NUMBER);
                 info.normalizedNumber = phonesCursor.getString(PhoneQuery.NORMALIZED_NUMBER);
                 info.photoId = phonesCursor.getLong(PhoneQuery.PHOTO_ID);
+                info.formattedNumber = formatPhoneNumber(info.number, info.formattedNumber,
+                        countryIso);
+
             } else {
                 info = ContactInfo.EMPTY;
             }
@@ -394,7 +443,7 @@ public class CallLogAdapter extends GroupingListAdapter
      * It returns true if it updated the content of the cache and we should therefore tell the
      * view to update its content.
      */
-    private boolean queryContactInfo(String number, ContactInfo callLogInfo) {
+    private boolean queryContactInfo(String number, String countryIso, ContactInfo callLogInfo) {
         final ContactInfo info;
 
         // Determine the contact info.
@@ -410,7 +459,7 @@ public class CallLogAdapter extends GroupingListAdapter
             }
             info = sipInfo;
         } else {
-            info = queryContactInfoForPhoneNumber(number);
+            info = queryContactInfoForPhoneNumber(number, countryIso);
         }
 
         if (info == null) {
@@ -418,21 +467,27 @@ public class CallLogAdapter extends GroupingListAdapter
             return false;
         }
 
+        final ContactInfo updatedInfo;
+        // If we did not find a matching contact, generate an empty contact info for the number.
+        if (info == ContactInfo.EMPTY) {
+            // Did not find a matching contact.
+            updatedInfo = new ContactInfo();
+            updatedInfo.number = number;
+            updatedInfo.formattedNumber = formatPhoneNumber(number, null, countryIso);
+        } else {
+            updatedInfo = info;
+        }
+
         // Check the existing entry in the cache: only if it has changed we should update the
         // view.
         ContactInfo existingInfo = mContactInfoCache.getPossiblyExpired(number);
-        boolean updated = !info.equals(existingInfo);
-        if (updated) {
-            // The formattedNumber is computed by the UI thread when needed. Since we updated
-            // the details of the contact, set this value to null for now.
-            info.formattedNumber = null;
-        }
+        boolean updated = !updatedInfo.equals(existingInfo);
         // Store the data in the cache so that the UI thread can use to display it. Store it
         // even if it has not changed so that it is marked as not expired.
-        mContactInfoCache.put(number, info);
+        mContactInfoCache.put(number, updatedInfo);
         // Update the call log even if the cache it is up-to-date: it is possible that the cache
         // contains the value from a different call log entry.
-        updateCallLogContactInfoCache(number, info, callLogInfo);
+        updateCallLogContactInfoCache(number, updatedInfo, callLogInfo);
         return updated;
     }
 
@@ -444,13 +499,10 @@ public class CallLogAdapter extends GroupingListAdapter
     public void run() {
         boolean needNotify = false;
         while (!mDone) {
-            String number = null;
-            ContactInfo callLogInfo = null;
+            ContactInfoRequest request = null;
             synchronized (mRequests) {
                 if (!mRequests.isEmpty()) {
-                    Pair<String, ContactInfo> request = mRequests.removeFirst();
-                    number = request.first;
-                    callLogInfo  = request.second;
+                    request = mRequests.removeFirst();
                 } else {
                     if (needNotify) {
                         needNotify = false;
@@ -464,7 +516,8 @@ public class CallLogAdapter extends GroupingListAdapter
                     }
                 }
             }
-            if (!mDone && number != null && queryContactInfo(number, callLogInfo)) {
+            if (!mDone && request != null
+                    && queryContactInfo(request.number, request.countryIso, request.callLogInfo)) {
                 needNotify = true;
             }
         }
@@ -565,7 +618,6 @@ public class CallLogAdapter extends GroupingListAdapter
         final long date = c.getLong(CallLogQuery.DATE);
         final long duration = c.getLong(CallLogQuery.DURATION);
         final int callType = c.getInt(CallLogQuery.CALL_TYPE);
-        final String formattedNumber;
         final String countryIso = c.getString(CallLogQuery.COUNTRY_ISO);
 
         final ContactInfo cachedContactInfo = getContactInfoFromCallLog(c);
@@ -597,43 +649,30 @@ public class CallLogAdapter extends GroupingListAdapter
             // If this is a number that cannot be dialed, there is no point in looking up a contact
             // for it.
             info = ContactInfo.EMPTY;
-            formattedNumber = null;
         } else if (cachedInfo == null) {
             mContactInfoCache.put(number, ContactInfo.EMPTY);
             // Use the cached contact info from the call log.
             info = cachedContactInfo;
             // The db request should happen on a non-UI thread.
             // Request the contact details immediately since they are currently missing.
-            enqueueRequest(number, cachedContactInfo, true);
-            // Format the phone number in the call log as best as we can.
-            formattedNumber = formatPhoneNumber(info.number, info.normalizedNumber, countryIso);
-            info.formattedNumber = formattedNumber;
+            enqueueRequest(number, countryIso, cachedContactInfo, true);
+            // We will format the phone number when we make the background request.
         } else {
             if (cachedInfo.isExpired()) {
                 // The contact info is no longer up to date, we should request it. However, we
                 // do not need to request them immediately.
-                enqueueRequest(number, cachedContactInfo, false);
+                enqueueRequest(number, countryIso, cachedContactInfo, false);
             } else  if (!callLogInfoMatches(cachedContactInfo, info)) {
                 // The call log information does not match the one we have, look it up again.
                 // We could simply update the call log directly, but that needs to be done in a
                 // background thread, so it is easier to simply request a new lookup, which will, as
                 // a side-effect, update the call log.
-                enqueueRequest(number, cachedContactInfo, false);
+                enqueueRequest(number, countryIso, cachedContactInfo, false);
             }
 
-            if (info != ContactInfo.EMPTY) {
-                // Format and cache phone number for found contact.
-                if (info.formattedNumber == null) {
-                    info.formattedNumber =
-                            formatPhoneNumber(info.number, info.normalizedNumber, countryIso);
-                }
-                formattedNumber = info.formattedNumber;
-            } else {
+            if (info == ContactInfo.EMPTY) {
                 // Use the cached contact info from the call log.
                 info = cachedContactInfo;
-                // Format the phone number in the call log as best as we can.
-                formattedNumber = formatPhoneNumber(info.number, info.normalizedNumber, countryIso);
-                info.formattedNumber = formattedNumber;
             }
         }
 
@@ -642,6 +681,7 @@ public class CallLogAdapter extends GroupingListAdapter
         final int ntype = info.type;
         final String label = info.label;
         final long photoId = info.photoId;
+        CharSequence formattedNumber = info.formattedNumber;
         final int[] callTypes = getCallTypes(c, count);
         final String geocode = c.getString(CallLogQuery.GEOCODED_LOCATION);
         final PhoneCallDetails details;
@@ -724,6 +764,10 @@ public class CallLogAdapter extends GroupingListAdapter
                 values.put(Calls.CACHED_PHOTO_ID, updatedInfo.photoId);
                 needsUpdate = true;
             }
+            if (!TextUtils.equals(updatedInfo.formattedNumber, callLogInfo.formattedNumber)) {
+                values.put(Calls.CACHED_FORMATTED_NUMBER, updatedInfo.formattedNumber);
+                needsUpdate = true;
+            }
         } else {
             // No previous values, store all of them.
             values.put(Calls.CACHED_NAME, updatedInfo.name);
@@ -733,6 +777,7 @@ public class CallLogAdapter extends GroupingListAdapter
             values.put(Calls.CACHED_MATCHED_NUMBER, updatedInfo.number);
             values.put(Calls.CACHED_NORMALIZED_NUMBER, updatedInfo.normalizedNumber);
             values.put(Calls.CACHED_PHOTO_ID, updatedInfo.photoId);
+            values.put(Calls.CACHED_FORMATTED_NUMBER, updatedInfo.formattedNumber);
             needsUpdate = true;
         }
 
@@ -759,8 +804,7 @@ public class CallLogAdapter extends GroupingListAdapter
         info.number = matchedNumber == null ? c.getString(CallLogQuery.NUMBER) : matchedNumber;
         info.normalizedNumber = c.getString(CallLogQuery.CACHED_NORMALIZED_NUMBER);
         info.photoId = c.getLong(CallLogQuery.CACHED_PHOTO_ID);
-        // TODO: This could be added to the call log cached values as well.
-        info.formattedNumber = null;  // Computed on demand.
+        info.formattedNumber = c.getString(CallLogQuery.CACHED_FORMATTED_NUMBER);
         return info;
     }
 
