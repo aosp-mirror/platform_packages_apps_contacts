@@ -83,8 +83,6 @@ public class CallLogAdapterTest extends AndroidTestCase {
         TestCallLogAdapter.Request request = mAdapter.requests.get(0);
         // It is for the number we need to show.
         assertEquals(TEST_NUMBER, request.number);
-        // It has the right country.
-        assertEquals(TEST_COUNTRY_ISO, request.countryIso);
         // Since there is nothing in the cache, it is an immediate request.
         assertTrue("should be immediate", request.immediate);
     }
@@ -165,7 +163,6 @@ public class CallLogAdapterTest extends AndroidTestCase {
     private Object[] createCallLogEntry() {
         Object[] values = CallLogQueryTestUtils.createTestExtendedValues();
         values[CallLogQuery.NUMBER] = TEST_NUMBER;
-        values[CallLogQuery.COUNTRY_ISO] = TEST_COUNTRY_ISO;
         return values;
     }
 
@@ -186,14 +183,11 @@ public class CallLogAdapterTest extends AndroidTestCase {
     private static final class TestCallLogAdapter extends CallLogAdapter {
         public static class Request {
             public final String number;
-            public final String countryIso;
             public final ContactInfo callLogInfo;
             public final boolean immediate;
 
-            public Request(String number, String countryIso, ContactInfo callLogInfo,
-                    boolean immediate) {
+            public Request(String number, ContactInfo callLogInfo, boolean immediate) {
                 this.number = number;
-                this.countryIso = countryIso;
                 this.callLogInfo = callLogInfo;
                 this.immediate = immediate;
             }
@@ -207,9 +201,8 @@ public class CallLogAdapterTest extends AndroidTestCase {
         }
 
         @Override
-        void enqueueRequest(String number, String countryIso, ContactInfo callLogInfo,
-                boolean immediate) {
-            requests.add(new Request(number, countryIso, callLogInfo, immediate));
+        void enqueueRequest(String number, ContactInfo callLogInfo, boolean immediate) {
+            requests.add(new Request(number, callLogInfo, immediate));
         }
     }
 }
