@@ -43,7 +43,7 @@
             android:id="@android:id/text2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/primary_text_color"
+            android:textColor="@color/secondary_text_color"
             android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceSmall" />
     </LinearLayout>
@@ -64,4 +64,10 @@
         android:background="?android:attr/selectableItemBackground"
         android:duplicateParentState="false"
         android:nextFocusLeft="@id/actions_view_container" />
+    <View
+        android:id="@+id/vertical_divider"
+        android:layout_width="1dip"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:background="?android:attr/dividerVertical" />
 </LinearLayout>

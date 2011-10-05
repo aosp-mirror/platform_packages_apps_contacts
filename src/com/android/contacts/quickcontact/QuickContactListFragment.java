@@ -21,6 +21,7 @@ import com.android.contacts.R;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -125,7 +126,13 @@ public class QuickContactListFragment extends Fragment {
                 }
 
                 text1.setText(action.getBody());
-                text2.setText(action.getSubtitle());
+                CharSequence subtitle = action.getSubtitle();
+                text2.setText(subtitle);
+                if (TextUtils.isEmpty(subtitle)) {
+                    text2.setVisibility(View.GONE);
+                } else {
+                    text2.setVisibility(View.VISIBLE);
+                }
 
                 return resultView;
             }
