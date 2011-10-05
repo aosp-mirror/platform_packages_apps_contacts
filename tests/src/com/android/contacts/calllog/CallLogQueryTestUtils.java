@@ -28,8 +28,7 @@ import junit.framework.Assert;
 public class CallLogQueryTestUtils {
     public static Object[] createTestValues() {
         Object[] values = new Object[]{
-                0L, "", 0L, 0L, Calls.INCOMING_TYPE, "", "", "", null, 0, null, null, null, null,
-                0L, null
+                0L, "", 0L, 0L, Calls.INCOMING_TYPE, "", "", "", null, 0, null, null, null, null, 0L
         };
         assertEquals(CallLogQuery._PROJECTION.length, values.length);
         return values;
@@ -38,7 +37,7 @@ public class CallLogQueryTestUtils {
     public static Object[] createTestExtendedValues() {
         Object[] values = new Object[]{
                 0L, "", 0L, 0L, Calls.INCOMING_TYPE, "", "", "", null, 0, null, null, null, null,
-                0L, null, CallLogQuery.SECTION_OLD_ITEM
+                0L, CallLogQuery.SECTION_OLD_ITEM
         };
         Assert.assertEquals(CallLogQuery.EXTENDED_PROJECTION.length, values.length);
         return values;
