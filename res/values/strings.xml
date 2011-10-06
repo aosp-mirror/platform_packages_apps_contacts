@@ -1179,6 +1179,9 @@
     <!-- Action string for sending an SMS to a MMS phone number -->
     <string name="sms_mms">Text MMS</string>
 
+    <!-- Generic action string for text messaging a contact. Used by AccessibilityService to announce the purpose of the view. [CHAR LIMIT=NONE] -->
+    <string name="sms">Text message</string>
+
     <!-- Action string for sending an email to a home email address -->
     <string name="email_home">Email home</string>
     <!-- Action string for sending an email to a mobile email address -->
