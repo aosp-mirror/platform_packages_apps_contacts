@@ -20,6 +20,7 @@ import com.android.contacts.R;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Website;
@@ -92,16 +93,13 @@ public class QuickContactListFragment extends Fragment {
                 // Set action title based on summary value
                 final Action action = mActions.get(position);
                 String mimeType = action.getMimeType();
-                int layout = 0;
-                if (mimeType.equals(Website.CONTENT_ITEM_TYPE)) {
-                    layout = R.layout.quickcontact_list_item_website;
-                } else if (mimeType.equals(Email.CONTENT_ITEM_TYPE)) {
-                    layout = R.layout.quickcontact_list_item_email;
-                } else {
-                    layout = R.layout.quickcontact_list_item;
-                }
+
                 final View resultView = convertView != null ? convertView
-                        : getActivity().getLayoutInflater().inflate(layout, parent, false);
+                        : getActivity().getLayoutInflater().inflate(
+                                mimeType.equals(StructuredPostal.CONTENT_ITEM_TYPE) ?
+                                        R.layout.quickcontact_list_item_address :
+                                        R.layout.quickcontact_list_item,
+                                        parent, false);
 
 
                 // TODO: Put those findViewByIds in a container

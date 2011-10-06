@@ -29,6 +29,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="15dip"
         android:paddingRight="15dip"
+        android:paddingTop="8dip"
         android:orientation="vertical">
         <view
             class="com.android.contacts.widget.ProportionalLayout"
@@ -47,6 +48,6 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/item_list_pager"
             android:layout_width="match_parent"
-            android:layout_height="180dip" />
+            android:layout_height="156dip" />
     </LinearLayout>
 </view>
