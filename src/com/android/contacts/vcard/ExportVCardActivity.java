@@ -141,6 +141,7 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
                 mService.handleExportRequest(request, new NotificationImportExportListener(
                         ExportVCardActivity.this));
             }
+            unbindAndFinish();
         }
     }
 
