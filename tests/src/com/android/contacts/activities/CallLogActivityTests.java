@@ -184,9 +184,22 @@ public class CallLogActivityTests
     }
 
     @MediumTest
-    public void testBindView_NumberOnly() {
+    public void testBindView_NumberOnlyNoCache() {
         mCursor.moveToFirst();
         insert(TEST_NUMBER, NOW, 0, Calls.INCOMING_TYPE);
+        View view = mAdapter.newStandAloneView(getActivity(), mParentView);
+        mAdapter.bindStandAloneView(view, getActivity(), mCursor);
+
+        CallLogListItemViews views = (CallLogListItemViews) view.getTag();
+        assertNameIs(views, TEST_NUMBER);
+    }
+
+    @MediumTest
+    public void testBindView_NumberOnlyDbCachedFormattedNumber() {
+        mCursor.moveToFirst();
+        Object[] values = getValuesToInsert(TEST_NUMBER, NOW, 0, Calls.INCOMING_TYPE);
+        values[CallLogQuery.CACHED_FORMATTED_NUMBER] = TEST_FORMATTED_NUMBER;
+        insertValues(values);
         View view = mAdapter.newStandAloneView(getActivity(), mParentView);
         mAdapter.bindStandAloneView(view, getActivity(), mCursor);
 
@@ -473,6 +486,25 @@ public class CallLogActivityTests
      * @param type Either Call.OUTGOING_TYPE or Call.INCOMING_TYPE or Call.MISSED_TYPE.
      */
     private void insert(String number, long date, int duration, int type) {
+        insertValues(getValuesToInsert(number, date, duration, type));
+    }
+
+    /** Inserts the given values in the cursor. */
+    private void insertValues(Object[] values) {
+        mCursor.addRow(values);
+        ++mIndex;
+    }
+
+    /**
+     * Returns the values for a new call entry.
+     *
+     * @param number The phone number. For unknown and private numbers,
+     *               use CallerInfo.UNKNOWN_NUMBER or CallerInfo.PRIVATE_NUMBER.
+     * @param date In millisec since epoch. Use NOW to use the current time.
+     * @param duration In seconds of the call. Use RAND_DURATION to pick a random one.
+     * @param type Either Call.OUTGOING_TYPE or Call.INCOMING_TYPE or Call.MISSED_TYPE.
+     */
+    private Object[] getValuesToInsert(String number, long date, int duration, int type) {
         Object[] values = CallLogQueryTestUtils.createTestExtendedValues();
         values[CallLogQuery.ID] = mIndex;
         values[CallLogQuery.NUMBER] = number;
@@ -484,8 +516,7 @@ public class CallLogActivityTests
         values[CallLogQuery.CALL_TYPE] = type;
         values[CallLogQuery.COUNTRY_ISO] = TEST_COUNTRY_ISO;
         values[CallLogQuery.SECTION] = CallLogQuery.SECTION_OLD_ITEM;
-        mCursor.addRow(values);
-        ++mIndex;
+        return values;
     }
 
     /**
@@ -496,19 +527,11 @@ public class CallLogActivityTests
      * @param duration In seconds of the call. Use RAND_DURATION to pick a random one.
      */
     private void insertVoicemail(String number, long date, int duration) {
-        Object[] values = CallLogQueryTestUtils.createTestExtendedValues();
-        values[CallLogQuery.ID] = mIndex;
-        values[CallLogQuery.NUMBER] = number;
-        values[CallLogQuery.DATE] = date == NOW ? new Date().getTime() : date;
-        values[CallLogQuery.DURATION] = duration < 0 ? mRnd.nextInt(10 * 60) : duration;
-        values[CallLogQuery.CALL_TYPE] = Calls.VOICEMAIL_TYPE;
-        values[CallLogQuery.COUNTRY_ISO] = TEST_COUNTRY_ISO;
+        Object[] values = getValuesToInsert(number, date, duration, Calls.VOICEMAIL_TYPE);
         // Must have the same index as the row.
         values[CallLogQuery.VOICEMAIL_URI] =
                 ContentUris.withAppendedId(VoicemailContract.Voicemails.CONTENT_URI, mIndex);
-        values[CallLogQuery.SECTION] = CallLogQuery.SECTION_OLD_ITEM;
-        mCursor.addRow(values);
-        ++mIndex;
+        insertValues(values);
     }
 
     /**
