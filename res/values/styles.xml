@@ -280,7 +280,11 @@
         <item name="android:paddingRight">16dip</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:layout_marginTop">12dip</item>
-        <item name="android:layout_marginBottom">12dip</item>
+    </style>
+
+    <style name="QuickContactListBottomStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">2dip</item>
+        <item name="android:background">@color/quickcontact_tab_indicator</item>
     </style>
 </resources>

@@ -19,15 +19,15 @@
     android:id="@+id/actions_view_container"
     android:nextFocusRight="@+id/secondary_action_button"
     style="@style/QuickContactListItemStyle">
-    <LinearLayout style="@style/QuickContactListItemTextWrapperStyle">
+    <LinearLayout style="@style/QuickContactListItemTextWrapperStyle"
+        android:layout_marginTop="12dip"
+        android:layout_marginBottom="12dip">
         <TextView
             android:id="@android:id/text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/primary_text_color"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:singleLine="true"
-            android:ellipsize="middle" />
+            android:textAppearance="?android:attr/textAppearanceMedium" />
         <TextView
             android:id="@android:id/text2"
             android:layout_width="wrap_content"
