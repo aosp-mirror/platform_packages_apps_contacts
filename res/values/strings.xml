@@ -1221,6 +1221,10 @@
 
     <!-- Generic action string for starting an IM chat -->
     <string name="chat">Chat</string>
+    <!-- Generic action string for starting an audio chat. Used by AccessibilityService to announce the purpose of the view. [CHAR LIMIT=NONE] -->
+    <string name="audio_chat">Audio chat</string>
+    <!-- Generic action string for starting a video chat. Used by AccessibilityService to announce the purpose of the view. [CHAR LIMIT=NONE] -->
+    <string name="video_chat">Video chat</string>
 
     <!-- Field title for the full postal address of a contact [CHAR LIMIT=64]-->
     <string name="postal_address">Address</string>
@@ -1447,13 +1451,16 @@
     <string name="list_filter_customize">Customize...</string>
 
     <!-- Contact list filter selection indicating that the list shows all contacts with phone numbers [CHAR LIMIT=64] -->
-    <string name="list_filter_phones">Contacts with phone numbers</string>
+    <string name="list_filter_phones">All contacts with phone numbers</string>
 
     <!-- Contact list filter selection indicating that the list shows only the selected contact [CHAR LIMIT=64] -->
     <string name="list_filter_single">Contact</string>
 
     <!-- Title of the activity that allows the user to customize filtering of contact list [CHAR LIMIT=128] -->
     <string name="custom_list_filter">Define custom view</string>
+
+    <!-- Message that appears in the favorites tab of the Phone app when the contact list has not fully loaded yet (below the favorite and frequent contacts) [CHAR LIMIT=20] -->
+    <string name="contact_list_loading">Loading \u2026</string>
 
     <!-- Title of the settings activity [CHAR LIMIT=64] -->
     <string name="activity_title_settings">Settings</string>
@@ -1792,6 +1799,12 @@
 
     <!-- Message in the standard "no account" prompt that encourages the user to add a Google account before continuing to use the People app [CHAR LIMIT=NONE] -->
     <string name="no_account_prompt">People works better with a Google Account.\n\n\u2022 Access from any web browser.\n\u2022 Back up your contacts securely.</string>
+
+    <!-- Message in the standard "no account" prompt that encourages the user to add any account (non Google-specific) before continuing to use the People app [CHAR LIMIT=NONE] -->
+    <string name="generic_no_account_prompt">Keep your contacts safe even if you lose your phone: synchronize with an online service.</string>
+
+    <!-- Title of the screen that encourages the user to add any account (non Google-specific) for a better People app experience [CHAR LIMIT=20] -->
+    <string name="generic_no_account_prompt_title">Add an account</string>
 
     <!-- Message in the contact editor prompt that notifies the user that the newly created contact will not be saved to any account, and prompts addition of an account [CHAR LIMIT=NONE] -->
     <string name="contact_editor_prompt_zero_accounts">Your new contact won\'t be backed up. Add an account that backs up contacts online?</string>
