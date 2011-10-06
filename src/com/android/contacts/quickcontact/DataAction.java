@@ -57,6 +57,7 @@ public class DataAction implements Action {
     private CharSequence mSubtitle;
     private Intent mIntent;
     private Intent mAlternateIntent;
+    private int mAlternateIconDescriptionRes;
     private int mAlternateIconRes;
 
     private Uri mDataUri;
@@ -125,6 +126,7 @@ public class DataAction implements Action {
                         mIntent = phoneIntent;
                         mAlternateIntent = smsIntent;
                         mAlternateIconRes = kind.iconAltRes;
+                        mAlternateIconDescriptionRes = kind.iconAltDescriptionRes;
                     } else if (hasPhone) {
                         mIntent = phoneIntent;
                     } else if (hasSms) {
@@ -198,9 +200,13 @@ public class DataAction implements Action {
                     if (isVideoChatCapable || isAudioChatCapable) {
                         mAlternateIntent = new Intent(
                                 Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?call"));
-                        mAlternateIconRes = (isVideoChatCapable
-                                ? R.drawable.sym_action_videochat_holo_light
-                                : R.drawable.sym_action_audiochat_holo_light);
+                        if (isVideoChatCapable) {
+                            mAlternateIconRes = R.drawable.sym_action_videochat_holo_light;
+                            mAlternateIconDescriptionRes = R.string.video_chat;
+                        } else {
+                            mAlternateIconRes = R.drawable.sym_action_audiochat_holo_light;
+                            mAlternateIconDescriptionRes = R.string.audio_chat;
+                        }
                     }
                 }
             }
@@ -287,6 +293,12 @@ public class DataAction implements Action {
 
         final PackageManager pm = mContext.getPackageManager();
         return pm.getDrawable(resPackageName, mAlternateIconRes, null);
+    }
+
+    @Override
+    public String getAlternateIconDescription() {
+        if (mAlternateIconDescriptionRes == 0) return null;
+        return mContext.getResources().getString(mAlternateIconDescriptionRes);
     }
 
     @Override

@@ -593,19 +593,18 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     final Intent smsIntent = mHasSms ? new Intent(Intent.ACTION_SENDTO,
                             Uri.fromParts(Constants.SCHEME_SMSTO, entry.data, null)) : null;
 
-                    // Configure Icons and Intents. Notice actionIcon is already set to the phone
+                    // Configure Icons and Intents.
                     if (mHasPhone && mHasSms) {
                         entry.intent = phoneIntent;
                         entry.secondaryIntent = smsIntent;
                         entry.secondaryActionIcon = kind.iconAltRes;
+                        entry.secondaryActionDescription = kind.iconAltDescriptionRes;
                     } else if (mHasPhone) {
                         entry.intent = phoneIntent;
                     } else if (mHasSms) {
                         entry.intent = smsIntent;
-                        entry.actionIcon = kind.iconAltRes;
                     } else {
                         entry.intent = null;
-                        entry.actionIcon = -1;
                     }
 
                     // Remember super-primary phone
@@ -690,7 +689,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                                 Uri.fromParts(Constants.SCHEME_SIP, entry.data, null));
                     } else {
                         entry.intent = null;
-                        entry.actionIcon = -1;
                     }
                     mSipEntries.add(entry);
                     // TODO: Now that SipAddress is in its own list of entries
@@ -983,20 +981,17 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             entry.typeString = Im.getProtocolLabel(context.getResources(), Im.PROTOCOL_GOOGLE_TALK,
                     null).toString();
             if ((chatCapability & Im.CAPABILITY_HAS_CAMERA) != 0) {
-                entry.actionIcon = R.drawable.sym_action_talk_holo_light;
                 entry.intent =
                         new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?message"));
                 entry.secondaryIntent =
                         new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?call"));
             } else if ((chatCapability & Im.CAPABILITY_HAS_VOICE) != 0) {
                 // Allow Talking and Texting
-                entry.actionIcon = R.drawable.sym_action_talk_holo_light;
                 entry.intent =
                     new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?message"));
                 entry.secondaryIntent =
                     new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?call"));
             } else {
-                entry.actionIcon = R.drawable.sym_action_talk_holo_light;
                 entry.intent =
                     new Intent(Intent.ACTION_SENDTO, Uri.parse("xmpp:" + data + "?message"));
             }
@@ -1013,7 +1008,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 final String authority = host.toLowerCase();
                 final Uri imUri = new Uri.Builder().scheme(Constants.SCHEME_IMTO).authority(
                         authority).appendPath(data).build();
-                entry.actionIcon = R.drawable.sym_action_talk_holo_light;
                 entry.intent = new Intent(Intent.ACTION_SENDTO, imUri);
             }
         }
@@ -1210,9 +1204,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
         public Context context = null;
         public String resPackageName = null;
-        public int actionIcon = -1;
         public boolean isPrimary = false;
         public int secondaryActionIcon = -1;
+        public int secondaryActionDescription = -1;
         public Intent intent;
         public Intent secondaryIntent = null;
         public ArrayList<Long> ids = new ArrayList<Long>();
@@ -1247,6 +1241,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             entry.kind = (kind.titleRes == -1 || kind.titleRes == 0) ? ""
                     : context.getString(kind.titleRes);
             entry.data = buildDataString(kind, values, context);
+            entry.resPackageName = kind.resPackageName;
 
             if (kind.typeColumn != null && values.containsKey(kind.typeColumn)) {
                 entry.type = values.getAsInteger(kind.typeColumn);
@@ -1267,11 +1262,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 }
             } else {
                 entry.typeString = "";
-            }
-
-            if (kind.iconRes > 0) {
-                entry.resPackageName = kind.resPackageName;
-                entry.actionIcon = kind.iconRes;
             }
 
             return entry;
@@ -1349,8 +1339,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
             if (!TextUtils.equals(mimetype, entry.mimetype)
                     || !ContactsUtils.areIntentActionEqual(intent, entry.intent)
-                    || !ContactsUtils.areIntentActionEqual(secondaryIntent, entry.secondaryIntent)
-                    || actionIcon != entry.actionIcon) {
+                    || !ContactsUtils.areIntentActionEqual(
+                            secondaryIntent, entry.secondaryIntent)) {
                 return false;
             }
 
@@ -1633,19 +1623,24 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             // Set the secondary action button
             final ImageView secondaryActionView = views.secondaryActionButton;
             Drawable secondaryActionIcon = null;
+            String secondaryActionDescription = null;
             if (entry.secondaryActionIcon != -1) {
                 secondaryActionIcon = resources.getDrawable(entry.secondaryActionIcon);
+                secondaryActionDescription = resources.getString(entry.secondaryActionDescription);
             } else if ((entry.chatCapability & Im.CAPABILITY_HAS_CAMERA) != 0) {
                 secondaryActionIcon =
                         resources.getDrawable(R.drawable.sym_action_videochat_holo_light);
+                secondaryActionDescription = resources.getString(R.string.video_chat);
             } else if ((entry.chatCapability & Im.CAPABILITY_HAS_VOICE) != 0) {
                 secondaryActionIcon =
                         resources.getDrawable(R.drawable.sym_action_audiochat_holo_light);
+                secondaryActionDescription = resources.getString(R.string.audio_chat);
             }
 
             final View secondaryActionViewContainer = views.secondaryActionViewContainer;
             if (entry.secondaryIntent != null && secondaryActionIcon != null) {
                 secondaryActionView.setImageDrawable(secondaryActionIcon);
+                secondaryActionView.setContentDescription(secondaryActionDescription);
                 secondaryActionViewContainer.setTag(entry);
                 secondaryActionViewContainer.setVisibility(View.VISIBLE);
                 views.secondaryActionDivider.setVisibility(View.VISIBLE);

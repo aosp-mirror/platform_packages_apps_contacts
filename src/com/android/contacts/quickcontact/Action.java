@@ -35,6 +35,9 @@ public interface Action extends Collapser.Collapsible<Action> {
     /** Returns an icon that can be clicked for the alternate action. */
     public Drawable getAlternateIcon();
 
+    /** Returns the content description of the icon for the alternate action. */
+    public String getAlternateIconDescription();
+
     /** Build an {@link Intent} that will perform this action. */
     public Intent getIntent();
 
