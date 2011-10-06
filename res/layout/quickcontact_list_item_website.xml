@@ -22,17 +22,12 @@
     <LinearLayout style="@style/QuickContactListItemTextWrapperStyle">
         <TextView
             android:id="@android:id/text1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/primary_text_color"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-        <TextView
-            android:id="@android:id/text2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/secondary_text_color"
-            android:textAllCaps="true"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:ellipsize="middle"
+            android:singleLine="true" />
     </LinearLayout>
     <include layout="@layout/quickcontact_list_item_base"/>
 </LinearLayout>
