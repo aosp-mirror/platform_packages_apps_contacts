@@ -28,8 +28,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Paint.FontMetricsInt;
 import android.graphics.Rect;
-import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -39,6 +39,9 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import android.text.TextUtils.TruncateAt;
 
 /**
  * Constructs shortcut intents.
@@ -58,12 +61,14 @@ public class ShortcutIntentBuilder {
         Phone.PHOTO_ID,
         Phone.NUMBER,
         Phone.TYPE,
+        Phone.LABEL
     };
 
     private static final int PHONE_DISPLAY_NAME_COLUMN_INDEX = 0;
     private static final int PHONE_PHOTO_ID_COLUMN_INDEX = 1;
     private static final int PHONE_NUMBER_COLUMN_INDEX = 2;
     private static final int PHONE_TYPE_COLUMN_INDEX = 3;
+    private static final int PHONE_LABEL_COLUMN_INDEX = 4;
 
     private static final String[] PHOTO_COLUMNS = {
         Photo.PHOTO,
@@ -77,6 +82,8 @@ public class ShortcutIntentBuilder {
     private final Context mContext;
     private int mIconSize;
     private final int mIconDensity;
+    private final int mBorderWidth;
+    private final int mBorderColor;
 
     /**
      * Listener interface.
@@ -97,13 +104,17 @@ public class ShortcutIntentBuilder {
         mContext = context;
         mListener = listener;
 
+        final Resources r = context.getResources();
         final ActivityManager am = (ActivityManager) context
                 .getSystemService(Context.ACTIVITY_SERVICE);
-        mIconSize = context.getResources().getDimensionPixelSize(R.dimen.shortcut_icon_size);
+        mIconSize = r.getDimensionPixelSize(R.dimen.shortcut_icon_size);
         if (mIconSize == 0) {
             mIconSize = am.getLauncherLargeIconSize();
         }
         mIconDensity = am.getLauncherLargeIconDensity();
+        mBorderWidth = r.getDimensionPixelOffset(
+                R.dimen.shortcut_icon_border_width);
+        mBorderColor = r.getColor(R.color.shortcut_overlay_text_background);
     }
 
     public void createContactShortcutIntent(Uri contactUri) {
@@ -186,6 +197,7 @@ public class ShortcutIntentBuilder {
         private final String mShortcutAction;
         private String mPhoneNumber;
         private int mPhoneType;
+        private String mPhoneLabel;
 
         public PhoneNumberLoadingAsyncTask(Uri uri, String shortcutAction) {
             super(uri);
@@ -203,6 +215,7 @@ public class ShortcutIntentBuilder {
                         mPhotoId = cursor.getLong(PHONE_PHOTO_ID_COLUMN_INDEX);
                         mPhoneNumber = cursor.getString(PHONE_NUMBER_COLUMN_INDEX);
                         mPhoneType = cursor.getInt(PHONE_TYPE_COLUMN_INDEX);
+                        mPhoneLabel = cursor.getString(PHONE_LABEL_COLUMN_INDEX);
                     }
                 } finally {
                     cursor.close();
@@ -213,12 +226,11 @@ public class ShortcutIntentBuilder {
         @Override
         protected void onPostExecute(Void result) {
             createPhoneNumberShortcutIntent(mUri, mDisplayName, mBitmapData, mPhoneNumber,
-                    mPhoneType, mShortcutAction);
+                    mPhoneType, mPhoneLabel, mShortcutAction);
         }
     }
 
-    private void createContactShortcutIntent(Uri contactUri, String displayName,
-            byte[] bitmapData) {
+    private Bitmap getPhotoBitmap(byte[] bitmapData) {
         Bitmap bitmap;
         if (bitmapData != null) {
             bitmap = BitmapFactory.decodeByteArray(bitmapData, 0, bitmapData.length, null);
@@ -226,6 +238,12 @@ public class ShortcutIntentBuilder {
             bitmap = ((BitmapDrawable) mContext.getResources().getDrawableForDensity(
                     R.drawable.ic_contact_picture_holo_light, mIconDensity)).getBitmap();
         }
+        return bitmap;
+    }
+
+    private void createContactShortcutIntent(Uri contactUri, String displayName,
+            byte[] bitmapData) {
+        Bitmap bitmap = getPhotoBitmap(bitmapData);
 
         Intent shortcutIntent;
         // This is a simple shortcut to view a contact.
@@ -251,20 +269,19 @@ public class ShortcutIntentBuilder {
     }
 
     private void createPhoneNumberShortcutIntent(Uri uri, String displayName, byte[] bitmapData,
-            String phoneNumber, int phoneType, String shortcutAction) {
-        Bitmap bitmap = null;
-        if (bitmapData != null) {
-            bitmap = BitmapFactory.decodeByteArray(bitmapData, 0, bitmapData.length, null);
-        }
+            String phoneNumber, int phoneType, String phoneLabel, String shortcutAction) {
+        Bitmap bitmap = getPhotoBitmap(bitmapData);
 
         Uri phoneUri;
         if (Intent.ACTION_CALL.equals(shortcutAction)) {
             // Make the URI a direct tel: URI so that it will always continue to work
             phoneUri = Uri.fromParts(Constants.SCHEME_TEL, phoneNumber, null);
-            bitmap = generatePhoneNumberIcon(bitmap, phoneType, R.drawable.badge_action_call);
+            bitmap = generatePhoneNumberIcon(bitmap, phoneType, phoneLabel,
+                    R.drawable.badge_action_call);
         } else {
             phoneUri = Uri.fromParts(Constants.SCHEME_SMSTO, phoneNumber, null);
-            bitmap = generatePhoneNumberIcon(bitmap, phoneType, R.drawable.badge_action_sms);
+            bitmap = generatePhoneNumberIcon(bitmap, phoneType, phoneLabel,
+                    R.drawable.badge_action_sms);
         }
 
         Intent shortcutIntent = new Intent(shortcutAction, phoneUri);
@@ -276,6 +293,17 @@ public class ShortcutIntentBuilder {
         intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, displayName);
 
         mListener.onShortcutIntentCreated(uri, intent);
+    }
+
+    private void drawBorder(Canvas canvas, Rect dst) {
+        // Darken the border
+        final Paint workPaint = new Paint();
+        workPaint.setColor(mBorderColor);
+        workPaint.setStyle(Paint.Style.STROKE);
+        // The stroke is drawn centered on the rect bounds, and since half will be drawn outside the
+        // bounds, we need to double the width for it to appear as intended.
+        workPaint.setStrokeWidth(mBorderWidth * 2);
+        canvas.drawRect(dst, workPaint);
     }
 
     private Bitmap generateQuickContactIcon(Bitmap photo) {
@@ -292,6 +320,8 @@ public class ShortcutIntentBuilder {
         Rect dst = new Rect(0,0, mIconSize, mIconSize);
         canvas.drawBitmap(photo, src, dst, photoPaint);
 
+        drawBorder(canvas, dst);
+
         Drawable overlay = mContext.getResources().getDrawableForDensity(
                 com.android.internal.R.drawable.quickcontact_badge_overlay_dark, mIconDensity);
 
@@ -306,19 +336,13 @@ public class ShortcutIntentBuilder {
      * Generates a phone number shortcut icon. Adds an overlay describing the type of the phone
      * number, and if there is a photo also adds the call action icon.
      */
-    private Bitmap generatePhoneNumberIcon(Bitmap photo, int phoneType, int actionResId) {
+    private Bitmap generatePhoneNumberIcon(Bitmap photo, int phoneType, String phoneLabel,
+            int actionResId) {
         final Resources r = mContext.getResources();
-        boolean drawPhoneOverlay = true;
-        final float scaleDensity = r.getDisplayMetrics().scaledDensity;
+        final float density = r.getDisplayMetrics().density;
 
         Bitmap phoneIcon = ((BitmapDrawable) r.getDrawableForDensity(actionResId, mIconDensity))
                 .getBitmap();
-
-        // If there isn't a photo use the generic phone action icon instead
-        if (photo == null) {
-            photo = phoneIcon;
-            drawPhoneOverlay = false;
-        }
 
         // Setup the drawing classes
         Bitmap icon = Bitmap.createBitmap(mIconSize, mIconSize, Bitmap.Config.ARGB_8888);
@@ -332,47 +356,45 @@ public class ShortcutIntentBuilder {
         Rect dst = new Rect(0, 0, mIconSize, mIconSize);
         canvas.drawBitmap(photo, src, dst, photoPaint);
 
+        drawBorder(canvas, dst);
+
         // Create an overlay for the phone number type
-        String overlay = null;
-        switch (phoneType) {
-            case Phone.TYPE_HOME:
-                overlay = mContext.getString(R.string.type_short_home);
-                break;
-
-            case Phone.TYPE_MOBILE:
-                overlay = mContext.getString(R.string.type_short_mobile);
-                break;
-
-            case Phone.TYPE_WORK:
-                overlay = mContext.getString(R.string.type_short_work);
-                break;
-
-            case Phone.TYPE_PAGER:
-                overlay = mContext.getString(R.string.type_short_pager);
-                break;
-
-            case Phone.TYPE_OTHER:
-                overlay = mContext.getString(R.string.type_short_other);
-                break;
-        }
+        CharSequence overlay = Phone.getTypeLabel(r, phoneType, phoneLabel);
 
         if (overlay != null) {
-            Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DEV_KERN_TEXT_FLAG);
-            textPaint.setTextSize(20.0f * scaleDensity);
-            textPaint.setTypeface(Typeface.DEFAULT_BOLD);
+            TextPaint textPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG | Paint.DEV_KERN_TEXT_FLAG);
+            textPaint.setTextSize(r.getDimension(R.dimen.shortcut_overlay_text_size));
             textPaint.setColor(r.getColor(R.color.textColorIconOverlay));
-            textPaint.setShadowLayer(3f, 1, 1, r.getColor(R.color.textColorIconOverlayShadow));
-            canvas.drawText(overlay, 2 * scaleDensity, 16 * scaleDensity, textPaint);
+            textPaint.setShadowLayer(4f, 0, 2f, r.getColor(R.color.textColorIconOverlayShadow));
+
+            final FontMetricsInt fmi = textPaint.getFontMetricsInt();
+
+            // First fill in a darker background around the text to be drawn
+            final Paint workPaint = new Paint();
+            workPaint.setColor(mBorderColor);
+            workPaint.setStyle(Paint.Style.FILL);
+            final int textPadding = r
+                    .getDimensionPixelOffset(R.dimen.shortcut_overlay_text_background_padding);
+            final int textBandHeight = (fmi.descent - fmi.ascent) + textPadding * 2;
+            dst.set(0 + mBorderWidth, mIconSize - textBandHeight, mIconSize - mBorderWidth,
+                    mIconSize - mBorderWidth);
+            canvas.drawRect(dst, workPaint);
+
+            final float sidePadding = mBorderWidth;
+            overlay = TextUtils.ellipsize(overlay, textPaint, mIconSize - 2 * sidePadding,
+                    TruncateAt.END_SMALL);
+            final float textWidth = textPaint.measureText(overlay, 0, overlay.length());
+            canvas.drawText(overlay, 0, overlay.length(), (mIconSize - textWidth) / 2, mIconSize
+                    - fmi.descent - textPadding, textPaint);
         }
 
         // Draw the phone action icon as an overlay
-        if (drawPhoneOverlay) {
-            src.set(0, 0, phoneIcon.getWidth(), phoneIcon.getHeight());
-            int iconWidth = icon.getWidth();
-            dst.set(iconWidth - ((int) (20 * scaleDensity)), -1,
-                    iconWidth, ((int) (19 * scaleDensity)));
-            canvas.drawBitmap(phoneIcon, src, dst, photoPaint);
-        }
+        src.set(0, 0, phoneIcon.getWidth(), phoneIcon.getHeight());
+        int iconWidth = icon.getWidth();
+        dst.set(iconWidth - ((int) (20 * density)), -1,
+                iconWidth, ((int) (19 * density)));
+        dst.offset(-mBorderWidth, mBorderWidth);
+        canvas.drawBitmap(phoneIcon, src, dst, photoPaint);
 
         canvas.setBitmap(null);
 
