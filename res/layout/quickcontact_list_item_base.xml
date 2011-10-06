@@ -27,11 +27,11 @@
         android:id="@+id/secondary_action_button"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:paddingLeft="@dimen/detail_item_icon_margin"
-        android:paddingRight="@dimen/detail_item_icon_margin"
+        android:paddingLeft="8dip"
+        android:paddingRight="14dip"
         android:background="?android:attr/selectableItemBackground"
         android:duplicateParentState="false"
-        android:nextFocusLeft="@id/actions_view_container" />
+        android:nextFocusLeft="@id/actions_view_container"/>
     <View
         android:id="@+id/vertical_divider"
         android:layout_width="1dip"
