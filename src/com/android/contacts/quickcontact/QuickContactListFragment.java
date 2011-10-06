@@ -20,7 +20,9 @@ import com.android.contacts.R;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -87,12 +89,20 @@ public class QuickContactListFragment extends Fragment {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-                final View resultView = convertView != null ? convertView
-                        : getActivity().getLayoutInflater()
-                        .inflate(R.layout.quickcontact_list_item, parent, false);
-
                 // Set action title based on summary value
                 final Action action = mActions.get(position);
+                String mimeType = action.getMimeType();
+                int layout = 0;
+                if (mimeType.equals(Website.CONTENT_ITEM_TYPE)) {
+                    layout = R.layout.quickcontact_list_item_website;
+                } else if (mimeType.equals(Email.CONTENT_ITEM_TYPE)) {
+                    layout = R.layout.quickcontact_list_item_email;
+                } else {
+                    layout = R.layout.quickcontact_list_item;
+                }
+                final View resultView = convertView != null ? convertView
+                        : getActivity().getLayoutInflater().inflate(layout, parent, false);
+
 
                 // TODO: Put those findViewByIds in a container
                 final TextView text1 = (TextView) resultView.findViewById(
@@ -116,7 +126,7 @@ public class QuickContactListFragment extends Fragment {
                 alternateActionButton.setVisibility(hasAlternateAction ? View.VISIBLE : View.GONE);
 
                 // Special case for phone numbers in accessibility mode
-                if (action.getMimeType().equals(Phone.CONTENT_ITEM_TYPE)) {
+                if (mimeType.equals(Phone.CONTENT_ITEM_TYPE)) {
                     text1.setContentDescription(getActivity().getString(
                             R.string.description_dial_phone_number, action.getBody()));
                     if (hasAlternateAction) {
@@ -126,14 +136,15 @@ public class QuickContactListFragment extends Fragment {
                 }
 
                 text1.setText(action.getBody());
-                CharSequence subtitle = action.getSubtitle();
-                text2.setText(subtitle);
-                if (TextUtils.isEmpty(subtitle)) {
-                    text2.setVisibility(View.GONE);
-                } else {
-                    text2.setVisibility(View.VISIBLE);
+                if (text2 != null) {
+                    CharSequence subtitle = action.getSubtitle();
+                    text2.setText(subtitle);
+                    if (TextUtils.isEmpty(subtitle)) {
+                        text2.setVisibility(View.GONE);
+                    } else {
+                        text2.setVisibility(View.VISIBLE);
+                    }
                 }
-
                 return resultView;
             }
         });
