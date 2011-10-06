@@ -42,8 +42,8 @@ public class DataKind {
     public String resPackageName;
     public String mimeType;
     public int titleRes;
-    public int iconRes;
     public int iconAltRes;
+    public int iconAltDescriptionRes;
     public int weight;
     public boolean editable;
 
@@ -97,11 +97,10 @@ public class DataKind {
         textAppearanceResourceId = android.R.style.TextAppearance_Medium;
     }
 
-    public DataKind(String mimeType, int titleRes, int iconRes, int weight, boolean editable,
+    public DataKind(String mimeType, int titleRes, int weight, boolean editable,
             int editorLayoutResourceId, int textAppearanceResourceId) {
         this.mimeType = mimeType;
         this.titleRes = titleRes;
-        this.iconRes = iconRes;
         this.weight = weight;
         this.editable = editable;
         this.isList = true;

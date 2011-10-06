@@ -61,30 +61,6 @@
             android:ellipsize="end"
             android:textColor="@android:color/white"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-        <TextView
-            android:id="@+id/status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:textColor="@*android:color/secondary_text_light"
-            android:textSize="15dip"
-            android:layout_marginTop="-3dip" />
-        <TextView
-            android:id="@+id/timestamp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:textColor="@*android:color/secondary_text_light"
-            android:textSize="12dip"
-            android:layout_marginTop="-2dip" />
-        <ImageView
-            android:id="@+id/presence"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="15dip"
-            android:scaleType="centerInside" />
         <ImageButton
             android:id="@+id/open_details_push_layer"
             android:layout_width="match_parent"

@@ -64,7 +64,7 @@ public class ExchangeAccountType extends BaseAccountType {
     @Override
     protected DataKind addDataKindStructuredName(Context context) {
         DataKind kind = addKind(new DataKind(StructuredName.CONTENT_ITEM_TYPE,
-                R.string.nameLabelsGroup, -1, -1, true,
+                R.string.nameLabelsGroup, -1, true,
                 R.layout.structured_name_editor_view, android.R.style.TextAppearance_Medium));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
@@ -94,7 +94,7 @@ public class ExchangeAccountType extends BaseAccountType {
     @Override
     protected DataKind addDataKindDisplayName(Context context) {
         DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME,
-                R.string.nameLabelsGroup, -1, -1, true,
+                R.string.nameLabelsGroup, -1, true,
                 R.layout.text_fields_editor_view, android.R.style.TextAppearance_Medium));
 
         boolean displayOrderPrimary =
@@ -128,7 +128,7 @@ public class ExchangeAccountType extends BaseAccountType {
     @Override
     protected DataKind addDataKindPhoneticName(Context context) {
         DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME,
-                R.string.name_phonetic, -1, -1, true,
+                R.string.name_phonetic, -1, true,
                 R.layout.phonetic_name_editor_view, android.R.style.TextAppearance_Medium));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
@@ -294,7 +294,7 @@ public class ExchangeAccountType extends BaseAccountType {
 
     protected DataKind addDataKindEvent(Context context) {
         DataKind kind = addKind(
-                new DataKind(Event.CONTENT_ITEM_TYPE, R.string.eventLabelsGroup, -1, 150, true,
+                new DataKind(Event.CONTENT_ITEM_TYPE, R.string.eventLabelsGroup, 150, true,
                 R.layout.event_field_editor_view, android.R.style.TextAppearance_Medium));
         kind.actionHeader = new EventActionInflater();
         kind.actionBody = new SimpleInflater(Event.START_DATE);

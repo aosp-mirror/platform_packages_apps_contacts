@@ -289,8 +289,6 @@ public class ExternalAccountType extends BaseAccountType {
 
                     kind.mimeType = a
                             .getString(com.android.internal.R.styleable.ContactsDataKind_mimeType);
-                    kind.iconRes = a.getResourceId(
-                            com.android.internal.R.styleable.ContactsDataKind_icon, -1);
 
                     final String summaryColumn = a.getString(
                             com.android.internal.R.styleable.ContactsDataKind_summaryColumn);

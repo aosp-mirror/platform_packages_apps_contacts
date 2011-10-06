@@ -101,7 +101,6 @@ public class QuickContactListFragment extends Fragment {
                                         R.layout.quickcontact_list_item,
                                         parent, false);
 
-
                 // TODO: Put those findViewByIds in a container
                 final TextView text1 = (TextView) resultView.findViewById(
                         android.R.id.text1);
@@ -121,6 +120,7 @@ public class QuickContactListFragment extends Fragment {
                 final boolean hasAlternateAction = action.getAlternateIntent() != null;
                 alternateActionDivider.setVisibility(hasAlternateAction ? View.VISIBLE : View.GONE);
                 alternateActionButton.setImageDrawable(action.getAlternateIcon());
+                alternateActionButton.setContentDescription(action.getAlternateIconDescription());
                 alternateActionButton.setVisibility(hasAlternateAction ? View.VISIBLE : View.GONE);
 
                 // Special case for phone numbers in accessibility mode

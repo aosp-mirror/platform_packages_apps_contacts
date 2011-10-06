@@ -225,9 +225,6 @@ public class QuickContactActivity extends Activity {
         // find and prepare correct header view
         mPhotoContainer = findViewById(R.id.photo_container);
         setHeaderNameText(R.id.name, R.string.missing_name);
-        setHeaderText(R.id.status, null);
-        setHeaderText(R.id.timestamp, null);
-        setHeaderImage(R.id.presence, null);
 
         // Start background query for data, but only select photo rows when they
         // directly match the super-primary PHOTO_ID.
@@ -477,16 +474,9 @@ public class QuickContactActivity extends Activity {
         }
 
         if (cursor.moveToLast()) {
-            // Read contact information from last data row
+            // Read contact name from last data row
             final String name = cursor.getString(DataQuery.DISPLAY_NAME);
-            final int presence = cursor.getInt(DataQuery.CONTACT_PRESENCE);
-            final int chatCapability = cursor.getInt(DataQuery.CONTACT_CHAT_CAPABILITY);
-            final Drawable statusIcon = ContactPresenceIconUtil.getChatCapabilityIcon(
-                    context, presence, chatCapability);
-
             setHeaderNameText(R.id.name, name);
-            // TODO: Bring this back once we have a design
-//            setHeaderImage(R.id.presence, statusIcon);
         }
 
         if (photoView != null) {
@@ -497,13 +487,6 @@ public class QuickContactActivity extends Activity {
                 photoView.setImageResource(ContactPhotoManager.getDefaultAvatarResId(true, false));
             }
         }
-
-        // TODO: Bring this back once we have a design
-//        if (status.isValid()) {
-//            // Update status when valid was found
-//            setHeaderText(R.id.status, status.getStatus());
-//            setHeaderText(R.id.timestamp, status.getTimestampLabel(context));
-//        }
 
         // All the mime-types to add.
         final Set<String> containedTypes = new HashSet<String>(mActions.keySet());
@@ -680,8 +663,6 @@ public class QuickContactActivity extends Activity {
                 RawContacts.DATA_SET,
                 Contacts.STARRED,
                 Contacts.DISPLAY_NAME,
-                Contacts.CONTACT_PRESENCE,
-                Contacts.CONTACT_CHAT_CAPABILITY,
 
                 Data.STATUS,
                 Data.STATUS_RES_PACKAGE,
@@ -708,20 +689,18 @@ public class QuickContactActivity extends Activity {
         final int DATA_SET = 2;
         final int STARRED = 3;
         final int DISPLAY_NAME = 4;
-        final int CONTACT_PRESENCE = 5;
-        final int CONTACT_CHAT_CAPABILITY = 6;
 
-        final int STATUS = 7;
-        final int STATUS_RES_PACKAGE = 8;
-        final int STATUS_ICON = 9;
-        final int STATUS_LABEL = 10;
-        final int STATUS_TIMESTAMP = 11;
-        final int PRESENCE = 12;
-        final int CHAT_CAPABILITY = 13;
+        final int STATUS = 5;
+        final int STATUS_RES_PACKAGE = 6;
+        final int STATUS_ICON = 7;
+        final int STATUS_LABEL = 8;
+        final int STATUS_TIMESTAMP = 9;
+        final int PRESENCE = 10;
+        final int CHAT_CAPABILITY = 11;
 
-        final int RES_PACKAGE = 14;
-        final int MIMETYPE = 15;
-        final int IS_PRIMARY = 16;
-        final int IS_SUPER_PRIMARY = 17;
+        final int RES_PACKAGE = 12;
+        final int MIMETYPE = 13;
+        final int IS_PRIMARY = 14;
+        final int IS_SUPER_PRIMARY = 15;
     }
 }

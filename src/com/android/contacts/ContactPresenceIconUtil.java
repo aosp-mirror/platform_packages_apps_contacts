@@ -18,7 +18,6 @@ package com.android.contacts;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.StatusUpdates;
 
 /**
@@ -45,44 +44,5 @@ public class ContactPresenceIconUtil {
             default:
                 return null;
         }
-    }
-
-    public static Drawable getChatCapabilityIcon(Context context, int status, int chatCapability) {
-        int resourceId = 0;
-        if ((chatCapability & Im.CAPABILITY_HAS_CAMERA) != 0) {
-            switch(status) {
-                case StatusUpdates.AVAILABLE:
-                    resourceId = android.R.drawable.presence_video_online;
-                    break;
-                case StatusUpdates.IDLE:
-                case StatusUpdates.AWAY:
-                    resourceId = android.R.drawable.presence_video_away;
-                    break;
-                case StatusUpdates.DO_NOT_DISTURB:
-                    resourceId = android.R.drawable.presence_video_busy;
-                    break;
-            }
-        } else if ((chatCapability & Im.CAPABILITY_HAS_VOICE) != 0) {
-            switch(status) {
-                case StatusUpdates.AVAILABLE:
-                    resourceId = android.R.drawable.presence_audio_online;
-                    break;
-                case StatusUpdates.IDLE:
-                case StatusUpdates.AWAY:
-                    resourceId = android.R.drawable.presence_audio_away;
-                    break;
-                case StatusUpdates.DO_NOT_DISTURB:
-                    resourceId = android.R.drawable.presence_audio_busy;
-                    break;
-            }
-        } else if (status != StatusUpdates.OFFLINE) {
-            resourceId = StatusUpdates.getPresenceIconResourceId(status);
-        }
-
-        if (resourceId != 0) {
-            return context.getResources().getDrawable(resourceId);
-        }
-
-        return null;
     }
 }
