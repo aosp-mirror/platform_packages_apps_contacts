@@ -60,7 +60,7 @@ public final class ContactInfo {
         if (type != other.type) return false;
         if (!TextUtils.equals(label, other.label)) return false;
         if (!TextUtils.equals(number, other.number)) return false;
-        // Ignore formatted number.
+        if (!TextUtils.equals(formattedNumber, other.formattedNumber)) return false;
         if (!TextUtils.equals(normalizedNumber, other.normalizedNumber)) return false;
         if (photoId != other.photoId) return false;
         return true;
