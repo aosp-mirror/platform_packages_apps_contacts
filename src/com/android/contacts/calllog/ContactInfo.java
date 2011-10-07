@@ -34,6 +34,8 @@ public final class ContactInfo {
     public String normalizedNumber;
     /** The photo for the contact, if available. */
     public long photoId;
+    /** The high-res photo for the contact, if available. */
+    public Uri photoUri;
 
     public static ContactInfo EMPTY = new ContactInfo();
 
@@ -63,6 +65,7 @@ public final class ContactInfo {
         if (!TextUtils.equals(formattedNumber, other.formattedNumber)) return false;
         if (!TextUtils.equals(normalizedNumber, other.normalizedNumber)) return false;
         if (photoId != other.photoId) return false;
+        if (!UriUtils.areEqual(photoUri, other.photoUri)) return false;
         return true;
     }
 }

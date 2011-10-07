@@ -152,7 +152,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         String currentCountryIso = ContactsUtils.getCurrentCountryIso(getActivity());
-        mAdapter = new CallLogAdapter(getActivity(), this, currentCountryIso, mVoiceMailNumber);
+        mAdapter = new CallLogAdapter(getActivity(), this,
+                new ContactInfoHelper(getActivity(), currentCountryIso), mVoiceMailNumber);
         setListAdapter(mAdapter);
         getListView().setItemsCanFocus(true);
     }
