@@ -121,11 +121,13 @@ public class ExternalAccountType extends BaseAccountType {
         iconRes = resolveExternalResId(context, mAccountTypeIconAttribute,
                 this.resPackageName, ATTR_ACCOUNT_ICON);
 
-        // Bring in name and photo from fallback source, which are non-optional
-        addDataKindStructuredName(context);
-        addDataKindDisplayName(context);
-        addDataKindPhoneticName(context);
-        addDataKindPhoto(context);
+        if (!mHasEditSchema) {
+            // Bring in name and photo from fallback source, which are non-optional
+            addDataKindStructuredName(context);
+            addDataKindDisplayName(context);
+            addDataKindPhoneticName(context);
+            addDataKindPhoto(context);
+        }
 
         // If we reach this point, the account type has been successfully initialized.
         mInitSuccessful = true;
