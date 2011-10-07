@@ -26,13 +26,14 @@
         android:divider="?android:attr/dividerVertical"
         android:showDividers="end"
         android:dividerPadding="12dip"
-        android:orientation="horizontal"
-        style="?android:attr/actionButtonStyle">
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:duplicateParentState="true"
+            style="?android:attr/actionButtonStyle">
 
             <ImageView
                 android:id="@+id/icon"
