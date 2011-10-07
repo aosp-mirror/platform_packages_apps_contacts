@@ -111,8 +111,6 @@ public class PeopleActivity extends ContactsActivity
     private static final int SUBACTIVITY_NEW_GROUP = 2;
     private static final int SUBACTIVITY_EDIT_GROUP = 3;
 
-    private static final String KEY_SEARCH_MODE = "searchMode";
-
     private DialogManager mDialogManager = new DialogManager(this);
 
     private ContactsIntentResolver mIntentResolver;
