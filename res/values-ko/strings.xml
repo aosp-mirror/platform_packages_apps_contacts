@@ -362,6 +362,8 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"직장 호출기로 문자 보내기"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"<xliff:g id="ASSISTANT">%s</xliff:g>(으)로 문자 보내기"</string>
     <string name="sms_mms" msgid="4069352461380762677">"MMS로 문자 보내기"</string>
+    <!-- no translation found for sms (1756857139634224222) -->
+    <skip />
     <string name="email_home" msgid="8573740658148184279">"집으로 이메일 보내기"</string>
     <string name="email_mobile" msgid="2042889209787989814">"모바일로 이메일 보내기"</string>
     <string name="email_work" msgid="2807430017302722689">"직장으로 이메일 보내기"</string>
@@ -381,6 +383,10 @@
     <string name="chat_icq" msgid="8438405386153745775">"ICQ로 채팅"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Jabber로 채팅"</string>
     <string name="chat" msgid="9025361898797412245">"채팅"</string>
+    <!-- no translation found for audio_chat (4743276658947547047) -->
+    <skip />
+    <!-- no translation found for video_chat (1872255818640336072) -->
+    <skip />
     <string name="postal_address" msgid="8765560217149624536">"주소"</string>
     <string name="postal_street" msgid="8133143961580058972">"번지"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"사서함"</string>
@@ -459,9 +465,11 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"별표"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"맞춤설정"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"맞춤설정..."</string>
-    <string name="list_filter_phones" msgid="7905045603593508221">"전화번호가 포함된 주소록"</string>
+    <!-- outdated translation 7905045603593508221 -->     <string name="list_filter_phones" msgid="735313795643493365">"전화번호가 포함된 주소록"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"연락처"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"맞춤 보기 정의"</string>
+    <!-- no translation found for contact_list_loading (3859280390185230582) -->
+    <skip />
     <string name="activity_title_settings" msgid="5464130076132770781">"설정"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"표시할 연락처"</string>
     <string name="menu_settings" msgid="377929915873428211">"설정"</string>
@@ -556,11 +564,17 @@
     <string name="external_profile_title" msgid="8034998767621359438">"내 <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> 프로필"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"모든 연락처 표시"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"인물 앱은 Google 계정에서 사용할 때 더 효과적입니다."\n\n"• 어떤 웹 브라우저에서든 액세스하세요."\n"• 주소록을 안전하게 백업하세요."</string>
+    <!-- no translation found for generic_no_account_prompt (7218827704367325460) -->
+    <skip />
+    <!-- no translation found for generic_no_account_prompt_title (753783911899054860) -->
+    <skip />
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"새 연락처는 백업되지 않습니다. 온라인에 주소록을 백업할 계정을 추가하시겠습니까?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"새 연락처가 <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>와(과) 동기화됩니다."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"새 연락처를 다음 계정 중 하나와 동기화할 수 있습니다. 무엇을 사용하시겠습니까?"</string>
     <string name="keep_local" msgid="1258761699192993322">"오프라인 보관"</string>
     <string name="add_account" msgid="8201790677994503186">"계정 추가"</string>
     <string name="add_new_account" msgid="5748627740680940264">"새 계정 추가"</string>
-    <string name="phone_call_prohibited" msgid="4329551585931067534">"전화를 걸지 못했습니다."</string>
+    <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"전화를 걸 수 없음"</string>
+    <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"음성사서함 번호를 사용할 수 없음"</string>
+    <string name="dialog_voicemail_not_ready_message" msgid="4511141315685755189">"음성사서함을 설정하려면 메뉴 &gt; 설정으로 이동하세요."</string>
 </resources>

@@ -79,7 +79,7 @@
     <string name="invalidContactMessage" msgid="5816991830260044593">"Ese contacto no existe."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Crear contacto nuevo"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Teléfono"</string>
-    <string name="emailLabelsGroup" msgid="8389931313045344406">"Email"</string>
+    <string name="emailLabelsGroup" msgid="8389931313045344406">"Correo"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"MI"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Dirección"</string>
   <string-array name="otherLabels">
@@ -362,12 +362,14 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"Enviar SMS al busca del trabajo"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"Enviar un mensaje de texto a <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Enviar SMS a MMS"</string>
-    <string name="email_home" msgid="8573740658148184279">"Enviar email a casa"</string>
-    <string name="email_mobile" msgid="2042889209787989814">"Enviar email al móvil"</string>
-    <string name="email_work" msgid="2807430017302722689">"Enviar email al trabajo"</string>
-    <string name="email_other" msgid="3454004077967657109">"Enviar email"</string>
-    <string name="email_custom" msgid="7548003991586214105">"Enviar email a <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="email" msgid="5668400997660065897">"Email"</string>
+    <!-- no translation found for sms (1756857139634224222) -->
+    <skip />
+    <string name="email_home" msgid="8573740658148184279">"Enviar correo a casa"</string>
+    <string name="email_mobile" msgid="2042889209787989814">"Enviar correo al móvil"</string>
+    <string name="email_work" msgid="2807430017302722689">"Enviar correo al trabajo"</string>
+    <string name="email_other" msgid="3454004077967657109">"Enviar correo"</string>
+    <string name="email_custom" msgid="7548003991586214105">"Enviar correo a <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email" msgid="5668400997660065897">"Correo"</string>
     <string name="map_home" msgid="1243547733423343982">"Ver dirección de casa"</string>
     <string name="map_work" msgid="1360474076921878088">"Ver dirección del trabajo"</string>
     <string name="map_other" msgid="3817820803587012641">"Ver dirección"</string>
@@ -381,6 +383,10 @@
     <string name="chat_icq" msgid="8438405386153745775">"Chatear con ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Chatear con Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Chat"</string>
+    <!-- no translation found for audio_chat (4743276658947547047) -->
+    <skip />
+    <!-- no translation found for video_chat (1872255818640336072) -->
+    <skip />
     <string name="postal_address" msgid="8765560217149624536">"Dirección"</string>
     <string name="postal_street" msgid="8133143961580058972">"Calle"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Apartado postal"</string>
@@ -459,9 +465,11 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Destacados"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Personalizar"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"Personalizar..."</string>
-    <string name="list_filter_phones" msgid="7905045603593508221">"Contactos con números de teléfono"</string>
+    <!-- outdated translation 7905045603593508221 -->     <string name="list_filter_phones" msgid="735313795643493365">"Contactos con números de teléfono"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Contacto"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Definición de vista personalizada"</string>
+    <!-- no translation found for contact_list_loading (3859280390185230582) -->
+    <skip />
     <string name="activity_title_settings" msgid="5464130076132770781">"Ajustes"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Contactos para mostrar"</string>
     <string name="menu_settings" msgid="377929915873428211">"Ajustes"</string>
@@ -556,11 +564,17 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Mi perfil de <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Mostrando todos los contactos"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"La aplicación Contactos funciona mejor con una cuenta de Google."\n\n"• Accede a tu lista de contactos desde cualquier navegador web."\n"• Haz copias de seguridad de tus contactos de forma segura."</string>
+    <!-- no translation found for generic_no_account_prompt (7218827704367325460) -->
+    <skip />
+    <!-- no translation found for generic_no_account_prompt_title (753783911899054860) -->
+    <skip />
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"No se hará una copia de seguridad del nuevo contacto. ¿Quieres añadir una cuenta para hacer copias de seguridad online de los contactos?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Tu nuevo contacto se sincronizará con <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Puedes sincronizar tu nuevo contacto con una de las siguientes cuentas. ¿Cuál quieres usar?"</string>
     <string name="keep_local" msgid="1258761699192993322">"Guardar localmente"</string>
     <string name="add_account" msgid="8201790677994503186">"Añadir cuenta"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Añadir una cuenta nueva"</string>
-    <string name="phone_call_prohibited" msgid="4329551585931067534">"No se ha enviado la llamada."</string>
+    <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"Llamada no enviada"</string>
+    <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"Número del buzón de voz no disponible"</string>
+    <string name="dialog_voicemail_not_ready_message" msgid="4511141315685755189">"Para configurar el buzón de voz, pulsa la tecla de menú y accede a Ajustes."</string>
 </resources>

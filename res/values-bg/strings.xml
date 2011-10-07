@@ -362,6 +362,8 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"Изпращaне на SMS на служебен пейджър"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"Изпращане на SMS на <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Изпращане на SMS на MMS"</string>
+    <!-- no translation found for sms (1756857139634224222) -->
+    <skip />
     <string name="email_home" msgid="8573740658148184279">"Изпращане на имейл до домашен"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Изпращане на имейл до мобилен"</string>
     <string name="email_work" msgid="2807430017302722689">"Изпращане на имейл до служебен"</string>
@@ -381,6 +383,10 @@
     <string name="chat_icq" msgid="8438405386153745775">"Чат по ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Чат по Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Чат"</string>
+    <!-- no translation found for audio_chat (4743276658947547047) -->
+    <skip />
+    <!-- no translation found for video_chat (1872255818640336072) -->
+    <skip />
     <string name="postal_address" msgid="8765560217149624536">"Адрес"</string>
     <string name="postal_street" msgid="8133143961580058972">"Улица"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"П.К."</string>
@@ -459,9 +465,11 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Със звезда"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"По избор"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"Персонализиране..."</string>
-    <string name="list_filter_phones" msgid="7905045603593508221">"Контакти с телефонни номера"</string>
+    <!-- outdated translation 7905045603593508221 -->     <string name="list_filter_phones" msgid="735313795643493365">"Контакти с телефонни номера"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Контакт"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Определяне на персонализиран изглед"</string>
+    <!-- no translation found for contact_list_loading (3859280390185230582) -->
+    <skip />
     <string name="activity_title_settings" msgid="5464130076132770781">"Настройки"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Контакти за показване"</string>
     <string name="menu_settings" msgid="377929915873428211">"Настройки"</string>
@@ -556,11 +564,17 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Потр. ми профил <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Показват се всички контакти"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Приложението Хора работи по-добре с профил в Google."\n\n"• Осъществявайте достъп от всеки уеб браузър."\n"• Създавайте надеждни резервни копия на контактите си."</string>
+    <!-- no translation found for generic_no_account_prompt (7218827704367325460) -->
+    <skip />
+    <!-- no translation found for generic_no_account_prompt_title (753783911899054860) -->
+    <skip />
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"За новия ви контакт няма да бъде създадено резервно копие. Да се добави ли профил, в който да се създават такива копия на контактите онлайн?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Новият ви контакт ще бъде синхронизиран със: <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Можете да синхронизирате новия си контакт с един от следните профили. Кой от тях искате да използвате?"</string>
     <string name="keep_local" msgid="1258761699192993322">"Съхраняване локално"</string>
     <string name="add_account" msgid="8201790677994503186">"Добавяне на профил"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Добавяне на нов профил"</string>
-    <string name="phone_call_prohibited" msgid="4329551585931067534">"Обаждането не е изпратено."</string>
+    <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"Обаждането не е извършено"</string>
+    <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"Номерът за гласова поща не е налице"</string>
+    <string name="dialog_voicemail_not_ready_message" msgid="4511141315685755189">"За да конфигурирате гласовата поща, отворете „Меню“ &gt; „Настройки“."</string>
 </resources>

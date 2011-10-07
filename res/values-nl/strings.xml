@@ -362,6 +362,8 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"Sms\'en naar werkpager"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"Sms\'en naar <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Sms\'en via MMS"</string>
+    <!-- no translation found for sms (1756857139634224222) -->
+    <skip />
     <string name="email_home" msgid="8573740658148184279">"E-mailen naar huis"</string>
     <string name="email_mobile" msgid="2042889209787989814">"E-mailen naar mobiel"</string>
     <string name="email_work" msgid="2807430017302722689">"E-mailen naar werk"</string>
@@ -381,6 +383,10 @@
     <string name="chat_icq" msgid="8438405386153745775">"Chatten via ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Chatten via Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Chat"</string>
+    <!-- no translation found for audio_chat (4743276658947547047) -->
+    <skip />
+    <!-- no translation found for video_chat (1872255818640336072) -->
+    <skip />
     <string name="postal_address" msgid="8765560217149624536">"Adres"</string>
     <string name="postal_street" msgid="8133143961580058972">"Straat"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Postbus"</string>
@@ -459,9 +465,11 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Met ster"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Aangepast"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"Aanpassen..."</string>
-    <string name="list_filter_phones" msgid="7905045603593508221">"Contacten met telefoonnummers"</string>
+    <!-- outdated translation 7905045603593508221 -->     <string name="list_filter_phones" msgid="735313795643493365">"Contacten met telefoonnummers"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Contacten"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Aangepaste weergave definiëren"</string>
+    <!-- no translation found for contact_list_loading (3859280390185230582) -->
+    <skip />
     <string name="activity_title_settings" msgid="5464130076132770781">"Instellingen"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Zichtbare contacten"</string>
     <string name="menu_settings" msgid="377929915873428211">"Instellingen"</string>
@@ -556,11 +564,17 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Mijn <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-profiel"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Alle contacten worden weergegeven"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Personen werkt beter met een Google-account."\n\n"• Toegang via elke webbrowser."\n"• Maak beveiligde back-ups van uw contacten."</string>
+    <!-- no translation found for generic_no_account_prompt (7218827704367325460) -->
+    <skip />
+    <!-- no translation found for generic_no_account_prompt_title (753783911899054860) -->
+    <skip />
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Er wordt geen back-up van uw nieuwe contact gemaakt. Een account toevoegen waarmee online een back-up van contacten wordt gemaakt?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Uw nieuwe contact wordt gesynchroniseerd met <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"U kunt uw nieuwe contact synchroniseren met een van de volgende accounts. Welk account wilt u gebruiken?"</string>
     <string name="keep_local" msgid="1258761699192993322">"Lokaal opslaan"</string>
     <string name="add_account" msgid="8201790677994503186">"Account toevoegen"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Nieuw account toevoegen"</string>
-    <string name="phone_call_prohibited" msgid="4329551585931067534">"Oproep niet verzonden."</string>
+    <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"Oproep niet verzonden"</string>
+    <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"Voicemailnummer niet beschikbaar"</string>
+    <string name="dialog_voicemail_not_ready_message" msgid="4511141315685755189">"Ga naar \'Menu\' &gt; \'Instellingen\' om uw voicemail te configureren."</string>
 </resources>
