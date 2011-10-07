@@ -95,8 +95,7 @@ public abstract class BaseAccountType extends AccountType {
 
     protected DataKind addDataKindStructuredName(Context context) {
         DataKind kind = addKind(new DataKind(StructuredName.CONTENT_ITEM_TYPE,
-                R.string.nameLabelsGroup, -1, true, R.layout.structured_name_editor_view,
-                android.R.style.TextAppearance_Medium));
+                R.string.nameLabelsGroup, -1, true, R.layout.structured_name_editor_view));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
 
@@ -125,14 +124,13 @@ public abstract class BaseAccountType extends AccountType {
 
     protected DataKind addDataKindDisplayName(Context context) {
         DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME,
-                R.string.nameLabelsGroup, -1, true, R.layout.text_fields_editor_view,
-                android.R.style.TextAppearance_Medium));
+                R.string.nameLabelsGroup, -1, true, R.layout.text_fields_editor_view));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
 
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(new EditField(StructuredName.DISPLAY_NAME,
-                R.string.full_name, FLAGS_PERSON_NAME).setShortForm(true).setIsFullName(true));
+                R.string.full_name, FLAGS_PERSON_NAME).setShortForm(true));
 
         boolean displayOrderPrimary =
                 context.getResources().getBoolean(R.bool.config_editor_field_order_primary);
@@ -166,8 +164,7 @@ public abstract class BaseAccountType extends AccountType {
 
     protected DataKind addDataKindPhoneticName(Context context) {
         DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME,
-                R.string.name_phonetic, -1, true, R.layout.phonetic_name_editor_view,
-                android.R.style.TextAppearance_Medium));
+                R.string.name_phonetic, -1, true, R.layout.phonetic_name_editor_view));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
 
@@ -186,9 +183,8 @@ public abstract class BaseAccountType extends AccountType {
 
     protected DataKind addDataKindNickname(Context context) {
         DataKind kind = addKind(new DataKind(Nickname.CONTENT_ITEM_TYPE,
-                    R.string.nicknameLabelsGroup, 115, true,
-                    R.layout.text_fields_editor_view, android.R.style.TextAppearance_Medium));
-        kind.isList = false;
+                    R.string.nicknameLabelsGroup, 115, true, R.layout.text_fields_editor_view));
+        kind.typeOverallMax = 1;
         kind.actionHeader = new SimpleInflater(R.string.nicknameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
         kind.defaultValues = new ContentValues();
@@ -203,7 +199,7 @@ public abstract class BaseAccountType extends AccountType {
 
     protected DataKind addDataKindPhone(Context context) {
         DataKind kind = addKind(new DataKind(Phone.CONTENT_ITEM_TYPE, R.string.phoneLabelsGroup,
-                10, true, R.layout.text_fields_editor_view, android.R.style.TextAppearance_Medium));
+                10, true, R.layout.text_fields_editor_view));
         kind.iconAltRes = R.drawable.ic_text_holo_light;
         kind.iconAltDescriptionRes = R.string.sms;
         kind.actionHeader = new PhoneActionInflater();
@@ -243,7 +239,7 @@ public abstract class BaseAccountType extends AccountType {
 
     protected DataKind addDataKindEmail(Context context) {
         DataKind kind = addKind(new DataKind(Email.CONTENT_ITEM_TYPE, R.string.emailLabelsGroup,
-                15, true, R.layout.text_fields_editor_view, android.R.style.TextAppearance_Medium));
+                15, true, R.layout.text_fields_editor_view));
         kind.actionHeader = new EmailActionInflater();
         kind.actionBody = new SimpleInflater(Email.DATA);
         kind.typeColumn = Email.TYPE;
@@ -263,8 +259,7 @@ public abstract class BaseAccountType extends AccountType {
 
     protected DataKind addDataKindStructuredPostal(Context context) {
         DataKind kind = addKind(new DataKind(StructuredPostal.CONTENT_ITEM_TYPE,
-                R.string.postalLabelsGroup, 25, true, R.layout.text_fields_editor_view,
-                android.R.style.TextAppearance_Medium));
+                R.string.postalLabelsGroup, 25, true, R.layout.text_fields_editor_view));
         kind.actionHeader = new PostalActionInflater();
         kind.actionBody = new SimpleInflater(StructuredPostal.FORMATTED_ADDRESS);
         kind.typeColumn = StructuredPostal.TYPE;
@@ -285,7 +280,7 @@ public abstract class BaseAccountType extends AccountType {
 
     protected DataKind addDataKindIm(Context context) {
         DataKind kind = addKind(new DataKind(Im.CONTENT_ITEM_TYPE, R.string.imLabelsGroup, 20, true,
-                    R.layout.text_fields_editor_view, android.R.style.TextAppearance_Medium));
+                    R.layout.text_fields_editor_view));
         kind.actionHeader = new ImActionInflater();
         kind.actionBody = new SimpleInflater(Im.DATA);
 
@@ -317,10 +312,10 @@ public abstract class BaseAccountType extends AccountType {
     protected DataKind addDataKindOrganization(Context context) {
         DataKind kind = addKind(new DataKind(Organization.CONTENT_ITEM_TYPE,
                     R.string.organizationLabelsGroup, 5, true,
-                    R.layout.text_fields_editor_view, android.R.style.TextAppearance_Medium));
+                    R.layout.text_fields_editor_view));
         kind.actionHeader = new SimpleInflater(Organization.COMPANY);
         kind.actionBody = new SimpleInflater(Organization.TITLE);
-        kind.isList = false;
+        kind.typeOverallMax = 1;
 
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(new EditField(Organization.COMPANY, R.string.ghostData_company,
@@ -332,8 +327,7 @@ public abstract class BaseAccountType extends AccountType {
     }
 
     protected DataKind addDataKindPhoto(Context context) {
-        DataKind kind = addKind(new DataKind(Photo.CONTENT_ITEM_TYPE, -1, -1, true, -1,
-                    android.R.style.TextAppearance_Medium));
+        DataKind kind = addKind(new DataKind(Photo.CONTENT_ITEM_TYPE, -1, -1, true, -1));
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(new EditField(Photo.PHOTO, -1, -1));
         return kind;
@@ -341,9 +335,8 @@ public abstract class BaseAccountType extends AccountType {
 
     protected DataKind addDataKindNote(Context context) {
         DataKind kind = addKind(new DataKind(Note.CONTENT_ITEM_TYPE,
-                    R.string.label_notes, 110, true,
-                    R.layout.text_fields_editor_view, android.R.style.TextAppearance_Small));
-        kind.isList = false;
+                    R.string.label_notes, 110, true, R.layout.text_fields_editor_view));
+        kind.typeOverallMax = 1;
         kind.actionHeader = new SimpleInflater(R.string.label_notes);
         kind.actionBody = new SimpleInflater(Note.NOTE);
         kind.fieldList = Lists.newArrayList();
@@ -354,8 +347,7 @@ public abstract class BaseAccountType extends AccountType {
 
     protected DataKind addDataKindWebsite(Context context) {
         DataKind kind = addKind(new DataKind(Website.CONTENT_ITEM_TYPE,
-                R.string.websiteLabelsGroup, 120, true, R.layout.text_fields_editor_view,
-                android.R.style.TextAppearance_Medium));
+                R.string.websiteLabelsGroup, 120, true, R.layout.text_fields_editor_view));
         kind.actionHeader = new SimpleInflater(R.string.websiteLabelsGroup);
         kind.actionBody = new SimpleInflater(Website.URL);
         kind.defaultValues = new ContentValues();
@@ -377,10 +369,9 @@ public abstract class BaseAccountType extends AccountType {
         // the android:icon attribute of the SIP-related
         // intent-filters in the Phone app's manifest.
         DataKind kind = addKind(new DataKind(SipAddress.CONTENT_ITEM_TYPE,
-                    R.string.label_sip_address, 130, true, R.layout.text_fields_editor_view,
-                    android.R.style.TextAppearance_Medium));
+                    R.string.label_sip_address, 130, true, R.layout.text_fields_editor_view));
 
-        kind.isList = false;
+        kind.typeOverallMax = 1;
         kind.actionHeader = new SimpleInflater(R.string.label_sip_address);
         kind.actionBody = new SimpleInflater(SipAddress.SIP_ADDRESS);
         kind.fieldList = Lists.newArrayList();
@@ -393,9 +384,9 @@ public abstract class BaseAccountType extends AccountType {
     protected DataKind addDataKindGroupMembership(Context context) {
         DataKind kind = getKindForMimetype(GroupMembership.CONTENT_ITEM_TYPE);
         kind = addKind(new DataKind(GroupMembership.CONTENT_ITEM_TYPE,
-                R.string.groupsLabel, 999, true, -1, android.R.style.TextAppearance_Medium));
+                R.string.groupsLabel, 999, true, -1));
 
-        kind.isList = false;
+        kind.typeOverallMax = 1;
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(new EditField(GroupMembership.GROUP_ROW_ID, -1, -1));
 
