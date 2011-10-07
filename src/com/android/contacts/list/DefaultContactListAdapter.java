@@ -185,7 +185,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 break;
             }
             case ContactListFilter.FILTER_TYPE_ACCOUNT: {
-                // TODO (stopship): avoid the use of private API
+                // TODO: avoid the use of private API
                 selection.append(
                         Contacts._ID + " IN ("
                                 + "SELECT DISTINCT " + RawContacts.CONTACT_ID
