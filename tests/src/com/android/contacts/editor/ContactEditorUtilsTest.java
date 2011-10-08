@@ -132,7 +132,6 @@ public class ContactEditorUtilsTest extends AndroidTestCase {
                 Sets.newHashSet(mAccountTypes.mAccounts),
                 toSet(mTarget.getSavedAccounts()));
 
-
         // 1 account
         mAccountTypes.mAccounts = new AccountWithDataSet[]{ACCOUNT_1_A};
         mTarget.saveDefaultAndAllAccounts(ACCOUNT_1_A);
@@ -141,13 +140,19 @@ public class ContactEditorUtilsTest extends AndroidTestCase {
                 Sets.newHashSet(mAccountTypes.mAccounts),
                 toSet(mTarget.getSavedAccounts()));
 
-        // 2 account
+        // 2 accounts
         mAccountTypes.mAccounts = new AccountWithDataSet[]{ACCOUNT_1_A, ACCOUNT_1_B};
         mTarget.saveDefaultAndAllAccounts(ACCOUNT_1_B);
         assertEquals(ACCOUNT_1_B, mTarget.getDefaultAccount());
         MoreAsserts.assertEquals(
                 Sets.newHashSet(mAccountTypes.mAccounts),
                 toSet(mTarget.getSavedAccounts()));
+
+        // 2 accounts, and save null as the default.  Even though there are accounts, the saved
+        // account list should be empty in this case.
+        mTarget.saveDefaultAndAllAccounts(null);
+        assertNull(mTarget.getDefaultAccount());
+        assertEquals(0, mTarget.getSavedAccounts().size());
     }
 
     public void testIsAccountValid() {
@@ -270,6 +275,21 @@ public class ContactEditorUtilsTest extends AndroidTestCase {
 
         // The user created another contact, but this we shouldn't show the notification.
         assertFalse(mTarget.shouldShowAccountChangedNotification());
+    }
+
+    public void testShouldShowAccountChangedNotification_sanity_check() {
+        // Prepare 1 account and save it as the default.
+        setAccountTypes(TYPE1);
+        setAccounts(ACCOUNT_1_A);
+
+        mTarget.saveDefaultAndAllAccounts(ACCOUNT_1_A);
+
+        // Right after a save, the dialog shouldn't show up.
+        assertFalse(mTarget.shouldShowAccountChangedNotification());
+
+        // Remove the default account to emulate broken preferences.
+        mTarget.removeDefaultAccountForTest();
+        assertTrue(mTarget.shouldShowAccountChangedNotification());
     }
 
     private static <T> Set<T> toSet(Collection<T> collection) {
