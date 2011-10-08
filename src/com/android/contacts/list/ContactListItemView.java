@@ -74,10 +74,6 @@ public class ContactListItemView extends ViewGroup
     // Style values for layout and appearance
     private final int mPreferredHeight;
     private final int mVerticalDividerMargin;
-    private final int mPaddingTop;
-    private final int mPaddingRight;
-    private final int mPaddingBottom;
-    private final int mPaddingLeft;
     private final int mGapBetweenImageAndText;
     private final int mGapBetweenLabelAndData;
     private final int mCallButtonPadding;
@@ -93,10 +89,30 @@ public class ContactListItemView extends ViewGroup
     private final int mTextIndent;
     private Drawable mActivatedBackgroundDrawable;
 
+    // In the future we may need to merge these local padding to View's mPaddingXXX
+    private final int mExtraPaddingTop;
+    private final int mExtraPaddingBottom;
+    private int mExtraPaddingLeft;
+    private int mExtraPaddingRight;
+
+    // Will be used with adjustListItemSelectionBounds().
+    private int mSelectionBoundsMarginLeft;
+    private int mSelectionBoundsMarginRight;
+
     // Horizontal divider between contact views.
     private boolean mHorizontalDividerVisible = true;
     private Drawable mHorizontalDividerDrawable;
     private int mHorizontalDividerHeight;
+
+    /**
+     * Where to put contact photo. This affects the other Views' layout or look-and-feel.
+     */
+    public enum PhotoPosition {
+        LEFT,
+        RIGHT
+    }
+    public static final PhotoPosition DEFAULT_PHOTO_POSITION = PhotoPosition.RIGHT;
+    private PhotoPosition mPhotoPosition = DEFAULT_PHOTO_POSITION;
 
     // Vertical divider between the call icon and the text.
     private boolean mVerticalDividerVisible;
@@ -209,13 +225,13 @@ public class ContactListItemView extends ViewGroup
                 R.styleable.ContactListItemView_list_item_divider);
         mVerticalDividerMargin = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_vertical_divider_margin, 0);
-        mPaddingTop = a.getDimensionPixelOffset(
+        mExtraPaddingTop = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_padding_top, 0);
-        mPaddingBottom = a.getDimensionPixelOffset(
+        mExtraPaddingBottom = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_padding_bottom, 0);
-        mPaddingLeft = a.getDimensionPixelOffset(
+        mExtraPaddingLeft = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_padding_left, 0);
-        mPaddingRight = a.getDimensionPixelOffset(
+        mExtraPaddingRight = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_padding_right, 0);
         mGapBetweenImageAndText = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_gap_between_image_and_text, 0);
@@ -336,7 +352,8 @@ public class ContactListItemView extends ViewGroup
 
         // Calculate height including padding
         height += mNameTextViewHeight + mPhoneticNameTextViewHeight + mLabelTextViewHeight +
-                mSnippetTextViewHeight + mStatusTextViewHeight + mPaddingTop + mPaddingBottom;
+                mSnippetTextViewHeight + mStatusTextViewHeight +
+                mExtraPaddingTop + mExtraPaddingBottom;
 
         if (isVisible(mCallButton)) {
             mCallButton.measure(0, 0);
@@ -344,7 +361,7 @@ public class ContactListItemView extends ViewGroup
 
         // Make sure the height is at least as high as the photo
         ensurePhotoViewSize();
-        height = Math.max(height, mPhotoViewHeight + mPaddingBottom + mPaddingTop);
+        height = Math.max(height, mPhotoViewHeight + mExtraPaddingBottom + mExtraPaddingTop);
 
         // Add horizontal divider height
         if (mHorizontalDividerVisible) {
@@ -375,29 +392,30 @@ public class ContactListItemView extends ViewGroup
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        int height = bottom - top;
-        int width = right - left;
+        final int height = bottom - top;
+        final int width = right - left;
 
         // Determine the vertical bounds by laying out the header first.
         int topBound = 0;
         int bottomBound = height;
-        int leftBound = mPaddingLeft;
+        int leftBound = mExtraPaddingLeft;
+        int rightBound = width - mExtraPaddingRight;
 
         // Put the header in the top of the contact view (Text + underline view)
         if (mHeaderVisible) {
             mHeaderTextView.layout(leftBound + mHeaderTextIndent,
                     0,
-                    width - mPaddingRight,
+                    rightBound,
                     mHeaderBackgroundHeight);
             if (mCountView != null) {
-                mCountView.layout(width - mPaddingRight - mCountView.getMeasuredWidth(),
+                mCountView.layout(width - mExtraPaddingRight - mCountView.getMeasuredWidth(),
                         0,
-                        width - mPaddingRight,
+                        rightBound,
                         mHeaderBackgroundHeight);
             }
             mHeaderDivider.layout(leftBound,
                     mHeaderBackgroundHeight,
-                    width - mPaddingRight,
+                    rightBound,
                     mHeaderBackgroundHeight + mHeaderUnderlineHeight);
             topBound += (mHeaderBackgroundHeight + mHeaderUnderlineHeight);
         }
@@ -407,7 +425,7 @@ public class ContactListItemView extends ViewGroup
             mHorizontalDividerDrawable.setBounds(
                     leftBound,
                     height - mHorizontalDividerHeight,
-                    width - mPaddingRight,
+                    rightBound,
                     height);
             bottomBound -= mHorizontalDividerHeight;
         }
@@ -418,26 +436,55 @@ public class ContactListItemView extends ViewGroup
             mActivatedBackgroundDrawable.setBounds(mBoundsWithoutHeader);
         }
 
-        // Set the top/bottom paddings
-        topBound += mPaddingTop;
-        bottomBound -= mPaddingBottom;
+        // Set the top/bottom padding
+        topBound += mExtraPaddingTop;
+        bottomBound -= mExtraPaddingBottom;
 
-        // Set contact layout:
-        // Photo on the right, call button to the left of the photo
-        // Text aligned to the left along with the presence status.
+        final View photoView = mQuickContact != null ? mQuickContact : mPhotoView;
+        if (mPhotoPosition == PhotoPosition.LEFT) {
+            // Photo is the left most view. All the other Views should on the right of the photo.
+            if (photoView != null) {
+                // Center the photo vertically
+                final int photoTop = topBound + (bottomBound - topBound - mPhotoViewHeight) / 2;
+                photoView.layout(
+                        leftBound,
+                        photoTop,
+                        leftBound + mPhotoViewWidth,
+                        photoTop + mPhotoViewHeight);
+                leftBound += mPhotoViewWidth + mGapBetweenImageAndText;
+            } else if (mKeepHorizontalPaddingForPhotoView) {
+                // Draw nothing but keep the padding.
+                leftBound += mPhotoViewWidth + mGapBetweenImageAndText;
+            }
+        } else {
+            // Photo is the right most view. Right bound should be adjusted that way.
+            if (photoView != null) {
+                // Center the photo vertically
+                final int photoTop = topBound + (bottomBound - topBound - mPhotoViewHeight) / 2;
+                photoView.layout(
+                        rightBound - mPhotoViewWidth,
+                        photoTop,
+                        rightBound,
+                        photoTop + mPhotoViewHeight);
+                rightBound -= (mPhotoViewWidth + mGapBetweenImageAndText);
+            }
 
-        // layout the photo and call button.
-        int rightBound = layoutRightSide(height, topBound, bottomBound, width - mPaddingRight);
+            // Add indent between left-most padding and texts.
+            leftBound += mTextIndent;
+        }
+
+        // Layout the call button.
+        rightBound = layoutRightSide(height, topBound, bottomBound, rightBound);
 
         // Center text vertically
-        int totalTextHeight = mNameTextViewHeight + mPhoneticNameTextViewHeight +
+        final int totalTextHeight = mNameTextViewHeight + mPhoneticNameTextViewHeight +
                 mLabelTextViewHeight + mSnippetTextViewHeight + mStatusTextViewHeight;
         int textTopBound = (bottomBound + topBound - totalTextHeight) / 2;
 
         // Layout all text view and presence icon
         // Put name TextView first
         if (isVisible(mNameTextView)) {
-            mNameTextView.layout(leftBound + mTextIndent,
+            mNameTextView.layout(leftBound,
                     textTopBound,
                     rightBound,
                     textTopBound + mNameTextViewHeight);
@@ -445,13 +492,13 @@ public class ContactListItemView extends ViewGroup
         }
 
         // Presence and status
-        int statusLeftBound = leftBound + mTextIndent;
+        int statusLeftBound = leftBound;
         if (isVisible(mPresenceIcon)) {
             int iconWidth = mPresenceIcon.getMeasuredWidth();
             mPresenceIcon.layout(
-                    leftBound + mTextIndent,
+                    leftBound,
                     textTopBound,
-                    leftBound + iconWidth + mTextIndent,
+                    leftBound + iconWidth,
                     textTopBound + mStatusTextViewHeight);
             statusLeftBound += (iconWidth + mPresenceIconMargin);
         }
@@ -470,7 +517,7 @@ public class ContactListItemView extends ViewGroup
         // Rest of text views
         int dataLeftBound = leftBound;
         if (isVisible(mPhoneticNameTextView)) {
-            mPhoneticNameTextView.layout(leftBound + mTextIndent,
+            mPhoneticNameTextView.layout(leftBound,
                     textTopBound,
                     rightBound,
                     textTopBound + mPhoneticNameTextViewHeight);
@@ -478,12 +525,21 @@ public class ContactListItemView extends ViewGroup
         }
 
         if (isVisible(mLabelView)) {
-            dataLeftBound = leftBound + mLabelView.getMeasuredWidth() + mTextIndent;
-            mLabelView.layout(leftBound + mTextIndent,
-                    textTopBound,
-                    dataLeftBound,
-                    textTopBound + mLabelTextViewHeight);
-            dataLeftBound += mGapBetweenLabelAndData;
+            if (mPhotoPosition == PhotoPosition.LEFT) {
+                // When photo is on left, label is placed on the right edge of the list item.
+                mLabelView.layout(rightBound - mLabelView.getMeasuredWidth(),
+                        textTopBound,
+                        rightBound,
+                        textTopBound + mLabelTextViewHeight);
+            } else {
+                // When photo is on right, label is placed on the left of data view.
+                dataLeftBound = leftBound + mLabelView.getMeasuredWidth();
+                mLabelView.layout(leftBound,
+                        textTopBound,
+                        dataLeftBound,
+                        textTopBound + mLabelTextViewHeight);
+                dataLeftBound += mGapBetweenLabelAndData;
+            }
         }
 
         if (isVisible(mDataView)) {
@@ -497,7 +553,7 @@ public class ContactListItemView extends ViewGroup
         }
 
         if (isVisible(mSnippetView)) {
-            mSnippetView.layout(leftBound + mTextIndent,
+            mSnippetView.layout(leftBound,
                     textTopBound,
                     rightBound,
                     textTopBound + mSnippetTextViewHeight);
@@ -510,21 +566,6 @@ public class ContactListItemView extends ViewGroup
      * @return new right boundary
      */
     protected int layoutRightSide(int height, int topBound, int bottomBound, int rightBound) {
-
-        // Photo is the right most view, set it up
-
-        View photoView = mQuickContact != null ? mQuickContact : mPhotoView;
-        if (photoView != null) {
-            // Center the photo vertically
-            int photoTop = topBound + (bottomBound - topBound - mPhotoViewHeight) / 2;
-            photoView.layout(
-                    rightBound - mPhotoViewWidth,
-                    photoTop,
-                    rightBound,
-                    photoTop + mPhotoViewHeight);
-            rightBound -= (mPhotoViewWidth + mGapBetweenImageAndText);
-        }
-
         // Put call button and vertical divider
         if (isVisible(mCallButton)) {
             int buttonWidth = mCallButton.getMeasuredWidth();
@@ -553,6 +594,8 @@ public class ContactListItemView extends ViewGroup
     public void adjustListItemSelectionBounds(Rect bounds) {
         bounds.top += mBoundsWithoutHeader.top;
         bounds.bottom = bounds.top + mBoundsWithoutHeader.height();
+        bounds.left += mSelectionBoundsMarginLeft;
+        bounds.right -= mSelectionBoundsMarginRight;
     }
 
     protected boolean isVisible(View view) {
@@ -874,7 +917,12 @@ public class ContactListItemView extends ViewGroup
             mLabelView.setSingleLine(true);
             mLabelView.setEllipsize(getTextEllipsis());
             mLabelView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
-            mLabelView.setTypeface(mLabelView.getTypeface(), Typeface.BOLD);
+            if (mPhotoPosition == PhotoPosition.LEFT) {
+                mLabelView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mCountViewTextSize);
+                mLabelView.setAllCaps(true);
+            } else {
+                mLabelView.setTypeface(mLabelView.getTypeface(), Typeface.BOLD);
+            }
             mLabelView.setActivated(isActivated());
             addView(mLabelView);
         }
@@ -1174,5 +1222,45 @@ public class ContactListItemView extends ViewGroup
         // itself, so there is no need to pass the layout request to the parent
         // view (ListView).
         forceLayout();
+    }
+
+    public void setPhotoPosition(PhotoPosition photoPosition) {
+        mPhotoPosition = photoPosition;
+    }
+
+    public PhotoPosition getPhotoPosition() {
+        return mPhotoPosition;
+    }
+
+    /**
+     * Sets custom padding inside this object. Do not use this method without any strong reason.
+     *
+     * Detail: we cannot simply override {@link #setPadding(int, int, int, int)}. {@link View}
+     * does *not* know this view's local padding but has completely different ones.
+     * See View#mPaddingLeft and View#mPaddingRight. View also has View#mUserPaddingLeft, and
+     * View#mUserPaddingRight in addition to View#mPaddingLeft and View#mPaddingRight, to handle
+     * {@link View#setPadding(int, int, int, int)} correctly. If setPadding() is overridden to
+     * reset our {@link #mExtraPaddingLeft} and {@link #mExtraPaddingRight} carelessly, the whole
+     * View layout gets confused.
+     *
+     * To simplify our implementation, this method just modify the local two padding without
+     * confusing its parent.
+     *
+     * If we want to fix this multiple padding issue correctly, we should merge local padding
+     * in this class into View's ones. Also we should remove "list_item_padding_left" and
+     * "list_item_padding_right" attributes, using "android:paddingLeft" and "android:paddingRight".
+     */
+    public void setExtraPadding(int left, int right) {
+        mExtraPaddingLeft = left;
+        mExtraPaddingRight = right;
+    }
+
+    /**
+     * Specifies left and right margin for selection bounds. See also
+     * {@link #adjustListItemSelectionBounds(Rect)}.
+     */
+    public void setSelectionBoundsHorizontalMargin(int left, int right) {
+        mSelectionBoundsMarginLeft = left;
+        mSelectionBoundsMarginRight = right;
     }
 }
