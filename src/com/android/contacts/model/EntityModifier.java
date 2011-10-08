@@ -694,7 +694,7 @@ public class EntityModifier {
 
             ArrayList<ValuesDelta> entries = state.getMimeEntries(mimeType);
 
-            if (kind.isList || GroupMembership.CONTENT_ITEM_TYPE.equals(mimeType)) {
+            if ((kind.typeOverallMax != 1) || GroupMembership.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 // Check for duplicates
                 boolean addEntry = true;
                 int count = 0;
@@ -994,10 +994,7 @@ public class EntityModifier {
             return null;
         }
 
-        int typeOverallMax = kind.typeOverallMax;
-        if (!kind.isList) {
-            typeOverallMax = 1;
-        }
+        final int typeOverallMax = kind.typeOverallMax;
         if (typeOverallMax >= 0 && (mimeEntries.size() > typeOverallMax)) {
             ArrayList<ValuesDelta> newMimeEntries = new ArrayList<ValuesDelta>(typeOverallMax);
             for (int i = 0; i < typeOverallMax; i++) {
@@ -1350,7 +1347,7 @@ public class EntityModifier {
             Log.w(TAG, "Default type isn't available for mimetype " + newDataKind.mimeType);
         }
 
-        final int typeOverallMax = newDataKind.isList ? newDataKind.typeOverallMax : 1;
+        final int typeOverallMax = newDataKind.typeOverallMax;
 
         // key: type, value: the number of current entries.
         final Map<Integer, Integer> currentEntryCount = new HashMap<Integer, Integer>();

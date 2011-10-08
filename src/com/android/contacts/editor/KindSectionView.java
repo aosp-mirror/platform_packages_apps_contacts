@@ -224,7 +224,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     }
 
     protected void updateAddFooterVisible() {
-        if (!mReadOnly && mKind.isList) {
+        if (!mReadOnly && (mKind.typeOverallMax != 1)) {
             // First determine whether there are any existing empty editors.
             updateEmptyEditors();
             // If there are no existing empty editors and it's possible to add
@@ -294,7 +294,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
     public void addItem() {
         ValuesDelta values = null;
         // If this is a list, we can freely add. If not, only allow adding the first.
-        if (!mKind.isList) {
+        if (mKind.typeOverallMax == 1) {
             if (getEditorCount() == 1) {
                 return;
             }

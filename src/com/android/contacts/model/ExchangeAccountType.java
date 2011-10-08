@@ -64,8 +64,7 @@ public class ExchangeAccountType extends BaseAccountType {
     @Override
     protected DataKind addDataKindStructuredName(Context context) {
         DataKind kind = addKind(new DataKind(StructuredName.CONTENT_ITEM_TYPE,
-                R.string.nameLabelsGroup, -1, true,
-                R.layout.structured_name_editor_view, android.R.style.TextAppearance_Medium));
+                R.string.nameLabelsGroup, -1, true, R.layout.structured_name_editor_view));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
 
@@ -94,8 +93,7 @@ public class ExchangeAccountType extends BaseAccountType {
     @Override
     protected DataKind addDataKindDisplayName(Context context) {
         DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME,
-                R.string.nameLabelsGroup, -1, true,
-                R.layout.text_fields_editor_view, android.R.style.TextAppearance_Medium));
+                R.string.nameLabelsGroup, -1, true, R.layout.text_fields_editor_view));
 
         boolean displayOrderPrimary =
                 context.getResources().getBoolean(R.bool.config_editor_field_order_primary);
@@ -128,8 +126,7 @@ public class ExchangeAccountType extends BaseAccountType {
     @Override
     protected DataKind addDataKindPhoneticName(Context context) {
         DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME,
-                R.string.name_phonetic, -1, true,
-                R.layout.phonetic_name_editor_view, android.R.style.TextAppearance_Medium));
+                R.string.name_phonetic, -1, true, R.layout.phonetic_name_editor_view));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
 
@@ -148,7 +145,7 @@ public class ExchangeAccountType extends BaseAccountType {
     protected DataKind addDataKindNickname(Context context) {
         final DataKind kind = super.addDataKindNickname(context);
 
-        kind.isList = false;
+        kind.typeOverallMax = 1;
 
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(new EditField(Nickname.NAME, R.string.nicknameLabelsGroup,
@@ -259,7 +256,7 @@ public class ExchangeAccountType extends BaseAccountType {
     protected DataKind addDataKindOrganization(Context context) {
         final DataKind kind = super.addDataKindOrganization(context);
 
-        kind.isList = false;
+        kind.typeOverallMax = 1;
 
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(new EditField(Organization.COMPANY, R.string.ghostData_company,
@@ -295,11 +292,11 @@ public class ExchangeAccountType extends BaseAccountType {
     protected DataKind addDataKindEvent(Context context) {
         DataKind kind = addKind(
                 new DataKind(Event.CONTENT_ITEM_TYPE, R.string.eventLabelsGroup, 150, true,
-                R.layout.event_field_editor_view, android.R.style.TextAppearance_Medium));
+                R.layout.event_field_editor_view));
         kind.actionHeader = new EventActionInflater();
         kind.actionBody = new SimpleInflater(Event.START_DATE);
 
-        kind.isList = false;
+        kind.typeOverallMax = 1;
 
         kind.typeColumn = Event.TYPE;
         kind.typeList = Lists.newArrayList();
@@ -317,7 +314,7 @@ public class ExchangeAccountType extends BaseAccountType {
     protected DataKind addDataKindWebsite(Context context) {
         final DataKind kind = super.addDataKindWebsite(context);
 
-        kind.isList = false;
+        kind.typeOverallMax = 1;
 
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(new EditField(Website.URL, R.string.websiteLabelsGroup, FLAGS_WEBSITE));

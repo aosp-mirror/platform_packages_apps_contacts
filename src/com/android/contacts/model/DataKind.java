@@ -47,12 +47,6 @@ public class DataKind {
     public int weight;
     public boolean editable;
 
-    /**
-     * If this is true (default), the user can add and remove values.
-     * If false, the editor will always show a single field (which might be empty).
-     */
-    public boolean isList;
-
     public StringInflater actionHeader;
     public StringInflater actionAltHeader;
     public StringInflater actionBody;
@@ -63,7 +57,6 @@ public class DataKind {
 
     /**
      * Maximum number of values allowed in the list. -1 represents infinity.
-     * If {@link DataKind#isList} is false, this value is ignored.
      */
     public int typeOverallMax;
 
@@ -74,9 +67,6 @@ public class DataKind {
 
     /** Layout resource id for an editor view to edit this {@link DataKind}. */
     public final int editorLayoutResourceId;
-
-    /** Text appearance resource id for the value of a field in this {@link DataKind}. */
-    public final int textAppearanceResourceId;
 
     /**
      * If this is a date field, this specifies the format of the date when saving. The
@@ -94,18 +84,15 @@ public class DataKind {
 
     public DataKind() {
         editorLayoutResourceId = R.layout.text_fields_editor_view;
-        textAppearanceResourceId = android.R.style.TextAppearance_Medium;
     }
 
     public DataKind(String mimeType, int titleRes, int weight, boolean editable,
-            int editorLayoutResourceId, int textAppearanceResourceId) {
+            int editorLayoutResourceId) {
         this.mimeType = mimeType;
         this.titleRes = titleRes;
         this.weight = weight;
         this.editable = editable;
-        this.isList = true;
         this.typeOverallMax = -1;
         this.editorLayoutResourceId = editorLayoutResourceId;
-        this.textAppearanceResourceId = textAppearanceResourceId;
     }
 }

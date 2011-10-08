@@ -183,7 +183,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
             } else {
                 fieldView.setMinHeight(mMinFieldHeight);
             }
-            fieldView.setTextAppearance(getContext(), kind.textAppearanceResourceId);
+            fieldView.setTextAppearance(getContext(), android.R.style.TextAppearance_Medium);
             fieldView.setGravity(Gravity.TOP);
             mFieldEditTexts[index] = fieldView;
             fieldView.setId(vig.getId(state, kind, entry, index));
