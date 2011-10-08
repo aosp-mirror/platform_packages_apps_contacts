@@ -19,7 +19,6 @@ package com.android.contacts.editor;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
-import com.android.contacts.test.NeededForTesting;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
@@ -32,6 +31,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,9 +39,6 @@ import java.util.Set;
 
 /**
  * Utility methods for the "account changed" notification in the new contact creation flow.
- *
- * TODO Remove all the "@VisibleForTesting"s once they're actually used in the app.
- *      (Until then we need them to avoid "no such method" in tests)
  */
 public class ContactEditorUtils {
     private static final String TAG = "ContactEditorUtils";
@@ -82,6 +79,18 @@ public class ContactEditorUtils {
                 .remove(KEY_ANYTHING_SAVED).apply();
     }
 
+    void removeDefaultAccountForTest() {
+        mPrefs.edit().remove(KEY_DEFAULT_ACCOUNT).apply();
+    }
+
+    /**
+     * Sets the {@link #KEY_KNOWN_ACCOUNTS} and {@link #KEY_DEFAULT_ACCOUNT} preference values to
+     * empty strings to reset the state of the preferences file.
+     */
+    private void resetPreferenceValues() {
+        mPrefs.edit().putString(KEY_KNOWN_ACCOUNTS, "").putString(KEY_DEFAULT_ACCOUNT, "").apply();
+    }
+
     private List<AccountWithDataSet> getWritableAccounts() {
         return mAccountTypes.getAccounts(true);
     }
@@ -103,15 +112,23 @@ public class ContactEditorUtils {
      * @param defaultAccount the account used to save a newly created contact.  Or pass {@code null}
      *     If the user selected "local only".
      */
-    @NeededForTesting
     public void saveDefaultAndAllAccounts(AccountWithDataSet defaultAccount) {
-        mPrefs.edit()
-                .putBoolean(KEY_ANYTHING_SAVED, true)
-                .putString(
-                        KEY_KNOWN_ACCOUNTS,AccountWithDataSet.stringifyList(getWritableAccounts()))
-                .putString(KEY_DEFAULT_ACCOUNT,
-                        (defaultAccount == null) ? "" : defaultAccount.stringify())
-                .apply();
+        final SharedPreferences.Editor editor = mPrefs.edit()
+                .putBoolean(KEY_ANYTHING_SAVED, true);
+
+        if (defaultAccount == null) {
+            // If the default is "local only", there should be no writable accounts.
+            // This should always be the case with our spec, but because we load the account list
+            // asynchronously using a worker thread, it is possible that there are accounts at this
+            // point. So if the default is null always clear the account list.
+            editor.putString(KEY_KNOWN_ACCOUNTS, "");
+            editor.putString(KEY_DEFAULT_ACCOUNT, "");
+        } else {
+            editor.putString(KEY_KNOWN_ACCOUNTS,
+                    AccountWithDataSet.stringifyList(getWritableAccounts()));
+            editor.putString(KEY_DEFAULT_ACCOUNT, defaultAccount.stringify());
+        }
+        editor.apply();
     }
 
     /**
@@ -123,13 +140,20 @@ public class ContactEditorUtils {
      *
      * Also note that the returned account may have been removed already.
      */
-    @NeededForTesting
     public AccountWithDataSet getDefaultAccount() {
         final String saved = mPrefs.getString(KEY_DEFAULT_ACCOUNT, null);
         if (TextUtils.isEmpty(saved)) {
             return null;
         }
-        return AccountWithDataSet.unstringify(saved);
+        try {
+            return AccountWithDataSet.unstringify(saved);
+        } catch (IllegalArgumentException exception) {
+            Log.e(TAG, "Error with retrieving default account " + exception.toString());
+            // unstringify()can throw an exception if the string is not in an expected format.
+            // Hence, if the preferences file is corrupt, just reset the preference values
+            resetPreferenceValues();
+            return null;
+        }
     }
 
     /**
@@ -153,7 +177,15 @@ public class ContactEditorUtils {
         if (TextUtils.isEmpty(saved)) {
             return EMPTY_ACCOUNTS;
         }
-        return AccountWithDataSet.unstringifyList(saved);
+        try {
+            return AccountWithDataSet.unstringifyList(saved);
+        } catch (IllegalArgumentException exception) {
+            Log.e(TAG, "Error with retrieving saved accounts " + exception.toString());
+            // unstringifyList()can throw an exception if the string is not in an expected format.
+            // Hence, if the preferences file is corrupt, just reset the preference values
+            resetPreferenceValues();
+            return EMPTY_ACCOUNTS;
+        }
     }
 
     /**
@@ -161,12 +193,12 @@ public class ContactEditorUtils {
      * - If it's the first launch.
      * - Or, if an account has been added.
      * - Or, if the default account has been removed.
+     * (And some extra sanity check)
      *
      * Note if this method returns {@code false}, the caller can safely assume that
      * {@link #getDefaultAccount} will return a valid account.  (Either an account which still
      * exists, or {@code null} which should be interpreted as "local only".)
      */
-    @NeededForTesting
     public boolean shouldShowAccountChangedNotification() {
         if (isFirstLaunch()) {
             return true;
@@ -174,14 +206,27 @@ public class ContactEditorUtils {
 
         // Account added?
         final List<AccountWithDataSet> savedAccounts = getSavedAccounts();
-        for (AccountWithDataSet account : getWritableAccounts()) {
+        final List<AccountWithDataSet> currentWritableAccounts = getWritableAccounts();
+        for (AccountWithDataSet account : currentWritableAccounts) {
             if (!savedAccounts.contains(account)) {
                 return true; // New account found.
             }
         }
 
+        final AccountWithDataSet defaultAccount = getDefaultAccount();
+
         // Does default account still exist?
-        if (!isValidAccount(getDefaultAccount())) {
+        if (!isValidAccount(defaultAccount)) {
+            return true;
+        }
+
+        // If there is an inconsistent state in the preferences file - default account is null
+        // ("local" account) while there are multiple accounts, then show the notification dialog.
+        // This shouldn't ever happen, but this should allow the user can get back into a normal
+        // state after they respond to the notification.
+        if (defaultAccount == null && currentWritableAccounts.size() > 0) {
+            Log.e(TAG, "Preferences file in an inconsistent state, request that the default account"
+                    + " and current writable accounts be saved again");
             return true;
         }
 
@@ -207,7 +252,6 @@ public class ContactEditorUtils {
      * {@link Activity#onActivityResult} or {@link android.app.Fragment#onActivityResult} to
      * get the result.
      */
-    @NeededForTesting
     public Intent createAddWritableAccountIntent() {
         return AccountManager.newChooseAccountIntent(
                 null, // selectedAccount
@@ -231,7 +275,6 @@ public class ContactEditorUtils {
      * will never have {@link AccountWithDataSet#dataSet} set, as there's no way to create an
      * extension package account from setup wizard.
      */
-    @NeededForTesting
     public AccountWithDataSet getCreatedAccount(int resultCode, Intent resultData) {
         // Javadoc doesn't say anything about resultCode but that the data intent will be non null
         // on success.
@@ -246,4 +289,3 @@ public class ContactEditorUtils {
         return new AccountWithDataSet(accountName, accountType, null);
     }
 }
-

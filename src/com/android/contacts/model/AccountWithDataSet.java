@@ -150,11 +150,13 @@ public class AccountWithDataSet extends Account {
 
     /**
      * Unpack a string created by {@link #stringify}.
+     *
+     * @throws IllegalArgumentException if it's an invalid string.
      */
     public static AccountWithDataSet unstringify(String s) {
         final String[] array = STRINGIFY_SEPARATOR_PAT.split(s, 3);
         if (array.length < 3) {
-            throw new IllegalArgumentException("Invalid string");
+            throw new IllegalArgumentException("Invalid string " + s);
         }
         return new AccountWithDataSet(array[0], array[1],
                 TextUtils.isEmpty(array[2]) ? null : array[2]);
@@ -178,6 +180,8 @@ public class AccountWithDataSet extends Account {
 
     /**
      * Unpack a list of {@link AccountWithDataSet} into a string.
+     *
+     * @throws IllegalArgumentException if it's an invalid string.
      */
     public static List<AccountWithDataSet> unstringifyList(String s) {
         final ArrayList<AccountWithDataSet> ret = Lists.newArrayList();
