@@ -109,8 +109,7 @@ public class GoogleAccountType extends BaseAccountType {
 
     private DataKind addDataKindRelation(Context context) {
         DataKind kind = addKind(new DataKind(Relation.CONTENT_ITEM_TYPE,
-                R.string.relationLabelsGroup, 160, true,
-                R.layout.text_fields_editor_view, android.R.style.TextAppearance_Medium));
+                R.string.relationLabelsGroup, 160, true, R.layout.text_fields_editor_view));
         kind.actionHeader = new RelationActionInflater();
         kind.actionBody = new SimpleInflater(Relation.NAME);
 
@@ -145,8 +144,7 @@ public class GoogleAccountType extends BaseAccountType {
 
     private DataKind addDataKindEvent(Context context) {
         DataKind kind = addKind(new DataKind(Event.CONTENT_ITEM_TYPE,
-                    R.string.eventLabelsGroup, 150, true,
-                    R.layout.event_field_editor_view, android.R.style.TextAppearance_Medium));
+                    R.string.eventLabelsGroup, 150, true, R.layout.event_field_editor_view));
         kind.actionHeader = new EventActionInflater();
         kind.actionBody = new SimpleInflater(Event.START_DATE);
 

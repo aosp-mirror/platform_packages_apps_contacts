@@ -422,7 +422,7 @@ public class RawContactEditorView extends BaseRawContactEditorView {
                 }
                 DataKind kind = sectionView.getKind();
                 // not a list and already exists? ignore
-                if (!kind.isList && sectionView.getEditorCount() != 0) {
+                if ((kind.typeOverallMax == 1) && sectionView.getEditorCount() != 0) {
                     continue;
                 }
                 if (DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME.equals(kind.mimeType)) {
