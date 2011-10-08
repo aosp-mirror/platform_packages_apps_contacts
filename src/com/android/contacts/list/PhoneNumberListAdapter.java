@@ -71,6 +71,8 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     private int mDisplayNameColumnIndex;
     private int mAlternativeDisplayNameColumnIndex;
 
+    private ContactListItemView.PhotoPosition mPhotoPosition;
+
     public PhoneNumberListAdapter(Context context) {
         super(context);
 
@@ -217,6 +219,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         final ContactListItemView view = new ContactListItemView(context, null);
         view.setUnknownNameText(mUnknownNameText);
         view.setQuickContactEnabled(isQuickContactEnabled());
+        view.setPhotoPosition(mPhotoPosition);
         return view;
     }
 
@@ -314,5 +317,13 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         }
 
         getPhotoLoader().loadPhoto(view.getPhotoView(), photoId, false, false);
+    }
+
+    public void setPhotoPosition(ContactListItemView.PhotoPosition photoPosition) {
+        mPhotoPosition = photoPosition;
+    }
+
+    public ContactListItemView.PhotoPosition getPhotoPosition() {
+        return mPhotoPosition;
     }
 }

@@ -27,6 +27,7 @@ import com.android.contacts.list.ContactListFilterController.ContactListFilterLi
 import com.android.contacts.list.ContactTileAdapter.DisplayType;
 import com.android.contacts.list.ContactTileListFragment;
 import com.android.contacts.list.OnPhoneNumberPickerActionListener;
+import com.android.contacts.list.PhoneFavoriteFragment;
 import com.android.contacts.list.PhoneNumberPickerFragment;
 import com.android.internal.telephony.ITelephony;
 
@@ -120,7 +121,7 @@ public class DialtactsActivity extends Activity {
     public class ViewPagerAdapter extends FragmentPagerAdapter {
         private DialpadFragment mDialpadFragment;
         private CallLogFragment mCallLogFragment;
-        private ContactTileListFragment mContactTileListFragment;
+        private PhoneFavoriteFragment mPhoneFavoriteFragment;
 
         public ViewPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -140,10 +141,10 @@ public class DialtactsActivity extends Activity {
                     }
                     return mCallLogFragment;
                 case TAB_INDEX_FAVORITES:
-                    if (mContactTileListFragment == null) {
-                        mContactTileListFragment = new ContactTileListFragment();
+                    if (mPhoneFavoriteFragment == null) {
+                        mPhoneFavoriteFragment = new PhoneFavoriteFragment();
                     }
-                    return mContactTileListFragment;
+                    return mPhoneFavoriteFragment;
             }
             throw new IllegalStateException("No fragment at position " + position);
         }
@@ -206,14 +207,13 @@ public class DialtactsActivity extends Activity {
     }
 
     private String mFilterText;
-    private Uri mDialUri;
 
     /** Enables horizontal swipe between Fragments. */
     private ViewPager mViewPager;
     private final PageChangeListener mPageChangeListener = new PageChangeListener();
     private DialpadFragment mDialpadFragment;
     private CallLogFragment mCallLogFragment;
-    private ContactTileListFragment mStrequentFragment;
+    private PhoneFavoriteFragment mPhoneFavoriteFragment;
 
     private final TabListener mTabListener = new TabListener() {
         @Override
@@ -373,13 +373,23 @@ public class DialtactsActivity extends Activity {
         mContactListFilterController.addListener(new ContactListFilterListener() {
             @Override
             public void onContactListFilterChanged() {
-                if (mSearchFragment == null || !mSearchFragment.isAdded()) {
-                    Log.w(TAG, "Search Fragment isn't available when ContactListFilter is changed");
-                    return;
-                }
-                mSearchFragment.setFilter(mContactListFilterController.getFilter());
+                boolean doInvalidateOptionsMenu = false;
 
-                invalidateOptionsMenu();
+                if (mPhoneFavoriteFragment != null && mPhoneFavoriteFragment.isAdded()) {
+                    mPhoneFavoriteFragment.setFilter(mContactListFilterController.getFilter());
+                    doInvalidateOptionsMenu = true;
+                }
+
+                if (mSearchFragment != null && mSearchFragment.isAdded()) {
+                    mSearchFragment.setFilter(mContactListFilterController.getFilter());
+                    doInvalidateOptionsMenu = true;
+                } else {
+                    Log.w(TAG, "Search Fragment isn't available when ContactListFilter is changed");
+                }
+
+                if (doInvalidateOptionsMenu) {
+                    invalidateOptionsMenu();
+                }
             }
         });
 
@@ -423,6 +433,9 @@ public class DialtactsActivity extends Activity {
         // ContactListFilterController and they should be able to receive filter change event
         // from the same controller (Bug 5165507)
         mContactListFilterController.onStart(true);
+        if (mPhoneFavoriteFragment != null) {
+            mPhoneFavoriteFragment.setFilter(mContactListFilterController.getFilter());
+        }
         if (mSearchFragment != null) {
             mSearchFragment.setFilter(mContactListFilterController.getFilter());
         }
@@ -480,11 +493,13 @@ public class DialtactsActivity extends Activity {
             if (currentPosition == TAB_INDEX_CALL_LOG) {
                 mCallLogFragment.onVisibilityChanged(true);
             }
-        } else if (fragment instanceof ContactTileListFragment) {
-            mStrequentFragment = (ContactTileListFragment) fragment;
-            mStrequentFragment.enableQuickContact(false);
-            mStrequentFragment.setListener(mStrequentListener);
-            mStrequentFragment.setDisplayType(DisplayType.STREQUENT_PHONE_ONLY);
+        } else if (fragment instanceof PhoneFavoriteFragment) {
+            mPhoneFavoriteFragment = (PhoneFavoriteFragment) fragment;
+            mPhoneFavoriteFragment.setListener(mPhoneFavoriteListener);
+            if (mContactListFilterController != null
+                    && mContactListFilterController.getFilter() != null) {
+                mPhoneFavoriteFragment.setFilter(mContactListFilterController.getFilter());
+            }
         } else if (fragment instanceof PhoneNumberPickerFragment) {
             mSearchFragment = (PhoneNumberPickerFragment) fragment;
             mSearchFragment.setOnPhoneNumberPickerActionListener(mPhoneNumberPickerActionListener);
@@ -699,8 +714,8 @@ public class DialtactsActivity extends Activity {
         }
     };
 
-    private ContactTileListFragment.Listener mStrequentListener =
-            new ContactTileListFragment.Listener() {
+    private PhoneFavoriteFragment.Listener mPhoneFavoriteListener =
+            new PhoneFavoriteFragment.Listener() {
         @Override
         public void onContactSelected(Uri contactUri) {
             PhoneNumberInteraction.startInteractionForPhoneCall(
@@ -750,7 +765,13 @@ public class DialtactsActivity extends Activity {
                 searchMenuItem.setOnMenuItemClickListener(mSearchMenuItemClickListener);
                 showCallSettingsMenu = true;
             }
-            filterOptionMenuItem.setVisible(false);
+            if (tab != null && tab.getPosition() == TAB_INDEX_FAVORITES) {
+                filterOptionMenuItem.setVisible(true);
+                filterOptionMenuItem.setOnMenuItemClickListener(
+                        mFilterOptionsMenuItemClickListener);
+            } else {
+                filterOptionMenuItem.setVisible(false);
+            }
             addContactOptionMenuItem.setVisible(false);
 
             if (showCallSettingsMenu) {
@@ -814,9 +835,6 @@ public class DialtactsActivity extends Activity {
         // layout instead of asking the search menu item to take care of SearchView.
         mSearchView.onActionViewExpanded();
         mInSearchUi = true;
-
-        // Clear focus and suppress keyboard show-up.
-        mSearchView.clearFocus();
     }
 
     private void showInputMethod(View view) {
@@ -872,7 +890,7 @@ public class DialtactsActivity extends Activity {
             case TAB_INDEX_CALL_LOG:
                 return mCallLogFragment;
             case TAB_INDEX_FAVORITES:
-                return mStrequentFragment;
+                return mPhoneFavoriteFragment;
             default:
                 throw new IllegalStateException("Unknown fragment index: " + position);
         }

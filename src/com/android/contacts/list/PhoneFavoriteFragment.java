@@ -1,0 +1,436 @@
+/*
+ * Copyright (C) 2011 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.android.contacts.list;
+
+import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.ContactTileLoaderFactory;
+import com.android.contacts.R;
+import com.android.contacts.preference.ContactsPreferences;
+
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.LoaderManager;
+import android.content.Context;
+import android.content.CursorLoader;
+import android.content.Intent;
+import android.content.Loader;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.Directory;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+import android.widget.TextView;
+
+/**
+ * Fragment for Phone UI's favorite screen.
+ *
+ * This fragment contains three kinds of contacts in one screen: "starred", "frequent", and "all"
+ * contacts. To show them at once, this merges results from {@link ContactTileAdapter} and
+ * {@link PhoneNumberListAdapter} into one unified list using {@link PhoneFavoriteMergedAdapter}.
+ * A contact filter header is also inserted between those adapters' results.
+ */
+public class PhoneFavoriteFragment extends Fragment implements OnItemClickListener {
+    private static final String TAG = PhoneFavoriteFragment.class.getSimpleName();
+    private static final boolean DEBUG = false;
+
+    /**
+     * Used with LoaderManager.
+     */
+    private static int LOADER_ID_CONTACT_TILE = 1;
+    private static int LOADER_ID_ALL_CONTACTS = 2;
+
+    private static final String KEY_FILTER = "filter";
+
+    public interface Listener {
+        public void onContactSelected(Uri contactUri);
+    }
+
+    private class ContactTileLoaderListener implements LoaderManager.LoaderCallbacks<Cursor> {
+        @Override
+        public CursorLoader onCreateLoader(int id, Bundle args) {
+            if (DEBUG) Log.d(TAG, "ContactTileLoaderListener#onCreateLoader.");
+            return ContactTileLoaderFactory.createStrequentPhoneOnlyLoader(getActivity());
+        }
+
+        @Override
+        public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+            if (DEBUG) Log.d(TAG, "ContactTileLoaderListener#onLoadFinished");
+            mContactTileAdapter.setContactCursor(data);
+
+            if (mAllContactsForceReload) {
+                mAllContactsAdapter.onDataReload();
+                // Use restartLoader() to make LoaderManager to load the section again.
+                getLoaderManager().restartLoader(
+                        LOADER_ID_ALL_CONTACTS, null, mAllContactsLoaderListener);
+            } else if (!mAllContactsLoaderStarted) {
+                // Load "all" contacts if not loaded yet.
+                getLoaderManager().initLoader(
+                        LOADER_ID_ALL_CONTACTS, null, mAllContactsLoaderListener);
+            }
+            mAllContactsForceReload = false;
+            mAllContactsLoaderStarted = true;
+
+            // Show the filter header with "loading" state.
+            updateFilterHeaderView();
+            mAccountFilterHeaderContainer.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        public void onLoaderReset(Loader<Cursor> loader) {
+            if (DEBUG) Log.d(TAG, "ContactTileLoaderListener#onLoaderReset. ");
+        }
+    }
+
+    private class AllContactsLoaderListener implements LoaderManager.LoaderCallbacks<Cursor> {
+        @Override
+        public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+            if (DEBUG) Log.d(TAG, "AllContactsLoaderListener#onCreateLoader");
+            CursorLoader loader = new CursorLoader(getActivity(), null, null, null, null, null);
+            mAllContactsAdapter.configureLoader(loader, Directory.DEFAULT);
+            return loader;
+        }
+
+        @Override
+        public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+            if (DEBUG) Log.d(TAG, "AllContactsLoaderListener#onLoadFinished");
+            mAllContactsAdapter.changeCursor(0, data);
+            updateFilterHeaderView();
+            mAccountFilterHeaderContainer.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        public void onLoaderReset(Loader<Cursor> loader) {
+            if (DEBUG) Log.d(TAG, "AllContactsLoaderListener#onLoaderReset. ");
+        }
+    }
+
+    private class ContactTileAdapterListener implements ContactTileAdapter.Listener {
+        @Override
+        public void onContactSelected(Uri contactUri) {
+            if (mListener != null) {
+                mListener.onContactSelected(contactUri);
+            }
+        }
+    }
+
+    private class FilterHeaderClickListener implements OnClickListener {
+        @Override
+        public void onClick(View view) {
+            final Activity activity = getActivity();
+            if (activity != null) {
+                final Intent intent = new Intent(activity, AccountFilterActivity.class);
+                activity.startActivityForResult(
+                        intent, AccountFilterActivity.DEFAULT_REQUEST_CODE);
+            }
+        }
+    }
+
+    private class ContactsPreferenceChangeListener
+            implements ContactsPreferences.ChangeListener {
+        @Override
+        public void onChange() {
+            if (loadContactsPreferences()) {
+                requestReloadAllContacts();
+            }
+        }
+    }
+
+    private Listener mListener;
+    private PhoneFavoriteMergedAdapter mAdapter;
+    private ContactTileAdapter mContactTileAdapter;
+    private PhoneNumberListAdapter mAllContactsAdapter;
+
+    /**
+     * true when the loader for {@link PhoneNumberListAdapter} has started already.
+     */
+    private boolean mAllContactsLoaderStarted;
+    /**
+     * true when the loader for {@link PhoneNumberListAdapter} must reload "all" contacts again.
+     * It typically happens when {@link ContactsPreferences} has changed its settings
+     * (display order and sort order)
+     */
+    private boolean mAllContactsForceReload;
+
+    private SharedPreferences mPrefs;
+    private ContactsPreferences mContactsPrefs;
+    private ContactListFilter mFilter;
+
+    private TextView mEmptyView;
+    private ListView mListView;
+    private View mAccountFilterHeaderContainer;
+    private TextView mAccountFilterHeaderView;
+
+    private final ContactTileAdapter.Listener mContactTileAdapterListener =
+            new ContactTileAdapterListener();
+    private final LoaderManager.LoaderCallbacks<Cursor> mContactTileLoaderListener =
+            new ContactTileLoaderListener();
+    private final LoaderManager.LoaderCallbacks<Cursor> mAllContactsLoaderListener =
+            new AllContactsLoaderListener();
+    private final OnClickListener mFilterHeaderClickListener = new FilterHeaderClickListener();
+    private final ContactsPreferenceChangeListener mContactsPreferenceChangeListener =
+            new ContactsPreferenceChangeListener();
+
+    @Override
+    public void onCreate(Bundle savedState) {
+        super.onCreate(savedState);
+        if (savedState != null) {
+            mFilter = savedState.getParcelable(KEY_FILTER);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(KEY_FILTER, mFilter);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        mContactsPrefs = new ContactsPreferences(activity);
+
+        // Create the account filter header but keep it hidden until "all" contacts are loaded.
+        mAccountFilterHeaderContainer = View.inflate(
+                activity, R.layout.account_filter_header, null);
+        mAccountFilterHeaderView =
+                (TextView) mAccountFilterHeaderContainer.findViewById(R.id.account_filter_header);
+        mAccountFilterHeaderContainer.setOnClickListener(mFilterHeaderClickListener);
+        mAccountFilterHeaderContainer.setVisibility(View.GONE);
+
+        initAdapters(activity);
+
+        mAllContactsAdapter.setFilter(mFilter);
+        mAllContactsForceReload = true;
+        updateFilterHeaderView();
+    }
+
+    /**
+     * Constructs and initializes {@link #mContactTileAdapter}, {@link #mAllContactsAdapter}, and
+     * {@link #mAllContactsAdapter}.
+     */
+    private void initAdapters(Context context) {
+        mContactTileAdapter = new ContactTileAdapter(context, mContactTileAdapterListener,
+                getResources().getInteger(R.integer.contact_tile_column_count),
+                ContactTileAdapter.DisplayType.STREQUENT_PHONE_ONLY);
+        mContactTileAdapter.setPhotoLoader(ContactPhotoManager.getInstance(context));
+
+        // Setup the "all" adapter manually. See also the setup logic in ContactEntryListFragment.
+        mAllContactsAdapter = new PhoneNumberListAdapter(context);
+        mAllContactsAdapter.setDisplayPhotos(true);
+        mAllContactsAdapter.setQuickContactEnabled(true);
+        mAllContactsAdapter.setSearchMode(false);
+        mAllContactsAdapter.setIncludeProfile(false);
+        mAllContactsAdapter.setSelectionVisible(false);
+        mAllContactsAdapter.setDarkTheme(true);
+        mAllContactsAdapter.setPhotoLoader(ContactPhotoManager.getInstance(context));
+        // Disable directory header.
+        mAllContactsAdapter.setHasHeader(0, false);
+        // Show A-Z section index.
+        mAllContactsAdapter.setSectionHeaderDisplayEnabled(true);
+        // Disable pinned header. It doesn't work with this fragment.
+        mAllContactsAdapter.setPinnedPartitionHeadersEnabled(false);
+        // Put photos on left for consistency with "frequent" contacts section.
+        mAllContactsAdapter.setPhotoPosition(ContactListItemView.PhotoPosition.LEFT);
+
+        mAdapter = new PhoneFavoriteMergedAdapter(
+                context, mContactTileAdapter, mAccountFilterHeaderContainer, mAllContactsAdapter);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mPrefs = null;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        final View listLayout = inflater.inflate(R.layout.contact_tile_list, container, false);
+
+        mListView = (ListView) listLayout.findViewById(R.id.contact_tile_list);
+
+        mListView.setItemsCanFocus(true);
+        mListView.setAdapter(mAdapter);
+        mListView.setOnItemClickListener(this);
+        mListView.setFastScrollEnabled(true);
+        // We want to hide the scroll bar after a while.
+        mListView.setFastScrollAlwaysVisible(false);
+        mListView.setVerticalScrollBarEnabled(true);
+        mListView.setVerticalScrollbarPosition(View.SCROLLBAR_POSITION_RIGHT);
+        mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
+
+        mEmptyView = (TextView) listLayout.findViewById(R.id.contact_tile_list_empty);
+        mEmptyView.setText(getString(R.string.listTotalAllContactsZero));
+        mListView.setEmptyView(mEmptyView);
+
+        updateFilterHeaderView();
+
+        return listLayout;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        mContactsPrefs.registerChangeListener(mContactsPreferenceChangeListener);
+
+        // If ContactsPreferences has changed, we need to reload "all" contacts with the new
+        // settings. If mAllContactsFoarceReload is already true, it should be kept.
+        if (loadContactsPreferences()) {
+            mAllContactsForceReload = true;
+        }
+
+        // Use initLoader() instead of reloadLoader() to refraing unnecessary reload.
+        // This method call implicitly assures ContactTileLoaderListener's onLoadFinished() will
+        // be called, on which we'll check if "all" contacts should be reloaded again or not.
+        getLoaderManager().initLoader(LOADER_ID_CONTACT_TILE, null, mContactTileLoaderListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mContactsPrefs.unregisterChangeListener();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * This is only effective for elements provided by {@link #mContactTileAdapter}.
+     * {@link #mContactTileAdapter} has its own logic for click events.
+     */
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        final int contactTileAdapterCount = mContactTileAdapter.getCount();
+        if (position <= contactTileAdapterCount) {
+            Log.e(TAG, "onItemClick() event for unexpected position. "
+                    + "The position " + position + " is before \"all\" section. Ignored.");
+        } else {
+            final int localPosition = position - mContactTileAdapter.getCount() - 1;
+            if (mListener != null) {
+                mListener.onContactSelected(mAllContactsAdapter.getDataUri(localPosition));
+            }
+        }
+    }
+
+    private boolean loadContactsPreferences() {
+        if (mContactsPrefs == null || mAllContactsAdapter == null) {
+            return false;
+        }
+
+        boolean changed = false;
+        if (mAllContactsAdapter.getContactNameDisplayOrder() != mContactsPrefs.getDisplayOrder()) {
+            mAllContactsAdapter.setContactNameDisplayOrder(mContactsPrefs.getDisplayOrder());
+            changed = true;
+        }
+
+        if (mAllContactsAdapter.getSortOrder() != mContactsPrefs.getSortOrder()) {
+            mAllContactsAdapter.setSortOrder(mContactsPrefs.getSortOrder());
+            changed = true;
+        }
+
+        return changed;
+    }
+
+    /**
+     * Requests to reload "all" contacts. If the section is already loaded, this method will
+     * force reloading it now. If the section isn't loaded yet, the actual load may be done later
+     * (on {@link #onStart()}.
+     */
+    private void requestReloadAllContacts() {
+        if (DEBUG) {
+            Log.d(TAG, "requestReloadAllContacts()"
+                    + " mAllContactsAdapter: " + mAllContactsAdapter
+                    + ", mAllContactsLoaderStarted: " + mAllContactsLoaderStarted);
+        }
+
+        if (mAllContactsAdapter == null || !mAllContactsLoaderStarted) {
+            // Remember this request until next load on onStart().
+            mAllContactsForceReload = true;
+            return;
+        }
+
+        if (DEBUG) Log.d(TAG, "Reload \"all\" contacts now.");
+
+        mAllContactsAdapter.onDataReload();
+        // Use restartLoader() to make LoaderManager to load the section again.
+        getLoaderManager().restartLoader(LOADER_ID_ALL_CONTACTS, null, mAllContactsLoaderListener);
+    }
+
+    private void updateFilterHeaderView() {
+        if (mAccountFilterHeaderContainer == null || mAllContactsAdapter == null) {
+            return;
+        }
+
+        final ContactListFilter filter = getFilter();
+        if (mAllContactsAdapter.isLoading()) {
+            mAccountFilterHeaderView.setText(R.string.contact_list_loading);
+        } else if (filter != null) {
+            if (filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
+                mAccountFilterHeaderView.setText(R.string.list_filter_phones);
+            } else if (filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
+                mAccountFilterHeaderView.setText(getString(
+                        R.string.listAllContactsInAccount, filter.accountName));
+            } else if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
+                mAccountFilterHeaderView.setText(R.string.listCustomView);
+            } else {
+                Log.w(TAG, "Filter type \"" + filter.filterType + "\" isn't expected.");
+            }
+        } else {
+            Log.w(TAG, "Filter is null.");
+        }
+    }
+
+    public ContactListFilter getFilter() {
+        return mFilter;
+    }
+
+    public void setFilter(ContactListFilter filter) {
+        if ((mFilter == null && filter == null) || (mFilter != null && mFilter.equals(filter))) {
+            return;
+        }
+
+        if (DEBUG) {
+            Log.d(TAG, "setFilter(). old filter (" + mFilter
+                    + ") will be replaced with new filter (" + filter + ")");
+        }
+
+        mFilter = filter;
+        if (mPrefs != null) {
+            // Save the preference now.
+            ContactListFilter.storeToPreferences(mPrefs, mFilter);
+        }
+
+        mAllContactsAdapter.setFilter(mFilter);
+        requestReloadAllContacts();
+        updateFilterHeaderView();
+    }
+
+    public void setListener(Listener listener) {
+        mListener = listener;
+    }
+}
