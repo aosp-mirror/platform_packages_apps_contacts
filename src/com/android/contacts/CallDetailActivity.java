@@ -19,6 +19,8 @@ package com.android.contacts;
 import com.android.contacts.BackScrollManager.ScrollableHeader;
 import com.android.contacts.calllog.CallDetailHistoryAdapter;
 import com.android.contacts.calllog.CallTypeHelper;
+import com.android.contacts.calllog.ContactInfo;
+import com.android.contacts.calllog.ContactInfoHelper;
 import com.android.contacts.calllog.PhoneNumberHelper;
 import com.android.contacts.util.AsyncTaskExecutor;
 import com.android.contacts.util.AsyncTaskExecutors;
@@ -44,7 +46,6 @@ import android.provider.CallLog.Calls;
 import android.provider.Contacts.Intents.Insert;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.PhoneLookup;
 import android.provider.VoicemailContract.Voicemails;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
@@ -101,6 +102,7 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
     private ImageButton mMainActionPushLayerView;
     private ImageView mContactBackgroundView;
     private AsyncTaskExecutor mAsyncTaskExecutor;
+    private ContactInfoHelper mContactInfoHelper;
 
     private String mNumber = null;
     private String mDefaultCountryIso;
@@ -191,25 +193,6 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
     static final int COUNTRY_ISO_COLUMN_INDEX = 4;
     static final int GEOCODED_LOCATION_COLUMN_INDEX = 5;
 
-    static final String[] PHONES_PROJECTION = new String[] {
-        PhoneLookup._ID,
-        PhoneLookup.DISPLAY_NAME,
-        PhoneLookup.TYPE,
-        PhoneLookup.LABEL,
-        PhoneLookup.NUMBER,
-        PhoneLookup.NORMALIZED_NUMBER,
-        PhoneLookup.PHOTO_URI,
-        PhoneLookup.LOOKUP_KEY,
-    };
-    static final int COLUMN_INDEX_ID = 0;
-    static final int COLUMN_INDEX_NAME = 1;
-    static final int COLUMN_INDEX_TYPE = 2;
-    static final int COLUMN_INDEX_LABEL = 3;
-    static final int COLUMN_INDEX_NUMBER = 4;
-    static final int COLUMN_INDEX_NORMALIZED_NUMBER = 5;
-    static final int COLUMN_INDEX_PHOTO_URI = 6;
-    static final int COLUMN_INDEX_LOOKUP_KEY = 7;
-
     private final View.OnClickListener mPrimaryActionListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -251,6 +234,7 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
         mDefaultCountryIso = ContactsUtils.getCurrentCountryIso(this);
         mContactPhotoManager = ContactPhotoManager.getInstance(this);
         mProximitySensorManager = new ProximitySensorManager(this, mProximitySensorListener);
+        mContactInfoHelper = new ContactInfoHelper(this, ContactsUtils.getCurrentCountryIso(this));
         configureActionBar();
         optionallyHandleVoicemail();
     }
@@ -570,53 +554,36 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
             }
 
             // Formatted phone number.
-            final CharSequence numberText;
+            final CharSequence formattedNumber;
             // Read contact specifics.
-            CharSequence nameText = "";
-            int numberType = 0;
-            CharSequence numberLabel = "";
-            Uri photoUri = null;
-            Uri contactUri = null;
+            final CharSequence nameText;
+            final int numberType;
+            final CharSequence numberLabel;
+            final Uri photoUri;
+            final Uri lookupUri;
             // If this is not a regular number, there is no point in looking it up in the contacts.
-            if (!mPhoneNumberHelper.canPlaceCallsTo(number)) {
-                numberText = mPhoneNumberHelper.getDisplayNumber(number, null);
+            ContactInfo info =
+                    mPhoneNumberHelper.canPlaceCallsTo(number)
+                            ? mContactInfoHelper.lookupNumber(number, countryIso)
+                            : null;
+            if (info == null) {
+                formattedNumber = mPhoneNumberHelper.getDisplayNumber(number, null);
+                nameText = "";
+                numberType = 0;
+                numberLabel = "";
+                photoUri = null;
+                lookupUri = null;
             } else {
-                // Perform a reverse-phonebook lookup to find the contact details.
-                Uri phoneUri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI,
-                        Uri.encode(number));
-                Cursor phonesCursor = resolver.query(phoneUri, PHONES_PROJECTION, null, null, null);
-                String candidateNumberText = number;
-                try {
-                    if (phonesCursor != null && phonesCursor.moveToFirst()) {
-                        nameText = phonesCursor.getString(COLUMN_INDEX_NAME);
-                        String photoUriString = phonesCursor.getString(COLUMN_INDEX_PHOTO_URI);
-                        photoUri = photoUriString == null ? null : Uri.parse(photoUriString);
-                        candidateNumberText = PhoneNumberUtils.formatNumber(
-                                phonesCursor.getString(COLUMN_INDEX_NUMBER),
-                                phonesCursor.getString(COLUMN_INDEX_NORMALIZED_NUMBER),
-                                countryIso);
-                        numberType = phonesCursor.getInt(COLUMN_INDEX_TYPE);
-                        numberLabel = phonesCursor.getString(COLUMN_INDEX_LABEL);
-                        long personId = phonesCursor.getLong(COLUMN_INDEX_ID);
-                        if (personId > 0) {
-                            contactUri = Contacts.getLookupUri(personId,
-                                    phonesCursor.getString(COLUMN_INDEX_LOOKUP_KEY));
-                        }
-                    } else {
-                        // We could not find this contact in the contacts, just format the phone
-                        // number as best as we can. All the other fields will have their default
-                        // values.
-                        candidateNumberText =
-                                PhoneNumberUtils.formatNumber(number, countryIso);
-                    }
-                } finally {
-                    if (phonesCursor != null) phonesCursor.close();
-                    numberText = candidateNumberText;
-                }
+                formattedNumber = info.formattedNumber;
+                nameText = info.name;
+                numberType = info.type;
+                numberLabel = info.label;
+                photoUri = info.photoUri;
+                lookupUri = info.lookupUri;
             }
-            return new PhoneCallDetails(number, numberText, countryIso, geocode,
+            return new PhoneCallDetails(number, formattedNumber, countryIso, geocode,
                     new int[]{ callType }, date, duration,
-                    nameText, numberType, numberLabel, contactUri, photoUri);
+                    nameText, numberType, numberLabel, lookupUri, photoUri);
         } finally {
             if (callCursor != null) {
                 callCursor.close();

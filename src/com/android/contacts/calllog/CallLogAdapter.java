@@ -33,11 +33,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.CallLog.Calls;
-import android.provider.ContactsContract.CommonDataKinds.SipAddress;
-import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.PhoneLookup;
-import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,7 +61,7 @@ public class CallLogAdapter extends GroupingListAdapter
     private static final int CONTACT_INFO_CACHE_SIZE = 100;
 
     private final Context mContext;
-    private final String mCurrentCountryIso;
+    private final ContactInfoHelper mContactInfoHelper;
     private final CallFetcher mCallFetcher;
 
     /**
@@ -198,12 +194,12 @@ public class CallLogAdapter extends GroupingListAdapter
     };
 
     public CallLogAdapter(Context context, CallFetcher callFetcher,
-            String currentCountryIso, String voicemailNumber) {
+            ContactInfoHelper contactInfoHelper, String voicemailNumber) {
         super(context);
 
         mContext = context;
-        mCurrentCountryIso = currentCountryIso;
         mCallFetcher = callFetcher;
+        mContactInfoHelper = contactInfoHelper;
 
         mContactInfoCache = ExpirableCache.create(CONTACT_INFO_CACHE_SIZE);
         mRequests = new LinkedList<ContactInfoRequest>();
@@ -305,134 +301,6 @@ public class CallLogAdapter extends GroupingListAdapter
     }
 
     /**
-     * Determines the contact information for the given SIP address.
-     * <p>
-     * It returns the contact info if found.
-     * <p>
-     * If no contact corresponds to the given SIP address, returns {@link ContactInfo#EMPTY}.
-     * <p>
-     * If the lookup fails for some other reason, it returns null.
-     */
-    private ContactInfo queryContactInfoForSipAddress(String sipAddress) {
-        final ContactInfo info;
-
-        // TODO: This code is duplicated from the
-        // CallerInfoAsyncQuery class.  To avoid that, could the
-        // code here just use CallerInfoAsyncQuery, rather than
-        // manually running ContentResolver.query() itself?
-
-        // We look up SIP addresses directly in the Data table:
-        Uri contactRef = Data.CONTENT_URI;
-
-        // Note Data.DATA1 and SipAddress.SIP_ADDRESS are equivalent.
-        //
-        // Also note we use "upper(data1)" in the WHERE clause, and
-        // uppercase the incoming SIP address, in order to do a
-        // case-insensitive match.
-        //
-        // TODO: May also need to normalize by adding "sip:" as a
-        // prefix, if we start storing SIP addresses that way in the
-        // database.
-        String selection = "upper(" + Data.DATA1 + ")=?"
-                + " AND "
-                + Data.MIMETYPE + "='" + SipAddress.CONTENT_ITEM_TYPE + "'";
-        String[] selectionArgs = new String[] { sipAddress.toUpperCase() };
-
-        Cursor dataTableCursor =
-                mContext.getContentResolver().query(
-                        contactRef,
-                        null,  // projection
-                        selection,  // selection
-                        selectionArgs,  // selectionArgs
-                        null);  // sortOrder
-
-        if (dataTableCursor != null) {
-            if (dataTableCursor.moveToFirst()) {
-                info = new ContactInfo();
-
-                // TODO: we could slightly speed this up using an
-                // explicit projection (and thus not have to do
-                // those getColumnIndex() calls) but the benefit is
-                // very minimal.
-
-                // Note the Data.CONTACT_ID column here is
-                // equivalent to the PERSON_ID_COLUMN_INDEX column
-                // we use with "phonesCursor" below.
-                long contactId = dataTableCursor.getLong(
-                        dataTableCursor.getColumnIndex(Data.CONTACT_ID));
-                String lookupKey = dataTableCursor.getString(
-                        dataTableCursor.getColumnIndex(Data.LOOKUP_KEY));
-                info.lookupUri = Contacts.getLookupUri(contactId, lookupKey);
-                info.name = dataTableCursor.getString(
-                        dataTableCursor.getColumnIndex(Data.DISPLAY_NAME));
-                // "type" and "label" are currently unused for SIP addresses
-                info.type = SipAddress.TYPE_OTHER;
-                info.label = null;
-
-                // And "number" is the SIP address.
-                // Note Data.DATA1 and SipAddress.SIP_ADDRESS are equivalent.
-                info.number = dataTableCursor.getString(dataTableCursor.getColumnIndex(Data.DATA1));
-                info.normalizedNumber = null;  // meaningless for SIP addresses
-                info.photoId = dataTableCursor.getLong(
-                        dataTableCursor.getColumnIndex(Data.PHOTO_ID));
-                info.formattedNumber = null;  // meaningless for SIP addresses
-            } else {
-                info = ContactInfo.EMPTY;
-            }
-            dataTableCursor.close();
-        } else {
-            // Failed to fetch the data, ignore this request.
-            info = null;
-        }
-        return info;
-    }
-
-    /**
-     * Determines the contact information for the given phone number.
-     * <p>
-     * It returns the contact info if found.
-     * <p>
-     * If no contact corresponds to the given phone number, returns {@link ContactInfo#EMPTY}.
-     * <p>
-     * If the lookup fails for some other reason, it returns null.
-     */
-    private ContactInfo queryContactInfoForPhoneNumber(String number, String countryIso) {
-        final ContactInfo info;
-
-        // "number" is a regular phone number, so use the
-        // PhoneLookup table:
-        Cursor phonesCursor =
-                mContext.getContentResolver().query(
-                    Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI,
-                            Uri.encode(number)),
-                            PhoneQuery._PROJECTION, null, null, null);
-        if (phonesCursor != null) {
-            if (phonesCursor.moveToFirst()) {
-                info = new ContactInfo();
-                long contactId = phonesCursor.getLong(PhoneQuery.PERSON_ID);
-                String lookupKey = phonesCursor.getString(PhoneQuery.LOOKUP_KEY);
-                info.lookupUri = Contacts.getLookupUri(contactId, lookupKey);
-                info.name = phonesCursor.getString(PhoneQuery.NAME);
-                info.type = phonesCursor.getInt(PhoneQuery.PHONE_TYPE);
-                info.label = phonesCursor.getString(PhoneQuery.LABEL);
-                info.number = phonesCursor.getString(PhoneQuery.MATCHED_NUMBER);
-                info.normalizedNumber = phonesCursor.getString(PhoneQuery.NORMALIZED_NUMBER);
-                info.photoId = phonesCursor.getLong(PhoneQuery.PHOTO_ID);
-                info.formattedNumber = formatPhoneNumber(info.number, info.formattedNumber,
-                        countryIso);
-
-            } else {
-                info = ContactInfo.EMPTY;
-            }
-            phonesCursor.close();
-        } else {
-            // Failed to fetch the data, ignore this request.
-            info = null;
-        }
-        return info;
-    }
-
-    /**
      * Queries the appropriate content provider for the contact associated with the number.
      * <p>
      * Upon completion it also updates the cache in the call log, if it is different from
@@ -444,53 +312,25 @@ public class CallLogAdapter extends GroupingListAdapter
      * view to update its content.
      */
     private boolean queryContactInfo(String number, String countryIso, ContactInfo callLogInfo) {
-        final ContactInfo info;
-
-        // Determine the contact info.
-        if (PhoneNumberUtils.isUriNumber(number)) {
-            // This "number" is really a SIP address.
-            ContactInfo sipInfo = queryContactInfoForSipAddress(number);
-            if (sipInfo == null || sipInfo == ContactInfo.EMPTY) {
-                // Check whether the username is actually a phone number of contact.
-                String username = number.substring(0, number.indexOf('@'));
-                if (PhoneNumberUtils.isGlobalPhoneNumber(username)) {
-                    sipInfo = queryContactInfoForPhoneNumber(username, countryIso);
-                }
-            }
-            info = sipInfo;
-        } else {
-            info = queryContactInfoForPhoneNumber(number, countryIso);
-        }
+        final ContactInfo info = mContactInfoHelper.lookupNumber(number, countryIso);
 
         if (info == null) {
             // The lookup failed, just return without requesting to update the view.
             return false;
         }
 
-        final ContactInfo updatedInfo;
-        // If we did not find a matching contact, generate an empty contact info for the number.
-        if (info == ContactInfo.EMPTY) {
-            // Did not find a matching contact.
-            updatedInfo = new ContactInfo();
-            updatedInfo.number = number;
-            updatedInfo.formattedNumber = formatPhoneNumber(number, null, countryIso);
-        } else {
-            updatedInfo = info;
-        }
-
         // Check the existing entry in the cache: only if it has changed we should update the
         // view.
         ContactInfo existingInfo = mContactInfoCache.getPossiblyExpired(number);
-        boolean updated = !updatedInfo.equals(existingInfo);
+        boolean updated = !info.equals(existingInfo);
         // Store the data in the cache so that the UI thread can use to display it. Store it
         // even if it has not changed so that it is marked as not expired.
-        mContactInfoCache.put(number, updatedInfo);
+        mContactInfoCache.put(number, info);
         // Update the call log even if the cache it is up-to-date: it is possible that the cache
         // contains the value from a different call log entry.
-        updateCallLogContactInfoCache(number, updatedInfo, callLogInfo);
+        updateCallLogContactInfoCache(number, info, callLogInfo);
         return updated;
     }
-
     /*
      * Handles requests for contact name and number type
      * @see java.lang.Runnable#run()
@@ -804,6 +644,7 @@ public class CallLogAdapter extends GroupingListAdapter
         info.number = matchedNumber == null ? c.getString(CallLogQuery.NUMBER) : matchedNumber;
         info.normalizedNumber = c.getString(CallLogQuery.CACHED_NORMALIZED_NUMBER);
         info.photoId = c.getLong(CallLogQuery.CACHED_PHOTO_ID);
+        info.photoUri = null;  // We do not cache the photo URI.
         info.formattedNumber = c.getString(CallLogQuery.CACHED_FORMATTED_NUMBER);
         return info;
     }
@@ -848,32 +689,6 @@ public class CallLogAdapter extends GroupingListAdapter
     @Override
     public void addGroup(int cursorPosition, int size, boolean expanded) {
         super.addGroup(cursorPosition, size, expanded);
-    }
-
-    /**
-     * Format the given phone number
-     *
-     * @param number the number to be formatted.
-     * @param normalizedNumber the normalized number of the given number.
-     * @param countryIso the ISO 3166-1 two letters country code, the country's
-     *        convention will be used to format the number if the normalized
-     *        phone is null.
-     *
-     * @return the formatted number, or the given number if it was formatted.
-     */
-    private String formatPhoneNumber(String number, String normalizedNumber,
-            String countryIso) {
-        if (TextUtils.isEmpty(number)) {
-            return "";
-        }
-        // If "number" is really a SIP address, don't try to do any formatting at all.
-        if (PhoneNumberUtils.isUriNumber(number)) {
-            return number;
-        }
-        if (TextUtils.isEmpty(countryIso)) {
-            countryIso = mCurrentCountryIso;
-        }
-        return PhoneNumberUtils.formatNumber(number, normalizedNumber, countryIso);
     }
 
     /*
