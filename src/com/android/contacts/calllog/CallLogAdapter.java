@@ -534,7 +534,7 @@ public class CallLogAdapter extends GroupingListAdapter
                     callTypes, date, duration, name, ntype, label, lookupUri, null);
         }
 
-        final boolean isNew = CallLogQuery.isNewSection(c);
+        final boolean isNew = c.getInt(CallLogQuery.IS_READ) == 0;
         // New items also use the highlighted version of the text.
         final boolean isHighlighted = isNew;
         mCallLogViewsHelper.setPhoneCallDetails(views, details, isHighlighted);

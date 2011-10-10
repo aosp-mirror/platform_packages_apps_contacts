@@ -42,6 +42,7 @@ public final class CallLogQuery {
             Calls.CACHED_NORMALIZED_NUMBER,  // 13
             Calls.CACHED_PHOTO_ID,           // 14
             Calls.CACHED_FORMATTED_NUMBER,   // 15
+            Calls.IS_READ,                   // 16
     };
 
     public static final int ID = 0;
@@ -60,8 +61,9 @@ public final class CallLogQuery {
     public static final int CACHED_NORMALIZED_NUMBER = 13;
     public static final int CACHED_PHOTO_ID = 14;
     public static final int CACHED_FORMATTED_NUMBER = 15;
+    public static final int IS_READ = 16;
     /** The index of the synthetic "section" column in the extended projection. */
-    public static final int SECTION = 16;
+    public static final int SECTION = 17;
 
     /**
      * The name of the synthetic "section" column.
