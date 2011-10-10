@@ -32,13 +32,13 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.provider.ContactsContract;
 import android.provider.ContactsContract.Directory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -158,6 +158,25 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
         }
     }
 
+    private class ScrollListener implements ListView.OnScrollListener {
+        private boolean mShouldShowFastScroller;
+        @Override
+        public void onScroll(AbsListView view,
+                int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            // FastScroller should be visible only when the user is seeing "all" contacts section.
+            final boolean shouldShow = mAdapter.shouldShowFirstScroller(firstVisibleItem);
+            if (shouldShow != mShouldShowFastScroller) {
+                mListView.setFastScrollEnabled(shouldShow);
+                mListView.setFastScrollAlwaysVisible(shouldShow);
+                mShouldShowFastScroller = shouldShow;
+            }
+        }
+
+        @Override
+        public void onScrollStateChanged(AbsListView view, int scrollState) {
+        }
+    }
+
     private Listener mListener;
     private PhoneFavoriteMergedAdapter mAdapter;
     private ContactTileAdapter mContactTileAdapter;
@@ -192,6 +211,7 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
     private final OnClickListener mFilterHeaderClickListener = new FilterHeaderClickListener();
     private final ContactsPreferenceChangeListener mContactsPreferenceChangeListener =
             new ContactsPreferenceChangeListener();
+    private final ScrollListener mScrollListener = new ScrollListener();
 
     @Override
     public void onCreate(Bundle savedState) {
@@ -223,9 +243,6 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
         mListView = (ListView) listLayout.findViewById(R.id.contact_tile_list);
         mListView.setItemsCanFocus(true);
         mListView.setOnItemClickListener(this);
-        mListView.setFastScrollEnabled(true);
-        // We want to hide the scroll bar after a while.
-        mListView.setFastScrollAlwaysVisible(false);
         mListView.setVerticalScrollBarEnabled(true);
         mListView.setVerticalScrollbarPosition(View.SCROLLBAR_POSITION_RIGHT);
         mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
@@ -233,6 +250,10 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
         initAdapters(getActivity(), inflater);
 
         mListView.setAdapter(mAdapter);
+
+        mListView.setOnScrollListener(mScrollListener);
+        mListView.setFastScrollEnabled(false);
+        mListView.setFastScrollAlwaysVisible(false);
 
         mEmptyView = (TextView) listLayout.findViewById(R.id.contact_tile_list_empty);
         mEmptyView.setText(getString(R.string.listTotalAllContactsZero));
