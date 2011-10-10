@@ -58,6 +58,9 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     /** true if the loader has started at least once. */
     private boolean mLoaderStarted;
 
+    private ContactListItemView.PhotoPosition mPhotoPosition =
+            ContactListItemView.DEFAULT_PHOTO_POSITION;
+
     // A complete copy from DefaultContactBrowserListFragment
     // TODO: should be able to share logic around filter header.
     private class FilterHeaderClickListener implements OnClickListener {
@@ -191,11 +194,11 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     protected void onItemClick(int position, long id) {
         final Uri phoneUri;
         if (!isLegacyCompatibilityMode()) {
-            PhoneNumberListAdapter adapter = (PhoneNumberListAdapter)getAdapter();
+            PhoneNumberListAdapter adapter = (PhoneNumberListAdapter) getAdapter();
             phoneUri = adapter.getDataUri(position);
 
         } else {
-            LegacyPhoneNumberListAdapter adapter = (LegacyPhoneNumberListAdapter)getAdapter();
+            LegacyPhoneNumberListAdapter adapter = (LegacyPhoneNumberListAdapter) getAdapter();
             phoneUri = adapter.getPhoneUri(position);
         }
 
@@ -229,13 +232,17 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     protected void configureAdapter() {
         super.configureAdapter();
 
-        ContactEntryListAdapter adapter = getAdapter();
+        final ContactEntryListAdapter adapter = getAdapter();
         if (adapter == null) {
             return;
         }
 
         if (!isSearchMode() && mFilter != null) {
             adapter.setFilter(mFilter);
+        }
+
+        if (!isLegacyCompatibilityMode()) {
+            ((PhoneNumberListAdapter) adapter).setPhotoPosition(mPhotoPosition);
         }
     }
 
@@ -287,5 +294,17 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
             reloadData();
         }
         updateFilterHeaderView();
+    }
+
+    public void setPhotoPosition(ContactListItemView.PhotoPosition photoPosition) {
+        mPhotoPosition = photoPosition;
+        if (!isLegacyCompatibilityMode()) {
+            final PhoneNumberListAdapter adapter = (PhoneNumberListAdapter) getAdapter();
+            if (adapter != null) {
+                adapter.setPhotoPosition(photoPosition);
+            }
+        } else {
+            Log.w(TAG, "setPhotoPosition() is ignored in legacy compatibility mode.");
+        }
     }
 }

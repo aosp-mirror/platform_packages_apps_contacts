@@ -24,8 +24,7 @@ import com.android.contacts.list.AccountFilterActivity;
 import com.android.contacts.list.ContactListFilter;
 import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.list.ContactListFilterController.ContactListFilterListener;
-import com.android.contacts.list.ContactTileAdapter.DisplayType;
-import com.android.contacts.list.ContactTileListFragment;
+import com.android.contacts.list.ContactListItemView;
 import com.android.contacts.list.OnPhoneNumberPickerActionListener;
 import com.android.contacts.list.PhoneFavoriteFragment;
 import com.android.contacts.list.PhoneNumberPickerFragment;
@@ -505,6 +504,7 @@ public class DialtactsActivity extends Activity {
             mSearchFragment.setOnPhoneNumberPickerActionListener(mPhoneNumberPickerActionListener);
             mSearchFragment.setQuickContactEnabled(true);
             mSearchFragment.setDarkTheme(true);
+            mSearchFragment.setPhotoPosition(ContactListItemView.PhotoPosition.LEFT);
             final FragmentTransaction transaction = getFragmentManager().beginTransaction();
             if (mInSearchUi) {
                 transaction.show(mSearchFragment);
@@ -769,10 +769,13 @@ public class DialtactsActivity extends Activity {
                 filterOptionMenuItem.setVisible(true);
                 filterOptionMenuItem.setOnMenuItemClickListener(
                         mFilterOptionsMenuItemClickListener);
+                addContactOptionMenuItem.setVisible(true);
+                addContactOptionMenuItem.setIntent(
+                        new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI));
             } else {
                 filterOptionMenuItem.setVisible(false);
+                addContactOptionMenuItem.setVisible(false);
             }
-            addContactOptionMenuItem.setVisible(false);
 
             if (showCallSettingsMenu) {
                 callSettingsMenuItem.setVisible(true);
