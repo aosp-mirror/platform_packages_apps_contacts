@@ -362,6 +362,7 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"Text work pager"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"Text <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Text MMS"</string>
+    <string name="sms" msgid="1756857139634224222">"Text message"</string>
     <string name="email_home" msgid="8573740658148184279">"Email home"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Email mobile"</string>
     <string name="email_work" msgid="2807430017302722689">"Email work"</string>
@@ -381,6 +382,8 @@
     <string name="chat_icq" msgid="8438405386153745775">"Chat using ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Chat using Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Chat"</string>
+    <string name="audio_chat" msgid="4743276658947547047">"Audio chat"</string>
+    <string name="video_chat" msgid="1872255818640336072">"Video chat"</string>
     <string name="postal_address" msgid="8765560217149624536">"Address"</string>
     <string name="postal_street" msgid="8133143961580058972">"Street"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"PO box"</string>
@@ -459,9 +462,10 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Starred"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Customised"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"Customise..."</string>
-    <string name="list_filter_phones" msgid="7905045603593508221">"Contacts with phone numbers"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"All contacts with phone numbers"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Contact"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Define customised view"</string>
+    <string name="contact_list_loading" msgid="3859280390185230582">"Loading…"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Settings"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Contacts to display"</string>
     <string name="menu_settings" msgid="377929915873428211">"Settings"</string>
@@ -556,11 +560,15 @@
     <string name="external_profile_title" msgid="8034998767621359438">"My <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> profile"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Displaying all contacts"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"People works better with a Google Account."\n\n"• Access from any web browser."\n"• Back up your contacts securely."</string>
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Keep your contacts safe even if you lose your phone: synchronise with an online service."</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Add an account"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Your new contact won\'t be backed up. Add an account that backs up contacts online?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Your new contact will be synchronised with <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"You can synchronise your new contact with one of the following accounts. Which do you want to use?"</string>
     <string name="keep_local" msgid="1258761699192993322">"Keep locally"</string>
     <string name="add_account" msgid="8201790677994503186">"Add account"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Add new account"</string>
-    <string name="phone_call_prohibited" msgid="4329551585931067534">"Call not sent."</string>
+    <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"Call not sent."</string>
+    <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"Voicemail number unavailable"</string>
+    <string name="dialog_voicemail_not_ready_message" msgid="4511141315685755189">"To configure voicemail, go to Menu &gt; Settings."</string>
 </resources>
