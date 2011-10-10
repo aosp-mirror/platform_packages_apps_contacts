@@ -53,6 +53,9 @@ public class PhoneFavoriteMergedAdapter extends BaseAdapter implements SectionIn
     private final int mItemPaddingLeft;
     private final int mItemPaddingRight;
 
+    // Make frequent header consistent with account filter header.
+    private final int mFrequentHeaderPaddingTop;
+
     private final DataSetObserver mObserver;
 
     public PhoneFavoriteMergedAdapter(Context context,
@@ -62,6 +65,8 @@ public class PhoneFavoriteMergedAdapter extends BaseAdapter implements SectionIn
         Resources resources = context.getResources();
         mItemPaddingLeft = resources.getDimensionPixelSize(R.dimen.detail_item_side_margin);
         mItemPaddingRight = resources.getDimensionPixelSize(R.dimen.list_visible_scrollbar_padding);
+        mFrequentHeaderPaddingTop = resources.getDimensionPixelSize(
+                R.dimen.contact_browser_list_top_margin);
         mContactTileAdapter = contactTileAdapter;
         mContactEntryListAdapter = contactEntryListAdapter;
 
@@ -140,7 +145,7 @@ public class PhoneFavoriteMergedAdapter extends BaseAdapter implements SectionIn
             if (position < frequentHeaderPosition) {  // "starred" contacts
                 // No padding adjustment.
             } else if (position == frequentHeaderPosition) {
-                view.setPadding(mItemPaddingLeft, view.getPaddingTop(),
+                view.setPadding(mItemPaddingLeft, mFrequentHeaderPaddingTop,
                         mItemPaddingRight, view.getPaddingBottom());
             } else {
                 // Views for "frequent" contacts use FrameLayout's margins instead of padding.

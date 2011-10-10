@@ -213,27 +213,47 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
         mContactsPrefs = new ContactsPreferences(activity);
+    }
 
-        // Create the account filter header but keep it hidden until "all" contacts are loaded.
-        mAccountFilterHeaderContainer = View.inflate(
-                activity, R.layout.account_filter_header, null);
-        mAccountFilterHeaderView =
-                (TextView) mAccountFilterHeaderContainer.findViewById(R.id.account_filter_header);
-        mAccountFilterHeaderContainer.setOnClickListener(mFilterHeaderClickListener);
-        mAccountFilterHeaderContainer.setVisibility(View.GONE);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        final View listLayout = inflater.inflate(R.layout.contact_tile_list, container, false);
 
-        initAdapters(activity);
+        mListView = (ListView) listLayout.findViewById(R.id.contact_tile_list);
+        mListView.setItemsCanFocus(true);
+        mListView.setOnItemClickListener(this);
+        mListView.setFastScrollEnabled(true);
+        // We want to hide the scroll bar after a while.
+        mListView.setFastScrollAlwaysVisible(false);
+        mListView.setVerticalScrollBarEnabled(true);
+        mListView.setVerticalScrollbarPosition(View.SCROLLBAR_POSITION_RIGHT);
+        mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
 
-        mAllContactsAdapter.setFilter(mFilter);
-        mAllContactsForceReload = true;
+        initAdapters(getActivity(), inflater);
+
+        mListView.setAdapter(mAdapter);
+
+        mEmptyView = (TextView) listLayout.findViewById(R.id.contact_tile_list_empty);
+        mEmptyView.setText(getString(R.string.listTotalAllContactsZero));
+        mListView.setEmptyView(mEmptyView);
+
         updateFilterHeaderView();
+
+        return listLayout;
     }
 
     /**
      * Constructs and initializes {@link #mContactTileAdapter}, {@link #mAllContactsAdapter}, and
      * {@link #mAllContactsAdapter}.
+     *
+     * TODO: Move all the code here to {@link PhoneFavoriteMergedAdapter} if possible.
+     * There are two problems: account header (whose content changes depending on filter settings)
+     * and OnClickListener (which initiates {@link Activity#startActivityForResult(Intent, int)}).
+     * See also issue 5429203, 5269692, and 5432286. If we are able to have a singleton for filter,
+     * this work will become easier.
      */
-    private void initAdapters(Context context) {
+    private void initAdapters(Context context, LayoutInflater inflater) {
         mContactTileAdapter = new ContactTileAdapter(context, mContactTileAdapterListener,
                 getResources().getInteger(R.integer.contact_tile_column_count),
                 ContactTileAdapter.DisplayType.STREQUENT_PHONE_ONLY);
@@ -257,40 +277,27 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
         // Put photos on left for consistency with "frequent" contacts section.
         mAllContactsAdapter.setPhotoPosition(ContactListItemView.PhotoPosition.LEFT);
 
-        mAdapter = new PhoneFavoriteMergedAdapter(
-                context, mContactTileAdapter, mAccountFilterHeaderContainer, mAllContactsAdapter);
+        if (mFilter != null) {
+            mAllContactsAdapter.setFilter(mFilter);
+        }
+
+        // Create the account filter header but keep it hidden until "all" contacts are loaded.
+        mAccountFilterHeaderContainer = inflater.inflate(
+                R.layout.phone_favorite_account_filter_header, mListView, false);
+        mAccountFilterHeaderView =
+                (TextView) mAccountFilterHeaderContainer.findViewById(R.id.account_filter_header);
+        mAccountFilterHeaderContainer.setOnClickListener(mFilterHeaderClickListener);
+        mAccountFilterHeaderContainer.setVisibility(View.GONE);
+
+        mAdapter = new PhoneFavoriteMergedAdapter(context,
+                mContactTileAdapter, mAccountFilterHeaderContainer, mAllContactsAdapter);
+
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         mPrefs = null;
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        final View listLayout = inflater.inflate(R.layout.contact_tile_list, container, false);
-
-        mListView = (ListView) listLayout.findViewById(R.id.contact_tile_list);
-
-        mListView.setItemsCanFocus(true);
-        mListView.setAdapter(mAdapter);
-        mListView.setOnItemClickListener(this);
-        mListView.setFastScrollEnabled(true);
-        // We want to hide the scroll bar after a while.
-        mListView.setFastScrollAlwaysVisible(false);
-        mListView.setVerticalScrollBarEnabled(true);
-        mListView.setVerticalScrollbarPosition(View.SCROLLBAR_POSITION_RIGHT);
-        mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
-
-        mEmptyView = (TextView) listLayout.findViewById(R.id.contact_tile_list_empty);
-        mEmptyView.setText(getString(R.string.listTotalAllContactsZero));
-        mListView.setEmptyView(mEmptyView);
-
-        updateFilterHeaderView();
-
-        return listLayout;
     }
 
     @Override
@@ -425,9 +432,11 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
             ContactListFilter.storeToPreferences(mPrefs, mFilter);
         }
 
-        mAllContactsAdapter.setFilter(mFilter);
-        requestReloadAllContacts();
-        updateFilterHeaderView();
+        if (mAllContactsAdapter != null) {
+            mAllContactsAdapter.setFilter(mFilter);
+            requestReloadAllContacts();
+            updateFilterHeaderView();
+        }
     }
 
     public void setListener(Listener listener) {
