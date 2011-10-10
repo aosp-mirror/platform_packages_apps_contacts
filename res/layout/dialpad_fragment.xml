@@ -24,7 +24,7 @@
 
     <!-- Text field and possibly soft menu button above the keypad where
          the digits are displayed. -->
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/digits_container"
         android:layout_width="match_parent"
         android:layout_height="0px"
@@ -35,7 +35,8 @@
 
         <com.android.contacts.dialpad.DigitsEditText
             android:id="@+id/digits"
-            android:layout_width="match_parent"
+            android:layout_width="0dip"
+            android:layout_weight="1"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:gravity="center"
@@ -54,7 +55,7 @@
             android:nextFocusLeft="@id/digits"
             android:background="?android:attr/selectableItemBackground"/>
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <!-- Keypad section -->
     <include layout="@layout/dialpad" />
