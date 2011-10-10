@@ -34,11 +34,6 @@ import android.widget.SectionIndexer;
  */
 public class PhoneFavoriteMergedAdapter extends BaseAdapter implements SectionIndexer {
 
-    // Should show nothing as SectionIndex.
-    // " " will suppress the section indexer itself: nothing will be shown during user's scroll.
-    private static final String SECTION_STRING_STARRED = " ";
-    private static final String SECTION_STRING_FREQUENT = " ";
-
     private class CustomDataSetObserver extends DataSetObserver {
         @Override
         public void onChanged() {
@@ -200,42 +195,28 @@ public class PhoneFavoriteMergedAdapter extends BaseAdapter implements SectionIn
     @Override
     public int getPositionForSection(int sectionIndex) {
         final int contactTileAdapterCount = mContactTileAdapter.getCount();
-        if (sectionIndex == 0) {  // "starred" section
-            return 0;
-        } else if (sectionIndex == 1) {  // "frequent" section
-            return mContactTileAdapter.getFrequentHeaderPosition();
-        } else {
-            final int localSection = sectionIndex - 2;
-            final int localPosition = mContactEntryListAdapter.getPositionForSection(localSection);
-            return contactTileAdapterCount + 1 + localPosition;
-        }
+        final int localPosition = mContactEntryListAdapter.getPositionForSection(sectionIndex);
+        return contactTileAdapterCount + 1 + localPosition;
     }
 
     @Override
     public int getSectionForPosition(int position) {
         final int contactTileAdapterCount = mContactTileAdapter.getCount();
-        if (position < contactTileAdapterCount) {
+        if (position <= contactTileAdapterCount) {
             return 0;
-        } else if (position == contactTileAdapterCount) {
-            return 1;
         } else {
             final int localPosition = position - contactTileAdapterCount - 1;
-            final int localSection = mContactEntryListAdapter.getSectionForPosition(localPosition);
-            return localSection + 2;
+            return mContactEntryListAdapter.getSectionForPosition(localPosition);
         }
     }
 
     @Override
     public Object[] getSections() {
-        // Copy sections from "all" contacts, and add two additional sections for "starred", and
-        // "frequent". Those new sections should not show anything as an indexer, but should
-        // let users select those sections with a vertical scroll.
-        final Object[] contactEntrySections = mContactEntryListAdapter.getSections();
-        final Object[] ret = new Object[contactEntrySections.length + 2];
-        System.arraycopy(contactEntrySections, 0, ret, 2, contactEntrySections.length);
+        return mContactEntryListAdapter.getSections();
+    }
 
-        ret[0] = SECTION_STRING_STARRED;
-        ret[1] = SECTION_STRING_FREQUENT;
-        return ret;
+    public boolean shouldShowFirstScroller(int firstVisibleItem) {
+        final int contactTileAdapterCount = mContactTileAdapter.getCount();
+        return firstVisibleItem > contactTileAdapterCount;
     }
 }
