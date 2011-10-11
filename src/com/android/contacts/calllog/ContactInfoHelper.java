@@ -206,8 +206,7 @@ public class ContactInfoHelper {
                 info.photoId = phonesCursor.getLong(PhoneQuery.PHOTO_ID);
                 info.photoUri =
                         UriUtils.parseUriOrNull(phonesCursor.getString(PhoneQuery.PHOTO_URI));
-                info.formattedNumber = formatPhoneNumber(info.number, info.formattedNumber,
-                        countryIso);
+                info.formattedNumber = formatPhoneNumber(number, null, countryIso);
 
             } else {
                 info = ContactInfo.EMPTY;
