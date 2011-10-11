@@ -174,8 +174,13 @@ public class ContactListItemView extends ViewGroup
     private int mNameTextViewHeight;
     private int mPhoneticNameTextViewHeight;
     private int mLabelTextViewHeight;
+    private int mDataViewHeight;
     private int mSnippetTextViewHeight;
     private int mStatusTextViewHeight;
+
+    // Holds Math.max(mLabelTextViewHeight, mDataViewHeight), assuming Label and Data share the
+    // same row.
+    private int mLabelAndDataViewMaxHeight;
 
     private OnClickListener mCallButtonClickListener;
     private CharArrayBuffer mDataBuffer = new CharArrayBuffer(128);
@@ -308,8 +313,19 @@ public class ContactListItemView extends ViewGroup
         mNameTextViewHeight = 0;
         mPhoneticNameTextViewHeight = 0;
         mLabelTextViewHeight = 0;
+        mDataViewHeight = 0;
+        mLabelAndDataViewMaxHeight = 0;
         mSnippetTextViewHeight = 0;
         mStatusTextViewHeight = 0;
+
+        // TODO: measure(0, 0) is *wrong*. At least, we should use correct width for each TextView.
+        //
+        // Reason: TextView applies ellipsis effect in this phase, while measure(0, 0) have those
+        // views prepare the effect based on "unlimited width", which makes ellipsis setting
+        // meaningless. We should pass a widthMeasureSpec with appropriate width setting.
+        // See issue 5439903.
+
+        ensurePhotoViewSize();
 
         // Go over all visible text views and add their heights to get the total height
         if (isVisible(mNameTextView)) {
@@ -322,16 +338,28 @@ public class ContactListItemView extends ViewGroup
             mPhoneticNameTextViewHeight = mPhoneticNameTextView.getMeasuredHeight();
         }
 
-        if (isVisible(mLabelView)) {
-            mLabelView.measure(0, 0);
-            mLabelTextViewHeight = mLabelView.getMeasuredHeight();
-        }
-
-        // Label view height is the biggest of the label text view and the data text view
         if (isVisible(mDataView)) {
             mDataView.measure(0, 0);
-            mLabelTextViewHeight = Math.max(mLabelTextViewHeight, mDataView.getMeasuredHeight());
+            mDataViewHeight = mDataView.getMeasuredHeight();
         }
+
+        if (isVisible(mLabelView)) {
+            if (mPhotoPosition == PhotoPosition.LEFT) {
+                // Manually calculate the width now and see if ellipsis becomes effective or not.
+                // See also issue 5438757 and 5439903.
+                final int labelViewWidth = width - mExtraPaddingLeft - mExtraPaddingRight
+                        - (mPhotoViewWidth + mGapBetweenImageAndText)
+                        - mDataView.getMeasuredWidth()
+                        - mGapBetweenLabelAndData;
+                final int labelViewWidthMeasureSpec = MeasureSpec.makeMeasureSpec(
+                        labelViewWidth, MeasureSpec.AT_MOST);
+                mLabelView.measure(labelViewWidthMeasureSpec, 0);
+            } else {
+                mLabelView.measure(0, 0);
+            }
+            mLabelTextViewHeight = mLabelView.getMeasuredHeight();
+        }
+        mLabelAndDataViewMaxHeight = Math.max(mLabelTextViewHeight, mDataViewHeight);
 
         if (isVisible(mSnippetView)) {
             mSnippetView.measure(0, 0);
@@ -351,7 +379,7 @@ public class ContactListItemView extends ViewGroup
         }
 
         // Calculate height including padding
-        height += mNameTextViewHeight + mPhoneticNameTextViewHeight + mLabelTextViewHeight +
+        height += mNameTextViewHeight + mPhoneticNameTextViewHeight + mLabelAndDataViewMaxHeight +
                 mSnippetTextViewHeight + mStatusTextViewHeight +
                 mExtraPaddingTop + mExtraPaddingBottom;
 
@@ -360,7 +388,6 @@ public class ContactListItemView extends ViewGroup
         }
 
         // Make sure the height is at least as high as the photo
-        ensurePhotoViewSize();
         height = Math.max(height, mPhotoViewHeight + mExtraPaddingBottom + mExtraPaddingTop);
 
         // Add horizontal divider height
@@ -478,7 +505,7 @@ public class ContactListItemView extends ViewGroup
 
         // Center text vertically
         final int totalTextHeight = mNameTextViewHeight + mPhoneticNameTextViewHeight +
-                mLabelTextViewHeight + mSnippetTextViewHeight + mStatusTextViewHeight;
+                mLabelAndDataViewMaxHeight + mSnippetTextViewHeight + mStatusTextViewHeight;
         int textTopBound = (bottomBound + topBound - totalTextHeight) / 2;
 
         // Layout all text view and presence icon
@@ -524,32 +551,33 @@ public class ContactListItemView extends ViewGroup
             textTopBound += mPhoneticNameTextViewHeight;
         }
 
+        // Label and Data align bottom.
         if (isVisible(mLabelView)) {
             if (mPhotoPosition == PhotoPosition.LEFT) {
                 // When photo is on left, label is placed on the right edge of the list item.
                 mLabelView.layout(rightBound - mLabelView.getMeasuredWidth(),
-                        textTopBound,
+                        textTopBound + mLabelAndDataViewMaxHeight - mLabelTextViewHeight,
                         rightBound,
-                        textTopBound + mLabelTextViewHeight);
+                        textTopBound + mLabelAndDataViewMaxHeight);
             } else {
                 // When photo is on right, label is placed on the left of data view.
                 dataLeftBound = leftBound + mLabelView.getMeasuredWidth();
                 mLabelView.layout(leftBound,
-                        textTopBound,
+                        textTopBound + mLabelAndDataViewMaxHeight - mLabelTextViewHeight,
                         dataLeftBound,
-                        textTopBound + mLabelTextViewHeight);
+                        textTopBound + mLabelAndDataViewMaxHeight);
                 dataLeftBound += mGapBetweenLabelAndData;
             }
         }
 
         if (isVisible(mDataView)) {
             mDataView.layout(dataLeftBound,
-                    textTopBound,
+                    textTopBound + mLabelAndDataViewMaxHeight - mDataViewHeight,
                     rightBound,
-                    textTopBound + mLabelTextViewHeight);
+                    textTopBound + mLabelAndDataViewMaxHeight);
         }
         if (isVisible(mLabelView) || isVisible(mDataView)) {
-            textTopBound += mLabelTextViewHeight;
+            textTopBound += mLabelAndDataViewMaxHeight;
         }
 
         if (isVisible(mSnippetView)) {
@@ -919,6 +947,7 @@ public class ContactListItemView extends ViewGroup
             mLabelView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
             if (mPhotoPosition == PhotoPosition.LEFT) {
                 mLabelView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mCountViewTextSize);
+                mLabelView.setEllipsize(TruncateAt.MIDDLE);
                 mLabelView.setAllCaps(true);
             } else {
                 mLabelView.setTypeface(mLabelView.getTypeface(), Typeface.BOLD);

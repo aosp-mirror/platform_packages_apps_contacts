@@ -57,8 +57,8 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/contact_tile_name"
             android:layout_toRightOf="@id/image_container"
             android:gravity="center_vertical">
@@ -71,7 +71,8 @@
                 android:textSize="14sp"
                 android:textColor="@color/dialtacts_secondary_text_color"
                 android:layout_marginLeft="8dip"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:layout_gravity="bottom" />
 
             <TextView
                 android:id="@+id/contact_tile_phone_type"
@@ -84,7 +85,8 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dialtacts_secondary_text_color"
                 android:layout_marginLeft="8dip"
-                android:gravity="right" />
+                android:gravity="right"
+                android:layout_gravity="bottom" />
 
         </LinearLayout>
 
