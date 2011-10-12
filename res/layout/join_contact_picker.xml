@@ -33,18 +33,4 @@
         android:layout_marginLeft="?attr/contact_browser_list_padding_left"
         android:layout_marginRight="?attr/contact_browser_list_padding_right"
         android:background="?android:attr/dividerHorizontal" />
-
-    <LinearLayout
-        style="?android:attr/buttonBarStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="?attr/contact_browser_list_padding_left"
-        android:layout_marginRight="?attr/contact_browser_list_padding_right">
-        <Button
-            style="?android:attr/buttonBarButtonStyle"
-            android:id="@+id/cancel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@android:string/cancel"/>
-    </LinearLayout>
 </view>

@@ -27,17 +27,12 @@ import android.net.Uri;
  */
 public class JoinContactLoader extends CursorLoader {
 
-    private boolean mLoadSuggestionsAndAllContacts;
     private String[] mProjection;
     private Uri mSuggestionUri;
     private MatrixCursor mSuggestionsCursor;
 
     public JoinContactLoader(Context context) {
         super(context, null, null, null, null, null);
-    }
-
-    public void setLoadSuggestionsAndAllContacts(boolean flag) {
-        mLoadSuggestionsAndAllContacts = flag;
     }
 
     public void setSuggestionUri(Uri uri) {
@@ -59,13 +54,6 @@ public class JoinContactLoader extends CursorLoader {
         // First execute the suggestions query, then call super.loadInBackground
         // to load the entire list
         mSuggestionsCursor = loadSuggestions();
-        if (!mLoadSuggestionsAndAllContacts && mSuggestionsCursor.getCount() != 0) {
-            // In case we only need suggestions, send "0" as the search query, which
-            // will always return an empty cursor (but we can still register to
-            // listen for changes on it).
-            setSelection("0");
-            setSelectionArgs(null);
-        }
         return super.loadInBackground();
     }
 

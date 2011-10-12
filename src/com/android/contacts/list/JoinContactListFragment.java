@@ -15,7 +15,6 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.ContactsSearchManager;
 import com.android.contacts.R;
 
 import android.app.Activity;
@@ -39,13 +38,12 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
 
     private static final int DISPLAY_NAME_LOADER = -2;
 
-    private static final String KEY_ALL_CONTACTS_LIST_SHOWN = "allContactsShown";
+    private static final String KEY_TARGET_CONTACT_ID = "targetContactId";
 
     private OnContactPickerActionListener mListener;
     private long mTargetContactId;
-    private boolean mAllContactsListShown = false;
 
-    private LoaderCallbacks<Cursor> mLoaderCallbacks = new LoaderCallbacks<Cursor>() {
+    private final LoaderCallbacks<Cursor> mLoaderCallbacks = new LoaderCallbacks<Cursor>() {
 
         @Override
         public Loader<Cursor> onCreateLoader(int id, Bundle args) {
@@ -78,7 +76,7 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
                     break;
                 }
                 case JoinContactListAdapter.PARTITION_ALL_CONTACTS: {
-                    Cursor suggestionsCursor = ((JoinContactLoader)loader).getSuggestionsCursor();
+                    Cursor suggestionsCursor = ((JoinContactLoader) loader).getSuggestionsCursor();
                     onContactListLoaded(suggestionsCursor, data);
                     break;
                 }
@@ -109,19 +107,16 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
                 null, mLoaderCallbacks);
     }
 
-    void onContactListLoaded(Cursor suggestionsCursor, Cursor allContacts) {
+    private void onContactListLoaded(Cursor suggestionsCursor, Cursor allContactsCursor) {
         JoinContactListAdapter adapter = getAdapter();
         adapter.setSuggestionsCursor(suggestionsCursor);
-        if (suggestionsCursor == null || suggestionsCursor.getCount() == 0) {
-            mAllContactsListShown = true;
-        }
-        setVisibleScrollbarEnabled(mAllContactsListShown);
-        onPartitionLoaded(JoinContactListAdapter.PARTITION_ALL_CONTACTS, allContacts);
+        setVisibleScrollbarEnabled(true);
+        onPartitionLoaded(JoinContactListAdapter.PARTITION_ALL_CONTACTS, allContactsCursor);
     }
 
     private void showTargetContactName(String displayName) {
         Activity activity = getActivity();
-        TextView blurbView = (TextView)activity.findViewById(R.id.join_contact_blurb);
+        TextView blurbView = (TextView) activity.findViewById(R.id.join_contact_blurb);
         String blurb = activity.getString(R.string.blurbJoinContactDataWith, displayName);
         blurbView.setText(blurb);
     }
@@ -139,7 +134,6 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
     protected void configureAdapter() {
         super.configureAdapter();
         JoinContactListAdapter adapter = getAdapter();
-        adapter.setAllContactsListShown(mAllContactsListShown);
         adapter.setTargetContactId(mTargetContactId);
     }
 
@@ -152,14 +146,7 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
     protected void onItemClick(int position, long id) {
         JoinContactListAdapter adapter = getAdapter();
         int partition = adapter.getPartitionForPosition(position);
-        if (partition == JoinContactListAdapter.PARTITION_SHOW_ALL_CONTACTS) {
-            mAllContactsListShown = true;
-            configureAdapter();
-            getLoaderManager().restartLoader(JoinContactListAdapter.PARTITION_ALL_CONTACTS,
-                    null, mLoaderCallbacks);
-        } else {
-            mListener.onPickContactAction(adapter.getContactUri(position));
-        }
+        mListener.onPickContactAction(adapter.getContactUri(position));
     }
 
     @Override
@@ -170,14 +157,14 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean(KEY_ALL_CONTACTS_LIST_SHOWN, mAllContactsListShown);
+        outState.putLong(KEY_TARGET_CONTACT_ID, mTargetContactId);
     }
 
     @Override
     public void restoreSavedState(Bundle savedState) {
         super.restoreSavedState(savedState);
         if (savedState != null) {
-            mAllContactsListShown = savedState.getBoolean(KEY_ALL_CONTACTS_LIST_SHOWN);
+            mTargetContactId = savedState.getLong(KEY_TARGET_CONTACT_ID);
         }
     }
 }
