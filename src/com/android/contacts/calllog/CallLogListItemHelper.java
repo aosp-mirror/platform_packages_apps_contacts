@@ -65,7 +65,7 @@ import android.view.View;
 
         if (canPlay) {
             // Playback action takes preference.
-            configurePlaySecondaryAction(views);
+            configurePlaySecondaryAction(views, isHighlighted);
             views.dividerView.setVisibility(View.VISIBLE);
         } else if (canCall) {
             // Call is the secondary action.
@@ -99,9 +99,10 @@ import android.view.View;
     }
 
     /** Sets the secondary action to correspond to the play button. */
-    private void configurePlaySecondaryAction(CallLogListItemViews views) {
+    private void configurePlaySecondaryAction(CallLogListItemViews views, boolean isHighlighted) {
         views.secondaryActionView.setVisibility(View.VISIBLE);
-        views.secondaryActionView.setImageResource(R.drawable.ic_play);
+        views.secondaryActionView.setImageResource(
+                isHighlighted ? R.drawable.ic_play_active_holo_dark : R.drawable.ic_play_holo_dark);
         views.secondaryActionView.setContentDescription(
                 mResources.getString(R.string.description_call_log_play_button));
     }
