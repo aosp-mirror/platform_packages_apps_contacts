@@ -1053,17 +1053,6 @@
     <!-- Header for the list of all groups for a contact [CHAR LIMIT=20] -->
     <string name="groupsLabel">Groups</string>
 
-    <!-- Single-character overlay for home phone numbers when creating desktop shortcuts -->
-    <string name="type_short_home">H</string>
-    <!-- Single-character overlay for mobile phone numbers when creating desktop shortcuts -->
-    <string name="type_short_mobile">M</string>
-    <!-- Single-character overlay for work phone numbers when creating desktop shortcuts -->
-    <string name="type_short_work">W</string>
-    <!-- Single-character overlay for pager phone numbers when creating desktop shortcuts -->
-    <string name="type_short_pager">P</string>
-    <!-- Single-character overlay for other phone numbers when creating desktop shortcuts -->
-    <string name="type_short_other">O</string>
-
     <string name="dialog_new_contact_account">Create contact under account</string>
 
     <!-- Title for the disambiguation dialog that requests the user choose an account for the new group to be created under [CHAR LIMIT=NONE] -->
