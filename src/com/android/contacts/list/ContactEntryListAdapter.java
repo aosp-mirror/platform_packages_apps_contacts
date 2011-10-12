@@ -131,6 +131,28 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         return partition;
     }
 
+    /**
+     * Remove all directories after the default directory. This is typically used when contacts
+     * list screens are asked to exit the search mode and thus need to remove all remote directory
+     * results for the search.
+     *
+     * This code assumes that the default directory and directories before that should not be
+     * deleted (e.g. Join screen has "suggested contacts" directory before the default director,
+     * and we should not remove the directory).
+     */
+    /* package */ void removeDirectoriesAfterDefault() {
+        final int partitionCount = getPartitionCount();
+        for (int i = partitionCount - 1; i >= 0; i--) {
+            final Partition partition = getPartition(i);
+            if ((partition instanceof DirectoryPartition)
+                    && ((DirectoryPartition) partition).getDirectoryId() == Directory.DEFAULT) {
+                break;
+            } else {
+                removePartition(i);
+            }
+        }
+    }
+
     private int getPartitionByDirectoryId(long id) {
         int count = getPartitionCount();
         for (int i = 0; i < count; i++) {

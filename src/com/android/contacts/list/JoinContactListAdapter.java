@@ -20,7 +20,6 @@ import com.android.contacts.R;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.database.Cursor;
-import android.database.MatrixCursor;
 import android.net.Uri;
 import android.net.Uri.Builder;
 import android.provider.ContactsContract;
@@ -53,7 +52,6 @@ public class JoinContactListAdapter extends ContactListAdapter {
 
     @Override
     protected void addPartitions() {
-
         // Partition 0: suggestions
         addPartition(false, true);
 
@@ -69,11 +67,11 @@ public class JoinContactListAdapter extends ContactListAdapter {
     public void configureLoader(CursorLoader cursorLoader, long directoryId) {
         JoinContactLoader loader = (JoinContactLoader) cursorLoader;
 
-        Builder builder = Contacts.CONTENT_URI.buildUpon();
+        final Builder builder = Contacts.CONTENT_URI.buildUpon();
         builder.appendEncodedPath(String.valueOf(mTargetContactId));
         builder.appendEncodedPath(AggregationSuggestions.CONTENT_DIRECTORY);
 
-        String filter = getQueryString();
+        final String filter = getQueryString();
         if (!TextUtils.isEmpty(filter)) {
             builder.appendEncodedPath(Uri.encode(filter));
         }
@@ -84,13 +82,22 @@ public class JoinContactListAdapter extends ContactListAdapter {
 
         // TODO simplify projection
         loader.setProjection(getProjection(false));
-        Uri allContactsUri = buildSectionIndexerUri(Contacts.CONTENT_URI).buildUpon()
+        final Uri allContactsUri;
+        if (!TextUtils.isEmpty(filter)) {
+            allContactsUri = buildSectionIndexerUri(Contacts.CONTENT_FILTER_URI).buildUpon()
+                .appendEncodedPath(Uri.encode(filter))
                 .appendQueryParameter(
                         ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT))
                 .build();
+        } else {
+            allContactsUri = buildSectionIndexerUri(Contacts.CONTENT_URI).buildUpon()
+                .appendQueryParameter(
+                        ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT))
+                .build();
+        }
         loader.setUri(allContactsUri);
         loader.setSelection(Contacts._ID + "!=?");
-        loader.setSelectionArgs(new String[]{String.valueOf(mTargetContactId)});
+        loader.setSelectionArgs(new String[]{ String.valueOf(mTargetContactId) });
         if (getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
             loader.setSortOrder(Contacts.SORT_KEY_PRIMARY);
         } else {
@@ -120,7 +127,7 @@ public class JoinContactListAdapter extends ContactListAdapter {
 
     @Override
     public int getViewTypeCount() {
-        return super.getViewTypeCount() + 1;
+        return super.getViewTypeCount();
     }
 
     @Override
@@ -173,14 +180,14 @@ public class JoinContactListAdapter extends ContactListAdapter {
     protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         switch (partition) {
             case PARTITION_SUGGESTIONS: {
-                final ContactListItemView view = (ContactListItemView)itemView;
+                final ContactListItemView view = (ContactListItemView) itemView;
                 view.setSectionHeader(null);
                 bindPhoto(view, partition, cursor);
                 bindName(view, cursor);
                 break;
             }
             case PARTITION_ALL_CONTACTS: {
-                final ContactListItemView view = (ContactListItemView)itemView;
+                final ContactListItemView view = (ContactListItemView) itemView;
                 bindSectionHeaderAndDivider(view, position, cursor);
                 bindPhoto(view, partition, cursor);
                 bindName(view, cursor);

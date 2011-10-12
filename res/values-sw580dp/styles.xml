@@ -95,6 +95,8 @@
     <style name="JoinContactActivityTheme" parent="ContactPickerTheme" >
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
+        <!-- In the contact picker screen we're using adjustResize but we don't want it here. -->
+        <item name="android:windowSoftInputMode">adjustUnspecified</item>
     </style>
 
     <style name="ContactListFilterTheme" parent="@android:Theme.Holo.Light.Dialog">
