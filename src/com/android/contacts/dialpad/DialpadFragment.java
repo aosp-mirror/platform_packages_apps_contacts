@@ -248,6 +248,7 @@ public class DialpadFragment extends Fragment
         mDigits.setKeyListener(DialerKeyListener.getInstance());
         mDigits.setOnClickListener(this);
         mDigits.setOnKeyListener(this);
+        mDigits.setOnLongClickListener(this);
         mDigits.addTextChangedListener(this);
 
         PhoneNumberFormatter.setPhoneNumberFormattingTextWatcher(getActivity(), mDigits);
@@ -653,6 +654,12 @@ public class DialpadFragment extends Fragment
         mHaptic.vibrate();
         KeyEvent event = new KeyEvent(KeyEvent.ACTION_DOWN, keyCode);
         mDigits.onKeyDown(keyCode, event);
+
+        // If the cursor is at the end of the text we hide it.
+        final int length = mDigits.length();
+        if (length == mDigits.getSelectionStart() && length == mDigits.getSelectionEnd()) {
+            mDigits.setCursorVisible(false);
+        }
     }
 
     public boolean onKey(View view, int keyCode, KeyEvent event) {
@@ -803,6 +810,13 @@ public class DialpadFragment extends Fragment
             case R.id.zero: {
                 keyPressed(KeyEvent.KEYCODE_PLUS);
                 return true;
+            }
+            case R.id.digits: {
+                // Right now EditText does not show the "paste" option when cursor is not visible.
+                // To show that, make the cursor visible, and return false, letting the EditText
+                // show the option by itself.
+                mDigits.setCursorVisible(true);
+                return false;
             }
         }
         return false;
