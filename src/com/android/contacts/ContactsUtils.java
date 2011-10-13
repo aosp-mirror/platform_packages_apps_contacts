@@ -25,6 +25,8 @@ import com.android.i18n.phonenumbers.PhoneNumberUtil;
 import android.content.Context;
 import android.content.Intent;
 import android.location.CountryDetector;
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.PhoneNumberUtils;
@@ -183,5 +185,27 @@ public class ContactsUtils {
         final List<AccountWithDataSet> accounts =
                 AccountTypeManager.getInstance(context).getGroupWritableAccounts();
         return !accounts.isEmpty();
+    }
+
+    /**
+     * Returns the intent to launch for the given invitable account type and contact lookup URI.
+     * This will return null if the account type is not invitable (i.e. there is no
+     * {@link AccountType#getInviteContactActivityClassName()} or
+     * {@link AccountType#resPackageName}).
+     */
+    public static Intent getInvitableIntent(AccountType accountType, Uri lookupUri) {
+        String resPackageName = accountType.resPackageName;
+        String className = accountType.getInviteContactActivityClassName();
+        if (TextUtils.isEmpty(resPackageName) || TextUtils.isEmpty(className)) {
+            return null;
+        }
+        Intent intent = new Intent();
+        intent.setClassName(resPackageName, className);
+
+        intent.setAction(ContactsContract.Intents.INVITE_CONTACT);
+
+        // Data is the lookup URI.
+        intent.setData(lookupUri);
+        return intent;
     }
 }
