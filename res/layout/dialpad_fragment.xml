@@ -28,7 +28,7 @@
         android:id="@+id/digits_container"
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="0.200"
+        android:layout_weight="@integer/dialpad_layout_weight_digits"
         android:layout_marginTop="@dimen/dialpad_vertical_margin"
         android:gravity="center"
         android:background="@drawable/dialpad_background" >
