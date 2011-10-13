@@ -18,6 +18,7 @@ package com.android.contacts.calllog;
 
 import com.android.common.io.MoreCloseables;
 import com.android.contacts.voicemail.VoicemailStatusHelperImpl;
+import com.google.android.collect.Lists;
 
 import android.content.AsyncQueryHandler;
 import android.content.ContentResolver;
@@ -37,11 +38,15 @@ import android.provider.VoicemailContract.Status;
 import android.util.Log;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.annotation.concurrent.GuardedBy;
 
 /** Handles asynchronous queries to the call log. */
 /*package*/ class CallLogQueryHandler extends AsyncQueryHandler {
+    private static final String[] EMPTY_STRING_ARRAY = new String[0];
+
     private static final String TAG = "CallLogQueryHandler";
 
     /** The token for the query to fetch the new entries from the call log. */
@@ -57,6 +62,12 @@ import javax.annotation.concurrent.GuardedBy;
 
     /** The token for the query to fetch voicemail status messages. */
     private static final int QUERY_VOICEMAIL_STATUS_TOKEN = 58;
+
+    /**
+     * The time window from the current time within which an unread entry will be added to the new
+     * section.
+     */
+    private static final long NEW_SECTION_TIME_WINDOW = TimeUnit.DAYS.toMillis(7);
 
     private final WeakReference<Listener> mListener;
 
@@ -107,7 +118,8 @@ import javax.annotation.concurrent.GuardedBy;
         // The values in this row correspond to default values for _PROJECTION from CallLogQuery
         // plus the section value.
         matrixCursor.addRow(new Object[]{
-                0L, "", 0L, 0L, 0, "", "", "", null, 0, null, null, null, null, 0L, null, section
+                0L, "", 0L, 0L, 0, "", "", "", null, 0, null, null, null, null, 0L, null, 0,
+                section
         });
         return matrixCursor;
     }
@@ -157,8 +169,10 @@ import javax.annotation.concurrent.GuardedBy;
         // We need to check for NULL explicitly otherwise entries with where READ is NULL
         // may not match either the query or its negation.
         // We consider the calls that are not yet consumed (i.e. IS_READ = 0) as "new".
-        String selection = String.format("%s IS NOT NULL AND %s = 0", Calls.IS_READ, Calls.IS_READ);
-        String[] selectionArgs = null;
+        String selection = String.format("%s IS NOT NULL AND %s = 0 AND %s > ?",
+                Calls.IS_READ, Calls.IS_READ, Calls.DATE);
+        List<String> selectionArgs = Lists.newArrayList(
+                Long.toString(System.currentTimeMillis() - NEW_SECTION_TIME_WINDOW));
         if (!isNew) {
             // Negate the query.
             selection = String.format("NOT (%s)", selection);
@@ -166,12 +180,11 @@ import javax.annotation.concurrent.GuardedBy;
         if (voicemailOnly) {
             // Add a clause to fetch only items of type voicemail.
             selection = String.format("(%s) AND (%s = ?)", selection, Calls.TYPE);
-            selectionArgs = new String[]{
-                    Integer.toString(Calls.VOICEMAIL_TYPE),
-            };
+            selectionArgs.add(Integer.toString(Calls.VOICEMAIL_TYPE));
         }
         startQuery(token, null, Calls.CONTENT_URI_WITH_VOICEMAIL,
-                CallLogQuery._PROJECTION, selection, selectionArgs, Calls.DEFAULT_SORT_ORDER);
+                CallLogQuery._PROJECTION, selection, selectionArgs.toArray(EMPTY_STRING_ARRAY),
+                Calls.DEFAULT_SORT_ORDER);
     }
 
     /** Cancel any pending fetch request. */
