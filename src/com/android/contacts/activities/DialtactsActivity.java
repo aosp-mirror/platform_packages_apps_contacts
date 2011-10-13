@@ -556,7 +556,7 @@ public class DialtactsActivity extends Activity {
     private void setupFavorites() {
         final Tab tab = getActionBar().newTab();
         tab.setContentDescription(R.string.contactsFavoritesLabel);
-        tab.setIcon(R.drawable.ic_tab_starred);
+        tab.setIcon(R.drawable.ic_tab_all);
         tab.setTabListener(mTabListener);
         getActionBar().addTab(tab);
     }
