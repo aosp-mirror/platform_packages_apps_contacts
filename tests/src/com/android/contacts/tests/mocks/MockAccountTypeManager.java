@@ -64,7 +64,7 @@ public class MockAccountTypeManager extends AccountTypeManager {
     }
 
     @Override
-    public Map<AccountTypeWithDataSet, AccountType> getInvitableAccountTypes() {
+    public Map<AccountTypeWithDataSet, AccountType> getUsableInvitableAccountTypes() {
         return Maps.newHashMap(); // Always returns empty
     }
 

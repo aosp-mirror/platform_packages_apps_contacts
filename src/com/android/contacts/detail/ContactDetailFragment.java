@@ -878,8 +878,10 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                     long id) {
-                if (mListener != null) {
-                    mListener.onItemClicked(popupAdapter.getIntent(mContext, position));
+                if (mListener != null && mContactData != null) {
+                    mListener.onItemClicked(ContactsUtils.getInvitableIntent(
+                            popupAdapter.getItem(position) /* account type */,
+                            mContactData.getLookupUri()));
                 }
             }
         };
@@ -2102,7 +2104,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
     public static interface Listener {
         /**
-         * User clicked a single item (e.g. mail)
+         * User clicked a single item (e.g. mail). The intent passed in could be null.
          */
         public void onItemClicked(Intent intent);
 
@@ -2165,19 +2167,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             icon.setImageDrawable(accountType.getDisplayIcon(mContext));
 
             return resultView;
-        }
-
-        public Intent getIntent(Context context, int position) {
-            final AccountType accountType = mAccountTypes.get(position);
-            Intent intent = new Intent();
-            intent.setClassName(accountType.resPackageName,
-                    accountType.getInviteContactActivityClassName());
-
-            intent.setAction(ContactsContract.Intents.INVITE_CONTACT);
-
-            // Data is the lookup URI.
-            intent.setData(mContactData.getLookupUri());
-            return intent;
         }
 
         @Override

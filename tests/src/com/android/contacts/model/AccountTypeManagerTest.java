@@ -36,7 +36,7 @@ import java.util.Map;
  */
 @SmallTest
 public class AccountTypeManagerTest extends AndroidTestCase {
-    public void testFindInvitableAccountTypes() {
+    public void testFindAllInvitableAccountTypes() {
         final Context c = getContext();
 
         // Define account types.
@@ -53,7 +53,7 @@ public class AccountTypeManagerTest extends AndroidTestCase {
 
         // empty - empty
         Map<AccountTypeWithDataSet, AccountType> types =
-                AccountTypeManagerImpl.findInvitableAccountTypes(c,
+                AccountTypeManagerImpl.findAllInvitableAccountTypes(c,
                         buildAccounts(), buildAccountTypes());
         assertEquals(0, types.size());
         try {
@@ -159,7 +159,7 @@ public class AccountTypeManagerTest extends AndroidTestCase {
             AccountType... expectedInvitableTypes
             ) {
         Map<AccountTypeWithDataSet, AccountType> result =
-                AccountTypeManagerImpl.findInvitableAccountTypes(getContext(), accounts, types);
+                AccountTypeManagerImpl.findAllInvitableAccountTypes(getContext(), accounts, types);
         for (AccountType type : expectedInvitableTypes) {
             assertTrue("Result doesn't contain type=" + type.getAccountTypeAndDataSet(),
                     result.containsKey(type.getAccountTypeAndDataSet()));
