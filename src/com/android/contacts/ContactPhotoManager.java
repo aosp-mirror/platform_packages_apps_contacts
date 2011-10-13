@@ -359,8 +359,10 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
 
         view.setImageBitmap(holder.bitmap);
 
-        // Put the bitmap in the LRU cache
-        mBitmapCache.put(request, holder.bitmap);
+        if (holder.bitmap != null) {
+            // Put the bitmap in the LRU cache
+            mBitmapCache.put(request, holder.bitmap);
+        }
 
         // Soften the reference
         holder.bitmap = null;
