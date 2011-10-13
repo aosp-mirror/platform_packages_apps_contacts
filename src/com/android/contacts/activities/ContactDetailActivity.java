@@ -244,6 +244,9 @@ public class ContactDetailActivity extends ContactsActivity {
             new ContactDetailFragment.Listener() {
         @Override
         public void onItemClicked(Intent intent) {
+            if (intent == null) {
+                return;
+            }
             try {
                 startActivity(intent);
             } catch (ActivityNotFoundException e) {

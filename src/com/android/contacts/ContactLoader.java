@@ -850,17 +850,15 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
 
         /**
          * Sets the "invitable" account types to {@link Result#mInvitableAccountTypes}.
-         *
-         * TODO Exclude the ones with no raw contacts in the database.
          */
         private void loadInvitableAccountTypes(Result contactData) {
-            Map<AccountTypeWithDataSet, AccountType> allInvitables =
-                    AccountTypeManager.getInstance(getContext()).getInvitableAccountTypes();
-            if (allInvitables.isEmpty()) {
+            Map<AccountTypeWithDataSet, AccountType> invitables =
+                    AccountTypeManager.getInstance(getContext()).getUsableInvitableAccountTypes();
+            if (invitables.isEmpty()) {
                 return;
             }
 
-            HashMap<AccountTypeWithDataSet, AccountType> result = Maps.newHashMap(allInvitables);
+            HashMap<AccountTypeWithDataSet, AccountType> result = Maps.newHashMap(invitables);
 
             // Remove the ones that already have a raw contact in the current contact
             for (Entity entity : contactData.getEntities()) {
