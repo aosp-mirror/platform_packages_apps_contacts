@@ -302,8 +302,11 @@ public class DialtactsActivity extends Activity {
             new OnPhoneNumberPickerActionListener() {
                 @Override
                 public void onPickPhoneNumberAction(Uri dataUri) {
+                    // Specify call-origin so that users will see the previous tab instead of
+                    // CallLog screen (search UI will be automatically exited).
                     PhoneNumberInteraction.startInteractionForPhoneCall(
-                            DialtactsActivity.this, dataUri);
+                            DialtactsActivity.this, dataUri,
+                            CALL_ORIGIN_DIALTACTS);
                 }
 
                 @Override
