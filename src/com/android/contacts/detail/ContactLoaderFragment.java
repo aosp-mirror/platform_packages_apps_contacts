@@ -33,7 +33,9 @@ import android.content.Intent;
 import android.content.Loader;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -289,7 +291,13 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
                 if (mContactData == null) return false;
 
                 final String lookupKey = mContactData.getLookupKey();
-                final Uri shareUri = Uri.withAppendedPath(Contacts.CONTENT_VCARD_URI, lookupKey);
+                Uri shareUri = Uri.withAppendedPath(Contacts.CONTENT_VCARD_URI, lookupKey);
+                if (mContactData.isUserProfile()) {
+                    // User is sharing the profile.  We don't want to force the receiver to have
+                    // the highly-privileged READ_PROFILE permission, so we need to request a
+                    // pre-authorized URI from the provider.
+                    shareUri = getPreAuthorizedUri(shareUri);
+                }
 
                 final Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType(Contacts.CONTENT_VCARD_TYPE);
@@ -317,6 +325,25 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
             }
         }
         return false;
+    }
+
+    /**
+     * Calls into the contacts provider to get a pre-authorized version of the given URI.
+     */
+    private Uri getPreAuthorizedUri(Uri uri) {
+        Bundle uriBundle = new Bundle();
+        uriBundle.putParcelable(ContactsContract.Authorization.KEY_URI_TO_AUTHORIZE, uri);
+        Bundle authResponse = mContext.getContentResolver().call(
+                ContactsContract.AUTHORITY_URI,
+                ContactsContract.Authorization.AUTHORIZATION_METHOD,
+                null,
+                uriBundle);
+        if (authResponse != null) {
+            return (Uri) authResponse.getParcelable(
+                    ContactsContract.Authorization.KEY_AUTHORIZED_URI);
+        } else {
+            return uri;
+        }
     }
 
     @Override
