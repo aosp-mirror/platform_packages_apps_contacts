@@ -75,7 +75,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     private View mStatusMessageView;
     private TextView mStatusMessageText;
     private TextView mStatusMessageAction;
-    private View mStatusMessageDivider;
     private KeyguardManager mKeyguardManager;
 
     @Override
@@ -144,7 +143,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         mStatusMessageView = view.findViewById(R.id.voicemail_status);
         mStatusMessageText = (TextView) view.findViewById(R.id.voicemail_status_message);
         mStatusMessageAction = (TextView) view.findViewById(R.id.voicemail_status_action);
-        mStatusMessageDivider = view.findViewById(R.id.voicemail_status_divider);
         return view;
     }
 
@@ -186,7 +184,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             }
             if (message.actionUri != null) {
                 mStatusMessageAction.setVisibility(View.VISIBLE);
-                mStatusMessageDivider.setVisibility(View.VISIBLE);
                 mStatusMessageAction.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -196,7 +193,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                 });
             } else {
                 mStatusMessageAction.setVisibility(View.GONE);
-                mStatusMessageDivider.setVisibility(View.GONE);
             }
         }
     }
