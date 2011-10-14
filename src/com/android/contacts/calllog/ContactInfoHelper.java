@@ -185,13 +185,25 @@ public class ContactInfoHelper {
     private ContactInfo queryContactInfoForPhoneNumber(String number, String countryIso) {
         final ContactInfo info;
 
-        // "number" is a regular phone number, so use the
+        String contactNumber = number;
+        if (!TextUtils.isEmpty(countryIso)) {
+            // Normalize the number: this is needed because the PhoneLookup query below does not
+            // accept a country code as an input.
+            String numberE164 = PhoneNumberUtils.formatNumberToE164(number, countryIso);
+            if (!TextUtils.isEmpty(numberE164)) {
+                // Only use it if the number could be formatted to E164.
+                contactNumber = numberE164;
+            }
+        }
+
+        // "contactNumber" is a regular phone number, so use the
         // PhoneLookup table:
         Cursor phonesCursor =
                 mContext.getContentResolver().query(
                     Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI,
-                            Uri.encode(number)),
+                            Uri.encode(contactNumber)),
                             PhoneQuery._PROJECTION, null, null, null);
+
         if (phonesCursor != null) {
             if (phonesCursor.moveToFirst()) {
                 info = new ContactInfo();
