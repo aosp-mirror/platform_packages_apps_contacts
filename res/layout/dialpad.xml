@@ -20,7 +20,7 @@
     android:id="@+id/dialpad"
     android:layout_width="match_parent"
     android:layout_height="0px"
-    android:layout_weight="0.650"
+    android:layout_weight="@integer/dialpad_layout_weight_dialpad"
     android:layout_gravity="center_horizontal"
     android:layout_marginTop="@dimen/dialpad_vertical_margin"
     android:paddingLeft="5dip"

@@ -19,7 +19,7 @@
     android:id="@+id/dialpadAdditionalButtons"
     android:layout_width="match_parent"
     android:layout_height="0px"
-    android:layout_weight="0.150"
+    android:layout_weight="@integer/dialpad_layout_weight_additional_buttons"
     android:layout_gravity="center_horizontal"
     android:background="@drawable/dialpad_background"
     android:orientation="horizontal">
