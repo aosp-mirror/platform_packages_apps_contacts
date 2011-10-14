@@ -44,6 +44,8 @@
         <item name="list_item_header_height">24dip</item>
         <item name="list_item_header_underline_height">1dip</item>
         <item name="list_item_header_underline_color">@color/people_app_theme_color</item>
+        <item name="list_item_data_width_weight">5</item>
+        <item name="list_item_label_width_weight">3</item>
         <item name="contact_browser_list_padding_left">16dip</item>
         <item name="contact_browser_list_padding_right">0dip</item>
         <item name="contact_browser_background">@android:color/transparent</item>
@@ -146,6 +148,8 @@
         <item name="list_item_header_height">26dip</item>
         <item name="list_item_header_underline_height">1dip</item>
         <item name="list_item_header_underline_color">@color/people_app_theme_color</item>
+        <item name="list_item_data_width_weight">5</item>
+        <item name="list_item_label_width_weight">3</item>
         <item name="list_item_contacts_count_text_color">@color/contact_count_text_color</item>
         <item name="list_item_header_text_indent">8dip</item>
         <item name="contact_browser_list_padding_left">16dip</item>
