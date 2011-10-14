@@ -205,4 +205,10 @@
     <!--  Width of the lead margin on the left of a block quote inside a stream item -->
     <dimen name="stream_item_stripe_width">8dip</dimen>
 
+    <!-- Layout weight values for dialpad screen. These layouts will be used in one
+         LinearLayout (dialpad_fragment.xml), configuring dialpad screen's vertical
+         ratio. -->
+    <integer name="dialpad_layout_weight_digits">20</integer>
+    <integer name="dialpad_layout_weight_dialpad">65</integer>
+    <integer name="dialpad_layout_weight_additional_buttons">15</integer>
 </resources>
