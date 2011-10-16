@@ -20,10 +20,8 @@ import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedLi
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -42,7 +40,6 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     private OnPhoneNumberPickerActionListener mListener;
     private String mShortcutAction;
 
-    private SharedPreferences mPrefs;
     private ContactListFilter mFilter;
 
     private TextView mAccountFilterHeaderView;
@@ -139,18 +136,6 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
             mAccountFilterHeaderContainer.setVisibility(View.GONE);
             mPaddingView.setVisibility(View.VISIBLE);
         }
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mPrefs = null;
     }
 
     @Override
@@ -283,13 +268,6 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
         }
 
         mFilter = filter;
-        if (mPrefs != null) {
-            // Save the preference now.
-            ContactListFilter.storeToPreferences(mPrefs, mFilter);
-        }
-
-        // This method can be called before {@link #onStart} where we start the loader.  In that
-        // case we shouldn't start the loader yet, as we haven't done all initialization yet.
         if (mLoaderStarted) {
             reloadData();
         }

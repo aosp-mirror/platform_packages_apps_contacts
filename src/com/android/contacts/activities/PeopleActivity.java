@@ -184,8 +184,6 @@ public class PeopleActivity extends ContactsActivity
     public PeopleActivity() {
         mInstanceId = sNextInstanceId.getAndIncrement();
         mIntentResolver = new ContactsIntentResolver(this);
-        mContactListFilterController = new ContactListFilterController(this);
-        mContactListFilterController.addListener(this);
         mProviderStatusLoader = new ProviderStatusLoader(this);
     }
 
@@ -245,6 +243,9 @@ public class PeopleActivity extends ContactsActivity
             finish();
             return;
         }
+
+        mContactListFilterController = ContactListFilterController.getInstance(this);
+        mContactListFilterController.addListener(this);
 
         mIsRecreatedInstance = (savedState != null);
         createViewsAndFragments(savedState);
@@ -436,7 +437,6 @@ public class PeopleActivity extends ContactsActivity
              */
             configureFragments(!mIsRecreatedInstance);
         }
-        mContactListFilterController.onStart(false);
         super.onStart();
     }
 
@@ -473,6 +473,7 @@ public class PeopleActivity extends ContactsActivity
         if (mActionBarAdapter != null) {
             mActionBarAdapter.setListener(null);
         }
+        mContactListFilterController.removeListener(this);
         super.onDestroy();
     }
 
@@ -859,6 +860,7 @@ public class PeopleActivity extends ContactsActivity
             mAllFragment.setSelectedContactUri(contactUri);
         }
 
+        mAllFragment.setFilter(mContactListFilterController.getFilter());
         mAllFragment.setSearchMode(mActionBarAdapter.isSearchMode());
         mAllFragment.setQueryString(mActionBarAdapter.getQueryString(), false);
 
@@ -867,13 +869,12 @@ public class PeopleActivity extends ContactsActivity
         } else {
             mAllFragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_NONE);
         }
-
-        if (mContactListFilterController.isInitialized()) {
-            mAllFragment.setFilter(mContactListFilterController.getFilter());
-        }
     }
 
     private void configureContactListFragment() {
+        // Filter may be changed when this Activity is in background.
+        mAllFragment.setFilter(mContactListFilterController.getFilter());
+
         final boolean showSearchResult = mActionBarAdapter.shouldShowSearchResult();
         mAllFragment.setSearchMode(showSearchResult);
 

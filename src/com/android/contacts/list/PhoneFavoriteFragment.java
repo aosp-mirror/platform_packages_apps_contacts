@@ -27,11 +27,9 @@ import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.ContactsContract.Directory;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -193,7 +191,6 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
      */
     private boolean mAllContactsForceReload;
 
-    private SharedPreferences mPrefs;
     private ContactsPreferences mContactsPrefs;
     private ContactListFilter mFilter;
 
@@ -231,7 +228,6 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
         mContactsPrefs = new ContactsPreferences(activity);
     }
 
@@ -313,12 +309,6 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
         mAdapter = new PhoneFavoriteMergedAdapter(context,
                 mContactTileAdapter, mAccountFilterHeaderContainer, mAllContactsAdapter);
 
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mPrefs = null;
     }
 
     @Override
@@ -448,10 +438,6 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
         }
 
         mFilter = filter;
-        if (mPrefs != null) {
-            // Save the preference now.
-            ContactListFilter.storeToPreferences(mPrefs, mFilter);
-        }
 
         if (mAllContactsAdapter != null) {
             mAllContactsAdapter.setFilter(mFilter);

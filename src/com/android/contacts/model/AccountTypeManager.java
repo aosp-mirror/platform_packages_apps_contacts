@@ -17,6 +17,7 @@
 package com.android.contacts.model;
 
 import com.android.contacts.ContactsUtils;
+import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.util.Constants;
 import com.android.i18n.phonenumbers.PhoneNumberUtil;
 import com.android.internal.util.Objects;
@@ -43,6 +44,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.Looper;
 import android.os.Message;
 import android.os.RemoteException;
 import android.os.SystemClock;
@@ -137,12 +139,25 @@ public abstract class AccountTypeManager {
         return type == null ? null : type.getKindForMimetype(mimeType);
     }
 
-    /*
+    /**
      * Returns all registered {@link AccountType}s, including extension ones.
      *
      * @param contactWritableOnly if true, it only returns ones that support writing contacts.
      */
     public abstract List<AccountType> getAccountTypes(boolean contactWritableOnly);
+
+    /**
+     * @param contactWritableOnly if true, it only returns ones that support writing contacts.
+     * @return true when this instance contains the given account.
+     */
+    public boolean contains(AccountWithDataSet account, boolean contactWritableOnly) {
+        for (AccountWithDataSet account_2 : getAccounts(false)) {
+            if (account.equals(account_2)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
 class AccountTypeManagerImpl extends AccountTypeManager
@@ -192,6 +207,14 @@ class AccountTypeManagerImpl extends AccountTypeManager
 
     private HandlerThread mListenerThread;
     private Handler mListenerHandler;
+
+    private final Handler mMainThreadHandler = new Handler(Looper.getMainLooper());
+    private final Runnable mCheckFilterValidityRunnable = new Runnable () {
+        @Override
+        public void run() {
+            ContactListFilterController.getInstance(mContext).checkFilterValidity();
+        }
+    };
 
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
 
@@ -498,6 +521,10 @@ class AccountTypeManagerImpl extends AccountTypeManager
         if (Log.isLoggable(Constants.PERFORMANCE_TAG, Log.DEBUG)) {
             Log.d(Constants.PERFORMANCE_TAG, "AccountTypeManager.loadAccountsInBackground finish");
         }
+
+        // Check filter validity since filter may become obsolete after account update. It must be
+        // done from UI thread.
+        mMainThreadHandler.post(mCheckFilterValidityRunnable);
     }
 
     // Bookkeeping method for tracking the known account types in the given maps.
