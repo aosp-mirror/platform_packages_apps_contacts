@@ -121,7 +121,11 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
     private TextView mStatusMessageAction;
 
     /** Whether we should show "edit number before call" in the options menu. */
-    private boolean mHasEditNumberBeforeCall;
+    private boolean mHasEditNumberBeforeCallOption;
+    /** Whether we should show "trash" in the options menu. */
+    private boolean mHasTrashOption;
+    /** Whether we should show "remove from call log" in the options menu. */
+    private boolean mHasRemoveFromCallLogOption;
 
     private ProximitySensorManager mProximitySensorManager;
     private final ProximitySensorListener mProximitySensorListener = new ProximitySensorListener();
@@ -491,7 +495,10 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
                     disableCallButton();
                 }
 
-                mHasEditNumberBeforeCall = canPlaceCallsTo && !isSipNumber && !isVoicemailNumber;
+                mHasEditNumberBeforeCallOption =
+                        canPlaceCallsTo && !isSipNumber && !isVoicemailNumber;
+                mHasTrashOption = hasVoicemail();
+                mHasRemoveFromCallLogOption = !hasVoicemail();
                 invalidateOptionsMenu();
 
                 ListView historyList = (ListView) findViewById(R.id.history);
@@ -724,9 +731,9 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
     public boolean onPrepareOptionsMenu(Menu menu) {
         // This action deletes all elements in the group from the call log.
         // We don't have this action for voicemails, because you can just use the trash button.
-        menu.findItem(R.id.menu_remove_from_call_log).setVisible(!hasVoicemail());
-        menu.findItem(R.id.menu_edit_number_before_call).setVisible(mHasEditNumberBeforeCall);
-        menu.findItem(R.id.menu_trash).setVisible(hasVoicemail());
+        menu.findItem(R.id.menu_remove_from_call_log).setVisible(mHasRemoveFromCallLogOption);
+        menu.findItem(R.id.menu_edit_number_before_call).setVisible(mHasEditNumberBeforeCallOption);
+        menu.findItem(R.id.menu_trash).setVisible(mHasTrashOption);
         return super.onPrepareOptionsMenu(menu);
     }
 
