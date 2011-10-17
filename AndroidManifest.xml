@@ -567,37 +567,6 @@
             android:theme="@android:style/Theme.Translucent">
         </activity>
 
-        <!-- LIVE FOLDERS -->
-        <activity
-            android:name=".ContactsLiveFolders$AllContacts"
-            android:label="@string/liveFolderAll"
-            android:icon="@mipmap/ic_launcher_folder_live_contacts">
-            <intent-filter>
-                <action android:name="android.intent.action.CREATE_LIVE_FOLDER" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".ContactsLiveFolders$StarredContacts"
-            android:label="@string/liveFolderFavorites"
-            android:icon="@mipmap/ic_launcher_folder_live_contacts_starred">
-            <intent-filter>
-                <action android:name="android.intent.action.CREATE_LIVE_FOLDER" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".ContactsLiveFolders$PhoneContacts"
-            android:label="@string/liveFolderPhone"
-            android:icon="@mipmap/ic_launcher_folder_live_contacts_phone">
-            <intent-filter>
-                <action android:name="android.intent.action.CREATE_LIVE_FOLDER" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
         <!-- vCard related -->
         <activity android:name=".vcard.ImportVCardActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
