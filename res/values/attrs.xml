@@ -114,6 +114,7 @@
         <attr name="call_log_voicemail_status_height" format="dimension" />
         <attr name="call_log_voicemail_status_background_color" format="color" />
         <attr name="call_log_voicemail_status_text_color" format="color" />
+        <attr name="call_log_voicemail_status_action_text_color" format="color" />
     </declare-styleable>
 
     <declare-styleable name="Favorites">
