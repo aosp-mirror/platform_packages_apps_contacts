@@ -89,11 +89,14 @@ public class ContactListItemView extends ViewGroup
     private final int mTextIndent;
     private Drawable mActivatedBackgroundDrawable;
 
-    // In the future we may need to merge these local padding to View's mPaddingXXX
-    private final int mExtraPaddingTop;
-    private final int mExtraPaddingBottom;
-    private int mExtraPaddingLeft;
-    private int mExtraPaddingRight;
+    /**
+     * Used with {@link #mLabelView}, specifying the width ratio between label and data.
+     */
+    private final int mLabelViewWidthWeight;
+    /**
+     * Used with {@link #mDataView}, specifying the width ratio between label and data.
+     */
+    private final int mDataViewWidthWeight;
 
     // Will be used with adjustListItemSelectionBounds().
     private int mSelectionBoundsMarginLeft;
@@ -230,14 +233,7 @@ public class ContactListItemView extends ViewGroup
                 R.styleable.ContactListItemView_list_item_divider);
         mVerticalDividerMargin = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_vertical_divider_margin, 0);
-        mExtraPaddingTop = a.getDimensionPixelOffset(
-                R.styleable.ContactListItemView_list_item_padding_top, 0);
-        mExtraPaddingBottom = a.getDimensionPixelOffset(
-                R.styleable.ContactListItemView_list_item_padding_bottom, 0);
-        mExtraPaddingLeft = a.getDimensionPixelOffset(
-                R.styleable.ContactListItemView_list_item_padding_left, 0);
-        mExtraPaddingRight = a.getDimensionPixelOffset(
-                R.styleable.ContactListItemView_list_item_padding_right, 0);
+
         mGapBetweenImageAndText = a.getDimensionPixelOffset(
                 R.styleable.ContactListItemView_list_item_gap_between_image_and_text, 0);
         mGapBetweenLabelAndData = a.getDimensionPixelOffset(
@@ -268,6 +264,20 @@ public class ContactListItemView extends ViewGroup
                 R.styleable.ContactListItemView_list_item_contacts_count_text_size, 12);
         mContactsCountTextColor = a.getColor(
                 R.styleable.ContactListItemView_list_item_contacts_count_text_color, Color.BLACK);
+        mDataViewWidthWeight = a.getInteger(
+                R.styleable.ContactListItemView_list_item_data_width_weight, 5);
+        mLabelViewWidthWeight = a.getInteger(
+                R.styleable.ContactListItemView_list_item_label_width_weight, 3);
+
+        setPadding(
+                a.getDimensionPixelOffset(
+                        R.styleable.ContactListItemView_list_item_padding_left, 0),
+                a.getDimensionPixelOffset(
+                        R.styleable.ContactListItemView_list_item_padding_top, 0),
+                a.getDimensionPixelOffset(
+                        R.styleable.ContactListItemView_list_item_padding_right, 0),
+                a.getDimensionPixelOffset(
+                        R.styleable.ContactListItemView_list_item_padding_bottom, 0));
 
         mPrefixHighligher = new PrefixHighlighter(
                 a.getColor(R.styleable.ContactListItemView_list_item_prefix_highlight_color,
@@ -306,9 +316,13 @@ public class ContactListItemView extends ViewGroup
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         // We will match parent's width and wrap content vertically, but make sure
         // height is no less than listPreferredItemHeight.
-        int width = resolveSize(0, widthMeasureSpec);
-        int height = 0;
-        int preferredHeight = mPreferredHeight;
+        final int specWidth = resolveSize(0, widthMeasureSpec);
+        final int preferredHeight;
+        if (mHorizontalDividerVisible) {
+            preferredHeight = mPreferredHeight + mHorizontalDividerHeight;
+        } else {
+            preferredHeight = mPreferredHeight;
+        }
 
         mNameTextViewHeight = 0;
         mPhoneticNameTextViewHeight = 0;
@@ -318,51 +332,76 @@ public class ContactListItemView extends ViewGroup
         mSnippetTextViewHeight = 0;
         mStatusTextViewHeight = 0;
 
-        // TODO: measure(0, 0) is *wrong*. At least, we should use correct width for each TextView.
-        //
-        // Reason: TextView applies ellipsis effect in this phase, while measure(0, 0) have those
-        // views prepare the effect based on "unlimited width", which makes ellipsis setting
-        // meaningless. We should pass a widthMeasureSpec with appropriate width setting.
-        // See issue 5439903.
-
         ensurePhotoViewSize();
 
-        // Go over all visible text views and add their heights to get the total height
+        // Width each TextView is able to use.
+        final int effectiveWidth;
+        // All the other Views will honor the photo, so available width for them may be shrunk.
+        if (mPhotoViewWidth > 0 || mKeepHorizontalPaddingForPhotoView) {
+            effectiveWidth = specWidth - getPaddingLeft() - getPaddingRight()
+                    - (mPhotoViewWidth + mGapBetweenImageAndText);
+        } else {
+            effectiveWidth = specWidth - getPaddingLeft() - getPaddingRight();
+        }
+
+        // Go over all visible text views and measure actual width of each of them.
+        // Also calculate their heights to get the total height for this entire view.
+
         if (isVisible(mNameTextView)) {
-            mNameTextView.measure(0, 0);
+            mNameTextView.measure(
+                    MeasureSpec.makeMeasureSpec(effectiveWidth, MeasureSpec.AT_MOST),
+                    MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
             mNameTextViewHeight = mNameTextView.getMeasuredHeight();
         }
 
         if (isVisible(mPhoneticNameTextView)) {
-            mPhoneticNameTextView.measure(0, 0);
+            mPhoneticNameTextView.measure(
+                    MeasureSpec.makeMeasureSpec(effectiveWidth, MeasureSpec.AT_MOST),
+                    MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
             mPhoneticNameTextViewHeight = mPhoneticNameTextView.getMeasuredHeight();
         }
 
+        // If both data (phone number/email address) and label (type like "MOBILE") are quite long,
+        // we should ellipsize both using appropriate ratio.
+        final int dataWidth;
+        final int labelWidth;
         if (isVisible(mDataView)) {
-            mDataView.measure(0, 0);
+            if (isVisible(mLabelView)) {
+                final int totalWidth = effectiveWidth - mGapBetweenLabelAndData;
+                dataWidth = ((totalWidth * mDataViewWidthWeight)
+                        / (mDataViewWidthWeight + mLabelViewWidthWeight));
+                labelWidth = ((totalWidth * mLabelViewWidthWeight) /
+                        (mDataViewWidthWeight + mLabelViewWidthWeight));
+            } else {
+                dataWidth = effectiveWidth;
+                labelWidth = 0;
+            }
+        } else {
+            dataWidth = 0;
+            if (isVisible(mLabelView)) {
+                labelWidth = effectiveWidth;
+            } else {
+                labelWidth = 0;
+            }
+        }
+
+        if (isVisible(mDataView)) {
+            mDataView.measure(MeasureSpec.makeMeasureSpec(dataWidth, MeasureSpec.AT_MOST),
+                    MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
             mDataViewHeight = mDataView.getMeasuredHeight();
         }
 
         if (isVisible(mLabelView)) {
-            if (mPhotoPosition == PhotoPosition.LEFT) {
-                // Manually calculate the width now and see if ellipsis becomes effective or not.
-                // See also issue 5438757 and 5439903.
-                final int labelViewWidth = width - mExtraPaddingLeft - mExtraPaddingRight
-                        - (mPhotoViewWidth + mGapBetweenImageAndText)
-                        - mDataView.getMeasuredWidth()
-                        - mGapBetweenLabelAndData;
-                final int labelViewWidthMeasureSpec = MeasureSpec.makeMeasureSpec(
-                        labelViewWidth, MeasureSpec.AT_MOST);
-                mLabelView.measure(labelViewWidthMeasureSpec, 0);
-            } else {
-                mLabelView.measure(0, 0);
-            }
+            mLabelView.measure(MeasureSpec.makeMeasureSpec(labelWidth, MeasureSpec.AT_MOST),
+                    MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
             mLabelTextViewHeight = mLabelView.getMeasuredHeight();
         }
         mLabelAndDataViewMaxHeight = Math.max(mLabelTextViewHeight, mDataViewHeight);
 
         if (isVisible(mSnippetView)) {
-            mSnippetView.measure(0, 0);
+            mSnippetView.measure(
+                    MeasureSpec.makeMeasureSpec(effectiveWidth, MeasureSpec.AT_MOST),
+                    MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
             mSnippetTextViewHeight = mSnippetView.getMeasuredHeight();
         }
 
@@ -373,27 +412,36 @@ public class ContactListItemView extends ViewGroup
         }
 
         if (isVisible(mStatusView)) {
-            mStatusView.measure(0, 0);
-            mStatusTextViewHeight = Math.max(mStatusTextViewHeight,
-                    mStatusView.getMeasuredHeight());
+            // Presence and status are in a same row, so status will be affected by icon size.
+            final int statusWidth;
+            if (isVisible(mPresenceIcon)) {
+                statusWidth = (effectiveWidth - mPresenceIcon.getMeasuredWidth()
+                        - mPresenceIconMargin);
+            } else {
+                statusWidth = effectiveWidth;
+            }
+            mStatusView.measure(MeasureSpec.makeMeasureSpec(statusWidth, MeasureSpec.AT_MOST),
+                    MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+            mStatusTextViewHeight =
+                    Math.max(mStatusTextViewHeight, mStatusView.getMeasuredHeight());
         }
 
-        // Calculate height including padding
-        height += mNameTextViewHeight + mPhoneticNameTextViewHeight + mLabelAndDataViewMaxHeight +
-                mSnippetTextViewHeight + mStatusTextViewHeight +
-                mExtraPaddingTop + mExtraPaddingBottom;
+        // Calculate height including padding.
+        int height = (mNameTextViewHeight + mPhoneticNameTextViewHeight +
+                mLabelAndDataViewMaxHeight +
+                mSnippetTextViewHeight + mStatusTextViewHeight);
 
         if (isVisible(mCallButton)) {
-            mCallButton.measure(0, 0);
+            mCallButton.measure(MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
+                    MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
         }
 
         // Make sure the height is at least as high as the photo
-        height = Math.max(height, mPhotoViewHeight + mExtraPaddingBottom + mExtraPaddingTop);
+        height = Math.max(height, mPhotoViewHeight + getPaddingBottom() + getPaddingTop());
 
         // Add horizontal divider height
         if (mHorizontalDividerVisible) {
             height += mHorizontalDividerHeight;
-            preferredHeight += mHorizontalDividerHeight;
         }
 
         // Make sure height is at least the preferred height
@@ -402,11 +450,11 @@ public class ContactListItemView extends ViewGroup
         // Add the height of the header if visible
         if (mHeaderVisible) {
             mHeaderTextView.measure(
-                    MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
+                    MeasureSpec.makeMeasureSpec(specWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(mHeaderBackgroundHeight, MeasureSpec.EXACTLY));
             if (mCountView != null) {
                 mCountView.measure(
-                        MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST),
+                        MeasureSpec.makeMeasureSpec(specWidth, MeasureSpec.AT_MOST),
                         MeasureSpec.makeMeasureSpec(mHeaderBackgroundHeight, MeasureSpec.EXACTLY));
             }
             mHeaderBackgroundHeight = Math.max(mHeaderBackgroundHeight,
@@ -414,7 +462,7 @@ public class ContactListItemView extends ViewGroup
             height += (mHeaderBackgroundHeight + mHeaderUnderlineHeight);
         }
 
-        setMeasuredDimension(width, height);
+        setMeasuredDimension(specWidth, height);
     }
 
     @Override
@@ -425,8 +473,8 @@ public class ContactListItemView extends ViewGroup
         // Determine the vertical bounds by laying out the header first.
         int topBound = 0;
         int bottomBound = height;
-        int leftBound = mExtraPaddingLeft;
-        int rightBound = width - mExtraPaddingRight;
+        int leftBound = getPaddingLeft();
+        int rightBound = width - getPaddingRight();
 
         // Put the header in the top of the contact view (Text + underline view)
         if (mHeaderVisible) {
@@ -435,7 +483,7 @@ public class ContactListItemView extends ViewGroup
                     rightBound,
                     mHeaderBackgroundHeight);
             if (mCountView != null) {
-                mCountView.layout(width - mExtraPaddingRight - mCountView.getMeasuredWidth(),
+                mCountView.layout(rightBound - mCountView.getMeasuredWidth(),
                         0,
                         rightBound,
                         mHeaderBackgroundHeight);
@@ -462,10 +510,6 @@ public class ContactListItemView extends ViewGroup
         if (mActivatedStateSupported && isActivated()) {
             mActivatedBackgroundDrawable.setBounds(mBoundsWithoutHeader);
         }
-
-        // Set the top/bottom padding
-        topBound += mExtraPaddingTop;
-        bottomBound -= mExtraPaddingBottom;
 
         final View photoView = mQuickContact != null ? mQuickContact : mPhotoView;
         if (mPhotoPosition == PhotoPosition.LEFT) {
@@ -947,7 +991,6 @@ public class ContactListItemView extends ViewGroup
             mLabelView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
             if (mPhotoPosition == PhotoPosition.LEFT) {
                 mLabelView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mCountViewTextSize);
-                mLabelView.setEllipsize(TruncateAt.MIDDLE);
                 mLabelView.setAllCaps(true);
             } else {
                 mLabelView.setTypeface(mLabelView.getTypeface(), Typeface.BOLD);
@@ -1103,7 +1146,9 @@ public class ContactListItemView extends ViewGroup
     }
 
     private TruncateAt getTextEllipsis() {
-        return mActivatedStateSupported ? TruncateAt.START : TruncateAt.MARQUEE;
+        // Note: If we want to choose MARQUEE here, we may need to manually trigger TextView's
+        // startStopMarquee(), which is unfortunately *private*. See also issue 5465510.
+        return TruncateAt.MIDDLE;
     }
 
     public void showDisplayName(Cursor cursor, int nameColumnIndex, int alternativeNameColumnIndex,
@@ -1259,29 +1304,6 @@ public class ContactListItemView extends ViewGroup
 
     public PhotoPosition getPhotoPosition() {
         return mPhotoPosition;
-    }
-
-    /**
-     * Sets custom padding inside this object. Do not use this method without any strong reason.
-     *
-     * Detail: we cannot simply override {@link #setPadding(int, int, int, int)}. {@link View}
-     * does *not* know this view's local padding but has completely different ones.
-     * See View#mPaddingLeft and View#mPaddingRight. View also has View#mUserPaddingLeft, and
-     * View#mUserPaddingRight in addition to View#mPaddingLeft and View#mPaddingRight, to handle
-     * {@link View#setPadding(int, int, int, int)} correctly. If setPadding() is overridden to
-     * reset our {@link #mExtraPaddingLeft} and {@link #mExtraPaddingRight} carelessly, the whole
-     * View layout gets confused.
-     *
-     * To simplify our implementation, this method just modify the local two padding without
-     * confusing its parent.
-     *
-     * If we want to fix this multiple padding issue correctly, we should merge local padding
-     * in this class into View's ones. Also we should remove "list_item_padding_left" and
-     * "list_item_padding_right" attributes, using "android:paddingLeft" and "android:paddingRight".
-     */
-    public void setExtraPadding(int left, int right) {
-        mExtraPaddingLeft = left;
-        mExtraPaddingRight = right;
     }
 
     /**
