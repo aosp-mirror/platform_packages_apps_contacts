@@ -32,6 +32,7 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
+import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
@@ -81,6 +82,14 @@ public abstract class AccountType {
      * Lookup map of {@link #mKinds} on {@link DataKind#mimeType}.
      */
     private HashMap<String, DataKind> mMimeKinds = Maps.newHashMap();
+
+    /**
+     * Whether this account type was able to be fully initialized.  This may be false if
+     * (for example) the package name associated with the account type could not be found.
+     */
+    public boolean isInitialized() {
+        return true;
+    }
 
     public boolean isExtension() {
         return false;
@@ -234,10 +243,6 @@ public abstract class AccountType {
      */
     abstract public boolean isGroupMembershipEditable();
 
-    abstract public int getHeaderColor(Context context);
-
-    abstract public int getSideBarColor(Context context);
-
     /**
      * {@link Comparator} to sort by {@link DataKind#weight}.
      */
@@ -270,6 +275,11 @@ public abstract class AccountType {
      * Add given {@link DataKind} to list of those provided by this source.
      */
     public DataKind addKind(DataKind kind) {
+        if (mMimeKinds.get(kind.mimeType) != null) {
+            // TODO Make it exception.
+            Log.w(TAG, "mime type '" + kind.mimeType + "' is already registered");
+        }
+
         kind.resPackageName = this.resPackageName;
         this.mKinds.add(kind);
         this.mMimeKinds.put(kind.mimeType, kind);
@@ -351,7 +361,7 @@ public abstract class AccountType {
      * {@link Phone#NUMBER}. Includes flags to apply to an {@link EditText}, and
      * the column where this field is stored.
      */
-    public static class EditField {
+    public static final class EditField {
         public String column;
         public int titleRes;
         public int inputType;
