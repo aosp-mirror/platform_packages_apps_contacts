@@ -19,6 +19,7 @@ package com.android.contacts.quickcontact;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.google.android.collect.Sets;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -65,14 +66,33 @@ public class ResolveCache {
      */
     public synchronized static ResolveCache getInstance(Context context) {
         if (sInstance == null) {
-            return sInstance = new ResolveCache(context.getApplicationContext());
+            final Context applicationContext = context.getApplicationContext();
+            sInstance = new ResolveCache(applicationContext);
+
+            // Register for package-changes so that we can flush our cache
+            final IntentFilter filter = new IntentFilter(Intent.ACTION_PACKAGE_ADDED);
+            filter.addAction(Intent.ACTION_PACKAGE_REPLACED);
+            filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
+            filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
+            filter.addDataScheme("package");
+            applicationContext.registerReceiver(sInstance.mPackageIntentReceiver, filter);
         }
         return sInstance;
     }
 
-    public synchronized static void flush() {
+    private synchronized static void flush() {
         sInstance = null;
     }
+
+    /**
+     * Called anytime a package is installed, uninstalled etc, so that we can wipe our cache
+     */
+    private BroadcastReceiver mPackageIntentReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            flush();
+        }
+    };
 
     /**
      * Cached entry holding the best {@link ResolveInfo} for a specific

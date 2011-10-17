@@ -409,26 +409,6 @@
             </intent-filter>
         </activity>
 
-        <!-- Flushes the QuickContact IntentCache -->
-        <receiver android:name=".quickcontact.PackageIntentReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-                <data android:scheme="package" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REPLACED" />
-                <data android:scheme="package" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REMOVED" />
-                <data android:scheme="package" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_CHANGED" />
-                <data android:scheme="package" />
-            </intent-filter>
-        </receiver>
-
         <activity-alias android:name="ContactShortcut"
             android:targetActivity=".activities.ContactSelectionActivity"
             android:label="@string/shortcutContact"

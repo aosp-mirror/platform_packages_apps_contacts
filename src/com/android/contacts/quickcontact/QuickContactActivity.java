@@ -18,7 +18,6 @@ package com.android.contacts.quickcontact;
 
 import com.android.contacts.Collapser;
 import com.android.contacts.ContactPhotoManager;
-import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.DataKind;
