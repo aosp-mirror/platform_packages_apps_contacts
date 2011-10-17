@@ -379,9 +379,6 @@
 
          [CHAR LIMIT=NONE] -->
     <string name="recentCallsIconLabel">Call log</string>
-    <string name="liveFolderAll">All contacts</string>
-    <string name="liveFolderFavorites">Starred contacts</string>
-    <string name="liveFolderPhone">Contacts with phone numbers</string>
 
     <!-- Menu item used to send an SMS or MMS message to a phone number  -->
     <string name="menu_sendTextMessage">Send text message</string>
@@ -521,15 +518,6 @@
         \n<li>Touch the contact you want to add to your favorites\n</li>
         \n<li>Touch the star next to the contact\'s name\n</li>"
     </string>
-
-    <!-- Live folder label for all contacts -->
-    <string name="liveFolder_all_label">All contacts</string>
-
-    <!-- Live folder label for only starred contacts -->
-    <string name="liveFolder_favorites_label">Starred</string>
-
-    <!-- Live folder label for all contacts with phone numbers -->
-    <string name="liveFolder_phones_label">Phones</string>
 
     <!-- Item label: jump to the in-call DTMF dialpad.
          (Part of a list of options shown in the dialer when another call
