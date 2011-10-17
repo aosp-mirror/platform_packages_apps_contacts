@@ -39,7 +39,6 @@ import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.provider.CallLog.Calls;
 import android.telephony.PhoneNumberUtils;
-import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -62,7 +61,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
 
     private CallLogAdapter mAdapter;
     private CallLogQueryHandler mCallLogQueryHandler;
-    private String mVoiceMailNumber;
     private boolean mScrollToTop;
 
     private boolean mShowOptionsMenu;
@@ -82,8 +80,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     public void onCreate(Bundle state) {
         super.onCreate(state);
 
-        mVoiceMailNumber = ((TelephonyManager) getActivity().getSystemService(
-                Context.TELEPHONY_SERVICE)).getVoiceMailNumber();
         mCallLogQueryHandler = new CallLogQueryHandler(getActivity().getContentResolver(), this);
         mKeyguardManager =
                 (KeyguardManager) getActivity().getSystemService(Context.KEYGUARD_SERVICE);
@@ -153,7 +149,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         super.onViewCreated(view, savedInstanceState);
         String currentCountryIso = ContactsUtils.getCurrentCountryIso(getActivity());
         mAdapter = new CallLogAdapter(getActivity(), this,
-                new ContactInfoHelper(getActivity(), currentCountryIso), mVoiceMailNumber);
+                new ContactInfoHelper(getActivity(), currentCountryIso));
         setListAdapter(mAdapter);
         getListView().setItemsCanFocus(true);
     }
@@ -328,11 +324,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     @NeededForTesting
     public CallLogAdapter getAdapter() {
         return mAdapter;
-    }
-
-    @NeededForTesting
-    public String getVoiceMailNumber() {
-        return mVoiceMailNumber;
     }
 
     @Override

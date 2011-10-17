@@ -39,6 +39,7 @@ import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.VoicemailContract;
 import android.telephony.PhoneNumberUtils;
+import android.telephony.TelephonyManager;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.test.suitebuilder.annotation.MediumTest;
@@ -112,7 +113,7 @@ public class CallLogActivityTests
     public void setUp() {
         mActivity = getActivity();
         mFragment = mActivity.getFragment();
-        mVoicemail = mFragment.getVoiceMailNumber();
+        mVoicemail = TelephonyManager.getDefault().getVoiceMailNumber();
         mAdapter = mFragment.getAdapter();
         // Do not process requests for details during tests. This would start a background thread,
         // which makes the tests flaky.

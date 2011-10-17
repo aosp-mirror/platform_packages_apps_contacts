@@ -218,7 +218,7 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
         mResources = getResources();
 
         mCallTypeHelper = new CallTypeHelper(getResources());
-        mPhoneNumberHelper = new PhoneNumberHelper(mResources, getVoicemailNumber());
+        mPhoneNumberHelper = new PhoneNumberHelper(mResources);
         mPhoneCallDetailsHelper = new PhoneCallDetailsHelper(mResources, mCallTypeHelper,
                 mPhoneNumberHelper);
         mVoicemailStatusHelper = new VoicemailStatusHelperImpl();
@@ -594,12 +594,6 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
     /** Load the contact photos and places them in the corresponding views. */
     private void loadContactPhotos(Uri photoUri) {
         mContactPhotoManager.loadPhoto(mContactBackgroundView, photoUri, true, true);
-    }
-
-    private String getVoicemailNumber() {
-        TelephonyManager telephonyManager =
-                (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        return telephonyManager.getVoiceMailNumber();
     }
 
     static final class ViewEntry {
