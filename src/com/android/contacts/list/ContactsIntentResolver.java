@@ -73,16 +73,7 @@ public class ContactsIntentResolver {
             request.setActionCode(ContactsRequest.ACTION_STREQUENT);
         } else if (UI.LIST_GROUP_ACTION.equals(action)) {
             request.setActionCode(ContactsRequest.ACTION_GROUP);
-
-            // TODO Selecting a group is not implemented, but it doesn't seem to be used anywhere.
-            // Can we remove this?
-            String groupName = intent.getStringExtra(UI.GROUP_NAME_EXTRA_KEY);
-            if (!TextUtils.isEmpty(groupName)) {
-                request.setGroupName(groupName);
-            } else {
-                Log.e(TAG, "Intent missing a required extra: " + UI.GROUP_NAME_EXTRA_KEY);
-                request.setValid(false);
-            }
+            // We no longer support UI.GROUP_NAME_EXTRA_KEY
         } else if (Intent.ACTION_PICK.equals(action)) {
             final String resolvedType = intent.resolveType(mContext);
             if (Contacts.CONTENT_TYPE.equals(resolvedType)) {
