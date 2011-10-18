@@ -67,7 +67,14 @@ public class ContactInfoHelper {
             }
             info = sipInfo;
         } else {
-            info = queryContactInfoForPhoneNumber(number, countryIso);
+            // Look for a contact that has the given phone number.
+            ContactInfo phoneInfo = queryContactInfoForPhoneNumber(number, countryIso);
+
+            if (phoneInfo == null || phoneInfo == ContactInfo.EMPTY) {
+                // Check whether the phone number has been saved as an "Internet call" number.
+                phoneInfo = queryContactInfoForSipAddress(number);
+            }
+            info = phoneInfo;
         }
 
         final ContactInfo updatedInfo;
