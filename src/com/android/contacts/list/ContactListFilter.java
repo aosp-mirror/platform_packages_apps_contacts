@@ -20,7 +20,6 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
 
 /**
@@ -295,5 +294,46 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
             mId = sb.toString();
         }
         return mId;
+    }
+
+    public String toDebugString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("[filter type: " + filterType + " (" + filterTypeToString(filterType) + ")");
+        if (filterType == FILTER_TYPE_ACCOUNT) {
+            builder.append(", accountType: " + accountType)
+                    .append(", accountName: " + accountName)
+                    .append(", dataSet: " + dataSet);
+        }
+        if (filterType == FILTER_TYPE_GROUP) {
+            builder.append(", groupId: " + groupId)
+                    .append(", groupSourceId: " + groupSourceId)
+                    .append(", groupReadOnly: " + groupReadOnly)
+                    .append("title: " + title);
+        }
+        builder.append(", icon: " + icon + "]");
+        return builder.toString();
+    }
+
+    public static final String filterTypeToString(int filterType) {
+        switch (filterType) {
+            case FILTER_TYPE_DEFAULT:
+                return "FILTER_TYPE_DEFAULT";
+            case FILTER_TYPE_ALL_ACCOUNTS:
+                return "FILTER_TYPE_ALL_ACCOUNTS";
+            case FILTER_TYPE_CUSTOM:
+                return "FILTER_TYPE_CUSTOM";
+            case FILTER_TYPE_STARRED:
+                return "FILTER_TYPE_STARRED";
+            case FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY:
+                return "FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY";
+            case FILTER_TYPE_SINGLE_CONTACT:
+                return "FILTER_TYPE_SINGLE_CONTACT";
+            case FILTER_TYPE_ACCOUNT:
+                return "FILTER_TYPE_ACCOUNT";
+            case FILTER_TYPE_GROUP:
+                return "FILTER_TYPE_GROUP";
+            default:
+                return "(unknown)";
+        }
     }
 }

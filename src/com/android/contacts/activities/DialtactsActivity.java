@@ -214,6 +214,30 @@ public class DialtactsActivity extends Activity {
     private CallLogFragment mCallLogFragment;
     private PhoneFavoriteFragment mPhoneFavoriteFragment;
 
+    private final ContactListFilterListener mContactListFilterListener =
+            new ContactListFilterListener() {
+        @Override
+        public void onContactListFilterChanged() {
+            boolean doInvalidateOptionsMenu = false;
+
+            if (mPhoneFavoriteFragment != null && mPhoneFavoriteFragment.isAdded()) {
+                mPhoneFavoriteFragment.setFilter(mContactListFilterController.getFilter());
+                doInvalidateOptionsMenu = true;
+            }
+
+            if (mSearchFragment != null && mSearchFragment.isAdded()) {
+                mSearchFragment.setFilter(mContactListFilterController.getFilter());
+                doInvalidateOptionsMenu = true;
+            } else {
+                Log.w(TAG, "Search Fragment isn't available when ContactListFilter is changed");
+            }
+
+            if (doInvalidateOptionsMenu) {
+                invalidateOptionsMenu();
+            }
+        }
+    };
+
     private final TabListener mTabListener = new TabListener() {
         @Override
         public void onTabUnselected(Tab tab, FragmentTransaction ft) {
@@ -371,29 +395,8 @@ public class DialtactsActivity extends Activity {
 
         setContentView(R.layout.dialtacts_activity);
 
-        mContactListFilterController = new ContactListFilterController(this);
-        mContactListFilterController.addListener(new ContactListFilterListener() {
-            @Override
-            public void onContactListFilterChanged() {
-                boolean doInvalidateOptionsMenu = false;
-
-                if (mPhoneFavoriteFragment != null && mPhoneFavoriteFragment.isAdded()) {
-                    mPhoneFavoriteFragment.setFilter(mContactListFilterController.getFilter());
-                    doInvalidateOptionsMenu = true;
-                }
-
-                if (mSearchFragment != null && mSearchFragment.isAdded()) {
-                    mSearchFragment.setFilter(mContactListFilterController.getFilter());
-                    doInvalidateOptionsMenu = true;
-                } else {
-                    Log.w(TAG, "Search Fragment isn't available when ContactListFilter is changed");
-                }
-
-                if (doInvalidateOptionsMenu) {
-                    invalidateOptionsMenu();
-                }
-            }
-        });
+        mContactListFilterController = ContactListFilterController.getInstance(this);
+        mContactListFilterController.addListener(mContactListFilterListener);
 
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(new ViewPagerAdapter(getFragmentManager()));
@@ -429,18 +432,18 @@ public class DialtactsActivity extends Activity {
     @Override
     public void onStart() {
         super.onStart();
-        // Force filter reload to reflect possible filter changes done via People UI.
-        //
-        // Ideally both (People/Phone) UI should share the same instance for
-        // ContactListFilterController and they should be able to receive filter change event
-        // from the same controller (Bug 5165507)
-        mContactListFilterController.onStart(true);
         if (mPhoneFavoriteFragment != null) {
             mPhoneFavoriteFragment.setFilter(mContactListFilterController.getFilter());
         }
         if (mSearchFragment != null) {
             mSearchFragment.setFilter(mContactListFilterController.getFilter());
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mContactListFilterController.removeListener(mContactListFilterListener);
     }
 
     private void prepareSearchView() {

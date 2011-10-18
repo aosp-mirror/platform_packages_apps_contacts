@@ -15,7 +15,9 @@
  */
 package com.android.contacts.list;
 
-import android.app.Activity;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.AccountWithDataSet;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -24,48 +26,77 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Stores the {@link ContactListFilter} selected by the user and saves it to
- * {@link SharedPreferences} if necessary.
+ * Manages {@link ContactListFilter}. All methods must be called from UI thread.
  */
-public class ContactListFilterController {
+public abstract class ContactListFilterController {
+
+    public static final String CONTACT_LIST_FILTER_SERVICE = "contactListFilter";
 
     public interface ContactListFilterListener {
         void onContactListFilterChanged();
     }
 
-    private Context mContext;
-    private List<ContactListFilterListener> mListeners = new ArrayList<ContactListFilterListener>();
-    private ContactListFilter mFilter;
-
-    private boolean mIsInitialized;
-
-    public ContactListFilterController(Activity activity) {
-        mContext = activity;
+    public static ContactListFilterController getInstance(Context context) {
+        return (ContactListFilterController)
+                context.getApplicationContext().getSystemService(CONTACT_LIST_FILTER_SERVICE);
     }
+
+    public static ContactListFilterController
+            createContactListFilterController(Context context) {
+        return new ContactListFilterControllerImpl(context);
+    }
+
+    public abstract void addListener(ContactListFilterListener listener);
+
+    public abstract void removeListener(ContactListFilterListener listener);
+
+    public abstract ContactListFilter getFilter();
 
     /**
-     * @param forceFilterReload when true filter is reloaded even when there's already a cache
-     * for it.
+     * @param filter the filter
+     * @param persistent True when the given filter should be saved soon. False when the filter
+     * should not be saved. The latter case may happen when some Intent requires a certain type of
+     * UI (e.g. single contact) temporarily.
      */
-    public void onStart(boolean forceFilterReload) {
-        if (mFilter == null || forceFilterReload) {
-            mFilter = ContactListFilter.restoreDefaultPreferences(getSharedPreferences());
-        }
-        mIsInitialized = true;
+    public abstract void setContactListFilter(ContactListFilter filter, boolean persistent);
+
+    public abstract void selectCustomFilter();
+
+    /**
+     * Checks if the current filter is valid and reset the filter if not. It may happen when
+     * an account is removed while the filter points to the account with
+     * {@link ContactListFilter#FILTER_TYPE_ACCOUNT} type, for example.
+     */
+    public abstract void checkFilterValidity();
+}
+
+/**
+ * Stores the {@link ContactListFilter} selected by the user and saves it to
+ * {@link SharedPreferences} if necessary.
+ */
+class ContactListFilterControllerImpl extends ContactListFilterController {
+    private final Context mContext;
+    private final List<ContactListFilterListener> mListeners =
+            new ArrayList<ContactListFilterListener>();
+    private ContactListFilter mFilter;
+
+    public ContactListFilterControllerImpl(Context context) {
+        mContext = context;
+        mFilter = ContactListFilter.restoreDefaultPreferences(getSharedPreferences());
+        checkFilterValidity();
     }
 
-    public boolean isInitialized() {
-        return mIsInitialized;
-    }
-
+    @Override
     public void addListener(ContactListFilterListener listener) {
         mListeners.add(listener);
     }
 
+    @Override
     public void removeListener(ContactListFilterListener listener) {
         mListeners.remove(listener);
     }
 
+    @Override
     public ContactListFilter getFilter() {
         return mFilter;
     }
@@ -74,18 +105,20 @@ public class ContactListFilterController {
         return PreferenceManager.getDefaultSharedPreferences(mContext);
     }
 
+    @Override
     public void setContactListFilter(ContactListFilter filter, boolean persistent) {
         if (!filter.equals(mFilter)) {
             mFilter = filter;
             if (persistent) {
                 ContactListFilter.storeToPreferences(getSharedPreferences(), mFilter);
             }
-            if (mListeners != null) {
-               notifyContactListFilterChanged();
+            if (!mListeners.isEmpty()) {
+                notifyContactListFilterChanged();
             }
         }
     }
 
+    @Override
     public void selectCustomFilter() {
         setContactListFilter(ContactListFilter.createFilterWithType(
                 ContactListFilter.FILTER_TYPE_CUSTOM), true);
@@ -97,4 +130,27 @@ public class ContactListFilterController {
         }
     }
 
+    @Override
+    public void checkFilterValidity() {
+        if (mFilter == null || mFilter.filterType != ContactListFilter.FILTER_TYPE_ACCOUNT) {
+            return;
+        }
+
+        if (!filterAccountExists()) {
+            // The current account filter points to invalid account. Use "all" filter instead.
+            setContactListFilter(
+                    ContactListFilter.createFilterWithType(
+                            ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS), true);
+        }
+    }
+
+    /**
+     * @return true if the Account for the current filter exists.
+     */
+    private boolean filterAccountExists() {
+        final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(mContext);
+        final AccountWithDataSet filterAccount = new AccountWithDataSet(
+                mFilter.accountName, mFilter.accountType, mFilter.dataSet);
+        return accountTypeManager.contains(filterAccount, false);
+    }
 }

@@ -16,14 +16,13 @@
 
 package com.android.contacts;
 
+import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.test.InjectedServices;
 import com.android.contacts.util.Constants;
 import com.google.common.annotations.VisibleForTesting;
 
 import android.app.Application;
-import android.app.FragmentManager;
-import android.app.LoaderManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -35,6 +34,7 @@ public final class ContactsApplication extends Application {
     private static InjectedServices sInjectedServices;
     private AccountTypeManager mAccountTypeManager;
     private ContactPhotoManager mContactPhotoManager;
+    private ContactListFilterController mContactListFilterController;
 
     /**
      * Overrides the system services with mocks for testing.
@@ -93,6 +93,14 @@ public final class ContactsApplication extends Application {
                 mContactPhotoManager.preloadPhotosInBackground();
             }
             return mContactPhotoManager;
+        }
+
+        if (ContactListFilterController.CONTACT_LIST_FILTER_SERVICE.equals(name)) {
+            if (mContactListFilterController == null) {
+                mContactListFilterController =
+                        ContactListFilterController.createContactListFilterController(this);
+            }
+            return mContactListFilterController;
         }
 
         return super.getSystemService(name);
