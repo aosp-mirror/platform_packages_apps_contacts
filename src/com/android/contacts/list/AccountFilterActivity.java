@@ -55,15 +55,6 @@ public class AccountFilterActivity extends ContactsActivity
 
     private static final int SUBACTIVITY_CUSTOMIZE_FILTER = 0;
 
-    /**
-     * Request code for this Activity, which will be used with
-     * {@link Activity#startActivityForResult(Intent, int)}.
-     *
-     * This is useful when we want to share one request code among multiple Activities and
-     * Fragments.
-     */
-    public static final int DEFAULT_REQUEST_CODE = 10001;
-
     public static final String KEY_EXTRA_CONTACT_LIST_FILTER = "contactListFilter";
 
     private static final int FILTER_LOADER_ID = 0;

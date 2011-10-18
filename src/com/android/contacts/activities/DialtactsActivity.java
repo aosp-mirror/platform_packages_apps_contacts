@@ -20,14 +20,13 @@ import com.android.contacts.R;
 import com.android.contacts.calllog.CallLogFragment;
 import com.android.contacts.dialpad.DialpadFragment;
 import com.android.contacts.interactions.PhoneNumberInteraction;
-import com.android.contacts.list.AccountFilterActivity;
-import com.android.contacts.list.ContactListFilter;
 import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.list.ContactListFilterController.ContactListFilterListener;
 import com.android.contacts.list.ContactListItemView;
 import com.android.contacts.list.OnPhoneNumberPickerActionListener;
 import com.android.contacts.list.PhoneFavoriteFragment;
 import com.android.contacts.list.PhoneNumberPickerFragment;
+import com.android.contacts.util.AccountFilterUtil;
 import com.android.internal.telephony.ITelephony;
 
 import android.app.ActionBar;
@@ -108,6 +107,8 @@ public class DialtactsActivity extends Activity {
     private static final String PREF_LAST_MANUALLY_SELECTED_TAB =
             "DialtactsActivity_last_manually_selected_tab";
     private static final int PREF_LAST_MANUALLY_SELECTED_TAB_DEFAULT = TAB_INDEX_DIALER;
+
+    private static final int SUBACTIVITY_ACCOUNT_FILTER = 1;
 
     /**
      * Listener interface for Fragments accommodated in {@link ViewPager} enabling them to know
@@ -301,10 +302,8 @@ public class DialtactsActivity extends Activity {
             new OnMenuItemClickListener() {
         @Override
         public boolean onMenuItemClick(MenuItem item) {
-            final Intent intent =
-                    new Intent(DialtactsActivity.this, AccountFilterActivity.class);
-            ContactListFilter filter = mContactListFilterController.getFilter();
-            startActivityForResult(intent, AccountFilterActivity.DEFAULT_REQUEST_CODE);
+            AccountFilterUtil.startAccountFilterActivityForResult(
+                    DialtactsActivity.this, SUBACTIVITY_ACCOUNT_FILTER);
             return true;
         }
     };
@@ -925,17 +924,9 @@ public class DialtactsActivity extends Activity {
             return;
         }
         switch (requestCode) {
-            case AccountFilterActivity.DEFAULT_REQUEST_CODE: {
-                ContactListFilter filter = (ContactListFilter) data.getParcelableExtra(
-                        AccountFilterActivity.KEY_EXTRA_CONTACT_LIST_FILTER);
-                if (filter == null) {
-                    return;
-                }
-                if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
-                    mContactListFilterController.selectCustomFilter();
-                } else {
-                    mContactListFilterController.setContactListFilter(filter, true);
-                }
+            case SUBACTIVITY_ACCOUNT_FILTER: {
+                AccountFilterUtil.handleAccountFilterResult(
+                        mContactListFilterController, resultCode, data);
             }
             break;
         }

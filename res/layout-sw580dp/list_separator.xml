@@ -17,12 +17,6 @@
 <TextView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/title"
-    style="?android:attr/listSeparatorTextViewStyle"
-    android:layout_height="32dip"
+    style="@style/ContactListSeparatorTextViewStyle"
     android:paddingLeft="8dip"
-    android:paddingRight="8dip"
-    android:background="@drawable/list_section_divider_holo_custom"
-    android:textColor="@color/people_app_theme_color"
-    android:textAllCaps="true"
-    android:singleLine="true"
-    android:ellipsize="end" />
+    android:paddingRight="8dip" />

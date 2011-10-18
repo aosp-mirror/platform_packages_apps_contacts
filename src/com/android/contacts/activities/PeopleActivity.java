@@ -33,7 +33,6 @@ import com.android.contacts.group.GroupDetailFragment;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ImportExportDialogFragment;
 import com.android.contacts.interactions.PhoneNumberInteraction;
-import com.android.contacts.list.AccountFilterActivity;
 import com.android.contacts.list.ContactBrowseListFragment;
 import com.android.contacts.list.ContactEntryListFragment;
 import com.android.contacts.list.ContactListFilter;
@@ -53,6 +52,7 @@ import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.preference.DisplayOptionsPreferenceFragment;
+import com.android.contacts.util.AccountFilterUtil;
 import com.android.contacts.util.AccountPromptUtils;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.AccountsListAdapter;
@@ -61,7 +61,6 @@ import com.android.contacts.util.Constants;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.PhoneCapabilityTester;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -110,8 +109,9 @@ public class PeopleActivity extends ContactsActivity
 
     private static final int SUBACTIVITY_NEW_GROUP = 2;
     private static final int SUBACTIVITY_EDIT_GROUP = 3;
+    private static final int SUBACTIVITY_ACCOUNT_FILTER = 4;
 
-    private DialogManager mDialogManager = new DialogManager(this);
+    private final DialogManager mDialogManager = new DialogManager(this);
 
     private ContactsIntentResolver mIntentResolver;
     private ContactsRequest mRequest;
@@ -1355,8 +1355,8 @@ public class PeopleActivity extends ContactsActivity
                 return true;
             }
             case R.id.menu_contacts_filter: {
-                final Intent intent = new Intent(this, AccountFilterActivity.class);
-                startActivityForResult(intent, AccountFilterActivity.DEFAULT_REQUEST_CODE);
+                AccountFilterUtil.startAccountFilterActivityForResult(this,
+                        SUBACTIVITY_ACCOUNT_FILTER);
                 return true;
             }
             case R.id.menu_search: {
@@ -1434,19 +1434,9 @@ public class PeopleActivity extends ContactsActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
-            case AccountFilterActivity.DEFAULT_REQUEST_CODE: {
-                if (resultCode == Activity.RESULT_OK) {
-                    ContactListFilter filter = (ContactListFilter) data.getParcelableExtra(
-                            AccountFilterActivity.KEY_EXTRA_CONTACT_LIST_FILTER);
-                    if (filter == null) {
-                        return;
-                    }
-                    if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
-                        mContactListFilterController.selectCustomFilter();
-                    } else {
-                        mContactListFilterController.setContactListFilter(filter, true);
-                    }
-                }
+            case SUBACTIVITY_ACCOUNT_FILTER: {
+                AccountFilterUtil.handleAccountFilterResult(
+                        mContactListFilterController, resultCode, data);
                 break;
             }
 

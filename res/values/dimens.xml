@@ -214,4 +214,9 @@
     <integer name="dialpad_layout_weight_digits">20</integer>
     <integer name="dialpad_layout_weight_dialpad">65</integer>
     <integer name="dialpad_layout_weight_additional_buttons">15</integer>
+
+    <!-- Minimum height used with @drawable/list_section_divider_holo_custom.
+         Right now the drawable has implicit 32dip minimal height, which is confusing.
+         This value is for making the hidden configuration explicit in xml. -->
+    <dimen name="list_section_divider_min_height">32dip</dimen>
 </resources>

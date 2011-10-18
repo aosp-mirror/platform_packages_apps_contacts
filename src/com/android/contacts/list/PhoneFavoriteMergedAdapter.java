@@ -184,7 +184,8 @@ public class PhoneFavoriteMergedAdapter extends BaseAdapter implements SectionIn
         if (position < contactTileAdapterCount) {
             return mContactTileAdapter.isEnabled(position);
         } else if (position == contactTileAdapterCount) {
-            return mAccountFilterHeaderContainer.isEnabled();
+            // This will be handled by View's onClick event instead of ListView's onItemClick event.
+            return false;
         } else {
             final int localPosition = position - contactTileAdapterCount - 1;
             return mContactEntryListAdapter.isEnabled(localPosition);

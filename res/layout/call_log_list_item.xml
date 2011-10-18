@@ -129,20 +129,11 @@
 
     <TextView
         android:id="@+id/call_log_header"
-        style="?android:attr/listSeparatorTextViewStyle"
+        style="@style/ContactListSeparatorTextViewStyle"
         android:layout_marginLeft="@dimen/call_log_outer_margin"
         android:layout_marginRight="@dimen/call_log_outer_margin"
         android:paddingTop="@dimen/call_log_inner_margin"
-        android:paddingBottom="@dimen/call_log_inner_margin"
-        android:background="@drawable/list_section_divider_holo_custom"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textStyle="bold"
-        android:textColor="?attr/call_log_header_color"
-        android:textAllCaps="true"
-        android:singleLine="true"
-        android:ellipsize="end"
-        android:focusable="true"
-    />
+        android:paddingBottom="@dimen/call_log_inner_margin" />
 
     <View
         android:id="@+id/call_log_divider"
