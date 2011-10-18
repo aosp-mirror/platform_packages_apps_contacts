@@ -35,6 +35,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
@@ -176,7 +178,7 @@ public class ContactListItemView extends ViewGroup
 
     private int mNameTextViewHeight;
     private int mPhoneticNameTextViewHeight;
-    private int mLabelTextViewHeight;
+    private int mLabelViewHeight;
     private int mDataViewHeight;
     private int mSnippetTextViewHeight;
     private int mStatusTextViewHeight;
@@ -326,7 +328,7 @@ public class ContactListItemView extends ViewGroup
 
         mNameTextViewHeight = 0;
         mPhoneticNameTextViewHeight = 0;
-        mLabelTextViewHeight = 0;
+        mLabelViewHeight = 0;
         mDataViewHeight = 0;
         mLabelAndDataViewMaxHeight = 0;
         mSnippetTextViewHeight = 0;
@@ -394,9 +396,9 @@ public class ContactListItemView extends ViewGroup
         if (isVisible(mLabelView)) {
             mLabelView.measure(MeasureSpec.makeMeasureSpec(labelWidth, MeasureSpec.AT_MOST),
                     MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
-            mLabelTextViewHeight = mLabelView.getMeasuredHeight();
+            mLabelViewHeight = mLabelView.getMeasuredHeight();
         }
-        mLabelAndDataViewMaxHeight = Math.max(mLabelTextViewHeight, mDataViewHeight);
+        mLabelAndDataViewMaxHeight = Math.max(mLabelViewHeight, mDataViewHeight);
 
         if (isVisible(mSnippetView)) {
             mSnippetView.measure(
@@ -600,14 +602,15 @@ public class ContactListItemView extends ViewGroup
             if (mPhotoPosition == PhotoPosition.LEFT) {
                 // When photo is on left, label is placed on the right edge of the list item.
                 mLabelView.layout(rightBound - mLabelView.getMeasuredWidth(),
-                        textTopBound + mLabelAndDataViewMaxHeight - mLabelTextViewHeight,
+                        textTopBound + mLabelAndDataViewMaxHeight - mLabelViewHeight,
                         rightBound,
                         textTopBound + mLabelAndDataViewMaxHeight);
+                rightBound -= mLabelView.getMeasuredWidth();
             } else {
                 // When photo is on right, label is placed on the left of data view.
                 dataLeftBound = leftBound + mLabelView.getMeasuredWidth();
                 mLabelView.layout(leftBound,
-                        textTopBound + mLabelAndDataViewMaxHeight - mLabelTextViewHeight,
+                        textTopBound + mLabelAndDataViewMaxHeight - mLabelViewHeight,
                         dataLeftBound,
                         textTopBound + mLabelAndDataViewMaxHeight);
                 dataLeftBound += mGapBetweenLabelAndData;
@@ -783,7 +786,7 @@ public class ContactListItemView extends ViewGroup
                 mHeaderDivider.setBackgroundColor(mHeaderUnderlineColor);
                 addView(mHeaderDivider);
             }
-            mHeaderTextView.setText(title);
+            mHeaderTextView.setText(getMarqueeText(title));
             mHeaderTextView.setVisibility(View.VISIBLE);
             mHeaderDivider.setVisibility(View.VISIBLE);
             mHeaderTextView.setAllCaps(true);
@@ -929,7 +932,7 @@ public class ContactListItemView extends ViewGroup
             }
         } else {
             getPhoneticNameTextView();
-            mPhoneticNameTextView.setText(text, 0, size);
+            mPhoneticNameTextView.setText(getMarqueeText(text, size));
             mPhoneticNameTextView.setVisibility(VISIBLE);
         }
     }
@@ -960,7 +963,7 @@ public class ContactListItemView extends ViewGroup
             }
         } else {
             getLabelView();
-            mLabelView.setText(text);
+            mLabelView.setText(getMarqueeText(text));
             mLabelView.setVisibility(VISIBLE);
         }
     }
@@ -975,7 +978,7 @@ public class ContactListItemView extends ViewGroup
             }
         } else {
             getLabelView();
-            mLabelView.setText(text, 0, size);
+            mLabelView.setText(getMarqueeText(text, size));
             mLabelView.setVisibility(VISIBLE);
         }
     }
@@ -992,6 +995,7 @@ public class ContactListItemView extends ViewGroup
             if (mPhotoPosition == PhotoPosition.LEFT) {
                 mLabelView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mCountViewTextSize);
                 mLabelView.setAllCaps(true);
+                mLabelView.setGravity(Gravity.RIGHT);
             } else {
                 mLabelView.setTypeface(mLabelView.getTypeface(), Typeface.BOLD);
             }
@@ -1012,8 +1016,25 @@ public class ContactListItemView extends ViewGroup
             return;
         } else {
             getDataView();
-            mDataView.setText(text, 0, size);
+            mDataView.setText(getMarqueeText(text, size));
             mDataView.setVisibility(VISIBLE);
+        }
+    }
+
+    private CharSequence getMarqueeText(char[] text, int size) {
+        return getMarqueeText(new String(text, 0, size));
+    }
+
+    private CharSequence getMarqueeText(CharSequence text) {
+        if (getTextEllipsis() == TruncateAt.MARQUEE) {
+            // To show MARQUEE correctly (with END effect during non-active state), we need
+            // to build Spanned with MARQUEE in addition to TextView's ellipsize setting.
+            final SpannableStringBuilder builder = new SpannableStringBuilder(text);
+            builder.setSpan(TruncateAt.MARQUEE, 0, builder.length(),
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            return builder;
+        } else {
+            return text;
         }
     }
 
@@ -1103,7 +1124,7 @@ public class ContactListItemView extends ViewGroup
             }
         } else {
             getCountView();
-            mCountView.setText(text);
+            mCountView.setText(getMarqueeText(text));
             mCountView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mCountViewTextSize);
             mCountView.setGravity(Gravity.CENTER_VERTICAL);
             mCountView.setTextColor(mContactsCountTextColor);
@@ -1121,7 +1142,7 @@ public class ContactListItemView extends ViewGroup
             }
         } else {
             getStatusView();
-            mStatusView.setText(text);
+            mStatusView.setText(getMarqueeText(text));
             mStatusView.setVisibility(VISIBLE);
         }
     }
@@ -1146,9 +1167,7 @@ public class ContactListItemView extends ViewGroup
     }
 
     private TruncateAt getTextEllipsis() {
-        // Note: If we want to choose MARQUEE here, we may need to manually trigger TextView's
-        // startStopMarquee(), which is unfortunately *private*. See also issue 5465510.
-        return TruncateAt.MIDDLE;
+        return TruncateAt.MARQUEE;
     }
 
     public void showDisplayName(Cursor cursor, int nameColumnIndex, int alternativeNameColumnIndex,
@@ -1158,8 +1177,10 @@ public class ContactListItemView extends ViewGroup
         cursor.copyStringToBuffer(alternativeNameColumnIndex,
                 mDisplayNameFormatter.getAlternateNameBuffer());
 
-        mDisplayNameFormatter.setDisplayName(
-                getNameTextView(), displayOrder, highlightingEnabled, mHighlightedPrefix);
+        CharSequence displayName = mDisplayNameFormatter.getDisplayName(
+                displayOrder, highlightingEnabled, mHighlightedPrefix);
+        getNameTextView().setText(getMarqueeText(displayName));
+
         // Since the quick contact content description is derived from the display name and there is
         // no guarantee that when the quick contact is initialized the display name is already set,
         // do it here too.
