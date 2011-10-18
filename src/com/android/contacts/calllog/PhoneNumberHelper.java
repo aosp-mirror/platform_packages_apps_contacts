@@ -29,11 +29,9 @@ import android.text.TextUtils;
  */
 public class PhoneNumberHelper {
     private final Resources mResources;
-    private final String mVoicemailNumber;
 
-    public PhoneNumberHelper(Resources resources, String voicemailNumber) {
+    public PhoneNumberHelper(Resources resources) {
         mResources = resources;
-        mVoicemailNumber = voicemailNumber;
     }
 
     /** Returns true if it is possible to place a call to the given number. */
@@ -68,7 +66,7 @@ public class PhoneNumberHelper {
         if (number.equals(CallerInfo.PAYPHONE_NUMBER)) {
             return mResources.getString(R.string.payphone);
         }
-        if (PhoneNumberUtils.extractNetworkPortion(number.toString()).equals(mVoicemailNumber)) {
+        if (isVoicemailNumber(number)) {
             return mResources.getString(R.string.voicemail);
         }
         if (TextUtils.isEmpty(formattedNumber)) {
@@ -91,7 +89,7 @@ public class PhoneNumberHelper {
 
     /** Returns true if the given number is the number of the configured voicemail. */
     public boolean isVoicemailNumber(CharSequence number) {
-        return PhoneNumberUtils.extractNetworkPortion(number.toString()).equals(mVoicemailNumber);
+        return PhoneNumberUtils.isVoiceMailNumber(number.toString());
     }
 
     /** Returns true if the given number is a SIP address. */

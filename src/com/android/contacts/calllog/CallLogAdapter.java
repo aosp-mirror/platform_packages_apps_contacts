@@ -194,7 +194,7 @@ public class CallLogAdapter extends GroupingListAdapter
     };
 
     public CallLogAdapter(Context context, CallFetcher callFetcher,
-            ContactInfoHelper contactInfoHelper, String voicemailNumber) {
+            ContactInfoHelper contactInfoHelper) {
         super(context);
 
         mContext = context;
@@ -209,7 +209,7 @@ public class CallLogAdapter extends GroupingListAdapter
         CallTypeHelper callTypeHelper = new CallTypeHelper(resources);
 
         mContactPhotoManager = ContactPhotoManager.getInstance(mContext);
-        mPhoneNumberHelper = new PhoneNumberHelper(resources, voicemailNumber);
+        mPhoneNumberHelper = new PhoneNumberHelper(resources);
         PhoneCallDetailsHelper phoneCallDetailsHelper = new PhoneCallDetailsHelper(
                 resources, callTypeHelper, mPhoneNumberHelper);
         mCallLogViewsHelper =

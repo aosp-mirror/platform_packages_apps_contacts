@@ -33,7 +33,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.PhoneLookup;
-import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -319,8 +318,6 @@ public class DefaultVoicemailNotifier implements VoicemailNotifier {
      * called from the main thread.
      */
     public static PhoneNumberHelper createPhoneNumberHelper(Context context) {
-        TelephonyManager telephonyManager =
-            (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        return new PhoneNumberHelper(context.getResources(), telephonyManager.getVoiceMailNumber());
+        return new PhoneNumberHelper(context.getResources());
     }
 }
