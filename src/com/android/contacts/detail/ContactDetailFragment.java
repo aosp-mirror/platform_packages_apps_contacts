@@ -299,7 +299,9 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         mQuickFixButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                mQuickFix.execute();
+                if (mQuickFix != null) {
+                    mQuickFix.execute();
+                }
             }
         });
 
