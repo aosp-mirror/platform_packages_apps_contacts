@@ -134,9 +134,6 @@
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"즐겨찾기"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"휴대전화"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"통화기록"</string>
-    <string name="liveFolderAll" msgid="4789010460767506206">"모든 주소록"</string>
-    <string name="liveFolderFavorites" msgid="3100957542927222282">"중요주소록"</string>
-    <string name="liveFolderPhone" msgid="3739376066610926780">"전화번호가 포함된 주소록"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"문자 메시지 보내기"</string>
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"전화걸기: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"통화하기 전에 번호 수정"</string>
@@ -170,9 +167,6 @@
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 연락처를 동기화하는 데 몇 분 정도 걸릴 수 있습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 태블릿에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"표시 옵션"</b></font>": 표시되는 연락처를 변경하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"표시할 연락처가 없습니다. 방금 계정을 추가한 경우 연락처를 동기화하는 데 몇 분 정도 걸릴 수 있습니다."\n\n"연락처를 추가하려면 "<font fgcolor="#ffffffff"><b>"메뉴"</b></font>"를 누르고 다음을 터치합니다."\n" "\n<li><font fgcolor="#ffffffff"><b>"계정"</b></font>": 휴대전화에 동기화할 수 있는 연락처가 있는 계정을 구성하거나 추가하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"표시 옵션"</b></font>": 표시되는 연락처를 변경하려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"새 연락처"</b></font>": 연락처를 새로 만들려면 터치합니다."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"가져오기/내보내기"</b></font>": SD 카드에서 연락처를 가져오려면 터치합니다."\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"즐겨찾기가 없습니다. "\n\n"즐겨찾기 목록에 연락처를 추가하려면 "\n\n<li><b>"주소록"</b>" 탭을 터치하고"\n</li>" "\n<li>"즐겨찾기에 추가할 연락처를 터치하고"\n</li>" "\n<li>"연락처 이름 옆의 별표를 터치합니다."\n</li></string>
-    <string name="liveFolder_all_label" msgid="5961411940473276616">"모든 연락처"</string>
-    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"중요 주소록"</string>
-    <string name="liveFolder_phones_label" msgid="1709786878793436245">"전화번호"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"터치톤 키패드 사용"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"진행 중인 통화로 돌아가기"</string>
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"통화 추가"</string>
@@ -305,11 +299,6 @@
     <string name="eventLabelsGroup" msgid="3695433812142818803">"일정"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"관계"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"그룹"</string>
-    <string name="type_short_home" msgid="7770424864090605384">"H"</string>
-    <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
-    <string name="type_short_work" msgid="4925330752504537861">"W"</string>
-    <string name="type_short_pager" msgid="2613818970827594238">"P"</string>
-    <string name="type_short_other" msgid="5669407180177236769">"O"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"연락처 추가할 계정 선택하기"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"계정에서 그룹 만들기"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"동기화 그룹 삭제"</string>
@@ -362,8 +351,7 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"직장 호출기로 문자 보내기"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"<xliff:g id="ASSISTANT">%s</xliff:g>(으)로 문자 보내기"</string>
     <string name="sms_mms" msgid="4069352461380762677">"MMS로 문자 보내기"</string>
-    <!-- no translation found for sms (1756857139634224222) -->
-    <skip />
+    <string name="sms" msgid="1756857139634224222">"문자 메시지"</string>
     <string name="email_home" msgid="8573740658148184279">"집으로 이메일 보내기"</string>
     <string name="email_mobile" msgid="2042889209787989814">"모바일로 이메일 보내기"</string>
     <string name="email_work" msgid="2807430017302722689">"직장으로 이메일 보내기"</string>
@@ -383,10 +371,8 @@
     <string name="chat_icq" msgid="8438405386153745775">"ICQ로 채팅"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Jabber로 채팅"</string>
     <string name="chat" msgid="9025361898797412245">"채팅"</string>
-    <!-- no translation found for audio_chat (4743276658947547047) -->
-    <skip />
-    <!-- no translation found for video_chat (1872255818640336072) -->
-    <skip />
+    <string name="audio_chat" msgid="4743276658947547047">"음성채팅"</string>
+    <string name="video_chat" msgid="1872255818640336072">"영상 채팅"</string>
     <string name="postal_address" msgid="8765560217149624536">"주소"</string>
     <string name="postal_street" msgid="8133143961580058972">"번지"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"사서함"</string>
@@ -465,11 +451,10 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"별표"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"맞춤설정"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"맞춤설정..."</string>
-    <!-- outdated translation 7905045603593508221 -->     <string name="list_filter_phones" msgid="735313795643493365">"전화번호가 포함된 주소록"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"전화번호가 포함된 모든 연락처"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"연락처"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"맞춤 보기 정의"</string>
-    <!-- no translation found for contact_list_loading (3859280390185230582) -->
-    <skip />
+    <string name="contact_list_loading" msgid="3859280390185230582">"로드 중..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"설정"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"표시할 연락처"</string>
     <string name="menu_settings" msgid="377929915873428211">"설정"</string>
@@ -564,10 +549,8 @@
     <string name="external_profile_title" msgid="8034998767621359438">"내 <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> 프로필"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"모든 연락처 표시"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"인물 앱은 Google 계정에서 사용할 때 더 효과적입니다."\n\n"• 어떤 웹 브라우저에서든 액세스하세요."\n"• 주소록을 안전하게 백업하세요."</string>
-    <!-- no translation found for generic_no_account_prompt (7218827704367325460) -->
-    <skip />
-    <!-- no translation found for generic_no_account_prompt_title (753783911899054860) -->
-    <skip />
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"온라인 서비스와 동기화되므로 휴대전화를 잃어버려도 주소록을 안전하게 유지할 수 있습니다."</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"계정 추가"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"새 연락처는 백업되지 않습니다. 온라인에 주소록을 백업할 계정을 추가하시겠습니까?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"새 연락처가 <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>와(과) 동기화됩니다."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"새 연락처를 다음 계정 중 하나와 동기화할 수 있습니다. 무엇을 사용하시겠습니까?"</string>

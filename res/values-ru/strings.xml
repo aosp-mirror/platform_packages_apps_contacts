@@ -53,7 +53,7 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Удалить"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Добавить"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Новая группа"</string>
-    <string name="splitConfirmation_title" msgid="2209511048593467012">"Разделить контакт"</string>
+    <string name="splitConfirmation_title" msgid="2209511048593467012">"Разделение данных"</string>
     <string name="splitConfirmation" msgid="1067993957986345974">"Действительно разделить этот контакт?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Присоединить"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Объединить контакты"</string>
@@ -134,9 +134,6 @@
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Избранное"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Кнопки"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Вызовы"</string>
-    <string name="liveFolderAll" msgid="4789010460767506206">"Все контакты"</string>
-    <string name="liveFolderFavorites" msgid="3100957542927222282">"Помеченные контакты"</string>
-    <string name="liveFolderPhone" msgid="3739376066610926780">"Контакты с номерами телефонов"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"Отправить SMS"</string>
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"Вызов: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Изменить номер и вызвать"</string>
@@ -170,9 +167,6 @@
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"У вас нет контактов. Если вы только что добавили аккаунт, подождите несколько минут, пока идет синхронизация контактов с планшетным ПК. "\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>", чтобы добавить или настроить аккаунт с контактами, которые можно будет синхронизировать с планшетным ПК;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Варианты отображения"</b></font>", чтобы выбрать, какие контакты будут видны;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>", чтобы создать новый контакт;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/экспорт"</b></font>", чтобы импортировать контакты с SD-карты."\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"У вас нет контактов (если вы добавили аккаунт только что, подожите несколько минут, пока идет их синхронизация с телефоном). "\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>", чтобы добавить или настроить аккаунт с контактами, которые можно будет синхронизировать с телефоном;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Варианты отображения"</b></font>", чтобы выбрать, какие контакты будут видны; "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>", чтобы создать новый контакт;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/экспорт"</b></font>", чтобы импортировать контакты с SD-карты."\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"У вас нет избранных контактов."\n\n"Чтобы сделать контакт избранным,"\n\n"        "<li>"нажмите вкладку "<b>"Контакты"</b>";"\n</li>" "\n<li>"нажмите контакт, который нужно сделать избранным;"\n</li>" "\n<li>"нажмите звездочку возле имени контакта."\n</li></string>
-    <string name="liveFolder_all_label" msgid="5961411940473276616">"Все контакты"</string>
-    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Помеченные"</string>
-    <string name="liveFolder_phones_label" msgid="1709786878793436245">"Телефоны"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Использовать тональный набор"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Вернуться к ожидающему вызову"</string>
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"+ вызов"</string>
@@ -211,7 +205,7 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"фотография контакта"</string>
     <string name="description_minus_button" msgid="387136707700230172">"минус"</string>
     <string name="description_plus_button" msgid="515164827856229880">"плюс"</string>
-    <string name="description_view_contact_detail" msgid="9133251213656414807">"Просмотреть контакт"</string>
+    <string name="description_view_contact_detail" msgid="9133251213656414807">"Данные контакта"</string>
     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"Накопитель недоступен"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Нет SD-карты"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="1334170151822669976">"Накопитель не найден"</string>
@@ -305,11 +299,6 @@
     <string name="eventLabelsGroup" msgid="3695433812142818803">"Мероприятия"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Отношения"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Группы"</string>
-    <string name="type_short_home" msgid="7770424864090605384">"Д"</string>
-    <string name="type_short_mobile" msgid="1655473281466676216">"М"</string>
-    <string name="type_short_work" msgid="4925330752504537861">"Р"</string>
-    <string name="type_short_pager" msgid="2613818970827594238">"П"</string>
-    <string name="type_short_other" msgid="5669407180177236769">"Др"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Создать контакт в аккаунте"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Создание группы в аккаунте"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Удалить группу синхронизации"</string>
@@ -362,8 +351,7 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"SMS:рабоч. пейдж."</string>
     <string name="sms_assistant" msgid="2773424339923116234">"Отправить текстовое сообщение на номер <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"MMS"</string>
-    <!-- no translation found for sms (1756857139634224222) -->
-    <skip />
+    <string name="sms" msgid="1756857139634224222">"Текстовое сообщение"</string>
     <string name="email_home" msgid="8573740658148184279">"Личная эл. почта"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Моб. эл. почта"</string>
     <string name="email_work" msgid="2807430017302722689">"Рабочая эл.почта"</string>
@@ -404,7 +392,7 @@
     <string name="name_phonetic_family" msgid="462095502140180305">"Фамилия (транскрипция)"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Транскрипция имени"</string>
     <string name="connections" msgid="8098440723172028350">"Связи"</string>
-    <string name="add_connection_button" msgid="4861308615789601727">"Добавить социальную сеть"</string>
+    <string name="add_connection_button" msgid="4861308615789601727">"Добавить соцсеть"</string>
     <string name="recent_updates" msgid="2062236709538790412">"Недавние"</string>
     <string name="account_type_format" msgid="718948015590343010">"Контакт <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
@@ -475,7 +463,7 @@
     <string name="hint_findContacts" msgid="1808681193458772072">"Найти контакты"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Номер телефона"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Добавить в контакты"</string>
-    <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Добавить в контакт"</string>
+    <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Добавление данных"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Закрыть"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Указать год"</string>
@@ -548,20 +536,20 @@
     <string name="description_call_log_missed_call" msgid="2242805209983708825">"Пропущенный вызов"</string>
     <string name="description_call_log_voicemail" msgid="4600798771975158948">"Голосовая почта"</string>
     <string name="description_add_contact" msgid="3103414772502485851">"Добавить контакт"</string>
-    <string name="description_view_contact" msgid="5205669345700598415">"Просмотреть данные контакта <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_call" msgid="3443678121983852666">"Позвонить абоненту: <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_send_text_message" msgid="7803126439934046891">"Отправить текстовое сообщение контакту: <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_view_contact" msgid="5205669345700598415">"Просмотреть данные: <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_call" msgid="3443678121983852666">"Позвонить: <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_send_text_message" msgid="7803126439934046891">"Отправить текстовое сообщение: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Непрослушанные сообщения голосовой почты"</string>
     <string name="description_send_message" msgid="6046623392322890962">"Отправить сообщение, контакт: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="8831647331642648637">"Позвонить, контакт: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_quick_contact_for" msgid="6737516415168327789">"Быстрый вызов, контакт: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Я"</string>
-    <string name="local_profile_title" msgid="2021416826991393684">"Мой локальный профиль"</string>
+    <string name="local_profile_title" msgid="2021416826991393684">"Мой профиль"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Мой профиль <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Отображаются все контакты"</string>
-    <string name="no_account_prompt" msgid="7061052512446855192">"Эффективная работа приложения \"Люди\" с помощью аккаунта Google – это:"\n\n"• Доступ к приложению из любого браузера."\n"• Безопасное резервное копирование контактов."</string>
-    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Сохраните контакты даже при потере телефона: синхронизируйтесь с  интернет-службой."</string>
+    <string name="no_account_prompt" msgid="7061052512446855192">"Подключите Контакты к аккаунту Google, чтобы:"\n\n"• Всегда иметь под рукой обновленные данные – на любом устройстве."\n"• Синхронизировать все контакты – вы никогда не потеряете их."</string>
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Можно потерять телефон, но не контакты... если хранить их в Интернете!"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Добавить аккаунт"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Резервная копия нового контакта не будет сохранена. Добавить аккаунт для сохранения контактов в Интернете?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Контакт будет добавлен в аккаунт <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
