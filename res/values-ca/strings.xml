@@ -134,9 +134,6 @@
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Preferits"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Telèfon"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Registre de trucades"</string>
-    <string name="liveFolderAll" msgid="4789010460767506206">"Tots els contactes"</string>
-    <string name="liveFolderFavorites" msgid="3100957542927222282">"Contactes destacats"</string>
-    <string name="liveFolderPhone" msgid="3739376066610926780">"Contactes amb números de telèfon"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"Envia un missatge de text"</string>
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"Truca a <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Edita el número abans de trucar"</string>
@@ -170,9 +167,6 @@
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"No tens contactes per mostrar. (Si acabes d\'afegir un compte, és possible que la sincronització dels contactes trigui una mica.)"\n\n"Per afegir contactes, prem "<font fgcolor="#ffffffff"><b>"Menú"</b></font>" i toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" per afegir o configurar un compte amb contactes que pots sincronitzar a la tauleta"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opcions de visualització"</b></font>" per modificar quins contactes són visibles"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nou contacte"</b></font>" per crear un contacte nou des de zero"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa/Exporta"</b></font>" per importar contactes de la teva targeta SD"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"No tens contactes per mostrar. (Si acabes d\'afegir un compte, és possible que la sincronització dels contactes trigui una mica.)"\n\n"Per afegir contactes, prem "<font fgcolor="#ffffffff"><b>"Menú"</b></font>" i toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Comptes"</b></font>" per afegir o configurar un compte amb contactes que pots sincronitzar amb el telèfon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opcions de visualització"</b></font>" per modificar quins contactes són visibles"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nou contacte"</b></font>" per crear un contacte nou des de zero"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importa/Exporta"</b></font>" per importar contactes de la teva targeta SD"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"No teniu preferits."\n\n"Per afegir un contacte a la llista de preferits:"\n\n"        "<li>"Toqueu la pestanya"<b>"Contactes"</b>" "\n</li>" "\n<li>"Toqueu el contacte que voleu afegir als preferits"\n</li>" "\n<li>"Toqueu l\'estrella que hi ha al costat del nom del contacte"\n</li></string>
-    <string name="liveFolder_all_label" msgid="5961411940473276616">"Tots els contactes"</string>
-    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Destacats"</string>
-    <string name="liveFolder_phones_label" msgid="1709786878793436245">"Telèfons"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Utilitza el teclat de tons"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Torna a la trucada en curs"</string>
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"Afegeix una trucada"</string>
@@ -305,11 +299,6 @@
     <string name="eventLabelsGroup" msgid="3695433812142818803">"Esdeveniments"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Relació"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Grups"</string>
-    <string name="type_short_home" msgid="7770424864090605384">"C"</string>
-    <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
-    <string name="type_short_work" msgid="4925330752504537861">"F"</string>
-    <string name="type_short_pager" msgid="2613818970827594238">"C"</string>
-    <string name="type_short_other" msgid="5669407180177236769">"A"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Crea el contacte en un compte"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Creació d\'un grup al compte"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Elimina el grup de sincronització"</string>
@@ -382,10 +371,8 @@
     <string name="chat_icq" msgid="8438405386153745775">"Xateja amb ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Xateja amb Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Fes un xat"</string>
-    <!-- no translation found for audio_chat (4743276658947547047) -->
-    <skip />
-    <!-- no translation found for video_chat (1872255818640336072) -->
-    <skip />
+    <string name="audio_chat" msgid="4743276658947547047">"Xat d\'àudio"</string>
+    <string name="video_chat" msgid="1872255818640336072">"Xat de vídeo"</string>
     <string name="postal_address" msgid="8765560217149624536">"Adreça"</string>
     <string name="postal_street" msgid="8133143961580058972">"Carrer"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Apartat postal"</string>
@@ -464,11 +451,10 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Destacats"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Personalitzada"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"Personalitza..."</string>
-    <!-- outdated translation 7905045603593508221 -->     <string name="list_filter_phones" msgid="735313795643493365">"Contactes amb números de telèfon"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"Tots els contactes amb números de telèfon"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Contacte"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Defineix la visualització personalitzada"</string>
-    <!-- no translation found for contact_list_loading (3859280390185230582) -->
-    <skip />
+    <string name="contact_list_loading" msgid="3859280390185230582">"S\'està carregant..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Configuració"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Contactes per mostrar"</string>
     <string name="menu_settings" msgid="377929915873428211">"Configuració"</string>
@@ -563,10 +549,8 @@
     <string name="external_profile_title" msgid="8034998767621359438">"El meu perfil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"S\'estan mostrant tots els contactes"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Contactes funciona millor amb un Compte de Google."\n\n"• Accedeix-hi des de qualsevol navegador web."\n"• Fes una còpia de seguretat dels teus contactes."</string>
-    <!-- no translation found for generic_no_account_prompt (7218827704367325460) -->
-    <skip />
-    <!-- no translation found for generic_no_account_prompt_title (753783911899054860) -->
-    <skip />
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Mantén els contactes segurs encara que perdis el telèfon: sincronitza\'ls amb un servidor en línia."</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Addició d\'un compte"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"No es farà una còpia de seguretat del teu contacte nou. Vols afegir un compte que faci còpies de seguretat dels contactes en línia?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"El teu contacte nou se sincronitzarà amb <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Pots sincronitzar el teu contacte nou amb un dels comptes següents. Quin vols utilitzar?"</string>

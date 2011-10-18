@@ -134,9 +134,6 @@
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Αγαπ."</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Τηλέφωνο"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Αρχείο"</string>
-    <string name="liveFolderAll" msgid="4789010460767506206">"Όλες οι επαφές"</string>
-    <string name="liveFolderFavorites" msgid="3100957542927222282">"Επαφές με αστέρι"</string>
-    <string name="liveFolderPhone" msgid="3739376066610926780">"Επαφές με αριθμούς τηλεφώνου"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"Αποστολή μηνύματος κειμένου"</string>
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"Κλήση <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Επεξεργασία αριθμού πριν την κλήση"</string>
@@ -170,9 +167,6 @@
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Δεν έχετε επαφές προς προβολή. (Αν προσθέσατε κάποιον λογαριασμό μόλις τώρα, θα χρειαστούν λίγα λεπτά έως ότου γίνει ο συγχρονισμός.)"\n\n"Για την προσθήκη επαφών, πατήστε "<font fgcolor="#ffffffff"><b>"Μενού"</b></font>" και αγγίξτε την επιλογή:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Λογαριασμοί"</b></font>" για την προσθήκη ή διαμόρφωση λογαριασμού με επαφές τις οποίες μπορείτε να συγχρονίσετε στο tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Προβολή επιλογών"</b></font>" για να αλλάξετε τις επαφές που είναι ορατές"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Νέα επαφή"</b></font>" για δημιουργία νέας επαφής από το μηδέν"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Εισαγωγή/Εξαγωγή"</b></font>" για την εισαγωγή επαφών από την κάρτα SD"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Δεν έχετε επαφές προς προβολή. (Αν προσθέσατε κάποιον λογαριασμό μόλις τώρα, θα χρειαστούν λίγα λεπτά έως ότου γίνει ο συγχρονισμός.)"\n\n"Για την προσθήκη επαφών, πατήστε "<font fgcolor="#ffffffff"><b>"Μενού"</b></font>" και αγγίξτε την επιλογή:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Λογαριασμοί"</b></font>" για την προσθήκη ή διαμόρφωση λογαριασμού με επαφές τις οποίες μπορείτε να συγχρονίσετε στο τηλέφωνο"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Προβολή επιλογών"</b></font>" για να αλλάξετε τις επαφές που είναι ορατές"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Νέα επαφή"</b></font>" για δημιουργία νέας επαφής από το μηδέν"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Εισαγωγή/Εξαγωγή"</b></font>" για την εισαγωγή επαφών από την κάρτα SD"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Δεν έχετε αγαπημένα."\n\n"Για προσθήκη επαφής στη λίστα των αγαπημένων σας:"\n\n"        "<li>"Αγγίξτε την καρτέλα "<b>"Επαφές"</b>\n</li>" "\n<li>"Αγγίξτε το όνομα της επαφής που θέλετε να προσθέσετε στα αγαπημένα σας"\n</li>" "\n<li>"Αγγίξτε το αστέρι πλάι στο όνομα της επαφής"\n</li></string>
-    <string name="liveFolder_all_label" msgid="5961411940473276616">"Όλες οι επαφές"</string>
-    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Με αστέρι"</string>
-    <string name="liveFolder_phones_label" msgid="1709786878793436245">"Τηλέφωνα"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Χρησιμοποιήστε το πληκτρολόγιο αφής ηχητικών τόνων"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Επιστροφή στην κλήση που βρίσκεται σε εξέλιξη"</string>
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"Προσθήκη κλήσης"</string>
@@ -305,11 +299,6 @@
     <string name="eventLabelsGroup" msgid="3695433812142818803">"Συμβάντα"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Σχέση"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Ομάδες"</string>
-    <string name="type_short_home" msgid="7770424864090605384">"Ο"</string>
-    <string name="type_short_mobile" msgid="1655473281466676216">"Κ"</string>
-    <string name="type_short_work" msgid="4925330752504537861">"Ε"</string>
-    <string name="type_short_pager" msgid="2613818970827594238">"Β"</string>
-    <string name="type_short_other" msgid="5669407180177236769">"Α"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Δημιουργία επαφής στον λογαριασμό"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Δημιουργία ομάδας στο λογαριασμό"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Κατάργηση ομάδας συγχρονισμού"</string>
@@ -362,8 +351,7 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"Αποστολή μηνύματος κειμένου προς βομβητή εργασίας"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"Αποστολή μηνύματος κειμένου προς <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Αποστολή μηνύματος κειμένου ως MMS"</string>
-    <!-- no translation found for sms (1756857139634224222) -->
-    <skip />
+    <string name="sms" msgid="1756857139634224222">"Μήνυμα κειμένου"</string>
     <string name="email_home" msgid="8573740658148184279">"Αποστολή μηνύματος ηλεκτρονικού ταχυδρομείου προς οικία"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Αποστολή μηνύματος ηλεκτρονικού ταχυδρομείου προς κινητή συσκευή"</string>
     <string name="email_work" msgid="2807430017302722689">"Αποστολή μηνύματος ηλεκτρονικού ταχυδρομείου προς εργασία"</string>
@@ -383,10 +371,8 @@
     <string name="chat_icq" msgid="8438405386153745775">"Συζήτηση μέσω ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Συζήτηση μέσω Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Συζήτηση"</string>
-    <!-- no translation found for audio_chat (4743276658947547047) -->
-    <skip />
-    <!-- no translation found for video_chat (1872255818640336072) -->
-    <skip />
+    <string name="audio_chat" msgid="4743276658947547047">"Συζήτηση με ήχο"</string>
+    <string name="video_chat" msgid="1872255818640336072">"Συζήτηση μέσω βίντεο"</string>
     <string name="postal_address" msgid="8765560217149624536">"Διεύθυνση"</string>
     <string name="postal_street" msgid="8133143961580058972">"Οδός"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Ταχυδρομική θυρίδα"</string>
@@ -465,11 +451,10 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Με αστέρι"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Προσαρμοσμένη"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"Προσαρμογή..."</string>
-    <!-- outdated translation 7905045603593508221 -->     <string name="list_filter_phones" msgid="735313795643493365">"Επαφές με αριθμούς τηλεφώνου"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"Όλες οι επαφές με αριθμούς τηλεφώνου"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Επαφή"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Ορισμός προσαρμοσμένης προβολής"</string>
-    <!-- no translation found for contact_list_loading (3859280390185230582) -->
-    <skip />
+    <string name="contact_list_loading" msgid="3859280390185230582">"Φόρτωση …"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Ρυθμίσεις"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Επαφές για προβολή"</string>
     <string name="menu_settings" msgid="377929915873428211">"Ρυθμίσεις"</string>
@@ -564,10 +549,8 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Προφίλ μου <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Εμφάνιση όλων των επαφών"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Η εφαρμογή \"Άτομα\" λειτουργεί καλύτερα με έναν Λογαριασμό Google."\n\n"• Αποκτήστε πρόσβαση από οποιοδήποτε πρόγραμμα περιήγησης."\n"• Δημιουργήστε αντίγραφα ασφαλείας των επαφών σας."</string>
-    <!-- no translation found for generic_no_account_prompt (7218827704367325460) -->
-    <skip />
-    <!-- no translation found for generic_no_account_prompt_title (753783911899054860) -->
-    <skip />
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Διατηρήστε τις επαφές σας ασφαλείς ακόμα και αν χάσετε το τηλέφωνό σας: συγχρονισμός με άλλη συσκευή στο διαδίκτυο."</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Προσθήκη λογαριασμού"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Δεν θα δημιουργηθεί αντίγραφο ασφαλείας για τη νέα επαφή σας. Θέλετε να προσθέσετε ένα λογαριασμό που δημιουργεί αντίγραφα ασφαλείας επαφών στο διαδίκτυο;"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Η νέα επαφή σας θα συγχρονιστεί με <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Μπορείτε να συγχρονίσετε τη νέα επαφή με έναν από τους παρακάτω λογαριασμούς. Ποιον θέλετε να χρησιμοποιήσετε;"</string>

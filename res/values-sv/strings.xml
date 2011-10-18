@@ -134,9 +134,6 @@
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoriter"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Telefon"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Samtalshistorik"</string>
-    <string name="liveFolderAll" msgid="4789010460767506206">"Alla kontakter"</string>
-    <string name="liveFolderFavorites" msgid="3100957542927222282">"Stjärnmärkta kontakter"</string>
-    <string name="liveFolderPhone" msgid="3739376066610926780">"Kontakter med telefonnummer"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"Skicka SMS"</string>
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"Ring <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Redigera nummer före samtal"</string>
@@ -170,9 +167,6 @@
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Det finns inga kontakter att visa (om du nyss har lagt till ett konto kan det ta några minuter att synkronisera kontakter)."\n\n"Om du vill lägga till kontakter trycker du på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" och sedan på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konton"</b></font>" om du vill lägga till eller konfigurera ett konto med kontakter som kan synkroniseras till pekdatorn"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativ"</b></font>" om du vill ändra vilka kontakter som är synliga"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" om du vill skapa en ny kontakt från grunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importera/exportera"</b></font>" om du vill importera kontakter från SD-kortet"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Det finns inga kontakter att visa (om du nyss har lagt till ett konto kan det ta några minuter att synkronisera kontakter)."\n\n"Om du vill lägga till kontakter trycker du på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" och sedan på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konton"</b></font>" om du vill lägga till eller konfigurera ett konto med kontakter som kan synkroniseras till telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativ"</b></font>" om du vill ändra vilka kontakter som är synliga"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" om du vill skapa en ny kontakt från grunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importera/exportera"</b></font>" om du vill importera kontakter från SD-kortet"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Du har inte några favoriter."\n\n"Så här lägger du till kontakter i favoritlistan:"\n\n"        "<li>"Tryck på fliken "<b>"Kontakter"</b>\n</li>" "\n<li>"Tryck på den kontakt du vill lägga till i favoriterna"\n</li>" "\n<li>"Tryck på stjärnan bredvid kontaktens namn"\n</li></string>
-    <string name="liveFolder_all_label" msgid="5961411940473276616">"Alla kontakter"</string>
-    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Stjärnmärkt"</string>
-    <string name="liveFolder_phones_label" msgid="1709786878793436245">"Telefoner"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Använda tonvalstelefon"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Återvänd till pågående samtal"</string>
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"Lägg t. samt."</string>
@@ -305,11 +299,6 @@
     <string name="eventLabelsGroup" msgid="3695433812142818803">"Händelser"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Relation"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Grupper"</string>
-    <string name="type_short_home" msgid="7770424864090605384">"H"</string>
-    <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
-    <string name="type_short_work" msgid="4925330752504537861">"A"</string>
-    <string name="type_short_pager" msgid="2613818970827594238">"P"</string>
-    <string name="type_short_other" msgid="5669407180177236769">"A"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Skapa kontakt under konto"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Skapa grupp under konto"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Ta bort synkgrupp"</string>
@@ -382,10 +371,8 @@
     <string name="chat_icq" msgid="8438405386153745775">"Chatta med ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Chatta med Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Chatt"</string>
-    <!-- no translation found for audio_chat (4743276658947547047) -->
-    <skip />
-    <!-- no translation found for video_chat (1872255818640336072) -->
-    <skip />
+    <string name="audio_chat" msgid="4743276658947547047">"Ljudchatt"</string>
+    <string name="video_chat" msgid="1872255818640336072">"Videochatt"</string>
     <string name="postal_address" msgid="8765560217149624536">"Adress"</string>
     <string name="postal_street" msgid="8133143961580058972">"Gata"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Postbox"</string>
@@ -464,11 +451,10 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Stjärnmärkt"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Anpassad"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"Anpassa..."</string>
-    <!-- outdated translation 7905045603593508221 -->     <string name="list_filter_phones" msgid="735313795643493365">"Kontakter med telefonnummer"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"Alla kontakter med telefonnummer"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Kontakt"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Definiera anpassad visning"</string>
-    <!-- no translation found for contact_list_loading (3859280390185230582) -->
-    <skip />
+    <string name="contact_list_loading" msgid="3859280390185230582">"Läser in ..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Inställningar"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakter som ska visas"</string>
     <string name="menu_settings" msgid="377929915873428211">"Inställningar"</string>
@@ -563,17 +549,15 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Min <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-profil"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Visar alla kontakter"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Appen People fungerar bättre med ett Google-konto."\n\n"• Öppna den i valfri webbläsare."\n"• Säkerhetskopiera dina kontakter säkert."</string>
-    <!-- no translation found for generic_no_account_prompt (7218827704367325460) -->
-    <skip />
-    <!-- no translation found for generic_no_account_prompt_title (753783911899054860) -->
-    <skip />
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Skydda dina kontakter även om du förlorar mobilen. Synkronisera med en onlinetjänst."</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Lägg till ett konto"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Din nya kontakt kommer inte att säkerhetskopieras. Vill du lägga till ett konto så att kontakterna säkerhetskopieras online?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Din nya kontakt kommer att synkroniseras med <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> ."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Du kan synkronisera din nya kontakt med något av följande konton. Vilket konto vill du använda?"</string>
     <string name="keep_local" msgid="1258761699192993322">"Spara lokalt"</string>
     <string name="add_account" msgid="8201790677994503186">"Lägg till ett konto"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Lägg till ett nytt konto"</string>
-    <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"Samtalet skickades inte"</string>
+    <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"Samtalet gick inte att koppla fram"</string>
     <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"Röstbrevlådenumret är inte tillgängligt"</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4511141315685755189">"Öppna Meny &gt; Inställningar om du vill konfigurera röstbrevlådan."</string>
 </resources>

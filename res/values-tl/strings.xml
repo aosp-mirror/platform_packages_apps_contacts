@@ -134,9 +134,6 @@
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Mga Paborito"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Telepono"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Log ng tawag"</string>
-    <string name="liveFolderAll" msgid="4789010460767506206">"Lahat ng mga contact"</string>
-    <string name="liveFolderFavorites" msgid="3100957542927222282">"Mga naka-star na contact"</string>
-    <string name="liveFolderPhone" msgid="3739376066610926780">"Mga contact na may mga numero ng telepono"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"Magpadala ng text message"</string>
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"Tawagan si <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"I-edit ang numero bago tumawag"</string>
@@ -170,9 +167,6 @@
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Wala kang anumang mga contact na ipapakita. (Kung nagdagdag ka lang ng account, maaaring  magtagal ng ilang minuto upang i-sync ang mga contact.)"\n\n"Upang magdagdag ng mga contact, pindutin ang "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" at pindutin ang:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Mga Account"</b></font>" upang magdagdag o mag-configure ng isang account na may mga contact na masi-sync mo sa tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mga pagpipilian sa pagpapakita"</b></font>" upang baguhin kung anong mga contact ang nakikita"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Bagong contact"</b></font>" upang lumikha ng bagong contact mula sa scratch"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" upang mag-import ng mga contact mula sa iyong SIM o SD card"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Wala kang anumang mga contact na ipapakita. (Kung nagdagdag ka lang ng account, maaaring  magtagal ng ilang minuto upang i-sync ang mga contact.)"\n\n"Upang magdagdag ng mga contact, pindutin ang "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" at pindutin ang:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Mga Account"</b></font>" upang magdagdag o mag-configure ng isang account na may mga contact na masi-sync mo sa telepono"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mga pagpipilian sa pagpapakita"</b></font>" upang baguhin kung anong mga contact ang nakikita"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Bagong contact"</b></font>" upang lumikha ng bagong contact mula sa scratch"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" upang mag-import ng mga contact mula sa iyong SD card"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Wala kang anumang mga paborito."\n\n"Upang magdagdag ng contact sa iyong listahan ng mga paborito:"\n\n"        "<li>"Galawin ang tab na "<b>"Mga Contact"</b>\n</li>" "\n<li>"Galawin ang contact na gusto mong idagdag sa iyong mga paborito"\n</li>" "\n<li>"Galawin ang bituin sa tabi ng pangalan ng contact"\n</li></string>
-    <string name="liveFolder_all_label" msgid="5961411940473276616">"Lahat ng mga contact"</string>
-    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Naka-star"</string>
-    <string name="liveFolder_phones_label" msgid="1709786878793436245">"Mga Telepono"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Gumamit ng touch tone na keypad"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Kasalukuyang nagaganap ang pabalik na tawag"</string>
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"Magdagdag ng tawag"</string>
@@ -305,11 +299,6 @@
     <string name="eventLabelsGroup" msgid="3695433812142818803">"Mga Kaganapan"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Kaugnayan"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Mga Pangkat"</string>
-    <string name="type_short_home" msgid="7770424864090605384">"H"</string>
-    <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
-    <string name="type_short_work" msgid="4925330752504537861">"W"</string>
-    <string name="type_short_pager" msgid="2613818970827594238">"P"</string>
-    <string name="type_short_other" msgid="5669407180177236769">"O"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Lumikha ng contact sa ilalim ng account"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Lumikha ng pangkat sa ilalim ng account"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Alisin ang pangkat sa pag-sync"</string>
@@ -362,8 +351,7 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"Mag-text sa pager sa trabaho"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"Mag-text sa <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Mag-text ng MMS"</string>
-    <!-- no translation found for sms (1756857139634224222) -->
-    <skip />
+    <string name="sms" msgid="1756857139634224222">"Text message"</string>
     <string name="email_home" msgid="8573740658148184279">"Mag-email sa bahay"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Mag-email sa mobile"</string>
     <string name="email_work" msgid="2807430017302722689">"Mag-email sa trabaho"</string>
@@ -383,10 +371,8 @@
     <string name="chat_icq" msgid="8438405386153745775">"Makipag-chat gamit ang ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Makipag-chat gamit ang Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Makipag-chat"</string>
-    <!-- no translation found for audio_chat (4743276658947547047) -->
-    <skip />
-    <!-- no translation found for video_chat (1872255818640336072) -->
-    <skip />
+    <string name="audio_chat" msgid="4743276658947547047">"Audio chat"</string>
+    <string name="video_chat" msgid="1872255818640336072">"Video chat"</string>
     <string name="postal_address" msgid="8765560217149624536">"Address"</string>
     <string name="postal_street" msgid="8133143961580058972">"Kalye"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"PO box"</string>
@@ -465,11 +451,10 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Naka-star"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Custom"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"I-customize..."</string>
-    <!-- outdated translation 7905045603593508221 -->     <string name="list_filter_phones" msgid="735313795643493365">"Mga contact na may mga numero ng telepono"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"Lahat ng contact na may mga numero ng telepono"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Contact"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Tukuyin ang custom na pagtingin"</string>
-    <!-- no translation found for contact_list_loading (3859280390185230582) -->
-    <skip />
+    <string name="contact_list_loading" msgid="3859280390185230582">"Naglo-load …"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Mga Setting"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Mga contact na ipapakita"</string>
     <string name="menu_settings" msgid="377929915873428211">"Mga Setting"</string>
@@ -564,10 +549,8 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Aking <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> na profile"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Ipinapakita ang lahat ng contact"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Mas mahusay na nakakagawa ang mga tao gamit ang Google Account."\n\n"• I-access ito mula sa anumang web browser."\n"• I-back up nang secure ang iyong mga contact."</string>
-    <!-- no translation found for generic_no_account_prompt (7218827704367325460) -->
-    <skip />
-    <!-- no translation found for generic_no_account_prompt_title (753783911899054860) -->
-    <skip />
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Panatilihing ligtas ang iyong mga contact kahit na mawala mo ang iyong telepono: mag-synchronize sa isang online na serbisyo."</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Magdagdag ng account"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Hindi maba-back up ang iyong bagong contact. Magdagdag ng account na nagba-back up ng mga contact online?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Masi-synchronize ang iyong bagong contact sa <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Masi-synchronize mo ang iyong bagong contact sa isa sa iyong mga sumusunod na account. Alin ang gusto mong gamitin?"</string>
