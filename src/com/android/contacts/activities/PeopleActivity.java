@@ -506,7 +506,6 @@ public class PeopleActivity extends ContactsActivity
                     break;
                 case ContactsRequest.ACTION_GROUP:
                     tabToOpen = TabState.GROUPS;
-                    // TODO Select the specified group?  See the TODO in ContactsIntentResolver too.
                     break;
             }
             if (tabToOpen != null) {

@@ -84,7 +84,6 @@ public class ContactsRequest implements Parcelable {
     private boolean mSearchMode;
     private String mQueryString;
     private boolean mIncludeProfile;
-    private String mGroupName;
     private boolean mLegacyCompatibilityMode;
     private boolean mDirectorySearchEnabled = true;
     private Uri mContactUri;
@@ -98,7 +97,6 @@ public class ContactsRequest implements Parcelable {
                 + " mSearchMode=" + mSearchMode
                 + " mQueryString=" + mQueryString
                 + " mIncludeProfile=" + mIncludeProfile
-                + " mGroupName=" + mGroupName
                 + " mLegacyCompatibilityMode=" + mLegacyCompatibilityMode
                 + " mDirectorySearchEnabled=" + mDirectorySearchEnabled
                 + " mContactUri=" + mContactUri
@@ -116,7 +114,6 @@ public class ContactsRequest implements Parcelable {
         mSearchMode = request.mSearchMode;
         mQueryString = request.mQueryString;
         mIncludeProfile = request.mIncludeProfile;
-        mGroupName = request.mGroupName;
         mLegacyCompatibilityMode = request.mLegacyCompatibilityMode;
         mDirectorySearchEnabled = request.mDirectorySearchEnabled;
         mContactUri = request.mContactUri;
@@ -138,7 +135,6 @@ public class ContactsRequest implements Parcelable {
             request.mSearchMode = source.readInt() != 0;
             request.mQueryString = source.readString();
             request.mIncludeProfile = source.readInt() != 0;
-            request.mGroupName = source.readString();
             request.mLegacyCompatibilityMode  = source.readInt() != 0;
             request.mDirectorySearchEnabled = source.readInt() != 0;
             request.mContactUri = source.readParcelable(classLoader);
@@ -154,7 +150,6 @@ public class ContactsRequest implements Parcelable {
         dest.writeInt(mSearchMode ? 1 : 0);
         dest.writeString(mQueryString);
         dest.writeInt(mIncludeProfile ? 1 : 0);
-        dest.writeString(mGroupName);
         dest.writeInt(mLegacyCompatibilityMode ? 1 : 0);
         dest.writeInt(mDirectorySearchEnabled ? 1 : 0);
         dest.writeParcelable(mContactUri, 0);
@@ -218,14 +213,6 @@ public class ContactsRequest implements Parcelable {
 
     public void setIncludeProfile(boolean includeProfile) {
         mIncludeProfile = includeProfile;
-    }
-
-    public String getGroupName() {
-        return mGroupName;
-    }
-
-    public void setGroupName(String groupName) {
-        mGroupName = groupName;
     }
 
     public boolean isLegacyCompatibilityMode() {
