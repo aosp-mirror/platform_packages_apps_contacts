@@ -36,7 +36,6 @@ public class CallLogAdapterTest extends AndroidTestCase {
     private static final String TEST_NUMBER_LABEL = "label";
     private static final int TEST_NUMBER_TYPE = 1;
     private static final String TEST_COUNTRY_ISO = "US";
-    private static final String TEST_VOICEMAIL_NUMBER = "111";
 
     /** The object under test. */
     private TestCallLogAdapter mAdapter;
@@ -64,8 +63,7 @@ public class CallLogAdapterTest extends AndroidTestCase {
                     }
                 };
 
-        mAdapter = new TestCallLogAdapter(getContext(), fakeCallFetcher, fakeContactInfoHelper,
-                TEST_VOICEMAIL_NUMBER);
+        mAdapter = new TestCallLogAdapter(getContext(), fakeCallFetcher, fakeContactInfoHelper);
         // The cursor used in the tests to store the entries to display.
         mCursor = new MatrixCursor(CallLogQuery.EXTENDED_PROJECTION);
         mCursor.moveToFirst();
@@ -213,8 +211,8 @@ public class CallLogAdapterTest extends AndroidTestCase {
         public final List<Request> requests = Lists.newArrayList();
 
         public TestCallLogAdapter(Context context, CallFetcher callFetcher,
-                ContactInfoHelper contactInfoHelper, String voicemailNumber) {
-            super(context, callFetcher, contactInfoHelper, voicemailNumber);
+                ContactInfoHelper contactInfoHelper) {
+            super(context, callFetcher, contactInfoHelper);
         }
 
         @Override
