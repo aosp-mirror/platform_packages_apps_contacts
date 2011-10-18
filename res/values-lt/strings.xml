@@ -362,8 +362,7 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"Siųsti pranešimą į darbo teksto pranešimų gaviklį"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"Siųsti teksto pranešimą <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Siųsti MMS"</string>
-    <!-- no translation found for sms (1756857139634224222) -->
-    <skip />
+    <string name="sms" msgid="1756857139634224222">"Teksto pranešimas"</string>
     <string name="email_home" msgid="8573740658148184279">"Namų el. paštas"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Siųsti el. laišką mobiliuoju el. pašto adresu"</string>
     <string name="email_work" msgid="2807430017302722689">"Siųsti el. laišką į darbo el. paštą"</string>
@@ -383,10 +382,8 @@
     <string name="chat_icq" msgid="8438405386153745775">"Kalbėti naudojant ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Kalbėti naudojant „Jabber“"</string>
     <string name="chat" msgid="9025361898797412245">"Kalbėti"</string>
-    <!-- no translation found for audio_chat (4743276658947547047) -->
-    <skip />
-    <!-- no translation found for video_chat (1872255818640336072) -->
-    <skip />
+    <string name="audio_chat" msgid="4743276658947547047">"Garso pokalbis"</string>
+    <string name="video_chat" msgid="1872255818640336072">"Vaizdo pokalbis"</string>
     <string name="postal_address" msgid="8765560217149624536">"Adresas"</string>
     <string name="postal_street" msgid="8133143961580058972">"Gatvė"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Pašto dėžutė"</string>
@@ -465,11 +462,10 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Pažymėta žvaigždute"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Priskirtas"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"Tinkinti..."</string>
-    <!-- outdated translation 7905045603593508221 -->     <string name="list_filter_phones" msgid="735313795643493365">"Kontaktai su telefonų numeriais"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"Visi kontaktai su telefonų numeriais"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Kontaktas"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Nustatyti priskirtą rodinį"</string>
-    <!-- no translation found for contact_list_loading (3859280390185230582) -->
-    <skip />
+    <string name="contact_list_loading" msgid="3859280390185230582">"Įkeliama…"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Nustatymai"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Pateiktini kontaktai"</string>
     <string name="menu_settings" msgid="377929915873428211">"Nustatymai"</string>
@@ -564,10 +560,8 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Mano „<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>“ profilis"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Pateikiami visi kontaktai"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Žmonių programa veikia geriau naudojant „Google“ paskyrą."\n\n"• Pasiekite naudodami bet kurią žiniatinklio naršyklę."\n"• Saugiai kurkite atsargines kontaktų kopijas."</string>
-    <!-- no translation found for generic_no_account_prompt (7218827704367325460) -->
-    <skip />
-    <!-- no translation found for generic_no_account_prompt_title (753783911899054860) -->
-    <skip />
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Užtikrinkite kontaktų saugumą net praradę telefoną: sinchronizuokite su internetine paslauga."</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Pridėti paskyrą"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Naujo kontakto atsarginė kopija nebus sukurta. Pridėti paskyrą, kuri sukuria atsargines kontaktų kopijas internete?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Naujas kontaktas bus sinchronizuojamas su <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Naują kontaktą galite sinchronizuoti su viena iš toliau pateiktų paskyrų. Kurią norite naudoti?"</string>

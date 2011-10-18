@@ -362,8 +362,7 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"傳送簡訊至公司呼叫器"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"傳送簡訊至<xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"傳送 MMS 簡訊"</string>
-    <!-- no translation found for sms (1756857139634224222) -->
-    <skip />
+    <string name="sms" msgid="1756857139634224222">"簡訊"</string>
     <string name="email_home" msgid="8573740658148184279">"傳送電子郵件至住家電子郵件地址"</string>
     <string name="email_mobile" msgid="2042889209787989814">"傳送電子郵件至行動裝置"</string>
     <string name="email_work" msgid="2807430017302722689">"傳送電子郵件至公司電子郵件地址"</string>
@@ -383,10 +382,8 @@
     <string name="chat_icq" msgid="8438405386153745775">"使用 ICQ 進行即時通訊"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"使用 Jabber 進行即時通訊"</string>
     <string name="chat" msgid="9025361898797412245">"即時通訊"</string>
-    <!-- no translation found for audio_chat (4743276658947547047) -->
-    <skip />
-    <!-- no translation found for video_chat (1872255818640336072) -->
-    <skip />
+    <string name="audio_chat" msgid="4743276658947547047">"音訊通訊"</string>
+    <string name="video_chat" msgid="1872255818640336072">"語音通訊"</string>
     <string name="postal_address" msgid="8765560217149624536">"地址"</string>
     <string name="postal_street" msgid="8133143961580058972">"街道"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"郵政信箱"</string>
@@ -465,11 +462,10 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"已加星號"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"自訂"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"自訂..."</string>
-    <!-- outdated translation 7905045603593508221 -->     <string name="list_filter_phones" msgid="735313795643493365">"包含電話號碼的聯絡人資訊"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"所有包含電話號碼的聯絡人"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"聯絡人"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"定義自訂檢視"</string>
-    <!-- no translation found for contact_list_loading (3859280390185230582) -->
-    <skip />
+    <string name="contact_list_loading" msgid="3859280390185230582">"載入中…"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"設定"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"要顯示的聯絡人"</string>
     <string name="menu_settings" msgid="377929915873428211">"設定"</string>
@@ -564,10 +560,8 @@
     <string name="external_profile_title" msgid="8034998767621359438">"我的 <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> 個人資料"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"顯示所有聯絡人"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"透過「Google 帳戶」使用「Google 人物搜尋」可獲得更佳的效益。"\n\n"• 透過任何瀏覽器都可存取。"\n"• 安全備份您的聯絡人。"</string>
-    <!-- no translation found for generic_no_account_prompt (7218827704367325460) -->
-    <skip />
-    <!-- no translation found for generic_no_account_prompt_title (753783911899054860) -->
-    <skip />
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"即使手機遺失，聯絡人資訊依然萬無一失：與線上服務保持同步。"</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"新增帳戶"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"系統不會備份您新增的聯絡人資料。您是否要新建一個帳戶，將您的聯絡人資料另存在線上？"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"您新增的聯絡人資料將會同步儲存在 <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> 的帳戶中。"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"您可以將新增的聯絡人資料同步儲存在下列其中一個帳戶中。您要選擇哪一個帳戶？"</string>

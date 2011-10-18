@@ -362,8 +362,7 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"Пошаљи SMS на пејџер"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"Пошаљи SMS на <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Пошаљи SMS на MMS"</string>
-    <!-- no translation found for sms (1756857139634224222) -->
-    <skip />
+    <string name="sms" msgid="1756857139634224222">"Текстуална порука"</string>
     <string name="email_home" msgid="8573740658148184279">"Пошаљи поруку е-поште на кућну адресу е-поште"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Пошаљи поруку е-поште на број мобилног телефона"</string>
     <string name="email_work" msgid="2807430017302722689">"Пошаљи поруку е-поште на пословни број телефона"</string>
@@ -383,10 +382,8 @@
     <string name="chat_icq" msgid="8438405386153745775">"Започни ћаскање преко ICQ-а"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Започни ћаскање преко Jabber-а"</string>
     <string name="chat" msgid="9025361898797412245">"Ћаскање"</string>
-    <!-- no translation found for audio_chat (4743276658947547047) -->
-    <skip />
-    <!-- no translation found for video_chat (1872255818640336072) -->
-    <skip />
+    <string name="audio_chat" msgid="4743276658947547047">"Аудио ћаскање"</string>
+    <string name="video_chat" msgid="1872255818640336072">"Видео ћаскање"</string>
     <string name="postal_address" msgid="8765560217149624536">"Адреса"</string>
     <string name="postal_street" msgid="8133143961580058972">"Улица"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Поштанско сандуче"</string>
@@ -465,11 +462,10 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Са звездицом"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Прилагођено"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"Прилагоди..."</string>
-    <!-- outdated translation 7905045603593508221 -->     <string name="list_filter_phones" msgid="735313795643493365">"Контакти са бројевима телефона"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"Сви контакти са бројевима телефона"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Контакт"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Дефинисање прилагођеног приказа"</string>
-    <!-- no translation found for contact_list_loading (3859280390185230582) -->
-    <skip />
+    <string name="contact_list_loading" msgid="3859280390185230582">"Учитавање..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Подешавања"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Контакти за приказ"</string>
     <string name="menu_settings" msgid="377929915873428211">"Подешавања"</string>
@@ -564,10 +560,8 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Мој <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> профил"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Приказани су сви контакти"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Апликација Људи боље функционише са Google налогом."\n\n"• Приступајте из било ког веб прегледача."\n"• Безбедно направите резервне копије контаката."</string>
-    <!-- no translation found for generic_no_account_prompt (7218827704367325460) -->
-    <skip />
-    <!-- no translation found for generic_no_account_prompt_title (753783911899054860) -->
-    <skip />
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Очувајте безбедност контаката чак и ако изгубите телефон – синхронизујте са услугом на мрежи."</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Додавање налога"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Неће бити направљена резервна копија новог контакта. Желите ли да додате налог који прави резервну копију контаката на мрежи?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Нови контакт ће бити синхронизован са налогом <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Можете да синхронизујете нови контакт са једним од следећих налога. Који желите да користите?"</string>
@@ -576,5 +570,5 @@
     <string name="add_new_account" msgid="5748627740680940264">"Додај нови налог"</string>
     <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"Позив није послат"</string>
     <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"Број говорне поште није доступан"</string>
-    <string name="dialog_voicemail_not_ready_message" msgid="4511141315685755189">"Да бисте конфигурисали говорну пошту, идите на Мени &gt; Подешавања."</string>
+    <string name="dialog_voicemail_not_ready_message" msgid="4511141315685755189">"Да бисте конфигурисали говорну пошту, идите у Мени &gt; Подешавања."</string>
 </resources>

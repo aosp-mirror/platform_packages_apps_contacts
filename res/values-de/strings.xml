@@ -220,7 +220,7 @@
     <string name="import_from_sim" msgid="3859272228033941659">"Von SIM-Karte importieren"</string>
     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Aus Speicher importieren"</string>
     <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"In Speicher exportieren"</string>
-    <string name="share_visible_contacts" msgid="890150378880783797">"Sichtbare Kontakte weitergeben"</string>
+    <string name="share_visible_contacts" msgid="890150378880783797">"Sichtbare Kontakte teilen"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Eine VCard-Datei importieren"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Mehrere VCard-Dateien importieren"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Alle VCard-Dateien importieren"</string>
@@ -294,10 +294,10 @@
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakte zum Anzeigen"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Importieren/Exportieren"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Kontakte importieren/exportieren"</string>
-    <string name="menu_share" msgid="943789700636542260">"Weitergeben"</string>
+    <string name="menu_share" msgid="943789700636542260">"Teilen"</string>
     <string name="menu_all_contacts" msgid="5101735431586050711">"Alle Kontakte"</string>
-    <string name="share_via" msgid="563121028023030093">"Kontakt weitergeben über"</string>
-    <string name="share_error" msgid="4374508848981697170">"Dieser Kontakt kann nicht weitergegeben werden."</string>
+    <string name="share_via" msgid="563121028023030093">"Kontakt teilen über"</string>
+    <string name="share_error" msgid="4374508848981697170">"Dieser Kontakt kann nicht geteilt werden."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Name"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Alias"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Firma/Organisation"</string>
@@ -362,8 +362,7 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"SMS an Pager (geschäftl.)"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"SMS an <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Text (MMS)"</string>
-    <!-- no translation found for sms (1756857139634224222) -->
-    <skip />
+    <string name="sms" msgid="1756857139634224222">"SMS"</string>
     <string name="email_home" msgid="8573740658148184279">"E-Mail (privat)"</string>
     <string name="email_mobile" msgid="2042889209787989814">"E-Mail (mobil)"</string>
     <string name="email_work" msgid="2807430017302722689">"E-Mail (geschäftl.)"</string>
@@ -383,10 +382,8 @@
     <string name="chat_icq" msgid="8438405386153745775">"Chat über ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Chat über Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Chat"</string>
-    <!-- no translation found for audio_chat (4743276658947547047) -->
-    <skip />
-    <!-- no translation found for video_chat (1872255818640336072) -->
-    <skip />
+    <string name="audio_chat" msgid="4743276658947547047">"Audio-Chat"</string>
+    <string name="video_chat" msgid="1872255818640336072">"Video-Chat"</string>
     <string name="postal_address" msgid="8765560217149624536">"Adresse"</string>
     <string name="postal_street" msgid="8133143961580058972">"Straße"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Postfach"</string>
@@ -465,11 +462,10 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Markiert"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Benutzerdefiniert"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"Wird angepasst..."</string>
-    <!-- outdated translation 7905045603593508221 -->     <string name="list_filter_phones" msgid="735313795643493365">"Kontakte mit Telefonnummern"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"Alle Kontakte mit Telefonnummern"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Kontakt"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Benutzerdefinierte Ansicht festlegen"</string>
-    <!-- no translation found for contact_list_loading (3859280390185230582) -->
-    <skip />
+    <string name="contact_list_loading" msgid="3859280390185230582">"Wird geladen..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Einstellungen"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakte zum Anzeigen"</string>
     <string name="menu_settings" msgid="377929915873428211">"Einstellungen"</string>
@@ -564,10 +560,8 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Mein <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-Profil"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Alle Kontakte werden angezeigt."</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Die Personenfunktion funktioniert besser mit einem Google-Konto."\n\n"• Zugriff über einen beliebigen Browser"\n"• Sichern von Kontakten mit Schutzfunktion"</string>
-    <!-- no translation found for generic_no_account_prompt (7218827704367325460) -->
-    <skip />
-    <!-- no translation found for generic_no_account_prompt_title (753783911899054860) -->
-    <skip />
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Synchronisierung mit einem Online-Service: Ihre Kontakte sind dann auch sicher, wenn Sie Ihr Telefon verlieren."</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Konto hinzufügen"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Ihr neuer Kontakt wird nicht gesichert. Konto für die Online-Sicherung von Kontakten hinzufügen?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Ihr neuer Kontakt wird mit <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> synchronisiert."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Sie können Ihren neuen Kontakt mit einem der folgenden Konten synchronisieren. Welches möchten Sie verwenden?"</string>

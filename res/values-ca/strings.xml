@@ -382,10 +382,8 @@
     <string name="chat_icq" msgid="8438405386153745775">"Xateja amb ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Xateja amb Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Fes un xat"</string>
-    <!-- no translation found for audio_chat (4743276658947547047) -->
-    <skip />
-    <!-- no translation found for video_chat (1872255818640336072) -->
-    <skip />
+    <string name="audio_chat" msgid="4743276658947547047">"Xat d\'àudio"</string>
+    <string name="video_chat" msgid="1872255818640336072">"Xat de vídeo"</string>
     <string name="postal_address" msgid="8765560217149624536">"Adreça"</string>
     <string name="postal_street" msgid="8133143961580058972">"Carrer"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Apartat postal"</string>
@@ -464,11 +462,10 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Destacats"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Personalitzada"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"Personalitza..."</string>
-    <!-- outdated translation 7905045603593508221 -->     <string name="list_filter_phones" msgid="735313795643493365">"Contactes amb números de telèfon"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"Tots els contactes amb números de telèfon"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Contacte"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Defineix la visualització personalitzada"</string>
-    <!-- no translation found for contact_list_loading (3859280390185230582) -->
-    <skip />
+    <string name="contact_list_loading" msgid="3859280390185230582">"S\'està carregant..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Configuració"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Contactes per mostrar"</string>
     <string name="menu_settings" msgid="377929915873428211">"Configuració"</string>
@@ -563,10 +560,8 @@
     <string name="external_profile_title" msgid="8034998767621359438">"El meu perfil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"S\'estan mostrant tots els contactes"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Contactes funciona millor amb un Compte de Google."\n\n"• Accedeix-hi des de qualsevol navegador web."\n"• Fes una còpia de seguretat dels teus contactes."</string>
-    <!-- no translation found for generic_no_account_prompt (7218827704367325460) -->
-    <skip />
-    <!-- no translation found for generic_no_account_prompt_title (753783911899054860) -->
-    <skip />
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Mantén els contactes segurs encara que perdis el telèfon: sincronitza\'ls amb un servidor en línia."</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Addició d\'un compte"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"No es farà una còpia de seguretat del teu contacte nou. Vols afegir un compte que faci còpies de seguretat dels contactes en línia?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"El teu contacte nou se sincronitzarà amb <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Pots sincronitzar el teu contacte nou amb un dels comptes següents. Quin vols utilitzar?"</string>

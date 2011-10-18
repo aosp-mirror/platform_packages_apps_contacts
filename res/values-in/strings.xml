@@ -362,8 +362,7 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"Teks pager kantor"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"SMS <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"SMS MMS"</string>
-    <!-- no translation found for sms (1756857139634224222) -->
-    <skip />
+    <string name="sms" msgid="1756857139634224222">"Pesan teks"</string>
     <string name="email_home" msgid="8573740658148184279">"Email ke rumah"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Email ke seluler"</string>
     <string name="email_work" msgid="2807430017302722689">"Email ke kantor"</string>
@@ -383,10 +382,8 @@
     <string name="chat_icq" msgid="8438405386153745775">"Ngobrol menggunakan ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Ngobrol menggunakan Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Ngobrol"</string>
-    <!-- no translation found for audio_chat (4743276658947547047) -->
-    <skip />
-    <!-- no translation found for video_chat (1872255818640336072) -->
-    <skip />
+    <string name="audio_chat" msgid="4743276658947547047">"Obrolan audio"</string>
+    <string name="video_chat" msgid="1872255818640336072">"Obrolan video"</string>
     <string name="postal_address" msgid="8765560217149624536">"Alamat"</string>
     <string name="postal_street" msgid="8133143961580058972">"Jalan"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Kotak pos"</string>
@@ -465,11 +462,10 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Yang berkilau bintangnya"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Ubahsuaian"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"Ubahsuaikan..."</string>
-    <!-- outdated translation 7905045603593508221 -->     <string name="list_filter_phones" msgid="735313795643493365">"Kenalan dengan nomor telepon"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"Semua data kenalan dengan nomor telepon"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Kenalan"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Tentukan tampilan ubahsuaian"</string>
-    <!-- no translation found for contact_list_loading (3859280390185230582) -->
-    <skip />
+    <string name="contact_list_loading" msgid="3859280390185230582">"Memuat ..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Setelan"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kenalan untuk ditampilkan"</string>
     <string name="menu_settings" msgid="377929915873428211">"Setelan"</string>
@@ -564,10 +560,8 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Profil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> saya"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Menampilkan semua kenalan"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Orang bekerja lebih baik dengan Akun Google."\n\n"• Akses dari peramban web mana pun."\n"• Cadangkan data kenalan Anda dengan aman."</string>
-    <!-- no translation found for generic_no_account_prompt (7218827704367325460) -->
-    <skip />
-    <!-- no translation found for generic_no_account_prompt_title (753783911899054860) -->
-    <skip />
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Tetap amankan data kenalan Anda jika kehilangan ponsel: sinkronkan dengan layanan daring."</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Tambahkan akun"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Data kenalan baru Anda tidak akan dicadangkan. Tambahkan akun yang mencadangkan data kenalan secara daring?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Data kenalan baru Anda akan disinkronkan dengan <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Anda dapat menyinkronkan data kenalan baru dengan salah satu akun berikut. Akun mana yang ingin Anda gunakan?"</string>
@@ -575,6 +569,6 @@
     <string name="add_account" msgid="8201790677994503186">"Tambahkan akun"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Tambahkan akun baru"</string>
     <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"Panggilan tidak terkirim"</string>
-    <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"Nomor kotak pesan tidak tersedia"</string>
-    <string name="dialog_voicemail_not_ready_message" msgid="4511141315685755189">"Untuk mengonfigurasi kotak pesan, buka Menu &gt; Setelan."</string>
+    <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"Nomor pesan suara tidak tersedia"</string>
+    <string name="dialog_voicemail_not_ready_message" msgid="4511141315685755189">"Untuk mengonfigurasi pesan suara, buka Menu &gt; Setelan."</string>
 </resources>
