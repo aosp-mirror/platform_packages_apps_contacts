@@ -564,6 +564,7 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
             // If this is not a regular number, there is no point in looking it up in the contacts.
             ContactInfo info =
                     mPhoneNumberHelper.canPlaceCallsTo(number)
+                    && !mPhoneNumberHelper.isVoicemailNumber(number)
                             ? mContactInfoHelper.lookupNumber(number, countryIso)
                             : null;
             if (info == null) {
