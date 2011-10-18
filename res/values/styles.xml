@@ -177,10 +177,7 @@
         <item name="android:background">@drawable/action_bar_tab</item>
     </style>
 
-    <style name="ContactPickerTheme" parent="@style/PeopleTheme">
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
-    </style>
+    <style name="ContactPickerTheme" parent="@style/PeopleTheme" />
     <style name="ContactPickerLayout" parent="ContactPickerTheme">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>

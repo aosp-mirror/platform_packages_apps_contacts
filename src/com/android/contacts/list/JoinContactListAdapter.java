@@ -39,19 +39,11 @@ public class JoinContactListAdapter extends ContactListAdapter {
     private static final int MAX_SUGGESTIONS = 4;
 
     public static final int PARTITION_SUGGESTIONS = 0;
-    public static final int PARTITION_SHOW_ALL_CONTACTS = 1;
-    public static final int PARTITION_ALL_CONTACTS = 2;
+    public static final int PARTITION_ALL_CONTACTS = 1;
 
     private long mTargetContactId;
 
     private int mShowAllContactsViewType;
-
-    /**
-     * Determines whether we display a list item with the label
-     * "Show all contacts" or actually show all contacts
-     */
-    private boolean mAllContactsListShown;
-
 
     public JoinContactListAdapter(Context context) {
         super(context);
@@ -68,10 +60,7 @@ public class JoinContactListAdapter extends ContactListAdapter {
         // Partition 0: suggestions
         addPartition(false, true);
 
-        // Partition 1: "Show all contacts"
-        addPartition(false, false);
-
-        // Partition 2: All contacts
+        // Partition 1: All contacts
         addPartition(createDefaultDirectoryPartition());
     }
 
@@ -82,7 +71,6 @@ public class JoinContactListAdapter extends ContactListAdapter {
     @Override
     public void configureLoader(CursorLoader cursorLoader, long directoryId) {
         JoinContactLoader loader = (JoinContactLoader)cursorLoader;
-        loader.setLoadSuggestionsAndAllContacts(mAllContactsListShown);
 
         Builder builder = Contacts.CONTENT_URI.buildUpon();
         builder.appendEncodedPath(String.valueOf(mTargetContactId));
@@ -118,21 +106,8 @@ public class JoinContactListAdapter extends ContactListAdapter {
         return false;
     }
 
-    public boolean isAllContactsListShown() {
-        return mAllContactsListShown;
-    }
-
-    public void setAllContactsListShown(boolean flag) {
-        mAllContactsListShown = flag;
-    }
-
     public void setSuggestionsCursor(Cursor cursor) {
         changeCursor(PARTITION_SUGGESTIONS, cursor);
-        if (cursor != null && cursor.getCount() != 0 && !mAllContactsListShown) {
-            changeCursor(PARTITION_SHOW_ALL_CONTACTS, getShowAllContactsLabelCursor());
-        } else {
-            changeCursor(PARTITION_SHOW_ALL_CONTACTS, null);
-        }
     }
 
     @Override
@@ -153,9 +128,6 @@ public class JoinContactListAdapter extends ContactListAdapter {
 
     @Override
     public int getItemViewType(int partition, int position) {
-        if (partition == PARTITION_SHOW_ALL_CONTACTS) {
-            return mShowAllContactsViewType;
-        }
         return super.getItemViewType(partition, position);
     }
 
@@ -164,13 +136,13 @@ public class JoinContactListAdapter extends ContactListAdapter {
             ViewGroup parent) {
         switch (partition) {
             case PARTITION_SUGGESTIONS: {
-                View view = inflate(R.layout.join_contact_picker_section, parent);
+                View view = inflate(R.layout.join_contact_picker_section_header, parent);
                 ((TextView) view.findViewById(R.id.text)).setText(
                         R.string.separatorJoinAggregateSuggestions);
                 return view;
             }
             case PARTITION_ALL_CONTACTS: {
-                View view = inflate(R.layout.join_contact_picker_section, parent);
+                View view = inflate(R.layout.join_contact_picker_section_header, parent);
                 ((TextView) view.findViewById(R.id.text)).setText(
                         R.string.separatorJoinAggregateAll);
                 return view;
@@ -192,8 +164,6 @@ public class JoinContactListAdapter extends ContactListAdapter {
             case PARTITION_SUGGESTIONS:
             case PARTITION_ALL_CONTACTS:
                 return super.newView(context, partition, cursor, position, parent);
-            case PARTITION_SHOW_ALL_CONTACTS:
-                return inflate(R.layout.join_contact_picker_show_all, parent);
         }
         return null;
     }
@@ -210,9 +180,6 @@ public class JoinContactListAdapter extends ContactListAdapter {
                 view.setSectionHeader(null);
                 bindPhoto(view, partition, cursor);
                 bindName(view, cursor);
-                break;
-            }
-            case PARTITION_SHOW_ALL_CONTACTS: {
                 break;
             }
             case PARTITION_ALL_CONTACTS: {

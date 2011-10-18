@@ -23,19 +23,19 @@ import com.android.contacts.list.ContactEntryListFragment;
 import com.android.contacts.list.JoinContactListFragment;
 import com.android.contacts.list.OnContactPickerActionListener;
 
+import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
+import android.view.MenuItem;
 
 /**
  * An activity that shows a list of contacts that can be joined with the target contact.
  */
-public class JoinContactActivity extends ContactsActivity implements OnClickListener {
+public class JoinContactActivity extends ContactsActivity {
 
     private static final String TAG = "JoinContactActivity";
 
@@ -85,8 +85,6 @@ public class JoinContactActivity extends ContactsActivity implements OnClickList
         setContentView(R.layout.join_contact_picker);
         setTitle(R.string.titleJoinContactDataWith);
 
-        findViewById(R.id.cancel).setOnClickListener(this);
-
         if (mListFragment == null) {
             mListFragment = new JoinContactListFragment();
 
@@ -94,9 +92,16 @@ public class JoinContactActivity extends ContactsActivity implements OnClickList
                     .replace(R.id.list_container, mListFragment)
                     .commitAllowingStateLoss();
         }
+
+        final ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(true);
+        }
     }
 
-    public void setupActionListener() {
+    private void setupActionListener() {
         mListFragment.setTargetContactId(mTargetContactId);
         mListFragment.setOnContactPickerActionListener(new OnContactPickerActionListener() {
             @Override
@@ -121,6 +126,18 @@ public class JoinContactActivity extends ContactsActivity implements OnClickList
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // Go back to previous screen, intending "cancel"
+                setResult(RESULT_CANCELED);
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putLong(KEY_TARGET_CONTACT_ID, mTargetContactId);
@@ -137,13 +154,6 @@ public class JoinContactActivity extends ContactsActivity implements OnClickList
         if (requestCode == ContactEntryListFragment.ACTIVITY_REQUEST_CODE_PICKER
                 && resultCode == RESULT_OK) {
             mListFragment.onPickerResult(data);
-        }
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.cancel) {
-            finish();
         }
     }
 }
