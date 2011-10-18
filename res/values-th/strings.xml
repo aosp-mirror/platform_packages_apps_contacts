@@ -134,9 +134,6 @@
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"รายการโปรด"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"โทรศัพท์"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"บันทึกการโทร"</string>
-    <string name="liveFolderAll" msgid="4789010460767506206">"รายชื่อทั้งหมด"</string>
-    <string name="liveFolderFavorites" msgid="3100957542927222282">"รายชื่อที่ติดดาว"</string>
-    <string name="liveFolderPhone" msgid="3739376066610926780">"ที่อยู่ติดต่อที่มีหมายเลขโทรศัพท์"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"ส่งข้อความตัวอักษร"</string>
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"โทรหา <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"แก้ไขหมายเลขก่อนโทร"</string>
@@ -170,9 +167,6 @@
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"คุณไม่มีสมุดโทรศัพท์ที่จะแสดง (หากคุณเพิ่งเพิ่มบัญชี อาจต้องใช้เวลาสักครู่ในการซิงค์รายชื่อติดต่อ)"\n\n"หากต้องการเพิ่มรายชื่อติดต่อในสมุดโทรศัพท์ ให้กด "<font fgcolor="#ffffffff"><b>"เมนู"</b></font>" แล้วแตะ:"\n" "\n<li><font fgcolor="#ffffffff"><b>"บัญชี"</b></font>" เพื่อเพิ่มหรือกำหนดค่าบัญชีด้วยรายชื่อติดต่อที่คุณสามารถซิงค์กับแท็บเล็ตได้"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ตัวเลือกการแสดงผล"</b></font>" เพื่อเปลี่ยนว่าจะให้แสดงรายชื่อติดต่อใดบ้าง"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"สร้างรายชื่อติดต่อใหม่"</b></font>" เพื่อสร้างรายชื่อติดต่อใหม่ตั้งแต่ต้น"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"นำเข้า/ส่งออก"</b></font>" เพื่อนำเข้ารายชื่อติดต่อจากการ์ด SD ของคุณ"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"คุณไม่มีสมุดโทรศัพท์ที่จะแสดง (หากคุณเพิ่งเพิ่มบัญชี อาจต้องใช้เวลาสักครู่ในการซิงค์รายชื่อติดต่อ)"\n\n"หากต้องการเพิ่มรายชื่อติดต่อในสมุดโทรศัพท์ ให้กด "<font fgcolor="#ffffffff"><b>"เมนู"</b></font>" แล้วแตะ:"\n" "\n<li><font fgcolor="#ffffffff"><b>"บัญชี"</b></font>" เพื่อเพิ่มหรือกำหนดค่าบัญชีด้วยรายชื่อติดต่อที่คุณสามารถซิงค์กับโทรศัพท์ได้"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ตัวเลือกการแสดงผล"</b></font>" เพื่อเปลี่ยนว่าจะให้แสดงรายชื่อติดต่อใดบ้าง"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"สร้างรายชื่อติดต่อใหม่"</b></font>" เพื่อสร้างรายชื่อติดต่อใหม่ตั้งแต่ต้น"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"นำเข้า/ส่งออก"</b></font>" เพื่อนำเข้ารายชื่อติดต่อจากการ์ด SD ของคุณ"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"คุณไม่มีรายการโปรดใดๆ "\n\n"หากต้องการเพิ่มรายชื่อในรายการโปรด:"\n\n"        "<li>"แตะที่แท็บ "<b>"สมุดโทรศัพท์"</b>" "\n</li>" "\n<li>"แตะรายชื่อที่คุณต้องการเพิ่มลงในรายการโปรด"\n</li>" "\n<li>"แตะรูปดาวที่อยู่ติดกับชื่อ"\n</li></string>
-    <string name="liveFolder_all_label" msgid="5961411940473276616">"รายชื่อในสมุดโทรศัพท์ทั้งหมด"</string>
-    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"ที่ติดดาว"</string>
-    <string name="liveFolder_phones_label" msgid="1709786878793436245">"โทรศัพท์"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"ใช้ปุ่มกดสัญญาณเสียง"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"กลับสู่การโทรที่กำลังดำเนินอยู่"</string>
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"เพิ่มการโทร"</string>
@@ -305,11 +299,6 @@
     <string name="eventLabelsGroup" msgid="3695433812142818803">"กิจกรรม"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"ความสัมพันธ์"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"กลุ่ม"</string>
-    <string name="type_short_home" msgid="7770424864090605384">"H"</string>
-    <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
-    <string name="type_short_work" msgid="4925330752504537861">"W"</string>
-    <string name="type_short_pager" msgid="2613818970827594238">"P"</string>
-    <string name="type_short_other" msgid="5669407180177236769">"O"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"สร้างรายชื่อภายในบัญชี"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"สร้างกลุ่มภายในบัญชี"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"นำกลุ่มที่ซิงค์ออก"</string>
@@ -362,8 +351,7 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"ส่งข้อความเข้าเพจเจอร์ที่ทำงาน"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"ส่งข้อความถึง <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"ส่งข้อความถึง MMS"</string>
-    <!-- no translation found for sms (1756857139634224222) -->
-    <skip />
+    <string name="sms" msgid="1756857139634224222">"ข้อความตัวอักษร"</string>
     <string name="email_home" msgid="8573740658148184279">"ส่งไปที่อีเมลส่วนตัว"</string>
     <string name="email_mobile" msgid="2042889209787989814">"ส่งอีเมลเข้ามือถือ"</string>
     <string name="email_work" msgid="2807430017302722689">"ส่งอีเมลถึงที่ทำงาน"</string>
@@ -383,10 +371,8 @@
     <string name="chat_icq" msgid="8438405386153745775">"แชทโดยใช้ ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"แชทโดยใช้ Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"แชท"</string>
-    <!-- no translation found for audio_chat (4743276658947547047) -->
-    <skip />
-    <!-- no translation found for video_chat (1872255818640336072) -->
-    <skip />
+    <string name="audio_chat" msgid="4743276658947547047">"การแชทด้วยเสียง"</string>
+    <string name="video_chat" msgid="1872255818640336072">"วิดีโอแชท"</string>
     <string name="postal_address" msgid="8765560217149624536">"ที่อยู่"</string>
     <string name="postal_street" msgid="8133143961580058972">"ถนน"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"ตู้ ปณ."</string>
@@ -465,11 +451,10 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"ที่ติดดาว"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"กำหนดเอง"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"กำหนดค่า..."</string>
-    <!-- outdated translation 7905045603593508221 -->     <string name="list_filter_phones" msgid="735313795643493365">"รายชื่อติดต่อที่มีหมายเลขโทรศัพท์"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"รายชื่อติดต่อทั้งหมดที่มีหมายเลขโทรศัพท์"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"รายชื่อติดต่อ"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"กำหนดมุมมองที่กำหนดเอง"</string>
-    <!-- no translation found for contact_list_loading (3859280390185230582) -->
-    <skip />
+    <string name="contact_list_loading" msgid="3859280390185230582">"กำลังโหลด…"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"การตั้งค่า"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"รายชื่อติดต่อที่จะแสดง"</string>
     <string name="menu_settings" msgid="377929915873428211">"การตั้งค่า"</string>
@@ -564,10 +549,8 @@
     <string name="external_profile_title" msgid="8034998767621359438">"โปรไฟล์ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> ของฉัน"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"แสดงที่อยู่ติดต่อทั้งหมด"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"People ทำงานได้ดีกว่าหากมีบัญชี Google"\n\n"•เข้าถึงจากทุกเว็บเบราว์เซอร์"\n"•สำรองข้อมูลสมุดโทรศัพท์ของคุณอย่างปลอดภัย"</string>
-    <!-- no translation found for generic_no_account_prompt (7218827704367325460) -->
-    <skip />
-    <!-- no translation found for generic_no_account_prompt_title (753783911899054860) -->
-    <skip />
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"เก็บที่อยู่ติดต่อของคุณไว้อย่างปลอดภัยด้วยการซิงค์กับบริการออนไลน์แม้ว่าคุณจะทำโทรศัพท์หาย"</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"เพิ่มบัญชี"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ผู้ติดต่อใหม่ของคุณจะไม่ได้รับการสำรองข้อมูล เพิ่มบัญชีที่สำรองข้อมูลผู้ติดต่อออนไลน์หรือไม่"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"ผู้ติดต่อใหม่ของคุณจะซิงค์กับ <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"คุณสามารถซิงค์ผู้ติดต่อใหม่กับบัญชีใดบัญชีหนึ่งต่อไปนี้ได้ คุณต้องการใช้บัญชีใด"</string>

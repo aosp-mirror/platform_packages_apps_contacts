@@ -134,9 +134,6 @@
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Вибране"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Тел."</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Журн. викл."</string>
-    <string name="liveFolderAll" msgid="4789010460767506206">"Усі контакти"</string>
-    <string name="liveFolderFavorites" msgid="3100957542927222282">"Контакти із зіроч."</string>
-    <string name="liveFolderPhone" msgid="3739376066610926780">"Контакти з номерами телефону"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"Надісл. текст. повід."</string>
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"Набрати <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Редаг. номер перед викл."</string>
@@ -170,9 +167,6 @@
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Немає контактів для відобр. (Якщо ви щойно дод. обл. запис, синхроніз. контактів займе кілька хв.)."\n\n"Щоб додати конт., натис."<font fgcolor="#ffffffff"><b>"Меню"</b></font>" й торкн. опцій:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Обл. записи"</b></font>", щоб додати чи налашт. обл. запис із контакт., які можна синхроніз. з пристроєм"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Параметри відображ."</b></font>", щоб змінити парам. видимості контактів"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новий контакт"</b></font>", щоб створ. зовсім новий контакт"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Імпорт/експорт"</b></font>", щоб імпорт. контакти з карти SD"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Немає контактів для відобр. (Якщо ви щойно дод. обл. запис, синхроніз. контактів займе кілька хв.)."\n\n"Щоб додати контакти, натис. "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" й торкн. опцій:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Обл. записи"</b></font>", щоб додати чи налашт. обл. запис із контакт., які можна синхроніз. з тел."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Параметри відображ."</b></font>", щоб змінити парам. видимості контактів"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новий контакт"</b></font>", щоб створ. зовсім новий контакт"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Імпорт/експорт"</b></font>", щоб імпорт. контакти з карти SD"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"У вас немає вибраного."\n\n"Щоб додати контакт до списку вибраних:"\n\n" "<li>"Торкніться вкладки "<b>"Контакти"</b>\n</li>" "\n<li>"Торкніться контакту, який хочете додати до вибраного"\n</li>" "\n<li>"Торкніться зірочки поруч з іменем контакту"\n</li></string>
-    <string name="liveFolder_all_label" msgid="5961411940473276616">"Усі контакти"</string>
-    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Із зіроч."</string>
-    <string name="liveFolder_phones_label" msgid="1709786878793436245">"Телефони"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Викор. кнопкову клавіат."</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Поверн. до поточн. виклику"</string>
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"Дод. виклик"</string>
@@ -305,11 +299,6 @@
     <string name="eventLabelsGroup" msgid="3695433812142818803">"Події"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Стосунки"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Групи"</string>
-    <string name="type_short_home" msgid="7770424864090605384">"Д"</string>
-    <string name="type_short_mobile" msgid="1655473281466676216">"М"</string>
-    <string name="type_short_work" msgid="4925330752504537861">"Р"</string>
-    <string name="type_short_pager" msgid="2613818970827594238">"П"</string>
-    <string name="type_short_other" msgid="5669407180177236769">"І"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Створ. контакт в обл. записі"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Створити групу в обліковому записі"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Видал. синхр. групу"</string>
@@ -362,8 +351,7 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"SMS на роб. пейдж."</string>
     <string name="sms_assistant" msgid="2773424339923116234">"SMS на <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"SMS на ном. MMS"</string>
-    <!-- no translation found for sms (1756857139634224222) -->
-    <skip />
+    <string name="sms" msgid="1756857139634224222">"Текстове повідомлення"</string>
     <string name="email_home" msgid="8573740658148184279">"Написати на дом. адр."</string>
     <string name="email_mobile" msgid="2042889209787989814">"Напис. на моб."</string>
     <string name="email_work" msgid="2807430017302722689">"Напис. на роб. адр."</string>
@@ -383,10 +371,8 @@
     <string name="chat_icq" msgid="8438405386153745775">"Чат через ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Чат через Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Чат"</string>
-    <!-- no translation found for audio_chat (4743276658947547047) -->
-    <skip />
-    <!-- no translation found for video_chat (1872255818640336072) -->
-    <skip />
+    <string name="audio_chat" msgid="4743276658947547047">"Звуковий чат"</string>
+    <string name="video_chat" msgid="1872255818640336072">"Відеочат"</string>
     <string name="postal_address" msgid="8765560217149624536">"Адреса"</string>
     <string name="postal_street" msgid="8133143961580058972">"Вулиця"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Пошт. скр."</string>
@@ -465,11 +451,10 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Із зірочкою"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Спеціальні"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"Налаштувати..."</string>
-    <!-- outdated translation 7905045603593508221 -->     <string name="list_filter_phones" msgid="735313795643493365">"Контакти з номерами телефону"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"Усі контакти з номерами телефону"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Контакт"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Налаштувати параметри перегляду"</string>
-    <!-- no translation found for contact_list_loading (3859280390185230582) -->
-    <skip />
+    <string name="contact_list_loading" msgid="3859280390185230582">"Завантаження ..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Налаштування"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Контакти для показу"</string>
     <string name="menu_settings" msgid="377929915873428211">"Налаштування"</string>
@@ -564,10 +549,8 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Мій профіль на <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Відображаються всі контакти"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Програма \"Люди\" пропонує більше можливостей, якщо у вас є обліковий запис Google."\n\n"•Отримуйте доступ із будь-якого веб-переглядача"\n"•Створюйте надійні резервні копії своїх контактів"</string>
-    <!-- no translation found for generic_no_account_prompt (7218827704367325460) -->
-    <skip />
-    <!-- no translation found for generic_no_account_prompt_title (753783911899054860) -->
-    <skip />
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Збережіть свої контакти на випадок втрати свого телефону: синхронізуйте їх з онлайновою службою."</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Додати обліковий запис"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Для вашого нового контакта не буде створено резервні копії. Додати обліковий запис, у якому буде збережено резервні копії контактів в Інтернеті?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Новий контакт буде синхронізовано з обліковим записом <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Свій новий контакт можна синхронізувати з одним з указаних нижче облікових записів. Який із них використати?"</string>

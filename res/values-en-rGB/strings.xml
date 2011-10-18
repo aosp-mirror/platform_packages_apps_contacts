@@ -134,9 +134,6 @@
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favourites"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Phone"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Call log"</string>
-    <string name="liveFolderAll" msgid="4789010460767506206">"All contacts"</string>
-    <string name="liveFolderFavorites" msgid="3100957542927222282">"Starred contacts"</string>
-    <string name="liveFolderPhone" msgid="3739376066610926780">"Contacts with phone numbers"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"Send text message"</string>
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"Call <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Edit number before call"</string>
@@ -170,9 +167,6 @@
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"You don\'t have any contacts to display. (If you\'ve just added an account, it can take a few minutes to sync contacts.)"\n\n"To add contacts, press "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" and touch:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Accounts"</b></font>" to add or configure an account with contacts that you can sync to the tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Display options"</b></font>" to change which contacts are visible"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"New contact"</b></font>" to create a new contact from scratch"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" to import contacts from your SD card"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"You don\'t have any contacts to display. (If you\'ve just added an account, it can take a few minutes to sync contacts.)"\n\n"To add contacts, press "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" and touch:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Accounts"</b></font>" to add or configure an account with contacts whom you can sync to the phone"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Display options"</b></font>" to change which contacts are visible"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"New contact"</b></font>" to create a new contact from scratch"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" to import contacts from your SD card"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"You don\'t have any favourites."\n\n"To add a contact to your list of favourites:"\n\n"        "<li>"Touch the "<b>"Contacts"</b>" tab"\n</li>" "\n<li>"Touch the contact  that you want to add to your favourites"\n</li>" "\n<li>"Touch the star next to the contact\'s name"\n</li></string>
-    <string name="liveFolder_all_label" msgid="5961411940473276616">"All contacts"</string>
-    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Starred"</string>
-    <string name="liveFolder_phones_label" msgid="1709786878793436245">"Phones"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Use touch tone keypad"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Return to call in progress"</string>
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"Add call"</string>
@@ -305,11 +299,6 @@
     <string name="eventLabelsGroup" msgid="3695433812142818803">"Events"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Relationship"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Groups"</string>
-    <string name="type_short_home" msgid="7770424864090605384">"H"</string>
-    <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
-    <string name="type_short_work" msgid="4925330752504537861">"W"</string>
-    <string name="type_short_pager" msgid="2613818970827594238">"P"</string>
-    <string name="type_short_other" msgid="5669407180177236769">"O"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Create contact under account"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Create group under account"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Remove sync group"</string>

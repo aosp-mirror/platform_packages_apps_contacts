@@ -134,9 +134,6 @@
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Sık Kullanılanlar"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Telefon"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Çağrı kaydı"</string>
-    <string name="liveFolderAll" msgid="4789010460767506206">"Tüm kişiler"</string>
-    <string name="liveFolderFavorites" msgid="3100957542927222282">"Yıldızlı kişiler"</string>
-    <string name="liveFolderPhone" msgid="3739376066610926780">"Telefon numarası olan kişiler"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"Kısa mesaj gönder"</string>
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"Ara: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Önce numarayı düzenle"</string>
@@ -170,9 +167,6 @@
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Görüntülenecek kişiniz yok. (Kısa süre önce bir hesap eklediyseniz kişileri senkronize etmek birkaç dakika sürebilir.)"\n\n"Kişi eklemek için, "<font fgcolor="#ffffffff"><b>"Menü"</b></font>"\'ye basın ve şunlara dokunun:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Hesaplar"</b></font>" (tabletle senkronize edebileceğiniz kişilere sahip bir hesap eklemek veya yapılandırmak için)"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Görüntüleme seçenekleri"</b></font>" (görülebilir kişileri değiştirmek için)"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Yeni kişi"</b></font>" (en baştan yeni bir kişi oluşturmak için)"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"İçe/Dışa Aktar"</b></font>\n</li>"(SIM veya SD kartınızdaki kişileri içe aktarmak için)"</string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Görüntülenecek kişiniz yok. (Kısa süre önce bir hesap eklediyseniz kişileri senkronize etmek birkaç dakika sürebilir.)"\n\n"Kişi eklemek için, "<font fgcolor="#ffffffff"><b>"Menü"</b></font>"\'ye basın ve şunlara dokunun:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Hesaplar"</b></font>" (telefon ile senkronize edebileceğiniz kişilere sahip bir hesap eklemek veya yapılandırmak için)"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Seçenekleri görüntüle"</b></font>" (görülebilir kişileri değiştirmek için)"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Yeni kişi"</b></font>" (en baştan yeni bir kişi oluşturmak için)"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"İçe/Dışa Aktar"</b></font>\n</li>"(SIM veya SD kartınızdaki kişileri içe aktarmak için)"</string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Favoriniz bulunmuyor."\n\n"Favoriler listenize kişi eklemek için:"\n\n"        "<li><b>"Kişiler"</b>" sekmesine dokunun"\n</li>" "\n<li>"Favorilerinize eklemek istediğiniz kişiye dokunun"\n</li>" "\n<li>"Kişi adının yanındaki yıldız simgesine dokunun"\n</li></string>
-    <string name="liveFolder_all_label" msgid="5961411940473276616">"Tüm kişiler"</string>
-    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Yıldızlı"</string>
-    <string name="liveFolder_phones_label" msgid="1709786878793436245">"Telefonlar"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Telefon tuş takımını kullan"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Çağrıya dön"</string>
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"Çağrı ekle"</string>
@@ -305,11 +299,6 @@
     <string name="eventLabelsGroup" msgid="3695433812142818803">"Etkinlikler"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"İlişki"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Gruplar"</string>
-    <string name="type_short_home" msgid="7770424864090605384">"E"</string>
-    <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
-    <string name="type_short_work" msgid="4925330752504537861">"İ"</string>
-    <string name="type_short_pager" msgid="2613818970827594238">"Ç"</string>
-    <string name="type_short_other" msgid="5669407180177236769">"D"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Hesap altında kişi oluştur"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Grubu şu hesabın altında oluştur:"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Senkronize grubu kaldır"</string>
@@ -362,8 +351,7 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"SMS Gönder (iş yeri çağrı cihazı)"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"SMS Gönder (<xliff:g id="ASSISTANT">%s</xliff:g>)"</string>
     <string name="sms_mms" msgid="4069352461380762677">"SMS gönder (MMS)"</string>
-    <!-- no translation found for sms (1756857139634224222) -->
-    <skip />
+    <string name="sms" msgid="1756857139634224222">"Kısa mesaj"</string>
     <string name="email_home" msgid="8573740658148184279">"E-posta gönder (ev)"</string>
     <string name="email_mobile" msgid="2042889209787989814">"E-posta gönder (mobil)"</string>
     <string name="email_work" msgid="2807430017302722689">"E-posta gönder (iş)"</string>
@@ -383,10 +371,8 @@
     <string name="chat_icq" msgid="8438405386153745775">"ICQ kullanarak sohbet et"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Jabber kullanarak sohbet et"</string>
     <string name="chat" msgid="9025361898797412245">"Sohbet"</string>
-    <!-- no translation found for audio_chat (4743276658947547047) -->
-    <skip />
-    <!-- no translation found for video_chat (1872255818640336072) -->
-    <skip />
+    <string name="audio_chat" msgid="4743276658947547047">"Sesli sohbet"</string>
+    <string name="video_chat" msgid="1872255818640336072">"Görüntülü sohbet"</string>
     <string name="postal_address" msgid="8765560217149624536">"Adres"</string>
     <string name="postal_street" msgid="8133143961580058972">"Cadde"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Posta kutusu"</string>
@@ -465,11 +451,10 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Yıldızlı"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Özel"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"Özelleştir..."</string>
-    <!-- outdated translation 7905045603593508221 -->     <string name="list_filter_phones" msgid="735313795643493365">"Telefon numarası olan kişiler"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"Telefon numarası olan tüm kişiler"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Kişi"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Özel görünüm tanımla"</string>
-    <!-- no translation found for contact_list_loading (3859280390185230582) -->
-    <skip />
+    <string name="contact_list_loading" msgid="3859280390185230582">"Yükleniyor …"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Ayarlar"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Görüntülenecek kişiler"</string>
     <string name="menu_settings" msgid="377929915873428211">"Ayarlar"</string>
@@ -564,10 +549,8 @@
     <string name="external_profile_title" msgid="8034998767621359438">"<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> profilim"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Tüm içerik görüntüleniyor"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"Kişi Arama bir Google Account hesabıyla daha iyi çalışır."\n\n"• Kişi Arama\'ya Herhangi bir tarayıcıdan erişin."\n"• Kişilerinizi güvenli bir şekilde yedekleyin."</string>
-    <!-- no translation found for generic_no_account_prompt (7218827704367325460) -->
-    <skip />
-    <!-- no translation found for generic_no_account_prompt_title (753783911899054860) -->
-    <skip />
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Telefonunuzu kaybetseniz dahi kişilerinizi güvenle saklayın: çevrimiçi bir hizmetle senkronize edin."</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Hesap ekleyin"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Yeni kişiniz yedeklenmeyecek. Kişileri çevrimiçi olarak yedekleyen bir hesap eklensin mi?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Yeni kişiniz <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> ile senkronize edilecek."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Yeni kişinizi aşağıdaki hesaplardan biriyle senkronize edebilirsiniz. Hangisini kullanmak istersiniz?"</string>

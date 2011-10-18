@@ -156,9 +156,6 @@
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favurits"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Telefon"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Cloms"</string>
-    <string name="liveFolderAll" msgid="4789010460767506206">"Tut ils contacts"</string>
-    <string name="liveFolderFavorites" msgid="3100957542927222282">"Contacts marcads"</string>
-    <string name="liveFolderPhone" msgid="3739376066610926780">"Contacts cun numers da telefon"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"Trametter in SMS"</string>
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"Telefonar a(d) <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Modifitgar il numer avant che telefonar"</string>
@@ -195,9 +192,6 @@
     <!-- outdated translation 9040060730467973050 -->     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"\"Vus n\'avais nagins contacts per mussar. (I po cuzzar in pèr minutas per sincronisar ils contacts en cas che Vus avais gist agiuntà in conto.)"\n\n"Per agiuntar contacts, smatgai sin "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e smatgai suenter sin:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contos"</b></font>" per agiuntar u configurar in conto che cuntegna contacts che Vus pudais sincronisar cun il telefonin."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opziuns da vista"</b></font>" per definir tge contacts che vegnan mussads"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nov contact"</b></font>" per cumenzar a crear in nov contact"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" per importar contacts da Vossa carta SD"\n</li>"\""</string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"\"Vus n\'avais nagins contacts per mussar. (I po cuzzar in pèr minutas per sincronisar ils contacts en cas che Vus avais gist agiuntà in conto.)"\n\n"Per agiuntar contacts, smatgai sin "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e smatgai suenter sin:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contos"</b></font>" per agiuntar u configurar in conto che cuntegna contacts che Vus pudais sincronisar cun il telefonin."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opziuns da vista"</b></font>" per definir tge contacts che vegnan mussads"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nov contact"</b></font>" per cumenzar a crear in nov contact"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" per importar contacts da Vossa carta SD"\n</li>"\""</string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Vus n\'avais nagins favurits."\n\n"Per agiuntar in contact a la glista da favurits:"\n\n" "<li>"Smatgai sin il register "<b>"Contacts"</b>"."\n</li>" "\n<li>"Smatgai sin il contact che duai vegnir agiuntà a Voss favurits."\n</li>" "\n<li>"Smatgai sin la staila dal contact correspundent."\n</li></string>
-    <string name="liveFolder_all_label" msgid="5961411940473276616">"Tut ils contacts"</string>
-    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Cun staila"</string>
-    <string name="liveFolder_phones_label" msgid="1709786878793436245">"Numers"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Utilisar la tastatura dal telefon"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Enavos al clom actual"</string>
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"Agiuntar in clom"</string>
@@ -365,11 +359,6 @@
     <skip />
     <!-- no translation found for groupsLabel (8573535366319059326) -->
     <skip />
-    <string name="type_short_home" msgid="7770424864090605384">"P"</string>
-    <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
-    <string name="type_short_work" msgid="4925330752504537861">"F"</string>
-    <string name="type_short_pager" msgid="2613818970827594238">"P"</string>
-    <string name="type_short_other" msgid="5669407180177236769">"A"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Crear in contact sut il conto"</string>
     <!-- no translation found for dialog_new_group_account (2318032089273496830) -->
     <skip />

@@ -134,9 +134,6 @@
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoritter"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Telefon"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Logg"</string>
-    <string name="liveFolderAll" msgid="4789010460767506206">"Alle kontakter"</string>
-    <string name="liveFolderFavorites" msgid="3100957542927222282">"Kontakter med stjerne"</string>
-    <string name="liveFolderPhone" msgid="3739376066610926780">"Kontakter med telefonnummer"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"Send SMS-melding"</string>
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"Ring <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Rediger nummer før anrop"</string>
@@ -170,9 +167,6 @@
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Du har ingen kontakter å vise. (Hvis du nylig la til en konto, kan det ta noen minutter å synkronisere kontaktene.)"\n\n"Slik legger du til kontakter: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>", og trykk deretter på: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer"</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til nettbrettet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativer"</b></font>" for å endre hvilke kontakter som vises"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt fra grunnen av"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importer/eksporter"</b></font>" for å importere kontakter fra SD-kortet"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Du har ingen kontakter å vise. (Hvis du nylig la til en konto, kan det ta noen minutter å synkronisere kontaktene.)"\n\n"Slik legger du til kontakter: Trykk på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" og trykk deretter på: "\n" "\n<li><font fgcolor="#ffffffff"><b>"Kontoer "</b></font>" for å legge til eller konfigurere en konto med kontakter som kan synkroniseres til telefonen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativer"</b></font>" for å endre hvilke kontakter som vises"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" for å opprette en ny kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importér/eksportér"</b></font>" for å importere kontakter fra SD-kortet"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Du har ingen favoritter."\n\n"Slik legger du til en kontakt i favorittlisten:"\n\n" "<li>"Trykk på fanen "<b>"Kontakter"</b>" "\n</li>" "\n<li>"Trykk på kontakten du vil legge til i favoritter"\n</li>" "\n<li>"Trykk på stjernen ved siden av kontaktnavnet"\n</li></string>
-    <string name="liveFolder_all_label" msgid="5961411940473276616">"Alle kontakter"</string>
-    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Med stjerne"</string>
-    <string name="liveFolder_phones_label" msgid="1709786878793436245">"Telefoner"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Bruk tonetastatur"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Gå tilbake til pågående samtale"</string>
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"Legg til en samtale"</string>
@@ -305,11 +299,6 @@
     <string name="eventLabelsGroup" msgid="3695433812142818803">"Arrangementer"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Relasjon"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Grupper"</string>
-    <string name="type_short_home" msgid="7770424864090605384">"H"</string>
-    <string name="type_short_mobile" msgid="1655473281466676216">"M"</string>
-    <string name="type_short_work" msgid="4925330752504537861">"J"</string>
-    <string name="type_short_pager" msgid="2613818970827594238">"P"</string>
-    <string name="type_short_other" msgid="5669407180177236769">"A"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Opprett kontakt under konto"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Opprett gruppe under konto"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Fjern synkronisert gruppe"</string>
@@ -362,8 +351,7 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"Send SMS til arbeidspersonsøker"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"Send SMS til <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Send MMS"</string>
-    <!-- no translation found for sms (1756857139634224222) -->
-    <skip />
+    <string name="sms" msgid="1756857139634224222">"Tekstmelding"</string>
     <string name="email_home" msgid="8573740658148184279">"Send e-post (privat)"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Skriv e-post (mobil)"</string>
     <string name="email_work" msgid="2807430017302722689">"Send e-post (arbeid)"</string>
@@ -383,10 +371,8 @@
     <string name="chat_icq" msgid="8438405386153745775">"Nettprat med ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Nettprat med Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Nettprat"</string>
-    <!-- no translation found for audio_chat (4743276658947547047) -->
-    <skip />
-    <!-- no translation found for video_chat (1872255818640336072) -->
-    <skip />
+    <string name="audio_chat" msgid="4743276658947547047">"Lydnettprat"</string>
+    <string name="video_chat" msgid="1872255818640336072">"Videonettprat"</string>
     <string name="postal_address" msgid="8765560217149624536">"Adresse"</string>
     <string name="postal_street" msgid="8133143961580058972">"Gate"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Postboks"</string>
@@ -465,11 +451,10 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Stjernemerket"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Egendefinert"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"Tilpass"</string>
-    <!-- outdated translation 7905045603593508221 -->     <string name="list_filter_phones" msgid="735313795643493365">"Kontakter med telefonnumre"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"Alle kontakter med telefonnumre"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Kontakt"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Definer tilpasset visning"</string>
-    <!-- no translation found for contact_list_loading (3859280390185230582) -->
-    <skip />
+    <string name="contact_list_loading" msgid="3859280390185230582">"Laster inn …"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Innstillinger"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakter i visning"</string>
     <string name="menu_settings" msgid="377929915873428211">"Innstillinger"</string>
@@ -564,10 +549,8 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Min profil for <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Viser alle kontakter"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"People fungerer bedre med en Google-konto."\n\n"• Tilgang fra hvilken som helst nettleser."\n"• Ta trygge sikkerhetskopier av kontaktene dine."</string>
-    <!-- no translation found for generic_no_account_prompt (7218827704367325460) -->
-    <skip />
-    <!-- no translation found for generic_no_account_prompt_title (753783911899054860) -->
-    <skip />
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Hold kontaktene dine trygge selv om du mister telefonen: synkroniser med en nettbasert tjeneste."</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Legg til en konto"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Den nye kontakten din blir ikke sikkerhetskopiert. Vil du legge til en konto som sikkerhetskopierer kontakter på nettet?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Den nye kontakten din blir synkronisert med <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Du kan synkronisere den nye kontakten din med én av de følgende kontoene. Hvilken vil du bruke?"</string>

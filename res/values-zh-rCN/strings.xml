@@ -134,9 +134,6 @@
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"收藏"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"拨号"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"通话记录"</string>
-    <string name="liveFolderAll" msgid="4789010460767506206">"所有联系人"</string>
-    <string name="liveFolderFavorites" msgid="3100957542927222282">"已加星标的联系人"</string>
-    <string name="liveFolderPhone" msgid="3739376066610926780">"有电话号码的联系人"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"发送短信"</string>
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"呼叫<xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"呼叫之前编辑号码"</string>
@@ -170,9 +167,6 @@
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"您没有可显示的联系人。（如果您刚刚添加了一个帐户，则需要几分钟时间同步联系人。）"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"菜单"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"Google 帐户"</b></font>"以添加或配置帐户，您可以将该帐户中包含的联系人同步到平板电脑"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"显示选项"</b></font>"以更改可见的联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"以从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>"以导入 SD 卡上的联系人"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"您没有可显示的联系人。（如果您刚刚添加了一个帐户，则需要几分钟时间同步联系人。）"\n\n"要添加联系人，请按"<font fgcolor="#ffffffff"><b>"菜单"</b></font>"，然后触摸："\n" "\n<li><font fgcolor="#ffffffff"><b>"Google 帐户"</b></font>"以添加或配置帐户，您可以将该帐户中包含的联系人同步到手机"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"显示选项"</b></font>"以更改可见的联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"新建联系人"</b></font>"以从头开始创建新联系人"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"导入/导出"</b></font>"以导入 SD 卡上的联系人"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"您未收藏任何联系人。"\n\n"要向您的收藏列表添加联系人，请执行以下操作："\n\n"        "<li>"触摸"<b>"联系人"</b>"标签"\n</li>\n<li>"触摸您要加入收藏的联系人"\n</li>\n<li>"触摸联系人姓名旁边的星标"\n</li></string>
-    <string name="liveFolder_all_label" msgid="5961411940473276616">"所有联系人"</string>
-    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"已加星标的内容"</string>
-    <string name="liveFolder_phones_label" msgid="1709786878793436245">"电话"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"使用按键式键盘"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"返回正在进行的通话"</string>
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"添加通话"</string>
@@ -305,11 +299,6 @@
     <string name="eventLabelsGroup" msgid="3695433812142818803">"活动"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"关系"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"群组"</string>
-    <string name="type_short_home" msgid="7770424864090605384">"住宅"</string>
-    <string name="type_short_mobile" msgid="1655473281466676216">"手机"</string>
-    <string name="type_short_work" msgid="4925330752504537861">"单位"</string>
-    <string name="type_short_pager" msgid="2613818970827594238">"寻呼"</string>
-    <string name="type_short_other" msgid="5669407180177236769">"其他"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"在帐户下创建联系人"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"要在哪个帐户下创建群组？"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"删除同步群组"</string>
@@ -362,8 +351,7 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"向单位寻呼机发送短信"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"向<xliff:g id="ASSISTANT">%s</xliff:g>发送短信"</string>
     <string name="sms_mms" msgid="4069352461380762677">"向彩信号码发送短信"</string>
-    <!-- no translation found for sms (1756857139634224222) -->
-    <skip />
+    <string name="sms" msgid="1756857139634224222">"短信"</string>
     <string name="email_home" msgid="8573740658148184279">"向住宅邮箱发送电子邮件"</string>
     <string name="email_mobile" msgid="2042889209787989814">"向手机发送电子邮件"</string>
     <string name="email_work" msgid="2807430017302722689">"向单位邮箱发送电子邮件"</string>
@@ -383,10 +371,8 @@
     <string name="chat_icq" msgid="8438405386153745775">"使用 ICQ 聊天"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"使用 Jabber 聊天"</string>
     <string name="chat" msgid="9025361898797412245">"聊天"</string>
-    <!-- no translation found for audio_chat (4743276658947547047) -->
-    <skip />
-    <!-- no translation found for video_chat (1872255818640336072) -->
-    <skip />
+    <string name="audio_chat" msgid="4743276658947547047">"音频聊天"</string>
+    <string name="video_chat" msgid="1872255818640336072">"视频聊天"</string>
     <string name="postal_address" msgid="8765560217149624536">"地址"</string>
     <string name="postal_street" msgid="8133143961580058972">"街道"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"信箱"</string>
@@ -465,11 +451,10 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"已加星标"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"自定义"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"自定义..."</string>
-    <!-- outdated translation 7905045603593508221 -->     <string name="list_filter_phones" msgid="735313795643493365">"有电话号码的联系人"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"所有拥有电话号码的联系人"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"联系人"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"定义自定义视图"</string>
-    <!-- no translation found for contact_list_loading (3859280390185230582) -->
-    <skip />
+    <string name="contact_list_loading" msgid="3859280390185230582">"正在加载..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"设置"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"要显示的联系人"</string>
     <string name="menu_settings" msgid="377929915873428211">"设置"</string>
@@ -564,10 +549,8 @@
     <string name="external_profile_title" msgid="8034998767621359438">"我的<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>个人资料"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"显示所有联系人"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"拥有 Google 帐户可增强“分享对象”的功能。"\n\n"• 通过任意网络浏览器访问“分享对象”"\n"• 安全地备份您的联系人。"</string>
-    <!-- no translation found for generic_no_account_prompt (7218827704367325460) -->
-    <skip />
-    <!-- no translation found for generic_no_account_prompt_title (753783911899054860) -->
-    <skip />
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"即使手机丢了，也能确保您的联系人信息的安全性：与在线服务同步。"</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"添加帐户"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"系统不会备份您的新联系人。要添加用于在线备份联系人的帐户吗？"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"系统会将您的新联系人与 <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> 同步。"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"您可以将您的新联系人与以下某个帐户同步。请选择要使用的帐户："</string>
@@ -576,5 +559,5 @@
     <string name="add_new_account" msgid="5748627740680940264">"添加新帐户"</string>
     <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"呼叫未发出"</string>
     <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"语音信箱号码不可用"</string>
-    <string name="dialog_voicemail_not_ready_message" msgid="4511141315685755189">"要配置语音信箱，请依次转至“菜单”(Menu) &gt;“设置”(Settings)。"</string>
+    <string name="dialog_voicemail_not_ready_message" msgid="4511141315685755189">"要配置语音信箱，请依次转至“菜单”&gt;“设置”。"</string>
 </resources>

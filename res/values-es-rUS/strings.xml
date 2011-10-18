@@ -134,9 +134,6 @@
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoritos"</string>
     <string name="dialerIconLabel" msgid="6500826552823403796">"Teléfono"</string>
     <string name="recentCallsIconLabel" msgid="1419116422359067949">"Llamadas"</string>
-    <string name="liveFolderAll" msgid="4789010460767506206">"Todos los contactos"</string>
-    <string name="liveFolderFavorites" msgid="3100957542927222282">"Contactos marcados con estrella"</string>
-    <string name="liveFolderPhone" msgid="3739376066610926780">"Contactos con números de teléfono"</string>
     <string name="menu_sendTextMessage" msgid="6937343460284499306">"Enviar mensaje de texto"</string>
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"Llamar a <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Editar número antes de llamar"</string>
@@ -170,9 +167,6 @@
     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"No tienes ningún contacto para mostrar. (Si has agregado una cuenta, la sincronización de contactos puede demorar algunos minutos)."\n\n"Para agregar contactos, presiona "<font fgcolor="#ffffffff"><b>"Menú"</b></font>" y toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Cuentas"</b></font>" para agregar y configurar una cuenta con contactos que puedes sincronizar en el tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mostrar opciones"</b></font>" para cambiar los contactos que sean visibles"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para crear tú mismo un contacto nuevo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contactos desde tu tarjeta SD"\n</li></string>
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"No tienes ningún contacto para mostrar. (Si has agregado una cuenta, la sincronización de contactos puede demorar algunos minutos)."\n\n"Para agregar contactos, presiona "<font fgcolor="#ffffffff"><b>"Menú"</b></font>" y toca:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Cuentas"</b></font>" para agregar y configurar una cuenta con contactos que puedes sincronizar en el teléfono"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mostrar opciones"</b></font>" para cambiar los contactos que sean visibles"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Contacto nuevo"</b></font>" para crear tú mismo un contacto nuevo"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contactos desde tu tarjeta SD"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"No tienes ningún favorito."\n\n"Para agregar un contacto a tu lista de favoritos:"\n\n<li>"toca la pestaña "<b>"Contactos"</b>" "\n</li>" "\n<li>"toca el contacto que deseas agregar a tus favoritos"\n</li>" "\n<li>"toca el asterisco situado junto al nombre del contacto"\n</li></string>
-    <string name="liveFolder_all_label" msgid="5961411940473276616">"Todos los contactos"</string>
-    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"Marcado con asterisco"</string>
-    <string name="liveFolder_phones_label" msgid="1709786878793436245">"Teléfonos"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Usar teclado de tonos del teléfono"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Regresar a la llamada en curso"</string>
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"Agreg. Llam."</string>
@@ -305,11 +299,6 @@
     <string name="eventLabelsGroup" msgid="3695433812142818803">"Eventos"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Relación"</string>
     <string name="groupsLabel" msgid="8573535366319059326">"Grupos"</string>
-    <string name="type_short_home" msgid="7770424864090605384">"H"</string>
-    <string name="type_short_mobile" msgid="1655473281466676216">"Lun."</string>
-    <string name="type_short_work" msgid="4925330752504537861">"Mié."</string>
-    <string name="type_short_pager" msgid="2613818970827594238">"P"</string>
-    <string name="type_short_other" msgid="5669407180177236769">"Oct."</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Crear contacto según la cuenta"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Crear un grupo en la cuenta"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Eliminar grupo de sincronización"</string>
@@ -362,8 +351,7 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"Enviar texto a localizador del trabajo"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"Enviar texto a <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Enviar texto MMS"</string>
-    <!-- no translation found for sms (1756857139634224222) -->
-    <skip />
+    <string name="sms" msgid="1756857139634224222">"Mensaje de texto"</string>
     <string name="email_home" msgid="8573740658148184279">"Correo electrónico personal"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Correo electrónico celular"</string>
     <string name="email_work" msgid="2807430017302722689">"Correo electrónico laboral"</string>
@@ -383,10 +371,8 @@
     <string name="chat_icq" msgid="8438405386153745775">"Chat mediante ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Chat mediante Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Chat"</string>
-    <!-- no translation found for audio_chat (4743276658947547047) -->
-    <skip />
-    <!-- no translation found for video_chat (1872255818640336072) -->
-    <skip />
+    <string name="audio_chat" msgid="4743276658947547047">"Chat de audio"</string>
+    <string name="video_chat" msgid="1872255818640336072">"Chat de video"</string>
     <string name="postal_address" msgid="8765560217149624536">"Dirección"</string>
     <string name="postal_street" msgid="8133143961580058972">"Dirección postal"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Apartado postal"</string>
@@ -465,11 +451,10 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Destacado"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Personalizado"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"Personalizar..."</string>
-    <!-- outdated translation 7905045603593508221 -->     <string name="list_filter_phones" msgid="735313795643493365">"Contactos con números de teléfono"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"Todos los contactos con número de teléfono"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Contacto"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Definir vista personalizada"</string>
-    <!-- no translation found for contact_list_loading (3859280390185230582) -->
-    <skip />
+    <string name="contact_list_loading" msgid="3859280390185230582">"Cargando..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Configuraciones"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Contactos para mostrar"</string>
     <string name="menu_settings" msgid="377929915873428211">"Configuraciones"</string>
@@ -564,10 +549,8 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Mi perfil de <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Mostrar todos los contactos"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"People funciona mejor con una cuenta de Google."\n\n" Accede desde cualquier navegador web."\n" Crea copias de seguridad de tus contactos de manera segura."</string>
-    <!-- no translation found for generic_no_account_prompt (7218827704367325460) -->
-    <skip />
-    <!-- no translation found for generic_no_account_prompt_title (753783911899054860) -->
-    <skip />
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Mantén tus contactos a salvo aunque pierdas el teléfono: sincronízalos con un servicio online."</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Agregar una cuenta"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"No se hará una copia de seguridad del nuevo contacto. ¿Quieres agregar una cuenta para hacer copias de seguridad en línea de los contactos?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Tu nuevo contacto se sincronizará con <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Puedes sincronizar tu nuevo contacto con una de las siguientes cuentas. ¿Cuál quieres usar?"</string>
