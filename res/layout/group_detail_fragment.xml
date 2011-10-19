@@ -43,6 +43,9 @@
             android:scrollbarStyle="outsideOverlay"
             android:divider="@null"/>
 
+        <include
+            layout="@layout/group_detail_fragment_empty_view"/>
+
         <!--
           Shadow overlay over the list of group members (since we have a fake stacked
           action bar)
