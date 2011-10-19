@@ -16,6 +16,8 @@
 
 package com.android.contacts.model;
 
+import com.android.contacts.R;
+import com.android.contacts.model.BaseAccountType.DefinitionException;
 import com.google.common.annotations.VisibleForTesting;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -97,11 +99,12 @@ public class ExternalAccountType extends BaseAccountType {
 
         // Handle unknown sources by searching their package
         final PackageManager pm = context.getPackageManager();
+        XmlResourceParser parser = null;
         try {
             PackageInfo packageInfo = pm.getPackageInfo(resPackageName,
                     PackageManager.GET_SERVICES|PackageManager.GET_META_DATA);
             for (ServiceInfo serviceInfo : packageInfo.services) {
-                final XmlResourceParser parser = serviceInfo.loadXmlMetaData(pm,
+                parser = serviceInfo.loadXmlMetaData(pm,
                         METADATA_CONTACTS);
                 if (parser == null) continue;
                 inflate(context, parser);
@@ -109,6 +112,17 @@ public class ExternalAccountType extends BaseAccountType {
         } catch (NameNotFoundException nnfe) {
             // If the package name is not found, we can't initialize this account type.
             return;
+        } catch (DefinitionException e) {
+            String message = "Problem reading XML";
+            if (parser != null) {
+                message = message + " in line " + parser.getLineNumber();
+            }
+            Log.e(TAG, message, e);
+            return;
+        } finally {
+            if (parser != null) {
+                parser.close();
+            }
         }
 
         mExtensionPackageNames = new ArrayList<String>();
@@ -138,10 +152,7 @@ public class ExternalAccountType extends BaseAccountType {
         return mIsExtension;
     }
 
-    /**
-     * Whether this account type was able to be fully initialized.  This may be false if
-     * (for example) the package name associated with the account type could not be found.
-     */
+    @Override
     public boolean isInitialized() {
         return mInitSuccessful;
     }
@@ -212,7 +223,7 @@ public class ExternalAccountType extends BaseAccountType {
      * Inflate this {@link AccountType} from the given parser. This may only
      * load details matching the publicly-defined schema.
      */
-    protected void inflate(Context context, XmlPullParser parser) {
+    protected void inflate(Context context, XmlPullParser parser) throws DefinitionException {
         final AttributeSet attrs = Xml.asAttributeSet(parser);
 
         try {
@@ -279,9 +290,11 @@ public class ExternalAccountType extends BaseAccountType {
             final int depth = parser.getDepth();
             while (((type = parser.next()) != XmlPullParser.END_TAG || parser.getDepth() > depth)
                     && type != XmlPullParser.END_DOCUMENT) {
+
                 String tag = parser.getName();
                 if (TAG_EDIT_SCHEMA.equals(tag)) {
-                    parseEditSchema(context, parser);
+                    mHasEditSchema = true;
+                    parseEditSchema(context, parser, attrs);
                 } else if (TAG_CONTACTS_DATA_KIND.equals(tag)) {
                     final TypedArray a = context.obtainStyledAttributes(attrs,
                             android.R.styleable.ContactsDataKind);
@@ -319,50 +332,10 @@ public class ExternalAccountType extends BaseAccountType {
                 }
             }
         } catch (XmlPullParserException e) {
-            throw new IllegalStateException("Problem reading XML", e);
+            throw new DefinitionException("Problem reading XML", e);
         } catch (IOException e) {
-            throw new IllegalStateException("Problem reading XML", e);
+            throw new DefinitionException("Problem reading XML", e);
         }
-    }
-
-    /**
-     * Has to be started while the parser is on the EditSchema tag. Will finish on the end tag
-     */
-    private void parseEditSchema(Context context, XmlPullParser parser)
-            throws XmlPullParserException, IOException {
-        // Loop until we left this tag
-        final int startingDepth = parser.getDepth();
-        int type;
-        do {
-            type = parser.next();
-        } while (!(parser.getDepth() == startingDepth && type == XmlPullParser.END_TAG));
-
-        // Just add all defaults for now
-        addDataKindStructuredName(context);
-        addDataKindDisplayName(context);
-        addDataKindPhoneticName(context);
-        addDataKindNickname(context);
-        addDataKindPhone(context);
-        addDataKindEmail(context);
-        addDataKindStructuredPostal(context);
-        addDataKindIm(context);
-        addDataKindOrganization(context);
-        addDataKindPhoto(context);
-        addDataKindNote(context);
-        addDataKindWebsite(context);
-        addDataKindSipAddress(context);
-
-        mHasEditSchema = true;
-    }
-
-    @Override
-    public int getHeaderColor(Context context) {
-        return 0xff6d86b4;
-    }
-
-    @Override
-    public int getSideBarColor(Context context) {
-        return 0xff6d86b4;
     }
 
     /**

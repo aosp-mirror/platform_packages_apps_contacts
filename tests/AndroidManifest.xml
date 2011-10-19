@@ -21,6 +21,13 @@
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_SYNC_STATS" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+
     <application>
         <uses-library android:name="android.test.runner" />
         <meta-data android:name="com.android.contacts.iconset" android:resource="@xml/iconset" />
@@ -83,6 +90,35 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--
+          Test authenticators/sync adapters.
+
+          The idea is to have multiple account types with various edit schemas.  We use subclasses
+          so we could easily add multiple pairs of authenticators and sync adapters.
+          Unfortunately there's an issue with the contacts app which prevents a single apk from
+          having multiple contacts.xml files, so for now we only declare one account type here.
+        -->
+        <service android:name=".testauth.TestAuthenticationService$Basic" android:exported="true">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/test_basic_authenticator" />
+        </service>
+
+        <service android:name=".testauth.TestSyncService$Basic" android:exported="true">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/test_basic_syncadapter" />
+            <meta-data
+                android:name="android.provider.CONTACTS_STRUCTURE"
+                android:resource="@xml/test_basic_contacts" />
+        </service>
     </application>
 
     <instrumentation android:name="android.test.InstrumentationTestRunner"

@@ -140,16 +140,6 @@ public class EntityModifierTests extends AndroidTestCase {
         }
 
         @Override
-        public int getHeaderColor(Context context) {
-            return 0;
-        }
-
-        @Override
-        public int getSideBarColor(Context context) {
-            return 0xffffff;
-        }
-
-        @Override
         public boolean isGroupMembershipEditable() {
             return false;
         }

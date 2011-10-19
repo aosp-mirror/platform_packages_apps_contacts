@@ -38,6 +38,8 @@ public class DateUtils {
             new SimpleDateFormat("yyyy-MM-dd", Locale.US);
     public static final SimpleDateFormat DATE_AND_TIME_FORMAT =
             new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
+    public static final SimpleDateFormat NO_YEAR_DATE_AND_TIME_FORMAT =
+            new SimpleDateFormat("--MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
 
     // Variations of ISO 8601 date format.  Do not change the order - it does affect the
     // result in ambiguous cases.

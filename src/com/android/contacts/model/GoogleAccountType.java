@@ -26,14 +26,11 @@ import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Relation;
-import android.view.inputmethod.EditorInfo;
 
 import java.util.List;
 
 public class GoogleAccountType extends BaseAccountType {
     public static final String ACCOUNT_TYPE = "com.google";
-    protected static final int FLAGS_RELATION = EditorInfo.TYPE_CLASS_TEXT
-    | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS | EditorInfo.TYPE_TEXT_VARIATION_PERSON_NAME;
 
     private static final List<String> mExtensionPackages =
             Lists.newArrayList("com.google.android.apps.plus");
@@ -165,16 +162,6 @@ public class GoogleAccountType extends BaseAccountType {
         kind.fieldList.add(new EditField(Event.DATA, R.string.eventLabelsGroup, FLAGS_EVENT));
 
         return kind;
-    }
-
-    @Override
-    public int getHeaderColor(Context context) {
-        return 0xff89c2c2;
-    }
-
-    @Override
-    public int getSideBarColor(Context context) {
-        return 0xff5bb4b4;
     }
 
     @Override

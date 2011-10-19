@@ -411,7 +411,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
                     Log.d(TAG, "Registering external account type=" + type
                             + ", packageName=" + auth.packageName);
                     accountType = new ExternalAccountType(mContext, auth.packageName, false);
-                    if (!((ExternalAccountType) accountType).isInitialized()) {
+                    if (!accountType.isInitialized()) {
                         // Skip external account types that couldn't be initialized.
                         continue;
                     }

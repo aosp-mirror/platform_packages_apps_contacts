@@ -19,6 +19,16 @@ package com.android.contacts.model;
 import com.android.contacts.tests.R;
 
 import android.content.Context;
+import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
+import android.provider.ContactsContract.CommonDataKinds.Im;
+import android.provider.ContactsContract.CommonDataKinds.Note;
+import android.provider.ContactsContract.CommonDataKinds.Organization;
+import android.provider.ContactsContract.CommonDataKinds.Photo;
+import android.provider.ContactsContract.CommonDataKinds.SipAddress;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
+import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
@@ -51,5 +61,27 @@ public class ExternalAccountTypeTest extends AndroidTestCase {
         // Valid resource name
         assertEquals(R.string.test_string, ExternalAccountType.resolveExternalResId(c,
                 "@string/test_string", packageName, ""));
+    }
+
+    public void testEditSchema() {
+        final ExternalAccountType type = new ExternalAccountType(getContext(),
+                getTestContext().getPackageName(), false);
+
+        assertTrue(type.isInitialized());
+
+        assertNotNull(type.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE));
+        assertNotNull(type.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME));
+        assertNotNull(type.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME));
+        assertNotNull(type.getKindForMimetype(Email.CONTENT_ITEM_TYPE));
+        assertNotNull(type.getKindForMimetype(StructuredPostal.CONTENT_ITEM_TYPE));
+        assertNotNull(type.getKindForMimetype(Im.CONTENT_ITEM_TYPE));
+        assertNotNull(type.getKindForMimetype(Organization.CONTENT_ITEM_TYPE));
+        assertNotNull(type.getKindForMimetype(Photo.CONTENT_ITEM_TYPE));
+        assertNotNull(type.getKindForMimetype(Note.CONTENT_ITEM_TYPE));
+        assertNotNull(type.getKindForMimetype(Website.CONTENT_ITEM_TYPE));
+        assertNotNull(type.getKindForMimetype(SipAddress.CONTENT_ITEM_TYPE));
+        assertNotNull(type.getKindForMimetype(GroupMembership.CONTENT_ITEM_TYPE));
+
+        // TODO Write more extensive check -- compare to FallbackAccountType?
     }
 }

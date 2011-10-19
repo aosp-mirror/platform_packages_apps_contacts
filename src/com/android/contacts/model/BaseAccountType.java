@@ -17,7 +17,12 @@
 package com.android.contacts.model;
 
 import com.android.contacts.R;
+import com.android.contacts.util.DateUtils;
 import com.google.android.collect.Lists;
+import com.google.android.collect.Maps;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -38,9 +43,18 @@ import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
+import android.util.AttributeSet;
+import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
 public abstract class BaseAccountType extends AccountType {
+    private static final String TAG = "BaseAccountType";
+
     protected static final int FLAGS_PHONE = EditorInfo.TYPE_CLASS_PHONE;
     protected static final int FLAGS_EMAIL = EditorInfo.TYPE_CLASS_TEXT
             | EditorInfo.TYPE_TEXT_VARIATION_EMAIL_ADDRESS;
@@ -61,6 +75,47 @@ public abstract class BaseAccountType extends AccountType {
     protected static final int FLAGS_SIP_ADDRESS = EditorInfo.TYPE_CLASS_TEXT
             | EditorInfo.TYPE_TEXT_VARIATION_EMAIL_ADDRESS;  // since SIP addresses have the same
                                                              // basic format as email addresses
+    protected static final int FLAGS_RELATION = EditorInfo.TYPE_CLASS_TEXT
+            | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS | EditorInfo.TYPE_TEXT_VARIATION_PERSON_NAME;
+
+    private interface Tag {
+        static final String DATA_KIND = "DataKind";
+        static final String TYPE = "Type";
+    }
+
+    private interface Attr {
+        static final String MAX_OCCURRENCE = "maxOccurs";
+        static final String DATE_WITH_TIME = "dateWithTime";
+        static final String YEAR_OPTIONAL = "yearOptional";
+        static final String KIND = "kind";
+        static final String TYPE = "type";
+    }
+
+    private interface Weight {
+        static final int NONE = -1;
+        static final int ORGANIZATION = 5;
+        static final int PHONE = 10;
+        static final int EMAIL = 15;
+        static final int IM = 20;
+        static final int STRUCTURED_POSTAL = 25;
+        static final int NOTE = 110;
+        static final int NICKNAME = 115;
+        static final int WEBSITE = 120;
+        static final int SIP_ADDRESS = 130;
+        static final int EVENT = 150;
+        static final int RELATIONSHIP = 160;
+        static final int GROUP_MEMBERSHIP = 999;
+    }
+
+    protected static class DefinitionException extends Exception {
+        public DefinitionException(String message) {
+            super(message);
+        }
+
+        public DefinitionException(String message, Exception inner) {
+            super(message, inner);
+        }
+    }
 
     public BaseAccountType() {
         this.accountType = null;
@@ -69,27 +124,27 @@ public abstract class BaseAccountType extends AccountType {
         this.iconRes = R.mipmap.ic_launcher_contacts;
     }
 
-    protected EditType buildPhoneType(int type) {
+    protected static EditType buildPhoneType(int type) {
         return new EditType(type, Phone.getTypeLabelResource(type));
     }
 
-    protected EditType buildEmailType(int type) {
+    protected static EditType buildEmailType(int type) {
         return new EditType(type, Email.getTypeLabelResource(type));
     }
 
-    protected EditType buildPostalType(int type) {
+    protected static EditType buildPostalType(int type) {
         return new EditType(type, StructuredPostal.getTypeLabelResource(type));
     }
 
-    protected EditType buildImType(int type) {
+    protected static EditType buildImType(int type) {
         return new EditType(type, Im.getProtocolLabelResource(type));
     }
 
-    protected EditType buildEventType(int type, boolean yearOptional) {
+    protected static EditType buildEventType(int type, boolean yearOptional) {
         return new EventEditType(type, Event.getTypeResource(type)).setYearOptional(yearOptional);
     }
 
-    protected EditType buildRelationType(int type) {
+    protected static EditType buildRelationType(int type) {
         return new EditType(type, Relation.getTypeLabelResource(type));
     }
 
@@ -360,14 +415,6 @@ public abstract class BaseAccountType extends AccountType {
     }
 
     protected DataKind addDataKindSipAddress(Context context) {
-        // The icon specified here is the one that gets displayed for
-        // "Internet call" items, in the "view contact" UI within the
-        // Contacts app.
-        //
-        // This is independent of the "SIP call" icon that gets
-        // displayed in the Quick Contacts widget, which comes from
-        // the android:icon attribute of the SIP-related
-        // intent-filters in the Phone app's manifest.
         DataKind kind = addKind(new DataKind(SipAddress.CONTENT_ITEM_TYPE,
                     R.string.label_sip_address, 130, true, R.layout.text_fields_editor_view));
 
@@ -382,8 +429,7 @@ public abstract class BaseAccountType extends AccountType {
     }
 
     protected DataKind addDataKindGroupMembership(Context context) {
-        DataKind kind = getKindForMimetype(GroupMembership.CONTENT_ITEM_TYPE);
-        kind = addKind(new DataKind(GroupMembership.CONTENT_ITEM_TYPE,
+        DataKind kind = addKind(new DataKind(GroupMembership.CONTENT_ITEM_TYPE,
                 R.string.groupsLabel, 999, true, -1));
 
         kind.typeOverallMax = 1;
@@ -632,17 +678,857 @@ public abstract class BaseAccountType extends AccountType {
     }
 
     @Override
-    public int getHeaderColor(Context context) {
-        return 0xff7f93bc;
-    }
-
-    @Override
-    public int getSideBarColor(Context context) {
-        return 0xffbdc7b8;
-    }
-
-    @Override
     public boolean isGroupMembershipEditable() {
         return false;
+    }
+
+    /**
+     * Parses the content of the EditSchema tag in contacts.xml.
+     */
+    protected final void parseEditSchema(Context context, XmlPullParser parser, AttributeSet attrs)
+            throws XmlPullParserException, IOException, DefinitionException {
+
+        final int outerDepth = parser.getDepth();
+        int type;
+        while ((type = parser.next()) != XmlPullParser.END_DOCUMENT
+                && (type != XmlPullParser.END_TAG || parser.getDepth() > outerDepth)) {
+            final int depth = parser.getDepth();
+            if (type == XmlPullParser.END_TAG || type == XmlPullParser.TEXT
+                    || depth != outerDepth + 1) {
+                continue; // Not direct child tag
+            }
+
+            final String tag = parser.getName();
+
+            if (Tag.DATA_KIND.equals(tag)) {
+                for (DataKind kind : KindParser.INSTANCE.parseDataKindTag(context, parser, attrs)) {
+                    addKind(kind);
+                }
+            } else {
+                Log.w(TAG, "Skipping unknown tag " + tag);
+            }
+        }
+    }
+
+    // Utility methods to keep code shorter.
+    private static boolean getAttr(AttributeSet attrs, String attribute, boolean defaultValue) {
+        return attrs.getAttributeBooleanValue(null, attribute, defaultValue);
+    }
+
+    private static int getAttr(AttributeSet attrs, String attribute, int defaultValue) {
+        return attrs.getAttributeIntValue(null, attribute, defaultValue);
+    }
+
+    private static String getAttr(AttributeSet attrs, String attribute) {
+        return attrs.getAttributeValue(null, attribute);
+    }
+
+    // TODO Extract it to its own class, and move all KindBuilders to it as well.
+    private static class KindParser {
+        public static final KindParser INSTANCE = new KindParser();
+
+        private final Map<String, KindBuilder> mBuilders = Maps.newHashMap();
+
+        private KindParser() {
+            addBuilder(new NameKindBuilder());
+            addBuilder(new NicknameKindBuilder());
+            addBuilder(new PhoneKindBuilder());
+            addBuilder(new EmailKindBuilder());
+            addBuilder(new StructuredPostalKindBuilder());
+            addBuilder(new ImKindBuilder());
+            addBuilder(new OrganizationKindBuilder());
+            addBuilder(new PhotoKindBuilder());
+            addBuilder(new NoteKindBuilder());
+            addBuilder(new WebsiteKindBuilder());
+            addBuilder(new SipAddressKindBuilder());
+            addBuilder(new GroupMembershipKindBuilder());
+            addBuilder(new EventKindBuilder());
+            addBuilder(new RelationshipKindBuilder());
+        }
+
+        private void addBuilder(KindBuilder builder) {
+            mBuilders.put(builder.getTagName(), builder);
+        }
+
+        /**
+         * Takes a {@link XmlPullParser} at the start of a DataKind tag, parses it and returns
+         * {@link DataKind}s.  (Usually just one, but there are three for the "name" kind.)
+         *
+         * This method returns a list, because we need to add 3 kinds for the name data kind.
+         * (structured, display and phonetic)
+         */
+        public List<DataKind> parseDataKindTag(Context context, XmlPullParser parser,
+                AttributeSet attrs)
+                throws DefinitionException, XmlPullParserException, IOException {
+            final String kind = getAttr(attrs, Attr.KIND);
+            final KindBuilder builder = mBuilders.get(kind);
+            if (builder != null) {
+                return builder.parseDataKind(context, parser, attrs);
+            } else {
+                throw new DefinitionException("Undefined data kind '" + kind + "'");
+            }
+        }
+    }
+
+    private static abstract class KindBuilder {
+
+        public abstract String getTagName();
+
+        /**
+         * DataKind tag parser specific to each kind.  Subclasses must implement it.
+         */
+        public abstract List<DataKind> parseDataKind(Context context, XmlPullParser parser,
+                AttributeSet attrs) throws DefinitionException, XmlPullParserException, IOException;
+
+        /**
+         * Creates a new {@link DataKind}, and also parses the child Type tags in the DataKind
+         * tag.
+         */
+        protected final DataKind newDataKind(Context context, XmlPullParser parser,
+                AttributeSet attrs, boolean isPseudo, String mimeType, String typeColumn,
+                int titleRes, int weight, int editorLayoutResourceId,
+                StringInflater actionHeader, StringInflater actionBody)
+                throws DefinitionException, XmlPullParserException, IOException {
+
+            if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "Adding DataKind: " + mimeType);
+            }
+
+            final DataKind kind = new DataKind(mimeType, titleRes, weight, true,
+                    editorLayoutResourceId);
+            kind.typeColumn = typeColumn;
+            kind.actionHeader = actionHeader;
+            kind.actionBody = actionBody;
+            kind.fieldList = Lists.newArrayList();
+
+            kind.typeOverallMax = getAttr(attrs, Attr.MAX_OCCURRENCE, -1);
+
+            // Handle "types".
+            // If a kind has the type column, contacts.xml must have at least one type definition.
+            // Otherwise, it mustn't have a type definition.
+            //
+            // If it's a pseudo data kind (== data kind that doesn't have the corresponding
+            // DataKind tag in the XML), we just skip this process.
+            if (!isPseudo) {
+                if (kind.typeColumn != null) {
+                    // Parse and add types.
+                    kind.typeList = Lists.newArrayList();
+                    parseTypes(context, parser, attrs, kind, true);
+                    if (kind.typeList.size() == 0) {
+                        throw new DefinitionException(
+                                "Kind " + kind.mimeType + " must have at least one type");
+                    }
+                } else {
+                    // Make sure it has no types.
+                    parseTypes(context, parser, attrs, kind, false /* can't have types */);
+                }
+            }
+
+            return kind;
+        }
+
+        /**
+         * Parses Type elements in a DataKind element, and if {@code canHaveTypes} is true adds
+         * them to the given {@link DataKind}. Otherwise the {@link DataKind} can't have a type,
+         * so throws {@link DefinitionException}.
+         */
+        private void parseTypes(Context context, XmlPullParser parser, AttributeSet attrs,
+                DataKind kind, boolean canHaveTypes)
+                throws DefinitionException, XmlPullParserException, IOException {
+            final int outerDepth = parser.getDepth();
+            int type;
+            while ((type = parser.next()) != XmlPullParser.END_DOCUMENT
+                    && (type != XmlPullParser.END_TAG || parser.getDepth() > outerDepth)) {
+                final int depth = parser.getDepth();
+                if (type == XmlPullParser.END_TAG || type == XmlPullParser.TEXT
+                        || depth != outerDepth + 1) {
+                    continue; // Not direct child tag
+                }
+
+                final String tag = parser.getName();
+                if (Tag.TYPE.equals(tag)) {
+                    if (canHaveTypes) {
+                        kind.typeList.add(parseTypeTag(parser, attrs, kind));
+                    } else {
+                        throw new DefinitionException(
+                                "Kind " + kind.mimeType + " can't have types");
+                    }
+                } else {
+                    throw new DefinitionException("Unknown tag: " + tag);
+                }
+            }
+        }
+
+        /**
+         * Parses a single Type element and returns an {@link EditType} built from it.  Uses
+         * {@link #buildEditTypeForTypeTag} defined in subclasses to actually build an
+         * {@link EditType}.
+         */
+        private EditType parseTypeTag(XmlPullParser parser, AttributeSet attrs, DataKind kind)
+                throws DefinitionException {
+
+            final String typeName = getAttr(attrs, Attr.TYPE);
+
+            final EditType et = buildEditTypeForTypeTag(attrs, typeName);
+            if (et == null) {
+                throw new DefinitionException(
+                        "Undefined type '" + typeName + "' for data kind '" + kind.mimeType + "'");
+            }
+            et.specificMax = getAttr(attrs, Attr.MAX_OCCURRENCE, -1);
+
+            return et;
+        }
+
+        /**
+         * Returns an {@link EditType} for the given "type".  Subclasses may optionally use
+         * the attributes in the tag to set optional values.
+         * (e.g. "yearOptional" for the event kind)
+         */
+        protected EditType buildEditTypeForTypeTag(AttributeSet attrs, String type) {
+            return null;
+        }
+
+        protected final void throwIfList(DataKind kind) throws DefinitionException {
+            if (kind.typeOverallMax != 1) {
+                throw new DefinitionException(
+                        "Kind " + kind.mimeType + " must have 'overallMax=\"1\"'");
+            }
+        }
+    }
+
+    /**
+     * DataKind parser for Name. (structured, display, phonetic)
+     */
+    private static class NameKindBuilder extends KindBuilder {
+        @Override
+        public String getTagName() {
+            return "name";
+        }
+
+        private static void checkAttributeTrue(boolean value, String attrName)
+                throws DefinitionException {
+            if (!value) {
+                throw new DefinitionException(attrName + "must be true");
+            }
+        }
+
+        @Override
+        public List<DataKind> parseDataKind(Context context, XmlPullParser parser,
+                AttributeSet attrs) throws DefinitionException, XmlPullParserException,
+                IOException {
+
+            // Build 3 data kinds:
+            // - StructuredName.CONTENT_ITEM_TYPE
+            // - DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME
+            // - DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME
+
+            final boolean displayOrderPrimary =
+                    context.getResources().getBoolean(R.bool.config_editor_field_order_primary);
+
+            final boolean supportsDisplayName = getAttr(attrs, "supportsDisplayName", true);
+            final boolean supportsPrefix = getAttr(attrs, "supportsPrefix", true);
+            final boolean supportsMiddleName = getAttr(attrs, "supportsMiddleName", true);
+            final boolean supportsSuffix = getAttr(attrs, "supportsSuffix", true);
+            final boolean supportsPhoneticFamilyName =
+                    getAttr(attrs, "supportsPhoneticFamilyName", true);
+            final boolean supportsPhoneticMiddleName =
+                    getAttr(attrs, "supportsPhoneticMiddleName", true);
+            final boolean supportsPhoneticGivenName =
+                    getAttr(attrs, "supportsPhoneticGivenName", true);
+
+            // For now, every things must be supported.
+            checkAttributeTrue(supportsDisplayName, "supportsDisplayName");
+            checkAttributeTrue(supportsPrefix, "supportsPrefix");
+            checkAttributeTrue(supportsMiddleName, "supportsMiddleName");
+            checkAttributeTrue(supportsSuffix, "supportsSuffix");
+            checkAttributeTrue(supportsPhoneticFamilyName, "supportsPhoneticFamilyName");
+            checkAttributeTrue(supportsPhoneticMiddleName, "supportsPhoneticMiddleName");
+            checkAttributeTrue(supportsPhoneticGivenName, "supportsPhoneticGivenName");
+
+            final List<DataKind> kinds = Lists.newArrayList();
+
+            // Structured name
+            final DataKind ks = newDataKind(context, parser, attrs, false,
+                    StructuredName.CONTENT_ITEM_TYPE, null, R.string.nameLabelsGroup, Weight.NONE,
+                    R.layout.structured_name_editor_view,
+                    new SimpleInflater(R.string.nameLabelsGroup),
+                    new SimpleInflater(Nickname.NAME));
+
+            throwIfList(ks);
+            kinds.add(ks);
+
+
+            // Note about setLongForm/setShortForm below.
+            // We need to set this only when the type supports display name. (=supportsDisplayName)
+            // Otherwise (i.e. Exchange) we don't set these flags, but instead make some fields
+            // "optional".
+
+            ks.fieldList.add(new EditField(StructuredName.DISPLAY_NAME, R.string.full_name,
+                    FLAGS_PERSON_NAME));
+            ks.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
+                    FLAGS_PERSON_NAME).setLongForm(true));
+            ks.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
+                    FLAGS_PERSON_NAME).setLongForm(true));
+            ks.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
+                    FLAGS_PERSON_NAME).setLongForm(true));
+            ks.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
+                    FLAGS_PERSON_NAME).setLongForm(true));
+            ks.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
+                    FLAGS_PERSON_NAME).setLongForm(true));
+            ks.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
+                    R.string.name_phonetic_family, FLAGS_PHONETIC));
+            ks.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
+                    R.string.name_phonetic_middle, FLAGS_PHONETIC));
+            ks.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
+                    R.string.name_phonetic_given, FLAGS_PHONETIC));
+
+            // Display name
+            final DataKind kd = newDataKind(context, parser, attrs, true,
+                    DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME, null,
+                    R.string.nameLabelsGroup, Weight.NONE, R.layout.text_fields_editor_view,
+                    new SimpleInflater(R.string.nameLabelsGroup),
+                    new SimpleInflater(Nickname.NAME));
+            kinds.add(kd);
+
+            kd.fieldList.add(new EditField(StructuredName.DISPLAY_NAME,
+                    R.string.full_name, FLAGS_PERSON_NAME).setShortForm(true));
+
+            if (!displayOrderPrimary) {
+                kd.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
+                        FLAGS_PERSON_NAME).setLongForm(true));
+                kd.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
+                        FLAGS_PERSON_NAME).setLongForm(true));
+                kd.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
+                        FLAGS_PERSON_NAME).setLongForm(true));
+                kd.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
+                        FLAGS_PERSON_NAME).setLongForm(true));
+                kd.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
+                        FLAGS_PERSON_NAME).setLongForm(true));
+            } else {
+                kd.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
+                        FLAGS_PERSON_NAME).setLongForm(true));
+                kd.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
+                        FLAGS_PERSON_NAME).setLongForm(true));
+                kd.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
+                        FLAGS_PERSON_NAME).setLongForm(true));
+                kd.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
+                        FLAGS_PERSON_NAME).setLongForm(true));
+                kd.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
+                        FLAGS_PERSON_NAME).setLongForm(true));
+            }
+
+            // Phonetic name
+            final DataKind kp = newDataKind(context, parser, attrs, true,
+                    DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME, null,
+                    R.string.name_phonetic, Weight.NONE, R.layout.phonetic_name_editor_view,
+                    new SimpleInflater(R.string.nameLabelsGroup),
+                    new SimpleInflater(Nickname.NAME));
+            kinds.add(kp);
+
+            kp.fieldList.add(new EditField(DataKind.PSEUDO_COLUMN_PHONETIC_NAME,
+                    R.string.name_phonetic, FLAGS_PHONETIC).setShortForm(true));
+            if (!displayOrderPrimary) {
+                kp.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
+                        R.string.name_phonetic_family, FLAGS_PHONETIC).setLongForm(true));
+                kp.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
+                        R.string.name_phonetic_middle, FLAGS_PHONETIC).setLongForm(true));
+                kp.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
+                        R.string.name_phonetic_given, FLAGS_PHONETIC).setLongForm(true));
+            } else {
+                kp.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
+                        R.string.name_phonetic_given, FLAGS_PHONETIC).setLongForm(true));
+                kp.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
+                        R.string.name_phonetic_middle, FLAGS_PHONETIC).setLongForm(true));
+                kp.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
+                        R.string.name_phonetic_family, FLAGS_PHONETIC).setLongForm(true));
+            }
+            return kinds;
+        }
+    }
+
+    private static class NicknameKindBuilder extends KindBuilder {
+        @Override
+        public String getTagName() {
+            return "nickname";
+        }
+
+        @Override
+        public List<DataKind> parseDataKind(Context context, XmlPullParser parser,
+                AttributeSet attrs) throws DefinitionException, XmlPullParserException,
+                IOException {
+            final DataKind kind = newDataKind(context, parser, attrs, false,
+                    Nickname.CONTENT_ITEM_TYPE, null, R.string.nicknameLabelsGroup, Weight.NICKNAME,
+                    R.layout.text_fields_editor_view,
+                    new SimpleInflater(R.string.nicknameLabelsGroup),
+                    new SimpleInflater(Nickname.NAME));
+
+            kind.fieldList.add(new EditField(Nickname.NAME, R.string.nicknameLabelsGroup,
+                    FLAGS_PERSON_NAME));
+
+            kind.defaultValues = new ContentValues();
+            kind.defaultValues.put(Nickname.TYPE, Nickname.TYPE_DEFAULT);
+
+            throwIfList(kind);
+            return Lists.newArrayList(kind);
+        }
+    }
+
+    private static class PhoneKindBuilder extends KindBuilder {
+        @Override
+        public String getTagName() {
+            return "phone";
+        }
+
+        @Override
+        public List<DataKind> parseDataKind(Context context, XmlPullParser parser,
+                AttributeSet attrs) throws DefinitionException, XmlPullParserException,
+                IOException {
+            final DataKind kind = newDataKind(context, parser, attrs, false,
+                    Phone.CONTENT_ITEM_TYPE, Phone.TYPE, R.string.phoneLabelsGroup, Weight.PHONE,
+                    R.layout.text_fields_editor_view,
+                    new PhoneActionInflater(), new SimpleInflater(Phone.NUMBER));
+
+            kind.iconAltRes = R.drawable.ic_text_holo_light;
+            kind.iconAltDescriptionRes = R.string.sms;
+            kind.actionAltHeader = new PhoneActionAltInflater();
+
+            kind.fieldList.add(new EditField(Phone.NUMBER, R.string.phoneLabelsGroup, FLAGS_PHONE));
+
+            return Lists.newArrayList(kind);
+        }
+
+        /** Just to avoid line-wrapping... */
+        protected static EditType build(int type, boolean secondary) {
+            return new EditType(type, Phone.getTypeLabelResource(type)).setSecondary(secondary);
+        }
+
+        @Override
+        protected EditType buildEditTypeForTypeTag(AttributeSet attrs, String type) {
+            if ("home".equals(type)) return build(Phone.TYPE_HOME, false);
+            if ("mobile".equals(type)) return build(Phone.TYPE_MOBILE, false);
+            if ("work".equals(type)) return build(Phone.TYPE_WORK, false);
+            if ("fax_work".equals(type)) return build(Phone.TYPE_FAX_WORK, true);
+            if ("fax_home".equals(type)) return build(Phone.TYPE_FAX_HOME, true);
+            if ("pager".equals(type)) return build(Phone.TYPE_PAGER, true);
+            if ("other".equals(type)) return build(Phone.TYPE_OTHER, false);
+            if ("callback".equals(type)) return build(Phone.TYPE_CALLBACK, true);
+            if ("car".equals(type)) return build(Phone.TYPE_CAR, true);
+            if ("company_main".equals(type)) return build(Phone.TYPE_COMPANY_MAIN, true);
+            if ("isdn".equals(type)) return build(Phone.TYPE_ISDN, true);
+            if ("main".equals(type)) return build(Phone.TYPE_MAIN, true);
+            if ("other_fax".equals(type)) return build(Phone.TYPE_OTHER_FAX, true);
+            if ("radio".equals(type)) return build(Phone.TYPE_RADIO, true);
+            if ("telex".equals(type)) return build(Phone.TYPE_TELEX, true);
+            if ("tty_tdd".equals(type)) return build(Phone.TYPE_TTY_TDD, true);
+            if ("work_mobile".equals(type)) return build(Phone.TYPE_WORK_MOBILE, true);
+            if ("work_pager".equals(type)) return build(Phone.TYPE_WORK_PAGER, true);
+
+            // Note "assistant" used to be a custom column for the fallback type, but not anymore.
+            if ("assistant".equals(type)) return build(Phone.TYPE_ASSISTANT, true);
+            if ("mms".equals(type)) return build(Phone.TYPE_MMS, true);
+            if ("custom".equals(type)) {
+                return build(Phone.TYPE_CUSTOM, true).setCustomColumn(Phone.LABEL);
+            }
+            return null;
+        }
+    }
+
+    private static class EmailKindBuilder extends KindBuilder {
+        @Override
+        public String getTagName() {
+            return "email";
+        }
+
+        @Override
+        public List<DataKind> parseDataKind(Context context, XmlPullParser parser,
+                AttributeSet attrs) throws DefinitionException, XmlPullParserException,
+                IOException {
+            final DataKind kind = newDataKind(context, parser, attrs, false,
+                    Email.CONTENT_ITEM_TYPE, Email.TYPE, R.string.emailLabelsGroup, Weight.EMAIL,
+                    R.layout.text_fields_editor_view,
+                    new EmailActionInflater(), new SimpleInflater(Email.DATA));
+            kind.fieldList.add(new EditField(Email.DATA, R.string.emailLabelsGroup, FLAGS_EMAIL));
+
+            return Lists.newArrayList(kind);
+        }
+
+        @Override
+        protected EditType buildEditTypeForTypeTag(AttributeSet attrs, String type) {
+            // EditType is mutable, so we need to create a new instance every time.
+            if ("home".equals(type)) return buildEmailType(Email.TYPE_HOME);
+            if ("work".equals(type)) return buildEmailType(Email.TYPE_WORK);
+            if ("other".equals(type)) return buildEmailType(Email.TYPE_OTHER);
+            if ("mobile".equals(type)) return buildEmailType(Email.TYPE_MOBILE);
+            if ("custom".equals(type)) {
+                return buildEmailType(Email.TYPE_CUSTOM)
+                        .setSecondary(true).setCustomColumn(Email.LABEL);
+            }
+            return null;
+        }
+    }
+
+    private static class StructuredPostalKindBuilder extends KindBuilder {
+        @Override
+        public String getTagName() {
+            return "postal";
+        }
+
+        @Override
+        public List<DataKind> parseDataKind(Context context, XmlPullParser parser,
+                AttributeSet attrs) throws DefinitionException, XmlPullParserException,
+                IOException {
+            final DataKind kind = newDataKind(context, parser, attrs, false,
+                    StructuredPostal.CONTENT_ITEM_TYPE, StructuredPostal.TYPE,
+                    R.string.postalLabelsGroup, Weight.STRUCTURED_POSTAL,
+                    R.layout.text_fields_editor_view, new PostalActionInflater(),
+                    new SimpleInflater(StructuredPostal.FORMATTED_ADDRESS));
+
+            if (getAttr(attrs, "needsStructured", false)) {
+                if (Locale.JAPANESE.getLanguage().equals(Locale.getDefault().getLanguage())) {
+                    // Japanese order
+                    kind.fieldList.add(new EditField(StructuredPostal.COUNTRY,
+                            R.string.postal_country, FLAGS_POSTAL).setOptional(true));
+                    kind.fieldList.add(new EditField(StructuredPostal.POSTCODE,
+                            R.string.postal_postcode, FLAGS_POSTAL));
+                    kind.fieldList.add(new EditField(StructuredPostal.REGION,
+                            R.string.postal_region, FLAGS_POSTAL));
+                    kind.fieldList.add(new EditField(StructuredPostal.CITY,
+                            R.string.postal_city,FLAGS_POSTAL));
+                    kind.fieldList.add(new EditField(StructuredPostal.STREET,
+                            R.string.postal_street, FLAGS_POSTAL));
+                } else {
+                    // Generic order
+                    kind.fieldList.add(new EditField(StructuredPostal.STREET,
+                            R.string.postal_street, FLAGS_POSTAL));
+                    kind.fieldList.add(new EditField(StructuredPostal.CITY,
+                            R.string.postal_city,FLAGS_POSTAL));
+                    kind.fieldList.add(new EditField(StructuredPostal.REGION,
+                            R.string.postal_region, FLAGS_POSTAL));
+                    kind.fieldList.add(new EditField(StructuredPostal.POSTCODE,
+                            R.string.postal_postcode, FLAGS_POSTAL));
+                    kind.fieldList.add(new EditField(StructuredPostal.COUNTRY,
+                            R.string.postal_country, FLAGS_POSTAL).setOptional(true));
+                }
+            } else {
+                kind.fieldList.add(
+                        new EditField(StructuredPostal.FORMATTED_ADDRESS, R.string.postal_address,
+                                FLAGS_POSTAL));
+            }
+
+            return Lists.newArrayList(kind);
+        }
+
+        @Override
+        protected EditType buildEditTypeForTypeTag(AttributeSet attrs, String type) {
+            // EditType is mutable, so we need to create a new instance every time.
+            if ("home".equals(type)) return buildPostalType(StructuredPostal.TYPE_HOME);
+            if ("work".equals(type)) return buildPostalType(StructuredPostal.TYPE_WORK);
+            if ("other".equals(type)) return buildPostalType(StructuredPostal.TYPE_OTHER);
+            if ("custom".equals(type)) {
+                return buildPostalType(StructuredPostal.TYPE_CUSTOM)
+                        .setSecondary(true).setCustomColumn(Email.LABEL);
+            }
+            return null;
+        }
+    }
+
+    private static class ImKindBuilder extends KindBuilder {
+        @Override
+        public String getTagName() {
+            return "im";
+        }
+
+        @Override
+        public List<DataKind> parseDataKind(Context context, XmlPullParser parser,
+                AttributeSet attrs) throws DefinitionException, XmlPullParserException,
+                IOException {
+
+            // IM is special:
+            // - It uses "protocol" as the custom label field
+            // - Its TYPE is fixed to TYPE_OTHER
+
+            final DataKind kind = newDataKind(context, parser, attrs, false,
+                    Im.CONTENT_ITEM_TYPE, Im.PROTOCOL, R.string.imLabelsGroup, Weight.IM,
+                    R.layout.text_fields_editor_view,
+                    new ImActionInflater(), new SimpleInflater(Im.DATA) // header / action
+                    );
+            kind.fieldList.add(new EditField(Im.DATA, R.string.imLabelsGroup, FLAGS_EMAIL));
+
+            kind.defaultValues = new ContentValues();
+            kind.defaultValues.put(Im.TYPE, Im.TYPE_OTHER);
+
+            return Lists.newArrayList(kind);
+        }
+
+        @Override
+        protected EditType buildEditTypeForTypeTag(AttributeSet attrs, String type) {
+            if ("aim".equals(type)) return buildImType(Im.PROTOCOL_AIM);
+            if ("msn".equals(type)) return buildImType(Im.PROTOCOL_MSN);
+            if ("yahoo".equals(type)) return buildImType(Im.PROTOCOL_YAHOO);
+            if ("skype".equals(type)) return buildImType(Im.PROTOCOL_SKYPE);
+            if ("qq".equals(type)) return buildImType(Im.PROTOCOL_QQ);
+            if ("google_talk".equals(type)) return buildImType(Im.PROTOCOL_GOOGLE_TALK);
+            if ("icq".equals(type)) return buildImType(Im.PROTOCOL_ICQ);
+            if ("jabber".equals(type)) return buildImType(Im.PROTOCOL_JABBER);
+            if ("custom".equals(type)) {
+                return buildImType(Im.PROTOCOL_CUSTOM).setSecondary(true)
+                        .setCustomColumn(Im.CUSTOM_PROTOCOL);
+            }
+            return null;
+        }
+    }
+
+    private static class OrganizationKindBuilder extends KindBuilder {
+        @Override
+        public String getTagName() {
+            return "organization";
+        }
+
+        @Override
+        public List<DataKind> parseDataKind(Context context, XmlPullParser parser,
+                AttributeSet attrs) throws DefinitionException, XmlPullParserException,
+                IOException {
+            final DataKind kind = newDataKind(context, parser, attrs, false,
+                    Organization.CONTENT_ITEM_TYPE, null, R.string.organizationLabelsGroup,
+                    Weight.ORGANIZATION, R.layout.text_fields_editor_view ,
+                    new SimpleInflater(Organization.COMPANY),
+                    new SimpleInflater(Organization.TITLE));
+
+            kind.fieldList.add(new EditField(Organization.COMPANY, R.string.ghostData_company,
+                    FLAGS_GENERIC_NAME));
+            kind.fieldList.add(new EditField(Organization.TITLE, R.string.ghostData_title,
+                    FLAGS_GENERIC_NAME));
+
+            throwIfList(kind);
+
+            return Lists.newArrayList(kind);
+        }
+    }
+
+    private static class PhotoKindBuilder extends KindBuilder {
+        @Override
+        public String getTagName() {
+            return "photo";
+        }
+
+        @Override
+        public List<DataKind> parseDataKind(Context context, XmlPullParser parser,
+                AttributeSet attrs) throws DefinitionException, XmlPullParserException,
+                IOException {
+            final DataKind kind = newDataKind(context, parser, attrs, false,
+                    Photo.CONTENT_ITEM_TYPE, null /* no type */, -1, Weight.NONE, -1,
+                    null, null // no header, no body
+                    );
+
+            kind.fieldList.add(new EditField(Photo.PHOTO, -1, -1));
+
+            throwIfList(kind);
+
+            return Lists.newArrayList(kind);
+        }
+    }
+
+    private static class NoteKindBuilder extends KindBuilder {
+        @Override
+        public String getTagName() {
+            return "note";
+        }
+
+        @Override
+        public List<DataKind> parseDataKind(Context context, XmlPullParser parser,
+                AttributeSet attrs) throws DefinitionException, XmlPullParserException,
+                IOException {
+            final DataKind kind = newDataKind(context, parser, attrs, false,
+                    Note.CONTENT_ITEM_TYPE, null, R.string.label_notes, Weight.NOTE,
+                    R.layout.text_fields_editor_view,
+                    new SimpleInflater(R.string.label_notes), new SimpleInflater(Note.NOTE));
+
+            kind.fieldList.add(new EditField(Note.NOTE, R.string.label_notes, FLAGS_NOTE));
+
+            throwIfList(kind);
+
+            return Lists.newArrayList(kind);
+        }
+    }
+
+    private static class WebsiteKindBuilder extends KindBuilder {
+        @Override
+        public String getTagName() {
+            return "website";
+        }
+
+        @Override
+        public List<DataKind> parseDataKind(Context context, XmlPullParser parser,
+                AttributeSet attrs) throws DefinitionException, XmlPullParserException,
+                IOException {
+            final DataKind kind = newDataKind(context, parser, attrs, false,
+                    Website.CONTENT_ITEM_TYPE, null, R.string.websiteLabelsGroup, Weight.WEBSITE,
+                    R.layout.text_fields_editor_view,
+                    new SimpleInflater(R.string.websiteLabelsGroup),
+                    new SimpleInflater(Website.URL));
+
+            kind.fieldList.add(new EditField(Website.URL, R.string.websiteLabelsGroup,
+                    FLAGS_WEBSITE));
+
+            kind.defaultValues = new ContentValues();
+            kind.defaultValues.put(Website.TYPE, Website.TYPE_OTHER);
+
+            return Lists.newArrayList(kind);
+        }
+    }
+
+    private static class SipAddressKindBuilder extends KindBuilder {
+        @Override
+        public String getTagName() {
+            return "sip_address";
+        }
+
+        @Override
+        public List<DataKind> parseDataKind(Context context, XmlPullParser parser,
+                AttributeSet attrs) throws DefinitionException, XmlPullParserException,
+                IOException {
+            final DataKind kind = newDataKind(context, parser, attrs, false,
+                    SipAddress.CONTENT_ITEM_TYPE, null, R.string.label_sip_address,
+                    Weight.SIP_ADDRESS, R.layout.text_fields_editor_view,
+                    new SimpleInflater(R.string.label_sip_address),
+                    new SimpleInflater(SipAddress.SIP_ADDRESS));
+
+            kind.fieldList.add(new EditField(SipAddress.SIP_ADDRESS,
+                    R.string.label_sip_address, FLAGS_SIP_ADDRESS));
+
+            throwIfList(kind);
+
+            return Lists.newArrayList(kind);
+        }
+    }
+
+    private static class GroupMembershipKindBuilder extends KindBuilder {
+        @Override
+        public String getTagName() {
+            return "group_membership";
+        }
+
+        @Override
+        public List<DataKind> parseDataKind(Context context, XmlPullParser parser,
+                AttributeSet attrs) throws DefinitionException, XmlPullParserException,
+                IOException {
+            final DataKind kind = newDataKind(context, parser, attrs, false,
+                    GroupMembership.CONTENT_ITEM_TYPE, null,
+                    R.string.groupsLabel, Weight.GROUP_MEMBERSHIP, -1, null, null);
+
+            kind.fieldList.add(new EditField(GroupMembership.GROUP_ROW_ID, -1, -1));
+
+            throwIfList(kind);
+
+            return Lists.newArrayList(kind);
+        }
+    }
+
+    /**
+     * Event DataKind parser.
+     *
+     * Event DataKind is used only for Google/Exchange types, so this parser is not used for now.
+     */
+    private static class EventKindBuilder extends KindBuilder {
+        @Override
+        public String getTagName() {
+            return "event";
+        }
+
+        @Override
+        public List<DataKind> parseDataKind(Context context, XmlPullParser parser,
+                AttributeSet attrs) throws DefinitionException, XmlPullParserException,
+                IOException {
+            final DataKind kind = newDataKind(context, parser, attrs, false,
+                    Event.CONTENT_ITEM_TYPE, Event.TYPE, R.string.eventLabelsGroup, Weight.EVENT,
+                    R.layout.event_field_editor_view,
+                    new EventActionInflater(), new SimpleInflater(Event.START_DATE));
+
+            kind.fieldList.add(new EditField(Event.DATA, R.string.eventLabelsGroup, FLAGS_EVENT));
+
+            if (getAttr(attrs, Attr.DATE_WITH_TIME, false)) {
+                kind.dateFormatWithoutYear = DateUtils.NO_YEAR_DATE_AND_TIME_FORMAT;
+                kind.dateFormatWithYear = DateUtils.DATE_AND_TIME_FORMAT;
+            } else {
+                kind.dateFormatWithoutYear = DateUtils.NO_YEAR_DATE_FORMAT;
+                kind.dateFormatWithYear = DateUtils.FULL_DATE_FORMAT;
+            }
+
+            return Lists.newArrayList(kind);
+        }
+
+        @Override
+        protected EditType buildEditTypeForTypeTag(AttributeSet attrs, String type) {
+            final boolean yo = getAttr(attrs, Attr.YEAR_OPTIONAL, false);
+
+            if ("birthday".equals(type)) {
+                return buildEventType(Event.TYPE_BIRTHDAY, yo).setSpecificMax(1);
+            }
+            if ("anniversary".equals(type)) return buildEventType(Event.TYPE_ANNIVERSARY, yo);
+            if ("other".equals(type)) return buildEventType(Event.TYPE_OTHER, yo);
+            if ("custom".equals(type)) {
+                return buildEventType(Event.TYPE_CUSTOM, yo)
+                        .setSecondary(true).setCustomColumn(Event.LABEL);
+            }
+            return null;
+        }
+    }
+
+    /**
+     * Relationship DataKind parser.
+     *
+     * Relationship DataKind is used only for Google/Exchange types, so this parser is not used for
+     * now.
+     */
+    private static class RelationshipKindBuilder extends KindBuilder {
+        @Override
+        public String getTagName() {
+            return "relationship";
+        }
+
+        @Override
+        public List<DataKind> parseDataKind(Context context, XmlPullParser parser,
+                AttributeSet attrs) throws DefinitionException, XmlPullParserException,
+                IOException {
+            final DataKind kind = newDataKind(context, parser, attrs, false,
+                    Relation.CONTENT_ITEM_TYPE, Relation.TYPE,
+                    R.string.relationLabelsGroup, Weight.RELATIONSHIP,
+                    R.layout.text_fields_editor_view,
+                    new RelationActionInflater(), new SimpleInflater(Relation.NAME));
+
+            kind.fieldList.add(new EditField(Relation.DATA, R.string.relationLabelsGroup,
+                    FLAGS_RELATION));
+
+            kind.defaultValues = new ContentValues();
+            kind.defaultValues.put(Relation.TYPE, Relation.TYPE_SPOUSE);
+
+            return Lists.newArrayList(kind);
+        }
+
+        @Override
+        protected EditType buildEditTypeForTypeTag(AttributeSet attrs, String type) {
+            // EditType is mutable, so we need to create a new instance every time.
+            if ("assistant".equals(type)) return buildRelationType(Relation.TYPE_ASSISTANT);
+            if ("brother".equals(type)) return buildRelationType(Relation.TYPE_BROTHER);
+            if ("child".equals(type)) return buildRelationType(Relation.TYPE_CHILD);
+            if ("domestic_partner".equals(type)) {
+                    return buildRelationType(Relation.TYPE_DOMESTIC_PARTNER);
+            }
+            if ("father".equals(type)) return buildRelationType(Relation.TYPE_FATHER);
+            if ("friend".equals(type)) return buildRelationType(Relation.TYPE_FRIEND);
+            if ("manager".equals(type)) return buildRelationType(Relation.TYPE_MANAGER);
+            if ("mother".equals(type)) return buildRelationType(Relation.TYPE_MOTHER);
+            if ("parent".equals(type)) return buildRelationType(Relation.TYPE_PARENT);
+            if ("partner".equals(type)) return buildRelationType(Relation.TYPE_PARTNER);
+            if ("referred_by".equals(type)) return buildRelationType(Relation.TYPE_REFERRED_BY);
+            if ("relative".equals(type)) return buildRelationType(Relation.TYPE_RELATIVE);
+            if ("sister".equals(type)) return buildRelationType(Relation.TYPE_SISTER);
+            if ("spouse".equals(type)) return buildRelationType(Relation.TYPE_SPOUSE);
+            if ("custom".equals(type)) {
+                return buildRelationType(Relation.TYPE_CUSTOM).setSecondary(true)
+                        .setCustomColumn(Relation.LABEL);
+            }
+            return null;
+        }
     }
 }
