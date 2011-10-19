@@ -20,6 +20,7 @@ import com.android.contacts.R;
 import com.android.contacts.model.AccountType.EditField;
 import com.android.contacts.model.AccountType.EditType;
 import com.android.contacts.model.AccountType.StringInflater;
+import com.google.common.collect.Iterators;
 
 import android.content.ContentValues;
 import android.provider.ContactsContract.Data;
@@ -94,5 +95,44 @@ public final class DataKind {
         this.editable = editable;
         this.typeOverallMax = -1;
         this.editorLayoutResourceId = editorLayoutResourceId;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("DataKind:");
+        sb.append(" resPackageName=").append(resPackageName);
+        sb.append(" mimeType=").append(mimeType);
+        sb.append(" titleRes=").append(titleRes);
+        sb.append(" iconAltRes=").append(iconAltRes);
+        sb.append(" iconAltDescriptionRes=").append(iconAltDescriptionRes);
+        sb.append(" weight=").append(weight);
+        sb.append(" editable=").append(editable);
+        sb.append(" actionHeader=").append(actionHeader);
+        sb.append(" actionAltHeader=").append(actionAltHeader);
+        sb.append(" actionBody=").append(actionBody);
+        sb.append(" actionBodySocial=").append(actionBodySocial);
+        sb.append(" typeColumn=").append(typeColumn);
+        sb.append(" typeOverallMax=").append(typeOverallMax);
+        sb.append(" typeList=").append(toString(typeList));
+        sb.append(" fieldList=").append(toString(fieldList));
+        sb.append(" defaultValues=").append(defaultValues);
+        sb.append(" editorLayoutResourceId=").append(editorLayoutResourceId);
+        sb.append(" dateFormatWithoutYear=").append(toString(dateFormatWithoutYear));
+        sb.append(" dateFormatWithYear=").append(toString(dateFormatWithYear));
+
+        return sb.toString();
+    }
+
+    public static String toString(SimpleDateFormat format) {
+        return format == null ? "(null)" : format.toPattern();
+    }
+
+    public static String toString(Iterable<?> list) {
+        if (list == null) {
+            return "(null)";
+        } else {
+            return Iterators.toString(list.iterator());
+        }
     }
 }

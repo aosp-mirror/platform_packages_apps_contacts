@@ -17,6 +17,7 @@
 package com.android.contacts.model;
 
 import com.android.contacts.R;
+import com.android.contacts.model.AccountType.DefinitionException;
 import com.android.contacts.util.DateUtils;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
@@ -107,16 +108,6 @@ public abstract class BaseAccountType extends AccountType {
         static final int GROUP_MEMBERSHIP = 999;
     }
 
-    protected static class DefinitionException extends Exception {
-        public DefinitionException(String message) {
-            super(message);
-        }
-
-        public DefinitionException(String message, Exception inner) {
-            super(message, inner);
-        }
-    }
-
     public BaseAccountType() {
         this.accountType = null;
         this.dataSet = null;
@@ -148,11 +139,12 @@ public abstract class BaseAccountType extends AccountType {
         return new EditType(type, Relation.getTypeLabelResource(type));
     }
 
-    protected DataKind addDataKindStructuredName(Context context) {
+    protected DataKind addDataKindStructuredName(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(StructuredName.CONTENT_ITEM_TYPE,
                 R.string.nameLabelsGroup, -1, true, R.layout.structured_name_editor_view));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
+        kind.typeOverallMax = 1;
 
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(new EditField(StructuredName.DISPLAY_NAME,
@@ -177,11 +169,12 @@ public abstract class BaseAccountType extends AccountType {
         return kind;
     }
 
-    protected DataKind addDataKindDisplayName(Context context) {
+    protected DataKind addDataKindDisplayName(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME,
                 R.string.nameLabelsGroup, -1, true, R.layout.text_fields_editor_view));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
+        kind.typeOverallMax = 1;
 
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(new EditField(StructuredName.DISPLAY_NAME,
@@ -217,11 +210,12 @@ public abstract class BaseAccountType extends AccountType {
         return kind;
     }
 
-    protected DataKind addDataKindPhoneticName(Context context) {
+    protected DataKind addDataKindPhoneticName(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME,
                 R.string.name_phonetic, -1, true, R.layout.phonetic_name_editor_view));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
+        kind.typeOverallMax = 1;
 
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(new EditField(DataKind.PSEUDO_COLUMN_PHONETIC_NAME,
@@ -236,7 +230,7 @@ public abstract class BaseAccountType extends AccountType {
         return kind;
     }
 
-    protected DataKind addDataKindNickname(Context context) {
+    protected DataKind addDataKindNickname(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(Nickname.CONTENT_ITEM_TYPE,
                     R.string.nicknameLabelsGroup, 115, true, R.layout.text_fields_editor_view));
         kind.typeOverallMax = 1;
@@ -252,7 +246,7 @@ public abstract class BaseAccountType extends AccountType {
         return kind;
     }
 
-    protected DataKind addDataKindPhone(Context context) {
+    protected DataKind addDataKindPhone(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(Phone.CONTENT_ITEM_TYPE, R.string.phoneLabelsGroup,
                 10, true, R.layout.text_fields_editor_view));
         kind.iconAltRes = R.drawable.ic_text_holo_light;
@@ -262,8 +256,8 @@ public abstract class BaseAccountType extends AccountType {
         kind.actionBody = new SimpleInflater(Phone.NUMBER);
         kind.typeColumn = Phone.TYPE;
         kind.typeList = Lists.newArrayList();
-        kind.typeList.add(buildPhoneType(Phone.TYPE_HOME));
         kind.typeList.add(buildPhoneType(Phone.TYPE_MOBILE));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_HOME));
         kind.typeList.add(buildPhoneType(Phone.TYPE_WORK));
         kind.typeList.add(buildPhoneType(Phone.TYPE_FAX_WORK).setSecondary(true));
         kind.typeList.add(buildPhoneType(Phone.TYPE_FAX_HOME).setSecondary(true));
@@ -282,8 +276,7 @@ public abstract class BaseAccountType extends AccountType {
         kind.typeList.add(buildPhoneType(Phone.TYPE_TTY_TDD).setSecondary(true));
         kind.typeList.add(buildPhoneType(Phone.TYPE_WORK_MOBILE).setSecondary(true));
         kind.typeList.add(buildPhoneType(Phone.TYPE_WORK_PAGER).setSecondary(true));
-        kind.typeList.add(buildPhoneType(Phone.TYPE_ASSISTANT).setSecondary(true).setCustomColumn(
-                Phone.LABEL));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_ASSISTANT).setSecondary(true));
         kind.typeList.add(buildPhoneType(Phone.TYPE_MMS).setSecondary(true));
 
         kind.fieldList = Lists.newArrayList();
@@ -292,7 +285,7 @@ public abstract class BaseAccountType extends AccountType {
         return kind;
     }
 
-    protected DataKind addDataKindEmail(Context context) {
+    protected DataKind addDataKindEmail(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(Email.CONTENT_ITEM_TYPE, R.string.emailLabelsGroup,
                 15, true, R.layout.text_fields_editor_view));
         kind.actionHeader = new EmailActionInflater();
@@ -312,7 +305,7 @@ public abstract class BaseAccountType extends AccountType {
         return kind;
     }
 
-    protected DataKind addDataKindStructuredPostal(Context context) {
+    protected DataKind addDataKindStructuredPostal(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(StructuredPostal.CONTENT_ITEM_TYPE,
                 R.string.postalLabelsGroup, 25, true, R.layout.text_fields_editor_view));
         kind.actionHeader = new PostalActionInflater();
@@ -333,7 +326,7 @@ public abstract class BaseAccountType extends AccountType {
         return kind;
     }
 
-    protected DataKind addDataKindIm(Context context) {
+    protected DataKind addDataKindIm(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(Im.CONTENT_ITEM_TYPE, R.string.imLabelsGroup, 20, true,
                     R.layout.text_fields_editor_view));
         kind.actionHeader = new ImActionInflater();
@@ -364,7 +357,7 @@ public abstract class BaseAccountType extends AccountType {
         return kind;
     }
 
-    protected DataKind addDataKindOrganization(Context context) {
+    protected DataKind addDataKindOrganization(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(Organization.CONTENT_ITEM_TYPE,
                     R.string.organizationLabelsGroup, 5, true,
                     R.layout.text_fields_editor_view));
@@ -381,14 +374,15 @@ public abstract class BaseAccountType extends AccountType {
         return kind;
     }
 
-    protected DataKind addDataKindPhoto(Context context) {
+    protected DataKind addDataKindPhoto(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(Photo.CONTENT_ITEM_TYPE, -1, -1, true, -1));
+        kind.typeOverallMax = 1;
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(new EditField(Photo.PHOTO, -1, -1));
         return kind;
     }
 
-    protected DataKind addDataKindNote(Context context) {
+    protected DataKind addDataKindNote(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(Note.CONTENT_ITEM_TYPE,
                     R.string.label_notes, 110, true, R.layout.text_fields_editor_view));
         kind.typeOverallMax = 1;
@@ -400,7 +394,7 @@ public abstract class BaseAccountType extends AccountType {
         return kind;
     }
 
-    protected DataKind addDataKindWebsite(Context context) {
+    protected DataKind addDataKindWebsite(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(Website.CONTENT_ITEM_TYPE,
                 R.string.websiteLabelsGroup, 120, true, R.layout.text_fields_editor_view));
         kind.actionHeader = new SimpleInflater(R.string.websiteLabelsGroup);
@@ -414,7 +408,7 @@ public abstract class BaseAccountType extends AccountType {
         return kind;
     }
 
-    protected DataKind addDataKindSipAddress(Context context) {
+    protected DataKind addDataKindSipAddress(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(SipAddress.CONTENT_ITEM_TYPE,
                     R.string.label_sip_address, 130, true, R.layout.text_fields_editor_view));
 
@@ -428,7 +422,7 @@ public abstract class BaseAccountType extends AccountType {
         return kind;
     }
 
-    protected DataKind addDataKindGroupMembership(Context context) {
+    protected DataKind addDataKindGroupMembership(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(GroupMembership.CONTENT_ITEM_TYPE,
                 R.string.groupsLabel, 999, true, -1));
 
@@ -496,6 +490,13 @@ public abstract class BaseAccountType extends AccountType {
                 return null;
             }
         }
+
+        @Override
+        public String toString() {
+            return this.getClass().getSimpleName()
+                    + " mStringRes=" + mStringRes
+                    + " mColumnName" + mColumnName;
+        }
     }
 
     public static abstract class CommonInflater implements StringInflater {
@@ -534,6 +535,11 @@ public abstract class BaseAccountType extends AccountType {
             final Integer type = values.getAsInteger(getTypeColumn());
             final String label = values.getAsString(getLabelColumn());
             return getTypeLabel(context.getResources(), type, label);
+        }
+
+        @Override
+        public String toString() {
+            return this.getClass().getSimpleName();
         }
     }
 
@@ -801,15 +807,14 @@ public abstract class BaseAccountType extends AccountType {
             kind.actionBody = actionBody;
             kind.fieldList = Lists.newArrayList();
 
-            kind.typeOverallMax = getAttr(attrs, Attr.MAX_OCCURRENCE, -1);
-
-            // Handle "types".
-            // If a kind has the type column, contacts.xml must have at least one type definition.
-            // Otherwise, it mustn't have a type definition.
-            //
-            // If it's a pseudo data kind (== data kind that doesn't have the corresponding
-            // DataKind tag in the XML), we just skip this process.
+            // Get more information from the tag...
+            // A pseudo data kind doesn't have corresponding tag the XML, so we skip this.
             if (!isPseudo) {
+                kind.typeOverallMax = getAttr(attrs, Attr.MAX_OCCURRENCE, -1);
+
+                // Process "Type" tags.
+                // If a kind has the type column, contacts.xml must have at least one type
+                // definition.  Otherwise, it mustn't have a type definition.
                 if (kind.typeColumn != null) {
                     // Parse and add types.
                     kind.typeList = Lists.newArrayList();
@@ -957,7 +962,6 @@ public abstract class BaseAccountType extends AccountType {
             throwIfList(ks);
             kinds.add(ks);
 
-
             // Note about setLongForm/setShortForm below.
             // We need to set this only when the type supports display name. (=supportsDisplayName)
             // Otherwise (i.e. Exchange) we don't set these flags, but instead make some fields
@@ -988,6 +992,7 @@ public abstract class BaseAccountType extends AccountType {
                     R.string.nameLabelsGroup, Weight.NONE, R.layout.text_fields_editor_view,
                     new SimpleInflater(R.string.nameLabelsGroup),
                     new SimpleInflater(Nickname.NAME));
+            kd.typeOverallMax = 1;
             kinds.add(kd);
 
             kd.fieldList.add(new EditField(StructuredName.DISPLAY_NAME,
@@ -1023,25 +1028,18 @@ public abstract class BaseAccountType extends AccountType {
                     R.string.name_phonetic, Weight.NONE, R.layout.phonetic_name_editor_view,
                     new SimpleInflater(R.string.nameLabelsGroup),
                     new SimpleInflater(Nickname.NAME));
+            kp.typeOverallMax = 1;
             kinds.add(kp);
 
+            // We may want to change the order depending on displayOrderPrimary too.
             kp.fieldList.add(new EditField(DataKind.PSEUDO_COLUMN_PHONETIC_NAME,
                     R.string.name_phonetic, FLAGS_PHONETIC).setShortForm(true));
-            if (!displayOrderPrimary) {
-                kp.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
-                        R.string.name_phonetic_family, FLAGS_PHONETIC).setLongForm(true));
-                kp.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
-                        R.string.name_phonetic_middle, FLAGS_PHONETIC).setLongForm(true));
-                kp.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
-                        R.string.name_phonetic_given, FLAGS_PHONETIC).setLongForm(true));
-            } else {
-                kp.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
-                        R.string.name_phonetic_given, FLAGS_PHONETIC).setLongForm(true));
-                kp.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
-                        R.string.name_phonetic_middle, FLAGS_PHONETIC).setLongForm(true));
-                kp.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
-                        R.string.name_phonetic_family, FLAGS_PHONETIC).setLongForm(true));
-            }
+            kp.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
+                    R.string.name_phonetic_family, FLAGS_PHONETIC).setLongForm(true));
+            kp.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
+                    R.string.name_phonetic_middle, FLAGS_PHONETIC).setLongForm(true));
+            kp.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
+                    R.string.name_phonetic_given, FLAGS_PHONETIC).setLongForm(true));
             return kinds;
         }
     }

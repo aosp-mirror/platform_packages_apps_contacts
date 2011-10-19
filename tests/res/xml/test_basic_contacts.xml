@@ -17,10 +17,6 @@
  */
 -->
 
-<!--
-    contacts.xml to build "fallback account type" equivalent.
--->
-
 <ContactsAccountType
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
@@ -98,8 +94,8 @@
         <DataKind kind="phone" >
             <!-- Note: Google type doesn't have obsolete ones -->
             <Type type="mobile" />
-            <Type type="work" />
             <Type type="home" />
+            <Type type="work" />
             <Type type="fax_work" />
             <Type type="fax_home" />
             <Type type="pager" />
@@ -139,9 +135,9 @@
         <!--
             Email
         -->
-        <!-- Fallback/ Google definition.  -->
+        <!-- Fallback/Google definition.  -->
         <DataKind kind="email" >
-            <!-- Note: Google type doesn't support some of these. -->
+            <!-- Note: Google type doesn't have obsolete ones -->
             <Type type="home" />
             <Type type="work" />
             <Type type="other" />
@@ -248,17 +244,13 @@
 
         <!--
             Event
-
-            The parser should be able to handle it, but not tested.
         -->
-        <!-- Google definition.
         <DataKind kind="event" dateWithTime="false">
             <Type type="birthday" maxOccurs="1" yearOptional="true" />
             <Type type="anniversary" />
             <Type type="other" />
             <Type type="custom" />
         </DataKind>
-        -->
 
         <!--
             Exchange definition.  dateWithTime is needed only for Exchange.
@@ -268,11 +260,9 @@
         -->
 
         <!--
-            Relationship.
-
-            The parser should be able to handle it, but not tested.
-
-        <DataKind kind="relation" >
+            Relationship
+        -->
+        <DataKind kind="relationship" >
             <Type type="assistant" />
             <Type type="brother" />
             <Type type="child" />
@@ -289,8 +279,5 @@
             <Type type="spouse" />
             <Type type="custom" />
         </DataKind>
-        -->
-
     </EditSchema>
-
 </ContactsAccountType>

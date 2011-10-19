@@ -20,8 +20,6 @@ import static android.content.ContentProviderOperation.TYPE_DELETE;
 import static android.content.ContentProviderOperation.TYPE_INSERT;
 import static android.content.ContentProviderOperation.TYPE_UPDATE;
 
-import com.google.android.collect.Lists;
-
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.EditType;
 import com.android.contacts.model.AccountTypeManager;
@@ -35,10 +33,10 @@ import com.android.contacts.model.GoogleAccountType;
 import com.android.contacts.tests.mocks.ContactsMockContext;
 import com.android.contacts.tests.mocks.MockAccountTypeManager;
 import com.android.contacts.tests.mocks.MockContentProvider;
+import com.google.android.collect.Lists;
 
 import android.content.ContentProviderOperation;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Entity;
 import android.net.Uri;
 import android.os.Bundle;
@@ -87,56 +85,60 @@ public class EntityModifierTests extends AndroidTestCase {
     public static class MockContactsSource extends AccountType {
 
         MockContactsSource() {
-            this.accountType = TEST_ACCOUNT_TYPE;
+            try {
+                this.accountType = TEST_ACCOUNT_TYPE;
 
-            final DataKind nameKind = new DataKind(StructuredName.CONTENT_ITEM_TYPE,
-                    R.string.nameLabelsGroup, -1, true, -1);
-            nameKind.typeOverallMax = 1;
-            addKind(nameKind);
+                final DataKind nameKind = new DataKind(StructuredName.CONTENT_ITEM_TYPE,
+                        R.string.nameLabelsGroup, -1, true, -1);
+                nameKind.typeOverallMax = 1;
+                addKind(nameKind);
 
-            // Phone allows maximum 2 home, 1 work, and unlimited other, with
-            // constraint of 5 numbers maximum.
-            final DataKind phoneKind = new DataKind(
-                    Phone.CONTENT_ITEM_TYPE, -1, 10, true, -1);
+                // Phone allows maximum 2 home, 1 work, and unlimited other, with
+                // constraint of 5 numbers maximum.
+                final DataKind phoneKind = new DataKind(
+                        Phone.CONTENT_ITEM_TYPE, -1, 10, true, -1);
 
-            phoneKind.typeOverallMax = 5;
-            phoneKind.typeColumn = Phone.TYPE;
-            phoneKind.typeList = Lists.newArrayList();
-            phoneKind.typeList.add(new EditType(Phone.TYPE_HOME, -1).setSpecificMax(2));
-            phoneKind.typeList.add(new EditType(Phone.TYPE_WORK, -1).setSpecificMax(1));
-            phoneKind.typeList.add(new EditType(Phone.TYPE_FAX_WORK, -1).setSecondary(true));
-            phoneKind.typeList.add(new EditType(Phone.TYPE_OTHER, -1));
+                phoneKind.typeOverallMax = 5;
+                phoneKind.typeColumn = Phone.TYPE;
+                phoneKind.typeList = Lists.newArrayList();
+                phoneKind.typeList.add(new EditType(Phone.TYPE_HOME, -1).setSpecificMax(2));
+                phoneKind.typeList.add(new EditType(Phone.TYPE_WORK, -1).setSpecificMax(1));
+                phoneKind.typeList.add(new EditType(Phone.TYPE_FAX_WORK, -1).setSecondary(true));
+                phoneKind.typeList.add(new EditType(Phone.TYPE_OTHER, -1));
 
-            phoneKind.fieldList = Lists.newArrayList();
-            phoneKind.fieldList.add(new EditField(Phone.NUMBER, -1, -1));
-            phoneKind.fieldList.add(new EditField(Phone.LABEL, -1, -1));
+                phoneKind.fieldList = Lists.newArrayList();
+                phoneKind.fieldList.add(new EditField(Phone.NUMBER, -1, -1));
+                phoneKind.fieldList.add(new EditField(Phone.LABEL, -1, -1));
 
-            addKind(phoneKind);
+                addKind(phoneKind);
 
-            // Email is unlimited
-            final DataKind emailKind = new DataKind(
-                    Email.CONTENT_ITEM_TYPE, -1, 10, true, -1);
-            emailKind.typeOverallMax = -1;
-            emailKind.fieldList = Lists.newArrayList();
-            emailKind.fieldList.add(new EditField(Email.DATA, -1, -1));
-            addKind(emailKind);
+                // Email is unlimited
+                final DataKind emailKind = new DataKind(
+                        Email.CONTENT_ITEM_TYPE, -1, 10, true, -1);
+                emailKind.typeOverallMax = -1;
+                emailKind.fieldList = Lists.newArrayList();
+                emailKind.fieldList.add(new EditField(Email.DATA, -1, -1));
+                addKind(emailKind);
 
-            // IM is only one
-            final DataKind imKind = new DataKind(Im.CONTENT_ITEM_TYPE, -1, 10,
-                    true, -1);
-            imKind.typeOverallMax = 1;
-            imKind.fieldList = Lists.newArrayList();
-            imKind.fieldList.add(new EditField(Im.DATA, -1, -1));
-            addKind(imKind);
+                // IM is only one
+                final DataKind imKind = new DataKind(Im.CONTENT_ITEM_TYPE, -1, 10,
+                        true, -1);
+                imKind.typeOverallMax = 1;
+                imKind.fieldList = Lists.newArrayList();
+                imKind.fieldList.add(new EditField(Im.DATA, -1, -1));
+                addKind(imKind);
 
-            // Organization is only one
-            final DataKind orgKind = new DataKind(
-                    Organization.CONTENT_ITEM_TYPE, -1, 10, true, -1);
-            orgKind.typeOverallMax = 1;
-            orgKind.fieldList = Lists.newArrayList();
-            orgKind.fieldList.add(new EditField(Organization.COMPANY, -1, -1));
-            orgKind.fieldList.add(new EditField(Organization.TITLE, -1, -1));
-            addKind(orgKind);
+                // Organization is only one
+                final DataKind orgKind = new DataKind(
+                        Organization.CONTENT_ITEM_TYPE, -1, 10, true, -1);
+                orgKind.typeOverallMax = 1;
+                orgKind.fieldList = Lists.newArrayList();
+                orgKind.fieldList.add(new EditField(Organization.COMPANY, -1, -1));
+                orgKind.fieldList.add(new EditField(Organization.TITLE, -1, -1));
+                addKind(orgKind);
+            } catch (DefinitionException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         @Override

@@ -19,18 +19,25 @@ package com.android.contacts.model;
 import com.android.contacts.tests.R;
 
 import android.content.Context;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.XmlResourceParser;
 import android.provider.ContactsContract.CommonDataKinds.Email;
-import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
+import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Note;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
+import android.provider.ContactsContract.CommonDataKinds.Relation;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
+
+import java.util.List;
+
+import libcore.util.Objects;
 
 /**
  * Test case for {@link ExternalAccountType}.
@@ -40,7 +47,6 @@ import android.test.suitebuilder.annotation.SmallTest;
  */
 @SmallTest
 public class ExternalAccountTypeTest extends AndroidTestCase {
-
     public void testResolveExternalResId() {
         final Context c = getContext();
         // In this test we use the test package itself as an external package.
@@ -63,12 +69,36 @@ public class ExternalAccountTypeTest extends AndroidTestCase {
                 "@string/test_string", packageName, ""));
     }
 
+    /**
+     * Initialize with an invalid package name and see if type type will *not* be initialized.
+     */
+    public void testNoPackage() {
+        final ExternalAccountType type = new ExternalAccountType(getContext(),
+                "!!!no such package name!!!", false);
+        assertFalse(type.isInitialized());
+    }
+
+    /**
+     * Initialize with the name of an existing package, which has no contacts.xml metadata.
+     */
+    public void testNoMetadata() {
+        // Use the main application package, which does exist, but has no contacts.xml in it.
+        String packageName = getContext().getPackageName();
+        final ExternalAccountType type = new ExternalAccountType(getContext(),
+                packageName, false);
+        assertTrue(type.isInitialized());
+    }
+
+    /**
+     * Initialize with the test package itself and see if EditSchema is correctly parsed.
+     */
     public void testEditSchema() {
         final ExternalAccountType type = new ExternalAccountType(getContext(),
                 getTestContext().getPackageName(), false);
 
         assertTrue(type.isInitialized());
 
+        // Let's just check if the DataKinds are registered.
         assertNotNull(type.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE));
         assertNotNull(type.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME));
         assertNotNull(type.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME));
@@ -80,8 +110,69 @@ public class ExternalAccountTypeTest extends AndroidTestCase {
         assertNotNull(type.getKindForMimetype(Note.CONTENT_ITEM_TYPE));
         assertNotNull(type.getKindForMimetype(Website.CONTENT_ITEM_TYPE));
         assertNotNull(type.getKindForMimetype(SipAddress.CONTENT_ITEM_TYPE));
-        assertNotNull(type.getKindForMimetype(GroupMembership.CONTENT_ITEM_TYPE));
+        assertNotNull(type.getKindForMimetype(Event.CONTENT_ITEM_TYPE));
+        assertNotNull(type.getKindForMimetype(Relation.CONTENT_ITEM_TYPE));
+    }
 
-        // TODO Write more extensive check -- compare to FallbackAccountType?
+    /**
+     * Initialize with "contacts_fallback.xml" and compare the DataKinds to those of
+     * {@link FallbackAccountType}.
+     */
+    public void testEditSchema_fallback() {
+        final ExternalAccountType type = new ExternalAccountType(getContext(),
+                getTestContext().getPackageName(), false,
+                getTestContext().getResources().getXml(R.xml.contacts_fallback)
+                );
+
+        assertTrue(type.isInitialized());
+
+        // Create a fallback type with the same resource package name, and compare all the data
+        // kinds to its.
+        final AccountType reference = FallbackAccountType.createForTest(
+                getContext(), type.resPackageName);
+
+        assertsDataKindEquals(reference.getSortedDataKinds(), type.getSortedDataKinds());
+    }
+
+    private static void assertsDataKindEquals(List<DataKind> expectedKinds,
+            List<DataKind> actualKinds) {
+        final int count = Math.max(actualKinds.size(), expectedKinds.size());
+        for (int i = 0; i < count; i++) {
+            String actual =  actualKinds.size() > i ? actualKinds.get(i).toString() : "(n/a)";
+            String expected =  expectedKinds.size() > i ? expectedKinds.get(i).toString() : "(n/a)";
+
+            // Because assertEquals()'s output is not very friendly when comparing two similar
+            // strings, we manually do the check.
+            if (!Objects.equal(actual, expected)) {
+                final int commonPrefixEnd = findCommonPrefixEnd(actual, expected);
+                fail("Kind #" + i
+                        + "\n[Actual]\n" + insertMarkerAt(actual, commonPrefixEnd)
+                        + "\n[Expected]\n" + insertMarkerAt(expected, commonPrefixEnd));
+            }
+        }
+    }
+
+    private static int findCommonPrefixEnd(String s1, String s2) {
+        int i = 0;
+        for (;;) {
+            final boolean s1End = (s1.length() <= i);
+            final boolean s2End = (s2.length() <= i);
+            if (s1End || s2End) {
+                return i;
+            }
+            if (s1.charAt(i) != s2.charAt(i)) {
+                return i;
+            }
+            i++;
+        }
+    }
+
+    private static String insertMarkerAt(String s, int position) {
+        final String MARKER = "***";
+        if (position > s.length()) {
+            return s + MARKER;
+        } else {
+            return new StringBuilder(s).insert(position, MARKER).toString();
+        }
     }
 }

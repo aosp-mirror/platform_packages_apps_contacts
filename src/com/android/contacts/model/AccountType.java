@@ -32,7 +32,6 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
-import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
@@ -83,11 +82,35 @@ public abstract class AccountType {
      */
     private HashMap<String, DataKind> mMimeKinds = Maps.newHashMap();
 
+    protected boolean mIsInitialized;
+
+    protected static class DefinitionException extends Exception {
+        public DefinitionException(String message) {
+            super(message);
+        }
+
+        public DefinitionException(String message, Exception inner) {
+            super(message, inner);
+        }
+    }
+
     /**
      * Whether this account type was able to be fully initialized.  This may be false if
      * (for example) the package name associated with the account type could not be found.
      */
-    public boolean isInitialized() {
+    public final boolean isInitialized() {
+        return mIsInitialized;
+    }
+
+    /**
+     * @return Whether this type is an "embedded" type.  i.e. any of {@link FallbackAccountType},
+     * {@link GoogleAccountType} or {@link ExternalAccountType}.
+     *
+     * If an embedded type cannot be initialized (i.e. if {@link #isInitialized()} returns
+     * {@code false}) it's considered critical, and the application will crash.  On the other
+     * hand if it's not an embedded type, we just skip loading the type.
+     */
+    public boolean isEmbedded() {
         return true;
     }
 
@@ -274,10 +297,10 @@ public abstract class AccountType {
     /**
      * Add given {@link DataKind} to list of those provided by this source.
      */
-    public DataKind addKind(DataKind kind) {
+    public DataKind addKind(DataKind kind) throws DefinitionException {
         if (mMimeKinds.get(kind.mimeType) != null) {
-            // TODO Make it exception.
-            Log.w(TAG, "mime type '" + kind.mimeType + "' is already registered");
+            throw new DefinitionException(
+                    "mime type '" + kind.mimeType + "' is already registered");
         }
 
         kind.resPackageName = this.resPackageName;
@@ -337,6 +360,16 @@ public abstract class AccountType {
         public int hashCode() {
             return rawValue;
         }
+
+        @Override
+        public String toString() {
+            return this.getClass().getSimpleName()
+                    + " rawValue=" + rawValue
+                    + " labelRes=" + labelRes
+                    + " secondary=" + secondary
+                    + " specificMax=" + specificMax
+                    + " customColumn=" + customColumn;
+        }
     }
 
     public static class EventEditType extends EditType {
@@ -353,6 +386,11 @@ public abstract class AccountType {
         public EventEditType setYearOptional(boolean yearOptional) {
             mYearOptional = yearOptional;
             return this;
+        }
+
+        @Override
+        public String toString() {
+            return super.toString() + " mYearOptional=" + mYearOptional;
         }
     }
 
@@ -402,6 +440,19 @@ public abstract class AccountType {
 
         public boolean isMultiLine() {
             return (inputType & EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE) != 0;
+        }
+
+
+        @Override
+        public String toString() {
+            return this.getClass().getSimpleName() + ":"
+                    + " column=" + column
+                    + " titleRes=" + titleRes
+                    + " inputType=" + inputType
+                    + " minLines=" + minLines
+                    + " optional=" + optional
+                    + " shortForm=" + shortForm
+                    + " longForm=" + longForm;
         }
     }
 

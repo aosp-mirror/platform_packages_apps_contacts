@@ -17,6 +17,7 @@
 package com.android.contacts.model;
 
 import com.android.contacts.R;
+import com.android.contacts.model.AccountType.DefinitionException;
 import com.android.contacts.util.DateUtils;
 import com.google.android.collect.Lists;
 
@@ -33,10 +34,12 @@ import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
+import android.util.Log;
 
 import java.util.Locale;
 
 public class ExchangeAccountType extends BaseAccountType {
+    private static final String TAG = "ExchangeAccountType";
 
     public static final String ACCOUNT_TYPE = "com.android.exchange";
 
@@ -45,24 +48,30 @@ public class ExchangeAccountType extends BaseAccountType {
         this.resPackageName = null;
         this.summaryResPackageName = resPackageName;
 
-        addDataKindStructuredName(context);
-        addDataKindDisplayName(context);
-        addDataKindPhoneticName(context);
-        addDataKindNickname(context);
-        addDataKindPhone(context);
-        addDataKindEmail(context);
-        addDataKindStructuredPostal(context);
-        addDataKindIm(context);
-        addDataKindOrganization(context);
-        addDataKindPhoto(context);
-        addDataKindNote(context);
-        addDataKindEvent(context);
-        addDataKindWebsite(context);
-        addDataKindGroupMembership(context);
+        try {
+            addDataKindStructuredName(context);
+            addDataKindDisplayName(context);
+            addDataKindPhoneticName(context);
+            addDataKindNickname(context);
+            addDataKindPhone(context);
+            addDataKindEmail(context);
+            addDataKindStructuredPostal(context);
+            addDataKindIm(context);
+            addDataKindOrganization(context);
+            addDataKindPhoto(context);
+            addDataKindNote(context);
+            addDataKindEvent(context);
+            addDataKindWebsite(context);
+            addDataKindGroupMembership(context);
+
+            mIsInitialized = true;
+        } catch (DefinitionException e) {
+            Log.e(TAG, "Problem building account type", e);
+        }
     }
 
     @Override
-    protected DataKind addDataKindStructuredName(Context context) {
+    protected DataKind addDataKindStructuredName(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(StructuredName.CONTENT_ITEM_TYPE,
                 R.string.nameLabelsGroup, -1, true, R.layout.structured_name_editor_view));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
@@ -91,7 +100,7 @@ public class ExchangeAccountType extends BaseAccountType {
     }
 
     @Override
-    protected DataKind addDataKindDisplayName(Context context) {
+    protected DataKind addDataKindDisplayName(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME,
                 R.string.nameLabelsGroup, -1, true, R.layout.text_fields_editor_view));
 
@@ -124,7 +133,7 @@ public class ExchangeAccountType extends BaseAccountType {
     }
 
     @Override
-    protected DataKind addDataKindPhoneticName(Context context) {
+    protected DataKind addDataKindPhoneticName(Context context) throws DefinitionException {
         DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME,
                 R.string.name_phonetic, -1, true, R.layout.phonetic_name_editor_view));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
@@ -142,7 +151,7 @@ public class ExchangeAccountType extends BaseAccountType {
     }
 
     @Override
-    protected DataKind addDataKindNickname(Context context) {
+    protected DataKind addDataKindNickname(Context context) throws DefinitionException {
         final DataKind kind = super.addDataKindNickname(context);
 
         kind.typeOverallMax = 1;
@@ -155,7 +164,7 @@ public class ExchangeAccountType extends BaseAccountType {
     }
 
     @Override
-    protected DataKind addDataKindPhone(Context context) {
+    protected DataKind addDataKindPhone(Context context) throws DefinitionException {
         final DataKind kind = super.addDataKindPhone(context);
 
         kind.typeColumn = Phone.TYPE;
@@ -185,7 +194,7 @@ public class ExchangeAccountType extends BaseAccountType {
     }
 
     @Override
-    protected DataKind addDataKindEmail(Context context) {
+    protected DataKind addDataKindEmail(Context context) throws DefinitionException {
         final DataKind kind = super.addDataKindEmail(context);
 
         kind.typeOverallMax = 3;
@@ -197,7 +206,7 @@ public class ExchangeAccountType extends BaseAccountType {
     }
 
     @Override
-    protected DataKind addDataKindStructuredPostal(Context context) {
+    protected DataKind addDataKindStructuredPostal(Context context) throws DefinitionException {
         final DataKind kind = super.addDataKindStructuredPostal(context);
 
         final boolean useJapaneseOrder =
@@ -237,7 +246,7 @@ public class ExchangeAccountType extends BaseAccountType {
     }
 
     @Override
-    protected DataKind addDataKindIm(Context context) {
+    protected DataKind addDataKindIm(Context context) throws DefinitionException {
         final DataKind kind = super.addDataKindIm(context);
 
         // Types are not supported for IM. There can be 3 IMs, but OWA only shows only the first
@@ -253,7 +262,7 @@ public class ExchangeAccountType extends BaseAccountType {
     }
 
     @Override
-    protected DataKind addDataKindOrganization(Context context) {
+    protected DataKind addDataKindOrganization(Context context) throws DefinitionException {
         final DataKind kind = super.addDataKindOrganization(context);
 
         kind.typeOverallMax = 1;
@@ -268,7 +277,7 @@ public class ExchangeAccountType extends BaseAccountType {
     }
 
     @Override
-    protected DataKind addDataKindPhoto(Context context) {
+    protected DataKind addDataKindPhoto(Context context) throws DefinitionException {
         final DataKind kind = super.addDataKindPhoto(context);
 
         kind.typeOverallMax = 1;
@@ -280,7 +289,7 @@ public class ExchangeAccountType extends BaseAccountType {
     }
 
     @Override
-    protected DataKind addDataKindNote(Context context) {
+    protected DataKind addDataKindNote(Context context) throws DefinitionException {
         final DataKind kind = super.addDataKindNote(context);
 
         kind.fieldList = Lists.newArrayList();
@@ -289,7 +298,7 @@ public class ExchangeAccountType extends BaseAccountType {
         return kind;
     }
 
-    protected DataKind addDataKindEvent(Context context) {
+    protected DataKind addDataKindEvent(Context context) throws DefinitionException {
         DataKind kind = addKind(
                 new DataKind(Event.CONTENT_ITEM_TYPE, R.string.eventLabelsGroup, 150, true,
                 R.layout.event_field_editor_view));
@@ -311,7 +320,7 @@ public class ExchangeAccountType extends BaseAccountType {
     }
 
     @Override
-    protected DataKind addDataKindWebsite(Context context) {
+    protected DataKind addDataKindWebsite(Context context) throws DefinitionException {
         final DataKind kind = super.addDataKindWebsite(context);
 
         kind.typeOverallMax = 1;

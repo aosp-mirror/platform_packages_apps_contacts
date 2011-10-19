@@ -16,8 +16,6 @@
 
 package com.android.contacts.model;
 
-import com.android.contacts.R;
-import com.android.contacts.model.BaseAccountType.DefinitionException;
 import com.google.common.annotations.VisibleForTesting;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -88,30 +86,49 @@ public class ExternalAccountType extends BaseAccountType {
     private List<String> mExtensionPackageNames;
     private String mAccountTypeLabelAttribute;
     private String mAccountTypeIconAttribute;
-    private boolean mInitSuccessful;
     private boolean mHasContactsMetadata;
     private boolean mHasEditSchema;
 
     public ExternalAccountType(Context context, String resPackageName, boolean isExtension) {
+        this(context, resPackageName, isExtension, null);
+    }
+
+    /**
+     * Constructor used for testing to initialize with any arbitrary XML.
+     *
+     * @param injectedMetadata If non-null, it'll be used to initialize the type.  Only set by
+     *     tests.  If null, the metadata is loaded from the specified package.
+     */
+    ExternalAccountType(Context context, String resPackageName, boolean isExtension,
+            XmlResourceParser injectedMetadata) {
         this.mIsExtension = isExtension;
         this.resPackageName = resPackageName;
         this.summaryResPackageName = resPackageName;
 
-        // Handle unknown sources by searching their package
         final PackageManager pm = context.getPackageManager();
-        XmlResourceParser parser = null;
+        final XmlResourceParser parser;
+        if (injectedMetadata == null) {
+            try {
+                parser = loadContactsXml(context, resPackageName);
+            } catch (NameNotFoundException e1) {
+                // If the package name is not found, we can't initialize this account type.
+                return;
+            }
+        } else {
+            parser = injectedMetadata;
+        }
         try {
-            PackageInfo packageInfo = pm.getPackageInfo(resPackageName,
-                    PackageManager.GET_SERVICES|PackageManager.GET_META_DATA);
-            for (ServiceInfo serviceInfo : packageInfo.services) {
-                parser = serviceInfo.loadXmlMetaData(pm,
-                        METADATA_CONTACTS);
-                if (parser == null) continue;
+            if (parser != null) {
                 inflate(context, parser);
             }
-        } catch (NameNotFoundException nnfe) {
-            // If the package name is not found, we can't initialize this account type.
-            return;
+
+            if (!mHasEditSchema) {
+                // Bring in name and photo from fallback source, which are non-optional
+                addDataKindStructuredName(context);
+                addDataKindDisplayName(context);
+                addDataKindPhoneticName(context);
+                addDataKindPhoto(context);
+            }
         } catch (DefinitionException e) {
             String message = "Problem reading XML";
             if (parser != null) {
@@ -135,26 +152,47 @@ public class ExternalAccountType extends BaseAccountType {
         iconRes = resolveExternalResId(context, mAccountTypeIconAttribute,
                 this.resPackageName, ATTR_ACCOUNT_ICON);
 
-        if (!mHasEditSchema) {
-            // Bring in name and photo from fallback source, which are non-optional
-            addDataKindStructuredName(context);
-            addDataKindDisplayName(context);
-            addDataKindPhoneticName(context);
-            addDataKindPhoto(context);
-        }
-
         // If we reach this point, the account type has been successfully initialized.
-        mInitSuccessful = true;
+        mIsInitialized = true;
+    }
+
+    /**
+     * Returns the CONTACTS_STRUCTURE metadata (aka "contacts.xml") in the given apk package.
+     *
+     * Unfortunately, there's no public way to determine which service defines a sync service for
+     * which account type, so this method looks through all services in the package, and just
+     * returns the first CONTACTS_STRUCTURE metadata defined in any of them.
+     *
+     * Returns {@code null} if the package has no CONTACTS_STRUCTURE metadata.  In this case
+     * the account type *will* be initialized with minimal configuration.
+     *
+     * On the other hand, if the package is not found, it throws a {@link NameNotFoundException},
+     * in which case the account type will *not* be initialized.
+     */
+    private XmlResourceParser loadContactsXml(Context context, String resPackageName)
+            throws NameNotFoundException {
+        final PackageManager pm = context.getPackageManager();
+        PackageInfo packageInfo = pm.getPackageInfo(resPackageName,
+                PackageManager.GET_SERVICES|PackageManager.GET_META_DATA);
+        for (ServiceInfo serviceInfo : packageInfo.services) {
+            final XmlResourceParser parser = serviceInfo.loadXmlMetaData(pm,
+                    METADATA_CONTACTS);
+            if (parser != null) {
+                return parser;
+            }
+        }
+        // Package was found, but that doesn't contain the CONTACTS_STRUCTURE metadata.
+        return null;
+    }
+
+    @Override
+    public boolean isEmbedded() {
+        return false;
     }
 
     @Override
     public boolean isExtension() {
         return mIsExtension;
-    }
-
-    @Override
-    public boolean isInitialized() {
-        return mInitSuccessful;
     }
 
     @Override
