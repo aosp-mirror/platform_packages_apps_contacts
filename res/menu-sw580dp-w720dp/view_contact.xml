@@ -23,14 +23,14 @@
         android:showAsAction="always" />
 
     <item
-        android:id="@+id/menu_delete"
-        android:icon="@drawable/ic_menu_trash_holo_light"
-        android:title="@string/menu_deleteContact" />
-
-    <item
         android:id="@+id/menu_share"
         android:icon="@drawable/ic_menu_share_holo_light"
         android:title="@string/menu_share"
         android:alphabeticShortcut="s" />
+
+    <item
+        android:id="@+id/menu_delete"
+        android:icon="@drawable/ic_menu_trash_holo_light"
+        android:title="@string/menu_deleteContact" />
 
 </menu>
