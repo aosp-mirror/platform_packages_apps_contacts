@@ -25,7 +25,6 @@
         android:layout_height="0px"
         android:layout_weight="1"
         android:fadingEdge="none"
-        android:background="@color/background_primary"
         android:divider="@null"/>
 
     <ScrollView android:id="@android:id/empty"
