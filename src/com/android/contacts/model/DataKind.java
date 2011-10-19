@@ -33,7 +33,7 @@ import java.util.List;
  * {@link Data} rows of this kind, including the possible {@link EditType}
  * labels and editable {@link EditField}.
  */
-public class DataKind {
+public final class DataKind {
 
     public static final String PSEUDO_MIME_TYPE_DISPLAY_NAME = "#displayName";
     public static final String PSEUDO_MIME_TYPE_PHONETIC_NAME = "#phoneticName";

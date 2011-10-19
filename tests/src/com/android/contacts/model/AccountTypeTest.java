@@ -73,14 +73,6 @@ public class AccountTypeTest extends AndroidTestCase {
                 return externalResID;
             }
 
-            @Override public int getHeaderColor(Context context) {
-                return 0;
-            }
-
-            @Override public int getSideBarColor(Context context) {
-                return 0;
-            }
-
             @Override public boolean isGroupMembershipEditable() {
                 return false;
             }
@@ -125,16 +117,6 @@ public class AccountTypeTest extends AndroidTestCase {
         @Override
         public CharSequence getDisplayLabel(Context context) {
             return mDisplayLabel;
-        }
-
-        @Override
-        public int getHeaderColor(Context context) {
-            return 0;
-        }
-
-        @Override
-        public int getSideBarColor(Context context) {
-            return 0;
         }
 
         @Override

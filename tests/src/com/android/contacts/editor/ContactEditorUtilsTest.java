@@ -313,16 +313,6 @@ public class ContactEditorUtilsTest extends AndroidTestCase {
         }
 
         @Override
-        public int getHeaderColor(Context context) {
-            return 0;
-        }
-
-        @Override
-        public int getSideBarColor(Context context) {
-            return 0;
-        }
-
-        @Override
         public boolean isGroupMembershipEditable() {
             return true;
         }

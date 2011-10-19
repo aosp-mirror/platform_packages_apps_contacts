@@ -47,16 +47,6 @@ public class FallbackAccountType extends BaseAccountType {
     }
 
     @Override
-    public int getHeaderColor(Context context) {
-        return 0xff7f93bc;
-    }
-
-    @Override
-    public int getSideBarColor(Context context) {
-        return 0xffbdc7b8;
-    }
-
-    @Override
     public boolean areContactsWritable() {
         return true;
     }
