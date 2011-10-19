@@ -197,30 +197,6 @@ public class NotificationImportExportListener implements VCardImportExportListen
     /* package */ static Notification constructProgressNotification(
             Context context, int type, String description, String tickerText,
             int jobId, String displayName, int totalCount, int currentCount) {
-        final RemoteViews remoteViews =
-                new RemoteViews(context.getPackageName(),
-                        R.layout.status_bar_ongoing_event_progress_bar);
-        remoteViews.setTextViewText(R.id.status_description, description);
-        remoteViews.setProgressBar(R.id.status_progress_bar, totalCount, currentCount,
-                totalCount == -1);
-        final String percentage;
-        if (totalCount > 0) {
-            percentage = context.getString(R.string.percentage,
-                    String.valueOf(currentCount * 100/totalCount));
-        } else {
-            percentage = "";
-        }
-        remoteViews.setTextViewText(R.id.status_progress_text, percentage);
-        final int icon = (type == VCardService.TYPE_IMPORT ? android.R.drawable.stat_sys_download :
-                android.R.drawable.stat_sys_upload);
-        remoteViews.setImageViewResource(R.id.status_icon, icon);
-
-        final Notification notification = new Notification();
-        notification.icon = icon;
-        notification.tickerText = tickerText;
-        notification.contentView = remoteViews;
-        notification.flags |= Notification.FLAG_ONGOING_EVENT;
-
         // Note: We cannot use extra values here (like setIntExtra()), as PendingIntent doesn't
         // preserve them across multiple Notifications. PendingIntent preserves the first extras
         // (when flag is not set), or update them when PendingIntent#getActivity() is called
@@ -238,8 +214,20 @@ public class NotificationImportExportListener implements VCardImportExportListen
                 .appendQueryParameter(CancelActivity.TYPE, String.valueOf(type)).build();
         intent.setData(uri);
 
-        notification.contentIntent = PendingIntent.getActivity(context, 0, intent, 0);
-        return notification;
+        final Notification.Builder builder = new Notification.Builder(context);
+        builder.setOngoing(true)
+                .setProgress(totalCount, currentCount, totalCount == - 1)
+                .setTicker(tickerText)
+                .setContentTitle(description)
+                .setSmallIcon(type == VCardService.TYPE_IMPORT
+                        ? android.R.drawable.stat_sys_download
+                        : android.R.drawable.stat_sys_upload)
+                .setContentIntent(PendingIntent.getActivity(context, 0, intent, 0));
+        if (totalCount > 0) {
+            builder.setContentText(context.getString(R.string.percentage,
+                    String.valueOf(currentCount * 100 / totalCount)));
+        }
+        return builder.getNotification();
     }
 
     /**
