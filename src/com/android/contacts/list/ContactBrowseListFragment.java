@@ -165,7 +165,7 @@ public abstract class ContactBrowseListFragment extends
     }
 
     @Override
-    public void setSearchMode(boolean flag) {
+    protected void setSearchMode(boolean flag) {
         if (isSearchMode() != flag) {
             if (!flag) {
                 restoreSelectedUri(true);

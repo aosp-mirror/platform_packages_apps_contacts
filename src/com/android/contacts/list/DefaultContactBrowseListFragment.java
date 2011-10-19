@@ -120,7 +120,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     }
 
     @Override
-    public void setSearchMode(boolean flag) {
+    protected void setSearchMode(boolean flag) {
         super.setSearchMode(flag);
         checkHeaderViewVisibility();
     }

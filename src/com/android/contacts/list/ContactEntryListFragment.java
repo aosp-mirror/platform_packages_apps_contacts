@@ -108,7 +108,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private String mQueryString;
     private int mDirectorySearchMode = DirectoryListLoader.SEARCH_MODE_NONE;
     private boolean mSelectionVisible;
-    private ContactsRequest mRequest;
     private boolean mLegacyCompatibility;
 
     private boolean mEnabled = true;
@@ -249,7 +248,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         outState.putBoolean(KEY_LEGACY_COMPATIBILITY, mLegacyCompatibility);
         outState.putString(KEY_QUERY_STRING, mQueryString);
         outState.putInt(KEY_DIRECTORY_RESULT_LIMIT, mDirectoryResultLimit);
-        outState.putParcelable(KEY_REQUEST, mRequest);
         outState.putBoolean(KEY_DARK_THEME, mDarkTheme);
 
         if (mListView != null) {
@@ -282,25 +280,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mLegacyCompatibility = savedState.getBoolean(KEY_LEGACY_COMPATIBILITY);
         mQueryString = savedState.getString(KEY_QUERY_STRING);
         mDirectoryResultLimit = savedState.getInt(KEY_DIRECTORY_RESULT_LIMIT);
-        mRequest = savedState.getParcelable(KEY_REQUEST);
         mDarkTheme = savedState.getBoolean(KEY_DARK_THEME);
 
         // Retrieve list state. This will be applied in onLoadFinished
         mListState = savedState.getParcelable(KEY_LIST_STATE);
-    }
-
-    /**
-     * Returns the parsed intent that started the activity hosting this fragment.
-     */
-    public ContactsRequest getContactsRequest() {
-        return mRequest;
-    }
-
-    /**
-     * Sets a parsed intent that started the activity hosting this fragment.
-     */
-    public void setContactsRequest(ContactsRequest request) {
-        mRequest = request;
     }
 
     @Override
@@ -608,7 +591,14 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
     }
 
-    public void setSearchMode(boolean flag) {
+    /**
+     * Enter/exit search mode.  By design, a fragment enters search mode only when it has a
+     * non-empty query text, so the mode must be tightly related to the current query.
+     * For this reason this method must only be called by {@link #setQueryString}.
+     *
+     * Also note this method doesn't call {@link #reloadData()}; {@link #setQueryString} does it.
+     */
+    protected void setSearchMode(boolean flag) {
         if (mSearchMode != flag) {
             mSearchMode = flag;
             setSectionHeaderDisplayEnabled(!mSearchMode);
@@ -632,7 +622,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
                     }
                 }
                 mAdapter.configureDefaultPartition(false, flag);
-                reloadData();
             }
 
             if (mListView != null) {
@@ -641,17 +630,22 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
     }
 
-    public boolean isSearchMode() {
+    public final boolean isSearchMode() {
         return mSearchMode;
     }
 
-    public String getQueryString() {
+    public final String getQueryString() {
         return mQueryString;
     }
 
     public void setQueryString(String queryString, boolean delaySelection) {
+        // Normalize the empty query.
+        if (TextUtils.isEmpty(queryString)) queryString = null;
+
         if (!TextUtils.equals(mQueryString, queryString)) {
             mQueryString = queryString;
+            setSearchMode(!TextUtils.isEmpty(mQueryString));
+
             if (mAdapter != null) {
                 mAdapter.setQueryString(queryString);
                 reloadData();

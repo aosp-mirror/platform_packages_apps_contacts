@@ -363,7 +363,6 @@ public class DialtactsActivity extends Activity {
                 public boolean onQueryTextChange(String newText) {
                     // Show search result with non-empty text. Show a bare list otherwise.
                     mSearchFragment.setQueryString(newText, true);
-                    mSearchFragment.setSearchMode(!TextUtils.isEmpty(newText));
                     return true;
                 }
     };
