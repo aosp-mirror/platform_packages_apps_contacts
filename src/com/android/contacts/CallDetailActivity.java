@@ -294,7 +294,8 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
             public Void doInBackground(Void... params) {
                 ContentValues values = new ContentValues();
                 values.put(Voicemails.IS_READ, true);
-                getContentResolver().update(voicemailUri, values, null, null);
+                getContentResolver().update(voicemailUri, values,
+                        Voicemails.IS_READ + " = 0", null);
                 return null;
             }
         });
