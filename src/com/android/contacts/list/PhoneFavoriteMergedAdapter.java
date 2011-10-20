@@ -186,7 +186,7 @@ public class PhoneFavoriteMergedAdapter extends BaseAdapter implements SectionIn
         } else if (position == contactTileAdapterCount) {
             return mAccountFilterHeaderContainer.isEnabled();
         } else {
-            final int localPosition = position - contactTileAdapterCount + 1;
+            final int localPosition = position - contactTileAdapterCount - 1;
             return mContactEntryListAdapter.isEnabled(localPosition);
         }
     }
