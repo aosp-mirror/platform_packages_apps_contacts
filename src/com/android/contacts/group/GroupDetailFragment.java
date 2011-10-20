@@ -98,6 +98,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
     private TextView mGroupTitle;
     private TextView mGroupSize;
     private ListView mMemberListView;
+    private View mEmptyView;
 
     private Listener mListener;
 
@@ -149,6 +150,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         mGroupSize = (TextView) mRootView.findViewById(R.id.group_size);
         mGroupSourceViewContainer = (ViewGroup) mRootView.findViewById(
                 R.id.group_source_view_container);
+        mEmptyView = mRootView.findViewById(android.R.id.empty);
         mMemberListView = (ListView) mRootView.findViewById(android.R.id.list);
         mMemberListView.setAdapter(mAdapter);
 
@@ -258,6 +260,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
             updateSize(data.getCount());
             mAdapter.setContactCursor(data);
+            mMemberListView.setEmptyView(mEmptyView);
         }
 
         @Override

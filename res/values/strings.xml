@@ -269,6 +269,12 @@
     <!-- The text displayed when the contacts list is empty while displaying only contacts that have phone numbers -->
     <string name="noContactsWithPhoneNumbers">No contacts with phone numbers.</string>
 
+    <!-- The text displayed when there are no members in the group while displaying the group detail page [CHAR LIMIT=40] -->
+    <string name="emptyGroup">No people in this group.</string>
+
+    <!-- The text displayed to instruct users to add members to a group (when viewing a group detail page for a group with no members) [CHAR LIMIT=50] -->
+    <string name="addPeopleToGroup">To add some, edit the group.</string>
+
     <!-- Displayed in a spinner dialog after the user creates a contact and it's being saved to the database -->
     <string name="savingContact">Saving contact\u2026</string>
 
