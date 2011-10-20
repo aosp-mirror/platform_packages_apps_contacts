@@ -16,20 +16,48 @@
 
 <!--
   This is a header entry in the contact updates list.
-  Add a first item that gives us enough space to show the carousel
 -->
-<view
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
-    class="com.android.contacts.widget.ProportionalLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    ex:ratio="0.5"
-    ex:direction="widthToHeight">
+    android:orientation="vertical">
 
-    <!-- Put a dummy view here because the ProportionalLayout requires one -->
+    <!-- This blank view pushes the other content down because of the tab carousel -->
+    <view
+        class="com.android.contacts.widget.ProportionalLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ex:ratio="0.5"
+        ex:direction="widthToHeight">
+
+        <!-- Put a dummy view here because the ProportionalLayout requires one -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </view>
+
+    <!-- "Recent" header text -->
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="32dip"
+        android:paddingLeft="16dip"
+        android:paddingRight="16dip"
+        android:focusable="false">
 
-</view>
+        <TextView
+            style="?android:attr/listSeparatorTextViewStyle"
+            android:paddingLeft="8dip"
+            android:paddingRight="8dip"
+            android:background="@drawable/list_section_divider_holo_custom"
+            android:text="@string/recent"
+            android:textColor="@color/people_app_theme_color"
+            android:textAllCaps="true"
+            android:singleLine="true"
+            android:ellipsize="end" />
+
+    </FrameLayout>
+
+</LinearLayout>
