@@ -411,7 +411,12 @@ class AccountTypeManagerImpl extends AccountTypeManager
                     Log.d(TAG, "Registering external account type=" + type
                             + ", packageName=" + auth.packageName);
                     accountType = new ExternalAccountType(mContext, auth.packageName, false);
-                    if (!accountType.isInitialized()) {
+                }
+                if (!accountType.isInitialized()) {
+                    if (accountType.isEmbedded()) {
+                        throw new IllegalStateException("Problem initializing embedded type "
+                                + accountType.getClass().getCanonicalName());
+                    } else {
                         // Skip external account types that couldn't be initialized.
                         continue;
                     }
