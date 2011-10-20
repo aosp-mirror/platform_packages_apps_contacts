@@ -220,12 +220,14 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         return mCurrentTab;
     }
 
+    /**
+     * @return Whether in search mode, i.e. if the search view is visible/expanded.
+     *
+     * Note even if the action bar is in search mode, if the query is empty, the search fragment
+     * will not be in search mode.
+     */
     public boolean isSearchMode() {
         return mSearchMode;
-    }
-
-    public boolean shouldShowSearchResult() {
-        return mSearchMode && !TextUtils.isEmpty(mQueryString);
     }
 
     public void setSearchMode(boolean flag) {
@@ -244,7 +246,7 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     }
 
     public String getQueryString() {
-        return mQueryString;
+        return mSearchMode ? mQueryString : null;
     }
 
     public void setQueryString(String query) {

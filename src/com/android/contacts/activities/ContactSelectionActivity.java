@@ -327,7 +327,6 @@ public class ContactSelectionActivity extends ContactsActivity
 
             case ContactsRequest.ACTION_PICK_CONTACT: {
                 ContactPickerFragment fragment = new ContactPickerFragment();
-                fragment.setSearchMode(mRequest.isSearchMode());
                 fragment.setIncludeProfile(mRequest.shouldIncludeProfile());
                 mListFragment = fragment;
                 break;
@@ -341,8 +340,6 @@ public class ContactSelectionActivity extends ContactsActivity
 
             case ContactsRequest.ACTION_CREATE_SHORTCUT_CONTACT: {
                 ContactPickerFragment fragment = new ContactPickerFragment();
-                fragment.setSearchMode(mRequest.isSearchMode());
-                fragment.setQueryString(mRequest.getQueryString(), false);
                 fragment.setShortcutRequested(true);
                 mListFragment = fragment;
                 break;
@@ -362,7 +359,6 @@ public class ContactSelectionActivity extends ContactsActivity
             case ContactsRequest.ACTION_CREATE_SHORTCUT_CALL: {
                 PhoneNumberPickerFragment fragment = new PhoneNumberPickerFragment();
                 fragment.setShortcutAction(Intent.ACTION_CALL);
-                fragment.setSearchMode(mRequest.isSearchMode());
 
                 mListFragment = fragment;
                 break;
@@ -387,9 +383,6 @@ public class ContactSelectionActivity extends ContactsActivity
         }
 
         mListFragment.setLegacyCompatibilityMode(mRequest.isLegacyCompatibilityMode());
-        mListFragment.setContactsRequest(mRequest);
-        mListFragment.setSearchMode(mRequest.isSearchMode());
-        mListFragment.setQueryString(mRequest.getQueryString(), false);
         mListFragment.setDirectoryResultLimit(DEFAULT_DIRECTORY_RESULT_LIMIT);
 
         getFragmentManager().beginTransaction()
@@ -537,7 +530,6 @@ public class ContactSelectionActivity extends ContactsActivity
     @Override
     public boolean onQueryTextChange(String newText) {
         mListFragment.setQueryString(newText, true);
-        mListFragment.setSearchMode(!TextUtils.isEmpty(newText));
         return false;
     }
 

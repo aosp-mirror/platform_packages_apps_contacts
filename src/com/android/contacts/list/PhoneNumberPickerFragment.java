@@ -104,7 +104,7 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     }
 
     @Override
-    public void setSearchMode(boolean flag) {
+    protected void setSearchMode(boolean flag) {
         super.setSearchMode(flag);
         updateFilterHeaderView();
     }

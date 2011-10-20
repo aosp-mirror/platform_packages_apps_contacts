@@ -567,12 +567,12 @@ public class PeopleActivity extends ContactsActivity
                 invalidateOptionsMenu();
                 break;
             case STOP_SEARCH_MODE:
-                clearSearch();
+                setQueryTextToFragment("");
                 updateFragmentsVisibility();
                 invalidateOptionsMenu();
                 break;
             case CHANGE_SEARCH_QUERY:
-                loadSearch(mActionBarAdapter.getQueryString());
+                setQueryTextToFragment(mActionBarAdapter.getQueryString());
                 break;
             default:
                 throw new IllegalStateException("Unkonwn ActionBarAdapter action: " + action);
@@ -843,26 +843,19 @@ public class PeopleActivity extends ContactsActivity
         }
     }
 
-    private void clearSearch() {
-        loadSearch("");
-    }
-
-    private void loadSearch(String query) {
-        configureFragments(false /* from request */);
+    private void setQueryTextToFragment(String query) {
         mAllFragment.setQueryString(query, true);
+        mAllFragment.setVisibleScrollbarEnabled(!mAllFragment.isSearchMode());
     }
 
     private void configureContactListFragmentForRequest() {
-        mAllFragment.setContactsRequest(mRequest);
-
         Uri contactUri = mRequest.getContactUri();
         if (contactUri != null) {
             mAllFragment.setSelectedContactUri(contactUri);
         }
 
         mAllFragment.setFilter(mContactListFilterController.getFilter());
-        mAllFragment.setSearchMode(mActionBarAdapter.isSearchMode());
-        mAllFragment.setQueryString(mActionBarAdapter.getQueryString(), false);
+        setQueryTextToFragment(mActionBarAdapter.getQueryString());
 
         if (mRequest.isDirectorySearchEnabled()) {
             mAllFragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DEFAULT);
@@ -875,11 +868,7 @@ public class PeopleActivity extends ContactsActivity
         // Filter may be changed when this Activity is in background.
         mAllFragment.setFilter(mContactListFilterController.getFilter());
 
-        final boolean showSearchResult = mActionBarAdapter.shouldShowSearchResult();
-        mAllFragment.setSearchMode(showSearchResult);
-
         final boolean useTwoPane = PhoneCapabilityTester.isUsingTwoPanes(this);
-        mAllFragment.setVisibleScrollbarEnabled(!showSearchResult);
         mAllFragment.setVerticalScrollbarPosition(
                 useTwoPane
                         ? View.SCROLLBAR_POSITION_LEFT
