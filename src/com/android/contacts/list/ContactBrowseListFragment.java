@@ -17,10 +17,10 @@ package com.android.contacts.list;
 
 import com.android.common.widget.CompositeCursorAdapter.Partition;
 import com.android.contacts.R;
+import com.android.contacts.util.ContactLoaderUtils;
 import com.android.contacts.widget.AutoScrollListView;
 
 import android.app.Activity;
-import android.content.AsyncQueryHandler;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Loader;
@@ -28,6 +28,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -92,50 +93,63 @@ public abstract class ContactBrowseListFragment extends
     private String mPersistentSelectionPrefix = PERSISTENT_SELECTION_PREFIX;
 
     protected OnContactBrowserActionListener mListener;
+    private ContactLookupTask mContactLookupTask;
 
-    /**
-     * Refreshes a contact URI: it may have changed as a result of aggregation
-     * activity.
-     */
-    private class ContactUriQueryHandler extends AsyncQueryHandler {
+    private final class ContactLookupTask extends AsyncTask<Void, Void, Uri> {
 
-        public ContactUriQueryHandler(ContentResolver cr) {
-            super(cr);
-        }
+        private final Uri mUri;
+        private boolean mIsCancelled;
 
-        public void runQuery() {
-            startQuery(0, mSelectedContactUri, mSelectedContactUri,
-                    new String[] { Contacts._ID, Contacts.LOOKUP_KEY }, null, null, null);
+        public ContactLookupTask(Uri uri) {
+            mUri = uri;
         }
 
         @Override
-        protected void onQueryComplete(int token, Object cookie, Cursor data) {
-            long contactId = 0;
-            String lookupKey = null;
-            if (data != null) {
-                if (data.moveToFirst()) {
-                    contactId = data.getLong(0);
-                    lookupKey = data.getString(1);
-                }
-                data.close();
-            }
+        protected Uri doInBackground(Void... args) {
+            Cursor cursor = null;
+            try {
+                final ContentResolver resolver = getContext().getContentResolver();
+                final Uri uriCurrentFormat = ContactLoaderUtils.ensureIsContactUri(resolver, mUri);
+                cursor = resolver.query(uriCurrentFormat,
+                        new String[] { Contacts._ID, Contacts.LOOKUP_KEY }, null, null, null);
 
-            if (!cookie.equals(mSelectedContactUri)) {
+                if (cursor != null && cursor.moveToFirst()) {
+                    final long contactId = cursor.getLong(0);
+                    final String lookupKey = cursor.getString(1);
+                    if (contactId != 0 && !TextUtils.isEmpty(lookupKey)) {
+                        return Contacts.getLookupUri(contactId, lookupKey);
+                    }
+                }
+
+                Log.e(TAG, "Error: No contact ID or lookup key for contact " + mUri);
+                return null;
+            } finally {
+                if (cursor != null) {
+                    cursor.close();
+                }
+            }
+        }
+
+        public void cancel() {
+            super.cancel(true);
+            // Use a flag to keep track of whether the {@link AsyncTask} was cancelled or not in
+            // order to ensure onPostExecute() is not executed after the cancel request. The flag is
+            // necessary because {@link AsyncTask} still calls onPostExecute() if the cancel request
+            // came after the worker thread was finished.
+            mIsCancelled = true;
+        }
+
+        @Override
+        protected void onPostExecute(Uri uri) {
+            // Make sure the {@link Fragment} is at least still attached to the {@link Activity}
+            // before continuing.
+            if (mIsCancelled || !isAdded() || uri == null) {
                 return;
             }
-
-            Uri uri;
-            if (contactId != 0 && lookupKey != null) {
-                uri = Contacts.getLookupUri(contactId, lookupKey);
-            } else {
-                uri = null;
-            }
-
-            onContactUriQueryFinished(uri);
+            mSelectedContactUri = uri;
+            onContactUriQueryFinished(mSelectedContactUri);
         }
     }
-
-    private ContactUriQueryHandler mQueryHandler;
 
     private boolean mDelaySelection;
 
@@ -158,7 +172,6 @@ public abstract class ContactBrowseListFragment extends
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        mQueryHandler = new ContactUriQueryHandler(activity.getContentResolver());
         mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
         restoreFilter();
         restoreSelectedUri(false);
@@ -228,11 +241,9 @@ public abstract class ContactBrowseListFragment extends
     }
 
     protected void refreshSelectedContactUri() {
-        if (mQueryHandler == null) {
-            return;
+        if (mContactLookupTask != null) {
+            mContactLookupTask.cancel();
         }
-
-        mQueryHandler.cancelOperation(0);
 
         if (!isSelectionVisible()) {
             return;
@@ -249,7 +260,8 @@ public abstract class ContactBrowseListFragment extends
                 && mSelectedContactDirectoryId != Directory.LOCAL_INVISIBLE) {
             onContactUriQueryFinished(mSelectedContactUri);
         } else {
-            mQueryHandler.runQuery();
+            mContactLookupTask = new ContactLookupTask(mSelectedContactUri);
+            mContactLookupTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, (Void[])null);
         }
     }
 

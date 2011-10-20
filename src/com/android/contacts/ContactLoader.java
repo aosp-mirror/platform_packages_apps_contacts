@@ -19,6 +19,7 @@ package com.android.contacts;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountTypeWithDataSet;
+import com.android.contacts.util.ContactLoaderUtils;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.StreamItemEntry;
 import com.android.contacts.util.StreamItemPhotoEntry;
@@ -681,7 +682,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         protected Result doInBackground(Void... args) {
             try {
                 final ContentResolver resolver = getContext().getContentResolver();
-                final Uri uriCurrentFormat = ensureIsContactUri(resolver, mLookupUri);
+                final Uri uriCurrentFormat = ContactLoaderUtils.ensureIsContactUri(
+                        resolver, mLookupUri);
                 Result result = loadContactEntity(resolver, uriCurrentFormat);
                 if (!result.isNotFound()) {
                     if (result.isDirectoryEntry()) {
@@ -704,47 +706,6 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
                 Log.e(TAG, "Error loading the contact: " + mLookupUri, e);
                 return Result.forError(mRequestedUri, e);
             }
-        }
-
-        /**
-         * Transforms the given Uri and returns a Lookup-Uri that represents the contact.
-         * For legacy contacts, a raw-contact lookup is performed.
-         * @param resolver
-         */
-        private Uri ensureIsContactUri(final ContentResolver resolver, final Uri uri) {
-            if (uri == null) throw new IllegalArgumentException("uri must not be null");
-
-            final String authority = uri.getAuthority();
-
-            // Current Style Uri?
-            if (ContactsContract.AUTHORITY.equals(authority)) {
-                final String type = resolver.getType(uri);
-                // Contact-Uri? Good, return it
-                if (Contacts.CONTENT_ITEM_TYPE.equals(type)) {
-                    return uri;
-                }
-
-                // RawContact-Uri? Transform it to ContactUri
-                if (RawContacts.CONTENT_ITEM_TYPE.equals(type)) {
-                    final long rawContactId = ContentUris.parseId(uri);
-                    return RawContacts.getContactLookupUri(getContext().getContentResolver(),
-                            ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId));
-                }
-
-                // Anything else? We don't know what this is
-                throw new IllegalArgumentException("uri format is unknown");
-            }
-
-            // Legacy Style? Convert to RawContact
-            final String OBSOLETE_AUTHORITY = "contacts";
-            if (OBSOLETE_AUTHORITY.equals(authority)) {
-                // Legacy Format. Convert to RawContact-Uri and then lookup the contact
-                final long rawContactId = ContentUris.parseId(uri);
-                return RawContacts.getContactLookupUri(resolver,
-                        ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId));
-            }
-
-            throw new IllegalArgumentException("uri authority is unknown");
         }
 
         private Result loadContactEntity(ContentResolver resolver, Uri contactUri) {
