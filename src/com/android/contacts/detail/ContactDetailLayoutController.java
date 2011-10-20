@@ -324,7 +324,7 @@ public class ContactDetailLayoutController {
                 // Update ViewPager to disable swipe so that it only shows the detail fragment
                 // and switch to the detail fragment
                 mViewPagerAdapter.enableSwipe(false);
-                mViewPager.setCurrentItem(0);
+                mViewPager.setCurrentItem(0, false /* smooth transition */);
                 break;
             case FRAGMENT_CAROUSEL: {
                 // Disable swipe so only the detail fragment shows
