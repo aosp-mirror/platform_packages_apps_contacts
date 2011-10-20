@@ -75,6 +75,7 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     private final MyTabListener mTabListener = new MyTabListener();
 
     private boolean mShowHomeIcon;
+    private boolean mShowTabsAsText;
 
     public enum TabState {
         GROUPS,
@@ -98,13 +99,17 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
     private static final TabState DEFAULT_TAB = TabState.ALL;
     private TabState mCurrentTab = DEFAULT_TAB;
 
-    public ActionBarAdapter(Context context, Listener listener, ActionBar actionBar) {
+    public ActionBarAdapter(Context context, Listener listener, ActionBar actionBar,
+            boolean isUsingTwoPanes) {
         mContext = context;
         mListener = listener;
         mActionBar = actionBar;
         mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
 
         mShowHomeIcon = mContext.getResources().getBoolean(R.bool.show_home_icon);
+
+        // On wide screens, show the tabs as text (instead of icons)
+        mShowTabsAsText = isUsingTwoPanes;
 
         // Set up search view.
         View customSearchView = LayoutInflater.from(mActionBar.getThemedContext()).inflate(
@@ -153,12 +158,16 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         mListener = listener;
     }
 
-    private void addTab(TabState tabState, int icon, int contentDescription) {
+    private void addTab(TabState tabState, int icon, int description) {
         final Tab tab = mActionBar.newTab();
         tab.setTag(tabState);
-        tab.setIcon(icon);
-        tab.setContentDescription(contentDescription);
         tab.setTabListener(mTabListener);
+        if (mShowTabsAsText) {
+            tab.setText(description);
+        } else {
+            tab.setIcon(icon);
+            tab.setContentDescription(description);
+        }
         mActionBar.addTab(tab);
     }
 

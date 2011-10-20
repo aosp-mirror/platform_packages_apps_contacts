@@ -317,7 +317,8 @@ public class PeopleActivity extends ContactsActivity
         final FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         // Prepare the fragments which are used both on 1-pane and on 2-pane.
-        if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
+        boolean isUsingTwoPanes = PhoneCapabilityTester.isUsingTwoPanes(this);
+        if (isUsingTwoPanes) {
             mFavoritesFragment = getFragment(R.id.favorites_fragment);
             mAllFragment = getFragment(R.id.all_fragment);
             mGroupsFragment = getFragment(R.id.groups_fragment);
@@ -367,7 +368,7 @@ public class PeopleActivity extends ContactsActivity
         transaction.hide(mAllFragment);
         transaction.hide(mGroupsFragment);
 
-        if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
+        if (isUsingTwoPanes) {
             // Prepare 2-pane only fragments/views...
 
             // Container views for fragments
@@ -410,7 +411,7 @@ public class PeopleActivity extends ContactsActivity
         }
 
         // Configure action bar
-        mActionBarAdapter = new ActionBarAdapter(this, this, getActionBar());
+        mActionBarAdapter = new ActionBarAdapter(this, this, getActionBar(), isUsingTwoPanes);
         mActionBarAdapter.initialize(savedState, mRequest);
 
         invalidateOptionsMenuIfNeeded();
