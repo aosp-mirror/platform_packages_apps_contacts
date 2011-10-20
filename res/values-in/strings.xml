@@ -462,7 +462,7 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Yang berkilau bintangnya"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Ubahsuaian"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"Ubahsuaikan..."</string>
-    <string name="list_filter_phones" msgid="735313795643493365">"Semua data kenalan dengan nomor telepon"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"Semua kenalan dengan nomor telepon"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Kenalan"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Tentukan tampilan ubahsuaian"</string>
     <string name="contact_list_loading" msgid="3859280390185230582">"Memuat ..."</string>

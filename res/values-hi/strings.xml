@@ -560,7 +560,7 @@
     <string name="external_profile_title" msgid="8034998767621359438">"मेरी <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> प्रोफ़ाइल"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"सभी संपर्क प्रदर्शित कर रहा है"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"लोग Google खाते के साथ बेहतर तरीके से कार्य करते हैं."\n\n"• किसी भी वेब ब्राउज़र से पहुंचें."\n"• सुरक्षि‍त रूप से अपने संपर्कों का बैकअप लें."</string>
-    <string name="generic_no_account_prompt" msgid="7218827704367325460">"आपना फ़ोन खो देने पर भी अपने संपर्क सुरक्षित रखें: किसी ऑनलाइन सेवा से समन्‍वयित करें."</string>
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"अपना फ़ोन खो देने पर भी अपने संपर्क सुरक्षित रखें: किसी ऑनलाइन सेवा से समन्‍वयित करें."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"कोई खाता जोड़ें"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"आपके नए संपर्क का बैक अप नहीं लिया जाएगा. ऐसा खाता जोड़ें जो संपर्कों का ऑन‍लाइन बैक अप ले?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"आपका नया संपर्क <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> के साथ समन्‍वयित किया जाएगा."</string>
