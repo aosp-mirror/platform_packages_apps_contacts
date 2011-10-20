@@ -56,7 +56,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/detail_update_tab_text_color"
         android:textStyle="bold"
-        android:maxLines="3"/>
+        android:maxLines="@integer/updates_tab_snippet_max_lines"/>
 
     <View
         android:id="@+id/alpha_overlay"
