@@ -21,43 +21,62 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_primary"
+    android:background="@drawable/panel_content"
     android:paddingLeft="@dimen/group_detail_border_padding"
     android:paddingRight="@dimen/group_detail_border_padding">
 
-    <TextView
-        android:id="@+id/group_title"
+    <!-- Static header containing the group title, size, and group source (if applicable) -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="8dip"
-        android:paddingTop="12dip"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold" />
+        android:orientation="horizontal" >
 
-    <TextView
-        android:id="@+id/group_size"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="8dip"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="?android:attr/textColorTertiary" />
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="8dip"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/group_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:paddingTop="12dip"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/group_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:paddingBottom="12dip"
+                android:textAppearance="@style/GroupMembershipSizeTextAppearance"
+                android:textColor="?android:attr/textColorSecondary" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/group_source_view_container"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dip"
-        android:background="@color/people_app_theme_color"
-        android:layout_marginTop="12dip" />
+        android:background="@color/people_app_theme_color" />
 
-    <FrameLayout
-        android:id="@+id/group_source_view_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical" />
-
+    <!-- List of group members -->
     <ListView android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:cacheColorHint="#00000000"
+        android:cacheColorHint="@android:color/black"
         android:fadingEdge="none"
         android:divider="@null" />
 
