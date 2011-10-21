@@ -97,8 +97,8 @@
     <string name="noAccounts" msgid="4742609114153797268">"Per creare gruppi è necessario un account"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Nessun contatto corrispondente trovato."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Nessun contatto con numeri di telefono."</string>
-    <string name="savingContact" msgid="4075751076741924939">"Salvataggio contatto in corso..."</string>
-    <string name="savingDisplayGroups" msgid="2133152192716475939">"Salvataggio opzioni di visualizzazione in corso..."</string>
+    <string name="savingContact" msgid="4075751076741924939">"Salvataggio contatto..."</string>
+    <string name="savingDisplayGroups" msgid="2133152192716475939">"Salvataggio opzioni di visualizzazione..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Contatto salvato"</string>
     <string name="contactSavedErrorToast" msgid="9189098776225004666">"Errore, impossibile salvare le modifiche ai contatti."</string>
     <string name="groupSavedToast" msgid="6675062559302493011">"Gruppo salvato"</string>
@@ -428,7 +428,7 @@
     <string name="upgrade_out_of_memory" msgid="6153384328042175667">"Upgrade dei contatti in corso."\n\n"La procedura di upgrade richiede circa <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB di memoria interna."\n\n"Scegli una delle seguenti opzioni:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Disinstalla alcune applicazioni"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Riprova l\'aggiornamento"</string>
-    <string name="search_results_searching" msgid="7755623475227227314">"Ricerca in corso..."</string>
+    <string name="search_results_searching" msgid="7755623475227227314">"Ricerca..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Mostra selezionati"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Mostra tutto"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Seleziona tutto"</string>
