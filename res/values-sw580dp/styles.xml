@@ -21,6 +21,7 @@
         <item name="android:actionBarTabStyle">@style/ContactsActionBarTabView</item>
         <item name="android:textColorPrimary">@color/primary_text_color</item>
         <item name="android:textColorSecondary">@color/secondary_text_color</item>
+        <item name="android:listViewStyle">@style/ListViewStyle</item>
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="section_header_background">@drawable/list_title_holo</item>
@@ -56,6 +57,7 @@
     </style>
 
     <style name="ContactPickerTheme" parent="@android:Theme.Holo.Light.Dialog">
+        <item name="android:listViewStyle">@style/ListViewStyle</item>
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
         <item name="section_header_background">@drawable/list_title_holo</item>
         <item name="list_item_divider">?android:attr/listDivider</item>
@@ -95,6 +97,7 @@
 
     <style name="ContactListFilterTheme" parent="@android:Theme.Holo.Light.Dialog">
         <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:listViewStyle">@style/ListViewStyle</item>
     </style>
 
     <style name="CustomContactListFilterView" parent="ContactListFilterTheme">

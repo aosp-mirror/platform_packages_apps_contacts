@@ -255,6 +255,7 @@ public class GroupMembershipView extends LinearLayout
 
         ListView listView = mPopup.getListView();
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        listView.setOverScrollMode(OVER_SCROLL_ALWAYS);
         int count = mAdapter.getCount();
         for (int i = 0; i < count; i++) {
             listView.setItemChecked(i, mAdapter.getItem(i).isChecked());
