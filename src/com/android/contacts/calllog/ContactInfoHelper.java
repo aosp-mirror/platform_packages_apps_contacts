@@ -114,6 +114,10 @@ public class ContactInfoHelper {
         // uppercase the incoming SIP address, in order to do a
         // case-insensitive match.
         //
+        // TODO: SIP URIs are defined as being case sensitive for the user part (before the '@')
+        // and case insensitive everywhere else. We should change the code to handle this
+        // accordingly.
+        //
         // TODO: May also need to normalize by adding "sip:" as a
         // prefix, if we start storing SIP addresses that way in the
         // database.

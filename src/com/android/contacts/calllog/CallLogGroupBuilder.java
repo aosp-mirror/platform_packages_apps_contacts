@@ -17,6 +17,7 @@
 package com.android.contacts.calllog;
 
 import com.android.common.widget.GroupingListAdapter;
+import com.google.common.annotations.VisibleForTesting;
 
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
@@ -74,7 +75,7 @@ public class CallLogGroupBuilder {
         while (cursor.moveToNext()) {
             cursor.copyStringToBuffer(CallLogQuery.NUMBER, currentNumber);
             final int callType = cursor.getInt(CallLogQuery.CALL_TYPE);
-            final boolean sameNumber = equalPhoneNumbers(firstNumber, currentNumber);
+            final boolean sameNumber = equalNumbers(firstNumber, currentNumber);
             final boolean shouldGroup;
 
             if (CallLogQuery.isSectionHeader(cursor)) {
@@ -129,10 +130,45 @@ public class CallLogGroupBuilder {
         mGroupCreator.addGroup(cursorPosition, size, false);
     }
 
-    private boolean equalPhoneNumbers(CharArrayBuffer buffer1, CharArrayBuffer buffer2) {
+    @VisibleForTesting
+    boolean equalNumbers(CharArrayBuffer buffer1, CharArrayBuffer buffer2) {
         // TODO add PhoneNumberUtils.compare(CharSequence, CharSequence) to avoid
         // string allocation
-        return PhoneNumberUtils.compare(new String(buffer1.data, 0, buffer1.sizeCopied),
-                new String(buffer2.data, 0, buffer2.sizeCopied));
+        String number1 = buffer1 == null ? null : new String(buffer1.data, 0, buffer1.sizeCopied);
+        String number2 = buffer2 == null ? null : new String(buffer2.data, 0, buffer2.sizeCopied);
+        if (PhoneNumberUtils.isUriNumber(number1) || PhoneNumberUtils.isUriNumber(number2)) {
+            return compareSipAddresses(number1, number2);
+        } else {
+            return PhoneNumberUtils.compare(number1, number2);
+        }
+    }
+
+    @VisibleForTesting
+    boolean compareSipAddresses(String number1, String number2) {
+        if (number1 == null || number2 == null) return number1 == number2;
+
+        int index1 = number1.indexOf('@');
+        final String userinfo1;
+        final String rest1;
+        if (index1 != -1) {
+            userinfo1 = number1.substring(0, index1);
+            rest1 = number1.substring(index1);
+        } else {
+            userinfo1 = number1;
+            rest1 = "";
+        }
+
+        int index2 = number2.indexOf('@');
+        final String userinfo2;
+        final String rest2;
+        if (index2 != -1) {
+            userinfo2 = number2.substring(0, index2);
+            rest2 = number2.substring(index2);
+        } else {
+            userinfo2 = number2;
+            rest2 = "";
+        }
+
+        return userinfo1.equals(userinfo2) && rest1.equalsIgnoreCase(rest2);
     }
 }
