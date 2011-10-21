@@ -14,8 +14,5 @@
      limitations under the License.
 -->
 <resources>
-    <dimen name="group_detail_border_padding">32dip</dimen>
-    <dimen name="group_detail_side_margin">32dip</dimen>
-    <dimen name="detail_contact_photo_margin">16dip</dimen>
-    <dimen name="contact_detail_list_top_padding">32dip</dimen>
+    <style name="GroupMembershipSizeTextAppearance" parent="@android:style/TextAppearance.Medium" />
 </resources>

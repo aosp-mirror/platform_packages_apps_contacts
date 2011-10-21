@@ -142,7 +142,10 @@
     <dimen name="group_editor_autocomplete_left_padding">8dip</dimen>
 
     <!-- Border padding for the group detail fragment -->
-    <dimen name="group_detail_border_padding">32dip</dimen>
+    <dimen name="group_detail_border_padding">0dip</dimen>
+
+    <!-- Left and right margin for the divider in the group detail fragment -->
+    <dimen name="group_detail_side_margin">0dip</dimen>
 
     <!-- Height of edit text in dialpad fragment -->
     <dimen name="dialpad_horizontal_margin">0dip</dimen>

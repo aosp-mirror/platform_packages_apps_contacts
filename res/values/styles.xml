@@ -300,4 +300,6 @@
         <item name="android:layout_height">2dip</item>
         <item name="android:background">@color/quickcontact_tab_indicator</item>
     </style>
+
+    <style name="GroupMembershipSizeTextAppearance" parent="@android:style/TextAppearance.Small"/>
 </resources>
