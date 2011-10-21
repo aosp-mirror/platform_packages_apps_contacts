@@ -80,7 +80,7 @@
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Crear contacto nuevo"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Teléfono"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"Correo"</string>
-    <string name="imLabelsGroup" msgid="3898238486262614027">"MI"</string>
+    <string name="imLabelsGroup" msgid="3898238486262614027">"Nombre de chat"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Dirección"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Organización"</item>
@@ -401,7 +401,7 @@
     <string name="name_phonetic_given" msgid="6853570431394449191">"Nombre fonético"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Segundo nombre fonético"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"Apellido fonético"</string>
-    <string name="name_phonetic" msgid="4259595234312430484">"Transcripción fonética del nombre"</string>
+    <string name="name_phonetic" msgid="4259595234312430484">"Transcripción fonética nombre"</string>
     <string name="connections" msgid="8098440723172028350">"Conexiones"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Añadir conexión"</string>
     <string name="recent_updates" msgid="2062236709538790412">"Reciente"</string>
@@ -423,7 +423,7 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Hacer una foto nueva"</string>
     <string name="pick_photo" msgid="448886509158039462">"Seleccionar foto de la galería"</string>
     <string name="pick_new_photo" msgid="7962368009197147617">"Seleccionar nueva foto de la galería"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Se está actualizando la lista de contactos con el cambio de idioma."</string>
+    <string name="locale_change_in_progress" msgid="7583992153091537467">"La lista de contactos se está actualizando para reflejar el cambio de idioma."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"La lista de contactos se está actualizando."</string>
     <string name="upgrade_out_of_memory" msgid="6153384328042175667">"Los contactos se están actualizando. "\n\n"Este proceso requiere aproximadamente <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> Mb de espacio de almacenamiento interno."\n\n"Elige una de las siguientes opciones:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Desinstalar algunas aplicaciones"</string>
@@ -477,7 +477,7 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Añadir al contacto"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Cerrar"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7356532842767854606">"Introducir un año"</string>
+    <string name="date_year_toggle" msgid="7356532842767854606">"Introducir año"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Contacto"</string>
     <string name="social_widget_loading" msgid="3697996166985327861">"Cargando..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Crear contacto nuevo"</string>
