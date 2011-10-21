@@ -24,7 +24,6 @@ import com.android.contacts.util.NotifyingAsyncQueryHandler;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -122,14 +121,12 @@ public final class ShowOrCreateActivity extends ContactsActivity
         // Handle specific query request
         if (Constants.SCHEME_MAILTO.equals(scheme)) {
             mCreateExtras.putString(Intents.Insert.EMAIL, ssp);
-            mCreateExtras.putString(SearchManager.QUERY, ssp);
 
             Uri uri = Uri.withAppendedPath(Email.CONTENT_FILTER_URI, Uri.encode(ssp));
             mQueryHandler.startQuery(QUERY_TOKEN, null, uri, CONTACTS_PROJECTION, null, null, null);
 
         } else if (Constants.SCHEME_TEL.equals(scheme)) {
             mCreateExtras.putString(Intents.Insert.PHONE, ssp);
-            mCreateExtras.putString(SearchManager.QUERY, ssp);
 
             Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, ssp);
             mQueryHandler.startQuery(QUERY_TOKEN, null, uri, PHONES_PROJECTION, null, null, null);
