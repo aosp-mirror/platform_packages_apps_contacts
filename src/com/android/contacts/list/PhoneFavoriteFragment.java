@@ -164,6 +164,7 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
             // FastScroller should be visible only when the user is seeing "all" contacts section.
             final boolean shouldShow = mAdapter.shouldShowFirstScroller(firstVisibleItem);
             if (shouldShow != mShouldShowFastScroller) {
+                mListView.setVerticalScrollBarEnabled(shouldShow);
                 mListView.setFastScrollEnabled(shouldShow);
                 mListView.setFastScrollAlwaysVisible(shouldShow);
                 mShouldShowFastScroller = shouldShow;
@@ -239,7 +240,7 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
         mListView = (ListView) listLayout.findViewById(R.id.contact_tile_list);
         mListView.setItemsCanFocus(true);
         mListView.setOnItemClickListener(this);
-        mListView.setVerticalScrollBarEnabled(true);
+        mListView.setVerticalScrollBarEnabled(false);
         mListView.setVerticalScrollbarPosition(View.SCROLLBAR_POSITION_RIGHT);
         mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
 
