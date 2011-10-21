@@ -23,7 +23,8 @@
     xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="8dip">
 
     <!-- Ensure that the contact photo for a contact WITHOUT social updates is the same width and
     height as a contact WITH social updates (where the photo is 2/3 of the screen width). -->
@@ -57,12 +58,26 @@
 
     </view>
 
-    <TextView
-        android:id="@+id/name"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="@dimen/detail_header_name_text_size" />
+        android:orientation="horizontal"
+        android:paddingTop="8dip"
+        android:paddingRight="8dip">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="24dip"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="@dimen/detail_header_name_text_size" />
+
+        <include
+            layout="@layout/favorites_star" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/company"
@@ -70,13 +85,5 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="?android:attr/textColorSecondary" />
-
-    <CheckBox
-        android:id="@+id/star"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:contentDescription="@string/description_star"
-        style="?android:attr/starStyle" />
 
 </LinearLayout>
