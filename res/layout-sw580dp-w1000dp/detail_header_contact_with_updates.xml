@@ -33,11 +33,12 @@
         android:layout_height="@dimen/detail_contact_photo_size" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dip"
         android:layout_height="match_parent"
+        android:layout_weight="1"
         android:orientation="vertical"
         android:paddingLeft="16dip"
-        android:paddingRight="16dip">
+        android:paddingRight="4dip">
 
         <TextView
             android:id="@+id/name"
@@ -55,14 +56,9 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="?android:attr/textColorSecondary" />
 
-        <CheckBox
-            android:id="@+id/star"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:contentDescription="@string/description_star"
-            style="?android:attr/starStyle" />
-
     </LinearLayout>
+
+    <include
+        layout="@layout/favorites_star" />
 
 </LinearLayout>
