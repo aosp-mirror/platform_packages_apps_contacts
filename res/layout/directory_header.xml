@@ -20,7 +20,9 @@
     style="@style/DirectoryHeader"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="?attr/list_item_header_height"
+    android:minHeight="@dimen/list_section_divider_min_height"
+    android:background="@drawable/list_section_divider_holo_custom"
+    android:paddingTop="@dimen/contact_browser_list_top_margin"
     android:paddingLeft="?attr/list_item_padding_left"
     android:paddingRight="?attr/list_item_padding_right">
     <TextView
@@ -32,7 +34,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="8dip"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="?android:attr/textColorSecondary"
+        android:textColor="@color/people_app_theme_color"
         android:singleLine="true"
         android:textStyle="bold"
         android:textAllCaps="true" />
@@ -55,12 +57,8 @@
         android:layout_marginLeft="8dip"
         android:layout_marginRight="8dip"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="?android:attr/textColorSecondary"
+        android:textColor="@color/people_app_theme_color"
         android:singleLine="true"
         android:textStyle="bold"
         android:textAllCaps="true" />
-    <View
-        android:id="@+id/contact_filter_header_bottom_divider"
-        style="@style/SectionDivider"
-        android:layout_below="@id/display_name" />
 </RelativeLayout>

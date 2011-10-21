@@ -17,13 +17,14 @@ package com.android.contacts.list;
 
 import com.android.contacts.R;
 import com.android.contacts.editor.ContactEditorFragment;
+import com.android.contacts.util.AccountFilterUtil;
 
-import android.app.Activity;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.database.Cursor;
 import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -40,11 +41,13 @@ import android.widget.TextView;
  * picking a contact with one of the PICK intents).
  */
 public class DefaultContactBrowseListFragment extends ContactBrowseListFragment {
+    private static final String TAG = DefaultContactBrowseListFragment.class.getSimpleName();
+
+    private static final int REQUEST_CODE_ACCOUNT_FILTER = 1;
 
     private TextView mCounterHeaderView;
     private View mSearchHeaderView;
-    private TextView mAccountFilterHeaderView;
-    private View mAccountFilterHeaderContainer;
+    private View mAccountFilterHeader;
     private FrameLayout mProfileHeaderContainer;
     private View mProfileHeader;
     private Button mProfileMessage;
@@ -56,12 +59,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private class FilterHeaderClickListener implements OnClickListener {
         @Override
         public void onClick(View view) {
-            final Activity activity = getActivity();
-            if (activity != null) {
-                final Intent intent = new Intent(activity, AccountFilterActivity.class);
-                activity.startActivityForResult(
-                        intent, AccountFilterActivity.DEFAULT_REQUEST_CODE);
-            }
+            AccountFilterUtil.startAccountFilterActivityForResult(
+                        DefaultContactBrowseListFragment.this, REQUEST_CODE_ACCOUNT_FILTER);
         }
     }
     private OnClickListener mFilterHeaderClickListener = new FilterHeaderClickListener();
@@ -92,17 +91,15 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     @Override
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
-        return inflater.inflate(R.layout.contacts_list_content, null);
+        return inflater.inflate(R.layout.contact_list_content, null);
     }
 
     @Override
     protected void onCreateView(LayoutInflater inflater, ViewGroup container) {
         super.onCreateView(inflater, container);
 
-        mAccountFilterHeaderView = (TextView) getView().findViewById(R.id.account_filter_header);
-        mAccountFilterHeaderContainer =
-                getView().findViewById(R.id.account_filter_header_container);
-        mAccountFilterHeaderContainer.setOnClickListener(mFilterHeaderClickListener);
+        mAccountFilterHeader = getView().findViewById(R.id.account_filter_header_container);
+        mAccountFilterHeader.setOnClickListener(mFilterHeaderClickListener);
         mCounterHeaderView = (TextView) getView().findViewById(R.id.contacts_count);
 
         // Create an empty user profile header and hide it for now (it will be visible if the
@@ -144,29 +141,17 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     }
 
     private void updateFilterHeaderView() {
-        ContactListFilter filter = getFilter();
-        if (mAccountFilterHeaderView == null) {
+        if (mAccountFilterHeader == null) {
             return; // Before onCreateView -- just ignore it.
         }
+        final ContactListFilter filter = getFilter();
         if (filter != null && !isSearchMode()) {
-            if (filter.filterType == ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
-                mAccountFilterHeaderContainer.setVisibility(View.VISIBLE);
-                mAccountFilterHeaderView.setText(getContext().getString(
-                        R.string.listSingleContact));
-                return;
-            } else if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
-                mAccountFilterHeaderContainer.setVisibility(View.VISIBLE);
-                mAccountFilterHeaderView.setText(getContext().getString(
-                        R.string.listCustomView));
-                return;
-            } else if (filter.filterType != ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
-                mAccountFilterHeaderContainer.setVisibility(View.VISIBLE);
-                mAccountFilterHeaderView.setText(getContext().getString(
-                        R.string.listAllContactsInAccount, filter.accountName));
-                return;
-            }
+            final boolean shouldShowHeader = AccountFilterUtil.updateAccountFilterTitleForPeople(
+                    mAccountFilterHeader, filter, false, false);
+            mAccountFilterHeader.setVisibility(shouldShowHeader ? View.VISIBLE : View.GONE);
+        } else {
+            mAccountFilterHeader.setVisibility(View.GONE);
         }
-        mAccountFilterHeaderContainer.setVisibility(View.GONE);
     }
 
     @Override
@@ -242,6 +227,18 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     protected void setProfileHeader() {
         mUserProfileExists = getAdapter().hasProfile();
         showEmptyUserProfile(!mUserProfileExists && !isSearchMode());
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_ACCOUNT_FILTER) {
+            if (getActivity() != null) {
+                AccountFilterUtil.handleAccountFilterResult(
+                        ContactListFilterController.getInstance(getActivity()), resultCode, data);
+            } else {
+                Log.e(TAG, "getActivity() returns null during Fragment#onActivityResult()");
+            }
+        }
     }
 
     private void showEmptyUserProfile(boolean show) {

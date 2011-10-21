@@ -301,5 +301,27 @@
         <item name="android:background">@color/quickcontact_tab_indicator</item>
     </style>
 
+
     <style name="GroupMembershipSizeTextAppearance" parent="@android:style/TextAppearance.Small"/>
+
+    <!-- TextView style with blue underline. It is most suitable for headers.
+
+         This is similar to ?android:attr/listSeparatorTextView but uses different
+         background and text color. See also android:style/Widget.Holo.TextView.ListSeparator
+         (which is private, so we cannot specify it as a parent style).  -->
+    <style name="ContactListSeparatorTextViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <!-- See comments for @dimen/list_section_divider_min_height -->
+        <item name="android:minHeight">@dimen/list_section_divider_min_height</item>
+        <item name="android:background">@drawable/list_section_divider_holo_custom</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/people_app_theme_color</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">8dip</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
 </resources>

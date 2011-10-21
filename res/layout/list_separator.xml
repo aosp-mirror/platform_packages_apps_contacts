@@ -17,20 +17,13 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="32dip"
+    android:layout_height="wrap_content"
     android:paddingLeft="16dip"
     android:paddingRight="16dip"
     android:focusable="false">
-
     <TextView
         android:id="@+id/title"
-        style="?android:attr/listSeparatorTextViewStyle"
+        style="@style/ContactListSeparatorTextViewStyle"
         android:paddingLeft="8dip"
-        android:paddingRight="8dip"
-        android:background="@drawable/list_section_divider_holo_custom"
-        android:textColor="@color/people_app_theme_color"
-        android:textAllCaps="true"
-        android:singleLine="true"
-        android:ellipsize="end" />
-
+        android:paddingRight="8dip" />
 </FrameLayout>
