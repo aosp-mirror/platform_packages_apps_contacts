@@ -16,9 +16,24 @@
 
 <!--
   This is a header entry in the contact updates list.
-  This is empty because there is no header in this case.
 -->
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="0dip"/>
+    android:layout_height="32dip"
+    android:paddingLeft="16dip"
+    android:paddingRight="16dip"
+    android:focusable="false">
+
+    <TextView
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:paddingLeft="8dip"
+        android:paddingRight="8dip"
+        android:background="@drawable/list_section_divider_holo_custom"
+        android:text="@string/recent_updates"
+        android:textColor="@color/people_app_theme_color"
+        android:textAllCaps="true"
+        android:singleLine="true"
+        android:ellipsize="end" />
+
+</FrameLayout>
