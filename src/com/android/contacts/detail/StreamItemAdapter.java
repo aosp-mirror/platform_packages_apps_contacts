@@ -27,7 +27,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -37,10 +36,8 @@ import java.util.List;
 public class StreamItemAdapter extends BaseAdapter {
     /** The header view, hidden under the tab carousel, if present. */
     private static final int ITEM_VIEW_TYPE_HEADER = 0;
-    /** The title shown in the updates stream. */
-    private static final int ITEM_VIEW_TYPE_TITLE = 1;
     /** The updates in the list. */
-    private static final int ITEM_VIEW_TYPE_STREAM_ITEM = 2;
+    private static final int ITEM_VIEW_TYPE_STREAM_ITEM = 1;
 
     private final Context mContext;
     private final View.OnClickListener mItemClickListener;
@@ -60,23 +57,23 @@ public class StreamItemAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        // The header and title should only be included as items in the list if there are other
+        // The header should only be included as items in the list if there are other
         // stream items.
         int count = mStreamItems.size();
-        return (count == 0) ? 0 : (count + 2);
+        return (count == 0) ? 0 : (count + 1);
     }
 
     @Override
     public Object getItem(int position) {
-        if (position == 0 || position == 1) {
+        if (position == 0) {
             return null;
         }
-        return mStreamItems.get(position - 2);
+        return mStreamItems.get(position - 1);
     }
 
     @Override
     public long getItemId(int position) {
-        if (position == 0 || position == 1) {
+        if (position == 0) {
             return -1;
         }
         return position - 1;
@@ -100,12 +97,6 @@ public class StreamItemAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (position == 0) {
             return mInflater.inflate(R.layout.updates_header_contact, null);
-        }
-        if (position == 1) {
-            final View titleView = mInflater.inflate(R.layout.list_separator, null);
-            TextView titleTextView = (TextView) titleView.findViewById(R.id.title);
-            titleTextView.setText(mContext.getString(R.string.recent_updates));
-            return titleView;
         }
         final StreamItemEntry streamItem = (StreamItemEntry) getItem(position);
         final AccountTypeManager manager = AccountTypeManager.getInstance(mContext);
@@ -142,9 +133,6 @@ public class StreamItemAdapter extends BaseAdapter {
     public int getItemViewType(int position) {
         if (position == 0) {
             return ITEM_VIEW_TYPE_HEADER;
-        }
-        if (position == 1) {
-            return ITEM_VIEW_TYPE_TITLE;
         }
         return ITEM_VIEW_TYPE_STREAM_ITEM;
     }

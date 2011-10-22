@@ -1257,8 +1257,11 @@
     <!-- Label of the button to open the "add connection" popup where the user can invite a contact to other social networks or services [CHAR LIMIT=32] -->
     <string name="add_connection_button">Add connection</string>
 
+    <!-- Section title for the page containing the contact's social updates on the contact card (this abbreviated version of "Recent updates" is used when "updates" is already shown as the title of the page) [CHAR LIMIT=20]-->
+    <string name="recent" msgid="2062236709538790412">Recent</string>
+
     <!-- Section title for the page containing the contact's social updates on the contact card [CHAR LIMIT=20]-->
-    <string name="recent_updates">Recent</string>
+    <string name="recent_updates" msgid="2018245636796411442">Recent updates</string>
 
     <!-- String describing which account type a contact came from when editing it -->
     <string name="account_type_format"><xliff:g id="source" example="Gmail">%1$s</xliff:g> contact</string>
