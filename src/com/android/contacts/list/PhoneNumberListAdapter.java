@@ -15,6 +15,8 @@
  */
 package com.android.contacts.list;
 
+import com.android.contacts.R;
+
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.CursorLoader;
@@ -22,7 +24,9 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.net.Uri.Builder;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.Callable;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
@@ -37,7 +41,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A cursor adapter for the {@link Phone#CONTENT_TYPE} content type.
+ * A cursor adapter for the {@link Phone#CONTENT_ITEM_TYPE} and
+ * {@link SipAddress#CONTENT_ITEM_TYPE}.
+ *
+ * By default this adapter just handles phone numbers. When {@link #setUseCallableUri(boolean)} is
+ * called with "true", this adapter starts handling SIP addresses too, by using {@link Callable}
+ * API instead of {@link Phone}.
  */
 public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     private static final String TAG = PhoneNumberListAdapter.class.getSimpleName();
@@ -79,6 +88,8 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
     private ContactListItemView.PhotoPosition mPhotoPosition;
 
+    private boolean mUseCallableUri;
+
     public PhoneNumberListAdapter(Context context) {
         super(context);
 
@@ -100,7 +111,9 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
         if (isSearchMode()) {
             String query = getQueryString();
-            Builder builder = Phone.CONTENT_FILTER_URI.buildUpon();
+            final Uri baseUri =
+                    mUseCallableUri ? Callable.CONTENT_FILTER_URI : Phone.CONTENT_FILTER_URI;
+            Builder builder = baseUri.buildUpon();
             if (TextUtils.isEmpty(query)) {
                 builder.appendPath("");
             } else {
@@ -111,7 +124,8 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
                     String.valueOf(directoryId));
             uri = builder.build();
         } else {
-            uri = Phone.CONTENT_URI.buildUpon().appendQueryParameter(
+            final Uri baseUri = mUseCallableUri ? Callable.CONTENT_URI : Phone.CONTENT_URI;
+            uri = baseUri.buildUpon().appendQueryParameter(
                     ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT))
                     .build();
             if (isSectionHeaderDisplayEnabled()) {
@@ -321,5 +335,13 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
     public ContactListItemView.PhotoPosition getPhotoPosition() {
         return mPhotoPosition;
+    }
+
+    public void setUseCallableUri(boolean useCallableUri) {
+        mUseCallableUri = useCallableUri;
+    }
+
+    public boolean usesCallableUri() {
+        return mUseCallableUri;
     }
 }

@@ -299,6 +299,8 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
         // Put photos on left for consistency with "frequent" contacts section.
         mAllContactsAdapter.setPhotoPosition(ContactListItemView.PhotoPosition.LEFT);
 
+        mAllContactsAdapter.setUseCallableUri(true);
+
         if (mFilter != null) {
             mAllContactsAdapter.setFilter(mFilter);
         }

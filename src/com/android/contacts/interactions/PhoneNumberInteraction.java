@@ -47,6 +47,7 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
@@ -65,6 +66,11 @@ import java.util.List;
  * Initiates phone calls or a text message. If there are multiple candidates, this class shows a
  * dialog to pick one. Creating one of these interactions should be done through the static
  * factory methods.
+ *
+ * Note that this class initiates not only usual *phone* calls but also *SIP* calls.
+ *
+ * TODO: clean up code and documents since it is quite confusing to use "phone numbers" or
+ *        "phone calls" here while they can be SIP addresses or SIP calls (See also issue 5039627).
  */
 public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
     private static final String TAG = PhoneNumberInteraction.class.getSimpleName();
@@ -86,6 +92,8 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
         String dataSet;
         long type;
         String label;
+        /** {@link Phone#CONTENT_ITEM_TYPE} or {@link SipAddress#CONTENT_ITEM_TYPE}. */
+        String mimeType;
 
         public PhoneItem() {
         }
@@ -97,6 +105,7 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
             this.dataSet     = in.readString();
             this.type        = in.readLong();
             this.label       = in.readString();
+            this.mimeType    = in.readString();
         }
 
         public void writeToParcel(Parcel dest, int flags) {
@@ -106,6 +115,7 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
             dest.writeString(dataSet);
             dest.writeLong(type);
             dest.writeString(label);
+            dest.writeString(mimeType);
         }
 
         public int describeContents() {
@@ -260,11 +270,15 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
             RawContacts.ACCOUNT_TYPE,
             RawContacts.DATA_SET,
             Phone.TYPE,
-            Phone.LABEL
+            Phone.LABEL,
+            Phone.MIMETYPE
     };
 
-    private static final String PHONE_NUMBER_SELECTION = Data.MIMETYPE + "='"
-            + Phone.CONTENT_ITEM_TYPE + "' AND " + Phone.NUMBER + " NOT NULL";
+    private static final String PHONE_NUMBER_SELECTION =
+            Data.MIMETYPE + " IN ('"
+                + Phone.CONTENT_ITEM_TYPE + "', "
+                + "'" + SipAddress.CONTENT_ITEM_TYPE + "') AND "
+                + Data.DATA1 + " NOT NULL";
 
     private final Context mContext;
     private final OnDismissListener mDismissListener;
@@ -378,6 +392,7 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
                 item.dataSet = cursor.getString(cursor.getColumnIndex(RawContacts.DATA_SET));
                 item.type = cursor.getInt(cursor.getColumnIndex(Phone.TYPE));
                 item.label = cursor.getString(cursor.getColumnIndex(Phone.LABEL));
+                item.mimeType = cursor.getString(cursor.getColumnIndex(Phone.MIMETYPE));
 
                 phoneList.add(item);
             }
@@ -396,8 +411,9 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
         if (phoneList.size() == 0) {
             onDismiss();
         } else if (phoneList.size() == 1) {
+            PhoneItem item = phoneList.get(0);
             onDismiss();
-            performAction(phoneList.get(0).phoneNumber);
+            performAction(item.phoneNumber);
         } else {
             // There are multiple candidates. Let the user choose one.
             showDisambiguationDialog(phoneList);

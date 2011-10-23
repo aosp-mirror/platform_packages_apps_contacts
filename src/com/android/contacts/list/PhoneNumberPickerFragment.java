@@ -55,6 +55,8 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     /** true if the loader has started at least once. */
     private boolean mLoaderStarted;
 
+    private boolean mUseCallableUri;
+
     private ContactListItemView.PhotoPosition mPhotoPosition =
             ContactListItemView.DEFAULT_PHOTO_POSITION;
 
@@ -180,11 +182,20 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
         super.startLoading();
     }
 
+    public void setUseCallableUri(boolean useCallableUri) {
+        mUseCallableUri = useCallableUri;
+    }
+
+    public boolean usesCallableUri() {
+        return mUseCallableUri;
+    }
+
     @Override
     protected ContactEntryListAdapter createListAdapter() {
         if (!isLegacyCompatibilityMode()) {
             PhoneNumberListAdapter adapter = new PhoneNumberListAdapter(getActivity());
             adapter.setDisplayPhotos(true);
+            adapter.setUseCallableUri(mUseCallableUri);
             return adapter;
         } else {
             LegacyPhoneNumberListAdapter adapter = new LegacyPhoneNumberListAdapter(getActivity());
