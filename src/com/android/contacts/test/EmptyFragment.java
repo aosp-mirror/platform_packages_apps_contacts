@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 The Android Open Source Project
+ * Copyright (C) 2011 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,20 +16,21 @@
 
 package com.android.contacts.test;
 
-import com.android.contacts.ContactsActivity;
-import com.android.contacts.R;
-
+import android.app.Fragment;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 /**
- * An activity that is used for testing fragments.  A unit test starts this
- * activity, adds a fragment and then tests the fragment.
+ * Empty fragment used for testing.
  */
-public class FragmentTestActivity extends ContactsActivity {
-
+public class EmptyFragment extends Fragment {
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_test);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        // Must return a ViewGroup, FrameLayout will do.
+        return new FrameLayout(getActivity());
     }
 }

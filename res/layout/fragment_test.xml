@@ -18,8 +18,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 >
-    <fragment class="com.android.contacts.calllog.CallLogFragment"
-            android:id="@+id/call_log_fragment"
+    <!-- Placeholder to load the fragment under test. -->
+    <fragment android:id="@+id/fragment"
+            android:name="com.android.contacts.test.EmptyFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 </FrameLayout>

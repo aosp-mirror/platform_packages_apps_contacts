@@ -56,19 +56,6 @@
         android:hardwareAccelerated="true"
     >
 
-        <!-- A list of recent calls -->
-        <activity android:name=".activities.CallLogActivity"
-            android:label="@string/recentCallsIconLabel"
-            android:theme="@style/DialtactsTheme"
-            android:uiOptions="splitActionBarWhenNarrow"
-        >
-            <intent-filter>
-                <action android:name="com.android.phone.action.RECENT_CALLS" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.TAB" />
-            </intent-filter>
-        </activity>
-
         <!-- Intercept Dialer Intents for devices without a phone.
         This activity should have the same intent filters as the DialtactsActivity,
         so that its capturing the same events. Omit android.intent.category.LAUNCHER, because we
@@ -179,6 +166,11 @@
                  compatibility.  Use Intent.ACTION_DIAL instead. -->
             <intent-filter>
                 <action android:name="com.android.phone.action.TOUCH_DIALER" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.TAB" />
+            </intent-filter>
+            <intent-filter android:label="@string/recentCallsIconLabel">
+                <action android:name="com.android.phone.action.RECENT_CALLS" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.TAB" />
             </intent-filter>
@@ -326,6 +318,18 @@
 
         <!-- Backwards compatibility: "Phone" from Gingerbread and earlier -->
         <activity-alias android:name="DialtactsActivity"
+            android:targetActivity=".activities.DialtactsActivity"
+            android:exported="true"
+        />
+
+        <!-- Backwards compatibility: "Call log" from Gingerbread and earlier -->
+        <activity-alias android:name="RecentCallsListActivity"
+            android:targetActivity=".activities.DialtactsActivity"
+            android:exported="true"
+        />
+
+        <!-- Backwards compatibility: "Call log" from ICS -->
+        <activity-alias android:name=".activities.CallLogActivity"
             android:targetActivity=".activities.DialtactsActivity"
             android:exported="true"
         />

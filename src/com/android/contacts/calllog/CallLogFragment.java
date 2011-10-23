@@ -20,12 +20,12 @@ import com.android.common.io.MoreCloseables;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.activities.DialtactsActivity.ViewPagerVisibilityListener;
-import com.android.contacts.test.NeededForTesting;
 import com.android.contacts.voicemail.VoicemailStatusHelper;
 import com.android.contacts.voicemail.VoicemailStatusHelper.StatusMessage;
 import com.android.contacts.voicemail.VoicemailStatusHelperImpl;
 import com.android.internal.telephony.CallerInfo;
 import com.android.internal.telephony.ITelephony;
+import com.google.common.annotations.VisibleForTesting;
 
 import android.app.Activity;
 import android.app.KeyguardManager;
@@ -275,6 +275,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                 return false;
         }
     }
+
     public void callSelectedEntry() {
         int position = getListView().getSelectedItemPosition();
         if (position < 0) {
@@ -317,8 +318,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         }
     }
 
-    @NeededForTesting
-    public CallLogAdapter getAdapter() {
+    @VisibleForTesting
+    CallLogAdapter getAdapter() {
         return mAdapter;
     }
 

@@ -47,7 +47,7 @@ import libcore.util.Objects;
 /**
  * Adapter class to fill in data for the Call Log.
  */
-public class CallLogAdapter extends GroupingListAdapter
+/*package*/ class CallLogAdapter extends GroupingListAdapter
         implements Runnable, ViewTreeObserver.OnPreDrawListener, CallLogGroupBuilder.GroupCreator {
     /** Interface used to initiate a refresh of the content. */
     public interface CallFetcher {
@@ -193,7 +193,7 @@ public class CallLogAdapter extends GroupingListAdapter
         }
     };
 
-    public CallLogAdapter(Context context, CallFetcher callFetcher,
+    CallLogAdapter(Context context, CallFetcher callFetcher,
             ContactInfoHelper contactInfoHelper) {
         super(context);
 
@@ -240,11 +240,7 @@ public class CallLogAdapter extends GroupingListAdapter
         }
     }
 
-    public ContactInfo getContactInfo(String number) {
-        return mContactInfoCache.getPossiblyExpired(number);
-    }
-
-    public void startRequestProcessing() {
+    private void startRequestProcessing() {
         if (mRequestProcessingDisabled) {
             return;
         }
@@ -368,9 +364,8 @@ public class CallLogAdapter extends GroupingListAdapter
         mCallLogGroupBuilder.addGroups(cursor);
     }
 
-    @VisibleForTesting
     @Override
-    public View newStandAloneView(Context context, ViewGroup parent) {
+    protected View newStandAloneView(Context context, ViewGroup parent) {
         LayoutInflater inflater =
                 (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.call_log_list_item, parent, false);
@@ -378,15 +373,13 @@ public class CallLogAdapter extends GroupingListAdapter
         return view;
     }
 
-    @VisibleForTesting
     @Override
-    public void bindStandAloneView(View view, Context context, Cursor cursor) {
+    protected void bindStandAloneView(View view, Context context, Cursor cursor) {
         bindView(view, cursor, 1);
     }
 
-    @VisibleForTesting
     @Override
-    public View newChildView(Context context, ViewGroup parent) {
+    protected View newChildView(Context context, ViewGroup parent) {
         LayoutInflater inflater =
                 (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.call_log_list_item, parent, false);
@@ -394,15 +387,13 @@ public class CallLogAdapter extends GroupingListAdapter
         return view;
     }
 
-    @VisibleForTesting
     @Override
-    public void bindChildView(View view, Context context, Cursor cursor) {
+    protected void bindChildView(View view, Context context, Cursor cursor) {
         bindView(view, cursor, 1);
     }
 
-    @VisibleForTesting
     @Override
-    public View newGroupView(Context context, ViewGroup parent) {
+    protected View newGroupView(Context context, ViewGroup parent) {
         LayoutInflater inflater =
                 (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.call_log_list_item, parent, false);
@@ -410,9 +401,8 @@ public class CallLogAdapter extends GroupingListAdapter
         return view;
     }
 
-    @VisibleForTesting
     @Override
-    public void bindGroupView(View view, Context context, Cursor cursor, int groupSize,
+    protected void bindGroupView(View view, Context context, Cursor cursor, int groupSize,
             boolean expanded) {
         bindView(view, cursor, groupSize);
     }
@@ -678,11 +668,13 @@ public class CallLogAdapter extends GroupingListAdapter
      * This method should be called in tests to disable such processing of requests when not
      * needed.
      */
-    public void disableRequestProcessingForTest() {
+    @VisibleForTesting
+    void disableRequestProcessingForTest() {
         mRequestProcessingDisabled = true;
     }
 
-    public void injectContactInfoForTest(String number, ContactInfo contactInfo) {
+    @VisibleForTesting
+    void injectContactInfoForTest(String number, ContactInfo contactInfo) {
         mContactInfoCache.put(number, contactInfo);
     }
 
