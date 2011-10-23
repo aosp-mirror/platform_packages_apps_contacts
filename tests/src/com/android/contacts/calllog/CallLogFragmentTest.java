@@ -14,19 +14,15 @@
  * limitations under the License.
  */
 
-package com.android.contacts.activities;
+package com.android.contacts.calllog;
 
 import com.android.contacts.CallDetailActivity;
 import com.android.contacts.R;
-import com.android.contacts.calllog.CallLogAdapter;
-import com.android.contacts.calllog.CallLogFragment;
-import com.android.contacts.calllog.CallLogListItemViews;
-import com.android.contacts.calllog.CallLogQuery;
-import com.android.contacts.calllog.CallLogQueryTestUtils;
-import com.android.contacts.calllog.ContactInfo;
-import com.android.contacts.calllog.IntentProvider;
+import com.android.contacts.test.FragmentTestActivity;
 import com.android.internal.telephony.CallerInfo;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.ComponentName;
 import android.content.ContentUris;
 import android.content.Intent;
@@ -62,8 +58,7 @@ import java.util.Random;
  *     -w com.android.contacts.tests/android.test.InstrumentationTestRunner
  */
 @LargeTest
-public class CallLogActivityTests
-        extends ActivityInstrumentationTestCase2<CallLogActivity> {
+public class CallLogFragmentTest extends ActivityInstrumentationTestCase2<FragmentTestActivity> {
     private static final int RAND_DURATION = -1;
     private static final long NOW = -1L;
 
@@ -76,13 +71,14 @@ public class CallLogActivityTests
     /** The formatted version of {@link #TEST_NUMBER}. */
     private static final String TEST_FORMATTED_NUMBER = "1 212-555-1000";
 
-    // We get the call list activity and assign is a frame to build
-    // its list.  mAdapter is an inner class of
-    // CallLogActivity to build the rows (view) in the call
-    // list. We reuse it with our own in-mem DB.
-    private CallLogActivity mActivity;
+    /** The activity in which we are hosting the fragment. */
+    private FragmentTestActivity mActivity;
     private CallLogFragment mFragment;
     private FrameLayout mParentView;
+    /**
+     * The adapter used by the fragment to build the rows in the call log. We use it with our own in
+     * memory database.
+     */
     private CallLogAdapter mAdapter;
     private String mVoicemail;
 
@@ -103,8 +99,8 @@ public class CallLogActivityTests
     // reverse order compare to the DB.
     private View[] mList;
 
-    public CallLogActivityTests() {
-        super("com.android.contacts", CallLogActivity.class);
+    public CallLogFragmentTest() {
+        super("com.android.contacts", FragmentTestActivity.class);
         mIndex = 1;
         mRnd = new Random();
     }
@@ -112,7 +108,18 @@ public class CallLogActivityTests
     @Override
     public void setUp() {
         mActivity = getActivity();
-        mFragment = mActivity.getFragment();
+        // Needed by the CallLogFragment.
+        mActivity.setTheme(R.style.DialtactsTheme);
+
+        // Create the fragment and load it into the activity.
+        mFragment = new CallLogFragment();
+        FragmentManager fragmentManager = mActivity.getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.add(R.id.fragment, mFragment);
+        transaction.commit();
+        // Wait for the fragment to be loaded.
+        getInstrumentation().waitForIdleSync();
+
         mVoicemail = TelephonyManager.getDefault().getVoiceMailNumber();
         mAdapter = mFragment.getAdapter();
         // Do not process requests for details during tests. This would start a background thread,
