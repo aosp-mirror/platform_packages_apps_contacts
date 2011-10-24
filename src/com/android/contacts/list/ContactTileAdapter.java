@@ -19,6 +19,7 @@ import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.ContactStatusUtil;
 import com.android.contacts.ContactTileLoaderFactory;
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.GroupMemberLoader;
 import com.android.contacts.R;
 
@@ -298,8 +299,8 @@ public class ContactTileAdapter extends BaseAdapter {
                 // Return the number of starred plus frequent rows
                 return starredRowCount + frequentRowCount;
             case FREQUENT_ONLY:
-                // Number of frequent contacts plus one for the header
-                return mContactCursor.getCount() + 1;
+                // Number of frequent contacts
+                return mContactCursor.getCount();
             default:
                 throw new IllegalArgumentException("Unrecognized DisplayType " + mDisplayType);
         }
@@ -324,8 +325,7 @@ public class ContactTileAdapter extends BaseAdapter {
 
         switch (mDisplayType) {
             case FREQUENT_ONLY:
-                // Taking the current position and subtracting one because of the header
-                resultList.add(createContactEntryFromCursor(mContactCursor, position - 1));
+                resultList.add(createContactEntryFromCursor(mContactCursor, position));
                 break;
             case STARRED_ONLY:
             case GROUP_MEMBERS:
@@ -403,14 +403,10 @@ public class ContactTileAdapter extends BaseAdapter {
      * Divider uses a list_seperator.xml along with text to denote
      * the most frequently contacted contacts.
      */
-    private View getDivider() {
-        View dividerView = View.inflate(mContext, R.layout.list_separator, null);
-        TextView text = (TextView) dividerView.findViewById(R.id.title);
-
-        text.setText(mDisplayType == DisplayType.STREQUENT_PHONE_ONLY ?
-                mContext.getString(R.string.favoritesFrequentCalled) :
-                mContext.getString(R.string.favoritesFrequentContacted));
-        return dividerView;
+    public View getDivider() {
+        return ContactsUtils.createHeaderView(mContext,
+                mDisplayType == DisplayType.STREQUENT_PHONE_ONLY ?
+                R.string.favoritesFrequentCalled : R.string.favoritesFrequentContacted);
     }
 
     private int getLayoutResourceId(int viewType) {
@@ -463,7 +459,7 @@ public class ContactTileAdapter extends BaseAdapter {
             case GROUP_MEMBERS:
                 return ViewTypes.STARRED;
             case FREQUENT_ONLY:
-                return position == 0 ? ViewTypes.DIVIDER : ViewTypes.FREQUENT;
+                return ViewTypes.FREQUENT;
             default:
                 throw new IllegalStateException("Unrecognized DisplayType " + mDisplayType);
         }
