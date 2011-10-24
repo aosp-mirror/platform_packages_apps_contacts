@@ -38,6 +38,7 @@ import com.android.contacts.list.ContactEntryListFragment;
 import com.android.contacts.list.ContactListFilter;
 import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.list.ContactTileAdapter.DisplayType;
+import com.android.contacts.list.ContactTileFrequentFragment;
 import com.android.contacts.list.ContactTileListFragment;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
@@ -145,7 +146,7 @@ public class PeopleActivity extends ContactsActivity
      */
     private DefaultContactBrowseListFragment mAllFragment;
     private ContactTileListFragment mFavoritesFragment;
-    private ContactTileListFragment mFrequentFragment;
+    private ContactTileFrequentFragment mFrequentFragment;
     private GroupBrowseListFragment mGroupsFragment;
 
     private View mFavoritesView;

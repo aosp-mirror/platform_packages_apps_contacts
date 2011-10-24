@@ -31,6 +31,8 @@ import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -207,5 +209,16 @@ public class ContactsUtils {
         // Data is the lookup URI.
         intent.setData(lookupUri);
         return intent;
+    }
+
+    /**
+     * Returns a header view based on the R.layout.list_separator, where the
+     * containing {@link TextView} is set using the given textResourceId.
+     */
+    public static View createHeaderView(Context context, int textResourceId) {
+        View view = View.inflate(context, R.layout.list_separator, null);
+        TextView textView = (TextView) view.findViewById(R.id.title);
+        textView.setText(context.getString(textResourceId));
+        return view;
     }
 }
