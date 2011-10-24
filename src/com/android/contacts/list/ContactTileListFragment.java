@@ -38,6 +38,11 @@ import android.widget.TextView;
 
 /**
  * Fragment containing a list of starred contacts followed by a list of frequently contacted.
+ *
+ * TODO: Make this an abstract class so that the favorites, frequent, and group list functionality
+ * can be separated out. This will make it easier to customize any of those lists if necessary
+ * (i.e. adding header views to the ListViews in the fragment). This work was started
+ * by creating {@link ContactTileFrequentFragment}.
  */
 public class ContactTileListFragment extends Fragment {
     private static final String TAG = ContactTileListFragment.class.getSimpleName();
@@ -69,14 +74,19 @@ public class ContactTileListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View listLayout = inflater.inflate(R.layout.contact_tile_list, container, false);
+        return inflateAndSetupView(inflater, container, savedInstanceState,
+                R.layout.contact_tile_list);
+    }
+
+    protected View inflateAndSetupView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState, int layoutResourceId) {
+        View listLayout = inflater.inflate(layoutResourceId, container, false);
 
         mEmptyView = (TextView) listLayout.findViewById(R.id.contact_tile_list_empty);
         mListView = (ListView) listLayout.findViewById(R.id.contact_tile_list);
 
         mListView.setItemsCanFocus(true);
         mListView.setAdapter(mAdapter);
-
         return listLayout;
     }
 
