@@ -298,7 +298,7 @@
     <string name="menu_all_contacts" msgid="5101735431586050711">"所有联系人"</string>
     <string name="share_via" msgid="563121028023030093">"联系人分享方式"</string>
     <string name="share_error" msgid="4374508848981697170">"无法分享此联系人。"</string>
-    <string name="nameLabelsGroup" msgid="2034640839640477827">"名称"</string>
+    <string name="nameLabelsGroup" msgid="2034640839640477827">"姓名"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"昵称"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"组织"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"网站"</string>

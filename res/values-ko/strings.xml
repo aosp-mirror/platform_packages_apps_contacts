@@ -218,30 +218,30 @@
     <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"SD 카드가 발견되지 않았습니다."</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"vCard 검색"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"SIM 카드에서 가져오기"</string>
-    <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"저장장치에서 가져오기"</string>
-    <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"저장공간으로 내보내기"</string>
+    <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"저장소에서 가져오기"</string>
+    <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"저장소로 내보내기"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"표시되는 연락처 모두 공유"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"vCard 파일 한 개 가져오기"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"vCard 파일 여러 개 가져오기"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"모든 vCard 파일 가져오기"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"저장장치에서 vCard 데이터 검색"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"저장소에서 vCard 데이터 검색"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"SD 카드의 vCard 데이터 검색"</string>
-    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"저장공간을 검색하지 못했습니다."</string>
+    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"저장소를 검색하지 못했습니다."</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"SD 카드를 검색하지 못했습니다."</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8290634758602152611">"저장공간을 검색하지 못했습니다(이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\')."</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8290634758602152611">"저장소를 검색하지 못했습니다(이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\')."</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="2462918339722946736">"SD 카드를 검색하지 못했습니다(이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\')."</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O 오류"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"메모리가 부족합니다. 파일이 너무 크기 때문일 수 있습니다."</string>
     <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"예기치 못한 이유로 인해 vCard를 구문분석하지 못했습니다."</string>
     <string name="fail_reason_not_supported" msgid="294499264620201243">"지원되지 않는 형식입니다."</string>
     <string name="vcard_import_failed" msgid="8856125211629574066">"vCard를 가져오지 못했습니다."</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"저장공간에 vCard 파일이 없습니다."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"저장소에 vCard 파일이 없습니다."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"SD 카드에 VCard 파일이 없습니다."</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"지정한 vCard 파일에 대한 메타 정보를 수집하지 못했습니다."</string>
     <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"하나 이상의 파일을 가져오지 못했습니다(%s)."</string>
     <string name="fail_reason_unknown" msgid="999034019513096768">"알 수 없는 오류"</string>
     <string name="select_vcard_title" msgid="3968948173786172468">"vCard 파일 선택"</string>
-    <string name="caching_vcard_title" msgid="5009556022082659780">"vCard를 로컬 임시 저장공간에 캐시하는 중"</string>
+    <string name="caching_vcard_title" msgid="5009556022082659780">"vCard를 로컬 임시 저장소에 캐시하는 중"</string>
     <string name="caching_vcard_message" msgid="2380844718093378900">"가져오기 도구가 vCard를 로컬 임시 저장공간에 캐시하는 중입니다. 곧 실제 가져오기가 시작됩니다."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> 가져오는 중: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g> 가져오는 중"</string>
@@ -261,7 +261,7 @@
     <string name="exporting_contact_failed_title" msgid="2339788270863991417">"연락처 데이터를 내보내지 못했습니다."</string>
     <string name="exporting_contact_failed_message" msgid="2704925031146288635">"연락처 데이터를 내보내지 못했습니다."\n"이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\'"</string>
     <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"내보낼 수 있는 연락처가 없습니다."</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"저장공간에 vCard 파일이 너무 많습니다."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"저장소에 vCard 파일이 너무 많습니다."</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"SD 카드에 vCard 파일이 너무 많습니다."</string>
     <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"필수 파일 이름이 너무 깁니다(\'<xliff:g id="FILENAME">%s</xliff:g>\')."</string>
     <string name="exporting_vcard_finished_title" msgid="4259736138838583213">"<xliff:g id="FILENAME">%s</xliff:g> 내보내기 완료됨"</string>
@@ -291,7 +291,7 @@
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"이 작업을 처리하는 애플리케이션을 찾을 수 없습니다."</string>
     <string name="missing_name" msgid="7930716592850443705">"(이름 없음)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"계정"</string>
-    <string name="menu_contacts_filter" msgid="2165153460860262501">"표시할 주소록"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"표시할 연락처"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"가져오기/내보내기"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"연락처 가져오기/내보내기"</string>
     <string name="menu_share" msgid="943789700636542260">"공유"</string>
@@ -460,11 +460,11 @@
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"개인 사본 작성 중"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"모든 연락처"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"별표"</string>
-    <string name="list_filter_custom" msgid="8910173055702057002">"맞춤설정"</string>
-    <string name="list_filter_customize" msgid="2035084418635775579">"맞춤설정..."</string>
+    <string name="list_filter_custom" msgid="8910173055702057002">"사용자 설정"</string>
+    <string name="list_filter_customize" msgid="2035084418635775579">"사용자 설정..."</string>
     <string name="list_filter_phones" msgid="735313795643493365">"전화번호가 포함된 모든 연락처"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"연락처"</string>
-    <string name="custom_list_filter" msgid="7836035257402013957">"맞춤 보기 정의"</string>
+    <string name="custom_list_filter" msgid="7836035257402013957">"사용자 설정"</string>
     <string name="contact_list_loading" msgid="3859280390185230582">"로드 중..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"설정"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"표시할 연락처"</string>
