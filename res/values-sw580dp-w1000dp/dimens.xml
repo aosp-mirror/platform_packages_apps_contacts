@@ -18,4 +18,5 @@
     <dimen name="group_detail_side_margin">32dip</dimen>
     <dimen name="detail_contact_photo_margin">16dip</dimen>
     <dimen name="contact_detail_list_top_padding">32dip</dimen>
+    <dimen name="contact_tile_list_padding_top">32dip</dimen>
 </resources>

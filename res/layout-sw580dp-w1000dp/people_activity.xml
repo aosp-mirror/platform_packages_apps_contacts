@@ -129,7 +129,6 @@
                         class="com.android.contacts.list.ContactTileListFragment"
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="32dip"
                         android:layout_marginRight="32dip"
                         android:layout_marginLeft="32dip"/>
 
