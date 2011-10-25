@@ -113,8 +113,9 @@ public class ContactListPinnedHeaderView extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        int width = right - left - mPaddingRight;
+        int width = right - left;
 
+        // Take into account left and right padding when laying out the below views.
         mHeaderTextView.layout(mHeaderTextIndent + mPaddingLeft,
                 0,
                 mHeaderTextView.getMeasuredWidth() + mHeaderTextIndent + mPaddingLeft,
@@ -129,7 +130,7 @@ public class ContactListPinnedHeaderView extends ViewGroup {
 
         mHeaderDivider.layout(mPaddingLeft,
                 mHeaderBackgroundHeight,
-                width,
+                width - mPaddingRight,
                 mHeaderBackgroundHeight + mHeaderUnderlineHeight);
     }
 
