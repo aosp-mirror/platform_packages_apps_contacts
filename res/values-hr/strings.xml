@@ -25,7 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Odaberite prečac kontakta"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Odaberite broj za pozivanje"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Odabir broja za poruku"</string>
-    <string name="contactPickerActivityTitle" msgid="6886592363525235031">"Odaberite kontakt"</string>
+    <!-- outdated translation 6886592363525235031 -->     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Odaberite kontakt"</string>
     <string name="starredList" msgid="4817256136413959463">"Sa zvjezdicom"</string>
     <string name="frequentList" msgid="7154768136473953056">"Često"</string>
     <string name="strequentList" msgid="5640192862059373511">"Favoriti"</string>
@@ -53,19 +53,20 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Izbriši"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Novo"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Novo"</string>
-    <string name="splitConfirmation_title" msgid="2209511048593467012">"Razdvoji kontakt"</string>
-    <string name="splitConfirmation" msgid="1067993957986345974">"Jeste li sigurni da ovaj kontakt želite razdijeliti u više kontakata?"</string>
+    <!-- outdated translation 2209511048593467012 -->     <string name="splitConfirmation_title" msgid="633640935430370530">"Razdvoji kontakt"</string>
+    <!-- outdated translation 1067993957986345974 -->     <string name="splitConfirmation" msgid="740190210499587175">"Jeste li sigurni da ovaj kontakt želite razdijeliti u više kontakata?"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Pridruži se"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Pridruži kontakte"</string>
-    <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Odaberite kontakt koji želite pridružiti s <xliff:g id="NAME">%s</xliff:g>."</string>
+    <!-- no translation found for blurbJoinContactDataWith (8736488417422708236) -->
+    <skip />
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Prikaži sve kontakte"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Predloženi kontakti"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Svi kontakti"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Kontakti su pridruženi"</string>
-    <string name="deleteConfirmation_title" msgid="6394309508930335204">"Izbriši"</string>
+    <!-- outdated translation 6394309508930335204 -->     <string name="deleteConfirmation_title" msgid="1418215926447642260">"Izbriši"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Postavi zvuk zvona"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Svi pozivi na govornu poštu"</string>
-    <string name="readOnlyContactWarning" msgid="1390849295342594265">"Ne možete izbrisati kontakte iz računa koji su samo za čitanje, ali ih možete sakriti na svoje popise kontakata."</string>
+    <!-- outdated translation 1390849295342594265 -->     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Ne možete izbrisati kontakte iz računa koji su samo za čitanje, ali ih možete sakriti na svoje popise kontakata."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Ovaj kontakt sadrži informacije iz više računa. Informacije iz računa koji su samo za čitanje bit će skrivene na popise kontakata, a ne izbrisane."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Brisanjem ovog kontakta izbrisat ćete podatke s više računa."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Ovaj će kontakt biti izbrisan."</string>
@@ -76,8 +77,9 @@
     <string name="label_sip_address" msgid="124073911714324974">"Internetski poziv"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Tvrtka"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Naslov"</string>
-    <string name="invalidContactMessage" msgid="5816991830260044593">"Kontakt ne postoji."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Izrada novog kontakta"</string>
+    <!-- outdated translation 5816991830260044593 -->     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontakt ne postoji."</string>
+    <!-- no translation found for pickerNewContactText (6166997164401048211) -->
+    <skip />
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefon"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"E-pošta"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"IM"</string>
@@ -92,17 +94,21 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Prilagođeni naziv oznake"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Pošalji pozive izravno u govornu poštu"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Ukloni fotografiju"</string>
-    <string name="noContacts" msgid="4955659076981974652">"Nema kontakata"</string>
-    <string name="noGroups" msgid="7315200974181864731">"Nema grupa"</string>
-    <string name="noAccounts" msgid="4742609114153797268">"Za izradu grupa trebate račun"</string>
+    <string name="noContacts" msgid="8579310973261953559">"Nema kontakata."</string>
+    <string name="noGroups" msgid="8614664663561385253">"Nema grupa."</string>
+    <!-- outdated translation 4742609114153797268 -->     <string name="noAccounts" msgid="7768267764545265909">"Za izradu grupa trebate račun"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Nisu pronađeni podudarni kontakti."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Nema kontakata s telefonskim brojevima."</string>
+    <!-- no translation found for emptyGroup (7502116218697177370) -->
+    <skip />
+    <!-- no translation found for addPeopleToGroup (7879585947222263516) -->
+    <skip />
     <string name="savingContact" msgid="4075751076741924939">"Spremanje kontakta..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Spremanje opcija prikaza..."</string>
-    <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt je spremljen"</string>
-    <string name="contactSavedErrorToast" msgid="9189098776225004666">"Pogreška, nije moguće spremiti promjene kontakta."</string>
-    <string name="groupSavedToast" msgid="6675062559302493011">"Grupa je spremljena"</string>
-    <string name="groupSavedErrorToast" msgid="6434135707953150875">"Pogreška, nije moguće spremiti promjene skupine."</string>
+    <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt je spremljen."</string>
+    <!-- outdated translation 9189098776225004666 -->     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Pogreška, nije moguće spremiti promjene kontakta."</string>
+    <string name="groupSavedToast" msgid="1168756874239833756">"Skupina spremljena."</string>
+    <!-- outdated translation 6434135707953150875 -->     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Pogreška, nije moguće spremiti promjene skupine."</string>
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"1 kontakt s tel. brojem"</item>
     <item quantity="other" msgid="3299954047880968205">"Kontakata s tel. brojevima: <xliff:g id="COUNT">%d</xliff:g>"</item>
@@ -112,9 +118,9 @@
     <item quantity="one" msgid="3405747744700823280">"1 kontakt"</item>
     <item quantity="other" msgid="3578469907265375314">"Broj kontakata: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Nema kontakata"</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Nema vidljivih kontakata"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Nema favorita"</string>
+    <!-- outdated translation 1889349925514589304 -->     <string name="listTotalAllContactsZero" msgid="5513001821794568211">"Nema kontakata"</string>
+    <!-- outdated translation 4058252141420128998 -->     <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"Nema vidljivih kontakata"</string>
+    <!-- outdated translation 1289318488170099285 -->     <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"Nema favorita"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Nema kontakata pod: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Kontakti u <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listSingleContact" msgid="6067813698903535563">"Jedan kontakt"</string>
@@ -123,8 +129,9 @@
     <item quantity="one" msgid="5517063038754171134">"1 pronađen"</item>
     <item quantity="other" msgid="3852668542926965042">"Pronađeno kontakata: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <string name="foundTooManyContacts" msgid="2548148047461758967">"pronađeno je više od <xliff:g id="COUNT">%d</xliff:g>"</string>
-    <string name="listFoundAllContactsZero" msgid="777952841930508289">"Nije pronađeno"</string>
+    <!-- no translation found for foundTooManyContacts (5163335650920020220) -->
+    <skip />
+    <!-- outdated translation 777952841930508289 -->     <string name="listFoundAllContactsZero" msgid="7132202364587656501">"Nije pronađeno"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"1 pronađen"</item>
     <item quantity="other" msgid="7988132539476575389">"Pronađeno kontakata: <xliff:g id="COUNT">%d</xliff:g>"</item>
@@ -143,9 +150,9 @@
     <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Brisanje govorne pošte"</string>
     <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Podijeli govornu poštu"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Zapisnik poziva je prazan"</string>
-    <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Izbriši zapisnik poziva"</string>
-    <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Jeste li sigurni da želite izbrisati zapisnik poziva?"</string>
-    <string name="clearCallLogProgress_title" msgid="6870412675015656948">"Brisanje zapisnika poziva"</string>
+    <!-- outdated translation 718072843006222703 -->     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Izbriši zapisnik poziva"</string>
+    <!-- outdated translation 7625927669136267636 -->     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Jeste li sigurni da želite izbrisati zapisnik poziva?"</string>
+    <!-- outdated translation 6870412675015656948 -->     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Brisanje zapisnika poziva"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Govorna pošta"</string>
@@ -158,14 +165,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"Kontakti SIM kartice"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Nemate kontakata za prikazivanje. (Ako ste upravo dodali račun, sinkroniziranje kontakata može potrajati nekoliko minuta.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Nemate kontakata za prikaz"</string>
-    <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"Nemate kontakata za prikaz."\n\n"Za dodavanje kontakata pritisnite "<font fgcolor="#ffffffff"><b>"Izbornik"</b></font>" i dodirnite:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Računi"</b></font>" kako biste dodali ili konfigurirali račun s kontaktima koje možete sinkronizirati s tabletnim uređajem"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novi kontakt"</b></font>" kako biste stvorili posve novi kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Uvoz/Izvoz"</b></font>" kako biste uvezli kontakte sa svoje SIM ili SD kartice"\n</li></string>
-    <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"Nemate kontakata za prikaz."\n\n"Za dodavanje kontakata pritisnite "<font fgcolor="#ffffffff"><b>"Izbornik"</b></font>" i dodirnite:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Računi"</b></font>" kako biste dodali ili konfigurirali račun s kontaktima koje možete sinkronizirati na mobitel"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novi kontakt"</b></font>" kako biste stvorili posve novi kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Uvoz/Izvoz"</b></font>" kako biste uvezli kontakte sa svoje SIM ili SD kartice"\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Nemate kontakata za prikaz. (Ako ste upravo dodali račun, sinkronizacija kontakata može potrajati nekoliko minuta.)"\n\n"Za dodavanje kontakata pritisnite "<font fgcolor="#ffffffff"><b>"Izbornik"</b></font>" i dodirnite:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Računi"</b></font>" kako biste dodali ili konfigurirali račun s kontaktima koje možete sinkronizirati s tabletnim uređajem"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opcije prikaza"</b></font>" kako biste promijenili koji su kontakti vidljivi"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novi kontakti"</b></font>" kako biste stvorili posve novi kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Uvoz/Izvoz"</b></font>" kako biste uvezli kontakte sa svoje SIM ili SD kartice"\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Nemate kontakata za prikaz. (Ako ste upravo dodali račun, sinkronizacija kontakata može potrajati nekoliko minuta.)"\n\n"Za dodavanje kontakata pritisnite "<font fgcolor="#ffffffff"><b>"Izbornik"</b></font>" i dodirnite:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Računi"</b></font>" kako biste dodali ili konfigurirali račun s kontaktima koje možete sinkronizirati na mobitel"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opcije prikaza"</b></font>" kako biste promijenili koji su kontakti vidljivi"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novi kontakt"</b></font>" kako biste stvorili posve novi kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Uvoz/Izvoz"</b></font>" kako biste uvezli kontakte sa svoje SIM ili SD kartice"\n</li></string>
-    <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"Nemate kontakata za prikaz."\n\n"Za dodavanje kontakata pritisnite "<font fgcolor="#ffffffff"><b>"Izbornik"</b></font>" i dodirnite:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Računi"</b></font>" kako biste dodali ili konfigurirali račun s kontaktima koje možete sinkronizirati s tabletnim uređajem"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novi kontakt"</b></font>" kako biste stvorili posve novi kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Uvoz/Izvoz"</b></font>" kako biste uvezli kontakte sa svoje SD kartice"\n</li></string>
-    <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"Nemate kontakata za prikaz."\n\n"Za dodavanje kontakata pritisnite "<font fgcolor="#ffffffff"><b>"Izbornik"</b></font>" i dodirnite:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Računi"</b></font>" kako biste dodali ili konfigurirali račun s kontaktima koje možete sinkronizirati s mobitelom"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novi kontakt"</b></font>" kako biste stvorili posve novi kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Uvoz/Izvoz"</b></font>" kako biste uvezli kontakte sa svoje SD kartice"\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Nemate kontakata za prikaz. (Ako ste upravo dodali račun, sinkronizacija kontakata može potrajati nekoliko minuta.)"\n\n"Za dodavanje kontakata pritisnite "<font fgcolor="#ffffffff"><b>"Izbornik"</b></font>" i dodirnite:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Računi"</b></font>" kako biste dodali ili konfigurirali račun s kontaktima koje možete sinkronizirati s tabletnim uređajem"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opcije prikaza"</b></font>" kako biste promijenili koji su kontakti vidljivi"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novi kontakt"</b></font>" kako biste stvorili posve novi kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Uvoz/Izvoz"</b></font>" kako biste uvezli kontakte sa svoje SD kartice"\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Nemate kontakata za prikaz. (Ako ste upravo dodali račun, sinkronizacija kontakata može potrajati nekoliko minuta.)"\n\n"Za dodavanje kontakata pritisnite "<font fgcolor="#ffffffff"><b>"Izbornik"</b></font>" i dodirnite:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Računi"</b></font>" kako biste dodali ili konfigurirali račun s kontaktima koje možete sinkronizirati s mobitelom"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opcije prikaza"</b></font>" kako biste promijenili koji su kontakti vidljivi"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novi kontakt"</b></font>" kako biste stvorili posve novi kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Uvoz/Izvoz"</b></font>" kako biste uvezli kontakte sa svoje SIM ili SD kartice"\n</li></string>
+    <!-- outdated translation 6450346791169710787 -->     <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"Nemate kontakata za prikaz."\n\n"Za dodavanje kontakata pritisnite "<font fgcolor="#ffffffff"><b>"Izbornik"</b></font>" i dodirnite:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Računi"</b></font>" kako biste dodali ili konfigurirali račun s kontaktima koje možete sinkronizirati s tabletnim uređajem"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novi kontakt"</b></font>" kako biste stvorili posve novi kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Uvoz/Izvoz"</b></font>" kako biste uvezli kontakte sa svoje SIM ili SD kartice"\n</li></string>
+    <!-- outdated translation 6450346791169710787 -->     <string name="noContactsHelpText" product="default" msgid="4405064135698982080">"Nemate kontakata za prikaz."\n\n"Za dodavanje kontakata pritisnite "<font fgcolor="#ffffffff"><b>"Izbornik"</b></font>" i dodirnite:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Računi"</b></font>" kako biste dodali ili konfigurirali račun s kontaktima koje možete sinkronizirati s tabletnim uređajem"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novi kontakt"</b></font>" kako biste stvorili posve novi kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Uvoz/Izvoz"</b></font>" kako biste uvezli kontakte sa svoje SIM ili SD kartice"\n</li></string>
+    <!-- outdated translation 2364665535969139880 -->     <string name="noContactsHelpTextWithSync" product="tablet" msgid="6773195806404659174">"Nemate kontakata za prikaz. (Ako ste upravo dodali račun, sinkronizacija kontakata može potrajati nekoliko minuta.)"\n\n"Za dodavanje kontakata pritisnite "<font fgcolor="#ffffffff"><b>"Izbornik"</b></font>" i dodirnite:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Računi"</b></font>" kako biste dodali ili konfigurirali račun s kontaktima koje možete sinkronizirati s tabletnim uređajem"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opcije prikaza"</b></font>" kako biste promijenili koji su kontakti vidljivi"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novi kontakti"</b></font>" kako biste stvorili posve novi kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Uvoz/Izvoz"</b></font>" kako biste uvezli kontakte sa svoje SIM ili SD kartice"\n</li></string>
+    <!-- outdated translation 2364665535969139880 -->     <string name="noContactsHelpTextWithSync" product="default" msgid="7016825676090327312">"Nemate kontakata za prikaz. (Ako ste upravo dodali račun, sinkronizacija kontakata može potrajati nekoliko minuta.)"\n\n"Za dodavanje kontakata pritisnite "<font fgcolor="#ffffffff"><b>"Izbornik"</b></font>" i dodirnite:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Računi"</b></font>" kako biste dodali ili konfigurirali račun s kontaktima koje možete sinkronizirati s tabletnim uređajem"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opcije prikaza"</b></font>" kako biste promijenili koji su kontakti vidljivi"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novi kontakti"</b></font>" kako biste stvorili posve novi kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Uvoz/Izvoz"</b></font>" kako biste uvezli kontakte sa svoje SIM ili SD kartice"\n</li></string>
+    <!-- outdated translation 6031363021287849874 -->     <string name="noContactsNoSimHelpText" product="tablet" msgid="7823757505923033456">"Nemate kontakata za prikaz."\n\n"Za dodavanje kontakata pritisnite "<font fgcolor="#ffffffff"><b>"Izbornik"</b></font>" i dodirnite:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Računi"</b></font>" kako biste dodali ili konfigurirali račun s kontaktima koje možete sinkronizirati s tabletnim uređajem"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novi kontakt"</b></font>" kako biste stvorili posve novi kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Uvoz/Izvoz"</b></font>" kako biste uvezli kontakte sa svoje SD kartice"\n</li></string>
+    <!-- outdated translation 6031363021287849874 -->     <string name="noContactsNoSimHelpText" product="default" msgid="6224952277619986841">"Nemate kontakata za prikaz."\n\n"Za dodavanje kontakata pritisnite "<font fgcolor="#ffffffff"><b>"Izbornik"</b></font>" i dodirnite:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Računi"</b></font>" kako biste dodali ili konfigurirali račun s kontaktima koje možete sinkronizirati s tabletnim uređajem"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novi kontakt"</b></font>" kako biste stvorili posve novi kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Uvoz/Izvoz"</b></font>" kako biste uvezli kontakte sa svoje SD kartice"\n</li></string>
+    <!-- outdated translation 6222739731808897565 -->     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="5415762667445638265">"Nemate kontakata za prikaz. (Ako ste upravo dodali račun, sinkronizacija kontakata može potrajati nekoliko minuta.)"\n\n"Za dodavanje kontakata pritisnite "<font fgcolor="#ffffffff"><b>"Izbornik"</b></font>" i dodirnite:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Računi"</b></font>" kako biste dodali ili konfigurirali račun s kontaktima koje možete sinkronizirati s tabletnim uređajem"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opcije prikaza"</b></font>" kako biste promijenili koji su kontakti vidljivi"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novi kontakt"</b></font>" kako biste stvorili posve novi kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Uvoz/Izvoz"</b></font>" kako biste uvezli kontakte sa svoje SD kartice"\n</li></string>
+    <!-- outdated translation 6222739731808897565 -->     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="7443705129830284440">"Nemate kontakata za prikaz. (Ako ste upravo dodali račun, sinkronizacija kontakata može potrajati nekoliko minuta.)"\n\n"Za dodavanje kontakata pritisnite "<font fgcolor="#ffffffff"><b>"Izbornik"</b></font>" i dodirnite:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Računi"</b></font>" kako biste dodali ili konfigurirali račun s kontaktima koje možete sinkronizirati s tabletnim uređajem"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opcije prikaza"</b></font>" kako biste promijenili koji su kontakti vidljivi"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novi kontakt"</b></font>" kako biste stvorili posve novi kontakt"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Uvoz/Izvoz"</b></font>" kako biste uvezli kontakte sa svoje SD kartice"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Nemate favorita."\n\n"Da biste dodali kontakt svojem popisu favorita:"\n\n"        "<li>"Dodirnite karticu "<b>"Kontakti"</b>" "\n</li>" "\n<li>"Dodirnite kontakt koji želite dodati u favorite"\n</li>" "\n<li>"Dodirnite zvjezdicu pokraj naziva kontakta"\n</li></string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Koristi dodirnu zvučnu tipkovnicu"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Natrag na poziv u tijeku"</string>
@@ -208,8 +215,8 @@
     <string name="description_view_contact_detail" msgid="9133251213656414807">"Prikaži kontakt"</string>
     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"Prostor za pohranu nedostupan"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Nema SD kartice"</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="1334170151822669976">"Pohrana nije otkrivena"</string>
-    <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Nije pronađena SD kartica"</string>
+    <!-- outdated translation 1334170151822669976 -->     <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"Pohrana nije otkrivena"</string>
+    <!-- outdated translation 1334170151822669976 -->     <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"Pohrana nije otkrivena"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Traženje kartice vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Uvezi sa SIM kartice"</string>
     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Uvoz iz pohrane"</string>
@@ -218,62 +225,76 @@
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Uvezi jednu vCard datoteku"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Uvoz više vCard datoteka"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Uvezi sve vCard datoteke"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Traženje podataka kartice vCard u pohrani"</string>
-    <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Traženje vCard podataka na SD kartici"</string>
+    <!-- outdated translation 996170203695743981 -->     <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"Traženje podataka kartice vCard u pohrani"</string>
+    <!-- outdated translation 996170203695743981 -->     <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"Traženje podataka kartice vCard u pohrani"</string>
     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Skeniranje pohrane nije uspjelo"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Skeniranje SD kartice nije uspjelo"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8290634758602152611">"Skeniranje pohrane nije uspjelo (Razlog: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="2462918339722946736">"Skeniranje SD kartice nije uspjelo (razlog: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
-    <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O pogreška"</string>
-    <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Memorija je premala (datoteka je možda prevelika)"</string>
-    <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"Analiza kartice vCard nije uspjela zbog neočekivanog razloga"</string>
-    <string name="fail_reason_not_supported" msgid="294499264620201243">"Format nije podržan."</string>
-    <string name="vcard_import_failed" msgid="8856125211629574066">"Uvoz kartice vCard nije uspio"</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"Datoteka kartice vCard nije pronađena u pohrani"</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Na SD kartici nije pronađena datoteka vCard"</string>
+    <!-- no translation found for scanning_sdcard_failed_message (7221682312959229201) -->
+    <skip />
+    <!-- no translation found for scanning_sdcard_failed_message (189023067829510792) -->
+    <skip />
+    <!-- outdated translation 5922864781066136340 -->     <string name="fail_reason_io_error" msgid="6748358842976073255">"I/O pogreška"</string>
+    <!-- outdated translation 7514918659342886381 -->     <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Memorija je premala (datoteka je možda prevelika)"</string>
+    <!-- outdated translation 4492947335972369711 -->     <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"Analiza kartice vCard nije uspjela zbog neočekivanog razloga"</string>
+    <!-- outdated translation 294499264620201243 -->     <string name="fail_reason_not_supported" msgid="8219562769267148825">"Format nije podržan."</string>
+    <!-- outdated translation 8856125211629574066 -->     <string name="vcard_import_failed" msgid="5223531255894842406">"Uvoz kartice vCard nije uspio"</string>
+    <!-- outdated translation 6339234836196984924 -->     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2071820850017305867">"Datoteka kartice vCard nije pronađena u pohrani"</string>
+    <!-- outdated translation 6339234836196984924 -->     <string name="import_failure_no_vcard_file" product="default" msgid="1754014167874286173">"Datoteka kartice vCard nije pronađena u pohrani"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Neuspješno prikupljanje meta-informacija danih datoteka kartice vCard."</string>
     <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Uvoz jedne ili više datoteka nije uspio (%s)."</string>
-    <string name="fail_reason_unknown" msgid="999034019513096768">"Nepoznata pogreška"</string>
-    <string name="select_vcard_title" msgid="3968948173786172468">"Odaberite vCard datoteku"</string>
-    <string name="caching_vcard_title" msgid="5009556022082659780">"Spremanje predmemorije kartice vCard u lokalnu privremenu pohranu"</string>
-    <string name="caching_vcard_message" msgid="2380844718093378900">"Alat za uvoz sprema predmemoriju vCard kartice u lokalnu privremenu pohranu. Uvoz će početi uskoro."</string>
+    <!-- outdated translation 999034019513096768 -->     <string name="fail_reason_unknown" msgid="1714092345030570863">"Nepoznata pogreška"</string>
+    <!-- outdated translation 3968948173786172468 -->     <string name="select_vcard_title" msgid="7791371083694672861">"Odaberite vCard datoteku"</string>
+    <!-- outdated translation 5009556022082659780 -->     <string name="caching_vcard_title" msgid="1226272312940516605">"Spremanje predmemorije kartice vCard u lokalnu privremenu pohranu"</string>
+    <!-- outdated translation 2380844718093378900 -->     <string name="caching_vcard_message" msgid="4926308675041506756">"Alat za uvoz sprema predmemoriju vCard kartice u lokalnu privremenu pohranu. Uvoz će početi uskoro."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Uvoz <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Uvoz <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Čitanje podataka vCarda nije uspjelo"</string>
-    <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Čitanje vCard podataka otkazano je"</string>
+    <!-- outdated translation 1770608329958463131 -->     <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"Čitanje vCard podataka otkazano je"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Završetak uvoza kartice vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
-    <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Otkazan je uvoz datoteke <xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <!-- no translation found for importing_vcard_canceled_title (2147475978165599336) -->
+    <skip />
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"Datoteka <xliff:g id="FILENAME">%s</xliff:g> uskoro će biti uvezena."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Datoteka će uskoro biti uvezena."</string>
-    <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"Odbijen je zahtjev za uvoz kartice vCard. Pokušajte kasnije."</string>
+    <!-- outdated translation 2592424820635325951 -->     <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"Odbijen je zahtjev za uvoz kartice vCard. Pokušajte kasnije."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"Datoteka <xliff:g id="FILENAME">%s</xliff:g> uskoro će biti izvezena."</string>
-    <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"Odbijen je zahtjev za izvoz kartice vCard. Pokušajte kasnije."</string>
+    <!-- outdated translation 8259494002258326330 -->     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Odbijen je zahtjev za izvoz kartice vCard. Pokušajte kasnije."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"kontakt"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
-    <string name="confirm_export_title" msgid="7648747763127442983">"Potvrdite izvoz"</string>
-    <string name="confirm_export_message" msgid="4307437830474103759">"Izvesti popis kontakata u datoteku \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
-    <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Izvoz podataka o kontaktu nije uspio"</string>
-    <string name="exporting_contact_failed_message" msgid="2704925031146288635">"Izvoz podataka o kontaktu nije uspio."\n"Razlog: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Nema kontakta koji je moguće izvesti"</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Previše datoteka kartice vCard u pohrani"</string>
-    <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Previše vCard datoteka na SD kartici"</string>
-    <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Obavezan naziv datoteke je predug (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
-    <string name="exporting_vcard_finished_title" msgid="4259736138838583213">"Završetak izvoza <xliff:g id="FILENAME">%s</xliff:g>"</string>
-    <string name="exporting_vcard_canceled_title" msgid="1827672399438062140">"Otkazan je izvoz datoteke <xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <!-- outdated translation 7648747763127442983 -->     <string name="confirm_export_title" msgid="6834385377255286349">"Potvrdite izvoz"</string>
+    <!-- no translation found for confirm_export_message (2423421354816428708) -->
+    <skip />
+    <!-- outdated translation 2339788270863991417 -->     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Izvoz podataka o kontaktu nije uspio"</string>
+    <!-- no translation found for exporting_contact_failed_message (4938527850142003141) -->
+    <skip />
+    <!-- outdated translation 4919714086648344495 -->     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Nema kontakta koji je moguće izvesti"</string>
+    <!-- outdated translation 3745507837635270265 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="590645599157376285">"Previše datoteka kartice vCard u pohrani"</string>
+    <!-- outdated translation 3745507837635270265 -->     <string name="fail_reason_too_many_vcard" product="default" msgid="4887177369627277474">"Previše datoteka kartice vCard u pohrani"</string>
+    <!-- no translation found for fail_reason_too_long_filename (3393764245254738333) -->
+    <skip />
+    <!-- no translation found for exporting_vcard_finished_title (4767045779458185251) -->
+    <skip />
+    <!-- no translation found for exporting_vcard_canceled_title (2652222370493306887) -->
+    <skip />
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Izvoz podataka o kontaktu"</string>
-    <string name="exporting_contact_list_message" msgid="5640326540405486055">"Izvoz podataka o kontaktu u \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
-    <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Alat za izvoz ne može se inicijalizirati: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
-    <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Došlo je do pogreške tijekom izvoza: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Dohvat informacija iz baze podataka nije uspio"</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Nema kontakata koji se mogu izvoziti. Ako doista imate kontakte na tabletnom uređaju, moguće je da su neki davatelji podataka zabranili izvoz svih kontakata izvan tabletnog uređaja."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Nema kontakata koji se mogu izvoziti. Ako doista imate kontakte na mobitelu, moguće je da su neki davatelji podataka zabranili izvoz svih kontakata izvan mobitela."</string>
-    <string name="composer_not_initialized" msgid="8041534450748388843">"Sastavljač za vCard nije ispravno inicijaliziran"</string>
-    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Nije moguće otvoriti \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <!-- no translation found for exporting_contact_list_message (7181663157672374569) -->
+    <skip />
+    <!-- no translation found for fail_reason_could_not_initialize_exporter (707260459259688510) -->
+    <skip />
+    <!-- no translation found for fail_reason_error_occurred_during_export (3018855323913649063) -->
+    <skip />
+    <!-- outdated translation 6891165255897853705 -->     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Dohvat informacija iz baze podataka nije uspio"</string>
+    <!-- outdated translation 5161491059051198932 -->     <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"Nema kontakata koji se mogu izvoziti. Ako doista imate kontakte na tabletnom uređaju, moguće je da su neki davatelji podataka zabranili izvoz svih kontakata izvan tabletnog uređaja."</string>
+    <!-- outdated translation 5161491059051198932 -->     <string name="composer_has_no_exportable_contact" product="default" msgid="3296493229040294335">"Nema kontakata koji se mogu izvoziti. Ako doista imate kontakte na tabletnom uređaju, moguće je da su neki davatelji podataka zabranili izvoz svih kontakata izvan tabletnog uređaja."</string>
+    <!-- outdated translation 8041534450748388843 -->     <string name="composer_not_initialized" msgid="2321648986367005254">"Sastavljač za vCard nije ispravno inicijaliziran"</string>
+    <!-- no translation found for fail_reason_could_not_open_file (2067725459821997463) -->
+    <skip />
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> od <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontakata"</string>
     <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"Otkazivanje uvoza kartice vCard"</string>
-    <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"Jeste li sigurni da želite otkazati uvoz <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <!-- no translation found for cancel_import_confirmation_message (3929951040347726757) -->
+    <skip />
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Otkazivanje izvoza kartice vCard"</string>
-    <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"Sigurno želite otkazati izvoz datoteke <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <!-- no translation found for cancel_export_confirmation_message (1995462401949262638) -->
+    <skip />
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Uvoz/izvoz kartice vCard nije otkazan"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Nazivi vaših kontakata"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Dodaj pauzu od 2 sek."</string>
@@ -282,16 +303,16 @@
     <string name="call_settings" msgid="7666474782093693667">"Postavke"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Poruka korištenjem"</string>
     <string name="make_primary" msgid="5829291915305113983">"Zapamti ovaj izbor"</string>
-    <string name="quickcontact_missing_app" msgid="4600366393134289038">"Nije pronađena aplikacija za upravljanje ovom radnjom"</string>
-    <string name="missing_name" msgid="7930716592850443705">"(bez imena)"</string>
+    <!-- outdated translation 4600366393134289038 -->     <string name="quickcontact_missing_app" msgid="358168575340921552">"Nije pronađena aplikacija za upravljanje ovom radnjom"</string>
+    <!-- outdated translation 7930716592850443705 -->     <string name="missing_name" msgid="8745511583852904385">"(bez imena)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Računi"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakti za prikaz"</string>
-    <string name="menu_import_export" msgid="3765725645491577190">"Uvoz/izvoz"</string>
-    <string name="dialog_import_export" msgid="4771877268244096596">"Uvoz//Izvoz kontakata"</string>
+    <!-- outdated translation 3765725645491577190 -->     <string name="menu_import_export" msgid="26217871113229507">"Uvoz/izvoz"</string>
+    <!-- outdated translation 4771877268244096596 -->     <string name="dialog_import_export" msgid="4360648034889921624">"Uvoz//Izvoz kontakata"</string>
     <string name="menu_share" msgid="943789700636542260">"Podijeli"</string>
     <string name="menu_all_contacts" msgid="5101735431586050711">"Svi kontakti"</string>
     <string name="share_via" msgid="563121028023030093">"Dijeli kontakt putem"</string>
-    <string name="share_error" msgid="4374508848981697170">"Ovaj se kontakt ne može dijeliti."</string>
+    <!-- outdated translation 4374508848981697170 -->     <string name="share_error" msgid="948429331673358107">"Ovaj se kontakt ne može dijeliti."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Ime"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Nadimak"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organizacija"</string>
@@ -304,9 +325,10 @@
     <string name="menu_sync_remove" msgid="3266725887008450161">"Ukloni grupu sinkronizacije"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Dodaj grupu sinkroniziranja"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"Više grupa..."</string>
-    <string name="display_ungrouped" msgid="4602580795576261158">"Svi ostali kontakti"</string>
-    <string name="display_all_contacts" msgid="6846131371214707956">"Svi kontakti"</string>
-    <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Uklanjanje kontakta \"<xliff:g id="GROUP">%s</xliff:g>\" iz sinkronizacije uklonit će i sve razgrupirane kontakte iz sinkronizacije."</string>
+    <!-- outdated translation 4602580795576261158 -->     <string name="display_ungrouped" msgid="6885954210243119591">"Svi ostali kontakti"</string>
+    <!-- outdated translation 6846131371214707956 -->     <string name="display_all_contacts" msgid="2031647544742889505">"Svi kontakti"</string>
+    <!-- no translation found for display_warn_remove_ungrouped (8872290721676651414) -->
+    <skip />
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Samo tabletni uređaj, bez sinkronizacije"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"Samo mobitel, bez sinkronizacije"</string>
     <string name="call_custom" msgid="7756571794763171802">"Nazovi <xliff:g id="CUSTOM">%s</xliff:g>"</string>
@@ -371,7 +393,7 @@
     <string name="chat_icq" msgid="8438405386153745775">"Chatajte koristeći ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Chatajte koristeći Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Chat"</string>
-    <string name="audio_chat" msgid="4743276658947547047">"Audiochat"</string>
+    <!-- outdated translation 4743276658947547047 -->     <string name="audio_chat" msgid="2535716629358298691">"Audiochat"</string>
     <string name="video_chat" msgid="1872255818640336072">"Videochat"</string>
     <string name="postal_address" msgid="8765560217149624536">"Adresa"</string>
     <string name="postal_street" msgid="8133143961580058972">"Ulica"</string>
@@ -393,14 +415,17 @@
     <string name="name_phonetic" msgid="4259595234312430484">"Ime fonetski"</string>
     <string name="connections" msgid="8098440723172028350">"Veze"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Dodaj vezu"</string>
-    <string name="recent_updates" msgid="2062236709538790412">"Nedavni"</string>
+    <!-- no translation found for recent (2659189233141493004) -->
+    <!-- no translation found for recent (2062236709538790412) -->
+    <skip />
+    <!-- outdated translation 2062236709538790412 -->     <string name="recent_updates" msgid="4267258535615860710">"Nedavni"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kontakt"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Upotrijebi ovu fotografiju"</string>
-    <string name="contact_read_only" msgid="1856479476063888348">"Ne može se uređivati ​​iz ove aplikacije"</string>
-    <string name="no_contact_details" msgid="6754415338321837001">"Nema dodatnih informacija za ovaj kontakt"</string>
-    <string name="group_read_only" msgid="7924922658394449477">"Ne može se uređivati ​​na ovom uređaju"</string>
+    <!-- outdated translation 1856479476063888348 -->     <string name="contact_read_only" msgid="7421346527289472273">"Ne može se uređivati ​​iz ove aplikacije"</string>
+    <!-- outdated translation 6754415338321837001 -->     <string name="no_contact_details" msgid="6636856378019344497">"Nema dodatnih informacija za ovaj kontakt"</string>
+    <!-- outdated translation 7924922658394449477 -->     <string name="group_read_only" msgid="1061762906115697637">"Ne može se uređivati ​​na ovom uređaju"</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Poredaj popis prema"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Ime"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Prezime"</string>
@@ -410,14 +435,15 @@
     <string name="search_bar_hint" msgid="1012756309632856553">"Pretraži kontakte"</string>
     <string name="take_photo" msgid="7496128293167402354">"Snimi fotografiju"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Snimi novu fotografiju"</string>
-    <string name="pick_photo" msgid="448886509158039462">"Odaberite fotografiju iz Galerije"</string>
+    <!-- outdated translation 448886509158039462 -->     <string name="pick_photo" msgid="3746334626214970837">"Odaberite fotografiju iz Galerije"</string>
     <string name="pick_new_photo" msgid="7962368009197147617">"Odaberite novu fotografiju iz galerije"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Popis kontakata ažurira se da bi se pokazala promjena jezika."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Popis kontakata ažurira se."</string>
-    <string name="upgrade_out_of_memory" msgid="6153384328042175667">"Kontakti se upravo nadograđuju. "\n\n"Nadogradnja približno zauzima <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> Mb interne memorije. "\n\n"Odaberite jednu od sljedećih mogućnosti:"</string>
+    <!-- no translation found for upgrade_out_of_memory (1209994418877625940) -->
+    <skip />
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Deinstaliraj neke aplikacije"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Pokušaj ponovo nadogradnju"</string>
-    <string name="search_results_searching" msgid="7755623475227227314">"Pretraživanje..."</string>
+    <!-- outdated translation 7755623475227227314 -->     <string name="search_results_searching" msgid="3984833028938569930">"Pretraživanje..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Prikaži odabrano"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Pokaži sve"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Odaberi sve"</string>
@@ -441,20 +467,20 @@
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Pridružiti trenutačni kontakt odabranom kontaktu?"</string>
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Uredi odabrane kontakte"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Prebaciti se na uređivanje odabranog kontakta? Informacije koje ste unijeli dosad kopirat će se."</string>
-    <string name="menu_copyContact" msgid="4401683725471696686">"Kopiraj u moje kontakte"</string>
+    <!-- outdated translation 4401683725471696686 -->     <string name="menu_copyContact" msgid="1573960845106822639">"Kopiraj u moje kontakte"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Dodaj u Moje kontakte"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Direktorij <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Direktorij"</string>
     <string name="local_search_label" msgid="2551177578246113614">"Svi kontakti"</string>
-    <string name="toast_making_personal_copy" msgid="7905283986345263275">"Stvaranje osobne kopije"</string>
+    <!-- outdated translation 7905283986345263275 -->     <string name="toast_making_personal_copy" msgid="288549957278065542">"Stvaranje osobne kopije"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Svi kontakti"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Sa zvjezdicom"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Prilagođeno"</string>
-    <string name="list_filter_customize" msgid="2035084418635775579">"Prilagodi..."</string>
+    <!-- outdated translation 2035084418635775579 -->     <string name="list_filter_customize" msgid="4789963356004169321">"Prilagodi..."</string>
     <string name="list_filter_phones" msgid="735313795643493365">"Svi kontakti s telefonskim brojevima"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Kontakt"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Definiranje prilagođenog prikaza"</string>
-    <string name="contact_list_loading" msgid="3859280390185230582">"Učitavanje…"</string>
+    <!-- outdated translation 3859280390185230582 -->     <string name="contact_list_loading" msgid="5488620820563977329">"Učitavanje…"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Postavke"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakti za prikaz"</string>
     <string name="menu_settings" msgid="377929915873428211">"Postavke"</string>
@@ -468,7 +494,7 @@
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Navesti godinu"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Kontakt"</string>
-    <string name="social_widget_loading" msgid="3697996166985327861">"Učitavanje…"</string>
+    <!-- outdated translation 3697996166985327861 -->     <string name="social_widget_loading" msgid="5327336597364074608">"Učitavanje…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Izradi novi kontakt"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Prijavi se na račun"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Uvezi kontakte iz datoteke"</string>
@@ -479,7 +505,8 @@
     <item quantity="one" msgid="2944819210288517794">"1 grupa"</item>
     <item quantity="other" msgid="1276758425904917367">"Br. grupa: <xliff:g id="COUNT">%0$d</xliff:g>"</item>
   </plurals>
-    <string name="delete_group_dialog_message" msgid="295063284548750881">"Jeste li sigurni da želite izbrisati grupu \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Sami kontakti neće biti izbrisani.)"</string>
+    <!-- no translation found for delete_group_dialog_message (7586856514337560529) -->
+    <skip />
   <plurals name="num_contacts_in_group">
     <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> osoba iz grupe <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
     <item quantity="other" msgid="8146027769011086349">"Broj ljudi: <xliff:g id="COUNT_0">%1$d</xliff:g> iz grupe <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
@@ -488,13 +515,13 @@
     <item quantity="one" msgid="3323065321661972446">"Broj osoba: <xliff:g id="COUNT">%1$d</xliff:g>"</item>
     <item quantity="other" msgid="6251996206137048525">"Broj osoba: <xliff:g id="COUNT">%1$d</xliff:g>"</item>
   </plurals>
-    <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Unesite ime kontakta prije pridruživanja drugom kontaktu."</string>
+    <!-- outdated translation 5015189525953438968 -->     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Unesite ime kontakta prije pridruživanja drugom kontaktu."</string>
     <string name="copy_text" msgid="3257145021583508761">"Kopiraj u međuspremnik"</string>
     <string name="set_default" msgid="4417505153468300351">"Postavi zadano"</string>
     <string name="clear_default" msgid="7193185801596678067">"Izbriši zadano"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Tekst kopiran"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Odbaci promjene"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Zaista želite odbaciti promjene?"</string>
+    <!-- outdated translation 7021968394611740251 -->     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Zaista želite odbaciti promjene?"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g><xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Postavi moj profil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Upišite ime osobe"</string>
@@ -511,19 +538,19 @@
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Dohvaćanje govorne pošte nije uspjelo."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Novo"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Starije"</string>
-    <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"Povezivanje s poslužiteljem govorne pošte nije moguće."</string>
-    <string name="voicemail_status_messages_waiting" msgid="2970301042310727909">"Nema veze s poslužiteljem govorne pošte. Nova govorna pošta čeka."</string>
-    <string name="voicemail_status_configure_voicemail" msgid="3940240432123700974">"Konfigurirajte svoju govornu poštu."</string>
+    <!-- outdated translation 3164200979671881947 -->     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Povezivanje s poslužiteljem govorne pošte nije moguće."</string>
+    <!-- outdated translation 2970301042310727909 -->     <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Nema veze s poslužiteljem govorne pošte. Nova govorna pošta čeka."</string>
+    <!-- outdated translation 3940240432123700974 -->     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Konfigurirajte svoju govornu poštu."</string>
     <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Zvuk nije dostupan."</string>
-    <string name="voicemail_status_action_configure" msgid="7008713959076506385">"Konfigurirajte"</string>
+    <!-- outdated translation 7008713959076506385 -->     <string name="voicemail_status_action_configure" msgid="8671796489912239589">"Konfigurirajte"</string>
     <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"Zovi govornu poštu"</string>
-    <string name="voicemail_speed_slowest" msgid="6047030504814773029">"najsporije"</string>
-    <string name="voicemail_speed_slower" msgid="7890393922358642543">"sporo"</string>
-    <string name="voicemail_speed_normal" msgid="6030110237820243006">"normalno"</string>
-    <string name="voicemail_speed_faster" msgid="4161478290979905481">"brzo"</string>
-    <string name="voicemail_speed_fastest" msgid="3373646875150544205">"najbrže"</string>
+    <!-- outdated translation 6047030504814773029 -->     <string name="voicemail_speed_slowest" msgid="1733460666177707312">"najsporije"</string>
+    <!-- outdated translation 7890393922358642543 -->     <string name="voicemail_speed_slower" msgid="1508601287347216244">"sporo"</string>
+    <!-- outdated translation 6030110237820243006 -->     <string name="voicemail_speed_normal" msgid="9033988544627228892">"normalno"</string>
+    <!-- outdated translation 4161478290979905481 -->     <string name="voicemail_speed_faster" msgid="2019965121475935488">"brzo"</string>
+    <!-- outdated translation 3373646875150544205 -->     <string name="voicemail_speed_fastest" msgid="5758712343491183292">"najbrže"</string>
     <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
-    <string name="group_name_hint" msgid="2659811836386413509">"Ime grupe"</string>
+    <!-- outdated translation 2659811836386413509 -->     <string name="group_name_hint" msgid="238359485263401293">"Ime grupe"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Kontakt NFC-om"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Prikaži samo govorne pošte"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"Prikaz svih poziva"</string>
@@ -559,5 +586,5 @@
     <string name="add_new_account" msgid="5748627740680940264">"Dodaj novi račun"</string>
     <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"Poziv nije poslan"</string>
     <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"Broj govorne pošte nedostupan je"</string>
-    <string name="dialog_voicemail_not_ready_message" msgid="4511141315685755189">"Za konfiguriranje govorne pošte idite na Izbornik &gt; Postavke."</string>
+    <!-- outdated translation 4511141315685755189 -->     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Za konfiguriranje govorne pošte idite na Izbornik &gt; Postavke."</string>
 </resources>
