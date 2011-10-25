@@ -285,7 +285,7 @@
     <string name="quickcontact_missing_app" msgid="4600366393134289038">"Der blev ikke fundet nogen applikation til denne handling"</string>
     <string name="missing_name" msgid="7930716592850443705">"(intet navn)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Konti"</string>
-    <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontaktpersoner, der skal vises"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakter, der skal vises"</string>
     <string name="menu_import_export" msgid="3765725645491577190">"Import/eksport"</string>
     <string name="dialog_import_export" msgid="4771877268244096596">"Importer/eksporter kontakter"</string>
     <string name="menu_share" msgid="943789700636542260">"Del"</string>
@@ -404,7 +404,7 @@
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Sorter liste efter"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Fornavn"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Efternavn"</string>
-    <string name="display_options_view_names_as" msgid="18022868169627979">"Vis kontaktpersoners navne som"</string>
+    <string name="display_options_view_names_as" msgid="18022868169627979">"Vis personers navne som"</string>
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Fornavn først"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Efternavn først"</string>
     <string name="search_bar_hint" msgid="1012756309632856553">"Søg i kontakter"</string>
