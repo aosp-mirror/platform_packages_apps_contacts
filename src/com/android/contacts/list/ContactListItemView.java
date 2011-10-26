@@ -422,7 +422,7 @@ public class ContactListItemView extends ViewGroup
             } else {
                 statusWidth = effectiveWidth;
             }
-            mStatusView.measure(MeasureSpec.makeMeasureSpec(statusWidth, MeasureSpec.AT_MOST),
+            mStatusView.measure(MeasureSpec.makeMeasureSpec(statusWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
             mStatusTextViewHeight =
                     Math.max(mStatusTextViewHeight, mStatusView.getMeasuredHeight());
