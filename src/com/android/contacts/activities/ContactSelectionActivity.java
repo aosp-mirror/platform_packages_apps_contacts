@@ -86,7 +86,7 @@ public class ContactSelectionActivity extends ContactsActivity
     /**
      * Can be null. If null, the "Create New Contact" button should be on the menu.
      */
-    private Button mCreateNewContactButton;
+    private View mCreateNewContactButton;
 
     public ContactSelectionActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
@@ -135,7 +135,7 @@ public class ContactSelectionActivity extends ContactsActivity
 
         prepareSearchViewAndActionBar();
 
-        mCreateNewContactButton = (Button) findViewById(R.id.new_contact);
+        mCreateNewContactButton = findViewById(R.id.new_contact);
         if (mCreateNewContactButton != null) {
             if (shouldShowCreateNewContactButton()) {
                 mCreateNewContactButton.setVisibility(View.VISIBLE);

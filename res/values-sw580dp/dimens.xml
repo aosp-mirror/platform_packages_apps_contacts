@@ -40,6 +40,13 @@
     <dimen name="list_visible_scrollbar_padding">48dip</dimen>
     <dimen name="account_filter_header_top_padding">@dimen/contact_browser_list_top_margin</dimen>
 
+    <!-- Because the "join" screen has the vertical scroll bar on right,
+      we cannot use @dimen/contact_browser_list_header_left_margin as is. -->
+    <dimen name="join_header_left_margin">24dip</dimen>
+    <dimen name="join_header_right_margin">@dimen/list_visible_scrollbar_padding</dimen>
+    <dimen name="join_header_top_margin">16dip</dimen>
+    <dimen name="join_header_bottom_margin">16dip</dimen>
+
     <!-- Margins and padding for text in widget -->
     <dimen name="widget_snippet_top_margin">5dip</dimen>
     <dimen name="widget_snippet_bottom_margin">6dip</dimen>
