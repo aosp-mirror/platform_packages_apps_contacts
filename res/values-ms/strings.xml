@@ -519,8 +519,8 @@
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Mel suara baru daripada <xliff:g id="CALLER">%1$s</xliff:g>"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"Tidak dapat memainkan mel suara."</string>
-    <string name="voicemail_buffering" msgid="738287747618697097">"Menimbal???"</string>
-    <string name="voicemail_fetching_content" msgid="877911315738258780">"Sedang mendapatkan mel suara???"</string>
+    <string name="voicemail_buffering" msgid="738287747618697097">"Menimbal…"</string>
+    <string name="voicemail_fetching_content" msgid="877911315738258780">"Sedang mendapatkan mel suara…"</string>
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Tidak dapat mengambil mel suara."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Baru"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Lebih lama"</string>

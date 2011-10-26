@@ -64,7 +64,7 @@
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Kontakty zostały połączone"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"Usuń"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Ustaw dzwonek"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Wszystkie poł. z pocztą głosową"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Łącz na pocztę głosową"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"Nie możesz usunąć kontaktów z kont tylko do odczytu, ale możesz ukryć je na swoich listach kontaktów."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Ten kontakt zawiera informacje pochodzące z wielu kont. Informacje z kont przeznaczonych tylko do odczytu zostaną na listach kontaktów ukryte, a nie usunięte."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Usunięcie tego kontaktu spowoduje usunięcie informacji z wielu kont."</string>
@@ -156,7 +156,7 @@
     <string name="private_num" msgid="6374339738119166953">"Numer prywatny"</string>
     <string name="payphone" msgid="4864313342828942922">"Telefon płatny"</string>
     <string name="dialerKeyboardHintText" msgid="5401660096579787344">"Wybierz numer za pomocą klawiatury"</string>
-    <string name="dialerDialpadHintText" msgid="5824490365898349041">"Dodaj nowe poł."</string>
+    <string name="dialerDialpadHintText" msgid="5824490365898349041">"Dodaj połączenie"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Wczytywanie z karty SIM…"</string>
     <string name="simContacts_title" msgid="27341688347689769">"Kontakty z karty SIM"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Nie masz żadnych kontaktów do wyświetlenia (jeśli konto zostało dopiero dodane, synchronizacja kontaktów może potrwać kilka minut)."</string>

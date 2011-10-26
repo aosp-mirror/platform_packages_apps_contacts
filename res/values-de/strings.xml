@@ -145,7 +145,7 @@
     <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Anrufliste löschen"</string>
     <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Mailbox-Nachricht löschen"</string>
     <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Mailbox-Nachricht teilen"</string>
-    <string name="recentCalls_empty" msgid="247053222448663107">"Anrufliste ist leer"</string>
+    <string name="recentCalls_empty" msgid="247053222448663107">"Anrufliste ist leer."</string>
     <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Anrufprotokoll löschen"</string>
     <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Möchten Sie das Anrufprotokoll wirklich löschen?"</string>
     <string name="clearCallLogProgress_title" msgid="6870412675015656948">"Anrufprotokoll wird gelöscht."</string>
@@ -569,6 +569,6 @@
     <string name="add_account" msgid="8201790677994503186">"Konto hinzufügen"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Neues Konto hinzufügen"</string>
     <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"Anruf nicht verbunden"</string>
-    <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"Mailboxnummer nicht verfügbar"</string>
+    <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"Mailbox-Nummer nicht verfügbar"</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4511141315685755189">"Konfigurieren Sie Ihre Mailbox unter \"Menü\" &gt; \"Einstellungen\"."</string>
 </resources>

@@ -479,7 +479,7 @@
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"ציין שנה"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"איש קשר"</string>
-    <string name="social_widget_loading" msgid="3697996166985327861">"טוען ???"</string>
+    <string name="social_widget_loading" msgid="3697996166985327861">"טוען …"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"צור איש קשר חדש"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"היכנס לחשבון"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"ייבא אנשי קשר מקובץ"</string>
