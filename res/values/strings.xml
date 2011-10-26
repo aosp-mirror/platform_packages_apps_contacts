@@ -136,7 +136,7 @@
     <!-- Menu item (in the action bar) that creates a new group [CHAR LIMIT=12] -->
     <string name="menu_new_group_action_bar">New</string>
 
-    <!-- Title of the confirmation dialog for separating contacts into multiple instances [CHAR LIMIT=20] -->
+    <!-- Title of the confirmation dialog for separating contacts into multiple instances [CHAR LIMIT=26] -->
     <string name="splitConfirmation_title">Separate contact?</string>
 
     <!-- Confirmation dialog for separating contacts into multiple instances [CHAR LIMIT=NONE] -->
@@ -163,7 +163,7 @@
     <!-- Toast shown after two contacts have been joined by a user action -->
     <string name="contactsJoinedMessage">Contacts joined</string>
 
-    <!-- Confirmation dialog title after users selects to delete a contact. [CHAR LIMIT=20]-->
+    <!-- Confirmation dialog title after users selects to delete a contact. [CHAR LIMIT=25]-->
     <string name="deleteConfirmation_title">Delete contact?</string>
 
     <!-- Menu item that opens the Options activity for a given contact [CHAR LIMIT=15] -->
@@ -414,7 +414,7 @@
     <!-- Text displayed when the call log is empty -->
     <string name="recentCalls_empty">Call log is empty.</string>
 
-    <!-- Title of the confirmation dialog for clearing the call log. [CHAR LIMIT=20]  -->
+    <!-- Title of the confirmation dialog for clearing the call log. [CHAR LIMIT=37]  -->
     <string name="clearCallLogConfirmation_title">Clear call log?</string>
 
     <!-- Confirmation dialog for clearing the call log. [CHAR LIMIT=NONE]  -->
@@ -823,7 +823,7 @@
     <!-- The failed reason which should not be shown but it may in some buggy condition. [CHAR LIMIT=40] -->
     <string name="fail_reason_unknown">Unknown error.</string>
 
-    <!-- Dialog title shown when a user is asked to select vCard file. [CHAR LIMIT=20] -->
+    <!-- Dialog title shown when a user is asked to select vCard file. [CHAR LIMIT=25] -->
     <string name="select_vcard_title">Choose vCard file</string>
 
     <!-- The title shown when vCard importer is caching files to be imported into local temporary
@@ -888,7 +888,7 @@
     <!-- The percentage, used for expressing the progress of vCard import/export. -->
     <string name="percentage">%s%%</string>
 
-    <!-- Dialog title shown when a user confirms whether he/she export Contact data. [CHAR LIMIT=20] -->
+    <!-- Dialog title shown when a user confirms whether he/she export Contact data. [CHAR LIMIT=32] -->
     <string name="confirm_export_title">Export contacts?</string>
 
     <!-- Dialog message shown when a user confirms whether he/she export Contact data [CHAR LIMIT=NONE] -->
@@ -1018,7 +1018,7 @@
     <!-- The menu item to bulk import or bulk export contacts from SIM card or SD card.  [CHAR LIMIT=30]-->
     <string name="menu_import_export">Import/export</string>
 
-    <!-- Dialog title when selecting the bulk operation to perform from a list. [CHAR LIMIT=25] -->
+    <!-- Dialog title when selecting the bulk operation to perform from a list. [CHAR LIMIT=36] -->
     <string name="dialog_import_export">Import/export contacts</string>
 
     <!-- The menu item to share the currently viewed contact [CHAR LIMIT=30] -->
