@@ -64,7 +64,7 @@
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"연락처 결합됨"</string>
     <string name="deleteConfirmation_title" msgid="6394309508930335204">"삭제"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"벨소리 설정"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"모든 통화를 음성사서함으로 보내기"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"음성사서함 자동 연결"</string>
     <string name="readOnlyContactWarning" msgid="1390849295342594265">"읽기 전용 계정의 주소록은 삭제할 수 없지만 주소록 목록에서 숨길 수는 있습니다."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"연락처에 여러 계정의 정보가 들어 있습니다. 읽기 전용 계정의 정보는 주소록 목록에서 숨길 수 있지만 삭제할 수는 없습니다."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"이 연락처를 삭제하면 여러 계정의 정보가 삭제됩니다."</string>

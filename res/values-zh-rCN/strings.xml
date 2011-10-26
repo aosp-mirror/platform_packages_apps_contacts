@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="launcherDialer" msgid="8636288196618486553">"拨号"</string>
-    <string name="people" msgid="1048457247435785074">"用户"</string>
+    <string name="people" msgid="1048457247435785074">"联系人"</string>
     <string name="contactsList" msgid="8661624236494819731">"通讯录"</string>
     <string name="shortcutContact" msgid="749243779392912958">"联系人"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"直接拨打"</string>
@@ -187,7 +187,7 @@
     <string name="callAgain" msgid="3197312117049874778">"重拨"</string>
     <string name="returnCall" msgid="8171961914203617813">"回拨"</string>
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> 分 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
-    <string name="favoritesFrequentContacted" msgid="6184232487472425690">"常用联系人"</string>
+    <string name="favoritesFrequentContacted" msgid="6184232487472425690">"经常联系的人"</string>
     <string name="favoritesFrequentCalled" msgid="6128306889600696124">"经常呼叫的联系人"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"添加联系人"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"将“<xliff:g id="EMAIL">%s</xliff:g>”添加到联系人？"</string>
@@ -402,8 +402,8 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"中间名拼音"</string>
     <string name="name_phonetic_family" msgid="462095502140180305">"姓氏拼音"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"姓名拼音"</string>
-    <string name="connections" msgid="8098440723172028350">"连接"</string>
-    <string name="add_connection_button" msgid="4861308615789601727">"添加连接"</string>
+    <string name="connections" msgid="8098440723172028350">"联系"</string>
+    <string name="add_connection_button" msgid="4861308615789601727">"加强联系"</string>
     <string name="recent_updates" msgid="2062236709538790412">"最新动态"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> 联系人"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
@@ -517,8 +517,8 @@
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>，<xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"来自<xliff:g id="CALLER">%1$s</xliff:g>的新语音邮件"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"无法播放语音邮件。"</string>
-    <string name="voicemail_buffering" msgid="738287747618697097">"正在缓冲???"</string>
-    <string name="voicemail_fetching_content" msgid="877911315738258780">"正在抓取语​​音邮件???"</string>
+    <string name="voicemail_buffering" msgid="738287747618697097">"正在缓冲…"</string>
+    <string name="voicemail_fetching_content" msgid="877911315738258780">"正在抓取语​​音邮件…"</string>
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"无法抓取语音邮件。"</string>
     <string name="call_log_new_header" msgid="846546437517724715">"新记录"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"旧记录"</string>
