@@ -351,14 +351,14 @@ public class ContactListItemView extends ViewGroup
 
         if (isVisible(mNameTextView)) {
             mNameTextView.measure(
-                    MeasureSpec.makeMeasureSpec(effectiveWidth, MeasureSpec.AT_MOST),
+                    MeasureSpec.makeMeasureSpec(effectiveWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
             mNameTextViewHeight = mNameTextView.getMeasuredHeight();
         }
 
         if (isVisible(mPhoneticNameTextView)) {
             mPhoneticNameTextView.measure(
-                    MeasureSpec.makeMeasureSpec(effectiveWidth, MeasureSpec.AT_MOST),
+                    MeasureSpec.makeMeasureSpec(effectiveWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
             mPhoneticNameTextViewHeight = mPhoneticNameTextView.getMeasuredHeight();
         }
@@ -388,13 +388,13 @@ public class ContactListItemView extends ViewGroup
         }
 
         if (isVisible(mDataView)) {
-            mDataView.measure(MeasureSpec.makeMeasureSpec(dataWidth, MeasureSpec.AT_MOST),
+            mDataView.measure(MeasureSpec.makeMeasureSpec(dataWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
             mDataViewHeight = mDataView.getMeasuredHeight();
         }
 
         if (isVisible(mLabelView)) {
-            mLabelView.measure(MeasureSpec.makeMeasureSpec(labelWidth, MeasureSpec.AT_MOST),
+            mLabelView.measure(MeasureSpec.makeMeasureSpec(labelWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
             mLabelViewHeight = mLabelView.getMeasuredHeight();
         }
@@ -402,7 +402,7 @@ public class ContactListItemView extends ViewGroup
 
         if (isVisible(mSnippetView)) {
             mSnippetView.measure(
-                    MeasureSpec.makeMeasureSpec(effectiveWidth, MeasureSpec.AT_MOST),
+                    MeasureSpec.makeMeasureSpec(effectiveWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
             mSnippetTextViewHeight = mSnippetView.getMeasuredHeight();
         }
@@ -422,7 +422,7 @@ public class ContactListItemView extends ViewGroup
             } else {
                 statusWidth = effectiveWidth;
             }
-            mStatusView.measure(MeasureSpec.makeMeasureSpec(statusWidth, MeasureSpec.AT_MOST),
+            mStatusView.measure(MeasureSpec.makeMeasureSpec(statusWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
             mStatusTextViewHeight =
                     Math.max(mStatusTextViewHeight, mStatusView.getMeasuredHeight());
