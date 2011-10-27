@@ -29,7 +29,7 @@
         android:orientation="vertical">
         <FrameLayout
             android:layout_width="400dip"
-            android:layout_height="200dip">
+            android:layout_height="@dimen/quick_contact_photo_container_height">
             <include layout="@layout/quickcontact_photo_container" />
         </FrameLayout>
         <include layout="@layout/quickcontact_track" />
@@ -41,6 +41,6 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/item_list_pager"
             android:layout_width="match_parent"
-            android:layout_height="180dip" />
+            android:layout_height="160dip" />
     </LinearLayout>
 </view>
