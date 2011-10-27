@@ -190,7 +190,7 @@
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"Contactos frecuentes"</string>
     <string name="favoritesFrequentCalled" msgid="6128306889600696124">"Más llamados"</string>
     <string name="add_contact_dlg_title" msgid="2896685845822146494">"Añadir contacto"</string>
-    <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"¿Deseas añadir \"<xliff:g id="EMAIL">%s</xliff:g>\" a Contactos?"</string>
+    <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"¿Quieres añadir \"<xliff:g id="EMAIL">%s</xliff:g>\" a Contactos?"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"uno"</string>
     <string name="description_image_button_two" msgid="5882638439003731308">"dos"</string>
     <string name="description_image_button_three" msgid="8709731759376015180">"tres"</string>
@@ -277,9 +277,9 @@
     <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"No se ha podido abrir el archivo \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> de <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contactos"</string>
     <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"Cancelando importación de vCard"</string>
-    <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"¿Seguro que deseas cancelar la importación de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"¿Seguro que quieres cancelar la importación de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Cancelando exportación de vCard"</string>
-    <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"¿Estás seguro de que deseas cancelar la exportación de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"¿Seguro que quieres cancelar la exportación de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Error al cancelar la importación/exportación de vCard"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Nombres de tus contactos"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Añadir pausa de dos segundos"</string>
@@ -449,9 +449,9 @@
   </plurals>
     <string name="local_invisible_directory" msgid="6046691709127661065">"Otro"</string>
     <string name="aggregation_suggestion_join_dialog_title" msgid="5276699501316246253">"Agrupar contactos"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"¿Deseas agrupar el contacto actual con el contacto seleccionado?"</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"¿Quieres agrupar el contacto actual con el contacto seleccionado?"</string>
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Editar contactos seleccionados"</string>
-    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"¿Deseas editar el contacto seleccionado? Se copiará la información que hayas introducido hasta el momento."</string>
+    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"¿Quieres editar el contacto seleccionado? Se copiará la información que hayas introducido hasta el momento."</string>
     <string name="menu_copyContact" msgid="4401683725471696686">"Copiar en mis contactos"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Añadir a Mis contactos"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Directorio <xliff:g id="TYPE">%1$s</xliff:g>"</string>
@@ -490,7 +490,7 @@
     <item quantity="one" msgid="2944819210288517794">"Un grupo"</item>
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> grupos"</item>
   </plurals>
-    <string name="delete_group_dialog_message" msgid="295063284548750881">"¿Estás seguro de que deseas eliminar el grupo \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Los contactos no se eliminarán)."</string>
+    <string name="delete_group_dialog_message" msgid="295063284548750881">"¿Seguro que quieres eliminar el grupo \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? Los contactos no se eliminarán."</string>
   <plurals name="num_contacts_in_group">
     <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> persona de <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
     <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> personas de <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
