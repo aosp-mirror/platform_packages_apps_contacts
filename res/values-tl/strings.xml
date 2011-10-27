@@ -25,7 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Pumili ng shortcut sa contact"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Pumili ng tatawagang numero"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Pumili ng numero na padadalhan ng mensahe"</string>
-    <string name="contactPickerActivityTitle" msgid="6886592363525235031">"Pumili ng contact"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Pumili ng isang contact"</string>
     <string name="starredList" msgid="4817256136413959463">"Naka-star"</string>
     <string name="frequentList" msgid="7154768136473953056">"Madalas"</string>
     <string name="strequentList" msgid="5640192862059373511">"Mga Paborito"</string>
@@ -53,19 +53,19 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Tanggalin"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Bago"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Bago"</string>
-    <string name="splitConfirmation_title" msgid="2209511048593467012">"Hiwalay na contact"</string>
-    <string name="splitConfirmation" msgid="1067993957986345974">"Sigurado ka bang nais mong paghiwalayin ang isang contact na ito sa maramihang contact?"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Ihiwalay ang contact?"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Paghihiwa-hiwalayin ang contact na ito patungo sa maramihang contact."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Sumali"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Sumali sa mga contact"</string>
-    <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Piliin ang contact na gusto mong salihan ni <xliff:g id="NAME">%s</xliff:g>."</string>
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Piliin ang contact na gusto mong isama sa/kay <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Ipakita ang lahat ng mga contact"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Mga iminumungkahing contact"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Lahat ng mga contact"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Mga pinagsamang contact"</string>
-    <string name="deleteConfirmation_title" msgid="6394309508930335204">"Tanggalin"</string>
+    <string name="deleteConfirmation_title" msgid="1418215926447642260">"Tanggalin ang contact?"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Itakda ang ringtone"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Lahat ng tawag sa voicemail"</string>
-    <string name="readOnlyContactWarning" msgid="1390849295342594265">"Hindi ka makakapagtanggal ng mga contact mula sa mga account na read-only, ngunit maitatago mo ang mga ito sa mga listahan ng iyong mga contact."</string>
+    <string name="readOnlyContactWarning" msgid="7808825687289848259">"Hindi ka makakapagtanggal ng mga contact mula sa mga read-only na account, ngunit maitatago mo ang mga ito sa iyong mga listahan ng mga contact."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Naglalaman ang contact na ito ng impormasyon mula sa maramihang account. Itatago ang impormasyon mula sa mga account na read-only sa mga listahan ng iyong mga contact, hindi tatanggalin."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Tatanggalin ng pagtanggal sa account na ito ang impormasyon mula sa maramihang account."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Tatanggalin ang contact na ito."</string>
@@ -76,8 +76,8 @@
     <string name="label_sip_address" msgid="124073911714324974">"Tawag sa internet"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Kumpanya"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Pamagat"</string>
-    <string name="invalidContactMessage" msgid="5816991830260044593">"Hindi umiiral ang contact."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Lumikha ng bagong contact"</string>
+    <string name="invalidContactMessage" msgid="8215051456181842274">"Hindi umiiral ang contact."</string>
+    <string name="pickerNewContactText" msgid="6166997164401048211">"Lumikha ng bagong contact"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telepono"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"Email"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"IM"</string>
@@ -92,17 +92,19 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Custom na pangalan ng label"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Ipadala ang mga tawag nang direkta sa voicemail"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Alisin ang larawan"</string>
-    <string name="noContacts" msgid="4955659076981974652">"Walang mga contact"</string>
-    <string name="noGroups" msgid="7315200974181864731">"Walang mga pangkat"</string>
-    <string name="noAccounts" msgid="4742609114153797268">"Upang lumikha ng mga pangkat kailangan mo ng account"</string>
+    <string name="noContacts" msgid="8579310973261953559">"Walang mga contact."</string>
+    <string name="noGroups" msgid="8614664663561385253">"Walang mga pangkat."</string>
+    <string name="noAccounts" msgid="7768267764545265909">"Upang lumikha ng mga pangkat kailangan mo ng isang account."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Walang nakitang magkakatugmang mga contact."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Walang mga contact na may mga numero ng telepono."</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"Walang mga tao sa pangkat na ito."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"Upang magdagdag ng ilan, i-edit ang pangkat."</string>
     <string name="savingContact" msgid="4075751076741924939">"Nagse-save ng contact…"</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Sine-save ang mga pagpipilian sa pagpapakita…"</string>
-    <string name="contactSavedToast" msgid="9171862279493213075">"Na-save ang contact"</string>
-    <string name="contactSavedErrorToast" msgid="9189098776225004666">"Error, hindi nagawang i-save ang mga pagbabago sa contact."</string>
-    <string name="groupSavedToast" msgid="6675062559302493011">"Na-save ang pangkat"</string>
-    <string name="groupSavedErrorToast" msgid="6434135707953150875">"Error, hindi ma-save ang mga pagbabago sa pangkat."</string>
+    <string name="contactSavedToast" msgid="7152589189385441091">"Na-save ang contact."</string>
+    <string name="contactSavedErrorToast" msgid="3207250533172944892">"Hindi ma-save ang mga pagbabago sa contact."</string>
+    <string name="groupSavedToast" msgid="1168756874239833756">"Na-save ang pangkat."</string>
+    <string name="groupSavedErrorToast" msgid="7984466936615304740">"Hindi ma-save ang mga pagbabago sa pangkat."</string>
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"1 contact na may numero ng telepono"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> (na) contact na may mga numero ng telepono"</item>
@@ -112,9 +114,9 @@
     <item quantity="one" msgid="3405747744700823280">"1 contact"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> (na) contact"</item>
   </plurals>
-    <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Walang mga contact"</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Walang nakikitang mga contact"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Walang Mga Paborito"</string>
+    <string name="listTotalAllContactsZero" msgid="5513001821794568211">"Walang mga contact."</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"Walang mga nakikitang contact."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"Walang mga paborito."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Walang mga contact sa <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Mga contact sa <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listSingleContact" msgid="6067813698903535563">"Iisang contact"</string>
@@ -123,8 +125,8 @@
     <item quantity="one" msgid="5517063038754171134">"1 ang nakita"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> ang nakita"</item>
   </plurals>
-    <string name="foundTooManyContacts" msgid="2548148047461758967">"higit pa sa <xliff:g id="COUNT">%d</xliff:g> ang nakita"</string>
-    <string name="listFoundAllContactsZero" msgid="777952841930508289">"Hindi Nakita"</string>
+    <string name="foundTooManyContacts" msgid="5163335650920020220">"Higit sa <xliff:g id="COUNT">%d</xliff:g> ang natagpuan."</string>
+    <string name="listFoundAllContactsZero" msgid="7132202364587656501">"Walang natagpuan."</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"1 ang nakita"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> ang nakita"</item>
@@ -143,9 +145,9 @@
     <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Tanggalin ang voicemail"</string>
     <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Ibahagi ang voicemail"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Walang laman ang log ng tawag."</string>
-    <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"I-clear ang log ng tawag"</string>
-    <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Sigurado ka bang gusto mong i-clear ang log ng tawag?"</string>
-    <string name="clearCallLogProgress_title" msgid="6870412675015656948">"Kini-clear ang log ng tawag"</string>
+    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"I-clear ang log ng tawag?"</string>
+    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Tatanggalin ang lahat ng iyong record ng tawag."</string>
+    <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Kini-clear ang log ng tawag…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Voicemail"</string>
@@ -158,14 +160,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"Mga contact sa SIM card"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Wala kang ipapakitang anumang mga contact. (Kung nagdagdag ka lang ng account, maaaring tumagal ng ilang minuto upang ma-sync ang mga contact.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Wala kang maipapakitang anumang mga contact."</string>
-    <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"Wala kang anumang mga contact na ipapakita."\n\n"Upang magdagdag ng mga contact, pindutin ang "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" at pindutin ang:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Mga Account"</b></font>" upang magdagdag o mag-configure ng account na may mga contact na masi-sync mo sa tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Bagong contact"</b></font>" upang lumikha ng bagong contact mula sa scratch"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" upang makapag-import ng mga contact mula sa iyong SIM o SD card"\n</li></string>
-    <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"Wala kang anumang mga contact na ipapakita."\n\n"Upang magdagdag ng mga contact, pindutin ang "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" at pindutin ang:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Mga Account"</b></font>" upang magdagdag o mag-configure ng account na may mga contact na masi-sync mo sa telepono"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Bagong contact"</b></font>" upang lumikha ng bagong contact mula sa scratch"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" upang makapag-import ng mga contact mula sa iyong SIM o SD card"\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Wala kang anumang mga contact na ipapakita. (Kung nagdagdag ka lang ng account, maaaring  magtagal ng ilang minuto upang i-sync ang mga contact.)"\n\n"Upang magdagdag ng mga contact, pindutin ang "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" at pindutin ang:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Mga Account"</b></font>" upang magdagdag o mag-configure ng isang account na may mga contact na masi-sync mo sa tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mga pagpipilian ng display"</b></font>" upang baguhin kung anong mga contact ang nakikita"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Bagong contact"</b></font>" upang lumikha ng bagong contact mula sa scratch"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" upang mag-import ng mga contact mula sa iyong SIM o SD card"\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Wala kang anumang mga contact na ipapakita. (Kung nagdagdag ka lang ng account, maaaring  magtagal ng ilang minuto upang i-sync ang mga contact.)"\n\n"Upang magdagdag ng mga contact, pindutin ang "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" at pindutin ang:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Mga Account"</b></font>" upang magdagdag o mag-configure ng isang account na may mga contact na masi-sync mo sa telepono"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mga pagpipilian sa pagpapakita"</b></font>" upang baguhin kung anong mga contact ang nakikita"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Bagong contact"</b></font>" upang lumikha ng bagong contact mula sa scratch"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" upang mag-import ng mga contact mula sa iyong SIM o SD card"\n</li></string>
-    <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"Wala kang anumang mga contact na ipapakita."\n\n"Upang magdagdag ng mga contact, pindutin ang "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" at pindutin ang:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Mga Account"</b></font>" upang magdagdag o mag-configure ng account na may mga contact na masi-sync mo sa tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Bagong contact"</b></font>" upang lumikha ng bagong contact mula sa scratch"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" upang makapag-import ng mga contact mula sa iyong SD card"\n</li></string>
-    <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"Wala kang anumang mga contact na ipapakita."\n\n"Upang magdagdag ng mga contact, pindutin ang "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" at pindutin ang:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Mga Account"</b></font>" upang magdagdag o mag-configure ng account na may mga contact na masi-sync mo sa telepono"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Bagong contact"</b></font>" upang lumikha ng bagong contact mula sa scratch"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" upang makapag-import ng mga contact mula sa iyong SD card"\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Wala kang anumang mga contact na ipapakita. (Kung nagdagdag ka lang ng account, maaaring  magtagal ng ilang minuto upang i-sync ang mga contact.)"\n\n"Upang magdagdag ng mga contact, pindutin ang "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" at pindutin ang:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Mga Account"</b></font>" upang magdagdag o mag-configure ng isang account na may mga contact na masi-sync mo sa tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mga pagpipilian sa pagpapakita"</b></font>" upang baguhin kung anong mga contact ang nakikita"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Bagong contact"</b></font>" upang lumikha ng bagong contact mula sa scratch"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" upang mag-import ng mga contact mula sa iyong SIM o SD card"\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Wala kang anumang mga contact na ipapakita. (Kung nagdagdag ka lang ng account, maaaring  magtagal ng ilang minuto upang i-sync ang mga contact.)"\n\n"Upang magdagdag ng mga contact, pindutin ang "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" at pindutin ang:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Mga Account"</b></font>" upang magdagdag o mag-configure ng isang account na may mga contact na masi-sync mo sa telepono"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mga pagpipilian sa pagpapakita"</b></font>" upang baguhin kung anong mga contact ang nakikita"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Bagong contact"</b></font>" upang lumikha ng bagong contact mula sa scratch"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import/Export"</b></font>" upang mag-import ng mga contact mula sa iyong SD card"\n</li></string>
+    <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"Wala kang anumang mga ipapakitang contact."\n\n"Upang magdagdag ng mga contact, pindutin ang "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", pagkatapos ay pindutin ang:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Mga Account"</b></font>" upang magdagdag o mag-set up ng isang account na mayroong mga contact na maaari mong i-sync sa iyong tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Bagong contact"</b></font>" upang lumikha ng bagong contact mula sa wala"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mag-import/mag-export"</b></font>" upang mag-import ng mga contact mula sa iyong SIM o SD card"\n</li></string>
+    <string name="noContactsHelpText" product="default" msgid="4405064135698982080">"Wala kang anumang mga ipapakitang contact."\n\n"Upang magdagdag ng mga contact, pindutin ang "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", pagkatapos ay pindutin ang:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Mga Account"</b></font>" upang magdagdag o mag-set up ng isang account na mayroong mga contact na maaari mong i-sync sa telepono"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Bagong contact"</b></font>" upang lumikha ng bagong contact mula sa wala"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mag-import/Mag-export"</b></font>" upang mag-import ng mga contact mula sa iyong SIM o SD card"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="6773195806404659174">"Wala kang anumang mga ipapakitang contact. (Kung kadaragdag mo lamang ng isang account, maaari itong tumagal nang ilang minuto upang i-sync ang mga contact.)"\n\n"Upang magdagdag ng mga contact, pindutin ang "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", pagkatapos ay pindutin ang:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Mga Account"</b></font>" upang magdagdag o mag-set up ng isang account na mayroong mga contact na maaari mong i-sync sa tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mga pagpipilian sa display"</b></font>" upang baguhin kung aling mga contact ang nakikita"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Bagong contact"</b></font>" upang lumikha ng bagong contact mula sa wala"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mag-import/Mag-export"</b></font>" upang mag-import ng mga contact mula sa iyong SIM o SD card"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="default" msgid="7016825676090327312">"Wala kang anumang mga ipapakitang contact. (Kung kadaragdag mo lamang ng isang account, tatagal ito ng ilang minuto upang i-sync ang mga contact.)"\n\n"Upang magdagdag ng mga contact, pindutin ang "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", pagkatapos ay pindutin ang:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Mga Account"</b></font>" upang magdagdag o mag-set up ng isang account na mayroong mga contact na maaari mong i-sync sa telepono"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mga pagpipilian sa display"</b></font>" upang baguhin kung aling mga contact ang nakikita"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Bagong contact"</b></font>" upang lumikha ng bagong contact mula sa wala"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mag-import/Mag-export"</b></font>" upang mag-import ng mga contact mula sa iyong SIM o SD card"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="tablet" msgid="7823757505923033456">"Wala kang anumang mga ipapakitang contact."\n\n"Upang magdagdag ng mga contact, pindutin ang "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", pagkatapos ay pindutin ang:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Mga Account"</b></font>" upang magdagdag o mag-set up ng isang account na mayroong mga contact na maaari mong i-sync sa tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Bagong contact"</b></font>" upang lumikha ng bagong contact mula sa wala"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mag-emport/Mag-export"</b></font>" upang mag-import ng mga contact mula sa iyong SD card"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="default" msgid="6224952277619986841">"Wala kang anumang mga ipapakitang contact."\n\n"Upang magdagdag ng mga contact, pindutin ang "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", pagkatapos ay pindutin ang:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Mga Account"</b></font>" upang magdagdag o mag-set up ng isang account na mayroong mga contact na maaari mong i-sync sa telepono"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Bagong contact"</b></font>" upang lumikha ng bagong contact mula sa wala"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mag-import/Mag-export"</b></font>" upang mag-import ng mga contact mula sa iyong SD card"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="5415762667445638265">"Wala kang anumang mga ipapakitang contact. (Kung kadaragdag mo lamang ng isang account, maaari itong tumagal nang ilang minuto upang i-sync ang mga contact.)"\n\n"Upang magdagdag ng mga contact, pindutin ang "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", pagkatapos ay pindutin ang:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Mga Account"</b></font>" upang magdagdag o mag-set up ng isang account na mayroong mga contact na maaari mong i-sync sa tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mga pagpipilian sa display"</b></font>" upang baguhin kung aling mga contact ang nakikita"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Bagong contact"</b></font>" upang lumikha ng bagong contact mula sa wala"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mag-import/Mag-export"</b></font>" upang mag-import ng mga contact mula sa iyong SD card"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="7443705129830284440">"Wala kang anumang mga ipapakitang contact. (Kung kadaragdag mo lamang ng isang account, tatagal ito ng ilang minuto upang i-sync ang mga contact.)"\n\n"Upang magdagdag ng mga contact, pindutin ang "<font fgcolor="#ffffffff"><b>"Menu"</b></font>", pagkatapos ay pindutin ang:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Mga Account"</b></font>" upang magdagdag at mag-set up ng isang account na mayroong mga contact na maaari mong i-sync sa telepono"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mga pagpipilian sa display"</b></font>" upang baguhin kung aling mga contact ang nakikita"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Bagong contact"</b></font>" upang lumikha ng bagong contact mula sa wala"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Mag-import/Mag-export"</b></font>" upang mag-import ng mga contact mula sa iyong SD card"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Wala kang anumang mga paborito."\n\n"Upang magdagdag ng contact sa iyong listahan ng mga paborito:"\n\n"        "<li>"Galawin ang tab na "<b>"Mga Contact"</b>\n</li>" "\n<li>"Galawin ang contact na gusto mong idagdag sa iyong mga paborito"\n</li>" "\n<li>"Galawin ang bituin sa tabi ng pangalan ng contact"\n</li></string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Gumamit ng touch tone na keypad"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Kasalukuyang nagaganap ang pabalik na tawag"</string>
@@ -208,8 +210,8 @@
     <string name="description_view_contact_detail" msgid="9133251213656414807">"Tingnan ang contact"</string>
     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"Hindi available ang imbakan"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Walang SD card"</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="1334170151822669976">"Walang natukoy na imbakan"</string>
-    <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Walang natukoy na SD card"</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"Walang natagpuang storage."</string>
+    <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"Walang natagpuang SD card."</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Paghahanap ng vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"I-import mula sa SIM card"</string>
     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"I-import mula sa imbakan"</string>
@@ -218,62 +220,62 @@
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Mag-import nang isang vCard file"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Mag-import ng maramihang vCard file"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"I-import ang lahat ng mga vCard file"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Naghahanap para sa data ng vCard sa imbakan"</string>
-    <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Naghahanap ng data ng vCard sa SD card"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"Naghahanap ng data ng vCard sa storage…"</string>
+    <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"Naghahanap ng data ng vCard data sa SD card…"</string>
     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Hindi ma-scan ang storage"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Hindi ma-scan ang SD card"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8290634758602152611">"Hindi ma-scan ang storage (Dahilan: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="2462918339722946736">"Hindi ma-scan ang SD card (Dahilan: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
-    <string name="fail_reason_io_error" msgid="5922864781066136340">"Error na I/O"</string>
-    <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Hindi sapat ang memorya (maaaring masyadong malaki ang file)"</string>
-    <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"Hindi ma-parse ang vCard para sa hindi inaasahang dahilan"</string>
-    <string name="fail_reason_not_supported" msgid="294499264620201243">"Hindi suportado ang format."</string>
-    <string name="vcard_import_failed" msgid="8856125211629574066">"Hindi ma-import ang vCard"</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"Walang nakitang vCard file sa imbakan"</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Walang nakitang vCard file sa SD card"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"Hindi ma-scan ang storage. (Dahilan: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"Hindi ma-scan ang SD card. (Dahilan: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="fail_reason_io_error" msgid="6748358842976073255">"I/O na error"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Walang sapat na memory. Maaaring masyadong malaki ang file."</string>
+    <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"Hindi ma-parse ang vCard dahil sa isang hindi inaasahang dahilan."</string>
+    <string name="fail_reason_not_supported" msgid="8219562769267148825">"Hindi sinusuportahan ang format."</string>
+    <string name="vcard_import_failed" msgid="5223531255894842406">"Hindi ma-import ang vCard."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2071820850017305867">"Walang natagpuang file ng vCard sa storage."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1754014167874286173">"Walang natagpuang file ng vCard sa SD card."</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Hindi makakolekta ng impormasyon ng meta ng nasabing (mga) file ng vCard."</string>
     <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Ang isa o higit pang mga file ay hindi ma-import (%s)."</string>
-    <string name="fail_reason_unknown" msgid="999034019513096768">"Hindi kilalang error"</string>
-    <string name="select_vcard_title" msgid="3968948173786172468">"Pumili ng vCard file"</string>
-    <string name="caching_vcard_title" msgid="5009556022082659780">"Kina-cache ang (mga) vCard sa lokal na pansamantalang imbakan"</string>
-    <string name="caching_vcard_message" msgid="2380844718093378900">"Kina-cache ng taga-import ang (mga) vCard sa lokal na pansamantalang imbakan. Malapit nang magsimula ang aktwal na pag-import."</string>
+    <string name="fail_reason_unknown" msgid="1714092345030570863">"Hindi kilalang error."</string>
+    <string name="select_vcard_title" msgid="7791371083694672861">"Piliin ang file ng vCard"</string>
+    <string name="caching_vcard_title" msgid="1226272312940516605">"Nagka-cache"</string>
+    <string name="caching_vcard_message" msgid="4926308675041506756">"Kina-cache ang (mga) vCard sa lokal na pansamantalang storage. Magsisimula sa lalong madaling panahon ang aktuwal na pag-import."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Nag-i-import <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Nag-iimport <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Hindi mabasa ang data ng vCard"</string>
-    <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Kinansela ang pagbabasa ng vCard"</string>
+    <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"Kinansela ang pagbabasa ng data ng vCard"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Tapos na ang pag-import ng vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
-    <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Kinansela ang pag-import ng <xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"Kinansela ang pag-import ng <xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"Mai-import ang <xliff:g id="FILENAME">%s</xliff:g> sa ilang saglit."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Sa ilang sandali ay mai-import na ang file."</string>
-    <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"Tinanggihan ang kahilingang pag-import ng vCard. Pakisubukang muli sa ibang pagkakataon."</string>
+    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"Tinanggihan ang kahilingan sa pag-import ng vCard. Pakisubukang muli sa ibang pagkakataon."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"Mae-export ang <xliff:g id="FILENAME">%s</xliff:g> sa ilang saglit."</string>
-    <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"Tinanggihan ang kahilingang pag-export ng vCard. Pakisubukang muli sa ibang pagkakataon."</string>
+    <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Tinanggihan ang kahilingan sa pag-export ng vCard. Subukang muli sa ibang pagkakataon."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"contact"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
-    <string name="confirm_export_title" msgid="7648747763127442983">"Kumpirmahin ang pag-export"</string>
-    <string name="confirm_export_message" msgid="4307437830474103759">"I-export ang iyong listahan ng contact sa file na \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
-    <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Hindi ma-export ang data ng contact"</string>
-    <string name="exporting_contact_failed_message" msgid="2704925031146288635">"Hindi ma-export ang data ng contact."\n"Dahilan: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Walang nae-export na contact"</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Masyadong maraming vCard file sa imbakan"</string>
-    <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Masyadong maraming vCard file sa SD card"</string>
-    <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Ang kinakailangang filename ay masyadong mahaba (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
-    <string name="exporting_vcard_finished_title" msgid="4259736138838583213">"Tapos na ang pag-export ng <xliff:g id="FILENAME">%s</xliff:g>"</string>
-    <string name="exporting_vcard_canceled_title" msgid="1827672399438062140">"Kinansela ang pag-export ng <xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="confirm_export_title" msgid="6834385377255286349">"I-export ang mga contact?"</string>
+    <string name="confirm_export_message" msgid="2423421354816428708">"Ang listahan ng iyong contact ay ie-export sa file: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
+    <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Hindi ma-export"</string>
+    <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Hindi na-export ang data ng contact."\n"Dahilan: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Walang maaaring i-export na contact."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="590645599157376285">"Masyadong maraming file ng vCard ang nasa storage."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="4887177369627277474">"Masyadong maraming file ng vCard ang nasa SD card."</string>
+    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"Masyadong mahaba ang kinakailangang filename (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
+    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"Tapos na ang pag-export ng <xliff:g id="FILENAME">%s</xliff:g>."</string>
+    <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"Kinansela ang pag-export ng <xliff:g id="FILENAME">%s</xliff:g>."</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Pag-e-export ng data ng contact"</string>
-    <string name="exporting_contact_list_message" msgid="5640326540405486055">"Pag-export ng data ng contact sa \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
-    <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Hindi mapasimulan ang taga-export: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
-    <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Naganap ang error sa panahon ng pag-export: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Hindi makuha ang impormasyon ng database"</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Walang mga nae-export na mga contact. Kung may mga contact ka sa iyong tablet, maaaring ipinagbabawal ang lahat ng mga contact na ma-export sa labas ng tablet ng ilang tagapagbigay ng data."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Walang nae-export na mga contact. Kung may mga contact ka sa iyong telepono, maaaring ipinagbabawal ang lahat ng mga contact na ma-export sa labas ng telepono ng ilang tagapagbigay ng data."</string>
-    <string name="composer_not_initialized" msgid="8041534450748388843">"Hindi tamang nasimulan ang vCard composer"</string>
-    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Hindi mabuksan ang \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="exporting_contact_list_message" msgid="7181663157672374569">"Ine-export ang iyong data ng contact sa: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"Hindi masimulan ang exporter: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"Naganap ang isang error habang nag-e-export: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Hindi makuha ang impormasyon ng database."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"Walang mga maaaring i-export na contact. Kung mayroon kang mga contact sa iyong tablet, maaaring hindi payagan ng ilang provider ng data provider na i-export mula sa tablet ang mga contact."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="3296493229040294335">"Walang mga maaaring i-export na contact. Kung mayroon kang mga contact sa iyong telepono, maaaring hindi pinapayagan ng ilang provider ng data na i-export mula sa telepono ang mga contact."</string>
+    <string name="composer_not_initialized" msgid="2321648986367005254">"Hindi nagsimula nang tama ang composer ng vCard."</string>
+    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"Hindi mabuksan ang \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> ng <xliff:g id="TOTAL_NUMBER">%s</xliff:g> (na) contact"</string>
     <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"Pagkansela ng pag-import ng vCard"</string>
-    <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"Sigurado ka bang kakanselahin ang pag-import ng <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Kanselahin ang pag-import ng <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Pagkansela ng pag-export ng vCard"</string>
-    <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"Sigurado ka bang kakanselahin ang pag-export ng <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Kanselahin ang pag-export ng <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Di makansela pag-import/pag-export vCard"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Mga pangalan ng iyong mga contact"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Magdagdag ng pag-pause na 2-seg"</string>
@@ -282,16 +284,16 @@
     <string name="call_settings" msgid="7666474782093693667">"Mga Setting"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Paggamit ng teksto"</string>
     <string name="make_primary" msgid="5829291915305113983">"Tandaan ang pagpipiliang ito"</string>
-    <string name="quickcontact_missing_app" msgid="4600366393134289038">"Walang nakitang application upang pangasiwaan ang pagkilos na ito"</string>
-    <string name="missing_name" msgid="7930716592850443705">"(walang pangalan)"</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"Walang natagpuang app na mangangasiwa sa pagkilos na ito."</string>
+    <string name="missing_name" msgid="8745511583852904385">"(Walang pangalan)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Mga Account"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Mga contact na ipapakita"</string>
-    <string name="menu_import_export" msgid="3765725645491577190">"Mag-import/Mag-export"</string>
-    <string name="dialog_import_export" msgid="4771877268244096596">"Mag-import/Mag-export ng mga contact"</string>
+    <string name="menu_import_export" msgid="26217871113229507">"Mag-import/mag-export"</string>
+    <string name="dialog_import_export" msgid="4360648034889921624">"Mag-import/mag-export ng mga contact"</string>
     <string name="menu_share" msgid="943789700636542260">"Ibahagi"</string>
     <string name="menu_all_contacts" msgid="5101735431586050711">"Lahat ng contact"</string>
     <string name="share_via" msgid="563121028023030093">"Ibahagi ang contact sa pamamagitan ng"</string>
-    <string name="share_error" msgid="4374508848981697170">"Hindi maibabahagi ang contact na ito."</string>
+    <string name="share_error" msgid="948429331673358107">"Hindi maibabahagi ang contact na ito."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Pangalan"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Palayaw"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Samahan"</string>
@@ -304,9 +306,9 @@
     <string name="menu_sync_remove" msgid="3266725887008450161">"Alisin ang pangkat sa pag-sync"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Magdagdag ng pangkat sa pag-sync"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"Higit pang mga pangkat…"</string>
-    <string name="display_ungrouped" msgid="4602580795576261158">"Lahat ng Iba Pang Mga Contact"</string>
-    <string name="display_all_contacts" msgid="6846131371214707956">"Lahat ng mga Contact"</string>
-    <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Aalisin rin ng pag-alis ng \'<xliff:g id="GROUP">%s</xliff:g>\' mula sa sync ang anumang mga di-nakapangkat na contact mula sa sync."</string>
+    <string name="display_ungrouped" msgid="6885954210243119591">"Lahat ng iba pang contact"</string>
+    <string name="display_all_contacts" msgid="2031647544742889505">"Lahat ng contact"</string>
+    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Aalisin rin ng pag-aalis sa \"<xliff:g id="GROUP">%s</xliff:g>\" mula sa sync ang anumang mga hindi nakapangkat na contact mula sa sync."</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Tablet lang, hindi naka-sync"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"Telepono lamang, hindi naka-sync"</string>
     <string name="call_custom" msgid="7756571794763171802">"Tawagan si <xliff:g id="CUSTOM">%s</xliff:g>"</string>
@@ -371,7 +373,7 @@
     <string name="chat_icq" msgid="8438405386153745775">"Makipag-chat gamit ang ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Makipag-chat gamit ang Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Makipag-chat"</string>
-    <string name="audio_chat" msgid="4743276658947547047">"Audio chat"</string>
+    <string name="audio_chat" msgid="2535716629358298691">"Voice chat"</string>
     <string name="video_chat" msgid="1872255818640336072">"Video chat"</string>
     <string name="postal_address" msgid="8765560217149624536">"Address"</string>
     <string name="postal_street" msgid="8133143961580058972">"Kalye"</string>
@@ -393,14 +395,15 @@
     <string name="name_phonetic" msgid="4259595234312430484">"Phonetic na pangalan"</string>
     <string name="connections" msgid="8098440723172028350">"Mga Koneksyon"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Magdagdag ng koneksyon"</string>
-    <string name="recent_updates" msgid="2062236709538790412">"Kamakailan"</string>
+    <string name="recent" msgid="2659189233141493004">"Kamakailan"</string>
+    <string name="recent_updates" msgid="4267258535615860710">"Mga kamakailang update"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> contact"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Gamitin ang larawang ito"</string>
-    <string name="contact_read_only" msgid="1856479476063888348">"Hindi nae-edit mula sa application na ito"</string>
-    <string name="no_contact_details" msgid="6754415338321837001">"Walang karagdagang impormasyon para sa contact na ito"</string>
-    <string name="group_read_only" msgid="7924922658394449477">"Hindi na-e-edit sa device na ito"</string>
+    <string name="contact_read_only" msgid="7421346527289472273">"Hindi maaaring i-edit mula sa app na ito."</string>
+    <string name="no_contact_details" msgid="6636856378019344497">"Walang karagdagang impormasyon para sa contact na ito."</string>
+    <string name="group_read_only" msgid="1061762906115697637">"Hindi maaaring i-edit sa device na ito."</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Pag-uri-uriin ang listahan ayon sa"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Pangalan"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Apelyido"</string>
@@ -410,14 +413,14 @@
     <string name="search_bar_hint" msgid="1012756309632856553">"Maghanap ng mga contact"</string>
     <string name="take_photo" msgid="7496128293167402354">"Kumuha ng larawan"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Kumuha ng bagong larawan"</string>
-    <string name="pick_photo" msgid="448886509158039462">"Pumili ng larawan mula sa Gallery"</string>
+    <string name="pick_photo" msgid="3746334626214970837">"Pumili ng larawan mula sa Gallery"</string>
     <string name="pick_new_photo" msgid="7962368009197147617">"Pumili ng bagong larawan mula sa Gallery"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Ina-update ang listahan ng contact upang maipakita ang pagbabago ng wika."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Ina-update ang listahan ng contact."</string>
-    <string name="upgrade_out_of_memory" msgid="6153384328042175667">"Ang mga contact ay ina-upgrade. "\n\n"Nangangailangan ng tinatayang <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> Mb ng panloob na imbakan ang proseso sa pag-upgrade."\n\n"Pumili ng isa sa mga sumusunod na opsyon:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Nasa proseso ng pag-upgrade ang mga contact. "\n\n"Nangangailangan ng tinatayang <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB ng panloob na storage ang proseso ng pag-upgrade."\n\n"Pumili ng isa sa mga sumusunod na pagpipilian:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"I-uninstall ang ilang application"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Muling subukan ang i-upgrade"</string>
-    <string name="search_results_searching" msgid="7755623475227227314">"Naghahanap..."</string>
+    <string name="search_results_searching" msgid="3984833028938569930">"Naghahanap…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Ipakita ang napili"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Ipakita lahat"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Piliin lahat"</string>
@@ -441,20 +444,20 @@
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Isama ang kasalukuyang contact sa piniling contact?"</string>
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"I-edit ang napiling mga contact"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Lumipat sa pag-edit ng napiling contact? Kokopyahin ang impormasyong ipinasok mo sa ngayon."</string>
-    <string name="menu_copyContact" msgid="4401683725471696686">"Kopyahin sa aking mga contact"</string>
+    <string name="menu_copyContact" msgid="1573960845106822639">"Kopyahin sa Aking Mga Contact"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Idagdag sa Aking Mga Contact"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Direktoryo na <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Direktoryo"</string>
     <string name="local_search_label" msgid="2551177578246113614">"Lahat ng contact"</string>
-    <string name="toast_making_personal_copy" msgid="7905283986345263275">"Lumilikha ng personal na kopya"</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"Lumilikha ng personal na kopya…"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Lahat ng mga contact"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Naka-star"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Custom"</string>
-    <string name="list_filter_customize" msgid="2035084418635775579">"I-customize..."</string>
+    <string name="list_filter_customize" msgid="4789963356004169321">"I-customize"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"Lahat ng contact na may mga numero ng telepono"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Contact"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Tukuyin ang custom na pagtingin"</string>
-    <string name="contact_list_loading" msgid="3859280390185230582">"Naglo-load …"</string>
+    <string name="contact_list_loading" msgid="5488620820563977329">"Naglo-load…"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Mga Setting"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Mga contact na ipapakita"</string>
     <string name="menu_settings" msgid="377929915873428211">"Mga Setting"</string>
@@ -468,7 +471,7 @@
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Magbigay ng taon"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Contact"</string>
-    <string name="social_widget_loading" msgid="3697996166985327861">"Naglo-load…"</string>
+    <string name="social_widget_loading" msgid="5327336597364074608">"Naglo-load…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Lumikha ng bagong contact"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Mag-sign in sa isang account"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Pag-import ng mga contact mula sa isang file"</string>
@@ -479,7 +482,7 @@
     <item quantity="one" msgid="2944819210288517794">"1 pangkat"</item>
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> (na) pangkat"</item>
   </plurals>
-    <string name="delete_group_dialog_message" msgid="295063284548750881">"Sigurado ka bang gusto mong tanggalin ang pangkat na \'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\'? (Hindi tatanggalin ang mga mismong contact.)"</string>
+    <string name="delete_group_dialog_message" msgid="7586856514337560529">"Tanggalin ang pangkat na \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Hindi tatanggalin ang mismong mga contact.)"</string>
   <plurals name="num_contacts_in_group">
     <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> (na) tao mula sa <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
     <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> (na) tao mula sa <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
@@ -488,13 +491,13 @@
     <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> (na) tao"</item>
     <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> (na) tao"</item>
   </plurals>
-    <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Mangyaring magpasok ng pangalan ng contact bago sumali sa ibang contact."</string>
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"I-type ang pangalan ng contact bago isama sa isa pa."</string>
     <string name="copy_text" msgid="3257145021583508761">"Kopyahin sa clipboard"</string>
     <string name="set_default" msgid="4417505153468300351">"Itakda ang default"</string>
     <string name="clear_default" msgid="7193185801596678067">"I-clear ang default"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Kinopya ang teksto"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Itapon ang mga pagbabago"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Nais mo ba talagang itapon ang iyong mga pagbabago?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Itapon ang iyong mga pagbabago?"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"I-set up ang aking profile"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"I-type ang pangalan ng tao"</string>
@@ -506,24 +509,24 @@
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Bagong voicemail mula kay <xliff:g id="CALLER">%1$s</xliff:g>"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"Hindi ma-play ang voicemail."</string>
-    <string name="voicemail_buffering" msgid="738287747618697097">"Nagba-buffer???"</string>
-    <string name="voicemail_fetching_content" msgid="877911315738258780">"Kinukuha ang voicemail???"</string>
+    <string name="voicemail_buffering" msgid="738287747618697097">"Nagba-buffer…"</string>
+    <string name="voicemail_fetching_content" msgid="877911315738258780">"Kinukuha ang voicemail…"</string>
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Hindi makuha ang voicemail."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Bago"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Mas Luma"</string>
-    <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"Hindi makakonekta sa server ng voicemail."</string>
-    <string name="voicemail_status_messages_waiting" msgid="2970301042310727909">"Hindi makakonekta sa server ng voicemail. Naghihintay ang mga bagong voicemail."</string>
-    <string name="voicemail_status_configure_voicemail" msgid="3940240432123700974">"I-configure ang iyong voicemail."</string>
+    <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Hindi makakonekta sa server ng voicemail."</string>
+    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Hindi makakonekta sa server ng voicemail. Naghihintay ang mga bagong voicemail."</string>
+    <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"I-set up ang iyong voicemail."</string>
     <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Hindi available ang audio."</string>
-    <string name="voicemail_status_action_configure" msgid="7008713959076506385">"I-configure"</string>
+    <string name="voicemail_status_action_configure" msgid="8671796489912239589">"I-set up"</string>
     <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"Tawagan ang voicemail"</string>
-    <string name="voicemail_speed_slowest" msgid="6047030504814773029">"pinakamabagal na takbo"</string>
-    <string name="voicemail_speed_slower" msgid="7890393922358642543">"mabagal na takbo"</string>
-    <string name="voicemail_speed_normal" msgid="6030110237820243006">"normal na takbo"</string>
-    <string name="voicemail_speed_faster" msgid="4161478290979905481">"mabilis na takbo"</string>
-    <string name="voicemail_speed_fastest" msgid="3373646875150544205">"pinakamabilis na takbo"</string>
+    <string name="voicemail_speed_slowest" msgid="1733460666177707312">"Pinakamabagal na takbo"</string>
+    <string name="voicemail_speed_slower" msgid="1508601287347216244">"Mabagal na takbo"</string>
+    <string name="voicemail_speed_normal" msgid="9033988544627228892">"Karaniwang takbo"</string>
+    <string name="voicemail_speed_faster" msgid="2019965121475935488">"Mabilis na takbo"</string>
+    <string name="voicemail_speed_fastest" msgid="5758712343491183292">"Pinakamabilis na takbo"</string>
     <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
-    <string name="group_name_hint" msgid="2659811836386413509">"Pangalan ng Pangkat"</string>
+    <string name="group_name_hint" msgid="238359485263401293">"Pangalan ng pangkat"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Natanggap ang contact sa NFC"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Ipakita lamang ang mga voicemail"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"Ipakita ang lahat ng tawag"</string>
@@ -559,5 +562,5 @@
     <string name="add_new_account" msgid="5748627740680940264">"Magdagdag ng bagong account"</string>
     <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"Hindi naipadala ang tawag"</string>
     <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"Hindi available ang numero ng voicemail"</string>
-    <string name="dialog_voicemail_not_ready_message" msgid="4511141315685755189">"Upang mag-configure ng voicemail, pumunta sa Menu &gt; Mga Setting."</string>
+    <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Upang mag-set up ng voicemail, pumunta sa Menu &gt; Mga Setting."</string>
 </resources>

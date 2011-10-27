@@ -25,7 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Výber skratky kontaktu"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Výber čísla pre hovor"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Výber čísla pre správu"</string>
-    <string name="contactPickerActivityTitle" msgid="6886592363525235031">"Výber kontaktu"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Vyberte kontakt"</string>
     <string name="starredList" msgid="4817256136413959463">"Označené hviezdičkou"</string>
     <string name="frequentList" msgid="7154768136473953056">"Časté"</string>
     <string name="strequentList" msgid="5640192862059373511">"Obľúbené"</string>
@@ -53,19 +53,19 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Odstrániť"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Nový"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Nová"</string>
-    <string name="splitConfirmation_title" msgid="2209511048593467012">"Rozdeliť kontakt"</string>
-    <string name="splitConfirmation" msgid="1067993957986345974">"Naozaj chcete rozdeliť tento jednotlivý kontakt do viacerých kontaktov?"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Rozdeliť kontakt?"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Tento kontakt sa rozdelí do viacerých kontaktov."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Spojiť"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Spojiť kontakty"</string>
-    <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Vyberte kontakt, ktorý chcete spojiť s kontaktom <xliff:g id="NAME">%s</xliff:g>."</string>
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Vyberte kontakt, ktorý chcete spojiť s kontaktom <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Zobraziť všetky kontakty"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Navrhnuté kontakty"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Všetky kontakty"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Kontakty boli spojené"</string>
-    <string name="deleteConfirmation_title" msgid="6394309508930335204">"Odstrániť"</string>
+    <string name="deleteConfirmation_title" msgid="1418215926447642260">"Odstrániť kontakt?"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Nastaviť zvonenie"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Všetky hovory do hl. schránky"</string>
-    <string name="readOnlyContactWarning" msgid="1390849295342594265">"Z účtov, ktoré sú iba na čítanie, nie je možné odstrániť kontakty. Tieto kontakty môžete vo vašom zozname kontaktov skryť."</string>
+    <string name="readOnlyContactWarning" msgid="7808825687289848259">"Z účtov, ktoré sú iba na čítanie, nie je možné odstrániť kontakty. Tieto kontakty však môžete v zozname kontaktov skryť."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Tento kontakt obsahuje informácie z niekoľkých účtov. Informácie z účtov iba na čítanie budú v zoznamoch kontaktov skryté, ale nebudú odstránené."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Odstránením tohto kontaktu odstránite informácie z viacerých účtov."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Tento kontakt bude odstránený."</string>
@@ -76,8 +76,8 @@
     <string name="label_sip_address" msgid="124073911714324974">"Internetový hovor"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Spoločnosť"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Titul"</string>
-    <string name="invalidContactMessage" msgid="5816991830260044593">"Kontakt neexistuje."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Vytvoriť nový kontakt"</string>
+    <string name="invalidContactMessage" msgid="8215051456181842274">"Kontakt neexistuje."</string>
+    <string name="pickerNewContactText" msgid="6166997164401048211">"Vytvoriť nový kontakt"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefón"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"Poslať e-mail"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"Okamžité správy"</string>
@@ -92,17 +92,19 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Vlastný názov menovky"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Presmerovať hovory priamo do hlasovej schránky"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Odstrániť fotografiu"</string>
-    <string name="noContacts" msgid="4955659076981974652">"Žiadne kontakty"</string>
-    <string name="noGroups" msgid="7315200974181864731">"Žiadne skupiny"</string>
-    <string name="noAccounts" msgid="4742609114153797268">"Ak chcete vytvárať skupiny, musíte mať účet"</string>
+    <string name="noContacts" msgid="8579310973261953559">"Žiadne kontakty."</string>
+    <string name="noGroups" msgid="8614664663561385253">"Žiadne skupiny."</string>
+    <string name="noAccounts" msgid="7768267764545265909">"Na vytvorenie skupín je potrebný účet."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Nenašli sa žiadne zodpovedajúce kontakty."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Ku kontaktom nie sú priradené žiadne telefónne čísla."</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"V tejto skupine nie sú žiadni ľudia."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"Ak chcete pridať členov, upravte skupinu."</string>
     <string name="savingContact" msgid="4075751076741924939">"Prebieha ukladanie kontaktu..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Prebieha ukladanie možností zobrazenia..."</string>
-    <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt bol uložený"</string>
-    <string name="contactSavedErrorToast" msgid="9189098776225004666">"Chyba, zmeny kontaktu nie je možné uložiť."</string>
-    <string name="groupSavedToast" msgid="6675062559302493011">"Skupina bola uložená"</string>
-    <string name="groupSavedErrorToast" msgid="6434135707953150875">"Chyba, zmeny do skupiny sa nepodarilo uložiť."</string>
+    <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt bol uložený."</string>
+    <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nepodarilo sa uložiť zmeny kontaktu."</string>
+    <string name="groupSavedToast" msgid="1168756874239833756">"Skupina bola uložená."</string>
+    <string name="groupSavedErrorToast" msgid="7984466936615304740">"Nepodarilo sa uložiť zmeny skupiny."</string>
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"1 kontakt s telefónnym číslom"</item>
     <item quantity="other" msgid="3299954047880968205">"Počet kontaktov s telefónnymi číslami: <xliff:g id="COUNT">%d</xliff:g>"</item>
@@ -112,9 +114,9 @@
     <item quantity="one" msgid="3405747744700823280">"Počet kontaktov: 1"</item>
     <item quantity="other" msgid="3578469907265375314">"Počet kontaktov: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Žiadne kontakty"</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Žiadne kontakty nie sú viditeľné"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Žiadne obľúbené položky"</string>
+    <string name="listTotalAllContactsZero" msgid="5513001821794568211">"Žiadne kontakty."</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"Žiadne kontakty nie sú viditeľné."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"Žiadne obľúbené položky."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Žiadne kontakty v položke <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Kontakty v účte <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listSingleContact" msgid="6067813698903535563">"Jednotlivý kontakt"</string>
@@ -123,8 +125,8 @@
     <item quantity="one" msgid="5517063038754171134">"Počet nájdených položiek: 1"</item>
     <item quantity="other" msgid="3852668542926965042">"Počet nájdených položiek: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <string name="foundTooManyContacts" msgid="2548148047461758967">"nájdených viac položiek ako <xliff:g id="COUNT">%d</xliff:g>"</string>
-    <string name="listFoundAllContactsZero" msgid="777952841930508289">"Nenájdené"</string>
+    <string name="foundTooManyContacts" msgid="5163335650920020220">"Našlo sa viac ako <xliff:g id="COUNT">%d</xliff:g>."</string>
+    <string name="listFoundAllContactsZero" msgid="7132202364587656501">"Nenašli sa žiadne kontakty."</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"Počet nájdených položiek: 1"</item>
     <item quantity="other" msgid="7988132539476575389">"Počet nájdených položiek: <xliff:g id="COUNT">%d</xliff:g>"</item>
@@ -143,9 +145,9 @@
     <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Odstrániť hlasovú správu"</string>
     <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Zdieľať hlasovú správu"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Záznam hovorov je prázdny."</string>
-    <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Vymazať záznam hovorov"</string>
-    <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Naozaj chcete odstrániť denník hovorov?"</string>
-    <string name="clearCallLogProgress_title" msgid="6870412675015656948">"Vymazávanie denníka hovorov"</string>
+    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Vymazať záznam hov.?"</string>
+    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Všetky záznamy o hovoroch budú odstránené."</string>
+    <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Vymazávanie denníka hovorov..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Hlasová schránka"</string>
@@ -158,14 +160,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"Kontakty na karte SIM"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Nemáte uložené žiadne kontakty, ktoré by bolo možné zobraziť. (Ak ste účet pridali práve teraz, môže synchronizácia kontaktov trvať niekoľko minút.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Nemáte uložené žiadne kontakty, ktoré by sa dali zobraziť."</string>
-    <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"Nemáte žiadne kontakty, ktoré by bolo možné zobraziť."\n\n"Ak chcete pridať kontakty, stlačte tlačidlo "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" a dotknite sa jednej z nasledujúcich položiek:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Účty"</b></font>", ak chcete pridať alebo nakonfigurovať účet a kontakty v ňom synchronizovať s tabletom;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>", ak chcete vytvoriť úplne nový kontakt;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importovať alebo exportovať"</b></font>", ak chcete importovať kontakty z karty SIM alebo SD."\n</li></string>
-    <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"Nemáte žiadne kontakty, ktoré by bolo možné zobraziť."\n\n"Ak chcete pridať kontakty, stlačte tlačidlo "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" a dotknite sa jednej z nasledujúcich položiek:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Účty"</b></font>", ak chcete pridať alebo nakonfigurovať účet a kontakty v ňom synchronizovať s telefónom;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>", ak chcete vytvoriť úplne nový kontakt;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importovať alebo exportovať"</b></font>", ak chcete importovať kontakty z karty SIM alebo SD."\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Nemáte žiadne kontakty, ktoré by bolo možné zobraziť. (Ak ste práve pridali účet, môže synchronizácia kontaktov trvať niekoľko minút.)"\n\n"Ak chcete pridať kontakty, stlačte tlačidlo "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" a dotknite sa jednej z nasledujúcich položiek:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Účty"</b></font>", ak chcete pridať alebo nakonfigurovať účet a kontakty v ňom synchronizovať s tabletom;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Možnosti zobrazenia"</b></font>", ak chcete zmeniť, ktoré kontakty budú zobrazené;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>", ak chcete vytvoriť úplne nový kontakt;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importovať alebo exportovať"</b></font>", ak chcete importovať kontakty z karty SIM alebo SD."\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Nemáte žiadne kontakty, ktoré by bolo možné zobraziť. (Ak ste práve pridali účet, môže synchronizácia kontaktov trvať niekoľko minút.)"\n\n"Ak chcete pridať kontakty, stlačte tlačidlo "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" a dotknite sa jednej z nasledujúcich položiek:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Účty"</b></font>", ak chcete pridať alebo nakonfigurovať účet a kontakty v ňom synchronizovať s telefónom;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Možnosti zobrazenia"</b></font>", ak chcete zmeniť, ktoré kontakty budú zobrazené;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>", ak chcete vytvoriť úplne nový kontakt;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importovať alebo exportovať"</b></font>", ak chcete importovať kontakty z karty SIM alebo SD."\n</li></string>
-    <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"Nemáte žiadne kontakty, ktoré by bolo možné zobraziť."\n\n"Ak chcete pridať kontakty, stlačte tlačidlo "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" a dotknite sa jednej z nasledujúcich položiek:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Účty"</b></font>", ak chcete pridať alebo nakonfigurovať účet a kontakty v ňom synchronizovať s tabletom;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>", ak chcete vytvoriť úplne nový kontakt;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importovať alebo exportovať"</b></font>", ak chcete importovať kontakty z karty SD."\n</li></string>
-    <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"Nemáte žiadne kontakty, ktoré by bolo možné zobraziť."\n\n"Ak chcete pridať kontakty, stlačte tlačidlo "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" a dotknite sa jednej z nasledujúcich položiek:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Účty"</b></font>", ak chcete pridať alebo nakonfigurovať účet a kontakty v ňom synchronizovať s telefónom;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>", ak chcete vytvoriť úplne nový kontakt;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importovať alebo exportovať"</b></font>", ak chcete importovať kontakty z karty SD."\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Nemáte žiadne kontakty, ktoré by bolo možné zobraziť. (Ak ste práve pridali účet, môže synchronizácia kontaktov trvať niekoľko minút.)"\n\n"Ak chcete pridať kontakty, stlačte tlačidlo "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" a dotknite sa jednej z nasledujúcich položiek:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Účty"</b></font>", ak chcete pridať alebo nakonfigurovať účet a kontakty v ňom synchronizovať s tabletom;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Možnosti zobrazenia"</b></font>", ak chcete zmeniť, ktoré kontakty budú zobrazené;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>", ak chcete vytvoriť úplne nový kontakt;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importovať alebo exportovať"</b></font>", ak chcete importovať kontakty zo svojej karty SD."\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Nemáte žiadne kontakty, ktoré by bolo možné zobraziť. (Ak ste práve pridali účet, môže synchronizácia kontaktov trvať niekoľko minút.)"\n\n"Ak chcete pridať kontakty, stlačte tlačidlo "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" a dotknite sa jednej z nasledujúcich položiek:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Účty"</b></font>", ak chcete pridať alebo nakonfigurovať účet a kontakty v ňom synchronizovať s telefónom;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Možnosti zobrazenia"</b></font>", ak chcete zmeniť, ktoré kontakty budú zobrazené;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>", ak chcete vytvoriť úplne nový kontakt;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importovať alebo exportovať"</b></font>", ak chcete importovať kontakty z karty SD."\n</li></string>
+    <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"Nemáte žiadne kontakty, ktoré by bolo možné zobraziť."\n\n"Ak chcete pridať kontakty, dotknite sa tlačidla "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" a následne sa dotknite jednej z nasledujúcich možností:"\n" "\n<li>"ak chcete nastaviť účet s kontaktmi, ktoré môžete synchronizovať s tabletom, dotknite sa možnosti "<font fgcolor="#ffffffff"><b>"Účty"</b></font>";"\n</li>" "\n<li>"ak chcete vytvoriť úplne nový kontakt, dotknite sa možnosti "<font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>";"\n</li>" "\n<li>"ak chcete importovať kontakty z karty SIM alebo karty SD, dotknite sa možnosti "<font fgcolor="#ffffffff"><b>"Import a export"</b></font>"."\n</li></string>
+    <string name="noContactsHelpText" product="default" msgid="4405064135698982080">"Nemáte žiadne kontakty, ktoré by sa dali zobraziť."\n\n"Ak chcete pridať kontakty, dotknite sa tlačidla "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" a následne sa dotknite jednej z nasledujúcich možností:"\n" "\n<li>"ak chcete nastaviť účet s kontaktmi, ktoré môžete synchronizovať s telefónom, dotknite sa možnosti "<font fgcolor="#ffffffff"><b>"Účty"</b></font>";"\n</li>" "\n<li>"ak chcete vytvoriť úplne nový kontakt, dotknite sa možnosti "<font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>";"\n</li>" "\n<li>"ak chcete importovať kontakty z karty SIM alebo karty SD, dotknite sa možnosti "<font fgcolor="#ffffffff"><b>"Import a export"</b></font>"."\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="6773195806404659174">"Nemáte žiadne kontakty, ktoré by bolo možné zobraziť. (Ak ste práve pridali účet, môže synchronizácia kontaktov trvať niekoľko minút.)"\n\n"Ak chcete pridať kontakty, dotknite sa tlačidla "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" a dotknite sa jednej z nasledujúcich položiek:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Účty"</b></font>", ak chcete pridať alebo nakonfigurovať účet a kontakty v ňom synchronizovať s tabletom;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Možnosti zobrazenia"</b></font>", ak chcete zmeniť možnosti zobrazenia kontaktov;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>", ak chcete vytvoriť úplne nový kontakt;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import a export"</b></font>", ak chcete importovať kontakty zo svojej karty SD."\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="default" msgid="7016825676090327312">"Nemáte žiadne kontakty, ktoré by bolo možné zobraziť. (Ak ste práve pridali účet, môže synchronizácia kontaktov trvať niekoľko minút.)"\n\n"Ak chcete pridať kontakty, dotknite sa tlačidla "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" a dotknite sa jednej z nasledujúcich položiek:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Účty"</b></font>", ak chcete pridať alebo nakonfigurovať účet a kontakty v ňom synchronizovať s telefónom;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Možnosti zobrazenia"</b></font>", ak chcete zmeniť možnosti zobrazenia kontaktov;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>", ak chcete vytvoriť úplne nový kontakt;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import a export"</b></font>", ak chcete importovať kontakty z karty SD."\n</li></string>
+    <string name="noContactsNoSimHelpText" product="tablet" msgid="7823757505923033456">"Nemáte žiadne kontakty, ktoré by bolo možné zobraziť."\n\n"Ak chcete pridať kontakty, dotknite sa tlačidla "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" a následne sa dotknite jednej z nasledujúcich možností:"\n" "\n<li>"ak chcete nastaviť účet s kontaktmi, ktoré môžete synchronizovať s tabletom, dotknite sa možnosti "<font fgcolor="#ffffffff"><b>"Účty"</b></font>";"\n</li>" "\n<li>"ak chcete vytvoriť úplne nový kontakt, dotknite sa možnosti "<font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>";"\n</li>" "\n<li>"ak chcete importovať kontakty z karty SIM alebo karty SD, dotknite sa možnosti "<font fgcolor="#ffffffff"><b>"Import a export"</b></font>"."\n</li></string>
+    <string name="noContactsNoSimHelpText" product="default" msgid="6224952277619986841">"Nemáte žiadne kontakty, ktoré by bolo možné zobraziť."\n\n"Ak chcete pridať kontakty, dotknite sa tlačidla "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" a následne sa dotknite jednej z nasledujúcich možností:"\n" "\n<li>"ak chcete nastaviť účet s kontaktmi, ktoré môžete synchronizovať s telefónom, dotknite sa možnosti "<font fgcolor="#ffffffff"><b>"Účty"</b></font>";"\n</li>" "\n<li>"ak chcete vytvoriť úplne nový kontakt, dotknite sa možnosti "<font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>";"\n</li>" "\n<li>"ak chcete importovať kontakty z karty SIM alebo karty SD, dotknite sa možnosti "<font fgcolor="#ffffffff"><b>"Import a export"</b></font>"."\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="5415762667445638265">"Nemáte žiadne kontakty, ktoré by bolo možné zobraziť. (Ak ste práve pridali účet, môže synchronizácia kontaktov trvať niekoľko minút.)"\n\n"Ak chcete pridať kontakty, dotknite sa tlačidla "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" a dotknite sa jednej z nasledujúcich položiek:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Účty"</b></font>", ak chcete pridať alebo nakonfigurovať účet a kontakty v ňom synchronizovať s tabletom;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Možnosti zobrazenia"</b></font>", ak chcete zmeniť možnosti zobrazenia kontaktov;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>", ak chcete vytvoriť úplne nový kontakt;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import a export"</b></font>", ak chcete importovať kontakty z karty SD."\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="7443705129830284440">"Nemáte žiadne kontakty, ktoré by bolo možné zobraziť. (Ak ste práve pridali účet, môže synchronizácia kontaktov trvať niekoľko minút.)"\n\n"Ak chcete pridať kontakty, dotknite sa tlačidla "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" a následne sa dotknite jednej z nasledujúcich položiek:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Účty"</b></font>", ak chcete pridať alebo nakonfigurovať účet a kontakty v ňom synchronizovať s telefónom;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Možnosti zobrazenia"</b></font>", ak chcete zmeniť možnosti viditeľnosti kontaktov;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nový kontakt"</b></font>", ak chcete vytvoriť úplne nový kontakt;"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Import a export"</b></font>", ak chcete importovať kontakty zo svojej karty SD."\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Nemáte žiadne obľúbené kontakty."\n\n"Pridanie kontaktu do zoznamu obľúbených:"\n\n"        "<li>"Dotknite sa karty "<b>"Kontakty"</b>\n</li>" "\n<li>"Dotknite sa kontaktu, ktorý má byť pridaný do obľúbených"\n</li>" "\n<li>"Dotknite sa hviezdičky vedľa názvu kontaktu"\n</li></string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Použiť dotykovú tónovú klávesnicu"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Návrat k prebiehajúcemu hovoru"</string>
@@ -208,8 +210,8 @@
     <string name="description_view_contact_detail" msgid="9133251213656414807">"Zobraziť kontakt"</string>
     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"Uklad. pr. je nedostupný"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Žiadna karta SD"</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="1334170151822669976">"Ukladací priestor sa nenašiel"</string>
-    <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Nebola zistená žiadna karta SD"</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"Ukladací priestor sa nenašiel."</string>
+    <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"Nenašla sa žiadna karta SD."</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Vyhľadávanie karty vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importovať z karty SIM"</string>
     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Import z ukl. priestoru"</string>
@@ -218,62 +220,62 @@
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Importovať jeden súbor vCard"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Importovať niekoľko súborov vCard"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Importovať všetky súbory vCard"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Vyhľadávanie údajov karty vCard v ukladacom priestore"</string>
-    <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Prebieha hľadanie údajov karty vCard na karte SD"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"Prebieha hľadanie údajov vizitky vCard v ukladacom priestore..."</string>
+    <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"Prebieha hľadanie údajov vizitky vCard na karte SD..."</string>
     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Nepodarilo sa prehľadať ukladací priestor"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Nepodarilo sa prehľadať kartu SD"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8290634758602152611">"Nepodarilo sa prehľadať ukladací priestor (Dôvod: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="2462918339722946736">"Nepodarilo sa prehľadať kartu SD (Dôvod: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
-    <string name="fail_reason_io_error" msgid="5922864781066136340">"Chyba I/O"</string>
-    <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Nie je k dispozícii dostatok pamäte (súbor môže byť príliš veľký)"</string>
-    <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"Analýza karty vCard zlyhala z neznámeho dôvodu"</string>
-    <string name="fail_reason_not_supported" msgid="294499264620201243">"Formát nie je podporovaný."</string>
-    <string name="vcard_import_failed" msgid="8856125211629574066">"Nepodarilo sa importovať vizitku vCard"</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"V ukladacom priestore sa nenašiel žiadny súbor vCard"</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Na karte SD nebol nájdený žiadny súbor vCard"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"Ukladací priestor sa nepodarilo prehľadať. (Dôvod: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"Kartu SD sa nepodarilo prehľadať. (Dôvod: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
+    <string name="fail_reason_io_error" msgid="6748358842976073255">"Chyba I/O"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Nedostatok pamäte. Súbor je možno príliš veľký."</string>
+    <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"Analýza karty vCard zlyhala z neznámeho dôvodu."</string>
+    <string name="fail_reason_not_supported" msgid="8219562769267148825">"Formát nie je podporovaný."</string>
+    <string name="vcard_import_failed" msgid="5223531255894842406">"Vizitku vCard sa nepodarilo importovať."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2071820850017305867">"V ukladacom priestore sa nenašla žiadna vizitka vCard."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1754014167874286173">"Na karte SD sa nenašla žiadna vizitka vCard."</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Metaúdaje daných súborov vizitiek vCard sa nepodarilo zhromaždiť."</string>
     <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Nepodaril sa import jedného alebo viacerých súborov (%s)."</string>
-    <string name="fail_reason_unknown" msgid="999034019513096768">"Neznáma chyba"</string>
-    <string name="select_vcard_title" msgid="3968948173786172468">"Výber súboru vCard"</string>
-    <string name="caching_vcard_title" msgid="5009556022082659780">"Načítanie vizitiek vCard do vyrovnávacej pamäte miestneho dočasného ukladacieho priestoru"</string>
-    <string name="caching_vcard_message" msgid="2380844718093378900">"Nástroj pre import načítava vizitky vCard do vyrovnávacej pamäte miestneho dočasného ukladacieho priestoru. Samotný import sa spustí o chvíľu."</string>
+    <string name="fail_reason_unknown" msgid="1714092345030570863">"Neznáma chyba."</string>
+    <string name="select_vcard_title" msgid="7791371083694672861">"Vyberte súbor vCard"</string>
+    <string name="caching_vcard_title" msgid="1226272312940516605">"Ukladanie do vyrovnávacej pamäte..."</string>
+    <string name="caching_vcard_message" msgid="4926308675041506756">"Prebieha načítavanie vizitiek vCard do vyrovnávacej pamäte miestneho dočasného ukladacieho priestoru. Samotné importovanie začne o chvíľu."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Import: <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Importuje sa <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Nepodarilo sa prečítať údaje vizitky vCard"</string>
-    <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Čítanie údajov vizitky vCard je zrušené."</string>
+    <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"Čítanie údajov vizitky vCard bolo zrušené"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Import vizitky vCard bol dokončený <xliff:g id="FILENAME">%s</xliff:g>"</string>
-    <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Import vizitky <xliff:g id="FILENAME">%s</xliff:g> bol zrušený"</string>
+    <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"Importovanie súboru <xliff:g id="FILENAME">%s</xliff:g> bolo zrušené"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"Vizitka <xliff:g id="FILENAME">%s</xliff:g> bude čoskoro importovaná."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Súbor bude čoskoro importovaný."</string>
-    <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"Žiadosť o import vizitiek vCard bola zamietnutá. Skúste to znova neskôr."</string>
+    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"Žiadosť o import vizitky vCard bola odmietnutá. Skúste to znova neskôr."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"Vizitka <xliff:g id="FILENAME">%s</xliff:g> bude čoskoro exportovaná."</string>
-    <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"Žiadosť o export vizitiek vCard bola zamietnutá. Skúste to znova neskôr."</string>
+    <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Žiadosť o exportovanie vizitky vCard bola odmietnutá. Skúste to znova neskôr."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"kontakt"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
-    <string name="confirm_export_title" msgid="7648747763127442983">"Potvrdiť export"</string>
-    <string name="confirm_export_message" msgid="4307437830474103759">"Exportovať zoznam kontaktov do súboru „<xliff:g id="VCARD_FILENAME">%s</xliff:g>“?"</string>
-    <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Nepodarilo sa exportovať údaje kontaktu"</string>
-    <string name="exporting_contact_failed_message" msgid="2704925031146288635">"Nepodarilo sa exportovať údaje kontaktu."\n"Dôvod: „<xliff:g id="FAIL_REASON">%s</xliff:g>“"</string>
-    <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Nedá sa exportovať nijaký kontakt"</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"V ukladacom priestore je príliš veľa súborov vCard"</string>
-    <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Na karte SD sa nachádza príliš veľa súborov vCard"</string>
-    <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Požadovaný názov súboru (<xliff:g id="FILENAME">%s</xliff:g>) je príliš dlhý"</string>
-    <string name="exporting_vcard_finished_title" msgid="4259736138838583213">"Export vizitky <xliff:g id="FILENAME">%s</xliff:g> bol dokončený"</string>
-    <string name="exporting_vcard_canceled_title" msgid="1827672399438062140">"Export vizitky <xliff:g id="FILENAME">%s</xliff:g> bol zrušený"</string>
+    <string name="confirm_export_title" msgid="6834385377255286349">"Exportovať kontakty?"</string>
+    <string name="confirm_export_message" msgid="2423421354816428708">"Váš zoznam kontaktov bude exportovaný do súboru: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
+    <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Export sa nepodaril"</string>
+    <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Údaje o kontaktoch neboli exportované."\n"Dôvod: „<xliff:g id="FAIL_REASON">%s</xliff:g>“"</string>
+    <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Nedá sa exportovať žiadny kontakt."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="590645599157376285">"V ukladacom priestore je príliš veľa súborov vCard."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="4887177369627277474">"Na karte SD sa nachádza príliš veľa súborov vCard."</string>
+    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"Požadovaný názov súboru (<xliff:g id="FILENAME">%s</xliff:g>) je príliš dlhý."</string>
+    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"Exportovanie súboru <xliff:g id="FILENAME">%s</xliff:g> bolo dokončené."</string>
+    <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"Exportovanie súboru <xliff:g id="FILENAME">%s</xliff:g> bolo zrušené."</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Export údajov kontaktov"</string>
-    <string name="exporting_contact_list_message" msgid="5640326540405486055">"Prebieha export údajov kontaktov do súboru <xliff:g id="FILE_NAME">%s</xliff:g>"</string>
-    <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Nie je možné spustiť exportný program: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
-    <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Pri exporte sa vyskytla chyba: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Nepodarilo sa získať informácie databázy"</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Nie je možné exportovať žiadne kontakty. Ak máte v tablete skutočne uložené kontakty, je možné, že niektorí poskytovatelia dátových služieb zakázali ich export mimo tablet."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Nie je možné exportovať žiadne kontakty. Ak máte v telefóne skutočne uložené kontakty, je možné, že niektorí poskytovatelia dátových služieb zakázali ich export mimo telefón."</string>
-    <string name="composer_not_initialized" msgid="8041534450748388843">"Editor karty vCard nie je správne inicializovaný"</string>
-    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Súbor „<xliff:g id="FILE_NAME">%s</xliff:g>“ nie je možné otvoriť: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="exporting_contact_list_message" msgid="7181663157672374569">"Vaše údaje o kontaktoch sa exportujú do súboru: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"Nástroj na exportovanie sa nepodarilo spustiť: „<xliff:g id="EXACT_REASON">%s</xliff:g>“."</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"Počas exportovania sa vyskytla chyba: „<xliff:g id="EXACT_REASON">%s</xliff:g>“."</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Nepodarilo sa získať informácie z databázy."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"Nenašli sa žiadne kontakty, ktoré by bolo možné exportovať. Ak v tablete skutočne máte kontakty, problém môže byť spôsobený tým, že niektorí poskytovatelia údajov nemusia umožňovať export kontaktov z tabletu."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="3296493229040294335">"Nenašli sa žiadne kontakty, ktoré by bolo možné exportovať. Ak v telefóne skutočne máte kontakty, problém môže byť spôsobený tým, že niektorí poskytovatelia údajov nemusia umožňovať export kontaktov z telefónu."</string>
+    <string name="composer_not_initialized" msgid="2321648986367005254">"Nástroj na tvorbu vizitiek vCard sa nespustil správne."</string>
+    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"Súbor „<xliff:g id="FILE_NAME">%s</xliff:g>“ sa nepodarilo otvoriť: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> z <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontaktov"</string>
     <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"Prebieha rušenie importu vizitky vCard"</string>
-    <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"Naozaj chcete zrušiť import vizitky <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Zrušiť importovanie súboru <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Prebieha rušenie exportu vizitky vCard"</string>
-    <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"Naozaj chcete zrušiť export vizitky <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Zrušiť exportovanie súboru <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Importovanie/exportovanie karty vizitky vCard zlyhalo"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Mená vašich kontaktov"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Pridať dvojsekundovú pauzu"</string>
@@ -282,16 +284,16 @@
     <string name="call_settings" msgid="7666474782093693667">"Nastavenia"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Odoslať správu pomocou"</string>
     <string name="make_primary" msgid="5829291915305113983">"Zapamätať si túto voľbu"</string>
-    <string name="quickcontact_missing_app" msgid="4600366393134289038">"Aplikácia potrebná na spracovanie tejto akcie sa nenašla"</string>
-    <string name="missing_name" msgid="7930716592850443705">"(bez mena)"</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"Aplikácia potrebná na spracovanie tejto akcie sa nenašla."</string>
+    <string name="missing_name" msgid="8745511583852904385">"(Bez mena)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Účty"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakty na zobrazenie"</string>
-    <string name="menu_import_export" msgid="3765725645491577190">"Import a export"</string>
-    <string name="dialog_import_export" msgid="4771877268244096596">"Importovať alebo exportovať kontakty"</string>
+    <string name="menu_import_export" msgid="26217871113229507">"Import a export"</string>
+    <string name="dialog_import_export" msgid="4360648034889921624">"Importovať alebo exportovať kontakty"</string>
     <string name="menu_share" msgid="943789700636542260">"Zdieľať"</string>
     <string name="menu_all_contacts" msgid="5101735431586050711">"Všetky kontakty"</string>
     <string name="share_via" msgid="563121028023030093">"Zdieľať kontakt pomocou"</string>
-    <string name="share_error" msgid="4374508848981697170">"Tento kontakt nie je možné zdieľať."</string>
+    <string name="share_error" msgid="948429331673358107">"Tento kontakt nie je možné zdieľať."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Meno"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Prezývka"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organizácia"</string>
@@ -304,9 +306,9 @@
     <string name="menu_sync_remove" msgid="3266725887008450161">"Odstrániť synchronizovanú skupinu"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Pridať synchronizovanú skupinu"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"Ďalšie skupiny..."</string>
-    <string name="display_ungrouped" msgid="4602580795576261158">"Všetky ostatné kontakty"</string>
-    <string name="display_all_contacts" msgid="6846131371214707956">"Všetky kontakty"</string>
-    <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Odstránením skupiny <xliff:g id="GROUP">%s</xliff:g> zo synchronizácie odstránite zo synchronizácie tiež všetky kontakty mimo skupinu."</string>
+    <string name="display_ungrouped" msgid="6885954210243119591">"Všetky ostatné kontakty"</string>
+    <string name="display_all_contacts" msgid="2031647544742889505">"Všetky kontakty"</string>
+    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Ak zo synchronizácie odstránite skupinu „<xliff:g id="GROUP">%s</xliff:g>“, odstránite zo synchronizácie aj všetky kontakty, ktoré nie sú zaradené do žiadnej skupiny."</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Iba v tablete, nesynchronizované"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"Iba v telefóne, nesynchronizované"</string>
     <string name="call_custom" msgid="7756571794763171802">"Zavolať kontakt <xliff:g id="CUSTOM">%s</xliff:g>"</string>
@@ -371,7 +373,7 @@
     <string name="chat_icq" msgid="8438405386153745775">"Zhovárať sa pomocou služby ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Zhovárať sa pomocou služby Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Rozhovor"</string>
-    <string name="audio_chat" msgid="4743276658947547047">"Hlasový rozhovor"</string>
+    <string name="audio_chat" msgid="2535716629358298691">"Hlasový rozhovor"</string>
     <string name="video_chat" msgid="1872255818640336072">"Videorozhovor"</string>
     <string name="postal_address" msgid="8765560217149624536">"Adresa"</string>
     <string name="postal_street" msgid="8133143961580058972">"Ulica"</string>
@@ -393,14 +395,17 @@
     <string name="name_phonetic" msgid="4259595234312430484">"Meno (foneticky)"</string>
     <string name="connections" msgid="8098440723172028350">"Spojenia"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Pridať spojenie"</string>
-    <string name="recent_updates" msgid="2062236709538790412">"Najnovšie"</string>
+    <!-- no translation found for recent (2659189233141493004) -->
+    <!-- no translation found for recent (2062236709538790412) -->
+    <skip />
+    <!-- outdated translation 2062236709538790412 -->     <string name="recent_updates" msgid="4267258535615860710">"Najnovšie"</string>
     <string name="account_type_format" msgid="718948015590343010">"Kontakt <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Použiť túto fotografiu"</string>
-    <string name="contact_read_only" msgid="1856479476063888348">"Nie je možné upraviť v tejto aplikácii"</string>
-    <string name="no_contact_details" msgid="6754415338321837001">"Pri tomto kontakte nie sú uvedené ďalšie informácie"</string>
-    <string name="group_read_only" msgid="7924922658394449477">"Na tomto zariadení nie je možné upraviť"</string>
+    <string name="contact_read_only" msgid="7421346527289472273">"Nemožno upraviť pomocou tejto aplikácie."</string>
+    <string name="no_contact_details" msgid="6636856378019344497">"Pri tomto kontakte nie sú uvedené žiadne ďalšie informácie."</string>
+    <string name="group_read_only" msgid="1061762906115697637">"Nie je možné upraviť v tomto zariadení."</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Zoradiť zoznam podľa"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Krstné meno"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Priezvisko"</string>
@@ -410,14 +415,14 @@
     <string name="search_bar_hint" msgid="1012756309632856553">"Hľadať v kontaktoch"</string>
     <string name="take_photo" msgid="7496128293167402354">"Zaznamenať fotografiu"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Urobiť novú fotografiu"</string>
-    <string name="pick_photo" msgid="448886509158039462">"Vybrať fotografiu z galériu"</string>
+    <string name="pick_photo" msgid="3746334626214970837">"Vybrať fotografiu z Galérie"</string>
     <string name="pick_new_photo" msgid="7962368009197147617">"Vybrať novú fotografiu z Galérie"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"V súvislosti so zmenou jazyka prebieha aktualizácia zoznamu kontaktov."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Prebieha aktualizácia zoznamu kontaktov."</string>
-    <string name="upgrade_out_of_memory" msgid="6153384328042175667">"Prebieha inovácia zoznamu kontaktov. "\n\n"Tento proces vyžaduje približne <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB voľného miesta v internom ukladacom priestore."\n\n"Vyberte jednu z týchto možností:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Prebieha inovácia kontaktov. "\n\n"Inovácia vyžaduje približne <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB internej pamäte. "\n\n"Zvoľte jednu z nasledujúcich možností:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Odinštalovať niektoré aplikácie"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Skúsiť inovovať znova"</string>
-    <string name="search_results_searching" msgid="7755623475227227314">"Prebieha vyhľadávanie..."</string>
+    <string name="search_results_searching" msgid="3984833028938569930">"Vyhľadávanie..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Zobraziť vybraté"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Zobraziť všetky"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Vybrať všetko"</string>
@@ -441,20 +446,20 @@
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Spojiť aktuálny kontakt s vybraným kontaktom?"</string>
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Upraviť vybrané kontakty"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Prepnúť do režimu úpravy vybraného kontaktu? Doposiaľ zadané informácie budú skopírované."</string>
-    <string name="menu_copyContact" msgid="4401683725471696686">"Skopírovať do mojich kontaktov"</string>
+    <string name="menu_copyContact" msgid="1573960845106822639">"Skopírovať do priečinku Moje kontakty"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Pridať medzi moje kontakty"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Adresár <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Adresár"</string>
     <string name="local_search_label" msgid="2551177578246113614">"Všetky kontakty"</string>
-    <string name="toast_making_personal_copy" msgid="7905283986345263275">"Vytváranie osobnej kópie"</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"Prebieha vytváranie osobnej kópie..."</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Všetky kontakty"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Označené hviezdičkou"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Vlastné"</string>
-    <string name="list_filter_customize" msgid="2035084418635775579">"Prispôsobiť..."</string>
+    <string name="list_filter_customize" msgid="4789963356004169321">"Prispôsobiť"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"Všetky kontakty s telefónnymi číslami"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Kontakt"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Definícia vlastného zobrazenia"</string>
-    <string name="contact_list_loading" msgid="3859280390185230582">"Prebieha načítavanie..."</string>
+    <string name="contact_list_loading" msgid="5488620820563977329">"Načítava sa…"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Nastavenia"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakty na zobrazenie"</string>
     <string name="menu_settings" msgid="377929915873428211">"Nastavenia"</string>
@@ -468,7 +473,7 @@
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Uviesť rok"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Kontakt"</string>
-    <string name="social_widget_loading" msgid="3697996166985327861">"Prebieha načítavanie"</string>
+    <string name="social_widget_loading" msgid="5327336597364074608">"Načítava sa…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Vytvoriť nový kontakt"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Prihlásiť sa do účtu"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Importovať kontakty zo súboru"</string>
@@ -479,7 +484,7 @@
     <item quantity="one" msgid="2944819210288517794">"Počet skupín: 1"</item>
     <item quantity="other" msgid="1276758425904917367">"Počet skupín: <xliff:g id="COUNT">%0$d</xliff:g>"</item>
   </plurals>
-    <string name="delete_group_dialog_message" msgid="295063284548750881">"Naozaj chcete odstrániť skupinu <xliff:g id="GROUP_LABEL">%1$s</xliff:g>? (Samotné kontakty odstránené nebudú.)"</string>
+    <string name="delete_group_dialog_message" msgid="7586856514337560529">"Chcete odstrániť skupinu „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>“? (Samotné kontakty nebudú odstránené.)"</string>
   <plurals name="num_contacts_in_group">
     <item quantity="one" msgid="1352418549951013448">"Počet ľudí zo skupiny <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>: <xliff:g id="COUNT_0">%1$d</xliff:g>"</item>
     <item quantity="other" msgid="8146027769011086349">"Počet ľudí zo skupiny <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>: <xliff:g id="COUNT_0">%1$d</xliff:g>"</item>
@@ -488,13 +493,13 @@
     <item quantity="one" msgid="3323065321661972446">"Počet ľudí: <xliff:g id="COUNT">%1$d</xliff:g>"</item>
     <item quantity="other" msgid="6251996206137048525">"Počet ľudí: <xliff:g id="COUNT">%1$d</xliff:g>"</item>
   </plurals>
-    <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Pred združením s ďalším kontaktom zadajte meno kontaktu."</string>
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Pred spojením s iným kontaktom zadajte meno kontaktu."</string>
     <string name="copy_text" msgid="3257145021583508761">"Kopírovať do schránky"</string>
     <string name="set_default" msgid="4417505153468300351">"Nastaviť ako predvolené"</string>
     <string name="clear_default" msgid="7193185801596678067">"Vymazať predvolené nastavenia"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Text bol skopírovaný"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Zahodiť zmeny"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Naozaj chcete zahodiť svoje zmeny?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Zahodiť zmeny?"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Nastaviť môj profil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Zadajte meno osoby"</string>
@@ -506,24 +511,24 @@
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Nová hlasová správa – <xliff:g id="CALLER">%1$s</xliff:g>"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"Nepodarilo sa prehrať hlasovú správu."</string>
-    <string name="voicemail_buffering" msgid="738287747618697097">"Ukladanie do vyrovnávacej pamäte???"</string>
-    <string name="voicemail_fetching_content" msgid="877911315738258780">"Načítavanie hlasovej správy???"</string>
+    <string name="voicemail_buffering" msgid="738287747618697097">"Ukladanie do vyrovnávacej pamäte…"</string>
+    <string name="voicemail_fetching_content" msgid="877911315738258780">"Načítavanie hlasovej správy…"</string>
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Nepodarilo sa načítať hlasovú správu."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Nové"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Staršie"</string>
-    <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"K serveru hlasovej schránky sa nepodarilo pripojiť."</string>
-    <string name="voicemail_status_messages_waiting" msgid="2970301042310727909">"Nepodarilo sa prip. k serveru hl. schránky – nové hlas. správy."</string>
-    <string name="voicemail_status_configure_voicemail" msgid="3940240432123700974">"Konfigurovať hlasovú schránku."</string>
+    <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Nepodarilo sa pripojiť k serveru hlasovej schránky."</string>
+    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Nepodarilo sa prip. k serveru hl. schránky – nové hlas. správy."</string>
+    <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Nastavenie hlasovej schránky."</string>
     <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Zvuk nie je k dispozícii."</string>
-    <string name="voicemail_status_action_configure" msgid="7008713959076506385">"Konfigurovať"</string>
+    <string name="voicemail_status_action_configure" msgid="8671796489912239589">"Nastavenie"</string>
     <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"Volať hlas. schránku"</string>
-    <string name="voicemail_speed_slowest" msgid="6047030504814773029">"najnižšia rýchlosť"</string>
-    <string name="voicemail_speed_slower" msgid="7890393922358642543">"pomalá rýchlosť"</string>
-    <string name="voicemail_speed_normal" msgid="6030110237820243006">"normálna rýchlosť"</string>
-    <string name="voicemail_speed_faster" msgid="4161478290979905481">"vysoká rýchlosť"</string>
-    <string name="voicemail_speed_fastest" msgid="3373646875150544205">"najvyššia rýchlosť"</string>
+    <string name="voicemail_speed_slowest" msgid="1733460666177707312">"Najnižšia rýchlosť"</string>
+    <string name="voicemail_speed_slower" msgid="1508601287347216244">"Nízka rýchlosť"</string>
+    <string name="voicemail_speed_normal" msgid="9033988544627228892">"Normálna rýchlosť"</string>
+    <string name="voicemail_speed_faster" msgid="2019965121475935488">"Vysoká rýchlosť"</string>
+    <string name="voicemail_speed_fastest" msgid="5758712343491183292">"Najvyššia rýchlosť"</string>
     <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
-    <string name="group_name_hint" msgid="2659811836386413509">"Názov skupiny"</string>
+    <string name="group_name_hint" msgid="238359485263401293">"Názov skupiny"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Kontakt cez NFC"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Zobraziť len hlasové správy"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"Zobraziť všetky hovory"</string>
@@ -559,5 +564,5 @@
     <string name="add_new_account" msgid="5748627740680940264">"Pridať nový účet"</string>
     <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"Hovor nebol spojený"</string>
     <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"Číslo hlasovej schránky je nedostupné"</string>
-    <string name="dialog_voicemail_not_ready_message" msgid="4511141315685755189">"Ak chcete nakonfigurovať hlasovú schránku, prejdite na položku Ponuka &gt; Nastavenia."</string>
+    <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Ak chcete nastaviť hlasovú schránku, prejdite na položku Menu &gt; Nastavenia."</string>
 </resources>
