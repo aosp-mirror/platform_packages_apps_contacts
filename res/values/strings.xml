@@ -209,6 +209,10 @@
          for some reason doesn't exist anymore. [CHAR LIMIT=NONE]-->
     <string name="invalidContactMessage">The contact doesn\'t exist.</string>
 
+    <!-- When picking a contact from a list of all contacts there is an entry at the top of the
+         list that allows the user to create a new contact, which this string is used for -->
+    <string name="pickerNewContactHeader">Create new contact</string>
+
     <!-- Text for a "create new contact" button on the bottom of the contact picker screen.
          The text will be all capitalized.
          [CHAR LIMIT=30] -->

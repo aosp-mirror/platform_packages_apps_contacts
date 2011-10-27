@@ -25,7 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Alegeţi o persoană din agendă pentru a crea o comandă rapidă"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Alegeţi un număr pentru apelare"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Alegeţi un număr pentru trimiterea mesajului"</string>
-    <string name="contactPickerActivityTitle" msgid="6886592363525235031">"Selectaţi o persoană din agendă"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Alegeţi o persoană de contact"</string>
     <string name="starredList" msgid="4817256136413959463">"Cu stea"</string>
     <string name="frequentList" msgid="7154768136473953056">"Frecvent"</string>
     <string name="strequentList" msgid="5640192862059373511">"Favorite"</string>
@@ -53,19 +53,19 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Ştergeţi"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Nouă"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Nou"</string>
-    <string name="splitConfirmation_title" msgid="2209511048593467012">"Separ. pers. din ag."</string>
-    <string name="splitConfirmation" msgid="1067993957986345974">"Sigur doriţi să separaţi această intrare de persoană din agendă în mai multe?"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Separ. pers.din ag.?"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Această persoană de contact va fi separată în mai multe intrări în Agendă."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Alăturaţi-vă"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Asociaţi intrările din Agendă"</string>
-    <string name="blurbJoinContactDataWith" msgid="995870557595050304">"Selectaţi persoana din agendă, căreia vreţi să vă alăturaţi <xliff:g id="NAME">%s</xliff:g>."</string>
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Alegeţi persoana de contact de asociat cu <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Afişaţi toate persoanele din agendă"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Persoane din agendă sugerate"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Toate persoanele din agendă"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Persoanele din agendă au fost unite"</string>
-    <string name="deleteConfirmation_title" msgid="6394309508930335204">"Ştergeţi"</string>
+    <string name="deleteConfirmation_title" msgid="1418215926447642260">"Şt. pers. de cont.?"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Setaţi ton apel"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Toate apel. către mesag. voc."</string>
-    <string name="readOnlyContactWarning" msgid="1390849295342594265">"Nu puteţi şterge persoane din agendă, din conturi cu permisiuni doar de citire, însă puteţi să le ascundeţi în lista dvs. de persoane din agendă."</string>
+    <string name="readOnlyContactWarning" msgid="7808825687289848259">"Nu puteţi şterge persoane din agendă, din conturi cu permisiuni doar de citire, însă puteţi să le ascundeţi în lista dvs. de persoane din agendă."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Informaţiile despre această persoană din agendă provin din mai multe conturi. Informaţiile provenite din conturile numai în citire nu vor fi şterse din lista dvs., ci doar ascunse."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Ştergerea acestei persoane din agendă va elimina informaţii din mai multe conturi."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Această persoană va fi ştearsă din agendă."</string>
@@ -76,8 +76,8 @@
     <string name="label_sip_address" msgid="124073911714324974">"Apel prin internet"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Companie"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Titlu"</string>
-    <string name="invalidContactMessage" msgid="5816991830260044593">"Persoana nu există în agendă."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Creaţi o persoană nouă în agendă"</string>
+    <string name="invalidContactMessage" msgid="8215051456181842274">"Persoana nu există în agendă."</string>
+    <string name="pickerNewContactText" msgid="6166997164401048211">"Creaţi o intrare nouă în Agendă"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefon"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"IM"</string>
@@ -92,17 +92,19 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Numele etichetei personalizate"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Trimiteţi apelurile direct către mesageria vocală"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Eliminaţi fotografia"</string>
-    <string name="noContacts" msgid="4955659076981974652">"Nu există persoane în agendă"</string>
-    <string name="noGroups" msgid="7315200974181864731">"Nu există grupuri"</string>
-    <string name="noAccounts" msgid="4742609114153797268">"Pentru a crea grupuri aveţi nevoie de un cont"</string>
+    <string name="noContacts" msgid="8579310973261953559">"Nicio persoană în agendă."</string>
+    <string name="noGroups" msgid="8614664663561385253">"Nu există grupuri."</string>
+    <string name="noAccounts" msgid="7768267764545265909">"Pentru a crea grupuri aveţi nevoie de un cont."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Nu a fost găsită nicio persoană potrivită în agendă."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Nicio persoană din agendă cu numere de telefon."</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"Nu există persoane în acest grup."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"Pentru a adăuga persoane, editaţi grupul."</string>
     <string name="savingContact" msgid="4075751076741924939">"Se salvează persoana din agendă..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Se salvează opţiunile de afişare..."</string>
-    <string name="contactSavedToast" msgid="9171862279493213075">"Persoana din agendă a fost salvată"</string>
-    <string name="contactSavedErrorToast" msgid="9189098776225004666">"Eroare, modificările persoanei din agendă nu pot fi salvate."</string>
-    <string name="groupSavedToast" msgid="6675062559302493011">"Grupul a fost salvat"</string>
-    <string name="groupSavedErrorToast" msgid="6434135707953150875">"Eroare. Modificările aduse grupului nu pot fi salvate."</string>
+    <string name="contactSavedToast" msgid="7152589189385441091">"Persoana din agendă a fost salvată."</string>
+    <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nu s-au putut salva modificările aduse persoanei de contact."</string>
+    <string name="groupSavedToast" msgid="1168756874239833756">"Grupul a fost salvat."</string>
+    <string name="groupSavedErrorToast" msgid="7984466936615304740">"Nu s-au putut salva modificările aduse grupului."</string>
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"1 persoană din agendă cu număr de telefon"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> (de) persoane din agendă cu numere de telefon"</item>
@@ -112,9 +114,9 @@
     <item quantity="one" msgid="3405747744700823280">"1 persoană din Agendă"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> (de) persoane din Agendă"</item>
   </plurals>
-    <string name="listTotalAllContactsZero" msgid="1889349925514589304">"Nicio persoană în agendă"</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"Nicio persoană din agendă nu este vizibilă"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"Nu există preferate"</string>
+    <string name="listTotalAllContactsZero" msgid="5513001821794568211">"Nicio persoană din agendă."</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"Nicio persoană din agendă nu este vizibilă."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"Nu există preferate."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Nicio persoană din agendă în <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Agenda din <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listSingleContact" msgid="6067813698903535563">"O singură persoană din agendă"</string>
@@ -123,8 +125,8 @@
     <item quantity="one" msgid="5517063038754171134">"A fost găsită 1 persoană din agendă"</item>
     <item quantity="other" msgid="3852668542926965042">"Au fost găsite <xliff:g id="COUNT">%d</xliff:g> (de) persoane din agendă"</item>
   </plurals>
-    <string name="foundTooManyContacts" msgid="2548148047461758967">"au fost găsite mai mult de <xliff:g id="COUNT">%d</xliff:g>"</string>
-    <string name="listFoundAllContactsZero" msgid="777952841930508289">"Nu au fost găsite persoane din agendă"</string>
+    <string name="foundTooManyContacts" msgid="5163335650920020220">"S-au găsit peste <xliff:g id="COUNT">%d</xliff:g> (de) persoane din agendă."</string>
+    <string name="listFoundAllContactsZero" msgid="7132202364587656501">"Nu s-au găsit pers.din agendă."</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"A fost găsită 1 persoană din agendă"</item>
     <item quantity="other" msgid="7988132539476575389">"Au fost găsite <xliff:g id="COUNT">%d</xliff:g> (de) persoane din agendă"</item>
@@ -143,9 +145,9 @@
     <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Ştergeţi mesajul vocal"</string>
     <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Distribuiţi mesajul vocal"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Jurnalul de apeluri este gol."</string>
-    <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Ştergeţi jurnalul de apeluri"</string>
-    <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Sigur doriţi ştergerea jurnalului de apeluri?"</string>
-    <string name="clearCallLogProgress_title" msgid="6870412675015656948">"Se goleşte jurnalul de apeluri"</string>
+    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Şterg.jurn.de apel.?"</string>
+    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Toate înregistrările apelurilor dvs. vor fi şterse."</string>
+    <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Se goleşte jurnalul de apeluri..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Mesagerie vocală"</string>
@@ -158,14 +160,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"Persoanele din agendă de pe cardul SIM"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Nicio persoană în agendă pentru afişare. (Dacă tocmai aţi adăugat un cont, poate dura câteva minute sincronizarea persoanelor din agendă.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Nicio persoană din agendă pentru afişare."</string>
-    <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"Nu există persoane din agendă de afişat."\n\n"Dacă doriţi să adăugaţi persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă, pe care le puteţi sincroniza cu cele de pe tabletă"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Persoană nouă în agendă"</b></font>" pentru a crea de la zero o intrare nouă în agendă"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importaţi/Exportaţi"</b></font>" pentru a importa persoane din agendă de pe cardul SIM sau SD"\n</li></string>
-    <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"Nu există persoane din agendă de afişat."\n\n"Dacă doriţi să adăugaţi persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă, pe care le puteţi sincroniza cu cele de pe telefon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Persoană nouă în agendă"</b></font>" pentru a crea de la zero o intrare nouă în agendă"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importaţi/Exportaţi"</b></font>" pentru a importa persoane din agendă de pe cardul SIM sau SD"\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"Nu există persoane din agendă de afişat. (Dacă aţi adăugat recent un cont, poate dura câteva minute până la finalizarea sincronizării persoanelor din agendă.)"\n\n"Dacă doriţi să adăugaţi persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă, pe care le puteţi sincroniza cu cele de pe tabletă"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opţiuni de afişare"</b></font>" pentru a modifica persoanele din agendă care sunt vizibile"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Persoană nouă în agendă"</b></font>" pentru a crea de la zero o intrare nouă în agendă"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importaţi/Exportaţi"</b></font>" pentru a importa persoane din agendă de pe cardul SIM sau SD"\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"Nu există persoane din agendă de afişat. (Dacă aţi adăugat recent un cont, poate dura câteva minute până la finalizarea sincronizării persoanelor din agendă.)"\n\n"Dacă doriţi să adăugaţi persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă, pe care le puteţi sincroniza cu cele de pe telefon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opţiuni de afişare"</b></font>" pentru a modifica persoanele din agendă care sunt vizibile"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Persoană nouă în agendă"</b></font>" pentru a crea de la zero o intrare nouă în agendă"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importaţi/Exportaţi"</b></font>" pentru a importa persoane din agendă de pe cardul SIM sau SD"\n</li></string>
-    <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"Nu există persoane din agendă de afişat."\n\n"Dacă doriţi să adăugaţi persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă, pe care le puteţi sincroniza cu cele de pe tabletă"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Persoană nouă în agendă"</b></font>" pentru a crea de la zero o intrare nouă în agendă"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importaţi/Exportaţi"</b></font>" pentru a importa persoane din agendă de pe cardul SD"\n</li></string>
-    <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"Nu există persoane din agendă de afişat."\n\n"Dacă doriţi să adăugaţi persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă, pe care le puteţi sincroniza cu cele de pe telefon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Persoană nouă în agendă"</b></font>" pentru a crea de la zero o intrare nouă în agendă"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importaţi/Exportaţi"</b></font>" pentru a importa persoane din agendă de pe cardul SD"\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"Nu există persoane din agendă de afişat. (Dacă aţi adăugat recent un cont, poate dura câteva minute până la finalizarea sincronizării persoanelor din agendă.)"\n\n"Dacă doriţi să adăugaţi persoane în agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă, pe care le puteţi sincroniza cu cele de pe tabletă"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opţiuni de afişare"</b></font>" pentru a modifica persoanele din agendă care sunt vizibile"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Persoană nouă în agendă"</b></font>" pentru a crea de la zero o intrare nouă în agendă"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importaţi/Exportaţi"</b></font>" pentru a importa persoane din agendă de pe cardul SD"\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"Nu există persoane din agendă de afişat. (Dacă aţi adăugat recent un cont, poate dura câteva minute până la finalizarea sincronizării persoanelor din agendă.)"\n\n"Dacă doriţi să adăugaţi persoane din agendă, apăsaţi pe "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>" şi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă, pe care le puteţi sincroniza cu cele de pe telefon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opţiuni de afişare"</b></font>" pentru a modifica persoanele din agendă care sunt vizibile"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Persoană nouă în agendă"</b></font>" pentru a crea de la zero o intrare nouă în agendă"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importaţi/Exportaţi"</b></font>" pentru a importa persoane din agendă de pe cardul SD"\n</li></string>
+    <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"Nu aveţi persoane din agendă de afişat."\n\n"Pentru a adăuga persoane în agendă, atingeţi "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>", apoi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă, pe care le puteţi sincroniza cu tableta"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Persoană nouă în agendă"</b></font>" pentru a crea de la zero o intrare nouă în agendă"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Importaţi/exportaţi"</b></font>" pentru a importa persoane din agendă de pe cardul SIM sau cardul SD"\n</li></string>
+    <string name="noContactsHelpText" product="default" msgid="4405064135698982080">"Nu există persoane din agendă de afişat."\n\n"Dacă doriţi să adăugaţi persoane în agendă, atingeţi "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>", apoi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă, pe care le puteţi sincroniza cu cele de pe telefon"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Persoană nouă în agendă"</b></font>" pentru a crea de la zero o intrare nouă în agendă"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Importaţi/exportaţi"</b></font>" pentru a importa persoane din agendă de pe cardul SIM sau cardul SD"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="6773195806404659174">"Nu există persoane din agendă de afişat. (Dacă aţi adăugat recent un cont, poate dura câteva minute până la finalizarea sincronizării persoanelor din agendă.){"\n\n"Dacă doriţi să adăugaţi persoane în agendă, atingeţi "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>", apoi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă, pe care le puteţi sincroniza cu cele de pe tabletă"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opţiuni de afişare"</b></font>" pentru a modifica persoanele din agendă care sunt vizibile"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Persoană nouă în agendă"</b></font>" pentru a crea de la zero o intrare nouă în agendă"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importaţi/exportaţi"</b></font>" pentru a importa persoane din agendă de pe cardul SIM sau SD"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="default" msgid="7016825676090327312">"Nu există persoane din agendă de afişat. (Dacă aţi adăugat recent un cont, poate dura câteva minute până la finalizarea sincronizării persoanelor din agendă.){"\n\n"Dacă doriţi să adăugaţi persoane în agendă, atingeţi "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>", apoi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă, pe care le puteţi sincroniza cu cele de pe telefon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opţiuni de afişare"</b></font>" pentru a modifica persoanele din agendă care sunt vizibile"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Persoană nouă în agendă"</b></font>" pentru a crea de la zero o intrare nouă în agendă"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importaţi/exportaţi"</b></font>" pentru a importa persoane din agendă de pe cardul SIM sau SD"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="tablet" msgid="7823757505923033456">"Nu aveţi persoane din agendă de afişat."\n\n"Pentru a adăuga persoane în agendă, atingeţi "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>", apoi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă, pe care le puteţi sincroniza cu tableta"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Persoană nouă în agendă"</b></font>" pentru a crea de la zero o intrare nouă în agendă"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Importaţi/exportaţi"</b></font>" pentru a importa persoane din agendă de pe cardul SD"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="default" msgid="6224952277619986841">"Nu aveţi persoane din agendă de afişat."\n\n"Pentru a adăuga persoane în agendă, atingeţi "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>", apoi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă, pe care le puteţi sincroniza cu telefonul"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Persoană nouă în agendă"</b></font>" pentru a crea de la zero o intrare nouă în agendă"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Importaţi/exportaţi"</b></font>" pentru a importa persoane din agendă de pe cardul SD"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="5415762667445638265">"Nu există persoane din agendă de afişat. (Dacă aţi adăugat recent un cont, poate dura câteva minute până la finalizarea sincronizării persoanelor din agendă.){"\n\n"Dacă doriţi să adăugaţi persoane în agendă, atingeţi "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>", apoi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă, pe care le puteţi sincroniza cu cele de pe tabletă"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opţiuni de afişare"</b></font>" pentru a modifica persoanele din agendă care sunt vizibile"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Persoană nouă în agendă"</b></font>" pentru a crea de la zero o intrare nouă în agendă"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importaţi/exportaţi"</b></font>" pentru a importa persoane din agendă de pe cardul SD"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="7443705129830284440">"Nu există persoane din agendă de afişat. (Dacă aţi adăugat recent un cont, poate dura câteva minute până la finalizarea sincronizării persoanelor din agendă.){"\n\n"Dacă doriţi să adăugaţi persoane în agendă, atingeţi "<font fgcolor="#ffffffff"><b>"Meniu"</b></font>", apoi atingeţi:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Conturi"</b></font>" pentru a adăuga sau a configura un cont cu persoane din agendă, pe care le puteţi sincroniza cu cele de pe telefon"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opţiuni de afişare"</b></font>" pentru a modifica persoanele din agendă care sunt vizibile"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Persoană nouă în agendă"</b></font>" pentru a crea de la zero o intrare nouă în agendă"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importaţi/exportaţi"</b></font>" pentru a importa persoane din agendă de pe cardul SD"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Nu aveţi favorite."\n\n" Pentru a adăuga o persoană în lista de favorite:"\n\n"        "<li>"Apăsaţi pe fila "<b>"Agendă"</b>" "\n</li>" "\n<li>"Apăsaţi persoana pe care doriţi să o adăugaţi în lista de favorite"\n</li>" "\n<li>"Apăsaţi pe steaua de lângă numele persoanei"\n</li></string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Utilizaţi tastatura DTMF"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Reveniţi la apelul în curs"</string>
@@ -208,8 +210,8 @@
     <string name="description_view_contact_detail" msgid="9133251213656414807">"Afişaţi persoana din agendă"</string>
     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"Stocare indisponibilă"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Niciun card SD"</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="1334170151822669976">"Nicio stocare detectată"</string>
-    <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"Niciun card SD detectat"</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"Nu s-a găsit o stocare."</string>
+    <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"Nu s-a găsit un card SD."</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Se caută date în format vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importaţi de pe cardul SIM"</string>
     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Importaţi din stocare"</string>
@@ -218,62 +220,62 @@
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Importaţi un fişier vCard"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Importaţi fişiere multiple vCard"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Importaţi toate fişierele vCard"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Se caută date vCard în spaţiul de stocare"</string>
-    <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Se caută date vCard pe cardul SD"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"Se caută date vCard în spaţiul de stocare..."</string>
+    <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"Se caută date vCard pe cardul SD..."</string>
     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Nu s-a putut scana stocarea"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Nu s-a putut scana cardul SD"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8290634758602152611">"Nu s-a putut scana stocarea (Motivul: „<xliff:g id="FAIL_REASON">%s</xliff:g>”)"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="2462918339722946736">"Nu s-a putut scana cardul SD (Motivul: „<xliff:g id="FAIL_REASON">%s</xliff:g>”)"</string>
-    <string name="fail_reason_io_error" msgid="5922864781066136340">"Eroare I/E"</string>
-    <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Memoria este insuficientă (probabil fişierul este prea mare)"</string>
-    <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"Nu s-au putut analiza datele de pe vCard dintr-un motiv neaşteptat"</string>
-    <string name="fail_reason_not_supported" msgid="294499264620201243">"Formatul nu este acceptat."</string>
-    <string name="vcard_import_failed" msgid="8856125211629574066">"Nu s-a putut importa vCard"</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"Nu a fost găsit niciun fişier vCard în spaţiul de stocare"</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"Niciun fişier vCard găsit pe cardul SD"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"Stocarea nu s-a putut scana. (Motivul: „<xliff:g id="FAIL_REASON">%s</xliff:g>”)"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"Cardul SD nu a putut fi scanat. (Motivul: „<xliff:g id="FAIL_REASON">%s</xliff:g>”)"</string>
+    <string name="fail_reason_io_error" msgid="6748358842976073255">"Eroare I/I (intrare/ieşire)"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Memoria este insuficientă (probabil fişierul este prea mare)."</string>
+    <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"Nu s-au putut analiza datele de pe vCard dintr-un motiv neaşteptat."</string>
+    <string name="fail_reason_not_supported" msgid="8219562769267148825">"Formatul nu este acceptat."</string>
+    <string name="vcard_import_failed" msgid="5223531255894842406">"Nu s-a putut importa fişierul vCard."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2071820850017305867">"Nu s-a găsit niciun fişier vCard în spaţiul de stocare."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1754014167874286173">"Nu s-a găsit niciun fişier vCard pe cardul SD."</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Nu s-au putut colecta metainformaţiile pentru fişierele vCard indicate."</string>
     <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Unul sau mai multe fişiere nu s-au putut importa (%s)."</string>
-    <string name="fail_reason_unknown" msgid="999034019513096768">"Eroare necunoscută"</string>
-    <string name="select_vcard_title" msgid="3968948173786172468">"Selectaţi fişierul vCard"</string>
-    <string name="caching_vcard_title" msgid="5009556022082659780">"Se stochează fişierele vCard într-un spaţiu de stocare local temporar"</string>
-    <string name="caching_vcard_message" msgid="2380844718093378900">"Instrumentul de importare stochează în memoria cache fişierele vCard într-un spaţiu de stocare local temporar. Importul propriu-zis va începe în curând."</string>
+    <string name="fail_reason_unknown" msgid="1714092345030570863">"Eroare necunoscută."</string>
+    <string name="select_vcard_title" msgid="7791371083694672861">"Alegeţi fişier vCard"</string>
+    <string name="caching_vcard_title" msgid="1226272312940516605">"Se stochează în cache"</string>
+    <string name="caching_vcard_message" msgid="4926308675041506756">"Fişierele vCard se stochează în memoria cache într-un spaţiu de stocare local temporar. Importul propriu-zis va începe în curând."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Se importă <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Se importă <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Nu s-au putut citi datele de pe vCard"</string>
-    <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"Citirea datelor vCard a fost anulată"</string>
+    <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"Citirea datelor vCard a fost anulată"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"S-a finalizat importul vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
-    <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Importul <xliff:g id="FILENAME">%s</xliff:g> a fost anulat"</string>
+    <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"Importul fişierului <xliff:g id="FILENAME">%s</xliff:g> a fost anulat"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> va fi importat în curând."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Fişierul va fi importat în scurt timp."</string>
-    <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"Solicitarea de importare a fişierului vCard este respinsă. Încercaţi din nou mai târziu."</string>
+    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"Solicitarea de importare a fişierului vCard a fost respinsă. Încercaţi din nou mai târziu."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> va fi exportat în curând."</string>
-    <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"Solicitarea de exportare a fişierului vCard este respinsă. Încercaţi din nou mai târziu."</string>
+    <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Solicitarea de exportare a fişierului vCard a fost respinsă. Încercaţi din nou mai târziu."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"contact"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
-    <string name="confirm_export_title" msgid="7648747763127442983">"Confirmaţi exportul"</string>
-    <string name="confirm_export_message" msgid="4307437830474103759">"Exportaţi lista dvs. de persoane din agendă în fişierul „<xliff:g id="VCARD_FILENAME">%s</xliff:g>”?"</string>
-    <string name="exporting_contact_failed_title" msgid="2339788270863991417">"Nu s-au putut exporta datele din agendă"</string>
-    <string name="exporting_contact_failed_message" msgid="2704925031146288635">"Nu s-au putut exporta datele din agendă."\n"Motivul: „<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
-    <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"Nicio persoană în agendă exportabilă"</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"Prea multe fişiere vCard în spaţiul de stocare"</string>
-    <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"Prea multe fişiere de tip vCard pe cardul SD"</string>
-    <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"Numele de fişier este prea lung („<xliff:g id="FILENAME">%s</xliff:g>”)"</string>
-    <string name="exporting_vcard_finished_title" msgid="4259736138838583213">"S-a finalizat exportul <xliff:g id="FILENAME">%s</xliff:g>"</string>
-    <string name="exporting_vcard_canceled_title" msgid="1827672399438062140">"Exportul <xliff:g id="FILENAME">%s</xliff:g> a fost anulat"</string>
+    <string name="confirm_export_title" msgid="6834385377255286349">"Exportaţi Agenda?"</string>
+    <string name="confirm_export_message" msgid="2423421354816428708">"Lista dvs. cu persoane de contact va fi exportată în fişierul: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
+    <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Nu s-a putut exporta"</string>
+    <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Datele de contact nu au fost exportate."\n"Motivul: „<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
+    <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Nicio persoană de contact exportabilă."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="590645599157376285">"Prea multe fişiere vCard în spaţiul de stocare."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="4887177369627277474">"Există prea multe fişiere vCard pe cardul SD."</string>
+    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"Numele de fişier solicitat este prea lung („<xliff:g id="FILENAME">%s</xliff:g>”)."</string>
+    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"S-a finalizat exportul fişierului <xliff:g id="FILENAME">%s</xliff:g>."</string>
+    <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"Exportul fişierului <xliff:g id="FILENAME">%s</xliff:g> a fost anulat."</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Se exportă datele persoanelor din agendă"</string>
-    <string name="exporting_contact_list_message" msgid="5640326540405486055">"Se exportă datele despre persoanele din agendă către „<xliff:g id="FILE_NAME">%s</xliff:g>”"</string>
-    <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"Nu se poate iniţializa instrumentul de export: „<xliff:g id="EXACT_REASON">%s</xliff:g>”"</string>
-    <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"Eroare apărută în timpul exportului: „<xliff:g id="EXACT_REASON">%s</xliff:g>”"</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"Nu s-au putut obţine informaţii din baza de date"</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"Nu există persoane din agendă care pot fi exportate. Dacă totuşi aveţi persoane din agendă pe tabletă, este posibil ca exportul acestora de pe tabletă să fie interzis de unii furnizori de date."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"Nu există persoane din agendă care pot fi exportate. Dacă totuşi aveţi persoane în agenda de pe telefon, este posibil ca exportul acestora de pe telefon să fie interzis de unii furnizori de date."</string>
-    <string name="composer_not_initialized" msgid="8041534450748388843">"Compozitorul vCard nu este corect iniţializat"</string>
-    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"Nu poate fi deschis fişierul „<xliff:g id="FILE_NAME">%s</xliff:g>: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="exporting_contact_list_message" msgid="7181663157672374569">"Datele dvs. de contact se exportă la: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"Nu s-a putut iniţializa instrumentul de export: „<xliff:g id="EXACT_REASON">%s</xliff:g>”"</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"A apărut o eroare în timpul exportului: „<xliff:g id="EXACT_REASON">%s</xliff:g>”."</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Nu s-au putut obţine informaţii din baza de date."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"Nu există persoane din agendă care să poată fi exportate. Dacă aveţi persoane în agenda tabletei, este posibil ca exportul acestora de pe tabletă să fie interzis de unii furnizori de date."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="3296493229040294335">"Nu există persoane din agendă care să poată fi exportate. Dacă aveţi persoane în agenda telefonului, este posibil ca exportul acestora de pe telefon să fie interzis de unii furnizori de date."</string>
+    <string name="composer_not_initialized" msgid="2321648986367005254">"Compozitorul vCard nu a pornit în mod corespunzător."</string>
+    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"Nu s-a putut deschide fişierul „<xliff:g id="FILE_NAME">%s</xliff:g>”: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> din <xliff:g id="TOTAL_NUMBER">%s</xliff:g> (de) persoane din agendă"</string>
     <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"Se anulează importul vCard"</string>
-    <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"Sunteţi sigur(ă) că anulaţi importul <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Anulaţi importul fişierului <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Se anulează exportul vCard"</string>
-    <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"Sunteţi sigur(ă) că anulaţi exportul fişierului <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Anulaţi exportul fişierului <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Anulare import/export vCard nereuşită"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Numele persoanelor din agenda dvs."</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Pauză 2 secunde"</string>
@@ -282,16 +284,16 @@
     <string name="call_settings" msgid="7666474782093693667">"Setări"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Mesaj text utilizând"</string>
     <string name="make_primary" msgid="5829291915305113983">"Reţineţi această alegere"</string>
-    <string name="quickcontact_missing_app" msgid="4600366393134289038">"Nicio aplicaţie pentru gestionarea acestei acţiuni"</string>
-    <string name="missing_name" msgid="7930716592850443705">"(fără nume)"</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"Nu s-a găsit o aplicaţie care să gestioneze această acţiune."</string>
+    <string name="missing_name" msgid="8745511583852904385">"(Fără nume)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Conturi"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Persoane de contact de afişat"</string>
-    <string name="menu_import_export" msgid="3765725645491577190">"Importaţi/Exportaţi"</string>
-    <string name="dialog_import_export" msgid="4771877268244096596">"Importaţi/exportaţi persoanele din agendă"</string>
+    <string name="menu_import_export" msgid="26217871113229507">"Importaţi/exportaţi"</string>
+    <string name="dialog_import_export" msgid="4360648034889921624">"Imp./exp. pers. agendă"</string>
     <string name="menu_share" msgid="943789700636542260">"Distribuiţi"</string>
     <string name="menu_all_contacts" msgid="5101735431586050711">"Toată agenda"</string>
     <string name="share_via" msgid="563121028023030093">"Distribuiţi persoana din agendă prin"</string>
-    <string name="share_error" msgid="4374508848981697170">"Aceasta persoană din agendă nu poate fi distribuită."</string>
+    <string name="share_error" msgid="948429331673358107">"Această persoană de contact nu poate fi distribuită."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Nume"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Pseudonim"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organizaţie"</string>
@@ -304,9 +306,9 @@
     <string name="menu_sync_remove" msgid="3266725887008450161">"Eliminaţi grup de sincronizare"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Adăugaţi grup de sincronizare"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"Mai multe grupuri..."</string>
-    <string name="display_ungrouped" msgid="4602580795576261158">"Toate celelalte persoane din Agendă"</string>
-    <string name="display_all_contacts" msgid="6846131371214707956">"Toate persoanele din Agendă"</string>
-    <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"Eliminarea „<xliff:g id="GROUP">%s</xliff:g>” din sincronizare va elimina, de asemenea, orice persoană din agendă care nu face parte dintr-un grup."</string>
+    <string name="display_ungrouped" msgid="6885954210243119591">"Toate celel.pers.din ag."</string>
+    <string name="display_all_contacts" msgid="2031647544742889505">"Toată Agenda"</string>
+    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Eliminarea grupului „<xliff:g id="GROUP">%s</xliff:g>” din sincronizare va elimina, de asemenea, orice persoană din agendă care nu face parte dintr-un grup."</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Numai pe tabletă, nesincronizată"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"Numai pe telefon, nesincronizată"</string>
     <string name="call_custom" msgid="7756571794763171802">"Apelaţi <xliff:g id="CUSTOM">%s</xliff:g>"</string>
@@ -371,7 +373,7 @@
     <string name="chat_icq" msgid="8438405386153745775">"Conversaţi prin ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Conversaţi prin Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Conversaţi prin chat"</string>
-    <string name="audio_chat" msgid="4743276658947547047">"Chat audio"</string>
+    <string name="audio_chat" msgid="2535716629358298691">"Chat vocal"</string>
     <string name="video_chat" msgid="1872255818640336072">"Chat video"</string>
     <string name="postal_address" msgid="8765560217149624536">"Adresă"</string>
     <string name="postal_street" msgid="8133143961580058972">"Stradă"</string>
@@ -393,14 +395,17 @@
     <string name="name_phonetic" msgid="4259595234312430484">"Nume fonetic"</string>
     <string name="connections" msgid="8098440723172028350">"Conexiuni"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Adăugaţi o conexiune"</string>
-    <string name="recent_updates" msgid="2062236709538790412">"Recente"</string>
+    <!-- no translation found for recent (2659189233141493004) -->
+    <!-- no translation found for recent (2062236709538790412) -->
+    <skip />
+    <!-- outdated translation 2062236709538790412 -->     <string name="recent_updates" msgid="4267258535615860710">"Recente"</string>
     <string name="account_type_format" msgid="718948015590343010">"Persoana din agendă din <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Utilizaţi această fotografie"</string>
-    <string name="contact_read_only" msgid="1856479476063888348">"Nu poate fi editat din această aplicaţie"</string>
-    <string name="no_contact_details" msgid="6754415338321837001">"Nicio informaţie suplimentară pentru această persoană din agendă"</string>
-    <string name="group_read_only" msgid="7924922658394449477">"Nu poate fi editat pe acest dispozitiv"</string>
+    <string name="contact_read_only" msgid="7421346527289472273">"Nu se poate edita din această aplicaţie"</string>
+    <string name="no_contact_details" msgid="6636856378019344497">"Nu există inform. suplim. pt. această persoană de contact."</string>
+    <string name="group_read_only" msgid="1061762906115697637">"Nu poate fi editat pe acest dispozitiv."</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Sortaţi lista după"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Prenume"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Numele de familie"</string>
@@ -410,14 +415,14 @@
     <string name="search_bar_hint" msgid="1012756309632856553">"Căutaţi în persoanele din agendă"</string>
     <string name="take_photo" msgid="7496128293167402354">"Fotografiaţi"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Creaţi o fotografie nouă"</string>
-    <string name="pick_photo" msgid="448886509158039462">"Selectaţi o fotografie din galerie"</string>
+    <string name="pick_photo" msgid="3746334626214970837">"Alegeţi o fotografie din Galerie"</string>
     <string name="pick_new_photo" msgid="7962368009197147617">"Selectaţi o fotografie nouă din Galerie"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Se actualizează lista de persoane din agendă pentru a reflecta schimbarea limbii."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Se actualizează lista de persoane din agendă."</string>
-    <string name="upgrade_out_of_memory" msgid="6153384328042175667">"Agenda este în proces de trecere la o versiune superioară. "\n\n"Procesul necesită aproximativ <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MO din spaţiul intern de stocare al telefonului."\n\n"Alegeţi una dintre următoarele opţiuni:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Agenda este în proces de trecere la o versiune superioară. "\n\n"Acest proces necesită aproximativ <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MO din spaţiul de stocare intern."\n\n"Alegeţi una dintre următoarele opţiuni:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Dezinstalaţi unele aplicaţii"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Încercaţi din nou trecerea la o versiune superioară"</string>
-    <string name="search_results_searching" msgid="7755623475227227314">"Se caută..."</string>
+    <string name="search_results_searching" msgid="3984833028938569930">"Se caută..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Afişaţi elementele selectate"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Afişaţi-i pe toţi"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Selectaţi-le pe toate"</string>
@@ -441,20 +446,20 @@
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Asociaţi intrarea curentă din agendă cu intrarea selectată?"</string>
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Editaţi persoanele din agendă selectate"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Comutaţi la funcţia de editare a persoanei din agendă selectate? Informaţiile introduse până acum vor fi copiate."</string>
-    <string name="menu_copyContact" msgid="4401683725471696686">"Copiaţi în Agendă"</string>
+    <string name="menu_copyContact" msgid="1573960845106822639">"Copiaţi în Agendă"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Adăugaţi în Agendă"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Director <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Director"</string>
     <string name="local_search_label" msgid="2551177578246113614">"Toată Agenda"</string>
-    <string name="toast_making_personal_copy" msgid="7905283986345263275">"Se creează o copie personală"</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"Se creează o copie personală..."</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Toată agenda"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Cu stea"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Personalizată"</string>
-    <string name="list_filter_customize" msgid="2035084418635775579">"Personalizaţi..."</string>
+    <string name="list_filter_customize" msgid="4789963356004169321">"Personalizaţi"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"Toate persoanele din agendă cu numere de telefon"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Persoană din agendă"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Definiţi afişarea personalizată"</string>
-    <string name="contact_list_loading" msgid="3859280390185230582">"Se încarcă..."</string>
+    <string name="contact_list_loading" msgid="5488620820563977329">"Se încarcă..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Setări"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Pers. din agendă de afiş."</string>
     <string name="menu_settings" msgid="377929915873428211">"Setări"</string>
@@ -468,7 +473,7 @@
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Indicaţi anul"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Persoană din agendă"</string>
-    <string name="social_widget_loading" msgid="3697996166985327861">"Se încarcă ..."</string>
+    <string name="social_widget_loading" msgid="5327336597364074608">"Se încarcă..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Creaţi o intrare nouă în Agendă"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Conectaţi-vă la un cont"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Importaţi agenda din fişier"</string>
@@ -479,7 +484,7 @@
     <item quantity="one" msgid="2944819210288517794">"1 grup"</item>
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> (de) grupuri"</item>
   </plurals>
-    <string name="delete_group_dialog_message" msgid="295063284548750881">"Sunteţi sigur(ă) că doriţi să ştergeţi grupul „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>”? (Agenda nu va fi ştearsă.)"</string>
+    <string name="delete_group_dialog_message" msgid="7586856514337560529">"Ştergeţi grupul „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>”? (Agenda nu va fi ştearsă.)"</string>
   <plurals name="num_contacts_in_group">
     <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> persoană din <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
     <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> (de) persoane din <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
@@ -488,13 +493,13 @@
     <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> persoană"</item>
     <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> (de) persoane"</item>
   </plurals>
-    <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"Introduceţi un nume pentru intrarea din agendă înainte de îmbinarea cu altă intrare."</string>
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Introduceţi un nume pentru intrarea din agendă înainte de îmbinarea cu altă intrare."</string>
     <string name="copy_text" msgid="3257145021583508761">"Copiaţi în clipboard"</string>
     <string name="set_default" msgid="4417505153468300351">"Setaţi ca prestabilit"</string>
     <string name="clear_default" msgid="7193185801596678067">"Ştergeţi datele prestabilite"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Text copiat"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Renunţaţi la modificări"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"Doriţi să renunţaţi la modificări?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Renunţaţi la modificări?"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Configuraţi profilul"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Introduceţi numele persoanei"</string>
@@ -511,19 +516,19 @@
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Nu s-a putut prelua mesajul vocal."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Noi"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Mai vechi"</string>
-    <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"Nu se poate realiza conectarea la serverul de mesagerie vocală."</string>
-    <string name="voicemail_status_messages_waiting" msgid="2970301042310727909">"Nu se poate conecta la serv. mes. voc. Mes. voc. noi în aştept."</string>
-    <string name="voicemail_status_configure_voicemail" msgid="3940240432123700974">"Configuraţi mesageria vocală."</string>
+    <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Nu se poate realiza conectarea la serverul de mesagerie vocală."</string>
+    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Nu se poate conecta la serv. mes. voc. Mes. voc. noi în aştept."</string>
+    <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Configuraţi mesageria vocală."</string>
     <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Componenta audio nu este disponibilă."</string>
-    <string name="voicemail_status_action_configure" msgid="7008713959076506385">"Configuraţi"</string>
+    <string name="voicemail_status_action_configure" msgid="8671796489912239589">"Configuraţi"</string>
     <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"Apel. mesag. vocală"</string>
-    <string name="voicemail_speed_slowest" msgid="6047030504814773029">"viteză minimă"</string>
-    <string name="voicemail_speed_slower" msgid="7890393922358642543">"viteză redusă"</string>
-    <string name="voicemail_speed_normal" msgid="6030110237820243006">"viteză normală"</string>
-    <string name="voicemail_speed_faster" msgid="4161478290979905481">"viteză crescută"</string>
-    <string name="voicemail_speed_fastest" msgid="3373646875150544205">"viteză maximă"</string>
+    <string name="voicemail_speed_slowest" msgid="1733460666177707312">"Viteză minimă"</string>
+    <string name="voicemail_speed_slower" msgid="1508601287347216244">"Viteză redusă"</string>
+    <string name="voicemail_speed_normal" msgid="9033988544627228892">"Viteză normală"</string>
+    <string name="voicemail_speed_faster" msgid="2019965121475935488">"Viteză crescută"</string>
+    <string name="voicemail_speed_fastest" msgid="5758712343491183292">"Viteză maximă"</string>
     <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
-    <string name="group_name_hint" msgid="2659811836386413509">"Numele grupului"</string>
+    <string name="group_name_hint" msgid="238359485263401293">"Numele grupului"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Cont.prim.pr.NFC"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Afişaţi numai mesajele vocale"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"Afişaţi toate apelurile"</string>
@@ -559,5 +564,5 @@
     <string name="add_new_account" msgid="5748627740680940264">"Adăugaţi un cont nou"</string>
     <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"Apelul nu a fost trimis"</string>
     <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"Număr de mesagerie vocală indisponibil"</string>
-    <string name="dialog_voicemail_not_ready_message" msgid="4511141315685755189">"Pentru a configura mesageria vocală, accesaţi Meniu &gt; Setări."</string>
+    <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Pentru a configura mesageria vocală, accesaţi Meniu &gt; Setări."</string>
 </resources>

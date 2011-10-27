@@ -25,7 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"בחר קיצור דרך של איש קשר"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"בחר מספר להתקשר אליו"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"בחר מספר לשליחת הודעה"</string>
-    <string name="contactPickerActivityTitle" msgid="6886592363525235031">"בחר איש קשר"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"בחר איש קשר"</string>
     <string name="starredList" msgid="4817256136413959463">"מסומן בכוכבית"</string>
     <string name="frequentList" msgid="7154768136473953056">"לעתים קרובות"</string>
     <string name="strequentList" msgid="5640192862059373511">"מועדפים"</string>
@@ -53,19 +53,19 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"מחק"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"חדש"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"קבוצה חדשה"</string>
-    <string name="splitConfirmation_title" msgid="2209511048593467012">"הפרד איש קשר"</string>
-    <string name="splitConfirmation" msgid="1067993957986345974">"האם אתה בטוח שאתה רוצה להפריד את איש הקשר היחיד לאנשי קשר מרובים?"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"לפצל את איש הקשר?"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"איש קשר זה יפוצל למספר אנשי קשר."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"צרף"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"צרף אנשי קשר"</string>
-    <string name="blurbJoinContactDataWith" msgid="995870557595050304">"בחר את איש הקשר שברצונך לשלב עם <xliff:g id="NAME">%s</xliff:g>."</string>
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"בחר את איש הקשר שברצונך לצרף אל <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"הצג את כל אנשי הקשר"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"אנשי קשר מוצעים"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"כל אנשי הקשר"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"אנשי קשר צורפו"</string>
-    <string name="deleteConfirmation_title" msgid="6394309508930335204">"מחק"</string>
+    <string name="deleteConfirmation_title" msgid="1418215926447642260">"למחוק את איש הקשר?"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"הגדר רינגטון"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"כל השיחות לתא הקולי"</string>
-    <string name="readOnlyContactWarning" msgid="1390849295342594265">"לא ניתן למחוק אנשי קשר מחשבונות לקריאה בלבד, אך ניתן להסתיר אותם ברשימות אנשי הקשר."</string>
+    <string name="readOnlyContactWarning" msgid="7808825687289848259">"לא ניתן למחוק אנשי קשר מחשבונות לקריאה בלבד, אך ניתן להסתיר אותם ברשימות אנשי הקשר."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"איש קשר זה מכיל מידע מחשבונות מרובים. מידע מחשבונות לקריאה בלבד יוסתר ברשימות אנשי הקשר ולא יימחק."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"מחיקת איש קשר זה תמחק מידע מחשבונות מרובים."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"איש קשר זה יימחק."</string>
@@ -76,8 +76,8 @@
     <string name="label_sip_address" msgid="124073911714324974">"שיחת אינטרנט"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"חברה"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"שם"</string>
-    <string name="invalidContactMessage" msgid="5816991830260044593">"איש הקשר לא קיים."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"צור איש קשר חדש"</string>
+    <string name="invalidContactMessage" msgid="8215051456181842274">"איש הקשר לא קיים."</string>
+    <string name="pickerNewContactText" msgid="6166997164401048211">"צור איש קשר חדש"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"טלפון"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"דוא\"ל"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"הודעה מיידית"</string>
@@ -92,17 +92,19 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"שם תווית בהתאמה אישית"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"שלח שיחות ישירות לדואר הקולי"</string>
     <string name="removePhoto" msgid="4898105274130284565">"הסר תמונה"</string>
-    <string name="noContacts" msgid="4955659076981974652">"אין אנשי קשר"</string>
-    <string name="noGroups" msgid="7315200974181864731">"אין קבוצות"</string>
-    <string name="noAccounts" msgid="4742609114153797268">"דרוש לך חשבון כדי ליצור קבוצות"</string>
+    <string name="noContacts" msgid="8579310973261953559">"אין אנשי קשר."</string>
+    <string name="noGroups" msgid="8614664663561385253">"אין קבוצות."</string>
+    <string name="noAccounts" msgid="7768267764545265909">"כדי ליצור קבוצות, נחוץ חשבון."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"לא נמצאו אנשי קשר תואמים."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"אין אנשי קשר עם מספרי טלפון."</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"אין אנשים בקבוצה זו."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"כדי להוסיף, ערוך את הקבוצה."</string>
     <string name="savingContact" msgid="4075751076741924939">"שומר איש קשר…"</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"שומר אפשרויות תצוגה..."</string>
-    <string name="contactSavedToast" msgid="9171862279493213075">"איש הקשר נשמר"</string>
-    <string name="contactSavedErrorToast" msgid="9189098776225004666">"שגיאה, אין אפשרות לשמור שינויים באיש הקשר."</string>
-    <string name="groupSavedToast" msgid="6675062559302493011">"הקבוצה נשמרה"</string>
-    <string name="groupSavedErrorToast" msgid="6434135707953150875">"שגיאה, לא ניתן לשמור את השינויים בקבוצה."</string>
+    <string name="contactSavedToast" msgid="7152589189385441091">"איש הקשר נשמר."</string>
+    <string name="contactSavedErrorToast" msgid="3207250533172944892">"לא ניתן לשמור את השינויים באנשי הקשר."</string>
+    <string name="groupSavedToast" msgid="1168756874239833756">"הקבוצה נשמרה."</string>
+    <string name="groupSavedErrorToast" msgid="7984466936615304740">"לא ניתן לשמור את השינויים בקבוצות."</string>
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"איש קשר אחד עם מספר טלפון"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> אנשי קשר עם מספרי טלפון"</item>
@@ -112,9 +114,9 @@
     <item quantity="one" msgid="3405747744700823280">"איש קשר אחד"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> אנשי קשר"</item>
   </plurals>
-    <string name="listTotalAllContactsZero" msgid="1889349925514589304">"אין אנשי קשר"</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="4058252141420128998">"אין אנשי קשר גלויים"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="1289318488170099285">"אין מועדפים"</string>
+    <string name="listTotalAllContactsZero" msgid="5513001821794568211">"אין אנשי קשר."</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"אין אנשי קשר גלויים."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"אין מועדפים."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"אין אנשי קשר ב<xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"אנשי קשר ב-<xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listSingleContact" msgid="6067813698903535563">"איש קשר יחיד"</string>
@@ -123,8 +125,8 @@
     <item quantity="one" msgid="5517063038754171134">"נמצא אחד"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> נמצאו"</item>
   </plurals>
-    <string name="foundTooManyContacts" msgid="2548148047461758967">"נמצאו יותר מ-‏<xliff:g id="COUNT">%d</xliff:g>"</string>
-    <string name="listFoundAllContactsZero" msgid="777952841930508289">"לא נמצא"</string>
+    <string name="foundTooManyContacts" msgid="5163335650920020220">"נמצאו יותר מ-<xliff:g id="COUNT">%d</xliff:g> פריטים."</string>
+    <string name="listFoundAllContactsZero" msgid="7132202364587656501">"לא נמצאו פריטים."</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"נמצא אחד"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> נמצאו"</item>
@@ -143,9 +145,9 @@
     <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"מחק דואר קולי"</string>
     <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"שתף דואר קולי"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"יומן השיחות ריק."</string>
-    <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"נקה יומן שיחות"</string>
-    <string name="clearCallLogConfirmation" msgid="7625927669136267636">"האם אתה בטוח שברצונך לנקות את יומן השיחות?"</string>
-    <string name="clearCallLogProgress_title" msgid="6870412675015656948">"ניקוי יומן שיחות"</string>
+    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"לנקות את יומן השיחות?"</string>
+    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"כל רשומות השיחה שלך יימחקו."</string>
+    <string name="clearCallLogProgress_title" msgid="8365943000154295771">"מנקה את יומן השיחות..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"דואר קולי"</string>
@@ -158,14 +160,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"אנשי קשר בכרטיס SIM"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"אין לך אנשי קשר להצגה. (אם הוספת הרגע חשבון, יחלפו כמה דקות עד לסינכרון אנשי הקשר.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"אין לך אנשי קשר להצגה."</string>
-    <string name="noContactsHelpText" product="tablet" msgid="6450346791169710787">"אין לך אנשי קשר להצגה."\n\n"כדי להוסיף אנשי קשר, הקש על "<font fgcolor="#ffffffff"><b>"תפריט"</b></font>" וגע באפשרות:"\n" "\n<li><font fgcolor="#ffffffff"><b>"חשבונות"</b></font>" כדי להוסיף או להגדיר חשבון עם אנשי קשר שאותם תוכל לסנכרן לטבלט"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"איש קשר חדש"</b></font>" כדי ליצור איש קשר חדש לגמרי"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ייבוא/ייצוא"</b></font>" כדי לייבא אנשי קשר מכרטיס SIM או כרטיס SD"\n</li></string>
-    <string name="noContactsHelpText" product="default" msgid="7633826236417884130">"אין לך אנשי קשר להצגה."\n\n"כדי להוסיף אנשי קשר, לחץ על "<font fgcolor="#ffffffff"><b>"תפריט"</b></font>" וגע באפשרות:"\n" "\n<li><font fgcolor="#ffffffff"><b>"חשבונות"</b></font>" כדי להוסיף או להגדיר חשבון עם אנשי קשר שתוכל לסנכרן עם הטלפון"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"אפשרויות תצוגה"</b></font>" כדי לשנות את אנשי הקשר הגלויים"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"איש קשר חדש"</b></font>" כדי ליצור איש קשר חדש לגמרי"\n</li>" {31/}{32/}{33/}{34/}יבוא/יצוא{35/}{36/} כדי לייבא אנשי קשר מכרטיס SIM או כרטיס SD‏{37/}{38/}"</string>
-    <string name="noContactsHelpTextWithSync" product="tablet" msgid="2364665535969139880">"אין לך אנשי קשר לתצוגה. (אם בדיוק הוספת חשבון, ייתכן שיידרשו מספר דקות לסינכרון אנשי הקשר.)"\n\n"כדי להוסיף אנשי קשר, הקש על "<font fgcolor="#ffffffff"><b>"תפריט"</b></font>" וגע באפשרות:"\n" "\n<li><font fgcolor="#ffffffff"><b>"חשבונות"</b></font>" כדי להוסיף או להגדיר חשבון עם אנשי קשר שתוכל לסנכרן לטבלט"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"אפשרויות תצוגה"</b></font>" כדי לשנות את אנשי הקשר הגלויים"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"איש קשר חדש"</b></font>" כדי ליצור איש קשר חדש לגמרי"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ייבוא/ייצוא"</b></font>" כדי לייבא אנשי קשר מכרטיס SIM או מכרטיס SD"\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="default" msgid="3017521127042216243">"אין לך אנשי קשר להצגה. (אם הוספת הרגע חשבון, דרושות כמה דקות לסינכרון אנשי הקשר.)"\n\n"כדי להוסיף אנשי קשר, לחץ על "<font fgcolor="#ffffffff"><b>"תפריט"</b></font>" וגע באפשרות:"\n" "\n<li><font fgcolor="#ffffffff"><b>"חשבונות"</b></font>" כדי להוסיף או להגדיר חשבון עם אנשי קשר שתוכל לסנכרן לטלפון"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"אפשרויות תצוגה"</b></font>" כדי לשנות את אנשי הקשר הגלויים"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"איש קשר חדש"</b></font>" כדי ליצור איש קשר חדש לגמרי"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"יבוא/יצוא"</b></font>" כדי לייבא אנשי קשר מכרטיס SIM או כרטיס SD‏"\n</li></string>
-    <string name="noContactsNoSimHelpText" product="tablet" msgid="6031363021287849874">"אין לך אנשי קשר להצגה."\n\n"כדי להוסיף אנשי קשר, הקש על "<font fgcolor="#ffffffff"><b>"תפריט"</b></font>" וגע באפשרות:"\n" "\n<li><font fgcolor="#ffffffff"><b>"חשבונות"</b></font>" כדי להוסיף או להגדיר חשבון עם אנשי קשר שאותם תוכל לסנכרן לטבלט"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"איש קשר חדש"</b></font>" כדי ליצור איש קשר חדש לגמרי"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ייבוא/ייצוא"</b></font>" כדי לייבא אנשי קשר מכרטיס SD"\n</li></string>
-    <string name="noContactsNoSimHelpText" product="default" msgid="467658807711582876">"אין לך אנשי קשר להצגה."\n\n"כדי להוסיף אנשי קשר, לחץ על "<font fgcolor="#ffffffff"><b>"תפריט"</b></font>" וגע באפשרות:"\n" "\n<li><font fgcolor="#ffffffff"><b>"חשבונות"</b></font>" כדי להוסיף או להגדיר חשבון עם אנשי קשר שאותם תוכל לסנכרן עם הטלפון"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"איש קשר חדש"</b></font>" כדי ליצור איש קשר חדש לגמרי"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"יבוא/יצוא"</b></font>" כדי לייבא אנשי קשר מכרטיס SD‏"\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="6222739731808897565">"אין לך אנשי קשר להצגה. (אם בדיוק הוספת חשבון, ייתכן שידרשו מספר דקות לסינכרון אנשי הקשר.)"\n\n"כדי להוסיף אנשי קשר, הקש על "<font fgcolor="#ffffffff"><b>"תפריט"</b></font>" וגע באפשרות:"\n" "\n<li><font fgcolor="#ffffffff"><b>"חשבונות"</b></font>" כדי להוסיף או להגדיר חשבון עם אנשי קשר שתוכל לסנכרן לטבלט"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"אפשרויות תצוגה"</b></font>" כדי לשנות את אנשי הקשר הגלויים"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"איש קשר חדש"</b></font>" כדי ליצור איש קשר חדש לגמרי"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ייבוא/ייצוא"</b></font>" כדי לייבא אנשי קשר מכרטיס SD"\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"אין לך אנשי קשר להצגה. (אם הוספת הרגע חשבון, דרושות כמה דקות לסינכרון אנשי הקשר.)"\n\n"כדי להוסיף אנשי קשר, לחץ על "<font fgcolor="#ffffffff"><b>"תפריט"</b></font>" וגע באפשרות:"\n" "\n<li><font fgcolor="#ffffffff"><b>"חשבונות"</b></font>" כדי להוסיף או להגדיר חשבון עם אנשי קשר שתוכל לסנכרן עם הטלפון"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"אפשרויות תצוגה"</b></font>" כדי לשנות את אנשי הקשר הגלויים"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"איש קשר חדש"</b></font>" כדי ליצור איש קשר חדש לגמרי"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"יבוא/יצוא"</b></font>" כדי לייבא אנשי קשר מכרטיס כרטיס SD‏"\n</li></string>
+    <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"אין לך אנשי קשר להצגה."\n\n"כדי להוסיף אנשי קשר, גע באפשרות "<font fgcolor="#ffffffff"><b>"תפריט"</b></font>", ולאחר מכן גע באפשרות:"\n" "\n<li><font fgcolor="#ffffffff"><b>"חשבונות"</b></font>" כדי להוסיף או להגדיר חשבון עם אנשי קשר שתוכל לסנכרן לטבלט"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"איש קשר חדש"</b></font>" כדי ליצור איש קשר חדש מהבסיס"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ייצוא/ייבוא"</b></font>" כדי לייבא אנשי קשר מכרטיס ה-SIM או ה-SD שלך"\n</li></string>
+    <string name="noContactsHelpText" product="default" msgid="4405064135698982080">"אין לך אנשי קשר להצגה."\n\n"כדי להוסיף אנשי קשר, גע באפשרות "<font fgcolor="#ffffffff"><b>"תפריט"</b></font>", ולאחר מכן גע באפשרות:"\n" "\n<li><font fgcolor="#ffffffff"><b>"חשבונות"</b></font>" כדי להוסיף או להגדיר חשבון עם אנשי קשר שתוכל לסנכרן לטלפון"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"איש קשר חדש"</b></font>" כדי ליצור איש קשר חדש מהבסיס"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ייבוא/ייצוא"</b></font>" כדי לייבא אנשי קשר מכרטיס ה-SIM או ה-SD שלך"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="6773195806404659174">"אין לך אנשי קשר להצגה. (אם הוספת חשבון זה עתה, ייתכן שיידרשו מספר דקות לסנכרון אנשי הקשר.)"\n\n"כדי להוסיף אנשי קשר, גע באפשרות "<font fgcolor="#ffffffff"><b>"תפריט"</b></font>", ולאחר מכן גע באפשרות:"\n" "\n<li><font fgcolor="#ffffffff"><b>"חשבונות"</b></font>" כדי להוסיף או להגדיר חשבון עם אנשי קשר שתוכל לסנכרן לטבלט"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"אפשרויות תצוגה"</b></font>" כדי לשנות את אנשי הקשר הגלויים"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"איש קשר חדש"</b></font>" כדי ליצור איש קשר חדש מהבסיס"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ייצוא/ייבוא"</b></font>" כדי לייבא אנשי קשר מכרטיס ה-SIM או ה-SD שלך"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="default" msgid="7016825676090327312">"אין לך אנשי קשר להצגה. (אם הוספת חשבון זה עתה, ייתכן שיידרשו מספר דקות לסנכרון אנשי הקשר.)"\n\n"כדי להוסיף אנשי קשר, גע באפשרות "<font fgcolor="#ffffffff"><b>"תפריט"</b></font>", ולאחר מכן גע באפשרות:"\n" "\n<li><font fgcolor="#ffffffff"><b>"חשבונות"</b></font>" כדי להוסיף או להגדיר חשבון עם אנשי קשר שתוכל לסנכרן לטלפון"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"אפשרויות תצוגה"</b></font>" כדי לשנות את אנשי הקשר הגלויים"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"איש קשר חדש"</b></font>" כדי ליצור איש קשר חדש מהבסיס"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ייצוא/ייבוא"</b></font>" כדי לייבא אנשי קשר מכרטיס ה-SIM או ה-SD שלך"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="tablet" msgid="7823757505923033456">"אין לך אנשי קשר להצגה."\n\n"כדי להוסיף אנשי קשר, גע באפשרות "<font fgcolor="#ffffffff"><b>"תפריט"</b></font>", ולאחר מכן גע באפשרות:"\n" "\n<li><font fgcolor="#ffffffff"><b>"חשבונות"</b></font>" כדי להוסיף או להגדיר חשבון עם אנשי קשר שתוכל לסנכרן לטבלט"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"איש קשר חדש"</b></font>" כדי ליצור איש קשר חדש מהבסיס"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ייצוא/ייבוא"</b></font>" כדי לייבא אנשי קשר מכרטיס ה-SD שלך"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="default" msgid="6224952277619986841">"אין לך אנשי קשר להצגה."\n\n"כדי להוסיף אנשי קשר, גע באפשרות "<font fgcolor="#ffffffff"><b>"תפריט"</b></font>", ולאחר מכן גע באפשרות:"\n" "\n<li><font fgcolor="#ffffffff"><b>"חשבונות"</b></font>" כדי להוסיף או להגדיר חשבון עם אנשי קשר שתוכל לסנכרן לטלפון"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"איש קשר חדש"</b></font>" כדי ליצור איש קשר חדש מהבסיס"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ייצוא/ייבוא"</b></font>" כדי לייבא אנשי קשר מכרטיס ה-SD שלך"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="5415762667445638265">"אין לך אנשי קשר להצגה. (אם הוספת חשבון זה עתה, ייתכן שיידרשו מספר דקות לסנכרון אנשי הקשר.)"\n\n"כדי להוסיף אנשי קשר, גע באפשרות "<font fgcolor="#ffffffff"><b>"תפריט"</b></font>", ולאחר מכן גע באפשרות:"\n" "\n<li><font fgcolor="#ffffffff"><b>"חשבונות"</b></font>" כדי להוסיף או להגדיר חשבון עם אנשי קשר שתוכל לסנכרן לטבלט"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"אפשרויות תצוגה"</b></font>" כדי לשנות את אנשי הקשר הגלויים"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"איש קשר חדש"</b></font>" כדי ליצור איש קשר חדש מהבסיס"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ייצוא/ייבוא"</b></font>" כדי לייבא אנשי קשר מכרטיס ה-SD שלך"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="7443705129830284440">"אין לך אנשי קשר להצגה. (אם הוספת חשבון זה עתה, ייתכן שיידרשו מספר דקות לסנכרון אנשי הקשר.)"\n\n"כדי להוסיף אנשי קשר, גע באפשרות "<font fgcolor="#ffffffff"><b>"תפריט"</b></font>", ולאחר מכן גע באפשרות:"\n" "\n<li><font fgcolor="#ffffffff"><b>"חשבונות"</b></font>" כדי להוסיף או להגדיר חשבון עם אנשי קשר שתוכל לסנכרן לטלפון"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"אפשרויות תצוגה"</b></font>" כדי לשנות את אנשי הקשר הגלויים"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"איש קשר חדש"</b></font>" כדי ליצור איש קשר חדש מהבסיס"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"ייצוא/ייבוא"</b></font>" כדי לייבא אנשי קשר מכרטיס ה-SD שלך"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"אין לך מועדפים."\n\n"כדי להוסיף איש קשר לרשימת המועדפים:"\n\n"        "<li>"גע בכרטיסייה "<b>"אנשי קשר"</b>\n</li>" "\n<li>"גע באיש הקשר שברצונך להוסיף למועדפים"\n</li>" "\n<li>"גע בכוכב שליד שמו של איש הקשר"\n</li></string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"השתמש במקלדת עם חיוג צלילים"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"חזור לשיחה מתבצעת"</string>
@@ -208,8 +210,8 @@
     <string name="description_view_contact_detail" msgid="9133251213656414807">"הצג איש קשר"</string>
     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"אמצעי אחסון אינו זמין"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"אין כרטיס SD"</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="1334170151822669976">"לא זוהה אמצעי אחסון"</string>
-    <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"לא אותר כרטיס SD"</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"לא נמצאו התקני אחסון."</string>
+    <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"לא נמצא כרטיס SD."</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"מחפש vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"ייבא מכרטיס SIM"</string>
     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"ייבא מאמצעי אחסון"</string>
@@ -218,62 +220,62 @@
     <string name="import_one_vcard_string" msgid="9059163467020328433">"ייבא קובץ vCard אחד"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"ייבא קובצי vCard מרובים"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"ייבא את כל קובצי vCard"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"מחפש נתוני vCard באמצעי אחסון"</string>
-    <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"מחפש נתוני vCard בכרטיס SD"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"מחפש נתוני vCard באמצעי האחסון..."</string>
+    <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"מחפש נתוני vCard בכרטיס ה-SD..."</string>
     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"לא ניתן לסרוק אחסון"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"לא ניתן לסרוק כרטיס SD"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8290634758602152611">"לא ניתן לסרוק אחסון (סיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="2462918339722946736">"לא ניתן לסרוק כרטיס SD (סיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
-    <string name="fail_reason_io_error" msgid="5922864781066136340">"שגיאת קלט/פלט"</string>
-    <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"אין מספיק זיכרון (ייתכן שהקובץ גדול מדי)"</string>
-    <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"לא ניתן לנתח vCard מסיבה בלתי צפויה"</string>
-    <string name="fail_reason_not_supported" msgid="294499264620201243">"הפורמט אינו נתמך."</string>
-    <string name="vcard_import_failed" msgid="8856125211629574066">"לא ניתן לייבא vCard"</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="6339234836196984924">"לא נמצא קובץ vCard באמצעי האחסון"</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1730986357514922756">"לא נמצא קובץ vCard בכרטיס ה-SD"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"לא ניתן לסרוק את אמצעי האחסון. (סיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"לא ניתן לסרוק את כרטיס ה-SD. (סיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="fail_reason_io_error" msgid="6748358842976073255">"שגיאת קלט/פלט"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"אין מספיק זיכרון. ייתכן שהקובץ גדול מדי."</string>
+    <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"אין אפשרות לנתח את ה-vCard מסיבה בלתי צפויה."</string>
+    <string name="fail_reason_not_supported" msgid="8219562769267148825">"הפורמט אינו נתמך."</string>
+    <string name="vcard_import_failed" msgid="5223531255894842406">"לא ניתן לייבא את ה-vCard."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2071820850017305867">"לא נמצאו באמצעי האחסון קובצי vCard."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1754014167874286173">"לא נמצא קובץ vCard בכרטיס ה-SD."</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"לא ניתן לאסוף מטא-מידע של קבצים נתונים של vCard."</string>
     <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"לא ניתן לייבא קובץ אחד או יותר (%s)."</string>
-    <string name="fail_reason_unknown" msgid="999034019513096768">"שגיאה לא ידועה"</string>
-    <string name="select_vcard_title" msgid="3968948173786172468">"בחר קובץ vCard"</string>
-    <string name="caching_vcard_title" msgid="5009556022082659780">"מעביר קובצי vCard לקובץ שמור מקומי זמני"</string>
-    <string name="caching_vcard_message" msgid="2380844718093378900">"המייבא מעביר קובצי vCard לקובץ שמור זמני מקומי. היבוא בפועל יתחיל בקרוב."</string>
+    <string name="fail_reason_unknown" msgid="1714092345030570863">"שגיאה לא ידועה."</string>
+    <string name="select_vcard_title" msgid="7791371083694672861">"בחר קובץ vCard"</string>
+    <string name="caching_vcard_title" msgid="1226272312940516605">"הופך לקובץ שמור"</string>
+    <string name="caching_vcard_message" msgid="4926308675041506756">"קובצי ה-vCard נשמרים כקבצים באחסון מקומי זמני. הייבוא בפועל יחל בקרוב."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"מייבא <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"מייבא את <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"לא ניתן לקרוא נתוני vCard"</string>
-    <string name="reading_vcard_canceled_title" msgid="1770608329958463131">"קריאת נתוני vCard בוטלה"</string>
+    <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"קריאת נתוני ה-VCard בוטלה"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"הייבוא של vCard בשם <xliff:g id="FILENAME">%s</xliff:g> הסתיים"</string>
-    <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"הייבוא של <xliff:g id="FILENAME">%s</xliff:g> בוטל"</string>
+    <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"הייבוא של <xliff:g id="FILENAME">%s</xliff:g> בוטל"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"הייבוא של <xliff:g id="FILENAME">%s</xliff:g> יתבצע תוך זמן קצר."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"הייבוא של הקובץ יתבצע תוך זמן קצר."</string>
-    <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"בקשת ייבוא vCard נדחתה. נסה שוב מאוחר יותר."</string>
+    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"הבקשה לייבוא ה-vCard נדחתה. נסה שוב מאוחר יותר."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"הייצוא של <xliff:g id="FILENAME">%s</xliff:g> יתבצע תוך זמן קצר."</string>
-    <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"בקשת ייצוא ה-vCard נדחתה. נסה שוב מאוחר יותר."</string>
+    <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"הבקשה לייצוא ה-vCard נדחתה. נסה שוב מאוחר יותר."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"איש קשר"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
-    <string name="confirm_export_title" msgid="7648747763127442983">"אשר יצוא"</string>
-    <string name="confirm_export_message" msgid="4307437830474103759">"לייצא את רשימת אנשי הקשר שלך לקובץ \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"?"</string>
-    <string name="exporting_contact_failed_title" msgid="2339788270863991417">"לא ניתן לייצא נתונים של אנשי קשר"</string>
-    <string name="exporting_contact_failed_message" msgid="2704925031146288635">"לא ניתן לייצא נתונים של אנשי קשר."\n"סיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"אין איש קשר שניתן לייצא"</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="3745507837635270265">"קובצי vCard רבים מדי באמצעי האחסון"</string>
-    <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"קובצי vCard רבים מדי בכרטיס SD"</string>
-    <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"שם הקובץ הדרוש ארוך מדי (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
-    <string name="exporting_vcard_finished_title" msgid="4259736138838583213">"הייצוא של <xliff:g id="FILENAME">%s</xliff:g> הסתיים"</string>
-    <string name="exporting_vcard_canceled_title" msgid="1827672399438062140">"הייצוא של <xliff:g id="FILENAME">%s</xliff:g> בוטל"</string>
+    <string name="confirm_export_title" msgid="6834385377255286349">"לייצא את אנשי הקשר?"</string>
+    <string name="confirm_export_message" msgid="2423421354816428708">"רשימת אנשי הקשר שלך תיוצא לקובץ: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
+    <string name="exporting_contact_failed_title" msgid="4892358112409576342">"לא ניתן לייצא"</string>
+    <string name="exporting_contact_failed_message" msgid="4938527850142003141">"נתוני אנשי הקשר לא יוצאו."\n"סיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"אין אנשי קשר הניתנים לייצוא."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="590645599157376285">"באמצעי האחסון קיימים קובצי vCard רבים מדי."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="4887177369627277474">"קיימים בכרטיס ה-SD קובצי vCard רבים מדי."</string>
+    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"שם הקובץ הדרוש ארוך מדי (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
+    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"הייצוא של <xliff:g id="FILENAME">%s</xliff:g> הסתיים."</string>
+    <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"הייצוא של <xliff:g id="FILENAME">%s</xliff:g> בוטל."</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"מייצא נתונים של אנשי קשר"</string>
-    <string name="exporting_contact_list_message" msgid="5640326540405486055">"מייצא נתוני אנשי קשר אל \"<xliff:g id="FILE_NAME">%s</xliff:g>\""</string>
-    <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"אין אפשרות לאתחל את המייצא: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
-    <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"אירעה שגיאה במהלך היצוא: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="6891165255897853705">"לא ניתן לקבל מידע על מסד נתונים"</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="5161491059051198932">"אין אנשי קשר לייצוא. אם למעשה יש אנשי קשר בטבלט שלך, ייתכן שהייצוא של כל אנשי הקשר מחוץ לטבלט נאסר על ידי ספקי נתונים מסוימים."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="322344221706924358">"אין אנשי קשר לייצוא. אם למעשה יש אנשי קשר בטלפון שלך, ייתכן שהייצוא של כל אנשי הקשר מחוץ לטלפון נאסר על ידי ספקי נתונים מסוימים."</string>
-    <string name="composer_not_initialized" msgid="8041534450748388843">"מחבר vCard אינו מאותחל כראוי"</string>
-    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"לא היתה אפשרות לפתוח את \"<xliff:g id="FILE_NAME">%s</xliff:g>\"‏: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="exporting_contact_list_message" msgid="7181663157672374569">"נתוני אנשי הקשר שלך מיוצאים אל: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"לא ניתן להפעיל את המייצא: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"אירעה שגיאה במהלך הייצוא: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"לא ניתן לקבל מידע ממסד הנתונים."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"אין אנשי קשר הניתנים לייצוא. אם מוגדרים בטבלט שלך אנשי קשר, ייתכן שספקי נתונים מסוימים אינם מאפשרים ייצוא של אנשי קשר מהטבלט."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="3296493229040294335">"אין אנשי קשר הניתנים לייצוא. אם מוגדרים אנשי קשר בטלפון שלך, ייתכן שספקי נתונים מסוימים אינם מאפשרים ייצוא של אנשי קשר מהטלפון."</string>
+    <string name="composer_not_initialized" msgid="2321648986367005254">"יישום היצירה של ה-vCard לא הופעל כהלכה."</string>
+    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"לא ניתן לפתוח את \"<xliff:g id="FILE_NAME">%s</xliff:g>\"‏: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> מתוך <xliff:g id="TOTAL_NUMBER">%s</xliff:g> אנשי קשר"</string>
     <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"מבטל יבוא של vCard"</string>
-    <string name="cancel_import_confirmation_message" msgid="8560937090143057107">"האם אתה בטוח שברצונך לבטל את הייבוא של <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"לבטל את הייבוא של <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"מבטל יצוא של vCard"</string>
-    <string name="cancel_export_confirmation_message" msgid="1392976902396351957">"האם אתה בטוח שברצונך לבטל את הייצוא של <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"לבטל את הייצוא של <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"לא ניתן לבטל ייבוא/ייצוא של vCard"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"השמות של אנשי הקשר"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"הוסף השהיה של 2 שניות"</string>
@@ -282,16 +284,16 @@
     <string name="call_settings" msgid="7666474782093693667">"הגדרות"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"שלח הודעת טקסט באמצעות"</string>
     <string name="make_primary" msgid="5829291915305113983">"זכור בחירה זו"</string>
-    <string name="quickcontact_missing_app" msgid="4600366393134289038">"לא נמצא יישום שתומך בפעולה זו"</string>
-    <string name="missing_name" msgid="7930716592850443705">"(ללא שם)"</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"לא נמצא יישום שיכול לטפל בפעולה זו."</string>
+    <string name="missing_name" msgid="8745511583852904385">"(ללא שם)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"חשבונות Google"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"אנשי קשר להצגה"</string>
-    <string name="menu_import_export" msgid="3765725645491577190">"יבוא/יצוא"</string>
-    <string name="dialog_import_export" msgid="4771877268244096596">"ייבא/ייצא אנשי קשר"</string>
+    <string name="menu_import_export" msgid="26217871113229507">"ייבוא/ייצוא"</string>
+    <string name="dialog_import_export" msgid="4360648034889921624">"יבא/יצא אנשי קשר"</string>
     <string name="menu_share" msgid="943789700636542260">"שתף"</string>
     <string name="menu_all_contacts" msgid="5101735431586050711">"כל אנשי הקשר"</string>
     <string name="share_via" msgid="563121028023030093">"שתף איש קשר באמצעות"</string>
-    <string name="share_error" msgid="4374508848981697170">"אין אפשרות לשתף איש קשר זה."</string>
+    <string name="share_error" msgid="948429331673358107">"לא ניתן לשתף איש קשר זה."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"שם"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"כינוי"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"ארגון"</string>
@@ -304,9 +306,9 @@
     <string name="menu_sync_remove" msgid="3266725887008450161">"הסר קבוצת סינכרון"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"הוסף קבוצת סינכרון"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"קבוצות נוספות…"</string>
-    <string name="display_ungrouped" msgid="4602580795576261158">"כל אנשי הקשר האחרים"</string>
-    <string name="display_all_contacts" msgid="6846131371214707956">"כל אנשי הקשר"</string>
-    <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"הסרת \'<xliff:g id="GROUP">%s</xliff:g>\' מהסינכרון תסיר מהסינכרון גם אנשי קשר שאינם מקובצים."</string>
+    <string name="display_ungrouped" msgid="6885954210243119591">"כל אנשי הקשר האחרים"</string>
+    <string name="display_all_contacts" msgid="2031647544742889505">"כל אנשי הקשר"</string>
+    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"הסרת \"<xliff:g id="GROUP">%s</xliff:g>\" מהסנכרון תסיר מהסנכרון גם אנשי קשר שאינם מקובצים."</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"טבלט בלבד, לא מסונכרן"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"טלפון בלבד, לא מסונכרן"</string>
     <string name="call_custom" msgid="7756571794763171802">"התקשר אל <xliff:g id="CUSTOM">%s</xliff:g>"</string>
@@ -371,7 +373,7 @@
     <string name="chat_icq" msgid="8438405386153745775">"שוחח בצ\'אט באמצעות ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"שוחח בצ\'אט באמצעות Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"שוחח בצ\'אט"</string>
-    <string name="audio_chat" msgid="4743276658947547047">"אודיו צ\'אט"</string>
+    <string name="audio_chat" msgid="2535716629358298691">"צ\'אט קולי"</string>
     <string name="video_chat" msgid="1872255818640336072">"וידאו צ\'אט"</string>
     <string name="postal_address" msgid="8765560217149624536">"כתובת"</string>
     <string name="postal_street" msgid="8133143961580058972">"רחוב"</string>
@@ -393,14 +395,15 @@
     <string name="name_phonetic" msgid="4259595234312430484">"שם פונטי"</string>
     <string name="connections" msgid="8098440723172028350">"חיבורים"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"הוסף חיבור"</string>
-    <string name="recent_updates" msgid="2062236709538790412">"עדכונים אחרונים"</string>
+    <string name="recent" msgid="2659189233141493004">"פריטים אחרונים"</string>
+    <string name="recent_updates" msgid="4267258535615860710">"עדכונים אחרונים"</string>
     <string name="account_type_format" msgid="718948015590343010">"איש קשר של <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"השתמש בתמונה זו"</string>
-    <string name="contact_read_only" msgid="1856479476063888348">"לא ניתן לעריכה מתוך יישום זה"</string>
-    <string name="no_contact_details" msgid="6754415338321837001">"אין מידע נוסף על איש קשר זה"</string>
-    <string name="group_read_only" msgid="7924922658394449477">"לא ניתן לעריכה במכשיר זה"</string>
+    <string name="contact_read_only" msgid="7421346527289472273">"לא ניתן לעריכה מיישום זה."</string>
+    <string name="no_contact_details" msgid="6636856378019344497">"אין מידע נוסף על איש קשר זה."</string>
+    <string name="group_read_only" msgid="1061762906115697637">"לא ניתן לעריכה במכשיר זה"</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"מיין רשימה לפי"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"שם פרטי"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"שם משפחה"</string>
@@ -410,14 +413,14 @@
     <string name="search_bar_hint" msgid="1012756309632856553">"חפש אנשי קשר"</string>
     <string name="take_photo" msgid="7496128293167402354">"צלם תמונה"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"צלם תמונה חדשה"</string>
-    <string name="pick_photo" msgid="448886509158039462">"בחר תמונה מהגלריה"</string>
+    <string name="pick_photo" msgid="3746334626214970837">"בחר תמונה מתוך \'גלריה\'"</string>
     <string name="pick_new_photo" msgid="7962368009197147617">"בחר תמונה חדשה מהגלריה"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"רשימת אנשי הקשר מתעדכנת כדי לשקף את שינוי השפה."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"רשימת אנשי הקשר מתעדכנת."</string>
-    <string name="upgrade_out_of_memory" msgid="6153384328042175667">"אנשי הקשר עוברים שדרוג כעת. "\n\n"תהליך השדרוג דורש ‎<xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB בקירוב של אחסון פנימי."\n\n"בחר אחת מהאפשרויות הבאות:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"מתבצע כרגע שדרוג של אנשי הקשר. "\n\n"עבור תהליך השדרוג נדרש אחסון פנימי בנפח של כ-‏‎<xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB‏."\n\n"בחר אחת מהאפשרויות הבאות:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"הסר התקנה של יישומים מסוימים"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"נסה שוב לשדרג"</string>
-    <string name="search_results_searching" msgid="7755623475227227314">"מחפש..."</string>
+    <string name="search_results_searching" msgid="3984833028938569930">"מחפש..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"הצג פריטים שנבחרו"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"הצג הכל"</string>
     <string name="menu_select_all" msgid="621719255150713545">"בחר הכל"</string>
@@ -441,20 +444,20 @@
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"לצרף את איש הקשר הנוכחי לאיש הקשר שנבחר?"</string>
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"ערוך את אנשי הקשר שנבחרו"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"לעבור לעריכה של איש הקשר שנבחר? המידע שהזנת עד עכשיו יועתק."</string>
-    <string name="menu_copyContact" msgid="4401683725471696686">"העתק לאנשי הקשר שלי"</string>
+    <string name="menu_copyContact" msgid="1573960845106822639">"העתק אל \'אנשי הקשר שלי\'"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"הוסף ל\'אנשי הקשר שלי\'"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"<xliff:g id="TYPE">%1$s</xliff:g> ספריה"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"ספריה"</string>
     <string name="local_search_label" msgid="2551177578246113614">"כל אנשי הקשר"</string>
-    <string name="toast_making_personal_copy" msgid="7905283986345263275">"יצירת עותק אישי"</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"יוצר עותק אישי..."</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"כל אנשי הקשר"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"מסומן בכוכבית"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"מותאם אישית"</string>
-    <string name="list_filter_customize" msgid="2035084418635775579">"התאם אישית..."</string>
+    <string name="list_filter_customize" msgid="4789963356004169321">"התאם אישית"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"כל אנשי הקשר עם מספרי טלפון"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"איש קשר"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"הגדר תצוגה מותאמת אישית"</string>
-    <string name="contact_list_loading" msgid="3859280390185230582">"טוען…"</string>
+    <string name="contact_list_loading" msgid="5488620820563977329">"טוען..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"הגדרות"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"אנשי קשר להצגה"</string>
     <string name="menu_settings" msgid="377929915873428211">"הגדרות"</string>
@@ -468,7 +471,7 @@
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"ציין שנה"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"איש קשר"</string>
-    <string name="social_widget_loading" msgid="3697996166985327861">"טוען ???"</string>
+    <string name="social_widget_loading" msgid="5327336597364074608">"טוען..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"צור איש קשר חדש"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"היכנס לחשבון"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"ייבא אנשי קשר מקובץ"</string>
@@ -479,7 +482,7 @@
     <item quantity="one" msgid="2944819210288517794">"קבוצה אחת"</item>
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> קבוצות"</item>
   </plurals>
-    <string name="delete_group_dialog_message" msgid="295063284548750881">"האם אתה בטוח שברצונך למחוק את הקבוצה \'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\'? (אנשי הקשר עצמם לא יימחקו.)"</string>
+    <string name="delete_group_dialog_message" msgid="7586856514337560529">"למחוק את הקבוצה \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (אנשי הקשר עצמם לא יימחקו.)"</string>
   <plurals name="num_contacts_in_group">
     <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> אנשים מתוך <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
     <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> אנשים מתוך <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
@@ -488,13 +491,13 @@
     <item quantity="one" msgid="3323065321661972446">"אדם <xliff:g id="COUNT">%1$d</xliff:g>"</item>
     <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> אנשים"</item>
   </plurals>
-    <string name="toast_join_with_empty_contact" msgid="5015189525953438968">"הזן שם של איש קשר לפני צירוף לאיש קשר אחר."</string>
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"הקלד שם של איש קשר לפני צירופו לאחר."</string>
     <string name="copy_text" msgid="3257145021583508761">"העתק ללוח"</string>
     <string name="set_default" msgid="4417505153468300351">"קבע כברירת מחדל"</string>
     <string name="clear_default" msgid="7193185801596678067">"נקה ברירת מחדל"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"טקסט שהועתק"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"מחק שינויים"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="7021968394611740251">"האם ברצונך למחוק את השינויים שלך?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"למחוק את השינויים שביצעת?"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"הגדר את הפרופיל שלי"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"הקלד שם של אדם"</string>
@@ -511,19 +514,19 @@
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"לא ניתן להשיג דואר קולי."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"חדש"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"ישן יותר"</string>
-    <string name="voicemail_status_voicemail_not_available" msgid="3164200979671881947">"לא ניתן להתחבר לשרת הדואר הקולי."</string>
-    <string name="voicemail_status_messages_waiting" msgid="2970301042310727909">"לא ניתן להתחבר לשרת הדואר הקולי. הודעות קוליות חדשות ממתינות."</string>
-    <string name="voicemail_status_configure_voicemail" msgid="3940240432123700974">"הגדר את הדואר הקולי שלך."</string>
+    <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"לא ניתן להתחבר לשרת הדואר הקולי."</string>
+    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"לא ניתן להתחבר לשרת הדואר הקולי. הודעות קוליות חדשות ממתינות."</string>
+    <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"הגדר את הדואר הקולי שלך."</string>
     <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"אודיו אינו זמין."</string>
-    <string name="voicemail_status_action_configure" msgid="7008713959076506385">"הגדר"</string>
+    <string name="voicemail_status_action_configure" msgid="8671796489912239589">"הגדר"</string>
     <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"התקשר לדואר קולי"</string>
-    <string name="voicemail_speed_slowest" msgid="6047030504814773029">"המהירות הנמוכה ביותר"</string>
-    <string name="voicemail_speed_slower" msgid="7890393922358642543">"מהירות נמוכה"</string>
-    <string name="voicemail_speed_normal" msgid="6030110237820243006">"מהירות רגילה"</string>
-    <string name="voicemail_speed_faster" msgid="4161478290979905481">"מהירות גבוהה"</string>
-    <string name="voicemail_speed_fastest" msgid="3373646875150544205">"המהירות הגבוהה ביותר"</string>
+    <string name="voicemail_speed_slowest" msgid="1733460666177707312">"המהירות הנמוכה ביותר"</string>
+    <string name="voicemail_speed_slower" msgid="1508601287347216244">"מהירות נמוכה"</string>
+    <string name="voicemail_speed_normal" msgid="9033988544627228892">"מהירות רגילה"</string>
+    <string name="voicemail_speed_faster" msgid="2019965121475935488">"מהירות גבוהה"</string>
+    <string name="voicemail_speed_fastest" msgid="5758712343491183292">"המהירות הגבוהה ביותר"</string>
     <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
-    <string name="group_name_hint" msgid="2659811836386413509">"שם הקבוצה"</string>
+    <string name="group_name_hint" msgid="238359485263401293">"שם הקבוצה"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"איש הקשר התקבל באמצעות NFC"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"הצג הודעות דואר קולי בלבד"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"הצג את כל השיחות"</string>
@@ -559,5 +562,5 @@
     <string name="add_new_account" msgid="5748627740680940264">"הוסף חשבון חדש"</string>
     <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"השיחה לא נשלחה."</string>
     <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"המספר של הדואר הקולי אינו זמין"</string>
-    <string name="dialog_voicemail_not_ready_message" msgid="4511141315685755189">"כדי להגדיר דואר קולי, עבור אל תפריט &gt; הגדרות."</string>
+    <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"כדי להגדיר את הדואר הקולי, עבור אל \'תפריט\' &gt; \'הגדרות\'."</string>
 </resources>
