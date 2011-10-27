@@ -110,7 +110,6 @@
     <!-- Font size used for the social status in the widget -->
     <dimen name="widget_text_size_snippet">13sp</dimen>
 
-
     <!-- Size of the shortcut icon. 0dip means: use the system default -->
     <dimen name="shortcut_icon_size">0dip</dimen>
 
@@ -174,6 +173,9 @@
       when the font size is scaled for accessibility purposes
     -->
     <dimen name="contact_tile_shadowbox_height">48sp</dimen>
+
+    <!-- Top padding of the ListView in the contact tile list -->
+    <dimen name="contact_tile_list_padding_top">0dip</dimen>
 
     <!-- Call Log -->
     <dimen name="call_log_call_action_size">32dip</dimen>

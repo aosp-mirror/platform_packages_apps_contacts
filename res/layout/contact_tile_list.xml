@@ -24,6 +24,8 @@
         android:id="@+id/contact_tile_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="@dimen/contact_tile_list_padding_top"
+        android:clipToPadding="false"
         android:fadingEdge="none"
         android:divider="@null" />
 
