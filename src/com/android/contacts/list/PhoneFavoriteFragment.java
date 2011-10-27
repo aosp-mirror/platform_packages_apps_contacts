@@ -304,7 +304,8 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
 
         // Create the account filter header but keep it hidden until "all" contacts are loaded.
         mAccountFilterHeaderContainer = new FrameLayout(context, null);
-        mAccountFilterHeader = inflater.inflate(R.layout.account_filter_header, mListView, false);
+        mAccountFilterHeader = inflater.inflate(R.layout.account_filter_header_for_phone_favorite,
+                mListView, false);
         mAccountFilterHeader.setOnClickListener(mFilterHeaderClickListener);
         mAccountFilterHeaderContainer.addView(mAccountFilterHeader);
         mAccountFilterHeaderContainer.setVisibility(View.GONE);
