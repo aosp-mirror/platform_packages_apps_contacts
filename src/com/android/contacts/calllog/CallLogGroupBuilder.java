@@ -19,7 +19,6 @@ package com.android.contacts.calllog;
 import com.android.common.widget.GroupingListAdapter;
 import com.google.common.annotations.VisibleForTesting;
 
-import android.database.CharArrayBuffer;
 import android.database.Cursor;
 import android.provider.CallLog.Calls;
 import android.telephony.PhoneNumberUtils;
@@ -34,11 +33,6 @@ public class CallLogGroupBuilder {
         public void addGroup(int cursorPosition, int size, boolean expanded);
     }
 
-    /** Reusable char array buffer. */
-    private CharArrayBuffer mBuffer1 = new CharArrayBuffer(128);
-    /** Reusable char array buffer. */
-    private CharArrayBuffer mBuffer2 = new CharArrayBuffer(128);
-
     /** The object on which the groups are created. */
     private final GroupCreator mGroupCreator;
 
@@ -48,8 +42,8 @@ public class CallLogGroupBuilder {
 
     /**
      * Finds all groups of adjacent entries in the call log which should be grouped together and
-     * calls {@link CallLogFragment.GroupCreator#addGroup(int, int, boolean)} on
-     * {@link #mGroupCreator} for each of them.
+     * calls {@link GroupCreator#addGroup(int, int, boolean)} on {@link #mGroupCreator} for each of
+     * them.
      * <p>
      * For entries that are not grouped with others, we do not need to create a group of size one.
      * <p>
@@ -64,16 +58,14 @@ public class CallLogGroupBuilder {
         }
 
         int currentGroupSize = 1;
-        // The number of the first entry in the group.
-        CharArrayBuffer firstNumber = mBuffer1;
-        // The number of the current row in the cursor.
-        CharArrayBuffer currentNumber = mBuffer2;
         cursor.moveToFirst();
-        cursor.copyStringToBuffer(CallLogQuery.NUMBER, firstNumber);
+        // The number of the first entry in the group.
+        String firstNumber = cursor.getString(CallLogQuery.NUMBER);
         // This is the type of the first call in the group.
         int firstCallType = cursor.getInt(CallLogQuery.CALL_TYPE);
         while (cursor.moveToNext()) {
-            cursor.copyStringToBuffer(CallLogQuery.NUMBER, currentNumber);
+            // The number of the current row in the cursor.
+            final String currentNumber = cursor.getString(CallLogQuery.NUMBER);
             final int callType = cursor.getInt(CallLogQuery.CALL_TYPE);
             final boolean sameNumber = equalNumbers(firstNumber, currentNumber);
             final boolean shouldGroup;
@@ -105,12 +97,9 @@ public class CallLogGroupBuilder {
                 }
                 // Start a new group; it will include at least the current call.
                 currentGroupSize = 1;
-                // The current entry is now the first in the group. For the CharArrayBuffers, we
-                // need to swap them.
-                firstCallType = callType;
-                CharArrayBuffer temp = firstNumber;  // Used to swap.
+                // The current entry is now the first in the group.
                 firstNumber = currentNumber;
-                currentNumber = temp;
+                firstCallType = callType;
             }
         }
         // If the last set of calls at the end of the call log was itself a group, create it now.
@@ -131,11 +120,7 @@ public class CallLogGroupBuilder {
     }
 
     @VisibleForTesting
-    boolean equalNumbers(CharArrayBuffer buffer1, CharArrayBuffer buffer2) {
-        // TODO add PhoneNumberUtils.compare(CharSequence, CharSequence) to avoid
-        // string allocation
-        String number1 = buffer1 == null ? null : new String(buffer1.data, 0, buffer1.sizeCopied);
-        String number2 = buffer2 == null ? null : new String(buffer2.data, 0, buffer2.sizeCopied);
+    boolean equalNumbers(String number1, String number2) {
         if (PhoneNumberUtils.isUriNumber(number1) || PhoneNumberUtils.isUriNumber(number2)) {
             return compareSipAddresses(number1, number2);
         } else {
