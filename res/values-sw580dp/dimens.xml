@@ -29,6 +29,7 @@
     <dimen name="detail_update_section_item_horizontal_padding">8dip</dimen>
     <dimen name="detail_update_section_item_vertical_padding">16dip</dimen>
     <dimen name="search_view_width">400dip</dimen>
+    <dimen name="contact_tile_list_padding_top">16dip</dimen>
     <!-- Center vertically -->
     <dimen name="quick_contact_top_position">-1px</dimen>
     <!-- Contact list (vertical scroll bar comes left) -->
