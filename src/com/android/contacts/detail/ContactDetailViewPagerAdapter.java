@@ -19,10 +19,11 @@ import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.view.ViewGroup;
 
 /**
- * Adapter for the {@link ViewPager} for the contact detail page for a contact with social updates.
+ * Adapter for the {@link ViewPager} for the contact detail page for a contact in 2 cases:
+ * 1) without social updates, and 2) with social updates. The default initial case is for
+ * the contact with social updates which uses all possible pages.
  */
 public class ContactDetailViewPagerAdapter extends PagerAdapter {
 
@@ -34,6 +35,12 @@ public class ContactDetailViewPagerAdapter extends PagerAdapter {
 
     private static final int MAX_FRAGMENT_VIEW_COUNT = 2;
 
+    /**
+     * The initial value for the view count needs to be MAX_FRAGMENT_VIEW_COUNT,
+     * otherwise anything smaller would break screen rotation functionality for a user viewing
+     * a contact with social updates (i.e. the user was viewing the second page, rotates the
+     * device, the view pager requires the second page to exist immediately on launch).
+     */
     private int mFragmentViewCount = MAX_FRAGMENT_VIEW_COUNT;
 
     private View mAboutFragmentView;
@@ -67,12 +74,16 @@ public class ContactDetailViewPagerAdapter extends PagerAdapter {
     /** Gets called when the number of items changes. */
     @Override
     public int getItemPosition(Object object) {
+        // Always return a valid index for the about fragment view because it's always shown
+        // whether the contact has social updates or not.
         if (object == mAboutFragmentView) {
             return INDEX_ABOUT_FRAGMENT;
         }
-        if (object == mUpdatesFragmentView) {
+        // Only return a valid index for the updates fragment view if our view count > 1.
+        if (object == mUpdatesFragmentView && mFragmentViewCount > 1) {
             return INDEX_UPDATES_FRAGMENT;
         }
+        // Otherwise the view should have no position.
         return POSITION_NONE;
     }
 
@@ -84,8 +95,10 @@ public class ContactDetailViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(View container, int position) {
         switch (position) {
             case INDEX_ABOUT_FRAGMENT:
+                mAboutFragmentView.setVisibility(View.VISIBLE);
                 return mAboutFragmentView;
             case INDEX_UPDATES_FRAGMENT:
+                mUpdatesFragmentView.setVisibility(View.VISIBLE);
                 return mUpdatesFragmentView;
         }
         throw new IllegalArgumentException("Invalid position: " + position);
@@ -93,6 +106,7 @@ public class ContactDetailViewPagerAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(View container, int position, Object object) {
+        ((View) object).setVisibility(View.GONE);
     }
 
     @Override
