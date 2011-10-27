@@ -16,7 +16,6 @@
 package com.android.contacts.format;
 
 import com.android.contacts.test.NeededForTesting;
-import com.google.common.annotations.VisibleForTesting;
 
 import android.database.CharArrayBuffer;
 import android.graphics.Typeface;
@@ -110,8 +109,8 @@ public class FormatUtils {
         return text;
     }
 
-    @VisibleForTesting
-    /*package*/ static void copyToCharArrayBuffer(String text, CharArrayBuffer buffer) {
+    @NeededForTesting
+    public static void copyToCharArrayBuffer(String text, CharArrayBuffer buffer) {
         if (text != null) {
             char[] data = buffer.data;
             if (data == null || data.length < text.length()) {
