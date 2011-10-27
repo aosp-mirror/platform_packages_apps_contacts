@@ -133,7 +133,7 @@
                 <!-- Most Frequent -->
                 <fragment
                     android:id="@+id/frequent_fragment"
-                    class="com.android.contacts.list.ContactTileListFragment"
+                    class="com.android.contacts.list.ContactTileFrequentFragment"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="8"
