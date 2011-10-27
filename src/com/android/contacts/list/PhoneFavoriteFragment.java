@@ -29,6 +29,7 @@ import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Directory;
@@ -131,7 +132,7 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
 
     private class ContactTileAdapterListener implements ContactTileAdapter.Listener {
         @Override
-        public void onContactSelected(Uri contactUri) {
+        public void onContactSelected(Uri contactUri, Rect targetRect) {
             if (mListener != null) {
                 mListener.onContactSelected(contactUri);
             }

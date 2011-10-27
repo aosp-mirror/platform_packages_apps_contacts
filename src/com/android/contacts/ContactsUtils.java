@@ -24,6 +24,7 @@ import com.android.i18n.phonenumbers.PhoneNumberUtil;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.location.CountryDetector;
 import android.net.Uri;
 import android.provider.ContactsContract;
@@ -220,5 +221,23 @@ public class ContactsUtils {
         TextView textView = (TextView) view.findViewById(R.id.title);
         textView.setText(context.getString(textResourceId));
         return view;
+    }
+
+    /**
+     * Returns the {@link Rect} with left, top, right, and bottom coordinates
+     * that are equivalent to the given {@link View}'s bounds. This is equivalent to how the
+     * target {@link Rect} is calculated in {@link QuickContact#showQuickContact}.
+     */
+    public static Rect getTargetRectFromView(Context context, View view) {
+        final float appScale = context.getResources().getCompatibilityInfo().applicationScale;
+        final int[] pos = new int[2];
+        view.getLocationOnScreen(pos);
+
+        final Rect rect = new Rect();
+        rect.left = (int) (pos[0] * appScale + 0.5f);
+        rect.top = (int) (pos[1] * appScale + 0.5f);
+        rect.right = (int) ((pos[0] + view.getWidth()) * appScale + 0.5f);
+        rect.bottom = (int) ((pos[1] + view.getHeight()) * appScale + 0.5f);
+        return rect;
     }
 }
