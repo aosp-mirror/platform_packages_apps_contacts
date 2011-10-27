@@ -90,8 +90,7 @@
             android:layout_height="16dip"
             android:visibility="gone"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/ic_menu_mark" />
-
+            android:background="@drawable/ic_list_default_mime_holo_dark" />
 
         <View
             android:id="@+id/vertical_divider"
