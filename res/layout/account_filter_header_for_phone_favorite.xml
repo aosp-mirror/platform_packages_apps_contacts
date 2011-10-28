@@ -14,16 +14,17 @@
      limitations under the License.
 -->
 
-<!-- Layout showing the type of account filter
-     (e.g. All contacts filter, custom filter, etc.),
-     which is the header of all contact lists. -->
+<!-- Layout showing the type of account filter for phone favorite screen
+     (or, new phone "all" screen).
+     This is very similar to account_filter_header.xml but different in its
+     top padding. -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/account_filter_header_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingTop="@dimen/account_filter_header_top_padding"
+    android:paddingTop="8dip"
     android:layout_marginLeft="@dimen/contact_browser_list_header_left_margin"
     android:layout_marginRight="@dimen/contact_browser_list_header_right_margin"
     android:background="?android:attr/selectableItemBackground"
