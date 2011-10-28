@@ -25,7 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"የዕውቂያአቋራጭ  ምረጥ"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"ለመደወል ቁጥር ምረጥ"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"መልዕክትለመላክ ቁጥር ምረጥ"</string>
-    <!-- outdated translation 6886592363525235031 -->     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ዕውቂያ ምረጥ"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ዕውቅያ ምረጥ"</string>
     <string name="starredList" msgid="4817256136413959463">"ኮከብ የተደረገባቸው"</string>
     <string name="frequentList" msgid="7154768136473953056">"ተደጋጋሚ"</string>
     <string name="strequentList" msgid="5640192862059373511">"ተወዳጆች"</string>
@@ -53,20 +53,19 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"ሰርዝ"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"አዲስ"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"አዲስ"</string>
-    <!-- outdated translation 2209511048593467012 -->     <string name="splitConfirmation_title" msgid="633640935430370530">"ዕውቂያ ለይ"</string>
-    <!-- outdated translation 1067993957986345974 -->     <string name="splitConfirmation" msgid="740190210499587175">"እርግጠኛ ነዎት ይህን ነጠላ ዕውቂያ ወደ ብዙ ዕውቂያዎች ለመነጠል ይፈልጋሉ?"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"ዕውቂያ ለይ"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"ይህ ዕውቅያ ወደ ብዙ ዕውቅያዎች ይለያል፡፡"</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"አገናኝ"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"ዕውቄያዎችን አገናኝ"</string>
-    <!-- no translation found for blurbJoinContactDataWith (8736488417422708236) -->
-    <skip />
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"ከ<xliff:g id="NAME">%s</xliff:g> ጋር ለመቀላቀል የምትፈልገውን ዕውቂያ ምረጥ።"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"ሁሉንም ዕውቂያዎች አሳይ"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"አስተያየት የተሰጠባቸው እውቅያዎች"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"ሁሉም እውቅያዎች"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"ዕውቂያዎች ተገናኝተዋል"</string>
-    <!-- outdated translation 6394309508930335204 -->     <string name="deleteConfirmation_title" msgid="1418215926447642260">"ሰርዝ"</string>
+    <string name="deleteConfirmation_title" msgid="1418215926447642260">"ዕውቅያ  ሰርዝ?"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"የጥሪ ድምፅ አዘጋጅ"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ሁሉንም ጥሪዎች ወደ ድምፅ መልዕክት"</string>
-    <!-- outdated translation 1390849295342594265 -->     <string name="readOnlyContactWarning" msgid="7808825687289848259">"ዕውቂያዎችን ከንባብ-ብቻ መለያዎች መሰረዝ አይችሉም፤ ነገር ግን በዕውቂያ ዝርዝሮችዎ ውስጥ መደበቅ ይችላሉ።"</string>
+    <string name="readOnlyContactWarning" msgid="7808825687289848259">"ዕውቂያዎችን ከንባብ-ብቻ መለያዎች መሰረዝ አትችልም፤ ነገር ግን በዕውቂያ ዝርዝሮች ውስጥ መደበቅ ትችላለህ።"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"ይህ ዕውቂያ ከብዙ መለያዎች መረጃ ይዟል።ከንባብ-ብቻ መለያዎች ውስጥ ያሉ ዕውቂያዎች ይደበቃሉ፣አይሰረዙም።"</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"ይህን ዕውቂያ መሰረዝ ከብዙ መለያዎች ውስጥ መረጃ ይሰርዛል።"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"ይህ ማንቂያ ይሰረዛል።"</string>
@@ -77,9 +76,9 @@
     <string name="label_sip_address" msgid="124073911714324974">"የበይነመረብ ጥሪ"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"ኩባንያ"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"አርዕስት"</string>
-    <!-- outdated translation 5816991830260044593 -->     <string name="invalidContactMessage" msgid="8215051456181842274">"ትግበራው የለም።"</string>
-    <!-- no translation found for pickerNewContactText (6166997164401048211) -->
-    <skip />
+    <string name="invalidContactMessage" msgid="8215051456181842274">"ዕውቅያው የለም።"</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"አዲስ ዕውቂያ ፍጠር"</string>
+    <string name="pickerNewContactText" msgid="6166997164401048211">"አዲስ እውቂያ ፍጠር"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"ስልክ"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"ኢሜይል"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"ፈጣን መልዕክቶች"</string>
@@ -96,19 +95,17 @@
     <string name="removePhoto" msgid="4898105274130284565">"ፎቶ አስወግድ"</string>
     <string name="noContacts" msgid="8579310973261953559">"ዕውቅያዎች የሉም።"</string>
     <string name="noGroups" msgid="8614664663561385253">"ምንም ቡድኖች የሉም።"</string>
-    <!-- outdated translation 4742609114153797268 -->     <string name="noAccounts" msgid="7768267764545265909">"ቡድኖች ለመፍጠር መለያ ያስፈልግዎታል"</string>
+    <string name="noAccounts" msgid="7768267764545265909">"ቡድኖች ለመፍጠር መለያ ያስፈልግሃል፡፡"</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"ምንም ተዛማጅ ዕውቂያዎች አልተገኙም።"</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"ከስልክ ቁጥር ጋርየሚታዩዕውቂያዎች የሉም።"</string>
-    <!-- no translation found for emptyGroup (7502116218697177370) -->
-    <skip />
-    <!-- no translation found for addPeopleToGroup (7879585947222263516) -->
-    <skip />
+    <string name="emptyGroup" msgid="7502116218697177370">"ምንም ሰዎች በዚህ ቡድን ውሰጥ፡፡"</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"አንዳንድ ለማከል፣ ቡድኑን አርትዕ፡፡"</string>
     <string name="savingContact" msgid="4075751076741924939">"ዕውቂያ በማስቀመጥ ላይ..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"ማሳያ አማራጮችን በማስቀመጥ ላይ..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"ዕውቂያተቀምጧል።"</string>
-    <!-- outdated translation 9189098776225004666 -->     <string name="contactSavedErrorToast" msgid="3207250533172944892">"ስህተት፣የዕውቂያለውጦችን ለማስቀመጥአልተቻለም።"</string>
+    <string name="contactSavedErrorToast" msgid="3207250533172944892">"የእውቂያ ለውጦች ማስቀመጥ አልተቻለም::"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"ቡድን ተቀምጧል።"</string>
-    <!-- outdated translation 6434135707953150875 -->     <string name="groupSavedErrorToast" msgid="7984466936615304740">"ስህተት፣የቡድን ለውጦችን ለማስቀመጥ አልተቻለም።"</string>
+    <string name="groupSavedErrorToast" msgid="7984466936615304740">"የቡድን ለውጦች ማስቀመጥ አልተቻለም::"</string>
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"1 ዕውቂያ ከስልክ ቁጥር ጋር"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> ዕውቂያዎች ከስልክ ቁጥሮች ጋር"</item>
@@ -118,9 +115,9 @@
     <item quantity="one" msgid="3405747744700823280">"1 እውቅያ"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> እውቅያዎች"</item>
   </plurals>
-    <!-- outdated translation 1889349925514589304 -->     <string name="listTotalAllContactsZero" msgid="5513001821794568211">"እውቅያዎች የሉም"</string>
-    <!-- outdated translation 4058252141420128998 -->     <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"ምንም የሚታዩዕውቂያዎች የሉም"</string>
-    <!-- outdated translation 1289318488170099285 -->     <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"ምንም ተመራጭ የለም"</string>
+    <string name="listTotalAllContactsZero" msgid="5513001821794568211">"ምንም ዕውቂያዎች የሉም"</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"ምንም የሚታዩ ዕውቂያዎች የሉም"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"ምንም ተወዳጅ የለም"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"በ<xliff:g id="NAME">%s</xliff:g> ውስጥ ምንም ዕውቂያዎች የሉም"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"በ<xliff:g id="NAME">%s</xliff:g> ውስጥ ያሉ ዕውቂያዎች"</string>
     <string name="listSingleContact" msgid="6067813698903535563">"ነጠላ እውቂያ"</string>
@@ -129,9 +126,8 @@
     <item quantity="one" msgid="5517063038754171134">"1 ተገኝቷል"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> ተገኝቷል"</item>
   </plurals>
-    <!-- no translation found for foundTooManyContacts (5163335650920020220) -->
-    <skip />
-    <!-- outdated translation 777952841930508289 -->     <string name="listFoundAllContactsZero" msgid="7132202364587656501">"አልተገኘም"</string>
+    <string name="foundTooManyContacts" msgid="5163335650920020220">"ከ<xliff:g id="COUNT">%d</xliff:g> የበለጠ ተገኝቷል"</string>
+    <string name="listFoundAllContactsZero" msgid="7132202364587656501">"ምንም አልተገኘም፡፡"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"1 ተገኝቷል"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> ተገኝቷል"</item>
@@ -150,9 +146,9 @@
     <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"የድምፅ መልዕክት ሰርዝ"</string>
     <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"የድምፅ መልዕክት አጋራ"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"ምዝግብ ማስታወሻባዶ ነው..."</string>
-    <!-- outdated translation 718072843006222703 -->     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"የጥሪ ማስታወሻ አጥራ"</string>
-    <!-- outdated translation 7625927669136267636 -->     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"የጥሪ ማስታወሻውን ለማጥራት በእርግጥ ይፈልጋሉ?"</string>
-    <!-- outdated translation 6870412675015656948 -->     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"ምዝግብ ማስታወሻ ማጥራት"</string>
+    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"የጥሪ ማስታወሻ አጥራ"</string>
+    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"ሁሉም የጥሪ ማህደሮችህ ይሰረዛሉ፡፡"</string>
+    <string name="clearCallLogProgress_title" msgid="8365943000154295771">"የጥሪ ምዝግብ ማስታወሻ በማጥራት ላይ…"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"የድምፅ መልዕክት"</string>
@@ -165,14 +161,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"የSIM ካርድ ዕውቂያዎች"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"ለማሳየት ምንም እውቂያዎች የልዎትም። (መለያ አሁን ገና ካከሉ፣ እውቂያዎችን ለማሳመር ትንሽ ደቂቃ ሊወስድ ይችላል።)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">" ለማሳየት ምንም እውቂያዎች የልዎትም።"</string>
-    <!-- outdated translation 6450346791169710787 -->     <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"ለማሳየት ምንም ዕውቂያዎች የልዎትም።"\n\n"ዕውቂያዎች ለማከል፣"<font fgcolor="#ffffffff"><b>"ምናሌ ይጫኑ"</b></font>"እና"\n\n<li><font fgcolor="#ffffffff"><b>"መለያዎች"</b></font>"ለማከል ወይም መለያዎች ን ከዕውቂያዎች ጋርለማዋቀር ወደ ስልኩ ማሰመርይችላሉ፡ይንኩ።"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አዲስ ዕውቂያ"</b></font>"አዲስ ዕውቂያ ከባዶ ለመፍጠር"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አስገባ/ላክ"</b></font>"ከSIM ወይምSD ካርድዎ ዕውቂያዎች ለማስገባት"\n</li></string>
-    <!-- outdated translation 6450346791169710787 -->     <string name="noContactsHelpText" product="default" msgid="4405064135698982080">"ለማሳየት ምንም ዕውቂያዎች የልዎትም።"\n\n"ዕውቂያዎች ለማከል፣"<font fgcolor="#ffffffff"><b>"ምናሌ ይጫኑ"</b></font>"እና"\n\n<li><font fgcolor="#ffffffff"><b>"መለያዎች"</b></font>"ለማከል ወይም መለያዎች ን ከዕውቂያዎች ጋርለማዋቀር ወደ ስልኩ ማሰመርይችላሉ፡ይንኩ።"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አዲስ ዕውቂያ"</b></font>"አዲስ ዕውቂያ ከባዶ ለመፍጠር"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አስገባ/ላክ"</b></font>"ከSIM ወይምSD ካርድዎ ዕውቂያዎች ለማስገባት"\n</li></string>
-    <!-- outdated translation 2364665535969139880 -->     <string name="noContactsHelpTextWithSync" product="tablet" msgid="6773195806404659174">"ለማሳየት ምንም ዕውቂያዎች የልዎትም።(መለያ ካከሉ፣ዕውቂያዎችን ለማሳመር ጥቂት ደቂቃዎች ይፈጃል።)"\n\n"ዕውቂያዎች ለማከል፣"<font fgcolor="#ffffffff"><b>"ምናሌ ይጫኑ"</b></font>\n\n<li><font fgcolor="#ffffffff"><b>"መለያዎች"</b></font>"ለማከል ወይም መለያዎች ን ከዕውቂያዎች ጋርለማወቃር ወደ ጡባዊው ማሳመርይችላሉ፡ይንኩ።"\n</li>\n<li><font fgcolor="#ffffffff"><b>" አማራጮች"</b></font>"የትኞቹ ዕውቂያዎች እንደሚታዩለመለወጥአሳይ"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አዲስ ዕውቂያ"</b></font>"አዲስ ዕውቂያ ከባዶ ለመፍጠር"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አስገባ/ላክ"</b></font>"ከSIM ወይምSD ካርድዎ ዕውቂያዎች ለማስገባት"\n</li></string>
-    <!-- outdated translation 2364665535969139880 -->     <string name="noContactsHelpTextWithSync" product="default" msgid="7016825676090327312">"ለማሳየት ምንም ዕውቂያዎች የልዎትም።(መለያ ካከሉ፣ዕውቂያዎችን ለማሳመር ጥቂት ደቂቃዎች ይፈጃል።)"\n\n"ዕውቂያዎች ለማከል፣"<font fgcolor="#ffffffff"><b>"ምናሌ ይጫኑ"</b></font>\n\n<li><font fgcolor="#ffffffff"><b>"መለያዎች"</b></font>"ለማከል ወይም መለያዎች ን ከዕውቂያዎች ጋርለማወቃር ወደ ጡባዊው ማሳመርይችላሉ፡ይንኩ።"\n</li>\n<li><font fgcolor="#ffffffff"><b>" አማራጮች"</b></font>"የትኞቹ ዕውቂያዎች እንደሚታዩለመለወጥአሳይ"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አዲስ ዕውቂያ"</b></font>"አዲስ ዕውቂያ ከባዶ ለመፍጠር"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አስገባ/ላክ"</b></font>"ከSIM ወይምSD ካርድዎ ዕውቂያዎች ለማስገባት"\n</li></string>
-    <!-- outdated translation 6031363021287849874 -->     <string name="noContactsNoSimHelpText" product="tablet" msgid="7823757505923033456">"ለማሳየት ምንም ዕውቂያዎች የልዎትም።"\n\n"ዕውቂያዎች ለማከል፣"<font fgcolor="#ffffffff"><b>"ምናሌ ይጫኑ"</b></font>"እና"\n\n<li><font fgcolor="#ffffffff"><b>"መለያዎች"</b></font>"ለማከል ወይም መለያዎች ን ከዕውቂያዎች ጋርለማዋቀር ወደ ጡባዊው ማስመርይችላሉ፡ይንኩ።"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አዲስ ዕውቂያ"</b></font>"አዲስ ዕውቂያ ከባዶ ለመፍጠር"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አስመጣ/ላክ"</b></font>"ከSD ካርድዎ ዕውቂያዎች ለማስመጣት"\n</li></string>
-    <!-- outdated translation 6031363021287849874 -->     <string name="noContactsNoSimHelpText" product="default" msgid="6224952277619986841">"ለማሳየት ምንም ዕውቂያዎች የልዎትም።"\n\n"ዕውቂያዎች ለማከል፣"<font fgcolor="#ffffffff"><b>"ምናሌ ይጫኑ"</b></font>"እና"\n\n<li><font fgcolor="#ffffffff"><b>"መለያዎች"</b></font>"ለማከል ወይም መለያዎች ን ከዕውቂያዎች ጋርለማዋቀር ወደ ጡባዊው ማስመርይችላሉ፡ይንኩ።"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አዲስ ዕውቂያ"</b></font>"አዲስ ዕውቂያ ከባዶ ለመፍጠር"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አስመጣ/ላክ"</b></font>"ከSD ካርድዎ ዕውቂያዎች ለማስመጣት"\n</li></string>
-    <!-- outdated translation 6222739731808897565 -->     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="5415762667445638265">"ለማሳየት ምንም ዕውቂያዎች የልዎትም።(መለያ ካከሉ፣ዕውቂያዎችን ለማሳመር ጥቂት ደቂቃዎች ይፈጃል።)"\n\n"ዕውቂያዎች ለማከል፣"<font fgcolor="#ffffffff"><b>"ምናሌ ይጫኑ"</b></font>\n\n<li><font fgcolor="#ffffffff"><b>"መለያዎች"</b></font>"ለማከል ወይም መለያዎች ን ከዕውቂያዎች ጋርለማወቃር ወደ ጡባዊው ማስመርይችላሉ፡ይንኩ።"\n</li>\n<li><font fgcolor="#ffffffff"><b>" አማራጮች"</b></font>"የትኞቹ ዕውቂያዎች እንደሚታዩለመለወጥአሳይ"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አዲስ ዕውቂያ"</b></font>"አዲስ ዕውቂያ ከባዶ ለመፍጠር"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አስመጣ/ላክ"</b></font>"ከ SD ካርድዎ ዕውቂያዎች ለማስመጣት"\n</li></string>
-    <!-- outdated translation 6222739731808897565 -->     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="7443705129830284440">"ለማሳየት ምንም ዕውቂያዎች የልዎትም።(መለያ ካከሉ፣ዕውቂያዎችን ለማሳመር ጥቂት ደቂቃዎች ይፈጃል።)"\n\n"ዕውቂያዎች ለማከል፣"<font fgcolor="#ffffffff"><b>"ምናሌ ይጫኑ"</b></font>\n\n<li><font fgcolor="#ffffffff"><b>"መለያዎች"</b></font>"ለማከል ወይም መለያዎች ን ከዕውቂያዎች ጋርለማወቃር ወደ ጡባዊው ማስመርይችላሉ፡ይንኩ።"\n</li>\n<li><font fgcolor="#ffffffff"><b>" አማራጮች"</b></font>"የትኞቹ ዕውቂያዎች እንደሚታዩለመለወጥአሳይ"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አዲስ ዕውቂያ"</b></font>"አዲስ ዕውቂያ ከባዶ ለመፍጠር"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አስመጣ/ላክ"</b></font>"ከ SD ካርድዎ ዕውቂያዎች ለማስመጣት"\n</li></string>
+    <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"ምንም ዕውቅያዎች ለማሳየት የለህም፡፡ "\n\n"ዕውቅያዎችን ለማከል፤ዳስ"<font fgcolor="#ffffffff"><b>" ምናሌ"</b></font>"፤ ከዛ ዳስ፤ "\n" "\n<li><font fgcolor="#ffffffff"><b>" መለያዎች"</b></font>" ከእውቅያዎች ጋር ወደ ጡባዊ ተኮ "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>" የምታመሳስለው መለያ  ለማከል ወይም ለማደራጀት አዲስ እውቅያ"</b></font>" ከምንም"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"  አዲስ ዕውቅያ ለመፍጠር ከውጭ አስገባ/ወደ ውጭ ላክ "</b></font>" ከሲምህ ወይም SD ካርድህ  "\n</li>" ዕውቅያዎችን ከውጭ ለማስገባት"</string>
+    <string name="noContactsHelpText" product="default" msgid="4405064135698982080">"ምንም ዕውቅያዎች ለማሳየት የለህም፡፡ "\n\n"ዕውቅያዎችን ለማከል፤ዳስ"<font fgcolor="#ffffffff"><b>" ምናሌ"</b></font>"፤ ከዛ ዳስ፤ "\n" "\n<li><font fgcolor="#ffffffff"><b>" መለያዎች"</b></font>" ከእውቅያዎች ጋር ወደ ስልኩ "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>" የምታመሳስለው መለያ  ለማከል ወይም ለማደራጀት አዲስ እውቅያ"</b></font>" ከምንም"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"  አዲስ ዕውቅያ ለመፍጠር ከውጭ አስገባ/ወደ ውጭ ላክ "</b></font>" ከሲምህ ወይም SD ካርድህ  "\n</li>" ዕውቅያዎችን ከውጭ ለማስገባት"</string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="6773195806404659174">"ለማሳየት ምንም ዕውቂያዎች የልዎትም።(መለያ ካከሉ፣ዕውቂያዎችን ለማሳመር ጥቂት ደቂቃዎች ይፈጃል።)"\n\n"ዕውቂያዎች ለማከል፣"<font fgcolor="#ffffffff"><b>"ምናሌ ይጫኑ"</b></font>\n\n<li><font fgcolor="#ffffffff"><b>"መለያዎች"</b></font>"ለማከል ወይም መለያዎች ን ከዕውቂያዎች ጋር ለማወቃር ወደ ጡባዊው ማስመር ይችላሉ"\n</li>\n<li><font fgcolor="#ffffffff"><b>" አማራጮች"</b></font>"የትኞቹ ዕውቂያዎች እንደሚታዩለመለወጥአሳይ"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አዲስ ዕውቂያ"</b></font>"አዲስ ዕውቂያ ከባዶ ለመፍጠር"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አስገባ/ላክ"</b></font>"ከSIM ወይምSD ካርድዎ ዕውቂያዎች ለማስገባት "\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="default" msgid="7016825676090327312">"ለማሳየት ምንም ዕውቂያዎች የለህም።(መለያ ካከልክ፣ዕውቂያዎችን ለማሳመር ጥቂት ደቂቃዎች ይፈጃል።)"\n\n"ዕውቂያዎች ለማከል፣"<font fgcolor="#ffffffff"><b>"ምናሌ ተጫን"</b></font>"እና"\n\n<li><font fgcolor="#ffffffff"><b>"መለያዎች"</b></font>"ለማከል ወይም መለያዎችን ከዕውቂያዎች ጋር ለማወቃር ወደ ስልኩ ማሳመር ትችላለህ፡ይንኩ።"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አማራጮች"</b></font>"የትኞቹ ዕውቂያዎች እንደሚታዩ ለመለወጥ አሳይ"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አዲስ ዕውቂያ"</b></font>"አዲስ ዕውቂያ ከባዶ ለመፍጠር"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አስገባ/ላክ"</b></font>"ከSIM ወይም SD ካርድ ዕውቂያዎች ለማስገባት "\n</li></string>
+    <string name="noContactsNoSimHelpText" product="tablet" msgid="7823757505923033456">"ምንም ዕውቅያዎች ለማሳየት የለህም፡፡ "\n\n"ዕውቅያዎችን ለማከል፤ዳስ"<font fgcolor="#ffffffff"><b>" ምናሌ"</b></font>"፤ ከዛ ዳስ፤ "\n" "\n<li><font fgcolor="#ffffffff"><b>" መለያዎች"</b></font>" ከእውቅያዎች ጋር ወደ ስልኩ "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>" የምታመሳስለው መለያ  ለማከል ወይም ለማደራጀት አዲስ እውቅያ"</b></font>" ከምንም"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"  አዲስ ዕውቅያ ለመፍጠር ከውጭ አስገባ/ወደ ውጭ ላክ "</b></font>" ከሲምህ ወይም SD ካርድህ  "\n</li>" ዕውቅያዎችን ከውጭ ለማስገባት"</string>
+    <string name="noContactsNoSimHelpText" product="default" msgid="6224952277619986841">"ምንም ዕውቅያዎች ለማሳየት የለህም፡፡ "\n\n"ዕውቅያዎችን ለማከል፤ዳስ"<font fgcolor="#ffffffff"><b>" ምናሌ"</b></font>"፤ ከዛ ዳስ፤ "\n" "\n<li><font fgcolor="#ffffffff"><b>" መለያዎች"</b></font>" ከእውቅያዎች ጋር ወደ ስልኩ "\n</li>" "\n<li><font fgcolor="#ffffffff"><b>" የምታመሳስለው መለያ  ለማከል ወይም ለማደራጀት አዲስ እውቅያ"</b></font>" ከምንም"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"  አዲስ ዕውቅያ ለመፍጠር ከውጭ አስገባ/ወደ ውጭ ላክ "</b></font>" ከሲምህ ወይም SD ካርድህ  "\n</li>" ዕውቅያዎችን ከውጭ ለማስገባት"</string>
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="5415762667445638265">"ለማሳየት ምንም ዕውቂያዎች የልዎትም።(መለያ ካከሉ፣ዕውቂያዎችን ለማሳመር ጥቂት ደቂቃዎች ይፈጃል።)"\n\n"ዕውቂያዎች ለማከል፣"<font fgcolor="#ffffffff"><b>" ምናሌ ይጫኑ"</b></font>\n\n<li><font fgcolor="#ffffffff"><b>"መለያዎች"</b></font>"ለማከል ወይም መለያዎች ን ከዕውቂያዎች ጋርለማወቃር ወደ ጡባዊ ተኮ ማስመር ይችላሉ።"\n</li>\n<li><font fgcolor="#ffffffff"><b>" አማራጮች"</b></font>"የትኞቹ ዕውቂያዎች እንደሚታዩለመለወጥአሳይ"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አዲስ ዕውቂያ"</b></font>"አዲስ ዕውቂያ ከባዶ ለመፍጠር"\n</li>\n<li><font fgcolor="#ffffffff"><b>"አስመጣ/ላክ"</b></font>"ከ SD ካርድዎ ዕውቂያዎች ለማስመጣት"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="7443705129830284440">"ለማሳየት ምንም ዕውቂያዎች የለህም ። (መለያ ካከልክ፣ዕውቂያዎችን ለማሳመር ጥቂት ደቂቃዎች ይፈጃል።) "\n\n" ዕውቂያዎች ለማከል፣"<font fgcolor="#ffffffff"><b>" ምናሌ "</b></font>" ተጫን"\n" "\n<li><font fgcolor="#ffffffff"><b>"መለያዎች"</b></font>"ለማከል ወይም መለያዎችን ከዕውቂያዎች ጋር ለማወቃር ወደ ስልኩ ማሳመር ትችላለህ፡ንካ።"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>" አማራጮች"</b></font>" የትኞቹ ዕውቂያዎች እንደሚታዩ ለመለወጥ አሳይ"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"አዲስ ዕውቂያ"</b></font>" አዲስ ዕውቂያ ከባዶ ለመፍጠር"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"አስገባ/ላክ "</b></font>" ከSIM ወይም SD ካርድ ዕውቂያዎች ለማስገባት"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"ምንም ተፈላጊዎች ምርጫ  የልዎትም። "\n\n"ዕውቂያዎችዎን ወደ ተፈላጊ ዝርዝር ውስጥ ለማከል፡"\n\n<li>" የዕውቂያዎች"<b>"  ትር"</b>" ይንኩ"\n</li>\n<li>" ወደ ተፈላጊዎች ምርጫ ለማከል የፈለጉትን ዕውቂያ ይንኩ"\n</li>\n<li>"  ከዕውቂያ ዎች ስም ቀጥሎ ያለውን ኮከብ ይንኩ"\n</li></string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"የድምፅ ቁልፍ ሰሌዳን ንካ"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"በመካሄድ ላይ ወዳለው ጥሪ ተመለስ"</string>
@@ -215,8 +211,8 @@
     <string name="description_view_contact_detail" msgid="9133251213656414807">"ዕውቂያ ዕይ"</string>
     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"ማከማቻ አልተገኘም"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"ምንምSD ካርድ የለም"</string>
-    <!-- outdated translation 1334170151822669976 -->     <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"ምንም   ማከማቻ አልተገኘም"</string>
-    <!-- outdated translation 1334170151822669976 -->     <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"ምንም   ማከማቻ አልተገኘም"</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"ምንም ማከማቻ አልተገኘም፡፡"</string>
+    <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"ምንም SD ካርድ አልተገኘም፡፡"</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"vCard ፍለጋ"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"ከSIM ካርድ አስመጣ"</string>
     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"ከማከማቻ አስገባ"</string>
@@ -225,76 +221,62 @@
     <string name="import_one_vcard_string" msgid="9059163467020328433">"አንድ vCard ፋይል አስመጣ"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"ብዙ vCard ፋይሎች አስመጣ"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"ሁሉም vCard ፋይሎችን አስገባ"</string>
-    <!-- outdated translation 996170203695743981 -->     <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">" በማከማቻ ውስጥ የvCard ውሂብ በመፈለግ ላይ"</string>
-    <!-- outdated translation 996170203695743981 -->     <string name="searching_vcard_message" product="default" msgid="3962269894118092049">" በማከማቻ ውስጥ የvCard ውሂብ በመፈለግ ላይ"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"በማከማቻ ውስጥ የvCard ውሂብ በመፈለግ ላይ"</string>
+    <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"በSD ካርድ ላይ vCard ፍለጋ"</string>
     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"ማከማቻን መቃኘት አልተቻለም"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"SD ካርድን መቃኘት አልተቻለም"</string>
-    <!-- no translation found for scanning_sdcard_failed_message (7221682312959229201) -->
-    <skip />
-    <!-- no translation found for scanning_sdcard_failed_message (189023067829510792) -->
-    <skip />
-    <!-- outdated translation 5922864781066136340 -->     <string name="fail_reason_io_error" msgid="6748358842976073255">"I/O ስህተት"</string>
-    <!-- outdated translation 7514918659342886381 -->     <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"ማህደረ ትውስታ በቂ አይደለም(ፋይሉ ምናልባት በጣም ትልቅ ይሆናል)"</string>
-    <!-- outdated translation 4492947335972369711 -->     <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"ባልተጠበቀ ምክንያት vCard መተንተን አልተቻለም"</string>
-    <!-- outdated translation 294499264620201243 -->     <string name="fail_reason_not_supported" msgid="8219562769267148825">"ቅርፀቱ አይታገዝም"</string>
-    <!-- outdated translation 8856125211629574066 -->     <string name="vcard_import_failed" msgid="5223531255894842406">"vCard ማስመጣት አልተቻለም"</string>
-    <!-- outdated translation 6339234836196984924 -->     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2071820850017305867">"በvCard ፋይልላይ ምንም ማከማቻ ፋይል አልተገኘም"</string>
-    <!-- outdated translation 6339234836196984924 -->     <string name="import_failure_no_vcard_file" product="default" msgid="1754014167874286173">"በvCard ፋይልላይ ምንም ማከማቻ ፋይል አልተገኘም"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"ማከማቻው  ሊቀረጽ አልተቻለም:: (ምክንያት: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"SD ካርዱ ሊቀረጽ አልተቻለም:: (ምክንያት: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="fail_reason_io_error" msgid="6748358842976073255">"I/O ስህተት"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"በቂ ማህደረ ትውስታ የለም፡፡ፋይሉ ምናልባት በጣም ትልቅ ይሆናል፡፡"</string>
+    <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"ባልተጠበቀ ምክንያት vCard መተንተን አልተቻለም፡፡"</string>
+    <string name="fail_reason_not_supported" msgid="8219562769267148825">"ቅርፀቱ አይታገዝም"</string>
+    <string name="vcard_import_failed" msgid="5223531255894842406">"vCard ማስመጣት አልተቻለም"</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2071820850017305867">"በማከማቻ ላይ ምንም vCard ፋይል አልተገኘም::"</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1754014167874286173">"በSD ካርዱ ላይ ምንም vCard ካርድ ፋይል አልተገኘም::"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"በተሰጠው(ጡት) vCard ፋይል(ሎች) ሜታ መረጃ መሰብሰብ አልተቻለም፡፡"</string>
     <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"አንድ ወይም ከዛ በላይ ፋይሎች ማስመጣት አልተቻለም (%s)፡፡"</string>
-    <!-- outdated translation 999034019513096768 -->     <string name="fail_reason_unknown" msgid="1714092345030570863">"ያልታወቀ ስህተት"</string>
-    <!-- outdated translation 3968948173786172468 -->     <string name="select_vcard_title" msgid="7791371083694672861">"vCard ፋይል ምረጥ"</string>
-    <!-- outdated translation 5009556022082659780 -->     <string name="caching_vcard_title" msgid="1226272312940516605">"ወደ ጊዜያዊ ማከማቻ vCard(s) መሸጎጫ"</string>
-    <!-- outdated translation 2380844718093378900 -->     <string name="caching_vcard_message" msgid="4926308675041506756">"አስመጪ ወደ ጊዜያዊ ማከማቻ vCard(s) እየሸጎጠ ነው። ትክክለኛው አስመጣ በቅርቡ ይጀምራል።"</string>
+    <string name="fail_reason_unknown" msgid="1714092345030570863">"ያልታወቀ ስህተት"</string>
+    <string name="select_vcard_title" msgid="7791371083694672861">"vCard ፋይል ምረጥ"</string>
+    <string name="caching_vcard_title" msgid="1226272312940516605">"በመሸጎጥ ላይ"</string>
+    <string name="caching_vcard_message" msgid="4926308675041506756">"ወደ ጊዜያዊ ማከማቻ vCard(s) እየሸጎጠ ነው። ትክክለኛው አስመጣ በቅርቡ ይጀምራል።"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"በማስገባት ላይ<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>፡<xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g> ማስገባት"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"vCard ውሂብ ማንበብ አልተቻለም"</string>
-    <!-- outdated translation 1770608329958463131 -->     <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"የvCard ውሂብ ማንበብ ተሰርዟል"</string>
+    <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"የvCard ውሂብ ማንበብ ተሰርዟል"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">" <xliff:g id="FILENAME">%s</xliff:g> vCard  ማስመጣት ጨርሷል"</string>
-    <!-- no translation found for importing_vcard_canceled_title (2147475978165599336) -->
-    <skip />
+    <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"<xliff:g id="FILENAME">%s</xliff:g> ማስመጣት ተሰርዞዋል"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> ከአፍታ ቆይታ በኋላ ይመጣል።"</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"ፋይሉ ከአፍታ ቆይታ በኋላ ይመጣል።"</string>
-    <!-- outdated translation 2592424820635325951 -->     <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"የvCard አስመጣ ጥየቃ አልተቀበለም። እባክዎ ትንሽ ቆይተው ይሞክሩ።"</string>
+    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"የvCard ማስመጣት ጥየቃ ውድቅ ተደርጓል። እባክህ ትንሽ ቆይተህ ሞክር።"</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> ከአፍታ ቆይታ በኋላ ይላካል።"</string>
-    <!-- outdated translation 8259494002258326330 -->     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"የvCard ላክ ጥየቃ አልተቀበለም። እባክዎ ትንሽ ቆይተው ይሞክሩ።"</string>
+    <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"የvCard ላክ ጥየቃ ውድቅ ተደርጓል። እባክህ ትንሽ ቆይተህ ሞክር።"</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"እውቅያ"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
-    <!-- outdated translation 7648747763127442983 -->     <string name="confirm_export_title" msgid="6834385377255286349">"ላክ አረጋግጥ"</string>
-    <!-- no translation found for confirm_export_message (2423421354816428708) -->
-    <skip />
-    <!-- outdated translation 2339788270863991417 -->     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"የእውቂያ ውሂብን ወደ ውጪ መላክ አልተቻለም፡፡"</string>
-    <!-- no translation found for exporting_contact_failed_message (4938527850142003141) -->
-    <skip />
-    <!-- outdated translation 4919714086648344495 -->     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"ምንም መላክ የሚችል ዕውቂያ የለም"</string>
-    <!-- outdated translation 3745507837635270265 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="590645599157376285">"በጣም ብዙ vCard ፋይሎችበማከማቻ ውስጥ"</string>
-    <!-- outdated translation 3745507837635270265 -->     <string name="fail_reason_too_many_vcard" product="default" msgid="4887177369627277474">"በጣም ብዙ vCard ፋይሎችበማከማቻ ውስጥ"</string>
-    <!-- no translation found for fail_reason_too_long_filename (3393764245254738333) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_finished_title (4767045779458185251) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_canceled_title (2652222370493306887) -->
-    <skip />
+    <string name="confirm_export_title" msgid="6834385377255286349">"እውቅያዎች ላክ"</string>
+    <string name="confirm_export_message" msgid="2423421354816428708">"የእውቂያ ዝርዝርህ ወደዚህ ፋይል ይላካል: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
+    <string name="exporting_contact_failed_title" msgid="4892358112409576342">"ወደ ውጭ መላክ አልተቻለም"</string>
+    <string name="exporting_contact_failed_message" msgid="4938527850142003141">"የዕውቅያ ውሂብ ወደ ውጭ አልተላከም፡፡ "\n"ምክንያት፡፡\"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"ምንም ወደ ውጭ መላክ የሚችል ዕውቂያ የለም"</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="590645599157376285">"በጣም ብዙ vCard ፋይሎች በማከማቻ ውስጥ ናቸው፡፡"</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="4887177369627277474">"በSD ካርድ ላይ በጣም ብዙ vCard ፋይሎች"</string>
+    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"የተጠየቀው ፋይል ስም በጣም ረጅም ነው  (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
+    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"<xliff:g id="FILENAME">%s</xliff:g> መላክ ጨርሷል"</string>
+    <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"መላክ <xliff:g id="FILENAME">%s</xliff:g> ተሰርዟል::"</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"የዕውቂያ ውሂብ በመላክ ላይ"</string>
-    <!-- no translation found for exporting_contact_list_message (7181663157672374569) -->
-    <skip />
-    <!-- no translation found for fail_reason_could_not_initialize_exporter (707260459259688510) -->
-    <skip />
-    <!-- no translation found for fail_reason_error_occurred_during_export (3018855323913649063) -->
-    <skip />
-    <!-- outdated translation 6891165255897853705 -->     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"ውሂብ ጎታ መረጃን ማግኘት አልተቻለም"</string>
-    <!-- outdated translation 5161491059051198932 -->     <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"መላክ የሚችሉ ዕውቂያዎች የሉም።በጡባዊዎ ላይ ዕውቂያዎች ካሉ፣ በውሂብ አቅራቢው ከጡባዊዎ ወደ ውጪ እንዳይላኩ ተከልክለው ሊሆን ይችላል።"</string>
-    <!-- outdated translation 5161491059051198932 -->     <string name="composer_has_no_exportable_contact" product="default" msgid="3296493229040294335">"መላክ የሚችሉ ዕውቂያዎች የሉም።በጡባዊዎ ላይ ዕውቂያዎች ካሉ፣ በውሂብ አቅራቢው ከጡባዊዎ ወደ ውጪ እንዳይላኩ ተከልክለው ሊሆን ይችላል።"</string>
-    <!-- outdated translation 8041534450748388843 -->     <string name="composer_not_initialized" msgid="2321648986367005254">"የvCard ፅሁፍ አዘጋጅ በትክክል አልተነሳም።"</string>
-    <!-- no translation found for fail_reason_could_not_open_file (2067725459821997463) -->
-    <skip />
+    <string name="exporting_contact_list_message" msgid="7181663157672374569">" የዕውቅያ ውሂብህ ወደ ውጭ በመላክ ላይ ነው፤  <xliff:g id="FILE_NAME">%s</xliff:g>፡፡"</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"ላኪው፡\"<xliff:g id="EXACT_REASON">%s</xliff:g>\"  ለማስነሳት አልተቻለም"</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"በመላክ ጊዜስህተት ተከስቷል: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"ውሂብ ጎታ መረጃን ማግኘት አልተቻለም"</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"ወደ ውጭ የሚላኩ ዕውቅያዎች የሉም፡፡በጡባዊ ተኮህ ላይ ዕውቅያዎች ካሉህ፤ አንዳንድ የውሂብ አቅራቢዎች ከጡባዊው ተኮ ዕውቅያዎች ወደ ውጭ እንዲላክ አይፈቅዱም፡፡"</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="3296493229040294335">"ወደ ውጭ የሚላኩ እውቅያዎች የሉም፡፡ ስልክህ ውስጥ እውቅያዎች ካሉህ፤አንዳንድ ውሂብ አቅራቢዎች ከስልኩ እውቅያዎች ወደ ውጭ እንዲላኩ አይፈቅዱም፡፡"</string>
+    <string name="composer_not_initialized" msgid="2321648986367005254">"የ vCard  አቀናባሪው በትክክል አልጀመረም::"</string>
+    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" ፡<xliff:g id="EXACT_REASON">%s</xliff:g> መክፈት አልተቻለም"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> ከ <xliff:g id="TOTAL_NUMBER">%s</xliff:g> እውቂያዎች"</string>
     <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"vCard አስመጣ በመሰረዝ ላይ"</string>
-    <!-- no translation found for cancel_import_confirmation_message (3929951040347726757) -->
-    <skip />
+    <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"የ<xliff:g id="FILENAME">%s</xliff:g>ወደ ውስጥ ማስገባት ይተው?"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"vCard ላክበመሰረዝላይ"</string>
-    <!-- no translation found for cancel_export_confirmation_message (1995462401949262638) -->
-    <skip />
+    <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"የ<xliff:g id="FILENAME">%s</xliff:g> ወደ ውጭ መላክ ይተው?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard ማስመጣት/ወደ ውጪ መላክ መተው አልተቻለም"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"የዕውቂያዎችዎ ስሞች"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"2 ሰከንድ ፋታ አክል"</string>
@@ -303,16 +285,16 @@
     <string name="call_settings" msgid="7666474782093693667">"ቅንጅቶች"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"ፅሁፍበመጠቀም"</string>
     <string name="make_primary" msgid="5829291915305113983">"ይህን ምርጫ አስታውስ"</string>
-    <!-- outdated translation 4600366393134289038 -->     <string name="quickcontact_missing_app" msgid="358168575340921552">"ይህን እርምጃ ለማስተናገድ ምንም ትግበራ አልተገኘም"</string>
-    <!-- outdated translation 7930716592850443705 -->     <string name="missing_name" msgid="8745511583852904385">"(ስም አልባ)"</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"ይህን እርምጃ ለማስተናገድ ምንም መተግበሪያ አልተገኘም፡፡"</string>
+    <string name="missing_name" msgid="8745511583852904385">"(ስም የለም)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"መለያዎች"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"ዕውቂያዎች አሳይ"</string>
-    <!-- outdated translation 3765725645491577190 -->     <string name="menu_import_export" msgid="26217871113229507">"አስመጣ/ላክ"</string>
-    <!-- outdated translation 4771877268244096596 -->     <string name="dialog_import_export" msgid="4360648034889921624">"ዕውቂያዎች አስመጣ/ላክ"</string>
+    <string name="menu_import_export" msgid="26217871113229507">"አስመጣ/ላክ"</string>
+    <string name="dialog_import_export" msgid="4360648034889921624">"ዕውቂያዎች አስመጣ/ላክ"</string>
     <string name="menu_share" msgid="943789700636542260">"መጋሪያ"</string>
     <string name="menu_all_contacts" msgid="5101735431586050711">"ሁሉም እውቅያዎች"</string>
     <string name="share_via" msgid="563121028023030093">"ዕውቂያበ በኩል አጋራ"</string>
-    <!-- outdated translation 4374508848981697170 -->     <string name="share_error" msgid="948429331673358107">"ይህ ዕውቂያ መጋራት አይችልም።"</string>
+    <string name="share_error" msgid="948429331673358107">"ይህ ዕውቂያ መጋራት አይችልም።"</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"ስም"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"ቅጽል ስም"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"መስርያ ቤት"</string>
@@ -325,10 +307,9 @@
     <string name="menu_sync_remove" msgid="3266725887008450161">"የአሳምር ቡድን አስወግድ"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"አሳምርቡድንአክል"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"ተጨማሪቡድኖች..."</string>
-    <!-- outdated translation 4602580795576261158 -->     <string name="display_ungrouped" msgid="6885954210243119591">"ሌላሁሉም ዕውቂያዎች"</string>
-    <!-- outdated translation 6846131371214707956 -->     <string name="display_all_contacts" msgid="2031647544742889505">"ሁሉም እውቅያዎች"</string>
-    <!-- no translation found for display_warn_remove_ungrouped (8872290721676651414) -->
-    <skip />
+    <string name="display_ungrouped" msgid="6885954210243119591">"ሌላ ሁሉም ዕውቂያዎች"</string>
+    <string name="display_all_contacts" msgid="2031647544742889505">"ሁሉም እውቅያዎች"</string>
+    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"\'<xliff:g id="GROUP">%s</xliff:g>\'  ከአሳምር ማስወገድ እንዲሁ ማንኛውም በተነጣጥል ያሉ ዕውቅያዎችን ከአሳምር ያስወግዳል።"</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"ጡባዊ- ብቻ፣ያልሰመረ"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"ስልክ- ብቻ፣ያልሰመረ"</string>
     <string name="call_custom" msgid="7756571794763171802">"ጥሪ <xliff:g id="CUSTOM">%s</xliff:g>"</string>
@@ -393,7 +374,7 @@
     <string name="chat_icq" msgid="8438405386153745775">"ጨዋታ ICQ  በመጠቀም"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"ጨዋታ Jabber በመጠቀም"</string>
     <string name="chat" msgid="9025361898797412245">"ጨዋታ"</string>
-    <!-- outdated translation 4743276658947547047 -->     <string name="audio_chat" msgid="2535716629358298691">"የድምፅ  ውይይት"</string>
+    <string name="audio_chat" msgid="2535716629358298691">"የድምፅ ውይይት"</string>
     <string name="video_chat" msgid="1872255818640336072">"የቪዲዮ ውይይት"</string>
     <string name="postal_address" msgid="8765560217149624536">"አድራሻ"</string>
     <string name="postal_street" msgid="8133143961580058972">"ጎዳና"</string>
@@ -415,17 +396,15 @@
     <string name="name_phonetic" msgid="4259595234312430484">"የድምፀ ልሳን ስም"</string>
     <string name="connections" msgid="8098440723172028350">"ተያያዦች"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"ተያያዥ አክል"</string>
-    <!-- no translation found for recent (2659189233141493004) -->
-    <!-- no translation found for recent (2062236709538790412) -->
-    <skip />
-    <!-- outdated translation 2062236709538790412 -->     <string name="recent_updates" msgid="4267258535615860710">"የቅርብ ጊዜ"</string>
+    <string name="recent" msgid="2659189233141493004">"የቅርብ ጊዜ"</string>
+    <string name="recent_updates" msgid="4267258535615860710">"የቅርብ ጊዜ አዘምን"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> እውቅያ"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"ይህን ፎቶ ተጠቀም"</string>
-    <!-- outdated translation 1856479476063888348 -->     <string name="contact_read_only" msgid="7421346527289472273">"ከዚህ ትግበራ አርትዕ የሚደረግ አይደለም"</string>
-    <!-- outdated translation 6754415338321837001 -->     <string name="no_contact_details" msgid="6636856378019344497">"ለዚህ ዕውቂያ ምንም ተጨማሪ መረጃ የለም"</string>
-    <!-- outdated translation 7924922658394449477 -->     <string name="group_read_only" msgid="1061762906115697637">"በዚህ መሣሪያ ላይ አርትዕ መደረግ የሚችል አይደለም።"</string>
+    <string name="contact_read_only" msgid="7421346527289472273">"ከዚህ መተግበሪያ አርትዕ ሊደረግ አይችልም፡፡"</string>
+    <string name="no_contact_details" msgid="6636856378019344497">"ለዚህ ዕውቂያ ምንም ተጨማሪ መረጃ የለም"</string>
+    <string name="group_read_only" msgid="1061762906115697637">"በዚህ መሣሪያ ላይ አርትዕ መደረግ የሚችል አይደለም።"</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"ዝርዝር በ  ለይ"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"መጠሪያ ስም"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"የቤተሰብ ስም"</string>
@@ -435,15 +414,14 @@
     <string name="search_bar_hint" msgid="1012756309632856553">"እውቅያዎችዎን ይፈልጉ"</string>
     <string name="take_photo" msgid="7496128293167402354">"ፎቶ አንሳ"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"አዲስ ፎቶ አንሳ"</string>
-    <!-- outdated translation 448886509158039462 -->     <string name="pick_photo" msgid="3746334626214970837">"ፎቶ ከሥነ ጥበብ ማዕከል ምረጥ"</string>
+    <string name="pick_photo" msgid="3746334626214970837">"ፎቶ ከማዕከለ ስዕላት ምረጥ"</string>
     <string name="pick_new_photo" msgid="7962368009197147617">"ከማዕከለ ስእላት አዲስ ፎቶ ምረጥ"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"የቋንቋ ለውጥ ለማንፀባረቅ የዕውቂያ ዝርዝር ዘምኗል።"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"የዕውቂያ ዝርዝር ዘምኗል"</string>
-    <!-- no translation found for upgrade_out_of_memory (1209994418877625940) -->
-    <skip />
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"ዕውቂያዎች በአልቅ ሂደት ውስጥ ናቸው።"\n\n"የአልቁ ሂደት ወደ <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g>ሜባ አካባቢ የውስጥ ማከማቻ "\n\n"ይጠይቃል።ከሚከተሉት አማራጮች አንዱን ምረጥ፡"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"አንዳንድ ትግበራዎችን አለመጫን"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"አልቅ ድጋሚ ሞክር"</string>
-    <!-- outdated translation 7755623475227227314 -->     <string name="search_results_searching" msgid="3984833028938569930">"በመፈለግ ላይ..."</string>
+    <string name="search_results_searching" msgid="3984833028938569930">"በመፈለግ ላይ…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"የተመረጡትን አሳይ"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"ሁሉንም አሳይ"</string>
     <string name="menu_select_all" msgid="621719255150713545">"ሁሉንም ምረጥ"</string>
@@ -467,20 +445,20 @@
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"የአሁኑ ዕውቂያ ከተመረጠው ዕውቂያ ጋር ይገናኝ?"</string>
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"የተመረጡ  ዕውቂያዎችን አርትዕ"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"የተመረጠው ዕውቂያ ወደ አርትዕ ይቀየር? እስከ አሁን ያስገቡት መረጃ ይገለበጣል።"</string>
-    <!-- outdated translation 4401683725471696686 -->     <string name="menu_copyContact" msgid="1573960845106822639">"ወደ ዕውቂያዎቼ ቅዳ"</string>
+    <string name="menu_copyContact" msgid="1573960845106822639">"ወደ ዕውቂያዎቼ ቅዳ"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"ወደ እኔ ዕውቂያዎች አክል"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"ማውጫ <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="directory_search_label" msgid="1887759056597975053">" ማውጫ"</string>
     <string name="local_search_label" msgid="2551177578246113614">"ሁሉም እውቅያዎች"</string>
-    <!-- outdated translation 7905283986345263275 -->     <string name="toast_making_personal_copy" msgid="288549957278065542">"የግል ቅጂ መፍጠር"</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"የግል ቅጂ በመፍጠር ላይ..."</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"ሁሉም እውቅያዎች"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"ኮከብ የተደረገባቸው"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"ብጁ"</string>
-    <!-- outdated translation 2035084418635775579 -->     <string name="list_filter_customize" msgid="4789963356004169321">"አብጅ..."</string>
+    <string name="list_filter_customize" msgid="4789963356004169321">"ብጁ አድርግ"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"የስልክ ቁጥር ያላቸው ሁሉም ዕውቂያዎች"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"እውቅያ"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"ብጁ ዕይታ በይን"</string>
-    <!-- outdated translation 3859280390185230582 -->     <string name="contact_list_loading" msgid="5488620820563977329">"በመስቀል ላይ …"</string>
+    <string name="contact_list_loading" msgid="5488620820563977329">"በመስቀል ላይ…"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"ቅንብሮች"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"ዕውቂያዎች አሳይ"</string>
     <string name="menu_settings" msgid="377929915873428211">"ቅንብሮች"</string>
@@ -494,7 +472,7 @@
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"ዓመት አስገባ"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"እውቅያ"</string>
-    <!-- outdated translation 3697996166985327861 -->     <string name="social_widget_loading" msgid="5327336597364074608">"በመስቀል ላይ …"</string>
+    <string name="social_widget_loading" msgid="5327336597364074608">"በመስቀል ላይ…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"አዲስ ዕውቂያ ፍጠር"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"ወደ መለያ ግባ"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"ከፋይል ዕውቂያዎች አስመጣ"</string>
@@ -505,8 +483,7 @@
     <item quantity="one" msgid="2944819210288517794">"1 ቡድን"</item>
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g>ቡድኖች"</item>
   </plurals>
-    <!-- no translation found for delete_group_dialog_message (7586856514337560529) -->
-    <skip />
+    <string name="delete_group_dialog_message" msgid="7586856514337560529">"\'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\' ቡድን ይሰረዝ? (ዕውቂያዎች ራሳቸው አይሰረዙም።)"</string>
   <plurals name="num_contacts_in_group">
     <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g>ሰው ከ<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
     <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g>ሰዎች ከ<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
@@ -515,13 +492,13 @@
     <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> ሰው"</item>
     <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> ሰዎች"</item>
   </plurals>
-    <!-- outdated translation 5015189525953438968 -->     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"እባክዎ ሌላ ዕውቂያ ከመቀላቀልዎ በፊት የዕውቂያ ስም ያስገቡ።"</string>
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"ሌላ ዕውቂያ ከመቀላቀልህ በፊት የዕውቂያ ስም ተይብ።"</string>
     <string name="copy_text" msgid="3257145021583508761">"ወደ ቅንጥብ ሰሌዳ ገልብጥ"</string>
     <string name="set_default" msgid="4417505153468300351">"ነባሪ አዘጋጅ"</string>
     <string name="clear_default" msgid="7193185801596678067">"ነባሪ አጥራ"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"ፅሁፍ ገልብጧል"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"ለውጦች አስወግድ"</string>
-    <!-- outdated translation 7021968394611740251 -->     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"ለውጦችዎን ማስወገድ ይፈልጋሉ?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">" ለውጦችህ ይወገዱ?"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g><xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"መገለጫዬን አዘጋጅ"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"የግለሰቡን ስም ተይብ"</string>
@@ -533,24 +510,24 @@
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>፤<xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"ከ<xliff:g id="CALLER">%1$s</xliff:g> አዲስ የድምፅመልዕክት"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"ድምፅ ደብዳቤን ማጫወት አልተቻለም፡፡"</string>
-    <string name="voicemail_buffering" msgid="738287747618697097">"በማቋት ላይ???"</string>
-    <string name="voicemail_fetching_content" msgid="877911315738258780">"ድምፅ ደብዳቤ ፈልጎ በማግኘት ላይ???"</string>
+    <string name="voicemail_buffering" msgid="738287747618697097">"በማቋት ላይ…"</string>
+    <string name="voicemail_fetching_content" msgid="877911315738258780">"ድምፅ ደብዳቤ ፈልጎ በማግኘት ላይ…"</string>
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"ድምፅ ደብዳቤን ፈልጎ ማግኘት አልተቻለም፡፡"</string>
     <string name="call_log_new_header" msgid="846546437517724715">"አዲስ"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"የድሮ"</string>
-    <!-- outdated translation 3164200979671881947 -->     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"ወደ ድምፅ መልዕክት አገልጋይ ለመገናኘት አልተቻለም።"</string>
-    <!-- outdated translation 2970301042310727909 -->     <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"ወደ ድምፅ መልዕክት ለማያያዝ  አልተቻለም። አዲስ የድምፅ መልዕክቶች በመጠበቅ ላይ ።"</string>
-    <!-- outdated translation 3940240432123700974 -->     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"የድምፅ መልዕክቶች አዋቅር።"</string>
+    <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"ወደ ድምፅ መልዕክት አገልጋይ ለመገናኘት አልተቻለም።"</string>
+    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"ወደ ድምፅ መልዕክት ለማያያዝ አልተቻለም። አዲስ የድምፅ መልዕክቶች በመጠበቅ ላይ ።"</string>
+    <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"የድምጽ ፖስታህን አዘጋጅ፡፡"</string>
     <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"ኦዲዮ አልተገኘም።"</string>
-    <!-- outdated translation 7008713959076506385 -->     <string name="voicemail_status_action_configure" msgid="8671796489912239589">"አዋቅር"</string>
+    <string name="voicemail_status_action_configure" msgid="8671796489912239589">"አዘጋጅ"</string>
     <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"የድምፅመልዕክት ደውል"</string>
-    <!-- outdated translation 6047030504814773029 -->     <string name="voicemail_speed_slowest" msgid="1733460666177707312">"በጣም ቀርፋፋ ፍጥነት"</string>
-    <!-- outdated translation 7890393922358642543 -->     <string name="voicemail_speed_slower" msgid="1508601287347216244">"ቀርፋፋ ፍጥነት"</string>
-    <!-- outdated translation 6030110237820243006 -->     <string name="voicemail_speed_normal" msgid="9033988544627228892">"መደበኛ ፍጥነት"</string>
-    <!-- outdated translation 4161478290979905481 -->     <string name="voicemail_speed_faster" msgid="2019965121475935488">"ፈጣን ፍጥነት"</string>
-    <!-- outdated translation 3373646875150544205 -->     <string name="voicemail_speed_fastest" msgid="5758712343491183292">"በጣም ፈጣን ፍጥነት"</string>
+    <string name="voicemail_speed_slowest" msgid="1733460666177707312">"በጣም ቀርፋፋ ፍጥነት"</string>
+    <string name="voicemail_speed_slower" msgid="1508601287347216244">"ቀርፋፋ ፍጥነት"</string>
+    <string name="voicemail_speed_normal" msgid="9033988544627228892">"መደበኛ ፍጥነት"</string>
+    <string name="voicemail_speed_faster" msgid="2019965121475935488">"ፈጣን ፍጥነት"</string>
+    <string name="voicemail_speed_fastest" msgid="5758712343491183292">"በጣም ፈጣን ፍጥነት"</string>
     <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
-    <!-- outdated translation 2659811836386413509 -->     <string name="group_name_hint" msgid="238359485263401293">"የቡድኑ ስም"</string>
+    <string name="group_name_hint" msgid="238359485263401293">"የቡድኑ ስም"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"በ NFC  የደረሱ ዕውቂያዎች"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"የድምፅ መልዕክቶች ብቻ አሳይ"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"ሁሉንም ጥሪዎች አሳይ"</string>
@@ -586,5 +563,5 @@
     <string name="add_new_account" msgid="5748627740680940264">"አዲስ መለያ አክል"</string>
     <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"ጥሪ አልተላከም።"</string>
     <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"የድምጽ መልዕክት ቁጥር አይገኝም::"</string>
-    <!-- outdated translation 4511141315685755189 -->     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"ድምጽ መልዕክትን ለመውቀር ወደ ምናሌ &gt; ቅንጅቶች ሂድ::"</string>
+    <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"ድምጽ መልዕክትን ለማደራጀት ወደ ምናሌ &gt; ቅንጅቶች ሂድ::"</string>
 </resources>

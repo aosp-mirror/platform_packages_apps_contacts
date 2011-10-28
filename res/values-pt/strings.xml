@@ -25,7 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Escolha o atalho para um contato"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Escolha um número a ser chamado"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Escolha um número para enviar uma mensagem"</string>
-    <!-- outdated translation 6886592363525235031 -->     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Selecionar um contato"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Escolha um contato"</string>
     <string name="starredList" msgid="4817256136413959463">"Com estrela"</string>
     <string name="frequentList" msgid="7154768136473953056">"Frequente"</string>
     <string name="strequentList" msgid="5640192862059373511">"Favoritos"</string>
@@ -53,20 +53,19 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Excluir"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Novo"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Novo"</string>
-    <!-- outdated translation 2209511048593467012 -->     <string name="splitConfirmation_title" msgid="633640935430370530">"Dividir contato"</string>
-    <!-- outdated translation 1067993957986345974 -->     <string name="splitConfirmation" msgid="740190210499587175">"Tem certeza de que deseja dividir este único contato em vários contatos?"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Dividir contato?"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Este contato será separado em vários contatos."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Unir"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Unir contatos"</string>
-    <!-- no translation found for blurbJoinContactDataWith (8736488417422708236) -->
-    <skip />
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Selecione o contato que deseja mesclar com <xliff:g id="NAME">%s</xliff:g>."</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Mostrar todos os contatos"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Contatos sugeridos"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Todos os contatos"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Contatos unificados"</string>
-    <!-- outdated translation 6394309508930335204 -->     <string name="deleteConfirmation_title" msgid="1418215926447642260">"Excluir"</string>
+    <string name="deleteConfirmation_title" msgid="1418215926447642260">"Excluir contato?"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Definir toque"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Todas as cham. p/ correio voz"</string>
-    <!-- outdated translation 1390849295342594265 -->     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Não é possível excluir os contatos das contas somente de leitura, mas você pode ocultá-los nas suas listas de contatos."</string>
+    <string name="readOnlyContactWarning" msgid="7808825687289848259">"Não é possível excluir os contatos das contas somente de leitura, mas você pode ocultá-los nas suas listas de contatos."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Este contato contém informações de diversas contas. As informações de contas somente de leitura ficarão ocultas nas suas listas de contatos, mas não serão excluídas."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Excluir este contato irá excluir informações de várias contas."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Este contato será excluído."</string>
@@ -77,9 +76,9 @@
     <string name="label_sip_address" msgid="124073911714324974">"Chamada da internet"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Empresa"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Título"</string>
-    <!-- outdated translation 5816991830260044593 -->     <string name="invalidContactMessage" msgid="8215051456181842274">"O contato não existe."</string>
-    <!-- no translation found for pickerNewContactText (6166997164401048211) -->
-    <skip />
+    <string name="invalidContactMessage" msgid="8215051456181842274">"O contato não existe."</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Criar novo contato"</string>
+    <string name="pickerNewContactText" msgid="6166997164401048211">"Criar novo contato"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefone"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"Mensagem instantânea"</string>
@@ -96,7 +95,7 @@
     <string name="removePhoto" msgid="4898105274130284565">"Remover foto"</string>
     <string name="noContacts" msgid="8579310973261953559">"Nenhum contato."</string>
     <string name="noGroups" msgid="8614664663561385253">"Nenhum grupo."</string>
-    <!-- outdated translation 4742609114153797268 -->     <string name="noAccounts" msgid="7768267764545265909">"Você precisa de uma conta para criar grupos"</string>
+    <string name="noAccounts" msgid="7768267764545265909">"Você precisa de uma conta para criar grupos."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Nenhum contato correspondente foi encontrado."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Nenhum contato com números de telefone."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Nenhuma pessoa neste grupo."</string>
@@ -104,9 +103,9 @@
     <string name="savingContact" msgid="4075751076741924939">"Salvando contato…"</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Salvando opções de exibição…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Contato salvo."</string>
-    <!-- outdated translation 9189098776225004666 -->     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Erro: não é possível salvar as alterações do contato."</string>
+    <string name="contactSavedErrorToast" msgid="3207250533172944892">"Não foi possível salvar as alterações do contato."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grupo salvo."</string>
-    <!-- outdated translation 6434135707953150875 -->     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Erro, não é possível salvar as alterações do grupo."</string>
+    <string name="groupSavedErrorToast" msgid="7984466936615304740">"Não foi possível salvar as alterações de grupo."</string>
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"Um contato com número de telefone"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> contatos com números de telefone"</item>
@@ -116,9 +115,9 @@
     <item quantity="one" msgid="3405747744700823280">"1 contato"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> contatos"</item>
   </plurals>
-    <!-- outdated translation 1889349925514589304 -->     <string name="listTotalAllContactsZero" msgid="5513001821794568211">"Nenhum contato"</string>
-    <!-- outdated translation 4058252141420128998 -->     <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"Não há contatos visíveis"</string>
-    <!-- outdated translation 1289318488170099285 -->     <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"Nenhum favorito"</string>
+    <string name="listTotalAllContactsZero" msgid="5513001821794568211">"Nenhum contato."</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"Não há contatos visíveis"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"Nenhum favorito"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Nenhum contato em <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Contatos em <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listSingleContact" msgid="6067813698903535563">"Único contato"</string>
@@ -127,9 +126,8 @@
     <item quantity="one" msgid="5517063038754171134">"Um encontrado"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> encontrados"</item>
   </plurals>
-    <!-- no translation found for foundTooManyContacts (5163335650920020220) -->
-    <skip />
-    <!-- outdated translation 777952841930508289 -->     <string name="listFoundAllContactsZero" msgid="7132202364587656501">"Não encontrado"</string>
+    <string name="foundTooManyContacts" msgid="5163335650920020220">"Mais de <xliff:g id="COUNT">%d</xliff:g> encontrados."</string>
+    <string name="listFoundAllContactsZero" msgid="7132202364587656501">"Nenhum encontrado."</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"Um encontrado"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> encontrados"</item>
@@ -148,9 +146,9 @@
     <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Excluir correio de voz"</string>
     <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Compartilhar correio de voz"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"O registro de chamadas está vazio."</string>
-    <!-- outdated translation 718072843006222703 -->     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Limpar registro de chamadas"</string>
-    <!-- outdated translation 7625927669136267636 -->     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Tem certeza de que deseja limpar o registro de chamadas?"</string>
-    <!-- outdated translation 6870412675015656948 -->     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Limpando registro de chamadas"</string>
+    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Limpar registro de chamadas?"</string>
+    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Todos os registros de chamada serão eliminados."</string>
+    <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Limpando o registro de chamadas..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Correio de voz"</string>
@@ -163,14 +161,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"Contatos do cartão SIM"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Você não tem contatos para exibir. Se você acabou de adicionar uma conta, pode levar alguns minutos para sincronizar os contatos."</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Você não tem contatos para exibir."</string>
-    <!-- outdated translation 6450346791169710787 -->     <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"Você não tem contatos para exibir."\n\n"Para adicionar contatos, pressione "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do chip ou cartão SD"\n</li></string>
-    <!-- outdated translation 6450346791169710787 -->     <string name="noContactsHelpText" product="default" msgid="4405064135698982080">"Você não tem contatos para exibir."\n\n"Para adicionar contatos, pressione "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do chip ou cartão SD"\n</li></string>
-    <!-- outdated translation 2364665535969139880 -->     <string name="noContactsHelpTextWithSync" product="tablet" msgid="6773195806404659174">"Você não tem contatos para exibir. Caso tenha acabado de adicionar uma conta, pode levar alguns minutos para sincronizar os contatos."\n\n"Para adicionar contatos, pressione "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opções de exibição"</b></font>" para alterar quais contatos ficam visíveis"\n</li>" "\n<li><font fgcolor="#ffffffff">"Novo "<b>"contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do chip ou cartão SD"\n</li></string>
-    <!-- outdated translation 2364665535969139880 -->     <string name="noContactsHelpTextWithSync" product="default" msgid="7016825676090327312">"Você não tem contatos para exibir. Caso tenha acabado de adicionar uma conta, pode levar alguns minutos para sincronizar os contatos."\n\n"Para adicionar contatos, pressione "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opções de exibição"</b></font>" para alterar quais contatos ficam visíveis"\n</li>" "\n<li><font fgcolor="#ffffffff">"Novo "<b>"contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do chip ou cartão SD"\n</li></string>
-    <!-- outdated translation 6031363021287849874 -->     <string name="noContactsNoSimHelpText" product="tablet" msgid="7823757505923033456">"Você não tem contatos para exibir."\n\n"Para adicionar contatos, pressione "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do cartão SD"\n</li></string>
-    <!-- outdated translation 6031363021287849874 -->     <string name="noContactsNoSimHelpText" product="default" msgid="6224952277619986841">"Você não tem contatos para exibir."\n\n"Para adicionar contatos, pressione "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do cartão SD"\n</li></string>
-    <!-- outdated translation 6222739731808897565 -->     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="5415762667445638265">"Você não tem contatos para exibir. Sse acabou de adicionar uma conta, pode levar alguns minutos para sincronizar os contatos."\n\n"Para adicionar contatos, pressione "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opções de exibição"</b></font>" para alterar quais contatos ficam visíveis"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do cartão SD"\n</li></string>
-    <!-- outdated translation 6222739731808897565 -->     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="7443705129830284440">"Você não tem contatos para exibir. Sse acabou de adicionar uma conta, pode levar alguns minutos para sincronizar os contatos."\n\n"Para adicionar contatos, pressione "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opções de exibição"</b></font>" para alterar quais contatos ficam visíveis"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do cartão SD"\n</li></string>
+    <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"Você não tem nenhum contato para mostrar. "\n" "\n" Para adicionar contatos, toque "<font fgcolor="#ffffffff">" "<b>" menu "</b>" "</font>", em seguida, toque: "\n" "\n" "<li>" "<font fgcolor="#ffffffff">" "<b>" contas "</b>" "</font>" para adicionar ou configurar uma conta com contatos que você pode sincronizar com o tablet "\n" "</li>" "\n" "<li>" "<font fgcolor="#ffffffff">" "<b>" Novo contato "</b>" "</font>" para criar um novo contato a partir do zero "\n" "</li>" "\n" "<li>" "<font fgcolor="#ffffffff">" "<b>" Importação/exportação "</b>" "</font>" para importar contatos do SIM ou do cartão SD "\n" "</li></string>
+    <string name="noContactsHelpText" product="default" msgid="4405064135698982080">"Você não tem nenhum contato para exibir."\n\n"Para adicionar contatos, toque em "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e, a seguir, toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o telefone"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do seu cartão SIM ou SD"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="6773195806404659174">"Você não tem contatos para exibir. Se acabou de adicionar uma conta, pode levar alguns minutos para sincronizar os contatos."\n\n"Para adicionar contatos, toque em "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opções de exibição"</b></font>" para alterar quais contatos serão visíveis"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do cartão SD ou SIM"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="default" msgid="7016825676090327312">"Você não tem contatos para exibir. Se acabou de adicionar uma conta, pode levar alguns minutos para sincronizar os contatos."\n\n"Para adicionar contatos, toque em "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opções de exibição"</b></font>" para alterar quais contatos serão visíveis"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do cartão SD ou SIM"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="tablet" msgid="7823757505923033456">"Você não tem nenhum contato para exibir."\n\n"Para adicionar contatos, toque em "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e, a seguir, toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do cartão SD"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="default" msgid="6224952277619986841">"Você não tem nenhum contato para exibir."\n\n"Para adicionar contatos, toque em "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e, a seguir, toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o telefone"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do cartão SD"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="5415762667445638265">"Você não tem contatos para exibir. Se acabou de adicionar uma conta, pode levar alguns minutos para sincronizar os contatos."\n\n"Para adicionar contatos, toque em "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opções de exibição"</b></font>" para alterar quais contatos serão visíveis"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do cartão SD"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="7443705129830284440">"Você não tem contatos para exibir. Se acabou de adicionar uma conta, pode levar alguns minutos para sincronizar os contatos."\n\n"Para adicionar contatos, toque em "<font fgcolor="#ffffffff"><b>"Menu"</b></font>" e toque em:"\n" "\n<li><font fgcolor="#ffffffff"><b>"contas"</b></font>" para adicionar ou configurar uma conta com contatos que possam ser sincronizados com o tablet"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Opções de exibição"</b></font>" para alterar quais contatos serão visíveis"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Novo contato"</b></font>" para criar um novo contato do início"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importar/Exportar"</b></font>" para importar contatos do cartão SD"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Você não tem nenhum favorito."\n\n"Para adicionar um contato à sua lista de favoritos:"\n\n"        "<li>"Toque na guia "<b>"Contatos"</b>\n</li>" "\n<li>"Toque no contato que deseja adicionar aos seus favoritos"\n</li>" "\n<li>"Toque na estrela ao lado do nome do contato"\n</li></string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Usar teclado multifrequencial"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Retornar para a chamada em espera"</string>
@@ -213,8 +211,8 @@
     <string name="description_view_contact_detail" msgid="9133251213656414807">"Visualizar contato"</string>
     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"Armazenamento não disponível"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Nenhum cartão SD"</string>
-    <!-- outdated translation 1334170151822669976 -->     <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"Nenhum armazenamento detectado"</string>
-    <!-- outdated translation 1334170151822669976 -->     <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"Nenhum armazenamento detectado"</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"Nenhum armazenamento foi encontrado."</string>
+    <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"Nenhum cartão SD foi encontrado."</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Pesquisando vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importar do cartão SIM"</string>
     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Importar do armazenamento"</string>
@@ -223,79 +221,62 @@
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Importar um arquivo do vCard"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Importar vários arquivos do vCard"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Importar todos os arquivos do vCard"</string>
-    <!-- outdated translation 996170203695743981 -->     <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"Procurando dados do vCard no armazenamento"</string>
-    <!-- outdated translation 996170203695743981 -->     <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"Procurando dados do vCard no armazenamento"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"Procurando dados do vCard no armazenamento..."</string>
+    <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"Procurando dados do vCard no cartão SD..."</string>
     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Não foi possível verificar o armazenamento"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Não foi possível verificar o cartão SD"</string>
-    <!-- no translation found for scanning_sdcard_failed_message (7221682312959229201) -->
-    <skip />
-    <!-- no translation found for scanning_sdcard_failed_message (189023067829510792) -->
-    <skip />
-    <!-- unknown placeholder FAIL_REASON in fail_reason_io_error -->
-    <skip />
-    <!-- no translation found for fail_reason_io_error (6748358842976073255) -->
-    <skip />
-    <!-- outdated translation 7514918659342886381 -->     <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Memória insuficiente (o arquivo talvez seja muito grande)"</string>
-    <!-- outdated translation 4492947335972369711 -->     <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"Não foi possível analisar o vCard por motivo inesperado"</string>
-    <!-- outdated translation 294499264620201243 -->     <string name="fail_reason_not_supported" msgid="8219562769267148825">"O formato não é suportado."</string>
-    <!-- outdated translation 8856125211629574066 -->     <string name="vcard_import_failed" msgid="5223531255894842406">"Não foi possível importar o vCard"</string>
-    <!-- outdated translation 6339234836196984924 -->     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2071820850017305867">"Nenhum arquivo de vCard encontrado no armazenamento"</string>
-    <!-- outdated translation 6339234836196984924 -->     <string name="import_failure_no_vcard_file" product="default" msgid="1754014167874286173">"Nenhum arquivo de vCard encontrado no armazenamento"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"Não foi possível verificar o armazenamento. (Motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"Não foi possível ler o cartão SD. (Motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="fail_reason_io_error" msgid="6748358842976073255">"Erro E/S"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Não há memória suficiente. O arquivo pode ser muito grande."</string>
+    <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"Não foi possível analisar o vCard por um motivo inesperado."</string>
+    <string name="fail_reason_not_supported" msgid="8219562769267148825">"O formato não é suportado."</string>
+    <string name="vcard_import_failed" msgid="5223531255894842406">"Não foi possível importar o vCard."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2071820850017305867">"Nenhum arquivo de vCard encontrado no armazenamento."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1754014167874286173">"Nenhum arquivo de vCard encontrado no cartão SD"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Não foi possível coletar informações meta de determinados arquivos vCard."</string>
     <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Um ou mais arquivos não puderam ser importados (%s)."</string>
-    <!-- outdated translation 999034019513096768 -->     <string name="fail_reason_unknown" msgid="1714092345030570863">"Erro desconhecido"</string>
-    <!-- outdated translation 3968948173786172468 -->     <string name="select_vcard_title" msgid="7791371083694672861">"Selecionar arquivo do vCard"</string>
-    <!-- outdated translation 5009556022082659780 -->     <string name="caching_vcard_title" msgid="1226272312940516605">"Armazenando vCard(s) em cache no armazenamento temporário local"</string>
-    <!-- outdated translation 2380844718093378900 -->     <string name="caching_vcard_message" msgid="4926308675041506756">"O importador está armazenando vCard(s) em cache no armazenamento temporário local. A importação real começará em breve."</string>
+    <string name="fail_reason_unknown" msgid="1714092345030570863">"Erro desconhecido."</string>
+    <string name="select_vcard_title" msgid="7791371083694672861">"Escolha o arquivo vCard"</string>
+    <string name="caching_vcard_title" msgid="1226272312940516605">"Armazenando em cache"</string>
+    <string name="caching_vcard_message" msgid="4926308675041506756">"Armazenando VCard(s) em cache no armazenamento temporário local. A importação real começará em breve."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Importando <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Importando <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Não foi possível ler os dados do vCard"</string>
-    <!-- outdated translation 1770608329958463131 -->     <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"A leitura dos dados do vCard foi cancelada"</string>
+    <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"Leitura de dados vCard cancelada"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Importação de vCard concluída <xliff:g id="FILENAME">%s</xliff:g>"</string>
-    <!-- no translation found for importing_vcard_canceled_title (2147475978165599336) -->
-    <skip />
+    <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"Importação de <xliff:g id="FILENAME">%s</xliff:g> cancelada"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> será importado em breve."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"O arquivo será importado em breve."</string>
-    <!-- outdated translation 2592424820635325951 -->     <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"A solicitação de importação do vCard foi rejeitada. Tente novamente mais tarde."</string>
+    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"Pedido de importação vCard foi rejeitado. Tente novamente mais tarde."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> será exportado em breve."</string>
-    <!-- outdated translation 8259494002258326330 -->     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"A solicitação de exportação do vCard foi rejeitada. Tente novamente mais tarde."</string>
+    <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Pedido de exportação vCard foi rejeitado. Tente novamente mais tarde."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"contato"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
-    <!-- outdated translation 7648747763127442983 -->     <string name="confirm_export_title" msgid="6834385377255286349">"Confirmar exportação"</string>
-    <!-- no translation found for confirm_export_message (2423421354816428708) -->
-    <skip />
-    <!-- outdated translation 2339788270863991417 -->     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Não foi possível exportar os dados de contato"</string>
-    <!-- no translation found for exporting_contact_failed_message (4938527850142003141) -->
-    <skip />
-    <!-- outdated translation 4919714086648344495 -->     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Não há contatos exportáveis"</string>
-    <!-- outdated translation 3745507837635270265 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="590645599157376285">"Muitos arquivos de vCard no armazenamento"</string>
-    <!-- outdated translation 3745507837635270265 -->     <string name="fail_reason_too_many_vcard" product="default" msgid="4887177369627277474">"Muitos arquivos de vCard no armazenamento"</string>
-    <!-- no translation found for fail_reason_too_long_filename (3393764245254738333) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_finished_title (4767045779458185251) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_canceled_title (2652222370493306887) -->
-    <skip />
+    <string name="confirm_export_title" msgid="6834385377255286349">"Exportar contatos?"</string>
+    <string name="confirm_export_message" msgid="2423421354816428708">"Sua lista de contatos será exportada para o arquivo: <xliff:g id="VCARD_FILENAME">%s</xliff:g> ."</string>
+    <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Não foi possível exportar"</string>
+    <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Os dados de contato não foram exportados."\n"Motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Não há contato exportáveis."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="590645599157376285">"Excesso de arquivos vCard no armazenamento."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="4887177369627277474">"Excesso de arquivos vCard no cartão SD."</string>
+    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"O nome de arquivo exigido é muito longo (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
+    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"Exportação concluída de <xliff:g id="FILENAME">%s</xliff:g>."</string>
+    <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"Exportação de <xliff:g id="FILENAME">%s</xliff:g> cancelada."</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Exportando dados do contato"</string>
-    <!-- no translation found for exporting_contact_list_message (7181663157672374569) -->
-    <skip />
-    <!-- no translation found for fail_reason_could_not_initialize_exporter (707260459259688510) -->
-    <skip />
-    <!-- no translation found for fail_reason_error_occurred_during_export (3018855323913649063) -->
-    <skip />
-    <!-- outdated translation 6891165255897853705 -->     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Não foi possível obter as informações do banco de dados"</string>
-    <!-- outdated translation 5161491059051198932 -->     <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"Não há contatos exportáveis. Se você realmente tiver contatos em seu tablet, talvez a exportação não seja permitida por alguns provedores de dados."</string>
-    <!-- outdated translation 5161491059051198932 -->     <string name="composer_has_no_exportable_contact" product="default" msgid="3296493229040294335">"Não há contatos exportáveis. Se você realmente tiver contatos em seu tablet, talvez a exportação não seja permitida por alguns provedores de dados."</string>
-    <!-- outdated translation 8041534450748388843 -->     <string name="composer_not_initialized" msgid="2321648986367005254">"O vCard não foi iniciado corretamente"</string>
-    <!-- no translation found for fail_reason_could_not_open_file (2067725459821997463) -->
-    <skip />
+    <string name="exporting_contact_list_message" msgid="7181663157672374569">"Seus dados de contato estão sendo exportados para: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"Não foi possível iniciar o exportador: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"Ocorreu um erro durante a exportação: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Não foi possível obter as informações do banco de dados."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"Não há contatos exportáveis. Se você tiver contatos em seu tablet, alguns provedores de dados podem não permitir que os contatos sejam exportados a partir do tablet."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="3296493229040294335">"Não há contatos exportáveis. Se você tiver contatos em seu telefone, alguns provedores de dados podem não permitir que os contatos sejam exportados a partir do telefone."</string>
+    <string name="composer_not_initialized" msgid="2321648986367005254">"O criador do vCard não iniciou corretamente."</string>
+    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"Não foi possível abrir \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> de <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contatos"</string>
     <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"Cancelando a importação do vCard"</string>
-    <!-- no translation found for cancel_import_confirmation_message (3929951040347726757) -->
-    <skip />
+    <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Cancelar importação de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Cancelando a exportação do vCard"</string>
-    <!-- no translation found for cancel_export_confirmation_message (1995462401949262638) -->
-    <skip />
+    <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Cancelar exportação de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Não foi poss. canc. imp./export. vCard"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Nomes dos seus contatos"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Adicionar pausa de 2 segundos"</string>
@@ -304,16 +285,16 @@
     <string name="call_settings" msgid="7666474782093693667">"Configurações"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Enviar SMS usando"</string>
     <string name="make_primary" msgid="5829291915305113983">"Lembrar desta escolha"</string>
-    <!-- outdated translation 4600366393134289038 -->     <string name="quickcontact_missing_app" msgid="358168575340921552">"Nenhum aplicativo foi encontrado para executar esta ação."</string>
-    <!-- outdated translation 7930716592850443705 -->     <string name="missing_name" msgid="8745511583852904385">"(sem nome)"</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"Nenhum aplicativo foi encontrado para executar esta ação."</string>
+    <string name="missing_name" msgid="8745511583852904385">"(Sem nome)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Contas"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Contatos para exibição"</string>
-    <!-- outdated translation 3765725645491577190 -->     <string name="menu_import_export" msgid="26217871113229507">"Importar/Exportar"</string>
-    <!-- outdated translation 4771877268244096596 -->     <string name="dialog_import_export" msgid="4360648034889921624">"Importar/Exportar contatos"</string>
+    <string name="menu_import_export" msgid="26217871113229507">"Importar/exportar"</string>
+    <string name="dialog_import_export" msgid="4360648034889921624">"Importar/Exportar contatos"</string>
     <string name="menu_share" msgid="943789700636542260">"Compartilhar"</string>
     <string name="menu_all_contacts" msgid="5101735431586050711">"Todos os contatos"</string>
     <string name="share_via" msgid="563121028023030093">"Compartilhar contato via"</string>
-    <!-- outdated translation 4374508848981697170 -->     <string name="share_error" msgid="948429331673358107">"Este contato não pode ser compartilhado."</string>
+    <string name="share_error" msgid="948429331673358107">"Este contato não pode ser compartilhado."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Nome"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Apelido"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organização"</string>
@@ -326,10 +307,9 @@
     <string name="menu_sync_remove" msgid="3266725887008450161">"Remover sincronização do grupo"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Adicionar grupo sincronizado"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"Mais grupos…"</string>
-    <!-- outdated translation 4602580795576261158 -->     <string name="display_ungrouped" msgid="6885954210243119591">"Todos os outros contatos"</string>
-    <!-- outdated translation 6846131371214707956 -->     <string name="display_all_contacts" msgid="2031647544742889505">"Todos os contatos"</string>
-    <!-- no translation found for display_warn_remove_ungrouped (8872290721676651414) -->
-    <skip />
+    <string name="display_ungrouped" msgid="6885954210243119591">"Todos os outros contatos"</string>
+    <string name="display_all_contacts" msgid="2031647544742889505">"Todos os contatos"</string>
+    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"A remoção de \"<xliff:g id="GROUP">%s</xliff:g>\" da sincronização também removerá os contatos não agrupados da sincronização."</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Somente tablet, não sincronizado"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"Somente telefone, não sincronizado"</string>
     <string name="call_custom" msgid="7756571794763171802">"Chamar <xliff:g id="CUSTOM">%s</xliff:g>"</string>
@@ -394,7 +374,7 @@
     <string name="chat_icq" msgid="8438405386153745775">"Bater papo usando o ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Bater papo usando o Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Bate-papo"</string>
-    <!-- outdated translation 4743276658947547047 -->     <string name="audio_chat" msgid="2535716629358298691">"Bate-papo com áudio"</string>
+    <string name="audio_chat" msgid="2535716629358298691">"Bate-papo por voz"</string>
     <string name="video_chat" msgid="1872255818640336072">"Bate-papo por vídeo"</string>
     <string name="postal_address" msgid="8765560217149624536">"Endereço"</string>
     <string name="postal_street" msgid="8133143961580058972">"Rua"</string>
@@ -416,17 +396,15 @@
     <string name="name_phonetic" msgid="4259595234312430484">"Nome fonético"</string>
     <string name="connections" msgid="8098440723172028350">"Conexões"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Adicionar conexão"</string>
-    <!-- no translation found for recent (2659189233141493004) -->
-    <!-- no translation found for recent (2062236709538790412) -->
-    <skip />
-    <!-- outdated translation 2062236709538790412 -->     <string name="recent_updates" msgid="4267258535615860710">"Recente"</string>
+    <string name="recent" msgid="2659189233141493004">"Recentes"</string>
+    <string name="recent_updates" msgid="4267258535615860710">"Atualiz. recentes"</string>
     <string name="account_type_format" msgid="718948015590343010">"Contato de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Usar esta foto"</string>
-    <!-- outdated translation 1856479476063888348 -->     <string name="contact_read_only" msgid="7421346527289472273">"Não é possível editar desse dispositivo"</string>
-    <!-- outdated translation 6754415338321837001 -->     <string name="no_contact_details" msgid="6636856378019344497">"Não há informações adicionais para este contato"</string>
-    <!-- outdated translation 7924922658394449477 -->     <string name="group_read_only" msgid="1061762906115697637">"Não é possível editar neste dispositivo"</string>
+    <string name="contact_read_only" msgid="7421346527289472273">"Não pode ser editado neste aplicativo."</string>
+    <string name="no_contact_details" msgid="6636856378019344497">"Não há informações adicionais para este contato."</string>
+    <string name="group_read_only" msgid="1061762906115697637">"Não é possível editar neste dispositivo"</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Classificar lista por"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Nome"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Sobrenome"</string>
@@ -436,15 +414,14 @@
     <string name="search_bar_hint" msgid="1012756309632856553">"Pesquisar contatos"</string>
     <string name="take_photo" msgid="7496128293167402354">"Tirar foto"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Tirar outra foto"</string>
-    <!-- outdated translation 448886509158039462 -->     <string name="pick_photo" msgid="3746334626214970837">"Selecionar foto da Galeria"</string>
+    <string name="pick_photo" msgid="3746334626214970837">"Escolha fotos da Galeria"</string>
     <string name="pick_new_photo" msgid="7962368009197147617">"Selecionar nova foto da Galeria"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"A lista de contatos está sendo atualizada para incorporar a alteração do idioma."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"A lista de contatos está sendo atualizada."</string>
-    <!-- no translation found for upgrade_out_of_memory (1209994418877625940) -->
-    <skip />
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Os contatos estão sendo atualizados no momento. "\n\n"O processo de atualização requer aproximadamente <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB de armazenamento interno."\n\n"Escolha uma das seguintes opções:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Desinstalar alguns aplicativos"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Tentar atualizar novamente"</string>
-    <!-- outdated translation 7755623475227227314 -->     <string name="search_results_searching" msgid="3984833028938569930">"Pesquisando..."</string>
+    <string name="search_results_searching" msgid="3984833028938569930">"Pesquisando..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Mostrar selecionados"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Mostrar todos"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Selecionar todos"</string>
@@ -468,20 +445,20 @@
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Unir o contato atual ao contato selecionado?"</string>
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Editar contatos selecionados"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Alternar para a edição do contato selecionado? As informações inseridas até agora serão copiadas."</string>
-    <!-- outdated translation 4401683725471696686 -->     <string name="menu_copyContact" msgid="1573960845106822639">"Copiar para meus contatos"</string>
+    <string name="menu_copyContact" msgid="1573960845106822639">"Copiar para Meus contatos"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Adicionar a Meus contatos"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Diretório <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Diretório"</string>
     <string name="local_search_label" msgid="2551177578246113614">"Todos os contatos"</string>
-    <!-- outdated translation 7905283986345263275 -->     <string name="toast_making_personal_copy" msgid="288549957278065542">"Como criar uma cópia pessoal"</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"Criando uma cópia pessoal..."</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Todos os contatos"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Com estrela"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Personalizado"</string>
-    <!-- outdated translation 2035084418635775579 -->     <string name="list_filter_customize" msgid="4789963356004169321">"Personalizar..."</string>
+    <string name="list_filter_customize" msgid="4789963356004169321">"Personalizar"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"Todos os contatos com números de telefone"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Contato"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Definir exibição personalizada"</string>
-    <!-- outdated translation 3859280390185230582 -->     <string name="contact_list_loading" msgid="5488620820563977329">"Carregando..."</string>
+    <string name="contact_list_loading" msgid="5488620820563977329">"Carregando…"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Configurações"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Contatos a exibir"</string>
     <string name="menu_settings" msgid="377929915873428211">"Configurações"</string>
@@ -495,7 +472,7 @@
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Informe um ano"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Contato"</string>
-    <!-- outdated translation 3697996166985327861 -->     <string name="social_widget_loading" msgid="5327336597364074608">"Carregando…"</string>
+    <string name="social_widget_loading" msgid="5327336597364074608">"Carregando…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Criar um novo contato"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Faça login em uma conta"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Importar contatos de um arquivo"</string>
@@ -506,8 +483,7 @@
     <item quantity="one" msgid="2944819210288517794">"Um grupo"</item>
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> grupos"</item>
   </plurals>
-    <!-- no translation found for delete_group_dialog_message (7586856514337560529) -->
-    <skip />
+    <string name="delete_group_dialog_message" msgid="7586856514337560529">"Excluir o grupo \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Os contatos não serão apagados)"</string>
   <plurals name="num_contacts_in_group">
     <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> pessoa de <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
     <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> pessoas de <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
@@ -516,13 +492,13 @@
     <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> pessoa"</item>
     <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> pessoas"</item>
   </plurals>
-    <!-- outdated translation 5015189525953438968 -->     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Insira o nome do contato antes de unificá-lo com outro contato."</string>
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Digite o nome de contato antes de juntar a outro."</string>
     <string name="copy_text" msgid="3257145021583508761">"Copiar para área de transferência"</string>
     <string name="set_default" msgid="4417505153468300351">"Definir padrão"</string>
     <string name="clear_default" msgid="7193185801596678067">"Limpar padrão"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Texto copiado"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Descartar alterações"</string>
-    <!-- outdated translation 7021968394611740251 -->     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Deseja realmente descartar as alterações?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Descartar as alterações?"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g> "</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Configurar meu perfil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Digite o nome da pessoa"</string>
@@ -534,24 +510,24 @@
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Nova mensagem de voz de <xliff:g id="CALLER">%1$s</xliff:g>"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"Não foi possível reprod. mens. de voz."</string>
-    <string name="voicemail_buffering" msgid="738287747618697097">"Armazenar em buffer???"</string>
-    <string name="voicemail_fetching_content" msgid="877911315738258780">"Buscando o correio de voz???"</string>
+    <string name="voicemail_buffering" msgid="738287747618697097">"Armazenar em buffer…"</string>
+    <string name="voicemail_fetching_content" msgid="877911315738258780">"Buscando o correio de voz…"</string>
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Não foi possível obter o correio de voz."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Novas"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Antigas"</string>
-    <!-- outdated translation 3164200979671881947 -->     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Não é possível se conectar ao servidor de correio de voz."</string>
-    <!-- outdated translation 2970301042310727909 -->     <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Impossível conect. ao serv. correio voz. Novas mensagens de voz."</string>
-    <!-- outdated translation 3940240432123700974 -->     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Configure seu correio de voz."</string>
+    <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Não é possível se conectar ao servidor de correio de voz."</string>
+    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Impossível conect. ao serv. correio voz. Novas mensagens de voz."</string>
+    <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Configure seu correio de voz."</string>
     <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Áudio não disponível."</string>
-    <!-- outdated translation 7008713959076506385 -->     <string name="voicemail_status_action_configure" msgid="8671796489912239589">"Configurar"</string>
+    <string name="voicemail_status_action_configure" msgid="8671796489912239589">"Configurar"</string>
     <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"Chamar correio voz"</string>
-    <!-- outdated translation 6047030504814773029 -->     <string name="voicemail_speed_slowest" msgid="1733460666177707312">"velocidade mais lenta"</string>
-    <!-- outdated translation 7890393922358642543 -->     <string name="voicemail_speed_slower" msgid="1508601287347216244">"baixa velocidade"</string>
-    <!-- outdated translation 6030110237820243006 -->     <string name="voicemail_speed_normal" msgid="9033988544627228892">"velocidade normal"</string>
-    <!-- outdated translation 4161478290979905481 -->     <string name="voicemail_speed_faster" msgid="2019965121475935488">"velocidade rápida"</string>
-    <!-- outdated translation 3373646875150544205 -->     <string name="voicemail_speed_fastest" msgid="5758712343491183292">"velocidade mais rápida"</string>
+    <string name="voicemail_speed_slowest" msgid="1733460666177707312">"Velocidade mais lenta"</string>
+    <string name="voicemail_speed_slower" msgid="1508601287347216244">"Baixa velocidade"</string>
+    <string name="voicemail_speed_normal" msgid="9033988544627228892">"Velocidade normal"</string>
+    <string name="voicemail_speed_faster" msgid="2019965121475935488">"Velocidade rápida"</string>
+    <string name="voicemail_speed_fastest" msgid="5758712343491183292">"Velocidade mais rápida"</string>
     <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
-    <!-- outdated translation 2659811836386413509 -->     <string name="group_name_hint" msgid="238359485263401293">"Nome do grupo"</string>
+    <string name="group_name_hint" msgid="238359485263401293">"Nome do grupo"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Contato via NFC"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Exibir apenas mensagens de voz"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"Mostrar todas as chamadas"</string>
@@ -587,5 +563,5 @@
     <string name="add_new_account" msgid="5748627740680940264">"Adicionar nova conta"</string>
     <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"Chamada não realizada"</string>
     <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"Número de correio de voz indisponível"</string>
-    <!-- outdated translation 4511141315685755189 -->     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Para configurar o correio de voz, acesse Menu &gt; Configurações."</string>
+    <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Para configurar o correio de voz, vá para Menu &gt; Configurações."</string>
 </resources>
