@@ -77,6 +77,7 @@
     <string name="ghostData_company" msgid="5414421120553765775">"Cég"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Beosztás"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"A kapcsolat nem létezik."</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Új névjegy létrehozása"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Új névjegy létrehozása"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefon"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail cím"</string>

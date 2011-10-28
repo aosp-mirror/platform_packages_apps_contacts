@@ -77,6 +77,7 @@
     <string name="ghostData_company" msgid="5414421120553765775">"公司"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"职位"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"该联系人不存在。"</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"新建联系人"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"创建新联系人"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"电话"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"发送电子邮件"</string>
@@ -395,10 +396,8 @@
     <string name="name_phonetic" msgid="4259595234312430484">"姓名拼音"</string>
     <string name="connections" msgid="8098440723172028350">"联系"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"加强联系"</string>
-    <!-- no translation found for recent (2659189233141493004) -->
-    <!-- no translation found for recent (2062236709538790412) -->
-    <skip />
-    <!-- outdated translation 2062236709538790412 -->     <string name="recent_updates" msgid="4267258535615860710">"最新动态"</string>
+    <string name="recent" msgid="2659189233141493004">"最新"</string>
+    <string name="recent_updates" msgid="4267258535615860710">"最新动态"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> 联系人"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -487,7 +486,7 @@
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"要删除群组“<xliff:g id="GROUP_LABEL">%1$s</xliff:g>”（并不会删除联系人本身）吗？"</string>
   <plurals name="num_contacts_in_group">
     <item quantity="one" msgid="1352418549951013448">"<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>中有 <xliff:g id="COUNT_0">%1$d</xliff:g> 个联系人"</item>
-    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>中有 <xliff:g id="COUNT_0">%1$d</xliff:g> 个人"</item>
+    <item quantity="other" msgid="8146027769011086349">"有 <xliff:g id="COUNT_0">%1$d</xliff:g> 人来自<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
   </plurals>
   <plurals name="group_list_num_contacts_in_group">
     <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> 个人"</item>
