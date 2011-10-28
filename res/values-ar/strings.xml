@@ -25,7 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"اختيار اختصار لجهة الاتصال"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"اختيار رقم للاتصال به"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"اختيار رقم لإرسال رسالة له"</string>
-    <!-- outdated translation 6886592363525235031 -->     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"تحديد جهة اتصال"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"اختيار جهة اتصال"</string>
     <string name="starredList" msgid="4817256136413959463">"مميّزة بنجمة"</string>
     <string name="frequentList" msgid="7154768136473953056">"متكررة"</string>
     <string name="strequentList" msgid="5640192862059373511">"المفضلة"</string>
@@ -53,20 +53,19 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"حذف"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"جديد"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"جديدة"</string>
-    <!-- outdated translation 2209511048593467012 -->     <string name="splitConfirmation_title" msgid="633640935430370530">"فصل جهة الاتصال"</string>
-    <!-- outdated translation 1067993957986345974 -->     <string name="splitConfirmation" msgid="740190210499587175">"هل تريد بالتأكيد فصل جهة الاتصال الفردية هذه إلى عدة جهات اتصال؟"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"فصل جهة الاتصال؟"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"سيتم فصل جهة الاتصال هذه إلى عدة جهات اتصال."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"ضم"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"ضم جهات الاتصال"</string>
-    <!-- no translation found for blurbJoinContactDataWith (8736488417422708236) -->
-    <skip />
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"اختر جهة الاتصال التي تريد ضمها إلى <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"عرض جميع جهات الاتصال"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"جهات الاتصال المقترحة"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"جميع جهات الاتصال"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"جهات الاتصال المنضمة"</string>
-    <!-- outdated translation 6394309508930335204 -->     <string name="deleteConfirmation_title" msgid="1418215926447642260">"حذف"</string>
+    <string name="deleteConfirmation_title" msgid="1418215926447642260">"حذف جهة الاتصال؟"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"تعيين نغمة رنين"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"جميع المكالمات إلى البريد الصوتي"</string>
-    <!-- outdated translation 1390849295342594265 -->     <string name="readOnlyContactWarning" msgid="7808825687289848259">"لا يمكنك حذف جهات الاتصال من الحسابات للقراءة فقط، ولكن يمكنك إخفاؤها في قوائم جهات الاتصال."</string>
+    <string name="readOnlyContactWarning" msgid="7808825687289848259">"لا يمكنك حذف جهات الاتصال من حسابات للقراءة فقط، ولكن يمكنك إخفاؤها في قوائم جهات الاتصال."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"تحتوي جهة الاتصال هذه على معلومات من عدة حسابات. وسيتم إخفاء المعلومات من الحسابات التي للقراءة فقط في قوائم جهات الاتصال، وليس حذفها."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"سيؤدي حذف جهة الاتصال هذه إلى حذف المعلومات من عدة حسابات."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"سيتم حذف جهة الاتصال هذه."</string>
@@ -77,9 +76,9 @@
     <string name="label_sip_address" msgid="124073911714324974">"مكالمة عبر الإنترنت"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"شركة"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"المسمى الوظيفي"</string>
-    <!-- outdated translation 5816991830260044593 -->     <string name="invalidContactMessage" msgid="8215051456181842274">"جهة الاتصال غير موجودة."</string>
-    <!-- no translation found for pickerNewContactText (6166997164401048211) -->
-    <skip />
+    <string name="invalidContactMessage" msgid="8215051456181842274">"جهة الاتصال غير موجودة."</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"إنشاء جهة اتصال جديدة"</string>
+    <string name="pickerNewContactText" msgid="6166997164401048211">"إنشاء جهة اتصال جديدة"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"الهاتف"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"إرسال رسالة إلكترونية"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"المراسلة الفورية"</string>
@@ -96,7 +95,7 @@
     <string name="removePhoto" msgid="4898105274130284565">"إزالة الصور"</string>
     <string name="noContacts" msgid="8579310973261953559">"لا توجد جهات اتصال."</string>
     <string name="noGroups" msgid="8614664663561385253">"لا توجد مجموعات."</string>
-    <!-- outdated translation 4742609114153797268 -->     <string name="noAccounts" msgid="7768267764545265909">"يجب توفير حساب لإنشاء مجموعات"</string>
+    <string name="noAccounts" msgid="7768267764545265909">"يجب توفير حساب لإنشاء مجموعات."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"لم يتم العثور على أية جهات اتصال متطابقة."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"ليس هناك جهات اتصال تشتمل على أرقام هواتف."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"ليس هناك أشخاص في هذه المجموعة."</string>
@@ -104,9 +103,9 @@
     <string name="savingContact" msgid="4075751076741924939">"جارٍ حفظ جهة الاتصال..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"جارٍ حفظ خيارات العرض..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"تم حفظ جهة الاتصال."</string>
-    <!-- outdated translation 9189098776225004666 -->     <string name="contactSavedErrorToast" msgid="3207250533172944892">"خطأ، غير قادر على حفظ تغييرات جهة الاتصال."</string>
+    <string name="contactSavedErrorToast" msgid="3207250533172944892">"تعذر حفظ التغييرات التي تم إجراؤها على جهة الاتصال."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"تم حفظ المجموعة."</string>
-    <!-- outdated translation 6434135707953150875 -->     <string name="groupSavedErrorToast" msgid="7984466936615304740">"خطأ، تعذر حفظ التغييرات التي تم إجراؤها على المجموعة."</string>
+    <string name="groupSavedErrorToast" msgid="7984466936615304740">"تعذر حفظ التغييرات التي تم إجراؤها على المجموعة."</string>
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"جهة اتصال واحدة بها رقم هاتف"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> من جهات الاتصال التي تشتمل على أرقام هواتف"</item>
@@ -116,9 +115,9 @@
     <item quantity="one" msgid="3405747744700823280">"جهة اتصال واحدة"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> من جهات الاتصال"</item>
   </plurals>
-    <!-- outdated translation 1889349925514589304 -->     <string name="listTotalAllContactsZero" msgid="5513001821794568211">"لا توجد جهات اتصال"</string>
-    <!-- outdated translation 4058252141420128998 -->     <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"ليس هناك جهات اتصال مرئية"</string>
-    <!-- outdated translation 1289318488170099285 -->     <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"ليست هناك مفضلة"</string>
+    <string name="listTotalAllContactsZero" msgid="5513001821794568211">"ليست هناك جهات اتصال."</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"ليست هناك جهات اتصال مرئية."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"ليست هناك مفضلة."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"ليس هناك جهات اتصال في <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"جهات الاتصال في <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listSingleContact" msgid="6067813698903535563">"جهة اتصال واحدة"</string>
@@ -127,9 +126,8 @@
     <item quantity="one" msgid="5517063038754171134">"تم العثور على جهة اتصال واحدة"</item>
     <item quantity="other" msgid="3852668542926965042">"تم العثور على <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <!-- no translation found for foundTooManyContacts (5163335650920020220) -->
-    <skip />
-    <!-- outdated translation 777952841930508289 -->     <string name="listFoundAllContactsZero" msgid="7132202364587656501">"لم يتم العثور على أيٍّ منها"</string>
+    <string name="foundTooManyContacts" msgid="5163335650920020220">"تم العثور على أكثر من <xliff:g id="COUNT">%d</xliff:g>."</string>
+    <string name="listFoundAllContactsZero" msgid="7132202364587656501">"ليس هناك أية جهات اتصال."</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"تم العثور على جهة اتصال واحدة"</item>
     <item quantity="other" msgid="7988132539476575389">"تم العثور على <xliff:g id="COUNT">%d</xliff:g>"</item>
@@ -148,9 +146,9 @@
     <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"حذف بريد صوتي"</string>
     <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"مشاركة البريد الصوتي"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"سجل المكالمات فارغ."</string>
-    <!-- outdated translation 718072843006222703 -->     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"محو سجل المكالمات"</string>
-    <!-- outdated translation 7625927669136267636 -->     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"هل أنت متأكد من أنك تريد محو سجل المكالمات؟"</string>
-    <!-- outdated translation 6870412675015656948 -->     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"جارٍ محو سجل المكالمات"</string>
+    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"محو سجل المكالمات؟"</string>
+    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"سيتم حذف جميع سجلات المكالمات."</string>
+    <string name="clearCallLogProgress_title" msgid="8365943000154295771">"جارٍ محو سجل المكالمات..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"البريد الصوتي"</string>
@@ -163,14 +161,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"بطاقة SIM وجهات الاتصال"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"ليس لديك أي جهات اتصال لعرضها. (إذا كنت قد أضفت حسابًا توًا، فيمكن أن تستغرق مزامنة جهات الاتصال دقائق معدودة.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"ليس لديك أية جهات اتصال لعرضها."</string>
-    <!-- outdated translation 6450346791169710787 -->     <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"ليس لديك أية جهات اتصال لعرضها."\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة أو تهيئة حساب به جهات الاتصال التي يمكنك مزامنتها إلى الجهاز اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة من البداية"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات الاتصال من بطاقة SIM أو بطاقة SD"\n</li></string>
-    <!-- outdated translation 6450346791169710787 -->     <string name="noContactsHelpText" product="default" msgid="4405064135698982080">"ليس لديك أية جهات اتصال لعرضها."\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة أو تهيئة حساب به جهات الاتصال التي يمكنك مزامنتها إلى الجهاز اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة من البداية"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات الاتصال من بطاقة SIM أو بطاقة SD"\n</li></string>
-    <!-- outdated translation 2364665535969139880 -->     <string name="noContactsHelpTextWithSync" product="tablet" msgid="6773195806404659174">"ليست لديك أية جهات اتصال لعرضها. (إذا أضفت حسابًا لتوك، فيمكن أن تستغرق مزامنة جهات الاتصال بضع دقائق.)"\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة أو تهيئة حساب ما به جهات الاتصال التي يمكنك مزامنتها إلى الجهاز اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"خيارات العرض"</b></font>" لتغيير جهات الاتصال التي يمكن رؤيتها"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة من البداية"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات اتصال من بطاقةSIM أو بطاقة SD"\n</li></string>
-    <!-- outdated translation 2364665535969139880 -->     <string name="noContactsHelpTextWithSync" product="default" msgid="7016825676090327312">"ليست لديك أية جهات اتصال لعرضها. (إذا أضفت حسابًا لتوك، فيمكن أن تستغرق مزامنة جهات الاتصال بضع دقائق.)"\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة أو تهيئة حساب ما به جهات الاتصال التي يمكنك مزامنتها إلى الجهاز اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"خيارات العرض"</b></font>" لتغيير جهات الاتصال التي يمكن رؤيتها"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة من البداية"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات اتصال من بطاقةSIM أو بطاقة SD"\n</li></string>
-    <!-- outdated translation 6031363021287849874 -->     <string name="noContactsNoSimHelpText" product="tablet" msgid="7823757505923033456">"ليس لديك أية جهات اتصال لعرضها."\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة أو تهيئة حساب ما به جهات الاتصال التي يمكنك مزامنتها إلى الجهاز اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة من البداية"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات الاتصال من بطاقة SD"\n</li></string>
-    <!-- outdated translation 6031363021287849874 -->     <string name="noContactsNoSimHelpText" product="default" msgid="6224952277619986841">"ليس لديك أية جهات اتصال لعرضها."\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة أو تهيئة حساب ما به جهات الاتصال التي يمكنك مزامنتها إلى الجهاز اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة من البداية"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات الاتصال من بطاقة SD"\n</li></string>
-    <!-- outdated translation 6222739731808897565 -->     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="5415762667445638265">"ليست لديك أية جهات اتصال لعرضها. (إذا أضفت حسابًا لتوك، فيمكن أن تستغرق مزامنة جهات الاتصال بضع دقائق.)"\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة أو تهيئة حساب ما به جهات الاتصال التي يمكنك مزامنتها إلى الجهاز اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"خيارات العرض"</b></font>" لتغيير جهات الاتصال التي يمكن رؤيتها"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة من البداية"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات اتصال من بطاقة SD"\n</li></string>
-    <!-- outdated translation 6222739731808897565 -->     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="7443705129830284440">"ليست لديك أية جهات اتصال لعرضها. (إذا أضفت حسابًا لتوك، فيمكن أن تستغرق مزامنة جهات الاتصال بضع دقائق.)"\n\n"لإضافة جهات اتصال، اضغط على "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>" والمس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة أو تهيئة حساب ما به جهات الاتصال التي يمكنك مزامنتها إلى الجهاز اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"خيارات العرض"</b></font>" لتغيير جهات الاتصال التي يمكن رؤيتها"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة من البداية"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات اتصال من بطاقة SD"\n</li></string>
+    <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"ليست لديك أية جهات اتصال لعرضها."\n\n"لإضافة جهات اتصال، المس "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>"، ثم المس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو إعداده باستخدام جهات الاتصال التي يمكن مزامنتها مع الجهاز اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات اتصال من بطاقة SIM أو SD"\n</li></string>
+    <string name="noContactsHelpText" product="default" msgid="4405064135698982080">"ليست لديك أية جهات اتصال لعرضها."\n\n"لإضافة جهات اتصال، المس "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>"، ثم المس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو إعداده باستخدام جهات الاتصال التي يمكنك مزامنتها مع الهاتف"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات اتصال من بطاقة SIM أو SD"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="6773195806404659174">"ليست لديك أية جهات اتصال لعرضها. (إذا أضفت حسابًا لتوك، فيمكن أن تستغرق مزامنة جهات الاتصال بضع دقائق)."\n\n"لإضافة جهات اتصال، المس "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>"، ثم المس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو إعداده باستخدام جهات الاتصال التي يمكن مزامنتها مع الجهاز اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"خيارات العرض"</b></font>" لتغيير جهات الاتصال التي يمكن رؤيتها"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات الاتصال من بطاقة SIM أو SD"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="default" msgid="7016825676090327312">"ليست لديك أية جهات اتصال لعرضها. (إذا أضفت حسابًا لتوك، فيمكن أن تستغرق مزامنة جهات الاتصال بضع دقائق)."\n\n"لإضافة جهات اتصال، المس "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>"، ثم المس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو إعداده باستخدام جهات الاتصال التي يمكن مزامنتها مع الهاتف"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"خيارات العرض"</b></font>" لتغيير جهات الاتصال التي يمكن رؤيتها"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات الاتصال من بطاقة SIM أو SD"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="tablet" msgid="7823757505923033456">"ليست لديك أية جهات اتصال لعرضها."\n\n"للإضافة جهات اتصال، المس "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>"، ثم المس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو إعداده باستخدام جهات الاتصال التي يمكن مزامنتها مع الجهاز اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات الاتصال من بطاقة SD"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="default" msgid="6224952277619986841">"ليست لديك أية جهات اتصال لعرضها."\n\n"لإضافة جهات اتصال، المس "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>"، ثم المس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو إعداده باستخدام جهات الاتصال التي يمكن مزامنتها مع الهاتف"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات الاتصال من بطاقة SD"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="5415762667445638265">"ليست لديك أية جهات اتصال لعرضها. (إذا أضفت حسابًا لتوك، فيمكن أن تستغرق مزامنة جهات الاتصال بضع دقائق)."\n\n"لإضافة جهات اتصال، المس "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>"، ثم المس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو إعداده باستخدام جهات الاتصال التي يمكن مزامنتها مع الجهاز اللوحي"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"خيارات العرض"</b></font>" لتغيير جهات الاتصال التي يمكن رؤيتها"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات الاتصال من بطاقة SD"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="7443705129830284440">"ليست لديك أية جهات اتصال لعرضها. (إذا أضفت حسابًا لتوك، فيمكن أن تستغرق مزامنة جهات الاتصال بضع دقائق)."\n\n"لإضافة جهات اتصال، المس "<font fgcolor="#ffffffff"><b>"القائمة"</b></font>"، ثم المس:"\n" "\n<li><font fgcolor="#ffffffff"><b>"الحسابات"</b></font>" لإضافة حساب أو إعداده باستخدام جهات الاتصال التي يمكن مزامنتها مع الهاتف"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"خيارات العرض"</b></font>" لتغيير جهات الاتصال التي يمكن رؤيتها"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"جهة اتصال جديدة"</b></font>" لإنشاء جهة اتصال جديدة تمامًا"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"استيراد/تصدير"</b></font>" لاستيراد جهات الاتصال من بطاقة SD"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"ليس لديك أي عناصر في المفضلة."\n\n"لإضافة جهة اتصال إلى قائمة المفضلة:"\n\n"        "<li>"المس علامة التبويب "<b>"جهات الاتصال"</b>\n</li>" "\n<li>"المس جهة الاتصال التي تريد إضافتها إلى المفضلة"\n</li>" "\n<li>"المس علامة النجمة إلى جانب اسم جهة الاتصال"\n</li></string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"استخدام لوحة مفاتيح نغمات باللمس"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"عودة إلى المكالمة الجارية"</string>
@@ -213,8 +211,8 @@
     <string name="description_view_contact_detail" msgid="9133251213656414807">"عرض جهة الاتصال"</string>
     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"وحدة التخزين غير متوفرة."</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"لا بطاقة SD"</string>
-    <!-- outdated translation 1334170151822669976 -->     <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"لم يتم اكتشاف أية وحدة تخزين."</string>
-    <!-- outdated translation 1334170151822669976 -->     <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"لم يتم اكتشاف أية وحدة تخزين."</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"لم يتم العثور على وحدة تخزين."</string>
+    <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"لم يتم العثور على بطاقة SD."</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"البحث عن vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"استيراد من بطاقة SIM"</string>
     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"استيراد من وحدة التخزين"</string>
@@ -223,76 +221,62 @@
     <string name="import_one_vcard_string" msgid="9059163467020328433">"استيراد ملف vCard واحد"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"استيراد ملفات vCard متعددة"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"استيراد جميع ملفات vCard"</string>
-    <!-- outdated translation 996170203695743981 -->     <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"جارٍ البحث عن بيانات vCard في وحدة التخزين."</string>
-    <!-- outdated translation 996170203695743981 -->     <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"جارٍ البحث عن بيانات vCard في وحدة التخزين."</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"جارٍ البحث عن بيانات vCard في وحدة التخزين..."</string>
+    <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"جارٍ البحث عن بيانات vCard على بطاقة SD..."</string>
     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"تعذر فحص وحدة التخزين"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"تعذر فحص بطاقة SD"</string>
-    <!-- no translation found for scanning_sdcard_failed_message (7221682312959229201) -->
-    <skip />
-    <!-- no translation found for scanning_sdcard_failed_message (189023067829510792) -->
-    <skip />
-    <!-- outdated translation 5922864781066136340 -->     <string name="fail_reason_io_error" msgid="6748358842976073255">"خطأ I/O"</string>
-    <!-- outdated translation 7514918659342886381 -->     <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"الذاكرة لا تكفي (ربما يكون الملف كبير جدًا)"</string>
-    <!-- outdated translation 4492947335972369711 -->     <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"تعذر تحليل vCard بسبب غير متوقع"</string>
-    <!-- outdated translation 294499264620201243 -->     <string name="fail_reason_not_supported" msgid="8219562769267148825">"التنسيق غير معتمد."</string>
-    <!-- outdated translation 8856125211629574066 -->     <string name="vcard_import_failed" msgid="5223531255894842406">"تعذر استيراد vCard"</string>
-    <!-- outdated translation 6339234836196984924 -->     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2071820850017305867">"لم يتم العثور على أي ملف vCard في وحدة التخزين."</string>
-    <!-- outdated translation 6339234836196984924 -->     <string name="import_failure_no_vcard_file" product="default" msgid="1754014167874286173">"لم يتم العثور على أي ملف vCard في وحدة التخزين."</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"تعذر فحص وحدة التخزين. (السبب: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"تعذر فحص بطاقة SD. (السبب: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="fail_reason_io_error" msgid="6748358842976073255">"خطأ I/O"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"الذاكرة غير كافية. ربما يكون الملف أكبر مما يجب."</string>
+    <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"تعذر تحليل vCard بسبب غير متوقع."</string>
+    <string name="fail_reason_not_supported" msgid="8219562769267148825">"التنسيق غير معتمد."</string>
+    <string name="vcard_import_failed" msgid="5223531255894842406">"تعذر استيراد vCard."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2071820850017305867">"لم يتم العثور على أي ملف vCard في وحدة التخزين."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1754014167874286173">"لم يتم العثور على ملف vCard على بطاقة SD."</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"تعذر جمع معلومات وصفية حول ملفات vCard المحددة."</string>
     <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"تعذر استيراد ملف أو أكثر (%s)."</string>
-    <!-- outdated translation 999034019513096768 -->     <string name="fail_reason_unknown" msgid="1714092345030570863">"خطأ غير معروف"</string>
-    <!-- outdated translation 3968948173786172468 -->     <string name="select_vcard_title" msgid="7791371083694672861">"تحديد ملف vCard"</string>
-    <!-- outdated translation 5009556022082659780 -->     <string name="caching_vcard_title" msgid="1226272312940516605">"تخزين ملفات vCard مؤقتًا إلى وحدة التخزين المؤقتة المحلية"</string>
-    <!-- outdated translation 2380844718093378900 -->     <string name="caching_vcard_message" msgid="4926308675041506756">"تخزن حاليًا برامج الاستيراد ملفات vCard مؤقتًا إلى وحدة تخزين مؤقتة محلية. سيبدأ الاستيراد الفعلي قريبًا."</string>
+    <string name="fail_reason_unknown" msgid="1714092345030570863">"خطأ غير معروف."</string>
+    <string name="select_vcard_title" msgid="7791371083694672861">"اختيار ملف vCard"</string>
+    <string name="caching_vcard_title" msgid="1226272312940516605">"تخزين مؤقت"</string>
+    <string name="caching_vcard_message" msgid="4926308675041506756">"يجري تخزين ملفات vCard مؤقتًا على وحدة تخزين مؤقتة محلية. سيبدأ الاستيراد الفعلي قريبًا."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"استيراد <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"جارٍ استيراد <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"تتعذر قراءة بيانات vCard."</string>
-    <!-- outdated translation 1770608329958463131 -->     <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"تم إلغاء قراءة بيانات vCard"</string>
+    <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"تم إلغاء قراءة بيانات vCard"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"تم الانتهاء من استيراد ملف vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
-    <!-- no translation found for importing_vcard_canceled_title (2147475978165599336) -->
-    <skip />
+    <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"تم إلغاء استيراد <xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"سيتم استيراد <xliff:g id="FILENAME">%s</xliff:g> بعد قليل."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"سيتم استيراد الملف قريبًا."</string>
-    <!-- outdated translation 2592424820635325951 -->     <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"تم رفض طلب استيراد vCard. الرجاء المحاولة لاحقًا."</string>
+    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"تم رفض طلب استيراد vCard. أعد المحاولة لاحقًا."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"سيتم تصدير <xliff:g id="FILENAME">%s</xliff:g> بعد قليل."</string>
-    <!-- outdated translation 8259494002258326330 -->     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"تم رفض طلب تصدير vCard. الرجاء المحاولة لاحقًا."</string>
+    <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"تم رفض طلب تصدير vCard. أعد المحاولة لاحقًا."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"جهة اتصال"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
-    <!-- outdated translation 7648747763127442983 -->     <string name="confirm_export_title" msgid="6834385377255286349">"تأكيد التصدير"</string>
-    <!-- no translation found for confirm_export_message (2423421354816428708) -->
-    <skip />
-    <!-- outdated translation 2339788270863991417 -->     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"تعذر تصدير بيانات جهة الاتصال"</string>
-    <!-- no translation found for exporting_contact_failed_message (4938527850142003141) -->
-    <skip />
-    <!-- outdated translation 4919714086648344495 -->     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"ليس هناك جهة اتصال قابلة للتصدير"</string>
-    <!-- outdated translation 3745507837635270265 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="590645599157376285">"هناك عدد أكبر مما يجب من ملفات vCard في وحدة التخزين."</string>
-    <!-- outdated translation 3745507837635270265 -->     <string name="fail_reason_too_many_vcard" product="default" msgid="4887177369627277474">"هناك عدد أكبر مما يجب من ملفات vCard في وحدة التخزين."</string>
-    <!-- no translation found for fail_reason_too_long_filename (3393764245254738333) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_finished_title (4767045779458185251) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_canceled_title (2652222370493306887) -->
-    <skip />
+    <string name="confirm_export_title" msgid="6834385377255286349">"تصدير جهات الاتصال؟"</string>
+    <string name="confirm_export_message" msgid="2423421354816428708">"سيتم تصدير قائمة جهات الاتصال إلى الملف: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
+    <string name="exporting_contact_failed_title" msgid="4892358112409576342">"تعذر التصدير"</string>
+    <string name="exporting_contact_failed_message" msgid="4938527850142003141">"لم يتم تصدير بيانات جهة الاتصال."\n"السبب: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"ليست هناك جهة اتصال قابلة للتصدير."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="590645599157376285">"هناك عدد أكبر مما يجب من ملفات vCard في وحدة التخزين."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="4887177369627277474">"هناك ملفات vCard أكثر مما يجب على بطاقة SD."</string>
+    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"اسم الملف المطلوب أطول مما يجب (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
+    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"تم الانتهاء من تصدير <xliff:g id="FILENAME">%s</xliff:g>."</string>
+    <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"تم إلغاء تصدير <xliff:g id="FILENAME">%s</xliff:g>."</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"تصدير بيانات جهة الاتصال"</string>
-    <!-- no translation found for exporting_contact_list_message (7181663157672374569) -->
-    <skip />
-    <!-- no translation found for fail_reason_could_not_initialize_exporter (707260459259688510) -->
-    <skip />
-    <!-- no translation found for fail_reason_error_occurred_during_export (3018855323913649063) -->
-    <skip />
-    <!-- outdated translation 6891165255897853705 -->     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"تعذر الحصول على معلومات قاعدة البيانات"</string>
-    <!-- outdated translation 5161491059051198932 -->     <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"ليس هناك جهات اتصال قابلة للتصدير. إذا كان لديك فعلاً جهات اتصال على الجهاز اللوحي، فقد يحظر بعض موفري البيانات تصدير جميع جهات الاتصال خارج الجهاز اللوحي."</string>
-    <!-- outdated translation 5161491059051198932 -->     <string name="composer_has_no_exportable_contact" product="default" msgid="3296493229040294335">"ليس هناك جهات اتصال قابلة للتصدير. إذا كان لديك فعلاً جهات اتصال على الجهاز اللوحي، فقد يحظر بعض موفري البيانات تصدير جميع جهات الاتصال خارج الجهاز اللوحي."</string>
-    <!-- outdated translation 8041534450748388843 -->     <string name="composer_not_initialized" msgid="2321648986367005254">"لم تتم تهيئة مؤلف vCard بشكل صحيح"</string>
-    <!-- no translation found for fail_reason_could_not_open_file (2067725459821997463) -->
-    <skip />
+    <string name="exporting_contact_list_message" msgid="7181663157672374569">"يجري تصدير بيانات جهات الاتصال إلى: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"تعذر بدء المُصدر: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"حدث خطأ أثناء التصدير: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"تعذر الحصول على معلومات قاعدة البيانات."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"ليست هناك أية جهات اتصال قابلة للتصدير. إذا كانت لديك جهات اتصال على الجهاز اللوحي، فإن بعض موفري البيانات  لا يسمحون بتصدير جهات الاتصال من الجهاز اللوحي."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="3296493229040294335">"ليست هناك أية جهات اتصال قابلة للتصدير. إذا كانت لديك جهات اتصال على هاتفك، فإن بعض موفري البيانات لا يسمحون بتصدير جهات الاتصال من الهاتف."</string>
+    <string name="composer_not_initialized" msgid="2321648986367005254">"لم يبدأ مؤلف vCard بشكل صحيح."</string>
+    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"تعذر فتح \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> من <xliff:g id="TOTAL_NUMBER">%s</xliff:g> من جهات الاتصال"</string>
     <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"إلغاء استيراد ملف vCard"</string>
-    <!-- no translation found for cancel_import_confirmation_message (3929951040347726757) -->
-    <skip />
+    <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"هل تريد إلغاء استيراد <xliff:g id="FILENAME">%s</xliff:g>؟"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"إلغاء تصدير ملف vCard"</string>
-    <!-- no translation found for cancel_export_confirmation_message (1995462401949262638) -->
-    <skip />
+    <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"هل تريد إلغاء تصدير <xliff:g id="FILENAME">%s</xliff:g>؟"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"تعذر إلغاء استيراد/تصدير vCard"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"أسماء جهات الاتصال"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"إضافة فترة إيقاف مؤقت مدتها ثانيتان"</string>
@@ -301,16 +285,16 @@
     <string name="call_settings" msgid="7666474782093693667">"الإعدادات"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"إرسال رسالة نصية قصيرة باستخدام"</string>
     <string name="make_primary" msgid="5829291915305113983">"تذكر هذا الاختيار"</string>
-    <!-- outdated translation 4600366393134289038 -->     <string name="quickcontact_missing_app" msgid="358168575340921552">"لم يتم العثور على تطبيق يمكنه مباشرة هذا الإجراء."</string>
-    <!-- outdated translation 7930716592850443705 -->     <string name="missing_name" msgid="8745511583852904385">"(بدون اسم)"</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"لم يتم العثور على تطبيق يمكنه مباشرة هذا الإجراء."</string>
+    <string name="missing_name" msgid="8745511583852904385">"(بلا اسم)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"الحسابات"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"جهات الاتصال التي يتم عرضها"</string>
-    <!-- outdated translation 3765725645491577190 -->     <string name="menu_import_export" msgid="26217871113229507">"استيراد/تصدير"</string>
-    <!-- outdated translation 4771877268244096596 -->     <string name="dialog_import_export" msgid="4360648034889921624">"استيراد/تصدير جهات الاتصال"</string>
+    <string name="menu_import_export" msgid="26217871113229507">"استيراد/تصدير"</string>
+    <string name="dialog_import_export" msgid="4360648034889921624">"استيراد/تصدير جهات اتصال"</string>
     <string name="menu_share" msgid="943789700636542260">"مشاركة"</string>
     <string name="menu_all_contacts" msgid="5101735431586050711">"جميع جهات الاتصال"</string>
     <string name="share_via" msgid="563121028023030093">"مشاركة جهة الاتصال عبر"</string>
-    <!-- outdated translation 4374508848981697170 -->     <string name="share_error" msgid="948429331673358107">"لا يمكن مشاركة جهة الاتصال هذه."</string>
+    <string name="share_error" msgid="948429331673358107">"لا يمكن مشاركة جهة الاتصال هذه."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"الاسم"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"اللقب"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"المؤسسة"</string>
@@ -323,10 +307,9 @@
     <string name="menu_sync_remove" msgid="3266725887008450161">"إزالة مجموعة متزامنة"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"إضافة مجموعة متزامنة"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"مزيد من المجموعات..."</string>
-    <!-- outdated translation 4602580795576261158 -->     <string name="display_ungrouped" msgid="6885954210243119591">"جميع جهات الاتصال الأخرى"</string>
-    <!-- outdated translation 6846131371214707956 -->     <string name="display_all_contacts" msgid="2031647544742889505">"جميع جهات الاتصال"</string>
-    <!-- no translation found for display_warn_remove_ungrouped (8872290721676651414) -->
-    <skip />
+    <string name="display_ungrouped" msgid="6885954210243119591">"جميع جهات الاتصال الأخرى"</string>
+    <string name="display_all_contacts" msgid="2031647544742889505">"جميع جهات الاتصال"</string>
+    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"ستؤدي إزالة \"<xliff:g id="GROUP">%s</xliff:g>\" من المزامنة أيضًا إلى إزالة أية جهات اتصال غير مجمعة من المزامنة."</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"الجهاز اللوحي فقط، غير متزامنة"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"الهاتف فقط، غير متزامنة"</string>
     <string name="call_custom" msgid="7756571794763171802">"الاتصال بـ <xliff:g id="CUSTOM">%s</xliff:g>"</string>
@@ -391,7 +374,7 @@
     <string name="chat_icq" msgid="8438405386153745775">"الدردشة باستخدام ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"الدردشة باستخدام Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"دردشة"</string>
-    <!-- outdated translation 4743276658947547047 -->     <string name="audio_chat" msgid="2535716629358298691">"دردشة صوتية"</string>
+    <string name="audio_chat" msgid="2535716629358298691">"دردشة صوتية"</string>
     <string name="video_chat" msgid="1872255818640336072">"دردشة مرئية"</string>
     <string name="postal_address" msgid="8765560217149624536">"العنوان"</string>
     <string name="postal_street" msgid="8133143961580058972">"الشارع"</string>
@@ -413,17 +396,15 @@
     <string name="name_phonetic" msgid="4259595234312430484">"الاسم"</string>
     <string name="connections" msgid="8098440723172028350">"الاتصالات"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"إضافة اتصال"</string>
-    <!-- no translation found for recent (2659189233141493004) -->
-    <!-- no translation found for recent (2062236709538790412) -->
-    <skip />
-    <!-- outdated translation 2062236709538790412 -->     <string name="recent_updates" msgid="4267258535615860710">"حديثة"</string>
+    <string name="recent" msgid="2659189233141493004">"الأحدث"</string>
+    <string name="recent_updates" msgid="4267258535615860710">"التحديثات الأخيرة"</string>
     <string name="account_type_format" msgid="718948015590343010">"جهة اتصال <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"استخدام هذه الصورة"</string>
-    <!-- outdated translation 1856479476063888348 -->     <string name="contact_read_only" msgid="7421346527289472273">"غير قابل للتعديل من هذا التطبيق"</string>
-    <!-- outdated translation 6754415338321837001 -->     <string name="no_contact_details" msgid="6636856378019344497">"ليس هناك معلومات إضافية لجهة الاتصال هذه"</string>
-    <!-- outdated translation 7924922658394449477 -->     <string name="group_read_only" msgid="1061762906115697637">"غير قابلة للتعديل على هذا الجهاز"</string>
+    <string name="contact_read_only" msgid="7421346527289472273">"غير قابلة للتعديل من هذا التطبيق."</string>
+    <string name="no_contact_details" msgid="6636856378019344497">"ليس هناك أية معلومات إضافية لجهة الاتصال هذه."</string>
+    <string name="group_read_only" msgid="1061762906115697637">"غير قابلة للتعديل على هذا الجهاز."</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"تصنيف القائمة بحسب"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"الاسم الممنوح"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"اسم العائلة"</string>
@@ -433,15 +414,14 @@
     <string name="search_bar_hint" msgid="1012756309632856553">"البحث في جهات الاتصال"</string>
     <string name="take_photo" msgid="7496128293167402354">"التقاط صورة"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"التقاط صورة جديدة"</string>
-    <!-- outdated translation 448886509158039462 -->     <string name="pick_photo" msgid="3746334626214970837">"تحديد صورة من المعرض"</string>
+    <string name="pick_photo" msgid="3746334626214970837">"اختيار صورة من المعرض"</string>
     <string name="pick_new_photo" msgid="7962368009197147617">"تحديد صورة جديدة من المعرض"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"يجري تحديث قائمة جهات الاتصال لتعكس التغير في اللغة."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"يجري تحديث قائمة جهات الاتصال."</string>
-    <!-- no translation found for upgrade_out_of_memory (1209994418877625940) -->
-    <skip />
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"جهات الاتصال قيد الترقية."\n\n"تتطلب عملية الترقية مساحة تبلغ حوالي <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> ميغابايت من سعة التخزين الداخلية."\n\n"اختر أحد الخيارات التالية:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"إزالة بعض التطبيقات"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"إعادة محاولة الترقية"</string>
-    <!-- outdated translation 7755623475227227314 -->     <string name="search_results_searching" msgid="3984833028938569930">"جارِ البحث..."</string>
+    <string name="search_results_searching" msgid="3984833028938569930">"جارٍ البحث..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"عرض العناصر المحددة"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"عرض الكل"</string>
     <string name="menu_select_all" msgid="621719255150713545">"تحديد الكل"</string>
@@ -465,20 +445,20 @@
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"هل تريد ضم جهة الاتصال الحالية إلى جهة الاتصال المحددة؟"</string>
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"تعديل جهات الاتصال المحددة"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"هل تريد التبديل إلى تعديل جهة الاتصال المحددة؟ سيتم نسخ المعلومات التي أدخلتها حتى الآن."</string>
-    <!-- outdated translation 4401683725471696686 -->     <string name="menu_copyContact" msgid="1573960845106822639">"نسخ إلى جهات الاتصال الخاصة بي"</string>
+    <string name="menu_copyContact" msgid="1573960845106822639">"نسخ إلى جهات الاتصال الخاصة بي"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"إضافة إلى \"جهات الاتصال الخاصة بي\""</string>
     <string name="contact_directory_description" msgid="683398073603909119">"الدليل <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"الدليل"</string>
     <string name="local_search_label" msgid="2551177578246113614">"جميع جهات الاتصال"</string>
-    <!-- outdated translation 7905283986345263275 -->     <string name="toast_making_personal_copy" msgid="288549957278065542">"جارٍ إنشاء نسخة شخصية"</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"جارٍ إنشاء نسخة شخصية..."</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"جميع جهات الاتصال"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"مميّزة بنجمة"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"مخصص"</string>
-    <!-- outdated translation 2035084418635775579 -->     <string name="list_filter_customize" msgid="4789963356004169321">"تخصيص..."</string>
+    <string name="list_filter_customize" msgid="4789963356004169321">"تخصيص"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"جميع جهات الاتصال التي لها أرقام هواتف"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"جهة الاتصال"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"تحديد عرض مخصص"</string>
-    <!-- outdated translation 3859280390185230582 -->     <string name="contact_list_loading" msgid="5488620820563977329">"جارٍ التحميل..."</string>
+    <string name="contact_list_loading" msgid="5488620820563977329">"جارٍ التحميل..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"الإعدادات"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"جهات الاتصال التي يتم عرضها"</string>
     <string name="menu_settings" msgid="377929915873428211">"الإعدادات"</string>
@@ -492,7 +472,7 @@
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"عرض السنة"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"جهة الاتصال"</string>
-    <!-- outdated translation 3697996166985327861 -->     <string name="social_widget_loading" msgid="5327336597364074608">"جارٍ التحميل…"</string>
+    <string name="social_widget_loading" msgid="5327336597364074608">"جارٍ التحميل…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"إنشاء جهة اتصال جديدة"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"تسجيل الدخول إلى حساب"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"استيراد جهات الاتصال من ملف"</string>
@@ -503,8 +483,7 @@
     <item quantity="one" msgid="2944819210288517794">"مجموعة واحدة"</item>
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> من المجموعات"</item>
   </plurals>
-    <!-- no translation found for delete_group_dialog_message (7586856514337560529) -->
-    <skip />
+    <string name="delete_group_dialog_message" msgid="7586856514337560529">"هل تريد حذف المجموعة \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"؟ (لن يتم حذف جهات الاتصال ذاتها)."</string>
   <plurals name="num_contacts_in_group">
     <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> من الأشخاص من <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
     <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> من الأشخاص من <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
@@ -513,13 +492,13 @@
     <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> من الأشخاص"</item>
     <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> من الأشخاص"</item>
   </plurals>
-    <!-- outdated translation 5015189525953438968 -->     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"الرجاء إدخال اسم جهة الاتصال قبل الانضمام إلى جهة اتصال أخرى."</string>
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"اكتب اسم جهة الاتصال قبل الانضمام إلى جهة اتصال أخرى."</string>
     <string name="copy_text" msgid="3257145021583508761">"نسخ إلى الحافظة"</string>
     <string name="set_default" msgid="4417505153468300351">"تعيين كافتراضي"</string>
     <string name="clear_default" msgid="7193185801596678067">"محو الإعدادات الافتراضية"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"تم نسخ النص"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"إلغاء التغييرات"</string>
-    <!-- outdated translation 7021968394611740251 -->     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"هل تريد إلغاء تغييراتك؟"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"هل تريد تجاهل التغييرات؟"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"إعداد الملف الشخصي"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"اكتب اسم الشخص"</string>
@@ -536,19 +515,19 @@
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"تعذر جلب البريد الصوتي."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"جديد"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"أقدم"</string>
-    <!-- outdated translation 3164200979671881947 -->     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"لا يمكن الاتصال بخادم البريد الصوتي."</string>
-    <!-- outdated translation 2970301042310727909 -->     <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"لا يمكن الاتصال بخادم البريد الصوتي. بريد صوتي جديد في انتظارك."</string>
-    <!-- outdated translation 3940240432123700974 -->     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"ابدأ في تهيئة بريدك الصوتي."</string>
+    <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"لا يمكن الاتصال بخادم البريد الصوتي."</string>
+    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"لا يمكن الاتصال بخادم البريد الصوتي. بريد صوتي جديد في انتظارك."</string>
+    <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"إعداد البريد الصوتي."</string>
     <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"الصوت غير متوفر."</string>
-    <!-- outdated translation 7008713959076506385 -->     <string name="voicemail_status_action_configure" msgid="8671796489912239589">"تهيئة"</string>
+    <string name="voicemail_status_action_configure" msgid="8671796489912239589">"إعداد"</string>
     <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"اتصال ببريد صوتي..."</string>
-    <!-- outdated translation 6047030504814773029 -->     <string name="voicemail_speed_slowest" msgid="1733460666177707312">"أبطأ سرعة"</string>
-    <!-- outdated translation 7890393922358642543 -->     <string name="voicemail_speed_slower" msgid="1508601287347216244">"سرعة بطيئة"</string>
-    <!-- outdated translation 6030110237820243006 -->     <string name="voicemail_speed_normal" msgid="9033988544627228892">"سرعة عادية"</string>
-    <!-- outdated translation 4161478290979905481 -->     <string name="voicemail_speed_faster" msgid="2019965121475935488">"سرعة عالية"</string>
-    <!-- outdated translation 3373646875150544205 -->     <string name="voicemail_speed_fastest" msgid="5758712343491183292">"أعلى سرعة"</string>
+    <string name="voicemail_speed_slowest" msgid="1733460666177707312">"أبطأ سرعة"</string>
+    <string name="voicemail_speed_slower" msgid="1508601287347216244">"سرعة بطيئة"</string>
+    <string name="voicemail_speed_normal" msgid="9033988544627228892">"سرعة عادية"</string>
+    <string name="voicemail_speed_faster" msgid="2019965121475935488">"سرعة عالية"</string>
+    <string name="voicemail_speed_fastest" msgid="5758712343491183292">"أعلى سرعة"</string>
     <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
-    <!-- outdated translation 2659811836386413509 -->     <string name="group_name_hint" msgid="238359485263401293">"اسم المجموعة"</string>
+    <string name="group_name_hint" msgid="238359485263401293">"اسم المجموعة"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"استلام ج اتص.NFC"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"إظهار رسائل البريد الصوتي فقط"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"عرض جميع المكالمات"</string>
@@ -584,5 +563,5 @@
     <string name="add_new_account" msgid="5748627740680940264">"إضافة حساب جديد"</string>
     <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"لم يتم إرسال المكالمة"</string>
     <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"رقم البريد الصوتي غير متاح"</string>
-    <!-- outdated translation 4511141315685755189 -->     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"لتهيئة البريد الصوتي، انتقل إلى القائمة &gt; الإعدادات."</string>
+    <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"لإعداد البريد الصوتي، انتقل إلى القائمة &gt; الإعدادات."</string>
 </resources>

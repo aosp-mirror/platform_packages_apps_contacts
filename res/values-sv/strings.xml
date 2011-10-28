@@ -25,7 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Välj genväg till kontakten"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Välj ett nummer som du vill ringa"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Välj ett nummer för meddelandet"</string>
-    <!-- outdated translation 6886592363525235031 -->     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Markera en kontakt"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Välj en kontakt"</string>
     <string name="starredList" msgid="4817256136413959463">"Stjärnmärkta"</string>
     <string name="frequentList" msgid="7154768136473953056">"Ofta"</string>
     <string name="strequentList" msgid="5640192862059373511">"Favoriter"</string>
@@ -53,20 +53,19 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Ta bort"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Ny"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Ny"</string>
-    <!-- outdated translation 2209511048593467012 -->     <string name="splitConfirmation_title" msgid="633640935430370530">"Dela upp kontakt"</string>
-    <!-- outdated translation 1067993957986345974 -->     <string name="splitConfirmation" msgid="740190210499587175">"Vill du dela upp den här kontakten i flera olika kontakter?"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Dela upp kontakten?"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Kontakten kommer att delas upp i flera kontakter."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Slå ihop"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Kombinera kontakter"</string>
-    <!-- no translation found for blurbJoinContactDataWith (8736488417422708236) -->
-    <skip />
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Välj en kontakt som du vill slå ihop med <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Visa alla kontakter"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Föreslagna kontakter"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alla kontakter"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Deltagande kontakter"</string>
-    <!-- outdated translation 6394309508930335204 -->     <string name="deleteConfirmation_title" msgid="1418215926447642260">"Ta bort"</string>
+    <string name="deleteConfirmation_title" msgid="1418215926447642260">"Ta bort kontakt?"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Ställ in ringsignal"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Alla samtal till röstbrevlådan"</string>
-    <!-- outdated translation 1390849295342594265 -->     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Det går inte att ta bort kontakter från skrivskyddade konton, men du kan dölja dem i kontaktlistan."</string>
+    <string name="readOnlyContactWarning" msgid="7808825687289848259">"Du kan inte ta bort kontakter från skrivskyddade konton, men du kan dölja dem i kontaktlistorna."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Den här kontakten har information från flera konton. Information från skrivskyddade konton döljs i kontaktlistan, men tas inte bort."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Om du tar bort den här kontakten tar du bort information från flera konton."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Kontakten kommer att tas bort."</string>
@@ -77,9 +76,9 @@
     <string name="label_sip_address" msgid="124073911714324974">"Internetsamtal"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Företag"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Titel"</string>
-    <!-- outdated translation 5816991830260044593 -->     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontakten finns inte."</string>
-    <!-- no translation found for pickerNewContactText (6166997164401048211) -->
-    <skip />
+    <string name="invalidContactMessage" msgid="8215051456181842274">"Kontakten finns inte."</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Skapa ny kontakt"</string>
+    <string name="pickerNewContactText" msgid="6166997164401048211">"Skapa ny kontakt"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefon"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"E-post"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"Chatt"</string>
@@ -96,7 +95,7 @@
     <string name="removePhoto" msgid="4898105274130284565">"Ta bort foto"</string>
     <string name="noContacts" msgid="8579310973261953559">"Inga kontakter."</string>
     <string name="noGroups" msgid="8614664663561385253">"Inga grupper."</string>
-    <!-- outdated translation 4742609114153797268 -->     <string name="noAccounts" msgid="7768267764545265909">"Om du vill skapa grupper måste du ha ett konto"</string>
+    <string name="noAccounts" msgid="7768267764545265909">"Om du vill skapa grupper måste du ha ett konto."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Inga matchande kontakter hittades."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Inga kontakter med telefonnummer."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Inga personer i denna grupp."</string>
@@ -104,9 +103,9 @@
     <string name="savingContact" msgid="4075751076741924939">"Sparar kontakt..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Sparar visningsalternativ ..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt sparad."</string>
-    <!-- outdated translation 9189098776225004666 -->     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Fel: det går inte att spara kontakter."</string>
+    <string name="contactSavedErrorToast" msgid="3207250533172944892">"Det gick inte att spara ändringarna i kontakten."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Gruppen sparades."</string>
-    <!-- outdated translation 6434135707953150875 -->     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Fel: det gick inte att spara ändringen av gruppen."</string>
+    <string name="groupSavedErrorToast" msgid="7984466936615304740">"Det gick inte att spara ändringarna i gruppen."</string>
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"en kontakt med telefonnummer"</item>
     <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> kontakter med telefonnummer"</item>
@@ -116,9 +115,9 @@
     <item quantity="one" msgid="3405747744700823280">"1 kontakt"</item>
     <item quantity="other" msgid="3578469907265375314">"<xliff:g id="COUNT">%d</xliff:g> kontakter"</item>
   </plurals>
-    <!-- outdated translation 1889349925514589304 -->     <string name="listTotalAllContactsZero" msgid="5513001821794568211">"Inga kontakter"</string>
-    <!-- outdated translation 4058252141420128998 -->     <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"Det finns inga synliga kontakter"</string>
-    <!-- outdated translation 1289318488170099285 -->     <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"Inga favoriter"</string>
+    <string name="listTotalAllContactsZero" msgid="5513001821794568211">"Inga kontakter."</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"Det finns inga synliga kontakter."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"Inga favoriter."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Inga kontakter i <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Kontakter i <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listSingleContact" msgid="6067813698903535563">"En kontakt"</string>
@@ -127,9 +126,8 @@
     <item quantity="one" msgid="5517063038754171134">"1 hittades"</item>
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> hittades"</item>
   </plurals>
-    <!-- no translation found for foundTooManyContacts (5163335650920020220) -->
-    <skip />
-    <!-- outdated translation 777952841930508289 -->     <string name="listFoundAllContactsZero" msgid="7132202364587656501">"Hittades inte"</string>
+    <string name="foundTooManyContacts" msgid="5163335650920020220">"Mer än <xliff:g id="COUNT">%d</xliff:g> hittades."</string>
+    <string name="listFoundAllContactsZero" msgid="7132202364587656501">"Inga kontakter hittades."</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"1 hittades"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> hittades"</item>
@@ -148,9 +146,9 @@
     <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Ta bort röstmeddelande"</string>
     <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Dela röstmeddelande"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Samtalshistoriken är tom."</string>
-    <!-- outdated translation 718072843006222703 -->     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Rensa samtalshistorik"</string>
-    <!-- outdated translation 7625927669136267636 -->     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Vill du rensa samtalshistoriken?"</string>
-    <!-- outdated translation 6870412675015656948 -->     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Rensar samtalshistorik"</string>
+    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Rensa samtalslista?"</string>
+    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Alla samtalslistor kommer att tas bort."</string>
+    <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Samtalshistoriken rensas …"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI-kod"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Röstbrevlåda"</string>
@@ -163,14 +161,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"Kontakter från SIM-kort"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Du har inga kontakter att visa. (Om du nyss lade till ett konto kan det ta några minuter innan kontakterna synkroniserats.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Du har inga kontakter att visa."</string>
-    <!-- outdated translation 6450346791169710787 -->     <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"Det finns inga kontakter att visa."\n\n"Om du vill lägga till kontakter trycker du på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" och sedan på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konton"</b></font>" om du vill lägga till eller konfigurera ett konto med kontakter som kan synkroniseras till pekdatorn"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" om du vill skapa en ny kontakt från grunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importera/exportera"</b></font>" om du vill importera kontakter från SIM- eller SD-kortet"\n</li></string>
-    <!-- outdated translation 6450346791169710787 -->     <string name="noContactsHelpText" product="default" msgid="4405064135698982080">"Det finns inga kontakter att visa."\n\n"Om du vill lägga till kontakter trycker du på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" och sedan på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konton"</b></font>" om du vill lägga till eller konfigurera ett konto med kontakter som kan synkroniseras till pekdatorn"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" om du vill skapa en ny kontakt från grunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importera/exportera"</b></font>" om du vill importera kontakter från SIM- eller SD-kortet"\n</li></string>
-    <!-- outdated translation 2364665535969139880 -->     <string name="noContactsHelpTextWithSync" product="tablet" msgid="6773195806404659174">"Det finns inga kontakter att visa (om du nyss har lagt till ett konto kan det ta några minuter att synkronisera kontakter)."\n\n"Om du vill lägga till kontakter trycker du på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" och sedan på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konton"</b></font>" om du vill lägga till eller konfigurera ett konto med kontakter som kan synkroniseras till pekdatorn"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativ"</b></font>" om du vill ändra vilka kontakter som är synliga"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" om du vill skapa en ny kontakt från grunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importera/exportera"</b></font>" om du vill importera kontakter från SIM-kortet eller SD-kortet"\n</li></string>
-    <!-- outdated translation 2364665535969139880 -->     <string name="noContactsHelpTextWithSync" product="default" msgid="7016825676090327312">"Det finns inga kontakter att visa (om du nyss har lagt till ett konto kan det ta några minuter att synkronisera kontakter)."\n\n"Om du vill lägga till kontakter trycker du på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" och sedan på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konton"</b></font>" om du vill lägga till eller konfigurera ett konto med kontakter som kan synkroniseras till pekdatorn"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativ"</b></font>" om du vill ändra vilka kontakter som är synliga"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" om du vill skapa en ny kontakt från grunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importera/exportera"</b></font>" om du vill importera kontakter från SIM-kortet eller SD-kortet"\n</li></string>
-    <!-- outdated translation 6031363021287849874 -->     <string name="noContactsNoSimHelpText" product="tablet" msgid="7823757505923033456">"Det finns inga kontakter att visa."\n\n"Om du vill lägga till kontakter trycker du på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" och sedan på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konton"</b></font>" om du vill lägga till eller konfigurera ett konto med kontakter som kan synkroniseras till pekdatorn"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" om du vill skapa en ny kontakt från grunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importera/exportera"</b></font>" om du vill importera kontakter från SD-kortet"\n</li></string>
-    <!-- outdated translation 6031363021287849874 -->     <string name="noContactsNoSimHelpText" product="default" msgid="6224952277619986841">"Det finns inga kontakter att visa."\n\n"Om du vill lägga till kontakter trycker du på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" och sedan på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konton"</b></font>" om du vill lägga till eller konfigurera ett konto med kontakter som kan synkroniseras till pekdatorn"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" om du vill skapa en ny kontakt från grunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importera/exportera"</b></font>" om du vill importera kontakter från SD-kortet"\n</li></string>
-    <!-- outdated translation 6222739731808897565 -->     <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="5415762667445638265">"Det finns inga kontakter att visa (om du nyss har lagt till ett konto kan det ta några minuter att synkronisera kontakter)."\n\n"Om du vill lägga till kontakter trycker du på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" och sedan på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konton"</b></font>" om du vill lägga till eller konfigurera ett konto med kontakter som kan synkroniseras till pekdatorn"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativ"</b></font>" om du vill ändra vilka kontakter som är synliga"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" om du vill skapa en ny kontakt från grunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importera/exportera"</b></font>" om du vill importera kontakter från SD-kortet"\n</li></string>
-    <!-- outdated translation 6222739731808897565 -->     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="7443705129830284440">"Det finns inga kontakter att visa (om du nyss har lagt till ett konto kan det ta några minuter att synkronisera kontakter)."\n\n"Om du vill lägga till kontakter trycker du på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" och sedan på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konton"</b></font>" om du vill lägga till eller konfigurera ett konto med kontakter som kan synkroniseras till pekdatorn"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativ"</b></font>" om du vill ändra vilka kontakter som är synliga"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" om du vill skapa en ny kontakt från grunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importera/exportera"</b></font>" om du vill importera kontakter från SD-kortet"\n</li></string>
+    <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"Det finns inga kontakter att visa."\n\n"Om du vill lägga till kontakter trycker du på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" och sedan på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konton"</b></font>" om du vill lägga till eller konfigurera ett konto med kontakter som du kan synkronisera med pekdatorn"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" om du vill skapa en ny kontakt från grunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importera/exportera"</b></font>" om du vill importera kontakter från SIM- eller SD-kortet"\n</li></string>
+    <string name="noContactsHelpText" product="default" msgid="4405064135698982080">"Det finns inga kontakter att visa."\n\n"Om du vill lägga till kontakter trycker du på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" och sedan på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konton"</b></font>" om du vill lägga till eller konfigurera ett konto med kontakter som du kan synkronisera med mobilen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" om du vill skapa en ny kontakt från grunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importera/exportera"</b></font>" om du vill importera kontakter från SIM- eller SD-kortet"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="6773195806404659174">"Det finns inga kontakter att visa (Om du nyss har lagt till ett konto kan det ta några minuter att synkronisera kontakterna.)"\n\n"Om du vill lägga till kontakter trycker du på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" och sedan på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konton"</b></font>" om du vill lägga till eller konfigurera ett konto med kontakter som kan synkroniseras med pekdatorn"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativ"</b></font>" om du vill ändra vilka kontakter som är synliga"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" om du vill skapa en ny kontakt från grunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importera/exportera"</b></font>" om du vill importera kontakter från SIM- eller SD-kortet"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="default" msgid="7016825676090327312">"Det finns inga kontakter att visa (Om du nyss har lagt till ett konto kan det ta några minuter att synkronisera kontakterna.)"\n\n"Om du vill lägga till kontakter trycker du på  "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" och sedan på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konton"</b></font>" om du vill lägga till eller konfigurera ett konto med kontakter som kan synkroniseras med mobilen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativ"</b></font>" om du vill ändra vilka kontakter som är synliga"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" om du vill skapa en ny kontakt från grunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importera/exportera"</b></font>" om du vill importera kontakter från SIM- eller SD-kortet"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="tablet" msgid="7823757505923033456">"Det finns inga kontakter att visa."\n\n"Om du vill lägga till kontakter trycker du på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" och sedan på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konton"</b></font>" om du vill lägga till eller konfigurera ett konto med kontakter som du kan synkronisera med pekdatorn"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" om du vill skapa en ny kontakt från grunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importera/exportera"</b></font>" om du vill importera kontakter från SD-kortet"\n</li></string>
+    <string name="noContactsNoSimHelpText" product="default" msgid="6224952277619986841">"Det finns inga kontakter att visa."\n\n"Om du vill lägga till kontakter trycker du på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" och sedan på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konton"</b></font>" om du vill lägga till eller konfigurera ett konto med kontakter som du kan synkronisera med mobilen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" om du vill skapa en ny kontakt från grunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importera/exportera"</b></font>" om du vill importera kontakter från SD-kortet"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="5415762667445638265">"Det finns inga kontakter att visa. (Om du nyss har lagt till ett konto kan det ta några minuter att synkronisera kontakterna.)"\n\n"Om du vill lägga till kontakter trycker du på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" och sedan på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konton"</b></font>" om du vill lägga till eller konfigurera ett konto med kontakter som kan synkroniseras med pekdatorn"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativ"</b></font>" om du vill ändra vilka kontakter som är synliga"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>"om du vill skapa en ny kontakt från grunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importera/exportera"</b></font>" om du vill importera kontakter från SD-kortet"\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="7443705129830284440">"Det finns inga kontakter att visa. (Om du nyss har lagt till ett konto kan det ta några minuter att synkronisera kontakterna.)"\n\n"Om du vill lägga till kontakter trycker du på "<font fgcolor="#ffffffff"><b>"Meny"</b></font>" och sedan på:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Konton"</b></font>" om du vill lägga till eller konfigurera ett konto med kontakter som kan synkroniseras med mobilen"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Visningsalternativ"</b></font>" om du vill ändra vilka kontakter som är synliga"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Ny kontakt"</b></font>" om du vill skapa en ny kontakt från grunden"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Importera/exportera"</b></font>" om du vill importera kontakter från SD-kortet"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"Du har inte några favoriter."\n\n"Så här lägger du till kontakter i favoritlistan:"\n\n"        "<li>"Tryck på fliken "<b>"Kontakter"</b>\n</li>" "\n<li>"Tryck på den kontakt du vill lägga till i favoriterna"\n</li>" "\n<li>"Tryck på stjärnan bredvid kontaktens namn"\n</li></string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Använda tonvalstelefon"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Återvänd till pågående samtal"</string>
@@ -213,8 +211,8 @@
     <string name="description_view_contact_detail" msgid="9133251213656414807">"Visa kontakt"</string>
     <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"Lagring otillgänglig"</string>
     <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Inget SD-kort"</string>
-    <!-- outdated translation 1334170151822669976 -->     <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"Ingen lagringsenhet hittades"</string>
-    <!-- outdated translation 1334170151822669976 -->     <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"Ingen lagringsenhet hittades"</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"Ingen lagringsenhet hittades."</string>
+    <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"Inget SD-kort hittades."</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Söker efter vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importera från SIM-kort"</string>
     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Importera från lagring"</string>
@@ -223,79 +221,62 @@
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Importera en vCard-fil"</string>
     <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Importera flera vCard-filer"</string>
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Importera alla vCard-filer"</string>
-    <!-- outdated translation 996170203695743981 -->     <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"Sökning efter vCard-data på lagringsenheten pågår"</string>
-    <!-- outdated translation 996170203695743981 -->     <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"Sökning efter vCard-data på lagringsenheten pågår"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"Sökning efter vCard-data på lagringsenheten pågår ..."</string>
+    <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"Söker efter vCard-data på SD-kort ..."</string>
     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Det gick inte att söka igenom lagringsenheten"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Det gick inte att söka igenom SD-kortet"</string>
-    <!-- no translation found for scanning_sdcard_failed_message (7221682312959229201) -->
-    <skip />
-    <!-- no translation found for scanning_sdcard_failed_message (189023067829510792) -->
-    <skip />
-    <!-- unknown placeholder FAIL_REASON in fail_reason_io_error -->
-    <skip />
-    <!-- no translation found for fail_reason_io_error (6748358842976073255) -->
-    <skip />
-    <!-- outdated translation 7514918659342886381 -->     <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Det finns för lite minne (filen kan vara för stor)"</string>
-    <!-- outdated translation 4492947335972369711 -->     <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"Det gick inte att analysera vCard av okänd anledning"</string>
-    <!-- outdated translation 294499264620201243 -->     <string name="fail_reason_not_supported" msgid="8219562769267148825">"Formatet stöds inte."</string>
-    <!-- outdated translation 8856125211629574066 -->     <string name="vcard_import_failed" msgid="5223531255894842406">"Det gick inte att importera vCard"</string>
-    <!-- outdated translation 6339234836196984924 -->     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2071820850017305867">"Det finns ingen vCard-fil på lagringsenheten"</string>
-    <!-- outdated translation 6339234836196984924 -->     <string name="import_failure_no_vcard_file" product="default" msgid="1754014167874286173">"Det finns ingen vCard-fil på lagringsenheten"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"Det gick inte att skanna lagringsenheten. (Orsak: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"Det gick inte att skanna SD-kortet. (Orsak: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
+    <string name="fail_reason_io_error" msgid="6748358842976073255">"I/O-fel"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Det finns inte tillräckligt med minne. Filen kan vara för stor."</string>
+    <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"Det gick inte att analysera vCard av okänd anledning."</string>
+    <string name="fail_reason_not_supported" msgid="8219562769267148825">"Formatet stöds inte."</string>
+    <string name="vcard_import_failed" msgid="5223531255894842406">"Det gick inte att importera vCard."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2071820850017305867">"Det finns ingen vCard-fil på lagringsenheten."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1754014167874286173">"Det finns ingen vCard-fil på SD-kortet."</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Det gick inte att samla in metainformation för de angivna vCard-filerna."</string>
     <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"En eller flera filer kunde inte importeras (%s)."</string>
-    <!-- outdated translation 999034019513096768 -->     <string name="fail_reason_unknown" msgid="1714092345030570863">"Okänt fel"</string>
-    <!-- outdated translation 3968948173786172468 -->     <string name="select_vcard_title" msgid="7791371083694672861">"Välj vCard-fil"</string>
-    <!-- outdated translation 5009556022082659780 -->     <string name="caching_vcard_title" msgid="1226272312940516605">"Cachelagrar vCard i lokalt tillfälligt utrymme"</string>
-    <!-- outdated translation 2380844718093378900 -->     <string name="caching_vcard_message" msgid="4926308675041506756">"Importfunktionen cachelagrar vCard-fil(er) i lokalt tillfälligt utrymme. Den faktiska importen börjar snart."</string>
+    <string name="fail_reason_unknown" msgid="1714092345030570863">"Okänt fel."</string>
+    <string name="select_vcard_title" msgid="7791371083694672861">"Välj vCard-fil"</string>
+    <string name="caching_vcard_title" msgid="1226272312940516605">"Cachelagrar ..."</string>
+    <string name="caching_vcard_message" msgid="4926308675041506756">"vCard-fil(er) cachelagras till en lokal tillfällig lagringsenhet. Den faktiska importen börjar snart."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Importerar <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Importerar <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Det gick inte att läsa vCard-data"</string>
-    <!-- outdated translation 1770608329958463131 -->     <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"Läsning av vCard-data avbröts"</string>
+    <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"Inläsningen av vCard-data avbröts"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"vCard-filen <xliff:g id="FILENAME">%s</xliff:g> har importerats"</string>
-    <!-- no translation found for importing_vcard_canceled_title (2147475978165599336) -->
-    <skip />
+    <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"Importen av <xliff:g id="FILENAME">%s</xliff:g> avbröts"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> importeras snart."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Filen kommer snart att importeras."</string>
-    <!-- outdated translation 2592424820635325951 -->     <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"Begäran om vCard-import avvisades. Försök igen vid ett senare tillfälle."</string>
+    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"Begäran om vCard-import avvisades. Försök igen vid ett senare tillfälle."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> exporteras snart."</string>
-    <!-- outdated translation 8259494002258326330 -->     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Begäran om vCard-export avvisades. Försök igen vid ett senare tillfälle."</string>
+    <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Begäran om vCard-export avvisades. Försök igen vid ett senare tillfälle."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"kontakt"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
-    <!-- outdated translation 7648747763127442983 -->     <string name="confirm_export_title" msgid="6834385377255286349">"Bekräfta export"</string>
-    <!-- no translation found for confirm_export_message (2423421354816428708) -->
-    <skip />
-    <!-- outdated translation 2339788270863991417 -->     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Det gick inte att exportera kontaktuppgifterna"</string>
-    <!-- no translation found for exporting_contact_failed_message (4938527850142003141) -->
-    <skip />
-    <!-- outdated translation 4919714086648344495 -->     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Det finns ingen kontakt som kan exporteras"</string>
-    <!-- outdated translation 3745507837635270265 -->     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="590645599157376285">"För många vCard-filer på lagringsenheten"</string>
-    <!-- outdated translation 3745507837635270265 -->     <string name="fail_reason_too_many_vcard" product="default" msgid="4887177369627277474">"För många vCard-filer på lagringsenheten"</string>
-    <!-- no translation found for fail_reason_too_long_filename (3393764245254738333) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_finished_title (4767045779458185251) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_canceled_title (2652222370493306887) -->
-    <skip />
+    <string name="confirm_export_title" msgid="6834385377255286349">"Exportera kontakter?"</string>
+    <string name="confirm_export_message" msgid="2423421354816428708">"Kontaktlistan exporteras till filen: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
+    <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Kunde inte exportera"</string>
+    <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Kontaktuppgifterna exporterades inte."\n"Orsak: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
+    <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Det finns ingen kontakt att exportera."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="590645599157376285">"För många vCard-filer på lagringsenheten."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="4887177369627277474">"Det finns för många vCard-filer på SD-kortet."</string>
+    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"Det obligatoriska filnamnet är för långt (<xliff:g id="FILENAME">%s</xliff:g>)."</string>
+    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"<xliff:g id="FILENAME">%s</xliff:g> har exporterats."</string>
+    <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"Exporten av <xliff:g id="FILENAME">%s</xliff:g> avbröts."</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Exporterar kontaktuppgifter"</string>
-    <!-- no translation found for exporting_contact_list_message (7181663157672374569) -->
-    <skip />
-    <!-- no translation found for fail_reason_could_not_initialize_exporter (707260459259688510) -->
-    <skip />
-    <!-- no translation found for fail_reason_error_occurred_during_export (3018855323913649063) -->
-    <skip />
-    <!-- outdated translation 6891165255897853705 -->     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Det gick inte att hämta databasinformation"</string>
-    <!-- outdated translation 5161491059051198932 -->     <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"Det finns inga kontakter som kan exporteras. Om du vet att du har kontakter på pekdatorn kan problemet vara att en leverantör förhindrar att kontakterna exporteras från pekdatorn."</string>
-    <!-- outdated translation 5161491059051198932 -->     <string name="composer_has_no_exportable_contact" product="default" msgid="3296493229040294335">"Det finns inga kontakter som kan exporteras. Om du vet att du har kontakter på pekdatorn kan problemet vara att en leverantör förhindrar att kontakterna exporteras från pekdatorn."</string>
-    <!-- outdated translation 8041534450748388843 -->     <string name="composer_not_initialized" msgid="2321648986367005254">"vCard-kompositören är inte korrekt initierad"</string>
-    <!-- no translation found for fail_reason_could_not_open_file (2067725459821997463) -->
-    <skip />
+    <string name="exporting_contact_list_message" msgid="7181663157672374569">"Kontaktuppgifterna exporteras till: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"Det gick inte att starta exportverktyget: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"Ett fel inträffade under exporten: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Det gick inte att hämta databasinformation."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"Det finns inga kontakter att exportera. Om du har kontakter på pekdatorn kanske vissa dataleverantörer inte tillåter att kontakterna exporteras från pekdatorn."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="3296493229040294335">"Det finns inga kontakter att exportera. Om du har kontakter på mobilen kanske vissa dataleverantörer inte tillåter att kontakterna exporteras från mobilen."</string>
+    <string name="composer_not_initialized" msgid="2321648986367005254">"vCard-kompositören initierades inte korrekt."</string>
+    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"Det gick inte att öppna <xliff:g id="FILE_NAME">%s</xliff:g>: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> av <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontakter"</string>
     <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"Avbryter vCard-import"</string>
-    <!-- no translation found for cancel_import_confirmation_message (3929951040347726757) -->
-    <skip />
+    <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Vill du avbryta importen av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Avbryter vCard-export"</string>
-    <!-- no translation found for cancel_export_confirmation_message (1995462401949262638) -->
-    <skip />
+    <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Vill du avbryta exporten av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Det gick inte att avbryta importen/exporten av vCard"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Dina kontakters namn"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"Lägg till en paus på 2 sek."</string>
@@ -304,16 +285,16 @@
     <string name="call_settings" msgid="7666474782093693667">"Inställningar"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Skicka SMS med"</string>
     <string name="make_primary" msgid="5829291915305113983">"Kom ihåg det här valet"</string>
-    <!-- outdated translation 4600366393134289038 -->     <string name="quickcontact_missing_app" msgid="358168575340921552">"Ingen app som kan hantera åtgärden hittades"</string>
-    <!-- outdated translation 7930716592850443705 -->     <string name="missing_name" msgid="8745511583852904385">"(inget namn)"</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"Ingen app som kan hantera åtgärden hittades."</string>
+    <string name="missing_name" msgid="8745511583852904385">"(Inget namn)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Konton"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakter som ska visas"</string>
-    <!-- outdated translation 3765725645491577190 -->     <string name="menu_import_export" msgid="26217871113229507">"Importera/exportera"</string>
-    <!-- outdated translation 4771877268244096596 -->     <string name="dialog_import_export" msgid="4360648034889921624">"Importera/exportera kontakter"</string>
+    <string name="menu_import_export" msgid="26217871113229507">"Importera/exportera"</string>
+    <string name="dialog_import_export" msgid="4360648034889921624">"Importera/exportera kontakter"</string>
     <string name="menu_share" msgid="943789700636542260">"Dela"</string>
     <string name="menu_all_contacts" msgid="5101735431586050711">"Alla kontakter"</string>
     <string name="share_via" msgid="563121028023030093">"Dela kontakt via"</string>
-    <!-- outdated translation 4374508848981697170 -->     <string name="share_error" msgid="948429331673358107">"Den här kontakten kan inte delas."</string>
+    <string name="share_error" msgid="948429331673358107">"Den här kontakten kan inte delas."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Namn"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Smeknamn"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organisation"</string>
@@ -326,10 +307,9 @@
     <string name="menu_sync_remove" msgid="3266725887008450161">"Ta bort synkgrupp"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Lägg till synkgrupp"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"Fler grupper …"</string>
-    <!-- outdated translation 4602580795576261158 -->     <string name="display_ungrouped" msgid="6885954210243119591">"Alla andra kontakter"</string>
-    <!-- outdated translation 6846131371214707956 -->     <string name="display_all_contacts" msgid="2031647544742889505">"Alla kontakter"</string>
-    <!-- no translation found for display_warn_remove_ungrouped (8872290721676651414) -->
-    <skip />
+    <string name="display_ungrouped" msgid="6885954210243119591">"Alla andra kontakter"</string>
+    <string name="display_all_contacts" msgid="2031647544742889505">"Alla kontakter"</string>
+    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Om du tar bort <xliff:g id="GROUP">%s</xliff:g> från synkroniseringen tas även kontakter som inte tillhör grupper bort från synkroniseringen."</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Bara pekdator (osynkad)"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"Bara telefon (osynkad)"</string>
     <string name="call_custom" msgid="7756571794763171802">"Ring <xliff:g id="CUSTOM">%s</xliff:g>"</string>
@@ -394,7 +374,7 @@
     <string name="chat_icq" msgid="8438405386153745775">"Chatta med ICQ"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Chatta med Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Chatt"</string>
-    <!-- outdated translation 4743276658947547047 -->     <string name="audio_chat" msgid="2535716629358298691">"Ljudchatt"</string>
+    <string name="audio_chat" msgid="2535716629358298691">"Röstchatt"</string>
     <string name="video_chat" msgid="1872255818640336072">"Videochatt"</string>
     <string name="postal_address" msgid="8765560217149624536">"Adress"</string>
     <string name="postal_street" msgid="8133143961580058972">"Gata"</string>
@@ -416,17 +396,15 @@
     <string name="name_phonetic" msgid="4259595234312430484">"Fonetiskt namn"</string>
     <string name="connections" msgid="8098440723172028350">"Anslutningar"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Lägg till anslutning"</string>
-    <!-- no translation found for recent (2659189233141493004) -->
-    <!-- no translation found for recent (2062236709538790412) -->
-    <skip />
-    <!-- outdated translation 2062236709538790412 -->     <string name="recent_updates" msgid="4267258535615860710">"Senaste"</string>
+    <string name="recent" msgid="2659189233141493004">"Senaste"</string>
+    <string name="recent_updates" msgid="4267258535615860710">"Nya uppdateringar"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>-kontakt"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Använd det här fotot"</string>
-    <!-- outdated translation 1856479476063888348 -->     <string name="contact_read_only" msgid="7421346527289472273">"Kan inte redigeras från den här appen"</string>
-    <!-- outdated translation 6754415338321837001 -->     <string name="no_contact_details" msgid="6636856378019344497">"Det finns ingen mer information för kontakten"</string>
-    <!-- outdated translation 7924922658394449477 -->     <string name="group_read_only" msgid="1061762906115697637">"Kan inte redigeras i den här enheten"</string>
+    <string name="contact_read_only" msgid="7421346527289472273">"Kan inte redigeras från den här appen."</string>
+    <string name="no_contact_details" msgid="6636856378019344497">"Det finns ingen mer information för kontakten."</string>
+    <string name="group_read_only" msgid="1061762906115697637">"Kan inte redigeras i den här enheten."</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Sortera lista efter"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Förnamn"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"Efternamn"</string>
@@ -436,15 +414,14 @@
     <string name="search_bar_hint" msgid="1012756309632856553">"Sök efter kontakter"</string>
     <string name="take_photo" msgid="7496128293167402354">"Ta en bild"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Ta ny bild"</string>
-    <!-- outdated translation 448886509158039462 -->     <string name="pick_photo" msgid="3746334626214970837">"Välj ett foto från galleriet"</string>
+    <string name="pick_photo" msgid="3746334626214970837">"Välj ett foto från galleriet"</string>
     <string name="pick_new_photo" msgid="7962368009197147617">"Välj nytt foto från galleriet"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Kontaktlistan uppdateras så att språkändringen visas."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontaktlistan uppdateras."</string>
-    <!-- no translation found for upgrade_out_of_memory (1209994418877625940) -->
-    <skip />
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Kontakterna håller på att uppgraderas. "\n\n"Uppgraderingen kräver ungefär <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MB av det interna minnet."\n\n"Välj något av följande alternativ:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Avinstallera några appar"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Försök uppgradera igen"</string>
-    <!-- outdated translation 7755623475227227314 -->     <string name="search_results_searching" msgid="3984833028938569930">"Söker..."</string>
+    <string name="search_results_searching" msgid="3984833028938569930">"Söker …"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Visa markerade"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Visa alla"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Markera alla"</string>
@@ -468,20 +445,20 @@
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Vill du kombinera kontakten med den markerade kontakten?"</string>
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Redigera valda kontakter"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Vill du fortsätta att redigera den markerade kontakten? Information som du har angett hittills kommer att kopieras."</string>
-    <!-- outdated translation 4401683725471696686 -->     <string name="menu_copyContact" msgid="1573960845106822639">"Kopiera till mina kontakter"</string>
+    <string name="menu_copyContact" msgid="1573960845106822639">"Kopiera till mina kontakter"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Lägg till i mina kontakter"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Katalog <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Katalog"</string>
     <string name="local_search_label" msgid="2551177578246113614">"Alla kontakter"</string>
-    <!-- outdated translation 7905283986345263275 -->     <string name="toast_making_personal_copy" msgid="288549957278065542">"En personlig kopia skapas"</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"En personlig kopia skapas ..."</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Alla kontakter"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Stjärnmärkt"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Anpassad"</string>
-    <!-- outdated translation 2035084418635775579 -->     <string name="list_filter_customize" msgid="4789963356004169321">"Anpassa..."</string>
+    <string name="list_filter_customize" msgid="4789963356004169321">"Anpassa"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"Alla kontakter med telefonnummer"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Kontakt"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Definiera anpassad visning"</string>
-    <!-- outdated translation 3859280390185230582 -->     <string name="contact_list_loading" msgid="5488620820563977329">"Läser in ..."</string>
+    <string name="contact_list_loading" msgid="5488620820563977329">"Läser in …"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Inställningar"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakter som ska visas"</string>
     <string name="menu_settings" msgid="377929915873428211">"Inställningar"</string>
@@ -495,7 +472,7 @@
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Ange ett år"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Kontakt"</string>
-    <!-- outdated translation 3697996166985327861 -->     <string name="social_widget_loading" msgid="5327336597364074608">"Läser in..."</string>
+    <string name="social_widget_loading" msgid="5327336597364074608">"Läser in …"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Skapa en ny kontakt"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Logga in på ett konto"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Importera kontakter från en fil"</string>
@@ -506,8 +483,7 @@
     <item quantity="one" msgid="2944819210288517794">"1 grupp"</item>
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> grupper"</item>
   </plurals>
-    <!-- no translation found for delete_group_dialog_message (7586856514337560529) -->
-    <skip />
+    <string name="delete_group_dialog_message" msgid="7586856514337560529">"Vill du ta bort gruppen <xliff:g id="GROUP_LABEL">%1$s</xliff:g>? (Kontakterna tas inte bort.)"</string>
   <plurals name="num_contacts_in_group">
     <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> person från <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
     <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> personer från <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
@@ -516,13 +492,13 @@
     <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> person"</item>
     <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> personer"</item>
   </plurals>
-    <!-- outdated translation 5015189525953438968 -->     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Ange ett namn för kontakten innan du slår ihop den med en annan kontakt."</string>
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Skriv in kontaktens namn innan du slår ihop den med en annan."</string>
     <string name="copy_text" msgid="3257145021583508761">"Kopiera till Urklipp"</string>
     <string name="set_default" msgid="4417505153468300351">"Ange standard"</string>
     <string name="clear_default" msgid="7193185801596678067">"Rensa standardinställningar"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Texten har kopierats"</string>
     <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Ignorera ändringar"</string>
-    <!-- outdated translation 7021968394611740251 -->     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Vill du ignorera ändringarna?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Vill du ta bort ändringarna?"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Skapa min profil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Ange personens namn"</string>
@@ -534,24 +510,24 @@
     <string name="notification_voicemail_callers_list" msgid="1153954809339404149">"<xliff:g id="NEWER_CALLERS">%1$s</xliff:g>, <xliff:g id="OLDER_CALLER">%2$s</xliff:g>"</string>
     <string name="notification_new_voicemail_ticker" msgid="895342132049452081">"Nytt röstmeddelande från <xliff:g id="CALLER">%1$s</xliff:g>"</string>
     <string name="voicemail_playback_error" msgid="1811242131549854624">"Det gick inte att spela upp röstmeddelandet."</string>
-    <string name="voicemail_buffering" msgid="738287747618697097">"Buffrar???"</string>
-    <string name="voicemail_fetching_content" msgid="877911315738258780">"Hämtar röstmedelande???"</string>
+    <string name="voicemail_buffering" msgid="738287747618697097">"Buffrar…"</string>
+    <string name="voicemail_fetching_content" msgid="877911315738258780">"Hämtar röstmedelande…"</string>
     <string name="voicemail_fetching_timout" msgid="6691792377574905201">"Det gick inte att hämta röstmeddelandet."</string>
     <string name="call_log_new_header" msgid="846546437517724715">"Nya"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Äldre"</string>
-    <!-- outdated translation 3164200979671881947 -->     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Det gick inte att ansluta till röstbrevlådan."</string>
-    <!-- outdated translation 2970301042310727909 -->     <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Kan inte ansluta till röstbrevlådan. Nya meddelanden väntar."</string>
-    <!-- outdated translation 3940240432123700974 -->     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Konfigurera röstbrevlådan."</string>
+    <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Det går inte att ansluta till röstbrevlådan."</string>
+    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Kan inte ansluta till röstbrevlådan. Nya meddelanden väntar."</string>
+    <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Konfigurera röstbrevlådan."</string>
     <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Ljud saknas."</string>
-    <!-- outdated translation 7008713959076506385 -->     <string name="voicemail_status_action_configure" msgid="8671796489912239589">"Konfigurera"</string>
+    <string name="voicemail_status_action_configure" msgid="8671796489912239589">"Konfigurera"</string>
     <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"Ring röstbrevlådan"</string>
-    <!-- outdated translation 6047030504814773029 -->     <string name="voicemail_speed_slowest" msgid="1733460666177707312">"lägsta hastighet"</string>
-    <!-- outdated translation 7890393922358642543 -->     <string name="voicemail_speed_slower" msgid="1508601287347216244">"låg hastighet"</string>
-    <!-- outdated translation 6030110237820243006 -->     <string name="voicemail_speed_normal" msgid="9033988544627228892">"normal hastighet"</string>
-    <!-- outdated translation 4161478290979905481 -->     <string name="voicemail_speed_faster" msgid="2019965121475935488">"hög hastighet"</string>
-    <!-- outdated translation 3373646875150544205 -->     <string name="voicemail_speed_fastest" msgid="5758712343491183292">"högsta hastigheten"</string>
+    <string name="voicemail_speed_slowest" msgid="1733460666177707312">"Lägsta hastighet"</string>
+    <string name="voicemail_speed_slower" msgid="1508601287347216244">"Låg hastighet"</string>
+    <string name="voicemail_speed_normal" msgid="9033988544627228892">"Normal hastighet"</string>
+    <string name="voicemail_speed_faster" msgid="2019965121475935488">"Hög hastighet"</string>
+    <string name="voicemail_speed_fastest" msgid="5758712343491183292">"Högsta hastigheten"</string>
     <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
-    <!-- outdated translation 2659811836386413509 -->     <string name="group_name_hint" msgid="238359485263401293">"Gruppens namn"</string>
+    <string name="group_name_hint" msgid="238359485263401293">"Gruppens namn"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Mott. v. NFC"</string>
     <string name="menu_show_voicemails_only" msgid="1898421289561435703">"Visa bara röstmeddelanden"</string>
     <string name="menu_show_all_calls" msgid="7560347482073345885">"Visa alla samtal"</string>
@@ -587,5 +563,5 @@
     <string name="add_new_account" msgid="5748627740680940264">"Lägg till ett nytt konto"</string>
     <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"Samtalet gick inte att koppla fram"</string>
     <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"Röstbrevlådenumret är inte tillgängligt"</string>
-    <!-- outdated translation 4511141315685755189 -->     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Öppna Meny &gt; Inställningar om du vill konfigurera röstbrevlådan."</string>
+    <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Välj Meny &gt; Inställningar om du vill konfigurera röstbrevlådan."</string>
 </resources>
