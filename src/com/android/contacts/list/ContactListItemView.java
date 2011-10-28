@@ -394,7 +394,11 @@ public class ContactListItemView extends ViewGroup
         }
 
         if (isVisible(mLabelView)) {
-            mLabelView.measure(MeasureSpec.makeMeasureSpec(labelWidth, MeasureSpec.EXACTLY),
+            // For performance reason we don't want AT_MOST usually, but when the picture is
+            // on right, we need to use it anyway because mDataView is next to mLabelView.
+            final int mode = (mPhotoPosition == PhotoPosition.LEFT
+                    ? MeasureSpec.EXACTLY : MeasureSpec.AT_MOST);
+            mLabelView.measure(MeasureSpec.makeMeasureSpec(labelWidth, mode),
                     MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
             mLabelViewHeight = mLabelView.getMeasuredHeight();
         }
