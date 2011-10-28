@@ -78,6 +78,7 @@
     <string name="ghostData_company" msgid="5414421120553765775">"Фирма"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Заглавие"</string>
     <!-- outdated translation 5816991830260044593 -->     <string name="invalidContactMessage" msgid="8215051456181842274">"Контактът не съществува."</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Създаване на нов контакт"</string>
     <!-- no translation found for pickerNewContactText (6166997164401048211) -->
     <skip />
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Телефон"</string>
@@ -413,10 +414,8 @@
     <string name="name_phonetic" msgid="4259595234312430484">"Име, както се произнася"</string>
     <string name="connections" msgid="8098440723172028350">"Връзки"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Добавяне на връзка"</string>
-    <!-- no translation found for recent (2659189233141493004) -->
-    <!-- no translation found for recent (2062236709538790412) -->
-    <skip />
-    <!-- outdated translation 2062236709538790412 -->     <string name="recent_updates" msgid="4267258535615860710">"Скорошни"</string>
+    <string name="recent" msgid="2659189233141493004">"Скорошни"</string>
+    <string name="recent_updates" msgid="4267258535615860710">"Скорошни актуал."</string>
     <string name="account_type_format" msgid="718948015590343010">"Контакт от <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />

@@ -77,6 +77,7 @@
     <string name="ghostData_company" msgid="5414421120553765775">"Компания"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Название"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Контакт не существует."</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Создать новый контакт"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Создать контакт"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Телефон"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"Адрес электронной почты"</string>
@@ -97,8 +98,8 @@
     <string name="noAccounts" msgid="7768267764545265909">"Для создания групп необходим аккаунт."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Подходящие контакты не найдены."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Нет контактов с номерами телефонов."</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"В этой группе нет пользователей."</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"Чтобы добавить их, измените группу."</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"Здесь пока никого нет."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"Чтобы добавить участников, откройте меню и нажмите \"Изменить\"."</string>
     <string name="savingContact" msgid="4075751076741924939">"Контакт сохраняется..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Варианты отображения сохраняются..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Контакт сохранен."</string>

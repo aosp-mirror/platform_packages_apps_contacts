@@ -77,6 +77,7 @@
     <string name="ghostData_company" msgid="5414421120553765775">"Podjetje"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Naslov"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Stik ne obstaja."</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Ustvari nov stik"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Ustvari nov stik"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefon"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"E-pošta"</string>
@@ -395,10 +396,8 @@
     <string name="name_phonetic" msgid="4259595234312430484">"Ime – fonetično"</string>
     <string name="connections" msgid="8098440723172028350">"Povezave"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Dodaj povezavo"</string>
-    <!-- no translation found for recent (2659189233141493004) -->
-    <!-- no translation found for recent (2062236709538790412) -->
-    <skip />
-    <!-- outdated translation 2062236709538790412 -->     <string name="recent_updates" msgid="4267258535615860710">"Nedavno"</string>
+    <string name="recent" msgid="2659189233141493004">"Nedavni"</string>
+    <string name="recent_updates" msgid="4267258535615860710">"Nedavne posodobitve"</string>
     <string name="account_type_format" msgid="718948015590343010">"Stik <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
