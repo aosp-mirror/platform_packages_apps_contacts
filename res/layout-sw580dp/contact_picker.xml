@@ -14,19 +14,20 @@
      limitations under the License.
 -->
 
-<view
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    class="com.android.contacts.widget.FullHeightLinearLayout"
     style="@style/ContactPickerLayout"
     android:orientation="vertical"
     android:layout_height="match_parent">
+    <!-- Right bound should be aligned to ListView's right edge. -->
     <view
         class="android.widget.SearchView"
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dip"
-        android:layout_marginRight="32dip"
+        android:layout_marginRight="@dimen/list_visible_scrollbar_padding"
+        android:paddingRight="0dip"
         android:iconifiedByDefault="false" />
     <!-- will contain an appropriate contacts list -->
     <FrameLayout
@@ -35,18 +36,26 @@
         android:layout_height="0dip"
         android:layout_weight="1" />
 
+    <!-- This should look like a menu on the split action bar. -->
     <LinearLayout
-        style="?android:attr/buttonBarStyle"
+        android:id="@+id/new_contact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="48dip"
+        android:background="@drawable/gray_action_bar_background"
         android:paddingLeft="16dip"
         android:paddingRight="16dip">
-        <Button
-            android:id="@+id/new_contact"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@android:id/title"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
-            android:text="@string/pickerNewContactText" />
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:duplicateParentState="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/action_bar_button_text_color"
+            style="@android:style/Widget.Holo.ActionBar.TabText"
+            android:text="@string/pickerNewContactText"/>
     </LinearLayout>
-</view>
+</LinearLayout>

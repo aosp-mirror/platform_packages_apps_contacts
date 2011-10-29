@@ -20,19 +20,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-
     <TextView
         android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="32dip"
-        android:paddingLeft="?attr/list_item_header_text_indent"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        android:singleLine="true"
-        android:ellipsize="end"
-        android:gravity="center_vertical" />
-
-    <View style="@style/SectionDivider" />
+        style="@style/ContactListSeparatorTextViewStyle"
+        android:paddingLeft="8dip"
+        android:paddingRight="8dip" />
 </LinearLayout>

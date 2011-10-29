@@ -25,7 +25,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="48dip"
-    android:background="@drawable/group_source_button_background"
+    android:background="@drawable/gray_action_bar_background"
     android:paddingLeft="16dip"
     android:paddingRight="16dip" >
 
