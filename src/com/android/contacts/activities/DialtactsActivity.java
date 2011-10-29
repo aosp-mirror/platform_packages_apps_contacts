@@ -400,8 +400,6 @@ public class DialtactsActivity extends Activity {
         mViewPager.setAdapter(new ViewPagerAdapter(getFragmentManager()));
         mViewPager.setOnPageChangeListener(mPageChangeListener);
 
-        prepareSearchView();
-
         // Setup the ActionBar tabs (the order matches the tab-index contants TAB_INDEX_*)
         setupDialer();
         setupCallLog();
@@ -814,6 +812,10 @@ public class DialtactsActivity extends Activity {
      * Hides every tab and shows search UI for phone lookup.
      */
     private void enterSearchUi() {
+        if (mSearchView == null) {
+            prepareSearchView();
+        }
+
         final ActionBar actionBar = getActionBar();
 
         final Tab tab = actionBar.getSelectedTab();
