@@ -493,7 +493,7 @@
     <string name="delete_group_dialog_message" msgid="295063284548750881">"您确定要删除群组“<xliff:g id="GROUP_LABEL">%1$s</xliff:g>”吗？（不会删除联系人自身。）"</string>
   <plurals name="num_contacts_in_group">
     <item quantity="one" msgid="1352418549951013448">"<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>中有 <xliff:g id="COUNT_0">%1$d</xliff:g> 个联系人"</item>
-    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>中有 <xliff:g id="COUNT_0">%1$d</xliff:g> 个人"</item>
+    <item quantity="other" msgid="8146027769011086349">"有 <xliff:g id="COUNT_0">%1$d</xliff:g> 人来自<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
   </plurals>
   <plurals name="group_list_num_contacts_in_group">
     <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> 个人"</item>
