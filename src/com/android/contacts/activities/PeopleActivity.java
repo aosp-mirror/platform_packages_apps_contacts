@@ -739,6 +739,8 @@ public class PeopleActivity extends ContactsActivity
 
         private boolean mTabPagerAdapterSearchMode;
 
+        private Fragment mCurrentPrimaryItem;
+
         public TabPagerAdapter() {
             mFragmentManager = getFragmentManager();
         }
@@ -809,6 +811,9 @@ public class PeopleActivity extends ContactsActivity
             }
             Fragment f = getFragment(position);
             mCurTransaction.show(f);
+
+            // Non primary pages should be deferred.
+            f.setStartDeferred(f != mCurrentPrimaryItem);
             return f;
         }
 
@@ -832,6 +837,20 @@ public class PeopleActivity extends ContactsActivity
         @Override
         public boolean isViewFromObject(View view, Object object) {
             return ((Fragment) object).getView() == view;
+        }
+
+        @Override
+        public void setPrimaryItem(View container, int position, Object object) {
+            Fragment fragment = (Fragment) object;
+            if (mCurrentPrimaryItem != fragment) {
+                if (mCurrentPrimaryItem != null) {
+                    mCurrentPrimaryItem.setStartDeferred(true);
+                }
+                if (fragment != null) {
+                    fragment.setStartDeferred(false);
+                }
+                mCurrentPrimaryItem = fragment;
+            }
         }
 
         @Override
