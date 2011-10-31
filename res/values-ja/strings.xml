@@ -77,6 +77,7 @@
     <string name="ghostData_company" msgid="5414421120553765775">"会社"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"役職"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"連絡先が存在しません。"</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"連絡先を新規登録"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"新しい連絡先を作成"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"電話番号"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"メール"</string>
@@ -395,10 +396,8 @@
     <string name="name_phonetic" msgid="4259595234312430484">"よみがな"</string>
     <string name="connections" msgid="8098440723172028350">"連絡先情報"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"連絡先を招待"</string>
-    <!-- no translation found for recent (2659189233141493004) -->
-    <!-- no translation found for recent (2062236709538790412) -->
-    <skip />
-    <!-- outdated translation 2062236709538790412 -->     <string name="recent_updates" msgid="4267258535615860710">"最近"</string>
+    <string name="recent" msgid="2659189233141493004">"最近"</string>
+    <string name="recent_updates" msgid="4267258535615860710">"最近の更新"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>からの連絡先"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />

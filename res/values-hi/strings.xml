@@ -78,6 +78,7 @@
     <string name="ghostData_company" msgid="5414421120553765775">"कंपनी"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"शीर्षक"</string>
     <!-- outdated translation 5816991830260044593 -->     <string name="invalidContactMessage" msgid="8215051456181842274">"संपर्क मौजूद नहीं है."</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"नया संपर्क बनाएं"</string>
     <!-- no translation found for pickerNewContactText (6166997164401048211) -->
     <skip />
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"फ़ोन"</string>

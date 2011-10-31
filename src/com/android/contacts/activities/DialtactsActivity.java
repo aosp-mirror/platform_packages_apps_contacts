@@ -400,8 +400,6 @@ public class DialtactsActivity extends Activity {
         mViewPager.setAdapter(new ViewPagerAdapter(getFragmentManager()));
         mViewPager.setOnPageChangeListener(mPageChangeListener);
 
-        prepareSearchView();
-
         // Setup the ActionBar tabs (the order matches the tab-index contants TAB_INDEX_*)
         setupDialer();
         setupCallLog();
@@ -509,6 +507,7 @@ public class DialtactsActivity extends Activity {
             mSearchFragment.setQuickContactEnabled(true);
             mSearchFragment.setDarkTheme(true);
             mSearchFragment.setPhotoPosition(ContactListItemView.PhotoPosition.LEFT);
+            mSearchFragment.setStartDeferred(true);
             final FragmentTransaction transaction = getFragmentManager().beginTransaction();
             if (mInSearchUi) {
                 transaction.show(mSearchFragment);
@@ -814,6 +813,10 @@ public class DialtactsActivity extends Activity {
      * Hides every tab and shows search UI for phone lookup.
      */
     private void enterSearchUi() {
+        if (mSearchView == null) {
+            prepareSearchView();
+        }
+
         final ActionBar actionBar = getActionBar();
 
         final Tab tab = actionBar.getSelectedTab();
@@ -842,6 +845,7 @@ public class DialtactsActivity extends Activity {
         // layout instead of asking the search menu item to take care of SearchView.
         mSearchView.onActionViewExpanded();
         mInSearchUi = true;
+        mSearchFragment.setStartDeferred(false);
     }
 
     private void showInputMethod(View view) {

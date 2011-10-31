@@ -18,9 +18,6 @@ package com.android.contacts.calllog;
 
 import static com.google.android.collect.Lists.newArrayList;
 
-import com.android.contacts.format.FormatUtils;
-
-import android.database.CharArrayBuffer;
 import android.database.MatrixCursor;
 import android.provider.CallLog.Calls;
 import android.test.AndroidTestCase;
@@ -172,40 +169,40 @@ public class CallLogGroupBuilderTest extends AndroidTestCase {
 
     public void testEqualPhoneNumbers() {
         // Identical.
-        assertTrue(checkEqualNumbers("6505555555", "6505555555"));
-        assertTrue(checkEqualNumbers("650 555 5555", "650 555 5555"));
+        assertTrue(mBuilder.equalNumbers("6505555555", "6505555555"));
+        assertTrue(mBuilder.equalNumbers("650 555 5555", "650 555 5555"));
         // Formatting.
-        assertTrue(checkEqualNumbers("6505555555", "650 555 5555"));
-        assertTrue(checkEqualNumbers("6505555555", "(650) 555-5555"));
-        assertTrue(checkEqualNumbers("650 555 5555", "(650) 555-5555"));
+        assertTrue(mBuilder.equalNumbers("6505555555", "650 555 5555"));
+        assertTrue(mBuilder.equalNumbers("6505555555", "(650) 555-5555"));
+        assertTrue(mBuilder.equalNumbers("650 555 5555", "(650) 555-5555"));
         // Short codes.
-        assertTrue(checkEqualNumbers("55555", "55555"));
-        assertTrue(checkEqualNumbers("55555", "555 55"));
+        assertTrue(mBuilder.equalNumbers("55555", "55555"));
+        assertTrue(mBuilder.equalNumbers("55555", "555 55"));
         // Different numbers.
-        assertFalse(checkEqualNumbers("6505555555", "650555555"));
-        assertFalse(checkEqualNumbers("6505555555", "6505555551"));
-        assertFalse(checkEqualNumbers("650 555 5555", "650 555 555"));
-        assertFalse(checkEqualNumbers("650 555 5555", "650 555 5551"));
-        assertFalse(checkEqualNumbers("55555", "5555"));
-        assertFalse(checkEqualNumbers("55555", "55551"));
+        assertFalse(mBuilder.equalNumbers("6505555555", "650555555"));
+        assertFalse(mBuilder.equalNumbers("6505555555", "6505555551"));
+        assertFalse(mBuilder.equalNumbers("650 555 5555", "650 555 555"));
+        assertFalse(mBuilder.equalNumbers("650 555 5555", "650 555 5551"));
+        assertFalse(mBuilder.equalNumbers("55555", "5555"));
+        assertFalse(mBuilder.equalNumbers("55555", "55551"));
         // SIP addresses.
-        assertTrue(checkEqualNumbers("6505555555@host.com", "6505555555@host.com"));
-        assertTrue(checkEqualNumbers("6505555555@host.com", "6505555555@HOST.COM"));
-        assertTrue(checkEqualNumbers("user@host.com", "user@host.com"));
-        assertTrue(checkEqualNumbers("user@host.com", "user@HOST.COM"));
-        assertFalse(checkEqualNumbers("USER@host.com", "user@host.com"));
-        assertFalse(checkEqualNumbers("user@host.com", "user@host1.com"));
+        assertTrue(mBuilder.equalNumbers("6505555555@host.com", "6505555555@host.com"));
+        assertTrue(mBuilder.equalNumbers("6505555555@host.com", "6505555555@HOST.COM"));
+        assertTrue(mBuilder.equalNumbers("user@host.com", "user@host.com"));
+        assertTrue(mBuilder.equalNumbers("user@host.com", "user@HOST.COM"));
+        assertFalse(mBuilder.equalNumbers("USER@host.com", "user@host.com"));
+        assertFalse(mBuilder.equalNumbers("user@host.com", "user@host1.com"));
         // SIP address vs phone number.
-        assertFalse(checkEqualNumbers("6505555555@host.com", "6505555555"));
-        assertFalse(checkEqualNumbers("6505555555", "6505555555@host.com"));
-        assertFalse(checkEqualNumbers("user@host.com", "6505555555"));
-        assertFalse(checkEqualNumbers("6505555555", "user@host.com"));
+        assertFalse(mBuilder.equalNumbers("6505555555@host.com", "6505555555"));
+        assertFalse(mBuilder.equalNumbers("6505555555", "6505555555@host.com"));
+        assertFalse(mBuilder.equalNumbers("user@host.com", "6505555555"));
+        assertFalse(mBuilder.equalNumbers("6505555555", "user@host.com"));
         // Nulls.
-        assertTrue(checkEqualNumbers(null, null));
-        assertFalse(checkEqualNumbers(null, "6505555555"));
-        assertFalse(checkEqualNumbers("6505555555", null));
-        assertFalse(checkEqualNumbers(null, "6505555555@host.com"));
-        assertFalse(checkEqualNumbers("6505555555@host.com", null));
+        assertTrue(mBuilder.equalNumbers(null, null));
+        assertFalse(mBuilder.equalNumbers(null, "6505555555"));
+        assertFalse(mBuilder.equalNumbers("6505555555", null));
+        assertFalse(mBuilder.equalNumbers(null, "6505555555@host.com"));
+        assertFalse(mBuilder.equalNumbers("6505555555@host.com", null));
     }
 
     public void testCompareSipAddresses() {
@@ -225,24 +222,6 @@ public class CallLogGroupBuilderTest extends AndroidTestCase {
         assertTrue(mBuilder.compareSipAddresses(null, null));
         assertFalse(mBuilder.compareSipAddresses(null, "6505555555@host.com"));
         assertFalse(mBuilder.compareSipAddresses("6505555555@host.com", null));
-    }
-
-    /** Calls {@link CallLogGroupBuilder#equalNumbers(CharArrayBuffer, CharArrayBuffer)}. */
-    private boolean checkEqualNumbers(String number1, String number2) {
-        final CharArrayBuffer buffer1 = stringToCharArrayBuffer(number1);
-        final CharArrayBuffer buffer2 = stringToCharArrayBuffer(number2);
-        return mBuilder.equalNumbers(buffer1, buffer2);
-    }
-
-    /** Converts a string into a {@link CharArrayBuffer}, preserving null values. */
-    private CharArrayBuffer stringToCharArrayBuffer(String value) {
-        if (value == null) {
-            return null;
-        }
-
-        final CharArrayBuffer buffer = new CharArrayBuffer(value.length());
-        FormatUtils.copyToCharArrayBuffer(value, buffer);
-        return buffer;
     }
 
     /** Creates (or recreates) the cursor used to store the call log content for the tests. */
