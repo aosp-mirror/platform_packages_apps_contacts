@@ -53,7 +53,6 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         Phone.CONTACT_ID,                   // 6
         Phone.LOOKUP_KEY,                   // 7
         Phone.PHOTO_ID,                     // 8
-        Phone.PHONETIC_NAME,                // 9
     };
 
     protected static final int PHONE_ID_COLUMN_INDEX = 0;
@@ -65,7 +64,6 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     protected static final int PHONE_CONTACT_ID_COLUMN_INDEX = 6;
     protected static final int PHONE_LOOKUP_KEY_COLUMN_INDEX = 7;
     protected static final int PHONE_PHOTO_ID_COLUMN_INDEX = 8;
-    protected static final int PHONE_PHONETIC_NAME_COLUMN_INDEX = 9;
 
     private CharSequence mUnknownNameText;
     private int mDisplayNameColumnIndex;
@@ -230,9 +228,8 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         // Look at elements before and after this position, checking if contact IDs are same.
         // If they have one same contact ID, it means they can be grouped.
         //
-        // In one group, only the first entry will show its photo and names (display name and
-        // phonetic name), and the other entries in the group show just their data (e.g. phone
-        // number, email address).
+        // In one group, only the first entry will show its photo and its name, and the other
+        // entries in the group show just their data (e.g. phone number, email address).
         cursor.moveToPosition(position);
         boolean isFirstEntry = true;
         boolean showBottomDivider = true;
@@ -302,12 +299,11 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     protected void bindName(final ContactListItemView view, Cursor cursor) {
         view.showDisplayName(cursor, mDisplayNameColumnIndex, mAlternativeDisplayNameColumnIndex,
                 false, getContactNameDisplayOrder());
-        view.showPhoneticName(cursor, PHONE_PHONETIC_NAME_COLUMN_INDEX);
+        // Note: we don't show phonetic names any more (see issue 5265330)
     }
 
     protected void unbindName(final ContactListItemView view) {
         view.hideDisplayName();
-        view.hidePhoneticName();
     }
 
     protected void bindPhoto(final ContactListItemView view, Cursor cursor) {
