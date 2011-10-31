@@ -42,64 +42,48 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         Contacts._ID,                           // 0
         Contacts.DISPLAY_NAME_PRIMARY,          // 1
         Contacts.DISPLAY_NAME_ALTERNATIVE,      // 2
-        Contacts.SORT_KEY_PRIMARY,              // 3
-        Contacts.STARRED,                       // 4
-        Contacts.CONTACT_PRESENCE,              // 5
-        Contacts.CONTACT_STATUS,                // 6
-        Contacts.PHOTO_ID,                      // 7
-        Contacts.PHOTO_THUMBNAIL_URI,           // 8
-        Contacts.LOOKUP_KEY,                    // 9
-        Contacts.PHONETIC_NAME,                 // 10
-        Contacts.HAS_PHONE_NUMBER,              // 11
-        Contacts.IS_USER_PROFILE,               // 12
+        Contacts.CONTACT_PRESENCE,              // 3
+        Contacts.CONTACT_STATUS,                // 4
+        Contacts.PHOTO_ID,                      // 5
+        Contacts.PHOTO_THUMBNAIL_URI,           // 6
+        Contacts.LOOKUP_KEY,                    // 7
+        Contacts.IS_USER_PROFILE,               // 8
     };
 
     protected static final String[] PROJECTION_DATA = new String[] {
         Data.CONTACT_ID,                        // 0
         Data.DISPLAY_NAME_PRIMARY,              // 1
         Data.DISPLAY_NAME_ALTERNATIVE,          // 2
-        Data.SORT_KEY_PRIMARY,                  // 3
-        Data.STARRED,                           // 4
-        Data.CONTACT_PRESENCE,                  // 5
-        Data.CONTACT_STATUS,                    // 6
-        Data.PHOTO_ID,                          // 7
-        Data.PHOTO_THUMBNAIL_URI,               // 8
-        Data.LOOKUP_KEY,                        // 9
-        Data.PHONETIC_NAME,                     // 10
-        Data.HAS_PHONE_NUMBER,                  // 11
+        Data.CONTACT_PRESENCE,                  // 3
+        Data.CONTACT_STATUS,                    // 4
+        Data.PHOTO_ID,                          // 5
+        Data.PHOTO_THUMBNAIL_URI,               // 6
+        Data.LOOKUP_KEY,                        // 7
     };
 
     protected static final String[] FILTER_PROJECTION = new String[] {
         Contacts._ID,                           // 0
         Contacts.DISPLAY_NAME_PRIMARY,          // 1
         Contacts.DISPLAY_NAME_ALTERNATIVE,      // 2
-        Contacts.SORT_KEY_PRIMARY,              // 3
-        Contacts.STARRED,                       // 4
-        Contacts.CONTACT_PRESENCE,              // 5
-        Contacts.CONTACT_STATUS,                // 6
-        Contacts.PHOTO_ID,                      // 7
-        Contacts.PHOTO_THUMBNAIL_URI,           // 8
-        Contacts.LOOKUP_KEY,                    // 9
-        Contacts.PHONETIC_NAME,                 // 10
-        Contacts.HAS_PHONE_NUMBER,              // 11
-        Contacts.IS_USER_PROFILE,               // 12
-        SearchSnippetColumns.SNIPPET,           // 13
+        Contacts.CONTACT_PRESENCE,              // 3
+        Contacts.CONTACT_STATUS,                // 4
+        Contacts.PHOTO_ID,                      // 5
+        Contacts.PHOTO_THUMBNAIL_URI,           // 6
+        Contacts.LOOKUP_KEY,                    // 7
+        Contacts.IS_USER_PROFILE,               // 8
+        SearchSnippetColumns.SNIPPET,           // 9
     };
 
     protected static final int CONTACT_ID_COLUMN_INDEX = 0;
     protected static final int CONTACT_DISPLAY_NAME_PRIMARY_COLUMN_INDEX = 1;
     protected static final int CONTACT_DISPLAY_NAME_ALTERNATIVE_COLUMN_INDEX = 2;
-    protected static final int CONTACT_SORT_KEY_PRIMARY_COLUMN_INDEX = 3;
-    protected static final int CONTACT_STARRED_COLUMN_INDEX = 4;
-    protected static final int CONTACT_PRESENCE_STATUS_COLUMN_INDEX = 5;
-    protected static final int CONTACT_CONTACT_STATUS_COLUMN_INDEX = 6;
-    protected static final int CONTACT_PHOTO_ID_COLUMN_INDEX = 7;
-    protected static final int CONTACT_PHOTO_URI_COLUMN_INDEX = 8;
-    protected static final int CONTACT_LOOKUP_KEY_COLUMN_INDEX = 9;
-    protected static final int CONTACT_PHONETIC_NAME_COLUMN_INDEX = 10;
-    protected static final int CONTACT_HAS_PHONE_COLUMN_INDEX = 11;
-    protected static final int CONTACT_IS_USER_PROFILE = 12;
-    protected static final int CONTACT_SNIPPET_COLUMN_INDEX = 13;
+    protected static final int CONTACT_PRESENCE_STATUS_COLUMN_INDEX = 3;
+    protected static final int CONTACT_CONTACT_STATUS_COLUMN_INDEX = 4;
+    protected static final int CONTACT_PHOTO_ID_COLUMN_INDEX = 5;
+    protected static final int CONTACT_PHOTO_URI_COLUMN_INDEX = 6;
+    protected static final int CONTACT_LOOKUP_KEY_COLUMN_INDEX = 7;
+    protected static final int CONTACT_IS_USER_PROFILE = 8;
+    protected static final int CONTACT_SNIPPET_COLUMN_INDEX = 9;
 
     private CharSequence mUnknownNameText;
     private int mDisplayNameColumnIndex;
@@ -142,14 +126,6 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     protected static Uri buildSectionIndexerUri(Uri uri) {
         return uri.buildUpon()
                 .appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true").build();
-    }
-
-    public boolean getHasPhoneNumber(int position) {
-        return ((Cursor)getItem(position)).getInt(CONTACT_HAS_PHONE_COLUMN_INDEX) != 0;
-    }
-
-    public boolean isContactStarred(int position) {
-        return ((Cursor)getItem(position)).getInt(CONTACT_STARRED_COLUMN_INDEX) != 0;
     }
 
     @Override
@@ -266,7 +242,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     protected void bindName(final ContactListItemView view, Cursor cursor) {
         view.showDisplayName(cursor, mDisplayNameColumnIndex, mAlternativeDisplayNameColumnIndex,
                 false, getContactNameDisplayOrder());
-        view.showPhoneticName(cursor, CONTACT_PHONETIC_NAME_COLUMN_INDEX);
+        // Note: we don't show phonetic any more (See issue 5265330)
     }
 
     protected void bindPresenceAndStatusMessage(final ContactListItemView view, Cursor cursor) {
