@@ -26,6 +26,7 @@ import com.android.contacts.list.ContactListItemView;
 import com.android.contacts.list.OnPhoneNumberPickerActionListener;
 import com.android.contacts.list.PhoneFavoriteFragment;
 import com.android.contacts.list.PhoneNumberPickerFragment;
+import com.android.contacts.activities.TransactionSafeActivity;
 import com.android.contacts.util.AccountFilterUtil;
 import com.android.internal.telephony.ITelephony;
 
@@ -74,7 +75,7 @@ import android.widget.SearchView.OnQueryTextListener;
  * embedded using intents.
  * The dialer tab's title is 'phone', a more common name (see strings.xml).
  */
-public class DialtactsActivity extends Activity {
+public class DialtactsActivity extends TransactionSafeActivity {
     private static final String TAG = "DialtactsActivity";
 
     /** Used to open Call Setting */
