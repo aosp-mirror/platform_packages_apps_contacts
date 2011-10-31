@@ -34,27 +34,34 @@ import android.view.ViewGroup;
  */
 public class EmailAddressListAdapter extends ContactEntryListAdapter {
 
-    static final String[] EMAILS_PROJECTION = new String[] {
-        Email._ID,                       // 0
-        Email.TYPE,                      // 1
-        Email.LABEL,                     // 2
-        Email.DATA,                      // 3
-        Email.DISPLAY_NAME_PRIMARY,      // 4
-        Email.DISPLAY_NAME_ALTERNATIVE,  // 5
-        Email.PHOTO_ID,                  // 6
-    };
+    protected static class EmailQuery {
+        private static final String[] PROJECTION_PRIMARY = new String[] {
+            Email._ID,                       // 0
+            Email.TYPE,                      // 1
+            Email.LABEL,                     // 2
+            Email.DATA,                      // 3
+            Email.PHOTO_ID,                  // 4
+            Email.DISPLAY_NAME_PRIMARY,      // 5
+        };
 
-    protected static final int EMAIL_ID_COLUMN_INDEX = 0;
-    protected static final int EMAIL_TYPE_COLUMN_INDEX = 1;
-    protected static final int EMAIL_LABEL_COLUMN_INDEX = 2;
-    protected static final int EMAIL_ADDRESS_COLUMN_INDEX = 3;
-    protected static final int EMAIL_PRIMARY_DISPLAY_NAME_COLUMN_INDEX = 4;
-    protected static final int EMAIL_ALTERNATIVE_DISPLAY_NAME_COLUMN_INDEX = 5;
-    protected static final int EMAIL_PHOTO_ID_COLUMN_INDEX = 6;
+        private static final String[] PROJECTION_ALTERNATIVE = new String[] {
+            Email._ID,                       // 0
+            Email.TYPE,                      // 1
+            Email.LABEL,                     // 2
+            Email.DATA,                      // 3
+            Email.PHOTO_ID,                  // 4
+            Email.DISPLAY_NAME_ALTERNATIVE,  // 5
+        };
 
-    private CharSequence mUnknownNameText;
-    private int mDisplayNameColumnIndex;
-    private int mAlternativeDisplayNameColumnIndex;
+        public static final int EMAIL_ID           = 0;
+        public static final int EMAIL_TYPE         = 1;
+        public static final int EMAIL_LABEL        = 2;
+        public static final int EMAIL_ADDRESS      = 3;
+        public static final int EMAIL_PHOTO_ID     = 4;
+        public static final int EMAIL_DISPLAY_NAME = 5;
+    }
+
+    private final CharSequence mUnknownNameText;
 
     public EmailAddressListAdapter(Context context) {
         super(context);
@@ -75,7 +82,12 @@ public class EmailAddressListAdapter extends ContactEntryListAdapter {
         builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
                 String.valueOf(directoryId));
         loader.setUri(builder.build());
-        loader.setProjection(EMAILS_PROJECTION);
+
+        if (getContactNameDisplayOrder() == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
+            loader.setProjection(EmailQuery.PROJECTION_PRIMARY);
+        } else {
+            loader.setProjection(EmailQuery.PROJECTION_ALTERNATIVE);
+        }
 
         if (getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
             loader.setSortOrder(Email.SORT_KEY_PRIMARY);
@@ -91,19 +103,7 @@ public class EmailAddressListAdapter extends ContactEntryListAdapter {
 
     @Override
     public String getContactDisplayName(int position) {
-        return ((Cursor)getItem(position)).getString(mDisplayNameColumnIndex);
-    }
-
-    @Override
-    public void setContactNameDisplayOrder(int displayOrder) {
-        super.setContactNameDisplayOrder(displayOrder);
-        if (getContactNameDisplayOrder() == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
-            mDisplayNameColumnIndex = EMAIL_PRIMARY_DISPLAY_NAME_COLUMN_INDEX;
-            mAlternativeDisplayNameColumnIndex = EMAIL_ALTERNATIVE_DISPLAY_NAME_COLUMN_INDEX;
-        } else {
-            mDisplayNameColumnIndex = EMAIL_ALTERNATIVE_DISPLAY_NAME_COLUMN_INDEX;
-            mAlternativeDisplayNameColumnIndex = EMAIL_PRIMARY_DISPLAY_NAME_COLUMN_INDEX;
-        }
+        return ((Cursor) getItem(position)).getString(EmailQuery.EMAIL_DISPLAY_NAME);
     }
 
     /**
@@ -111,7 +111,7 @@ public class EmailAddressListAdapter extends ContactEntryListAdapter {
      * position.
      */
     public Uri getDataUri(int position) {
-        long id = ((Cursor)getItem(position)).getLong(EMAIL_ID_COLUMN_INDEX);
+        long id = ((Cursor)getItem(position)).getLong(EmailQuery.EMAIL_ID);
         return ContentUris.withAppendedId(Data.CONTENT_URI, id);
     }
 
@@ -135,15 +135,15 @@ public class EmailAddressListAdapter extends ContactEntryListAdapter {
 
     protected void bindEmailAddress(ContactListItemView view, Cursor cursor) {
         CharSequence label = null;
-        if (!cursor.isNull(EMAIL_TYPE_COLUMN_INDEX)) {
-            final int type = cursor.getInt(EMAIL_TYPE_COLUMN_INDEX);
-            final String customLabel = cursor.getString(EMAIL_LABEL_COLUMN_INDEX);
+        if (!cursor.isNull(EmailQuery.EMAIL_TYPE)) {
+            final int type = cursor.getInt(EmailQuery.EMAIL_TYPE);
+            final String customLabel = cursor.getString(EmailQuery.EMAIL_LABEL);
 
             // TODO cache
             label = Email.getTypeLabel(getContext().getResources(), type, customLabel);
         }
         view.setLabel(label);
-        view.showData(cursor, EMAIL_ADDRESS_COLUMN_INDEX);
+        view.showData(cursor, EmailQuery.EMAIL_ADDRESS);
     }
 
     protected void bindSectionHeaderAndDivider(final ContactListItemView view, int position) {
@@ -165,14 +165,13 @@ public class EmailAddressListAdapter extends ContactEntryListAdapter {
     }
 
     protected void bindName(final ContactListItemView view, Cursor cursor) {
-        view.showDisplayName(cursor, mDisplayNameColumnIndex, mAlternativeDisplayNameColumnIndex,
-                false, getContactNameDisplayOrder());
+        view.showDisplayName(cursor, EmailQuery.EMAIL_DISPLAY_NAME, getContactNameDisplayOrder());
     }
 
     protected void bindPhoto(final ContactListItemView view, Cursor cursor) {
         long photoId = 0;
-        if (!cursor.isNull(EMAIL_PHOTO_ID_COLUMN_INDEX)) {
-            photoId = cursor.getLong(EMAIL_PHOTO_ID_COLUMN_INDEX);
+        if (!cursor.isNull(EmailQuery.EMAIL_PHOTO_ID)) {
+            photoId = cursor.getLong(EmailQuery.EMAIL_PHOTO_ID);
         }
 
         getPhotoLoader().loadPhoto(view.getPhotoView(), photoId, false, false);

@@ -19,7 +19,6 @@ package com.android.contacts.list;
 import com.android.contacts.ContactPresenceIconUtil;
 import com.android.contacts.ContactStatusUtil;
 import com.android.contacts.R;
-import com.android.contacts.format.DisplayNameFormatter;
 import com.android.contacts.format.PrefixHighlighter;
 
 import android.content.Context;
@@ -36,7 +35,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.text.Spannable;
-import android.text.SpannableStringBuilder;
+import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
@@ -188,8 +187,14 @@ public class ContactListItemView extends ViewGroup
     private int mLabelAndDataViewMaxHeight;
 
     private OnClickListener mCallButtonClickListener;
-    private CharArrayBuffer mDataBuffer = new CharArrayBuffer(128);
-    private CharArrayBuffer mPhoneticNameBuffer = new CharArrayBuffer(128);
+    // TODO: some TextView fields are using CharArrayBuffer while some are not. Determine which is
+    // more efficient for each case or in general, and simplify the whole implementation.
+    // Note: if we're sure MARQUEE will be used every time, there's no reason to use
+    // CharArrayBuffer, since MARQUEE requires Span and thus we need to copy characters inside the
+    // buffer to Spannable once, while CharArrayBuffer is for directly applying char array to
+    // TextView without any modification.
+    private final CharArrayBuffer mDataBuffer = new CharArrayBuffer(128);
+    private final CharArrayBuffer mPhoneticNameBuffer = new CharArrayBuffer(128);
 
     private boolean mActivatedStateSupported;
 
@@ -197,8 +202,7 @@ public class ContactListItemView extends ViewGroup
 
     /** A helper used to highlight a prefix in a text field. */
     private PrefixHighlighter mPrefixHighligher;
-    /** A helper used to format display names. */
-    private DisplayNameFormatter mDisplayNameFormatter;
+    private CharSequence mUnknownNameText;
 
     /**
      * Special class to allow the parent to be pressed without being pressed itself.
@@ -295,8 +299,6 @@ public class ContactListItemView extends ViewGroup
         if (mActivatedBackgroundDrawable != null) {
             mActivatedBackgroundDrawable.setCallback(this);
         }
-
-        mDisplayNameFormatter = new DisplayNameFormatter(mPrefixHighligher);
     }
 
     /**
@@ -307,7 +309,7 @@ public class ContactListItemView extends ViewGroup
     }
 
     public void setUnknownNameText(CharSequence unknownNameText) {
-        mDisplayNameFormatter.setUnknownNameText(unknownNameText);
+        mUnknownNameText = unknownNameText;
     }
 
     public void setQuickContactEnabled(boolean flag) {
@@ -790,7 +792,7 @@ public class ContactListItemView extends ViewGroup
                 mHeaderDivider.setBackgroundColor(mHeaderUnderlineColor);
                 addView(mHeaderDivider);
             }
-            mHeaderTextView.setText(getMarqueeText(title));
+            setMarqueeText(mHeaderTextView, title);
             mHeaderTextView.setVisibility(View.VISIBLE);
             mHeaderDivider.setVisibility(View.VISIBLE);
             mHeaderTextView.setAllCaps(true);
@@ -936,7 +938,7 @@ public class ContactListItemView extends ViewGroup
             }
         } else {
             getPhoneticNameTextView();
-            mPhoneticNameTextView.setText(getMarqueeText(text, size));
+            setMarqueeText(mPhoneticNameTextView, text, size);
             mPhoneticNameTextView.setVisibility(VISIBLE);
         }
     }
@@ -967,22 +969,7 @@ public class ContactListItemView extends ViewGroup
             }
         } else {
             getLabelView();
-            mLabelView.setText(getMarqueeText(text));
-            mLabelView.setVisibility(VISIBLE);
-        }
-    }
-
-    /**
-     * Adds or updates a text view for the data label.
-     */
-    public void setLabel(char[] text, int size) {
-        if (text == null || size == 0) {
-            if (mLabelView != null) {
-                mLabelView.setVisibility(View.GONE);
-            }
-        } else {
-            getLabelView();
-            mLabelView.setText(getMarqueeText(text, size));
+            setMarqueeText(mLabelView, text);
             mLabelView.setVisibility(VISIBLE);
         }
     }
@@ -1017,28 +1004,31 @@ public class ContactListItemView extends ViewGroup
             if (mDataView != null) {
                 mDataView.setVisibility(View.GONE);
             }
-            return;
         } else {
             getDataView();
-            mDataView.setText(getMarqueeText(text, size));
+            setMarqueeText(mDataView, text, size);
             mDataView.setVisibility(VISIBLE);
         }
     }
 
-    private CharSequence getMarqueeText(char[] text, int size) {
-        return getMarqueeText(new String(text, 0, size));
+    private void setMarqueeText(TextView textView, char[] text, int size) {
+        if (getTextEllipsis() == TruncateAt.MARQUEE) {
+            setMarqueeText(textView, new String(text, 0, size));
+        } else {
+            textView.setText(text, 0, size);
+        }
     }
 
-    private CharSequence getMarqueeText(CharSequence text) {
+    private void setMarqueeText(TextView textView, CharSequence text) {
         if (getTextEllipsis() == TruncateAt.MARQUEE) {
             // To show MARQUEE correctly (with END effect during non-active state), we need
             // to build Spanned with MARQUEE in addition to TextView's ellipsize setting.
-            final SpannableStringBuilder builder = new SpannableStringBuilder(text);
-            builder.setSpan(TruncateAt.MARQUEE, 0, builder.length(),
+            final SpannableString spannable = new SpannableString(text);
+            spannable.setSpan(TruncateAt.MARQUEE, 0, spannable.length(),
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            return builder;
+            textView.setText(spannable);
         } else {
-            return text;
+            textView.setText(text);
         }
     }
 
@@ -1128,7 +1118,7 @@ public class ContactListItemView extends ViewGroup
             }
         } else {
             getCountView();
-            mCountView.setText(getMarqueeText(text));
+            setMarqueeText(mCountView, text);
             mCountView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mCountViewTextSize);
             mCountView.setGravity(Gravity.CENTER_VERTICAL);
             mCountView.setTextColor(mContactsCountTextColor);
@@ -1146,7 +1136,7 @@ public class ContactListItemView extends ViewGroup
             }
         } else {
             getStatusView();
-            mStatusView.setText(getMarqueeText(text));
+            setMarqueeText(mStatusView, text);
             mStatusView.setVisibility(VISIBLE);
         }
     }
@@ -1174,16 +1164,14 @@ public class ContactListItemView extends ViewGroup
         return TruncateAt.MARQUEE;
     }
 
-    public void showDisplayName(Cursor cursor, int nameColumnIndex, int alternativeNameColumnIndex,
-            boolean highlightingEnabled, int displayOrder) {
-        // Copy out the display name and alternate display name.
-        cursor.copyStringToBuffer(nameColumnIndex, mDisplayNameFormatter.getNameBuffer());
-        cursor.copyStringToBuffer(alternativeNameColumnIndex,
-                mDisplayNameFormatter.getAlternateNameBuffer());
-
-        CharSequence displayName = mDisplayNameFormatter.getDisplayName(
-                displayOrder, highlightingEnabled, mHighlightedPrefix);
-        getNameTextView().setText(getMarqueeText(displayName));
+    public void showDisplayName(Cursor cursor, int nameColumnIndex, int displayOrder) {
+        CharSequence name = cursor.getString(nameColumnIndex);
+        if (!TextUtils.isEmpty(name)) {
+            name = mPrefixHighligher.apply(name, mHighlightedPrefix);
+        } else {
+            name = mUnknownNameText;
+        }
+        setMarqueeText(getNameTextView(), name);
 
         // Since the quick contact content description is derived from the display name and there is
         // no guarantee that when the quick contact is initialized the display name is already set,

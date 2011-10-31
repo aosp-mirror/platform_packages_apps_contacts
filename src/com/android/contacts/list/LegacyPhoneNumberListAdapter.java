@@ -89,8 +89,7 @@ public class LegacyPhoneNumberListAdapter extends ContactEntryListAdapter {
     }
 
     protected void bindName(final ContactListItemView view, Cursor cursor) {
-        view.showDisplayName(cursor, PHONE_DISPLAY_NAME_COLUMN_INDEX, 0, false,
-                getContactNameDisplayOrder());
+        view.showDisplayName(cursor, PHONE_DISPLAY_NAME_COLUMN_INDEX, getContactNameDisplayOrder());
         view.showPhoneticName(cursor, PHONE_PHONETIC_NAME_COLUMN_INDEX);
     }
 
