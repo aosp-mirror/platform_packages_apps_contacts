@@ -158,6 +158,14 @@ public class ContactDetailUpdatesFragment extends ListFragment
         }
     }
 
+    /**
+     * Reset the list adapter in this {@link Fragment} to get rid of any saved scroll position
+     * from a previous contact.
+     */
+    public void resetAdapter() {
+        setListAdapter(mStreamItemAdapter);
+    }
+
     @Override
     public void setAlphaLayerValue(float alpha) {
         // If the alpha layer is not ready yet, store it for later when the view is initialized
