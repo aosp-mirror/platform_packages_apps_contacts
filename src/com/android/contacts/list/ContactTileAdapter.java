@@ -27,6 +27,7 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
@@ -477,7 +478,8 @@ public class ContactTileAdapter extends BaseAdapter {
         @Override
         public void onClick(ContactTileView contactTileView) {
             if (mListener != null) {
-                mListener.onContactSelected(contactTileView.getLookupUri());
+                mListener.onContactSelected(contactTileView.getLookupUri(),
+                        ContactsUtils.getTargetRectFromView(mContext, contactTileView));
             }
         }
     };
@@ -659,6 +661,6 @@ public class ContactTileAdapter extends BaseAdapter {
     }
 
     public interface Listener {
-        public void onContactSelected(Uri contactUri);
+        public void onContactSelected(Uri contactUri, Rect targetRect);
     }
 }

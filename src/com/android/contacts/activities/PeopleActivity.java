@@ -68,6 +68,7 @@ import android.app.FragmentTransaction;
 import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -77,6 +78,7 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.ProviderStatus;
+import android.provider.ContactsContract.QuickContact;
 import android.provider.Settings;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
@@ -1142,9 +1144,9 @@ public class PeopleActivity extends ContactsActivity
     private final class StrequentContactListFragmentListener
             implements ContactTileListFragment.Listener {
         @Override
-        public void onContactSelected(Uri contactUri) {
+        public void onContactSelected(Uri contactUri, Rect targetRect) {
             if (PhoneCapabilityTester.isUsingTwoPanes(PeopleActivity.this)) {
-                setupContactDetailFragment(contactUri);
+                QuickContact.showQuickContact(PeopleActivity.this, targetRect, contactUri, 0, null);
             } else {
                 startActivity(new Intent(Intent.ACTION_VIEW, contactUri));
             }
