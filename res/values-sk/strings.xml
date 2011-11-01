@@ -239,7 +239,7 @@
     <string name="fail_reason_unknown" msgid="1714092345030570863">"Neznáma chyba."</string>
     <string name="select_vcard_title" msgid="7791371083694672861">"Vyberte súbor vCard"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"Ukladanie do vyrovnávacej pamäte..."</string>
-    <string name="caching_vcard_message" msgid="4926308675041506756">"Prebieha načítavanie vizitiek vCard do vyrovnávacej pamäte miestneho dočasného ukladacieho priestoru. Samotné importovanie začne o chvíľu."</string>
+    <string name="caching_vcard_message" msgid="4926308675041506756">"Prebieha načítavanie vizitiek vCard do vyrovnávacej pamäte miestneho dočasného úložiska. Samotné importovanie začne o chvíľu."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Import: <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Importuje sa <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Nepodarilo sa prečítať údaje vizitky vCard"</string>
@@ -445,7 +445,7 @@
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Spojiť aktuálny kontakt s vybraným kontaktom?"</string>
     <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Upraviť vybrané kontakty"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Prepnúť do režimu úpravy vybraného kontaktu? Doposiaľ zadané informácie budú skopírované."</string>
-    <string name="menu_copyContact" msgid="1573960845106822639">"Skopírovať do priečinku Moje kontakty"</string>
+    <string name="menu_copyContact" msgid="1573960845106822639">"Skopírovať do priečinka Moje kontakty"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Pridať medzi moje kontakty"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Adresár <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Adresár"</string>
@@ -516,7 +516,7 @@
     <string name="call_log_new_header" msgid="846546437517724715">"Nové"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Staršie"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Nepodarilo sa pripojiť k serveru hlasovej schránky."</string>
-    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Nepodarilo sa prip. k serveru hl. schránky – nové hlas. správy."</string>
+    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Nepodarilo sa prip. k serveru hl. schránky. Nové hlas. správy."</string>
     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Nastavenie hlasovej schránky."</string>
     <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Zvuk nie je k dispozícii."</string>
     <string name="voicemail_status_action_configure" msgid="8671796489912239589">"Nastavenie"</string>
