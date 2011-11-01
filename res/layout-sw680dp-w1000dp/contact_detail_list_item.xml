@@ -76,6 +76,15 @@
             android:layout_gravity="center_vertical"
             android:visibility="gone" />
 
+        <View
+            android:id="@+id/primary_indicator"
+            android:layout_width="16dip"
+            android:layout_height="16dip"
+            android:visibility="gone"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/ic_list_default_mime_holo_dark"
+            android:layout_marginRight="8dip" />
+
         <TextView
             android:id="@+id/type"
             style="@style/ContactDetailItemType"
@@ -83,14 +92,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:paddingRight="16dip" />
-
-        <View
-            android:id="@+id/primary_indicator"
-            android:layout_width="16dip"
-            android:layout_height="16dip"
-            android:visibility="gone"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/ic_list_default_mime_holo_dark" />
 
         <View
             android:id="@+id/vertical_divider"

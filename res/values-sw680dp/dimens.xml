@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2011 The Android Open Source Project
+<!-- Copyright (C) 2010 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,5 +14,9 @@
      limitations under the License.
 -->
 <resources>
-    <dimen name="contact_detail_list_top_padding">8dip</dimen>
+    <dimen name="editor_type_label_width">180dip</dimen>
+    <dimen name="editor_round_button_padding_left">8dip</dimen>
+    <dimen name="editor_round_button_padding_right">8dip</dimen>
+    <dimen name="group_editor_side_padding">16dip</dimen>
+    <dimen name="quick_contact_photo_container_height">400dip</dimen>
 </resources>
