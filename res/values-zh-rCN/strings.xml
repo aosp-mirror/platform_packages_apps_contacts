@@ -309,7 +309,7 @@
     <string name="display_more_groups" msgid="2682547080423434170">"更多群组…"</string>
     <string name="display_ungrouped" msgid="6885954210243119591">"其他所有联系人"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"所有联系人"</string>
-    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"如果您停止同步“<xliff:g id="GROUP">%s</xliff:g>”，会同时停止同步所有未分组的联系人。"</string>
+    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"如果您停止同步“<xliff:g id="GROUP">%s</xliff:g>”，将同时停止同步所有未分组的联系人。"</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"只限平板电脑，不同步"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"仅保存在手机中，不同步"</string>
     <string name="call_custom" msgid="7756571794763171802">"呼叫<xliff:g id="CUSTOM">%s</xliff:g>"</string>

@@ -397,7 +397,7 @@
     <string name="connections" msgid="8098440723172028350">"Conexiones"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Agregar conexión"</string>
     <string name="recent" msgid="2659189233141493004">"Recientes"</string>
-    <string name="recent_updates" msgid="4267258535615860710">"Acts. recientes"</string>
+    <string name="recent_updates" msgid="4267258535615860710">"Actualiz. recientes"</string>
     <string name="account_type_format" msgid="718948015590343010">"Contacto de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
