@@ -131,6 +131,9 @@
     <!-- Left padding for a group member list item -->
     <dimen name="group_member_item_left_padding">4dip</dimen>
 
+    <!-- Left and right padding for the group editor view -->
+    <dimen name="group_editor_side_padding">16dip</dimen>
+
     <!-- Left margin for the group member list to match the built in margin in the autocomplete asset -->
     <dimen name="group_editor_member_list_left_margin">4dip</dimen>
 
@@ -145,6 +148,9 @@
 
     <!-- Left and right margin for the divider in the group detail fragment -->
     <dimen name="group_detail_side_margin">0dip</dimen>
+
+    <!-- Height of the quick contact photo container (for screens that are too large to use the screen width/height as a constraint)-->
+    <dimen name="quick_contact_photo_container_height">200dip</dimen>
 
     <!-- Height of edit text in dialpad fragment -->
     <dimen name="dialpad_horizontal_margin">0dip</dimen>
