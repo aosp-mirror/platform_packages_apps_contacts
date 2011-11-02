@@ -23,6 +23,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingLeft="8dip"
+    android:paddingBottom="16dip"
     android:orientation="vertical">
 
     <LinearLayout
@@ -48,6 +50,7 @@
         android:id="@+id/company"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="16dip"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="?android:attr/textColorSecondary" />
 
