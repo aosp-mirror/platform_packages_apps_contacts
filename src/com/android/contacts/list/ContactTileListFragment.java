@@ -28,6 +28,7 @@ import android.content.CursorLoader;
 import android.content.Loader;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -48,7 +49,7 @@ public class ContactTileListFragment extends Fragment {
     private static final String TAG = ContactTileListFragment.class.getSimpleName();
 
     public interface Listener {
-        public void onContactSelected(Uri contactUri);
+        public void onContactSelected(Uri contactUri, Rect targetRect);
     }
 
     private static int LOADER_CONTACTS = 1;
@@ -166,9 +167,9 @@ public class ContactTileListFragment extends Fragment {
     private ContactTileAdapter.Listener mAdapterListener =
             new ContactTileAdapter.Listener() {
         @Override
-        public void onContactSelected(Uri contactUri) {
+        public void onContactSelected(Uri contactUri, Rect targetRect) {
             if (mListener != null) {
-                mListener.onContactSelected(contactUri);
+                mListener.onContactSelected(contactUri, targetRect);
             }
         }
     };
