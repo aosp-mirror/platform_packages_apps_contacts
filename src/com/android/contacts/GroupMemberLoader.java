@@ -38,7 +38,7 @@ public final class GroupMemberLoader extends CursorLoader {
     /**
      * Projection map is taken from {@link ContactListAdapter}
      */
-    private final String[] PROJECTION_DATA = new String[] {
+    private static final String[] PROJECTION_DATA = new String[] {
         // TODO: Pull Projection_data out into util class
         Data.CONTACT_ID,                        // 0
         Data.RAW_CONTACT_ID,                    // 1
