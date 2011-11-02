@@ -53,7 +53,7 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Ştergeţi"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Nouă"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Nou"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Separ. pers.din ag.?"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Intrare separată?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Această persoană de contact va fi separată în mai multe intrări în Agendă."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Alăturaţi-vă"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Asociaţi intrările din Agendă"</string>
@@ -62,7 +62,7 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Persoane din agendă sugerate"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Toate persoanele din agendă"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Persoanele din agendă au fost unite"</string>
-    <string name="deleteConfirmation_title" msgid="1418215926447642260">"Şt. pers. de cont.?"</string>
+    <string name="deleteConfirmation_title" msgid="1418215926447642260">"Ştergeţi contactul?"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Setaţi ton apel"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Toate apel. către mesag. voc."</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Nu puteţi şterge persoane din agendă, din conturi cu permisiuni doar de citire, însă puteţi să le ascundeţi în lista dvs. de persoane din agendă."</string>
@@ -127,7 +127,7 @@
     <item quantity="other" msgid="3852668542926965042">"Au fost găsite <xliff:g id="COUNT">%d</xliff:g> (de) persoane din agendă"</item>
   </plurals>
     <string name="foundTooManyContacts" msgid="5163335650920020220">"S-au găsit peste <xliff:g id="COUNT">%d</xliff:g> (de) persoane din agendă."</string>
-    <string name="listFoundAllContactsZero" msgid="7132202364587656501">"Nu s-au găsit pers.din agendă."</string>
+    <string name="listFoundAllContactsZero" msgid="7132202364587656501">"Nu s-au găsit contacte."</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"A fost găsită 1 persoană din agendă"</item>
     <item quantity="other" msgid="7988132539476575389">"Au fost găsite <xliff:g id="COUNT">%d</xliff:g> (de) persoane din agendă"</item>
@@ -146,7 +146,7 @@
     <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Ştergeţi mesajul vocal"</string>
     <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Distribuiţi mesajul vocal"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Jurnalul de apeluri este gol."</string>
-    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Şterg.jurn.de apel.?"</string>
+    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Ştergeţi apelurile?"</string>
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Toate înregistrările apelurilor dvs. vor fi şterse."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Se goleşte jurnalul de apeluri..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
@@ -227,7 +227,7 @@
     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Nu s-a putut scana cardul SD"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"Stocarea nu s-a putut scana. (Motivul: „<xliff:g id="FAIL_REASON">%s</xliff:g>”)"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"Cardul SD nu a putut fi scanat. (Motivul: „<xliff:g id="FAIL_REASON">%s</xliff:g>”)"</string>
-    <string name="fail_reason_io_error" msgid="6748358842976073255">"Eroare I/I (intrare/ieşire)"</string>
+    <string name="fail_reason_io_error" msgid="6748358842976073255">"Eroare I/O"</string>
     <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Memoria este insuficientă (probabil fişierul este prea mare)."</string>
     <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"Nu s-au putut analiza datele de pe vCard dintr-un motiv neaşteptat."</string>
     <string name="fail_reason_not_supported" msgid="8219562769267148825">"Formatul nu este acceptat."</string>
@@ -290,7 +290,7 @@
     <string name="menu_accounts" msgid="8499114602017077970">"Conturi"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Persoane de contact de afişat"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Importaţi/exportaţi"</string>
-    <string name="dialog_import_export" msgid="4360648034889921624">"Imp./exp. pers. agendă"</string>
+    <string name="dialog_import_export" msgid="4360648034889921624">"Import/export contacte"</string>
     <string name="menu_share" msgid="943789700636542260">"Distribuiţi"</string>
     <string name="menu_all_contacts" msgid="5101735431586050711">"Toată agenda"</string>
     <string name="share_via" msgid="563121028023030093">"Distribuiţi persoana din agendă prin"</string>
@@ -307,7 +307,7 @@
     <string name="menu_sync_remove" msgid="3266725887008450161">"Eliminaţi grup de sincronizare"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Adăugaţi grup de sincronizare"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"Mai multe grupuri..."</string>
-    <string name="display_ungrouped" msgid="6885954210243119591">"Toate celel.pers.din ag."</string>
+    <string name="display_ungrouped" msgid="6885954210243119591">"Toate celelalte contacte"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"Toată Agenda"</string>
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Eliminarea grupului „<xliff:g id="GROUP">%s</xliff:g>” din sincronizare va elimina, de asemenea, orice persoană din agendă care nu face parte dintr-un grup."</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Numai pe tabletă, nesincronizată"</string>
@@ -403,7 +403,7 @@
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Utilizaţi această fotografie"</string>
     <string name="contact_read_only" msgid="7421346527289472273">"Nu se poate edita din această aplicaţie"</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"Nu există inform. suplim. pt. această persoană de contact."</string>
+    <string name="no_contact_details" msgid="6636856378019344497">"Nu există informaţii suplimentare pentru acest contact."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Nu poate fi editat pe acest dispozitiv."</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Sortaţi lista după"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"Prenume"</string>
@@ -516,7 +516,7 @@
     <string name="call_log_new_header" msgid="846546437517724715">"Noi"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Mai vechi"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Nu se poate realiza conectarea la serverul de mesagerie vocală."</string>
-    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Nu se poate conecta la serv. mes. voc. Mes. voc. noi în aştept."</string>
+    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Nu se conectează server mesagerie vocală. Aşteaptă mesaje noi."</string>
     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Configuraţi mesageria vocală."</string>
     <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Componenta audio nu este disponibilă."</string>
     <string name="voicemail_status_action_configure" msgid="8671796489912239589">"Configuraţi"</string>
