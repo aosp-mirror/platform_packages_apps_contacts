@@ -268,7 +268,7 @@
     <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"تعذر بدء المُصدر: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"حدث خطأ أثناء التصدير: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"تعذر الحصول على معلومات قاعدة البيانات."</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"ليست هناك أية جهات اتصال قابلة للتصدير. إذا كانت لديك جهات اتصال على الجهاز اللوحي، فإن بعض موفري البيانات  لا يسمحون بتصدير جهات الاتصال من الجهاز اللوحي."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"ليست هناك أية جهات اتصال قابلة للتصدير. إذا كانت لديك جهات اتصال على الجهاز اللوحي، فإن بعض موفري البيانات لا يسمحون بتصدير جهات الاتصال من الجهاز اللوحي."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="3296493229040294335">"ليست هناك أية جهات اتصال قابلة للتصدير. إذا كانت لديك جهات اتصال على هاتفك، فإن بعض موفري البيانات لا يسمحون بتصدير جهات الاتصال من الهاتف."</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"لم يبدأ مؤلف vCard بشكل صحيح."</string>
     <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"تعذر فتح \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>

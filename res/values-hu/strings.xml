@@ -53,7 +53,7 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Törlés"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Új"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Új"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Névjegy szétvál.?"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Szétválasztja?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Ezt a névjegyet több névjegyre osztja."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Összekapcsolás"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Névjegyek összekapcsolása"</string>
@@ -62,7 +62,7 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Javasolt névjegyek"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Összes névjegy"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"A névjegyek összekapcsolása megtörtént"</string>
-    <string name="deleteConfirmation_title" msgid="1418215926447642260">"Névjegy törlése?"</string>
+    <string name="deleteConfirmation_title" msgid="1418215926447642260">"Törli a névjegyet?"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Csengőhang"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Minden hívás a hangpostára"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Írásvédett fiókból nem törölhet névjegyet, de saját címtárában elrejtheti azokat."</string>
@@ -76,7 +76,7 @@
     <string name="label_sip_address" msgid="124073911714324974">"Internetes hívás"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Cég"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Beosztás"</string>
-    <string name="invalidContactMessage" msgid="8215051456181842274">"A kapcsolat nem létezik."</string>
+    <string name="invalidContactMessage" msgid="8215051456181842274">"A névjegy nem létezik."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Új névjegy létrehozása"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Új névjegy létrehozása"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefon"</string>
@@ -146,8 +146,8 @@
     <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Hangposta törlése"</string>
     <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Hangposta megosztása"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"A híváslista üres."</string>
-    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Híváslista törlése?"</string>
-    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Minden telefonhívás törlődik."</string>
+    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Törli a híváslistát?"</string>
+    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Minden telefonhívás törlésre kerül."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Híváslista törlése..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
@@ -253,7 +253,7 @@
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"A vCard-exportálási kérelem elutasítva. Próbálja újra később."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"kapcsolat"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
-    <string name="confirm_export_title" msgid="6834385377255286349">"Névj. exportálása?"</string>
+    <string name="confirm_export_title" msgid="6834385377255286349">"Exportálni szeretné?"</string>
     <string name="confirm_export_message" msgid="2423421354816428708">"A névjegyek listájának exportálása a(z) <xliff:g id="VCARD_FILENAME">%s</xliff:g> fájlba."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Sikertelen export"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Nem sikerült a névjegyadatok exportálása."\n"Ok: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -483,7 +483,7 @@
     <item quantity="one" msgid="2944819210288517794">"1 csoport"</item>
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> csoport"</item>
   </plurals>
-    <string name="delete_group_dialog_message" msgid="7586856514337560529">"Törli a következő csoportot \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Maguk a névjegyek nem törlődnek.)"</string>
+    <string name="delete_group_dialog_message" msgid="7586856514337560529">"Törli a következő csoportot \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Maguk a névjegyek nem kerülnek törlésre.)"</string>
   <plurals name="num_contacts_in_group">
     <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> személy ebben: <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
     <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> személy ebben: <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>

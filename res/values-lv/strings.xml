@@ -53,7 +53,7 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Dzēst"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Jauns"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Jauna"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Vai kop. kontaktp.?"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Atdalīt kontaktp.?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Šī kontaktpersona tiks sadalīta vairākās kontaktpersonās."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Apvienot"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Kontaktpersonu apvienošana"</string>
@@ -290,7 +290,7 @@
     <string name="menu_accounts" msgid="8499114602017077970">"Konti"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Attēlojamās kontaktpersonas"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Importēt/eksportēt"</string>
-    <string name="dialog_import_export" msgid="4360648034889921624">"K. pers. import./eksport."</string>
+    <string name="dialog_import_export" msgid="4360648034889921624">"K. pers. imports/eksports"</string>
     <string name="menu_share" msgid="943789700636542260">"Kopīgot"</string>
     <string name="menu_all_contacts" msgid="5101735431586050711">"Visas kontaktpersonas"</string>
     <string name="share_via" msgid="563121028023030093">"Kopīgot kontaktpersonu, izmantojot"</string>
