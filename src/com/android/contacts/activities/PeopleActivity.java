@@ -472,12 +472,15 @@ public class PeopleActivity extends ContactsActivity
 
     @Override
     protected void onDestroy() {
-        // mActionBarAdapter will be null here when redirecting to another activity in
-        // configureContentView().
+        // Some of variables will be null if this Activity redirects Intent.
+        // See also onCreate() or other methods called during the Activity's initialization.
         if (mActionBarAdapter != null) {
             mActionBarAdapter.setListener(null);
         }
-        mContactListFilterController.removeListener(this);
+        if (mContactListFilterController != null) {
+            mContactListFilterController.removeListener(this);
+        }
+
         super.onDestroy();
     }
 
