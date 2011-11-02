@@ -254,7 +254,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
 
         @Override
         public CursorLoader onCreateLoader(int id, Bundle args) {
-            return new GroupMemberLoader(mContext, mGroupId);
+            return GroupMemberLoader.constructLoaderForGroupDetailQuery(mContext, mGroupId);
         }
 
         @Override
