@@ -15,13 +15,13 @@
  */
 package com.android.contacts.interactions;
 
-
 import com.android.contacts.Collapser;
 import com.android.contacts.Collapser.Collapsible;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.activities.DialtactsActivity;
+import com.android.contacts.activities.TransactionSafeActivity;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountType.StringInflater;
 import com.android.contacts.model.AccountTypeManager;
@@ -63,7 +63,8 @@ import java.util.List;
 
 /**
  * Initiates phone calls or a text message. If there are multiple candidates, this class shows a
- * dialog to pick one.
+ * dialog to pick one. Creating one of these interactions should be done through the static
+ * factory methods.
  */
 public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
     private static final String TAG = PhoneNumberInteraction.class.getSimpleName();
@@ -183,9 +184,10 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
      * one will be chosen to make a call or initiate an sms message.
      *
      * It is recommended to use
-     * {@link PhoneNumberInteraction#startInteractionForPhoneCall(Activity, Uri)} or
-     * {@link PhoneNumberInteraction#startInteractionForTextMessage(Activity, Uri)} instead of
-     * directly using this class, as those methods handle one or multiple data cases appropriately.
+     * {@link PhoneNumberInteraction#startInteractionForPhoneCall(TransactionSafeActivity, Uri)} or
+     * {@link PhoneNumberInteraction#startInteractionForTextMessage(TransactionSafeActivity, Uri)}
+     * instead of directly using this class, as those methods handle one or multiple data cases
+     * appropriately.
      */
     /* Made public to let the system reach this class */
     public static class PhoneDisambiguationDialogFragment extends DialogFragment
@@ -272,6 +274,12 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
 
     private CursorLoader mLoader;
 
+    /**
+     * Constructs a new {@link PhoneNumberInteraction}. The constructor takes in a {@link Context}
+     * instead of a {@link TransactionSafeActivity} for testing purposes to verify the functionality
+     * of this class. However, all factory methods for creating {@link PhoneNumberInteraction}s
+     * require a {@link TransactionSafeActivity} (i.e. see {@link #startInteractionForPhoneCall}).
+     */
     @VisibleForTesting
     /* package */ PhoneNumberInteraction(Context context, InteractionType interactionType,
             DialogInterface.OnDismissListener dismissListener) {
@@ -347,7 +355,7 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
 
     @Override
     public void onLoadComplete(Loader<Cursor> loader, Cursor cursor) {
-        if (cursor == null) {
+        if (cursor == null || !isSafeToCommitTransactions()) {
             onDismiss();
             return;
         }
@@ -396,6 +404,11 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
         }
     }
 
+    private boolean isSafeToCommitTransactions() {
+        return mContext instanceof TransactionSafeActivity ?
+                ((TransactionSafeActivity) mContext).isSafeToCommitTransactions() : true;
+    }
+
     private void onDismiss() {
         if (mDismissListener != null) {
             mDismissListener.onDismiss(null);
@@ -406,21 +419,27 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
      * Start call action using given contact Uri. If there are multiple candidates for the phone
      * call, dialog is automatically shown and the user is asked to choose one.
      *
+     * @param activity that is calling this interaction. This must be of type
+     * {@link TransactionSafeActivity} because we need to check on the activity state after the
+     * phone numbers have been queried for.
      * @param uri contact Uri (built from {@link Contacts#CONTENT_URI}) or data Uri
      * (built from {@link Data#CONTENT_URI}). Contact Uri may show the disambiguation dialog while
      * data Uri won't.
      */
-    public static void startInteractionForPhoneCall(Activity activity, Uri uri) {
+    public static void startInteractionForPhoneCall(TransactionSafeActivity activity, Uri uri) {
         (new PhoneNumberInteraction(activity, InteractionType.PHONE_CALL, null))
                 .startInteraction(uri);
     }
 
     /**
+     * @param activity that is calling this interaction. This must be of type
+     * {@link TransactionSafeActivity} because we need to check on the activity state after the
+     * phone numbers have been queried for.
      * @param callOrigin If non null, {@link DialtactsActivity#EXTRA_CALL_ORIGIN} will be
      * appended to the Intent initiating phone call. See comments in Phone package (PhoneApp)
      * for more detail.
      */
-    public static void startInteractionForPhoneCall(Activity activity, Uri uri,
+    public static void startInteractionForPhoneCall(TransactionSafeActivity activity, Uri uri,
             String callOrigin) {
         (new PhoneNumberInteraction(activity, InteractionType.PHONE_CALL, null, callOrigin))
                 .startInteraction(uri);
@@ -431,11 +450,14 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
      * candidates for the phone call, dialog is automatically shown and the user is asked to choose
      * one.
      *
+     * @param activity that is calling this interaction. This must be of type
+     * {@link TransactionSafeActivity} because we need to check on the activity state after the
+     * phone numbers have been queried for.
      * @param uri contact Uri (built from {@link Contacts#CONTENT_URI}) or data Uri
      * (built from {@link Data#CONTENT_URI}). Contact Uri may show the disambiguation dialog while
      * data Uri won't.
      */
-    public static void startInteractionForTextMessage(Activity activity, Uri uri) {
+    public static void startInteractionForTextMessage(TransactionSafeActivity activity, Uri uri) {
         (new PhoneNumberInteraction(activity, InteractionType.SMS, null)).startInteraction(uri);
     }
 

@@ -17,8 +17,8 @@
 package com.android.contacts;
 
 import com.android.contacts.test.InjectedServices;
+import com.android.contacts.activities.TransactionSafeActivity;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -31,7 +31,7 @@ import android.view.View;
 /**
  * A common superclass for Contacts activities that handles application-wide services.
  */
-public abstract class ContactsActivity extends Activity
+public abstract class ContactsActivity extends TransactionSafeActivity
     implements ContactSaveService.Listener
 {
 
