@@ -23,6 +23,8 @@ import com.android.contacts.util.Constants;
 import com.google.common.annotations.VisibleForTesting;
 
 import android.app.Application;
+import android.app.FragmentManager;
+import android.app.LoaderManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -31,6 +33,9 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 public final class ContactsApplication extends Application {
+    private static final boolean ENABLE_LOADER_LOG = false; // Don't submit with true
+    private static final boolean ENABLE_FRAGMENT_LOG = false; // Don't submit with true
+
     private static InjectedServices sInjectedServices;
     private AccountTypeManager mAccountTypeManager;
     private ContactPhotoManager mContactPhotoManager;
@@ -118,6 +123,8 @@ public final class ContactsApplication extends Application {
         Context context = getApplicationContext();
         PreferenceManager.getDefaultSharedPreferences(context);
         AccountTypeManager.getInstance(context);
+        if (ENABLE_FRAGMENT_LOG) FragmentManager.enableDebugLogging(true);
+        if (ENABLE_LOADER_LOG) LoaderManager.enableDebugLogging(true);
 
         if (Log.isLoggable(Constants.STRICT_MODE_TAG, Log.DEBUG)) {
             StrictMode.setThreadPolicy(

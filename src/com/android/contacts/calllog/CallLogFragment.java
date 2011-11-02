@@ -20,6 +20,7 @@ import com.android.common.io.MoreCloseables;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.activities.DialtactsActivity.ViewPagerVisibilityListener;
+import com.android.contacts.util.EmptyLoader;
 import com.android.contacts.voicemail.VoicemailStatusHelper;
 import com.android.contacts.voicemail.VoicemailStatusHelper.StatusMessage;
 import com.android.contacts.voicemail.VoicemailStatusHelperImpl;
@@ -59,6 +60,11 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         CallLogQueryHandler.Listener, CallLogAdapter.CallFetcher {
     private static final String TAG = "CallLogFragment";
 
+    /**
+     * ID of the empty loader to defer other fragments.
+     */
+    private static final int EMPTY_LOADER_ID = 0;
+
     private CallLogAdapter mAdapter;
     private CallLogQueryHandler mCallLogQueryHandler;
     private boolean mScrollToTop;
@@ -74,6 +80,10 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     private TextView mStatusMessageText;
     private TextView mStatusMessageAction;
     private KeyguardManager mKeyguardManager;
+
+    private boolean mEmptyLoaderRunning;
+    private boolean mCallLogFetched;
+    private boolean mVoicemailStatusFetched;
 
     @Override
     public void onCreate(Bundle state) {
@@ -103,6 +113,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             listView.smoothScrollToPosition(0);
             mScrollToTop = false;
         }
+        mCallLogFetched = true;
+        destroyEmptyLoaderIfAllDataFetched();
     }
 
     /**
@@ -118,6 +130,15 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
         int activeSources = mVoicemailStatusHelper.getNumberActivityVoicemailSources(statusCursor);
         setVoicemailSourcesAvailable(activeSources != 0);
         MoreCloseables.closeQuietly(statusCursor);
+        mVoicemailStatusFetched = true;
+        destroyEmptyLoaderIfAllDataFetched();
+    }
+
+    private void destroyEmptyLoaderIfAllDataFetched() {
+        if (mCallLogFetched && mVoicemailStatusFetched && mEmptyLoaderRunning) {
+            mEmptyLoaderRunning = false;
+            getLoaderManager().destroyLoader(EMPTY_LOADER_ID);
+        }
     }
 
     /** Sets whether there are any voicemail sources available in the platform. */
@@ -155,6 +176,12 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     @Override
     public void onStart() {
         mScrollToTop = true;
+
+        // Start the empty loader now to defer other fragments.  We destroy it when both calllog
+        // and the voicemail status are fetched.
+        getLoaderManager().initLoader(EMPTY_LOADER_ID, null,
+                new EmptyLoader.Callback(getActivity()));
+        mEmptyLoaderRunning = true;
         super.onStart();
     }
 
