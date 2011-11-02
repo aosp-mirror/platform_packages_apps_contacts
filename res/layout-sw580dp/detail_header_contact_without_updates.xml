@@ -24,7 +24,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="8dip">
+    android:paddingBottom="16dip">
 
     <!-- Ensure that the contact photo for a contact WITHOUT social updates is the same width and
     height as a contact WITH social updates (where the photo is 2/3 of the screen width). -->
@@ -70,6 +70,7 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingLeft="8dip"
             android:paddingRight="24dip"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="@dimen/detail_header_name_text_size" />
@@ -83,6 +84,7 @@
         android:id="@+id/company"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="8dip"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="?android:attr/textColorSecondary" />
 
