@@ -15,7 +15,6 @@
  */
 package com.android.contacts;
 
-import com.android.contacts.list.ContactListAdapter;
 import com.android.contacts.preference.ContactsPreferences;
 
 import android.content.Context;
@@ -35,51 +34,63 @@ import java.util.List;
  */
 public final class GroupMemberLoader extends CursorLoader {
 
-    /**
-     * Projection map is taken from {@link ContactListAdapter}
-     */
-    private static final String[] PROJECTION_DATA = new String[] {
-        // TODO: Pull Projection_data out into util class
-        Data.CONTACT_ID,                        // 0
-        Data.RAW_CONTACT_ID,                    // 1
-        Data.DISPLAY_NAME_PRIMARY,              // 2
-        Data.DISPLAY_NAME_ALTERNATIVE,          // 3
-        Data.SORT_KEY_PRIMARY,                  // 4
-        Data.STARRED,                           // 5
-        Data.CONTACT_PRESENCE,                  // 6
-        Data.CONTACT_CHAT_CAPABILITY,           // 7
-        Data.PHOTO_ID,                          // 8
-        Data.PHOTO_URI,                         // 9
-        Data.PHOTO_THUMBNAIL_URI,               // 10
-        Data.LOOKUP_KEY,                        // 11
-        Data.PHONETIC_NAME,                     // 12
-        Data.HAS_PHONE_NUMBER,                  // 13
-        Data.CONTACT_STATUS,                    // 14
-    };
+    public static class GroupEditorQuery {
+        private static final String[] PROJECTION = new String[] {
+            Data.CONTACT_ID,                        // 0
+            Data.RAW_CONTACT_ID,                    // 1
+            Data.DISPLAY_NAME_PRIMARY,              // 2
+            Data.PHOTO_URI,                         // 3
+            Data.LOOKUP_KEY,                        // 4
+        };
+
+        public static final int CONTACT_ID                   = 0;
+        public static final int RAW_CONTACT_ID               = 1;
+        public static final int CONTACT_DISPLAY_NAME_PRIMARY = 2;
+        public static final int CONTACT_PHOTO_URI            = 3;
+        public static final int CONTACT_LOOKUP_KEY           = 4;
+    }
+
+    public static class GroupDetailQuery {
+        private static final String[] PROJECTION = new String[] {
+            Data.PHOTO_ID,                          // 0
+            Data.PHOTO_URI,                         // 1
+            Data.LOOKUP_KEY,                        // 2
+            Data.DISPLAY_NAME_PRIMARY,              // 3
+            Data.CONTACT_PRESENCE,                  // 4
+            Data.CONTACT_STATUS,                    // 5
+        };
+
+        public static final int CONTACT_PHOTO_ID             = 0;
+        public static final int CONTACT_PHOTO_URI            = 1;
+        public static final int CONTACT_LOOKUP_KEY           = 2;
+        public static final int CONTACT_DISPLAY_NAME_PRIMARY = 3;
+        public static final int CONTACT_PRESENCE_STATUS      = 4;
+        public static final int CONTACT_STATUS               = 5;
+    }
 
     private final long mGroupId;
 
-    public static final int CONTACT_ID_COLUMN_INDEX = 0;
-    public static final int RAW_CONTACT_ID_COLUMN_INDEX = 1;
-    public static final int CONTACT_DISPLAY_NAME_PRIMARY_COLUMN_INDEX = 2;
-    public static final int CONTACT_DISPLAY_NAME_ALTERNATIVE_COLUMN_INDEX = 3;
-    public static final int CONTACT_SORT_KEY_PRIMARY_COLUMN_INDEX = 4;
-    public static final int CONTACT_STARRED_COLUMN_INDEX = 5;
-    public static final int CONTACT_PRESENCE_STATUS_COLUMN_INDEX = 6;
-    public static final int CONTACT_CHAT_CAPABILITY_COLUMN_INDEX = 7;
-    public static final int CONTACT_PHOTO_ID_COLUMN_INDEX = 8;
-    public static final int CONTACT_PHOTO_URI_COLUMN_INDEX = 9;
-    public static final int CONTACT_PHOTO_THUMBNAIL_URI_COLUMN_INDEX = 10;
-    public static final int CONTACT_LOOKUP_KEY_COLUMN_INDEX = 11;
-    public static final int CONTACT_PHONETIC_NAME_COLUMN_INDEX = 12;
-    public static final int CONTACT_HAS_PHONE_COLUMN_INDEX = 13;
-    public static final int CONTACT_STATUS_COLUMN_INDEX = 14;
+    /**
+     * @return GroupMemberLoader object which can be used in group editor.
+     */
+    public static GroupMemberLoader constructLoaderForGroupEditorQuery(
+            Context context, long groupId) {
+        return new GroupMemberLoader(context, groupId, GroupEditorQuery.PROJECTION);
+    }
 
-    public GroupMemberLoader(Context context, long groupId) {
+    /**
+     * @return GroupMemberLoader object used in group detail page.
+     */
+    public static GroupMemberLoader constructLoaderForGroupDetailQuery(
+            Context context, long groupId) {
+        return new GroupMemberLoader(context, groupId, GroupDetailQuery.PROJECTION);
+    }
+
+    private GroupMemberLoader(Context context, long groupId, String[] projection) {
         super(context);
         mGroupId = groupId;
         setUri(createUri());
-        setProjection(PROJECTION_DATA);
+        setProjection(projection);
         setSelection(createSelection());
         setSelectionArgs(createSelectionArgs());
 

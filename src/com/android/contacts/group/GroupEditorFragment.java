@@ -19,6 +19,7 @@ package com.android.contacts.group;
 import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.GroupMemberLoader;
+import com.android.contacts.GroupMemberLoader.GroupEditorQuery;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.activities.GroupEditorActivity;
@@ -781,7 +782,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
 
         @Override
         public CursorLoader onCreateLoader(int id, Bundle args) {
-            return new GroupMemberLoader(mContext, mGroupId);
+            return GroupMemberLoader.constructLoaderForGroupEditorQuery(mContext, mGroupId);
         }
 
         @Override
@@ -789,14 +790,11 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
             List<Member> listExistingMembers = new ArrayList<Member>();
             data.moveToPosition(-1);
             while (data.moveToNext()) {
-                long contactId = data.getLong(GroupMemberLoader.CONTACT_ID_COLUMN_INDEX);
-                long rawContactId = data.getLong(GroupMemberLoader.RAW_CONTACT_ID_COLUMN_INDEX);
-                String lookupKey = data.getString(
-                        GroupMemberLoader.CONTACT_LOOKUP_KEY_COLUMN_INDEX);
-                String displayName = data.getString(
-                        GroupMemberLoader.CONTACT_DISPLAY_NAME_PRIMARY_COLUMN_INDEX);
-                String photoUri = data.getString(
-                        GroupMemberLoader.CONTACT_PHOTO_URI_COLUMN_INDEX);
+                long contactId = data.getLong(GroupEditorQuery.CONTACT_ID);
+                long rawContactId = data.getLong(GroupEditorQuery.RAW_CONTACT_ID);
+                String lookupKey = data.getString(GroupEditorQuery.CONTACT_LOOKUP_KEY);
+                String displayName = data.getString(GroupEditorQuery.CONTACT_DISPLAY_NAME_PRIMARY);
+                String photoUri = data.getString(GroupEditorQuery.CONTACT_PHOTO_URI);
                 listExistingMembers.add(new Member(rawContactId, lookupKey, contactId,
                         displayName, photoUri));
             }
