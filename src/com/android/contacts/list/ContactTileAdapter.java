@@ -21,7 +21,9 @@ import com.android.contacts.ContactStatusUtil;
 import com.android.contacts.ContactTileLoaderFactory;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.GroupMemberLoader;
+import com.android.contacts.GroupMemberLoader.GroupDetailQuery;
 import com.android.contacts.R;
+import com.android.contacts.list.ContactTileAdapter.DisplayType;
 
 import android.content.ContentUris;
 import android.content.Context;
@@ -36,7 +38,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -156,13 +157,12 @@ public class ContactTileAdapter extends BaseAdapter {
          * the correct {@link Cursor}s will be given.
          */
         if (mDisplayType == DisplayType.GROUP_MEMBERS) {
-            mIdIndex = GroupMemberLoader.CONTACT_PHOTO_ID_COLUMN_INDEX;
-            mLookupIndex = GroupMemberLoader.CONTACT_LOOKUP_KEY_COLUMN_INDEX;
-            mPhotoUriIndex = GroupMemberLoader.CONTACT_PHOTO_URI_COLUMN_INDEX;
-            mNameIndex = GroupMemberLoader.CONTACT_DISPLAY_NAME_PRIMARY_COLUMN_INDEX;
-            mStarredIndex = GroupMemberLoader.CONTACT_STARRED_COLUMN_INDEX;
-            mPresenceIndex = GroupMemberLoader.CONTACT_PRESENCE_STATUS_COLUMN_INDEX;
-            mStatusIndex = GroupMemberLoader.CONTACT_STATUS_COLUMN_INDEX;
+            mIdIndex = GroupDetailQuery.CONTACT_PHOTO_ID;
+            mLookupIndex = GroupDetailQuery.CONTACT_LOOKUP_KEY;
+            mPhotoUriIndex = GroupDetailQuery.CONTACT_PHOTO_URI;
+            mNameIndex = GroupDetailQuery.CONTACT_DISPLAY_NAME_PRIMARY;
+            mPresenceIndex = GroupDetailQuery.CONTACT_PRESENCE_STATUS;
+            mStatusIndex = GroupDetailQuery.CONTACT_STATUS;
         } else {
             mIdIndex = ContactTileLoaderFactory.CONTACT_ID;
             mLookupIndex = ContactTileLoaderFactory.LOOKUP_KEY;
