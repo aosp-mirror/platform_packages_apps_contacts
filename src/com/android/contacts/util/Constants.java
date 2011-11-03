@@ -32,18 +32,6 @@ public class Constants {
     public static final String PERFORMANCE_TAG = "ContactsPerf";
 
     /**
-     * Log tag for enabling/disabling LoaderManager log.
-     * To enable: adb shell setprop log.tag.ContactsLoaderManager DEBUG
-     */
-    public static final String LOADER_MANAGER_TAG = "ContactsLoaderManager";
-
-    /**
-     * Log tag for enabling/disabling FragmentManager log.
-     * To enable: adb shell setprop log.tag.ContactsFragmentManager DEBUG
-     */
-    public static final String FRAGMENT_MANAGER_TAG = "ContactsFragmentManager";
-
-    /**
      * Log tag for enabling/disabling StrictMode violation log.
      * To enable: adb shell setprop log.tag.ContactsStrictMode DEBUG
      */
