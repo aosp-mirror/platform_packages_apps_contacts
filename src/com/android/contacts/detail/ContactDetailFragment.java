@@ -387,6 +387,16 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     }
 
     /**
+     * Reset the list adapter in this {@link Fragment} to get rid of any saved scroll position
+     * from a previous contact.
+     */
+    public void resetAdapter() {
+        if (mListView != null) {
+            mListView.setAdapter(mAdapter);
+        }
+    }
+
+    /**
      * Returns the top coordinate of the first item in the {@link ListView}. If the first item
      * in the {@link ListView} is not visible or there are no children in the list, then return
      * Integer.MIN_VALUE. Note that the returned value will be <= 0 because the first item in the
