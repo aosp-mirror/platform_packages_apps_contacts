@@ -497,6 +497,10 @@ public abstract class BaseAccountType extends AccountType {
                     + " mStringRes=" + mStringRes
                     + " mColumnName" + mColumnName;
         }
+
+        public String getColumnNameForTest() {
+            return mColumnName;
+        }
     }
 
     public static abstract class CommonInflater implements StringInflater {
@@ -699,8 +703,7 @@ public abstract class BaseAccountType extends AccountType {
         while ((type = parser.next()) != XmlPullParser.END_DOCUMENT
                 && (type != XmlPullParser.END_TAG || parser.getDepth() > outerDepth)) {
             final int depth = parser.getDepth();
-            if (type == XmlPullParser.END_TAG || type == XmlPullParser.TEXT
-                    || depth != outerDepth + 1) {
+            if (type != XmlPullParser.START_TAG || depth != outerDepth + 1) {
                 continue; // Not direct child tag
             }
 
@@ -845,8 +848,7 @@ public abstract class BaseAccountType extends AccountType {
             while ((type = parser.next()) != XmlPullParser.END_DOCUMENT
                     && (type != XmlPullParser.END_TAG || parser.getDepth() > outerDepth)) {
                 final int depth = parser.getDepth();
-                if (type == XmlPullParser.END_TAG || type == XmlPullParser.TEXT
-                        || depth != outerDepth + 1) {
+                if (type != XmlPullParser.START_TAG || depth != outerDepth + 1) {
                     continue; // Not direct child tag
                 }
 

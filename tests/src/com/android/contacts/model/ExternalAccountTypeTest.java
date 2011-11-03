@@ -19,8 +19,6 @@ package com.android.contacts.model;
 import com.android.contacts.tests.R;
 
 import android.content.Context;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.res.XmlResourceParser;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.Im;
@@ -154,6 +152,55 @@ public class ExternalAccountTypeTest extends AndroidTestCase {
                 );
 
         assertEquals(expectInitialized, type.isInitialized());
+    }
+
+    /**
+     * Initialize with "contacts_readonly.xml" and see if all data kinds are correctly registered.
+     */
+    public void testReadOnlyDefinition() {
+        final ExternalAccountType type = new ExternalAccountType(getContext(),
+                getTestContext().getPackageName(), false,
+                getTestContext().getResources().getXml(R.xml.contacts_readonly)
+                );
+        assertTrue(type.isInitialized());
+
+        // Shouldn't have a "null" mimetype.
+        assertTrue(type.getKindForMimetype(null) == null);
+
+        // 3 kinds are defined in XML and 4 are added by default.
+        assertEquals(4 + 3, type.getSortedDataKinds().size());
+
+        // Check for the default kinds.
+        assertNotNull(type.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE));
+        assertNotNull(type.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME));
+        assertNotNull(type.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME));
+        assertNotNull(type.getKindForMimetype(Photo.CONTENT_ITEM_TYPE));
+
+        // Check for type specific kinds.
+        DataKind kind = type.getKindForMimetype("vnd.android.cursor.item/a.b.c");
+        assertNotNull(kind);
+        // No check for icon -- we actually just ignore it.
+        assertEquals("data1", ((BaseAccountType.SimpleInflater) kind.actionHeader)
+                .getColumnNameForTest());
+        assertEquals("data2", ((BaseAccountType.SimpleInflater) kind.actionBody)
+                .getColumnNameForTest());
+        assertEquals(true, kind.actionBodySocial);
+
+        kind = type.getKindForMimetype("vnd.android.cursor.item/d.e.f");
+        assertNotNull(kind);
+        assertEquals("data3", ((BaseAccountType.SimpleInflater) kind.actionHeader)
+                .getColumnNameForTest());
+        assertEquals("data4", ((BaseAccountType.SimpleInflater) kind.actionBody)
+                .getColumnNameForTest());
+        assertEquals(false, kind.actionBodySocial);
+
+        kind = type.getKindForMimetype("vnd.android.cursor.item/xyz");
+        assertNotNull(kind);
+        assertEquals("data5", ((BaseAccountType.SimpleInflater) kind.actionHeader)
+                .getColumnNameForTest());
+        assertEquals("data6", ((BaseAccountType.SimpleInflater) kind.actionBody)
+                .getColumnNameForTest());
+        assertEquals(true, kind.actionBodySocial);
     }
 
     private static void assertsDataKindEquals(List<DataKind> expectedKinds,

@@ -298,6 +298,9 @@ public abstract class AccountType {
      * Add given {@link DataKind} to list of those provided by this source.
      */
     public DataKind addKind(DataKind kind) throws DefinitionException {
+        if (kind.mimeType == null) {
+            throw new DefinitionException("null is not a valid mime type");
+        }
         if (mMimeKinds.get(kind.mimeType) != null) {
             throw new DefinitionException(
                     "mime type '" + kind.mimeType + "' is already registered");
