@@ -180,6 +180,16 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
     }
 
     /**
+     * Reset the carousel to the start position (i.e. because new data will be loaded in for a
+     * different contact).
+     */
+    public void reset() {
+        scrollTo(0, 0);
+        setCurrentTab(0);
+        moveToYCoordinate(0, 0);
+    }
+
+    /**
      * Set the current tab that should be restored when the view is first laid out.
      */
     public void restoreCurrentTab(int position) {
