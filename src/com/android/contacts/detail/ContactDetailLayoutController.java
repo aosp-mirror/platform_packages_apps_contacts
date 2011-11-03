@@ -20,6 +20,7 @@ import com.android.contacts.ContactLoader;
 import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactDetailActivity.FragmentKeyListener;
+import com.android.contacts.util.UriUtils;
 
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
@@ -28,6 +29,7 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -42,6 +44,7 @@ import android.widget.AbsListView.OnScrollListener;
  */
 public class ContactDetailLayoutController {
 
+    private static final String KEY_CONTACT_URI = "contactUri";
     private static final String KEY_CONTACT_HAS_UPDATES = "contactHasUpdates";
     private static final String KEY_CURRENT_PAGE_INDEX = "currentPageIndex";
 
@@ -78,6 +81,7 @@ public class ContactDetailLayoutController {
     private ContactDetailFragment.Listener mContactDetailFragmentListener;
 
     private ContactLoader.Result mContactData;
+    private Uri mContactUri;
 
     private boolean mTabCarouselIsAnimating;
     private boolean mContactHasUpdates;
@@ -144,6 +148,7 @@ public class ContactDetailLayoutController {
         // Read from savedState if possible
         int currentPageIndex = 0;
         if (savedState != null) {
+            mContactUri = savedState.getParcelable(KEY_CONTACT_URI);
             mContactHasUpdates = savedState.getBoolean(KEY_CONTACT_HAS_UPDATES);
             currentPageIndex = savedState.getInt(KEY_CURRENT_PAGE_INDEX, 0);
         }
@@ -269,13 +274,18 @@ public class ContactDetailLayoutController {
     }
 
     /**
-     * Setup the layout for the contact with updates. Pass in the index of the current page to
-     * select or null if the current selection should be left as is.
+     * Setup the layout for the contact with updates.
+     * TODO: Clean up this method so it's easier to understand.
      */
     private void showContactWithUpdates() {
         if (mContactData == null) {
             return;
         }
+
+        Uri previousContactUri = mContactUri;
+        mContactUri = mContactData.getLookupUri();
+        boolean isDifferentContact = !UriUtils.areEqual(previousContactUri, mContactUri);
+
         switch (mLayoutMode) {
             case TWO_COLUMN: {
                 // Set the contact data (hide the static photo because the photo will already be in
@@ -292,6 +302,11 @@ public class ContactDetailLayoutController {
                 mTabCarousel.setVisibility(View.VISIBLE);
                 // Update ViewPager to allow swipe between all the fragments (to see updates)
                 mViewPagerAdapter.enableSwipe(true);
+                // If this is a different contact than before, then reset some views.
+                if (isDifferentContact) {
+                    resetViewPager();
+                    resetTabCarousel();
+                }
                 break;
             }
             case FRAGMENT_CAROUSEL: {
@@ -303,14 +318,27 @@ public class ContactDetailLayoutController {
                 throw new IllegalStateException("Invalid LayoutMode " + mLayoutMode);
         }
 
-        mDetailFragment.setData(mContactData.getLookupUri(), mContactData);
-        mUpdatesFragment.setData(mContactData.getLookupUri(), mContactData);
+        if (isDifferentContact) {
+            resetFragments();
+        }
+
+        mDetailFragment.setData(mContactUri, mContactData);
+        mUpdatesFragment.setData(mContactUri, mContactData);
     }
 
+    /**
+     * Setup the layout for the contact without updates.
+     * TODO: Clean up this method so it's easier to understand.
+     */
     private void showContactWithoutUpdates() {
         if (mContactData == null) {
             return;
         }
+
+        Uri previousContactUri = mContactUri;
+        mContactUri = mContactData.getLookupUri();
+        boolean isDifferentContact = !UriUtils.areEqual(previousContactUri, mContactUri);
+
         switch (mLayoutMode) {
             case TWO_COLUMN:
                 // Show the static photo which is next to the list of scrolling contact details
@@ -336,7 +364,24 @@ public class ContactDetailLayoutController {
                 throw new IllegalStateException("Invalid LayoutMode " + mLayoutMode);
         }
 
-        mDetailFragment.setData(mContactData.getLookupUri(), mContactData);
+        if (isDifferentContact) {
+            resetFragments();
+        }
+
+        mDetailFragment.setData(mContactUri, mContactData);
+    }
+
+    private void resetTabCarousel() {
+        mTabCarousel.reset();
+    }
+
+    private void resetViewPager() {
+        mViewPager.setCurrentItem(0, false /* smooth transition */);
+    }
+
+    private void resetFragments() {
+        mDetailFragment.resetAdapter();
+        mUpdatesFragment.resetAdapter();
     }
 
     public FragmentKeyListener getCurrentPage() {
@@ -365,6 +410,7 @@ public class ContactDetailLayoutController {
     }
 
     public void onSaveInstanceState(Bundle outState) {
+        outState.putParcelable(KEY_CONTACT_URI, mContactUri);
         outState.putBoolean(KEY_CONTACT_HAS_UPDATES, mContactHasUpdates);
         outState.putInt(KEY_CURRENT_PAGE_INDEX, getCurrentPageIndex());
     }
