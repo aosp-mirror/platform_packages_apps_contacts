@@ -87,8 +87,7 @@ public class ImportExportDialogFragment extends DialogFragment
             }
         };
 
-        if (TelephonyManager.getDefault().hasIccCard()
-                && res.getBoolean(R.bool.config_allow_sim_import)) {
+        if (TelephonyManager.getDefault().hasIccCard()) {
             adapter.add(R.string.import_from_sim);
         }
         if (res.getBoolean(R.bool.config_allow_import_from_sdcard)) {
