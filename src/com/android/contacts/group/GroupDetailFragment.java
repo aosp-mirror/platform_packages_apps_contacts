@@ -193,7 +193,6 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
      * Start the loader to retrieve the metadata for this group.
      */
     private void startGroupMetadataLoader() {
-        getLoaderManager().destroyLoader(LOADER_METADATA);
         getLoaderManager().restartLoader(LOADER_METADATA, null, mGroupMetadataLoaderListener);
     }
 
@@ -201,7 +200,6 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
      * Start the loader to retrieve the list of group members.
      */
     private void startGroupMembersLoader() {
-        getLoaderManager().destroyLoader(LOADER_MEMBERS);
         getLoaderManager().restartLoader(LOADER_MEMBERS, null, mGroupMemberListLoaderListener);
     }
 
