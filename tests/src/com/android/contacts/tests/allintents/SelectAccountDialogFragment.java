@@ -16,9 +16,8 @@
 
 package com.android.contacts.tests.allintents;
 
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.AccountWithDataSet;
-
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -29,8 +28,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
-import java.util.List;
 
 /**
  * Shows a dialog asking the user which account to chose.
@@ -46,14 +43,14 @@ public class SelectAccountDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final Bundle parameters = getArguments();
 
-        final List<AccountWithDataSet> accounts =
-                AccountTypeManager.getInstance(getActivity()).getAccounts(false);
+        AccountManager accountManager = AccountManager.get(getActivity());
+        Account[] accounts = accountManager.getAccounts();
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final LayoutInflater inflater = LayoutInflater.from(builder.getContext());
 
-        final ArrayAdapter<AccountWithDataSet> accountAdapter =
-                new ArrayAdapter<AccountWithDataSet>(builder.getContext(),
+        final ArrayAdapter<Account> accountAdapter =
+                new ArrayAdapter<Account>(builder.getContext(),
                         android.R.layout.simple_list_item_2, accounts) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -64,7 +61,7 @@ public class SelectAccountDialogFragment extends DialogFragment {
                 final TextView text1 = (TextView)resultView.findViewById(android.R.id.text1);
                 final TextView text2 = (TextView)resultView.findViewById(android.R.id.text2);
 
-                final AccountWithDataSet account = getItem(position);
+                final Account account = getItem(position);
 
                 text1.setText("Name: " + account.name);
                 text2.setText("Type: " + account.type);
@@ -79,8 +76,10 @@ public class SelectAccountDialogFragment extends DialogFragment {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
 
+                // We currently do not pass the dataSet argument to the listener. To do so, we would
+                // have to determine the dataSet as it is done in AccountTypeManager.
                 ((Listener) getActivity()).onAccountChosen(accountAdapter.getItem(which),
-                        parameters.getInt(EXTRA_TAG));
+                        null, parameters.getInt(EXTRA_TAG));
             }
         };
 
@@ -97,6 +96,6 @@ public class SelectAccountDialogFragment extends DialogFragment {
     }
 
     public interface Listener {
-        void onAccountChosen(AccountWithDataSet account, int tag);
+        void onAccountChosen(Account account, String dataSet, int tag);
     }
 }
