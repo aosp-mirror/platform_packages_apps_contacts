@@ -21,9 +21,7 @@ import com.android.contacts.util.UriUtils;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.PhoneLookup;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
@@ -96,6 +94,50 @@ public class ContactInfoHelper {
     }
 
     /**
+     * Looks up a contact using the given URI.
+     * <p>
+     * It returns null if an error occurs, {@link ContactInfo#EMPTY} if no matching contact is
+     * found, or the {@link ContactInfo} for the given contact.
+     * <p>
+     * The {@link ContactInfo#formattedNumber} field is always set to {@code null} in the returned
+     * value.
+     */
+    private ContactInfo lookupContactFromUri(Uri uri) {
+        final ContactInfo info;
+        Cursor phonesCursor =
+                mContext.getContentResolver().query(
+                        uri, PhoneQuery._PROJECTION, null, null, null);
+
+        if (phonesCursor != null) {
+            try {
+                if (phonesCursor.moveToFirst()) {
+                    info = new ContactInfo();
+                    long contactId = phonesCursor.getLong(PhoneQuery.PERSON_ID);
+                    String lookupKey = phonesCursor.getString(PhoneQuery.LOOKUP_KEY);
+                    info.lookupUri = Contacts.getLookupUri(contactId, lookupKey);
+                    info.name = phonesCursor.getString(PhoneQuery.NAME);
+                    info.type = phonesCursor.getInt(PhoneQuery.PHONE_TYPE);
+                    info.label = phonesCursor.getString(PhoneQuery.LABEL);
+                    info.number = phonesCursor.getString(PhoneQuery.MATCHED_NUMBER);
+                    info.normalizedNumber = phonesCursor.getString(PhoneQuery.NORMALIZED_NUMBER);
+                    info.photoId = phonesCursor.getLong(PhoneQuery.PHOTO_ID);
+                    info.photoUri =
+                            UriUtils.parseUriOrNull(phonesCursor.getString(PhoneQuery.PHOTO_URI));
+                    info.formattedNumber = null;
+                } else {
+                    info = ContactInfo.EMPTY;
+                }
+            } finally {
+                phonesCursor.close();
+            }
+        } else {
+            // Failed to fetch the data, ignore this request.
+            info = null;
+        }
+        return info;
+    }
+
+    /**
      * Determines the contact information for the given SIP address.
      * <p>
      * It returns the contact info if found.
@@ -107,81 +149,11 @@ public class ContactInfoHelper {
     private ContactInfo queryContactInfoForSipAddress(String sipAddress) {
         final ContactInfo info;
 
-        // TODO: This code is duplicated from the
-        // CallerInfoAsyncQuery class.  To avoid that, could the
-        // code here just use CallerInfoAsyncQuery, rather than
-        // manually running ContentResolver.query() itself?
-
-        // We look up SIP addresses directly in the Data table:
-        Uri contactRef = Data.CONTENT_URI;
-
-        // Note Data.DATA1 and SipAddress.SIP_ADDRESS are equivalent.
-        //
-        // Also note we use "upper(data1)" in the WHERE clause, and
-        // uppercase the incoming SIP address, in order to do a
-        // case-insensitive match.
-        //
-        // TODO: SIP URIs are defined as being case sensitive for the user part (before the '@')
-        // and case insensitive everywhere else. We should change the code to handle this
-        // accordingly.
-        //
-        // TODO: May also need to normalize by adding "sip:" as a
-        // prefix, if we start storing SIP addresses that way in the
-        // database.
-        String selection = "upper(" + Data.DATA1 + ")=?"
-                + " AND "
-                + Data.MIMETYPE + "='" + SipAddress.CONTENT_ITEM_TYPE + "'";
-        String[] selectionArgs = new String[] { sipAddress.toUpperCase() };
-
-        Cursor dataTableCursor =
-                mContext.getContentResolver().query(
-                        contactRef,
-                        null,  // projection
-                        selection,  // selection
-                        selectionArgs,  // selectionArgs
-                        null);  // sortOrder
-
-        if (dataTableCursor != null) {
-            if (dataTableCursor.moveToFirst()) {
-                info = new ContactInfo();
-
-                // TODO: we could slightly speed this up using an
-                // explicit projection (and thus not have to do
-                // those getColumnIndex() calls) but the benefit is
-                // very minimal.
-
-                // Note the Data.CONTACT_ID column here is
-                // equivalent to the PERSON_ID_COLUMN_INDEX column
-                // we use with "phonesCursor" below.
-                long contactId = dataTableCursor.getLong(
-                        dataTableCursor.getColumnIndex(Data.CONTACT_ID));
-                String lookupKey = dataTableCursor.getString(
-                        dataTableCursor.getColumnIndex(Data.LOOKUP_KEY));
-                info.lookupUri = Contacts.getLookupUri(contactId, lookupKey);
-                info.name = dataTableCursor.getString(
-                        dataTableCursor.getColumnIndex(Data.DISPLAY_NAME));
-                // "type" and "label" are currently unused for SIP addresses
-                info.type = SipAddress.TYPE_OTHER;
-                info.label = null;
-
-                // And "number" is the SIP address.
-                // Note Data.DATA1 and SipAddress.SIP_ADDRESS are equivalent.
-                info.number = dataTableCursor.getString(dataTableCursor.getColumnIndex(Data.DATA1));
-                info.normalizedNumber = null;  // meaningless for SIP addresses
-                info.photoId = dataTableCursor.getLong(
-                        dataTableCursor.getColumnIndex(Data.PHOTO_ID));
-                info.photoUri = UriUtils.parseUriOrNull(dataTableCursor.getString(
-                        dataTableCursor.getColumnIndex(Data.PHOTO_URI)));
-                info.formattedNumber = null;  // meaningless for SIP addresses
-            } else {
-                info = ContactInfo.EMPTY;
-            }
-            dataTableCursor.close();
-        } else {
-            // Failed to fetch the data, ignore this request.
-            info = null;
-        }
-        return info;
+        // "contactNumber" is a SIP address, so use the PhoneLookup table with the SIP parameter.
+        Uri.Builder uriBuilder = PhoneLookup.CONTENT_FILTER_URI.buildUpon();
+        uriBuilder.appendPath(Uri.encode(sipAddress));
+        uriBuilder.appendQueryParameter(PhoneLookup.QUERY_PARAMETER_SIP_ADDRESS, "1");
+        return lookupContactFromUri(uriBuilder.build());
     }
 
     /**
@@ -194,8 +166,6 @@ public class ContactInfoHelper {
      * If the lookup fails for some other reason, it returns null.
      */
     private ContactInfo queryContactInfoForPhoneNumber(String number, String countryIso) {
-        final ContactInfo info;
-
         String contactNumber = number;
         if (!TextUtils.isEmpty(countryIso)) {
             // Normalize the number: this is needed because the PhoneLookup query below does not
@@ -207,37 +177,11 @@ public class ContactInfoHelper {
             }
         }
 
-        // "contactNumber" is a regular phone number, so use the
-        // PhoneLookup table:
-        Cursor phonesCursor =
-                mContext.getContentResolver().query(
-                    Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI,
-                            Uri.encode(contactNumber)),
-                            PhoneQuery._PROJECTION, null, null, null);
-
-        if (phonesCursor != null) {
-            if (phonesCursor.moveToFirst()) {
-                info = new ContactInfo();
-                long contactId = phonesCursor.getLong(PhoneQuery.PERSON_ID);
-                String lookupKey = phonesCursor.getString(PhoneQuery.LOOKUP_KEY);
-                info.lookupUri = Contacts.getLookupUri(contactId, lookupKey);
-                info.name = phonesCursor.getString(PhoneQuery.NAME);
-                info.type = phonesCursor.getInt(PhoneQuery.PHONE_TYPE);
-                info.label = phonesCursor.getString(PhoneQuery.LABEL);
-                info.number = phonesCursor.getString(PhoneQuery.MATCHED_NUMBER);
-                info.normalizedNumber = phonesCursor.getString(PhoneQuery.NORMALIZED_NUMBER);
-                info.photoId = phonesCursor.getLong(PhoneQuery.PHOTO_ID);
-                info.photoUri =
-                        UriUtils.parseUriOrNull(phonesCursor.getString(PhoneQuery.PHOTO_URI));
-                info.formattedNumber = formatPhoneNumber(number, null, countryIso);
-
-            } else {
-                info = ContactInfo.EMPTY;
-            }
-            phonesCursor.close();
-        } else {
-            // Failed to fetch the data, ignore this request.
-            info = null;
+        // The "contactNumber" is a regular phone number, so use the PhoneLookup table.
+        Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(contactNumber));
+        ContactInfo info = lookupContactFromUri(uri);
+        if (info != null && info != ContactInfo.EMPTY) {
+            info.formattedNumber = formatPhoneNumber(number, null, countryIso);
         }
         return info;
     }
