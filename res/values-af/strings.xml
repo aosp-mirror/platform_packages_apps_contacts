@@ -99,7 +99,7 @@
     <string name="noMatchingContacts" msgid="4266283206853990471">"Geen passende kontakte gevind nie."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Geen kontakte met foonnommers nie."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Geen mense in hierdie groep nie."</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"Om paar by te voeg, wysig die groep."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"Om \'n paar by te voeg, wysig die groep."</string>
     <string name="savingContact" msgid="4075751076741924939">"Stoor tans kontak..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Stoor tans vertoonopsies..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Kontak gestoor."</string>

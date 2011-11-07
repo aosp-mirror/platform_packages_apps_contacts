@@ -225,7 +225,7 @@
     <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"SD 카드의 vCard 데이터 검색 중..."</string>
     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"저장소를 검색하지 못했습니다."</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"SD 카드를 검색하지 못했습니다."</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"저장공간을 검색할 수 없습니다(이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\')."</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"저장소를 검색할 수 없습니다(이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\')."</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"SD 카드를 검색할 수 없습니다(이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\')."</string>
     <string name="fail_reason_io_error" msgid="6748358842976073255">"I/O 오류"</string>
     <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"메모리가 부족합니다. 파일이 너무 크기 때문일 수 있습니다."</string>
@@ -239,7 +239,7 @@
     <string name="fail_reason_unknown" msgid="1714092345030570863">"알 수 없는 오류입니다."</string>
     <string name="select_vcard_title" msgid="7791371083694672861">"vCard 파일 선택"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"캐시"</string>
-    <string name="caching_vcard_message" msgid="4926308675041506756">"vCard를 로컬 임시 저장공간에 캐시하는 중입니다. 곧 실제 가져오기가 시작됩니다."</string>
+    <string name="caching_vcard_message" msgid="4926308675041506756">"vCard를 로컬 임시 저장공간에 캐시하는 중입니다. 곧 가져오기가 시작됩니다."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> 가져오는 중: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g> 가져오는 중"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"vCard 데이터를 읽지 못했습니다."</string>
@@ -255,7 +255,7 @@
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="6834385377255286349">"주소록을 내보내시겠습니까?"</string>
     <string name="confirm_export_message" msgid="2423421354816428708">"연락처 목록을 <xliff:g id="VCARD_FILENAME">%s</xliff:g> 파일로 내보냅니다."</string>
-    <string name="exporting_contact_failed_title" msgid="4892358112409576342">"내보내지 못함"</string>
+    <string name="exporting_contact_failed_title" msgid="4892358112409576342">"내보내기 실패"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"주소록 데이터를 내보내지 못했습니다."\n"(이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\')"</string>
     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"내보낼 수 있는 연락처가 없습니다."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="590645599157376285">"저장공간에 vCard 파일이 너무 많습니다."</string>
@@ -418,7 +418,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"갤러리에서 새 사진 선택"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"변경된 언어를 반영하도록 주소록을 업데이트하는 중입니다. 잠시 기다려 주세요."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"주소록을 업데이트하고 있습니다."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"주소록을 업그레이드하는 중입니다. "\n\n"업그레이드 프로세스에는 약 <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g>MB의 내부 저장공간이 필요합니다."\n\n"다음 옵션 중 하나를 선택하세요."</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"주소록을 업그레이드하는 중입니다. "\n\n"업그레이드 하려면 약 <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g>MB의 내부 저장공간이 필요합니다."\n\n"다음 옵션 중 하나를 선택하세요."</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"일부 애플리케이션 제거"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"업그레이드 다시 시도"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"검색 중…"</string>
@@ -483,7 +483,7 @@
     <item quantity="one" msgid="2944819210288517794">"그룹 1개"</item>
     <item quantity="other" msgid="1276758425904917367">"그룹 <xliff:g id="COUNT">%0$d</xliff:g>개"</item>
   </plurals>
-    <string name="delete_group_dialog_message" msgid="7586856514337560529">"\'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\' 그룹을 삭제하시겠습니까(주소록은 삭제되지 않음)?"</string>
+    <string name="delete_group_dialog_message" msgid="7586856514337560529">"\'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\' 그룹을 삭제하시겠습니까? (연락처는 삭제되지 않음)"</string>
   <plurals name="num_contacts_in_group">
     <item quantity="one" msgid="1352418549951013448">"<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g> 소속(<xliff:g id="COUNT_0">%1$d</xliff:g>명)"</item>
     <item quantity="other" msgid="8146027769011086349">"<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g> 소속(<xliff:g id="COUNT_0">%1$d</xliff:g>명)"</item>

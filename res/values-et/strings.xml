@@ -147,7 +147,7 @@
     <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Jaga kõneposti"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Kõnelogi on tühi."</string>
     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Kustutada kõnelogi?"</string>
-    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Kõik teie kõnesalvestused kustutatakse."</string>
+    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Kõik teie kõnesalvestised kustutatakse."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Kõnelogi kustutamine ..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
