@@ -43,15 +43,12 @@ public class JoinContactListAdapter extends ContactListAdapter {
 
     private long mTargetContactId;
 
-    private int mShowAllContactsViewType;
-
     public JoinContactListAdapter(Context context) {
         super(context);
         setPinnedPartitionHeadersEnabled(true);
         setSectionHeaderDisplayEnabled(true);
         setIndexedPartition(PARTITION_ALL_CONTACTS);
         setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_NONE);
-        mShowAllContactsViewType = getViewTypeCount() - 1;
     }
 
     @Override
@@ -86,7 +83,7 @@ public class JoinContactListAdapter extends ContactListAdapter {
         loader.setSuggestionUri(builder.build());
 
         // TODO simplify projection
-        loader.setProjection(PROJECTION_CONTACT);
+        loader.setProjection(ContactQuery.PROJECTION_CONTACT);
         Uri allContactsUri = buildSectionIndexerUri(Contacts.CONTENT_URI).buildUpon()
                 .appendQueryParameter(
                         ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT))
@@ -193,16 +190,16 @@ public class JoinContactListAdapter extends ContactListAdapter {
     }
 
     public Cursor getShowAllContactsLabelCursor() {
-        MatrixCursor matrixCursor = new MatrixCursor(PROJECTION_CONTACT);
-        Object[] row = new Object[PROJECTION_CONTACT.length];
+        MatrixCursor matrixCursor = new MatrixCursor(ContactQuery.PROJECTION_CONTACT);
+        Object[] row = new Object[ContactQuery.PROJECTION_CONTACT.length];
         matrixCursor.addRow(row);
         return matrixCursor;
     }
 
     @Override
     public Uri getContactUri(int partitionIndex, Cursor cursor) {
-        long contactId = cursor.getLong(CONTACT_ID_COLUMN_INDEX);
-        String lookupKey = cursor.getString(CONTACT_LOOKUP_KEY_COLUMN_INDEX);
+        long contactId = cursor.getLong(ContactQuery.CONTACT_ID);
+        String lookupKey = cursor.getString(ContactQuery.CONTACT_LOOKUP_KEY);
         return Contacts.getLookupUri(contactId, lookupKey);
     }
 }

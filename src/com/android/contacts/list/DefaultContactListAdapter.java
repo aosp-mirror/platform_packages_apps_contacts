@@ -72,7 +72,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 // Regardless of the directory, we don't want anything returned,
                 // so let's just send a "nothing" query to the local directory.
                 loader.setUri(Contacts.CONTENT_URI);
-                loader.setProjection(PROJECTION_CONTACT);
+                loader.setProjection(ContactQuery.PROJECTION_CONTACT);
                 loader.setSelection("0");
             } else {
                 Builder builder = Contacts.CONTENT_FILTER_URI.buildUpon();
@@ -87,7 +87,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                         SNIPPET_ARGS);
                 builder.appendQueryParameter(SearchSnippetColumns.DEFERRED_SNIPPETING_KEY,"1");
                 loader.setUri(builder.build());
-                loader.setProjection(FILTER_PROJECTION);
+                loader.setProjection(ContactQuery.FILTER_PROJECTION);
             }
         } else {
             configureUri(loader, directoryId, filter);
@@ -139,9 +139,9 @@ public class DefaultContactListAdapter extends ContactListAdapter {
     protected void configureProjection(
             CursorLoader loader, long directoryId, ContactListFilter filter) {
         if (filter != null && filter.filterType == ContactListFilter.FILTER_TYPE_GROUP) {
-            loader.setProjection(PROJECTION_DATA);
+            loader.setProjection(ContactQuery.PROJECTION_DATA);
         } else {
-            loader.setProjection(PROJECTION_CONTACT);
+            loader.setProjection(ContactQuery.PROJECTION_CONTACT);
         }
     }
 
@@ -228,9 +228,8 @@ public class DefaultContactListAdapter extends ContactListAdapter {
         bindSectionHeaderAndDivider(view, position, cursor);
 
         if (isQuickContactEnabled()) {
-            bindQuickContact(view, partition, cursor,
-                    CONTACT_PHOTO_ID_COLUMN_INDEX, CONTACT_ID_COLUMN_INDEX,
-                    CONTACT_LOOKUP_KEY_COLUMN_INDEX);
+            bindQuickContact(view, partition, cursor, ContactQuery.CONTACT_PHOTO_ID,
+                    ContactQuery.CONTACT_ID, ContactQuery.CONTACT_LOOKUP_KEY);
         } else {
             bindPhoto(view, partition, cursor);
         }
