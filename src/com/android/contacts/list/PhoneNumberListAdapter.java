@@ -22,7 +22,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.net.Uri.Builder;
 import android.provider.ContactsContract;
-import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
@@ -43,31 +42,40 @@ import java.util.List;
 public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     private static final String TAG = PhoneNumberListAdapter.class.getSimpleName();
 
-    protected static final String[] PHONES_PROJECTION = new String[] {
-        Phone._ID,                          // 0
-        Phone.TYPE,                         // 1
-        Phone.LABEL,                        // 2
-        Phone.NUMBER,                       // 3
-        Phone.DISPLAY_NAME_PRIMARY,         // 4
-        Phone.DISPLAY_NAME_ALTERNATIVE,     // 5
-        Phone.CONTACT_ID,                   // 6
-        Phone.LOOKUP_KEY,                   // 7
-        Phone.PHOTO_ID,                     // 8
-    };
+    protected static class PhoneQuery {
+        private static final String[] PROJECTION_PRIMARY = new String[] {
+            Phone._ID,                          // 0
+            Phone.TYPE,                         // 1
+            Phone.LABEL,                        // 2
+            Phone.NUMBER,                       // 3
+            Phone.CONTACT_ID,                   // 4
+            Phone.LOOKUP_KEY,                   // 5
+            Phone.PHOTO_ID,                     // 6
+            Phone.DISPLAY_NAME_PRIMARY,         // 7
+        };
 
-    protected static final int PHONE_ID_COLUMN_INDEX = 0;
-    protected static final int PHONE_TYPE_COLUMN_INDEX = 1;
-    protected static final int PHONE_LABEL_COLUMN_INDEX = 2;
-    protected static final int PHONE_NUMBER_COLUMN_INDEX = 3;
-    protected static final int PHONE_PRIMARY_DISPLAY_NAME_COLUMN_INDEX = 4;
-    protected static final int PHONE_ALTERNATIVE_DISPLAY_NAME_COLUMN_INDEX = 5;
-    protected static final int PHONE_CONTACT_ID_COLUMN_INDEX = 6;
-    protected static final int PHONE_LOOKUP_KEY_COLUMN_INDEX = 7;
-    protected static final int PHONE_PHOTO_ID_COLUMN_INDEX = 8;
+        private static final String[] PROJECTION_ALTERNATIVE = new String[] {
+            Phone._ID,                          // 0
+            Phone.TYPE,                         // 1
+            Phone.LABEL,                        // 2
+            Phone.NUMBER,                       // 3
+            Phone.CONTACT_ID,                   // 4
+            Phone.LOOKUP_KEY,                   // 5
+            Phone.PHOTO_ID,                     // 6
+            Phone.DISPLAY_NAME_ALTERNATIVE,     // 7
+        };
 
-    private CharSequence mUnknownNameText;
-    private int mDisplayNameColumnIndex;
-    private int mAlternativeDisplayNameColumnIndex;
+        public static final int PHONE_ID           = 0;
+        public static final int PHONE_TYPE         = 1;
+        public static final int PHONE_LABEL        = 2;
+        public static final int PHONE_NUMBER       = 3;
+        public static final int PHONE_CONTACT_ID   = 4;
+        public static final int PHONE_LOOKUP_KEY   = 5;
+        public static final int PHONE_PHOTO_ID     = 6;
+        public static final int PHONE_DISPLAY_NAME = 7;
+    }
+
+    private final CharSequence mUnknownNameText;
 
     private ContactListItemView.PhotoPosition mPhotoPosition;
 
@@ -102,8 +110,6 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
                     String.valueOf(directoryId));
             uri = builder.build();
-            // TODO a projection that includes the search snippet
-            loader.setProjection(PHONES_PROJECTION);
         } else {
             uri = Phone.CONTENT_URI.buildUpon().appendQueryParameter(
                     ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT))
@@ -111,14 +117,18 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             if (isSectionHeaderDisplayEnabled()) {
                 uri = buildSectionIndexerUri(uri);
             }
-
-            loader.setProjection(PHONES_PROJECTION);
             configureSelection(loader, directoryId, getFilter());
         }
 
         loader.setUri(uri);
 
-        // TODO: we probably want to use default sort order in search mode.
+        // TODO a projection that includes the search snippet
+        if (getContactNameDisplayOrder() == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
+            loader.setProjection(PhoneQuery.PROJECTION_PRIMARY);
+        } else {
+            loader.setProjection(PhoneQuery.PROJECTION_ALTERNATIVE);
+        }
+
         if (getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
             loader.setSortOrder(Phone.SORT_KEY_PRIMARY);
         } else {
@@ -180,19 +190,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
     @Override
     public String getContactDisplayName(int position) {
-        return ((Cursor)getItem(position)).getString(mDisplayNameColumnIndex);
-    }
-
-    @Override
-    public void setContactNameDisplayOrder(int displayOrder) {
-        super.setContactNameDisplayOrder(displayOrder);
-        if (getContactNameDisplayOrder() == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
-            mDisplayNameColumnIndex = PHONE_PRIMARY_DISPLAY_NAME_COLUMN_INDEX;
-            mAlternativeDisplayNameColumnIndex = PHONE_ALTERNATIVE_DISPLAY_NAME_COLUMN_INDEX;
-        } else {
-            mDisplayNameColumnIndex = PHONE_ALTERNATIVE_DISPLAY_NAME_COLUMN_INDEX;
-            mAlternativeDisplayNameColumnIndex = PHONE_PRIMARY_DISPLAY_NAME_COLUMN_INDEX;
-        }
+        return ((Cursor) getItem(position)).getString(PhoneQuery.PHONE_DISPLAY_NAME);
     }
 
     /**
@@ -203,7 +201,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     public Uri getDataUri(int position) {
         Cursor cursor = ((Cursor)getItem(position));
         if (cursor != null) {
-            long id = cursor.getLong(PHONE_ID_COLUMN_INDEX);
+            long id = cursor.getLong(PhoneQuery.PHONE_ID);
             return ContentUris.withAppendedId(Data.CONTENT_URI, id);
         } else {
             Log.w(TAG, "Cursor was null in getDataUri() call. Returning null instead.");
@@ -233,16 +231,16 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         cursor.moveToPosition(position);
         boolean isFirstEntry = true;
         boolean showBottomDivider = true;
-        final long currentContactId = cursor.getLong(PHONE_CONTACT_ID_COLUMN_INDEX);
+        final long currentContactId = cursor.getLong(PhoneQuery.PHONE_CONTACT_ID);
         if (cursor.moveToPrevious() && !cursor.isBeforeFirst()) {
-            final long previousContactId = cursor.getLong(PHONE_CONTACT_ID_COLUMN_INDEX);
+            final long previousContactId = cursor.getLong(PhoneQuery.PHONE_CONTACT_ID);
             if (currentContactId == previousContactId) {
                 isFirstEntry = false;
             }
         }
         cursor.moveToPosition(position);
         if (cursor.moveToNext() && !cursor.isAfterLast()) {
-            final long nextContactId = cursor.getLong(PHONE_CONTACT_ID_COLUMN_INDEX);
+            final long nextContactId = cursor.getLong(PhoneQuery.PHONE_CONTACT_ID);
             if (currentContactId == nextContactId) {
                 // The following entry should be in the same group, which means we don't want a
                 // divider between them.
@@ -257,9 +255,8 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         if (isFirstEntry) {
             bindName(view, cursor);
             if (isQuickContactEnabled()) {
-                bindQuickContact(view, partition, cursor,
-                        PHONE_PHOTO_ID_COLUMN_INDEX, PHONE_CONTACT_ID_COLUMN_INDEX,
-                        PHONE_LOOKUP_KEY_COLUMN_INDEX);
+                bindQuickContact(view, partition, cursor, PhoneQuery.PHONE_PHOTO_ID,
+                        PhoneQuery.PHONE_CONTACT_ID, PhoneQuery.PHONE_LOOKUP_KEY);
             } else {
                 bindPhoto(view, cursor);
             }
@@ -274,15 +271,15 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
     protected void bindPhoneNumber(ContactListItemView view, Cursor cursor) {
         CharSequence label = null;
-        if (!cursor.isNull(PHONE_TYPE_COLUMN_INDEX)) {
-            final int type = cursor.getInt(PHONE_TYPE_COLUMN_INDEX);
-            final String customLabel = cursor.getString(PHONE_LABEL_COLUMN_INDEX);
+        if (!cursor.isNull(PhoneQuery.PHONE_TYPE)) {
+            final int type = cursor.getInt(PhoneQuery.PHONE_TYPE);
+            final String customLabel = cursor.getString(PhoneQuery.PHONE_LABEL);
 
             // TODO cache
             label = Phone.getTypeLabel(getContext().getResources(), type, customLabel);
         }
         view.setLabel(label);
-        view.showData(cursor, PHONE_NUMBER_COLUMN_INDEX);
+        view.showData(cursor, PhoneQuery.PHONE_NUMBER);
     }
 
     protected void bindSectionHeaderAndDivider(final ContactListItemView view, int position) {
@@ -297,8 +294,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     }
 
     protected void bindName(final ContactListItemView view, Cursor cursor) {
-        view.showDisplayName(cursor, mDisplayNameColumnIndex, mAlternativeDisplayNameColumnIndex,
-                false, getContactNameDisplayOrder());
+        view.showDisplayName(cursor, PhoneQuery.PHONE_DISPLAY_NAME, getContactNameDisplayOrder());
         // Note: we don't show phonetic names any more (see issue 5265330)
     }
 
@@ -308,8 +304,8 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
     protected void bindPhoto(final ContactListItemView view, Cursor cursor) {
         long photoId = 0;
-        if (!cursor.isNull(PHONE_PHOTO_ID_COLUMN_INDEX)) {
-            photoId = cursor.getLong(PHONE_PHOTO_ID_COLUMN_INDEX);
+        if (!cursor.isNull(PhoneQuery.PHONE_PHOTO_ID)) {
+            photoId = cursor.getLong(PhoneQuery.PHONE_PHOTO_ID);
         }
 
         getPhotoLoader().loadPhoto(view.getPhotoView(), photoId, false, false);
