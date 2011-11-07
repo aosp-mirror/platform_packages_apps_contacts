@@ -209,6 +209,9 @@ public class ContactSelectionActivity extends ContactsActivity
                 }
             }, FOCUS_DELAY);
         }
+
+        // Clear focus and suppress keyboard show-up.
+        mSearchView.clearFocus();
     }
 
     @Override
@@ -220,19 +223,6 @@ public class ContactSelectionActivity extends ContactsActivity
             inflater.inflate(R.menu.contact_picker_options, menu);
         }
         return true;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        if (mSearchView != null && mSearchView.getVisibility() == View.VISIBLE) {
-            if (mSearchView.hasFocus()) {
-                showInputMethod(mSearchView.findFocus());
-            } else {
-                mSearchView.requestFocus();
-            }
-        }
     }
 
     @Override
