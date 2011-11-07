@@ -146,7 +146,7 @@
     <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Elimina messaggio vocale"</string>
     <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Condividi messaggio vocale"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Il registro chiamate è vuoto."</string>
-    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Cancellare reg. chiamate?"</string>
+    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Cancellare registro?"</string>
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Tutte le voci nel registro chiamate verranno eliminate."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Cancellazione registro chiamate..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
@@ -516,7 +516,7 @@
     <string name="call_log_new_header" msgid="846546437517724715">"Nuovi"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Precedenti"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Impossibile collegarsi al server della segreteria."</string>
-    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Impossibile collegarsi a server segret. Nuovi msg vocali in attesa."</string>
+    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Impossibile collegarsi al server. Nuovi mess. vocali in attesa."</string>
     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Imposta la tua segreteria."</string>
     <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Audio non disponibile."</string>
     <string name="voicemail_status_action_configure" msgid="8671796489912239589">"Imposta"</string>

@@ -21,7 +21,7 @@
     <string name="contactsList" msgid="8661624236494819731">"Контакты"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Контакт"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Быстрый звонок"</string>
-    <string name="shortcutMessageContact" msgid="2460337253595976198">"Быстрое сообщение"</string>
+    <string name="shortcutMessageContact" msgid="2460337253595976198">"Быстрое SMS"</string>
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Выбрать контакт для быстрого вызова"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Выберите номер для вызова"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Выбрать номер для отправки сообщения"</string>
@@ -48,16 +48,16 @@
     <string name="menu_deleteContact" msgid="6788644058868189393">"Удалить"</string>
     <string name="menu_call" msgid="3992595586042260618">"Позвонить"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Отправить SMS/MMS"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"Отделить"</string>
+    <string name="menu_splitAggregate" msgid="8368636463748691868">"Разделить"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Изменить"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Удалить"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Добавить"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Новая группа"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Разделение контакта"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Этот контакт будет разделен на несколько частей."</string>
-    <string name="menu_joinAggregate" msgid="5027981918265667970">"Присоединить"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Этот контакт будет разделен."</string>
+    <string name="menu_joinAggregate" msgid="5027981918265667970">"Объединить"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Объединить контакты"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Выберите контакт для объединения с контактом \"<xliff:g id="NAME">%s</xliff:g>\":"</string>
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Выберите контакт, который хотите объединить с \"<xliff:g id="NAME">%s</xliff:g>\":"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Показать все контакты"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Предлагаемые контакты"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Все контакты"</string>
@@ -76,9 +76,9 @@
     <string name="label_sip_address" msgid="124073911714324974">"Интернет-вызов"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Компания"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Название"</string>
-    <string name="invalidContactMessage" msgid="8215051456181842274">"Контакт не существует."</string>
+    <string name="invalidContactMessage" msgid="8215051456181842274">"Контакт удален."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Создать новый контакт"</string>
-    <string name="pickerNewContactText" msgid="6166997164401048211">"Создать контакт"</string>
+    <string name="pickerNewContactText" msgid="6166997164401048211">"Добавить контакт"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Телефон"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"Адрес электронной почты"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"Чат"</string>
@@ -95,7 +95,7 @@
     <string name="removePhoto" msgid="4898105274130284565">"Удалить фото"</string>
     <string name="noContacts" msgid="8579310973261953559">"Нет контактов."</string>
     <string name="noGroups" msgid="8614664663561385253">"Нет групп."</string>
-    <string name="noAccounts" msgid="7768267764545265909">"Для создания групп необходим аккаунт."</string>
+    <string name="noAccounts" msgid="7768267764545265909">"Для создания групп нужен аккаунт."</string>
     <string name="noMatchingContacts" msgid="4266283206853990471">"Подходящие контакты не найдены."</string>
     <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"Нет контактов с номерами телефонов."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Здесь пока никого нет."</string>
@@ -103,9 +103,9 @@
     <string name="savingContact" msgid="4075751076741924939">"Контакт сохраняется..."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Варианты отображения сохраняются..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Контакт сохранен."</string>
-    <string name="contactSavedErrorToast" msgid="3207250533172944892">"Не удалось сохранить изменения для контакта."</string>
+    <string name="contactSavedErrorToast" msgid="3207250533172944892">"Не удалось сохранить изменения."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Группа сохранена."</string>
-    <string name="groupSavedErrorToast" msgid="7984466936615304740">"Не удалось сохранить изменения группы."</string>
+    <string name="groupSavedErrorToast" msgid="7984466936615304740">"Не удалось сохранить изменения."</string>
   <plurals name="listTotalPhoneContacts">
     <item quantity="one" msgid="3015357862286673986">"Контакты с номерами телефона: 1"</item>
     <item quantity="other" msgid="3299954047880968205">"Контакты с номерами телефонов: <xliff:g id="COUNT">%d</xliff:g>"</item>
@@ -115,9 +115,9 @@
     <item quantity="one" msgid="3405747744700823280">"Контактов: 1"</item>
     <item quantity="other" msgid="3578469907265375314">"Контактов: <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
-    <string name="listTotalAllContactsZero" msgid="5513001821794568211">"Контактов нет."</string>
+    <string name="listTotalAllContactsZero" msgid="5513001821794568211">"Нет контактов"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"Нет видимых контактов."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"Избранных контактов нет."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"Нет контактов"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Нет контактов в: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listAllContactsInAccount" msgid="7496143179265311758">"Контакты в <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listSingleContact" msgid="6067813698903535563">"1 контакт"</string>
@@ -146,7 +146,7 @@
     <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Удалить голосовое сообщение"</string>
     <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Поделиться"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Список вызовов пуст."</string>
-    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Очистить?"</string>
+    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Удаление данных"</string>
     <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Журнал звонков будет очищен."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Очистка списка вызовов..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
@@ -161,14 +161,14 @@
     <string name="simContacts_title" msgid="27341688347689769">"Контакты на SIM-карте"</string>
     <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Отсутствуют контакты для отображения. (Если аккаунт был только что добавлен, потребуется несколько минут для синхронизации контактов.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Отсутствуют контакты для отображения."</string>
-    <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"Нет контактов для показа."\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите один из вариантов."\n" "\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>": добавление или настройка аккаунта с контактами, котоые можно синхронизировать с планшетным ПК."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>": создание контакта."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/экспорт"</b></font>": импорт контактов с SIM- или SD-карты."\n</li></string>
-    <string name="noContactsHelpText" product="default" msgid="4405064135698982080">"Нет контактов для показа."\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите один из вариантов."\n" "\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>": добавление или настройка аккаунта с контактами, которые можно синхронизировать с телефоном."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>": создание контакта."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/экспорт"</b></font>": импорт контактов с SIM-или SD-карты."\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="tablet" msgid="6773195806404659174">"Нет контактов для показа. (Если вы только что добавили аккаунт, синхронизация контактов может занять несколько минут.) "\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите один из вариантов."\n\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>": добавление или настройка аккаунта с контактами, которые можно синхронизировать с планшетным ПК."\n</li>\n<li><font fgcolor="#ffffffff"><b>"Варианты отображения"</b></font>": настройка параметров показа контактов."\n</li>\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>": создание контакта."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/экспорт"</b></font>": импорт контактов с SIM- или SD-карты."\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="default" msgid="7016825676090327312">"Нет контактов для показа. (Если вы только что добавили аккаунт, синхронизация контактов может занять несколько минут.) "\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите один из вариантов."\n\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>": добавление или настройка аккаунта с контактами, которые можно синхронизировать с телефоном."\n</li>\n<li><font fgcolor="#ffffffff"><b>"Варианты отображения"</b></font>": настройка параметров показа контактов."\n</li>\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>": создание контакта."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/экспорт"</b></font>": импорт контактов с SIM- или SD-карты."\n</li></string>
-    <string name="noContactsNoSimHelpText" product="tablet" msgid="7823757505923033456">"Нет контактов для показа."\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите один из вариантов."\n" "\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>": добавление или настройка аккаунта с контактами, которые можно синхронизировать с планшетным ПК."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>": создание контакта."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/экспорт"</b></font>": импорт контактов с SD-карты."\n</li></string>
-    <string name="noContactsNoSimHelpText" product="default" msgid="6224952277619986841">"Нет контактов для показа."\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите один из вариантов."\n" "\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>": добавление или настройка аккаунта с контактами, котоые можно синхронизировать с телефоном."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>": создание контакта."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/экспорт"</b></font>": импорт контактов с SD-карты."\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="5415762667445638265">"Нет контактов для показа. (Если вы только что добавили аккаунт, синхронизация контактов может занять несколько минут.) "\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите один из вариантов."\n\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>": добавление или настройка аккаунта с контактами, которые можно синхронизировать с планшетным ПК."\n</li>\n<li><font fgcolor="#ffffffff"><b>"Варианты отображения"</b></font>": настройка параметров показа контактов."\n</li>\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>": создание контакта."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/экспорт"</b></font>": импорт контактов с SD-карты."\n</li></string>
-    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="7443705129830284440">"Нет контактов для показа. (Если вы только что добавили аккаунт, синхронизация контактов может занять несколько минут.) "\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите один из вариантов."\n\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>": добавление или настройка аккаунта с контактами, которые можно синхронизировать с телефоном."\n</li>\n<li><font fgcolor="#ffffffff"><b>"Варианты отображения"</b></font>": настройка параметров показа контактов."\n</li>\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>": создание контакта."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/экспорт"</b></font>": импорт контактов с SD-карты."\n</li></string>
+    <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"Нет контактов для показа."\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите один из вариантов."\n" "\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>": добавление или настройка аккаунта с контактами, которые можно синхронизировать с планшетным ПК."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>": добавление контакта."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/экспорт"</b></font>": импорт контактов с SIM- или SD-карты."\n</li></string>
+    <string name="noContactsHelpText" product="default" msgid="4405064135698982080">"Нет контактов для показа."\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите один из вариантов."\n" "\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>": добавление или настройка аккаунта с контактами, которые можно синхронизировать с телефоном."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>": добавление контакта."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/экспорт"</b></font>": импорт контактов с SIM- или SD-карты."\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="6773195806404659174">"Нет контактов для показа. Если вы только что добавили аккаунт, синхронизация контактов может занять несколько минут."\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите один из вариантов."\n\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>": добавление или настройка аккаунта с контактами, которые можно синхронизировать с планшетным ПК."\n</li>\n<li><font fgcolor="#ffffffff"><b>"Фильтр контактов"</b></font>": настройка параметров показа контактов."\n</li>\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>": добавление контакта."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/экспорт"</b></font>": импорт контактов с SIM- или SD-карты."\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="default" msgid="7016825676090327312">"Нет контактов для показа. Если вы только что добавили аккаунт, синхронизация контактов может занять несколько минут."\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите один из вариантов."\n\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>": добавление или настройка аккаунта с контактами, которые можно синхронизировать с телефоном."\n</li>\n<li><font fgcolor="#ffffffff"><b>"Фильтр контактов"</b></font>": настройка параметров показа контактов."\n</li>\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>": добавление контакта."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/экспорт"</b></font>": импорт контактов с SIM- или SD-карты."\n</li></string>
+    <string name="noContactsNoSimHelpText" product="tablet" msgid="7823757505923033456">"Нет контактов для показа."\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите один из вариантов."\n" "\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>": добавление или настройка аккаунта с контактами, которые можно синхронизировать с планшетным ПК."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>": добавление контакта."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/экспорт"</b></font>": импорт контактов с SD-карты."\n</li></string>
+    <string name="noContactsNoSimHelpText" product="default" msgid="6224952277619986841">"Нет контактов для показа."\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите один из вариантов."\n" "\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>": добавление или настройка аккаунта с контактами, которые можно синхронизировать с телефоном."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>": добавление контакта."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/экспорт"</b></font>": импорт контактов с SD-карты."\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="tablet" msgid="5415762667445638265">"Нет контактов для показа. Если вы только что добавили аккаунт, синхронизация контактов может занять несколько минут."\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите один из вариантов."\n\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>": добавление или настройка аккаунта с контактами, которые можно синхронизировать с планшетным ПК."\n</li>\n<li><font fgcolor="#ffffffff"><b>"Фильтр контактов"</b></font>": настройка параметров показа контактов."\n</li>\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>": добавление контакта."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/экспорт"</b></font>": импорт контактов с SD-карты."\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="7443705129830284440">"Нет контактов для показа. Если вы только что добавили аккаунт, синхронизация контактов может занять несколько минут."\n\n"Чтобы добавить контакты, нажмите "<font fgcolor="#ffffffff"><b>"Меню"</b></font>" и выберите один из вариантов."\n\n<li><font fgcolor="#ffffffff"><b>"Аккаунты"</b></font>": добавление или настройка аккаунта с контактами, которые можно синхронизировать с телефоном."\n</li>\n<li><font fgcolor="#ffffffff"><b>"Фильтр контактов"</b></font>": настройка параметров показа контактов."\n</li>\n<li><font fgcolor="#ffffffff"><b>"Новый контакт"</b></font>": добавление контакта."\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Импорт/экспорт"</b></font>": импорт контактов с SD-карты."\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"У вас нет избранных контактов."\n\n"Чтобы сделать контакт избранным,"\n\n"        "<li>"нажмите вкладку "<b>"Контакты"</b>";"\n</li>" "\n<li>"нажмите контакт, который нужно сделать избранным;"\n</li>" "\n<li>"нажмите звездочку возле имени контакта."\n</li></string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"Использовать тональный набор"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Вернуться к ожидающему вызову"</string>
@@ -225,21 +225,21 @@
     <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"Поиск данных vCard на SD-карте..."</string>
     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Накопитель не просканирован"</string>
     <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"SD-карта не просканирована"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"Не удалось проверить накопитель (причина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")."</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"Не удалось проверить SD-карту (причина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")."</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"Не удалось просканировать накопитель. Причина: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"Не удалось просканировать SD-карту. Причина: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_io_error" msgid="6748358842976073255">"Ошибка ввода-вывода"</string>
     <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Недостаточно памяти. Возможно, файл слишком большой."</string>
-    <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"Не удалось выполнить синтаксический анализ vCard."</string>
+    <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"Не удалось проанализировать файл vCard."</string>
     <string name="fail_reason_not_supported" msgid="8219562769267148825">"Формат не поддерживается."</string>
-    <string name="vcard_import_failed" msgid="5223531255894842406">"Не удалось импортировать vCard."</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2071820850017305867">"На накопителе отсутствуют файлы vCard."</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1754014167874286173">"На SD-карте не найдены файлы VCard."</string>
+    <string name="vcard_import_failed" msgid="5223531255894842406">"Не удалось импортировать данные vCard."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2071820850017305867">"На накопителе нет файлов vCard."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1754014167874286173">"На SD-карте нет файлов VCard."</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Не удалось собрать метаданные файлов VCard."</string>
     <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Не удалось импортировать один или несколько файлов (%s)."</string>
     <string name="fail_reason_unknown" msgid="1714092345030570863">"Неизвестная ошибка"</string>
     <string name="select_vcard_title" msgid="7791371083694672861">"Выбор файла vCard"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"Кэширование"</string>
-    <string name="caching_vcard_message" msgid="4926308675041506756">"Выполняется кэширование файлов vCard в локальное временное хранилище. Импорт начнется в ближайшее время."</string>
+    <string name="caching_vcard_message" msgid="4926308675041506756">"Выполняется кэширование файлов vCard в локальное временное хранилище. Импорт скоро начнется."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Импорт <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Импорт: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Ошибка чтения vCard-файла"</string>
@@ -248,30 +248,30 @@
     <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"Импорт файла \"<xliff:g id="FILENAME">%s</xliff:g>\" отменен"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"Импорт <xliff:g id="FILENAME">%s</xliff:g> начнется в ближайшее время."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Файл будет импортирован в ближайшее время."</string>
-    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"Запрос на импорт vCard отклонен. Повторите попытку позже."</string>
+    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"Запрос на импорт данных vCard отклонен. Повторите попытку позже."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"Экспорт <xliff:g id="FILENAME">%s</xliff:g> начнется в ближайшее время."</string>
-    <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Запрос на экспорт vCard отклонен. Повторите попытку позже."</string>
+    <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Запрос на экспорт данных vCard отклонен. Повторите попытку позже."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"контакт"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="6834385377255286349">"Экспорт контактов"</string>
-    <string name="confirm_export_message" msgid="2423421354816428708">"Список контактов будет экспортирован в файл <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
+    <string name="confirm_export_message" msgid="2423421354816428708">"Список контактов будет экспортирован в файл \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Сбой экспорта"</string>
-    <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Не удалось экспортировать контактные данные."\n"Причина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Контакты для экспорта не найдены."</string>
+    <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Не удалось экспортировать данные."\n"Причина: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
+    <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Нет контактов для экспорта."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="590645599157376285">"Слишком много файлов vCard в хранилище."</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="4887177369627277474">"Слишком много файлов VCard на SD-карте."</string>
-    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"Слишком длинное название файла (<xliff:g id="FILENAME">%s</xliff:g>)."</string>
+    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"Слишком длинное название: <xliff:g id="FILENAME">%s</xliff:g>."</string>
     <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"Экспорт файла \"<xliff:g id="FILENAME">%s</xliff:g>\" завершен."</string>
-    <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"Экспорт файла \"<xliff:g id="FILENAME">%s</xliff:g>\"  отменен."</string>
+    <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"Экспорт файла \"<xliff:g id="FILENAME">%s</xliff:g>\" отменен."</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Экспорт данных контакта"</string>
     <string name="exporting_contact_list_message" msgid="7181663157672374569">"Контактные данные экспортируются в файл \"<xliff:g id="FILE_NAME">%s</xliff:g>\"."</string>
-    <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"Не удалось запустить функцию экспорта (причина: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\")."</string>
-    <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"Произошла ошибка при экспорте (причина: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\")."</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Не удалось получить сведения из базы данных."</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"Не найдены контакты для экспорта. Экспорт контактов с планшетного ПК может не поддерживаться поставщиком услуг передачи данных."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="3296493229040294335">"Не найдены контакты для экспорта. Экспорт контактов с телефона может не поддерживаться поставщиком услуг передачи данных."</string>
-    <string name="composer_not_initialized" msgid="2321648986367005254">"Сбой запуска инструмента для создания vCard."</string>
-    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"Не удалось открыть файл \"<xliff:g id="FILE_NAME">%s</xliff:g>\" (причина: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\")."</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"Не удалось запустить функцию экспорта. Причина: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"Ошибка при экспорте. Причина: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"База данных недоступна."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"Не найдены контакты для экспорта. Возможно, экспорт контактов с планшетного ПК не поддерживается поставщиком услуг передачи данных."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="3296493229040294335">"Не найдены контакты для экспорта. Возможно, экспорт контактов с телефона не поддерживается поставщиком услуг передачи данных."</string>
+    <string name="composer_not_initialized" msgid="2321648986367005254">"Сбой при запуске редактора vCard."</string>
+    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"Не удалось открыть файл \"<xliff:g id="FILE_NAME">%s</xliff:g>\". Причина: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"Контакт <xliff:g id="CURRENT_NUMBER">%s</xliff:g> из <xliff:g id="TOTAL_NUMBER">%s</xliff:g>"</string>
     <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"Отмена импорта vCard"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Отменить импорт файла \"<xliff:g id="FILENAME">%s</xliff:g>\"?"</string>
@@ -285,8 +285,8 @@
     <string name="call_settings" msgid="7666474782093693667">"Настройки"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"Отправить SMS с помощью"</string>
     <string name="make_primary" msgid="5829291915305113983">"Запомнить выбранное"</string>
-    <string name="quickcontact_missing_app" msgid="358168575340921552">"Приложение для обработки этого действия не найдено."</string>
-    <string name="missing_name" msgid="8745511583852904385">"Без имени"</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"Действие не поддерживается ни в одном приложении."</string>
+    <string name="missing_name" msgid="8745511583852904385">"Имя не указано"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Аккаунты"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Фильтр контактов"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Импорт/экспорт"</string>
@@ -294,7 +294,7 @@
     <string name="menu_share" msgid="943789700636542260">"Отправить"</string>
     <string name="menu_all_contacts" msgid="5101735431586050711">"Все контакты"</string>
     <string name="share_via" msgid="563121028023030093">"Способ отправки"</string>
-    <string name="share_error" msgid="948429331673358107">"Не удалось поделиться контактом."</string>
+    <string name="share_error" msgid="948429331673358107">"Не удалось передать данные."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Имя"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Псевдоним"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Организация"</string>
@@ -309,7 +309,7 @@
     <string name="display_more_groups" msgid="2682547080423434170">"Другие группы..."</string>
     <string name="display_ungrouped" msgid="6885954210243119591">"Все остальные контакты"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"Все контакты"</string>
-    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Исключение группы \"<xliff:g id="GROUP">%s</xliff:g>\" из синхронизации приведет к удалению из нее всех контактов, не относящихся к какой-либо группе."</string>
+    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Вместе с группой \"<xliff:g id="GROUP">%s</xliff:g>\" перестанут синхронизироваться контакты, не добавленные в группы."</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Только для планшетных ПК, без синхронизации"</string>
     <string name="account_phone" product="default" msgid="3682950835276226870">"Только телефон, без синхронизации"</string>
     <string name="call_custom" msgid="7756571794763171802">"Позвонить (<xliff:g id="CUSTOM">%s</xliff:g>)"</string>
@@ -402,9 +402,9 @@
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="use_photo_as_primary" msgid="8807110122951157246">"Использовать эту фотографию"</string>
-    <string name="contact_read_only" msgid="7421346527289472273">"Изменение в этом приложении невозможно."</string>
-    <string name="no_contact_details" msgid="6636856378019344497">"Нет дополнительной информации об этом контакте."</string>
-    <string name="group_read_only" msgid="1061762906115697637">"Доступно только для чтения."</string>
+    <string name="contact_read_only" msgid="7421346527289472273">"Здесь доступно только для чтения."</string>
+    <string name="no_contact_details" msgid="6636856378019344497">"Нет других данных об этом контакте."</string>
+    <string name="group_read_only" msgid="1061762906115697637">"Здесь доступно только для чтения."</string>
     <string name="display_options_sort_list_by" msgid="6080091755852211076">"Упорядочить контакты"</string>
     <string name="display_options_sort_by_given_name" msgid="184916793466387067">"По имени"</string>
     <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"По фамилии"</string>
@@ -418,7 +418,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Выбрать новое фото из Галереи"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Список контактов обновляется после смены языка интерфейса."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Список контактов обновляется..."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Идет обновление контактов."\n\n"Для этого требуется около <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> МБ внутренней памяти."\n\n"Выберите один из следующих вариантов:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Контакты обновляются."\n\n"Для этого требуется около <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> МБ внутренней памяти."\n\n"Выберите подходящую опцию:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Удалить некоторые приложения"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Повторить попытку обновления"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Поиск…"</string>
@@ -427,7 +427,7 @@
     <string name="menu_select_all" msgid="621719255150713545">"Выбрать все"</string>
     <string name="menu_select_none" msgid="7093222469852132345">"Снять все выделения"</string>
     <string name="no_contacts_selected" msgid="5877803471037324613">"Контакты не выбраны."</string>
-    <string name="add_field" msgid="2384260056674995230">"Добавить другое поле"</string>
+    <string name="add_field" msgid="2384260056674995230">"Добавить поле"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Добавить"</string>
     <string name="add_organization" msgid="7311893231158291197">"Добавить организацию"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Дата"</string>
@@ -450,11 +450,11 @@
     <string name="contact_directory_description" msgid="683398073603909119">"Каталог <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Каталог"</string>
     <string name="local_search_label" msgid="2551177578246113614">"Все контакты"</string>
-    <string name="toast_making_personal_copy" msgid="288549957278065542">"Создание личной копии..."</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"Копирование..."</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Все контакты"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Помеченные"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Пользовательские"</string>
-    <string name="list_filter_customize" msgid="4789963356004169321">"Персонализированный"</string>
+    <string name="list_filter_customize" msgid="4789963356004169321">"Настроить"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"Все контакты с номерами телефонов"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Контакт"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Настройка отображения"</string>
@@ -492,7 +492,7 @@
     <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> чел."</item>
     <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> чел."</item>
   </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Прежде чем объединять этот контакт с другим, укажите его имя."</string>
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Укажите имя контакта, который хотите объединить."</string>
     <string name="copy_text" msgid="3257145021583508761">"Копировать в буфер обмена"</string>
     <string name="set_default" msgid="4417505153468300351">"Установить по умолчанию"</string>
     <string name="clear_default" msgid="7193185801596678067">"Удалить настройки по умолчанию"</string>
@@ -501,7 +501,7 @@
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Отменить изменения?"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g>, <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Настроить профиль"</string>
-    <string name="enter_contact_name" msgid="1738391320566349924">"Укажите имя контакта"</string>
+    <string name="enter_contact_name" msgid="1738391320566349924">"Имя контакта"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Обновления"</string>
   <plurals name="notification_voicemail_title">
     <item quantity="one" msgid="1746619685488504230">"Голосовая почта"</item>
@@ -516,14 +516,14 @@
     <string name="call_log_new_header" msgid="846546437517724715">"Новые"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Раньше"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Не удалось подключиться к серверу голосовой почты."</string>
-    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Не удается подключиться к серверу голосовой почты. Есть новые сообщения."</string>
+    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Не удалось подключиться к серверу. Есть новые сообщения."</string>
     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Настройте голосовую почту."</string>
     <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Аудио недоступно."</string>
     <string name="voicemail_status_action_configure" msgid="8671796489912239589">"Настройка"</string>
     <string name="voicemail_status_action_call_server" msgid="1824816252288551794">"Получить почту"</string>
     <string name="voicemail_speed_slowest" msgid="1733460666177707312">"Минимальная скорость"</string>
     <string name="voicemail_speed_slower" msgid="1508601287347216244">"Низкая скорость"</string>
-    <string name="voicemail_speed_normal" msgid="9033988544627228892">"Обычная скорость"</string>
+    <string name="voicemail_speed_normal" msgid="9033988544627228892">"Средняя скорость"</string>
     <string name="voicemail_speed_faster" msgid="2019965121475935488">"Высокая скорость"</string>
     <string name="voicemail_speed_fastest" msgid="5758712343491183292">"Максимальная скорость"</string>
     <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
@@ -563,5 +563,5 @@
     <string name="add_new_account" msgid="5748627740680940264">"Добавить аккаунт"</string>
     <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"Вызов не осуществляется"</string>
     <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"Номер недоступен"</string>
-    <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Чтобы настроить голосовую почту, выберите \"Меню\" &gt; \"Настройки\"."</string>
+    <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Чтобы настроить голосовую почту, выберите \"Меню &gt; Настройки\"."</string>
 </resources>

@@ -53,8 +53,8 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Slett"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Ny"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Ny"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Del opp kontakt?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Denne kontakten vil bli delt opp i flere kontakter."</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Dele opp kontakt?"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Denne kontakten kommer til å deles opp i flere kontakter."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Foren"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Slå sammen kontakter"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Velg kontakten du vil slå sammen med <xliff:g id="NAME">%s</xliff:g>:"</string>
@@ -146,9 +146,9 @@
     <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Slett talepost"</string>
     <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Del talepost"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Anropsloggen er tom."</string>
-    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Tøm samtaleloggen?"</string>
-    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Alle samtalelogger vil bli slettet."</string>
-    <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Tømmer anropslogg …"</string>
+    <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Tømme samtaleloggen?"</string>
+    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Alle samtalelogger kommer til å slettes."</string>
+    <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Tømmer anropsloggen …"</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Telefonsvarer"</string>
@@ -253,7 +253,7 @@
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Forespørselen om eksport av vCard ble avvist. Prøv på nytt senere."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"kontakt"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
-    <string name="confirm_export_title" msgid="6834385377255286349">"Eksport. kontaktene?"</string>
+    <string name="confirm_export_title" msgid="6834385377255286349">"Eksp. kontaktene?"</string>
     <string name="confirm_export_message" msgid="2423421354816428708">"Kontaktlisten din blir eksportert til: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Eksport mislyktes"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Kontaktdataene ble ikke eksportert."\n"Grunn: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
@@ -290,7 +290,7 @@
     <string name="menu_accounts" msgid="8499114602017077970">"Kontoer"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakter i visning"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Importér/eksportér"</string>
-    <string name="dialog_import_export" msgid="4360648034889921624">"Import./eksp. kontakter"</string>
+    <string name="dialog_import_export" msgid="4360648034889921624">"Imp./eksp. kontakter"</string>
     <string name="menu_share" msgid="943789700636542260">"Del"</string>
     <string name="menu_all_contacts" msgid="5101735431586050711">"Alle kontakter"</string>
     <string name="share_via" msgid="563121028023030093">"Del kontakt via"</string>
@@ -492,7 +492,7 @@
     <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> person"</item>
     <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> personer"</item>
   </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Skriv inn kontaktens navn før du slår den sammen med en annen."</string>
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Skriv inn kontaktens navn før du slår vedkommende sammen med en annen."</string>
     <string name="copy_text" msgid="3257145021583508761">"Kopier til utklippstavlen"</string>
     <string name="set_default" msgid="4417505153468300351">"Angi som standard"</string>
     <string name="clear_default" msgid="7193185801596678067">"Fjern som standard"</string>
@@ -525,7 +525,7 @@
     <string name="voicemail_speed_slower" msgid="1508601287347216244">"Lav hastighet"</string>
     <string name="voicemail_speed_normal" msgid="9033988544627228892">"Normal hastighet"</string>
     <string name="voicemail_speed_faster" msgid="2019965121475935488">"Høy hastighet"</string>
-    <string name="voicemail_speed_fastest" msgid="5758712343491183292">"Raskeste hastighet"</string>
+    <string name="voicemail_speed_fastest" msgid="5758712343491183292">"Høyeste hastighet"</string>
     <string name="call_log_item_count_and_date" msgid="7641933305703520787">"(<xliff:g id="COUNT">%1$d</xliff:g>) <xliff:g id="DATE">%2$s</xliff:g>"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Gruppens navn"</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Kontakt mottatt per NFC"</string>
