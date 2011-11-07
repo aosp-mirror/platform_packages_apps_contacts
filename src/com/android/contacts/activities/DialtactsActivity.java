@@ -508,7 +508,7 @@ public class DialtactsActivity extends TransactionSafeActivity {
             mSearchFragment.setQuickContactEnabled(true);
             mSearchFragment.setDarkTheme(true);
             mSearchFragment.setPhotoPosition(ContactListItemView.PhotoPosition.LEFT);
-            mSearchFragment.setStartDeferred(true);
+            mSearchFragment.setUserVisibleHint(false);
             final FragmentTransaction transaction = getFragmentManager().beginTransaction();
             if (mInSearchUi) {
                 transaction.show(mSearchFragment);
@@ -846,7 +846,7 @@ public class DialtactsActivity extends TransactionSafeActivity {
         // layout instead of asking the search menu item to take care of SearchView.
         mSearchView.onActionViewExpanded();
         mInSearchUi = true;
-        mSearchFragment.setStartDeferred(false);
+        mSearchFragment.setUserVisibleHint(true);
     }
 
     private void showInputMethod(View view) {
