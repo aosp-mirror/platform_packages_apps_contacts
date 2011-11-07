@@ -90,7 +90,7 @@ public class LegacyPostalAddressListAdapter extends ContactEntryListAdapter {
     }
 
     protected void bindName(final ContactListItemView view, Cursor cursor) {
-        view.showDisplayName(cursor, POSTAL_DISPLAY_NAME_COLUMN_INDEX, 0, false,
+        view.showDisplayName(cursor, POSTAL_DISPLAY_NAME_COLUMN_INDEX,
                 getContactNameDisplayOrder());
         view.showPhoneticName(cursor, POSTAL_PHONETIC_NAME_COLUMN_INDEX);
     }

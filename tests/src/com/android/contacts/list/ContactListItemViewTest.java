@@ -64,8 +64,7 @@ public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<Pe
         Cursor cursor = createCursor("John Doe", "Doe John");
         ContactListItemView view = createView();
 
-        view.showDisplayName(cursor, 0, 1, false,
-                ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY);
+        view.showDisplayName(cursor, 0, ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY);
 
         SpannedTestUtils.checkHtmlText("John Doe", view.getNameTextView());
     }
@@ -75,8 +74,7 @@ public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<Pe
         ContactListItemView view = createView();
 
         view.setUnknownNameText("unknown");
-        view.showDisplayName(cursor, 0, 1, false,
-                ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY);
+        view.showDisplayName(cursor, 0, ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY);
 
         SpannedTestUtils.checkHtmlText("unknown", view.getNameTextView());
     }
@@ -86,8 +84,7 @@ public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<Pe
         ContactListItemView view = createView();
 
         view.setHighlightedPrefix("DOE".toCharArray());
-        view.showDisplayName(cursor, 0, 1, false,
-                ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY);
+        view.showDisplayName(cursor, 0, ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY);
 
         SpannedTestUtils.checkHtmlText("John " + START + "Doe" + END,
                 view.getNameTextView());
@@ -98,8 +95,7 @@ public class ContactListItemViewTest extends ActivityInstrumentationTestCase2<Pe
         ContactListItemView view = createView();
 
         view.setHighlightedPrefix("DOE".toCharArray());
-        view.showDisplayName(cursor, 0, 1, false,
-                ContactsContract.Preferences.DISPLAY_ORDER_ALTERNATIVE);
+        view.showDisplayName(cursor, 0, ContactsContract.Preferences.DISPLAY_ORDER_ALTERNATIVE);
 
         SpannedTestUtils.checkHtmlText("John " + START + "Doe" + END,
                 view.getNameTextView());

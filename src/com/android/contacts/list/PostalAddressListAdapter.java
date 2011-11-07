@@ -32,27 +32,34 @@ import android.view.ViewGroup;
  */
 public class PostalAddressListAdapter extends ContactEntryListAdapter {
 
-    static final String[] POSTALS_PROJECTION = new String[] {
-        StructuredPostal._ID,                       // 0
-        StructuredPostal.TYPE,                      // 1
-        StructuredPostal.LABEL,                     // 2
-        StructuredPostal.DATA,                      // 3
-        StructuredPostal.DISPLAY_NAME_PRIMARY,      // 4
-        StructuredPostal.DISPLAY_NAME_ALTERNATIVE,  // 5
-        StructuredPostal.PHOTO_ID,                  // 6
-    };
+    protected static class PostalQuery {
+        private static final String[] PROJECTION_PRIMARY = new String[] {
+            StructuredPostal._ID,                       // 0
+            StructuredPostal.TYPE,                      // 1
+            StructuredPostal.LABEL,                     // 2
+            StructuredPostal.DATA,                      // 3
+            StructuredPostal.PHOTO_ID,                  // 4
+            StructuredPostal.DISPLAY_NAME_PRIMARY,      // 5
+        };
 
-    protected static final int POSTAL_ID_COLUMN_INDEX = 0;
-    protected static final int POSTAL_TYPE_COLUMN_INDEX = 1;
-    protected static final int POSTAL_LABEL_COLUMN_INDEX = 2;
-    protected static final int POSTAL_ADDRESS_COLUMN_INDEX = 3;
-    protected static final int POSTAL_PRIMARY_DISPLAY_NAME_COLUMN_INDEX = 4;
-    protected static final int POSTAL_ALTERNATIVE_DISPLAY_NAME_COLUMN_INDEX = 5;
-    protected static final int POSTAL_PHOTO_ID_COLUMN_INDEX = 6;
+        private static final String[] PROJECTION_ALTERNATIVE = new String[] {
+            StructuredPostal._ID,                       // 0
+            StructuredPostal.TYPE,                      // 1
+            StructuredPostal.LABEL,                     // 2
+            StructuredPostal.DATA,                      // 3
+            StructuredPostal.PHOTO_ID,                  // 4
+            StructuredPostal.DISPLAY_NAME_ALTERNATIVE,  // 5
+        };
 
-    private CharSequence mUnknownNameText;
-    private int mDisplayNameColumnIndex;
-    private int mAlternativeDisplayNameColumnIndex;
+        public static final int POSTAL_ID           = 0;
+        public static final int POSTAL_TYPE         = 1;
+        public static final int POSTAL_LABEL        = 2;
+        public static final int POSTAL_ADDRESS      = 3;
+        public static final int POSTAL_PHOTO_ID     = 4;
+        public static final int POSTAL_DISPLAY_NAME = 5;
+    }
+
+    private final CharSequence mUnknownNameText;
 
     public PostalAddressListAdapter(Context context) {
         super(context);
@@ -64,7 +71,12 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
     public void configureLoader(CursorLoader loader, long directoryId) {
         Uri uri = buildSectionIndexerUri(StructuredPostal.CONTENT_URI);
         loader.setUri(uri);
-        loader.setProjection(POSTALS_PROJECTION);
+
+        if (getContactNameDisplayOrder() == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
+            loader.setProjection(PostalQuery.PROJECTION_PRIMARY);
+        } else {
+            loader.setProjection(PostalQuery.PROJECTION_ALTERNATIVE);
+        }
 
         if (getSortOrder() == ContactsContract.Preferences.SORT_ORDER_PRIMARY) {
             loader.setSortOrder(StructuredPostal.SORT_KEY_PRIMARY);
@@ -80,19 +92,7 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
 
     @Override
     public String getContactDisplayName(int position) {
-        return ((Cursor)getItem(position)).getString(mDisplayNameColumnIndex);
-    }
-
-    @Override
-    public void setContactNameDisplayOrder(int displayOrder) {
-        super.setContactNameDisplayOrder(displayOrder);
-        if (getContactNameDisplayOrder() == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
-            mDisplayNameColumnIndex = POSTAL_PRIMARY_DISPLAY_NAME_COLUMN_INDEX;
-            mAlternativeDisplayNameColumnIndex = POSTAL_ALTERNATIVE_DISPLAY_NAME_COLUMN_INDEX;
-        } else {
-            mDisplayNameColumnIndex = POSTAL_ALTERNATIVE_DISPLAY_NAME_COLUMN_INDEX;
-            mAlternativeDisplayNameColumnIndex = POSTAL_PRIMARY_DISPLAY_NAME_COLUMN_INDEX;
-        }
+        return ((Cursor) getItem(position)).getString(PostalQuery.POSTAL_DISPLAY_NAME);
     }
 
     /**
@@ -100,7 +100,7 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
      * position.
      */
     public Uri getDataUri(int position) {
-        long id = ((Cursor)getItem(position)).getLong(POSTAL_ID_COLUMN_INDEX);
+        long id = ((Cursor)getItem(position)).getLong(PostalQuery.POSTAL_ID);
         return ContentUris.withAppendedId(Data.CONTENT_URI, id);
     }
 
@@ -124,15 +124,15 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
 
     protected void bindPostalAddress(ContactListItemView view, Cursor cursor) {
         CharSequence label = null;
-        if (!cursor.isNull(POSTAL_TYPE_COLUMN_INDEX)) {
-            final int type = cursor.getInt(POSTAL_TYPE_COLUMN_INDEX);
-            final String customLabel = cursor.getString(POSTAL_LABEL_COLUMN_INDEX);
+        if (!cursor.isNull(PostalQuery.POSTAL_TYPE)) {
+            final int type = cursor.getInt(PostalQuery.POSTAL_TYPE);
+            final String customLabel = cursor.getString(PostalQuery.POSTAL_LABEL);
 
             // TODO cache
             label = StructuredPostal.getTypeLabel(getContext().getResources(), type, customLabel);
         }
         view.setLabel(label);
-        view.showData(cursor, POSTAL_ADDRESS_COLUMN_INDEX);
+        view.showData(cursor, PostalQuery.POSTAL_ADDRESS);
     }
 
     protected void bindSectionHeaderAndDivider(final ContactListItemView view, int position) {
@@ -154,14 +154,13 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
     }
 
     protected void bindName(final ContactListItemView view, Cursor cursor) {
-        view.showDisplayName(cursor, mDisplayNameColumnIndex, mAlternativeDisplayNameColumnIndex,
-                false, getContactNameDisplayOrder());
+        view.showDisplayName(cursor, PostalQuery.POSTAL_DISPLAY_NAME, getContactNameDisplayOrder());
     }
 
     protected void bindPhoto(final ContactListItemView view, Cursor cursor) {
         long photoId = 0;
-        if (!cursor.isNull(POSTAL_PHOTO_ID_COLUMN_INDEX)) {
-            photoId = cursor.getLong(POSTAL_PHOTO_ID_COLUMN_INDEX);
+        if (!cursor.isNull(PostalQuery.POSTAL_PHOTO_ID)) {
+            photoId = cursor.getLong(PostalQuery.POSTAL_PHOTO_ID);
         }
 
         getPhotoLoader().loadPhoto(view.getPhotoView(), photoId, false, false);
