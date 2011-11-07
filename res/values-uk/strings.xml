@@ -54,7 +54,7 @@
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Новий"</string>
     <string name="menu_new_group_action_bar" msgid="5055346725617932394">"Нова"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Розділити контакт?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Цей контакт буде розділен1 на декілька контактів."</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Цей контакт буде розділено на декілька контактів."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Приєдн."</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Об\'єдн. контакти"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Виберіть контакт, який треба об’єднати з <xliff:g id="NAME">%s</xliff:g>:"</string>
@@ -127,7 +127,7 @@
     <item quantity="other" msgid="3852668542926965042">"Знайдено <xliff:g id="COUNT">%d</xliff:g>"</item>
   </plurals>
     <string name="foundTooManyContacts" msgid="5163335650920020220">"Знайдено понад <xliff:g id="COUNT">%d</xliff:g>."</string>
-    <string name="listFoundAllContactsZero" msgid="7132202364587656501">"Немає жодного."</string>
+    <string name="listFoundAllContactsZero" msgid="7132202364587656501">"Не знайдено."</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"Знайдено 1"</item>
     <item quantity="other" msgid="7988132539476575389">"Знайдено <xliff:g id="COUNT">%d</xliff:g>"</item>
@@ -255,7 +255,7 @@
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="6834385377255286349">"Експортув. контакти?"</string>
     <string name="confirm_export_message" msgid="2423421354816428708">"Ваш список контактів буде експортовано у файл: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
-    <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Не вдалось експорт."</string>
+    <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Помилка експорту"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Контактні дані не експортовано."\n"Причина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Немає контакту, який можна експортувати."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="590645599157376285">"Забагато файлів vCard у пам’яті."</string>
@@ -516,7 +516,7 @@
     <string name="call_log_new_header" msgid="846546437517724715">"Нові"</string>
     <string name="call_log_old_header" msgid="6262205894314263629">"Старіші"</string>
     <string name="voicemail_status_voicemail_not_available" msgid="3021980206152528883">"Неможливо під’єднатися до сервера голосової пошти."</string>
-    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Не вдається з’єдн. із сервером голос. пошти. Є нова голос.пошта."</string>
+    <string name="voicemail_status_messages_waiting" msgid="7113421459602803605">"Помилка з’єднання із сервером голосової пошти. Є нова пошта."</string>
     <string name="voicemail_status_configure_voicemail" msgid="3738537770636895689">"Налаштуйте свою голосову пошту."</string>
     <string name="voicemail_status_audio_not_available" msgid="3369618334553341626">"Аудіо недоступне."</string>
     <string name="voicemail_status_action_configure" msgid="8671796489912239589">"Налаштувати"</string>

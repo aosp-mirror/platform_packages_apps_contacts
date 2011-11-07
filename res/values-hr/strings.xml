@@ -65,7 +65,7 @@
     <string name="deleteConfirmation_title" msgid="1418215926447642260">"Izbrisati kontakt?"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Postavi zvuk zvona"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Svi pozivi na govornu poštu"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"Ne možete izbrisati kontakte s računa samo za čitanje, ali ih možete sakriti na svojim popisima kontakata."</string>
+    <string name="readOnlyContactWarning" msgid="7808825687289848259">"Ne možete izbrisati kontakte s računa samo za čitanje, ali možete ih sakriti na svojim popisima kontakata."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Ovaj kontakt sadrži informacije iz više računa. Informacije iz računa koji su samo za čitanje bit će skrivene na popise kontakata, a ne izbrisane."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Brisanjem ovog kontakta izbrisat ćete podatke s više računa."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Ovaj će kontakt biti izbrisan."</string>
@@ -243,14 +243,14 @@
     <string name="progress_notifier_message" msgid="2311011466908220528">"Uvoz <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Uvoz <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Čitanje podataka vCarda nije uspjelo"</string>
-    <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"Čitanje podataka vCard je otkazano"</string>
+    <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"Čitanje podataka vCard otkazano je"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Završetak uvoza kartice vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
-    <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"Uvoz datoteke <xliff:g id="FILENAME">%s</xliff:g> je otkazan"</string>
+    <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"Uvoz datoteke <xliff:g id="FILENAME">%s</xliff:g> otkazan je"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"Datoteka <xliff:g id="FILENAME">%s</xliff:g> uskoro će biti uvezena."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Datoteka će uskoro biti uvezena."</string>
-    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"Zahtjev za uvoz formata vCard je odbijen. Pokušajte ponovo kasnije."</string>
+    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"Zahtjev za uvoz formata vCard odbijen je. Pokušajte ponovo kasnije."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"Datoteka <xliff:g id="FILENAME">%s</xliff:g> uskoro će biti izvezena."</string>
-    <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Zahtjev za izvoz formata vCard je odbijen. Pokušajte ponovo kasnije."</string>
+    <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Zahtjev za izvoz formata vCard odbijen je. Pokušajte ponovo kasnije."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"kontakt"</string>
     <string name="percentage" msgid="34897865327092209">"%s%%"</string>
     <string name="confirm_export_title" msgid="6834385377255286349">"Izvesti kontakte?"</string>
@@ -260,13 +260,13 @@
     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Nema kontakata koji se mogu izvoziti."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="590645599157376285">"Previše je vCard datoteka u pohrani."</string>
     <string name="fail_reason_too_many_vcard" product="default" msgid="4887177369627277474">"Previše vCard datoteka na SD kartici."</string>
-    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"Obavezan naziv datoteke je predug (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
+    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"Obavezan naziv datoteke predug je (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"Završetak izvoza datoteke <xliff:g id="FILENAME">%s</xliff:g>."</string>
-    <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"Izvoz datoteke <xliff:g id="FILENAME">%s</xliff:g> je otkazan."</string>
+    <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"Izvoz datoteke <xliff:g id="FILENAME">%s</xliff:g> otkazan je."</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Izvoz podataka o kontaktu"</string>
     <string name="exporting_contact_list_message" msgid="7181663157672374569">"Vaši podaci o kontaktu izvoze se u datoteku <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"Alat za izvoz ne može se pokrenuti; razlog: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
-    <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"Tijekom izvoza došlo je do pogreške radi: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"Tijekom izvoza došlo je do pogreške zbog: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Dohvaćanje podataka iz baze podataka nije uspjelo."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="6991449891825077743">"Nema kontakata koji se mogu izvoziti. Ako na svojem tabletnom računalu imate kontakte, neki davatelji podataka možda ne dopuštaju izvoz kontakata s tog tabletnog računala."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="3296493229040294335">"Nema kontakata koji se mogu izvoziti. Ako na svojem telefonu imate kontakte, neki davatelji podataka možda ne dopuštaju izvoz kontakata s tog telefona."</string>

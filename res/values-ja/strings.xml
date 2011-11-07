@@ -280,7 +280,7 @@
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCardインポート/エクスポート取り消し不可"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"連絡先の名前"</string>
     <string name="add_2sec_pause" msgid="9214012315201040129">"2秒間の停止を追加"</string>
-    <string name="add_wait" msgid="3360818652790319634">"着信を追加"</string>
+    <string name="add_wait" msgid="3360818652790319634">"待機を追加"</string>
     <string name="call_disambig_title" msgid="1911302597959335178">"使用している発信"</string>
     <string name="call_settings" msgid="7666474782093693667">"設定"</string>
     <string name="sms_disambig_title" msgid="4675399294513152364">"使用しているSMS"</string>
