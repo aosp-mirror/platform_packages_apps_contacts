@@ -50,14 +50,31 @@ public class ContactEditorActivity extends ContactsActivity
     public static final String ACTION_JOIN_COMPLETED = "joinCompleted";
     public static final String ACTION_SAVE_COMPLETED = "saveCompleted";
 
+    /**
+     * Boolean intent key that specifies that this activity should finish itself
+     * (instead of launching a new view intent) after the editor changes have been
+     * saved.
+     */
+    public static final String INTENT_KEY_FINISH_ACTIVITY_ON_SAVE_COMPLETED =
+            "finishActivityOnSaveCompleted";
+
     private ContactEditorFragment mFragment;
+    private boolean mFinishActivityOnSaveCompleted;
 
     private DialogManager mDialogManager = new DialogManager(this);
 
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
-        String action = getIntent().getAction();
+
+        final Intent intent = getIntent();
+        final String action = intent.getAction();
+
+        // Determine whether or not this activity should be finished after the user is done
+        // editing the contact or if this activity should launch another activity to view the
+        // contact's details.
+        mFinishActivityOnSaveCompleted = intent.getBooleanExtra(
+                INTENT_KEY_FINISH_ACTIVITY_ON_SAVE_COMPLETED, false);
 
         // The only situation where action could be ACTION_JOIN_COMPLETED is if the
         // user joined the contact with another and closed the activity before
@@ -146,7 +163,9 @@ public class ContactEditorActivity extends ContactsActivity
 
         @Override
         public void onSaveFinished(Intent resultIntent) {
-            if (resultIntent != null) {
+            if (mFinishActivityOnSaveCompleted) {
+                setResult(RESULT_OK, resultIntent);
+            } else if (resultIntent != null) {
                 startActivity(resultIntent);
             }
             finish();

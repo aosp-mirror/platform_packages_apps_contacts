@@ -106,7 +106,7 @@ public class GroupDetailActivity extends ContactsActivity {
         @Override
         public void onContactSelected(Uri contactUri) {
             Intent intent = new Intent(Intent.ACTION_VIEW, contactUri);
-            intent.putExtra(ContactDetailActivity.INTENT_KEY_IGNORE_DEFAULT_UP_BEHAVIOR, true);
+            intent.putExtra(ContactDetailActivity.INTENT_KEY_FINISH_ACTIVITY_ON_UP_SELECTED, true);
             startActivity(intent);
         }
 

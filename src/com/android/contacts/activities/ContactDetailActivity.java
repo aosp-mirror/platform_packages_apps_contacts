@@ -57,15 +57,16 @@ public class ContactDetailActivity extends ContactsActivity {
     private static final String TAG = "ContactDetailActivity";
 
     /**
-     * Intent key for a boolean that specifies whether the "up" afforance in this activity should
-     * behave as default (return user back to {@link PeopleActivity}) or whether the activity should
-     * instead be finished.
+     * Boolean intent key that specifies whether pressing the "up" affordance in this activity
+     * should cause it to finish itself or launch an intent to bring the user back to a specific
+     * parent activity - the {@link PeopleActivity}.
      */
-    public static final String INTENT_KEY_IGNORE_DEFAULT_UP_BEHAVIOR = "ignoreDefaultUpBehavior";
+    public static final String INTENT_KEY_FINISH_ACTIVITY_ON_UP_SELECTED =
+            "finishActivityOnUpSelected";
 
     private ContactLoader.Result mContactData;
     private Uri mLookupUri;
-    private boolean mIgnoreDefaultUpBehavior;
+    private boolean mFinishActivityOnUpSelected;
 
     private ContactDetailLayoutController mContactDetailLayoutController;
     private ContactLoaderFragment mLoaderFragment;
@@ -92,8 +93,8 @@ public class ContactDetailActivity extends ContactsActivity {
             return;
         }
 
-        mIgnoreDefaultUpBehavior = getIntent().getBooleanExtra(
-                INTENT_KEY_IGNORE_DEFAULT_UP_BEHAVIOR, false);
+        mFinishActivityOnUpSelected = getIntent().getBooleanExtra(
+                INTENT_KEY_FINISH_ACTIVITY_ON_UP_SELECTED, false);
 
         setContentView(R.layout.contact_detail_activity);
 
@@ -211,8 +212,13 @@ public class ContactDetailActivity extends ContactsActivity {
 
         @Override
         public void onEditRequested(Uri contactLookupUri) {
-            startActivity(new Intent(Intent.ACTION_EDIT, contactLookupUri));
-            finish();
+            Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
+            intent.putExtra(
+                    ContactEditorActivity.INTENT_KEY_FINISH_ACTIVITY_ON_SAVE_COMPLETED, true);
+            // Don't finish the detail activity after launching the editor because when the
+            // editor is done, we will still want to show the updated contact details using
+            // this activity.
+            startActivity(intent);
         }
 
         @Override
@@ -285,7 +291,7 @@ public class ContactDetailActivity extends ContactsActivity {
 
         switch (item.getItemId()) {
             case android.R.id.home:
-                if (mIgnoreDefaultUpBehavior) {
+                if (mFinishActivityOnUpSelected) {
                     finish();
                     return true;
                 }
