@@ -913,7 +913,7 @@ public abstract class BaseAccountType extends AccountType {
         private static void checkAttributeTrue(boolean value, String attrName)
                 throws DefinitionException {
             if (!value) {
-                throw new DefinitionException(attrName + "must be true");
+                throw new DefinitionException(attrName + " must be true");
             }
         }
 
@@ -930,16 +930,16 @@ public abstract class BaseAccountType extends AccountType {
             final boolean displayOrderPrimary =
                     context.getResources().getBoolean(R.bool.config_editor_field_order_primary);
 
-            final boolean supportsDisplayName = getAttr(attrs, "supportsDisplayName", true);
-            final boolean supportsPrefix = getAttr(attrs, "supportsPrefix", true);
-            final boolean supportsMiddleName = getAttr(attrs, "supportsMiddleName", true);
-            final boolean supportsSuffix = getAttr(attrs, "supportsSuffix", true);
+            final boolean supportsDisplayName = getAttr(attrs, "supportsDisplayName", false);
+            final boolean supportsPrefix = getAttr(attrs, "supportsPrefix", false);
+            final boolean supportsMiddleName = getAttr(attrs, "supportsMiddleName", false);
+            final boolean supportsSuffix = getAttr(attrs, "supportsSuffix", false);
             final boolean supportsPhoneticFamilyName =
-                    getAttr(attrs, "supportsPhoneticFamilyName", true);
+                    getAttr(attrs, "supportsPhoneticFamilyName", false);
             final boolean supportsPhoneticMiddleName =
-                    getAttr(attrs, "supportsPhoneticMiddleName", true);
+                    getAttr(attrs, "supportsPhoneticMiddleName", false);
             final boolean supportsPhoneticGivenName =
-                    getAttr(attrs, "supportsPhoneticGivenName", true);
+                    getAttr(attrs, "supportsPhoneticGivenName", false);
 
             // For now, every things must be supported.
             checkAttributeTrue(supportsDisplayName, "supportsDisplayName");
