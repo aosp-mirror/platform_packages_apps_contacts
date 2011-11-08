@@ -177,10 +177,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                         mCounterHeaderView.setText(getString(
                                 R.string.listTotalAllContactsZeroGroup, filter.accountName));
                         break;
-                    case ContactListFilter.FILTER_TYPE_GROUP:
-                        mCounterHeaderView.setText(
-                                getString(R.string.listTotalAllContactsZeroGroup, filter.title));
-                        break;
                     case ContactListFilter.FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY:
                         mCounterHeaderView.setText(R.string.listTotalPhoneContactsZero);
                         break;

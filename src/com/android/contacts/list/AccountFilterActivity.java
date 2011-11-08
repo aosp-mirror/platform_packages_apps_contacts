@@ -118,8 +118,8 @@ public class AccountFilterActivity extends ContactsActivity
                 continue;
             }
             Drawable icon = accountType != null ? accountType.getDisplayIcon(context) : null;
-            accountFilters.add(ContactListFilter.createAccountFilter(account.type, account.name,
-                    account.dataSet, icon, account.name));
+            accountFilters.add(ContactListFilter.createAccountFilter(
+                    account.type, account.name, account.dataSet, icon));
         }
 
         // Always show "All", even when there's no accounts.  (We may have local contacts)
