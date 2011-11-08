@@ -817,8 +817,8 @@ public class PeopleActivity extends ContactsActivity
             Fragment f = getFragment(position);
             mCurTransaction.show(f);
 
-            // Non primary pages should be deferred.
-            f.setStartDeferred(f != mCurrentPrimaryItem);
+            // Non primary pages are not visible.
+            f.setUserVisibleHint(f == mCurrentPrimaryItem);
             return f;
         }
 
@@ -849,10 +849,10 @@ public class PeopleActivity extends ContactsActivity
             Fragment fragment = (Fragment) object;
             if (mCurrentPrimaryItem != fragment) {
                 if (mCurrentPrimaryItem != null) {
-                    mCurrentPrimaryItem.setStartDeferred(true);
+                    mCurrentPrimaryItem.setUserVisibleHint(false);
                 }
                 if (fragment != null) {
-                    fragment.setStartDeferred(false);
+                    fragment.setUserVisibleHint(true);
                 }
                 mCurrentPrimaryItem = fragment;
             }
