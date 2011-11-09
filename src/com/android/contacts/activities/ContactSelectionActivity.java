@@ -153,8 +153,10 @@ public class ContactSelectionActivity extends ContactsActivity
     }
 
     private void prepareSearchViewAndActionBar() {
-        // Postal address picker doesn't support search, so just show "HomeAsUp" button and title.
-        if (mRequest.getActionCode() == ContactsRequest.ACTION_PICK_POSTAL) {
+        // Postal address pickers (and legacy pickers) don't support search, so just show
+        // "HomeAsUp" button and title.
+        if (mRequest.getActionCode() == ContactsRequest.ACTION_PICK_POSTAL ||
+                mRequest.isLegacyCompatibilityMode()) {
             findViewById(R.id.search_view).setVisibility(View.GONE);
             final ActionBar actionBar = getActionBar();
             if (actionBar != null) {
