@@ -39,45 +39,64 @@ import android.widget.ListView;
 public abstract class ContactListAdapter extends ContactEntryListAdapter {
 
     protected static class ContactQuery {
-        public static final String[] PROJECTION_CONTACT = new String[] {
+        private static final String[] CONTACT_PROJECTION_PRIMARY = new String[] {
             Contacts._ID,                           // 0
             Contacts.DISPLAY_NAME_PRIMARY,          // 1
-            Contacts.DISPLAY_NAME_ALTERNATIVE,      // 2
-            Contacts.CONTACT_PRESENCE,              // 3
-            Contacts.CONTACT_STATUS,                // 4
-            Contacts.PHOTO_ID,                      // 5
-            Contacts.PHOTO_THUMBNAIL_URI,           // 6
-            Contacts.LOOKUP_KEY,                    // 7
-            Contacts.IS_USER_PROFILE,               // 8
+            Contacts.CONTACT_PRESENCE,              // 2
+            Contacts.CONTACT_STATUS,                // 3
+            Contacts.PHOTO_ID,                      // 4
+            Contacts.PHOTO_THUMBNAIL_URI,           // 5
+            Contacts.LOOKUP_KEY,                    // 6
+            Contacts.IS_USER_PROFILE,               // 7
         };
 
-        public static final String[] FILTER_PROJECTION = new String[] {
+        private static final String[] CONTACT_PROJECTION_ALTERNATIVE = new String[] {
+            Contacts._ID,                           // 0
+            Contacts.DISPLAY_NAME_ALTERNATIVE,      // 1
+            Contacts.CONTACT_PRESENCE,              // 2
+            Contacts.CONTACT_STATUS,                // 3
+            Contacts.PHOTO_ID,                      // 4
+            Contacts.PHOTO_THUMBNAIL_URI,           // 5
+            Contacts.LOOKUP_KEY,                    // 6
+            Contacts.IS_USER_PROFILE,               // 7
+        };
+
+        private static final String[] FILTER_PROJECTION_PRIMARY = new String[] {
             Contacts._ID,                           // 0
             Contacts.DISPLAY_NAME_PRIMARY,          // 1
-            Contacts.DISPLAY_NAME_ALTERNATIVE,      // 2
-            Contacts.CONTACT_PRESENCE,              // 3
-            Contacts.CONTACT_STATUS,                // 4
-            Contacts.PHOTO_ID,                      // 5
-            Contacts.PHOTO_THUMBNAIL_URI,           // 6
-            Contacts.LOOKUP_KEY,                    // 7
-            Contacts.IS_USER_PROFILE,               // 8
-            SearchSnippetColumns.SNIPPET,           // 9
+            Contacts.CONTACT_PRESENCE,              // 2
+            Contacts.CONTACT_STATUS,                // 3
+            Contacts.PHOTO_ID,                      // 4
+            Contacts.PHOTO_THUMBNAIL_URI,           // 5
+            Contacts.LOOKUP_KEY,                    // 6
+            Contacts.IS_USER_PROFILE,               // 7
+            SearchSnippetColumns.SNIPPET,           // 8
         };
 
-        public static final int CONTACT_ID                       = 0;
-        public static final int CONTACT_DISPLAY_NAME_PRIMARY     = 1;
-        public static final int CONTACT_DISPLAY_NAME_ALTERNATIVE = 2;
-        public static final int CONTACT_PRESENCE_STATUS          = 3;
-        public static final int CONTACT_CONTACT_STATUS           = 4;
-        public static final int CONTACT_PHOTO_ID                 = 5;
-        public static final int CONTACT_PHOTO_URI                = 6;
-        public static final int CONTACT_LOOKUP_KEY               = 7;
-        public static final int CONTACT_IS_USER_PROFILE          = 8;
-        public static final int CONTACT_SNIPPET                  = 9;
+        private static final String[] FILTER_PROJECTION_ALTERNATIVE = new String[] {
+            Contacts._ID,                           // 0
+            Contacts.DISPLAY_NAME_ALTERNATIVE,      // 1
+            Contacts.CONTACT_PRESENCE,              // 2
+            Contacts.CONTACT_STATUS,                // 3
+            Contacts.PHOTO_ID,                      // 4
+            Contacts.PHOTO_THUMBNAIL_URI,           // 5
+            Contacts.LOOKUP_KEY,                    // 6
+            Contacts.IS_USER_PROFILE,               // 7
+            SearchSnippetColumns.SNIPPET,           // 8
+        };
+
+        public static final int CONTACT_ID               = 0;
+        public static final int CONTACT_DISPLAY_NAME     = 1;
+        public static final int CONTACT_PRESENCE_STATUS  = 2;
+        public static final int CONTACT_CONTACT_STATUS   = 3;
+        public static final int CONTACT_PHOTO_ID         = 4;
+        public static final int CONTACT_PHOTO_URI        = 5;
+        public static final int CONTACT_LOOKUP_KEY       = 6;
+        public static final int CONTACT_IS_USER_PROFILE  = 7;
+        public static final int CONTACT_SNIPPET          = 8;
     }
 
     private CharSequence mUnknownNameText;
-    private int mDisplayNameColumnIndex;
 
     private long mSelectedContactDirectoryId;
     private String mSelectedContactLookupKey;
@@ -118,17 +137,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
 
     @Override
     public String getContactDisplayName(int position) {
-        return ((Cursor)getItem(position)).getString(mDisplayNameColumnIndex);
-    }
-
-    @Override
-    public void setContactNameDisplayOrder(int displayOrder) {
-        super.setContactNameDisplayOrder(displayOrder);
-        if (getContactNameDisplayOrder() == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
-            mDisplayNameColumnIndex = ContactQuery.CONTACT_DISPLAY_NAME_PRIMARY;
-        } else {
-            mDisplayNameColumnIndex = ContactQuery.CONTACT_DISPLAY_NAME_ALTERNATIVE;
-        }
+        return ((Cursor) getItem(position)).getString(ContactQuery.CONTACT_DISPLAY_NAME);
     }
 
     /**
@@ -226,7 +235,8 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     }
 
     protected void bindName(final ContactListItemView view, Cursor cursor) {
-        view.showDisplayName(cursor, mDisplayNameColumnIndex, getContactNameDisplayOrder());
+        view.showDisplayName(
+                cursor, ContactQuery.CONTACT_DISPLAY_NAME, getContactNameDisplayOrder());
         // Note: we don't show phonetic any more (See issue 5265330)
     }
 
@@ -328,6 +338,26 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         if (cursor != null && cursor.getCount() > 0) {
             cursor.moveToFirst();
             setProfileExists(cursor.getInt(ContactQuery.CONTACT_IS_USER_PROFILE) == 1);
+        }
+    }
+
+    /**
+     * @return Projection useful for children.
+     */
+    protected final String[] getProjection(boolean forSearch) {
+        final int sortOrder = getContactNameDisplayOrder();
+        if (forSearch) {
+            if (sortOrder == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
+                return ContactQuery.FILTER_PROJECTION_PRIMARY;
+            } else {
+                return ContactQuery.FILTER_PROJECTION_ALTERNATIVE;
+            }
+        } else {
+            if (sortOrder == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
+                return ContactQuery.CONTACT_PROJECTION_PRIMARY;
+            } else {
+                return ContactQuery.CONTACT_PROJECTION_ALTERNATIVE;
+            }
         }
     }
 }
