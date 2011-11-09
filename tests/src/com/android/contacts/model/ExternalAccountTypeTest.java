@@ -134,6 +134,28 @@ public class ExternalAccountTypeTest extends AndroidTestCase {
         assertsDataKindEquals(reference.getSortedDataKinds(), type.getSortedDataKinds());
     }
 
+    public void testEditSchema_mustHaveChecks() {
+        checkEditSchema_mustHaveChecks(R.xml.missing_contacts_base, true);
+        checkEditSchema_mustHaveChecks(R.xml.missing_contacts_photo, false);
+        checkEditSchema_mustHaveChecks(R.xml.missing_contacts_name, false);
+        checkEditSchema_mustHaveChecks(R.xml.missing_contacts_name_attr1, false);
+        checkEditSchema_mustHaveChecks(R.xml.missing_contacts_name_attr2, false);
+        checkEditSchema_mustHaveChecks(R.xml.missing_contacts_name_attr3, false);
+        checkEditSchema_mustHaveChecks(R.xml.missing_contacts_name_attr4, false);
+        checkEditSchema_mustHaveChecks(R.xml.missing_contacts_name_attr5, false);
+        checkEditSchema_mustHaveChecks(R.xml.missing_contacts_name_attr6, false);
+        checkEditSchema_mustHaveChecks(R.xml.missing_contacts_name_attr7, false);
+    }
+
+    private void checkEditSchema_mustHaveChecks(int xmlResId, boolean expectInitialized) {
+        final ExternalAccountType type = new ExternalAccountType(getContext(),
+                getTestContext().getPackageName(), false,
+                getTestContext().getResources().getXml(xmlResId)
+                );
+
+        assertEquals(expectInitialized, type.isInitialized());
+    }
+
     private static void assertsDataKindEquals(List<DataKind> expectedKinds,
             List<DataKind> actualKinds) {
         final int count = Math.max(actualKinds.size(), expectedKinds.size());
