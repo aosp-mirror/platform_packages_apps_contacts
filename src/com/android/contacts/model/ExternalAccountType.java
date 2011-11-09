@@ -29,6 +29,8 @@ import android.content.pm.ServiceInfo;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
+import android.provider.ContactsContract.CommonDataKinds.Photo;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -117,12 +119,20 @@ public class ExternalAccountType extends BaseAccountType {
         } else {
             parser = injectedMetadata;
         }
+        boolean needLineNumberInErrorLog = true;
         try {
             if (parser != null) {
                 inflate(context, parser);
             }
 
-            if (!mHasEditSchema) {
+            // Done parsing; line number no longer needed in error log.
+            needLineNumberInErrorLog = false;
+            if (mHasEditSchema) {
+                checkKindExists(StructuredName.CONTENT_ITEM_TYPE);
+                checkKindExists(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME);
+                checkKindExists(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME);
+                checkKindExists(Photo.CONTENT_ITEM_TYPE);
+            } else {
                 // Bring in name and photo from fallback source, which are non-optional
                 addDataKindStructuredName(context);
                 addDataKindDisplayName(context);
@@ -131,7 +141,7 @@ public class ExternalAccountType extends BaseAccountType {
             }
         } catch (DefinitionException e) {
             String message = "Problem reading XML";
-            if (parser != null) {
+            if (needLineNumberInErrorLog && (parser != null)) {
                 message = message + " in line " + parser.getLineNumber();
             }
             Log.e(TAG, message, e);
@@ -183,6 +193,12 @@ public class ExternalAccountType extends BaseAccountType {
         }
         // Package was found, but that doesn't contain the CONTACTS_STRUCTURE metadata.
         return null;
+    }
+
+    private void checkKindExists(String mimeType) throws DefinitionException {
+        if (getKindForMimetype(mimeType) == null) {
+            throw new DefinitionException(mimeType + " must be supported");
+        }
     }
 
     @Override
