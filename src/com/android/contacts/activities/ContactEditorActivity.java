@@ -164,7 +164,7 @@ public class ContactEditorActivity extends ContactsActivity
         @Override
         public void onSaveFinished(Intent resultIntent) {
             if (mFinishActivityOnSaveCompleted) {
-                setResult(RESULT_OK, resultIntent);
+                setResult(resultIntent == null ? RESULT_CANCELED : RESULT_OK, resultIntent);
             } else if (resultIntent != null) {
                 startActivity(resultIntent);
             }
