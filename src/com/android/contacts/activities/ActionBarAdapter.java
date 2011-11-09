@@ -374,6 +374,18 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         outState.putInt(EXTRA_KEY_SELECTED_TAB, mCurrentTab.ordinal());
     }
 
+    /**
+     * Clears the focus from the {@link SearchView} if we are in search mode.
+     * This will suppress the IME if it is visible.
+     */
+    public void clearFocusOnSearchView() {
+        if (isSearchMode()) {
+            if (mSearchView != null) {
+                mSearchView.clearFocus();
+            }
+        }
+    }
+
     private void setFocusOnSearchView() {
         mSearchView.requestFocus();
         mSearchView.setIconified(false); // Workaround for the "IME not popping up" issue.
