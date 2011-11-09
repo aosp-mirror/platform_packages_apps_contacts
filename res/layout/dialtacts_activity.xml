@@ -17,18 +17,11 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="?android:attr/actionBarSize">
-
+    android:layout_marginTop="?android:attr/actionBarSize"
+    android:id="@+id/dialtacts_frame"
+    >
     <com.android.contacts.activities.DialtactsViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <!-- For phone search UI -->
-    <fragment
-        android:id="@+id/phone_number_picker_fragment"
-        class="com.android.contacts.list.PhoneNumberPickerFragment"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent" />
-
 </FrameLayout>
