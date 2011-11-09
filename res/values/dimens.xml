@@ -234,4 +234,12 @@
          Right now the drawable has implicit 32dip minimal height, which is confusing.
          This value is for making the hidden configuration explicit in xml. -->
     <dimen name="list_section_divider_min_height">32dip</dimen>
+
+    <!-- Max width of the SearchView when the contact picker is a dialog (on wide
+         screen devices). -->
+    <dimen name="contact_picker_search_view_max_width">550dip</dimen>
+
+    <!-- Min height of the list of contacts when the contact picker is a dialog (on
+        wide screen devices). -->
+    <dimen name="contact_picker_contact_list_min_height">550dip</dimen>
 </resources>
