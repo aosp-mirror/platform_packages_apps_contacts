@@ -146,9 +146,9 @@
     <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Mailbox-Nachricht löschen"</string>
     <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Mailbox-Nachricht teilen"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Anrufliste ist leer."</string>
-    <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Anrufprotokoll löschen"</string>
-    <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Möchten Sie das Anrufprotokoll wirklich löschen?"</string>
-    <string name="clearCallLogProgress_title" msgid="6870412675015656948">"Anrufprotokoll wird gelöscht."</string>
+    <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"Anrufliste löschen"</string>
+    <string name="clearCallLogConfirmation" msgid="7625927669136267636">"Möchten Sie die Anrufliste wirklich löschen?"</string>
+    <string name="clearCallLogProgress_title" msgid="6870412675015656948">"Anrufliste wird gelöscht."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
     <string name="voicemail" msgid="3851469869202611441">"Mailbox"</string>
