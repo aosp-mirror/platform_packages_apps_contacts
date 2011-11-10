@@ -35,69 +35,51 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
     public static final int FILTER_TYPE_SINGLE_CONTACT = -6;
 
     public static final int FILTER_TYPE_ACCOUNT = 0;
-    public static final int FILTER_TYPE_GROUP = 1;
+
+    /**
+     * Obsolete filter which had been used in Honeycomb. This may be stored in
+     * {@link SharedPreferences}, but should be replaced with ALL filter when it is found.
+     *
+     * TODO: "group" filter and relevant variables are all obsolete. Remove them.
+     */
+    private static final int FILTER_TYPE_GROUP = 1;
 
     private static final String KEY_FILTER_TYPE = "filter.type";
     private static final String KEY_ACCOUNT_NAME = "filter.accountName";
     private static final String KEY_ACCOUNT_TYPE = "filter.accountType";
     private static final String KEY_DATA_SET = "filter.dataSet";
-    private static final String KEY_GROUP_ID = "filter.groupId";
-    private static final String KEY_GROUP_SOURCE_ID = "filter.groupSourceId";
-    private static final String KEY_GROUP_READ_ONLY = "filter.groupReadOnly";
-    private static final String KEY_GROUP_TITLE = "filter.groupTitle";
 
     public final int filterType;
     public final String accountType;
     public final String accountName;
     public final String dataSet;
     public final Drawable icon;
-    public long groupId;
-    public String groupSourceId;
-    public final boolean groupReadOnly;
-    public final String title;
     private String mId;
 
     public ContactListFilter(int filterType, String accountType, String accountName, String dataSet,
-            Drawable icon, long groupId, String groupSourceId, boolean groupReadOnly,
-            String title) {
+            Drawable icon) {
         this.filterType = filterType;
         this.accountType = accountType;
         this.accountName = accountName;
         this.dataSet = dataSet;
         this.icon = icon;
-        this.groupId = groupId;
-        this.groupSourceId = groupSourceId;
-        this.groupReadOnly = groupReadOnly;
-        this.title = title;
     }
 
     public static ContactListFilter createFilterWithType(int filterType) {
-        return new ContactListFilter(filterType, null, null, null, null, 0, null, false, null);
-    }
-
-    public static ContactListFilter createGroupFilter(long groupId) {
-        return new ContactListFilter(ContactListFilter.FILTER_TYPE_GROUP, null, null, null, null,
-                groupId, null, false, null);
-    }
-
-    public static ContactListFilter createGroupFilter(String accountType, String accountName,
-            String dataSet, long groupId, String groupSourceId, boolean groupReadOnly,
-            String title) {
-        return new ContactListFilter(ContactListFilter.FILTER_TYPE_GROUP, accountType, accountName,
-                dataSet, null, groupId, groupSourceId, groupReadOnly, title);
+        return new ContactListFilter(filterType, null, null, null, null);
     }
 
     public static ContactListFilter createAccountFilter(String accountType, String accountName,
-            String dataSet, Drawable icon, String title) {
+            String dataSet, Drawable icon) {
         return new ContactListFilter(ContactListFilter.FILTER_TYPE_ACCOUNT, accountType,
-                accountName, dataSet, icon, 0, null, false, title);
+                accountName, dataSet, icon);
     }
 
     /**
      * Returns true if this filter is based on data and may become invalid over time.
      */
     public boolean isValidationRequired() {
-        return filterType == FILTER_TYPE_ACCOUNT || filterType == FILTER_TYPE_GROUP;
+        return filterType == FILTER_TYPE_ACCOUNT;
     }
 
     @Override
@@ -118,9 +100,6 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
             case FILTER_TYPE_ACCOUNT:
                 return "account: " + accountType + (dataSet != null ? "/" + dataSet : "")
                         + " " + accountName;
-            case FILTER_TYPE_GROUP:
-                return "group: " + accountType + (dataSet != null ? "/" + dataSet : "")
-                        + " " + accountName + " " + title + "(" + groupId + ")";
         }
         return super.toString();
     }
@@ -137,13 +116,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
             return res;
         }
 
-        if (filterType != another.filterType) {
-            return filterType - another.filterType;
-        }
-
-        String title1 = title != null ? title : "";
-        String title2 = another.title != null ? another.title : "";
-        return title1.compareTo(title2);
+        return filterType - another.filterType;
     }
 
     @Override
@@ -155,11 +128,6 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
         }
         if (dataSet != null) {
             code = code * 31 + dataSet.hashCode();
-        }
-        if (groupSourceId != null) {
-            code = code * 31 + groupSourceId.hashCode();
-        } else if (groupId != 0) {
-            code = code * 31 + (int) groupId;
         }
         return code;
     }
@@ -182,11 +150,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
             return false;
         }
 
-        if (groupSourceId != null && otherFilter.groupSourceId != null) {
-            return groupSourceId.equals(otherFilter.groupSourceId);
-        }
-
-        return groupId == otherFilter.groupId;
+        return true;
     }
 
     public static void storeToPreferences(SharedPreferences prefs, ContactListFilter filter) {
@@ -195,10 +159,6 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
             .putString(KEY_ACCOUNT_NAME, filter == null ? null : filter.accountName)
             .putString(KEY_ACCOUNT_TYPE, filter == null ? null : filter.accountType)
             .putString(KEY_DATA_SET, filter == null ? null : filter.dataSet)
-            .putLong(KEY_GROUP_ID, filter == null ? -1 : filter.groupId)
-            .putString(KEY_GROUP_SOURCE_ID, filter == null ? null : filter.groupSourceId)
-            .putBoolean(KEY_GROUP_READ_ONLY, filter == null ? false : filter.groupReadOnly)
-            .putString(KEY_GROUP_TITLE, filter == null ? null : filter.title)
             .apply();
     }
 
@@ -209,13 +169,16 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
     public static ContactListFilter restoreDefaultPreferences(SharedPreferences prefs) {
         ContactListFilter filter = restoreFromPreferences(prefs);
         if (filter == null) {
-            filter = ContactListFilter.createFilterWithType(
-                    ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
+            filter = ContactListFilter.createFilterWithType(FILTER_TYPE_ALL_ACCOUNTS);
+        }
+        // "Group" filter is obsolete and thus is not exposed anymore.
+        if (filter.filterType == FILTER_TYPE_GROUP) {
+            filter = ContactListFilter.createFilterWithType(FILTER_TYPE_ALL_ACCOUNTS);
         }
         return filter;
     }
 
-    public static ContactListFilter restoreFromPreferences(SharedPreferences prefs) {
+    private static ContactListFilter restoreFromPreferences(SharedPreferences prefs) {
         int filterType = prefs.getInt(KEY_FILTER_TYPE, FILTER_TYPE_DEFAULT);
         if (filterType == FILTER_TYPE_DEFAULT) {
             return null;
@@ -224,12 +187,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
         String accountName = prefs.getString(KEY_ACCOUNT_NAME, null);
         String accountType = prefs.getString(KEY_ACCOUNT_TYPE, null);
         String dataSet = prefs.getString(KEY_DATA_SET, null);
-        long groupId = prefs.getLong(KEY_GROUP_ID, -1);
-        String groupSourceId = prefs.getString(KEY_GROUP_SOURCE_ID, null);
-        boolean groupReadOnly = prefs.getBoolean(KEY_GROUP_READ_ONLY, false);
-        String title = prefs.getString(KEY_GROUP_TITLE, "group");
-        return new ContactListFilter(filterType, accountType, accountName, dataSet, null, groupId,
-                groupSourceId, groupReadOnly, title);
+        return new ContactListFilter(filterType, accountType, accountName, dataSet, null);
     }
 
 
@@ -239,9 +197,6 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
         dest.writeString(accountName);
         dest.writeString(accountType);
         dest.writeString(dataSet);
-        dest.writeLong(groupId);
-        dest.writeString(groupSourceId);
-        dest.writeInt(groupReadOnly ? 1 : 0);
     }
 
     public static final Parcelable.Creator<ContactListFilter> CREATOR =
@@ -252,11 +207,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
             String accountName = source.readString();
             String accountType = source.readString();
             String dataSet = source.readString();
-            long groupId = source.readLong();
-            String groupSourceId = source.readString();
-            boolean groupReadOnly = source.readInt() != 0;
-            return new ContactListFilter(filterType, accountType, accountName, dataSet, null,
-                    groupId, groupSourceId, groupReadOnly, null);
+            return new ContactListFilter(filterType, accountType, accountName, dataSet, null);
         }
 
         @Override
@@ -286,11 +237,6 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
             if (accountName != null) {
                 sb.append('-').append(accountName.replace('-', '_'));
             }
-            if (groupSourceId != null) {
-                sb.append('-').append(groupSourceId);
-            } else if (groupId != 0) {
-                sb.append('-').append(groupId);
-            }
             mId = sb.toString();
         }
         return mId;
@@ -303,12 +249,6 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
             builder.append(", accountType: " + accountType)
                     .append(", accountName: " + accountName)
                     .append(", dataSet: " + dataSet);
-        }
-        if (filterType == FILTER_TYPE_GROUP) {
-            builder.append(", groupId: " + groupId)
-                    .append(", groupSourceId: " + groupSourceId)
-                    .append(", groupReadOnly: " + groupReadOnly)
-                    .append("title: " + title);
         }
         builder.append(", icon: " + icon + "]");
         return builder.toString();
@@ -330,8 +270,6 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
                 return "FILTER_TYPE_SINGLE_CONTACT";
             case FILTER_TYPE_ACCOUNT:
                 return "FILTER_TYPE_ACCOUNT";
-            case FILTER_TYPE_GROUP:
-                return "FILTER_TYPE_GROUP";
             default:
                 return "(unknown)";
         }

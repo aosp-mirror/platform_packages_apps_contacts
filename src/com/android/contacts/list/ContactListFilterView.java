@@ -115,15 +115,6 @@ public class ContactListFilterView extends LinearLayout {
                 }
                 break;
             }
-            case ContactListFilter.FILTER_TYPE_GROUP: {
-                mIcon.setVisibility(View.VISIBLE);
-                mIcon.setImageResource(R.drawable.ic_menu_display_all_holo_light);
-                mLabel.setText(mFilter.title);
-                if (dropdown) {
-                    mIndent.setVisibility(mSingleAccount ? View.GONE : View.VISIBLE);
-                }
-                break;
-            }
         }
     }
 

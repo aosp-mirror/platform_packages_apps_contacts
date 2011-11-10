@@ -51,17 +51,6 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             Contacts.IS_USER_PROFILE,               // 8
         };
 
-        public static final String[] PROJECTION_DATA = new String[] {
-            Data.CONTACT_ID,                        // 0
-            Data.DISPLAY_NAME_PRIMARY,              // 1
-            Data.DISPLAY_NAME_ALTERNATIVE,          // 2
-            Data.CONTACT_PRESENCE,                  // 3
-            Data.CONTACT_STATUS,                    // 4
-            Data.PHOTO_ID,                          // 5
-            Data.PHOTO_THUMBNAIL_URI,               // 6
-            Data.LOOKUP_KEY,                        // 7
-        };
-
         public static final String[] FILTER_PROJECTION = new String[] {
             Contacts._ID,                           // 0
             Contacts.DISPLAY_NAME_PRIMARY,          // 1
