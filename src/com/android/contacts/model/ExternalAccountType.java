@@ -140,11 +140,16 @@ public class ExternalAccountType extends BaseAccountType {
                 addDataKindPhoto(context);
             }
         } catch (DefinitionException e) {
-            String message = "Problem reading XML";
+            final StringBuilder error = new StringBuilder();
+            error.append("Problem reading XML");
             if (needLineNumberInErrorLog && (parser != null)) {
-                message = message + " in line " + parser.getLineNumber();
+                error.append(" in line ");
+                error.append(parser.getLineNumber());
             }
-            Log.e(TAG, message, e);
+            error.append(" for external package ");
+            error.append(resPackageName);
+
+            Log.e(TAG, error.toString(), e);
             return;
         } finally {
             if (parser != null) {
@@ -341,9 +346,14 @@ public class ExternalAccountType extends BaseAccountType {
             }
 
             // Parse all children kinds
-            final int depth = parser.getDepth();
-            while (((type = parser.next()) != XmlPullParser.END_TAG || parser.getDepth() > depth)
+            final int startDepth = parser.getDepth();
+            while (((type = parser.next()) != XmlPullParser.END_TAG
+                        || parser.getDepth() > startDepth)
                     && type != XmlPullParser.END_DOCUMENT) {
+
+                if (type != XmlPullParser.START_TAG || parser.getDepth() != startDepth + 1) {
+                    continue; // Not a direct child tag
+                }
 
                 String tag = parser.getName();
                 if (TAG_EDIT_SCHEMA.equals(tag)) {
