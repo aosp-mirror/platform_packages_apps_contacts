@@ -153,7 +153,15 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
         return true;
     }
 
+    /**
+     * Store the given {@link ContactListFilter} to preferences. If the requested filter is
+     * of type {@link #FILTER_TYPE_SINGLE_CONTACT} then do not save it to preferences because
+     * it is a temporary state.
+     */
     public static void storeToPreferences(SharedPreferences prefs, ContactListFilter filter) {
+        if (filter != null && filter.filterType == FILTER_TYPE_SINGLE_CONTACT) {
+            return;
+        }
         prefs.edit()
             .putInt(KEY_FILTER_TYPE, filter == null ? FILTER_TYPE_DEFAULT : filter.filterType)
             .putString(KEY_ACCOUNT_NAME, filter == null ? null : filter.accountName)
@@ -171,8 +179,10 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
         if (filter == null) {
             filter = ContactListFilter.createFilterWithType(FILTER_TYPE_ALL_ACCOUNTS);
         }
-        // "Group" filter is obsolete and thus is not exposed anymore.
-        if (filter.filterType == FILTER_TYPE_GROUP) {
+        // "Group" filter is obsolete and thus is not exposed anymore. The "single contact mode"
+        // should also not be stored in preferences anymore since it is a temporary state.
+        if (filter.filterType == FILTER_TYPE_GROUP ||
+                filter.filterType == FILTER_TYPE_SINGLE_CONTACT) {
             filter = ContactListFilter.createFilterWithType(FILTER_TYPE_ALL_ACCOUNTS);
         }
         return filter;
