@@ -209,6 +209,9 @@ public class SocialWidgetProvider extends AppWidgetProvider {
             // TODO: Rotate between all the stream items?
             StreamItemEntry streamItem = streamItems.get(0);
             CharSequence status = HtmlUtils.fromHtml(context, streamItem.getText());
+            if (status == null) {
+              status = "";
+            }
             if (status.length() <= SHORT_SNIPPET_LENGTH) {
                 sb.append("\n");
             } else {
