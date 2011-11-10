@@ -72,7 +72,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 // Regardless of the directory, we don't want anything returned,
                 // so let's just send a "nothing" query to the local directory.
                 loader.setUri(Contacts.CONTENT_URI);
-                loader.setProjection(ContactQuery.PROJECTION_CONTACT);
+                loader.setProjection(getProjection(false));
                 loader.setSelection("0");
             } else {
                 Builder builder = Contacts.CONTENT_FILTER_URI.buildUpon();
@@ -87,11 +87,11 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                         SNIPPET_ARGS);
                 builder.appendQueryParameter(SearchSnippetColumns.DEFERRED_SNIPPETING_KEY,"1");
                 loader.setUri(builder.build());
-                loader.setProjection(ContactQuery.FILTER_PROJECTION);
+                loader.setProjection(getProjection(true));
             }
         } else {
             configureUri(loader, directoryId, filter);
-            configureProjection(loader, directoryId, filter);
+            loader.setProjection(getProjection(false));
             configureSelection(loader, directoryId, filter);
         }
 
@@ -130,11 +130,6 @@ public class DefaultContactListAdapter extends ContactListAdapter {
         }
 
         loader.setUri(uri);
-    }
-
-    protected void configureProjection(
-            CursorLoader loader, long directoryId, ContactListFilter filter) {
-        loader.setProjection(ContactQuery.PROJECTION_CONTACT);
     }
 
     private void configureSelection(
