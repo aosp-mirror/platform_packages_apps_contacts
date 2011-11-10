@@ -110,9 +110,12 @@ public class PeopleActivity extends ContactsActivity
 
     private static final String TAG = "PeopleActivity";
 
-    private static final int SUBACTIVITY_NEW_GROUP = 2;
-    private static final int SUBACTIVITY_EDIT_GROUP = 3;
-    private static final int SUBACTIVITY_ACCOUNT_FILTER = 4;
+    // These values needs to start at 2. See {@link ContactEntryListFragment}.
+    private static final int SUBACTIVITY_NEW_CONTACT = 2;
+    private static final int SUBACTIVITY_EDIT_CONTACT = 3;
+    private static final int SUBACTIVITY_NEW_GROUP = 4;
+    private static final int SUBACTIVITY_EDIT_GROUP = 5;
+    private static final int SUBACTIVITY_ACCOUNT_FILTER = 6;
 
     private final DialogManager mDialogManager = new DialogManager(this);
 
@@ -989,11 +992,10 @@ public class PeopleActivity extends ContactsActivity
             } else {
                 Intent intent = new Intent(Intent.ACTION_VIEW, contactLookupUri);
                 // In search mode, the "up" affordance in the contact detail page should return the
-                // user to the search results, so suppress the normal behavior which would re-launch
-                // {@link PeopleActivity} when the "up" affordance is clicked.
+                // user to the search results, so finish the activity when that button is selected.
                 if (mActionBarAdapter.isSearchMode()) {
-                    intent.putExtra(ContactDetailActivity.INTENT_KEY_IGNORE_DEFAULT_UP_BEHAVIOR,
-                            true);
+                    intent.putExtra(
+                            ContactDetailActivity.INTENT_KEY_FINISH_ACTIVITY_ON_UP_SELECTED, true);
                 }
                 startActivity(intent);
             }
@@ -1016,7 +1018,9 @@ public class PeopleActivity extends ContactsActivity
             if (extras != null) {
                 intent.putExtras(extras);
             }
-            startActivity(intent);
+            intent.putExtra(
+                    ContactEditorActivity.INTENT_KEY_FINISH_ACTIVITY_ON_SAVE_COMPLETED, true);
+            startActivityForResult(intent, SUBACTIVITY_EDIT_CONTACT);
         }
 
         @Override
@@ -1101,7 +1105,10 @@ public class PeopleActivity extends ContactsActivity
 
         @Override
         public void onEditRequested(Uri contactLookupUri) {
-            startActivity(new Intent(Intent.ACTION_EDIT, contactLookupUri));
+            Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
+            intent.putExtra(
+                    ContactEditorActivity.INTENT_KEY_FINISH_ACTIVITY_ON_SAVE_COMPLETED, true);
+            startActivityForResult(intent, SUBACTIVITY_EDIT_CONTACT);
         }
 
         @Override
@@ -1390,7 +1397,17 @@ public class PeopleActivity extends ContactsActivity
             }
             case R.id.menu_add_contact: {
                 final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-                startActivity(intent);
+                // On 2-pane UI, we can let the editor activity finish itself and return
+                // to this activity to display the new contact.
+                if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
+                    intent.putExtra(
+                        ContactEditorActivity.INTENT_KEY_FINISH_ACTIVITY_ON_SAVE_COMPLETED, true);
+                    startActivityForResult(intent, SUBACTIVITY_NEW_CONTACT);
+                } else {
+                    // Otherwise, on 1-pane UI, we need the editor to launch the view contact
+                    // intent itself.
+                    startActivity(intent);
+                }
                 return true;
             }
             case R.id.menu_add_group: {
@@ -1462,6 +1479,19 @@ public class PeopleActivity extends ContactsActivity
             case SUBACTIVITY_ACCOUNT_FILTER: {
                 AccountFilterUtil.handleAccountFilterResult(
                         mContactListFilterController, resultCode, data);
+                break;
+            }
+
+            case SUBACTIVITY_NEW_CONTACT:
+            case SUBACTIVITY_EDIT_CONTACT: {
+                if (resultCode == RESULT_OK && PhoneCapabilityTester.isUsingTwoPanes(this)) {
+                    mRequest.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
+                    mAllFragment.reloadDataAndSetSelectedUri(data.getData());
+                    // Suppress IME if in search mode
+                    if (mActionBarAdapter != null) {
+                        mActionBarAdapter.clearFocusOnSearchView();
+                    }
+                }
                 break;
             }
 
