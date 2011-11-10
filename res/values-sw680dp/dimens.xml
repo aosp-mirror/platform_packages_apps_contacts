@@ -19,4 +19,5 @@
     <dimen name="editor_round_button_padding_right">8dip</dimen>
     <dimen name="group_editor_side_padding">16dip</dimen>
     <dimen name="quick_contact_photo_container_height">400dip</dimen>
+    <dimen name="contact_picker_contact_list_min_height">650dip</dimen>
 </resources>
