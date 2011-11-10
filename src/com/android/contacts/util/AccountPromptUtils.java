@@ -22,6 +22,7 @@ import com.android.contacts.model.GoogleAccountType;
 import android.accounts.AccountManager;
 import android.accounts.AccountManagerCallback;
 import android.accounts.AccountManagerFuture;
+import android.accounts.AuthenticatorDescription;
 import android.accounts.AuthenticatorException;
 import android.accounts.OperationCanceledException;
 import android.app.Activity;
@@ -57,10 +58,23 @@ public class AccountPromptUtils {
 
     /**
      * Returns true if the "no account" prompt should be shown
-     * (according to {@link SharedPreferences}), otherwise return false.
+     * (according to {@link SharedPreferences}), otherwise return false. Since this prompt is
+     * Google-specific for the time being, this method will also return false if the Google
+     * account type is not available from the {@link AccountManager}.
      */
     public static boolean shouldShowAccountPrompt(Context context) {
-        return getSharedPreferences(context).getBoolean(KEY_SHOW_ACCOUNT_PROMPT, true);
+        // TODO: Remove the filtering of account types once there is an API in
+        // {@link AccountManager} to show a similar account prompt
+        // (see {@link AccountManager#addAccount()} in {@link #launchAccountPrompt()}
+        // for any type of account. Bug: 5375902
+        AuthenticatorDescription[] allTypes =
+                AccountManager.get(context).getAuthenticatorTypes();
+        for (AuthenticatorDescription authenticatorType : allTypes) {
+            if (GoogleAccountType.ACCOUNT_TYPE.equals(authenticatorType.type)) {
+                return getSharedPreferences(context).getBoolean(KEY_SHOW_ACCOUNT_PROMPT, true);
+            }
+        }
+        return false;
     }
 
     /**
