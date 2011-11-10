@@ -16,10 +16,10 @@
 
 package com.android.contacts.tests.allintents;
 
-import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.tests.R;
 import com.google.android.collect.Lists;
 
+import android.accounts.Account;
 import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.ComponentName;
@@ -51,6 +51,8 @@ import android.widget.Toast;
 /**
  * An activity that provides access to various modes of the contacts application.
  * Useful for manual and scripted tests.
+ * <p>
+ * Note: this class cannot depend (directly on indirectly) on anything outside the test package.
  */
 @SuppressWarnings("deprecation")
 public class AllIntentsActivity extends ListActivity
@@ -631,12 +633,12 @@ public class AllIntentsActivity extends ListActivity
     }
 
     @Override
-    public void onAccountChosen(AccountWithDataSet account, int tag) {
+    public void onAccountChosen(Account account, String dataSet, int tag) {
         switch (ContactsIntent.get(tag)) {
             case EDIT_NEW_CONTACT_FOR_ACCOUNT: {
                 final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
                 intent.putExtra(Insert.ACCOUNT, account);
-                intent.putExtra(Insert.DATA_SET, account.dataSet);
+                intent.putExtra(Insert.DATA_SET, dataSet);
                 startActivity(intent);
                 break;
             }
@@ -644,7 +646,7 @@ public class AllIntentsActivity extends ListActivity
                 final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
 
                 intent.putExtra(Insert.ACCOUNT, account);
-                intent.putExtra(Insert.DATA_SET, account.dataSet);
+                intent.putExtra(Insert.DATA_SET, dataSet);
                 putDataExtra(intent);
 
                 startActivity(intent);
