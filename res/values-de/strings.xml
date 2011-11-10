@@ -48,7 +48,7 @@
     <string name="menu_deleteContact" msgid="6788644058868189393">"Löschen"</string>
     <string name="menu_call" msgid="3992595586042260618">"Kontakt anrufen"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"SMS an Kontakt"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"Teilen"</string>
+    <string name="menu_splitAggregate" msgid="8368636463748691868">"Aufteilen"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Bearbeiten"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Löschen"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Neu"</string>
@@ -65,7 +65,7 @@
     <string name="deleteConfirmation_title" msgid="1418215926447642260">"Kontakt löschen?"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Klingeltonwahl"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Alle Anrufe an Mailbox"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"Sie können keine Kontakte aus schreibgeschützten Konten löschen. Sie können sie jedoch in Ihren Kontaktlisten ausblenden."</string>
+    <string name="readOnlyContactWarning" msgid="7808825687289848259">"Sie können keine Kontakte aus schreibgeschützten Konten löschen. Sie können sie aber in Ihren Kontaktlisten ausblenden."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Dieser Kontakt enthält Informationen aus mehreren Konten. Informationen aus schreibgeschützten Konten werden nicht gelöscht, sondern in Ihren Kontaktlisten ausgeblendet."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Wenn Sie diesen Kontakt löschen, werden Informationen aus mehreren Konten gelöscht."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Dieser Kontakt wird gelöscht."</string>
@@ -147,7 +147,7 @@
     <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Mailbox-Nachricht teilen"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Anrufliste ist leer."</string>
     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Anrufliste löschen?"</string>
-    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Ihr gesamtes Anrufprotokoll wird gelöscht."</string>
+    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Ihre gesamte Anrufliste wird gelöscht."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Anrufliste wird gelöscht..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
@@ -248,9 +248,9 @@
     <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"Import von <xliff:g id="FILENAME">%s</xliff:g> abgebrochen"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> wird demnächst importiert."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Die Datei wird in Kürze importiert."</string>
-    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"Die vCard-Importanfrage wurde abgelehnt. Versuchen Sie es später noch einmal."</string>
+    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"Die vCard-Importanfrage wurde abgelehnt. Bitte versuchen Sie es später noch einmal."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> wird demnächst exportiert."</string>
-    <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Die vCard-Exportanfrage wurde abgelehnt. Versuchen Sie es später noch einmal."</string>
+    <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Die vCard-Exportanfrage wurde abgelehnt. Bitte versuchen Sie es später noch einmal."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"Kontakt"</string>
     <string name="percentage" msgid="34897865327092209">"%s %%"</string>
     <string name="confirm_export_title" msgid="6834385377255286349">"Kontakte exportieren?"</string>
@@ -458,7 +458,7 @@
     <string name="list_filter_phones" msgid="735313795643493365">"Alle Kontakte mit Telefonnummern"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Kontakt"</string>
     <string name="custom_list_filter" msgid="7836035257402013957">"Ansicht festlegen"</string>
-    <string name="contact_list_loading" msgid="5488620820563977329">"Laden..."</string>
+    <string name="contact_list_loading" msgid="5488620820563977329">"Wird geladen…"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Einstellungen"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakte zum Anzeigen"</string>
     <string name="menu_settings" msgid="377929915873428211">"Einstellungen"</string>
@@ -472,7 +472,7 @@
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Jahr angeben"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Kontakt"</string>
-    <string name="social_widget_loading" msgid="5327336597364074608">"Laden..."</string>
+    <string name="social_widget_loading" msgid="5327336597364074608">"Wird geladen…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Neuen Kontakt erstellen"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"In einem Konto anmelden"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Kontakte aus einer Datei importieren"</string>

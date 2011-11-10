@@ -290,7 +290,7 @@
     <string name="menu_accounts" msgid="8499114602017077970">"Comptes"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Contacts à afficher"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Importer/Exporter"</string>
-    <string name="dialog_import_export" msgid="4360648034889921624">"Importer/Exporter contacts"</string>
+    <string name="dialog_import_export" msgid="4360648034889921624">"Import/Export contacts"</string>
     <string name="menu_share" msgid="943789700636542260">"Partager"</string>
     <string name="menu_all_contacts" msgid="5101735431586050711">"Tous les contacts"</string>
     <string name="share_via" msgid="563121028023030093">"Partager contact via"</string>
