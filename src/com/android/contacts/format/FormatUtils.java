@@ -125,6 +125,7 @@ public class FormatUtils {
     }
 
     /** Returns a String that represents the content of the given {@link CharArrayBuffer}. */
+    @NeededForTesting
     public static String charArrayBufferToString(CharArrayBuffer buffer) {
         return new String(buffer.data, 0, buffer.sizeCopied);
     }
