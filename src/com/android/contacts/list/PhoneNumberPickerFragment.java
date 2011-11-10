@@ -70,7 +70,6 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     public PhoneNumberPickerFragment() {
         setQuickContactEnabled(false);
         setPhotoLoaderEnabled(true);
-        setVisibleScrollbarEnabled(true);
         setSectionHeaderDisplayEnabled(true);
         setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DATA_SHORTCUT);
 
@@ -93,6 +92,8 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
         mAccountFilterHeader = getView().findViewById(R.id.account_filter_header_container);
         mAccountFilterHeader.setOnClickListener(mFilterHeaderClickListener);
         updateFilterHeaderView();
+
+        setVisibleScrollbarEnabled(!isLegacyCompatibilityMode());
     }
 
     @Override
