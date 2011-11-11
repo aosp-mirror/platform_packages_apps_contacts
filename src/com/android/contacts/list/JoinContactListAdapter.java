@@ -67,7 +67,7 @@ public class JoinContactListAdapter extends ContactListAdapter {
 
     @Override
     public void configureLoader(CursorLoader cursorLoader, long directoryId) {
-        JoinContactLoader loader = (JoinContactLoader)cursorLoader;
+        JoinContactLoader loader = (JoinContactLoader) cursorLoader;
 
         Builder builder = Contacts.CONTENT_URI.buildUpon();
         builder.appendEncodedPath(String.valueOf(mTargetContactId));
@@ -83,7 +83,7 @@ public class JoinContactListAdapter extends ContactListAdapter {
         loader.setSuggestionUri(builder.build());
 
         // TODO simplify projection
-        loader.setProjection(ContactQuery.PROJECTION_CONTACT);
+        loader.setProjection(getProjection(false));
         Uri allContactsUri = buildSectionIndexerUri(Contacts.CONTENT_URI).buildUpon()
                 .appendQueryParameter(
                         ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT))
@@ -187,13 +187,6 @@ public class JoinContactListAdapter extends ContactListAdapter {
                 break;
             }
         }
-    }
-
-    public Cursor getShowAllContactsLabelCursor() {
-        MatrixCursor matrixCursor = new MatrixCursor(ContactQuery.PROJECTION_CONTACT);
-        Object[] row = new Object[ContactQuery.PROJECTION_CONTACT.length];
-        matrixCursor.addRow(row);
-        return matrixCursor;
     }
 
     @Override
