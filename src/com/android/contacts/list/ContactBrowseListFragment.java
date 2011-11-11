@@ -142,12 +142,13 @@ public abstract class ContactBrowseListFragment extends
         @Override
         protected void onPostExecute(Uri uri) {
             // Make sure the {@link Fragment} is at least still attached to the {@link Activity}
-            // before continuing.
-            if (mIsCancelled || !isAdded() || uri == null) {
+            // before continuing. Null URIs should still be allowed so that the list can be
+            // refreshed and a default contact can be selected (i.e. the case of deleted
+            // contacts).
+            if (mIsCancelled || !isAdded()) {
                 return;
             }
-            mSelectedContactUri = uri;
-            onContactUriQueryFinished(mSelectedContactUri);
+            onContactUriQueryFinished(uri);
         }
     }
 
