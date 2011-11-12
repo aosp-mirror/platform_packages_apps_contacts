@@ -879,6 +879,12 @@ public class PeopleActivity extends ContactsActivity
     private void configureContactListFragmentForRequest() {
         Uri contactUri = mRequest.getContactUri();
         if (contactUri != null) {
+            // For an incoming request, explicitly require a selection if we are on 2-pane UI,
+            // (i.e. even if we view the same selected contact, the contact may no longer be
+            // in the list, so we must refresh the list).
+            if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
+                mAllFragment.setSelectionRequired(true);
+            }
             mAllFragment.setSelectedContactUri(contactUri);
         }
 
@@ -1486,6 +1492,7 @@ public class PeopleActivity extends ContactsActivity
             case SUBACTIVITY_EDIT_CONTACT: {
                 if (resultCode == RESULT_OK && PhoneCapabilityTester.isUsingTwoPanes(this)) {
                     mRequest.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
+                    mAllFragment.setSelectionRequired(true);
                     mAllFragment.reloadDataAndSetSelectedUri(data.getData());
                     // Suppress IME if in search mode
                     if (mActionBarAdapter != null) {
