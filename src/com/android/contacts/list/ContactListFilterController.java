@@ -65,9 +65,11 @@ public abstract class ContactListFilterController {
     /**
      * Checks if the current filter is valid and reset the filter if not. It may happen when
      * an account is removed while the filter points to the account with
-     * {@link ContactListFilter#FILTER_TYPE_ACCOUNT} type, for example.
+     * {@link ContactListFilter#FILTER_TYPE_ACCOUNT} type, for example. It may also happen if
+     * the current filter is {@link ContactListFilter#FILTER_TYPE_SINGLE_CONTACT}, in
+     * which case, we should switch to the last saved filter in {@link SharedPreferences}.
      */
-    public abstract void checkFilterValidity();
+    public abstract void checkFilterValidity(boolean notifyListeners);
 }
 
 /**
@@ -83,7 +85,7 @@ class ContactListFilterControllerImpl extends ContactListFilterController {
     public ContactListFilterControllerImpl(Context context) {
         mContext = context;
         mFilter = ContactListFilter.restoreDefaultPreferences(getSharedPreferences());
-        checkFilterValidity();
+        checkFilterValidity(true /* notify listeners */);
     }
 
     @Override
@@ -107,12 +109,17 @@ class ContactListFilterControllerImpl extends ContactListFilterController {
 
     @Override
     public void setContactListFilter(ContactListFilter filter, boolean persistent) {
+        setContactListFilter(filter, persistent, true);
+    }
+
+    private void setContactListFilter(ContactListFilter filter, boolean persistent,
+            boolean notifyListeners) {
         if (!filter.equals(mFilter)) {
             mFilter = filter;
             if (persistent) {
                 ContactListFilter.storeToPreferences(getSharedPreferences(), mFilter);
             }
-            if (!mListeners.isEmpty()) {
+            if (notifyListeners && !mListeners.isEmpty()) {
                 notifyContactListFilterChanged();
             }
         }
@@ -131,16 +138,24 @@ class ContactListFilterControllerImpl extends ContactListFilterController {
     }
 
     @Override
-    public void checkFilterValidity() {
-        if (mFilter == null || mFilter.filterType != ContactListFilter.FILTER_TYPE_ACCOUNT) {
+    public void checkFilterValidity(boolean notifyListeners) {
+        if (mFilter == null) {
             return;
         }
 
-        if (!filterAccountExists()) {
-            // The current account filter points to invalid account. Use "all" filter instead.
-            setContactListFilter(
-                    ContactListFilter.createFilterWithType(
-                            ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS), true);
+        switch (mFilter.filterType) {
+            case ContactListFilter.FILTER_TYPE_SINGLE_CONTACT:
+                setContactListFilter(
+                        ContactListFilter.restoreDefaultPreferences(getSharedPreferences()),
+                        false, notifyListeners);
+                break;
+            case ContactListFilter.FILTER_TYPE_ACCOUNT:
+                if (!filterAccountExists()) {
+                    // The current account filter points to invalid account. Use "all" filter
+                    // instead.
+                    setContactListFilter(ContactListFilter.createFilterWithType(
+                            ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS), true, notifyListeners);
+                }
         }
     }
 
