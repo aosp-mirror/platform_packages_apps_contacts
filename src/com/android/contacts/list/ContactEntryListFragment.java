@@ -251,8 +251,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         outState.putBoolean(KEY_DARK_THEME, mDarkTheme);
 
         if (mListView != null) {
-            mListState = mListView.onSaveInstanceState();
-            outState.putParcelable(KEY_LIST_STATE, mListState);
+            outState.putParcelable(KEY_LIST_STATE, mListView.onSaveInstanceState());
         }
     }
 
