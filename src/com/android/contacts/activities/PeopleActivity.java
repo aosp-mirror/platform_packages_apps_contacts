@@ -183,6 +183,14 @@ public class PeopleActivity extends ContactsActivity
      */
     private boolean mFragmentInitialized;
 
+    /**
+     * Whether or not the current contact filter is valid or not. We need to do a check on
+     * start of the app to verify that the user is not in single contact mode. If so, we should
+     * dynamically change the filter, unless the incoming intent specifically requested a contact
+     * that should be displayed in that mode.
+     */
+    private boolean mCurrentFilterIsValid;
+
     /** Sequential ID assigned to each instance; used for logging */
     private final int mInstanceId;
     private static final AtomicInteger sNextInstanceId = new AtomicInteger();
@@ -251,6 +259,7 @@ public class PeopleActivity extends ContactsActivity
         }
 
         mContactListFilterController = ContactListFilterController.getInstance(this);
+        mContactListFilterController.checkFilterValidity(false);
         mContactListFilterController.addListener(this);
 
         mIsRecreatedInstance = (savedState != null);
@@ -268,6 +277,9 @@ public class PeopleActivity extends ContactsActivity
             return;
         }
         mActionBarAdapter.initialize(null, mRequest);
+
+        mContactListFilterController.checkFilterValidity(false);
+        mCurrentFilterIsValid = true;
 
         // Re-configure fragments.
         configureFragments(true /* from request */);
@@ -443,6 +455,19 @@ public class PeopleActivity extends ContactsActivity
              * (so the argument.)
              */
             configureFragments(!mIsRecreatedInstance);
+        } else if (PhoneCapabilityTester.isUsingTwoPanes(this) && !mCurrentFilterIsValid) {
+            // We only want to do the filter check in onStart for wide screen devices where it
+            // is often possible to get into single contact mode. Only do this check if
+            // the filter hasn't already been set properly (i.e. onCreate or onActivityResult).
+
+            // Since there is only one {@link ContactListFilterController} across multiple
+            // activity instances, make sure the filter controller is in sync withthe current
+            // contact list fragment filter.
+            // TODO: Clean this up. Perhaps change {@link ContactListFilterController} to not be a
+            // singleton?
+            mContactListFilterController.setContactListFilter(mAllFragment.getFilter(), true);
+            mContactListFilterController.checkFilterValidity(true);
+            mCurrentFilterIsValid = true;
         }
         super.onStart();
     }
@@ -471,6 +496,12 @@ public class PeopleActivity extends ContactsActivity
         // Current tab may have changed since the last onSaveInstanceState().  Make sure
         // the actual contents match the tab.
         updateFragmentsVisibility();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mCurrentFilterIsValid = false;
     }
 
     @Override
@@ -1491,6 +1522,8 @@ public class PeopleActivity extends ContactsActivity
                     if (mActionBarAdapter != null) {
                         mActionBarAdapter.clearFocusOnSearchView();
                     }
+                    // No need to change the contact filter
+                    mCurrentFilterIsValid = true;
                 }
                 break;
             }
