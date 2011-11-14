@@ -15,12 +15,6 @@
 -->
 
 <resources>
-    <!-- Amount of memory in bytes allocated for photo cache -->
-    <integer name="config_photo_cache_max_bytes">2000000</integer>
-
-    <!-- Number of decoded photo bitmaps retained in an LRU cache -->
-    <integer name="config_photo_cache_max_bitmaps">48</integer>
-
     <!-- Determines the number of columns in a ContactTileRow -->
     <integer name="contact_tile_column_count">2</integer>
 
