@@ -310,6 +310,19 @@ public abstract class ContactBrowseListFragment extends
     }
 
     /**
+     * Sets whether or not a contact selection must be made.
+     * @param required if true, we need to check if the selection is present in
+     *            the list and if not notify the listener so that it can load a
+     *            different list.
+     * TODO: Figure out how to reconcile this with {@link #setSelectedContactUri},
+     * without causing unnecessary loading of the list if the selected contact URI is
+     * the same as before.
+     */
+    public void setSelectionRequired(boolean required) {
+        mSelectionRequired = required;
+    }
+
+    /**
      * Sets the new contact selection.
      *
      * @param uri the new selection
@@ -456,7 +469,7 @@ public abstract class ContactBrowseListFragment extends
         adapter.setSelectedContact(
                 mSelectedContactDirectoryId, mSelectedContactLookupKey, mSelectedContactId);
 
-        int selectedPosition = adapter.getSelectedContactPosition();
+        final int selectedPosition = adapter.getSelectedContactPosition();
         if (selectedPosition != -1) {
             mLastSelectedPosition = selectedPosition;
         } else {
@@ -506,7 +519,7 @@ public abstract class ContactBrowseListFragment extends
         }
 
         if (mSelectionToScreenRequested) {
-            requestSelectionToScreen();
+            requestSelectionToScreen(selectedPosition);
         }
 
         getListView().invalidateViews();
@@ -554,8 +567,7 @@ public abstract class ContactBrowseListFragment extends
         setSelectedContactUri(contactUri, false, mSmoothScrollRequested, false, false);
     }
 
-    protected void requestSelectionToScreen() {
-        int selectedPosition = getAdapter().getSelectedContactPosition();
+    protected void requestSelectionToScreen(int selectedPosition) {
         if (selectedPosition != -1) {
             AutoScrollListView listView = (AutoScrollListView)getListView();
             listView.requestPositionToScreen(
