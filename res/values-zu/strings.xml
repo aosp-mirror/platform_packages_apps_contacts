@@ -227,9 +227,9 @@
     <string name="searching_vcard_message" product="nosdcard" msgid="996170203695743981">"Isesha idatha ye-vCard kusigcini"</string>
     <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"Iseshela idatha ye-vCard ekhadini le-SD"</string>
     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Yehlulekile ukufinyelela kwindawo yokugcina i-USB"</string>
-    <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Yehlulekile ukuthwebula i-SD card"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8290634758602152611">"Ukuthwebula ikhadi le-SD kwehlulekile (Isizathu: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="2462918339722946736">"Ukuthwebula ikhadi le-SD kwehlulekile (Isizathu: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Yehlulekile ukuskena ikhadi le-SD"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8290634758602152611">"Ukuskena ikhadi le-SD kwehlulekile (Isizathu: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="2462918339722946736">"Ukuskena ikhadi le-SD kwehlulekile (Isizathu: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O Iphutha"</string>
     <string name="fail_reason_low_memory_during_import" msgid="7514918659342886381">"Imemori ayanele (kungenzeka ifayela inkulu kakhulu)"</string>
     <string name="fail_reason_vcard_parse_error" msgid="4492947335972369711">"Yehlulekile ukuhlwaya i-vCard ngenxa yesizathu esithile esingalindelekile"</string>

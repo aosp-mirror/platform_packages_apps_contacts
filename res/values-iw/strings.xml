@@ -26,7 +26,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"בחר מספר להתקשר אליו"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"בחר מספר לשליחת הודעה"</string>
     <string name="contactPickerActivityTitle" msgid="6886592363525235031">"בחר איש קשר"</string>
-    <string name="starredList" msgid="4817256136413959463">"מסומן בכוכבית"</string>
+    <string name="starredList" msgid="4817256136413959463">"מסומן בכוכב"</string>
     <string name="frequentList" msgid="7154768136473953056">"לעתים קרובות"</string>
     <string name="strequentList" msgid="5640192862059373511">"מועדפים"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"פרטי איש קשר"</string>
@@ -171,7 +171,7 @@
     <string name="noContactsNoSimHelpTextWithSync" product="default" msgid="9040060730467973050">"אין לך אנשי קשר להצגה. (אם הוספת הרגע חשבון, דרושות כמה דקות לסינכרון אנשי הקשר.)"\n\n"כדי להוסיף אנשי קשר, לחץ על "<font fgcolor="#ffffffff"><b>"תפריט"</b></font>" וגע באפשרות:"\n" "\n<li><font fgcolor="#ffffffff"><b>"חשבונות"</b></font>" כדי להוסיף או להגדיר חשבון עם אנשי קשר שתוכל לסנכרן עם הטלפון"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"אפשרויות תצוגה"</b></font>" כדי לשנות את אנשי הקשר הגלויים"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"איש קשר חדש"</b></font>" כדי ליצור איש קשר חדש לגמרי"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"יבוא/יצוא"</b></font>" כדי לייבא אנשי קשר מכרטיס כרטיס SD‏"\n</li></string>
     <string name="noFavoritesHelpText" msgid="3744655776704833277">"אין לך מועדפים."\n\n"כדי להוסיף איש קשר לרשימת המועדפים:"\n\n"        "<li>"גע בכרטיסייה "<b>"אנשי קשר"</b>\n</li>" "\n<li>"גע באיש הקשר שברצונך להוסיף למועדפים"\n</li>" "\n<li>"גע בכוכב שליד שמו של איש הקשר"\n</li></string>
     <string name="liveFolder_all_label" msgid="5961411940473276616">"כל אנשי הקשר"</string>
-    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"מסומן בכוכבית"</string>
+    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"מסומן בכוכב"</string>
     <string name="liveFolder_phones_label" msgid="1709786878793436245">"טלפונים"</string>
     <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"השתמש במקלדת עם חיוג צלילים"</string>
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"חזור לשיחה מתבצעת"</string>
@@ -459,7 +459,7 @@
     <string name="local_search_label" msgid="2551177578246113614">"כל אנשי הקשר"</string>
     <string name="toast_making_personal_copy" msgid="7905283986345263275">"יצירת עותק אישי"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"כל אנשי הקשר"</string>
-    <string name="list_filter_all_starred" msgid="5031734941601931356">"מסומן בכוכבית"</string>
+    <string name="list_filter_all_starred" msgid="5031734941601931356">"מסומן בכוכב"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"מותאם אישית"</string>
     <string name="list_filter_customize" msgid="2035084418635775579">"התאם אישית..."</string>
     <string name="list_filter_phones" msgid="735313795643493365">"כל אנשי הקשר עם מספרי טלפון"</string>

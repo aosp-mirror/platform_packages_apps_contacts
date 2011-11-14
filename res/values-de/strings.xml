@@ -251,9 +251,9 @@
     <string name="importing_vcard_canceled_title" msgid="6367906965439777280">"Import von <xliff:g id="FILENAME">%s</xliff:g> wurde abgebrochen."</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> wird demnächst importiert."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Die Datei wird in Kürze importiert."</string>
-    <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"vCard-Importanfrage wurde abgelehnt. Versuchen Sie es später noch einmal."</string>
+    <string name="vcard_import_request_rejected_message" msgid="2592424820635325951">"vCard-Importanfrage wurde abgelehnt. Bitte versuchen Sie es später erneut."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> wird demnächst exportiert."</string>
-    <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"vCard-Exportanfrage wurde abgelehnt. Versuchen Sie es später noch einmal."</string>
+    <string name="vcard_export_request_rejected_message" msgid="8259494002258326330">"vCard-Exportanfrage wurde abgelehnt. Bitte versuchen Sie es später erneut."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"Kontakt"</string>
     <string name="percentage" msgid="34897865327092209">"%s %%"</string>
     <string name="confirm_export_title" msgid="7648747763127442983">"Export bestätigen"</string>
