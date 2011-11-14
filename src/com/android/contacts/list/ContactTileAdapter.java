@@ -157,7 +157,7 @@ public class ContactTileAdapter extends BaseAdapter {
          * the correct {@link Cursor}s will be given.
          */
         if (mDisplayType == DisplayType.GROUP_MEMBERS) {
-            mIdIndex = GroupDetailQuery.CONTACT_PHOTO_ID;
+            mIdIndex = GroupDetailQuery.CONTACT_ID;
             mLookupIndex = GroupDetailQuery.CONTACT_LOOKUP_KEY;
             mPhotoUriIndex = GroupDetailQuery.CONTACT_PHOTO_URI;
             mNameIndex = GroupDetailQuery.CONTACT_DISPLAY_NAME_PRIMARY;
