@@ -212,7 +212,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
     private final Runnable mCheckFilterValidityRunnable = new Runnable () {
         @Override
         public void run() {
-            ContactListFilterController.getInstance(mContext).checkFilterValidity();
+            ContactListFilterController.getInstance(mContext).checkFilterValidity(true);
         }
     };
 
