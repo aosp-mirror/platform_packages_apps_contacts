@@ -120,6 +120,10 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             configureSelection(loader, directoryId, getFilter());
         }
 
+        // Remove duplicates when it is possible.
+        uri = uri.buildUpon()
+                .appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true")
+                .build();
         loader.setUri(uri);
 
         // TODO a projection that includes the search snippet
