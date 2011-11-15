@@ -69,7 +69,10 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
 
     @Override
     public void configureLoader(CursorLoader loader, long directoryId) {
-        Uri uri = buildSectionIndexerUri(StructuredPostal.CONTENT_URI);
+        Uri uri = buildSectionIndexerUri(StructuredPostal.CONTENT_URI)
+                .buildUpon()
+                .appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true")
+                .build();
         loader.setUri(uri);
 
         if (getContactNameDisplayOrder() == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {

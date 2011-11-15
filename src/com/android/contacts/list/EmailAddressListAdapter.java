@@ -81,6 +81,7 @@ public class EmailAddressListAdapter extends ContactEntryListAdapter {
         }
         builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
                 String.valueOf(directoryId));
+        builder.appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true");
         loader.setUri(builder.build());
 
         if (getContactNameDisplayOrder() == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
