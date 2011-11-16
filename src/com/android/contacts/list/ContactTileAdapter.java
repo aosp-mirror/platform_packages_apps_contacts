@@ -637,6 +637,14 @@ public class ContactTileAdapter extends BaseAdapter {
             }
             setMeasuredDimension(width, imageSize + getChildAt(0).getPaddingBottom());
         }
+
+        @Override
+        public void sendAccessibilityEvent(int eventType) {
+            // This method is called when the child tile is INVISIBLE (meaning "empty"), and the
+            // Accessibility Manager needs to find alternative content description to speak.
+            // Here, we ignore the default behavior, since we don't want to let the manager speak
+            // a contact name for the tile next to the INVISIBLE tile.
+        }
     }
 
     /**
