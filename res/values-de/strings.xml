@@ -147,7 +147,7 @@
     <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Mailbox-Nachricht teilen"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Anrufliste ist leer."</string>
     <string name="clearCallLogConfirmation_title" msgid="6427524640461816332">"Anrufliste löschen?"</string>
-    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Ihr gesamtes Anrufprotokoll wird gelöscht."</string>
+    <string name="clearCallLogConfirmation" msgid="5043563133171583152">"Ihre gesamte Anrufliste wird gelöscht."</string>
     <string name="clearCallLogProgress_title" msgid="8365943000154295771">"Anrufliste wird gelöscht..."</string>
     <string name="imei" msgid="3045126336951684285">"IMEI"</string>
     <string name="meid" msgid="6210568493746275750">"MEID"</string>
@@ -248,9 +248,9 @@
     <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"Import von <xliff:g id="FILENAME">%s</xliff:g> abgebrochen"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> wird demnächst importiert."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Die Datei wird in Kürze importiert."</string>
-    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"Die vCard-Importanfrage wurde abgelehnt. Bitte versuchen Sie es später noch einmal."</string>
+    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"Die vCard-Importanfrage wurde abgelehnt. Bitte versuchen Sie es später erneut."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> wird demnächst exportiert."</string>
-    <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Die vCard-Exportanfrage wurde abgelehnt. Bitte versuchen Sie es später noch einmal."</string>
+    <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Die vCard-Exportanfrage wurde abgelehnt. Bitte versuchen Sie es später erneut."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"Kontakt"</string>
     <string name="percentage" msgid="34897865327092209">"%s %%"</string>
     <string name="confirm_export_title" msgid="6834385377255286349">"Kontakte exportieren?"</string>

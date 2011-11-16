@@ -66,12 +66,12 @@
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"रिंगटोन सेट करें"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ध्‍वनि‍मेल से सभी कॉल"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"आप केवल-पढ़ने के लिए खातों से संपर्क नहीं हटा सकते, लेकिन आप उन्‍हें अपनी संपर्क सूचियों में छुपा सकते हैं."</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"इस संपर्क में एकाधिक खातों की जानकारी है. केवल-पढ़ने के लिए खातों की जानकारी आपकी संपर्क सूचियों में छिपी रहेगी, उसे हटाया नहीं जाएगा."</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"इस संपर्क में एकाधिक खातों की जानकारी है. केवल-पढ़ने के लिए खातों की जानकारी आपकी संपर्क सूचियों में छिपी रहेगी, उसे हटाया नहीं जाएगा."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"इस संपर्क को हटाने से एकाधिक खातों से जानकारी हट जाएगी."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"यह संपर्क हटा दिया जाएगा."</string>
     <string name="menu_done" msgid="796017761764190697">"पूर्ण"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"रद्द करें"</string>
-    <string name="menu_discard" msgid="6456087569315685632">"छोड़ें"</string>
+    <string name="menu_discard" msgid="6456087569315685632">"छोड़ें"</string>
     <string name="label_notes" msgid="8337354953278341042">"नोट"</string>
     <string name="label_sip_address" msgid="124073911714324974">"इंटरनेट कॉल"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"कंपनी"</string>
@@ -186,7 +186,7 @@
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> मिनट <xliff:g id="SECONDS">%s</xliff:g> सेकंड"</string>
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"बार-बार संपर्क किया गया"</string>
     <string name="favoritesFrequentCalled" msgid="6128306889600696124">"बार-बार कॉल किया गया"</string>
-    <string name="add_contact_dlg_title" msgid="2896685845822146494">"संपर्क जोड़ें"</string>
+    <string name="add_contact_dlg_title" msgid="2896685845822146494">"संपर्क जोड़ें"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"\"<xliff:g id="EMAIL">%s</xliff:g>\" को संपर्कों में जोड़ें?"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"एक"</string>
     <string name="description_image_button_two" msgid="5882638439003731308">"दो"</string>
@@ -412,7 +412,7 @@
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"दिया गया नाम पहले"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"कुलनाम पहले"</string>
     <string name="search_bar_hint" msgid="1012756309632856553">"संपर्क खोजें"</string>
-    <string name="take_photo" msgid="7496128293167402354">"फ़ोटो लें"</string>
+    <string name="take_photo" msgid="7496128293167402354">"फ़ोटो लें"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"नया फ़ोटो लें"</string>
     <string name="pick_photo" msgid="3746334626214970837">"गैलरी से फ़ोटो चुनें"</string>
     <string name="pick_new_photo" msgid="7962368009197147617">"गैलरी से नए फ़ोटो का चयन करें"</string>
@@ -467,7 +467,7 @@
     <string name="hint_findContacts" msgid="1808681193458772072">"संपर्क ढूंढें"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"फ़ोन नंबर"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"संपर्कों में जोड़ें"</string>
-    <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"संपर्क में जोड़ें"</string>
+    <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"संपर्क में जोड़ें"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"बंद करें"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"वर्ष दर्शाएं"</string>
@@ -497,7 +497,7 @@
     <string name="set_default" msgid="4417505153468300351">"डिफ़ॉल्ट सेट करें"</string>
     <string name="clear_default" msgid="7193185801596678067">"डिफ़ॉल्‍ट साफ़ करें"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"पाठ की प्रतिलिपि बनाई गई"</string>
-    <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"परिवर्तन छोड़ें"</string>
+    <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"परिवर्तन छोड़ें"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"आपके परिवर्तन छोड़ें?"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"मेरी प्रोफ़ाइल सेट करें"</string>
@@ -539,13 +539,13 @@
     <string name="description_call_log_outgoing_call" msgid="604831756853471658">"आउटगोइंग कॉल"</string>
     <string name="description_call_log_missed_call" msgid="2242805209983708825">"छूटी कॉल"</string>
     <string name="description_call_log_voicemail" msgid="4600798771975158948">"ध्वनिमेल"</string>
-    <string name="description_add_contact" msgid="3103414772502485851">"संपर्क जोड़ें"</string>
+    <string name="description_add_contact" msgid="3103414772502485851">"संपर्क जोड़ें"</string>
     <string name="description_view_contact" msgid="5205669345700598415">"<xliff:g id="NAME">%1$s</xliff:g> संपर्क देखें"</string>
     <string name="description_call" msgid="3443678121983852666">"<xliff:g id="NAME">%1$s</xliff:g> को कॉल करें"</string>
     <string name="description_send_text_message" msgid="7803126439934046891">"<xliff:g id="NAME">%1$s</xliff:g> को पाठ संदेश भेजें"</string>
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"नहीं सुना गया ध्वनिमेल"</string>
     <string name="description_send_message" msgid="6046623392322890962">"<xliff:g id="NAME">%1$s</xliff:g> को संदेश भेजें"</string>
-    <string name="description_dial_phone_number" msgid="8831647331642648637">"<xliff:g id="NAME">%1$s</xliff:g> का फ़ोन डायल करें"</string>
+    <string name="description_dial_phone_number" msgid="8831647331642648637">"<xliff:g id="NAME">%1$s</xliff:g> का फ़ोन डायल करें"</string>
     <string name="description_quick_contact_for" msgid="6737516415168327789">"<xliff:g id="NAME">%1$s</xliff:g> के लिए त्‍वरित संपर्क"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"मुझे"</string>
@@ -554,7 +554,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"सभी संपर्क प्रदर्शित कर रहा है"</string>
     <string name="no_account_prompt" msgid="7061052512446855192">"लोग Google खाते के साथ बेहतर तरीके से कार्य करते हैं."\n\n"• किसी भी वेब ब्राउज़र से पहुंचें."\n"• सुरक्षि‍त रूप से अपने संपर्कों का बैकअप लें."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"अपना फ़ोन खो देने पर भी अपने संपर्क सुरक्षित रखें: किसी ऑनलाइन सेवा से समन्‍वयित करें."</string>
-    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"कोई खाता जोड़ें"</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"कोई खाता जोड़ें"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"आपके नए संपर्क का बैक अप नहीं लिया जाएगा. ऐसा खाता जोड़ें जो संपर्कों का ऑन‍लाइन बैक अप ले?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"आपका नया संपर्क <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> के साथ समन्‍वयित किया जाएगा."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"आप निम्‍न में से किसी एक खाते से अपने नए संपर्क को समन्‍वयित कर सकते हैं. आप किसका उपयोग करना चाहते हैं?"</string>
