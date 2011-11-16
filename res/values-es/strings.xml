@@ -288,7 +288,7 @@
     <string name="quickcontact_missing_app" msgid="358168575340921552">"No se ha detectado ninguna aplicación que pueda hacer esta acción."</string>
     <string name="missing_name" msgid="8745511583852904385">"(Sin nombre)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Cuentas"</string>
-    <string name="menu_contacts_filter" msgid="2165153460860262501">"Contactos para mostrar"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Contactos que mostrar"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Importar/exportar"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"Importar/exportar contactos"</string>
     <string name="menu_share" msgid="943789700636542260">"Compartir"</string>
@@ -455,12 +455,12 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Destacados"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Personalizar"</string>
     <string name="list_filter_customize" msgid="4789963356004169321">"Personalizar"</string>
-    <string name="list_filter_phones" msgid="735313795643493365">"Todos los contactos con número de teléfono"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"Todos los contactos con número"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Contacto"</string>
-    <string name="custom_list_filter" msgid="7836035257402013957">"Definición de vista personalizada"</string>
+    <string name="custom_list_filter" msgid="7836035257402013957">"Definir vista personalizada"</string>
     <string name="contact_list_loading" msgid="5488620820563977329">"Cargando..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Ajustes"</string>
-    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Contactos para mostrar"</string>
+    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Contactos que mostrar"</string>
     <string name="menu_settings" msgid="377929915873428211">"Ajustes"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Opciones de visualización"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
