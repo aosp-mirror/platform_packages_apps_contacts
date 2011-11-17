@@ -155,6 +155,10 @@ public class PhoneticNameEditorView extends TextFieldsEditorView {
         }
     }
 
+    public static boolean isUnstructuredPhoneticNameColumn(String column) {
+        return DataKind.PSEUDO_COLUMN_PHONETIC_NAME.equals(column);
+    }
+
     public PhoneticNameEditorView(Context context) {
         super(context);
     }
@@ -174,6 +178,31 @@ public class PhoneticNameEditorView extends TextFieldsEditorView {
             entry = new PhoneticValuesDelta(entry);
         }
         super.setValues(kind, entry, state, readOnly, vig);
+    }
+
+    @Override
+    public void onFieldChanged(String column, String value) {
+        if (!isFieldChanged(column, value)) {
+            return;
+        }
+
+        if (hasShortAndLongForms()) {
+            PhoneticValuesDelta entry = (PhoneticValuesDelta) getEntry();
+
+            // Determine whether the user is modifying the structured or unstructured phonetic
+            // name field. See a similar approach in {@link StructuredNameEditor#onFieldChanged}.
+            // This is because on device rotation, a hidden TextView's onRestoreInstanceState() will
+            // be called and incorrectly restore a null value for the hidden field, which ultimately
+            // modifies the underlying phonetic name. Hence, ignore onFieldChanged() update requests
+            // from fields that aren't visible.
+            boolean isEditingUnstructuredPhoneticName = !areOptionalFieldsVisible();
+
+            if (isEditingUnstructuredPhoneticName == isUnstructuredPhoneticNameColumn(column)) {
+                // Call into the superclass to update the field and rebuild the underlying
+                // phonetic name.
+                super.onFieldChanged(column, value);
+            }
+        }
     }
 
     public boolean hasData() {
