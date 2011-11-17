@@ -18,7 +18,6 @@ package com.android.contacts;
 
 import com.android.contacts.calllog.CallTypeHelper;
 import com.android.contacts.calllog.PhoneNumberHelper;
-import com.android.contacts.format.FormatUtils;
 
 import android.content.res.Resources;
 import android.graphics.Typeface;
@@ -103,6 +102,7 @@ public class PhoneCallDetailsHelper {
 
         final CharSequence nameText;
         final CharSequence numberText;
+        final CharSequence labelText;
         final CharSequence displayNumber =
             mPhoneNumberHelper.getDisplayNumber(details.number, details.formattedNumber);
         if (TextUtils.isEmpty(details.name)) {
@@ -113,20 +113,17 @@ public class PhoneCallDetailsHelper {
             } else {
                 numberText = details.geocode;
             }
+            labelText = null;
         } else {
             nameText = details.name;
-            if (numberFormattedLabel != null) {
-                numberText = FormatUtils.applyStyleToSpan(Typeface.BOLD,
-                        numberFormattedLabel + " " + displayNumber, 0,
-                        numberFormattedLabel.length(),
-                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            } else {
-                numberText = displayNumber;
-            }
+            numberText = displayNumber;
+            labelText = numberFormattedLabel;
         }
 
         views.nameView.setText(nameText);
         views.numberView.setText(numberText);
+        views.labelView.setText(labelText);
+        views.labelView.setVisibility(TextUtils.isEmpty(labelText) ? View.GONE : View.VISIBLE);
     }
 
     /** Sets the text of the header view for the details page of a phone call. */
