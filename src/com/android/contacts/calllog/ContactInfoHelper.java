@@ -57,8 +57,9 @@ public class ContactInfoHelper {
             // This "number" is really a SIP address.
             ContactInfo sipInfo = queryContactInfoForSipAddress(number);
             if (sipInfo == null || sipInfo == ContactInfo.EMPTY) {
-                // Check whether the username is actually a phone number of contact.
-                String username = number.substring(0, number.indexOf('@'));
+                // Check whether the "username" part of the SIP address is
+                // actually the phone number of a contact.
+                String username = PhoneNumberUtils.getUsernameFromUriNumber(number);
                 if (PhoneNumberUtils.isGlobalPhoneNumber(username)) {
                     sipInfo = queryContactInfoForPhoneNumber(username, countryIso);
                 }
