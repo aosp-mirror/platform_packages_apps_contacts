@@ -73,6 +73,13 @@ public class PostalAddressPickerFragment
         return inflater.inflate(R.layout.contact_list_content, null);
     }
 
+    @Override
+    protected void onCreateView(LayoutInflater inflater, ViewGroup container) {
+        super.onCreateView(inflater, container);
+
+        setVisibleScrollbarEnabled(!isLegacyCompatibilityMode());
+    }
+
     private void pickPostalAddress(Uri uri) {
         mListener.onPickPostalAddressAction(uri);
     }

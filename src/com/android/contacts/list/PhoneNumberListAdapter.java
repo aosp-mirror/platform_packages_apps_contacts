@@ -102,43 +102,37 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
     @Override
     public void configureLoader(CursorLoader loader, long directoryId) {
-        Uri uri;
-
         if (directoryId != Directory.DEFAULT) {
             Log.w(TAG, "PhoneNumberListAdapter is not ready for non-default directory ID ("
                     + "directoryId: " + directoryId + ")");
         }
 
+        final Builder builder;
         if (isSearchMode()) {
-            String query = getQueryString();
             final Uri baseUri =
                     mUseCallableUri ? Callable.CONTENT_FILTER_URI : Phone.CONTENT_FILTER_URI;
-            Builder builder = baseUri.buildUpon();
+            builder = baseUri.buildUpon();
+            final String query = getQueryString();
             if (TextUtils.isEmpty(query)) {
                 builder.appendPath("");
             } else {
                 builder.appendPath(query);      // Builder will encode the query
             }
-
             builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
                     String.valueOf(directoryId));
-            uri = builder.build();
         } else {
             final Uri baseUri = mUseCallableUri ? Callable.CONTENT_URI : Phone.CONTENT_URI;
-            uri = baseUri.buildUpon().appendQueryParameter(
-                    ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT))
-                    .build();
+            builder = baseUri.buildUpon().appendQueryParameter(
+                    ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT));
             if (isSectionHeaderDisplayEnabled()) {
-                uri = buildSectionIndexerUri(uri);
+                builder.appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true");
             }
             configureSelection(loader, directoryId, getFilter());
         }
 
         // Remove duplicates when it is possible.
-        uri = uri.buildUpon()
-                .appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true")
-                .build();
-        loader.setUri(uri);
+        builder.appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true");
+        loader.setUri(builder.build());
 
         // TODO a projection that includes the search snippet
         if (getContactNameDisplayOrder() == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
@@ -199,11 +193,6 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         }
         loader.setSelection(selection.toString());
         loader.setSelectionArgs(selectionArgs.toArray(new String[0]));
-    }
-
-    protected static Uri buildSectionIndexerUri(Uri uri) {
-        return uri.buildUpon()
-                .appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true").build();
     }
 
     @Override

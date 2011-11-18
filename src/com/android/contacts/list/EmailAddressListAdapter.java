@@ -78,6 +78,9 @@ public class EmailAddressListAdapter extends ContactEntryListAdapter {
             builder.appendPath(TextUtils.isEmpty(query) ? "" : query);
         } else {
             builder = Email.CONTENT_URI.buildUpon();
+            if (isSectionHeaderDisplayEnabled()) {
+                builder.appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true");
+            }
         }
         builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
                 String.valueOf(directoryId));
@@ -97,11 +100,6 @@ public class EmailAddressListAdapter extends ContactEntryListAdapter {
         }
     }
 
-    protected static Builder buildSectionIndexerUri(Uri uri) {
-        return uri.buildUpon()
-                .appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true");
-    }
-
     @Override
     public String getContactDisplayName(int position) {
         return ((Cursor) getItem(position)).getString(EmailQuery.EMAIL_DISPLAY_NAME);
@@ -112,7 +110,7 @@ public class EmailAddressListAdapter extends ContactEntryListAdapter {
      * position.
      */
     public Uri getDataUri(int position) {
-        long id = ((Cursor)getItem(position)).getLong(EmailQuery.EMAIL_ID);
+        long id = ((Cursor) getItem(position)).getLong(EmailQuery.EMAIL_ID);
         return ContentUris.withAppendedId(Data.CONTENT_URI, id);
     }
 
