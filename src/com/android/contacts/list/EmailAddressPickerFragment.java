@@ -58,6 +58,13 @@ public class EmailAddressPickerFragment extends ContactEntryListFragment<Contact
         return inflater.inflate(R.layout.contact_list_content, null);
     }
 
+    @Override
+    protected void onCreateView(LayoutInflater inflater, ViewGroup container) {
+        super.onCreateView(inflater, container);
+
+        setVisibleScrollbarEnabled(!isLegacyCompatibilityMode());
+    }
+
     private void pickEmailAddress(Uri uri) {
         mListener.onPickEmailAddressAction(uri);
     }

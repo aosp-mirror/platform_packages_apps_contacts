@@ -20,10 +20,11 @@ import android.content.Context;
 import android.content.CursorLoader;
 import android.database.Cursor;
 import android.net.Uri;
+import android.net.Uri.Builder;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -69,11 +70,12 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
 
     @Override
     public void configureLoader(CursorLoader loader, long directoryId) {
-        Uri uri = buildSectionIndexerUri(StructuredPostal.CONTENT_URI)
-                .buildUpon()
-                .appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true")
-                .build();
-        loader.setUri(uri);
+        final Builder builder = StructuredPostal.CONTENT_URI.buildUpon()
+                .appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true");
+        if (isSectionHeaderDisplayEnabled()) {
+            builder.appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true");
+        }
+        loader.setUri(builder.build());
 
         if (getContactNameDisplayOrder() == ContactsContract.Preferences.DISPLAY_ORDER_PRIMARY) {
             loader.setProjection(PostalQuery.PROJECTION_PRIMARY);
@@ -86,11 +88,6 @@ public class PostalAddressListAdapter extends ContactEntryListAdapter {
         } else {
             loader.setSortOrder(StructuredPostal.SORT_KEY_ALTERNATIVE);
         }
-    }
-
-    protected static Uri buildSectionIndexerUri(Uri uri) {
-        return uri.buildUpon()
-                .appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true").build();
     }
 
     @Override
