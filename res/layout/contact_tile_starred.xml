@@ -73,7 +73,7 @@
 
         </LinearLayout>
 
-       <View
+        <View
             android:id="@+id/contact_tile_push_state"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

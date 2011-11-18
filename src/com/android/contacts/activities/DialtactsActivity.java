@@ -532,6 +532,7 @@ public class DialtactsActivity extends TransactionSafeActivity {
             mSearchFragment.setQuickContactEnabled(true);
             mSearchFragment.setDarkTheme(true);
             mSearchFragment.setPhotoPosition(ContactListItemView.PhotoPosition.LEFT);
+            mSearchFragment.setUseCallableUri(true);
             if (mContactListFilterController != null
                     && mContactListFilterController.getFilter() != null) {
                 mSearchFragment.setFilter(mContactListFilterController.getFilter());
