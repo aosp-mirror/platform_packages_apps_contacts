@@ -117,7 +117,7 @@ public class CallLogAdapterTest extends AndroidTestCase {
 
     public void testBindView_NoCallLogButMemoryCache_EnqueueRequest() {
         mCursor.addRow(createCallLogEntry());
-        mAdapter.injectContactInfoForTest(TEST_NUMBER, createContactInfo());
+        mAdapter.injectContactInfoForTest(TEST_NUMBER, TEST_COUNTRY_ISO, createContactInfo());
 
         // Bind the views of a single row.
         mAdapter.bindStandAloneView(mView, getContext(), mCursor);
@@ -132,7 +132,7 @@ public class CallLogAdapterTest extends AndroidTestCase {
 
     public void testBindView_BothCallLogAndMemoryCache_NoEnqueueRequest() {
         mCursor.addRow(createCallLogEntryWithCachedValues());
-        mAdapter.injectContactInfoForTest(TEST_NUMBER, createContactInfo());
+        mAdapter.injectContactInfoForTest(TEST_NUMBER, TEST_COUNTRY_ISO, createContactInfo());
 
         // Bind the views of a single row.
         mAdapter.bindStandAloneView(mView, getContext(), mCursor);
@@ -147,7 +147,7 @@ public class CallLogAdapterTest extends AndroidTestCase {
         // Contact info contains a different name.
         ContactInfo info = createContactInfo();
         info.name = "new name";
-        mAdapter.injectContactInfoForTest(TEST_NUMBER, info);
+        mAdapter.injectContactInfoForTest(TEST_NUMBER, TEST_COUNTRY_ISO, info);
 
         // Bind the views of a single row.
         mAdapter.bindStandAloneView(mView, getContext(), mCursor);
