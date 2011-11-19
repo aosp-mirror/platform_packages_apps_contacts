@@ -452,7 +452,8 @@
     <!-- Hint text displayed in the "digits" field above the dialer's
          dialpad, if there's already a call in progress.  (This hint
          reminds the user that the dialer will add a new call, as opposed
-         to sending DTMF tones over the current call.) -->
+         to sending DTMF tones over the current call.)
+         [CHAR LIMIT=40] -->
     <string name="dialerDialpadHintText">Dial to add a call</string>
 
     <!-- Dialog text displayed when loading a phone number from the SIM card for speed dial -->
