@@ -54,9 +54,11 @@ import android.telephony.PhoneNumberUtils;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
+import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.DialerKeyListener;
+import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -64,20 +66,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Fragment that displays a twelve-key phone dialpad.
@@ -526,7 +523,10 @@ public class DialpadFragment extends Fragment
         // another call, but that call is guaranteed to fail.  Perhaps the
         // entire dialer UI should be disabled instead.)
         if (phoneIsInUse()) {
-            mDigits.setHint(R.string.dialerDialpadHintText);
+            final SpannableString hint = new SpannableString(
+                    getActivity().getString(R.string.dialerDialpadHintText));
+            hint.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), 0);
+            mDigits.setHint(hint);
         } else {
             // Common case; no hint necessary.
             mDigits.setHint(null);
