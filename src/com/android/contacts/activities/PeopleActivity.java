@@ -1288,7 +1288,7 @@ public class PeopleActivity extends ContactsActivity
         super.onCreateOptionsMenu(menu);
 
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.actions, menu);
+        inflater.inflate(R.menu.people_options, menu);
 
         // On narrow screens we specify a NEW group button in the {@link ActionBar}, so that
         // it can be in the overflow menu. On wide screens, we use a custom view because we need
