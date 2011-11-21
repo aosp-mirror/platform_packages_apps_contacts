@@ -62,12 +62,13 @@
                 android:layout_marginBottom="15dip"
                 android:text="@string/contacts_unavailable_add_account" />
 
+            <!-- TODO: Use a string that says "Import" instead of "Import/export contacts"-->
             <Button
                 android:id="@+id/import_contacts_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dip"
-                android:text="@string/contacts_unavailable_import_contacts" />
+                android:text="@string/dialog_import_export" />
 
             <Button
                 android:id="@+id/import_failure_uninstall_button"

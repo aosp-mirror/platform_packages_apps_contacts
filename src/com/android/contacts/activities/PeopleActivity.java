@@ -1198,7 +1198,7 @@ public class PeopleActivity extends ContactsActivity
 
         @Override
         public void onImportContactsFromFileAction() {
-            AccountSelectionUtil.doImportFromSdCard(PeopleActivity.this, null);
+            ImportExportDialogFragment.show(getFragmentManager());
         }
 
         @Override
