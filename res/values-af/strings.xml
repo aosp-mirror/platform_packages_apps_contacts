@@ -89,7 +89,7 @@
   </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Geen prente is op die tablet beskikbaar nie."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Geen prente is beskikbaar op die foon nie."</string>
-    <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Kontak se foto"</string>
+    <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Kontakfoto"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Gepasmaakte etiketnaam"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Stuur oproepe direk na stemboodskap"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Verwyder foto"</string>
@@ -293,7 +293,7 @@
     <string name="dialog_import_export" msgid="4360648034889921624">"Voer kontakte in/uit"</string>
     <string name="menu_share" msgid="943789700636542260">"Deel"</string>
     <string name="menu_all_contacts" msgid="5101735431586050711">"Alle kontakte"</string>
-    <string name="share_via" msgid="563121028023030093">"Deel kontak via"</string>
+    <string name="share_via" msgid="563121028023030093">"Deel kontak met"</string>
     <string name="share_error" msgid="948429331673358107">"Hierdie kontak kan nie gedeel word nie."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Naam"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Bynaam"</string>
