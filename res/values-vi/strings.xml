@@ -43,7 +43,7 @@
     <string name="menu_viewContact" msgid="2795575601596468581">"Xem liên hệ"</string>
     <string name="menu_callNumber" msgid="5142851348489387516">"Gọi <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Thêm vào mục ưa thích"</string>
-    <string name="menu_removeStar" msgid="5844227078364227030">"Xoá khỏi mục ưa thích"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"Xóa khỏi mục ưa thích"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Chỉnh sửa"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Xóa"</string>
     <string name="menu_call" msgid="3992595586042260618">"Gọi liên hệ"</string>
@@ -66,9 +66,9 @@
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Đặt nhạc chuông"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Tất cả c.gọi tới th.thoại"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Bạn không thể xóa địa chỉ liên hệ từ tài khoản chỉ đọc, nhưng bạn có thể ẩn chúng trong danh sách địa chỉ liên hệ của mình."</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Liên hệ này chứa thông tin từ nhiều tài khoản. Thông tin từ các tài khoản ở chế độ chỉ đọc sẽ bị ẩn trong danh sách liên hệ của bạn, chứ không bị xoá."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Xoá liên hệ này sẽ xoá thông tin khỏi nhiều tài khoản."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"Liên hệ này sẽ bị xoá."</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Liên hệ này chứa thông tin từ nhiều tài khoản. Thông tin từ các tài khoản ở chế độ chỉ đọc sẽ bị ẩn trong danh sách liên hệ của bạn, chứ không bị xóa."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Xóa liên hệ này sẽ xóa thông tin khỏi nhiều tài khoản."</string>
+    <string name="deleteConfirmation" msgid="811706994761610640">"Liên hệ này sẽ bị xóa."</string>
     <string name="menu_done" msgid="796017761764190697">"Xong"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Hủy"</string>
     <string name="menu_discard" msgid="6456087569315685632">"Hủy bỏ"</string>
@@ -141,8 +141,8 @@
     <string name="recentCalls_callNumber" msgid="1756372533999226126">"Gọi <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"Chỉnh sửa số trước khi gọi"</string>
     <string name="recentCalls_addToContact" msgid="1429899535546487008">"Thêm vào danh bạ"</string>
-    <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Xoá khỏi nhật ký cuộc gọi"</string>
-    <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Xoá nhật ký cuộc gọi"</string>
+    <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"Xóa khỏi nhật ký cuộc gọi"</string>
+    <string name="recentCalls_deleteAll" msgid="6352364392762163704">"Xóa nhật ký cuộc gọi"</string>
     <string name="recentCalls_trashVoicemail" msgid="7604696960787435655">"Xóa thư thoại"</string>
     <string name="recentCalls_shareVoicemail" msgid="1416112847592942840">"Hiển thị thư thoại"</string>
     <string name="recentCalls_empty" msgid="247053222448663107">"Nhật ký cuộc gọi trống."</string>
@@ -159,7 +159,7 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Quay số để thêm cuộc gọi"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Đang tải từ thẻ SIM…"</string>
     <string name="simContacts_title" msgid="27341688347689769">"Danh bạ trên thẻ SIM"</string>
-    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Bạn không có liên hệ nào để hiển thị. (Nếu bạn vừa thêm tài khoản, bạn có thể mất vài phút để đồng bộ hoá danh bạ)."</string>
+    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Bạn không có liên hệ nào để hiển thị. (Nếu bạn vừa thêm tài khoản, bạn có thể mất vài phút để đồng bộ hóa danh bạ)."</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Bạn không có liên hệ nào để hiển thị."</string>
     <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"Bạn không có bất kỳ địa chỉ liên hệ nào để hiển thị."\n\n"Để thêm địa chỉ liên hệ, chạm vào "<font fgcolor="#ffffffff"><b>"Trình đơn"</b></font>", sau đó chạm vào:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Tài khoản"</b></font>" để thêm hoặc thiết lập tài khoản có địa chỉ liên hệ mà bạn có thể đồng bộ hóa với máy tính bảng"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Địa chỉ liên hệ mới"</b></font>" để tạo địa chỉ liên hệ mới từ đầu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nhập/xuất"</b></font>" để nhập địa chỉ liên hệ từ thẻ SIM hoặc thẻ SD của bạn"\n</li></string>
     <string name="noContactsHelpText" product="default" msgid="4405064135698982080">"Bạn không có bất kỳ địa chỉ liên hệ nào để hiển thị."\n\n"Để thêm địa chỉ liên hệ, chạm vào "<font fgcolor="#ffffffff"><b>"Trình đơn"</b></font>", sau đó chạm vào:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Tài khoản"</b></font>" để thêm hoặc thiết lập tài khoản có địa chỉ liên hệ mà bạn có thể đồng bộ hóa với điện thoại"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Địa chỉ liên hệ mới"</b></font>" để tạo địa chỉ liên hệ mới từ đầu"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Nhập/Xuất"</b></font>" để nhập địa chỉ liên hệ từ thẻ SIM hoặc thẻ SD của bạn"\n</li></string>
@@ -304,8 +304,8 @@
     <string name="groupsLabel" msgid="8573535366319059326">"Nhóm"</string>
     <string name="dialog_new_contact_account" msgid="9044704073286262197">"Tạo liên hệ trong tài khoản"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Tạo nhóm trong tài khoản"</string>
-    <string name="menu_sync_remove" msgid="3266725887008450161">"Xoá nhóm đồng bộ hoá"</string>
-    <string name="dialog_sync_add" msgid="8267045393119375803">"Thêm nhóm đồng bộ hoá"</string>
+    <string name="menu_sync_remove" msgid="3266725887008450161">"Xóa nhóm đồng bộ hóa"</string>
+    <string name="dialog_sync_add" msgid="8267045393119375803">"Thêm nhóm đồng bộ hóa"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"Nhóm khác…"</string>
     <string name="display_ungrouped" msgid="6885954210243119591">"Tất cả địa chỉ l.hệ khác"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"Tất cả địa chỉ liên hệ"</string>
