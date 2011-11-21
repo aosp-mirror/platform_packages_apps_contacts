@@ -22,12 +22,10 @@
 
     <item
         android:id="@+id/menu_split"
-        android:icon="@drawable/ic_menu_split_holo_light"
         android:title="@string/menu_splitAggregate" />
 
     <item
         android:id="@+id/menu_join"
-        android:icon="@drawable/ic_menu_merge_holo_light"
         android:title="@string/menu_joinAggregate" />
 
     <item

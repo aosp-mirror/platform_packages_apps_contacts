@@ -24,6 +24,5 @@
 
     <item
         android:id="@+id/menu_delete_group"
-        android:icon="@drawable/ic_menu_trash_holo_light"
         android:title="@string/menu_deleteGroup" />
 </menu>
