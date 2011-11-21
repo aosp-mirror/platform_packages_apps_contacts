@@ -35,6 +35,7 @@
 
     <item
         android:id="@+id/add_contact"
+        android:icon="@drawable/ic_add_contact_holo_dark"
         android:title="@string/menu_newContact"
-        android:showAsAction="withText" />
+        android:showAsAction="ifRoom" />
 </menu>
