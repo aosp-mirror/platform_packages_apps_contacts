@@ -1062,7 +1062,6 @@ public class ContactEditorFragment extends Fragment implements
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             AlertDialog dialog = new AlertDialog.Builder(getActivity())
                     .setIconAttribute(android.R.attr.alertDialogIcon)
-                    .setTitle(R.string.cancel_confirmation_dialog_title)
                     .setMessage(R.string.cancel_confirmation_dialog_message)
                     .setPositiveButton(android.R.string.ok,
                         new DialogInterface.OnClickListener() {
@@ -1456,7 +1455,6 @@ public class ContactEditorFragment extends Fragment implements
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             return new AlertDialog.Builder(getActivity())
                     .setIconAttribute(android.R.attr.alertDialogIcon)
-                    .setTitle(R.string.aggregation_suggestion_join_dialog_title)
                     .setMessage(R.string.aggregation_suggestion_join_dialog_message)
                     .setPositiveButton(android.R.string.yes,
                         new DialogInterface.OnClickListener() {
@@ -1504,7 +1502,6 @@ public class ContactEditorFragment extends Fragment implements
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             return new AlertDialog.Builder(getActivity())
                     .setIconAttribute(android.R.attr.alertDialogIcon)
-                    .setTitle(R.string.aggregation_suggestion_edit_dialog_title)
                     .setMessage(R.string.aggregation_suggestion_edit_dialog_message)
                     .setPositiveButton(android.R.string.yes,
                         new DialogInterface.OnClickListener() {
