@@ -37,25 +37,21 @@
     -->
     <item
         android:id="@+id/menu_contacts_filter"
-        android:icon="@drawable/ic_menu_settings_holo_light"
         android:orderInCategory="1"
         android:title="@string/menu_contacts_filter" />
 
     <item
         android:id="@+id/menu_import_export"
-        android:icon="@drawable/ic_menu_import_export_holo_light"
         android:orderInCategory="2"
         android:title="@string/menu_import_export" />
 
     <item
         android:id="@+id/menu_accounts"
-        android:icon="@drawable/ic_menu_accounts_holo_light"
         android:orderInCategory="3"
         android:title="@string/menu_accounts" />
 
     <item
         android:id="@+id/menu_settings"
-        android:icon="@drawable/ic_menu_settings_holo_light"
         android:orderInCategory="4"
         android:title="@string/menu_settings" />
 </menu>

@@ -24,7 +24,6 @@
     <item
         android:id="@+id/menu_call_settings"
         android:title="@string/call_settings"
-        android:icon="@drawable/ic_menu_settings_holo_light"
         android:showAsAction="withText"
         android:orderInCategory="2" />
 

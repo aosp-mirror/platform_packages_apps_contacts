@@ -29,7 +29,6 @@
 
     <item
         android:id="@+id/delete_all"
-        android:icon="@android:drawable/ic_menu_close_clear_cancel"
         android:title="@string/recentCalls_deleteAll"
         android:showAsAction="withText"
         android:orderInCategory="1" />
