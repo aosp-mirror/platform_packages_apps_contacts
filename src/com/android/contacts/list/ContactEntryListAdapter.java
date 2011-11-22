@@ -54,13 +54,8 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
      */
     private static final boolean LOCAL_INVISIBLE_DIRECTORY_ENABLED = false;
 
-    /**
-     * The animation is used here to allocate animated name text views.
-     */
-    private TextWithHighlightingFactory mTextWithHighlightingFactory;
     private int mDisplayOrder;
     private int mSortOrder;
-    private boolean mNameHighlightingEnabled;
 
     private boolean mDisplayPhotos;
     private boolean mQuickContactEnabled;

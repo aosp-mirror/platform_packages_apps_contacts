@@ -178,7 +178,9 @@
     <dimen name="join_header_top_margin">16dip</dimen>
     <dimen name="join_header_bottom_margin">0dip</dimen>
 
-    <dimen name="account_filter_header_top_padding">0dip</dimen>
+    <!-- Padding between the action bar's bottom edge and the first header
+         in contacts/group lists. -->
+    <dimen name="list_header_extra_top_padding">0dip</dimen>
 
     <!-- ContactTile Layouts -->
     <!--
