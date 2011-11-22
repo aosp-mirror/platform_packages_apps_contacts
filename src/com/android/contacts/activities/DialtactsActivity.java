@@ -165,6 +165,40 @@ public class DialtactsActivity extends TransactionSafeActivity {
 
             actionBar.selectTab(actionBar.getTabAt(position));
             mNextPosition = position;
+
+            // This method is called halfway between swiping between the two pages.
+            // When the next page is fully selected, the ViewPager will go back to IDLE state in
+            // onPageScrollStateChanged(). The order should be:
+            // (user's swipe) -> onPageSelected() -> IDLE in onPageScrollStateChanged()
+            //
+            // sendFragmentVisibilityChange() must be called from here or in the IDLE state to
+            // notify the visibility change events to two pages: the current page (pointed by
+            // mCurrentPosition) should receive sendFragmentVisibilityChange() with the second
+            // argument false, meaning "the page is now invisible", while the next page (pointed by
+            // mNextPosition) should receive the method with the second argument true, meaning
+            // "the page becomes visible".
+            //
+            // To make transition animation smooth enough, we need to delay the event in some cases:
+            // - We should delay both method calls when the dialpad screen is involved.
+            //   The screen does not have the bottom action bar, requiring different layout to
+            //   fill the screen. The layout refresh takes some time and thus should be done after
+            //   the page migration being completed.
+            // - We should delay the method for the call log screen. The screen will update
+            //   its internal state and may query full call log. which is too costly to do when
+            //   onVisibilityChanged() is called, making the animation slower.
+            // - We should *not* delay the method for the phone favorite screen. The screen has
+            //   another icon the call log screen doesn't have. We want to show/hide it immediately
+            //   after user's choosing pages.
+            if (mCurrentPosition == TAB_INDEX_CALL_LOG && mNextPosition == TAB_INDEX_FAVORITES) {
+                sendFragmentVisibilityChange(mNextPosition, true /* visible */ );
+                invalidateOptionsMenu();
+            } else if (mCurrentPosition == TAB_INDEX_FAVORITES
+                    && mNextPosition == TAB_INDEX_CALL_LOG) {
+                sendFragmentVisibilityChange(mCurrentPosition, false /* not visible */ );
+                invalidateOptionsMenu();
+            } else {
+                // Delay sendFragmentVisibilityChange() for both positions.
+            }
         }
 
         public void setCurrentPosition(int position) {
@@ -175,11 +209,17 @@ public class DialtactsActivity extends TransactionSafeActivity {
         public void onPageScrollStateChanged(int state) {
             switch (state) {
                 case ViewPager.SCROLL_STATE_IDLE: {
-                    if (mCurrentPosition >= 0) {
-                        sendFragmentVisibilityChange(mCurrentPosition, false);
-                    }
-                    if (mNextPosition >= 0) {
-                        sendFragmentVisibilityChange(mNextPosition, true);
+                    // Call delayed sendFragmentVisibilityChange() call(s).
+                    // See comments in onPageSelected() for more details.
+                    if (mCurrentPosition == TAB_INDEX_CALL_LOG
+                            && mNextPosition == TAB_INDEX_FAVORITES) {
+                        sendFragmentVisibilityChange(mCurrentPosition, false /* not visible */ );
+                    } else if (mCurrentPosition == TAB_INDEX_FAVORITES
+                            && mNextPosition == TAB_INDEX_CALL_LOG) {
+                        sendFragmentVisibilityChange(mNextPosition, true /* visible */ );
+                    } else {
+                        sendFragmentVisibilityChange(mCurrentPosition, false /* not visible */ );
+                        sendFragmentVisibilityChange(mNextPosition, true /* visible */ );
                     }
                     invalidateOptionsMenu();
 
@@ -653,10 +693,10 @@ public class DialtactsActivity extends TransactionSafeActivity {
         final int previousItemIndex = mViewPager.getCurrentItem();
         mViewPager.setCurrentItem(tabIndex, false /* smoothScroll */);
         if (previousItemIndex != tabIndex) {
-            sendFragmentVisibilityChange(previousItemIndex, false);
+            sendFragmentVisibilityChange(previousItemIndex, false /* not visible */ );
         }
         mPageChangeListener.setCurrentPosition(tabIndex);
-        sendFragmentVisibilityChange(tabIndex, true);
+        sendFragmentVisibilityChange(tabIndex, true /* visible */ );
 
         // Restore to the previous manual selection
         mLastManuallySelectedFragment = savedTabIndex;
@@ -784,14 +824,11 @@ public class DialtactsActivity extends TransactionSafeActivity {
                 filterOptionMenuItem.setVisible(true);
                 filterOptionMenuItem.setOnMenuItemClickListener(
                         mFilterOptionsMenuItemClickListener);
-                addContactOptionMenuItem.setVisible(true);
-                addContactOptionMenuItem.setIntent(
-                        new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI));
             } else {
                 // Filter option menu should be not be shown as a overflow menu.
                 filterOptionMenuItem.setVisible(false);
-                addContactOptionMenuItem.setVisible(false);
             }
+            addContactOptionMenuItem.setVisible(false);
             callSettingsMenuItem.setVisible(false);
         } else {
             final boolean showCallSettingsMenu;
@@ -879,7 +916,7 @@ public class DialtactsActivity extends TransactionSafeActivity {
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        sendFragmentVisibilityChange(mViewPager.getCurrentItem(), false);
+        sendFragmentVisibilityChange(mViewPager.getCurrentItem(), false /* not visible */ );
 
         // Show the search fragment and hide everything else.
         mSearchFragment.setUserVisibleHint(true);
@@ -931,7 +968,7 @@ public class DialtactsActivity extends TransactionSafeActivity {
         actionBar.setDisplayShowHomeEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        sendFragmentVisibilityChange(mViewPager.getCurrentItem(), true);
+        sendFragmentVisibilityChange(mViewPager.getCurrentItem(), true /* visible */ );
 
         mViewPager.setVisibility(View.VISIBLE);
 
@@ -959,9 +996,12 @@ public class DialtactsActivity extends TransactionSafeActivity {
     }
 
     private void sendFragmentVisibilityChange(int position, boolean visibility) {
-        final Fragment fragment = getFragmentAt(position);
-        if (fragment instanceof ViewPagerVisibilityListener) {
-            ((ViewPagerVisibilityListener) fragment).onVisibilityChanged(visibility);
+        // Position can be -1 initially. See PageChangeListener.
+        if (position >= 0) {
+            final Fragment fragment = getFragmentAt(position);
+            if (fragment instanceof ViewPagerVisibilityListener) {
+                ((ViewPagerVisibilityListener) fragment).onVisibilityChanged(visibility);
+            }
         }
     }
 
