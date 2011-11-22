@@ -355,11 +355,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     public void onVisibilityChanged(boolean visible) {
         if (mShowOptionsMenu != visible) {
             mShowOptionsMenu = visible;
-            // Invalidate the options menu since we are changing the list of options shown in it.
-            Activity activity = getActivity();
-            if (activity != null) {
-                activity.invalidateOptionsMenu();
-            }
         }
 
         if (visible && isResumed()) {
