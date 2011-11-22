@@ -307,6 +307,9 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
         addToDefaultGroupIfNeeded();
 
+
+        final int sectionCount = getSectionViewsWithoutFields().size();
+        mAddFieldButton.setVisibility(sectionCount > 0 ? View.VISIBLE : View.GONE);
         mAddFieldButton.setEnabled(isEnabled());
     }
 
@@ -405,12 +408,14 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         return mRawContactId;
     }
 
-    private void showAddInformationPopupWindow() {
+    /**
+     * Return a list of KindSectionViews that have no fields yet...
+     * these are candidates to have fields added in
+     * {@link #showAddInformationPopupWindow()}
+     */
+    private ArrayList<KindSectionView> getSectionViewsWithoutFields() {
         final ArrayList<KindSectionView> fields =
                 new ArrayList<KindSectionView>(mFields.getChildCount());
-
-        final PopupMenu popupMenu = new PopupMenu(getContext(), mAddFieldButton);
-        final Menu menu = popupMenu.getMenu();
         for (int i = 0; i < mFields.getChildCount(); i++) {
             View child = mFields.getChildAt(i);
             if (child instanceof KindSectionView) {
@@ -434,9 +439,18 @@ public class RawContactEditorView extends BaseRawContactEditorView {
                     continue;
                 }
 
-                menu.add(Menu.NONE, fields.size(), Menu.NONE, sectionView.getTitle());
                 fields.add(sectionView);
             }
+        }
+        return fields;
+    }
+
+    private void showAddInformationPopupWindow() {
+        final ArrayList<KindSectionView> fields = getSectionViewsWithoutFields();
+        final PopupMenu popupMenu = new PopupMenu(getContext(), mAddFieldButton);
+        final Menu menu = popupMenu.getMenu();
+        for (int i = 0; i < fields.size(); i++) {
+            menu.add(Menu.NONE, i, Menu.NONE, fields.get(i).getTitle());
         }
 
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -449,6 +463,13 @@ public class RawContactEditorView extends BaseRawContactEditorView {
                 } else {
                     view.addItem();
                 }
+
+                // If this was the last section without an entry, we just added one, and therefore
+                // there's no reason to show the button.
+                if (fields.size() == 1) {
+                    mAddFieldButton.setVisibility(View.GONE);
+                }
+
                 return true;
             }
         });
