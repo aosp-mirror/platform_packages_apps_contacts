@@ -334,7 +334,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                        (callType == Calls.INCOMING_TYPE
                                 || callType == Calls.MISSED_TYPE)) {
                     // If the caller-id matches a contact with a better qualified number, use it
-                    number = mAdapter.getBetterNumberFromContacts(number);
+                    String countryIso = cursor.getString(CallLogQuery.COUNTRY_ISO);
+                    number = mAdapter.getBetterNumberFromContacts(number, countryIso);
                 }
                 intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
                                     Uri.fromParts("tel", number, null));

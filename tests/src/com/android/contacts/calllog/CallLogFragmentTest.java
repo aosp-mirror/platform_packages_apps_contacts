@@ -482,7 +482,7 @@ public class CallLogFragmentTest extends ActivityInstrumentationTestCase2<Fragme
         contactInfo.formattedNumber = formattedNumber;
         contactInfo.normalizedNumber = number;
         contactInfo.photoId = 0;
-        mAdapter.injectContactInfoForTest(number, contactInfo);
+        mAdapter.injectContactInfoForTest(number, TEST_COUNTRY_ISO, contactInfo);
     }
 
     /**
