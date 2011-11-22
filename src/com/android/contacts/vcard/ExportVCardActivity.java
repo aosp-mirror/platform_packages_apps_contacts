@@ -235,7 +235,6 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
             case R.id.dialog_sdcard_not_found: {
                 mProcessOngoing = false;
                 return new AlertDialog.Builder(this)
-                        .setTitle(R.string.no_sdcard_title)
                         .setIconAttribute(android.R.attr.alertDialogIcon)
                         .setMessage(R.string.no_sdcard_message)
                         .setPositiveButton(android.R.string.ok, this).create();
