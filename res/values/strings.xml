@@ -163,9 +163,6 @@
     <!-- Toast shown after two contacts have been joined by a user action -->
     <string name="contactsJoinedMessage">Contacts joined</string>
 
-    <!-- Confirmation dialog title after users selects to delete a contact. [CHAR LIMIT=25]-->
-    <string name="deleteConfirmation_title">Delete contact?</string>
-
     <!-- Menu item that opens the Options activity for a given contact [CHAR LIMIT=15] -->
     <string name="menu_set_ring_tone">Set ringtone</string>
 
@@ -585,8 +582,6 @@
     <!-- The text displayed on the divider for the Favorites tab in Phone app indicating that items below it are frequently called as opposed to starred contacts [CHAR LIMIT = 39] -->
     <string name="favoritesFrequentCalled">Frequently called</string>
 
-    <!-- Dialog title when prompting before creating a contact -->
-    <string name="add_contact_dlg_title">Add contact</string>
     <!-- Dialog message when prompting before creating a contact. Includes
          the email address, e.g. "Add xyz@foo.com to contacts?" -->
     <string name="add_contact_dlg_message_fmt">Add \"<xliff:g id="email">%s</xliff:g>\" to contacts?</string>
@@ -732,18 +727,10 @@
       -->
     <string name="description_view_contact_detail" msgid="2795575601596468581">View contact</string>
 
-    <!-- Dialog title shown when (USB) storage does not exist [CHAR LIMIT=25] -->
-    <string name="no_sdcard_title" product="nosdcard">Storage unavailable</string>
-    <!-- Dialog title shown when SD Card does not exist -->
-    <string name="no_sdcard_title" product="default">No SD card</string>
-
     <!-- Dialog message shown when (USB) storage does not exist [CHAR LIMIT=30] -->
     <string name="no_sdcard_message" product="nosdcard">No storage was found.</string>
     <!-- Dialog message shown when SDcard does not exist. [CHAR LIMIT=30] -->
     <string name="no_sdcard_message" product="default">No SD card was found.</string>
-
-    <!-- Dialog title shown when searching vCard data from SD Card -->
-    <string name="searching_vcard_title">Searching for vCard</string>
 
     <!-- Action string for selecting SIM for importing contacts -->
     <string name="import_from_sim">Import from SIM card</string>
@@ -776,11 +763,6 @@
     <string name="searching_vcard_message" product="nosdcard">Searching for vCard data in storage\u2026</string>
     <!-- Dialog message shown when searching VCard data from SD Card. [CHAR LIMIT=NONE] -->
     <string name="searching_vcard_message" product="default">Searching for vCard data on SD card\u2026</string>
-
-    <!-- Dialog title shown when scanning VCard data failed. [CHAR LIMIT=NONE] -->
-    <string name="scanning_sdcard_failed_title" product="nosdcard">Couldn\'t scan storage</string>
-    <!-- Dialog title shown when scanning VCard data failed. -->
-    <string name="scanning_sdcard_failed_title" product="default">Couldn\'t scan SD card</string>
 
     <!-- Dialog message shown when searching VCard data failed.
          An exact reason for the failure should [CHAR LIMIT=NONE] -->
@@ -969,16 +951,10 @@
     <!-- Message in progress bar while exporting contact list to a file "(current number) of (total number) contacts" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
     <string name="exporting_contact_list_progress"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> contacts</string>
 
-    <!-- Title shown in a Dialog confirming a user's cancel request toward existing vCard import. [CHAR LIMIT=40] -->
-    <string name="cancel_import_confirmation_title">Canceling vCard import</string>
-
     <!-- Message shown in a Dialog confirming a user's cancel request toward existing vCard import.
          The argument is file name for the vCard import the user wants to cancel.
          [CHAR LIMIT=128] -->
     <string name="cancel_import_confirmation_message">Cancel import of <xliff:g id="filename" example="import.vcf">%s</xliff:g>?</string>
-
-    <!-- Title shown in a Dialog confirming a user's cancel request toward existing vCard export. [CHAR LIMIT=128] -->
-    <string name="cancel_export_confirmation_title">Canceling vCard export</string>
 
     <!-- Message shown in a Dialog confirming a user's cancel request toward existing vCard export.
          The argument is file name for the vCard export the user wants to cancel.
@@ -1394,18 +1370,10 @@
     <!-- The name of the invisible local contact directory -->
     <string name="local_invisible_directory">Other</string>
 
-    <!-- The title of a confirmation dialog shown when the user selects a
-        contact aggregation suggestion in Contact editor. [CHAR LIMIT=128]-->
-    <string name="aggregation_suggestion_join_dialog_title">Join contacts</string>
-
     <!-- The message in a confirmation dialog shown when the user selects a
         contact aggregation suggestion in Contact editor. [CHAR LIMIT=512]-->
     <string name="aggregation_suggestion_join_dialog_message">Join
         the current contact with the selected contact?</string>
-
-    <!-- The title of a confirmation dialog shown when the user selects a
-        contact aggregation suggestion in Contact editor. [CHAR LIMIT=128]-->
-    <string name="aggregation_suggestion_edit_dialog_title">Edit selected contacts</string>
 
     <!-- The message in a confirmation dialog shown when the user selects a
         contact aggregation suggestion in Contact editor. [CHAR LIMIT=512]-->
@@ -1518,9 +1486,6 @@
     <!-- An item in the popup list of groups that triggers creation of a contact group [CHAR LIMIT=128] -->
     <string name="create_group_item_label">[Create new group]</string>
 
-    <!-- Title of the dialog that allows deletion of a contact group [CHAR LIMIT=128] -->
-    <string name="delete_group_dialog_title">Delete group</string>
-
     <!-- Shows how many groups are from the specified account [CHAR LIMIT=15] -->
     <plurals name="num_groups_in_account">
         <item quantity="one">1 group</item>
@@ -1562,9 +1527,6 @@
 
     <!-- Toast shown when text is copied to the clipboard [CHAR LIMIT=64] -->
     <string name="toast_text_copied">Text copied</string>
-
-    <!-- Title of the alert dialog when the user hits the Cancel button in the editor [CHAR LIMIT=64] -->
-    <string name="cancel_confirmation_dialog_title">Discard changes</string>
 
     <!-- Contents of the alert dialog when the user hits the Cancel button in the editor [CHAR LIMIT=128] -->
     <string name="cancel_confirmation_dialog_message">Discard your changes?</string>

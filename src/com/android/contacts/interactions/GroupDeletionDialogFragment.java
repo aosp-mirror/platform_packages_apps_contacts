@@ -52,7 +52,6 @@ public class GroupDeletionDialogFragment extends DialogFragment {
 
         return new AlertDialog.Builder(getActivity())
                 .setIconAttribute(android.R.attr.alertDialogIcon)
-                .setTitle(R.string.delete_group_dialog_title)
                 .setMessage(message)
                 .setPositiveButton(android.R.string.ok,
                     new DialogInterface.OnClickListener() {

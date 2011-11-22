@@ -901,10 +901,9 @@ public class ImportVCardActivity extends ContactsActivity {
             }
             case R.id.dialog_searching_vcard: {
                 if (mProgressDialogForScanVCard == null) {
-                    String title = getString(R.string.searching_vcard_title);
                     String message = getString(R.string.searching_vcard_message);
                     mProgressDialogForScanVCard =
-                        ProgressDialog.show(this, title, message, true, false);
+                        ProgressDialog.show(this, "", message, true, false);
                     mProgressDialogForScanVCard.setOnCancelListener(mVCardScanThread);
                     mVCardScanThread.start();
                 }
@@ -912,7 +911,6 @@ public class ImportVCardActivity extends ContactsActivity {
             }
             case R.id.dialog_sdcard_not_found: {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                    .setTitle(R.string.no_sdcard_title)
                     .setIconAttribute(android.R.attr.alertDialogIcon)
                     .setMessage(R.string.no_sdcard_message)
                     .setOnCancelListener(mCancelListener)
@@ -922,7 +920,6 @@ public class ImportVCardActivity extends ContactsActivity {
             case R.id.dialog_vcard_not_found: {
                 final String message = getString(R.string.import_failure_no_vcard_file);
                 AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                        .setTitle(R.string.scanning_sdcard_failed_title)
                         .setMessage(message)
                         .setOnCancelListener(mCancelListener)
                         .setPositiveButton(android.R.string.ok, mCancelListener);
@@ -954,7 +951,6 @@ public class ImportVCardActivity extends ContactsActivity {
                 String message = (getString(R.string.scanning_sdcard_failed_message,
                         getString(R.string.fail_reason_io_error)));
                 AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                    .setTitle(R.string.scanning_sdcard_failed_title)
                     .setIconAttribute(android.R.attr.alertDialogIcon)
                     .setMessage(message)
                     .setOnCancelListener(mCancelListener)
