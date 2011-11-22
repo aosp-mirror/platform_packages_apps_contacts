@@ -23,7 +23,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingTop="@dimen/account_filter_header_top_padding"
+    android:paddingTop="@dimen/list_header_extra_top_padding"
     android:layout_marginLeft="@dimen/contact_browser_list_header_left_margin"
     android:layout_marginRight="@dimen/contact_browser_list_header_right_margin"
     android:background="?android:attr/selectableItemBackground"
