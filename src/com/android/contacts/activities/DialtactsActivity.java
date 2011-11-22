@@ -566,6 +566,9 @@ public class DialtactsActivity extends TransactionSafeActivity {
                     && mContactListFilterController.getFilter() != null) {
                 mPhoneFavoriteFragment.setFilter(mContactListFilterController.getFilter());
             }
+            if (currentPosition == TAB_INDEX_FAVORITES) {
+                mPhoneFavoriteFragment.onVisibilityChanged(true);
+            }
         } else if (fragment instanceof PhoneNumberPickerFragment) {
             mSearchFragment = (PhoneNumberPickerFragment) fragment;
             mSearchFragment.setOnPhoneNumberPickerActionListener(mPhoneNumberPickerActionListener);
@@ -817,7 +820,7 @@ public class DialtactsActivity extends TransactionSafeActivity {
         final MenuItem filterOptionMenuItem = menu.findItem(R.id.filter_option);
         final MenuItem addContactOptionMenuItem = menu.findItem(R.id.add_contact);
         final MenuItem callSettingsMenuItem = menu.findItem(R.id.menu_call_settings);
-        Tab tab = getActionBar().getSelectedTab();
+        final Tab tab = getActionBar().getSelectedTab();
         if (mInSearchUi) {
             searchMenuItem.setVisible(false);
             if (ViewConfiguration.get(this).hasPermanentMenuKey()) {
