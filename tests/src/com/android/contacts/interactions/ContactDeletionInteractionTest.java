@@ -35,7 +35,7 @@ import android.os.AsyncTask;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Contacts.Entity;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.suitebuilder.annotation.Smoke;
+import android.test.suitebuilder.annotation.SmallTest;
 
 /**
  * Tests for {@link ContactDeletionInteraction}.
@@ -47,7 +47,7 @@ import android.test.suitebuilder.annotation.Smoke;
  *   adb shell am instrument \
  *     -w com.android.contacts.tests/android.test.InstrumentationTestRunner
  */
-@Smoke
+@SmallTest
 public class ContactDeletionInteractionTest
         extends ActivityInstrumentationTestCase2<FragmentTestActivity> {
 

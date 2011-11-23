@@ -21,10 +21,12 @@ import com.android.contacts.widget.TextWithHighlightingFactory;
 
 import android.database.CharArrayBuffer;
 import android.graphics.Typeface;
+import android.test.suitebuilder.annotation.SmallTest;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
 
 /** A factory for {@link TextWithHighlighting} that wraps its parts in italics. */
+@SmallTest
 public final class TestTextWithHighlightingFactory implements TextWithHighlightingFactory {
     /** A {@link TextWithHighlighting} implementation that wraps its parts in italics. */
     private final static class TestTextWithHighlighting extends SpannableStringBuilder
