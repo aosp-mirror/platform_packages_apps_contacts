@@ -342,7 +342,11 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_import_export:
-                ImportExportDialogFragment.show(getFragmentManager());
+                // We hard-code the "contactsAreAvailable" argument because doing it properly would
+                // involve querying a {@link ProviderStatusLoader}, which we don't want to do right
+                // now in Dialtacts for (potential) performance reasons.  Compare with how it is 
+                // done in {@link PeopleActivity}.
+                ImportExportDialogFragment.show(getFragmentManager(), true);
                 return true;
             case R.id.menu_accounts:
                 final Intent intent = new Intent(Settings.ACTION_SYNC_SETTINGS);

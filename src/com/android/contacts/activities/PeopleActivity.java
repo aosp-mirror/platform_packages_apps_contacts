@@ -1211,7 +1211,7 @@ public class PeopleActivity extends ContactsActivity
 
         @Override
         public void onImportContactsFromFileAction() {
-            ImportExportDialogFragment.show(getFragmentManager());
+            ImportExportDialogFragment.show(getFragmentManager(), areContactsAvailable());
         }
 
         @Override
@@ -1465,7 +1465,7 @@ public class PeopleActivity extends ContactsActivity
                 return true;
             }
             case R.id.menu_import_export: {
-                ImportExportDialogFragment.show(getFragmentManager());
+                ImportExportDialogFragment.show(getFragmentManager(), areContactsAvailable());
                 return true;
             }
             case R.id.menu_accounts: {
