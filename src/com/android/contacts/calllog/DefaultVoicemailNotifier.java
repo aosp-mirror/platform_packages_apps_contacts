@@ -91,7 +91,7 @@ public class DefaultVoicemailNotifier implements VoicemailNotifier {
         final NewCall[] newCalls = mNewCallsQuery.query();
 
         if (newCalls.length == 0) {
-            Log.e(TAG, "No voicemails to notify about: clear the notification.");
+            // No voicemails to notify about: clear the notification.
             clearNotification();
             return;
         }
