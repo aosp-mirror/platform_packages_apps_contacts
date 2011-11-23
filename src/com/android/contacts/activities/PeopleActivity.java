@@ -968,7 +968,12 @@ public class PeopleActivity extends ContactsActivity
         View mainView = findViewById(R.id.main_view);
 
         if (mProviderStatus == ProviderStatus.STATUS_NORMAL) {
+            // Ensure that the mTabPager is visible; we may have made it invisible below.
             contactsUnavailableView.setVisibility(View.GONE);
+            if (mTabPager != null) {
+                mTabPager.setVisibility(View.VISIBLE);
+            }
+
             if (mainView != null) {
                 mainView.setVisibility(View.VISIBLE);
             }
@@ -1001,7 +1006,14 @@ public class PeopleActivity extends ContactsActivity
             } else {
                 mContactsUnavailableFragment.update();
             }
+
+            // Show the contactsUnavailableView, and hide the mTabPager so that we don't
+            // see it sliding in underneath the contactsUnavailableView at the edges.
             contactsUnavailableView.setVisibility(View.VISIBLE);
+            if (mTabPager != null) {
+                mTabPager.setVisibility(View.GONE);
+            }
+
             if (mainView != null) {
                 mainView.setVisibility(View.INVISIBLE);
             }
