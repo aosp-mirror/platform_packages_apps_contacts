@@ -22,6 +22,7 @@ import com.android.contacts.calllog.CallTypeHelper;
 import com.android.contacts.calllog.ContactInfo;
 import com.android.contacts.calllog.ContactInfoHelper;
 import com.android.contacts.calllog.PhoneNumberHelper;
+import com.android.contacts.format.FormatUtils;
 import com.android.contacts.util.AsyncTaskExecutor;
 import com.android.contacts.util.AsyncTaskExecutors;
 import com.android.contacts.voicemail.VoicemailPlaybackFragment;
@@ -469,7 +470,8 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
                                     firstDetails.number, firstDetails.formattedNumber);
 
                     ViewEntry entry = new ViewEntry(
-                            getString(R.string.menu_callNumber, displayNumber),
+                            getString(R.string.menu_callNumber,
+                                    FormatUtils.forceLeftToRight(displayNumber)),
                             new Intent(Intent.ACTION_CALL_PRIVILEGED, numberCallUri),
                             getString(R.string.description_call, nameOrNumber));
 
