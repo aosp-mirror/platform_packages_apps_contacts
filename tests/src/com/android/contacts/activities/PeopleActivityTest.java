@@ -48,7 +48,7 @@ import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.ProviderStatus;
 import android.provider.Settings;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.suitebuilder.annotation.Smoke;
+import android.test.suitebuilder.annotation.SmallTest;
 import android.widget.TextView;
 
 /**
@@ -64,7 +64,7 @@ import android.widget.TextView;
  *     -w com.android.contacts.tests/android.test.InstrumentationTestRunner
  *
  */
-@Smoke
+@SmallTest
 public class PeopleActivityTest
         extends ActivityInstrumentationTestCase2<PeopleActivity>
 {

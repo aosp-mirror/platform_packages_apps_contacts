@@ -16,6 +16,7 @@
 
 package com.android.contacts.format;
 
+import android.test.suitebuilder.annotation.SmallTest;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -26,6 +27,7 @@ import junit.framework.Assert;
 /**
  * Utility class to check the value of spanned text in text views.
  */
+@SmallTest
 public class SpannedTestUtils {
     /**
      * Checks that the text contained in the text view matches the given HTML text.

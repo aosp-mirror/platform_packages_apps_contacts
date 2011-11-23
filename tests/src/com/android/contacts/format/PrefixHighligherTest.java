@@ -17,11 +17,13 @@
 package com.android.contacts.format;
 
 import android.test.AndroidTestCase;
+import android.test.suitebuilder.annotation.SmallTest;
 import android.widget.TextView;
 
 /**
  * Unit tests for {@link PrefixHighlighter}.
  */
+@SmallTest
 public class PrefixHighligherTest extends AndroidTestCase {
     private static final int TEST_PREFIX_HIGHLIGHT_COLOR = 0xFF0000;
     /** The HTML code used to mark the start of the highlighted part. */
