@@ -162,16 +162,22 @@
                     <TextView android:id="@+id/call_and_sms_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingRight="@dimen/call_log_icon_margin"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="?attr/call_log_primary_text_color"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                     />
 
                     <TextView android:id="@+id/call_and_sms_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingRight="@dimen/call_log_icon_margin"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="?attr/call_log_primary_text_color"
                         android:textAllCaps="true"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                     />
 
                 </LinearLayout>
