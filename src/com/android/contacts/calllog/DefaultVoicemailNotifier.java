@@ -90,6 +90,11 @@ public class DefaultVoicemailNotifier implements VoicemailNotifier {
         // TODO: Move this into a service, to avoid holding the receiver up.
         final NewCall[] newCalls = mNewCallsQuery.query();
 
+        if (newCalls == null) {
+            // Query failed, just return.
+            return;
+        }
+
         if (newCalls.length == 0) {
             // No voicemails to notify about: clear the notification.
             clearNotification();
@@ -243,6 +248,9 @@ public class DefaultVoicemailNotifier implements VoicemailNotifier {
             try {
                 cursor = mContentResolver.query(Calls.CONTENT_URI_WITH_VOICEMAIL, PROJECTION,
                         selection, selectionArgs, Calls.DEFAULT_SORT_ORDER);
+                if (cursor == null) {
+                    return null;
+                }
                 NewCall[] newCalls = new NewCall[cursor.getCount()];
                 while (cursor.moveToNext()) {
                     newCalls[cursor.getPosition()] = createNewCallsFromCursor(cursor);
@@ -301,7 +309,7 @@ public class DefaultVoicemailNotifier implements VoicemailNotifier {
                 cursor = mContentResolver.query(
                         Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number)),
                         PROJECTION, null, null, null);
-                if (!cursor.moveToFirst()) return null;
+                if (cursor == null || !cursor.moveToFirst()) return null;
                 return cursor.getString(DISPLAY_NAME_COLUMN_INDEX);
             } finally {
                 if (cursor != null) {
