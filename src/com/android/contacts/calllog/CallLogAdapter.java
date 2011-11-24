@@ -650,14 +650,15 @@ import libcore.util.Objects;
             return;
         }
 
-        StringBuilder where = new StringBuilder();
-        where.append(Calls.NUMBER);
-        where.append(" = ? AND ");
-        where.append(Calls.COUNTRY_ISO);
-        where.append(" = ?");
-
-        mContext.getContentResolver().update(Calls.CONTENT_URI_WITH_VOICEMAIL, values,
-                where.toString(), new String[]{ number, countryIso });
+        if (countryIso == null) {
+            mContext.getContentResolver().update(Calls.CONTENT_URI_WITH_VOICEMAIL, values,
+                    Calls.NUMBER + " = ? AND " + Calls.COUNTRY_ISO + " IS NULL",
+                    new String[]{ number });
+        } else {
+            mContext.getContentResolver().update(Calls.CONTENT_URI_WITH_VOICEMAIL, values,
+                    Calls.NUMBER + " = ? AND " + Calls.COUNTRY_ISO + " = ?",
+                    new String[]{ number, countryIso });
+        }
     }
 
     /** Returns the contact information as stored in the call log. */
