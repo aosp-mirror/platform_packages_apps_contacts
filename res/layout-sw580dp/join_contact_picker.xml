@@ -18,6 +18,18 @@
     class="com.android.contacts.widget.FullHeightLinearLayout"
     style="@style/ContactPickerLayout"
     android:orientation="vertical">
+    <!-- See also comments in contact_picker.xml -->
+    <view
+        class="android.widget.SearchView"
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:maxWidth="@dimen/contact_picker_search_view_max_width"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dip"
+        android:layout_marginRight="@dimen/list_visible_scrollbar_padding"
+        android:paddingRight="0dip"
+        android:iconifiedByDefault="false" />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"

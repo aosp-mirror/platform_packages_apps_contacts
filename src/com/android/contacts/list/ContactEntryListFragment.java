@@ -613,12 +613,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
                 mAdapter.clearPartitions();
                 if (!flag) {
-                    // If we are switching from search to regular display,
-                    // remove all directory partitions (except the default one).
-                    int count = mAdapter.getPartitionCount();
-                    for (int i = count; --i >= 1;) {
-                        mAdapter.removePartition(i);
-                    }
+                    // If we are switching from search to regular display, remove all directory
+                    // partitions after default one, assuming they are remote directories which
+                    // should be cleaned up on exiting the search mode.
+                    mAdapter.removeDirectoriesAfterDefault();
                 }
                 mAdapter.configureDefaultPartition(false, flag);
             }

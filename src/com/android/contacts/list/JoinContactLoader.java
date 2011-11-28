@@ -20,6 +20,7 @@ import android.content.CursorLoader;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
+import android.util.Log;
 
 /**
  * A specialized loader for the Join Contacts UI.  It executes two queries:
@@ -29,7 +30,7 @@ public class JoinContactLoader extends CursorLoader {
 
     private String[] mProjection;
     private Uri mSuggestionUri;
-    private MatrixCursor mSuggestionsCursor;
+    private Cursor mSuggestionsCursor;
 
     public JoinContactLoader(Context context) {
         super(context, null, null, null, null, null);
@@ -53,28 +54,8 @@ public class JoinContactLoader extends CursorLoader {
     public Cursor loadInBackground() {
         // First execute the suggestions query, then call super.loadInBackground
         // to load the entire list
-        mSuggestionsCursor = loadSuggestions();
+        mSuggestionsCursor = getContext().getContentResolver()
+                .query(mSuggestionUri, mProjection, null, null, null);
         return super.loadInBackground();
-    }
-
-    /**
-     * Loads join suggestions into a MatrixCursor.
-     */
-    private MatrixCursor loadSuggestions() {
-        Cursor cursor = getContext().getContentResolver().query(mSuggestionUri, mProjection,
-                null, null, null);
-        try {
-            MatrixCursor matrix = new MatrixCursor(mProjection);
-            Object[] row = new Object[mProjection.length];
-            while (cursor.moveToNext()) {
-                for (int i = 0; i < row.length; i++) {
-                    row[i] = cursor.getString(i);
-                }
-                matrix.addRow(row);
-            }
-            return matrix;
-        } finally {
-            cursor.close();
-        }
     }
 }

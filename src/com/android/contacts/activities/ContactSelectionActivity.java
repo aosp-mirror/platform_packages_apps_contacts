@@ -107,7 +107,7 @@ public class ContactSelectionActivity extends ContactsActivity
         if (savedState != null) {
             mActionCode = savedState.getInt(KEY_ACTION_CODE);
         }
-
+        
         // Extract relevant information from the intent
         mRequest = mIntentResolver.resolveIntent(getIntent());
         if (!mRequest.isValid()) {

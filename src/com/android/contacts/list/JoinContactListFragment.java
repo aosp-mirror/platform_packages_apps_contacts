@@ -26,6 +26,7 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,7 +104,10 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
         configureAdapter();
 
         getLoaderManager().initLoader(DISPLAY_NAME_LOADER, null, mLoaderCallbacks);
-        getLoaderManager().initLoader(JoinContactListAdapter.PARTITION_ALL_CONTACTS,
+
+        // When this method is called, Uri to be used may be changed. We should use restartLoader()
+        // to load the parameter again.
+        getLoaderManager().restartLoader(JoinContactListAdapter.PARTITION_ALL_CONTACTS,
                 null, mLoaderCallbacks);
     }
 
@@ -166,5 +170,12 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
         if (savedState != null) {
             mTargetContactId = savedState.getLong(KEY_TARGET_CONTACT_ID);
         }
+    }
+
+    @Override
+    public void setQueryString(String queryString, boolean delaySelection) {
+        super.setQueryString(queryString, delaySelection);
+
+        setSearchMode(!TextUtils.isEmpty(queryString));
     }
 }
