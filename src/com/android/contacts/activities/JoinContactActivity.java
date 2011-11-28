@@ -24,18 +24,29 @@ import com.android.contacts.list.JoinContactListFragment;
 import com.android.contacts.list.OnContactPickerActionListener;
 
 import android.app.ActionBar;
+import android.app.ActionBar.LayoutParams;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnFocusChangeListener;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.SearchView;
+import android.widget.SearchView.OnCloseListener;
+import android.widget.SearchView.OnQueryTextListener;
 
 /**
  * An activity that shows a list of contacts that can be joined with the target contact.
  */
-public class JoinContactActivity extends ContactsActivity {
+public class JoinContactActivity extends ContactsActivity
+        implements OnQueryTextListener, OnCloseListener, OnFocusChangeListener {
 
     private static final String TAG = "JoinContactActivity";
 
@@ -59,6 +70,7 @@ public class JoinContactActivity extends ContactsActivity {
     private long mTargetContactId;
 
     private JoinContactListFragment mListFragment;
+    private SearchView mSearchView;
 
     @Override
     public void onAttachFragment(Fragment fragment) {
@@ -93,12 +105,7 @@ public class JoinContactActivity extends ContactsActivity {
                     .commitAllowingStateLoss();
         }
 
-        final ActionBar actionBar = getActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayShowHomeEnabled(true);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowTitleEnabled(true);
-        }
+        prepareSearchViewAndActionBar();
     }
 
     private void setupActionListener() {
@@ -123,6 +130,74 @@ public class JoinContactActivity extends ContactsActivity {
             public void onEditContactAction(Uri contactLookupUri) {
             }
         });
+    }
+
+    private void prepareSearchViewAndActionBar() {
+        final ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            final View searchViewOnLayout = findViewById(R.id.search_view);
+            if (searchViewOnLayout != null) {
+                searchViewOnLayout.setVisibility(View.GONE);
+            }
+
+            final View searchViewLayout = LayoutInflater.from(actionBar.getThemedContext())
+                    .inflate(R.layout.custom_action_bar, null);
+            mSearchView = (SearchView) searchViewLayout.findViewById(R.id.search_view);
+
+            // In order to make the SearchView look like "shown via search menu", we need to
+            // manually setup its state. See also DialtactsActivity.java and ActionBarAdapter.java.
+            mSearchView.setIconifiedByDefault(true);
+            mSearchView.setQueryHint(getString(R.string.hint_findContacts));
+            mSearchView.setIconified(false);
+
+            mSearchView.setOnQueryTextListener(this);
+            mSearchView.setOnCloseListener(this);
+            mSearchView.setOnQueryTextFocusChangeListener(this);
+
+            actionBar.setCustomView(searchViewLayout,
+                    new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+            actionBar.setDisplayShowCustomEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        } else {
+            mSearchView = (SearchView) findViewById(R.id.search_view);
+            mSearchView.setQueryHint(getString(R.string.hint_findContacts));
+            mSearchView.setOnQueryTextListener(this);
+            mSearchView.setOnQueryTextFocusChangeListener(this);
+        }
+
+        // Clear focus and suppress keyboard show-up.
+        mSearchView.clearFocus();
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        mListFragment.setQueryString(newText, true);
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onClose() {
+        if (!TextUtils.isEmpty(mSearchView.getQuery())) {
+            mSearchView.setQuery(null, true);
+        }
+        return true;
+    }
+
+    @Override
+    public void onFocusChange(View view, boolean hasFocus) {
+        switch (view.getId()) {
+            case R.id.search_view: {
+                if (hasFocus) {
+                    showInputMethod(mSearchView.findFocus());
+                }
+            }
+        }
     }
 
     @Override
@@ -154,6 +229,16 @@ public class JoinContactActivity extends ContactsActivity {
         if (requestCode == ContactEntryListFragment.ACTIVITY_REQUEST_CODE_PICKER
                 && resultCode == RESULT_OK) {
             mListFragment.onPickerResult(data);
+        }
+    }
+
+    private void showInputMethod(View view) {
+        final InputMethodManager imm = (InputMethodManager)
+                getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            if (!imm.showSoftInput(view, 0)) {
+                Log.w(TAG, "Failed to show soft input method.");
+            }
         }
     }
 }
