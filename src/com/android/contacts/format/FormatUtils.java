@@ -28,6 +28,8 @@ import java.util.Arrays;
  * Assorted utility methods related to text formatting in Contacts.
  */
 public class FormatUtils {
+    private static final char LEFT_TO_RIGHT_EMBEDDING = '\u202A';
+    private static final char POP_DIRECTIONAL_FORMATTING = '\u202C';
 
     /**
      * Finds the earliest point in buffer1 at which the first part of buffer2 matches.  For example,
@@ -179,5 +181,14 @@ public class FormatUtils {
         }
 
         return -1;
+    }
+
+    /** Returns the given text, forced to be left-to-right. */
+    public static CharSequence forceLeftToRight(CharSequence text) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(LEFT_TO_RIGHT_EMBEDDING);
+        sb.append(text);
+        sb.append(POP_DIRECTIONAL_FORMATTING);
+        return sb.toString();
     }
 }

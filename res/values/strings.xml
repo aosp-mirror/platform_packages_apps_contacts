@@ -100,8 +100,8 @@
     <!-- Menu item used to view the details for a specific contact -->
     <string name="menu_viewContact">View contact</string>
 
-    <!-- Menu item used to call a contact, containing the name of the contact to call -->
-    <string name="menu_callNumber">Call <xliff:g id="name">%s</xliff:g></string>
+    <!-- Menu item used to call a contact, containing the number of the contact to call -->
+    <string name="menu_callNumber">Call <xliff:g id="number">%s</xliff:g></string>
 
     <!-- Menu item used to add a star to a contact, which makes that contact show up at the top of favorites -->
     <string name="menu_addStar">Add to favorites</string>

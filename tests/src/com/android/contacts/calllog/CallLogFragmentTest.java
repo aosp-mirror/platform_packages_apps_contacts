@@ -619,14 +619,14 @@ public class CallLogFragmentTest extends ActivityInstrumentationTestCase2<Fragme
 
     /** Asserts that the number and label text view contains the given text. */
     private void assertNumberAndLabelAre(CallLogListItemViews views, CharSequence number,
-            CharSequence numberLabel) {
+            CharSequence label) {
         assertEquals(View.VISIBLE, views.phoneCallDetailsViews.numberView.getVisibility());
-        final CharSequence expectedText;
-        if (numberLabel == null) {
-            expectedText = number;
-        } else {
-            expectedText = numberLabel + " " + number;
+        assertEquals(number, views.phoneCallDetailsViews.numberView.getText().toString());
+
+        assertEquals(label == null ? View.GONE : View.VISIBLE,
+                views.phoneCallDetailsViews.labelView.getVisibility());
+        if (label != null) {
+            assertEquals(label, views.phoneCallDetailsViews.labelView.getText().toString());
         }
-        assertEquals(expectedText, views.phoneCallDetailsViews.numberView.getText().toString());
     }
 }
