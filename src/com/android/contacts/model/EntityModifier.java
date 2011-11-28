@@ -103,19 +103,28 @@ public class EntityModifier {
     /**
      * Ensure that at least one of the given {@link DataKind} exists in the
      * given {@link EntityDelta} state, and try creating one if none exist.
+     * @return The child (either newly created or the first existing one), or null if the
+     *     account doesn't support this {@link DataKind}.
      */
-    public static void ensureKindExists(
+    public static ValuesDelta ensureKindExists(
             EntityDelta state, AccountType accountType, String mimeType) {
         final DataKind kind = accountType.getKindForMimetype(mimeType);
         final boolean hasChild = state.getMimeEntriesCount(mimeType, true) > 0;
 
-        if (!hasChild && kind != null) {
-            // Create child when none exists and valid kind
-            final ValuesDelta child = insertChild(state, kind);
-            if (kind.mimeType.equals(Photo.CONTENT_ITEM_TYPE)) {
-                child.setFromTemplate(true);
+        if (kind != null) {
+            if (hasChild) {
+                // Return the first entry.
+                return state.getMimeEntries(mimeType).get(0);
+            } else {
+                // Create child when none exists and valid kind
+                final ValuesDelta child = insertChild(state, kind);
+                if (kind.mimeType.equals(Photo.CONTENT_ITEM_TYPE)) {
+                    child.setFromTemplate(true);
+                }
+                return child;
             }
         }
+        return null;
     }
 
     /**

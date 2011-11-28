@@ -38,12 +38,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dip">
 
-        <ImageView android:id="@+id/photo"
-            android:scaleType="centerCrop"
+        <include android:id="@+id/static_photo_container"
+            layout="@layout/photo_selector_view"
             android:layout_width="@dimen/detail_contact_photo_size"
             android:layout_height="@dimen/detail_contact_photo_size"
             android:layout_marginTop="@dimen/detail_contact_photo_margin"
-            android:layout_marginRight="@dimen/detail_contact_photo_margin"/>
+            android:layout_marginRight="@dimen/detail_contact_photo_margin" />
 
         <ListView android:id="@android:id/list"
             android:layout_width="0dip"

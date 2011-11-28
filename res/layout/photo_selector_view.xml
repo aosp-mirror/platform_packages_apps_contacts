@@ -15,18 +15,24 @@
 -->
 
 <!--
-  This is a header entry in the contact details list for when the contact does not have social
-  updates, which means that the contact's photo will scroll with the list of details.
+  View for displaying photos that show a photo selector when clicked.
 -->
-<view
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
-    class="com.android.contacts.widget.ProportionalLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    ex:ratio="0.5"
-    ex:direction="widthToHeight">
+    android:layout_height="match_parent">
 
-    <include layout="@layout/photo_selector_view" />
+    <ImageView
+        android:id="@+id/photo"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-</view>
+    <View
+        android:id="@+id/photo_touch_intercept_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/selectableItemBackground"
+        android:visibility="gone" />
+
+</FrameLayout>

@@ -544,7 +544,13 @@
                 <data android:mimeType="image/*" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            />
+        </activity>
+
+        <!-- Internal photo selection activity -->
+        <activity android:name=".activities.PhotoSelectionActivity"
+            android:theme="@style/Theme.PhotoSelector"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="stateUnchanged">
         </activity>
 
         <!-- Interstitial activity that shows a phone disambig dialog -->
