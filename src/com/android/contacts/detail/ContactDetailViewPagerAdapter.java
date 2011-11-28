@@ -19,6 +19,7 @@ import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.view.ViewGroup;
 
 /**
  * Adapter for the {@link ViewPager} for the contact detail page for a contact in 2 cases:
@@ -88,11 +89,11 @@ public class ContactDetailViewPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public void startUpdate(View container) {
+    public void startUpdate(ViewGroup container) {
     }
 
     @Override
-    public Object instantiateItem(View container, int position) {
+    public Object instantiateItem(ViewGroup container, int position) {
         switch (position) {
             case INDEX_ABOUT_FRAGMENT:
                 mAboutFragmentView.setVisibility(View.VISIBLE);
@@ -105,12 +106,12 @@ public class ContactDetailViewPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public void destroyItem(View container, int position, Object object) {
+    public void destroyItem(ViewGroup container, int position, Object object) {
         ((View) object).setVisibility(View.GONE);
     }
 
     @Override
-    public void finishUpdate(View container) {
+    public void finishUpdate(ViewGroup container) {
     }
 
     @Override

@@ -90,6 +90,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListPopupWindow;
@@ -823,7 +824,7 @@ public class PeopleActivity extends ContactsActivity
         }
 
         @Override
-        public void startUpdate(View container) {
+        public void startUpdate(ViewGroup container) {
         }
 
         private Fragment getFragment(int position) {
@@ -844,7 +845,7 @@ public class PeopleActivity extends ContactsActivity
         }
 
         @Override
-        public Object instantiateItem(View container, int position) {
+        public Object instantiateItem(ViewGroup container, int position) {
             if (mCurTransaction == null) {
                 mCurTransaction = mFragmentManager.beginTransaction();
             }
@@ -857,7 +858,7 @@ public class PeopleActivity extends ContactsActivity
         }
 
         @Override
-        public void destroyItem(View container, int position, Object object) {
+        public void destroyItem(ViewGroup container, int position, Object object) {
             if (mCurTransaction == null) {
                 mCurTransaction = mFragmentManager.beginTransaction();
             }
@@ -865,7 +866,7 @@ public class PeopleActivity extends ContactsActivity
         }
 
         @Override
-        public void finishUpdate(View container) {
+        public void finishUpdate(ViewGroup container) {
             if (mCurTransaction != null) {
                 mCurTransaction.commitAllowingStateLoss();
                 mCurTransaction = null;
@@ -879,7 +880,7 @@ public class PeopleActivity extends ContactsActivity
         }
 
         @Override
-        public void setPrimaryItem(View container, int position, Object object) {
+        public void setPrimaryItem(ViewGroup container, int position, Object object) {
             Fragment fragment = (Fragment) object;
             if (mCurrentPrimaryItem != fragment) {
                 if (mCurrentPrimaryItem != null) {
