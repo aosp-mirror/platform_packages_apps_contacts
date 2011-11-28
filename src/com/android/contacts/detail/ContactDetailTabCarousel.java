@@ -18,7 +18,9 @@ package com.android.contacts.detail;
 
 import com.android.contacts.ContactLoader;
 import com.android.contacts.R;
+import com.android.contacts.util.PhoneCapabilityTester;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.AttributeSet;
@@ -50,6 +52,8 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
     private ImageView mPhotoView;
     private TextView mStatusView;
     private ImageView mStatusPhotoView;
+    private boolean mHasPhoto;
+    private OnClickListener mPhotoClickListener;
 
     private Listener mListener;
 
@@ -153,7 +157,11 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
     private final OnClickListener mAboutTabTouchInterceptListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            mListener.onTabSelected(TAB_INDEX_ABOUT);
+            if (mCurrentTab == TAB_INDEX_ABOUT && mPhotoClickListener != null) {
+                mPhotoClickListener.onClick(v);
+            } else {
+                mListener.onTabSelected(TAB_INDEX_ABOUT);
+            }
         }
     };
 
@@ -256,9 +264,11 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
             case TAB_INDEX_ABOUT:
                 mAboutTab.showSelectedState();
                 mUpdatesTab.showDeselectedState();
+                mUpdatesTab.enableTouchInterceptor(mUpdatesTabTouchInterceptListener);
                 break;
             case TAB_INDEX_UPDATES:
                 mUpdatesTab.showSelectedState();
+                mUpdatesTab.disableTouchInterceptor();
                 mAboutTab.showDeselectedState();
                 break;
             default:
@@ -275,10 +285,12 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         if (contactData == null) {
             return;
         }
+        mHasPhoto = contactData.getPhotoUri() != null;
 
         // TODO: Move this into the {@link CarouselTab} class when the updates fragment code is more
         // finalized
-        ContactDetailDisplayUtils.setPhoto(mContext, contactData, mPhotoView);
+        mPhotoClickListener = ContactDetailDisplayUtils.setPhoto(mContext, contactData, mPhotoView,
+                !PhoneCapabilityTester.isUsingTwoPanes(mContext));
         ContactDetailDisplayUtils.setSocialSnippet(mContext, contactData, mStatusView,
                 mStatusPhotoView);
     }

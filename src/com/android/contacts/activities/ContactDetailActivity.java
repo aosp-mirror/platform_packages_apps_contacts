@@ -74,7 +74,7 @@ public class ContactDetailActivity extends ContactsActivity {
     private Handler mHandler = new Handler();
 
     @Override
-    public void onCreate(Bundle savedState) {
+    protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
         if (PhoneCapabilityTester.isUsingTwoPanes(this)) {
             // This activity must not be shown. We have to select the contact in the

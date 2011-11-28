@@ -40,8 +40,8 @@ import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.DateUtils;
-import com.android.contacts.util.StructuredPostalUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
+import com.android.contacts.util.StructuredPostalUtils;
 import com.android.contacts.widget.TransitionAnimationView;
 import com.android.internal.telephony.ITelephony;
 import com.google.common.annotations.VisibleForTesting;
@@ -147,7 +147,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     private Listener mListener;
 
     private ContactLoader.Result mContactData;
-    private ImageView mStaticPhotoView;
+    private ViewGroup mStaticPhotoContainer;
+    private View mPhotoTouchOverlay;
     private ListView mListView;
     private ViewAdapter mAdapter;
     private Uri mPrimaryPhoneUri = null;
@@ -162,7 +163,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
     private final QuickFix[] mPotentialQuickFixes = new QuickFix[] {
             new MakeLocalCopyQuickFix(),
-            new AddToMyContactsQuickFix() };
+            new AddToMyContactsQuickFix()
+    };
 
     /**
      * Device capability: Set during buildEntries and used in the long-press context menu
@@ -280,7 +282,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
         mInflater = inflater;
 
-        mStaticPhotoView = (ImageView) mView.findViewById(R.id.photo);
+        mStaticPhotoContainer = (ViewGroup) mView.findViewById(R.id.static_photo_container);
+        mPhotoTouchOverlay = mView.findViewById(R.id.photo_touch_intercept_overlay);
 
         mListView = (ListView) mView.findViewById(android.R.id.list);
         mListView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
@@ -442,16 +445,22 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         mContactHasSocialUpdates = !mContactData.getStreamItems().isEmpty();
 
         // Setup the photo if applicable
-        if (mStaticPhotoView != null) {
-            // The presence of a static photo view is not sufficient to determine whether or not
-            // we should show the photo. Check the mShowStaticPhoto flag which can be set by an
+        if (mStaticPhotoContainer != null) {
+            // The presence of a static photo container is not sufficient to determine whether or
+            // not we should show the photo. Check the mShowStaticPhoto flag which can be set by an
             // outside class depending on screen size, layout, and whether the contact has social
             // updates or not.
             if (mShowStaticPhoto) {
-                mStaticPhotoView.setVisibility(View.VISIBLE);
-                ContactDetailDisplayUtils.setPhoto(mContext, mContactData, mStaticPhotoView);
+                mStaticPhotoContainer.setVisibility(View.VISIBLE);
+                ImageView photoView = (ImageView) mStaticPhotoContainer.findViewById(R.id.photo);
+                OnClickListener listener = ContactDetailDisplayUtils.setPhoto(mContext,
+                        mContactData, photoView, !PhoneCapabilityTester.isUsingTwoPanes(mContext));
+                if (mPhotoTouchOverlay != null) {
+                    mPhotoTouchOverlay.setVisibility(View.VISIBLE);
+                    mPhotoTouchOverlay.setOnClickListener(listener);
+                }
             } else {
-                mStaticPhotoView.setVisibility(View.GONE);
+                mStaticPhotoContainer.setVisibility(View.GONE);
             }
         }
 
@@ -1371,10 +1380,11 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     /**
      * Cache of the children views for a view that displays a header view entry.
      */
-    private static class HeaderViewCache {
+    private static class HeaderViewCache implements ViewOverlay {
         public final TextView displayNameView;
         public final TextView companyView;
         public final ImageView photoView;
+        public final View photoOverlayView;
         public final CheckBox starredView;
         public final int layoutResourceId;
 
@@ -1382,8 +1392,29 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             displayNameView = (TextView) view.findViewById(R.id.name);
             companyView = (TextView) view.findViewById(R.id.company);
             photoView = (ImageView) view.findViewById(R.id.photo);
+            photoOverlayView = view.findViewById(R.id.photo_touch_intercept_overlay);
             starredView = (CheckBox) view.findViewById(R.id.star);
             layoutResourceId = layoutResourceInflated;
+        }
+
+        @Override
+        public void setAlphaLayerValue(float alpha) {
+            // Nothing to do.
+        }
+
+        @Override
+        public void enableTouchInterceptor(OnClickListener clickListener) {
+            if (photoOverlayView != null) {
+                photoOverlayView.setVisibility(View.VISIBLE);
+                photoOverlayView.setOnClickListener(clickListener);
+            }
+        }
+
+        @Override
+        public void disableTouchInterceptor() {
+            if (photoOverlayView != null) {
+                photoOverlayView.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -1498,7 +1529,10 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
             // Set the photo if it should be displayed
             if (viewCache.photoView != null) {
-                ContactDetailDisplayUtils.setPhoto(mContext, mContactData, viewCache.photoView);
+                OnClickListener listener = ContactDetailDisplayUtils.setPhoto(mContext,
+                        mContactData, viewCache.photoView,
+                        !PhoneCapabilityTester.isUsingTwoPanes(mContext));
+                viewCache.enableTouchInterceptor(listener);
             }
 
             // Set the starred state if it should be displayed

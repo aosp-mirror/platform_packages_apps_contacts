@@ -76,8 +76,6 @@ public class PhotoActionPopup {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final ChoiceListItem choice = choices.get(position);
-                listPopupWindow.dismiss();
-
                 switch (choice.getId()) {
                     case ChoiceListItem.ID_USE_AS_PRIMARY:
                         listener.onUseAsPrimaryChosen();
@@ -92,6 +90,8 @@ public class PhotoActionPopup {
                         listener.onPickFromGalleryChosen();
                         break;
                 }
+
+                listPopupWindow.dismiss();
             }
         };
 
