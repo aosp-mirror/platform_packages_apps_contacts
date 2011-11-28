@@ -304,7 +304,8 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         /**
          * Returns the contact ID.
          */
-        public long getId() {
+        @VisibleForTesting
+        /* package */ long getId() {
             return mId;
         }
 
