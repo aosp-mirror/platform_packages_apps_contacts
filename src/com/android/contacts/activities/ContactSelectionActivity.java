@@ -31,6 +31,7 @@ import com.android.contacts.list.OnPostalAddressPickerActionListener;
 import com.android.contacts.list.PhoneNumberPickerFragment;
 import com.android.contacts.list.PostalAddressPickerFragment;
 import com.android.contacts.widget.ContextMenuAdapter;
+import com.google.android.collect.Sets;
 
 import android.app.ActionBar;
 import android.app.ActionBar.LayoutParams;
@@ -107,7 +108,7 @@ public class ContactSelectionActivity extends ContactsActivity
         if (savedState != null) {
             mActionCode = savedState.getInt(KEY_ACTION_CODE);
         }
-        
+
         // Extract relevant information from the intent
         mRequest = mIntentResolver.resolveIntent(getIntent());
         if (!mRequest.isValid()) {
@@ -415,8 +416,14 @@ public class ContactSelectionActivity extends ContactsActivity
                         ConfirmAddDetailActivity.class);
                 intent.setData(contactLookupUri);
                 if (extras != null) {
+                    // First remove name key if present because the dialog does not support name
+                    // editing. This is fine because the user wants to add information to an
+                    // existing contact, who should already have a name and we wouldn't want to
+                    // override the name.
+                    extras.remove(Insert.NAME);
                     intent.putExtras(extras);
                 }
+
                 // Wait for the activity result because we want to keep the picker open (in case the
                 // user cancels adding the info to a contact and wants to pick someone else).
                 startActivityForResult(intent, SUBACTIVITY_ADD_TO_EXISTING_CONTACT);
@@ -440,13 +447,24 @@ public class ContactSelectionActivity extends ContactsActivity
          * Returns true if is a single email or single phone number provided in the {@link Intent}
          * extras bundle so that a pop-up confirmation dialog can be used to add the data to
          * a contact. Otherwise return false if there are other intent extras that require launching
-         * the full contact editor.
+         * the full contact editor. Ignore extras with the key {@link Insert.NAME} because names
+         * are a special case and we typically don't want to replace the name of an existing
+         * contact.
          */
         private boolean launchAddToContactDialog(Bundle extras) {
             if (extras == null) {
                 return false;
             }
-            Set<String> intentExtraKeys = extras.keySet();
+
+            // Copy extras because the set may be modified in the next step
+            Set<String> intentExtraKeys = Sets.newHashSet();
+            intentExtraKeys.addAll(extras.keySet());
+
+            // Ignore name key because this is an existing contact.
+            if (intentExtraKeys.contains(Insert.NAME)) {
+                intentExtraKeys.remove(Insert.NAME);
+            }
+
             int numIntentExtraKeys = intentExtraKeys.size();
             if (numIntentExtraKeys == 2) {
                 boolean hasPhone = intentExtraKeys.contains(Insert.PHONE) &&
