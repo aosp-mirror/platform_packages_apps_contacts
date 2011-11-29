@@ -273,11 +273,16 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         if (mShowOptionsMenu) {
-            menu.findItem(R.id.delete_all).setEnabled(mAdapter != null && !mAdapter.isEmpty());
-            menu.findItem(R.id.show_voicemails_only).setVisible(
-                    mVoicemailSourcesAvailable && !mShowingVoicemailOnly);
-            menu.findItem(R.id.show_all_calls).setVisible(
-                    mVoicemailSourcesAvailable && mShowingVoicemailOnly);
+            final MenuItem itemDeleteAll = menu.findItem(R.id.delete_all);
+            // Check if all the menu items are inflated correctly. As a shortcut, we assume all
+            // menu items are ready if the first item is non-null.
+            if (itemDeleteAll != null) {
+                itemDeleteAll.setEnabled(mAdapter != null && !mAdapter.isEmpty());
+                menu.findItem(R.id.show_voicemails_only).setVisible(
+                        mVoicemailSourcesAvailable && !mShowingVoicemailOnly);
+                menu.findItem(R.id.show_all_calls).setVisible(
+                        mVoicemailSourcesAvailable && mShowingVoicemailOnly);
+            }
         }
     }
 

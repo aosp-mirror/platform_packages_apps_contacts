@@ -583,6 +583,12 @@ public class DialpadFragment extends Fragment
         final MenuItem twoSecPauseMenuItem = menu.findItem(R.id.menu_2s_pause);
         final MenuItem waitMenuItem = menu.findItem(R.id.menu_add_wait);
 
+        // Check if all the menu items are inflated correctly. As a shortcut, we assume all menu
+        // items are ready if the first item is non-null.
+        if (callSettingsMenuItem == null) {
+            return;
+        }
+
         final Activity activity = getActivity();
         if (activity != null && ViewConfiguration.get(activity).hasPermanentMenuKey()) {
             // Call settings should be available via its parent Activity.
