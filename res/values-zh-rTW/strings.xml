@@ -41,7 +41,8 @@
     <string name="menu_search" msgid="9147752853603483719">"搜尋"</string>
     <string name="menu_newContact" msgid="1209922412763274638">"新增聯絡人"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"檢視聯絡人"</string>
-    <string name="menu_callNumber" msgid="5142851348489387516">"撥打電話給 <xliff:g id="NAME">%s</xliff:g>"</string>
+    <!-- no translation found for menu_callNumber (997146291983360266) -->
+    <skip />
     <string name="menu_addStar" msgid="2908478235715404876">"新增至我的最愛"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"從我的最愛中移除"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"編輯"</string>
@@ -62,7 +63,6 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"建議聯絡人"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"所有聯絡人"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"已合併聯絡人"</string>
-    <string name="deleteConfirmation_title" msgid="1418215926447642260">"確定要刪除聯絡人？"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"設定電話鈴聲"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"將所有來電轉到語音信箱"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"您無法刪除唯讀帳戶的聯絡人，但可在聯絡人清單中隱藏這些聯絡人。"</string>
@@ -186,7 +186,6 @@
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> 分 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"常用聯絡人"</string>
     <string name="favoritesFrequentCalled" msgid="6128306889600696124">"常用聯絡人"</string>
-    <string name="add_contact_dlg_title" msgid="2896685845822146494">"新增聯絡人"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"要將「<xliff:g id="EMAIL">%s</xliff:g>」加到通訊錄嗎？"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"1"</string>
     <string name="description_image_button_two" msgid="5882638439003731308">"2"</string>
@@ -209,11 +208,8 @@
     <string name="description_minus_button" msgid="387136707700230172">"負號"</string>
     <string name="description_plus_button" msgid="515164827856229880">"加號"</string>
     <string name="description_view_contact_detail" msgid="9133251213656414807">"查看聯絡人"</string>
-    <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"儲存裝置無法使用"</string>
-    <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"無 SD 卡"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"找不到任何儲存裝置。"</string>
     <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"找不到 SD 卡。"</string>
-    <string name="searching_vcard_title" msgid="4970508055399376813">"正在搜尋 VCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"從 SIM 卡匯入"</string>
     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"從儲存裝置匯入"</string>
     <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"匯出到儲存裝置"</string>
@@ -223,8 +219,6 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"匯入所有 vCard 檔案"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"正在搜尋儲存裝置中的 vCard 資料…"</string>
     <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"正在 SD 卡上搜尋 vCard 資料…"</string>
-    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"無法掃描儲存裝置"</string>
-    <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"無法掃描 SD 卡"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"無法掃描儲存裝置 (原因：<xliff:g id="FAIL_REASON">%s</xliff:g>)。"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"無法掃描 SD 卡 (原因：<xliff:g id="FAIL_REASON">%s</xliff:g>)。"</string>
     <string name="fail_reason_io_error" msgid="6748358842976073255">"I/O 錯誤"</string>
@@ -273,9 +267,7 @@
     <string name="composer_not_initialized" msgid="2321648986367005254">"vCard 編輯器並未正確啟動。"</string>
     <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"無法開啟「<xliff:g id="FILE_NAME">%s</xliff:g>」：<xliff:g id="EXACT_REASON">%s</xliff:g>。"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"第 <xliff:g id="CURRENT_NUMBER">%s</xliff:g> 位聯絡人，共 <xliff:g id="TOTAL_NUMBER">%s</xliff:g> 位"</string>
-    <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"取消匯入 vCard"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"確定要取消匯入 <xliff:g id="FILENAME">%s</xliff:g>？"</string>
-    <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"取消匯出 vCard"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"確定要取消匯出 <xliff:g id="FILENAME">%s</xliff:g>？"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"無法取消匯入/匯出 vCard"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"您的聯絡人姓名"</string>
@@ -441,9 +433,7 @@
     <item quantity="other" msgid="425683718017380845">"從 <xliff:g id="COUNT">%0$d</xliff:g> 個來源合併"</item>
   </plurals>
     <string name="local_invisible_directory" msgid="6046691709127661065">"其他"</string>
-    <string name="aggregation_suggestion_join_dialog_title" msgid="5276699501316246253">"合併聯絡人"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"要將目前聯絡人與所選聯絡人合併嗎？"</string>
-    <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"編輯所選聯絡人"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"要切換至編輯所選聯絡人嗎？系統會為您複製目前已輸入的資訊。"</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"複製到我的通訊錄"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"新增至我的聯絡人"</string>
@@ -478,7 +468,6 @@
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"從檔案匯入聯絡人"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"建立新群組"</string>
     <string name="create_group_item_label" msgid="5218022006186243310">"[建立新群組]"</string>
-    <string name="delete_group_dialog_title" msgid="7368429698398624427">"刪除群組"</string>
   <plurals name="num_groups_in_account">
     <item quantity="one" msgid="2944819210288517794">"1 個群組"</item>
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> 個群組"</item>
@@ -497,7 +486,6 @@
     <string name="set_default" msgid="4417505153468300351">"設為預設值"</string>
     <string name="clear_default" msgid="7193185801596678067">"清除預設值"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"文字已複製"</string>
-    <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"捨棄變更"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"確定要捨棄變更？"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"設定我的個人資料"</string>
