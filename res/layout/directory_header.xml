@@ -15,23 +15,21 @@
 -->
 
 <!-- Layout used for list section separators. -->
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/DirectoryHeader"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center_vertical"
     android:minHeight="@dimen/list_section_divider_min_height"
     android:background="@drawable/list_section_divider_holo_custom"
-    android:paddingTop="@dimen/contact_browser_list_top_margin"
+    android:layout_marginTop="@dimen/list_header_extra_top_padding"
     android:paddingLeft="?attr/list_item_padding_left"
     android:paddingRight="?attr/list_item_padding_right">
     <TextView
         android:id="@+id/label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
         android:layout_marginLeft="8dip"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/people_app_theme_color"
@@ -39,21 +37,9 @@
         android:textStyle="bold"
         android:textAllCaps="true" />
     <TextView
-        android:id="@+id/count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignBaseline="@id/label"
-        android:singleLine="true"
-        android:textSize="12sp"
-        android:textColor="@color/contact_count_text_color" />
-    <TextView
         android:id="@+id/display_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/label"
-        android:layout_toLeftOf="@id/count"
-        android:layout_alignBaseline="@id/label"
         android:layout_marginLeft="8dip"
         android:layout_marginRight="8dip"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -61,4 +47,14 @@
         android:singleLine="true"
         android:textStyle="bold"
         android:textAllCaps="true" />
-</RelativeLayout>
+    <TextView
+        android:id="@+id/count"
+        android:paddingTop="1dip"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:singleLine="true"
+        android:textSize="12sp"
+        android:textColor="@color/contact_count_text_color" />
+</LinearLayout>
