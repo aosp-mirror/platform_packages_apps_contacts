@@ -41,7 +41,8 @@
     <string name="menu_search" msgid="9147752853603483719">"検索"</string>
     <string name="menu_newContact" msgid="1209922412763274638">"連絡先を新規登録"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"連絡先詳細"</string>
-    <string name="menu_callNumber" msgid="5142851348489387516">"<xliff:g id="NAME">%s</xliff:g>に発信"</string>
+    <!-- no translation found for menu_callNumber (997146291983360266) -->
+    <skip />
     <string name="menu_addStar" msgid="2908478235715404876">"お気に入りに追加"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"お気に入りから削除"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"編集"</string>
@@ -62,7 +63,6 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"連絡先候補"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"すべての連絡先"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"連絡先を結合しました"</string>
-    <string name="deleteConfirmation_title" msgid="1418215926447642260">"連絡先を削除しますか？"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"着信音を設定"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"すべての通話をボイスメールへ"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"読み取り専用アカウントの連絡先は削除できません。ただし、連絡先リストで非表示にすることができます。"</string>
@@ -186,7 +186,6 @@
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g>分<xliff:g id="SECONDS">%s</xliff:g>秒"</string>
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"よく使う連絡先"</string>
     <string name="favoritesFrequentCalled" msgid="6128306889600696124">"よく使う連絡先"</string>
-    <string name="add_contact_dlg_title" msgid="2896685845822146494">"連絡先を追加"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"<xliff:g id="EMAIL">%s</xliff:g> を連絡先に追加しますか？"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"1"</string>
     <string name="description_image_button_two" msgid="5882638439003731308">"2"</string>
@@ -209,11 +208,8 @@
     <string name="description_minus_button" msgid="387136707700230172">"マイナス"</string>
     <string name="description_plus_button" msgid="515164827856229880">"プラス"</string>
     <string name="description_view_contact_detail" msgid="9133251213656414807">"連絡先を表示"</string>
-    <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"ストレージ使用不可"</string>
-    <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"SDカードがありません"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"ストレージはありませんでした。"</string>
     <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"SDカードが見つかりませんでした。"</string>
-    <string name="searching_vcard_title" msgid="4970508055399376813">"vCardを検索中"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"SIMカードからインポート"</string>
     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"ストレージからインポート"</string>
     <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"ストレージにエクスポート"</string>
@@ -223,8 +219,6 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"すべてのvCardファイルをインポート"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"ストレージ内でvCardデータを検索しています..."</string>
     <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"SDカードでvCardデータを検索しています..."</string>
-    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"ストレージをスキャンできませんでした"</string>
-    <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"SDカードをスキャンできませんでした"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"ストレージをスキャンできませんでした（理由: 「<xliff:g id="FAIL_REASON">%s</xliff:g>」）。"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"SDカードをスキャンできませんでした（理由: 「<xliff:g id="FAIL_REASON">%s</xliff:g>」）。"</string>
     <string name="fail_reason_io_error" msgid="6748358842976073255">"送受信エラー"</string>
@@ -273,9 +267,7 @@
     <string name="composer_not_initialized" msgid="2321648986367005254">"vCardコンポーザーが正しく起動しませんでした。"</string>
     <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"「<xliff:g id="FILE_NAME">%s</xliff:g>」を開けませんでした: <xliff:g id="EXACT_REASON">%s</xliff:g>。"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>件のファイル"</string>
-    <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"vCardインポートのキャンセル"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g>のインポートをキャンセルしますか？"</string>
-    <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"vCardエクスポートのキャンセル"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g>のエクスポートをキャンセルしますか？"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCardインポート/エクスポート取り消し不可"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"連絡先の名前"</string>
@@ -441,9 +433,7 @@
     <item quantity="other" msgid="425683718017380845">"<xliff:g id="COUNT">%0$d</xliff:g>件の連絡先が結合されました"</item>
   </plurals>
     <string name="local_invisible_directory" msgid="6046691709127661065">"その他"</string>
-    <string name="aggregation_suggestion_join_dialog_title" msgid="5276699501316246253">"連絡先の統合"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"現在の連絡先を選択した連絡先に統合しますか？"</string>
-    <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"選択した連絡先の編集"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"選択した連絡先の編集に切り替えますか？これまでに入力した情報はコピーされます。"</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Myコンタクトにコピー"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Myコンタクトに追加"</string>
@@ -478,7 +468,6 @@
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"ファイルから連絡先をインポート"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"新しいグループの作成"</string>
     <string name="create_group_item_label" msgid="5218022006186243310">"[新しいグループを作成]"</string>
-    <string name="delete_group_dialog_title" msgid="7368429698398624427">"グループの削除"</string>
   <plurals name="num_groups_in_account">
     <item quantity="one" msgid="2944819210288517794">"1グループ"</item>
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g>グループ"</item>
@@ -497,7 +486,6 @@
     <string name="set_default" msgid="4417505153468300351">"デフォルトに設定"</string>
     <string name="clear_default" msgid="7193185801596678067">"デフォルトを解除"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"テキストをコピーしました"</string>
-    <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"変更を破棄"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"変更を破棄しますか？"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"プロフィールを設定"</string>

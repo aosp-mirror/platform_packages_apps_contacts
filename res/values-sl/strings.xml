@@ -41,7 +41,8 @@
     <string name="menu_search" msgid="9147752853603483719">"Iskanje"</string>
     <string name="menu_newContact" msgid="1209922412763274638">"Nov stik"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Ogled stika"</string>
-    <string name="menu_callNumber" msgid="5142851348489387516">"Pokliči <xliff:g id="NAME">%s</xliff:g>"</string>
+    <!-- no translation found for menu_callNumber (997146291983360266) -->
+    <skip />
     <string name="menu_addStar" msgid="2908478235715404876">"Dodaj k priljubljenim"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Odstrani iz priljubljenih"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Uredi"</string>
@@ -62,7 +63,6 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Predlagani stiki"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Vsi stiki"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Stiki pridruženi"</string>
-    <string name="deleteConfirmation_title" msgid="1418215926447642260">"Želite izbris. stik?"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Nastavi zvonj."</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Vsi klici na odzivnik"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Iz računov samo za branje stikov ni mogoče izbrisati, lahko pa jih skrijete na seznamih stikov."</string>
@@ -186,7 +186,6 @@
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> min, <xliff:g id="SECONDS">%s</xliff:g> s"</string>
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"Pogosti stiki"</string>
     <string name="favoritesFrequentCalled" msgid="6128306889600696124">"Pogosto klicani"</string>
-    <string name="add_contact_dlg_title" msgid="2896685845822146494">"Dodaj stik"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Želite »<xliff:g id="EMAIL">%s</xliff:g>« dodati stikom?"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"ena"</string>
     <string name="description_image_button_two" msgid="5882638439003731308">"dva"</string>
@@ -209,11 +208,8 @@
     <string name="description_minus_button" msgid="387136707700230172">"minus"</string>
     <string name="description_plus_button" msgid="515164827856229880">"plus"</string>
     <string name="description_view_contact_detail" msgid="9133251213656414807">"Ogled stika"</string>
-    <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"Pomnilnik ni na voljo"</string>
-    <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Ni kartice SD"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"Shrambe ni bilo mogoče najti."</string>
     <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"Kartice SD ni mogoče najti"</string>
-    <string name="searching_vcard_title" msgid="4970508055399376813">"Iskanje vizitke vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Uvozi s kartice SIM"</string>
     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Uvoz iz pomnilnika"</string>
     <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"Izvoz v pomnilnik"</string>
@@ -223,8 +219,6 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Uvozi vse datoteke vCard"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"Iskanje podatkov vCard v pomnilniku ..."</string>
     <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"Iskanje podatkov vCard na kartici SD ..."</string>
-    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Pomnilnika ni bilo mogoče pregledati"</string>
-    <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Kartice SD ni bilo mogoče pregledati"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"Shrambe ni bilo mogoče pregledati. (Razlog: »<xliff:g id="FAIL_REASON">%s</xliff:g>«)"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"Kartice SD ni bilo mogoče pregledati. (Razlog: »<xliff:g id="FAIL_REASON">%s</xliff:g>«)"</string>
     <string name="fail_reason_io_error" msgid="6748358842976073255">"Napaka I/O"</string>
@@ -273,9 +267,7 @@
     <string name="composer_not_initialized" msgid="2321648986367005254">"Urejevalnik za vCard se ni pravilno zagnal."</string>
     <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"Datoteke »<xliff:g id="FILE_NAME">%s</xliff:g>« ni bilo mogoče odpreti: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> od <xliff:g id="TOTAL_NUMBER">%s</xliff:g> stikov"</string>
-    <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"Preklic uvoza kart. vCard"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Želite preklicati izvoz datoteke <xliff:g id="FILENAME">%s</xliff:g>?"</string>
-    <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Preklic izvoza kart. vCard"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Želite preklicati izvoz datoteke <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Uvoza/izvoza vCard ni mogoče preklicati"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Imena stikov"</string>
@@ -441,9 +433,7 @@
     <item quantity="other" msgid="425683718017380845">"spojeno iz <xliff:g id="COUNT">%0$d</xliff:g> virov"</item>
   </plurals>
     <string name="local_invisible_directory" msgid="6046691709127661065">"Drugo"</string>
-    <string name="aggregation_suggestion_join_dialog_title" msgid="5276699501316246253">"Združevanje stikov"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Želite združiti stik z izbranim stikom?"</string>
-    <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Uredi izbrane stike"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Želite urejati izbrani stik? Podatki, ki ste jih doslej vnesli, bodo kopirani."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopiraj v moje stike"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Dodaj v skupino »Moji stiki«"</string>
@@ -478,7 +468,6 @@
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Uvoz stikov iz datoteke"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Ustvarjanje nove skupine"</string>
     <string name="create_group_item_label" msgid="5218022006186243310">"[Ustvarjanje nove skupine]"</string>
-    <string name="delete_group_dialog_title" msgid="7368429698398624427">"Izbris skupine"</string>
   <plurals name="num_groups_in_account">
     <item quantity="one" msgid="2944819210288517794">"1 skupina"</item>
     <item quantity="other" msgid="1276758425904917367">"Št. skupin: <xliff:g id="COUNT">%0$d</xliff:g>"</item>
@@ -497,7 +486,6 @@
     <string name="set_default" msgid="4417505153468300351">"Nastavi za privzeto"</string>
     <string name="clear_default" msgid="7193185801596678067">"Počisti privzeto"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Besedilo kopirano"</string>
-    <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Zavrzi spremembe"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Ali želite zavreči spremembe?"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Nastavi moj profil"</string>
