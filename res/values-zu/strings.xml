@@ -41,7 +41,8 @@
     <string name="menu_search" msgid="9147752853603483719">"Sesha"</string>
     <string name="menu_newContact" msgid="1209922412763274638">"Othintana naye omusha"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Buka othintana naye"</string>
-    <string name="menu_callNumber" msgid="5142851348489387516">"Shayela <xliff:g id="NAME">%s</xliff:g>"</string>
+    <!-- no translation found for menu_callNumber (997146291983360266) -->
+    <skip />
     <string name="menu_addStar" msgid="2908478235715404876">"Engeza ezintandokazini"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Susa ezintandokazini"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Hlela"</string>
@@ -62,7 +63,6 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Othintana nabo abasikiselwayo"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Bonke othintana nabo"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Othintana nabo abahlanganisiwe"</string>
-    <string name="deleteConfirmation_title" msgid="1418215926447642260">"Susa othintana naye"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Hlela iringithoni"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Wonke amakholi aya kwimeyili yezwi"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Awukwazi ukususa othintana nabo ema-akhawuntini okufunda kuphela, kodwa ungabafihla ohlwini lwakho loxhumana nabo."</string>
@@ -101,7 +101,7 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Akunabanti kuleli qembu."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Ukungeza okunye, hlela iqembu."</string>
     <string name="savingContact" msgid="4075751076741924939">"Igcina othintana naye..."</string>
-    <string name="savingDisplayGroups" msgid="2133152192716475939">"Igcina okukhethwa kukho kokubonisa"</string>
+    <string name="savingDisplayGroups" msgid="2133152192716475939">"Ilondoloza izinketho zokubonisa"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Othintana naye ulondoloziwe"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Yehlulekile ukulondoloza izinguquko zoxhumana nabo."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Isigcawu silondiwe"</string>
@@ -119,7 +119,7 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"Abekho othintana nabo ababonakalayo"</string>
     <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"Azikho izintandokazi"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Abekho othintana nabo ku <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listAllContactsInAccount" msgid="7496143179265311758">"Oxhumana nabo kwi <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="listAllContactsInAccount" msgid="7496143179265311758">"Oxhumana nabo ku-<xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listSingleContact" msgid="6067813698903535563">"Oxhumana naye oyedwa"</string>
     <string name="listCustomView" msgid="6950713892532194050">"Ohlu loxhumana nabo olubukwa kokulungiselwe lokhu"</string>
   <plurals name="listFoundAllContacts">
@@ -159,11 +159,11 @@
     <string name="dialerDialpadHintText" msgid="5824490365898349041">"Dayela ukwengeza ikholi"</string>
     <string name="simContacts_emptyLoading" msgid="6700035985448642408">"Ilayisha kusuka ekhadini le-SIM..."</string>
     <string name="simContacts_title" msgid="27341688347689769">"Othintana nabo bekhadi le-SIM"</string>
-    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Awunabo othintana nabo ongababonisa. (Uma usanda kufaka i-akhawunti, kungase kuthathe imizuzu embalwa ukuvumelanisa othintana nabo.)"</string>
+    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"Awunabo othintana nabo ongababonisa. (Uma usanda kufaka i-akhawunti, kungase kuthathe amaminithi  ambalwa ukuvumelanisa othintana nabo.)"</string>
     <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">"Awunabo othintana nabo ongababonisa."</string>
     <string name="noContactsHelpText" product="tablet" msgid="6226271923423236696">"Awunabo oxhumana nabo ongabaveza."\n\n"Ukwengeza ongaxhumana nabo, thinta "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>", bese uthinta:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Ama-akhawunti"</b></font>" ukwengeza noma usethe ama-akhawunti ngongaxhumana nabo ongabavumelanisa ocingweni"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Oxhuana nabo basha"</b></font>" ukwenz oxhumna naye umsusa ekuqaleni"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Landa/thumela"</b></font>" ukulanda oxhumana nabo kwi-SIM noma ikhadi lkho le-SD card"\n</li></string>
     <string name="noContactsHelpText" product="default" msgid="4405064135698982080">"Awunabo oxhumana nabo ongabaveza."\n\n"Ukwengeza ongaxhumana nabo, thinta "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>", bese uthinta:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Ama-akhawunti"</b></font>" ukwengeza noma usethe ama-akhawunti ngongaxhumana nabo ongabavumelanisa ocingweni"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Oxhuana nabo basha"</b></font>" ukwenz oxhumna naye umsusa ekuqaleni"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Landa/thumela"</b></font>" ukulanda oxhumana nabo kwi-SIM noma ikhadi lkho le-SD card"\n</li></string>
-    <string name="noContactsHelpTextWithSync" product="tablet" msgid="6773195806404659174">"Awunabo othintana nabo ongababonisa. (Uma usanda kufaka i-akhawunti, kungase kuthathe imizuzu embalwa ukuvumelanisa othintana nabo.)"\n\n"Ukufaka othintana nabo, cindezela "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>" bese uthinta:ama-"\n\n<li><font fgcolor="#ffffffff"><b>"Akhawunti"</b></font>" ukufaka noma ukumisa i-akhawunti nothintana nabo ungavumelanisa efonini"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Bonisa okukhethwa kukho"</b></font>\n"ukushintsha ukuthi yibaphi othintana nabo ababonakalayo"</li>\n<li><font fgcolor="#ffffffff"><b></b>"Othintana naye omusha"</font>\n" ukwenza othintana naye omusha kusuka ekuqaleni "</li>\n<li><font fgcolor="#ffffffff"><b>"Ngenisa/Thekelisa"</b></font>" ukungenisa othintana nabo kwi-SIM yakho noma ikhadi le-SD"\n</li></string>
+    <string name="noContactsHelpTextWithSync" product="tablet" msgid="6773195806404659174">"Awunabo othintana nabo ongababonisa. (Uma usanda kufaka i-akhawunti, kungase kuthathe imizuzu embalwa ukuvumelanisa othintana nabo.)"\n\n"Ukufaka othintana nabo, cindezela "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>" bese uthinta:ama-"\n\n<li><font fgcolor="#ffffffff"><b>"Akhawunti"</b></font>" ukufaka noma ukumisa i-akhawunti nothintana nabo ungavumelanisa efonini"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Izinketho zokubonisa"</b></font>\n"ukushintsha ukuthi yibaphi othintana nabo ababonakalayo"</li>\n<li><font fgcolor="#ffffffff"><b></b>"Othintana naye omusha"</font>\n" ukwenza othintana naye omusha kusuka ekuqaleni "</li>\n<li><font fgcolor="#ffffffff"><b>"Ngenisa/Thekelisa"</b></font>" ukungenisa othintana nabo kwi-SIM yakho noma ikhadi le-SD"\n</li></string>
     <string name="noContactsHelpTextWithSync" product="default" msgid="7016825676090327312">"Awunabo othintana nabo ongababonisa. (Uma usanda kufaka i-akhawunti, kungase kuthathe imizuzu embalwa ukuvumelanisa othintana nabo.)"\n\n"Ukufaka othintana nabo, cindezela "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>" bese uthinta:ama-"\n\n<li><font fgcolor="#ffffffff"><b>"Akhawunti"</b></font>" ukufaka noma ukumisa i-akhawunti nothintana nabo ungavumelanisa efonini"\n</li>\n<li><font fgcolor="#ffffffff"><b>"Bonisa okukhethwa kukho"</b></font>\n"ukushintsha ukuthi yibaphi othintana nabo ababonakalayo"</li>\n<li><font fgcolor="#ffffffff"><b></b>"Othintana naye omusha"</font>\n" ukwenza othintana naye omusha kusuka ekuqaleni "</li>\n<li><font fgcolor="#ffffffff"><b>"Ngenisa/Thekelisa"</b></font>"ukungenisa othintana nabo kwi-SIM yakho noma ikhadi le-SD"\n</li></string>
     <string name="noContactsNoSimHelpText" product="tablet" msgid="7823757505923033456">"Awunabo oxhumana nabo ongabaveza."\n\n"Ukwengeza ongaxhumana nabo, thinta "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>", bese uthinta:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Ama-akhawunti"</b></font>" ukwengeza noma usethe ama-akhawunti ngongaxhumana nabo ongabavumelanisa ocingweni"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Oxhuana nabo basha"</b></font>" ukwenz oxhumna naye umsusa ekuqaleni"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Landa/thumela"</b></font>" ukulanda oxhumana nabo kwi-SIM noma ikhadi lkho le-SD card"\n</li></string>
     <string name="noContactsNoSimHelpText" product="default" msgid="6224952277619986841">"Awunabo oxhumana nabo ongabaveza."\n\n"Ukwengeza ongaxhumana nabo, thinta "<font fgcolor="#ffffffff"><b>"Menyu"</b></font>", bese uthinta:"\n" "\n<li><font fgcolor="#ffffffff"><b>"Ama-akhawunti"</b></font>" ukwengeza noma usethe ama-akhawunti ngongaxhumana nabo ongabavumelanisa ocingweni"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Oxhuana nabo basha"</b></font>" ukwenz oxhumna naye umsusa ekuqaleni"\n</li>" "\n<li><font fgcolor="#ffffffff"><b>"Landa/thumela"</b></font>" ukulanda oxhumana nabo kwi-SIM noma ikhadi lkho le-SD card"\n</li></string>
@@ -186,7 +186,6 @@
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> amaminithi <xliff:g id="SECONDS">%s</xliff:g> amasekhondi"</string>
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"Abathintwa njalo"</string>
     <string name="favoritesFrequentCalled" msgid="6128306889600696124">"Abashayelwa njalo"</string>
-    <string name="add_contact_dlg_title" msgid="2896685845822146494">"Faka othintana naye"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Faka  \"<xliff:g id="EMAIL">%s</xliff:g>\"  kothintana nabo?"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"kunye"</string>
     <string name="description_image_button_two" msgid="5882638439003731308">"okubili"</string>
@@ -209,11 +208,8 @@
     <string name="description_minus_button" msgid="387136707700230172">"susa"</string>
     <string name="description_plus_button" msgid="515164827856229880">"kuhlanganise"</string>
     <string name="description_view_contact_detail" msgid="9133251213656414807">"Buka othintana naye"</string>
-    <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"Isitoreji asitholakali"</string>
-    <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Alikho ikhadi le-SD"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"Ayikho indawo yokulondoloza etholakele."</string>
     <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"Alikho ikhadi le-SD elitholakele."</string>
-    <string name="searching_vcard_title" msgid="4970508055399376813">"Iseshela i-vCArd"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Ngenisa kusuka kwikhadi le-SIM"</string>
     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Ngenisa kusuka esigcineni"</string>
     <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"Thekelisa kusigcini"</string>
@@ -223,8 +219,6 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Ngenisa wonke amafayela e-vCard"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"Isesha idatha ye-vCard kusigcini"</string>
     <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"Iseshela idatha ye-vCard ekhadini le-SD"</string>
-    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Yehlulekile ukufinyelela kwindawo yokugcina i-USB"</string>
-    <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Yehlulekile ukuthwebula i-SD card"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"Isilondolozi asiskeneknga. (Isizathu: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"Ikhadi le-SD aliskenekanga. (Isizathu: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="6748358842976073255">"Iphutha le-I/O"</string>
@@ -273,9 +267,7 @@
     <string name="composer_not_initialized" msgid="2321648986367005254">"Umqambi we-Vcard akazange aqale ngendlela efanele."</string>
     <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"Ayikwazi ukuvula \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> kothintana nabo abangu-<xliff:g id="TOTAL_NUMBER">%s</xliff:g>"</string>
-    <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"Ikhansela ukungenisa i-vCard"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Misa ukulndwa kwe <xliff:g id="FILENAME">%s</xliff:g>?"</string>
-    <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Ikhansela ukuthekelisa i-vCard"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Misa ukulandwa kwe <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Yehlulekile ukukhansela ukungenisa/thekelisa i-vCard"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Amagama othintana nabo"</string>
@@ -441,9 +433,7 @@
     <item quantity="other" msgid="425683718017380845">"ihlanganiswe kusuka emithombeni engu-<xliff:g id="COUNT">%0$d</xliff:g>"</item>
   </plurals>
     <string name="local_invisible_directory" msgid="6046691709127661065">"Okunye"</string>
-    <string name="aggregation_suggestion_join_dialog_title" msgid="5276699501316246253">"Joyina othintana nabo"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Joyina othintana naye wamanje nothintana naye okhethiwe?"</string>
-    <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Hlela ama-akhawunti akhethiwe"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Shintshela ekuhleleni othintana naye okhethiwe? Ukwaziswa okufakile kuze kube manje kuzokopishwa."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopisha kwengithintana nabo"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Faka Kothintana Nabo"</string>
@@ -462,7 +452,7 @@
     <string name="activity_title_settings" msgid="5464130076132770781">"Izilungiselelo"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Othintana nabo abazoboniswa"</string>
     <string name="menu_settings" msgid="377929915873428211">"Izilungiselelo"</string>
-    <string name="preference_displayOptions" msgid="1341720270148252393">"Bonisa okukhethwa kukho"</string>
+    <string name="preference_displayOptions" msgid="1341720270148252393">"Izinketho zokubonisa"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="hint_findContacts" msgid="1808681193458772072">"Thola othintana nabo"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Inombolo yocingo"</string>
@@ -478,7 +468,6 @@
     <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Ngenisa othintana nabo kwifayela"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Dala iqembu elisha"</string>
     <string name="create_group_item_label" msgid="5218022006186243310">"[Yenza iqembu elisha]"</string>
-    <string name="delete_group_dialog_title" msgid="7368429698398624427">"Susa iqembu"</string>
   <plurals name="num_groups_in_account">
     <item quantity="one" msgid="2944819210288517794">"1 isigcawu"</item>
     <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> Amaqembu"</item>
@@ -497,7 +486,6 @@
     <string name="set_default" msgid="4417505153468300351">"Hlela okuzenzakalelayo"</string>
     <string name="clear_default" msgid="7193185801596678067">"Sula okuzenzakalelayo"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Umbhalo okopishiwe"</string>
-    <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Lahla izinguquko"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Lahla izinguquko ozenzile?"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Misa iphrofayli yami"</string>
