@@ -48,7 +48,7 @@
     <string name="menu_deleteContact" msgid="6788644058868189393">"Löschen"</string>
     <string name="menu_call" msgid="3992595586042260618">"Kontakt anrufen"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"SMS an Kontakt"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"Aufteilen"</string>
+    <string name="menu_splitAggregate" msgid="8368636463748691868">"Trennen"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Bearbeiten"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Löschen"</string>
     <string name="menu_new_contact_action_bar" msgid="8887818026717394343">"Neu"</string>
@@ -127,7 +127,7 @@
     <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> gefunden"</item>
   </plurals>
     <string name="foundTooManyContacts" msgid="5163335650920020220">"Mehr als <xliff:g id="COUNT">%d</xliff:g> gefunden"</string>
-    <string name="listFoundAllContactsZero" msgid="7132202364587656501">"Keine gefunden"</string>
+    <string name="listFoundAllContactsZero" msgid="7132202364587656501">"Keine Kontakte gefunden"</string>
   <plurals name="searchFoundContacts">
     <item quantity="one" msgid="4826918429708286628">"1 gefunden"</item>
     <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> gefunden"</item>
@@ -218,9 +218,9 @@
     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Aus Speicher importieren"</string>
     <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"In Speicher exportieren"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Sichtbare Kontakte teilen"</string>
-    <string name="import_one_vcard_string" msgid="9059163467020328433">"Eine VCard-Datei importieren"</string>
-    <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Mehrere VCard-Dateien importieren"</string>
-    <string name="import_all_vcard_string" msgid="5518136113853448474">"Alle VCard-Dateien importieren"</string>
+    <string name="import_one_vcard_string" msgid="9059163467020328433">"Eine vCard-Datei importieren"</string>
+    <string name="import_multiple_vcard_string" msgid="3810226492811062392">"Mehrere vCard-Dateien importieren"</string>
+    <string name="import_all_vcard_string" msgid="5518136113853448474">"Alle vCard-Dateien importieren"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"Suche nach vCard-Daten im Speicher..."</string>
     <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"Suche nach vCard-Daten auf der SD-Karte..."</string>
     <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Scannen des Speichers nicht möglich"</string>
@@ -289,7 +289,7 @@
     <string name="missing_name" msgid="8745511583852904385">"(Kein Name)"</string>
     <string name="menu_accounts" msgid="8499114602017077970">"Konten"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakte zum Anzeigen"</string>
-    <string name="menu_import_export" msgid="26217871113229507">"Import/Export"</string>
+    <string name="menu_import_export" msgid="26217871113229507">"Importieren/Exportieren"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"Import/Export von Kontakten"</string>
     <string name="menu_share" msgid="943789700636542260">"Teilen"</string>
     <string name="menu_all_contacts" msgid="5101735431586050711">"Alle Kontakte"</string>

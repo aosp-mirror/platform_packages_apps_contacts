@@ -64,7 +64,7 @@
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Danh bạ đã được kết hợp"</string>
     <string name="deleteConfirmation_title" msgid="1418215926447642260">"Xóa địa chỉ liên hệ?"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Đặt nhạc chuông"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Tất cả c.gọi tới th.thoại"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Các cuộc gọi tới thư thoại"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Bạn không thể xóa địa chỉ liên hệ từ tài khoản chỉ đọc, nhưng bạn có thể ẩn chúng trong danh sách địa chỉ liên hệ của mình."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Liên hệ này chứa thông tin từ nhiều tài khoản. Thông tin từ các tài khoản ở chế độ chỉ đọc sẽ bị ẩn trong danh sách liên hệ của bạn, chứ không bị xóa."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Xóa liên hệ này sẽ xóa thông tin khỏi nhiều tài khoản."</string>

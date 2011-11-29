@@ -119,7 +119,7 @@
     <string name="listTotalAllContactsZeroCustom" msgid="5004974705699445044">"Abekho othintana nabo ababonakalayo"</string>
     <string name="listTotalAllContactsZeroStarred" msgid="3173820905501592808">"Azikho izintandokazi"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="5448979458248027615">"Abekho othintana nabo ku <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listAllContactsInAccount" msgid="7496143179265311758">"Oxhumana nabo kwi <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="listAllContactsInAccount" msgid="7496143179265311758">"Oxhumana nabo ku-<xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listSingleContact" msgid="6067813698903535563">"Oxhumana naye oyedwa"</string>
     <string name="listCustomView" msgid="6950713892532194050">"Ohlu loxhumana nabo olubukwa kokulungiselwe lokhu"</string>
   <plurals name="listFoundAllContacts">
