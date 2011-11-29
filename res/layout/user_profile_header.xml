@@ -21,7 +21,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?attr/list_item_header_height"
-    android:paddingTop="@dimen/contact_browser_list_top_margin"
+    android:paddingTop="@dimen/list_header_extra_top_padding"
     android:paddingLeft="?attr/list_item_padding_left"
     android:paddingRight="?attr/list_item_padding_right" >
 
