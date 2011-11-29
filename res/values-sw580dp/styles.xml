@@ -115,7 +115,7 @@
 
     <style name="DirectoryHeader" parent="PeopleTheme">
         <item name="android:paddingTop">0dip</item>
-        <item name="android:paddingBottom">0dip</item>
+
         <item name="android:background">@android:color/transparent</item>
     </style>
 
