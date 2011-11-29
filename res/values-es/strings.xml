@@ -215,7 +215,7 @@
     <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"No se ha detectado ninguna tarjeta SD."</string>
     <string name="searching_vcard_title" msgid="4970508055399376813">"Buscando vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importar contactos desde la tarjeta SIM"</string>
-    <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Importar de almacenamiento"</string>
+    <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Importar de USB"</string>
     <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"Exportar a almacenamiento"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Compartir contactos visibles"</string>
     <string name="import_one_vcard_string" msgid="9059163467020328433">"Importar un archivo de vCard"</string>
