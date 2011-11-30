@@ -121,6 +121,7 @@
         </service>
 
         <service android:name=".QueryService" />
+        <service android:name=".PhoneNumberTestService" />
     </application>
 
     <instrumentation android:name="android.test.InstrumentationTestRunner"
