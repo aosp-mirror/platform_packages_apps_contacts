@@ -55,14 +55,18 @@ public class ImportExportDialogFragment extends DialogFragment
     public static final String TAG = "ImportExportDialogFragment";
 
     private static final String KEY_RES_ID = "resourceId";
+    private static final String ARG_CONTACTS_ARE_AVAILABLE = "CONTACTS_ARE_AVAILABLE";
 
     private final String[] LOOKUP_PROJECTION = new String[] {
             Contacts.LOOKUP_KEY
     };
 
     /** Preferred way to show this dialog */
-    public static void show(FragmentManager fragmentManager) {
+    public static void show(FragmentManager fragmentManager, boolean contactsAreAvailable) {
         final ImportExportDialogFragment fragment = new ImportExportDialogFragment();
+        Bundle args = new Bundle();
+        args.putBoolean(ARG_CONTACTS_ARE_AVAILABLE, contactsAreAvailable);
+        fragment.setArguments(args);
         fragment.show(fragmentManager, ImportExportDialogFragment.TAG);
     }
 
@@ -72,6 +76,7 @@ public class ImportExportDialogFragment extends DialogFragment
         final Resources res = getActivity().getResources();
         final LayoutInflater dialogInflater = (LayoutInflater)getActivity()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final boolean contactsAreAvailable = getArguments().getBoolean(ARG_CONTACTS_ARE_AVAILABLE);
 
         // Adapter that shows a list of string resources
         final ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(getActivity(),
@@ -95,10 +100,14 @@ public class ImportExportDialogFragment extends DialogFragment
             adapter.add(R.string.import_from_sdcard);
         }
         if (res.getBoolean(R.bool.config_allow_export_to_sdcard)) {
-            adapter.add(R.string.export_to_sdcard);
+            if (contactsAreAvailable) {
+                adapter.add(R.string.export_to_sdcard);
+            }
         }
         if (res.getBoolean(R.bool.config_allow_share_visible_contacts)) {
-            adapter.add(R.string.share_visible_contacts);
+            if (contactsAreAvailable) {
+                adapter.add(R.string.share_visible_contacts);
+            }
         }
 
         final DialogInterface.OnClickListener clickListener =
@@ -136,7 +145,9 @@ public class ImportExportDialogFragment extends DialogFragment
             }
         };
         return new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.dialog_import_export)
+                .setTitle(contactsAreAvailable
+                        ? R.string.dialog_import_export
+                        : R.string.dialog_import)
                 .setSingleChoiceItems(adapter, -1, clickListener)
                 .create();
     }
