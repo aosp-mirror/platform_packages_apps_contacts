@@ -1002,6 +1002,9 @@
     <!-- Dialog title when selecting the bulk operation to perform from a list. [CHAR LIMIT=36] -->
     <string name="dialog_import_export">Import/export contacts</string>
 
+    <!-- Dialog title when importing contacts from an external source. [CHAR LIMIT=36] -->
+    <string name="dialog_import">Import contacts</string>
+
     <!-- The menu item to share the currently viewed contact [CHAR LIMIT=30] -->
     <string name="menu_share">Share</string>
 
@@ -1478,7 +1481,7 @@
 
     <!-- Button shown on the main contacts screen when there are no contacts on the device.
     Initiates a contact import dialog [CHAR LIMIT=128] -->
-    <string name="contacts_unavailable_import_contacts">Import contacts from a file</string>
+    <string name="contacts_unavailable_import_contacts">Import contacts</string>
 
     <!-- Title of the dialog that allows creation of a contact group [CHAR LIMIT=128] -->
     <string name="create_group_dialog_title">Create new group</string>
