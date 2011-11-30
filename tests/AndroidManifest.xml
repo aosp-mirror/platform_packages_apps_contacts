@@ -119,6 +119,8 @@
                 android:name="android.provider.CONTACTS_STRUCTURE"
                 android:resource="@xml/test_basic_contacts" />
         </service>
+
+        <service android:name=".QueryService" />
     </application>
 
     <instrumentation android:name="android.test.InstrumentationTestRunner"
