@@ -560,7 +560,7 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Vous pouvez synchroniser votre nouveau contact avec l\'un des comptes suivants. Lequel souhaitez-vous utiliser ?"</string>
     <string name="keep_local" msgid="1258761699192993322">"Enregistrer localement"</string>
     <string name="add_account" msgid="8201790677994503186">"Ajouter un compte"</string>
-    <string name="add_new_account" msgid="5748627740680940264">"Ajouter un nouveau compte"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Ajouter un compte"</string>
     <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"Appel non effectué"</string>
     <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"Messagerie vocale indisponible"</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Pour configurer la messagerie vocale, accédez à Menu &gt; Paramètres."</string>
