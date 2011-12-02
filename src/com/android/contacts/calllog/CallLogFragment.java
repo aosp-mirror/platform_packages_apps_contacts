@@ -19,7 +19,6 @@ package com.android.contacts.calllog;
 import com.android.common.io.MoreCloseables;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
-import com.android.contacts.activities.DialtactsActivity.ViewPagerVisibilityListener;
 import com.android.contacts.util.EmptyLoader;
 import com.android.contacts.voicemail.VoicemailStatusHelper;
 import com.android.contacts.voicemail.VoicemailStatusHelper.StatusMessage;
@@ -56,8 +55,8 @@ import java.util.List;
 /**
  * Displays a list of call log entries.
  */
-public class CallLogFragment extends ListFragment implements ViewPagerVisibilityListener,
-        CallLogQueryHandler.Listener, CallLogAdapter.CallFetcher {
+public class CallLogFragment extends ListFragment
+        implements CallLogQueryHandler.Listener, CallLogAdapter.CallFetcher {
     private static final String TAG = "CallLogFragment";
 
     /**
@@ -69,7 +68,6 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     private CallLogQueryHandler mCallLogQueryHandler;
     private boolean mScrollToTop;
 
-    private boolean mShowOptionsMenu;
     /** Whether there is at least one voicemail source installed. */
     private boolean mVoicemailSourcesAvailable = false;
     /** Whether we are currently filtering over voicemail. */
@@ -265,24 +263,20 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        if (mShowOptionsMenu) {
-            inflater.inflate(R.menu.call_log_options, menu);
-        }
+        inflater.inflate(R.menu.call_log_options, menu);
     }
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        if (mShowOptionsMenu) {
-            final MenuItem itemDeleteAll = menu.findItem(R.id.delete_all);
-            // Check if all the menu items are inflated correctly. As a shortcut, we assume all
-            // menu items are ready if the first item is non-null.
-            if (itemDeleteAll != null) {
-                itemDeleteAll.setEnabled(mAdapter != null && !mAdapter.isEmpty());
-                menu.findItem(R.id.show_voicemails_only).setVisible(
-                        mVoicemailSourcesAvailable && !mShowingVoicemailOnly);
-                menu.findItem(R.id.show_all_calls).setVisible(
-                        mVoicemailSourcesAvailable && mShowingVoicemailOnly);
-            }
+        final MenuItem itemDeleteAll = menu.findItem(R.id.delete_all);
+        // Check if all the menu items are inflated correctly. As a shortcut, we assume all
+        // menu items are ready if the first item is non-null.
+        if (itemDeleteAll != null) {
+            itemDeleteAll.setEnabled(mAdapter != null && !mAdapter.isEmpty());
+            menu.findItem(R.id.show_voicemails_only).setVisible(
+                    mVoicemailSourcesAvailable && !mShowingVoicemailOnly);
+            menu.findItem(R.id.show_all_calls).setVisible(
+                    mVoicemailSourcesAvailable && mShowingVoicemailOnly);
         }
     }
 
@@ -357,16 +351,13 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     }
 
     @Override
-    public void onVisibilityChanged(boolean visible) {
-        if (mShowOptionsMenu != visible) {
-            mShowOptionsMenu = visible;
-        }
-
-        if (visible && isResumed()) {
+    public void setMenuVisibility(boolean menuVisible) {
+        super.setMenuVisibility(menuVisible);
+        if (menuVisible && isResumed()) {
             refreshData();
         }
 
-        if (!visible) {
+        if (!menuVisible) {
             updateOnExit();
         }
     }
@@ -410,7 +401,8 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
     private void updateOnTransition(boolean onEntry) {
         // We don't want to update any call data when keyguard is on because the user has likely not
         // seen the new calls yet.
-        if (!mKeyguardManager.inKeyguardRestrictedInputMode()) {
+        // This might be called before onCreate() and thus we need to check null explicitly.
+        if (mKeyguardManager != null && !mKeyguardManager.inKeyguardRestrictedInputMode()) {
             // On either of the transitions we reset the new flag and update the notifications.
             // While exiting we additionally consume all missed calls (by marking them as read).
             // This will ensure that they no more appear in the "new" section when we return back.

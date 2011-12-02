@@ -20,7 +20,6 @@ import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.SpecialCharSequenceMgr;
 import com.android.contacts.activities.DialtactsActivity;
-import com.android.contacts.activities.DialtactsActivity.ViewPagerVisibilityListener;
 import com.android.contacts.util.PhoneNumberFormatter;
 import com.android.internal.telephony.ITelephony;
 import com.android.phone.CallLogAsync;
@@ -83,8 +82,7 @@ public class DialpadFragment extends Fragment
         implements View.OnClickListener,
         View.OnLongClickListener, View.OnKeyListener,
         AdapterView.OnItemClickListener, TextWatcher,
-        PopupMenu.OnMenuItemClickListener,
-        ViewPagerVisibilityListener {
+        PopupMenu.OnMenuItemClickListener {
     private static final String TAG = DialpadFragment.class.getSimpleName();
 
     private static final String EMPTY_NUMBER = "";
@@ -126,8 +124,6 @@ public class DialpadFragment extends Fragment
      * Regular expression prohibiting manual phone call. Can be empty, which means "no rule".
      */
     private String mProhibitedPhoneNumberRegexp;
-
-    private boolean mShowOptionsMenu;
 
 
     // Last number dialed, retrieved asynchronously from the call DB
@@ -562,7 +558,7 @@ public class DialpadFragment extends Fragment
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        if (mShowOptionsMenu && ViewConfiguration.get(getActivity()).hasPermanentMenuKey() &&
+        if (ViewConfiguration.get(getActivity()).hasPermanentMenuKey() &&
                 isLayoutReady() && mDialpadChooser != null) {
             inflater.inflate(R.menu.dialpad_options, menu);
         }
@@ -571,7 +567,7 @@ public class DialpadFragment extends Fragment
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         // Hardware menu key should be available and Views should already be ready.
-        if (mShowOptionsMenu && ViewConfiguration.get(getActivity()).hasPermanentMenuKey() &&
+        if (ViewConfiguration.get(getActivity()).hasPermanentMenuKey() &&
                 isLayoutReady() && mDialpadChooser != null) {
              setupMenuItems(menu);
         }
@@ -1443,10 +1439,5 @@ public class DialpadFragment extends Fragment
 
     public void setListener(Listener listener) {
         mListener = listener;
-    }
-
-    @Override
-    public void onVisibilityChanged(boolean visible) {
-        mShowOptionsMenu = visible;
     }
 }
