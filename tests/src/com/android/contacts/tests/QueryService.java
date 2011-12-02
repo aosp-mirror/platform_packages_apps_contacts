@@ -20,6 +20,7 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.Log;
 
 /**
@@ -28,18 +29,19 @@ import android.util.Log;
  *
    Usage:
      adb shell am startservice -d URI \
-       [-e s OPTIONAL SELECTION] [-e s OPTIONAL ORDER BY]  \
+       [-e p OPTIONAL PROJECTION] [-e s OPTIONAL SELECTION] [-e s OPTIONAL ORDER BY]  \
        com.android.contacts.tests/.QueryService
 
    Example:
 
    adb shell am startservice -d content://com.android.contacts/directories \
-     -e s 'accountName is null' -e o '_id'  \
+     -e p accountName,accountType -e s 'accountName NOT NULL' -e o '_id'  \
      com.android.contacts.tests/.QueryService
  */
 public class QueryService extends IntentService {
     private static final String TAG = "contactsquery";
 
+    private static final String EXTRA_PROJECTION = "p";
     private static final String EXTRA_SELECTION = "s";
     private static final String EXTRA_ORDER = "o";
     private static final String NULL_STRING = "*null*";
@@ -52,39 +54,47 @@ public class QueryService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         final Uri uri = intent.getData();
+        // Unfortunately "am" doesn't support string arrays...
+        final String projection = intent.getStringExtra(EXTRA_PROJECTION);
         final String selection = intent.getStringExtra(EXTRA_SELECTION);
         final String order = intent.getStringExtra(EXTRA_ORDER);
 
         Log.i(TAG, "URI: " + uri);
+        Log.i(TAG, "Projection: " + projection);
         Log.i(TAG, "Selection: " + selection);
 
-        Cursor c = getContentResolver().query(uri, null, selection, null, order);
-        if (c == null) {
-            Log.i(TAG, "(no results)");
-            return;
-        }
-        StringBuilder sb = new StringBuilder();
         try {
-            Log.i(TAG, "Result count: " + c.getCount());
-
-            final int columnCount = c.getColumnCount();
-
-            sb.setLength(0);
-            for (int i = 0; i < columnCount; i++) {
-                add(sb, c.getColumnName(i));
+            Cursor c = getContentResolver().query(uri, parseProjection(projection), selection, null,
+                    order);
+            if (c == null) {
+                Log.i(TAG, "(no results)");
+                return;
             }
-            Log.i(TAG, sb.toString());
+            StringBuilder sb = new StringBuilder();
+            try {
+                Log.i(TAG, "Result count: " + c.getCount());
 
-            c.moveToPosition(-1);
-            while (c.moveToNext()) {
+                final int columnCount = c.getColumnCount();
+
                 sb.setLength(0);
                 for (int i = 0; i < columnCount; i++) {
-                    add(sb, c.getString(i));
+                    add(sb, c.getColumnName(i));
                 }
                 Log.i(TAG, sb.toString());
+
+                c.moveToPosition(-1);
+                while (c.moveToNext()) {
+                    sb.setLength(0);
+                    for (int i = 0; i < columnCount; i++) {
+                        add(sb, c.getString(i));
+                    }
+                    Log.i(TAG, sb.toString());
+                }
+            } finally {
+                c.close();
             }
-        } finally {
-            c.close();
+        } catch (Exception e) {
+            Log.e(TAG, "Exeption while executing query", e);
         }
     }
 
@@ -94,5 +104,16 @@ public class QueryService extends IntentService {
         }
         sb.append(s == null ? NULL_STRING : s);
         return sb;
+    }
+
+    private static String[] parseProjection(String projectionString) {
+        if (TextUtils.isEmpty(projectionString)) {
+            return null; // all columns
+        }
+        final String[] columns = projectionString.split(",");
+        if (columns.length == 0) {
+            return null; // all columns
+        }
+        return columns;
     }
 }
