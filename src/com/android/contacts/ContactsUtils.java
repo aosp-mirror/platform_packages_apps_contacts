@@ -16,6 +16,8 @@
 
 package com.android.contacts;
 
+import com.android.contacts.activities.DialtactsActivity;
+import com.android.contacts.calllog.PhoneNumberHelper;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
@@ -30,6 +32,7 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.QuickContact;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.view.View;
@@ -209,6 +212,67 @@ public class ContactsUtils {
 
         // Data is the lookup URI.
         intent.setData(lookupUri);
+        return intent;
+    }
+
+    /**
+     * Return Uri with an appropriate scheme, accepting Voicemail, SIP, and usual phone call
+     * numbers.
+     */
+    public static Uri getCallUri(String number) {
+        if (PhoneNumberUtils.isVoiceMailNumber(number)) {
+            return Uri.parse("voicemail:");
+        }
+        if (PhoneNumberUtils.isUriNumber(number)) {
+             return Uri.fromParts("sip", number, null);
+        }
+        return Uri.fromParts("tel", number, null);
+     }
+
+    /**
+     * Return an Intent for making a phone call. Scheme (e.g. tel, sip) will be determined
+     * automatically.
+     */
+    public static Intent getCallIntent(String number) {
+        return getCallIntent(number, null);
+    }
+
+    /**
+     * Return an Intent for making a phone call. A given Uri will be used as is (without any
+     * sanity check).
+     */
+    public static Intent getCallIntent(Uri uri) {
+        return getCallIntent(uri, null);
+    }
+
+    /**
+     * A variant of {@link #getCallIntent(String)} but also accept a call origin. For more
+     * information about call origin, see comments in Phone package (PhoneApp).
+     */
+    public static Intent getCallIntent(String number, String callOrigin) {
+        return getCallIntent(getCallUri(number), callOrigin);
+    }
+
+    /**
+     * A variant of {@link #getCallIntent(Uri)} but also accept a call origin. For more
+     * information about call origin, see comments in Phone package (PhoneApp).
+     */
+    public static Intent getCallIntent(Uri uri, String callOrigin) {
+        final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, uri);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (callOrigin != null) {
+            intent.putExtra(DialtactsActivity.EXTRA_CALL_ORIGIN, callOrigin);
+        }
+        return intent;
+    }
+
+    /**
+     * Return an Intent for launching voicemail screen.
+     */
+    public static Intent getVoicemailIntent() {
+        final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
+                Uri.fromParts("voicemail", "", null));
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         return intent;
     }
 

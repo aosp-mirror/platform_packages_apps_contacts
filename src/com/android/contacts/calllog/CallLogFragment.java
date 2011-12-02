@@ -329,8 +329,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
             Intent intent;
             // If "number" is really a SIP address, construct a sip: URI.
             if (PhoneNumberUtils.isUriNumber(number)) {
-                intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                                    Uri.fromParts("sip", number, null));
+                intent = ContactsUtils.getCallIntent(Uri.fromParts("sip", number, null));
             } else {
                 // We're calling a regular PSTN phone number.
                 // Construct a tel: URI, but do some other possible cleanup first.
@@ -342,8 +341,7 @@ public class CallLogFragment extends ListFragment implements ViewPagerVisibility
                     String countryIso = cursor.getString(CallLogQuery.COUNTRY_ISO);
                     number = mAdapter.getBetterNumberFromContacts(number, countryIso);
                 }
-                intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                                    Uri.fromParts("tel", number, null));
+                intent = ContactsUtils.getCallIntent(Uri.fromParts("tel", number, null));
             }
             intent.setFlags(
                     Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);

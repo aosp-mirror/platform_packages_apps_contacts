@@ -45,7 +45,7 @@ import android.view.View;
     public CallLogListItemHelper(PhoneCallDetailsHelper phoneCallDetailsHelper,
             PhoneNumberHelper phoneNumberHelper, Resources resources) {
         mPhoneCallDetailsHelper = phoneCallDetailsHelper;
-        mPhoneNumberHelper= phoneNumberHelper;
+        mPhoneNumberHelper = phoneNumberHelper;
         mResources = resources;
     }
 

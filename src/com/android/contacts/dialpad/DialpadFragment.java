@@ -829,7 +829,7 @@ public class DialpadFragment extends Fragment
     }
 
     public void callVoicemail() {
-        startActivity(newVoicemailIntent());
+        startActivity(ContactsUtils.getVoicemailIntent());
         mDigits.getText().clear(); // TODO: Fix bug 1745781
         getActivity().finish();
     }
@@ -958,11 +958,9 @@ public class DialpadFragment extends Fragment
                 // Clear the digits just in case.
                 mDigits.getText().clear();
             } else {
-                final Intent intent = newDialNumberIntent(number);
-                if (getActivity() instanceof DialtactsActivity) {
-                    intent.putExtra(DialtactsActivity.EXTRA_CALL_ORIGIN,
-                            DialtactsActivity.CALL_ORIGIN_DIALTACTS);
-                }
+                final Intent intent = ContactsUtils.getCallIntent(number,
+                        (getActivity() instanceof DialtactsActivity ?
+                                DialtactsActivity.CALL_ORIGIN_DIALTACTS : null));
                 startActivity(intent);
                 mDigits.getText().clear();  // TODO: Fix bug 1745781
                 getActivity().finish();
@@ -1420,24 +1418,9 @@ public class DialpadFragment extends Fragment
         mCallLog.getLastOutgoingCall(lastCallArgs);
     }
 
-    // Helpers for the call intents.
-    private Intent newVoicemailIntent() {
-        final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                                         Uri.fromParts("voicemail", EMPTY_NUMBER, null));
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        return intent;
-    }
-
     private Intent newFlashIntent() {
-        final Intent intent = newDialNumberIntent(EMPTY_NUMBER);
+        final Intent intent = ContactsUtils.getCallIntent(EMPTY_NUMBER);
         intent.putExtra(EXTRA_SEND_EMPTY_FLASH, true);
-        return intent;
-    }
-
-    private Intent newDialNumberIntent(String number) {
-        final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                                         Uri.fromParts("tel", number, null));
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         return intent;
     }
 

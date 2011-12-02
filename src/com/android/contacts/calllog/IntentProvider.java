@@ -17,6 +17,7 @@
 package com.android.contacts.calllog;
 
 import com.android.contacts.CallDetailActivity;
+import com.android.contacts.ContactsUtils;
 
 import android.content.ContentUris;
 import android.content.Context;
@@ -38,16 +39,7 @@ public abstract class IntentProvider {
         return new IntentProvider() {
             @Override
             public Intent getIntent(Context context) {
-                // Here, "number" can either be a PSTN phone number or a
-                // SIP address.  So turn it into either a tel: URI or a
-                // sip: URI, as appropriate.
-                Uri uri;
-                if (PhoneNumberUtils.isUriNumber(number)) {
-                    uri = Uri.fromParts("sip", number, null);
-                } else {
-                    uri = Uri.fromParts("tel", number, null);
-                }
-                return new Intent(Intent.ACTION_CALL_PRIVILEGED, uri);
+                return ContactsUtils.getCallIntent(number);
             }
         };
     }
