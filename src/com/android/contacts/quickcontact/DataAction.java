@@ -116,8 +116,8 @@ public class DataAction implements Action {
                 final String number = getAsString(cursor, Phone.NUMBER);
                 if (!TextUtils.isEmpty(number)) {
 
-                    final Intent phoneIntent = hasPhone ? new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                            Uri.fromParts(Constants.SCHEME_TEL, number, null)) : null;
+                    final Intent phoneIntent = hasPhone ? ContactsUtils.getCallIntent(number)
+                            : null;
                     final Intent smsIntent = hasSms ? new Intent(Intent.ACTION_SENDTO,
                             Uri.fromParts(Constants.SCHEME_SMSTO, number, null)) : null;
 
@@ -139,7 +139,7 @@ public class DataAction implements Action {
                 final String address = getAsString(cursor, SipAddress.SIP_ADDRESS);
                 if (!TextUtils.isEmpty(address)) {
                     final Uri callUri = Uri.fromParts(Constants.SCHEME_SIP, address, null);
-                    mIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED, callUri);
+                    mIntent = ContactsUtils.getCallIntent(callUri);
                     // Note that this item will get a SIP-specific variant
                     // of the "call phone" icon, rather than the standard
                     // app icon for the Phone app (which we show for

@@ -202,7 +202,7 @@ public class PhoneNumberInteractionTest extends InstrumentationTestCase {
         assertNotNull(intent);
 
         assertEquals(Intent.ACTION_CALL_PRIVILEGED, intent.getAction());
-        assertEquals("tel:example%40example.com", intent.getDataString());
+        assertEquals("sip:example%40example.com", intent.getDataString());
     }
 
     public void testShowDisambigDialogForCalling() {

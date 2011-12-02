@@ -332,9 +332,8 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
                 TelephonyManager tm = (TelephonyManager)
                         getSystemService(Context.TELEPHONY_SERVICE);
                 if (tm.getCallState() == TelephonyManager.CALL_STATE_IDLE) {
-                    Intent callIntent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                            Uri.fromParts("tel", mNumber, null));
-                    startActivity(callIntent);
+                    startActivity(ContactsUtils.getCallIntent(
+                            Uri.fromParts("tel", mNumber, null)));
                     return true;
                 }
             }
@@ -389,7 +388,6 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
                 mPhoneCallDetailsHelper.setCallDetailsHeader(mHeaderTextView, firstDetails);
 
                 // Cache the details about the phone number.
-                final Uri numberCallUri = mPhoneNumberHelper.getCallUri(mNumber);
                 final boolean canPlaceCallsTo = mPhoneNumberHelper.canPlaceCallsTo(mNumber);
                 final boolean isVoicemailNumber = mPhoneNumberHelper.isVoicemailNumber(mNumber);
                 final boolean isSipNumber = mPhoneNumberHelper.isSipNumber(mNumber);
@@ -472,8 +470,8 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
                     ViewEntry entry = new ViewEntry(
                             getString(R.string.menu_callNumber,
                                     FormatUtils.forceLeftToRight(displayNumber)),
-                            new Intent(Intent.ACTION_CALL_PRIVILEGED, numberCallUri),
-                            getString(R.string.description_call, nameOrNumber));
+                                    ContactsUtils.getCallIntent(mNumber),
+                                    getString(R.string.description_call, nameOrNumber));
 
                     // Only show a label if the number is shown and it is not a SIP address.
                     if (!TextUtils.isEmpty(firstDetails.name)
@@ -773,7 +771,7 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
     }
 
     public void onMenuEditNumberBeforeCall(MenuItem menuItem) {
-        startActivity(new Intent(Intent.ACTION_DIAL, mPhoneNumberHelper.getCallUri(mNumber)));
+        startActivity(new Intent(Intent.ACTION_DIAL, ContactsUtils.getCallUri(mNumber)));
     }
 
     public void onMenuTrashVoicemail(MenuItem menuItem) {

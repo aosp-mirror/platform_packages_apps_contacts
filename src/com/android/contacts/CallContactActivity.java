@@ -18,10 +18,8 @@ package com.android.contacts;
 
 import com.android.contacts.interactions.PhoneNumberInteraction;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
@@ -50,7 +48,7 @@ public class CallContactActivity extends ContactsActivity implements OnDismissLi
         if (Contacts.CONTENT_ITEM_TYPE.equals(getContentResolver().getType(contactUri))) {
             PhoneNumberInteraction.startInteractionForPhoneCall(this, contactUri);
         } else {
-            startActivity(new Intent(Intent.ACTION_CALL_PRIVILEGED, contactUri));
+            startActivity(ContactsUtils.getCallIntent(contactUri));
             finish();
         }
     }
