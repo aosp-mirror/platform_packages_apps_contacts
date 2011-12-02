@@ -18,7 +18,6 @@ package com.android.contacts.list;
 import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.ContactTileLoaderFactory;
 import com.android.contacts.R;
-import com.android.contacts.activities.DialtactsActivity.ViewPagerVisibilityListener;
 import com.android.contacts.interactions.ImportExportDialogFragment;
 import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.util.AccountFilterUtil;
@@ -35,7 +34,6 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Directory;
 import android.provider.Settings;
 import android.util.Log;
@@ -61,8 +59,7 @@ import android.widget.TextView;
  * {@link PhoneNumberListAdapter} into one unified list using {@link PhoneFavoriteMergedAdapter}.
  * A contact filter header is also inserted between those adapters' results.
  */
-public class PhoneFavoriteFragment extends Fragment implements OnItemClickListener,
-        ViewPagerVisibilityListener{
+public class PhoneFavoriteFragment extends Fragment implements OnItemClickListener {
     private static final String TAG = PhoneFavoriteFragment.class.getSimpleName();
     private static final boolean DEBUG = false;
 
@@ -224,8 +221,6 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
             new ContactsPreferenceChangeListener();
     private final ScrollListener mScrollListener = new ScrollListener();
 
-    private boolean mShowOptionsMenu;
-
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
@@ -333,9 +328,7 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        if (mShowOptionsMenu) {
-            inflater.inflate(R.menu.phone_favorite_options, menu);
-        }
+        inflater.inflate(R.menu.phone_favorite_options, menu);
     }
 
     @Override
@@ -344,7 +337,7 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
             case R.id.menu_import_export:
                 // We hard-code the "contactsAreAvailable" argument because doing it properly would
                 // involve querying a {@link ProviderStatusLoader}, which we don't want to do right
-                // now in Dialtacts for (potential) performance reasons.  Compare with how it is 
+                // now in Dialtacts for (potential) performance reasons.  Compare with how it is
                 // done in {@link PeopleActivity}.
                 ImportExportDialogFragment.show(getFragmentManager(), true);
                 return true;
@@ -494,10 +487,5 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
 
     public void setListener(Listener listener) {
         mListener = listener;
-    }
-
-    @Override
-    public void onVisibilityChanged(boolean visible) {
-        mShowOptionsMenu = visible;
     }
 }

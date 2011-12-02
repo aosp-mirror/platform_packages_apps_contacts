@@ -111,14 +111,6 @@ public class DialtactsActivity extends TransactionSafeActivity {
 
     private static final int SUBACTIVITY_ACCOUNT_FILTER = 1;
 
-    /**
-     * Listener interface for Fragments accommodated in {@link ViewPager} enabling them to know
-     * when it becomes visible or invisible inside the ViewPager.
-     */
-    public interface ViewPagerVisibilityListener {
-        public void onVisibilityChanged(boolean visible);
-    }
-
     public class ViewPagerAdapter extends FragmentPagerAdapter {
         public ViewPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -185,7 +177,7 @@ public class DialtactsActivity extends TransactionSafeActivity {
             //   the page migration being completed.
             // - We should delay the method for the call log screen. The screen will update
             //   its internal state and may query full call log. which is too costly to do when
-            //   onVisibilityChanged() is called, making the animation slower.
+            //   setMenuVisibility() is called, making the animation slower.
             // - We should *not* delay the method for the phone favorite screen. The screen has
             //   another icon the call log screen doesn't have. We want to show/hide it immediately
             //   after user's choosing pages.
@@ -551,23 +543,14 @@ public class DialtactsActivity extends TransactionSafeActivity {
         if (fragment instanceof DialpadFragment) {
             mDialpadFragment = (DialpadFragment) fragment;
             mDialpadFragment.setListener(mDialpadListener);
-            if (currentPosition == TAB_INDEX_DIALER) {
-                mDialpadFragment.onVisibilityChanged(true);
-            }
         } else if (fragment instanceof CallLogFragment) {
             mCallLogFragment = (CallLogFragment) fragment;
-            if (currentPosition == TAB_INDEX_CALL_LOG) {
-                mCallLogFragment.onVisibilityChanged(true);
-            }
         } else if (fragment instanceof PhoneFavoriteFragment) {
             mPhoneFavoriteFragment = (PhoneFavoriteFragment) fragment;
             mPhoneFavoriteFragment.setListener(mPhoneFavoriteListener);
             if (mContactListFilterController != null
                     && mContactListFilterController.getFilter() != null) {
                 mPhoneFavoriteFragment.setFilter(mContactListFilterController.getFilter());
-            }
-            if (currentPosition == TAB_INDEX_FAVORITES) {
-                mPhoneFavoriteFragment.onVisibilityChanged(true);
             }
         } else if (fragment instanceof PhoneNumberPickerFragment) {
             mSearchFragment = (PhoneNumberPickerFragment) fragment;
@@ -1002,8 +985,8 @@ public class DialtactsActivity extends TransactionSafeActivity {
         // Position can be -1 initially. See PageChangeListener.
         if (position >= 0) {
             final Fragment fragment = getFragmentAt(position);
-            if (fragment instanceof ViewPagerVisibilityListener) {
-                ((ViewPagerVisibilityListener) fragment).onVisibilityChanged(visibility);
+            if (fragment != null) {
+                fragment.setMenuVisibility(visibility);
             }
         }
     }
