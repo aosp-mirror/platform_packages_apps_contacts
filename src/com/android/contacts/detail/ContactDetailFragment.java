@@ -609,8 +609,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                             entryValues.getAsString(PhoneLookup.NORMALIZED_NUMBER);
                     entry.data = PhoneNumberUtils.formatNumber(
                             entry.data, phoneNumberE164, mDefaultCountryIso);
-                    final Intent phoneIntent = mHasPhone ? new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                            Uri.fromParts(Constants.SCHEME_TEL, entry.data, null)) : null;
+                    final Intent phoneIntent = mHasPhone ?
+                            ContactsUtils.getCallIntent(entry.data) : null;
                     final Intent smsIntent = mHasSms ? new Intent(Intent.ACTION_SENDTO,
                             Uri.fromParts(Constants.SCHEME_SMSTO, entry.data, null)) : null;
 
@@ -706,7 +706,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     entry.uri = null;
                     entry.maxLines = SIP_ADDRESS_MAX_LINES;
                     if (mHasSip) {
-                        entry.intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
+                        entry.intent = ContactsUtils.getCallIntent(
                                 Uri.fromParts(Constants.SCHEME_SIP, entry.data, null));
                     } else {
                         entry.intent = null;
@@ -1937,9 +1937,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     }
                 } else if (mPrimaryPhoneUri != null) {
                     // There isn't anything selected, call the default number
-                    final Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED,
-                            mPrimaryPhoneUri);
-                    mContext.startActivity(intent);
+                    mContext.startActivity(ContactsUtils.getCallIntent(mPrimaryPhoneUri));
                     return true;
                 }
                 return false;

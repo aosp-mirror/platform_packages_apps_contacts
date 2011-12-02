@@ -16,6 +16,7 @@
 
 package com.android.contacts.calllog;
 
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.internal.telephony.CallerInfo;
 
@@ -76,23 +77,18 @@ public class PhoneNumberHelper {
         }
     }
 
-    /** Returns a URI that can be used to place a call to this number. */
-    public Uri getCallUri(String number) {
-        if (isVoicemailNumber(number)) {
-            return Uri.parse("voicemail:x");
-        }
-        if (isSipNumber(number)) {
-             return Uri.fromParts("sip", number, null);
-        }
-         return Uri.fromParts("tel", number, null);
-     }
-
-    /** Returns true if the given number is the number of the configured voicemail. */
+    /**
+     * Returns true if the given number is the number of the configured voicemail.
+     * To be able to mock-out this, it is not a static method.
+     */
     public boolean isVoicemailNumber(CharSequence number) {
         return PhoneNumberUtils.isVoiceMailNumber(number.toString());
     }
 
-    /** Returns true if the given number is a SIP address. */
+    /**
+     * Returns true if the given number is a SIP address.
+     * To be able to mock-out this, it is not a static method.
+     */
     public boolean isSipNumber(CharSequence number) {
         return PhoneNumberUtils.isUriNumber(number.toString());
     }
