@@ -18,6 +18,7 @@ package com.android.contacts.tests.mocks;
 
 import com.android.contacts.ContactPhotoManager;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.widget.ImageView;
 
@@ -53,6 +54,10 @@ public class MockContactPhotoManager extends ContactPhotoManager {
 
     @Override
     public void refreshCache() {
+    }
+
+    @Override
+    public void cacheBitmap(Uri photoUri, Bitmap bitmap, byte[] photoBytes) {
     }
 
     @Override

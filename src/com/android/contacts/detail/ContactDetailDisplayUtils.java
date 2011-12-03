@@ -29,7 +29,6 @@ import com.android.contacts.util.StreamItemEntry;
 import com.android.contacts.util.StreamItemPhotoEntry;
 import com.google.common.annotations.VisibleForTesting;
 
-import android.app.Activity;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -45,7 +44,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Parcelable;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.Data;
@@ -228,7 +226,7 @@ public class ContactDetailDisplayUtils {
 
         // Set up the photo to display a full-screen photo selection activity when clicked.
         OnClickListener clickListener = new PhotoClickListener(context, contactData, bitmap,
-                expandPhotoOnClick);
+                photo, expandPhotoOnClick);
         photoView.setOnClickListener(clickListener);
         return clickListener;
     }
@@ -238,12 +236,14 @@ public class ContactDetailDisplayUtils {
         private final Context mContext;
         private final Result mContactData;
         private final Bitmap mPhotoBitmap;
+        private final byte[] mPhotoBytes;
         private final boolean mExpandPhotoOnClick;
         public PhotoClickListener(Context context, Result contactData, Bitmap photoBitmap,
-                boolean expandPhotoOnClick) {
+                byte[] photoBytes, boolean expandPhotoOnClick) {
             mContext = context;
             mContactData = contactData;
             mPhotoBitmap = photoBitmap;
+            mPhotoBytes = photoBytes;
             mExpandPhotoOnClick = expandPhotoOnClick;
         }
 
@@ -266,9 +266,16 @@ public class ContactDetailDisplayUtils {
             rect.right = (int) ((pos[0] + v.getWidth()) * appScale + 0.5f);
             rect.bottom = (int) ((pos[1] + v.getHeight()) * appScale + 0.5f);
 
+            Uri photoUri = null;
+            if (mContactData.getPhotoUri() != null) {
+                photoUri = Uri.parse(mContactData.getPhotoUri());
+            }
             Intent photoSelectionIntent = PhotoSelectionActivity.buildIntent(mContext,
-                    mPhotoBitmap, rect, delta, mContactData.isUserProfile(),
+                    photoUri, mPhotoBitmap, mPhotoBytes, rect, delta, mContactData.isUserProfile(),
                     mContactData.isDirectoryEntry(), mExpandPhotoOnClick);
+            // Cache the bitmap directly, so the activity can pull it from the photo manager.
+            ContactPhotoManager.getInstance(mContext).cacheBitmap(photoUri, mPhotoBitmap,
+                    mPhotoBytes);
             mContext.startActivity(photoSelectionIntent);
         }
     }
