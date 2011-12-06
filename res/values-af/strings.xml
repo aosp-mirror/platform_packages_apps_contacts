@@ -228,11 +228,11 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"Die berging kon nie geskandeer word nie. (Rede: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"Die SD-kaart kon nie geskandeer word nie. (Rede: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="6748358842976073255">"T/A-fout"</string>
-    <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Nie genoeg berging nie. Die lêer is dalk te groot."</string>
+    <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Nie genoeg geheue nie. Die lêer is dalk te groot."</string>
     <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"Kon nie vCard ontleed nie weens onverwagte redes."</string>
     <string name="fail_reason_not_supported" msgid="8219562769267148825">"Die formaat word nie ondersteun nie."</string>
     <string name="vcard_import_failed" msgid="5223531255894842406">"Kon nie vCard invoer nie."</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2071820850017305867">"Geen vCard-lêer in berging gevind nie."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2071820850017305867">"Geen vCard-lêer in geheue gevind nie."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1754014167874286173">"Geen vCard-lêer op die SD-kaart gevind nie"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Kon nie meta-inligting van gegewe vCard-lêer(s) versamel nie."</string>
     <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Een of meer lêers kon nie ingevoer word nie (%s)."</string>
@@ -418,7 +418,7 @@
     <string name="pick_new_photo" msgid="7962368009197147617">"Kies nuwe foto uit galery"</string>
     <string name="locale_change_in_progress" msgid="7583992153091537467">"Kontaklys word tans opgedateer om die taalverandering te weerspieël."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontaklys word opgedateer."</string>
-    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Kontakte word tans opgradeer. "\n\n"Die opgraderingsproses benodig interne berging van omtrent <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MG. "\n\n"Kies een van die volgende opsies:"</string>
+    <string name="upgrade_out_of_memory" msgid="1209994418877625940">"Kontakte word tans opgradeer. "\n\n"Die opgraderingsproses benodig interne geheue van omtrent <xliff:g id="SIZE_IN_MEGABYTES">%s</xliff:g> MG. "\n\n"Kies een van die volgende opsies:"</string>
     <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"Deïnstalleer sekere programme"</string>
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Herprobeer opgradering"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Soek tans…"</string>
