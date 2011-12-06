@@ -43,6 +43,7 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -195,6 +196,11 @@ public class TextFieldsEditorView extends LabeledEditorView {
             if (inputType == InputType.TYPE_CLASS_PHONE) {
                 PhoneNumberFormatter.setPhoneNumberFormattingTextWatcher(mContext, fieldView);
             }
+
+            // Show the "next" button in IME to navigate between text fields
+            // TODO: Still need to properly navigate to/from sections without text fields,
+            // See Bug: 5713510
+            fieldView.setImeOptions(EditorInfo.IME_ACTION_NEXT);
 
             // Read current value from state
             final String column = field.column;
