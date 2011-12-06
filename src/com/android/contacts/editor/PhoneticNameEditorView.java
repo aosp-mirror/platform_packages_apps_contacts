@@ -202,6 +202,11 @@ public class PhoneticNameEditorView extends TextFieldsEditorView {
                 // phonetic name.
                 super.onFieldChanged(column, value);
             }
+        } else {
+            // All fields are always visible, so we don't have to worry about blocking updates
+            // from onRestoreInstanceState() from hidden fields. Always call into the superclass
+            // to update the field and rebuild the underlying phonetic name.
+            super.onFieldChanged(column, value);
         }
     }
 
