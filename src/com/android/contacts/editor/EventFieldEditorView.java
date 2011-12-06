@@ -131,7 +131,9 @@ public class EventFieldEditorView extends LabeledEditorView {
 
     @Override
     public boolean isEmpty() {
-        return TextUtils.isEmpty(mDateView.getText());
+        final EditField editField = getKind().fieldList.get(0);
+        final String column = editField.column;
+        return TextUtils.isEmpty(getEntry().getAsString(column));
     }
 
     @Override
@@ -243,6 +245,7 @@ public class EventFieldEditorView extends LabeledEditorView {
                 } else {
                     resultString = kind.dateFormatWithYear.format(outCalendar.getTime());
                 }
+
                 onFieldChanged(column, resultString);
                 rebuildDateView();
             }
