@@ -15,6 +15,7 @@
  */
 package com.android.contacts.activities;
 
+import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.detail.PhotoSelectionHandler;
@@ -30,6 +31,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
@@ -58,8 +60,8 @@ public class PhotoSelectionActivity extends Activity {
 
     private static final String KEY_SUB_ACTIVITY_IN_PROGRESS = "subinprogress";
 
-    /** Intent extra to get the photo bitmap. */
-    public static final String PHOTO_BITMAP = "photo_bitmap";
+    /** Intent extra to get the photo URI. */
+    public static final String PHOTO_URI = "photo_uri";
 
     /** Intent extra to get the entity delta list. */
     public static final String ENTITY_DELTA_LIST = "entity_delta_list";
@@ -80,8 +82,10 @@ public class PhotoSelectionActivity extends Activity {
     /** Source bounds of the image that was clicked on. */
     private Rect mSourceBounds;
 
-    /** The photo bitmap. */
-    private Bitmap mPhotoBitmap;
+    /**
+     * The photo URI. May be null, in which case the default avatar will be used.
+     */
+    private Uri mPhotoUri;
 
     /** Entity delta list of the contact. */
     private EntityDeltaList mState;
@@ -149,7 +153,7 @@ public class PhotoSelectionActivity extends Activity {
 
         // Pull data out of the intent.
         final Intent intent = getIntent();
-        mPhotoBitmap = intent.getParcelableExtra(PHOTO_BITMAP);
+        mPhotoUri = intent.getParcelableExtra(PHOTO_URI);
         mState = (EntityDeltaList) intent.getParcelableExtra(ENTITY_DELTA_LIST);
         mIsProfile = intent.getBooleanExtra(IS_PROFILE, false);
         mIsDirectoryContact = intent.getBooleanExtra(IS_DIRECTORY_CONTACT, false);
@@ -193,7 +197,12 @@ public class PhotoSelectionActivity extends Activity {
     /**
      * Builds a well-formed intent for invoking this activity.
      * @param context The context.
-     * @param photoBitmap The bitmap of the current photo.
+     * @param photoUri The URI of the current photo (may be null, in which case the default
+     *     avatar image will be displayed).
+     * @param photoBitmap The bitmap of the current photo (may be null, in which case the default
+     *     avatar image will be displayed).
+     * @param photoBytes The bytes for the current photo (may be null, in which case the default
+     *     avatar image will be displayed).
      * @param photoBounds The pixel bounds of the current photo.
      * @param delta The entity delta list for the contact.
      * @param isProfile Whether the contact is the user's profile.
@@ -202,11 +211,13 @@ public class PhotoSelectionActivity extends Activity {
      *     this should be true for phones, and false for tablets).
      * @return An intent that can be used to invoke the photo selection activity.
      */
-    public static Intent buildIntent(Context context, Bitmap photoBitmap, Rect photoBounds,
-            EntityDeltaList delta, boolean isProfile, boolean isDirectoryContact,
-            boolean expandPhotoOnClick) {
+    public static Intent buildIntent(Context context, Uri photoUri, Bitmap photoBitmap,
+            byte[] photoBytes, Rect photoBounds, EntityDeltaList delta, boolean isProfile,
+            boolean isDirectoryContact, boolean expandPhotoOnClick) {
         Intent intent = new Intent(context, PhotoSelectionActivity.class);
-        intent.putExtra(PHOTO_BITMAP, photoBitmap);
+        if (photoUri != null && photoBitmap != null && photoBytes != null) {
+            intent.putExtra(PHOTO_URI, photoUri);
+        }
         intent.setSourceBounds(photoBounds);
         intent.putExtra(ENTITY_DELTA_LIST, (Parcelable) delta);
         intent.putExtra(IS_PROFILE, isProfile);
@@ -233,48 +244,55 @@ public class PhotoSelectionActivity extends Activity {
     }
 
     private void displayPhoto() {
-        if (mPhotoBitmap != null) {
-            final int[] pos = new int[2];
-            mBackdrop.getLocationOnScreen(pos);
-            LayoutParams layoutParams = new LayoutParams(mSourceBounds.width(),
-                    mSourceBounds.height());
-            mOriginalPos.left = mSourceBounds.left - pos[0];
-            mOriginalPos.top = mSourceBounds.top - pos[1];
-            mOriginalPos.right = mOriginalPos.left + mSourceBounds.width();
-            mOriginalPos.bottom = mOriginalPos.top + mSourceBounds.height();
-            layoutParams.setMargins(mOriginalPos.left, mOriginalPos.top, mOriginalPos.right,
-                    mOriginalPos.bottom);
-            mPhotoStartParams = layoutParams;
-            mPhotoView.setLayoutParams(layoutParams);
-            mPhotoView.requestLayout();
-
-            mPhotoView.setImageBitmap(mPhotoBitmap);
-            mPhotoView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-                @Override
-                public void onLayoutChange(View v, int left, int top, int right, int bottom,
-                        int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                    if (mAnimationPending) {
-                        mAnimationPending = false;
-                        PropertyValuesHolder pvhLeft =
-                                PropertyValuesHolder.ofInt("left", mOriginalPos.left, left);
-                        PropertyValuesHolder pvhTop =
-                                PropertyValuesHolder.ofInt("top", mOriginalPos.top, top);
-                        PropertyValuesHolder pvhRight =
-                                PropertyValuesHolder.ofInt("right", mOriginalPos.right, right);
-                        PropertyValuesHolder pvhBottom =
-                                PropertyValuesHolder.ofInt("bottom", mOriginalPos.bottom, bottom);
-                        ObjectAnimator anim = ObjectAnimator.ofPropertyValuesHolder(mPhotoView,
-                                pvhLeft, pvhTop, pvhRight, pvhBottom).setDuration(
-                                PHOTO_EXPAND_DURATION);
-                        if (mAnimationListener != null) {
-                            anim.addListener(mAnimationListener);
-                        }
-                        anim.start();
-                    }
-                }
-            });
-            attachPhotoHandler();
+        // Load the photo.
+        if (mPhotoUri != null) {
+            // If we have a URI, the bitmap should be cached directly.
+            ContactPhotoManager.getInstance(this).loadPhoto(mPhotoView, mPhotoUri, true, false);
+        } else {
+            // Fall back to avatar image.
+            mPhotoView.setImageResource(ContactPhotoManager.getDefaultAvatarResId(true, false));
         }
+
+        // Animate the photo view into its end location.
+        final int[] pos = new int[2];
+        mBackdrop.getLocationOnScreen(pos);
+        LayoutParams layoutParams = new LayoutParams(mSourceBounds.width(),
+                mSourceBounds.height());
+        mOriginalPos.left = mSourceBounds.left - pos[0];
+        mOriginalPos.top = mSourceBounds.top - pos[1];
+        mOriginalPos.right = mOriginalPos.left + mSourceBounds.width();
+        mOriginalPos.bottom = mOriginalPos.top + mSourceBounds.height();
+        layoutParams.setMargins(mOriginalPos.left, mOriginalPos.top, mOriginalPos.right,
+                mOriginalPos.bottom);
+        mPhotoStartParams = layoutParams;
+        mPhotoView.setLayoutParams(layoutParams);
+        mPhotoView.requestLayout();
+
+        mPhotoView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom,
+                    int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                if (mAnimationPending) {
+                    mAnimationPending = false;
+                    PropertyValuesHolder pvhLeft =
+                            PropertyValuesHolder.ofInt("left", mOriginalPos.left, left);
+                    PropertyValuesHolder pvhTop =
+                            PropertyValuesHolder.ofInt("top", mOriginalPos.top, top);
+                    PropertyValuesHolder pvhRight =
+                            PropertyValuesHolder.ofInt("right", mOriginalPos.right, right);
+                    PropertyValuesHolder pvhBottom =
+                            PropertyValuesHolder.ofInt("bottom", mOriginalPos.bottom, bottom);
+                    ObjectAnimator anim = ObjectAnimator.ofPropertyValuesHolder(mPhotoView,
+                            pvhLeft, pvhTop, pvhRight, pvhBottom).setDuration(
+                            PHOTO_EXPAND_DURATION);
+                    if (mAnimationListener != null) {
+                        anim.addListener(mAnimationListener);
+                    }
+                    anim.start();
+                }
+            }
+        });
+        attachPhotoHandler();
     }
 
     private LayoutParams getPhotoEndParams() {

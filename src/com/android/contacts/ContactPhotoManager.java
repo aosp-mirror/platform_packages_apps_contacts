@@ -177,6 +177,14 @@ public abstract class ContactPhotoManager implements ComponentCallbacks2 {
     public abstract void refreshCache();
 
     /**
+     * Stores the given bitmap directly in the LRU bitmap cache.
+     * @param photoUri The URI of the photo (for future requests).
+     * @param bitmap The bitmap.
+     * @param photoBytes The bytes that were parsed to create the bitmap.
+     */
+    public abstract void cacheBitmap(Uri photoUri, Bitmap bitmap, byte[] photoBytes);
+
+    /**
      * Initiates a background process that over time will fill up cache with
      * preload photos.
      */
@@ -647,6 +655,14 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         }
 
         mBitmapHolderCache.put(key, holder);
+    }
+
+    @Override
+    public void cacheBitmap(Uri photoUri, Bitmap bitmap, byte[] photoBytes) {
+        Request request = Request.createFromUri(photoUri, true, false, DEFAULT_AVATER);
+        BitmapHolder holder = new BitmapHolder(photoBytes);
+        mBitmapHolderCache.put(request.getKey(), holder);
+        mBitmapCache.put(request, bitmap);
     }
 
     /**
