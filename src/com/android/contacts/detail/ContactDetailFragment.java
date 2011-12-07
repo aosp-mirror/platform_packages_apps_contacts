@@ -454,7 +454,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 mStaticPhotoContainer.setVisibility(View.VISIBLE);
                 ImageView photoView = (ImageView) mStaticPhotoContainer.findViewById(R.id.photo);
                 OnClickListener listener = ContactDetailDisplayUtils.setPhoto(mContext,
-                        mContactData, photoView, !PhoneCapabilityTester.isUsingTwoPanes(mContext));
+                        mContactData, photoView, false);
                 if (mPhotoTouchOverlay != null) {
                     mPhotoTouchOverlay.setVisibility(View.VISIBLE);
                     mPhotoTouchOverlay.setOnClickListener(listener);
