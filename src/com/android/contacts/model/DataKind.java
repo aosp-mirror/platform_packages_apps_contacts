@@ -83,8 +83,16 @@ public final class DataKind {
      */
     public SimpleDateFormat dateFormatWithYear;
 
+    /**
+     * The number of lines available for displaying this kind of data in a
+     * {@link ContactDetailFragment} (and possibly elsewhere)
+     * Defaults to 1.
+     */
+    public int maxLinesForDisplay;
+
     public DataKind() {
         editorLayoutResourceId = R.layout.text_fields_editor_view;
+        maxLinesForDisplay = 1;
     }
 
     public DataKind(String mimeType, int titleRes, int weight, boolean editable,
@@ -95,6 +103,7 @@ public final class DataKind {
         this.editable = editable;
         this.typeOverallMax = -1;
         this.editorLayoutResourceId = editorLayoutResourceId;
+        maxLinesForDisplay = 1;
     }
 
     @Override

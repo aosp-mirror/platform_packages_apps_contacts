@@ -79,6 +79,12 @@ public abstract class BaseAccountType extends AccountType {
     protected static final int FLAGS_RELATION = EditorInfo.TYPE_CLASS_TEXT
             | EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS | EditorInfo.TYPE_TEXT_VARIATION_PERSON_NAME;
 
+    // Specify the maximum number of lines that can be used to display various field types.  If no
+    // value is specified for a particular type, we use the default value from {@link DataKind}.
+    protected static final int MAX_LINES_FOR_POSTAL_ADDRESS = 10;
+    protected static final int MAX_LINES_FOR_GROUP = 10;
+    protected static final int MAX_LINES_FOR_NOTE = 100;
+
     private interface Tag {
         static final String DATA_KIND = "DataKind";
         static final String TYPE = "Type";
@@ -323,6 +329,8 @@ public abstract class BaseAccountType extends AccountType {
                 new EditField(StructuredPostal.FORMATTED_ADDRESS, R.string.postal_address,
                         FLAGS_POSTAL));
 
+        kind.maxLinesForDisplay = MAX_LINES_FOR_POSTAL_ADDRESS;
+
         return kind;
     }
 
@@ -391,6 +399,8 @@ public abstract class BaseAccountType extends AccountType {
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(new EditField(Note.NOTE, R.string.label_notes, FLAGS_NOTE));
 
+        kind.maxLinesForDisplay = MAX_LINES_FOR_NOTE;
+
         return kind;
     }
 
@@ -429,6 +439,8 @@ public abstract class BaseAccountType extends AccountType {
         kind.typeOverallMax = 1;
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(new EditField(GroupMembership.GROUP_ROW_ID, -1, -1));
+
+        kind.maxLinesForDisplay = MAX_LINES_FOR_GROUP;
 
         return kind;
     }
@@ -1210,6 +1222,7 @@ public abstract class BaseAccountType extends AccountType {
                             R.string.postal_country, FLAGS_POSTAL).setOptional(true));
                 }
             } else {
+                kind.maxLinesForDisplay= MAX_LINES_FOR_POSTAL_ADDRESS;
                 kind.fieldList.add(
                         new EditField(StructuredPostal.FORMATTED_ADDRESS, R.string.postal_address,
                                 FLAGS_POSTAL));
@@ -1344,6 +1357,7 @@ public abstract class BaseAccountType extends AccountType {
                     new SimpleInflater(R.string.label_notes), new SimpleInflater(Note.NOTE));
 
             kind.fieldList.add(new EditField(Note.NOTE, R.string.label_notes, FLAGS_NOTE));
+            kind.maxLinesForDisplay = MAX_LINES_FOR_NOTE;
 
             throwIfList(kind);
 
@@ -1417,6 +1431,7 @@ public abstract class BaseAccountType extends AccountType {
                     R.string.groupsLabel, Weight.GROUP_MEMBERSHIP, -1, null, null);
 
             kind.fieldList.add(new EditField(GroupMembership.GROUP_ROW_ID, -1, -1));
+            kind.maxLinesForDisplay = MAX_LINES_FOR_GROUP;
 
             throwIfList(kind);
 
