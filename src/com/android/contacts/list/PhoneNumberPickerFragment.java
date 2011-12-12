@@ -38,6 +38,8 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     private static final int REQUEST_CODE_ACCOUNT_FILTER = 1;
 
+    private static final String KEY_SHORTCUT_ACTION = "shortcutAction";
+
     private OnPhoneNumberPickerActionListener mListener;
     private String mShortcutAction;
 
@@ -129,12 +131,14 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
         }
 
         mFilter = savedState.getParcelable(KEY_FILTER);
+        mShortcutAction = savedState.getString(KEY_SHORTCUT_ACTION);
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(KEY_FILTER, mFilter);
+        outState.putString(KEY_SHORTCUT_ACTION, mShortcutAction);
     }
 
     @Override
