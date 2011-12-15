@@ -15,8 +15,6 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.R;
-
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.CursorLoader;
@@ -262,7 +260,9 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         if (isFirstEntry) {
             bindName(view, cursor);
             if (isQuickContactEnabled()) {
-                bindQuickContact(view, partition, cursor, PhoneQuery.PHONE_PHOTO_ID,
+                // No need for photo uri here, because we can not have directory results. If we
+                // ever do, we need to add photo uri to the query
+                bindQuickContact(view, partition, cursor, PhoneQuery.PHONE_PHOTO_ID, -1,
                         PhoneQuery.PHONE_CONTACT_ID, PhoneQuery.PHONE_LOOKUP_KEY);
             } else {
                 bindPhoto(view, cursor);

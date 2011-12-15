@@ -23,7 +23,6 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.ContactCounts;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.SearchSnippetColumns;
 import android.text.TextUtils;

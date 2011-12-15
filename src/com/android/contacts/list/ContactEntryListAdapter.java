@@ -18,7 +18,6 @@ package com.android.contacts.list;
 import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.R;
 import com.android.contacts.widget.IndexerListAdapter;
-import com.android.contacts.widget.TextWithHighlightingFactory;
 
 import android.content.Context;
 import android.content.CursorLoader;
@@ -619,8 +618,16 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     // TODO: move sharable logic (bindXX() methods) to here with extra arguments
 
+    /**
+     * Loads the photo for the quick contact view and assigns the contact uri.
+     * @param photoIdColumn Index of the photo id column
+     * @param photoUriColumn Index of the photo uri column. Optional: Can be -1
+     * @param contactIdColumn Index of the contact id column
+     * @param lookUpKeyColumn Index of the lookup key column
+     */
     protected void bindQuickContact(final ContactListItemView view, int partitionIndex,
-            Cursor cursor, int photoIdColumn, int contactIdColumn, int lookUpKeyColumn) {
+            Cursor cursor, int photoIdColumn, int photoUriColumn, int contactIdColumn,
+            int lookUpKeyColumn) {
         long photoId = 0;
         if (!cursor.isNull(photoIdColumn)) {
             photoId = cursor.getLong(photoIdColumn);
@@ -629,7 +636,15 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         QuickContactBadge quickContact = view.getQuickContact();
         quickContact.assignContactUri(
                 getContactUri(partitionIndex, cursor, contactIdColumn, lookUpKeyColumn));
-        getPhotoLoader().loadPhoto(quickContact, photoId, false, mDarkTheme);
+
+        if (photoId != 0 || photoUriColumn == -1) {
+            getPhotoLoader().loadPhoto(quickContact, photoId, false, mDarkTheme);
+        } else {
+            final String photoUriString = cursor.getString(photoUriColumn);
+            final Uri photoUri = photoUriString == null ? null : Uri.parse(photoUriString);
+            getPhotoLoader().loadPhoto(quickContact, photoUri, false, mDarkTheme);
+        }
+
     }
 
     protected Uri getContactUri(int partitionIndex, Cursor cursor,
