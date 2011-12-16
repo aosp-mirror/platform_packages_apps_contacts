@@ -23,7 +23,7 @@
         <!-- List modes -->
         <item>LIST_DEFAULT</item>
         <item>LIST_ALL_CONTACTS_ACTION</item>
-        <item>LIST_CONTACTS_WITH_PHONES_ACTION</item>
+        <item>LIST_CONTACTS_WITH_PHONES_ACTION (deprecated)</item>
         <item>LIST_STARRED_ACTION</item>
         <item>LIST_FREQUENT_ACTION</item>
         <item>LIST_STREQUENT_ACTION</item>
