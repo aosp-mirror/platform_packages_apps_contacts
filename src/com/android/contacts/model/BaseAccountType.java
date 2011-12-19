@@ -17,18 +17,13 @@
 package com.android.contacts.model;
 
 import com.android.contacts.R;
-import com.android.contacts.model.AccountType.DefinitionException;
 import com.android.contacts.util.DateUtils;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.Resources;
-import android.database.Cursor;
 import android.provider.ContactsContract.CommonDataKinds.BaseTypes;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Event;
@@ -47,6 +42,9 @@ import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.inputmethod.EditorInfo;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.List;
@@ -466,25 +464,7 @@ public abstract class BaseAccountType extends AccountType {
             mColumnName = columnName;
         }
 
-        public CharSequence inflateUsing(Context context, Cursor cursor) {
-            final int index = mColumnName != null ? cursor.getColumnIndex(mColumnName) : -1;
-            final boolean validString = mStringRes > 0;
-            final boolean validColumn = index != -1;
-
-            final CharSequence stringValue = validString ? context.getText(mStringRes) : null;
-            final CharSequence columnValue = validColumn ? cursor.getString(index) : null;
-
-            if (validString && validColumn) {
-                return String.format(stringValue.toString(), columnValue);
-            } else if (validString) {
-                return stringValue;
-            } else if (validColumn) {
-                return columnValue;
-            } else {
-                return null;
-            }
-        }
-
+        @Override
         public CharSequence inflateUsing(Context context, ContentValues values) {
             final boolean validColumn = values.containsKey(mColumnName);
             final boolean validString = mStringRes > 0;
@@ -541,12 +521,7 @@ public abstract class BaseAccountType extends AccountType {
             }
         }
 
-        public CharSequence inflateUsing(Context context, Cursor cursor) {
-            final Integer type = cursor.getInt(cursor.getColumnIndex(getTypeColumn()));
-            final String label = cursor.getString(cursor.getColumnIndex(getLabelColumn()));
-            return getTypeLabel(context.getResources(), type, label);
-        }
-
+        @Override
         public CharSequence inflateUsing(Context context, ContentValues values) {
             final Integer type = values.getAsInteger(getTypeColumn());
             final String label = values.getAsString(getLabelColumn());

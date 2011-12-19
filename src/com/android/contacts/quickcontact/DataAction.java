@@ -21,14 +21,14 @@ import com.android.contacts.R;
 import com.android.contacts.model.AccountType.EditType;
 import com.android.contacts.model.DataKind;
 import com.android.contacts.util.Constants;
-import com.android.contacts.util.StructuredPostalUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
+import com.android.contacts.util.StructuredPostalUtils;
 
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.net.WebAddress;
@@ -67,7 +67,8 @@ public class DataAction implements Action {
     /**
      * Create an action from common {@link Data} elements.
      */
-    public DataAction(Context context, String mimeType, DataKind kind, long dataId, Cursor cursor) {
+    public DataAction(Context context, String mimeType, DataKind kind, long dataId,
+            ContentValues entryValues) {
         mContext = context;
         mKind = kind;
         mMimeType = mimeType;
@@ -75,9 +76,8 @@ public class DataAction implements Action {
         // Determine type for subtitle
         mSubtitle = "";
         if (kind.typeColumn != null) {
-            final int typeColumnIndex = cursor.getColumnIndex(kind.typeColumn);
-            if (typeColumnIndex != -1) {
-                final int typeValue = cursor.getInt(typeColumnIndex);
+            if (entryValues.containsKey(kind.typeColumn)) {
+                final int typeValue = entryValues.getAsInteger(kind.typeColumn);
 
                 // get type string
                 for (EditType type : kind.typeList) {
@@ -87,8 +87,7 @@ public class DataAction implements Action {
                             mSubtitle = context.getString(type.labelRes);
                         } else {
                             // Custom type. Read it from the database
-                            mSubtitle = cursor.getString(cursor.getColumnIndexOrThrow(
-                                    type.customColumn));
+                            mSubtitle = entryValues.getAsString(type.customColumn);
                         }
                         break;
                     }
@@ -96,12 +95,11 @@ public class DataAction implements Action {
             }
         }
 
-        if (getAsInt(cursor, Data.IS_SUPER_PRIMARY) != 0) {
-            mIsPrimary = true;
-        }
+        final Integer superPrimary = entryValues.getAsInteger(Data.IS_SUPER_PRIMARY);
+        mIsPrimary = superPrimary != null && superPrimary != 0;
 
         if (mKind.actionBody != null) {
-            mBody = mKind.actionBody.inflateUsing(context, cursor);
+            mBody = mKind.actionBody.inflateUsing(context, entryValues);
         }
 
         mDataId = dataId;
@@ -113,7 +111,7 @@ public class DataAction implements Action {
         // Handle well-known MIME-types with special care
         if (Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
             if (PhoneCapabilityTester.isPhone(mContext)) {
-                final String number = getAsString(cursor, Phone.NUMBER);
+                final String number = entryValues.getAsString(Phone.NUMBER);
                 if (!TextUtils.isEmpty(number)) {
 
                     final Intent phoneIntent = hasPhone ? ContactsUtils.getCallIntent(number)
@@ -136,7 +134,7 @@ public class DataAction implements Action {
             }
         } else if (SipAddress.CONTENT_ITEM_TYPE.equals(mimeType)) {
             if (PhoneCapabilityTester.isSipPhone(mContext)) {
-                final String address = getAsString(cursor, SipAddress.SIP_ADDRESS);
+                final String address = entryValues.getAsString(SipAddress.SIP_ADDRESS);
                 if (!TextUtils.isEmpty(address)) {
                     final Uri callUri = Uri.fromParts(Constants.SCHEME_SIP, address, null);
                     mIntent = ContactsUtils.getCallIntent(callUri);
@@ -149,14 +147,14 @@ public class DataAction implements Action {
                 }
             }
         } else if (Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            final String address = getAsString(cursor, Email.DATA);
+            final String address = entryValues.getAsString(Email.DATA);
             if (!TextUtils.isEmpty(address)) {
                 final Uri mailUri = Uri.fromParts(Constants.SCHEME_MAILTO, address, null);
                 mIntent = new Intent(Intent.ACTION_SENDTO, mailUri);
             }
 
         } else if (Website.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            final String url = getAsString(cursor, Website.URL);
+            final String url = entryValues.getAsString(Website.URL);
             if (!TextUtils.isEmpty(url)) {
                 WebAddress webAddress = new WebAddress(url);
                 mIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(webAddress.toString()));
@@ -164,10 +162,10 @@ public class DataAction implements Action {
 
         } else if (Im.CONTENT_ITEM_TYPE.equals(mimeType)) {
             final boolean isEmail = Email.CONTENT_ITEM_TYPE.equals(
-                    getAsString(cursor, Data.MIMETYPE));
-            if (isEmail || isProtocolValid(cursor)) {
+                    entryValues.getAsString(Data.MIMETYPE));
+            if (isEmail || isProtocolValid(entryValues)) {
                 final int protocol = isEmail ? Im.PROTOCOL_GOOGLE_TALK :
-                        getAsInt(cursor, Im.PROTOCOL);
+                        entryValues.getAsInteger(Im.PROTOCOL);
 
                 if (isEmail) {
                     // Use Google Talk string when using Email, and clear data
@@ -176,9 +174,8 @@ public class DataAction implements Action {
                     mDataUri = null;
                 }
 
-                String host = getAsString(cursor, Im.CUSTOM_PROTOCOL);
-                String data = getAsString(cursor,
-                        isEmail ? Email.DATA : Im.DATA);
+                String host = entryValues.getAsString(Im.CUSTOM_PROTOCOL);
+                String data = entryValues.getAsString(isEmail ? Email.DATA : Im.DATA);
                 if (protocol != Im.PROTOCOL_CUSTOM) {
                     // Try bringing in a well-known host for specific protocols
                     host = ContactsUtils.lookupProviderNameFromId(protocol);
@@ -192,7 +189,8 @@ public class DataAction implements Action {
 
                     // If the address is also available for a video chat, we'll show the capability
                     // as a secondary action.
-                    final int chatCapability = getAsInt(cursor, Data.CHAT_CAPABILITY);
+                    final Integer chatCapabilityObj = entryValues.getAsInteger(Im.CHAT_CAPABILITY);
+                    final int chatCapability = chatCapabilityObj == null ? 0 : chatCapabilityObj;
                     final boolean isVideoChatCapable =
                             (chatCapability & Im.CAPABILITY_HAS_CAMERA) != 0;
                     final boolean isAudioChatCapable =
@@ -211,7 +209,8 @@ public class DataAction implements Action {
                 }
             }
         } else if (StructuredPostal.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            final String postalAddress = getAsString(cursor, StructuredPostal.FORMATTED_ADDRESS);
+            final String postalAddress =
+                    entryValues.getAsString(StructuredPostal.FORMATTED_ADDRESS);
             if (!TextUtils.isEmpty(postalAddress)) {
                 mIntent = StructuredPostalUtils.getViewPostalAddressIntent(postalAddress);
             }
@@ -227,25 +226,13 @@ public class DataAction implements Action {
         mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
     }
 
-    /** Read {@link String} from the given {@link Cursor}. */
-    private static String getAsString(Cursor cursor, String columnName) {
-        final int index = cursor.getColumnIndex(columnName);
-        return cursor.getString(index);
-    }
-
-    /** Read {@link Integer} from the given {@link Cursor}. */
-    private static int getAsInt(Cursor cursor, String columnName) {
-        final int index = cursor.getColumnIndex(columnName);
-        return cursor.getInt(index);
-    }
-
-    private boolean isProtocolValid(Cursor cursor) {
-        final int columnIndex = cursor.getColumnIndex(Im.PROTOCOL);
-        if (cursor.isNull(columnIndex)) {
+    private boolean isProtocolValid(ContentValues entryValues) {
+        final String protocol = entryValues.getAsString(Im.PROTOCOL);
+        if (protocol == null) {
             return false;
         }
         try {
-            Integer.valueOf(cursor.getString(columnIndex));
+            Integer.valueOf(protocol);
         } catch (NumberFormatException e) {
             return false;
         }
