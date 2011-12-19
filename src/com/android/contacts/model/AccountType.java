@@ -25,7 +25,6 @@ import android.accounts.Account;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
@@ -270,6 +269,7 @@ public abstract class AccountType {
      * {@link Comparator} to sort by {@link DataKind#weight}.
      */
     private static Comparator<DataKind> sWeightComparator = new Comparator<DataKind>() {
+        @Override
         public int compare(DataKind object1, DataKind object2) {
             return object1.weight - object2.weight;
         }
@@ -460,13 +460,12 @@ public abstract class AccountType {
     }
 
     /**
-     * Generic method of inflating a given {@link Cursor} into a user-readable
+     * Generic method of inflating a given {@link ContentValues} into a user-readable
      * {@link CharSequence}. For example, an inflater could combine the multiple
      * columns of {@link StructuredPostal} together using a string resource
      * before presenting to the user.
      */
     public interface StringInflater {
-        public CharSequence inflateUsing(Context context, Cursor cursor);
         public CharSequence inflateUsing(Context context, ContentValues values);
     }
 

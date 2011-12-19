@@ -17,44 +17,41 @@
 package com.android.contacts.quickcontact;
 
 import com.android.contacts.Collapser;
+import com.android.contacts.ContactLoader;
 import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.DataKind;
-import com.android.contacts.util.DataStatus;
-import com.android.contacts.util.NotifyingAsyncQueryHandler;
-import com.android.contacts.util.NotifyingAsyncQueryHandler.AsyncQueryListener;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.Entity;
+import android.content.Entity.NamedContentValues;
 import android.content.Intent;
+import android.content.Loader;
 import android.content.pm.PackageManager;
-import android.content.res.AssetFileDescriptor;
-import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.DisplayPhoto;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
 import android.support.v13.app.FragmentPagerAdapter;
@@ -74,7 +71,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -95,8 +91,6 @@ public class QuickContactActivity extends Activity {
 
     @SuppressWarnings("deprecation")
     private static final String LEGACY_AUTHORITY = android.provider.Contacts.AUTHORITY;
-
-    private NotifyingAsyncQueryHandler mHandler;
 
     private Uri mLookupUri;
     private String[] mExcludeMimes;
@@ -147,8 +141,8 @@ public class QuickContactActivity extends Activity {
     private static final List<String> TRAILING_MIMETYPES = Lists.newArrayList(
             StructuredPostal.CONTENT_ITEM_TYPE, Website.CONTENT_ITEM_TYPE);
 
-    /** Id for the background handler that loads the data */
-    private static final int HANDLER_ID_DATA = 1;
+    /** Id for the background loader */
+    private static final int LOADER_ID = 0;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -190,8 +184,6 @@ public class QuickContactActivity extends Activity {
         mListPager.setAdapter(new ViewPagerAdapter(getFragmentManager()));
         mListPager.setOnPageChangeListener(new PageChangeListener());
 
-        mHandler = new NotifyingAsyncQueryHandler(this, mQueryListener);
-
         show();
     }
 
@@ -225,16 +217,7 @@ public class QuickContactActivity extends Activity {
         mPhotoContainer = findViewById(R.id.photo_container);
         setHeaderNameText(R.id.name, R.string.missing_name);
 
-        // Start background query for data, but only select photo rows when they
-        // directly match the super-primary PHOTO_ID.
-        final Uri dataUri = Uri.withAppendedPath(lookupUri, Contacts.Data.CONTENT_DIRECTORY);
-        mHandler.cancelOperation(HANDLER_ID_DATA);
-
-        // Select all data items of the contact (except for photos, where we only select the display
-        // photo)
-        mHandler.startQuery(HANDLER_ID_DATA, lookupUri, dataUri, DataQuery.PROJECTION, Data.MIMETYPE
-                + "!=? OR (" + Data.MIMETYPE + "=? AND " + Data._ID + "=" + Contacts.PHOTO_ID
-                + ")", new String[] { Photo.CONTENT_ITEM_TYPE, Photo.CONTENT_ITEM_TYPE }, null);
+        getLoaderManager().initLoader(LOADER_ID, null, mLoaderCallbacks);
     }
 
     private boolean handleOutsideTouch() {
@@ -248,7 +231,7 @@ public class QuickContactActivity extends Activity {
 
     private void hide(boolean withAnimation) {
         // cancel any pending queries
-        mHandler.cancelOperation(HANDLER_ID_DATA);
+        getLoaderManager().destroyLoader(LOADER_ID);
 
         if (withAnimation) {
             mFloatingLayout.hideChild(new Runnable() {
@@ -268,47 +251,6 @@ public class QuickContactActivity extends Activity {
         hide(true);
     }
 
-    private final AsyncQueryListener mQueryListener = new AsyncQueryListener() {
-        @Override
-        public synchronized void onQueryComplete(int token, Object cookie, Cursor cursor) {
-            try {
-                if (isFinishing()) {
-                    hide(false);
-                    return;
-                } else if (cursor == null || cursor.getCount() == 0) {
-                    Toast.makeText(QuickContactActivity.this, R.string.invalidContactMessage,
-                            Toast.LENGTH_LONG).show();
-                    hide(false);
-                    return;
-                }
-
-                bindData(cursor);
-
-                if (TRACE_LAUNCH) {
-                    android.os.Debug.stopMethodTracing();
-                }
-
-                // Data bound and ready, pull curtain to show. Put this on the Handler to ensure
-                // that the layout passes are completed
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mFloatingLayout.showChild(new Runnable() {
-                            @Override
-                            public void run() {
-                                mHasFinishedAnimatingIn = true;
-                            }
-                        });
-                    }
-                });
-            } finally {
-                if (cursor != null) {
-                    cursor.close();
-                }
-            }
-        }
-    };
-
     /** Assign this string to the view if it is not empty. */
     private void setHeaderNameText(int id, int resId) {
         setHeaderNameText(id, getText(resId));
@@ -321,35 +263,6 @@ public class QuickContactActivity extends Activity {
             if (!TextUtils.isEmpty(value)) {
                 ((TextView)view).setText(value);
             }
-        }
-    }
-
-    /**
-     * Assign this string to the view (if found in {@link #mPhotoContainer}), or hiding this view
-     * if there is no string.
-     */
-    private void setHeaderText(int id, int resId) {
-        setHeaderText(id, getText(resId));
-    }
-
-    /**
-     * Assign this string to the view (if found in {@link #mPhotoContainer}), or hiding this view
-     * if there is no string.
-     */
-    private void setHeaderText(int id, CharSequence value) {
-        final View view = mPhotoContainer.findViewById(id);
-        if (view instanceof TextView) {
-            ((TextView)view).setText(value);
-            view.setVisibility(TextUtils.isEmpty(value) ? View.GONE : View.VISIBLE);
-        }
-    }
-
-    /** Assign this image to the view, if found in {@link #mPhotoContainer}. */
-    private void setHeaderImage(int id, Drawable drawable) {
-        final View view = mPhotoContainer.findViewById(id);
-        if (view instanceof ImageView) {
-            ((ImageView)view).setImageDrawable(drawable);
-            view.setVisibility(drawable == null ? View.GONE : View.VISIBLE);
         }
     }
 
@@ -368,9 +281,9 @@ public class QuickContactActivity extends Activity {
     }
 
     /**
-     * Handle the result from the {@link #TOKEN_DATA} query.
+     * Handle the result from the ContactLoader
      */
-    private void bindData(Cursor cursor) {
+    private void bindData(ContactLoader.Result data) {
         final ResolveCache cache = ResolveCache.getInstance(this);
         final Context context = this;
 
@@ -379,90 +292,62 @@ public class QuickContactActivity extends Activity {
 
         mDefaultsMap.clear();
 
-        final DataStatus status = new DataStatus();
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(
                 context.getApplicationContext());
         final ImageView photoView = (ImageView) mPhotoContainer.findViewById(R.id.photo);
+        final byte[] photo = data.getPhotoBinaryData();
+        if (photo != null) {
+            photoView.setImageBitmap(BitmapFactory.decodeByteArray(photo, 0, photo.length));
+        } else {
+            photoView.setImageResource(
+                    ContactPhotoManager.getDefaultAvatarResId(true, false));
+        }
 
-        Bitmap photoBitmap = null;
-        while (cursor.moveToNext()) {
-            // Handle any social status updates from this row
-            status.possibleUpdate(cursor);
+        for (Entity entity : data.getEntities()) {
+            final ContentValues entityValues = entity.getEntityValues();
+            final String accountType = entityValues.getAsString(RawContacts.ACCOUNT_TYPE);
+            final String dataSet = entityValues.getAsString(RawContacts.DATA_SET);
+            for (NamedContentValues subValue : entity.getSubValues()) {
+                final ContentValues entryValues = subValue.values;
+                final String mimeType = entryValues.getAsString(Data.MIMETYPE);
 
-            final String mimeType = cursor.getString(DataQuery.MIMETYPE);
+                // Skip this data item if MIME-type excluded
+                if (isMimeExcluded(mimeType)) continue;
 
-            // Skip this data item if MIME-type excluded
-            if (isMimeExcluded(mimeType)) continue;
+                final long dataId = entryValues.getAsLong(Data._ID);
+                final Integer primary = entryValues.getAsInteger(Data.IS_PRIMARY);
+                final boolean isPrimary = primary != null && primary != 0;
+                final Integer superPrimary = entryValues.getAsInteger(Data.IS_SUPER_PRIMARY);
+                final boolean isSuperPrimary = superPrimary != null && superPrimary != 0;
 
-            final long dataId = cursor.getLong(DataQuery._ID);
-            final String accountType = cursor.getString(DataQuery.ACCOUNT_TYPE);
-            final String dataSet = cursor.getString(DataQuery.DATA_SET);
-            final boolean isPrimary = cursor.getInt(DataQuery.IS_PRIMARY) != 0;
-            final boolean isSuperPrimary = cursor.getInt(DataQuery.IS_SUPER_PRIMARY) != 0;
+                final DataKind kind =
+                        accountTypes.getKindOrFallback(accountType, dataSet, mimeType);
 
-            // Handle photos included as data row
-            if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                final int displayPhotoColumnIndex = cursor.getColumnIndex(Photo.PHOTO_FILE_ID);
-                final boolean hasDisplayPhoto = !cursor.isNull(displayPhotoColumnIndex);
-                if (hasDisplayPhoto) {
-                    final long displayPhotoId = cursor.getLong(displayPhotoColumnIndex);
-                    final Uri displayPhotoUri = ContentUris.withAppendedId(
-                            DisplayPhoto.CONTENT_URI, displayPhotoId);
-                    // Fetch and JPEG uncompress on the background thread
-                    new AsyncTask<Void, Void, Bitmap>() {
-                        @Override
-                        protected Bitmap doInBackground(Void... params) {
-                            try {
-                                AssetFileDescriptor fd = getContentResolver()
-                                        .openAssetFileDescriptor(displayPhotoUri, "r");
-                                return BitmapFactory.decodeStream(fd.createInputStream());
-                            } catch (IOException e) {
-                                Log.e(TAG, "Error getting display photo. Ignoring, as we already " +
-                                        "have the thumbnail", e);
-                                return null;
-                            }
+                if (kind != null) {
+                    // Build an action for this data entry, find a mapping to a UI
+                    // element, build its summary from the cursor, and collect it
+                    // along with all others of this MIME-type.
+                    final Action action = new DataAction(context, mimeType, kind, dataId,
+                            entryValues);
+                    final boolean wasAdded = considerAdd(action, cache);
+                    if (wasAdded) {
+                        // Remember the default
+                        if (isSuperPrimary || (isPrimary && (mDefaultsMap.get(mimeType) == null))) {
+                            mDefaultsMap.put(mimeType, action);
                         }
-
-                        @Override
-                        protected void onPostExecute(Bitmap result) {
-                            if (result == null) return;
-                            photoView.setImageBitmap(result);
-                        }
-                    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, (Void[]) null);
-                }
-                final int photoColumnIndex = cursor.getColumnIndex(Photo.PHOTO);
-                final byte[] photoBlob = cursor.getBlob(photoColumnIndex);
-                if (photoBlob != null) {
-                    photoBitmap = BitmapFactory.decodeByteArray(photoBlob, 0, photoBlob.length);
-                }
-                continue;
-            }
-
-            final DataKind kind = accountTypes.getKindOrFallback(accountType, dataSet, mimeType);
-
-            if (kind != null) {
-                // Build an action for this data entry, find a mapping to a UI
-                // element, build its summary from the cursor, and collect it
-                // along with all others of this MIME-type.
-                final Action action = new DataAction(context, mimeType, kind, dataId, cursor);
-                final boolean wasAdded = considerAdd(action, cache);
-                if (wasAdded) {
-                    // Remember the default
-                    if (isSuperPrimary || (isPrimary && (mDefaultsMap.get(mimeType) == null))) {
-                        mDefaultsMap.put(mimeType, action);
                     }
                 }
-            }
 
-            // Handle Email rows with presence data as Im entry
-            final boolean hasPresence = !cursor.isNull(DataQuery.PRESENCE);
-            if (hasPresence && Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                final DataKind imKind = accountTypes.getKindOrFallback(accountType, dataSet,
-                        Im.CONTENT_ITEM_TYPE);
-                if (imKind != null) {
-                    final DataAction action = new DataAction(context, Im.CONTENT_ITEM_TYPE, imKind,
-                            dataId, cursor);
-                    considerAdd(action, cache);
+                // Handle Email rows with presence data as Im entry
+                final boolean hasPresence = data.getStatuses().containsKey(dataId);
+                if (hasPresence && Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                    final DataKind imKind = accountTypes.getKindOrFallback(accountType, dataSet,
+                            Im.CONTENT_ITEM_TYPE);
+                    if (imKind != null) {
+                        final DataAction action = new DataAction(context, Im.CONTENT_ITEM_TYPE,
+                                imKind, dataId, entryValues);
+                        considerAdd(action, cache);
+                    }
                 }
             }
         }
@@ -472,20 +357,7 @@ public class QuickContactActivity extends Activity {
             Collapser.collapseList(actionChildren);
         }
 
-        if (cursor.moveToLast()) {
-            // Read contact name from last data row
-            final String name = cursor.getString(DataQuery.DISPLAY_NAME);
-            setHeaderNameText(R.id.name, name);
-        }
-
-        if (photoView != null) {
-            // Place photo when discovered in data, otherwise show generic avatar
-            if (photoBitmap != null) {
-                photoView.setImageBitmap(photoBitmap);
-            } else {
-                photoView.setImageResource(ContactPhotoManager.getDefaultAvatarResId(true, false));
-            }
-        }
+        setHeaderNameText(R.id.name, data.getDisplayName());
 
         // All the mime-types to add.
         final Set<String> containedTypes = new HashSet<String>(mActions.keySet());
@@ -515,6 +387,7 @@ public class QuickContactActivity extends Activity {
         }
 
         // Add buttons for each mimetype
+        mTrack.removeAllViews();
         for (String mimeType : mSortedActionMimeTypes) {
             final View actionView = inflateAction(mimeType, cache, mTrack);
             mTrack.addView(actionView);
@@ -573,6 +446,61 @@ public class QuickContactActivity extends Activity {
         final QuickContactListFragment listFragment = (QuickContactListFragment) fragment;
         listFragment.setListener(mListFragmentListener);
     }
+
+    private LoaderCallbacks<ContactLoader.Result> mLoaderCallbacks =
+            new LoaderCallbacks<ContactLoader.Result>() {
+        @Override
+        public void onLoaderReset(Loader<ContactLoader.Result> loader) {
+        }
+
+        @Override
+        public void onLoadFinished(Loader<ContactLoader.Result> loader, ContactLoader.Result data) {
+            if (isFinishing()) {
+                hide(false);
+                return;
+            }
+            if (data.isError()) {
+                // This shouldn't ever happen, so throw an exception. The {@link ContactLoader}
+                // should log the actual exception.
+                throw new IllegalStateException("Failed to load contact", data.getException());
+            }
+            if (data.isNotFound()) {
+                Log.i(TAG, "No contact found: " + ((ContactLoader)loader).getLookupUri());
+                Toast.makeText(QuickContactActivity.this, R.string.invalidContactMessage,
+                        Toast.LENGTH_LONG).show();
+                hide(false);
+                return;
+            }
+
+            bindData(data);
+
+            if (TRACE_LAUNCH) {
+                android.os.Debug.stopMethodTracing();
+            }
+
+            // Data bound and ready, pull curtain to show. Put this on the Handler to ensure
+            // that the layout passes are completed
+            new Handler().post(new Runnable() {
+                @Override
+                public void run() {
+                    mFloatingLayout.showChild(new Runnable() {
+                        @Override
+                        public void run() {
+                            mHasFinishedAnimatingIn = true;
+                        }
+                    });
+                }
+            });
+        }
+
+        @Override
+        public Loader<ContactLoader.Result> onCreateLoader(int id, Bundle args) {
+            if (mLookupUri == null) {
+                Log.wtf(TAG, "Lookup uri wasn't initialized. Loader was started too early");
+            }
+            return new ContactLoader(getApplicationContext(), mLookupUri);
+        }
+    };
 
     /** A type (e.g. Call/Addresses was clicked) */
     private final OnClickListener mTypeViewClickListener = new OnClickListener() {
@@ -653,53 +581,4 @@ public class QuickContactActivity extends Activity {
             new Handler().post(startAppRunnable);
         }
     };
-
-    private interface DataQuery {
-        final String[] PROJECTION = new String[] {
-                Data._ID,
-
-                RawContacts.ACCOUNT_TYPE,
-                RawContacts.DATA_SET,
-                Contacts.STARRED,
-                Contacts.DISPLAY_NAME,
-
-                Data.STATUS,
-                Data.STATUS_RES_PACKAGE,
-                Data.STATUS_ICON,
-                Data.STATUS_LABEL,
-                Data.STATUS_TIMESTAMP,
-                Data.PRESENCE,
-                Data.CHAT_CAPABILITY,
-
-                Data.RES_PACKAGE,
-                Data.MIMETYPE,
-                Data.IS_PRIMARY,
-                Data.IS_SUPER_PRIMARY,
-                Data.RAW_CONTACT_ID,
-
-                Data.DATA1, Data.DATA2, Data.DATA3, Data.DATA4, Data.DATA5,
-                Data.DATA6, Data.DATA7, Data.DATA8, Data.DATA9, Data.DATA10, Data.DATA11,
-                Data.DATA12, Data.DATA13, Data.DATA14, Data.DATA15,
-        };
-
-        final int _ID = 0;
-
-        final int ACCOUNT_TYPE = 1;
-        final int DATA_SET = 2;
-        final int STARRED = 3;
-        final int DISPLAY_NAME = 4;
-
-        final int STATUS = 5;
-        final int STATUS_RES_PACKAGE = 6;
-        final int STATUS_ICON = 7;
-        final int STATUS_LABEL = 8;
-        final int STATUS_TIMESTAMP = 9;
-        final int PRESENCE = 10;
-        final int CHAT_CAPABILITY = 11;
-
-        final int RES_PACKAGE = 12;
-        final int MIMETYPE = 13;
-        final int IS_PRIMARY = 14;
-        final int IS_SUPER_PRIMARY = 15;
-    }
 }
