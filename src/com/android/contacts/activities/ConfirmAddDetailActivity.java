@@ -319,15 +319,23 @@ public class ConfirmAddDetailActivity extends Activity implements
         // Apply a limit of 1 result to the query because we only need to
         // determine whether or not at least one other contact has the same
         // name. We don't need to find ALL other contacts with the same name.
-        Builder builder = Contacts.CONTENT_URI.buildUpon();
+        final Builder builder = Contacts.CONTENT_URI.buildUpon();
         builder.appendQueryParameter("limit", String.valueOf(1));
-        Uri uri = builder.build();
+        final Uri uri = builder.build();
 
+        final String displayNameSelection;
+        final String[] selectionArgs;
+        if (TextUtils.isEmpty(contactDisplayName)) {
+            displayNameSelection = Contacts.DISPLAY_NAME_PRIMARY + " IS NULL";
+            selectionArgs = new String[] { String.valueOf(mContactId) };
+        } else {
+            displayNameSelection = Contacts.DISPLAY_NAME_PRIMARY + " = ?";
+            selectionArgs = new String[] { contactDisplayName, String.valueOf(mContactId) };
+        }
         mQueryHandler.startQuery(TOKEN_DISAMBIGUATION_QUERY, null, uri,
                 new String[] { Contacts._ID } /* unused projection but a valid one was needed */,
-                Contacts.DISPLAY_NAME_PRIMARY + " = ? and " + Contacts.PHOTO_ID + " is null and "
-                + Contacts._ID + " <> ?",
-                new String[] { contactDisplayName, String.valueOf(mContactId) }, null);
+                displayNameSelection + " AND " + Contacts.PHOTO_ID + " IS NULL AND "
+                + Contacts._ID + " <> ?", selectionArgs, null);
     }
 
     /**
