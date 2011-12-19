@@ -286,7 +286,17 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
         }
 
         // Field changes are saved directly
+        saveValue(column, value);
+
+        // Notify listener if applicable
+        notifyEditorListener();
+    }
+
+    protected void saveValue(String column, String value) {
         mEntry.put(column, value);
+    }
+
+    protected void notifyEditorListener() {
         if (mListener != null) {
             mListener.onRequest(EditorListener.FIELD_CHANGED);
         }
