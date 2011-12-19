@@ -77,11 +77,12 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
         if (!isFieldChanged(column, value)) {
             return;
         }
-        super.onFieldChanged(column, value);
 
+        // First save the new value for the column.
+        saveValue(column, value);
         mChanged = true;
 
-        // Make sure the display name and the structured name are synced
+        // Next make sure the display name and the structured name are synced
         if (hasShortAndLongForms()) {
             if (areOptionalFieldsVisible()) {
                 rebuildFullName(getValues());
@@ -89,6 +90,10 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
                 rebuildStructuredName(getValues());
             }
         }
+
+        // Then notify the listener, which will rely on the display and structured names to be
+        // synced (in order to provide aggregate suggestions).
+        notifyEditorListener();
     }
 
     @Override
