@@ -84,7 +84,6 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.DisplayNameSources;
-import android.provider.ContactsContract.Intents.UI;
 import android.provider.ContactsContract.PhoneLookup;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.StatusUpdates;
@@ -149,7 +148,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
     private Button mQuickFixButton;
     private QuickFix mQuickFix;
-    private int mNumPhoneNumbers = 0;
     private String mDefaultCountryIso;
     private boolean mContactHasSocialUpdates;
     private boolean mShowStaticPhoto = true;
@@ -543,7 +541,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         mRawContactIds.clear();
 
         mPrimaryPhoneUri = null;
-        mNumPhoneNumbers = 0;
 
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
 
@@ -598,7 +595,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     // Always ignore the name. It is shown in the header if set
                 } else if (Phone.CONTENT_ITEM_TYPE.equals(mimeType) && hasData) {
                     // Build phone entries
-                    mNumPhoneNumbers++;
                     String phoneNumberE164 =
                             entryValues.getAsString(PhoneLookup.NORMALIZED_NUMBER);
                     entry.data = PhoneNumberUtils.formatNumber(
@@ -644,7 +640,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                                 imKind, dataId, entryValues, mContactData.isDirectoryEntry(),
                                 mContactData.getDirectoryId());
                         buildImActions(mContext, imEntry, entryValues);
-                        imEntry.applyStatus(status, false);
+                        imEntry.setPresence(status.getPresence());
                         imEntry.maxLines = imKind.maxLinesForDisplay;
                         mImEntries.add(imEntry);
                     }
@@ -656,10 +652,10 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                     // Build IM entries
                     buildImActions(mContext, entry, entryValues);
 
-                    // Apply presence and status details when available
+                    // Apply presence when available
                     final DataStatus status = mContactData.getStatuses().get(entry.id);
                     if (status != null) {
-                        entry.applyStatus(status, false);
+                        entry.setPresence(status.getPresence());
                     }
                     mImEntries.add(entry);
                 } else if (Organization.CONTENT_ITEM_TYPE.equals(mimeType)) {
@@ -1228,8 +1224,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         public int presence = -1;
         public int chatCapability = 0;
 
-        public CharSequence footerLine = null;
-
         private boolean mIsInSubSection = false;
 
         DetailViewEntry() {
@@ -1280,21 +1274,8 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             return entry;
         }
 
-        /**
-         * Apply given {@link DataStatus} values over this {@link DetailViewEntry}
-         *
-         * @param fillData When true, the given status replaces {@link #data}
-         *            and {@link #footerLine}. Otherwise only {@link #presence}
-         *            is updated.
-         */
-        public DetailViewEntry applyStatus(DataStatus status, boolean fillData) {
-            presence = status.getPresence();
-            if (fillData && status.isValid()) {
-                this.data = status.getStatus().toString();
-                this.footerLine = status.getTimestampLabel(context);
-            }
-
-            return this;
+        public void setPresence(int presence) {
+            this.presence = presence;
         }
 
         public void setIsInSubSection(boolean isInSubSection) {
@@ -1428,7 +1409,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     private static class DetailViewCache {
         public final TextView type;
         public final TextView data;
-        public final TextView footer;
         public final ImageView presenceIcon;
         public final ImageView secondaryActionButton;
         public final View actionsViewContainer;
@@ -1442,7 +1422,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                 OnClickListener secondaryActionClickListener) {
             type = (TextView) view.findViewById(R.id.type);
             data = (TextView) view.findViewById(R.id.data);
-            footer = (TextView) view.findViewById(R.id.footer);
             primaryIndicator = view.findViewById(R.id.primary_indicator);
             presenceIcon = (ImageView) view.findViewById(R.id.presence_icon);
 
@@ -1629,14 +1608,6 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
 
             views.data.setText(entry.data);
             setMaxLines(views.data, entry.maxLines);
-
-            // Set the footer
-            if (!TextUtils.isEmpty(entry.footerLine)) {
-                views.footer.setText(entry.footerLine);
-                views.footer.setVisibility(View.VISIBLE);
-            } else {
-                views.footer.setVisibility(View.GONE);
-            }
 
             // Set the default contact method
             views.primaryIndicator.setVisibility(entry.isPrimary ? View.VISIBLE : View.GONE);
@@ -2158,17 +2129,14 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
     private final static class InvitableAccountTypesAdapter extends BaseAdapter {
         private final Context mContext;
         private final LayoutInflater mInflater;
-        private final ContactLoader.Result mContactData;
         private final ArrayList<AccountType> mAccountTypes;
 
         public InvitableAccountTypesAdapter(Context context, ContactLoader.Result contactData) {
             mContext = context;
             mInflater = LayoutInflater.from(context);
-            mContactData = contactData;
             final List<AccountType> types = contactData.getInvitableAccountTypes();
             mAccountTypes = new ArrayList<AccountType>(types.size());
 
-            AccountTypeManager manager = AccountTypeManager.getInstance(context);
             for (int i = 0; i < types.size(); i++) {
                 mAccountTypes.add(types.get(i));
             }
