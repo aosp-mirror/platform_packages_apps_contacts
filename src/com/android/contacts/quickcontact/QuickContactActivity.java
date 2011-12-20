@@ -22,6 +22,7 @@ import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.DataKind;
+import com.android.contacts.util.DataStatus;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
@@ -339,13 +340,14 @@ public class QuickContactActivity extends Activity {
                 }
 
                 // Handle Email rows with presence data as Im entry
-                final boolean hasPresence = data.getStatuses().containsKey(dataId);
-                if (hasPresence && Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                final DataStatus status = data.getStatuses().get(dataId);
+                if (status != null && Email.CONTENT_ITEM_TYPE.equals(mimeType)) {
                     final DataKind imKind = accountTypes.getKindOrFallback(accountType, dataSet,
                             Im.CONTENT_ITEM_TYPE);
                     if (imKind != null) {
                         final DataAction action = new DataAction(context, Im.CONTENT_ITEM_TYPE,
                                 imKind, dataId, entryValues);
+                        action.setPresence(status.getPresence());
                         considerAdd(action, cache);
                     }
                 }
