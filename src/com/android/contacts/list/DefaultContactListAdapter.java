@@ -26,9 +26,7 @@ import android.net.Uri;
 import android.net.Uri.Builder;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
-import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.SearchSnippetColumns;
@@ -209,7 +207,8 @@ public class DefaultContactListAdapter extends ContactListAdapter {
 
         if (isQuickContactEnabled()) {
             bindQuickContact(view, partition, cursor, ContactQuery.CONTACT_PHOTO_ID,
-                    ContactQuery.CONTACT_ID, ContactQuery.CONTACT_LOOKUP_KEY);
+                    ContactQuery.CONTACT_PHOTO_URI, ContactQuery.CONTACT_ID,
+                    ContactQuery.CONTACT_LOOKUP_KEY);
         } else {
             bindPhoto(view, partition, cursor);
         }
