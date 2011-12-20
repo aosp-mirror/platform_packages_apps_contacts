@@ -94,8 +94,7 @@ public class ContactTileListFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        // TODO: Use initLoader?
-        getLoaderManager().restartLoader(LOADER_CONTACTS, null, mContactTileLoaderListener);
+        getLoaderManager().initLoader(LOADER_CONTACTS, null, mContactTileLoaderListener);
     }
 
     public void setColumnCount(int columnCount) {
