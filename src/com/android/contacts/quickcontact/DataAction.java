@@ -59,6 +59,7 @@ public class DataAction implements Action {
     private Intent mAlternateIntent;
     private int mAlternateIconDescriptionRes;
     private int mAlternateIconRes;
+    private int mPresence = -1;
 
     private Uri mDataUri;
     private long mDataId;
@@ -170,7 +171,8 @@ public class DataAction implements Action {
                 if (isEmail) {
                     // Use Google Talk string when using Email, and clear data
                     // Uri so we don't try saving Email as primary.
-                    mSubtitle = context.getText(R.string.chat_gtalk);
+                    mSubtitle = Im.getProtocolLabel(context.getResources(), Im.PROTOCOL_GOOGLE_TALK,
+                            null);
                     mDataUri = null;
                 }
 
@@ -224,6 +226,15 @@ public class DataAction implements Action {
 
         // Always launch as new task, since we're like a launcher
         mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    }
+
+    @Override
+    public int getPresence() {
+        return mPresence;
+    }
+
+    public void setPresence(int presence) {
+        mPresence = presence;
     }
 
     private boolean isProtocolValid(ContentValues entryValues) {

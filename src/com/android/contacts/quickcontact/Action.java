@@ -58,4 +58,7 @@ public interface Action extends Collapser.Collapsible<Action> {
      * row
      */
     public long getDataId();
+
+    /** Returns the presence of this item or -1 if it was never set */
+    public int getPresence();
 }
