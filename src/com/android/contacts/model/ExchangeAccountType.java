@@ -169,8 +169,8 @@ public class ExchangeAccountType extends BaseAccountType {
 
         kind.typeColumn = Phone.TYPE;
         kind.typeList = Lists.newArrayList();
-        kind.typeList.add(buildPhoneType(Phone.TYPE_HOME).setSpecificMax(2));
         kind.typeList.add(buildPhoneType(Phone.TYPE_MOBILE).setSpecificMax(1));
+        kind.typeList.add(buildPhoneType(Phone.TYPE_HOME).setSpecificMax(2));
         kind.typeList.add(buildPhoneType(Phone.TYPE_WORK).setSpecificMax(2));
         kind.typeList.add(buildPhoneType(Phone.TYPE_FAX_WORK).setSecondary(true)
                 .setSpecificMax(1));
