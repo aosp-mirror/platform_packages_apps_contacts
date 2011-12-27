@@ -34,6 +34,7 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
+import android.provider.ContactsContract.Intents.Insert;
 import android.provider.ContactsContract.Intents.UI;
 import android.text.TextUtils;
 import android.util.Log;
@@ -125,14 +126,22 @@ public class ContactsIntentResolver {
         } else if (Intent.ACTION_INSERT_OR_EDIT.equals(action)) {
             request.setActionCode(ContactsRequest.ACTION_INSERT_OR_EDIT_CONTACT);
         } else if (Intent.ACTION_SEARCH.equals(action)) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
             // See if the suggestion was clicked with a search action key (call button)
             if ("call".equals(intent.getStringExtra(SearchManager.ACTION_MSG))) {
-                String query = intent.getStringExtra(SearchManager.QUERY);
                 if (!TextUtils.isEmpty(query)) {
                     request.setRedirectIntent(ContactsUtils.getCallIntent(query));
                 }
             } else {
-                request.setQueryString(intent.getStringExtra(SearchManager.QUERY));
+                // If the {@link SearchManager.QUERY} is empty, then check if a phone number
+                // or email is specified, in that priority.
+                if (TextUtils.isEmpty(query)) {
+                    query = intent.getStringExtra(Insert.PHONE);
+                }
+                if (TextUtils.isEmpty(query)) {
+                    query = intent.getStringExtra(Insert.EMAIL);
+                }
+                request.setQueryString(query);
                 request.setSearchMode(true);
             }
         } else if (Intent.ACTION_VIEW.equals(action)) {
