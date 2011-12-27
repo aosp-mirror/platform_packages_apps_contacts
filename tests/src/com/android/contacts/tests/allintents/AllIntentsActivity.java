@@ -290,11 +290,15 @@ public class AllIntentsActivity extends ListActivity
                 break;
             }
             case ACTION_SEARCH_EMAIL: {
-                Toast.makeText(this, "Unsupported", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Intent.ACTION_SEARCH);
+                intent.putExtra(Insert.EMAIL, "a");
+                startSearchResultActivity(intent);
                 break;
             }
             case ACTION_SEARCH_PHONE: {
-                Toast.makeText(this, "Unsupported", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Intent.ACTION_SEARCH);
+                intent.putExtra(Insert.PHONE, "800");
+                startSearchResultActivity(intent);
                 break;
             }
             case SEARCH_SUGGESTION_CLICKED_CALL_BUTTON: {
