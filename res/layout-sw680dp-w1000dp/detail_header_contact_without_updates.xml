@@ -50,7 +50,7 @@
         android:id="@+id/company"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="16dip"
+        android:paddingTop="8dip"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="?android:attr/textColorSecondary" />
 
