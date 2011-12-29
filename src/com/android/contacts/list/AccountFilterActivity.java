@@ -197,11 +197,13 @@ public class AccountFilterActivity extends ContactsActivity
     private static class FilterListAdapter extends BaseAdapter {
         private final List<ContactListFilter> mFilters;
         private final LayoutInflater mLayoutInflater;
+        private final AccountTypeManager mAccountTypes;
 
         public FilterListAdapter(Context context, List<ContactListFilter> filters) {
             mLayoutInflater = (LayoutInflater) context.getSystemService
                     (Context.LAYOUT_INFLATER_SERVICE);
             mFilters = filters;
+            mAccountTypes = AccountTypeManager.getInstance(context);
         }
 
         @Override
@@ -230,7 +232,7 @@ public class AccountFilterActivity extends ContactsActivity
             view.setSingleAccount(mFilters.size() == 1);
             final ContactListFilter filter = mFilters.get(position);
             view.setContactListFilter(filter);
-            view.bindView(true);
+            view.bindView(mAccountTypes);
             view.setTag(filter);
             return view;
         }
