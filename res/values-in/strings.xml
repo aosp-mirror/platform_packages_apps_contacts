@@ -41,8 +41,7 @@
     <string name="menu_search" msgid="9147752853603483719">"Telusuri"</string>
     <string name="menu_newContact" msgid="1209922412763274638">"Kenalan baru"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Lihat kenalan"</string>
-    <!-- no translation found for menu_callNumber (997146291983360266) -->
-    <skip />
+    <string name="menu_callNumber" msgid="997146291983360266">"Panggil <xliff:g id="NUMBER">%s</xliff:g>"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Tambahkan ke favorit"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Hapus dari favorit"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Edit"</string>
@@ -283,6 +282,7 @@
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kenalan untuk ditampilkan"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Impor/ekspor"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"Impor/ekspor data kenalan"</string>
+    <string name="dialog_import" msgid="2431698729761448759">"Impor kenalan"</string>
     <string name="menu_share" msgid="943789700636542260">"Bagikan"</string>
     <string name="menu_all_contacts" msgid="5101735431586050711">"Semua kenalan"</string>
     <string name="share_via" msgid="563121028023030093">"Bagikan kenalan melalui"</string>
@@ -465,7 +465,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"Memuat..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Buat kenalan baru"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Masuk ke akun."</string>
-    <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Mengimpor data kenalan dari berkas"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Impor kenalan"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Buat grup baru"</string>
     <string name="create_group_item_label" msgid="5218022006186243310">"[Buat grup baru]"</string>
   <plurals name="num_groups_in_account">
