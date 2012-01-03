@@ -46,6 +46,9 @@
     <!-- Minimum height of a row in the Editor -->
     <dimen name="editor_min_line_item_height">48dip</dimen>
 
+    <!-- Height of the shadow asset under the photo on the contact detail page -->
+    <dimen name="detail_contact_photo_shadow_height">10dip</dimen>
+
     <!-- Height of the tab text label in the tab carousel on the contact detail page -->
     <dimen name="detail_tab_carousel_tab_label_height">45dip</dimen>
 
