@@ -300,7 +300,7 @@ public abstract class ContactBrowseListFragment extends
      * Sets the new selection for the list.
      */
     public void setSelectedContactUri(Uri uri) {
-        setSelectedContactUri(uri, true, true, true, false);
+        setSelectedContactUri(uri, true, false /* no smooth scroll */, true, false);
     }
 
     @Override
