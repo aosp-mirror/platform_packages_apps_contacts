@@ -75,6 +75,7 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
 
     public interface Listener {
         public void onContactSelected(Uri contactUri);
+        public void onCallNumberDirectly(String phoneNumber);
     }
 
     private class ContactTileLoaderListener implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -136,11 +137,18 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
         }
     }
 
-    private class ContactTileAdapterListener implements ContactTileAdapter.Listener {
+    private class ContactTileAdapterListener implements ContactTileView.Listener {
         @Override
         public void onContactSelected(Uri contactUri, Rect targetRect) {
             if (mListener != null) {
                 mListener.onContactSelected(contactUri);
+            }
+        }
+
+        @Override
+        public void onCallNumberDirectly(String phoneNumber) {
+            if (mListener != null) {
+                mListener.onCallNumberDirectly(phoneNumber);
             }
         }
     }
@@ -210,7 +218,7 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
     private FrameLayout mAccountFilterHeaderContainer;
     private View mAccountFilterHeader;
 
-    private final ContactTileAdapter.Listener mContactTileAdapterListener =
+    private final ContactTileView.Listener mContactTileAdapterListener =
             new ContactTileAdapterListener();
     private final LoaderManager.LoaderCallbacks<Cursor> mContactTileLoaderListener =
             new ContactTileLoaderListener();

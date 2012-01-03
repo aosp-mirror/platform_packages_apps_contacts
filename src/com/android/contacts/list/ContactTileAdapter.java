@@ -50,7 +50,7 @@ public class ContactTileAdapter extends BaseAdapter {
     private static final String TAG = ContactTileAdapter.class.getSimpleName();
 
     private DisplayType mDisplayType;
-    private Listener mListener;
+    private ContactTileView.Listener mListener;
     private Context mContext;
     private Resources mResources;
     private Cursor mContactCursor = null;
@@ -114,7 +114,7 @@ public class ContactTileAdapter extends BaseAdapter {
         GROUP_MEMBERS
     }
 
-    public ContactTileAdapter(Context context, Listener listener, int numCols,
+    public ContactTileAdapter(Context context, ContactTileView.Listener listener, int numCols,
             DisplayType displayType) {
         mListener = listener;
         mContext = context;
@@ -474,16 +474,6 @@ public class ContactTileAdapter extends BaseAdapter {
         return getRowCount(mDividerPosition);
     }
 
-    private ContactTileView.Listener mContactTileListener = new ContactTileView.Listener() {
-        @Override
-        public void onClick(ContactTileView contactTileView) {
-            if (mListener != null) {
-                mListener.onContactSelected(contactTileView.getLookupUri(),
-                        ContactsUtils.getTargetRectFromView(mContext, contactTileView));
-            }
-        }
-    };
-
     /**
      * Acts as a row item composed of {@link ContactTileView}
      *
@@ -531,7 +521,7 @@ public class ContactTileAdapter extends BaseAdapter {
                         0);
                 contactTile.setLayoutParams(params);
                 contactTile.setPhotoManager(mPhotoManager);
-                contactTile.setListener(mContactTileListener);
+                contactTile.setListener(mListener);
                 addView(contactTile);
             } else {
                 contactTile = (ContactTileView) getChildAt(childIndex);
@@ -666,9 +656,5 @@ public class ContactTileAdapter extends BaseAdapter {
         public static final int DIVIDER = 1;
         public static final int FREQUENT = 2;
         public static final int STARRED_WITH_SECONDARY_ACTION = 3;
-    }
-
-    public interface Listener {
-        public void onContactSelected(Uri contactUri, Rect targetRect);
     }
 }

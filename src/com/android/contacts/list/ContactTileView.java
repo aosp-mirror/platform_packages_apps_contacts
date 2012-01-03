@@ -16,10 +16,12 @@
 package com.android.contacts.list;
 
 import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.list.ContactTileAdapter.ContactEntry;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -45,7 +47,7 @@ public class ContactTileView extends FrameLayout {
     private ContactPhotoManager mPhotoManager = null;
     private View mPushState;
     private View mHorizontalDivider;
-    private Listener mListener;
+    protected Listener mListener;
 
     public ContactTileView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -64,20 +66,26 @@ public class ContactTileView extends FrameLayout {
         mPushState = findViewById(R.id.contact_tile_push_state);
         mHorizontalDivider = findViewById(R.id.contact_tile_horizontal_divider);
 
-        OnClickListener listener = new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mListener != null) {
-                    mListener.onClick(ContactTileView.this);
-                }
-            }
-        };
+
+        OnClickListener listener = createClickListener();
 
         if(mPushState != null) {
             mPushState.setOnClickListener(listener);
         } else {
             setOnClickListener(listener);
         }
+    }
+
+    protected OnClickListener createClickListener() {
+        return new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener == null) return;
+                mListener.onContactSelected(
+                        getLookupUri(),
+                        ContactsUtils.getTargetRectFromView(mContext, ContactTileView.this));
+            }
+        };
     }
 
     public void setPhotoManager(ContactPhotoManager photoManager) {
@@ -165,6 +173,13 @@ public class ContactTileView extends FrameLayout {
     }
 
     public interface Listener {
-        void onClick(ContactTileView contactTileView);
+        /**
+         * Notification that the contact was selected; no specific action is dictated.
+         */
+        void onContactSelected(Uri contactLookupUri, Rect viewRect);
+        /**
+         * Notification that the specified number is to be called.
+         */
+        void onCallNumberDirectly(String phoneNumber);
     }
 }

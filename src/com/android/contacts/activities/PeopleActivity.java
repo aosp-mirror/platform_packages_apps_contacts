@@ -1230,6 +1230,12 @@ public class PeopleActivity extends ContactsActivity
                 startActivity(new Intent(Intent.ACTION_VIEW, contactUri));
             }
         }
+
+        @Override
+        public void onCallNumberDirectly(String phoneNumber) {
+            // No need to call phone number directly from People app.
+            Log.w(TAG, "unexpected invocation of onCallNumberDirectly()");
+        }
     }
 
     private final class GroupBrowserActionListener implements OnGroupBrowserActionListener {
