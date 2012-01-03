@@ -49,6 +49,9 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
     /** Tab height as defined as a fraction of the screen width */
     private float mTabHeightScreenWidthFraction;
 
+    /** Height in pixels of the shadow under the tab carousel */
+    private int mTabShadowHeight;
+
     private ImageView mPhotoView;
     private TextView mStatusView;
     private ImageView mStatusPhotoView;
@@ -93,6 +96,8 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         Resources resources = mContext.getResources();
         mTabDisplayLabelHeight = resources.getDimensionPixelSize(
                 R.dimen.detail_tab_carousel_tab_label_height);
+        mTabShadowHeight = resources.getDimensionPixelSize(
+                R.dimen.detail_contact_photo_shadow_height);
         mTabWidthScreenWidthFraction = resources.getFraction(
                 R.fraction.tab_width_screen_width_percentage, 1, 1);
         mTabHeightScreenWidthFraction = resources.getFraction(
@@ -129,7 +134,7 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         // from the total length of the tabs.
         mAllowedHorizontalScrollLength = tabWidth * TAB_COUNT - screenWidth;
 
-        int tabHeight = (int) (screenWidth * mTabHeightScreenWidthFraction);
+        int tabHeight = (int) (screenWidth * mTabHeightScreenWidthFraction) + mTabShadowHeight;
         // Set the child {@link LinearLayout} to be TAB_COUNT * the computed tab width so that the
         // {@link LinearLayout}'s children (which are the tabs) will evenly split that width.
         if (getChildCount() > 0) {

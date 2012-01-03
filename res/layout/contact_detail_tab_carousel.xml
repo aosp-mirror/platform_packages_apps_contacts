@@ -23,26 +23,44 @@
     android:fadingEdge="none">
 
     <LinearLayout
-        android:id="@+id/tab_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <!-- "About" tab -->
-        <include
-            android:id="@+id/tab_about"
-            layout="@layout/carousel_about_tab" />
+        <LinearLayout
+            android:id="@+id/tab_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-        <!-- Vertical divider -->
+            <!-- "About" tab -->
+            <include
+                android:id="@+id/tab_about"
+                layout="@layout/carousel_about_tab" />
+
+            <!-- Vertical divider -->
+            <View
+                android:layout_width="1dip"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"/>
+
+            <!-- "Updates" tab -->
+            <include
+                android:id="@+id/tab_update"
+                layout="@layout/carousel_updates_tab" />
+
+        </LinearLayout>
+
+        <!--
+          Shadow below the carousel. The ContactDetailTabCarousel increases its height to
+          account for this shadow, and the class assumes the height of this shadow to be
+          @dimen/detail_contact_photo_shadow_height.
+        -->
         <View
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@android:color/white"/>
-
-        <!-- "Updates" tab -->
-        <include
-            android:id="@+id/tab_update"
-            layout="@layout/carousel_updates_tab" />
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/detail_contact_photo_shadow_height"
+            android:background="?android:attr/windowContentOverlay"/>
 
     </LinearLayout>
 
