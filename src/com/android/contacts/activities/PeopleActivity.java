@@ -1537,7 +1537,7 @@ public class PeopleActivity extends ContactsActivity
                 if (resultCode == RESULT_OK && PhoneCapabilityTester.isUsingTwoPanes(this)) {
                     mRequest.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
                     mAllFragment.setSelectionRequired(true);
-                    mAllFragment.reloadDataAndSetSelectedUri(data.getData());
+                    mAllFragment.setSelectedContactUri(data.getData());
                     // Suppress IME if in search mode
                     if (mActionBarAdapter != null) {
                         mActionBarAdapter.clearFocusOnSearchView();
