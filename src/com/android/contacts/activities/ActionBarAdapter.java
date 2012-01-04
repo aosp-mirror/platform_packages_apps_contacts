@@ -151,7 +151,14 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
             // Just set to the field here.  The listener will be notified by update().
             mCurrentTab = TabState.fromInt(savedState.getInt(EXTRA_KEY_SELECTED_TAB));
         }
+        // Show tabs or the expanded {@link SearchView}, depending on whether or not we are in
+        // search mode.
         update();
+        // Expanding the {@link SearchView} clears the query, so set the query from the
+        // {@link ContactsRequest} after it has been expanded, if applicable.
+        if (mSearchMode && !TextUtils.isEmpty(mQueryString)) {
+            setQueryString(mQueryString);
+        }
     }
 
     public void setListener(Listener listener) {
@@ -292,7 +299,8 @@ public class ActionBarAdapter implements OnQueryTextListener, OnCloseListener {
         if (mSearchMode) {
             setFocusOnSearchView();
             // Since we have the {@link SearchView} in a custom action bar, we must manually handle
-            // expanding the {@link SearchView} when a search is initiated.
+            // expanding the {@link SearchView} when a search is initiated. Note that a side effect
+            // of this method is that the {@link SearchView} query text is set to empty string.
             mSearchView.onActionViewExpanded();
             if (mActionBar.getNavigationMode() != ActionBar.NAVIGATION_MODE_STANDARD) {
                 mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
