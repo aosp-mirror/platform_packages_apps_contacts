@@ -174,7 +174,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 selection.append(
                         Contacts._ID + " IN ("
                                 + "SELECT DISTINCT " + RawContacts.CONTACT_ID
-                                + " FROM raw_contacts"
+                                + " FROM view_raw_contacts"
                                 + " WHERE " + RawContacts.ACCOUNT_TYPE + "=?"
                                 + " AND " + RawContacts.ACCOUNT_NAME + "=?");
                 selectionArgs.add(filter.accountType);
