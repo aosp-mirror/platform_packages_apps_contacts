@@ -323,7 +323,8 @@ public class DialtactsActivity extends TransactionSafeActivity {
         @Override
         public boolean onMenuItemClick(MenuItem item) {
             AccountFilterUtil.startAccountFilterActivityForResult(
-                    DialtactsActivity.this, SUBACTIVITY_ACCOUNT_FILTER);
+                    DialtactsActivity.this, SUBACTIVITY_ACCOUNT_FILTER,
+                    mContactListFilterController.getFilter());
             return true;
         }
     };

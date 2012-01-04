@@ -56,10 +56,13 @@ public class AccountFilterActivity extends ContactsActivity
     private static final int SUBACTIVITY_CUSTOMIZE_FILTER = 0;
 
     public static final String KEY_EXTRA_CONTACT_LIST_FILTER = "contactListFilter";
+    public static final String KEY_EXTRA_CURRENT_FILTER = "currentFilter";
 
     private static final int FILTER_LOADER_ID = 0;
 
     private ListView mListView;
+
+    private ContactListFilter mCurrentFilter;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -73,6 +76,8 @@ public class AccountFilterActivity extends ContactsActivity
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        mCurrentFilter = getIntent().getParcelableExtra(KEY_EXTRA_CURRENT_FILTER);
 
         getLoaderManager().initLoader(FILTER_LOADER_ID, null, new MyLoaderCallbacks());
     }
@@ -151,7 +156,8 @@ public class AccountFilterActivity extends ContactsActivity
                 Log.e(TAG, "Failed to load filters");
                 return;
             }
-            mListView.setAdapter(new FilterListAdapter(AccountFilterActivity.this, data));
+            mListView.setAdapter(
+                    new FilterListAdapter(AccountFilterActivity.this, data, mCurrentFilter));
         }
 
         @Override
@@ -198,11 +204,14 @@ public class AccountFilterActivity extends ContactsActivity
         private final List<ContactListFilter> mFilters;
         private final LayoutInflater mLayoutInflater;
         private final AccountTypeManager mAccountTypes;
+        private final ContactListFilter mCurrentFilter;
 
-        public FilterListAdapter(Context context, List<ContactListFilter> filters) {
+        public FilterListAdapter(
+                Context context, List<ContactListFilter> filters, ContactListFilter current) {
             mLayoutInflater = (LayoutInflater) context.getSystemService
                     (Context.LAYOUT_INFLATER_SERVICE);
             mFilters = filters;
+            mCurrentFilter = current;
             mAccountTypes = AccountTypeManager.getInstance(context);
         }
 
@@ -234,6 +243,7 @@ public class AccountFilterActivity extends ContactsActivity
             view.setContactListFilter(filter);
             view.bindView(mAccountTypes);
             view.setTag(filter);
+            view.setActivated(filter.equals(mCurrentFilter));
             return view;
         }
     }

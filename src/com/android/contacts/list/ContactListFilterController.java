@@ -50,6 +50,9 @@ public abstract class ContactListFilterController {
 
     public abstract void removeListener(ContactListFilterListener listener);
 
+    /**
+     * Return the currently-active filter.
+     */
     public abstract ContactListFilter getFilter();
 
     /**
