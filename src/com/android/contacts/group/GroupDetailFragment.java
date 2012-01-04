@@ -23,6 +23,7 @@ import com.android.contacts.R;
 import com.android.contacts.interactions.GroupDeletionDialogFragment;
 import com.android.contacts.list.ContactTileAdapter;
 import com.android.contacts.list.ContactTileAdapter.DisplayType;
+import com.android.contacts.list.ContactTileView;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 
@@ -42,6 +43,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Groups;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -203,12 +205,18 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         getLoaderManager().restartLoader(LOADER_MEMBERS, null, mGroupMemberListLoaderListener);
     }
 
-    private final ContactTileAdapter.Listener mContactTileListener =
-            new ContactTileAdapter.Listener() {
+    private final ContactTileView.Listener mContactTileListener =
+            new ContactTileView.Listener() {
 
         @Override
         public void onContactSelected(Uri contactUri, Rect targetRect) {
             mListener.onContactSelected(contactUri);
+        }
+
+        @Override
+        public void onCallNumberDirectly(String phoneNumber) {
+            // No need to call phone number directly from People app.
+            Log.w(TAG, "unexpected invocation of onCallNumberDirectly()");
         }
     };
 
