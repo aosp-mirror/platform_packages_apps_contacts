@@ -17,6 +17,7 @@
 package com.android.contacts.activities;
 
 import com.android.contacts.R;
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.calllog.CallLogFragment;
 import com.android.contacts.dialpad.DialpadFragment;
 import com.android.contacts.interactions.PhoneNumberInteraction;
@@ -787,6 +788,12 @@ public class DialtactsActivity extends TransactionSafeActivity {
             PhoneNumberInteraction.startInteractionForPhoneCall(
                     DialtactsActivity.this, contactUri,
                     CALL_ORIGIN_DIALTACTS);
+        }
+
+        @Override
+        public void onCallNumberDirectly(String phoneNumber) {
+            Intent intent = ContactsUtils.getCallIntent(phoneNumber, CALL_ORIGIN_DIALTACTS);
+            startActivity(intent);
         }
     };
 

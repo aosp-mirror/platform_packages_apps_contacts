@@ -49,7 +49,8 @@ public class ContactTileListFragment extends Fragment {
     private static final String TAG = ContactTileListFragment.class.getSimpleName();
 
     public interface Listener {
-        public void onContactSelected(Uri contactUri, Rect targetRect);
+        void onContactSelected(Uri contactUri, Rect targetRect);
+        void onCallNumberDirectly(String phoneNumber);
     }
 
     private static int LOADER_CONTACTS = 1;
@@ -163,12 +164,19 @@ public class ContactTileListFragment extends Fragment {
         mListener = listener;
     }
 
-    private ContactTileAdapter.Listener mAdapterListener =
-            new ContactTileAdapter.Listener() {
+    private ContactTileView.Listener mAdapterListener =
+            new ContactTileView.Listener() {
         @Override
         public void onContactSelected(Uri contactUri, Rect targetRect) {
             if (mListener != null) {
                 mListener.onContactSelected(contactUri, targetRect);
+            }
+        }
+
+        @Override
+        public void onCallNumberDirectly(String phoneNumber) {
+            if (mListener != null) {
+                mListener.onCallNumberDirectly(phoneNumber);
             }
         }
     };
