@@ -66,7 +66,9 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
         @Override
         public void onClick(View view) {
             AccountFilterUtil.startAccountFilterActivityForResult(
-                    PhoneNumberPickerFragment.this, REQUEST_CODE_ACCOUNT_FILTER);
+                    PhoneNumberPickerFragment.this,
+                    REQUEST_CODE_ACCOUNT_FILTER,
+                    mFilter);
         }
     }
     private OnClickListener mFilterHeaderClickListener = new FilterHeaderClickListener();

@@ -157,7 +157,9 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
         @Override
         public void onClick(View view) {
             AccountFilterUtil.startAccountFilterActivityForResult(
-                    PhoneFavoriteFragment.this, REQUEST_CODE_ACCOUNT_FILTER);
+                    PhoneFavoriteFragment.this,
+                    REQUEST_CODE_ACCOUNT_FILTER,
+                    mFilter);
         }
     }
 

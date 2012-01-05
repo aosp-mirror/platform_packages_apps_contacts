@@ -118,22 +118,26 @@ public class AccountFilterUtil {
      *
      * @param activity
      * @param requestCode requestCode for {@link Activity#startActivityForResult(Intent, int)}
+     * @param currentFilter currently-selected filter, so that it can be displayed as activated.
      */
     public static void startAccountFilterActivityForResult(
-            Activity activity, int requestCode) {
+            Activity activity, int requestCode, ContactListFilter currentFilter) {
         final Intent intent = new Intent(activity, AccountFilterActivity.class);
+        intent.putExtra(AccountFilterActivity.KEY_EXTRA_CURRENT_FILTER, currentFilter);
         activity.startActivityForResult(intent, requestCode);
     }
 
     /**
-     * Very similar to {@link #startAccountFilterActivityForResult(Activity, int)} but uses
-     * Fragment instead.
+     * Very similar to
+     * {@link #startAccountFilterActivityForResult(Activity, int, ContactListFilter)}
+     * but uses Fragment instead.
      */
     public static void startAccountFilterActivityForResult(
-            Fragment fragment, int requestCode) {
+            Fragment fragment, int requestCode, ContactListFilter currentFilter) {
         final Activity activity = fragment.getActivity();
         if (activity != null) {
             final Intent intent = new Intent(activity, AccountFilterActivity.class);
+            intent.putExtra(AccountFilterActivity.KEY_EXTRA_CURRENT_FILTER, currentFilter);
             fragment.startActivityForResult(intent, requestCode);
         } else {
             Log.w(TAG, "getActivity() returned null. Ignored");

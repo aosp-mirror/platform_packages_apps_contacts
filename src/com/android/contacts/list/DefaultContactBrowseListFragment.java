@@ -60,7 +60,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         @Override
         public void onClick(View view) {
             AccountFilterUtil.startAccountFilterActivityForResult(
-                        DefaultContactBrowseListFragment.this, REQUEST_CODE_ACCOUNT_FILTER);
+                        DefaultContactBrowseListFragment.this,
+                        REQUEST_CODE_ACCOUNT_FILTER,
+                        getFilter());
         }
     }
     private OnClickListener mFilterHeaderClickListener = new FilterHeaderClickListener();
