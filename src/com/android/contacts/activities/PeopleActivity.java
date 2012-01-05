@@ -1443,8 +1443,9 @@ public class PeopleActivity extends ContactsActivity
                 return true;
             }
             case R.id.menu_contacts_filter: {
-                AccountFilterUtil.startAccountFilterActivityForResult(this,
-                        SUBACTIVITY_ACCOUNT_FILTER);
+                AccountFilterUtil.startAccountFilterActivityForResult(
+                        this, SUBACTIVITY_ACCOUNT_FILTER,
+                        mContactListFilterController.getFilter());
                 return true;
             }
             case R.id.menu_search: {
