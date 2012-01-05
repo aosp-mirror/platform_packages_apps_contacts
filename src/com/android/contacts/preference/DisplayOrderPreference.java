@@ -18,6 +18,7 @@ package com.android.contacts.preference;
 
 import com.android.contacts.R;
 
+import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.preference.ListPreference;
 import android.provider.ContactsContract;
@@ -79,5 +80,12 @@ public final class DisplayOrderPreference extends ListPreference {
             notifyChanged();
         }
         return true;
+    }
+
+    @Override
+    // UX recommendation is not to show cancel button on such lists.
+    protected void onPrepareDialogBuilder(Builder builder) {
+        super.onPrepareDialogBuilder(builder);
+        builder.setNegativeButton(null, null);
     }
 }
