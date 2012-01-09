@@ -89,9 +89,8 @@ public class NfcHandler implements NfcAdapter.CreateNdefMessageCallback {
                     ndefBytes.write(buffer, 0, r);
                 }
 
-                NdefRecord vcardRecord = new NdefRecord(NdefRecord.TNF_MIME_MEDIA,
-                        "text/x-vCard".getBytes(), new byte[]{}, ndefBytes.toByteArray());
-                return new NdefMessage(new NdefRecord[] {vcardRecord});
+                NdefRecord record = NdefRecord.createMime("text/x-vcard", ndefBytes.toByteArray());
+                return new NdefMessage(record);
             } catch (IOException e) {
                 Log.e(TAG, "IOException creating vcard.");
                 return null;
