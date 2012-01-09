@@ -31,7 +31,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -41,7 +41,7 @@ import java.util.List;
 public class QuickContactListFragment extends Fragment {
     private ListView mListView;
     private List<Action> mActions;
-    private LinearLayout mFragmentContainer;
+    private RelativeLayout mFragmentContainer;
     private Listener mListener;
 
     public QuickContactListFragment() {
@@ -50,7 +50,7 @@ public class QuickContactListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
-        mFragmentContainer = (LinearLayout) inflater.inflate(R.layout.quickcontact_list_fragment,
+        mFragmentContainer = (RelativeLayout) inflater.inflate(R.layout.quickcontact_list_fragment,
                 container, false);
         mListView = (ListView) mFragmentContainer.findViewById(R.id.list);
         mListView.setItemsCanFocus(true);

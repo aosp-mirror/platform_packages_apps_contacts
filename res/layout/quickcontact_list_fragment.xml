@@ -14,28 +14,19 @@
      limitations under the License.
 -->
 
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <!-- Line that looks like a list divider -->
-    <View
+    <ListView
+        android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="1dip"
-        android:background="@color/quickcontact_list_divider" />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ListView
-            android:id="@+id/list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@drawable/quickcontact_list_item_divider"
-            android:dividerHeight="1dip"
-            android:background="@color/quickcontact_list_background"
-            android:cacheColorHint="@null"
-            android:layout_alignParentTop="true" />
-        <include layout="@layout/quickcontact_list_fragment_bottom"/>
-    </RelativeLayout>
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:divider="@drawable/quickcontact_list_item_divider"
+        android:dividerHeight="1dip"
+        android:background="@color/quickcontact_list_background"
+        android:cacheColorHint="@null"
+        android:layout_alignParentTop="true"
+    />
+    <include layout="@layout/quickcontact_list_fragment_bottom"/>
+</RelativeLayout>
