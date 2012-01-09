@@ -16,7 +16,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/search_on_action_bar"
-        android:title="@string/menu_all_contacts"
+        android:title="@string/menu_search"
         android:icon="@drawable/ic_dial_action_search"
         android:showAsAction="ifRoom" />
 
