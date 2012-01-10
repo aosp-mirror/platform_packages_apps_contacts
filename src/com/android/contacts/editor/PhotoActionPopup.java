@@ -29,15 +29,46 @@ import android.widget.ListPopupWindow;
 import java.util.ArrayList;
 
 /**
- * Shows a popup asking the user what to do for a photo. The result is pased back to the Listener
+ * Shows a popup asking the user what to do for a photo. The result is passed back to the Listener
  */
 public class PhotoActionPopup {
     public static final String TAG = "PhotoActionPopup";
 
-    public static final int MODE_NO_PHOTO = 0;
-    public static final int MODE_READ_ONLY_ALLOW_PRIMARY = 1;
-    public static final int MODE_PHOTO_DISALLOW_PRIMARY = 2;
-    public static final int MODE_PHOTO_ALLOW_PRIMARY = 3;
+    /**
+     * Bitmask flags to specify which actions should be presented to the user.
+     */
+    public static final class Flags {
+        /** If set, show choice to use as primary photo. */
+        public static final int ALLOW_PRIMARY = 1;
+        /** If set, show choice to remove photo. */
+        public static final int REMOVE_PHOTO = 2;
+        /** If set, show choices to take a picture with the camera, or pick one from the gallery. */
+        public static final int TAKE_OR_PICK_PHOTO = 4;
+        /**
+         *  If set, modifies the wording in the choices for TAKE_OR_PICK_PHOTO
+         *  to emphasize that the existing photo will be replaced.
+         */
+        public static final int TAKE_OR_PICK_PHOTO_REPLACE_WORDING = 8;
+    }
+
+    /**
+     * Convenient combinations of commonly-used flags (see {@link Flags}).
+     */
+    public static final class Modes {
+        public static final int NO_PHOTO =
+                Flags.TAKE_OR_PICK_PHOTO;
+        public static final int READ_ONLY_ALLOW_PRIMARY =
+                Flags.ALLOW_PRIMARY;
+        public static final int PHOTO_DISALLOW_PRIMARY =
+                Flags.REMOVE_PHOTO |
+                Flags.TAKE_OR_PICK_PHOTO |
+                Flags.TAKE_OR_PICK_PHOTO_REPLACE_WORDING;
+        public static final int PHOTO_ALLOW_PRIMARY =
+                Flags.ALLOW_PRIMARY |
+                Flags.REMOVE_PHOTO |
+                Flags.TAKE_OR_PICK_PHOTO |
+                Flags.TAKE_OR_PICK_PHOTO_REPLACE_WORDING;
+    }
 
     public static ListPopupWindow createPopupMenu(Context context, View anchorView,
             final Listener listener, int mode) {
@@ -45,29 +76,26 @@ public class PhotoActionPopup {
         // if there are NO choices (e.g. a read-only picture is already super-primary)
         final ArrayList<ChoiceListItem> choices = new ArrayList<ChoiceListItem>(4);
         // Use as Primary
-        if (mode == MODE_PHOTO_ALLOW_PRIMARY || mode == MODE_READ_ONLY_ALLOW_PRIMARY) {
+        if ((mode & Flags.ALLOW_PRIMARY) > 0) {
             choices.add(new ChoiceListItem(ChoiceListItem.ID_USE_AS_PRIMARY,
                     context.getString(R.string.use_photo_as_primary)));
         }
         // Remove
-        if (mode == MODE_PHOTO_DISALLOW_PRIMARY || mode == MODE_PHOTO_ALLOW_PRIMARY) {
+        if ((mode & Flags.REMOVE_PHOTO) > 0) {
             choices.add(new ChoiceListItem(ChoiceListItem.ID_REMOVE,
                     context.getString(R.string.removePhoto)));
         }
-        // Take photo (if there is already a photo, it says "Take new photo")
-        if (mode == MODE_NO_PHOTO || mode == MODE_PHOTO_ALLOW_PRIMARY
-                || mode == MODE_PHOTO_DISALLOW_PRIMARY) {
-            final int resId = mode == MODE_NO_PHOTO ? R.string.take_photo :R.string.take_new_photo;
-            choices.add(new ChoiceListItem(ChoiceListItem.ID_TAKE_PHOTO,
-                    context.getString(resId)));
+        // Take photo or pick one from the gallery.  Wording differs if there is already a photo.
+        if ((mode & Flags.TAKE_OR_PICK_PHOTO) > 0) {
+            boolean replace = (mode & Flags.TAKE_OR_PICK_PHOTO_REPLACE_WORDING) > 0;
+            final int takePhotoResId = replace ? R.string.take_new_photo : R.string.take_photo;
+            final String takePhotoString = context.getString(takePhotoResId);
+            final int pickPhotoResId = replace ? R.string.pick_new_photo : R.string.pick_photo;
+            final String pickPhotoString = context.getString(pickPhotoResId);
+            choices.add(new ChoiceListItem(ChoiceListItem.ID_TAKE_PHOTO, takePhotoString));
+            choices.add(new ChoiceListItem(ChoiceListItem.ID_PICK_PHOTO, pickPhotoString));
         }
-        // Select from Gallery (or "Select new from Gallery")
-        if (mode == MODE_NO_PHOTO || mode == MODE_PHOTO_ALLOW_PRIMARY
-                || mode == MODE_PHOTO_DISALLOW_PRIMARY) {
-            final int resId = mode == MODE_NO_PHOTO ? R.string.pick_photo :R.string.pick_new_photo;
-            choices.add(new ChoiceListItem(ChoiceListItem.ID_PICK_PHOTO,
-                    context.getString(resId)));
-        }
+
         final ListAdapter adapter = new ArrayAdapter<ChoiceListItem>(context,
                 R.layout.select_dialog_item, choices);
 

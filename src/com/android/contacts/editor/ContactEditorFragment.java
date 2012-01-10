@@ -771,16 +771,16 @@ public class ContactEditorFragment extends Fragment implements
         if (type.areContactsWritable()) {
             if (editor.hasSetPhoto()) {
                 if (hasMoreThanOnePhoto()) {
-                    mode = PhotoActionPopup.MODE_PHOTO_ALLOW_PRIMARY;
+                    mode = PhotoActionPopup.Modes.PHOTO_ALLOW_PRIMARY;
                 } else {
-                    mode = PhotoActionPopup.MODE_PHOTO_DISALLOW_PRIMARY;
+                    mode = PhotoActionPopup.Modes.PHOTO_DISALLOW_PRIMARY;
                 }
             } else {
-                mode = PhotoActionPopup.MODE_NO_PHOTO;
+                mode = PhotoActionPopup.Modes.NO_PHOTO;
             }
         } else {
             if (editor.hasSetPhoto() && hasMoreThanOnePhoto()) {
-                mode = PhotoActionPopup.MODE_READ_ONLY_ALLOW_PRIMARY;
+                mode = PhotoActionPopup.Modes.READ_ONLY_ALLOW_PRIMARY;
             } else {
                 // Read-only and either no photo or the only photo ==> no options
                 return;
