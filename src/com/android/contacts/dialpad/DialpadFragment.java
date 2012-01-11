@@ -109,7 +109,7 @@ public class DialpadFragment extends Fragment
 
     private View mDelete;
     private ToneGenerator mToneGenerator;
-    private Object mToneGeneratorLock = new Object();
+    private final Object mToneGeneratorLock = new Object();
     private View mDialpad;
     private View mAdditionalButtonsRow;
 
@@ -129,17 +129,17 @@ public class DialpadFragment extends Fragment
     // Last number dialed, retrieved asynchronously from the call DB
     // in onCreate. This number is displayed when the user hits the
     // send key and cleared in onPause.
-    CallLogAsync mCallLog = new CallLogAsync();
+    private final CallLogAsync mCallLog = new CallLogAsync();
     private String mLastNumberDialed = EMPTY_NUMBER;
 
     // determines if we want to playback local DTMF tones.
     private boolean mDTMFToneEnabled;
 
     // Vibration (haptic feedback) for dialer key presses.
-    private HapticFeedback mHaptic = new HapticFeedback();
+    private final HapticFeedback mHaptic = new HapticFeedback();
 
     /** Identifier for the "Add Call" intent extra. */
-    static final String ADD_CALL_MODE_KEY = "add_call_mode";
+    private static final String ADD_CALL_MODE_KEY = "add_call_mode";
 
     /**
      * Identifier for intent extra for sending an empty Flash message for
@@ -181,10 +181,12 @@ public class DialpadFragment extends Fragment
 
     private boolean mWasEmptyBeforeTextChange;
 
+    @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
         mWasEmptyBeforeTextChange = TextUtils.isEmpty(s);
     }
 
+    @Override
     public void onTextChanged(CharSequence input, int start, int before, int changeCount) {
         if (mWasEmptyBeforeTextChange != TextUtils.isEmpty(input)) {
             final Activity activity = getActivity();
@@ -197,6 +199,7 @@ public class DialpadFragment extends Fragment
         // the DTMF dialer handles that functionality now.
     }
 
+    @Override
     public void afterTextChanged(Editable input) {
         if (SpecialCharSequenceMgr.handleChars(getActivity(), input.toString(), mDigits)) {
             // A special sequence was entered, clear the digits
@@ -664,6 +667,7 @@ public class DialpadFragment extends Fragment
         }
     }
 
+    @Override
     public boolean onKey(View view, int keyCode, KeyEvent event) {
         switch (view.getId()) {
             case R.id.digits:
@@ -783,6 +787,7 @@ public class DialpadFragment extends Fragment
         return popupMenu;
     }
 
+    @Override
     public boolean onLongClick(View view) {
         final Editable digits = mDigits.getText();
         int id = view.getId();
@@ -1120,6 +1125,7 @@ public class DialpadFragment extends Fragment
                     DIALPAD_CHOICE_ADD_NEW_CALL);
         }
 
+        @Override
         public int getCount() {
             return NUM_ITEMS;
         }
@@ -1127,6 +1133,7 @@ public class DialpadFragment extends Fragment
         /**
          * Return the ChoiceItem for a given position.
          */
+        @Override
         public Object getItem(int position) {
             return mChoiceItems[position];
         }
@@ -1134,6 +1141,7 @@ public class DialpadFragment extends Fragment
         /**
          * Return a unique ID for each possible choice.
          */
+        @Override
         public long getItemId(int position) {
             return position;
         }
@@ -1141,6 +1149,7 @@ public class DialpadFragment extends Fragment
         /**
          * Make a view for each row.
          */
+        @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             // When convertView is non-null, we can reuse it (there's no need
             // to reinflate it.)
@@ -1161,7 +1170,8 @@ public class DialpadFragment extends Fragment
     /**
      * Handle clicks from the dialpad chooser.
      */
-    public void onItemClick(AdapterView parent, View v, int position, long id) {
+    @Override
+    public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
         DialpadChooserAdapter.ChoiceItem item =
                 (DialpadChooserAdapter.ChoiceItem) parent.getItemAtPosition(position);
         int itemId = item.id;
@@ -1403,6 +1413,7 @@ public class DialpadFragment extends Fragment
                 new CallLogAsync.GetLastOutgoingCallArgs(
                     getActivity(),
                     new CallLogAsync.OnLastOutgoingCallComplete() {
+                        @Override
                         public void lastOutgoingCall(String number) {
                             // TODO: Filter out emergency numbers if
                             // the carrier does not want redial for
