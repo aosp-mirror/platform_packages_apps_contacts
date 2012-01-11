@@ -122,9 +122,13 @@ public class DefaultContactListAdapter extends ContactListAdapter {
         if (filter != null
                 && filter.filterType != ContactListFilter.FILTER_TYPE_CUSTOM
                 && filter.filterType != ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
-            uri = uri.buildUpon().appendQueryParameter(
-                    ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT))
-                    .build();
+            final Uri.Builder builder = uri.buildUpon();
+            builder.appendQueryParameter(
+                    ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT));
+            if (filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
+                filter.addAccountQueryParameterToUrl(builder);
+            }
+            uri = builder.build();
         }
 
         loader.setUri(uri);
@@ -170,22 +174,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 break;
             }
             case ContactListFilter.FILTER_TYPE_ACCOUNT: {
-                // TODO: avoid the use of private API
-                selection.append(
-                        Contacts._ID + " IN ("
-                                + "SELECT DISTINCT " + RawContacts.CONTACT_ID
-                                + " FROM view_raw_contacts"
-                                + " WHERE " + RawContacts.ACCOUNT_TYPE + "=?"
-                                + " AND " + RawContacts.ACCOUNT_NAME + "=?");
-                selectionArgs.add(filter.accountType);
-                selectionArgs.add(filter.accountName);
-                if (filter.dataSet != null) {
-                    selection.append(" AND " + RawContacts.DATA_SET + "=?");
-                    selectionArgs.add(filter.dataSet);
-                } else {
-                    selection.append(" AND " + RawContacts.DATA_SET + " IS NULL");
-                }
-                selection.append(")");
+                // We use query parameters for account filter, so no selection to add here.
                 break;
             }
         }
