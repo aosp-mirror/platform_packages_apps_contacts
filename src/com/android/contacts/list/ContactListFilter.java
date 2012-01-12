@@ -18,8 +18,10 @@ package com.android.contacts.list;
 
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 
 /**
@@ -250,6 +252,23 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
             mId = sb.toString();
         }
         return mId;
+    }
+
+    /**
+     * Adds the account query parameters to the given {@code uriBuilder}.
+     *
+     * @throws IllegalStateException if the filter type is not {@link #FILTER_TYPE_ACCOUNT}.
+     */
+    public Uri.Builder addAccountQueryParameterToUrl(Uri.Builder uriBuilder) {
+        if (filterType != FILTER_TYPE_ACCOUNT) {
+            throw new IllegalStateException("filterType must be FILTER_TYPE_ACCOUNT");
+        }
+        uriBuilder.appendQueryParameter(RawContacts.ACCOUNT_NAME, accountName);
+        uriBuilder.appendQueryParameter(RawContacts.ACCOUNT_TYPE, accountType);
+        if (!TextUtils.isEmpty(dataSet)) {
+            uriBuilder.appendQueryParameter(RawContacts.DATA_SET, dataSet);
+        }
+        return uriBuilder;
     }
 
     public String toDebugString() {
