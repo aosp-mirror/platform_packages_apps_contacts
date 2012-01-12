@@ -125,7 +125,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             if (isSectionHeaderDisplayEnabled()) {
                 builder.appendQueryParameter(ContactCounts.ADDRESS_BOOK_INDEX_EXTRAS, "true");
             }
-            configureSelection(loader, directoryId, getFilter());
+            applyFilter(loader, builder, directoryId, getFilter());
         }
 
         // Remove duplicates when it is possible.
@@ -146,8 +146,12 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         }
     }
 
-    private void configureSelection(
-            CursorLoader loader, long directoryId, ContactListFilter filter) {
+    /**
+     * Configure {@code loader} and {@code uriBuilder} according to {@code directoryId} and {@code
+     * filter}.
+     */
+    private void applyFilter(CursorLoader loader, Uri.Builder uriBuilder, long directoryId,
+            ContactListFilter filter) {
         if (filter == null || directoryId != Directory.DEFAULT) {
             return;
         }
@@ -162,19 +166,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
                 break;
             }
             case ContactListFilter.FILTER_TYPE_ACCOUNT: {
-                selection.append("(");
-
-                selection.append(RawContacts.ACCOUNT_TYPE + "=?"
-                        + " AND " + RawContacts.ACCOUNT_NAME + "=?");
-                selectionArgs.add(filter.accountType);
-                selectionArgs.add(filter.accountName);
-                if (filter.dataSet != null) {
-                    selection.append(" AND " + RawContacts.DATA_SET + "=?");
-                    selectionArgs.add(filter.dataSet);
-                } else {
-                    selection.append(" AND " + RawContacts.DATA_SET + " IS NULL");
-                }
-                selection.append(")");
+                filter.addAccountQueryParameterToUrl(uriBuilder);
                 break;
             }
             case ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS:
