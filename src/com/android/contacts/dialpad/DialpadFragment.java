@@ -64,6 +64,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
@@ -82,7 +83,8 @@ public class DialpadFragment extends Fragment
         implements View.OnClickListener,
         View.OnLongClickListener, View.OnKeyListener,
         AdapterView.OnItemClickListener, TextWatcher,
-        PopupMenu.OnMenuItemClickListener {
+        PopupMenu.OnMenuItemClickListener,
+        View.OnTouchListener {
     private static final String TAG = DialpadFragment.class.getSimpleName();
 
     private static final String EMPTY_NUMBER = "";
@@ -151,7 +153,7 @@ public class DialpadFragment extends Fragment
      * TODO: Keep in sync with the string defined in OutgoingCallBroadcaster.java
      * in Phone app until this is replaced with the ITelephony API.
      */
-    static final String EXTRA_SEND_EMPTY_FLASH
+    private static final String EXTRA_SEND_EMPTY_FLASH
             = "com.android.phone.extra.SEND_EMPTY_FLASH";
 
     private String mCurrentCountryIso;
@@ -444,26 +446,30 @@ public class DialpadFragment extends Fragment
     }
 
     private void setupKeypad(View fragmentView) {
-        // Setup the listeners for the buttons
-        View view = fragmentView.findViewById(R.id.one);
-        view.setOnClickListener(this);
-        view.setOnLongClickListener(this);
+        // For numeric buttons, we rely on onTouchListener instead of onClickListener
+        // for faster event handling, while some other buttons since basically
+        // onTouch event conflicts with horizontal swipes.
+        fragmentView.findViewById(R.id.one).setOnTouchListener(this);
+        fragmentView.findViewById(R.id.two).setOnTouchListener(this);
+        fragmentView.findViewById(R.id.three).setOnTouchListener(this);
+        fragmentView.findViewById(R.id.four).setOnTouchListener(this);
+        fragmentView.findViewById(R.id.five).setOnTouchListener(this);
+        fragmentView.findViewById(R.id.six).setOnTouchListener(this);
+        fragmentView.findViewById(R.id.seven).setOnTouchListener(this);
+        fragmentView.findViewById(R.id.eight).setOnTouchListener(this);
+        fragmentView.findViewById(R.id.nine).setOnTouchListener(this);
+        fragmentView.findViewById(R.id.zero).setOnTouchListener(this);
 
-        fragmentView.findViewById(R.id.two).setOnClickListener(this);
-        fragmentView.findViewById(R.id.three).setOnClickListener(this);
-        fragmentView.findViewById(R.id.four).setOnClickListener(this);
-        fragmentView.findViewById(R.id.five).setOnClickListener(this);
-        fragmentView.findViewById(R.id.six).setOnClickListener(this);
-        fragmentView.findViewById(R.id.seven).setOnClickListener(this);
-        fragmentView.findViewById(R.id.eight).setOnClickListener(this);
-        fragmentView.findViewById(R.id.nine).setOnClickListener(this);
+        // Buttons other than numeric ones should use onClick as usual.
         fragmentView.findViewById(R.id.star).setOnClickListener(this);
-
-        view = fragmentView.findViewById(R.id.zero);
-        view.setOnClickListener(this);
-        view.setOnLongClickListener(this);
-
         fragmentView.findViewById(R.id.pound).setOnClickListener(this);
+
+        // Long-pressing one button will initiate Voicemail.
+        fragmentView.findViewById(R.id.one).setOnLongClickListener(this);
+
+        // Long-pressing zero button will enter '+' instead.
+        fragmentView.findViewById(R.id.zero).setOnLongClickListener(this);
+
     }
 
     @Override
@@ -680,59 +686,120 @@ public class DialpadFragment extends Fragment
         return false;
     }
 
+    /**
+     * We handle the key based on the DOWN event, but we wait till the UP event to play the local
+     * DTMF tone (to avoid playing a spurious tone if the user is actually doing a swipe...)
+     */
+    @Override
+    public boolean onTouch(View view, MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            switch (view.getId()) {
+                case R.id.one: {
+                    keyPressed(KeyEvent.KEYCODE_1);
+                    break;
+                }
+                case R.id.two: {
+                    keyPressed(KeyEvent.KEYCODE_2);
+                    break;
+                }
+                case R.id.three: {
+                    keyPressed(KeyEvent.KEYCODE_3);
+                    break;
+                }
+                case R.id.four: {
+                    keyPressed(KeyEvent.KEYCODE_4);
+                    break;
+                }
+                case R.id.five: {
+                    keyPressed(KeyEvent.KEYCODE_5);
+                    break;
+                }
+                case R.id.six: {
+                    keyPressed(KeyEvent.KEYCODE_6);
+                    break;
+                }
+                case R.id.seven: {
+                    keyPressed(KeyEvent.KEYCODE_7);
+                    break;
+                }
+                case R.id.eight: {
+                    keyPressed(KeyEvent.KEYCODE_8);
+                    break;
+                }
+                case R.id.nine: {
+                    keyPressed(KeyEvent.KEYCODE_9);
+                    break;
+                }
+                case R.id.zero: {
+                    keyPressed(KeyEvent.KEYCODE_0);
+                    break;
+                }
+                default: {
+                    Log.wtf(TAG, "Unexpected onTouch(ACTION_DOWN) event from: " + view);
+                    break;
+                }
+            }
+        } else if (event.getAction() == MotionEvent.ACTION_UP) {
+            switch (view.getId()) {
+                case R.id.one: {
+                    playTone(ToneGenerator.TONE_DTMF_1);
+                    break;
+                }
+                case R.id.two: {
+                    playTone(ToneGenerator.TONE_DTMF_2);
+                    break;
+                }
+                case R.id.three: {
+                    playTone(ToneGenerator.TONE_DTMF_3);
+                    break;
+                }
+                case R.id.four: {
+                    playTone(ToneGenerator.TONE_DTMF_4);
+                    break;
+                }
+                case R.id.five: {
+                    playTone(ToneGenerator.TONE_DTMF_5);
+                    break;
+                }
+                case R.id.six: {
+                    playTone(ToneGenerator.TONE_DTMF_6);
+                    break;
+                }
+                case R.id.seven: {
+                    playTone(ToneGenerator.TONE_DTMF_7);
+                    break;
+                }
+                case R.id.eight: {
+                    playTone(ToneGenerator.TONE_DTMF_8);
+                    break;
+                }
+                case R.id.nine: {
+                    playTone(ToneGenerator.TONE_DTMF_9);
+                    break;
+                }
+                case R.id.zero: {
+                    playTone(ToneGenerator.TONE_DTMF_0);
+                    break;
+                }
+                default: {
+                    Log.wtf(TAG, "Unexpected onTouch(ACTION_UP) event from: " + view);
+                    break;
+                }
+            }
+        } else if (event.getAction() == MotionEvent.ACTION_CANCEL) {
+            // This event will be thrown when a user starts dragging the dialpad screen,
+            // intending horizontal swipe. The system will see the event after ACTION_DOWN while
+            // it won't see relevant ACTION_UP event anymore.
+            //
+            // Here, remove the last digit already entered in the last ACTION_DOWN event.
+            removeLastOneDigitIfPossible();
+        }
+        return false;
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.one: {
-                playTone(ToneGenerator.TONE_DTMF_1);
-                keyPressed(KeyEvent.KEYCODE_1);
-                return;
-            }
-            case R.id.two: {
-                playTone(ToneGenerator.TONE_DTMF_2);
-                keyPressed(KeyEvent.KEYCODE_2);
-                return;
-            }
-            case R.id.three: {
-                playTone(ToneGenerator.TONE_DTMF_3);
-                keyPressed(KeyEvent.KEYCODE_3);
-                return;
-            }
-            case R.id.four: {
-                playTone(ToneGenerator.TONE_DTMF_4);
-                keyPressed(KeyEvent.KEYCODE_4);
-                return;
-            }
-            case R.id.five: {
-                playTone(ToneGenerator.TONE_DTMF_5);
-                keyPressed(KeyEvent.KEYCODE_5);
-                return;
-            }
-            case R.id.six: {
-                playTone(ToneGenerator.TONE_DTMF_6);
-                keyPressed(KeyEvent.KEYCODE_6);
-                return;
-            }
-            case R.id.seven: {
-                playTone(ToneGenerator.TONE_DTMF_7);
-                keyPressed(KeyEvent.KEYCODE_7);
-                return;
-            }
-            case R.id.eight: {
-                playTone(ToneGenerator.TONE_DTMF_8);
-                keyPressed(KeyEvent.KEYCODE_8);
-                return;
-            }
-            case R.id.nine: {
-                playTone(ToneGenerator.TONE_DTMF_9);
-                keyPressed(KeyEvent.KEYCODE_9);
-                return;
-            }
-            case R.id.zero: {
-                playTone(ToneGenerator.TONE_DTMF_0);
-                keyPressed(KeyEvent.KEYCODE_0);
-                return;
-            }
             case R.id.pound: {
                 playTone(ToneGenerator.TONE_DTMF_P);
                 keyPressed(KeyEvent.KEYCODE_POUND);
@@ -770,6 +837,11 @@ public class DialpadFragment extends Fragment
                 if (popup != null) {
                     popup.show();
                 }
+                return;
+            }
+            default: {
+                Log.wtf(TAG, "Unexpected onClick() event from: " + view);
+                return;
             }
         }
     }
@@ -790,7 +862,7 @@ public class DialpadFragment extends Fragment
     @Override
     public boolean onLongClick(View view) {
         final Editable digits = mDigits.getText();
-        int id = view.getId();
+        final int id = view.getId();
         switch (id) {
             case R.id.deleteButton: {
                 digits.clear();
@@ -801,7 +873,12 @@ public class DialpadFragment extends Fragment
                 return true;
             }
             case R.id.one: {
-                if (isDigitsEmpty()) {
+                // '1' may be already entered since we rely on onTouch() event for numeric buttons.
+                // Just for safety we also check if the digits field is empty or not.
+                if (isDigitsEmpty() || TextUtils.equals(mDigits.getText(), "1")) {
+                    // We'll try to initiate voicemail and thus we want to remove irrelevant string.
+                    removeLastOneDigitIfPossible();
+
                     if (isVoicemailAvailable()) {
                         callVoicemail();
                     } else if (getActivity() != null) {
@@ -815,6 +892,8 @@ public class DialpadFragment extends Fragment
                 return false;
             }
             case R.id.zero: {
+                // Remove tentative input ('0') done by onTouch().
+                removeLastOneDigitIfPossible();
                 keyPressed(KeyEvent.KEYCODE_PLUS);
                 return true;
             }
@@ -827,6 +906,14 @@ public class DialpadFragment extends Fragment
             }
         }
         return false;
+    }
+
+    private void removeLastOneDigitIfPossible() {
+        final Editable editable = mDigits.getText();
+        final int length = editable.length();
+        if (length > 0) {
+            mDigits.getText().delete(length - 1, length);
+        }
     }
 
     public void callVoicemail() {
