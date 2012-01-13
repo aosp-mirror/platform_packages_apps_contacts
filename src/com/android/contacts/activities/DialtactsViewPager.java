@@ -36,7 +36,8 @@ public class DialtactsViewPager extends ViewPager {
      * ListViews which delay their children anyway, as desired to prevent
      * seeing pressed states flashing while scrolling lists
      */
+    /*
     public boolean shouldDelayChildPressedState() {
         return false;
-    }
+    }*/
 }
