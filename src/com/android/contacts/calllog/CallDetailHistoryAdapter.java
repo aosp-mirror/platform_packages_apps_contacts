@@ -72,6 +72,12 @@ public class CallDetailHistoryAdapter extends BaseAdapter {
     }
 
     @Override
+    public boolean isEnabled(int position) {
+        // None of history will be clickable.
+        return false;
+    }
+
+    @Override
     public int getCount() {
         return mPhoneCallDetails.length + 1;
     }
