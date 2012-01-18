@@ -132,25 +132,13 @@ public class PhotoEditorView extends FrameLayout implements Editor {
             return;
         }
 
-        final int size = photo.getWidth() * photo.getHeight() * 4;
-        final ByteArrayOutputStream out = new ByteArrayOutputStream(size);
+        mPhotoImageView.setImageBitmap(photo);
+        mFrameView.setEnabled(isEnabled());
+        mHasSetPhoto = true;
+        mEntry.setFromTemplate(false);
 
-        try {
-            photo.compress(Bitmap.CompressFormat.PNG, 100, out);
-            out.flush();
-            out.close();
-
-            mEntry.put(Photo.PHOTO, out.toByteArray());
-            mPhotoImageView.setImageBitmap(photo);
-            mFrameView.setEnabled(isEnabled());
-            mHasSetPhoto = true;
-            mEntry.setFromTemplate(false);
-
-            // When the user chooses a new photo mark it as super primary
-            mEntry.put(Photo.IS_SUPER_PRIMARY, 1);
-        } catch (IOException e) {
-            Log.w(TAG, "Unable to serialize photo: " + e.toString());
-        }
+        // When the user chooses a new photo mark it as super primary
+        mEntry.put(Photo.IS_SUPER_PRIMARY, 1);
     }
 
     /**

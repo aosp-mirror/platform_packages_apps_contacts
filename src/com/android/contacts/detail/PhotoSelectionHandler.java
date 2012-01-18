@@ -32,6 +32,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
@@ -131,7 +132,8 @@ public class PhotoSelectionHandler implements OnClickListener {
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_CODE_PHOTO_PICKED_WITH_DATA: {
-                    Bitmap bitmap = data.getParcelableExtra("data");
+                    Bitmap bitmap = BitmapFactory.decodeFile(
+                            mListener.getCurrentPhotoFile().getAbsolutePath());
                     mListener.onPhotoSelected(bitmap);
                     return true;
                 }
@@ -172,6 +174,16 @@ public class PhotoSelectionHandler implements OnClickListener {
     }
 
     /**
+     * Return the raw-contact id of the first entity in the contact data that belongs to a
+     * contact-writable account, or -1 if no such entity exists.
+     */
+    protected long getWritableEntityId() {
+        int index = getWritableEntityIndex();
+        if (index == -1) return -1;
+        return mState.get(index).getValues().getId();
+    }
+
+    /**
      * Utility method to retrieve the entity delta for attaching the given bitmap to the contact.
      * This will attach the photo to the first contact-writable account that provided data to the
      * contact.  It is the caller's responsibility to apply the delta.
@@ -180,28 +192,14 @@ public class PhotoSelectionHandler implements OnClickListener {
      *     or null if the photo could not be parsed or none of the accounts associated with the
      *     contact are writable.
      */
-    public EntityDeltaList getDeltaForAttachingPhotoToContact(Bitmap bitmap) {
+    public EntityDeltaList getDeltaForAttachingPhotoToContact() {
         // Find the first writable entity.
         int writableEntityIndex = getWritableEntityIndex();
         if (writableEntityIndex != -1) {
-            // Convert the photo to a byte array.
-            final int size = bitmap.getWidth() * bitmap.getHeight() * 4;
-            final ByteArrayOutputStream out = new ByteArrayOutputStream(size);
-
-            try {
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
-                out.flush();
-                out.close();
-            } catch (IOException e) {
-                Log.w(TAG, "Unable to serialize photo: " + e.toString());
-                return null;
-            }
-
             // Note - guaranteed to have contact data if we have a writable entity index.
             EntityDelta delta = mState.get(writableEntityIndex);
             ValuesDelta child = EntityModifier.ensureKindExists(
                     delta, mWritableAccount, Photo.CONTENT_ITEM_TYPE);
-            child.put(Photo.PHOTO, out.toByteArray());
             child.setFromTemplate(false);
             child.put(Photo.IS_SUPER_PRIMARY, 1);
 
@@ -223,8 +221,8 @@ public class PhotoSelectionHandler implements OnClickListener {
                     null);
 
             // Launch gallery to crop the photo
-            final Intent intent = getCropImageIntent(Uri.fromFile(f));
-            mListener.startPickFromGalleryActivity(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA);
+            final Intent intent = getCropImageIntent(f);
+            mListener.startPickFromGalleryActivity(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA, f);
         } catch (Exception e) {
             Log.e(TAG, "Cannot crop image", e);
             Toast.makeText(mContext, R.string.photoPickerNotFoundText, Toast.LENGTH_LONG).show();
@@ -235,6 +233,11 @@ public class PhotoSelectionHandler implements OnClickListener {
         Date date = new Date(System.currentTimeMillis());
         SimpleDateFormat dateFormat = new SimpleDateFormat(PHOTO_DATE_FORMAT);
         return dateFormat.format(date) + ".jpg";
+    }
+
+    private File getPhotoFile() {
+        PHOTO_DIR.mkdirs();
+        return new File(PHOTO_DIR, getPhotoFileName());
     }
 
     private int getPhotoPickSize() {
@@ -252,7 +255,8 @@ public class PhotoSelectionHandler implements OnClickListener {
     /**
      * Constructs an intent for picking a photo from Gallery, cropping it and returning the bitmap.
      */
-    private Intent getPhotoPickIntent() {
+    private Intent getPhotoPickIntent(File photoFile) {
+        Uri photoUri = Uri.fromFile(photoFile);
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
         intent.setType("image/*");
         intent.putExtra("crop", "true");
@@ -260,14 +264,15 @@ public class PhotoSelectionHandler implements OnClickListener {
         intent.putExtra("aspectY", 1);
         intent.putExtra("outputX", mPhotoPickSize);
         intent.putExtra("outputY", mPhotoPickSize);
-        intent.putExtra("return-data", true);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
         return intent;
     }
 
     /**
      * Constructs an intent for image cropping.
      */
-    private Intent getCropImageIntent(Uri photoUri) {
+    private Intent getCropImageIntent(File photoFile) {
+        Uri photoUri = Uri.fromFile(photoFile);
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(photoUri, "image/*");
         intent.putExtra("crop", "true");
@@ -275,7 +280,7 @@ public class PhotoSelectionHandler implements OnClickListener {
         intent.putExtra("aspectY", 1);
         intent.putExtra("outputX", mPhotoPickSize);
         intent.putExtra("outputY", mPhotoPickSize);
-        intent.putExtra("return-data", true);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
         return intent;
     }
 
@@ -303,10 +308,9 @@ public class PhotoSelectionHandler implements OnClickListener {
         public void onTakePhotoChosen() {
             try {
                 // Launch camera to take photo for selected contact
-                PHOTO_DIR.mkdirs();
-                File photoFile = new File(PHOTO_DIR, getPhotoFileName());
-                startTakePhotoActivity(getTakePhotoIntent(photoFile),
-                        REQUEST_CODE_CAMERA_WITH_DATA, photoFile);
+                File f = getPhotoFile();
+                final Intent intent = getTakePhotoIntent(f);
+                startTakePhotoActivity(intent, REQUEST_CODE_CAMERA_WITH_DATA, f);
             } catch (ActivityNotFoundException e) {
                 Toast.makeText(mContext, R.string.photoPickerNotFoundText,
                         Toast.LENGTH_LONG).show();
@@ -317,8 +321,9 @@ public class PhotoSelectionHandler implements OnClickListener {
         public void onPickFromGalleryChosen() {
             try {
                 // Launch picker to choose photo for selected contact
-                final Intent intent = getPhotoPickIntent();
-                startPickFromGalleryActivity(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA);
+                File f = getPhotoFile();
+                final Intent intent = getPhotoPickIntent(f);
+                startPickFromGalleryActivity(intent, REQUEST_CODE_PHOTO_PICKED_WITH_DATA, f);
             } catch (ActivityNotFoundException e) {
                 Toast.makeText(mContext, R.string.photoPickerNotFoundText,
                         Toast.LENGTH_LONG).show();
@@ -340,9 +345,12 @@ public class PhotoSelectionHandler implements OnClickListener {
          * Should initiate an activity pick a photo from the gallery.
          * @param intent The image capture intent.
          * @param requestCode The request code to use, suitable for handling by
+         * @param photoFile The temporary file that the cropped image is written to before being
+         *     stored by the content-provider.
          *     {@link PhotoSelectionHandler#handlePhotoActivityResult(int, int, Intent)}.
          */
-        public abstract void startPickFromGalleryActivity(Intent intent, int requestCode);
+        public abstract void startPickFromGalleryActivity(Intent intent, int requestCode,
+                File photoFile);
 
         /**
          * Called when the user has completed selection of a photo.
