@@ -32,6 +32,7 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.RawContacts;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -182,10 +183,12 @@ public class GroupMembershipView extends LinearLayout
                 if (groupId != mFavoritesGroupId && groupId != mDefaultGroupId
                         && hasMembership(groupId)) {
                     String title = mGroupMetaData.getString(GroupMetaDataLoader.TITLE);
-                    if (sb.length() != 0) {
-                        sb.append(", ");
+                    if (!TextUtils.isEmpty(title)) {
+                        if (sb.length() != 0) {
+                            sb.append(", ");
+                        }
+                        sb.append(title);
                     }
-                    sb.append(title);
                 }
             }
         }
