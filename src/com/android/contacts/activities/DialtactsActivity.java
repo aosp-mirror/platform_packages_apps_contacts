@@ -88,7 +88,8 @@ public class DialtactsActivity extends TransactionSafeActivity {
      * Copied from PhoneApp. See comments in Phone app for more detail.
      */
     public static final String EXTRA_CALL_ORIGIN = "com.android.phone.CALL_ORIGIN";
-    public static final String CALL_ORIGIN_DIALTACTS =
+    /** @see #getCallOrigin() */
+    private static final String CALL_ORIGIN_DIALTACTS =
             "com.android.contacts.activities.DialtactsActivity";
 
     /**
@@ -350,8 +351,7 @@ public class DialtactsActivity extends TransactionSafeActivity {
                     // Specify call-origin so that users will see the previous tab instead of
                     // CallLog screen (search UI will be automatically exited).
                     PhoneNumberInteraction.startInteractionForPhoneCall(
-                            DialtactsActivity.this, dataUri,
-                            CALL_ORIGIN_DIALTACTS);
+                            DialtactsActivity.this, dataUri, getCallOrigin());
                 }
 
                 @Override
@@ -729,6 +729,16 @@ public class DialtactsActivity extends TransactionSafeActivity {
     }
 
     /**
+     * Returns an appropriate call origin for this Activity. May return null when no call origin
+     * should be used (e.g. when some 3rd party application launched the screen. Call origin is
+     * for remembering the tab in which the user made a phone call, so the external app's DIAL
+     * request should not be counted.)
+     */
+    public String getCallOrigin() {
+        return !isDialIntent(getIntent()) ? CALL_ORIGIN_DIALTACTS : null;
+    }
+
+    /**
      * Retrieves the filter text stored in {@link #setupFilterText(Intent)}.
      * This text originally came from a FILTER_CONTACTS_ACTION intent received
      * by this activity. The stored text will then be cleared after after this
@@ -787,13 +797,12 @@ public class DialtactsActivity extends TransactionSafeActivity {
         @Override
         public void onContactSelected(Uri contactUri) {
             PhoneNumberInteraction.startInteractionForPhoneCall(
-                    DialtactsActivity.this, contactUri,
-                    CALL_ORIGIN_DIALTACTS);
+                    DialtactsActivity.this, contactUri, getCallOrigin());
         }
 
         @Override
         public void onCallNumberDirectly(String phoneNumber) {
-            Intent intent = ContactsUtils.getCallIntent(phoneNumber, CALL_ORIGIN_DIALTACTS);
+            Intent intent = ContactsUtils.getCallIntent(phoneNumber, getCallOrigin());
             startActivity(intent);
         }
     };
