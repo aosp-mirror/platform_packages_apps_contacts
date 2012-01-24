@@ -20,6 +20,7 @@ import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.SpecialCharSequenceMgr;
 import com.android.contacts.activities.DialtactsActivity;
+import com.android.contacts.util.Constants;
 import com.android.contacts.util.PhoneNumberFormatter;
 import com.android.internal.telephony.ITelephony;
 import com.android.phone.CallLogAsync;
@@ -325,7 +326,7 @@ public class DialpadFragment extends Fragment
         if (Intent.ACTION_DIAL.equals(action) || Intent.ACTION_VIEW.equals(action)) {
             Uri uri = intent.getData();
             if (uri != null) {
-                if ("tel".equals(uri.getScheme())) {
+                if (Constants.SCHEME_TEL.equals(uri.getScheme())) {
                     // Put the requested number into the input area
                     String data = uri.getSchemeSpecificPart();
                     setFormattedDigits(data, null);
