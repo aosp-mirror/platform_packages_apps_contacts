@@ -1048,7 +1048,7 @@ public class DialpadFragment extends Fragment
             } else {
                 final Intent intent = ContactsUtils.getCallIntent(number,
                         (getActivity() instanceof DialtactsActivity ?
-                                DialtactsActivity.CALL_ORIGIN_DIALTACTS : null));
+                                ((DialtactsActivity)getActivity()).getCallOrigin() : null));
                 startActivity(intent);
                 mDigits.getText().clear();  // TODO: Fix bug 1745781
                 getActivity().finish();
