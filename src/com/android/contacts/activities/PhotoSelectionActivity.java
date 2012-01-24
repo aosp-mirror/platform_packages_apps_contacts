@@ -416,8 +416,17 @@ public class PhotoSelectionActivity extends Activity {
     }
 
     private void attachPhotoHandler() {
-        mPhotoHandler = new PhotoHandler(this, mPhotoView,
-                PhotoActionPopup.MODE_NO_PHOTO, mState);
+        // Always provide the same two choices (take a photo with the camera, select a photo
+        // from the gallery), but with slightly different wording.
+        // Note: don't worry about this being a read-only contact; this code will not be invoked.
+        int mode = (mPhotoUri == null) ? PhotoActionPopup.Modes.NO_PHOTO
+                : PhotoActionPopup.Modes.PHOTO_DISALLOW_PRIMARY;
+        // We don't want to provide a choice to remove the photo for two reasons:
+        //   1) the UX designs don't call for it
+        //   2) even if we wanted to, the implementation would be moderately hairy
+        mode &= ~PhotoActionPopup.Flags.REMOVE_PHOTO;
+
+        mPhotoHandler = new PhotoHandler(this, mPhotoView, mode, mState);
         if (mPendingPhotoResult != null) {
             mPhotoHandler.handlePhotoActivityResult(mPendingPhotoResult.mRequestCode,
                     mPendingPhotoResult.mResultCode, mPendingPhotoResult.mData);
