@@ -154,25 +154,20 @@ public class NfcImportVCardActivity extends Activity implements ServiceConnectio
         if (!NfcAdapter.ACTION_NDEF_DISCOVERED.equals(intent.getAction())) {
             Log.w(TAG, "Unknowon intent " + intent);
             finish();
-        }
-
-        NdefMessage msg = (NdefMessage) intent.getParcelableArrayExtra(
-                NfcAdapter.EXTRA_NDEF_MESSAGES)[0];
-        NdefRecord records[] = msg.getRecords();
-        if (records == null || records.length == 0) {
-            Log.w(TAG, "No records " + intent);
-            finish();
-        }
-
-        NdefRecord record = records[0];
-        String type = new String(record.getType(), Charset.forName("UTF8"));
-        if (record.getTnf() != NdefRecord.TNF_MIME_MEDIA ||
-                (!"text/x-vcard".equalsIgnoreCase(type) && !"text/vcard".equals(type))) {
-            Log.w(TAG, "Not a vcard");
-            //setStatus(getString(R.string.fail_reason_not_supported));
             return;
         }
-        mRecord = record;
+
+        String type = intent.getType();
+        if (type == null ||
+                (!"text/x-vcard".equals(type) && !"text/vcard".equals(type))) {
+            Log.w(TAG, "Not a vcard");
+            //setStatus(getString(R.string.fail_reason_not_supported));
+            finish();
+            return;
+        }
+        NdefMessage msg = (NdefMessage) intent.getParcelableArrayExtra(
+                NfcAdapter.EXTRA_NDEF_MESSAGES)[0];
+        mRecord = msg.getRecords()[0];
 
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(this);
         final List<AccountWithDataSet> accountList = accountTypes.getAccounts(true);
