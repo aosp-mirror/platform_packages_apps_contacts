@@ -286,7 +286,6 @@
     <string name="dialog_import_export" msgid="4360648034889921624">"Import/Eksport kenalan"</string>
     <string name="dialog_import" msgid="2431698729761448759">"Import kenalan"</string>
     <string name="menu_share" msgid="943789700636542260">"Kongsi"</string>
-    <string name="menu_all_contacts" msgid="5101735431586050711">"Semua kenalan"</string>
     <string name="share_via" msgid="563121028023030093">"Kongsi gambar melalui"</string>
     <string name="share_error" msgid="948429331673358107">"Kenalan ini tidak boleh dikongsi."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Nama"</string>

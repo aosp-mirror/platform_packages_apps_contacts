@@ -284,7 +284,6 @@
     <string name="dialog_import_export" msgid="4360648034889921624">"Névjegyek importálása/exportálása"</string>
     <string name="dialog_import" msgid="2431698729761448759">"Névjegyek importálása"</string>
     <string name="menu_share" msgid="943789700636542260">"Megosztás"</string>
-    <string name="menu_all_contacts" msgid="5101735431586050711">"Összes névjegy"</string>
     <string name="share_via" msgid="563121028023030093">"Névjegy megosztása a következőn:"</string>
     <string name="share_error" msgid="948429331673358107">"Ez a névjegy nem osztható meg."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Név"</string>

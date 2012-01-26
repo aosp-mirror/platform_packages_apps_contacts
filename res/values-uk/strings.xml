@@ -284,7 +284,6 @@
     <string name="dialog_import_export" msgid="4360648034889921624">"Імпорт/експорт контактів"</string>
     <string name="dialog_import" msgid="2431698729761448759">"Імпорт контактів"</string>
     <string name="menu_share" msgid="943789700636542260">"Надісл."</string>
-    <string name="menu_all_contacts" msgid="5101735431586050711">"Усі контакти"</string>
     <string name="share_via" msgid="563121028023030093">"Надісл. контакт через"</string>
     <string name="share_error" msgid="948429331673358107">"Цей контакт неможливо надіслати."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Ім\'я"</string>

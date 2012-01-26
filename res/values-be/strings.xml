@@ -41,7 +41,7 @@
     <string name="menu_search" msgid="9147752853603483719">"Пошук"</string>
     <string name="menu_newContact" msgid="1209922412763274638">"Новы кантакт"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Прагледзець кантакт"</string>
-    <string name="menu_callNumber" msgid="5142851348489387516">"Выклік карыст. <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="menu_callNumber" msgid="997146291983360266">"Выклікаць <xliff:g id="NUMBER">%s</xliff:g>"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Дадаць да любімых"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Выдаліць з Выбранага"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Рэдагаваць"</string>
@@ -62,7 +62,6 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Прапанаваныя кантакты"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Усе кантакты"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Кантакты аб\'яднаныя"</string>
-    <string name="deleteConfirmation_title" msgid="1418215926447642260">"Выдаліць кантакт?"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Устал. рынгтон"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Усе выклікі на гал. пошту"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Вы не можаце выдаляць кантакты з улiковых запiсаў толькі для чытання, але вы можаце хаваць іх у спісах кантактаў."</string>
@@ -186,7 +185,6 @@
     <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%s</xliff:g> хв. <xliff:g id="SECONDS">%s</xliff:g> с."</string>
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"Частая сувязь"</string>
     <string name="favoritesFrequentCalled" msgid="6128306889600696124">"Частыя званкi"</string>
-    <string name="add_contact_dlg_title" msgid="2896685845822146494">"Дадаць кантакт"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Дадаць адрас \"<xliff:g id="EMAIL">%s</xliff:g>\" у кантакты?"</string>
     <string name="description_image_button_one" msgid="1740638037139856139">"адзін"</string>
     <string name="description_image_button_two" msgid="5882638439003731308">"два"</string>
@@ -209,11 +207,8 @@
     <string name="description_minus_button" msgid="387136707700230172">"мінус"</string>
     <string name="description_plus_button" msgid="515164827856229880">"плюс"</string>
     <string name="description_view_contact_detail" msgid="9133251213656414807">"Прагледзець кантакт"</string>
-    <string name="no_sdcard_title" product="nosdcard" msgid="8543619259870877473">"Назапашвальнік недаступны"</string>
-    <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"Няма SD-карты"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5242558018442357189">"Назапашвальнiк не знойдзены."</string>
     <string name="no_sdcard_message" product="default" msgid="3357810406684913482">"SD-карта не знойдзена"</string>
-    <string name="searching_vcard_title" msgid="4970508055399376813">"Пошук файла vCard"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Імпарт з SIM-карты"</string>
     <string name="import_from_sdcard" product="default" msgid="8668347930577565175">"Імпарт з назапашвальніка"</string>
     <string name="export_to_sdcard" product="default" msgid="6092815580965201089">"Экспарт на назапашвальнік"</string>
@@ -223,8 +218,6 @@
     <string name="import_all_vcard_string" msgid="5518136113853448474">"Імпарт усіх файлаў vCard"</string>
     <string name="searching_vcard_message" product="nosdcard" msgid="557077639409584945">"Пошук дадзеных vCard на назапашвальніку..."</string>
     <string name="searching_vcard_message" product="default" msgid="3962269894118092049">"Пошук дадзеных vCard на SD-карце..."</string>
-    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="4944932641334764942">"Немагчыма сканаваць сховішча"</string>
-    <string name="scanning_sdcard_failed_title" product="default" msgid="6664940444476572612">"Немагчыма сканаваць SD-карту"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="7221682312959229201">"Не атрымалася праверыць назапашвальнiк. (Прычына: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="189023067829510792">"Не атрымалася праверыць SD-карту. (Прычына: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="6748358842976073255">"Памылка ўводу/вываду"</string>
@@ -273,9 +266,7 @@
     <string name="composer_not_initialized" msgid="2321648986367005254">"Памылка запуску складальнiка файлаў vCard."</string>
     <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"Немагчыма адкрыць файл \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> з <xliff:g id="TOTAL_NUMBER">%s</xliff:g> кантактаў"</string>
-    <string name="cancel_import_confirmation_title" msgid="5578683596010294836">"Адмена імпарту vCard"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Адмянiць iмпарт файла <xliff:g id="FILENAME">%s</xliff:g>?"</string>
-    <string name="cancel_export_confirmation_title" msgid="6516467140276768528">"Адмена экспарту vCard"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Адмянiць экспарт файла <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Немагчыма адмяніць імпарт/экспарт vCard"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Імёны вашых кантактаў"</string>
@@ -291,8 +282,8 @@
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Паказаць кантакты"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Імпарт/экспарт"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"Імпарт/экспарт кантактаў"</string>
+    <string name="dialog_import" msgid="2431698729761448759">"Імпартаваць кантакты"</string>
     <string name="menu_share" msgid="943789700636542260">"Апублікаваць"</string>
-    <string name="menu_all_contacts" msgid="5101735431586050711">"Усе кантакты"</string>
     <string name="share_via" msgid="563121028023030093">"Апублікаваць кантакт з дапамогай"</string>
     <string name="share_error" msgid="948429331673358107">"Нельга падзялiцца гэтым кантактам."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Імя"</string>
@@ -441,9 +432,7 @@
     <item quantity="other" msgid="425683718017380845">"аб\'яднаныя з розных крыніц (<xliff:g id="COUNT">%0$d</xliff:g>)"</item>
   </plurals>
     <string name="local_invisible_directory" msgid="6046691709127661065">"Іншае"</string>
-    <string name="aggregation_suggestion_join_dialog_title" msgid="5276699501316246253">"Аб\'яднаць кантакты"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Аб\'яднаць бягучы кантакт з выбраным кантактам?"</string>
-    <string name="aggregation_suggestion_edit_dialog_title" msgid="1064042382692091314">"Рэдагаваць выбраныя кантакты"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Пераключыцца ў рэжым рэдагавання выбранага кантакту? Інфармацыя, якую вы ўвялі да гэтага часу, будзе скапіявана."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Капіяваць у мае кантакты"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Дадаць да Маіх кантактаў"</string>
@@ -475,10 +464,9 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"Загрузка..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Стварыць новы кантакт"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Увайсці ва ўліковы запіс"</string>
-    <string name="contacts_unavailable_import_contacts" msgid="4456440183590517471">"Імпартаваць кантакты з файла?"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Імпартаваць кантакты"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Стварыць новую групу"</string>
     <string name="create_group_item_label" msgid="5218022006186243310">"[Стварыць новую групу]"</string>
-    <string name="delete_group_dialog_title" msgid="7368429698398624427">"Выдаліць групу"</string>
   <plurals name="num_groups_in_account">
     <item quantity="one" msgid="2944819210288517794">"1 група"</item>
     <item quantity="other" msgid="1276758425904917367">"Груп: <xliff:g id="COUNT">%0$d</xliff:g>"</item>
@@ -497,7 +485,6 @@
     <string name="set_default" msgid="4417505153468300351">"Усталяваць па змаўчанні"</string>
     <string name="clear_default" msgid="7193185801596678067">"Скінуць налады па змаўчанні"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Тэкст скапіяваны"</string>
-    <string name="cancel_confirmation_dialog_title" msgid="3950463632415908534">"Скасаваць змены"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Адмяніць змены?"</string>
     <string name="call_type_and_date" msgid="1766269584078149149">"<xliff:g id="CALL_TYPE">%1$s</xliff:g><xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Наладзіць мой профіль"</string>

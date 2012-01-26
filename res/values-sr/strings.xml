@@ -284,7 +284,6 @@
     <string name="dialog_import_export" msgid="4360648034889921624">"Увоз/извоз контаката"</string>
     <string name="dialog_import" msgid="2431698729761448759">"Увоз контаката"</string>
     <string name="menu_share" msgid="943789700636542260">"Дели"</string>
-    <string name="menu_all_contacts" msgid="5101735431586050711">"Сви контакти"</string>
     <string name="share_via" msgid="563121028023030093">"Дели контакт преко"</string>
     <string name="share_error" msgid="948429331673358107">"Овај контакт не може да се дели."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Име"</string>

@@ -284,7 +284,6 @@
     <string name="dialog_import_export" msgid="4360648034889921624">"Impor/ekspor data kenalan"</string>
     <string name="dialog_import" msgid="2431698729761448759">"Impor kenalan"</string>
     <string name="menu_share" msgid="943789700636542260">"Bagikan"</string>
-    <string name="menu_all_contacts" msgid="5101735431586050711">"Semua kenalan"</string>
     <string name="share_via" msgid="563121028023030093">"Bagikan kenalan melalui"</string>
     <string name="share_error" msgid="948429331673358107">"Data kenalan ini tidak dapat dibagi."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Nama"</string>

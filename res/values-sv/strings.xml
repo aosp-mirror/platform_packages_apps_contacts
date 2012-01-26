@@ -284,7 +284,6 @@
     <string name="dialog_import_export" msgid="4360648034889921624">"Importera/exportera kontakter"</string>
     <string name="dialog_import" msgid="2431698729761448759">"Importera kontakter"</string>
     <string name="menu_share" msgid="943789700636542260">"Dela"</string>
-    <string name="menu_all_contacts" msgid="5101735431586050711">"Alla kontakter"</string>
     <string name="share_via" msgid="563121028023030093">"Dela kontakt via"</string>
     <string name="share_error" msgid="948429331673358107">"Den här kontakten kan inte delas."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Namn"</string>
