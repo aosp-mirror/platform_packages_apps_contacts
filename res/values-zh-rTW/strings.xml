@@ -284,7 +284,6 @@
     <string name="dialog_import_export" msgid="4360648034889921624">"匯入/匯出聯絡人"</string>
     <string name="dialog_import" msgid="2431698729761448759">"匯入聯絡人"</string>
     <string name="menu_share" msgid="943789700636542260">"分享"</string>
-    <string name="menu_all_contacts" msgid="5101735431586050711">"所有聯絡人"</string>
     <string name="share_via" msgid="563121028023030093">"使用下列應用程式分享聯絡人資訊："</string>
     <string name="share_error" msgid="948429331673358107">"無法分享這位聯絡人。"</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"姓名"</string>

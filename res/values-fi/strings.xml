@@ -284,7 +284,6 @@
     <string name="dialog_import_export" msgid="4360648034889921624">"Tuo/Vie yhteystietoja"</string>
     <string name="dialog_import" msgid="2431698729761448759">"Tuo yhteystietoja"</string>
     <string name="menu_share" msgid="943789700636542260">"Jaa"</string>
-    <string name="menu_all_contacts" msgid="5101735431586050711">"Kaikki kontaktit"</string>
     <string name="share_via" msgid="563121028023030093">"Jaa yhteystieto"</string>
     <string name="share_error" msgid="948429331673358107">"Tätä yhteystietoa ei voi jakaa."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Nimi"</string>

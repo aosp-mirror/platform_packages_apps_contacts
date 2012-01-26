@@ -284,7 +284,6 @@
     <string name="dialog_import_export" msgid="4360648034889921624">"Importuj/eksportuj kontakty"</string>
     <string name="dialog_import" msgid="2431698729761448759">"Importuj kontakty"</string>
     <string name="menu_share" msgid="943789700636542260">"Udostępnij"</string>
-    <string name="menu_all_contacts" msgid="5101735431586050711">"Wszystkie kontakty"</string>
     <string name="share_via" msgid="563121028023030093">"Udostępnij kontakt przez"</string>
     <string name="share_error" msgid="948429331673358107">"Tego kontaktu nie można udostępniać."</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Nazwa"</string>
