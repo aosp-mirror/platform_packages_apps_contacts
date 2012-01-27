@@ -459,17 +459,21 @@ public class PhotoSelectionActivity extends Activity {
             }
 
             @Override
-            public void startPickFromGalleryActivity(Intent intent, int requestCode) {
+            public void startPickFromGalleryActivity(Intent intent, int requestCode,
+                    File photoFile) {
                 mSubActivityInProgress = true;
+                mCurrentPhotoFile = photoFile;
                 startActivityForResult(intent, requestCode);
             }
 
             @Override
             public void onPhotoSelected(Bitmap bitmap) {
-                EntityDeltaList delta = getDeltaForAttachingPhotoToContact(bitmap);
+                EntityDeltaList delta = getDeltaForAttachingPhotoToContact();
+                long rawContactId = getWritableEntityId();
+                String filePath = mCurrentPhotoFile.getAbsolutePath();
                 Intent intent = ContactSaveService.createSaveContactIntent(mContext, delta,
                         "", 0, mIsProfile, PhotoSelectionActivity.class,
-                        ContactEditorActivity.ACTION_SAVE_COMPLETED);
+                        ContactEditorActivity.ACTION_SAVE_COMPLETED, rawContactId, filePath);
                 startService(intent);
                 finish();
             }

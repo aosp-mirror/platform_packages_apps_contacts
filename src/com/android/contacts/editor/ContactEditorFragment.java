@@ -188,9 +188,7 @@ public class ContactEditorFragment extends Fragment implements
     private static final int REQUEST_CODE_JOIN = 0;
     private static final int REQUEST_CODE_ACCOUNTS_CHANGED = 1;
 
-    private Bitmap mPhoto = null;
     private long mRawContactIdRequestingPhoto = -1;
-    private long mRawContactIdRequestingPhotoAfterLoad = -1;
     private PhotoSelectionHandler mPhotoSelectionHandler;
 
     private final EntityDeltaComparator mComparator = new EntityDeltaComparator();
@@ -198,6 +196,7 @@ public class ContactEditorFragment extends Fragment implements
     private Cursor mGroupMetaData;
 
     private File mCurrentPhotoFile;
+    private final Bundle mUpdatedPhotos = new Bundle();
 
     private Context mContext;
     private String mAction;
@@ -975,8 +974,9 @@ public class ContactEditorFragment extends Fragment implements
 
         // Save contact
         Intent intent = ContactSaveService.createSaveContactIntent(getActivity(), mState,
-                SAVE_MODE_EXTRA_KEY, saveMode, isEditingUserProfile(),
-                getActivity().getClass(), ContactEditorActivity.ACTION_SAVE_COMPLETED);
+                SAVE_MODE_EXTRA_KEY, saveMode, isEditingUserProfile(), getActivity().getClass(),
+                ContactEditorActivity.ACTION_SAVE_COMPLETED, mUpdatedPhotos);
+
         getActivity().startService(intent);
         return true;
     }
@@ -1564,13 +1564,21 @@ public class ContactEditorFragment extends Fragment implements
     /**
      * Sets the photo stored in mPhoto and writes it to the RawContact with the given id
      */
-    private void setPhoto(long rawContact, Bitmap photo) {
+    private void setPhoto(long rawContact, Bitmap photo, File photoFile) {
         BaseRawContactEditorView requestingEditor = getRawContactEditorView(rawContact);
+
+        if (photo == null || photo.getHeight() < 0 || photo.getWidth() < 0) {
+            // This is unexpected.
+            Log.w(TAG, "Invalid bitmap passed to setPhoto()");
+        }
+
         if (requestingEditor != null) {
             requestingEditor.setPhotoBitmap(photo);
         } else {
             Log.w(TAG, "The contact that requested the photo is no longer present.");
         }
+
+        mUpdatedPhotos.putString(String.valueOf(rawContact), photoFile.getAbsolutePath());
     }
 
     /**
@@ -1637,12 +1645,6 @@ public class ContactEditorFragment extends Fragment implements
             setData(data);
             final long setDataEndTime = SystemClock.elapsedRealtime();
 
-            // If we are coming back from the photo trimmer, this will be set.
-            if (mRawContactIdRequestingPhotoAfterLoad != -1) {
-                setPhoto(mRawContactIdRequestingPhotoAfterLoad, mPhoto);
-                mRawContactIdRequestingPhotoAfterLoad = -1;
-                mPhoto = null;
-            }
             Log.v(TAG, "Time needed for setting UI: " + (setDataEndTime-setDataStartTime));
         }
 
@@ -1757,16 +1759,17 @@ public class ContactEditorFragment extends Fragment implements
             }
 
             @Override
-            public void startPickFromGalleryActivity(Intent intent, int requestCode) {
+            public void startPickFromGalleryActivity(Intent intent, int requestCode,
+                    File photoFile) {
                 mRawContactIdRequestingPhoto = mEditor.getRawContactId();
                 mStatus = Status.SUB_ACTIVITY;
+                mCurrentPhotoFile = photoFile;
                 startActivityForResult(intent, requestCode);
             }
 
             @Override
             public void onPhotoSelected(Bitmap bitmap) {
-                setPhoto(mRawContactIdRequestingPhoto, bitmap);
-                mRawContactIdRequestingPhotoAfterLoad = mRawContactIdRequestingPhoto;
+                setPhoto(mRawContactIdRequestingPhoto, bitmap, mCurrentPhotoFile);
                 mRawContactIdRequestingPhoto = -1;
             }
 

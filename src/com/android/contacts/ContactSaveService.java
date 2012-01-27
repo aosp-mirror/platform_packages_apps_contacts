@@ -35,11 +35,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.OperationApplicationException;
+import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Parcelable;
+import android.os.Bundle;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.AggregationExceptions;
@@ -53,10 +55,16 @@ import android.provider.ContactsContract.RawContactsEntity;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Iterator;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * A service responsible for saving changes to the content provider.
@@ -80,6 +88,7 @@ public class ContactSaveService extends IntentService {
     public static final String EXTRA_SAVE_MODE = "saveMode";
     public static final String EXTRA_SAVE_IS_PROFILE = "saveIsProfile";
     public static final String EXTRA_SAVE_SUCCEEDED = "saveSucceeded";
+    public static final String EXTRA_UPDATED_PHOTOS = "updatedPhotos";
 
     public static final String ACTION_CREATE_GROUP = "createGroup";
     public static final String ACTION_RENAME_GROUP = "renameGroup";
@@ -269,15 +278,38 @@ public class ContactSaveService extends IntentService {
     /**
      * Creates an intent that can be sent to this service to create a new raw contact
      * using data presented as a set of ContentValues.
+     * This variant is more convenient to use when there is only one photo that can
+     * possibly be updated, as in the Contact Details screen.
+     * @param rawContactId identifies a writable raw-contact whose photo is to be updated.
+     * @param updatedPhotoPath denotes a temporary file containing the contact's new photo.
      */
     public static Intent createSaveContactIntent(Context context, EntityDeltaList state,
             String saveModeExtraKey, int saveMode, boolean isProfile, Class<?> callbackActivity,
-            String callbackAction) {
+            String callbackAction, long rawContactId, String updatedPhotoPath) {
+        Bundle bundle = new Bundle();
+        bundle.putString(String.valueOf(rawContactId), updatedPhotoPath);
+        return createSaveContactIntent(context, state, saveModeExtraKey, saveMode, isProfile,
+                callbackActivity, callbackAction, bundle);
+    }
+
+    /**
+     * Creates an intent that can be sent to this service to create a new raw contact
+     * using data presented as a set of ContentValues.
+     * This variant is used when multiple contacts' photos may be updated, as in the
+     * Contact Editor.
+     * @param updatedPhotos maps each raw-contact's ID to the file-path of the new photo.
+     */
+    public static Intent createSaveContactIntent(Context context, EntityDeltaList state,
+            String saveModeExtraKey, int saveMode, boolean isProfile, Class<?> callbackActivity,
+            String callbackAction, Bundle updatedPhotos) {
         Intent serviceIntent = new Intent(
                 context, ContactSaveService.class);
         serviceIntent.setAction(ContactSaveService.ACTION_SAVE_CONTACT);
         serviceIntent.putExtra(EXTRA_CONTACT_STATE, (Parcelable) state);
         serviceIntent.putExtra(EXTRA_SAVE_IS_PROFILE, isProfile);
+        if (updatedPhotos != null) {
+            serviceIntent.putExtra(EXTRA_UPDATED_PHOTOS, (Parcelable) updatedPhotos);
+        }
 
         // Callback intent will be invoked by the service once the contact is
         // saved.  The service will put the URI of the new contact as "data" on
@@ -293,6 +325,7 @@ public class ContactSaveService extends IntentService {
         EntityDeltaList state = intent.getParcelableExtra(EXTRA_CONTACT_STATE);
         Intent callbackIntent = intent.getParcelableExtra(EXTRA_CALLBACK_INTENT);
         boolean isProfile = intent.getBooleanExtra(EXTRA_SAVE_IS_PROFILE, false);
+        Bundle updatedPhotos = intent.getParcelableExtra(EXTRA_UPDATED_PHOTOS);
 
         // Trim any empty fields, and RawContacts, before persisting
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(this);
@@ -301,6 +334,7 @@ public class ContactSaveService extends IntentService {
         Uri lookupUri = null;
 
         final ContentResolver resolver = getContentResolver();
+        boolean succeeded = false;
 
         // Attempt to persist changes
         int tries = 0;
@@ -346,10 +380,9 @@ public class ContactSaveService extends IntentService {
                     lookupUri = RawContacts.getContactLookupUri(resolver, rawContactUri);
                 }
                 Log.v(TAG, "Saved contact. New URI: " + lookupUri);
-                // Mark the intent to indicate that the save was successful (even if the lookup URI
-                // is now null).  For local contacts or the local profile, it's possible that the
-                // save triggered removal of the contact, so no lookup URI would exist..
-                callbackIntent.putExtra(EXTRA_SAVE_SUCCEEDED, true);
+
+                // We can change this back to false later, if we fail to save the contact photo.
+                succeeded = true;
                 break;
 
             } catch (RemoteException e) {
@@ -395,9 +428,67 @@ public class ContactSaveService extends IntentService {
             }
         }
 
+        // Now save any updated photos.  We do this at the end to ensure that
+        // the ContactProvider already knows about newly-created contacts.
+        if (updatedPhotos != null) {
+            for (String key : updatedPhotos.keySet()) {
+                String photoFilePath = updatedPhotos.getString(key);
+                long rawContactId = Long.parseLong(key);
+                File photoFile = new File(photoFilePath);
+                if (!saveUpdatedPhoto(rawContactId, photoFile)) succeeded = false;
+            }
+        }
+
+        if (succeeded) {
+            // Mark the intent to indicate that the save was successful (even if the lookup URI
+            // is now null).  For local contacts or the local profile, it's possible that the
+            // save triggered removal of the contact, so no lookup URI would exist..
+            callbackIntent.putExtra(EXTRA_SAVE_SUCCEEDED, true);
+        }
         callbackIntent.setData(lookupUri);
 
         deliverCallback(callbackIntent);
+    }
+
+    /**
+     * Save updated photo for the specified raw-contact.
+     * @return true for success, false for failure
+     */
+    private boolean saveUpdatedPhoto(long rawContactId, File photoFile) {
+        Uri outputUri = Uri.withAppendedPath(
+                ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId),
+                RawContacts.DisplayPhoto.CONTENT_DIRECTORY);
+
+        FileOutputStream outputStream = null;
+        FileInputStream inputStream = null;
+        byte[] buffer = new byte[16 * 1024];
+        int length;
+        int totalLength = 0;
+        try {
+            AssetFileDescriptor fd = getContentResolver().openAssetFileDescriptor(outputUri, "rw");
+            outputStream = fd.createOutputStream();
+            inputStream = new FileInputStream(photoFile);
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+                totalLength += length;
+            }
+            return true; // yay!
+        } catch(IOException e) {
+            Log.e(TAG, "Failed to write photo: " + photoFile.toString() + " because: " + e);
+        } finally {
+            Log.v(TAG, "Wrote " + totalLength + " bytes for photo " + photoFile.toString());
+            try {
+                inputStream.close();
+            } catch(IOException e) {
+                Log.e(TAG, "Failed to close photo input stream");
+            }
+            try {
+                outputStream.close();
+            } catch(IOException e) {
+                Log.e(TAG, "Failed to close photo output stream");
+            }
+        }
+        return false; // failed
     }
 
     private long getRawContactId(EntityDeltaList state,
