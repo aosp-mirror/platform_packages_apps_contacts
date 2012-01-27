@@ -17,6 +17,7 @@
 package com.android.contacts.model;
 
 import com.android.contacts.R;
+import com.android.contacts.test.NeededForTesting;
 import com.android.contacts.util.DateUtils;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
@@ -490,6 +491,7 @@ public abstract class BaseAccountType extends AccountType {
                     + " mColumnName" + mColumnName;
         }
 
+        @NeededForTesting
         public String getColumnNameForTest() {
             return mColumnName;
         }
