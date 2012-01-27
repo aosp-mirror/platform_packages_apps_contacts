@@ -2000,7 +2000,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             // should update the ui
             final Intent intent = ContactSaveService.createSaveContactIntent(getActivity(),
                     contactDeltaList, "", 0, false, getActivity().getClass(),
-                    Intent.ACTION_VIEW);
+                    Intent.ACTION_VIEW, null);
             getActivity().startService(intent);
         }
     }
