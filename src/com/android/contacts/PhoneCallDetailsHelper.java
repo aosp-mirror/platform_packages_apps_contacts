@@ -18,6 +18,7 @@ package com.android.contacts;
 
 import com.android.contacts.calllog.CallTypeHelper;
 import com.android.contacts.calllog.PhoneNumberHelper;
+import com.android.contacts.test.NeededForTesting;
 
 import android.content.res.Resources;
 import android.graphics.Typeface;
@@ -141,6 +142,7 @@ public class PhoneCallDetailsHelper {
         nameView.setText(nameText);
     }
 
+    @NeededForTesting
     public void setCurrentTimeForTest(long currentTimeMillis) {
         mCurrentTimeMillisForTest = currentTimeMillis;
     }

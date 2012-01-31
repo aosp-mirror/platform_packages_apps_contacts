@@ -17,6 +17,7 @@
 package com.android.contacts.model;
 
 import com.android.contacts.R;
+import com.android.contacts.test.NeededForTesting;
 
 import android.content.Context;
 import android.util.Log;
@@ -63,6 +64,7 @@ public class FallbackAccountType extends BaseAccountType {
      * In order to build {@link DataKind}s with the same resource package name,
      * {@code resPackageName} is injectable.
      */
+    @NeededForTesting
     static AccountType createForTest(Context context, String resPackageName) {
         return new FallbackAccountType(context, resPackageName);
     }

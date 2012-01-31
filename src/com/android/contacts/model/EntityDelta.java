@@ -16,6 +16,7 @@
 
 package com.android.contacts.model;
 
+import com.android.contacts.test.NeededForTesting;
 import com.google.android.collect.Lists;
 import com.google.android.collect.Maps;
 import com.google.android.collect.Sets;
@@ -183,6 +184,7 @@ public class EntityDelta implements Parcelable {
      *     doesn't exist (may be a primary, or just a random item
      * @return
      */
+    @NeededForTesting
     public ValuesDelta getSuperPrimaryEntry(String mimeType, boolean forceSelection) {
         final ArrayList<ValuesDelta> mimeEntries = getMimeEntries(mimeType, false);
         if (mimeEntries == null) return null;
@@ -564,6 +566,7 @@ public class EntityDelta implements Parcelable {
             return entry;
         }
 
+        @NeededForTesting
         public ContentValues getAfter() {
             return mAfter;
         }
