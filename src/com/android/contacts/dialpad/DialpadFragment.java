@@ -882,10 +882,21 @@ public class DialpadFragment extends Fragment
                     if (isVoicemailAvailable()) {
                         callVoicemail();
                     } else if (getActivity() != null) {
-                        DialogFragment dialogFragment = ErrorDialogFragment.newInstance(
-                                R.string.dialog_voicemail_not_ready_title,
-                                R.string.dialog_voicemail_not_ready_message);
-                        dialogFragment.show(getFragmentManager(), "voicemail_not_ready");
+                        // Voicemail is unavailable maybe because Airplane mode is turned on.
+                        // Check the current status and show the most appropriate error message.
+                        final boolean isAirplaneModeOn =
+                                Settings.System.getInt(getActivity().getContentResolver(),
+                                Settings.System.AIRPLANE_MODE_ON, 0) != 0;
+                        if (isAirplaneModeOn) {
+                            DialogFragment dialogFragment = ErrorDialogFragment.newInstance(
+                                    R.string.dialog_voicemail_airplane_mode_message);
+                            dialogFragment.show(getFragmentManager(),
+                                    "voicemail_request_during_airplane_mode");
+                        } else {
+                            DialogFragment dialogFragment = ErrorDialogFragment.newInstance(
+                                    R.string.dialog_voicemail_not_ready_message);
+                            dialogFragment.show(getFragmentManager(), "voicemail_not_ready");
+                        }
                     }
                     return true;
                 }
@@ -924,27 +935,20 @@ public class DialpadFragment extends Fragment
 
     public static class ErrorDialogFragment extends DialogFragment {
         private int mTitleResId;
-        private Integer mMessageResId;  // can be null
+        private int mMessageResId;
 
         private static final String ARG_TITLE_RES_ID = "argTitleResId";
         private static final String ARG_MESSAGE_RES_ID = "argMessageResId";
 
-        public static ErrorDialogFragment newInstance(int titleResId) {
-            return newInstanceInter(titleResId, null);
+        public static ErrorDialogFragment newInstance(int messageResId) {
+            return newInstance(0, messageResId);
         }
 
         public static ErrorDialogFragment newInstance(int titleResId, int messageResId) {
-            return newInstanceInter(titleResId, messageResId);
-        }
-
-        private static ErrorDialogFragment newInstanceInter(
-                int titleResId, Integer messageResId) {
             final ErrorDialogFragment fragment = new ErrorDialogFragment();
             final Bundle args = new Bundle();
             args.putInt(ARG_TITLE_RES_ID, titleResId);
-            if (messageResId != null) {
-                args.putInt(ARG_MESSAGE_RES_ID, messageResId);
-            }
+            args.putInt(ARG_MESSAGE_RES_ID, messageResId);
             fragment.setArguments(args);
             return fragment;
         }
@@ -953,25 +957,25 @@ public class DialpadFragment extends Fragment
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             mTitleResId = getArguments().getInt(ARG_TITLE_RES_ID);
-            if (getArguments().containsKey(ARG_MESSAGE_RES_ID)) {
-                mMessageResId = getArguments().getInt(ARG_MESSAGE_RES_ID);
-            }
+            mMessageResId = getArguments().getInt(ARG_MESSAGE_RES_ID);
         }
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle(mTitleResId)
-                    .setPositiveButton(android.R.string.ok,
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dismiss();
-                                }
-                            });
-            if (mMessageResId != null) {
+            if (mTitleResId != 0) {
+                builder.setTitle(mTitleResId);
+            }
+            if (mMessageResId != 0) {
                 builder.setMessage(mMessageResId);
             }
+            builder.setPositiveButton(android.R.string.ok,
+                    new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dismiss();
+                            }
+                    });
             return builder.create();
         }
     }
@@ -1039,7 +1043,7 @@ public class DialpadFragment extends Fragment
                 Log.i(TAG, "The phone number is prohibited explicitly by a rule.");
                 if (getActivity() != null) {
                     DialogFragment dialogFragment = ErrorDialogFragment.newInstance(
-                                    R.string.dialog_phone_call_prohibited_title);
+                            R.string.dialog_phone_call_prohibited_message);
                     dialogFragment.show(getFragmentManager(), "phone_prohibited_dialog");
                 }
 
