@@ -548,7 +548,10 @@
     <string name="keep_local" msgid="1258761699192993322">"Przechowuj lokalnie"</string>
     <string name="add_account" msgid="8201790677994503186">"Dodaj konto"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Dodaj nowe konto"</string>
-    <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"Połączenie nie zostało zrealizowane"</string>
-    <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"Numer poczty głosowej niedostępny"</string>
+    <!-- no translation found for dialog_phone_call_prohibited_message (6554711866586660441) -->
+    <!-- no translation found for dialog_phone_call_prohibited_message (4313552620858880999) -->
+    <skip />
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Aby skonfigurować pocztę głosową, przejdź do Menu &gt; Ustawienia."</string>
+    <!-- no translation found for dialog_voicemail_airplane_mode_message (530922773669546093) -->
+    <skip />
 </resources>
