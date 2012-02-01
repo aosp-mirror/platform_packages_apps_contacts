@@ -18,6 +18,7 @@ package com.android.contacts.calllog;
 
 import com.android.contacts.PhoneCallDetailsViews;
 import com.android.contacts.R;
+import com.android.contacts.test.NeededForTesting;
 
 import android.content.Context;
 import android.view.View;
@@ -68,6 +69,7 @@ public final class CallLogListItemViews {
                 view.findViewById(R.id.call_log_divider));
     }
 
+    @NeededForTesting
     public static CallLogListItemViews createForTest(Context context) {
         return new CallLogListItemViews(
                 new QuickContactBadge(context),

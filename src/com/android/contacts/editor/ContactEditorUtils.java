@@ -19,6 +19,7 @@ package com.android.contacts.editor;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
+import com.android.contacts.test.NeededForTesting;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
@@ -74,11 +75,13 @@ public class ContactEditorUtils {
         return sInstance;
     }
 
+    @NeededForTesting
     void cleanupForTest() {
         mPrefs.edit().remove(KEY_DEFAULT_ACCOUNT).remove(KEY_KNOWN_ACCOUNTS)
                 .remove(KEY_ANYTHING_SAVED).apply();
     }
 
+    @NeededForTesting
     void removeDefaultAccountForTest() {
         mPrefs.edit().remove(KEY_DEFAULT_ACCOUNT).apply();
     }
