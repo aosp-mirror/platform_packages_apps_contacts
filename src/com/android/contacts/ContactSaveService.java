@@ -60,7 +60,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.Iterator;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -336,6 +335,9 @@ public class ContactSaveService extends IntentService {
         final ContentResolver resolver = getContentResolver();
         boolean succeeded = false;
 
+        // Keep track of the id of a newly raw-contact (if any... there can be at most one).
+        long insertedRawContactId = -1;
+
         // Attempt to persist changes
         int tries = 0;
         while (tries++ < PERSIST_TRIES) {
@@ -358,6 +360,9 @@ public class ContactSaveService extends IntentService {
                 if (rawContactId == -1) {
                     throw new IllegalStateException("Could not determine RawContact ID after save");
                 }
+                // We don't have to check to see if the value is still -1.  If we reach here,
+                // the previous loop iteration didn't succeed, so any ID that we obtained is bogus.
+                insertedRawContactId = getInsertedRawContactId(diff, results);
                 if (isProfile) {
                     // Since the profile supports local raw contacts, which may have been completely
                     // removed if all information was removed, we need to do a special query to
@@ -434,6 +439,17 @@ public class ContactSaveService extends IntentService {
             for (String key : updatedPhotos.keySet()) {
                 String photoFilePath = updatedPhotos.getString(key);
                 long rawContactId = Long.parseLong(key);
+
+                // If the raw-contact ID is negative, we are saving a new raw-contact;
+                // replace the bogus ID with the new one that we actually saved the contact at.
+                if (rawContactId < 0) {
+                    rawContactId = insertedRawContactId;
+                    if (rawContactId == -1) {
+                        throw new IllegalStateException(
+                                "Could not determine RawContact ID for image insertion");
+                    }
+                }
+
                 File photoFile = new File(photoFilePath);
                 if (!saveUpdatedPhoto(rawContactId, photoFile)) succeeded = false;
             }
@@ -455,50 +471,57 @@ public class ContactSaveService extends IntentService {
      * @return true for success, false for failure
      */
     private boolean saveUpdatedPhoto(long rawContactId, File photoFile) {
-        Uri outputUri = Uri.withAppendedPath(
+        final Uri outputUri = Uri.withAppendedPath(
                 ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId),
                 RawContacts.DisplayPhoto.CONTENT_DIRECTORY);
 
-        FileOutputStream outputStream = null;
-        FileInputStream inputStream = null;
-        byte[] buffer = new byte[16 * 1024];
-        int length;
-        int totalLength = 0;
         try {
-            AssetFileDescriptor fd = getContentResolver().openAssetFileDescriptor(outputUri, "rw");
-            outputStream = fd.createOutputStream();
-            inputStream = new FileInputStream(photoFile);
-            while ((length = inputStream.read(buffer)) > 0) {
-                outputStream.write(buffer, 0, length);
-                totalLength += length;
-            }
-            return true; // yay!
-        } catch(IOException e) {
-            Log.e(TAG, "Failed to write photo: " + photoFile.toString() + " because: " + e);
-        } finally {
-            Log.v(TAG, "Wrote " + totalLength + " bytes for photo " + photoFile.toString());
+            final FileOutputStream outputStream = getContentResolver()
+                    .openAssetFileDescriptor(outputUri, "rw").createOutputStream();
             try {
-                inputStream.close();
-            } catch(IOException e) {
-                Log.e(TAG, "Failed to close photo input stream");
-            }
-            try {
+                final FileInputStream inputStream = new FileInputStream(photoFile);
+                try {
+                    final byte[] buffer = new byte[16 * 1024];
+                    int length;
+                    int totalLength = 0;
+                    while ((length = inputStream.read(buffer)) > 0) {
+                        outputStream.write(buffer, 0, length);
+                        totalLength += length;
+                    }
+                    Log.v(TAG, "Wrote " + totalLength + " bytes for photo " + photoFile.toString());
+                } finally {
+                    inputStream.close();
+                }
+            } finally {
                 outputStream.close();
-            } catch(IOException e) {
-                Log.e(TAG, "Failed to close photo output stream");
             }
+        } catch (IOException e) {
+            Log.e(TAG, "Failed to write photo: " + photoFile.toString() + " because: " + e);
+            return false;
         }
-        return false; // failed
+        return true;
     }
 
+    /**
+     * Find the ID of an existing or newly-inserted raw-contact.  If none exists, return -1.
+     */
     private long getRawContactId(EntityDeltaList state,
             final ArrayList<ContentProviderOperation> diff,
             final ContentProviderResult[] results) {
-        long rawContactId = state.findRawContactId();
-        if (rawContactId != -1) {
-            return rawContactId;
+        long existingRawContactId = state.findRawContactId();
+        if (existingRawContactId != -1) {
+            return existingRawContactId;
         }
 
+        return getInsertedRawContactId(diff, results);
+    }
+
+    /**
+     * Find the ID of a newly-inserted raw-contact.  If none exists, return -1.
+     */
+    private long getInsertedRawContactId(
+            final ArrayList<ContentProviderOperation> diff,
+            final ContentProviderResult[] results) {
         final int diffSize = diff.size();
         for (int i = 0; i < diffSize; i++) {
             ContentProviderOperation operation = diff.get(i);
