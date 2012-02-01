@@ -548,7 +548,10 @@
     <string name="keep_local" msgid="1258761699192993322">"儲存在本機中"</string>
     <string name="add_account" msgid="8201790677994503186">"新增帳戶"</string>
     <string name="add_new_account" msgid="5748627740680940264">"新增帳戶"</string>
-    <string name="dialog_phone_call_prohibited_title" msgid="2111395432187079579">"未送出通話要求"</string>
-    <string name="dialog_voicemail_not_ready_title" msgid="7258109862329777060">"語音信箱號碼無法使用"</string>
+    <!-- no translation found for dialog_phone_call_prohibited_message (6554711866586660441) -->
+    <!-- no translation found for dialog_phone_call_prohibited_message (4313552620858880999) -->
+    <skip />
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"如要設定語音信箱，請前往 [選單] &gt; [設定]。"</string>
+    <!-- no translation found for dialog_voicemail_airplane_mode_message (530922773669546093) -->
+    <skip />
 </resources>
