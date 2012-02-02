@@ -548,10 +548,7 @@
     <string name="keep_local" msgid="1258761699192993322">"שמור באופן מקומי"</string>
     <string name="add_account" msgid="8201790677994503186">"הוסף חשבון"</string>
     <string name="add_new_account" msgid="5748627740680940264">"הוסף חשבון חדש"</string>
-    <!-- no translation found for dialog_phone_call_prohibited_message (6554711866586660441) -->
-    <!-- no translation found for dialog_phone_call_prohibited_message (4313552620858880999) -->
-    <skip />
+    <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"השיחה לא נשלחה."</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"כדי להגדיר את הדואר הקולי, עבור אל \'תפריט\' &gt; \'הגדרות\'."</string>
-    <!-- no translation found for dialog_voicemail_airplane_mode_message (530922773669546093) -->
-    <skip />
+    <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"כדי להתקשר לדואר קולי, ראשית כבה את מצב הטיסה."</string>
 </resources>
