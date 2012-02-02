@@ -109,6 +109,9 @@ public class DialpadFragment extends Fragment
     private View mDigitsContainer;
     private EditText mDigits;
 
+    /** Remembers if we need to clear digits field when the screen is completely gone. */
+    private boolean mClearDigitsOnStop;
+
     private View mDelete;
     private ToneGenerator mToneGenerator;
     private final Object mToneGeneratorLock = new Object();
@@ -565,6 +568,15 @@ public class DialpadFragment extends Fragment
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        if (mClearDigitsOnStop) {
+            mClearDigitsOnStop = false;
+            mDigits.getText().clear();
+        }
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         if (ViewConfiguration.get(getActivity()).hasPermanentMenuKey() &&
@@ -929,7 +941,7 @@ public class DialpadFragment extends Fragment
 
     public void callVoicemail() {
         startActivity(ContactsUtils.getVoicemailIntent());
-        mDigits.getText().clear(); // TODO: Fix bug 1745781
+        mClearDigitsOnStop = true;
         getActivity().finish();
     }
 
@@ -1054,7 +1066,7 @@ public class DialpadFragment extends Fragment
                         (getActivity() instanceof DialtactsActivity ?
                                 ((DialtactsActivity)getActivity()).getCallOrigin() : null));
                 startActivity(intent);
-                mDigits.getText().clear();  // TODO: Fix bug 1745781
+                mClearDigitsOnStop = true;
                 getActivity().finish();
             }
         }
