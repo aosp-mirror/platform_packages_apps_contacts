@@ -63,6 +63,12 @@ public class PhotoEditorView extends FrameLayout implements Editor {
         mFrameView.setEnabled(enabled);
     }
 
+    @Override
+    public void editNewlyAddedField() {
+        // Never called, since the user never adds a new photo-editor;
+        // you can only change the picture in an existing editor.
+    }
+
     /** {@inheritDoc} */
     @Override
     protected void onFinishInflate() {

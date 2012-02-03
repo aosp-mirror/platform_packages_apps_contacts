@@ -56,6 +56,8 @@ public class KindSectionView extends LinearLayout implements EditorListener {
 
     private LayoutInflater mInflater;
 
+    private final ArrayList<Runnable> mRunWhenWindowFocused = new ArrayList<Runnable>(1);
+
     public KindSectionView(Context context) {
         this(context, null);
     }
@@ -291,6 +293,46 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         return true;
     }
 
+    /**
+     * Extends superclass implementation to also run tasks
+     * enqueued by {@link #runWhenWindowFocused}.
+     */
+    @Override
+    public void onWindowFocusChanged(boolean hasWindowFocus) {
+        super.onWindowFocusChanged(hasWindowFocus);
+        if (hasWindowFocus) {
+            for (Runnable r: mRunWhenWindowFocused) {
+                r.run();
+            }
+            mRunWhenWindowFocused.clear();
+        }
+    }
+
+    /**
+     * Depending on whether we are in the currently-focused window, either run
+     * the argument immediately, or stash it until our window becomes focused.
+     */
+    private void runWhenWindowFocused(Runnable r) {
+        if (hasWindowFocus()) {
+            r.run();
+        } else {
+            mRunWhenWindowFocused.add(r);
+        }
+    }
+
+    /**
+     * Simple wrapper around {@link #runWhenWindowFocused}
+     * to ensure that it runs in the UI thread.
+     */
+    private void postWhenWindowFocused(final Runnable r) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                runWhenWindowFocused(r);
+            }
+        });
+    }
+
     public void addItem() {
         ValuesDelta values = null;
         // If this is a list, we can freely add. If not, only allow adding the first.
@@ -312,13 +354,15 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         }
 
         final View newField = createEditorView(values);
-        post(new Runnable() {
-
-            @Override
-            public void run() {
-                newField.requestFocus();
-            }
-        });
+        if (newField instanceof Editor) {
+            postWhenWindowFocused(new Runnable() {
+                @Override
+                public void run() {
+                    newField.requestFocus();
+                    ((Editor)newField).editNewlyAddedField();
+                }
+            });
+        }
 
         // Hide the "add field" footer because there is now a blank field.
         mAddFieldFooter.setVisibility(View.GONE);
