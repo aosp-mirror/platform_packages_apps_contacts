@@ -550,10 +550,7 @@
     <string name="keep_local" msgid="1258761699192993322">"Weka karibu"</string>
     <string name="add_account" msgid="8201790677994503186">"Ongeza akaunti"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Ongeza akaunti mpya"</string>
-    <!-- no translation found for dialog_phone_call_prohibited_message (6554711866586660441) -->
-    <!-- no translation found for dialog_phone_call_prohibited_message (4313552620858880999) -->
-    <skip />
+    <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"Simu haijatumwa."</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Ili kusanidi ujumbe wa sauti, nenda kwa Menyu &gt; Mipangilio."</string>
-    <!-- no translation found for dialog_voicemail_airplane_mode_message (530922773669546093) -->
-    <skip />
+    <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Kupiga ujumbe wa sauti, kwanza lemaza hali ya ndege."</string>
 </resources>

@@ -548,10 +548,7 @@
     <string name="keep_local" msgid="1258761699192993322">"Zachovat jako místní"</string>
     <string name="add_account" msgid="8201790677994503186">"Přidat účet"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Přidat nový účet"</string>
-    <!-- no translation found for dialog_phone_call_prohibited_message (6554711866586660441) -->
-    <!-- no translation found for dialog_phone_call_prohibited_message (4313552620858880999) -->
-    <skip />
+    <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"Hovor nebyl odeslán"</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Chcete-li nastavit hlasovou schránku, přejděte do části Menu &gt; Nastavení."</string>
-    <!-- no translation found for dialog_voicemail_airplane_mode_message (530922773669546093) -->
-    <skip />
+    <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Chcete-li volat hlasovou schránku, nejdříve vypněte režim V letadle."</string>
 </resources>

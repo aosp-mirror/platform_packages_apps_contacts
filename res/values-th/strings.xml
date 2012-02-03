@@ -548,10 +548,7 @@
     <string name="keep_local" msgid="1258761699192993322">"จัดเก็บในตัวเครื่อง"</string>
     <string name="add_account" msgid="8201790677994503186">"เพิ่มบัญชี"</string>
     <string name="add_new_account" msgid="5748627740680940264">"เพิ่มบัญชีใหม่"</string>
-    <!-- no translation found for dialog_phone_call_prohibited_message (6554711866586660441) -->
-    <!-- no translation found for dialog_phone_call_prohibited_message (4313552620858880999) -->
-    <skip />
+    <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"ไม่สามารถโทรออก"</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"หากต้องการตั้งค่าข้อความเสียง ให้ไปที่เมนู &gt; การตั้งค่า"</string>
-    <!-- no translation found for dialog_voicemail_airplane_mode_message (530922773669546093) -->
-    <skip />
+    <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"หากต้องการฟังข้อความเสียง ให้ปิดโหมดใช้งานบนเครื่องบินก่อน"</string>
 </resources>

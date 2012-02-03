@@ -548,10 +548,7 @@
     <string name="keep_local" msgid="1258761699192993322">"오프라인 보관"</string>
     <string name="add_account" msgid="8201790677994503186">"계정 추가"</string>
     <string name="add_new_account" msgid="5748627740680940264">"새 계정 추가"</string>
-    <!-- no translation found for dialog_phone_call_prohibited_message (6554711866586660441) -->
-    <!-- no translation found for dialog_phone_call_prohibited_message (4313552620858880999) -->
-    <skip />
+    <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"전화를 걸 수 없음"</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"음성사서함을 설정하려면 메뉴 &gt; 설정으로 이동하세요."</string>
-    <!-- no translation found for dialog_voicemail_airplane_mode_message (530922773669546093) -->
-    <skip />
+    <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"음성사서함에 메시지를 남기려면 먼저 비행기 모드를 해제하세요."</string>
 </resources>
