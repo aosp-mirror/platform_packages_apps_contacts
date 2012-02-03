@@ -30,8 +30,10 @@ import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.TransitionDrawable;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Handler.Callback;
@@ -208,6 +210,8 @@ public abstract class ContactPhotoManager implements ComponentCallbacks2 {
 
 class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
     private static final String LOADER_THREAD_NAME = "ContactPhotoLoader";
+
+    private static final int FADE_TRANSITION_DURATION = 200;
 
     /**
      * Type of message sent by the UI thread to itself to indicate that some photos
@@ -436,7 +440,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
     }
 
     private void loadPhotoByIdOrUri(ImageView view, Request request) {
-        boolean loaded = loadCachedPhoto(view, request);
+        boolean loaded = loadCachedPhoto(view, request, false);
         if (loaded) {
             mPendingRequests.remove(view);
         } else {
@@ -467,7 +471,13 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
      *
      * @return false if the photo needs to be (re)loaded from the provider.
      */
-    private boolean loadCachedPhoto(ImageView view, Request request) {
+    private boolean loadCachedPhoto(ImageView view, Request request, boolean fadeIn) {
+        Bitmap bitmap = mBitmapCache.get(request.getKey());
+        if (bitmap != null) {
+            view.setImageBitmap(bitmap);
+            return true;
+        }
+
         BitmapHolder holder = mBitmapHolderCache.get(request.getKey());
         if (holder == null) {
             // The bitmap has not been loaded - should display the placeholder image.
@@ -483,11 +493,21 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         // Optionally decode bytes into a bitmap
         inflateBitmap(holder);
 
-        view.setImageBitmap(holder.bitmap);
+        if (fadeIn) {
+            Drawable[] layers = new Drawable[2];
+            layers[0] = mContext.getResources().getDrawable(
+                    getDefaultAvatarResId(request.mHires, request.mDarkTheme));
+            layers[1] = new BitmapDrawable(mContext.getResources(), holder.bitmap);
+            TransitionDrawable drawable = new TransitionDrawable(layers);
+            view.setImageDrawable(drawable);
+            drawable.startTransition(FADE_TRANSITION_DURATION);
+        } else {
+            view.setImageBitmap(holder.bitmap);
+        }
 
         if (holder.bitmap != null) {
             // Put the bitmap in the LRU cache
-            mBitmapCache.put(request, holder.bitmap);
+            mBitmapCache.put(request.getKey(), holder.bitmap);
         }
 
         // Soften the reference
@@ -606,7 +626,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         while (iterator.hasNext()) {
             ImageView view = iterator.next();
             Request key = mPendingRequests.get(view);
-            boolean loaded = loadCachedPhoto(view, key);
+            boolean loaded = loadCachedPhoto(view, key, true);
             if (loaded) {
                 iterator.remove();
             }
@@ -662,7 +682,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         Request request = Request.createFromUri(photoUri, true, false, DEFAULT_AVATER);
         BitmapHolder holder = new BitmapHolder(photoBytes);
         mBitmapHolderCache.put(request.getKey(), holder);
-        mBitmapCache.put(request, bitmap);
+        mBitmapCache.put(request.getKey(), bitmap);
     }
 
     /**
