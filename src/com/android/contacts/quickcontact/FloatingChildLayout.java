@@ -66,8 +66,8 @@ public class FloatingChildLayout extends FrameLayout {
         mChild.setDuplicateParentStateEnabled(true);
 
         // this will be expanded in showChild()
-        mChild.setScaleX(0.0f);
-        mChild.setScaleY(0.0f);
+        mChild.setScaleX(0.5f);
+        mChild.setScaleY(0.5f);
         mChild.setAlpha(0.0f);
     }
 
