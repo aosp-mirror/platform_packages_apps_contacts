@@ -550,5 +550,5 @@
     <string name="add_new_account" msgid="5748627740680940264">"Dodaj novi račun"</string>
     <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"Poziv nije poslan"</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"Da biste postavili govornu poštu, idite na Izbornik &gt; Postavke."</string>
-    <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Da biste pozvali govornu poštu, najprije isključite način rada u zrakoplovu."</string>
+    <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"Da biste nazvali govornu poštu, najprije isključite način rada u zrakoplovu."</string>
 </resources>
