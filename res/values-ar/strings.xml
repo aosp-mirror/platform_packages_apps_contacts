@@ -550,5 +550,5 @@
     <string name="add_new_account" msgid="5748627740680940264">"إضافة حساب جديد"</string>
     <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"لم يتم إرسال المكالمة"</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"لإعداد البريد الصوتي، انتقل إلى القائمة &gt; الإعدادات."</string>
-    <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"لإجراء مكالمة بريد صوتي، يجب أولاً إيقاف وضع الطائرة."</string>
+    <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"للاتصال بالبريد الصوتي، يجب أولاً إيقاف وضع الطائرة."</string>
 </resources>
