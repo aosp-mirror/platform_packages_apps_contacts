@@ -25,6 +25,7 @@ import com.android.contacts.calllog.PhoneNumberHelper;
 import com.android.contacts.format.FormatUtils;
 import com.android.contacts.util.AsyncTaskExecutor;
 import com.android.contacts.util.AsyncTaskExecutors;
+import com.android.contacts.util.Constants;
 import com.android.contacts.voicemail.VoicemailPlaybackFragment;
 import com.android.contacts.voicemail.VoicemailStatusHelper;
 import com.android.contacts.voicemail.VoicemailStatusHelper.StatusMessage;
@@ -333,7 +334,7 @@ public class CallDetailActivity extends Activity implements ProximitySensorAware
                         getSystemService(Context.TELEPHONY_SERVICE);
                 if (tm.getCallState() == TelephonyManager.CALL_STATE_IDLE) {
                     startActivity(ContactsUtils.getCallIntent(
-                            Uri.fromParts("tel", mNumber, null)));
+                            Uri.fromParts(Constants.SCHEME_TEL, mNumber, null)));
                     return true;
                 }
             }

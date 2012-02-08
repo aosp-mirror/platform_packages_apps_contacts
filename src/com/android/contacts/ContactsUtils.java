@@ -22,6 +22,7 @@ import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.AccountWithDataSet;
 import com.android.contacts.test.NeededForTesting;
+import com.android.contacts.util.Constants;
 import com.android.i18n.phonenumbers.PhoneNumberUtil;
 
 import android.content.Context;
@@ -224,9 +225,9 @@ public class ContactsUtils {
             return Uri.parse("voicemail:");
         }
         if (PhoneNumberUtils.isUriNumber(number)) {
-             return Uri.fromParts("sip", number, null);
+             return Uri.fromParts(Constants.SCHEME_SIP, number, null);
         }
-        return Uri.fromParts("tel", number, null);
+        return Uri.fromParts(Constants.SCHEME_TEL, number, null);
      }
 
     /**

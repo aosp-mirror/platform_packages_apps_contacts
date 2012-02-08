@@ -29,6 +29,7 @@ import com.android.contacts.list.PhoneFavoriteFragment;
 import com.android.contacts.list.PhoneNumberPickerFragment;
 import com.android.contacts.activities.TransactionSafeActivity;
 import com.android.contacts.util.AccountFilterUtil;
+import com.android.contacts.util.Constants;
 import com.android.internal.telephony.ITelephony;
 
 import android.app.ActionBar;
@@ -721,7 +722,7 @@ public class DialtactsActivity extends TransactionSafeActivity {
         }
         if (Intent.ACTION_VIEW.equals(action)) {
             final Uri data = intent.getData();
-            if (data != null && "tel".equals(data.getScheme())) {
+            if (data != null && Constants.SCHEME_TEL.equals(data.getScheme())) {
                 return true;
             }
         }

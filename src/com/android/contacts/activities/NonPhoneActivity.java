@@ -18,6 +18,7 @@ package com.android.contacts.activities;
 
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
+import com.android.contacts.util.Constants;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -56,7 +57,7 @@ public class NonPhoneActivity extends ContactsActivity {
         final Uri data = getIntent().getData();
         if (data == null) return null;
         final String scheme = data.getScheme();
-        if (!"tel".equals(scheme)) return null;
+        if (!Constants.SCHEME_TEL.equals(scheme)) return null;
         return getIntent().getData().getSchemeSpecificPart();
     }
 
