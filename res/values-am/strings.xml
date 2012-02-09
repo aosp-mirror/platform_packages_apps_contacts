@@ -550,5 +550,5 @@
     <string name="add_new_account" msgid="5748627740680940264">"አዲስ መለያ አክል"</string>
     <string name="dialog_phone_call_prohibited_message" msgid="6554711866586660441">"ጥሪ አልተላከም"</string>
     <string name="dialog_voicemail_not_ready_message" msgid="4384716252789515378">"ድምጽ መልዕክትን ለማደራጀት ወደ ምናሌ &gt; ቅንጅቶች ሂድ::"</string>
-    <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"የድምጽ ፖስታ ጥሪ ለማድረግ፣ በመጀመሪያ የአውሮፕላን ሁነታን አጥፋ።"</string>
+    <string name="dialog_voicemail_airplane_mode_message" msgid="530922773669546093">"የድምጽ መልዕክት ጥሪ ለማድረግ፣ በመጀመሪያ የአውሮፕላን ሁነታን አጥፋ።"</string>
 </resources>
