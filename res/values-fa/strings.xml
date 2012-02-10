@@ -365,15 +365,15 @@
     <string name="map_work" msgid="1360474076921878088">"مشاهده آدرس محل کار"</string>
     <string name="map_other" msgid="3817820803587012641">"مشاهده آدرس"</string>
     <string name="map_custom" msgid="6184363799976265281">"مشاهده آدرس <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="chat_aim" msgid="2588492205291249142">"چت با استفاده از AIM"</string>
-    <string name="chat_msn" msgid="8041633440091073484">"چت با استفاده از Windows Live"</string>
-    <string name="chat_yahoo" msgid="6629211142719943666">"چت با استفاده از Yahoo"</string>
-    <string name="chat_skype" msgid="1210045020427480566">"چت با استفاده از Skype"</string>
-    <string name="chat_qq" msgid="4294637812847719693">"چت با استفاده از QQ"</string>
-    <string name="chat_gtalk" msgid="981575737258117697">"چت با استفاده از Google Talk"</string>
-    <string name="chat_icq" msgid="8438405386153745775">"چت با استفاده از ICQ"</string>
-    <string name="chat_jabber" msgid="7561444230307829609">"چت با استفاده از Jabber"</string>
-    <string name="chat" msgid="9025361898797412245">"چت"</string>
+    <string name="chat_aim" msgid="2588492205291249142">"گپ با استفاده از AIM"</string>
+    <string name="chat_msn" msgid="8041633440091073484">"گپ با استفاده از Windows Live"</string>
+    <string name="chat_yahoo" msgid="6629211142719943666">"گپ با استفاده از Yahoo"</string>
+    <string name="chat_skype" msgid="1210045020427480566">"گپ با استفاده از Skype"</string>
+    <string name="chat_qq" msgid="4294637812847719693">"گپ با استفاده از QQ"</string>
+    <string name="chat_gtalk" msgid="981575737258117697">"گپ با استفاده از Google Talk"</string>
+    <string name="chat_icq" msgid="8438405386153745775">"گپ با استفاده از ICQ"</string>
+    <string name="chat_jabber" msgid="7561444230307829609">"گپ با استفاده از Jabber"</string>
+    <string name="chat" msgid="9025361898797412245">"گپ"</string>
     <string name="audio_chat" msgid="2535716629358298691">"گپ صوتی"</string>
     <string name="video_chat" msgid="1872255818640336072">"گپ ویدیویی"</string>
     <string name="postal_address" msgid="8765560217149624536">"آدرس"</string>
