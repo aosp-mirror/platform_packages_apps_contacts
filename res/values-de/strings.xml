@@ -37,7 +37,7 @@
     <string name="insertGroupDescription" msgid="5658512271662210139">"Gruppe erstellen"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Über"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Updates"</string>
-    <string name="searchHint" msgid="8482945356247760701">"Kontakte durchsuchen"</string>
+    <string name="searchHint" msgid="8482945356247760701">"In Kontakten suchen"</string>
     <string name="menu_search" msgid="9147752853603483719">"Suche"</string>
     <string name="menu_newContact" msgid="1209922412763274638">"Neuer Kontakt"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Kontakt anzeigen"</string>
@@ -411,7 +411,7 @@
     <string name="display_options_view_names_as" msgid="18022868169627979">"Kontaktnamen-Anzeige:"</string>
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Vorname zuerst"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Nachname zuerst"</string>
-    <string name="search_bar_hint" msgid="1012756309632856553">"Kontakte durchsuchen"</string>
+    <string name="search_bar_hint" msgid="1012756309632856553">"In Kontakten suchen"</string>
     <string name="take_photo" msgid="7496128293167402354">"Foto machen"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Neues Foto aufnehmen"</string>
     <string name="pick_photo" msgid="3746334626214970837">"Foto aus Galerie auswählen"</string>

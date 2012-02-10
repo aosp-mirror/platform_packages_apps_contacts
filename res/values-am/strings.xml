@@ -354,7 +354,7 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"የፅሁፍ ሥራ ምልክት  ማድረጊያ"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"ፅሁፍ <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"የMMS ፅሁፍ"</string>
-    <string name="sms" msgid="1756857139634224222">"የፅሁፍ መልዕክት"</string>
+    <string name="sms" msgid="1756857139634224222">"የጽሑፍ መልዕክት"</string>
     <string name="email_home" msgid="8573740658148184279">"የኢሜይል መነሻ"</string>
     <string name="email_mobile" msgid="2042889209787989814">"ኢሜይል ተንቀሳቃሽ"</string>
     <string name="email_work" msgid="2807430017302722689">"ኢሜይልሥራ"</string>
