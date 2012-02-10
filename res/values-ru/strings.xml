@@ -37,7 +37,7 @@
     <string name="insertGroupDescription" msgid="5658512271662210139">"Создание группы"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Контактные данные"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Лента активности"</string>
-    <string name="searchHint" msgid="8482945356247760701">"Поиск контактов"</string>
+    <string name="searchHint" msgid="8482945356247760701">"Поиск в контактах"</string>
     <string name="menu_search" msgid="9147752853603483719">"Поиск"</string>
     <string name="menu_newContact" msgid="1209922412763274638">"Новый контакт"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Просмотреть контакт"</string>
@@ -101,7 +101,7 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Здесь пока никого нет."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Чтобы добавить участников, откройте меню и нажмите \"Изменить\"."</string>
     <string name="savingContact" msgid="4075751076741924939">"Контакт сохраняется..."</string>
-    <string name="savingDisplayGroups" msgid="2133152192716475939">"Варианты отображения сохраняются..."</string>
+    <string name="savingDisplayGroups" msgid="2133152192716475939">"Сохранение настроек..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Контакт сохранен."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Не удалось сохранить изменения."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Группа сохранена."</string>
@@ -307,7 +307,7 @@
     <string name="menu_sync_remove" msgid="3266725887008450161">"Удалить группу синхронизации"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Добавить группу синхронизации"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"Другие группы..."</string>
-    <string name="display_ungrouped" msgid="6885954210243119591">"Все остальные контакты"</string>
+    <string name="display_ungrouped" msgid="6885954210243119591">"Все контакты"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"Все контакты"</string>
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Вместе с группой \"<xliff:g id="GROUP">%s</xliff:g>\" перестанут синхронизироваться контакты, не добавленные в группы."</string>
     <string name="account_phone" product="tablet" msgid="7946049152658522054">"Только для планшетных ПК, без синхронизации"</string>
@@ -411,7 +411,7 @@
     <string name="display_options_view_names_as" msgid="18022868169627979">"Показывать в контактах"</string>
     <string name="display_options_view_given_name_first" msgid="6968288511197363292">"Сначала имя"</string>
     <string name="display_options_view_family_name_first" msgid="1447288164951453714">"Сначала фамилию"</string>
-    <string name="search_bar_hint" msgid="1012756309632856553">"Поиск контактов"</string>
+    <string name="search_bar_hint" msgid="1012756309632856553">"Поиск в контактах"</string>
     <string name="take_photo" msgid="7496128293167402354">"Сфотографировать"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Создать новое фото"</string>
     <string name="pick_photo" msgid="3746334626214970837">"Выбрать фото из галереи"</string>
@@ -457,7 +457,7 @@
     <string name="list_filter_customize" msgid="4789963356004169321">"Настроить"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"Все контакты с номерами телефонов"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Контакт"</string>
-    <string name="custom_list_filter" msgid="7836035257402013957">"Настройка отображения"</string>
+    <string name="custom_list_filter" msgid="7836035257402013957">"Выберите группы контактов"</string>
     <string name="contact_list_loading" msgid="5488620820563977329">"Загрузка..."</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Настройки"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Фильтр контактов"</string>
