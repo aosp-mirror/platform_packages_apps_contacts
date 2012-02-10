@@ -548,7 +548,7 @@
     <string name="description_call_log_unheard_voicemail" msgid="118101684236996786">"Barua sauti ambayo haijasikizwa"</string>
     <string name="description_send_message" msgid="6046623392322890962">"Tuma ujumba kwa <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="description_dial_phone_number" msgid="8831647331642648637">"Piga simu <xliff:g id="NAME">%1$s</xliff:g>"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"Mawasiliano ya haraka ya <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"Mwasiliani wa haraka wa <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="call_log_empty_gecode" msgid="5588904744812100846">"-"</string>
     <string name="user_profile_contacts_list_header" msgid="5582421742835006940">"Mimi"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Maelezo yangu mafupi ya ndani."</string>
