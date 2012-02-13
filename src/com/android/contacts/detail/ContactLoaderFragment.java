@@ -407,4 +407,18 @@ public class ContactLoaderFragment extends Fragment implements FragmentKeyListen
                 mContext, mLookupUri, mCustomRingtone);
         mContext.startService(intent);
     }
+
+    /** Toggles whether to load stream items. Just for debugging */
+    public void toggleLoadStreamItems() {
+        Loader<ContactLoader.Result> loaderObj = getLoaderManager().getLoader(LOADER_DETAILS);
+        ContactLoader loader = (ContactLoader) loaderObj;
+        loader.setLoadStreamItems(!loader.getLoadStreamItems());
+    }
+
+    /** Returns whether to load stream items. Just for debugging */
+    public boolean getLoadStreamItems() {
+        Loader<ContactLoader.Result> loaderObj = getLoaderManager().getLoader(LOADER_DETAILS);
+        ContactLoader loader = (ContactLoader) loaderObj;
+        return loader != null && loader.getLoadStreamItems();
+    }
 }

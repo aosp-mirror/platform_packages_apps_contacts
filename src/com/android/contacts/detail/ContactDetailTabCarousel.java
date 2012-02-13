@@ -20,13 +20,14 @@ import com.android.contacts.ContactLoader;
 import com.android.contacts.R;
 import com.android.contacts.util.PhoneCapabilityTester;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.ViewPropertyAnimator;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,6 +39,9 @@ import android.widget.TextView;
 public class ContactDetailTabCarousel extends HorizontalScrollView implements OnTouchListener {
 
     private static final String TAG = ContactDetailTabCarousel.class.getSimpleName();
+
+    private static final int TRANSITION_TIME = 200;
+    private static final int TRANSITION_MOVE_IN_TIME = 150;
 
     private static final int TAB_INDEX_ABOUT = 0;
     private static final int TAB_INDEX_UPDATES = 1;
@@ -55,14 +59,16 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
     private ImageView mPhotoView;
     private TextView mStatusView;
     private ImageView mStatusPhotoView;
-    private boolean mHasPhoto;
     private OnClickListener mPhotoClickListener;
 
     private Listener mListener;
 
     private int mCurrentTab = TAB_INDEX_ABOUT;
 
+    private View mTabAndShadowContainer;
+    private View mShadow;
     private CarouselTab mAboutTab;
+    private View mTabDivider;
     private CarouselTab mUpdatesTab;
 
     /** Last Y coordinate of the carousel when the tab at the given index was selected */
@@ -107,8 +113,11 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+        mTabAndShadowContainer = findViewById(R.id.tab_and_shadow_container);
         mAboutTab = (CarouselTab) findViewById(R.id.tab_about);
         mAboutTab.setLabel(mContext.getString(R.string.contactDetailAbout));
+
+        mTabDivider = findViewById(R.id.tab_divider);
 
         mUpdatesTab = (CarouselTab) findViewById(R.id.tab_update);
         mUpdatesTab.setLabel(mContext.getString(R.string.contactDetailUpdates));
@@ -116,10 +125,14 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         mAboutTab.enableTouchInterceptor(mAboutTabTouchInterceptListener);
         mUpdatesTab.enableTouchInterceptor(mUpdatesTabTouchInterceptListener);
 
+        mShadow = findViewById(R.id.shadow);
+
         // Retrieve the photo view for the "about" tab
+        // TODO: This should be moved down to mAboutTab, so that it hosts its own controls
         mPhotoView = (ImageView) mAboutTab.findViewById(R.id.photo);
 
         // Retrieve the social update views for the "updates" tab
+        // TODO: This should be moved down to mUpdatesTab, so that it hosts its own controls
         mStatusView = (TextView) mUpdatesTab.findViewById(R.id.status);
         mStatusPhotoView = (ImageView) mUpdatesTab.findViewById(R.id.status_photo);
     }
@@ -128,22 +141,31 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int screenWidth = MeasureSpec.getSize(widthMeasureSpec);
         // Compute the width of a tab as a fraction of the screen width
-        int tabWidth = (int) (mTabWidthScreenWidthFraction * screenWidth);
+        int tabWidth = Math.round(mTabWidthScreenWidthFraction * screenWidth);
 
         // Find the allowed scrolling length by subtracting the current visible screen width
         // from the total length of the tabs.
         mAllowedHorizontalScrollLength = tabWidth * TAB_COUNT - screenWidth;
 
-        int tabHeight = (int) (screenWidth * mTabHeightScreenWidthFraction) + mTabShadowHeight;
+        int tabHeight = Math.round(screenWidth * mTabHeightScreenWidthFraction) + mTabShadowHeight;
         // Set the child {@link LinearLayout} to be TAB_COUNT * the computed tab width so that the
         // {@link LinearLayout}'s children (which are the tabs) will evenly split that width.
         if (getChildCount() > 0) {
             View child = getChildAt(0);
-            child.measure(MeasureSpec.makeMeasureSpec(TAB_COUNT * tabWidth, MeasureSpec.EXACTLY),
+
+            // add 1 dip of seperation between the tabs
+            final int seperatorPixels =
+                    (int)(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1,
+                    getResources().getDisplayMetrics()) + 0.5f);
+
+            child.measure(
+                    MeasureSpec.makeMeasureSpec(
+                            TAB_COUNT * tabWidth +
+                            (TAB_COUNT - 1) * seperatorPixels, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(tabHeight, MeasureSpec.EXACTLY));
         }
 
-        mAllowedVerticalScrollLength = tabHeight - mTabDisplayLabelHeight;
+        mAllowedVerticalScrollLength = tabHeight - mTabDisplayLabelHeight - mTabShadowHeight;
         setMeasuredDimension(
                 resolveSize(screenWidth, widthMeasureSpec),
                 resolveSize(tabHeight, heightMeasureSpec));
@@ -176,6 +198,105 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
             mListener.onTabSelected(TAB_INDEX_UPDATES);
         }
     };
+
+    /**
+     * Does in "appear" animation to allow a seamless transition from
+     * the "No updates" mode.
+     * @param width Width of the container. As we haven't been layed out yet, we can't know
+     * @param scrollOffset The offset by how far we scrolled, where 0=not scrolled, -x=scrolled by
+     * x pixels, Integer.MIN_VALUE=scrolled so far that the image is not visible in "no updates"
+     * mode of this screen
+     */
+    public void animateAppear(int width, int scrollOffset) {
+        final float photoHeight = mTabHeightScreenWidthFraction * width;
+        final boolean animateZoomAndFade;
+        int pixelsToScrollVertically = 0;
+
+        // Depending on how far we are scrolled down, there is one of three animations:
+        //   - Zoom and fade the picture (if it is still visible)
+        //   - Scroll, zoom and fade (if the picture is mostly invisible and we now have a
+        //     bigger visible region due to the pinning)
+        //   - Just scroll if the picture is completely invisible. This time, no zoom is needed
+        if (scrollOffset == Integer.MIN_VALUE) {
+            // animate in completely by scrolling. no need for zooming here
+            pixelsToScrollVertically = mTabDisplayLabelHeight;
+            animateZoomAndFade = false;
+        } else {
+            final int pixelsOfPhotoLeft = Math.round(photoHeight) + scrollOffset;
+            if (pixelsOfPhotoLeft > mTabDisplayLabelHeight) {
+                // nothing to scroll
+                pixelsToScrollVertically = 0;
+            } else {
+                pixelsToScrollVertically = mTabDisplayLabelHeight - pixelsOfPhotoLeft;
+            }
+            animateZoomAndFade = true;
+        }
+
+        if (pixelsToScrollVertically != 0) {
+            // We can't animate ourselves here, because our own translation is needed for the user's
+            // scrolling. Instead, we use our only child. As we are transparent, that is just as
+            // good
+            mTabAndShadowContainer.setTranslationY(-pixelsToScrollVertically);
+            final ViewPropertyAnimator animator = mTabAndShadowContainer.animate();
+            animator.translationY(0.0f);
+            animator.setDuration(TRANSITION_MOVE_IN_TIME);
+        }
+
+        if (animateZoomAndFade) {
+            // Hack: We have two types of possible layouts:
+            //   If the picture is square, it is square in both "with updates" and "without updates"
+            //     --> no need for scale animation here
+            //     example: 10inch tablet portrait
+            //   If the picture is non-square, it is full-width in "without updates" and something
+            //     arbitrary in "with updates"
+            //     --> do animation with container
+            //     example: 4.6inch phone portrait
+            final boolean squarePicture =
+                    mTabWidthScreenWidthFraction == mTabHeightScreenWidthFraction;
+            final int firstTransitionTime;
+            if (squarePicture) {
+                firstTransitionTime = 0;
+            } else {
+                // For x, we need to scale our container so we'll animate the whole tab
+                // (unfortunately, we need to have the text invisible during this transition as it
+                // would also be stretched)
+                float revScale = 1.0f/mTabWidthScreenWidthFraction;
+                mAboutTab.setScaleX(revScale);
+                mAboutTab.setPivotX(0.0f);
+                final ViewPropertyAnimator aboutAnimator = mAboutTab.animate();
+                aboutAnimator.setDuration(TRANSITION_TIME);
+                aboutAnimator.scaleX(1.0f);
+
+                // For y, we need to scale only the picture itself because we want it to be cropped
+                mPhotoView.setScaleY(revScale);
+                mPhotoView.setPivotY(photoHeight * 0.5f);
+                final ViewPropertyAnimator photoAnimator = mPhotoView.animate();
+                photoAnimator.setDuration(TRANSITION_TIME);
+                photoAnimator.scaleY(1.0f);
+                firstTransitionTime = TRANSITION_TIME;
+            }
+
+            // Animate in the labels after the above transition is finished
+            mAboutTab.fadeInLabelViewAnimator(firstTransitionTime, true);
+            mUpdatesTab.fadeInLabelViewAnimator(firstTransitionTime, false);
+
+            final float pixelsToTranslate = (1.0f - mTabWidthScreenWidthFraction) * width;
+            // Views to translate
+            for (View view : new View[] { mUpdatesTab, mTabDivider }) {
+                view.setTranslationX(pixelsToTranslate);
+                final ViewPropertyAnimator translateAnimator = view.animate();
+                translateAnimator.translationX(0.0f);
+                translateAnimator.setDuration(TRANSITION_TIME);
+            }
+
+            // Another hack: If the picture is square, there is no shadow in "Without updates"
+            //    --> fade it in after the translations are done
+            if (squarePicture) {
+                mShadow.setAlpha(0.0f);
+                mShadow.animate().setStartDelay(TRANSITION_TIME).alpha(1.0f);
+            }
+        }
+    }
 
     private void updateAlphaLayers() {
         mAboutTab.setAlphaLayerValue(mLastScrollPosition * MAX_ALPHA /
@@ -290,7 +411,6 @@ public class ContactDetailTabCarousel extends HorizontalScrollView implements On
         if (contactData == null) {
             return;
         }
-        mHasPhoto = contactData.getPhotoUri() != null;
 
         // TODO: Move this into the {@link CarouselTab} class when the updates fragment code is more
         // finalized

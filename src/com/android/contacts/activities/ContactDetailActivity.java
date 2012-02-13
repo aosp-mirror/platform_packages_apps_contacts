@@ -43,6 +43,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -55,6 +56,9 @@ import java.util.ArrayList;
 
 public class ContactDetailActivity extends ContactsActivity {
     private static final String TAG = "ContactDetailActivity";
+
+    /** Shows a toogle button for hiding/showing updates. Don't submit with true */
+    private static final boolean DEBUG_TRANSITIONS = false;
 
     /**
      * Boolean intent key that specifies whether pressing the "up" affordance in this activity
@@ -129,6 +133,19 @@ public class ContactDetailActivity extends ContactsActivity {
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.star, menu);
+        if (DEBUG_TRANSITIONS) {
+            final MenuItem toggleSocial =
+                    menu.add(mLoaderFragment.getLoadStreamItems() ? "less" : "more");
+            toggleSocial.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+            toggleSocial.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    mLoaderFragment.toggleLoadStreamItems();
+                    invalidateOptionsMenu();
+                    return false;
+                }
+            });
+        }
         return true;
     }
 
