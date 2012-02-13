@@ -442,7 +442,7 @@
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Skep tans \'n persoonlike kopie..."</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Alle kontakte"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Gester"</string>
-    <string name="list_filter_custom" msgid="8910173055702057002">"Gepasmaakte"</string>
+    <string name="list_filter_custom" msgid="8910173055702057002">"Gepasmaak"</string>
     <string name="list_filter_customize" msgid="4789963356004169321">"Pasmaak"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"Alle kontakte met telefoonnommers"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Kontak"</string>
