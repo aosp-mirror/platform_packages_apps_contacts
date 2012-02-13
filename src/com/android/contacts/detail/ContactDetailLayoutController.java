@@ -65,6 +65,7 @@ public class ContactDetailLayoutController {
     private final LayoutInflater mLayoutInflater;
     private final FragmentManager mFragmentManager;
 
+    private View mViewContainer;
     private ContactDetailFragment mDetailFragment;
     private ContactDetailUpdatesFragment mUpdatesFragment;
 
@@ -84,6 +85,7 @@ public class ContactDetailLayoutController {
     private Uri mContactUri;
 
     private boolean mTabCarouselIsAnimating;
+
     private boolean mContactHasUpdates;
 
     private LayoutMode mLayoutMode;
@@ -104,6 +106,7 @@ public class ContactDetailLayoutController {
         mContactDetailFragmentListener = contactDetailFragmentListener;
 
         // Retrieve views in case this is view pager and carousel mode
+        mViewContainer = viewContainer;
         mViewPager = (ViewPager) viewContainer.findViewById(R.id.pager);
         mTabCarousel = (ContactDetailTabCarousel) viewContainer.findViewById(R.id.tab_carousel);
 
@@ -228,7 +231,7 @@ public class ContactDetailLayoutController {
         // Setup the layout if we already have a saved state
         if (savedState != null) {
             if (mContactHasUpdates) {
-                showContactWithUpdates();
+                showContactWithUpdates(false);
             } else {
                 showContactWithoutUpdates();
             }
@@ -236,10 +239,17 @@ public class ContactDetailLayoutController {
     }
 
     public void setContactData(ContactLoader.Result data) {
+        final Boolean contactHadUpdates;
+        if (mContactData == null) {
+            contactHadUpdates = null;
+        } else {
+            contactHadUpdates = mContactHasUpdates;
+        }
         mContactData = data;
         mContactHasUpdates = !data.getStreamItems().isEmpty();
         if (mContactHasUpdates) {
-            showContactWithUpdates();
+            showContactWithUpdates(
+                    contactHadUpdates != null && contactHadUpdates.booleanValue() == false);
         } else {
             showContactWithoutUpdates();
         }
@@ -277,7 +287,7 @@ public class ContactDetailLayoutController {
      * Setup the layout for the contact with updates.
      * TODO: Clean up this method so it's easier to understand.
      */
-    private void showContactWithUpdates() {
+    private void showContactWithUpdates(boolean animateStateChange) {
         if (mContactData == null) {
             return;
         }
@@ -288,6 +298,10 @@ public class ContactDetailLayoutController {
 
         switch (mLayoutMode) {
             case TWO_COLUMN: {
+                // This is screen is very hard to animate properly, because there is such a hard
+                // cut from the regular version. A proper animation would have to reflow text and
+                // move things around. No animation for now
+
                 // Set the contact data (hide the static photo because the photo will already be in
                 // the header that scrolls with contact details).
                 mDetailFragment.setShowStaticPhoto(false);
@@ -307,11 +321,18 @@ public class ContactDetailLayoutController {
                     resetViewPager();
                     resetTabCarousel();
                 }
+                if (!isDifferentContact && animateStateChange) {
+                    mTabCarousel.animateAppear(mViewContainer.getWidth(),
+                            mDetailFragment.getFirstListItemOffset());
+                }
                 break;
             }
             case FRAGMENT_CAROUSEL: {
                 // Allow swiping between all fragments
                 mFragmentCarousel.enableSwipe(true);
+                if (!isDifferentContact && animateStateChange) {
+                    mFragmentCarousel.animateAppear();
+                }
                 break;
             }
             default:

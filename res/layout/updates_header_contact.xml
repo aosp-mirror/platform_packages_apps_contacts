@@ -29,6 +29,7 @@
         class="com.android.contacts.widget.ProportionalLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/detail_contact_photo_shadow_height"
         ex:ratio="0.5"
         ex:direction="widthToHeight">
 

@@ -1265,6 +1265,21 @@ public class ContactLoader extends Loader<ContactLoader.Result> {
         mLoadInvitableAccountTypes = loadInvitableAccountTypes;
     }
 
+    /**
+     * Sets whether to load stream items. Will trigger a reload if the value has changed.
+     * At the moment, this is only used for debugging purposes
+     */
+    public void setLoadStreamItems(boolean value) {
+        if (mLoadStreamItems != value) {
+            mLoadStreamItems = value;
+            onContentChanged();
+        }
+    }
+
+    public boolean getLoadStreamItems() {
+        return mLoadStreamItems;
+    }
+
     public Uri getLookupUri() {
         return mLookupUri;
     }

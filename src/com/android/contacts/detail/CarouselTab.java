@@ -21,6 +21,7 @@ import com.android.contacts.R;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewPropertyAnimator;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -31,7 +32,10 @@ public class CarouselTab extends RelativeLayout implements ViewOverlay {
 
     private static final String TAG = CarouselTab.class.getSimpleName();
 
+    private static final long FADE_TRANSITION_TIME = 150;
+
     private TextView mLabelView;
+    private View mLabelBackgroundView;
 
     /**
      * This view adds an alpha layer over the entire tab.
@@ -54,6 +58,8 @@ public class CarouselTab extends RelativeLayout implements ViewOverlay {
 
         mLabelView = (TextView) findViewById(R.id.label);
         mLabelView.setClickable(true);
+
+        mLabelBackgroundView = findViewById(R.id.label_background);
 
         mAlphaLayer = findViewById(R.id.alpha_overlay);
         mTouchInterceptLayer = findViewById(R.id.touch_intercept_overlay);
@@ -89,5 +95,21 @@ public class CarouselTab extends RelativeLayout implements ViewOverlay {
     @Override
     public void setAlphaLayerValue(float alpha) {
         ContactDetailDisplayUtils.setAlphaOnViewBackground(mAlphaLayer, alpha);
+    }
+
+    public void fadeInLabelViewAnimator(int startDelay, boolean fadeBackground) {
+        final ViewPropertyAnimator labelAnimator = mLabelView.animate();
+        mLabelView.setAlpha(0.0f);
+        labelAnimator.alpha(1.0f);
+        labelAnimator.setStartDelay(startDelay);
+        labelAnimator.setDuration(FADE_TRANSITION_TIME);
+
+        if (fadeBackground) {
+            final ViewPropertyAnimator backgroundAnimator = mLabelBackgroundView.animate();
+            mLabelBackgroundView.setAlpha(0.0f);
+            backgroundAnimator.alpha(1.0f);
+            backgroundAnimator.setStartDelay(startDelay);
+            backgroundAnimator.setDuration(FADE_TRANSITION_TIME);
+        }
     }
 }

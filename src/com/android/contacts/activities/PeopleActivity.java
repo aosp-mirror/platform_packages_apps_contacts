@@ -55,7 +55,6 @@ import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.preference.DisplayOptionsPreferenceFragment;
 import com.android.contacts.util.AccountFilterUtil;
 import com.android.contacts.util.AccountPromptUtils;
-import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.util.Constants;
@@ -88,6 +87,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -110,6 +110,9 @@ public class PeopleActivity extends ContactsActivity
         ContactListFilterController.ContactListFilterListener, ProviderStatusListener {
 
     private static final String TAG = "PeopleActivity";
+
+    /** Shows a toogle button for hiding/showing updates. Don't submit with true */
+    private static final boolean DEBUG_TRANSITIONS = false;
 
     // These values needs to start at 2. See {@link ContactEntryListFragment}.
     private static final int SUBACTIVITY_NEW_CONTACT = 2;
@@ -1324,6 +1327,21 @@ public class PeopleActivity extends ContactsActivity
             });
             addGroup.setActionView(mAddGroupImageView);
         }
+
+        if (DEBUG_TRANSITIONS && mContactDetailLoaderFragment != null) {
+            final MenuItem toggleSocial =
+                    menu.add(mContactDetailLoaderFragment.getLoadStreamItems() ? "less" : "more");
+            toggleSocial.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+            toggleSocial.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    mContactDetailLoaderFragment.toggleLoadStreamItems();
+                    invalidateOptionsMenu();
+                    return false;
+                }
+            });
+        }
+
         return true;
     }
 

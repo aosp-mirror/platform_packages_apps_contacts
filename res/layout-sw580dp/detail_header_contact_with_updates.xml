@@ -27,14 +27,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_marginTop="30dip"
-    android:paddingBottom="8dip">
+    android:paddingBottom="16dip">
 
     <!-- Add a first item that gives us enough space to show the carousel -->
     <view
         class="com.android.contacts.widget.ProportionalLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        ex:ratio="0.66"
+        ex:ratio="0.6667"
         ex:direction="widthToHeight">
 
         <!-- Put a dummy view here because the ProportionalLayout requires one -->
