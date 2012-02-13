@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="8dip"
-        ex:ratio="0.66"
+        ex:ratio="0.6667"
         ex:direction="widthToHeight">
 
         <!-- Put a dummy view here because the ProportionalLayout requires one -->

@@ -18,16 +18,22 @@
   This is a header entry in the contact details list for when the contact has social updates. The
   entry maintains vertical padding to ensure that the first contact detail is visible (and below
   the tab carousel). No information has to be displayed in this header.
+  The FrameLayout is used to apply additional padding which is needed for the shadow
 -->
-<view
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
-    class="com.android.contacts.widget.ProportionalLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    ex:ratio="0.5"
-    ex:direction="widthToHeight">
-    <FrameLayout
+    android:layout_height="wrap_content">
+    <view
+        class="com.android.contacts.widget.ProportionalLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</view>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/detail_contact_photo_shadow_height"
+        ex:ratio="0.5"
+        ex:direction="widthToHeight">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </view>
+</FrameLayout>

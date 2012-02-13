@@ -36,7 +36,7 @@
 
     <!-- Transparent view to overlay on the update photo
     (to allow white text to appear over a white photo). -->
-    <View
+    <View android:id="@+id/label_background"
         android:layout_width="match_parent"
         android:layout_height="@dimen/detail_tab_carousel_tab_label_height"
         android:layout_alignParentLeft="true"

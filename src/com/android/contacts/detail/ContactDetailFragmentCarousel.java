@@ -23,6 +23,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewPropertyAnimator;
 import android.view.View.OnTouchListener;
 import android.widget.HorizontalScrollView;
 
@@ -84,7 +85,7 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
     private ViewOverlay mAboutFragment;
     private ViewOverlay mUpdatesFragment;
 
-    private View mDetailFragmentView;
+    private View mAboutFragmentView;
     private View mUpdatesFragmentView;
 
     public ContactDetailFragmentCarousel(Context context) {
@@ -157,8 +158,8 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
     /**
      * Set the view containers for the detail and updates fragment.
      */
-    public void setFragmentViews(View detailFragmentView, View updatesFragmentView) {
-        mDetailFragmentView = detailFragmentView;
+    public void setFragmentViews(View aboutFragmentView, View updatesFragmentView) {
+        mAboutFragmentView = aboutFragmentView;
         mUpdatesFragmentView = updatesFragmentView;
     }
 
@@ -180,7 +181,7 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
             if (mUpdatesFragmentView != null) {
                 mUpdatesFragmentView.setVisibility(enable ? View.VISIBLE : View.GONE);
                 if (mCurrentPage == ABOUT_PAGE) {
-                    mDetailFragmentView.requestFocus();
+                    mAboutFragmentView.requestFocus();
                 } else {
                     mUpdatesFragmentView.requestFocus();
                 }
@@ -237,7 +238,7 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
         if (!mEnableSwipe) {
             return;
         }
-        mLastScrollPosition= l;
+        mLastScrollPosition = l;
         updateAlphaLayers();
     }
 
@@ -282,5 +283,15 @@ public class ContactDetailFragmentCarousel extends HorizontalScrollView implemen
             return true;
         }
         return false;
+    }
+
+    /**
+     * Starts an "appear" animation by moving in the "Updates" from the right.
+     */
+    public void animateAppear() {
+        final int x = Math.round((1.0f - FRAGMENT_WIDTH_SCREEN_WIDTH_FRACTION) * getWidth());
+        mUpdatesFragmentView.setTranslationX(x);
+        final ViewPropertyAnimator animator = mUpdatesFragmentView.animate();
+        animator.translationX(0.0f);
     }
 }
