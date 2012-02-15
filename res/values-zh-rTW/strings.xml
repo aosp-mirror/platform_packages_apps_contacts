@@ -245,7 +245,8 @@
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> 將在稍後匯出。"</string>
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"vCard 匯出要求遭到拒絕，請稍後再試。"</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"聯絡人"</string>
-    <string name="percentage" msgid="34897865327092209">"%s%%"</string>
+    <!-- no translation found for percentage (1887004062152632812) -->
+    <skip />
     <string name="confirm_export_title" msgid="6834385377255286349">"確定要匯出聯絡人？"</string>
     <string name="confirm_export_message" msgid="2423421354816428708">"您的聯絡人清單即將匯出至以下檔案：<xliff:g id="VCARD_FILENAME">%s</xliff:g>。"</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"無法匯出"</string>

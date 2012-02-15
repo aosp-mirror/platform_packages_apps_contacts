@@ -88,7 +88,7 @@
   </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Ingen bilder er tilgjengelige på nettbrettet."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Det er ingen bilder på telefonen."</string>
-    <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Kontaktens bilde"</string>
+    <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Kontaktbilde"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Egendefinert etikett"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Send anrop direkte til telefonsvarer."</string>
     <string name="removePhoto" msgid="4898105274130284565">"Fjern bilde"</string>
@@ -203,7 +203,7 @@
     <string name="description_dial_button" msgid="1274091017188142646">"ring"</string>
     <string name="description_delete_button" msgid="6263102114033407382">"tilbaketast"</string>
     <string name="description_digits_edittext" msgid="8760207516497016437">"ring til"</string>
-    <string name="description_contact_photo" msgid="3387458082667894062">"kontaktens bilde"</string>
+    <string name="description_contact_photo" msgid="3387458082667894062">"kontaktbilde"</string>
     <string name="description_minus_button" msgid="387136707700230172">"minusknapp"</string>
     <string name="description_plus_button" msgid="515164827856229880">"plussknapp"</string>
     <string name="description_view_contact_detail" msgid="9133251213656414807">"Se kontakt"</string>
@@ -245,7 +245,8 @@
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> vil eksporteres snart."</string>
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Forespørselen om eksport av vCard ble avvist. Prøv på nytt senere."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"kontakt"</string>
-    <string name="percentage" msgid="34897865327092209">"%s%%"</string>
+    <!-- no translation found for percentage (1887004062152632812) -->
+    <skip />
     <string name="confirm_export_title" msgid="6834385377255286349">"Eksp. kontaktene?"</string>
     <string name="confirm_export_message" msgid="2423421354816428708">"Kontaktlisten din blir eksportert til: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Eksport mislyktes"</string>
