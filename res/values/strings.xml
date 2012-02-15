@@ -873,7 +873,7 @@
     <string name="vcard_unknown_filename">contact</string>
 
     <!-- The percentage, used for expressing the progress of vCard import/export. -->
-    <string name="percentage">%s%%</string>
+    <string name="percentage"><xliff:g id="percentage" example="50">%s</xliff:g><xliff:g id="percentsign" example="%">%%</xliff:g></string>
 
     <!-- Dialog title shown when a user confirms whether he/she export Contact data. [CHAR LIMIT=32] -->
     <string name="confirm_export_title">Export contacts?</string>
