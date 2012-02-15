@@ -1130,6 +1130,25 @@ public class EntityModifierTests extends AndroidTestCase {
         AccountType newAccountType = new ExchangeAccountType(getContext(), "");
         DataKind kind = newAccountType.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
 
+        // Create 5 numbers.
+        // - "1" -- HOME
+        // - "2" -- WORK
+        // - "3" -- CUSTOM
+        // - "4" -- WORK
+        // - "5" -- WORK_MOBILE
+        // Then we convert it to Exchange account type.
+        // - "1" -- HOME
+        // - "2" -- WORK
+        // - "3" -- Because CUSTOM is not supported, it'll be changed to the default, MOBILE
+        // - "4" -- WORK
+        // - "5" -- WORK_MOBILE not suppoted again, so will be MOBILE.
+        // But then, Exchange doesn't support multiple MOBILE numbers, so "5" will be removed.
+        // i.e. the result will be:
+        // - "1" -- HOME
+        // - "2" -- WORK
+        // - "3" -- MOBILE
+        // - "4" -- WORK
+
         EntityDelta oldState = new EntityDelta();
         ContentValues mockNameValues = new ContentValues();
         mockNameValues.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
@@ -1138,12 +1157,12 @@ public class EntityModifierTests extends AndroidTestCase {
         oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
         mockNameValues = new ContentValues();
         mockNameValues.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
-        mockNameValues.put(Phone.TYPE, Phone.TYPE_MOBILE);
+        mockNameValues.put(Phone.TYPE, Phone.TYPE_WORK);
         mockNameValues.put(Phone.NUMBER, "2");
         oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
         mockNameValues = new ContentValues();
         mockNameValues.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
-        // Exchange doesn't support this type. Default to HOME
+        // Exchange doesn't support this type. Default to MOBILE
         mockNameValues.put(Phone.TYPE, Phone.TYPE_CUSTOM);
         mockNameValues.put(Phone.LABEL, "custom_type");
         mockNameValues.put(Phone.NUMBER, "3");
@@ -1155,8 +1174,6 @@ public class EntityModifierTests extends AndroidTestCase {
         oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
         mockNameValues = new ContentValues();
 
-        // This field should be ignored, as Exchange only allows 2 HOME phone numbers while we
-        // already have that number of HOME phones.
         mockNameValues.put(Data.MIMETYPE, Phone.CONTENT_ITEM_TYPE);
         mockNameValues.put(Phone.TYPE, Phone.TYPE_WORK_MOBILE);
         mockNameValues.put(Phone.NUMBER, "5");
@@ -1169,13 +1186,13 @@ public class EntityModifierTests extends AndroidTestCase {
         assertNotNull(list);
         assertEquals(4, list.size());
 
-        int defaultType = kind.typeList.get(0).rawValue;
+        int defaultType = Phone.TYPE_MOBILE;
 
         ContentValues outputValues = list.get(0).getAfter();
         assertEquals(Phone.TYPE_HOME, outputValues.getAsInteger(Phone.TYPE).intValue());
         assertEquals("1", outputValues.getAsString(Phone.NUMBER));
         outputValues = list.get(1).getAfter();
-        assertEquals(Phone.TYPE_MOBILE, outputValues.getAsInteger(Phone.TYPE).intValue());
+        assertEquals(Phone.TYPE_WORK, outputValues.getAsInteger(Phone.TYPE).intValue());
         assertEquals("2", outputValues.getAsString(Phone.NUMBER));
         outputValues = list.get(2).getAfter();
         assertEquals(defaultType, outputValues.getAsInteger(Phone.TYPE).intValue());

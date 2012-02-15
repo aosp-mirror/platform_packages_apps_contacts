@@ -25,7 +25,6 @@ import com.android.contacts.util.FakeAsyncTaskExecutor;
 import com.android.contacts.util.IntegrationTestUtils;
 import com.android.contacts.util.LocaleTestUtils;
 import com.android.internal.view.menu.ContextMenuBuilder;
-import com.google.common.base.Preconditions;
 import com.google.common.io.Closeables;
 
 import android.content.ContentResolver;
@@ -227,7 +226,7 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
     }
 
     private void setActivityIntentForTestCallEntry() {
-        Preconditions.checkState(mCallLogUri == null, "mUri should be null");
+        assertNull(mCallLogUri);
         ContentResolver contentResolver = getContentResolver();
         ContentValues values = new ContentValues();
         values.put(CallLog.Calls.NUMBER, CONTACT_NUMBER);
@@ -237,7 +236,7 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
     }
 
     private void setActivityIntentForTestVoicemailEntry() {
-        Preconditions.checkState(mVoicemailUri == null, "mUri should be null");
+        assertNull(mVoicemailUri);
         ContentResolver contentResolver = getContentResolver();
         ContentValues values = new ContentValues();
         values.put(VoicemailContract.Voicemails.NUMBER, CONTACT_NUMBER);
@@ -252,7 +251,7 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
     }
 
     private void setActivityIntentForRealFileVoicemailEntry() throws IOException {
-        Preconditions.checkState(mVoicemailUri == null, "mUri should be null");
+        assertNull(mVoicemailUri);
         ContentValues values = new ContentValues();
         values.put(VoicemailContract.Voicemails.DATE, String.valueOf(System.currentTimeMillis()));
         values.put(VoicemailContract.Voicemails.NUMBER, CONTACT_NUMBER);
@@ -307,7 +306,7 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
     }
 
     private TextView assertHasOneTextViewContaining(String text) throws Throwable {
-        Preconditions.checkNotNull(mActivityUnderTest, "forget to call startActivityUnderTest()?");
+        assertNotNull(mActivityUnderTest);
         List<TextView> views = mTestUtils.getTextViewsWithString(mActivityUnderTest, text);
         assertEquals("There should have been one TextView with text '" + text + "' but found "
                 + views, 1, views.size());
@@ -315,14 +314,14 @@ public class CallDetailActivityTest extends ActivityInstrumentationTestCase2<Cal
     }
 
     private void assertZeroTextViewsContaining(String text) throws Throwable {
-        Preconditions.checkNotNull(mActivityUnderTest, "forget to call startActivityUnderTest()?");
+        assertNotNull(mActivityUnderTest);
         List<TextView> views = mTestUtils.getTextViewsWithString(mActivityUnderTest, text);
         assertEquals("There should have been no TextViews with text '" + text + "' but found "
                 + views, 0,  views.size());
     }
 
     private void startActivityUnderTest() throws Throwable {
-        Preconditions.checkState(mActivityUnderTest == null, "must only start the activity once");
+        assertNull(mActivityUnderTest);
         mActivityUnderTest = getActivity();
         assertNotNull("activity should not be null", mActivityUnderTest);
         // We have to run all tasks, not just one.

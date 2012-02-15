@@ -16,10 +16,6 @@
 
 package com.android.contacts.util;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
-
-import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
 import android.app.Instrumentation;
@@ -65,7 +61,8 @@ public class FakeAsyncTaskExecutor implements AsyncTaskExecutor {
 
     /** Create a fake AsyncTaskExecutor for use in unit tests. */
     public FakeAsyncTaskExecutor(Instrumentation instrumentation) {
-        mInstrumentation = checkNotNull(instrumentation);
+        Assert.assertNotNull(instrumentation);
+        mInstrumentation = instrumentation;
     }
 
     /** Encapsulates an async task with the params and identifier it was submitted with. */
@@ -116,8 +113,9 @@ public class FakeAsyncTaskExecutor implements AsyncTaskExecutor {
         @Override
         public void execute(Runnable command) {
             synchronized (mNextLock) {
+                Assert.assertNotNull(mNextTask);
                 mSubmittedTasks.add(new SubmittedTaskImpl(mNextIdentifier,
-                        command, checkNotNull(mNextTask)));
+                        command, mNextTask));
                 mNextIdentifier = null;
                 mNextTask = null;
             }
@@ -126,13 +124,14 @@ public class FakeAsyncTaskExecutor implements AsyncTaskExecutor {
         public <T> AsyncTask<T, ?, ?> submit(Object identifier,
                 AsyncTask<T, ?, ?> task, T... params) {
             synchronized (mNextLock) {
-                checkState(mNextIdentifier == null);
-                checkState(mNextTask == null);
+                Assert.assertNull(mNextIdentifier);
+                Assert.assertNull(mNextTask);
                 mNextIdentifier = identifier;
-                mNextTask = checkNotNull(task, "Already had a valid task.\n"
+                Assert.assertNotNull("Already had a valid task.\n"
                         + "Are you calling AsyncTaskExecutor.submit(...) from within the "
                         + "onPreExecute() method of another task being submitted?\n"
-                        + "Sorry!  Not that's not supported.");
+                        + "Sorry!  Not that's not supported.", task);
+                mNextTask = task;
             }
             return task.executeOnExecutor(this, params);
         }
@@ -205,7 +204,7 @@ public class FakeAsyncTaskExecutor implements AsyncTaskExecutor {
 
     private List<SubmittedTask> getSubmittedTasksByIdentifier(
             Object identifier, boolean remove) {
-        Preconditions.checkNotNull(identifier, "can't lookup tasks by 'null' identifier");
+        Assert.assertNotNull(identifier);
         List<SubmittedTask> results = Lists.newArrayList();
         synchronized (mLock) {
             Iterator<SubmittedTask> iter = mSubmittedTasks.iterator();
