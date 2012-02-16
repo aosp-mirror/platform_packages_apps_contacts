@@ -37,4 +37,16 @@
         android:id="@+id/add_contact"
         android:title="@string/menu_newContact"
         android:showAsAction="withText" />
+
+    <!-- Ugly hack: empty item never clickable.
+         This is for forcing search icon on left even when there's a single item
+         in the bottom ActionBar.
+         We intentionally don't use android:icon to avoid other issues around item with
+         a null icon.
+
+         TODO: look for better idea. -->
+    <item
+        android:id="@+id/fake_menu_item"
+        android:actionLayout="@layout/empty2"
+        android:showAsAction="ifRoom" />
 </menu>
