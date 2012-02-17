@@ -78,6 +78,8 @@ import android.widget.SearchView.OnQueryTextListener;
 public class DialtactsActivity extends TransactionSafeActivity {
     private static final String TAG = "DialtactsActivity";
 
+    private static final boolean DEBUG = false;
+
     /** Used to open Call Setting */
     private static final String PHONE_PACKAGE = "com.android.phone";
     private static final String CALL_SETTINGS_CLASS_NAME =
@@ -143,6 +145,23 @@ public class DialtactsActivity extends TransactionSafeActivity {
         }
     }
 
+    /**
+     * True when the app detects user's drag event. This variable should not become true when
+     * mUserTabClick is true.
+     *
+     * During user's drag or tab click, we shouldn't show fake buttons but just show real
+     * ActionBar at the bottom of the screen, for transition animation.
+     */
+    boolean mDuringSwipe = false;
+    /**
+     * True when the app detects user's tab click (at the top of the screen). This variable should
+     * not become true when mDuringSwipe is true.
+     *
+     * During user's drag or tab click, we shouldn't show fake buttons but just show real
+     * ActionBar at the bottom of the screen, for transition animation.
+     */
+    boolean mUserTabClick = false;
+
     private class PageChangeListener implements OnPageChangeListener {
         private int mCurrentPosition = -1;
         /**
@@ -158,7 +177,17 @@ public class DialtactsActivity extends TransactionSafeActivity {
 
         @Override
         public void onPageSelected(int position) {
+            if (DEBUG) Log.d(TAG, "onPageSelected: " + position);
             final ActionBar actionBar = getActionBar();
+            if (mDialpadFragment != null && !mDuringSwipe) {
+                if (DEBUG) {
+                    Log.d(TAG, "Immediately show/hide fake menu buttons. position: "
+                            + position + ", dragging: " + mDuringSwipe);
+                }
+                mDialpadFragment.updateFakeMenuButtonsVisibility(
+                        position == TAB_INDEX_DIALER && !mDuringSwipe);
+            }
+
             if (mCurrentPosition == position) {
                 Log.w(TAG, "Previous position and next position became same (" + position + ")");
             }
@@ -175,6 +204,11 @@ public class DialtactsActivity extends TransactionSafeActivity {
         public void onPageScrollStateChanged(int state) {
             switch (state) {
                 case ViewPager.SCROLL_STATE_IDLE: {
+                    if (DEBUG) Log.d(TAG, "onPageScrollStateChanged() with SCROLL_STATE_IDLE");
+                    // Interpret IDLE as the end of migration (both swipe and tab click)
+                    mDuringSwipe = false;
+                    mUserTabClick = false;
+
                     if (mCurrentPosition >= 0) {
                         sendFragmentVisibilityChange(mCurrentPosition, false);
                     }
@@ -186,8 +220,24 @@ public class DialtactsActivity extends TransactionSafeActivity {
                     mCurrentPosition = mNextPosition;
                     break;
                 }
-                case ViewPager.SCROLL_STATE_DRAGGING:
-                case ViewPager.SCROLL_STATE_SETTLING:
+                case ViewPager.SCROLL_STATE_DRAGGING: {
+                    if (DEBUG) Log.d(TAG, "onPageScrollStateChanged() with SCROLL_STATE_DRAGGING");
+                    mDuringSwipe = true;
+                    mUserTabClick = false;
+
+                    if (mCurrentPosition == TAB_INDEX_DIALER) {
+                        sendFragmentVisibilityChange(TAB_INDEX_DIALER, false);
+                        sendFragmentVisibilityChange(TAB_INDEX_CALL_LOG, true);
+                        invalidateOptionsMenu();
+                    }
+                    break;
+                }
+                case ViewPager.SCROLL_STATE_SETTLING: {
+                    if (DEBUG) Log.d(TAG, "onPageScrollStateChanged() with SCROLL_STATE_SETTLING");
+                    mDuringSwipe = true;
+                    mUserTabClick = false;
+                    break;
+                }
                 default:
                     break;
             }
@@ -230,10 +280,26 @@ public class DialtactsActivity extends TransactionSafeActivity {
     private final TabListener mTabListener = new TabListener() {
         @Override
         public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+            if (DEBUG) Log.d(TAG, "onTabUnselected(). tab: " + tab);
         }
 
         @Override
         public void onTabSelected(Tab tab, FragmentTransaction ft) {
+            if (DEBUG) {
+                Log.d(TAG, "onTabSelected(). tab: " + tab + ", mDuringSwipe: " + mDuringSwipe);
+            }
+            // When the user swipes the screen horizontally, this method will be called after
+            // ViewPager.SCROLL_STATE_DRAGGING and ViewPager.SCROLL_STATE_SETTLING events, while
+            // when the user clicks a tab at the ActionBar at the top, this will be called before
+            // them. This logic interprets the order difference as a difference of the user action.
+            if (!mDuringSwipe) {
+                if (mDialpadFragment != null) {
+                    if (DEBUG) Log.d(TAG, "Immediately hide fake buttons for tab selection case");
+                    mDialpadFragment.updateFakeMenuButtonsVisibility(false);
+                }
+                mUserTabClick = true;
+            }
+
             if (mViewPager.getCurrentItem() != tab.getPosition()) {
                 mViewPager.setCurrentItem(tab.getPosition(), true);
             }
@@ -249,6 +315,7 @@ public class DialtactsActivity extends TransactionSafeActivity {
 
         @Override
         public void onTabReselected(Tab tab, FragmentTransaction ft) {
+            if (DEBUG) Log.d(TAG, "onTabReselected");
         }
     };
 
@@ -435,6 +502,12 @@ public class DialtactsActivity extends TransactionSafeActivity {
         }
         if (mSearchFragment != null) {
             mSearchFragment.setFilter(mContactListFilterController.getFilter());
+        }
+
+        if (mDuringSwipe || mUserTabClick) {
+            if (DEBUG) Log.d(TAG, "reset buggy flag state..");
+            mDuringSwipe = false;
+            mUserTabClick = false;
         }
     }
 
@@ -659,6 +732,8 @@ public class DialtactsActivity extends TransactionSafeActivity {
 
         // Restore to the previous manual selection
         mLastManuallySelectedFragment = savedTabIndex;
+        mDuringSwipe = false;
+        mUserTabClick = false;
     }
 
     @Override
@@ -776,6 +851,7 @@ public class DialtactsActivity extends TransactionSafeActivity {
         final MenuItem filterOptionMenuItem = menu.findItem(R.id.filter_option);
         final MenuItem addContactOptionMenuItem = menu.findItem(R.id.add_contact);
         final MenuItem callSettingsMenuItem = menu.findItem(R.id.menu_call_settings);
+        final MenuItem fakeMenuItem = menu.findItem(R.id.fake_menu_item);
         Tab tab = getActionBar().getSelectedTab();
         if (mInSearchUi) {
             searchMenuItem.setVisible(false);
@@ -792,17 +868,33 @@ public class DialtactsActivity extends TransactionSafeActivity {
                 addContactOptionMenuItem.setVisible(false);
             }
             callSettingsMenuItem.setVisible(false);
+            fakeMenuItem.setVisible(false);
         } else {
             final boolean showCallSettingsMenu;
             if (tab != null && tab.getPosition() == TAB_INDEX_DIALER) {
-                searchMenuItem.setVisible(false);
-                // When permanent menu key is _not_ available, the call settings menu should be
-                // available via DialpadFragment.
-                showCallSettingsMenu = ViewConfiguration.get(this).hasPermanentMenuKey();
+                if (DEBUG) {
+                    Log.d(TAG, "onPrepareOptionsMenu(dialer). swipe: " + mDuringSwipe
+                            + ", user tab click: " + mUserTabClick);
+                }
+                if (mDuringSwipe || mUserTabClick) {
+                    // During horizontal movement, we just show real ActionBar menu items.
+                    searchMenuItem.setVisible(true);
+                    searchMenuItem.setOnMenuItemClickListener(mSearchMenuItemClickListener);
+                    showCallSettingsMenu = true;
+
+                    fakeMenuItem.setVisible(ViewConfiguration.get(this).hasPermanentMenuKey());
+                } else {
+                    searchMenuItem.setVisible(false);
+                    // When permanent menu key is _not_ available, the call settings menu should be
+                    // available via DialpadFragment.
+                    showCallSettingsMenu = ViewConfiguration.get(this).hasPermanentMenuKey();
+                    fakeMenuItem.setVisible(false);
+                }
             } else {
                 searchMenuItem.setVisible(true);
                 searchMenuItem.setOnMenuItemClickListener(mSearchMenuItemClickListener);
                 showCallSettingsMenu = true;
+                fakeMenuItem.setVisible(ViewConfiguration.get(this).hasPermanentMenuKey());
             }
             if (tab != null && tab.getPosition() == TAB_INDEX_FAVORITES) {
                 filterOptionMenuItem.setVisible(true);
@@ -931,6 +1023,10 @@ public class DialtactsActivity extends TransactionSafeActivity {
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         sendFragmentVisibilityChange(mViewPager.getCurrentItem(), true);
+
+        // Before exiting the search screen, reset swipe state.
+        mDuringSwipe = false;
+        mUserTabClick = false;
 
         mViewPager.setVisibility(View.VISIBLE);
 
