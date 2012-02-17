@@ -38,7 +38,6 @@
             android:layout_width="0dip"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
             android:gravity="center"
             android:textAppearance="@style/DialtactsDigitsTextAppearance"
             android:textColor="?android:attr/textColorPrimary"
@@ -46,15 +45,15 @@
             android:background="@android:color/transparent" />
 
         <ImageButton
-            android:id="@+id/overflow_menu"
-            android:layout_width="48dip"
+            android:id="@+id/deleteButton"
+            android:layout_width="56dip"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/ic_menu_overflow"
-            android:contentDescription="@*android:string/action_menu_overflow_description"
-            android:nextFocusLeft="@id/digits"
-            android:background="?android:attr/selectableItemBackground"/>
-
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:state_enabled="false"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/description_delete_button"
+            android:src="@drawable/ic_dial_action_delete" />
     </LinearLayout>
 
     <!-- Keypad section -->
@@ -65,8 +64,44 @@
        android:layout_height="@dimen/dialpad_vertical_margin"
        android:background="#66000000"/>
 
-    <!-- Horizontal row of buttons (Search + DialButton + Delete.) -->
-    <include layout="@layout/dialpad_additional_buttons" />
+    <LinearLayout
+        android:id="@+id/dialButtonContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="@integer/dialpad_layout_weight_additional_buttons"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/dialpad_background">
+        <ImageButton
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_gravity="bottom|center_horizontal"
+            android:state_enabled="false"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/description_search_button"
+            android:src="@drawable/ic_dial_action_search"/>
+
+        <ImageButton
+            android:id="@+id/dialButton"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:state_enabled="false"
+            android:background="@drawable/btn_call"
+            android:contentDescription="@string/description_dial_button"
+            android:src="@drawable/ic_dial_action_call" />
+
+        <ImageButton
+            android:id="@+id/overflow_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_gravity="bottom|center_horizontal"
+            android:src="@drawable/ic_menu_overflow"
+            android:contentDescription="@*android:string/action_menu_overflow_description"
+            android:nextFocusLeft="@id/digits"
+            android:background="?android:attr/selectableItemBackground"/>
+    </LinearLayout>
 
     <!-- "Dialpad chooser" UI, shown only when the user brings up the
          Dialer while a call is already in progress.

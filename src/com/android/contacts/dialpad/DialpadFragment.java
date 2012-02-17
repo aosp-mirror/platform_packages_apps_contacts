@@ -16,16 +16,6 @@
 
 package com.android.contacts.dialpad;
 
-import com.android.contacts.ContactsUtils;
-import com.android.contacts.R;
-import com.android.contacts.SpecialCharSequenceMgr;
-import com.android.contacts.activities.DialtactsActivity;
-import com.android.contacts.activities.DialtactsActivity.ViewPagerVisibilityListener;
-import com.android.contacts.util.PhoneNumberFormatter;
-import com.android.internal.telephony.ITelephony;
-import com.android.phone.CallLogAsync;
-import com.android.phone.HapticFeedback;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -57,6 +47,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.DialerKeyListener;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -64,20 +55,25 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
-import java.util.HashSet;
-import java.util.Set;
+import com.android.contacts.ContactsUtils;
+import com.android.contacts.R;
+import com.android.contacts.SpecialCharSequenceMgr;
+import com.android.contacts.activities.DialtactsActivity;
+import com.android.contacts.activities.DialtactsActivity.ViewPagerVisibilityListener;
+import com.android.contacts.util.PhoneNumberFormatter;
+import com.android.internal.telephony.ITelephony;
+import com.android.phone.CallLogAsync;
+import com.android.phone.HapticFeedback;
 
 /**
  * Fragment that displays a twelve-key phone dialpad.
@@ -89,6 +85,8 @@ public class DialpadFragment extends Fragment
         PopupMenu.OnMenuItemClickListener,
         ViewPagerVisibilityListener {
     private static final String TAG = DialpadFragment.class.getSimpleName();
+
+    private static final boolean DEBUG = false;
 
     private static final String EMPTY_NUMBER = "";
 
@@ -116,11 +114,12 @@ public class DialpadFragment extends Fragment
     private ToneGenerator mToneGenerator;
     private Object mToneGeneratorLock = new Object();
     private View mDialpad;
-    private View mAdditionalButtonsRow;
 
     private View mSearchButton;
+    private View mMenuButton;
     private Listener mListener;
 
+    private View mDialButtonContainer;
     private View mDialButton;
     private ListView mDialpadChooser;
     private DialpadChooserAdapter mDialpadChooserAdapter;
@@ -253,14 +252,27 @@ public class DialpadFragment extends Fragment
 
         PhoneNumberFormatter.setPhoneNumberFormattingTextWatcher(getActivity(), mDigits);
 
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        int minCellSize = (int) (56 * dm.density); // 56dip == minimum size of menu buttons
+        int cellCount = dm.widthPixels / minCellSize;
+        int fakeMenuItemWidth = dm.widthPixels / cellCount;
+        if (DEBUG) Log.d(TAG, "The size of fake menu buttons (in pixel): " + fakeMenuItemWidth);
+
         // Soft menu button should appear only when there's no hardware menu button.
-        final View overflowMenuButton = fragmentView.findViewById(R.id.overflow_menu);
-        if (overflowMenuButton != null) {
+        mMenuButton = fragmentView.findViewById(R.id.overflow_menu);
+        if (mMenuButton != null) {
+            mMenuButton.setMinimumWidth(fakeMenuItemWidth);
             if (ViewConfiguration.get(getActivity()).hasPermanentMenuKey()) {
-                overflowMenuButton.setVisibility(View.GONE);
+                // This is required for dialpad button's layout, so must not use GONE here.
+                mMenuButton.setVisibility(View.INVISIBLE);
             } else {
-                overflowMenuButton.setOnClickListener(this);
+                mMenuButton.setOnClickListener(this);
             }
+        }
+        mSearchButton = fragmentView.findViewById(R.id.searchButton);
+        if (mSearchButton != null) {
+            mSearchButton.setMinimumWidth(fakeMenuItemWidth);
+            mSearchButton.setOnClickListener(this);
         }
 
         // Check for the presence of the keypad
@@ -269,16 +281,8 @@ public class DialpadFragment extends Fragment
             setupKeypad(fragmentView);
         }
 
-        mAdditionalButtonsRow = fragmentView.findViewById(R.id.dialpadAdditionalButtons);
-
-        mSearchButton = mAdditionalButtonsRow.findViewById(R.id.searchButton);
-        if (mSearchButton != null) {
-            mSearchButton.setOnClickListener(this);
-        }
-
-        // Check whether we should show the onscreen "Dial" button.
-        mDialButton = mAdditionalButtonsRow.findViewById(R.id.dialButton);
-
+        mDialButtonContainer = fragmentView.findViewById(R.id.dialButtonContainer);
+        mDialButton = fragmentView.findViewById(R.id.dialButton);
         if (r.getBoolean(R.bool.config_show_onscreen_dial_button)) {
             mDialButton.setOnClickListener(this);
         } else {
@@ -286,9 +290,11 @@ public class DialpadFragment extends Fragment
             mDialButton = null;
         }
 
-        mDelete = mAdditionalButtonsRow.findViewById(R.id.deleteButton);
-        mDelete.setOnClickListener(this);
-        mDelete.setOnLongClickListener(this);
+        mDelete = fragmentView.findViewById(R.id.deleteButton);
+        if (mDelete != null) {
+            mDelete.setOnClickListener(this);
+            mDelete.setOnLongClickListener(this);
+        }
 
         mDialpad = fragmentView.findViewById(R.id.dialpad);  // This is null in landscape mode.
 
@@ -304,6 +310,8 @@ public class DialpadFragment extends Fragment
         mDialpadChooser.setOnItemClickListener(this);
 
         configureScreenFromIntent(getActivity().getIntent());
+
+        updateFakeMenuButtonsVisibility(mShowOptionsMenu);
 
         return fragmentView;
     }
@@ -1040,7 +1048,8 @@ public class DialpadFragment extends Fragment
                 mDigits.setVisibility(View.GONE);
             }
             if (mDialpad != null) mDialpad.setVisibility(View.GONE);
-            mAdditionalButtonsRow.setVisibility(View.GONE);
+            if (mDialButtonContainer != null) mDialButtonContainer.setVisibility(View.GONE);
+
             mDialpadChooser.setVisibility(View.VISIBLE);
 
             // Instantiate the DialpadChooserAdapter and hook it up to the
@@ -1057,7 +1066,7 @@ public class DialpadFragment extends Fragment
                 mDigits.setVisibility(View.VISIBLE);
             }
             if (mDialpad != null) mDialpad.setVisibility(View.VISIBLE);
-            mAdditionalButtonsRow.setVisibility(View.VISIBLE);
+            if (mDialButtonContainer != null) mDialButtonContainer.setVisibility(View.VISIBLE);
             mDialpadChooser.setVisibility(View.GONE);
         }
     }
@@ -1446,7 +1455,34 @@ public class DialpadFragment extends Fragment
     }
 
     @Override
-    public void onVisibilityChanged(boolean visible) {
-        mShowOptionsMenu = visible;
+    public void onVisibilityChanged(boolean fragmentVisible) {
+        mShowOptionsMenu = fragmentVisible;
+        updateFakeMenuButtonsVisibility(fragmentVisible);
+    }
+
+    /**
+     * Update visibility of the search button and menu button at the bottom of dialer screen, which
+     * should be invisible when bottom ActionBar's real items are available and be visible
+     * otherwise.
+     *
+     * @param visible True when visible.
+     */
+    public void updateFakeMenuButtonsVisibility(boolean visible) {
+        if (DEBUG) Log.d(TAG, "updateFakeMenuButtonVisibility(" + visible + ")");
+
+        if (mSearchButton != null) {
+            if (visible) {
+                mSearchButton.setVisibility(View.VISIBLE);
+            } else {
+                mSearchButton.setVisibility(View.INVISIBLE);
+            }
+        }
+        if (mMenuButton != null) {
+            if (visible && !ViewConfiguration.get(getActivity()).hasPermanentMenuKey()) {
+                mMenuButton.setVisibility(View.VISIBLE);
+            } else {
+                mMenuButton.setVisibility(View.INVISIBLE);
+            }
+        }
     }
 }
