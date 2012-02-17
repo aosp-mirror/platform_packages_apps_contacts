@@ -239,7 +239,8 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        final View listLayout = inflater.inflate(R.layout.contact_tile_list, container, false);
+        final View listLayout = inflater.inflate(
+                R.layout.phone_contact_tile_list, container, false);
 
         mListView = (ListView) listLayout.findViewById(R.id.contact_tile_list);
         mListView.setItemsCanFocus(true);
