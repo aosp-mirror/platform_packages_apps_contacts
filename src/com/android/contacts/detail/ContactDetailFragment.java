@@ -1356,7 +1356,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
         public final TextView companyView;
         public final ImageView photoView;
         public final View photoOverlayView;
-        public final CheckBox starredView;
+        public final ImageView starredView;
         public final int layoutResourceId;
 
         public HeaderViewCache(View view, int layoutResourceInflated) {
@@ -1364,7 +1364,7 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             companyView = (TextView) view.findViewById(R.id.company);
             photoView = (ImageView) view.findViewById(R.id.photo);
             photoOverlayView = view.findViewById(R.id.photo_touch_intercept_overlay);
-            starredView = (CheckBox) view.findViewById(R.id.star);
+            starredView = (ImageView) view.findViewById(R.id.star);
             layoutResourceId = layoutResourceInflated;
         }
 
@@ -1505,9 +1505,11 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
             }
 
             // Set the starred state if it should be displayed
-            final CheckBox favoritesStar = viewCache.starredView;
+            final ImageView favoritesStar = viewCache.starredView;
             if (favoritesStar != null) {
-                ContactDetailDisplayUtils.setStarred(mContactData, favoritesStar);
+                ContactDetailDisplayUtils.configureStarredImageView(favoritesStar,
+                        mContactData.isDirectoryEntry(), mContactData.isUserProfile(),
+                        mContactData.getStarred());
                 final Uri lookupUri = mContactData.getLookupUri();
                 favoritesStar.setOnClickListener(new OnClickListener() {
                     @Override
@@ -1515,8 +1517,22 @@ public class ContactDetailFragment extends Fragment implements FragmentKeyListen
                         // Toggle "starred" state
                         // Make sure there is a contact
                         if (lookupUri != null) {
+                            // Read the current starred value from the UI instead of using the last
+                            // loaded state. This allows rapid tapping without writing the same
+                            // value several times
+                            final Object tag = favoritesStar.getTag();
+                            final boolean isStarred = tag == null
+                                    ? false : (Boolean) favoritesStar.getTag();
+
+                            // To improve responsiveness, swap out the picture (and tag) in the UI
+                            // already
+                            ContactDetailDisplayUtils.configureStarredImageView(favoritesStar,
+                                    mContactData.isDirectoryEntry(), mContactData.isUserProfile(),
+                                    !isStarred);
+
+                            // Now perform the real save
                             Intent intent = ContactSaveService.createSetStarredIntent(
-                                    getContext(), lookupUri, favoritesStar.isChecked());
+                                    getContext(), lookupUri, !isStarred);
                             getContext().startService(intent);
                         }
                     }
