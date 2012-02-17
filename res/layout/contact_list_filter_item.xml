@@ -17,6 +17,7 @@
 <view
     xmlns:android="http://schemas.android.com/apk/res/android"
     class="com.android.contacts.list.ContactListFilterView"
+    android:descendantFocusability="blocksDescendants"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="@dimen/contact_filter_item_min_height"
@@ -45,12 +46,21 @@
 
         <TextView
             android:id="@+id/accountUserName"
+            android:layout_marginTop="-3dip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="?android:attr/textColorSecondary"
+            android:textColor="?android:attr/textColorTertiary"
             android:singleLine="true"
             android:ellipsize="end"/>
     </LinearLayout>
+
+    <RadioButton
+        android:id="@+id/radioButton"
+        android:clickable="false"
+        android:layout_marginTop="1dip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical" />
 </view>
 
