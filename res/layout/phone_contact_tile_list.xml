@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2011 The Android Open Source Project
+<!-- Copyright (C) 2012 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,44 +14,34 @@
      limitations under the License.
 -->
 
-<!-- Layout parameters are set programmatically. -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Use LinearLayout + FrameLayout, just to rely on android:divider and android:showDividers -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingBottom="?android:attr/actionBarSize"
     android:divider="?android:attr/dividerHorizontal"
     android:showDividers="end">
-
-    <FrameLayout
-        android:id="@+id/voicemail_status"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:visibility="gone">
-        <include layout="@layout/call_log_voicemail_status"
-    />
-    </FrameLayout>
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-    >
-        <ListView android:id="@android:id/list"
+        android:layout_height="match_parent">
+        <ListView
+            android:id="@+id/contact_tile_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingTop="@dimen/contact_tile_list_padding_top"
+            android:clipToPadding="false"
             android:fadingEdge="none"
-            android:scrollbarStyle="outsideOverlay"
-            android:divider="@null"
-        />
-        <TextView android:id="@android:id/empty"
+            android:divider="@null" />
+
+        <TextView
+            android:id="@+id/contact_tile_list_empty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/recentCalls_empty"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:layout_marginTop="@dimen/empty_message_top_margin"
             android:textColor="?android:attr/textColorSecondary"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-        />
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
     </FrameLayout>
 </LinearLayout>
