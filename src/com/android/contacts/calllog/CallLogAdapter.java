@@ -352,7 +352,8 @@ import libcore.util.Objects;
         // view.
         NumberWithCountryIso numberCountryIso = new NumberWithCountryIso(number, countryIso);
         ContactInfo existingInfo = mContactInfoCache.getPossiblyExpired(numberCountryIso);
-        boolean updated = !info.equals(existingInfo);
+        boolean updated = (existingInfo != ContactInfo.EMPTY) && !info.equals(existingInfo);
+
         // Store the data in the cache so that the UI thread can use to display it. Store it
         // even if it has not changed so that it is marked as not expired.
         mContactInfoCache.put(numberCountryIso, info);
