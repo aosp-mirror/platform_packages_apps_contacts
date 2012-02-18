@@ -35,13 +35,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.OperationApplicationException;
-import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Parcelable;
-import android.os.Bundle;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.AggregationExceptions;
@@ -55,15 +54,14 @@ import android.provider.ContactsContract.RawContactsEntity;
 import android.util.Log;
 import android.widget.Toast;
 
-import java.lang.Long;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * A service responsible for saving changes to the content provider.

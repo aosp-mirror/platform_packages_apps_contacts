@@ -14,19 +14,12 @@
      limitations under the License.
 -->
 
-<FrameLayout
+<!-- The favorite star, shown outside of the ActionBar -->
+<ImageView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:minHeight="50dip">
-
-    <CheckBox
-        android:id="@+id/star"
-        android:duplicateParentState="true"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        android:contentDescription="@string/description_star"
-        style="?android:attr/starStyle"/>
-
-</FrameLayout>
+    android:id="@+id/star"
+    android:layout_width="48dip"
+    android:layout_height="48dip"
+    android:scaleType="center"
+    android:background="?android:attr/selectableItemBackground"
+    android:src="@drawable/btn_star_off_normal_holo_light" />

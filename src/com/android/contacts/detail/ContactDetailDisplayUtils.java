@@ -54,12 +54,12 @@ import android.text.Html.ImageGetter;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -283,13 +283,39 @@ public class ContactDetailDisplayUtils {
     /**
      * Sets the starred state of this contact.
      */
-    public static void setStarred(Result contactData, CheckBox starredView) {
+    public static void configureStarredImageView(ImageView starredView, boolean isDirectoryEntry,
+            boolean isUserProfile, boolean isStarred) {
         // Check if the starred state should be visible
-        if (!contactData.isDirectoryEntry() && !contactData.isUserProfile()) {
+        if (!isDirectoryEntry && !isUserProfile) {
             starredView.setVisibility(View.VISIBLE);
-            starredView.setChecked(contactData.getStarred());
+            final int resId = isStarred
+                    ? R.drawable.btn_star_on_normal_holo_light
+                    : R.drawable.btn_star_off_normal_holo_light;
+            starredView.setImageResource(resId);
+            starredView.setTag(isStarred);
+            starredView.setContentDescription(starredView.getResources().getString(
+                    isStarred ? R.string.menu_removeStar : R.string.menu_addStar));
         } else {
             starredView.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * Sets the starred state of this contact.
+     */
+    public static void configureStarredMenuItem(MenuItem starredMenuItem, boolean isDirectoryEntry,
+            boolean isUserProfile, boolean isStarred) {
+        // Check if the starred state should be visible
+        if (!isDirectoryEntry && !isUserProfile) {
+            starredMenuItem.setVisible(true);
+            final int resId = isStarred
+                    ? R.drawable.btn_star_on_normal_holo_dark
+                    : R.drawable.btn_star_off_normal_holo_dark;
+            starredMenuItem.setIcon(resId);
+            starredMenuItem.setChecked(isStarred);
+            starredMenuItem.setTitle(isStarred ? R.string.menu_removeStar : R.string.menu_addStar);
+        } else {
+            starredMenuItem.setVisible(false);
         }
     }
 

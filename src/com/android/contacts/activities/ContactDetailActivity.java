@@ -45,11 +45,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
-import android.widget.CheckBox;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -151,27 +148,37 @@ public class ContactDetailActivity extends ContactsActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem starredMenuItem = menu.findItem(R.id.menu_star);
-        ViewGroup starredContainer = (ViewGroup) getLayoutInflater().inflate(
-                R.layout.favorites_star, null, false);
-        final CheckBox starredView = (CheckBox) starredContainer.findViewById(R.id.star);
-        starredView.setOnClickListener(new OnClickListener() {
+        final MenuItem starredMenuItem = menu.findItem(R.id.menu_star);
+        starredMenuItem.setOnMenuItemClickListener(new OnMenuItemClickListener() {
             @Override
-            public void onClick(View v) {
+            public boolean onMenuItemClick(MenuItem item) {
                 // Toggle "starred" state
                 // Make sure there is a contact
                 if (mLookupUri != null) {
+                    // Read the current starred value from the UI instead of using the last
+                    // loaded state. This allows rapid tapping without writing the same
+                    // value several times
+                    final boolean isStarred = starredMenuItem.isChecked();
+
+                    // To improve responsiveness, swap out the picture (and tag) in the UI already
+                    ContactDetailDisplayUtils.configureStarredMenuItem(starredMenuItem,
+                            mContactData.isDirectoryEntry(), mContactData.isUserProfile(),
+                            !isStarred);
+
+                    // Now perform the real save
                     Intent intent = ContactSaveService.createSetStarredIntent(
-                            ContactDetailActivity.this, mLookupUri, starredView.isChecked());
+                            ContactDetailActivity.this, mLookupUri, !isStarred);
                     ContactDetailActivity.this.startService(intent);
                 }
+                return true;
             }
         });
         // If there is contact data, update the starred state
         if (mContactData != null) {
-            ContactDetailDisplayUtils.setStarred(mContactData, starredView);
+            ContactDetailDisplayUtils.configureStarredMenuItem(starredMenuItem,
+                    mContactData.isDirectoryEntry(), mContactData.isUserProfile(),
+                    mContactData.getStarred());
         }
-        starredMenuItem.setActionView(starredContainer);
         return true;
     }
 
