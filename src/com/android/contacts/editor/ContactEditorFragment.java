@@ -55,6 +55,7 @@ import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
@@ -111,6 +112,7 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_STATUS = "status";
     private static final String KEY_NEW_LOCAL_PROFILE = "newLocalProfile";
     private static final String KEY_IS_USER_PROFILE = "isUserProfile";
+    private static final String KEY_UPDATED_PHOTOS = "updatedPhotos";
 
     public static final String SAVE_MODE_EXTRA_KEY = "saveMode";
 
@@ -196,7 +198,7 @@ public class ContactEditorFragment extends Fragment implements
     private Cursor mGroupMetaData;
 
     private File mCurrentPhotoFile;
-    private final Bundle mUpdatedPhotos = new Bundle();
+    private Bundle mUpdatedPhotos = new Bundle();
 
     private Context mContext;
     private String mAction;
@@ -421,6 +423,7 @@ public class ContactEditorFragment extends Fragment implements
             mStatus = savedState.getInt(KEY_STATUS);
             mNewLocalProfile = savedState.getBoolean(KEY_NEW_LOCAL_PROFILE);
             mIsUserProfile = savedState.getBoolean(KEY_IS_USER_PROFILE);
+            mUpdatedPhotos = savedState.getParcelable(KEY_UPDATED_PHOTOS);
         }
     }
 
@@ -717,6 +720,11 @@ public class ContactEditorFragment extends Fragment implements
             // Set up the photo handler.
             bindPhotoHandler(editor, type, mState);
 
+            // If a new photo was chosen but not yet saved, we need to
+            // update the thumbnail to reflect this.
+            Bitmap bitmap = updatedBitmapForRawContact(rawContactId);
+            if (bitmap != null) editor.setPhotoBitmap(bitmap);
+
             if (editor instanceof RawContactEditorView) {
                 final RawContactEditorView rawContactEditor = (RawContactEditorView) editor;
                 EditorListener listener = new EditorListener() {
@@ -762,6 +770,17 @@ public class ContactEditorFragment extends Fragment implements
         // Activity can be null if we have been detached from the Activity
         final Activity activity = getActivity();
         if (activity != null) activity.invalidateOptionsMenu();
+    }
+
+    /**
+     * If we've stashed a temporary file containing a contact's new photo,
+     * decode it and return the bitmap.
+     * @param rawContactId identifies the raw-contact whose Bitmap we'll try to return.
+     * @return Bitmap of photo for specified raw-contact, or null
+    */
+    private Bitmap updatedBitmapForRawContact(long rawContactId) {
+        String path = mUpdatedPhotos.getString(String.valueOf(rawContactId));
+        return BitmapFactory.decodeFile(path);
     }
 
     private void bindPhotoHandler(BaseRawContactEditorView editor, AccountType type,
@@ -1513,6 +1532,8 @@ public class ContactEditorFragment extends Fragment implements
         outState.putBoolean(KEY_NEW_LOCAL_PROFILE, mNewLocalProfile);
         outState.putBoolean(KEY_IS_USER_PROFILE, mIsUserProfile);
         outState.putInt(KEY_STATUS, mStatus);
+        outState.putParcelable(KEY_UPDATED_PHOTOS, mUpdatedPhotos);
+
         super.onSaveInstanceState(outState);
     }
 
@@ -1695,10 +1716,14 @@ public class ContactEditorFragment extends Fragment implements
      * state information in several of the listener methods.
      */
     private final class PhotoHandler extends PhotoSelectionHandler {
+
+        final long mRawContactId;
+
         public PhotoHandler(Context context, BaseRawContactEditorView editor, int photoMode,
                 EntityDeltaList state) {
             super(context, editor.getPhotoEditor(), photoMode, false, state);
             setListener(new PhotoEditorListener(editor));
+            mRawContactId = editor.getRawContactId();
         }
 
         private final class PhotoEditorListener extends PhotoSelectionHandler.PhotoActionListener
@@ -1748,6 +1773,10 @@ public class ContactEditorFragment extends Fragment implements
             @Override
             public void onRemovePictureChosen() {
                 mEditor.setPhotoBitmap(null);
+
+                // Prevent bitmap from being restored if rotate the device.
+                // (only if we first chose a new photo before removing it)
+                mUpdatedPhotos.remove(String.valueOf(mRawContactId));
             }
 
             @Override
