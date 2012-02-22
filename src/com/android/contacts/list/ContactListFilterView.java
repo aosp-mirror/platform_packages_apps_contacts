@@ -17,15 +17,18 @@
 package com.android.contacts.list;
 
 import com.android.contacts.R;
+import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.model.AccountType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.util.ThemeUtils;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 /**
@@ -33,12 +36,14 @@ import android.widget.TextView;
  */
 public class ContactListFilterView extends LinearLayout {
 
+    private static final String TAG = ContactListFilterView.class.getSimpleName();
+
     private ImageView mIcon;
     private TextView mAccountType;
     private TextView mAccountUserName;
+    private RadioButton mRadioButton;
     private ContactListFilter mFilter;
     private boolean mSingleAccount;
-    private int mActivatedBackground;
 
     public ContactListFilterView(Context context) {
         super(context);
@@ -60,16 +65,26 @@ public class ContactListFilterView extends LinearLayout {
         this.mSingleAccount = flag;
     }
 
-    public void bindView(AccountTypeManager accountTypes) {
-        if (mActivatedBackground == 0) {
-            mActivatedBackground = ThemeUtils.getActivatedBackground(getContext().getTheme());
+    @Override
+    public void setActivated(boolean activated) {
+        super.setActivated(activated);
+        if (mRadioButton != null) {
+            mRadioButton.setChecked(activated);
+        } else {
+            // We're guarding against null-pointer exceptions,
+            // but otherwise this code is not expected to work
+            // properly if the button hasn't been initialized.
+            Log.wtf(TAG, "radio-button cannot be activated because it is null");
         }
-        setBackgroundResource(mActivatedBackground);
+    }
 
+    public void bindView(AccountTypeManager accountTypes) {
         if (mAccountType == null) {
             mIcon = (ImageView) findViewById(R.id.icon);
             mAccountType = (TextView) findViewById(R.id.accountType);
             mAccountUserName = (TextView) findViewById(R.id.accountUserName);
+            mRadioButton = (RadioButton) findViewById(R.id.radioButton);
+            mRadioButton.setChecked(isActivated());
         }
 
         if (mFilter == null) {
