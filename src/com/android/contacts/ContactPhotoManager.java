@@ -100,7 +100,7 @@ public abstract class ContactPhotoManager implements ComponentCallbacks2 {
         }
     }
 
-    public static final DefaultImageProvider DEFAULT_AVATER = new AvatarDefaultImageProvider();
+    public static final DefaultImageProvider DEFAULT_AVATAR = new AvatarDefaultImageProvider();
 
     public static final DefaultImageProvider DEFAULT_BLANK = new BlankDefaultImageProvider();
 
@@ -133,10 +133,10 @@ public abstract class ContactPhotoManager implements ComponentCallbacks2 {
 
     /**
      * Calls {@link #loadPhoto(ImageView, long, boolean, boolean, DefaultImageProvider)} with
-     * {@link #DEFAULT_AVATER}.
+     * {@link #DEFAULT_AVATAR}.
      */
     public final void loadPhoto(ImageView view, long photoId, boolean hires, boolean darkTheme) {
-        loadPhoto(view, photoId, hires, darkTheme, DEFAULT_AVATER);
+        loadPhoto(view, photoId, hires, darkTheme, DEFAULT_AVATAR);
     }
 
     /**
@@ -149,10 +149,10 @@ public abstract class ContactPhotoManager implements ComponentCallbacks2 {
 
     /**
      * Calls {@link #loadPhoto(ImageView, Uri, boolean, boolean, DefaultImageProvider)} with
-     * {@link #DEFAULT_AVATER}.
+     * {@link #DEFAULT_AVATAR}.
      */
     public final void loadPhoto(ImageView view, Uri photoUri, boolean hires, boolean darkTheme) {
-        loadPhoto(view, photoUri, hires, darkTheme, DEFAULT_AVATER);
+        loadPhoto(view, photoUri, hires, darkTheme, DEFAULT_AVATAR);
     }
 
     /**
@@ -679,7 +679,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
 
     @Override
     public void cacheBitmap(Uri photoUri, Bitmap bitmap, byte[] photoBytes) {
-        Request request = Request.createFromUri(photoUri, true, false, DEFAULT_AVATER);
+        Request request = Request.createFromUri(photoUri, true, false, DEFAULT_AVATAR);
         BitmapHolder holder = new BitmapHolder(photoBytes);
         mBitmapHolderCache.put(request.getKey(), holder);
         mBitmapCache.put(request.getKey(), bitmap);
