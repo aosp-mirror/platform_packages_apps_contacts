@@ -36,6 +36,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.provider.CallLog.Calls;
@@ -84,6 +85,8 @@ public class CallLogFragment extends ListFragment
     private boolean mCallLogFetched;
     private boolean mVoicemailStatusFetched;
 
+    private final Handler mHandler = new Handler();
+
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
@@ -106,10 +109,25 @@ public class CallLogFragment extends ListFragment
         getActivity().invalidateOptionsMenu();
         if (mScrollToTop) {
             final ListView listView = getListView();
+            // The smooth-scroll animation happens over a fixed time period.
+            // As a result, if it scrolls through a large portion of the list,
+            // each frame will jump so far from the previous one that the user
+            // will not experience the illusion of downward motion.  Instead,
+            // if we're not already near the top of the list, we instantly jump
+            // near the top, and animate from there.
             if (listView.getFirstVisiblePosition() > 5) {
                 listView.setSelection(5);
             }
-            listView.smoothScrollToPosition(0);
+            // Workaround for framework issue: the smooth-scroll doesn't
+            // occur if setSelection() is called immediately before.
+            mHandler.post(new Runnable() {
+               @Override
+               public void run() {
+                   if (getActivity() == null || getActivity().isFinishing()) return;
+                   listView.smoothScrollToPosition(0);
+               }
+            });
+
             mScrollToTop = false;
         }
         mCallLogFetched = true;
@@ -172,10 +190,22 @@ public class CallLogFragment extends ListFragment
         getListView().setItemsCanFocus(true);
     }
 
+    /**
+     * Based on the new intent, decide whether the list should be configured
+     * to scroll up to display the first item.
+     */
+    public void configureScreenFromIntent(Intent newIntent) {
+        // Typically, when switching to the call-log we want to show the user
+        // the same section of the list that they were most recently looking
+        // at.  However, under some circumstances, we want to automatically
+        // scroll to the top of the list to present the newest call items.
+        // For example, immediately after a call is finished, we want to
+        // display information about that call.
+        mScrollToTop = Calls.CONTENT_TYPE.equals(newIntent.getType());
+    }
+
     @Override
     public void onStart() {
-        mScrollToTop = true;
-
         // Start the empty loader now to defer other fragments.  We destroy it when both calllog
         // and the voicemail status are fetched.
         getLoaderManager().initLoader(EMPTY_LOADER_ID, null,
