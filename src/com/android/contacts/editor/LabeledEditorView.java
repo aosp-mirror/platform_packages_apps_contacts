@@ -31,7 +31,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Entity;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -128,6 +127,8 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
     protected void onFinishInflate() {
 
         mLabel = (Spinner) findViewById(R.id.spinner);
+        // Turn off the Spinner's own state management. We do this ourselves on rotation
+        mLabel.setId(View.NO_ID);
         mLabel.setOnItemSelectedListener(mSpinnerListener);
 
         mDelete = (ImageView) findViewById(R.id.delete_button);
