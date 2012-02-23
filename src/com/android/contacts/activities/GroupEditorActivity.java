@@ -18,7 +18,6 @@ package com.android.contacts.activities;
 
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
-import com.android.contacts.editor.ContactEditorFragment.SaveMode;
 import com.android.contacts.group.GroupEditorFragment;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.PhoneCapabilityTester;
@@ -108,7 +107,7 @@ public class GroupEditorActivity extends ContactsActivity
     @Override
     public void onBackPressed() {
         // If the change could not be saved, then revert to the default "back" button behavior.
-        if (!mFragment.save(SaveMode.CLOSE)) {
+        if (!mFragment.save()) {
             super.onBackPressed();
         }
     }
@@ -123,9 +122,7 @@ public class GroupEditorActivity extends ContactsActivity
 
         String action = intent.getAction();
         if (ACTION_SAVE_COMPLETED.equals(action)) {
-            mFragment.onSaveCompleted(true,
-                    intent.getIntExtra(GroupEditorFragment.SAVE_MODE_EXTRA_KEY, SaveMode.CLOSE),
-                    intent.getData());
+            mFragment.onSaveCompleted(true, intent.getData());
         }
     }
 

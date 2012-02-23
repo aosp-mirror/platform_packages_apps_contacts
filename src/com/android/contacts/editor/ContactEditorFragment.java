@@ -127,8 +127,6 @@ public class ContactEditorFragment extends Fragment implements
     /**
      * Modes that specify what the AsyncTask has to perform after saving
      */
-    // TODO: Move this into a common utils class or the save service because the contact and
-    // group editors need to use this interface definition
     public interface SaveMode {
         /**
          * Close the editor after saving
@@ -1016,7 +1014,7 @@ public class ContactEditorFragment extends Fragment implements
                     .setPositiveButton(android.R.string.ok,
                         new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog, int whichButton) {
+                            public void onClick(DialogInterface dialogInterface, int whichButton) {
                                 ((ContactEditorFragment)getTargetFragment()).doRevertAction();
                             }
                         }
@@ -1408,6 +1406,7 @@ public class ContactEditorFragment extends Fragment implements
                     .setMessage(R.string.aggregation_suggestion_join_dialog_message)
                     .setPositiveButton(android.R.string.yes,
                         new DialogInterface.OnClickListener() {
+                            @Override
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 ContactEditorFragment targetFragment =
                                         (ContactEditorFragment) getTargetFragment();
@@ -1455,6 +1454,7 @@ public class ContactEditorFragment extends Fragment implements
                     .setMessage(R.string.aggregation_suggestion_edit_dialog_message)
                     .setPositiveButton(android.R.string.yes,
                         new DialogInterface.OnClickListener() {
+                            @Override
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 ContactEditorFragment targetFragment =
                                         (ContactEditorFragment) getTargetFragment();
@@ -1493,21 +1493,6 @@ public class ContactEditorFragment extends Fragment implements
         for (int i = 0; i < count; i++) {
             itemList.getChildAt(i).setEnabled(enabled);
         }
-    }
-
-    /**
-     * Computes bounds of the supplied view relative to its ascendant.
-     */
-    private Rect getRelativeBounds(View ascendant, View view) {
-        Rect rect = new Rect();
-        rect.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-
-        View parent = (View) view.getParent();
-        while (parent != ascendant) {
-            rect.offset(parent.getLeft(), parent.getTop());
-            parent = (View) parent.getParent();
-        }
-        return rect;
     }
 
     @Override
@@ -1691,6 +1676,7 @@ public class ContactEditorFragment extends Fragment implements
             bindGroupMetaData();
         }
 
+        @Override
         public void onLoaderReset(Loader<Cursor> loader) {
         }
     };
