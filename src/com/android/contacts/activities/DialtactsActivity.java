@@ -172,7 +172,7 @@ public class DialtactsActivity extends TransactionSafeActivity {
 
         @Override
         public void onPageSelected(int position) {
-            if (DEBUG) Log.d(TAG, "onPageSelected: " + position);
+            if (DEBUG) Log.d(TAG, "onPageSelected: position: " + position);
             final ActionBar actionBar = getActionBar();
             if (mDialpadFragment != null && !mDuringSwipe) {
                 if (DEBUG) {
@@ -233,7 +233,23 @@ public class DialtactsActivity extends TransactionSafeActivity {
         public void onPageScrollStateChanged(int state) {
             switch (state) {
                 case ViewPager.SCROLL_STATE_IDLE: {
-                    if (DEBUG) Log.d(TAG, "onPageScrollStateChanged() with SCROLL_STATE_IDLE");
+                    if (mNextPosition == -1) {
+                        // This happens when the user drags the screen just after launching the
+                        // application, and settle down the same screen without actually swiping it.
+                        // At that moment mNextPosition is apparently -1 yet, and we expect it
+                        // being updated by onPageSelected(), which is *not* called if the user
+                        // settle down the exact same tab after the dragging.
+                        if (DEBUG) {
+                            Log.d(TAG, "Next position is not specified correctly. Use current tab ("
+                                    + mViewPager.getCurrentItem() + ")");
+                        }
+                        mNextPosition = mViewPager.getCurrentItem();
+                    }
+                    if (DEBUG) {
+                        Log.d(TAG, "onPageScrollStateChanged() with SCROLL_STATE_IDLE. "
+                                + "mCurrentPosition: " + mCurrentPosition
+                                + ", mNextPosition: " + mNextPosition);
+                    }
                     // Interpret IDLE as the end of migration (both swipe and tab click)
                     mDuringSwipe = false;
                     mUserTabClick = false;
@@ -246,6 +262,13 @@ public class DialtactsActivity extends TransactionSafeActivity {
                     } else if (mCurrentPosition == TAB_INDEX_FAVORITES
                             && mNextPosition == TAB_INDEX_CALL_LOG) {
                         sendFragmentVisibilityChange(mNextPosition, true /* visible */ );
+                    } else if (mCurrentPosition == TAB_INDEX_DIALER
+                            && mNextPosition == TAB_INDEX_DIALER) {
+                        // Dragged the dialer screen, but remained in the dialer screen.
+                        // During user's dragging the dialer, we show the ActonBar, so we need to
+                        // explicitly reset it in this exact case.
+                        sendFragmentVisibilityChange(TAB_INDEX_DIALER, true);
+                        sendFragmentVisibilityChange(TAB_INDEX_CALL_LOG, false);
                     } else {
                         sendFragmentVisibilityChange(mCurrentPosition, false /* not visible */ );
                         sendFragmentVisibilityChange(mNextPosition, true /* visible */ );
@@ -1097,6 +1120,10 @@ public class DialtactsActivity extends TransactionSafeActivity {
     }
 
     private void sendFragmentVisibilityChange(int position, boolean visibility) {
+        if (DEBUG) {
+            Log.d(TAG, "sendFragmentVisibiltyChange(). position: " + position
+                    + ", visibility: " + visibility);
+        }
         // Position can be -1 initially. See PageChangeListener.
         if (position >= 0) {
             final Fragment fragment = getFragmentAt(position);
