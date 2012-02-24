@@ -19,7 +19,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-     <!-- "QuickFix"- button (Copy to local contact, add to group) -->
+    <!-- "QuickFix"- button (Copy to local contact, add to group) -->
     <Button
         android:id="@+id/contact_quick_fix"
         android:layout_width="wrap_content"

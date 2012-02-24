@@ -17,7 +17,6 @@
 <!-- Layout for confirming the addition of a piece of information to an existing contact. -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ex="http://schemas.android.com/apk/res/com.android.contacts"
     android:id="@+id/root_view"
     android:orientation="vertical"
     android:visibility="invisible"

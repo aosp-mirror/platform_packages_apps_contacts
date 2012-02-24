@@ -47,43 +47,36 @@
         layout="@layout/group_browse_list_account_header"
         android:visibility="gone" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="8dip"
         android:paddingLeft="8dip"
         android:paddingBottom="8dip"
+        android:layout_marginRight="?attr/list_item_padding_right"
+        android:orientation="vertical"
         android:duplicateParentState="true"
         android:background="@drawable/group_list_item_background"
-        >
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/label"
             android:layout_height="wrap_content"
-            android:layout_marginRight="?attr/list_item_padding_right"
-            android:orientation="vertical"
-            android:layout_toLeftOf="@+id/icons"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true">
+            android:layout_width="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:ellipsize="end"
+            android:singleLine="true" />
 
-            <TextView
-                android:id="@+id/label"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:ellipsize="end"
-                android:singleLine="true" />
+        <TextView
+            android:id="@+id/count"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?android:attr/textColorSecondary"
+            android:ellipsize="end"
+            android:singleLine="true" />
 
-            <TextView
-                android:id="@+id/count"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="?android:attr/textColorSecondary"
-                android:ellipsize="end"
-                android:singleLine="true" />
-
-        </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>
 

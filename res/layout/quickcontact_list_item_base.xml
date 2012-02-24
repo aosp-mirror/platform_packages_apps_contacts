@@ -33,7 +33,6 @@
         android:duplicateParentState="false"
         android:nextFocusLeft="@id/actions_view_container"/>
     <View
-        android:id="@+id/vertical_divider"
         android:layout_width="1dip"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"

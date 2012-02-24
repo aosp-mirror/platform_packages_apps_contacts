@@ -23,7 +23,7 @@
         android:background="@drawable/quickcontact_track_background"
         android:scrollbars="none">
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <LinearLayout
                 android:id="@+id/track"
