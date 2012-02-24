@@ -108,6 +108,7 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
             this.mimeType    = in.readString();
         }
 
+        @Override
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeLong(id);
             dest.writeString(phoneNumber);
@@ -118,10 +119,12 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
             dest.writeString(mimeType);
         }
 
+        @Override
         public int describeContents() {
             return 0;
         }
 
+        @Override
         public boolean collapseWith(PhoneItem phoneItem) {
             if (!shouldCollapseWith(phoneItem)) {
                 return false;
@@ -130,6 +133,7 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
             return true;
         }
 
+        @Override
         public boolean shouldCollapseWith(PhoneItem phoneItem) {
             return ContactsUtils.shouldCollapse(Phone.CONTENT_ITEM_TYPE, phoneNumber,
                     Phone.CONTENT_ITEM_TYPE, phoneItem.phoneNumber);
@@ -142,10 +146,12 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
 
         public static final Parcelable.Creator<PhoneItem> CREATOR
                 = new Parcelable.Creator<PhoneItem>() {
+            @Override
             public PhoneItem createFromParcel(Parcel in) {
                 return new PhoneItem(in);
             }
 
+            @Override
             public PhoneItem[] newArray(int size) {
                 return new PhoneItem[size];
             }
@@ -243,7 +249,10 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
                     .create();
         }
 
+        @Override
         public void onClick(DialogInterface dialog, int which) {
+            final Activity activity = getActivity();
+            if (activity == null) return;
             final AlertDialog alertDialog = (AlertDialog)dialog;
             if (mPhoneList.size() > which && which >= 0) {
                 final PhoneItem phoneItem = mPhoneList.get(which);
@@ -251,11 +260,11 @@ public class PhoneNumberInteraction implements OnLoadCompleteListener<Cursor> {
                 if (checkBox.isChecked()) {
                     // Request to mark the data as primary in the background.
                     final Intent serviceIntent = ContactSaveService.createSetSuperPrimaryIntent(
-                            getActivity(), phoneItem.id);
-                    getActivity().startService(serviceIntent);
+                            activity, phoneItem.id);
+                    activity.startService(serviceIntent);
                 }
 
-                PhoneNumberInteraction.performAction(getActivity(), phoneItem.phoneNumber,
+                PhoneNumberInteraction.performAction(activity, phoneItem.phoneNumber,
                         mInteractionType, mCallOrigin);
             } else {
                 dialog.dismiss();
