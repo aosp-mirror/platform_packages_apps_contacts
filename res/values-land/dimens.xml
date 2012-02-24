@@ -16,6 +16,5 @@
 <resources>
     <dimen name="dialpad_digits_height">66dip</dimen>
     <dimen name="dialpad_digits_text_size">28sp</dimen>
-    <dimen name="dialpad_digits_margin_top">1dip</dimen>
     <dimen name="dialpad_digits_margin_bottom">50dip</dimen>
 </resources>

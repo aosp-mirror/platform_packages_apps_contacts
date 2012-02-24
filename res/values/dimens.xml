@@ -149,9 +149,6 @@
     <!-- Border padding for the group detail fragment -->
     <dimen name="group_detail_border_padding">0dip</dimen>
 
-    <!-- Left and right margin for the divider in the group detail fragment -->
-    <dimen name="group_detail_side_margin">0dip</dimen>
-
     <!-- Height of the quick contact photo container (for screens that are too large to use the screen width/height as a constraint)-->
     <dimen name="quick_contact_photo_container_height">200dip</dimen>
 
@@ -161,9 +158,7 @@
     <dimen name="dialpad_digits_text_size">35sp</dimen>
 
     <!-- Just used in landscape mode -->
-    <dimen name="dialpad_button_height">0px</dimen>
     <dimen name="dialpad_digits_height">0px</dimen>
-    <dimen name="dialpad_digits_margin_top">0px</dimen>
     <dimen name="dialpad_digits_margin_bottom">0px</dimen>
 
     <!-- Width of search view in action bar.  Use 0dip for MATCH_PARENT -->
@@ -198,7 +193,6 @@
     <!-- Call Log -->
     <dimen name="call_log_call_action_size">32dip</dimen>
     <dimen name="call_log_call_action_width">48dip</dimen>
-    <dimen name="call_log_call_action_height">64dip</dimen>
     <dimen name="call_log_icon_margin">4dip</dimen>
     <dimen name="call_log_inner_margin">8dip</dimen>
     <dimen name="call_log_outer_margin">16dip</dimen>
@@ -218,9 +212,6 @@
     <dimen name="contact_filter_item_min_height">48dip</dimen>
     <dimen name="contact_filter_icon_size">32dip</dimen>
     <dimen name="contact_filter_header_min_height">24dip</dimen>
-
-    <!-- Height for directory headers in contact lists -->
-    <dimen name="directory_header_height">24dip</dimen>
 
     <!--  Vertical and horizontal padding in between contact tiles -->
     <dimen name="contact_tile_divider_padding">1dip</dimen>

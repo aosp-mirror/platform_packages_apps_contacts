@@ -49,9 +49,6 @@
     <!-- Colour of voicemail progress bar to the left of position indicator. -->
     <color name="voicemail_playback_seek_bar_already_played">#ccffffff</color>
 
-    <!-- Colour of text that appears on the voicemail ui. -->
-    <color name="voicemail_playback_ui_text">#cc696969</color>
-
     <!-- Color of the theme of the People app -->
     <color name="people_app_theme_color">#33B5E5</color>
 
