@@ -92,6 +92,11 @@ public class EventFieldEditorView extends LabeledEditorView {
     }
 
     @Override
+    public void editNewlyAddedField() {
+        showDialog(R.id.dialog_event_date_picker);
+    }
+
+    @Override
     protected void requestFocusForFirstEditField() {
         mDateView.requestFocus();
     }

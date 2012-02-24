@@ -85,4 +85,13 @@ public interface Editor {
      * Clears all fields in this {@link Editor}.
      */
     public void clearAllFields();
+
+    /**
+     * Called internally when the user has added a new field.  This
+     * allows the appropriate editor UI to be presented immediately.
+     * For example, if a new "event" is added, a date-picker will
+     * immediately pop up.
+     */
+    public void editNewlyAddedField();
+
 }

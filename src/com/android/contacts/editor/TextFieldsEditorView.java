@@ -40,10 +40,12 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -56,6 +58,8 @@ import java.util.Map;
  * and to correctly write any changes values.
  */
 public class TextFieldsEditorView extends LabeledEditorView {
+    private static final String TAG = TextFieldsEditorView.class.getSimpleName();
+
     private EditText[] mFieldEditTexts = null;
     private ViewGroup mFields = null;
     private View mExpansionViewContainer;
@@ -110,6 +114,22 @@ public class TextFieldsEditorView extends LabeledEditorView {
                 newFocusView.requestFocus();
             }
         });
+    }
+
+    @Override
+    public void editNewlyAddedField() {
+        // Some editors may have multiple fields (eg: first-name/last-name), but since the user
+        // has not selected a particular one, it is reasonable to simply pick the first.
+        final View editor = mFields.getChildAt(0);
+
+        // Show the soft-keyboard.
+        InputMethodManager imm =
+                (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            if (!imm.showSoftInput(editor, InputMethodManager.SHOW_IMPLICIT)) {
+                Log.w(TAG, "Failed to show soft input method.");
+            }
+        }
     }
 
     @Override
