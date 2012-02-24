@@ -56,7 +56,6 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -980,6 +979,12 @@ public class ContactEditorFragment extends Fragment implements
 
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
         if (!EntityModifier.hasChanges(mState, accountTypes)) {
+            if (mLookupUri == null && saveMode == SaveMode.RELOAD) {
+                // We don't have anything to save and there isn't even an existing contact yet.
+                // Nothing to do, simply go back to editing mode
+                mStatus = Status.EDITING;
+                return true;
+            }
             onSaveCompleted(false, saveMode, mLookupUri != null, mLookupUri);
             return true;
         }
