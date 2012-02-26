@@ -614,7 +614,8 @@
                     android:resource="@xml/social_widget_info" />
         </receiver>
 
-        <receiver android:name=".calllog.CallLogReceiver">
+        <receiver android:name=".calllog.CallLogReceiver"
+            android:enabled="@*android:bool/config_voice_capable">
             <intent-filter>
                 <action android:name="android.intent.action.NEW_VOICEMAIL" />
                 <data
